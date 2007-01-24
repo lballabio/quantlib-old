@@ -1,0 +1,263 @@
+<Category name='ratehelpers'>
+  <description>functions to construct and use RateHelper objects</description>
+  <displayName>RateHelper</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/ratehelpers.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/index.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2005, 2006 Eric Ehlers
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2005 Aurelien Chanudet
+  </copyright>
+  <Functions>
+
+    <Member name='qlRateHelperEarliestDate' libraryClass='RateHelper'>
+      <description>returns the earliest date for the given RateHelper object</description>
+      <libraryFunction>earliestDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRateHelperLatestDate' libraryClass='RateHelper'>
+      <description>returns the latest date for the given RateHelper object</description>
+      <libraryFunction>latestDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRateHelperReferenceQuote' libraryClass='RateHelper'>
+      <description>returns the reference quote for the given RateHelper object</description>
+      <libraryFunction>referenceQuote</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlDepositRateHelper'>
+      <libraryFunction>DepositRateHelper</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='quote' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>quote</description>
+          </Parameter>
+          <Parameter name='period' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>deposit legth (e.g. 3M for three months)</description>
+          </Parameter>
+          <Parameter name='fixingDays'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 2)</description>
+          </Parameter>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET)</description>
+          </Parameter>
+          <Parameter name='convention' enumeration='QuantLib::BusinessDayConvention'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business day convention (e.g. ModifiedFollowing)</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSwapRateHelper'>
+      <libraryFunction>SwapRateHelper</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='quote' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>quote</description>
+          </Parameter>
+          <Parameter name='period' libraryType='QuantLib::Period'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>deposit legth (e.g. 5Y for five years)</description>
+          </Parameter>
+          <Parameter name='fixingDays'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 2)</description>
+          </Parameter>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET)</description>
+          </Parameter>
+          <Parameter name='fixedLegFrequency' enumeration='QuantLib::Frequency'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixed leg frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
+          </Parameter>
+          <Parameter name='fixedLegConvention' enumeration='QuantLib::BusinessDayConvention'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixed leg convention (e.g. Unadjusted)</description>
+          </Parameter>
+          <Parameter name='fixedLegDayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+          <Parameter name="index" libraryClass='IborIndex'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg index object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlFuturesRateHelperConvexityAdjustment' libraryClass='FuturesRateHelper'>
+      <description>returns the convexity adjustment for the given FuturesRateHelper object</description>
+      <libraryFunction>convexityAdjustment</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Spread'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlFuturesRateHelper'>
+      <libraryFunction>FuturesRateHelper</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='priceQuote' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>price quote</description>
+          </Parameter>
+          <Parameter name='IMM'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>IMM code</description>
+          </Parameter>
+          <Parameter name='months'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>future contract lenght in months</description>
+          </Parameter>
+          <Parameter name='calendar' enumeration ='QuantLib::Calendar'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET)</description>
+          </Parameter>
+          <Parameter name='bDayConvention' enumeration='QuantLib::BusinessDayConvention'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Business Day Convention (e.g. ModifiedFollowing)</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+          <Parameter name='convexityAdjQuote' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>convexity adjustment quote (i.e. Forward rate = Futures rate - convexity adjustment)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Procedure name='qlRateHelperSelection'>
+      <description>selects rate helpers for bootstrapping</description>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateHelpers'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of rate-helpers</description>
+          </Parameter>
+          <Parameter name='includeFlag'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of instrument inclusion boolean</description>
+          </Parameter>
+          <Parameter name='priority'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of priority integers (higher number for higher priority)</description>
+          </Parameter>
+          <Parameter name='nFutures'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max number of Futures to be included</description>
+          </Parameter>
+          <Parameter name='frontFuturesRollingDays' default='0'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>discard the front Futures the given number of days before its expiry (e.g zero implies the use of the front Futures during its expiry day)</description>
+          </Parameter>
+          <Parameter name='depoExcludeFlag'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>boolean to exclude the Deposits after front Futures expiry</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+</Category>

@@ -1,0 +1,313 @@
+<Category name='optimization'>
+  <description>functions to construct and use Optimization objects</description>
+  <displayName>Optimization</displayName>
+  <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/optimization.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+  </copyright>
+
+  <Functions>
+
+    <!-- EndCriteria class and interface -->
+
+    <Member name='qlEndCriteriaSetPositiveOptimization' libraryClass='EndCriteria'>
+      <description>Sets positive optimization to the given EndCriteria object</description>
+      <libraryFunction>setPositiveOptimization</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="isPositive">
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for positive optimization</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEndCriteriaType' libraryClass='EndCriteria'>
+      <description>Returns the end criteria type for the given EndCriteria object</description>
+      <libraryFunction>type</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::EndCriteria::Type'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEndCriteriaMaxIteration' libraryClass='EndCriteria'>
+      <description>Returns the number of max interation for the given EndCriteria object</description>
+      <libraryFunction>maxIteration</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Size'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEndCriteriaFunctionEpsilon' libraryClass='EndCriteria'>
+      <description>Returns the function epsilon for the given EndCriteria object</description>
+      <libraryFunction>functionEpsilon</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Real'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEndCriteriaGradientEpsilon' libraryClass='EndCriteria'>
+      <description>Returns the gradient epsilon for the given EndCriteria object</description>
+      <libraryFunction>gradientEpsilon</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Real'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlEndCriteria'>
+      <libraryFunction>EndCriteria</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='mxIterations' default='1000'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max number of iterations</description>
+          </Parameter>
+          <Parameter name='functionEpsilon' default='1e-8'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance on the function value (e.g. 1e-8)</description>
+          </Parameter>
+          <Parameter name='gradientEpsilon' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance on the function gradient (e.g. 1e-8)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- OptimizationMethod base class interface -->
+
+    <Member name='qlOptimizationSetInitialValue' libraryClass='OptimizationMethod'>
+      <description>Sets the initial value (guess) to the given OptimizationMethod object</description>
+      <libraryFunction>setInitialValue</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="guess" libraryType='QuantLib::Array'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>initial value guess</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlOptimizationSetEndCriteria' libraryClass='OptimizationMethod'>
+      <description>Sets the EndCriteria to the given OptimizationMethod object</description>
+      <libraryFunction>setEndCriteria</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="endCriteria" underlyingClass='EndCriteria'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end criteria</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- OptimizationMethod derived classes' constructors -->
+
+    <Constructor name='qlSimplex'>
+      <libraryFunction>Simplex</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="lambda">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>lambda</description>
+          </Parameter>
+          <Parameter name="initialValue" libraryType='QuantLib::Array'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>initial value (i.e. initial guess)</description>
+          </Parameter>
+          <Parameter name="endCriteria" underlyingClass='EndCriteria'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EndCriteria object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlLevenbergMarquardt'>
+      <libraryFunction>LevenbergMarquardt</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="epsfcn" libraryType="QuantLib::Real" default="1.0e-8">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>epsfcn</description>
+          </Parameter>
+          <Parameter name="xtol" libraryType="QuantLib::Real" default="1.0e-8">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>xtol</description>
+          </Parameter>
+          <Parameter name="gtol" libraryType="QuantLib::Real" default="1.0e-8">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gtol</description>
+          </Parameter>
+          <Parameter name="initialValue" libraryType='QuantLib::Array'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>initial value (i.e. initial guess)</description>
+          </Parameter>
+          <Parameter name="endCriteria" underlyingClass='EndCriteria'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EndCriteria object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlConjugateGradient'>
+      <libraryFunction>ConjugateGradient</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="initialValue" libraryType='QuantLib::Array'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>initial value (i.e. initial guess)</description>
+          </Parameter>
+          <Parameter name="endCriteria" underlyingClass='EndCriteria'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EndCriteria object ID</description>
+          </Parameter>
+          <Parameter name="lineSearch" libraryClass='LineSearch' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>LineSearch object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSteepestDescent'>
+      <libraryFunction>SteepestDescent</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="initialValue" libraryType='QuantLib::Array'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>initial value (i.e. initial guess)</description>
+          </Parameter>
+          <Parameter name="endCriteria" underlyingClass='EndCriteria'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EndCriteria object ID</description>
+          </Parameter>
+          <Parameter name="lineSearch" libraryClass='LineSearch' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>LineSearch object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- LineSearch derived classes' constructors -->
+
+    <Constructor name='qlArmijoLineSearch'>
+      <libraryFunction>ArmijoLineSearch</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="epsilon">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>epsilon</description>
+          </Parameter>
+          <Parameter name="alpha">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha</description>
+          </Parameter>
+          <Parameter name="beta">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+
+</Category>

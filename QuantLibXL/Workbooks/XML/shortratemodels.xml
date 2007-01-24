@@ -1,0 +1,113 @@
+<Category name='shortratemodels'>
+  <description>functions to construct and use short-rate model objects</description>
+  <displayName>Short Rate Models</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2005 Aurelien Chanudet
+    Copyright (C) 2005 Eric Ehlers
+    Copyright (C) 2006 Chiara Fornarola
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='qlHullWhite'>
+      <libraryFunction>HullWhite</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>yield term structure</description>
+          </Parameter>
+          <Parameter name='a'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>a</description>
+          </Parameter>
+          <Parameter name='sigma'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>volatility</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlVasicek'>
+      <libraryFunction>Vasicek</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='a'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>mean reverting speed</description>
+          </Parameter>
+          <Parameter name='b'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>short-rate limit value</description>
+          </Parameter>
+          <Parameter name='lambda'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>risk premium</description>
+          </Parameter>
+          <Parameter name='sigma'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>volatility</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Procedure name='qlFuturesConvexityBias'>
+      <description>Returns Futures convexity bias (ForwardRate = FuturesImpliedRate - ConvexityBias) calculated as in G. Kirikos, D. Novak, 'Convexity Conundrums', Risk Magazine, March 1997</description>
+      <alias>QuantLib::HullWhite::convexityBias</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='futuresPrice'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Futures price (e.g. 94.56)</description>
+          </Parameter>
+          <Parameter name='t'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Maturity date of the futures contract in years(e.g. 5.0)</description>
+          </Parameter>
+          <Parameter name='T'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Maturity of the underlying Libor deposit in years (e.g. 5.25)</description>
+          </Parameter>
+          <Parameter name='sigma'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Hull-White volatility (e.g. 0.015)</description>
+          </Parameter>
+          <Parameter name='a' default='0.03'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Hull-White mean reversion (e.g. 0.03)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+</Category>

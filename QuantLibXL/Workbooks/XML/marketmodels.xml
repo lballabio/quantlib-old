@@ -1,0 +1,1753 @@
+<Category name='marketmodels'>
+  <description>functions to construct and use Market Models related objects</description>
+  <displayName>MarketModels</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>ql/Optimization/method.hpp</include>
+    <include>ql/MarketModels/swapforwardconversionmatrix.hpp</include>
+    <include>ql/MarketModels/swapforwardmappings.hpp</include>
+    <include>ql/MarketModels/curvestate.hpp</include>
+    <include>qlo/optimization.hpp</include>
+    <include>qlo/marketmodels.hpp</include>
+    <include>qlo/sequencestatistics.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006 Marco Bianchetti
+    Copyright (C) 2006 Cristina Duminuco
+    Copyright (C) 2006 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+
+    <!-- MarketModelMultiProduct base class interface  -->
+
+    <Member name='qlMarketModelMultiProductPossibleCashFlowTimes' libraryClass='MarketModelMultiProduct'>
+      <description>possible cash flow times for the MarketModelMultiProduct object</description>
+      <libraryFunction>possibleCashFlowTimes</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Time'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelMultiProductNumberOfProducts' libraryClass='MarketModelMultiProduct'>
+      <description>number of products in the MarketModelMultiProduct object</description>
+      <libraryFunction>numberOfProducts</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelMultiProductMaxNumberOfCashFlowsPerProductPerStep' libraryClass='MarketModelMultiProduct'>
+      <description>Max number of cashflows per product per step for the MarketModelMultiProduct object</description>
+      <libraryFunction>maxNumberOfCashFlowsPerProductPerStep</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- MarketModelMultiProduct derived classes' constructors  -->
+
+    <Constructor name='qlMarketModelOneStepForwards'>
+      <libraryFunction>OneStepForwards</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='accruals'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>accrual factors</description>
+          </Parameter>
+          <Parameter name='paymentTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>payment times of the product</description>
+          </Parameter>
+          <Parameter name='strikes' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>forward strikes</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlMarketModelMultiStepRatchet'>
+      <libraryFunction>MultiStepRatchet</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='accruals'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>accrual factors</description>
+          </Parameter>
+          <Parameter name='paymentTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>payment times of the product</description>
+          </Parameter>
+          <Parameter name='gearingOfFloor' libraryType='QuantLib::Real'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing of floor</description>
+          </Parameter>
+          <Parameter name='gearingOfFixing' libraryType='QuantLib::Real'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing of fixing</description>
+          </Parameter>
+          <Parameter name='spreadOfFloor' libraryType='QuantLib::Real'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread of floor</description>
+          </Parameter>
+          <Parameter name='spreadOfFixing' libraryType='QuantLib::Real'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread of fixing</description>
+          </Parameter>
+          <Parameter name='initialFloor' libraryType='QuantLib::Real'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial floor</description>
+          </Parameter>
+          <Parameter name='payer'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payer if true</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    <!--<Constructor name='qlMarketModelOneStepOptionlets'>
+      <libraryFunction>OneStepOptionlets</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='accruals' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>accrual factors</description>
+          </Parameter>
+          <Parameter name='paymentTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>payment times of the product</description>
+          </Parameter>
+          <Parameter name='payoffs' libraryClass='Payoff'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>striked type payoff object IDs</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>-->
+
+    <!-- EvolutionDescription class interface and costructor -->
+
+    <Member name='qlEvolutionDescriptionRateTimes' libraryClass='EvolutionDescription'>
+      <description>rates fixing times for the EvolutionDescription object</description>
+      <libraryFunction>rateTimes</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Time'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEvolutionDescriptionRateTaus' libraryClass='EvolutionDescription'>
+      <description>rates taus for the EvolutionDescription object</description>
+      <libraryFunction>rateTaus</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Time'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEvolutionDescriptionEvolutionTimes' libraryClass='EvolutionDescription'>
+      <description>evolution times for the EvolutionDescription object</description>
+      <libraryFunction>evolutionTimes</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Time'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEvolutionDescriptionEffectiveStopTime' libraryClass='EvolutionDescription'>
+      <description>for each step returns a row with the effective evolution stopping time for each rate</description>
+      <libraryFunction>effectiveStopTime</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Matrix'>
+        <type>double</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEvolutionDescriptionFirstAliveRate' libraryClass='EvolutionDescription'>
+      <description>first alive rate at each evolution time for the EvolutionDescription object</description>
+      <libraryFunction>firstAliveRate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Size'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!--Member name='qlEvolutionDescriptionRelevanceRates' libraryClass='EvolutionDescription'-->
+
+    <Member name='qlEvolutionDescriptionNumberOfRates' libraryClass='EvolutionDescription'>
+      <description>number of rates for the EvolutionDescription object</description>
+      <libraryFunction>numberOfRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEvolutionDescriptionNumberOfSteps' libraryClass='EvolutionDescription'>
+      <description>number of steps for the EvolutionDescription object</description>
+      <libraryFunction>numberOfSteps</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Procedure name='qlTerminalMeasure'>
+      <description>Returns the terminal measure for the given EvolutionDescription object</description>
+      <alias>QuantLib::terminalMeasure</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EvolutionDescription' underlyingClass='EvolutionDescription'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of EvolutionDescription object</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Size'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlMoneyMarketMeasure'>
+      <description>Returns the discretely compounded money market measure for the given EvolutionDescription object</description>
+      <alias>QuantLib::moneyMarketMeasure</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EvolutionDescription' underlyingClass='EvolutionDescription'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of EvolutionDescription object</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Size'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlMoneyMarketPlusMeasure'>
+      <description>Returns the discretely compounded money market measure for the given EvolutionDescription object</description>
+      <alias>QuantLib::moneyMarketPlusMeasure</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EvolutionDescription' underlyingClass='EvolutionDescription'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of EvolutionDescription object</description>
+          </Parameter>
+          <Parameter name='offset' libraryType='QuantLib::Size' default='1'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>offset applied to the MoneyMarket measure (default = 1)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Size'>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIsInTerminalMeasure'>
+      <description>Returns TRUE if the numeraire vector is Terminal measure for the given EvolutionDescription object</description>
+      <alias>QuantLib::isInTerminalMeasure</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EvolutionDescription' underlyingClass='EvolutionDescription'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of EvolutionDescription object</description>
+          </Parameter>
+          <Parameter name='numeraires' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of numeraires</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIsInMoneyMarketMeasure'>
+      <description>Returns TRUE if the numeraire vector is money market measure for the given EvolutionDescription object</description>
+      <alias>QuantLib::isInMoneyMarketMeasure</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EvolutionDescription' underlyingClass='EvolutionDescription'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of EvolutionDescription object</description>
+          </Parameter>
+          <Parameter name='numeraires' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of numeraires</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIsInMoneyMarketPlusMeasure'>
+      <description>Returns TRUE if the numeraire vector is money market measure plus for the given EvolutionDescription object</description>
+      <alias>QuantLib::isInMoneyMarketPlusMeasure</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EvolutionDescription' underlyingClass='EvolutionDescription'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of EvolutionDescription object</description>
+          </Parameter>
+          <Parameter name='numeraires' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of numeraires</description>
+          </Parameter>
+          <Parameter name='offset' default='1'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>offset applied to the MoneyMarket measure (default = 1)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Constructor name='qlEvolutionDescription'>
+      <libraryFunction>EvolutionDescription</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='evolutionTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>evolution times in the simulation</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- MarketModel base class interfaces -->
+
+    <Member name='qlMarketModelInitialRates' libraryClass='MarketModel'>
+      <description>initial rates for the MarketModel object</description>
+      <libraryFunction>initialRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelDisplacements' libraryClass='MarketModel'>
+      <description>rates' displacemets for the MarketModel object</description>
+      <libraryFunction>displacements</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Spread'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelNumberOfRates' libraryClass='MarketModel'>
+      <description>number of rates for the MarketModel object</description>
+      <libraryFunction>numberOfRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelNumberOfFactors' libraryClass='MarketModel'>
+      <description>number of factors for the MarketModel object</description>
+      <libraryFunction>numberOfFactors</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelNumberOfSteps' libraryClass='MarketModel'>
+      <description>number of steps for the MarketModel object</description>
+      <libraryFunction>numberOfSteps</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelPseudoRoot' libraryClass='MarketModel'>
+      <description>Returns the pseudo root for the i-th step.</description>
+      <libraryFunction>pseudoRoot</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="index">
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>evolution step index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Matrix'>
+        <type>double</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelCovariance' libraryClass='MarketModel'>
+      <description>Returns the covariance matrix for the i-th step.</description>
+      <libraryFunction>covariance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="index">
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>evolution step index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Matrix'>
+        <type>double</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelTotalCovariance' libraryClass='MarketModel'>
+      <description>Returns the covariance matrix from start up to the i-th step.</description>
+      <libraryFunction>totalCovariance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="index">
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>evolution step index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Matrix'>
+        <type>double</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- MarketModel derived class constructors -->
+
+    <Constructor name='qlExpCorrFlatVol'>
+      <libraryFunction>ExpCorrFlatVol</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LongTermCorr'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
+          </Parameter>
+          <Parameter name='beta'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
+          </Parameter>
+          <Parameter name='volatilities' libraryType='QuantLib::Volatility'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>volatilities</description>
+          </Parameter>
+          <Parameter name='evolutionDescription' underlyingClass='EvolutionDescription'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EvolutionDescription object</description>
+          </Parameter>
+          <Parameter name='Factors'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of factors to be retained in the simulation</description>
+          </Parameter>
+          <Parameter name='initialRates' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>initial rates</description>
+          </Parameter>
+          <Parameter name='displacements' libraryType='QuantLib::Spread'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>displacements</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlExpCorrAbcdVol'>
+      <libraryFunction>ExpCorrAbcdVol</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='a'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the a coefficient in the abcd vol parametrization</description>
+          </Parameter>
+          <Parameter name='b'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the b coefficient in the abcd vol parametrization</description>
+          </Parameter>
+          <Parameter name='c'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the c coefficient in the abcd vol parametrization</description>
+          </Parameter>
+          <Parameter name='d'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the d coefficient in the abcd vol parametrization</description>
+          </Parameter>
+          <Parameter name='ks'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>K_i adjustment factors in the abcd vol parametrization</description>
+          </Parameter>
+          <Parameter name='LongTermCorr'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
+          </Parameter>
+          <Parameter name='beta'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
+          </Parameter>
+          <Parameter name='evolutionDescription' underlyingClass='EvolutionDescription'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EvolutionDescription object</description>
+          </Parameter>
+          <Parameter name='Factors'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of factors to be retained in the simulation</description>
+          </Parameter>
+          <Parameter name='initialRates' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>initial rates</description>
+          </Parameter>
+          <Parameter name='displacements' libraryType='QuantLib::Spread'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>displacements</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- Abcd Volatility -->
+
+    <Member name='qlAbcdInstantaneousValue' libraryClass='Abcd' loopParameter='u'>
+      <description>Returns the instantaneous volatility as function of residual time to maturity. [a + b*T] * e^{-c*T} + d</description>
+      <libraryFunction>operator()</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='u' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>residual time(s) to maturity</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdInstantaneousCovariance' libraryClass='Abcd' loopParameter='u'>
+      <description>Returns covariance at calendar time u between T and S fixing rates.</description>
+      <libraryFunction>instantaneousCovariance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='u' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>calendar time(s)</description>
+          </Parameter>
+          <Parameter name='T' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing time of first rate</description>
+          </Parameter>
+          <Parameter name='S' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing time of second rate</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdInstantaneousVariance' libraryClass='Abcd' loopParameter='u'>
+      <description>Returns variance at calendar time u of T-fixing rate.</description>
+      <libraryFunction>instantaneousVariance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='u' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>calendar time(s)</description>
+          </Parameter>
+          <Parameter name='T' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing time of the rate</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdInstantaneousVolatility' libraryClass='Abcd' loopParameter='u'>
+      <description>Returns volatility at calendar time u of T-fixing rate.</description>
+      <libraryFunction>instantaneousVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='u' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>calendar time(s)</description>
+          </Parameter>
+          <Parameter name='T' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing calendar time of the rate</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Volatility'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdCovariance' libraryClass='Abcd' loopParameter='tMax'>
+      <description>Returns covariance in [tMin,tMax] between T and S fixing rates.</description>
+      <libraryFunction>covariance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='tMin' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>lower bound of the covariance integral</description>
+          </Parameter>
+          <Parameter name='tMax' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>upper bound of the covariance integral</description>
+          </Parameter>
+          <Parameter name='T' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing calendar time of first rate</description>
+          </Parameter>
+          <Parameter name='S' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing calendar time of second rate</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdVariance' libraryClass='Abcd' loopParameter='tMax'>
+      <description>Returns variance in [tMin,tMax] of T-fixing rate.</description>
+      <libraryFunction>variance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='tMin' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>lower bound of the covariance integral</description>
+          </Parameter>
+          <Parameter name='tMax' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>upper bound of the covariance integral</description>
+          </Parameter>
+          <Parameter name='T' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing calendar time of the rate</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdVolatility' libraryClass='Abcd' loopParameter='tMax'>
+      <description>Returns volatility in [tMin,tMax] of T fixing rate.</description>
+      <libraryFunction>volatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='tMin' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>lower bound of the covariance integral</description>
+          </Parameter>
+          <Parameter name='tMax' const='False'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>upper bound of the covariance integral</description>
+          </Parameter>
+          <Parameter name='T' const='False'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing time of the rate</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Volatility'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdShortTermVolatility' libraryClass='Abcd'>
+      <description>Returns the short term volatility implied by Abcd volatility.</description>
+      <libraryFunction>shortTermVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Volatility'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdLongTermVolatility' libraryClass='Abcd'>
+      <description>Returns the long term volatility implied by Abcd volatility.</description>
+      <libraryFunction>longTermVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Volatility'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdMaximumLocation' libraryClass='Abcd'>
+      <description>Returns, if b is positive, the location of the Abcd volatility maximum.</description>
+      <libraryFunction>maximumLocation</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Time'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdMaximumVolatility' libraryClass='Abcd'>
+      <description>Returns, if b is positive, the maximum of the Abcd volatility.</description>
+      <libraryFunction>maximumVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Volatility'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdA' libraryClass='Abcd'>
+      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <libraryFunction>a</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdB' libraryClass='Abcd'>
+      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <libraryFunction>b</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdC' libraryClass='Abcd'>
+      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <libraryFunction>c</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdD' libraryClass='Abcd'>
+      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <libraryFunction>d</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdK' libraryClass='Abcd'>
+      <description>Returns the 'k' adjustment factors needed to match Black vols</description>
+      <libraryFunction>k</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='blackVols'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Black vol vector.</description>
+          </Parameter>
+          <Parameter name='times' vectorIterator='begin'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Reference time for the above Black vol vector.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdError' libraryClass='Abcd'>
+      <description>Returs the error between the abdc implied Black vols and a given Black vol vector</description>
+      <libraryFunction>error</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='blackVols'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Black vol vector.</description>
+          </Parameter>
+          <Parameter name='times' vectorIterator='begin'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Reference time for the above Black vol vector.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdMaxError' libraryClass='Abcd'>
+      <description>Returs the max error between the abdc implied Black vols and a given Black vol vector</description>
+      <libraryFunction>maxError</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='blackVols'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Black vol vector.</description>
+          </Parameter>
+          <Parameter name='times' vectorIterator='begin'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Reference time for the above Black vol vector.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdCapletCalibration' libraryClass='Abcd'>
+      <description>Calibrates the a, b, c, d parameters of the vol parametrization</description>
+      <libraryFunction>capletCalibration</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='blackVols' libraryType='QuantLib::Volatility'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Black vol vector.</description>
+          </Parameter>
+          <Parameter name='times' vectorIterator='begin'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Reference time for the above Black vol vector.</description>
+          </Parameter>
+          <!-- the way it should work -->
+          <!--<Parameter name='optimizationMethod' libraryClass='OptimizationMethod' default='boost::shared_ptr&lt;QuantLib::OptimizationMethod&gt;()'>-->
+          <Parameter name='optimizationMethod' libraryClass='OptimizationMethod' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>optimization method object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::EndCriteria::Type'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlAbcd'>
+      <libraryFunction>Abcd</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='a' default='-0.06'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='b' default='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='c' default='0.54'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='d' default='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='aIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
+          </Parameter>
+          <Parameter name='bIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
+          </Parameter>
+          <Parameter name='cIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
+          </Parameter>
+          <Parameter name='dIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- SwapForwardConversionMatrix class constructor and interfaces -->
+
+    <Constructor name='qlSwapCovarianceApproximator'>
+      <libraryFunction>SwapCovarianceApproximator</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='initial_Curve_State' underlyingClass='CurveState'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of CurveState object</description>
+          </Parameter>
+          <Parameter name='expiry' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index of first expiry date</description>
+          </Parameter>
+          <Parameter name='maturity' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index of last maturity date</description>
+          </Parameter>
+          <Parameter name='displacement' libraryType='QuantLib::Spread'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Swap rate displacement (one single value)</description>
+          </Parameter>
+          <Parameter name='forwardCovarianceMatrix' libraryType='QuantLib::Matrix'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Forward covariance matrix</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlSwapCovarianceApproximatorSwapCovarianceMatrix' objectClass='SwapCovarianceApproximator'>
+      <description>Given the forward covariance matrix, it returns the approximated swap covariance matrix corresponding to the (sub)set of coterminal swaps between expiry and maturity.</description>
+      <libraryFunction>swapCovarianceMatrix</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Matrix'>
+        <type>double</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Procedure name='qlCoterminalSwapForwardJacobian'>
+      <description>Returns the jacobian between coterminal swap rates and forward rates</description>
+      <alias>QuantLib::SwapForwardMappings::coterminalSwapForwardJacobian</alias>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='curveState' underlyingClass='CurveState'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Matrix'>
+        <type>double</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCoterminalSwapZedMatrix'>
+      <description>Returns the Z matrix to switch base from forward to coterminal swap rates</description>
+      <alias>QuantLib::SwapForwardMappings::coterminalSwapZedMatrix</alias>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='curveState' underlyingClass='CurveState'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID</description>
+          </Parameter>
+          <Parameter name='dispacement' libraryType='QuantLib::Spread'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement spread</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Matrix'>
+        <type>double</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!-- CurveState class interfaces and costructor -->
+
+    <Member name='qlCurveStateRateTimes' libraryClass='CurveState'>
+      <description>return the rate times of the CurveState object</description>
+      <libraryFunction>rateTimes</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Time'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCurveStateRateTaus' libraryClass='CurveState'>
+      <description>return the rate taus of the CurveState object</description>
+      <libraryFunction>rateTaus</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Time'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCurveStateSetOnForwardRates' libraryClass='CurveState'>
+      <description>set the CurveState object on given vector of forward rates</description>
+      <libraryFunction>setOnForwardRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rates' libraryType='QuantLib::Rate' vectorIterator='beginAndEnd'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>forward rates</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCurveStateSetOnDiscountRatios' libraryClass='CurveState'>
+      <description>set the CurveState object on given vector of discount ratios</description>
+      <libraryFunction>setOnDiscountRatios</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='discountRatios' vectorIterator='beginAndEnd'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>discount ratios</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCurveStateSetOnCoterminalSwapRates' libraryClass='CurveState'>
+      <description>set the CurveState object on given vector of coterminal swaps</description>
+      <libraryFunction>setOnCoterminalSwapRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CoterminalSwaps' libraryType='QuantLib::Rate' vectorIterator='beginAndEnd'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Coterminal Swaps</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCurveStateForwardRates' libraryClass='CurveState'>
+      <description>Returns the current forward rates of the CurveState object</description>
+      <libraryFunction>forwardRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCurveStateDiscountRatios' libraryClass='CurveState'>
+      <description>Returns the current discount ratios of the CurveState object</description>
+      <libraryFunction>discountRatios</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCurveStateCoterminalSwapRates' libraryClass='CurveState'>
+      <description>Returns the current swap rates of the CurveState object</description>
+      <libraryFunction>coterminalSwapRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCurveStateCoterminalSwapAnnuities' libraryClass='CurveState'>
+      <description>Returns the current swap annuities of the CurveState object</description>
+      <libraryFunction>coterminalSwapAnnuities</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Real'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlCurveState'>
+      <libraryFunction>CurveState</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time' vectorIterator='beginAndEnd'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- DriftCalculator class constructor and interfaces -->
+
+    <Constructor name='qlDriftCalculator'>
+      <libraryFunction>DriftCalculator</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='pseudo_square_root' libraryType='QuantLib::Matrix'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Pseudo square root of the covariance matrix</description>
+          </Parameter>
+          <Parameter name='displacements' libraryType='QuantLib::Spread'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>displacements</description>
+          </Parameter>
+          <Parameter name='taus' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>taus</description>
+          </Parameter>
+          <Parameter name='numeraire' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>numeraire</description>
+          </Parameter>
+          <Parameter name='alive' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index of the first rates still alive</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlDriftCalculatorComputePlain' objectClass='DriftCalculator'>
+      <description>Full factor drift computation using the DriftCalculator object</description>
+      <libraryFunction>computePlain</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='forwards' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Forward rates</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlDriftCalculatorComputeReduced' objectClass='DriftCalculator'>
+      <description>Reduced factor (Joshi algorithm) drift computation using the DriftCalculator object</description>
+      <libraryFunction>computeReduced</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='forwards' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Forward rates</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- BrownianGeneratorFactory derived classes constructors  -->
+
+    <Constructor name='qlMTBrownianGeneratorFactory'>
+      <libraryFunction>MTBrownianGeneratorFactory</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='seed'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>seed for random sequence generator</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- MarketModelEvolver base class interface  -->
+
+    <Member name='qlMarketModelEvolverStartNewPath' libraryClass='MarketModelEvolver'>
+      <description>start a new path for the MarketModelEvolver object</description>
+      <libraryFunction>startNewPath</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelEvolverAdvanceStep' libraryClass='MarketModelEvolver'>
+      <description>advance a single step in the current path for the MarketModelEvolver object</description>
+      <libraryFunction>advanceStep</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelEvolverCurrentStep' libraryClass='MarketModelEvolver'>
+      <description>returns the current step index in the current path for the MarketModelEvolver object</description>
+      <libraryFunction>currentStep</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Size'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- MarketModelEvolver derived classes' constructors  -->
+
+    <Constructor name='qlForwardRatePcEvolver'>
+      <libraryFunction>ForwardRatePcEvolver</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketModel' libraryClass='MarketModel'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MarketModel object ID</description>
+          </Parameter>
+          <Parameter name='brownianGeneratorFactory' underlyingClass='BrownianGeneratorFactory'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Brownian generator factory</description>
+          </Parameter>
+          <Parameter name='numeraires' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>numeraire vector</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlForwardRateIpcEvolver'>
+      <libraryFunction>ForwardRateIpcEvolver</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketModel' libraryClass='MarketModel'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MarketModel object ID</description>
+          </Parameter>
+          <Parameter name='brownianGeneratorFactory' underlyingClass='BrownianGeneratorFactory'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Brownian generator factory</description>
+          </Parameter>
+          <Parameter name='numeraires' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>numeraire vector</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- AccountingEngine class interface and constructor -->
+
+    <Constructor name='qlAccountingEngine'>
+      <libraryFunction>AccountingEngine</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketModelEvolver' libraryClass='MarketModelEvolver'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MarketModelEvolver object ID</description>
+          </Parameter>
+          <Parameter name='product' underlyingClass='MarketModelMultiProduct'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MarketModelMultiProduct object</description>
+          </Parameter>
+          <Parameter name='initialNumeraireValue'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial numeraire value</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlAccountingEngineMultiplePathValues' libraryClass='AccountingEngine'>
+      <description>return multiple path values</description>
+      <libraryFunction>multiplePathValues</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='sequenceStatistics' underlyingClassNonconst='SequenceStatistics'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Sequence Statistics object ID</description>
+          </Parameter>
+          <Parameter name='paths'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of paths</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>
