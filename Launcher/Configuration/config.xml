@@ -6,7 +6,7 @@
       <Workbooks>X:\Offices1\CabotoXL\01 Production\Workbooks</Workbooks>
       <HelpFile>X:\Offices1\CabotoXL\01 Production\Docs</HelpFile>
       <AddinDirectory></AddinDirectory>
-      <AddinName>QuantLibXL-vc80-mt-s-0_3_14.xll</AddinName>
+      <AddinName>QuantLibXL-vc80-mt-s-0_4_0.xll</AddinName>
       <YieldCurveBootstrap>false</YieldCurveBootstrap>
       <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
       <CapVolBootstrap>false</CapVolBootstrap>
