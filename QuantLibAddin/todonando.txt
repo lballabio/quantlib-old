@@ -48,12 +48,17 @@ Nando
 - make BlackCalculator observer/observable, make it lazy
 - contratti
 - trimestrale
+- review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls e SimpleQuote.xls (con Eric?)
+
+
 
 K
 - SA
 - new end of day live feed snapshot procedure + vol cube + mean rev + all environments
 - demo skeleton
 - test abcd (swap tenor) with new optimization code
+- review SwaptionVolCubeChecks.xls
+
 
 François
 - To BE REVIEWED test abcd calibration
@@ -69,6 +74,9 @@ François
 - expose to Excel all these new abcd-related vol functions
 - implement abcdinterpolation
 - get ready for the second set of main cycle future options
+- review workbooks: SmileSectionCaps.xls, DerivedQuotes.xls,CapStripperTest3M.xls.
+
+
 
 Cristina
 - valuation of plain vanilla leg of BGM book
@@ -83,6 +91,7 @@ Giorgio
 - ratchet Instrument C++
 - spreaded swaption vol structure
 - spreaded caplet vol structure
+
 
 Chiara
 D usare ohsplit nella costruzione dei bondobjects
