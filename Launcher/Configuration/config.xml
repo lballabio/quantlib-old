@@ -38,7 +38,7 @@
       <Workbooks>X:\Offices1\CabotoXL\03 Testing\Workbooks</Workbooks>
       <HelpFile>X:\Offices1\CabotoXL\03 Testing\Docs</HelpFile>
       <AddinDirectory></AddinDirectory>
-      <AddinName>QuantLibXL-vc80-mt-s-0_4_0.xll</AddinName>
+      <AddinName>QuantLibXL-vc80-mt-s-0_9_0.xll</AddinName>
       <YieldCurveBootstrap>false</YieldCurveBootstrap>
       <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
       <CapVolBootstrap>false</CapVolBootstrap>
