@@ -66,6 +66,18 @@ namespace QuantLibAddin {
             QuantLib::SimpleCashFlow(amount,date)));
     }
 
+    //JointCashFlowStream::JointCashFlowStream(
+    //                const std::vector<CashFlowStream>& legs,
+    //                bool sort) {
+    //    for (QuantLib::Size i=0; i<legs.size(); ++i) {
+    //        const Leg& cfs = legs[i].getVector();
+    //        cashFlowVector_.insert(cashFlowVector_.end(),
+    //                               cfs.begin(), cfs.end());
+    //    }
+    //    if (sort)
+    //        std::sort(cashFlowVector_.begin(), cashFlowVector_.end());
+    //};
+
     SimpleCashFlowVector::SimpleCashFlowVector(const std::vector<double> amounts,
                                                const std::vector<QuantLib::Date>& dates)
     {

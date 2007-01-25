@@ -50,6 +50,12 @@ namespace QuantLibAddin {
         SimpleCashFlow(double amount, const QuantLib::Date& date);
     };
 
+    class JointCashFlowStream : public CashFlowStream {
+      public:
+          JointCashFlowStream(const std::vector<CashFlowStream>& legs, 
+                              bool sort);
+    };
+
     class SimpleCashFlowVector : public CashFlowStream {
       public:
         SimpleCashFlowVector(const std::vector<double> amounts, 
