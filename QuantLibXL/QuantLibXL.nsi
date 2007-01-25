@@ -50,6 +50,9 @@ SectionIn 1 2 3
     SetOutPath "$INSTDIR\framework"
     File "framework\*.xla"
 
+    SetOutPath "$INSTDIR\Workbooks"
+    File /r "Workbooks\*.xml"
+
     SetOutPath "$INSTDIR\xll"
     File "xll\QuantLibXL-vc*-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 

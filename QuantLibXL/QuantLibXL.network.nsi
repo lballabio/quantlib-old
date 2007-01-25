@@ -84,6 +84,7 @@ Section "-QuantLibXL Network Distribution"
   ;SetOutPath "$WORKBOOK_PATH\"
   SetOutPath "$INSTDIR\Workbooks"
   File /r /x Drafts "Workbooks\*.xls"
+  File /r "Workbooks\*.xml"
 
 SectionEnd
 
