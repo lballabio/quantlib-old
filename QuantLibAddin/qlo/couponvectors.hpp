@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2006 Giorgio Facchinetti
  Copyright (C) 2006, 2007 Cristina Duminuco
  Copyright (C) 2005 Aurelien Chanudet
@@ -47,8 +47,8 @@ namespace QuantLibAddin {
 
     class CashFlowStreamJoin : public CashFlowStream {
       public:
-          CashFlowStreamJoin(const std::vector<boost::shared_ptr<CashFlowStream> >& legs, 
-                             bool sort);
+        CashFlowStreamJoin(const std::vector<Leg>& legs, 
+                           bool toBeSorted);
     };
 
     class SimpleCashFlowVector : public CashFlowStream {

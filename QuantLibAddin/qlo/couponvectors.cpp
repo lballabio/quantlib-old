@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2006 Eric Ehlers
  Copyright (C) 2006 Giorgio Facchinetti
  Copyright (C) 2005 Aurelien Chanudet
@@ -31,6 +31,9 @@
 #include <ql/CashFlows/simplecashflow.hpp>
 #include <ql/CashFlows/cmscoupon.hpp>
 #include <ql/CashFlows/analysis.hpp>
+
+using QuantLib::earlier_than;
+using QuantLib::CashFlow;
 
 namespace QuantLibAddin {
 
@@ -63,23 +66,23 @@ namespace QuantLibAddin {
     }
 
     CashFlowStreamJoin::CashFlowStreamJoin(
-                    const std::vector<boost::shared_ptr<CashFlowStream> >& legs,
+                    const std::vector<Leg>& legs,
                     bool toBeSorted) {
         for (QuantLib::Size i=0; i<legs.size(); ++i) {
-            const Leg& leg = legs[i]->getVector();
+            //const Leg& leg = legs[i]->getVector();
             cashFlowVector_.insert(cashFlowVector_.end(),
-                                   leg.begin(), leg.end());
+                                   legs[i].begin(), legs[i].end());
         }
         if (toBeSorted)
             std::sort(cashFlowVector_.begin(), cashFlowVector_.end(),
-            QuantLib::earlier_than<boost::shared_ptr<QuantLib::CashFlow> >());
+                      earlier_than<boost::shared_ptr<CashFlow> >());
     };
 
     SimpleCashFlowVector::SimpleCashFlowVector(const std::vector<double>& amounts,
                                                const std::vector<QuantLib::Date>& dates)
     {
         for (QuantLib::Size i=0; i < amounts.size(); ++i) {
-            cashFlowVector_.push_back(boost::shared_ptr<QuantLib::CashFlow>(
+            cashFlowVector_.push_back(boost::shared_ptr<CashFlow>(
                 new QuantLib::SimpleCashFlow(amounts[i],dates[i])));
         }
     }
@@ -112,11 +115,10 @@ namespace QuantLibAddin {
             QuantLib::FloatingRateCouponVector(*schedule,
                                                nominals,
                                                index,
-                                               dayCounter/*index->dayCounter()*/,
-                                               fixingDays /*index->fixingDays()*/,
-                                               paymentAdjustment/*QuantLib::Following*/,
-                                               gearings,
-                                               spreads);
+                                               dayCounter,
+                                               fixingDays,
+                                               paymentAdjustment,
+                                               gearings, spreads);
     }
 
     CappedFlooredFloatingRateCouponVector::CappedFlooredFloatingRateCouponVector(
@@ -131,15 +133,17 @@ namespace QuantLibAddin {
         const QuantLib::DayCounter& dayCounter,
         QuantLib::BusinessDayConvention paymentAdjustment,
         const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility) {
-            cashFlowVector_ = QuantLib::CappedFlooredFloatingRateCouponVector(*schedule,
-                                               nominals,
-                                               index,
-                                               dayCounter/*index->dayCounter()*/,
-                                               fixingDays /*index->fixingDays()*/,
-                                               paymentAdjustment/*QuantLib::Following*/,
-                                               gearings, spreads,
-                                               caps, floors,
-                                               volatility);
+
+            cashFlowVector_ = 
+                QuantLib::CappedFlooredFloatingRateCouponVector(*schedule,
+                                                                nominals,
+                                                                index,
+                                                                dayCounter,
+                                                                fixingDays,
+                                                                paymentAdjustment,
+                                                                gearings, spreads,
+                                                                caps, floors,
+                                                                volatility);
     }
 
     VanillaCMSCouponPricer::VanillaCMSCouponPricer(

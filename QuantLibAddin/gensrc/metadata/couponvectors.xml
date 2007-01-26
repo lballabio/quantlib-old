@@ -38,7 +38,7 @@
             <tensorRank>vector</tensorRank>
             <description>coupon nominals</description>
           </Parameter>
-          <Parameter name='CouponRates' libraryType='QuantLib::Rate'>
+          <Parameter name='CouponRates' libraryType='QuantLib::Rate' exampleValue='5%'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>coupon fixed rates</description>
@@ -400,7 +400,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlCashFlowStreamJoin'>
+    <!--<Constructor name='qlCashFlowStreamJoin'>
       <libraryFunction>CashFlowStreamJoin</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
@@ -419,7 +419,7 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor>
+    </Constructor>-->
 
     <Member name='qlCashFlowStreamStartDate' objectClass='CashFlowStream'>
       <description>Returns the start (i.e. first accrual) date for the given CashFlowStream object</description>
