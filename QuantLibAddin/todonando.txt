@@ -62,7 +62,7 @@ K
 
 François
 - To BE REVIEWED test abcd calibration
-- TO BE REVIEWED consolidate all multisteps in a  single test
+- TO BE REVIEWED consolidate all multisteps in a single test
 - TO BE REVIEWED MultiStepSwaption
 - - DONE merge Object builder improvements into QuantLib.xla
 	->TO BE DISCUSSED: vector input, change in XML file structure to implement default values
@@ -77,18 +77,22 @@ François
 - review workbooks: SmileSectionCaps.xls, DerivedQuotes.xls,CapStripperTest3M.xls.
 
 
-
 Cristina
-- valuation of plain vanilla leg of BGM book
 - DONE payment business days convention and fixing days
-- test Mx sul 29/9
-- capped/floored-cms comparison
+- DONE? test Mx sul 29/9
+- DONE capped/floored-cms comparison (shared among Cristina and Giorgio)
+- WIP coupon refactoring and extension (shared among Cristina and Giorgio)
+- WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
+- digital option in C++ (shared among Marco, Giorgio and Cristina)
 - bond pricing engine
 
+
 Giorgio
-- capped/floored-cms comparison
+- DONE capped/floored-cms comparison (shared among Cristina and Giorgio)
+- WIP coupon refactoring and extension (shared among Cristina and Giorgio)
+- digital option in C++ (shared among Marco, Giorgio and Cristina)
 - think about how to simplify mean reversion usage, cms swaption calibration
-- ratchet Instrument C++
+- WIP ratchet Instrument C++ (shared among Marco, Giorgio)
 - spreaded swaption vol structure
 - spreaded caplet vol structure
 
@@ -105,14 +109,16 @@ D perche' lo yield non ha la frequenza?
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
 
+
 Marco
-- BGM book set up
-- ratchet Instrument C++ (shared with Giorgio and Cristina)
-- valuation of plain vanilla leg of BGM book (shared with Giorgio and Cristina)
+- DONE BGM book set up
+- WIP ratchet Instrument C++ (shared among Marco, Giorgio)
+- WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
+- digital option in C++ (shared among Marco, Giorgio and Cristina)
 - foglio swaption per De Nuccio / Murex
-- update Mx YC action (To BE REVIEWED)
-- improve interpolations (To BE REVIEWED)
-- Rendistato (To BE REVIEWED)
+- (To BE REVIEWED) update Mx YC action 
+- (To BE REVIEWED) improve interpolations
+
 
 Eric
 - SA
@@ -123,6 +129,7 @@ Eric
 - RtUpdate like approach for effective Quote, in order to avoid setting the same quote
 - Handle coercion to SwaptionVolDiscrete
 - freeze, unfreeze objects
+
 
 QuantLib
 - Cashflows::iborSpread function
