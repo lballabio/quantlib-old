@@ -34,7 +34,7 @@ namespace QuantLibAddin {
             const QuantLib::Period& p,
             const long fixingDays,
             const QuantLib::Calendar& calendar,
-            const QuantLib::BusinessDayConvention& convention,
+            QuantLib::BusinessDayConvention convention,
             const QuantLib::DayCounter& dayCounter)
     {
         quoteHandle_ = quote;
@@ -52,7 +52,7 @@ namespace QuantLibAddin {
             const std::string& immDateID,
             const QuantLib::Integer months,
             const QuantLib::Calendar& calendar,
-            const QuantLib::BusinessDayConvention& bDayConvention,
+            QuantLib::BusinessDayConvention bDayConvention,
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& convAdj)
     {
@@ -76,7 +76,7 @@ namespace QuantLibAddin {
             const long fixingDays,
             const QuantLib::Calendar& calendar,
             const QuantLib::Frequency& fixedFrequency,
-            const QuantLib::BusinessDayConvention& fixedConvention,
+            QuantLib::BusinessDayConvention fixedConvention,
             const QuantLib::DayCounter& fixedDayCounter,
             const boost::shared_ptr<QuantLib::IborIndex>& index)
     {
