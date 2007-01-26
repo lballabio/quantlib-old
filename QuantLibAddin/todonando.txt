@@ -58,11 +58,18 @@ Nando
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 
 K
-- SA
-- new end of day live feed snapshot procedure + vol cube + mean rev + all environments
+- SA applied to cms book
+DONE new end of day live feed snapshot procedure + vol cube + mean rev + all environments
 - demo skeleton
 - test abcd (swap tenor) with new optimization code
 - review SwaptionVolCubeChecks.xls
+Done split Indexes Time Series procedure into Open/Close
+Done append/merge cash flow streams constructor
+- report rilascio settimanale
+- trimestrale
+- triggers added in bondMonitor.xls (performance problems)
+- subVersion
+
 
 
 François
