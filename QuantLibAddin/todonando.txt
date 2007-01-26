@@ -42,15 +42,20 @@ fixed sabr parameters
 ======= TODO ===============
 
 Nando
+- expose x,y of interpolation objects
+- sorted cash flow vector
+- joint calendar
+- mkt convention struct
+- YCDemo crash
 - demo Munari (mergeLeg, addLeg)
 - 0.3.14 wbk
 - alternative calibrations with null rho
 - make BlackCalculator observer/observable, make it lazy
 - contratti
 - trimestrale
-- review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls e SimpleQuote.xls (con Eric?)
-
-
+- Risk, Wilmott papers
+- period algebra
+- review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 
 K
 - SA
@@ -61,6 +66,8 @@ K
 
 
 François
+- OH function wizard
+- distribute XML
 - To BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a single test
 - TO BE REVIEWED MultiStepSwaption
@@ -74,7 +81,7 @@ François
 - expose to Excel all these new abcd-related vol functions
 - implement abcdinterpolation
 - get ready for the second set of main cycle future options
-- review workbooks: SmileSectionCaps.xls, DerivedQuotes.xls,CapStripperTest3M.xls.
+- review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls.
 
 
 Cristina
@@ -111,16 +118,19 @@ D perche' lo yield non ha la frequenza?
 
 
 Marco
+- BGM payoff
 - DONE BGM book set up
 - WIP ratchet Instrument C++ (shared among Marco, Giorgio)
 - WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
 - digital option in C++ (shared among Marco, Giorgio and Cristina)
 - foglio swaption per De Nuccio / Murex
-- (To BE REVIEWED) update Mx YC action 
+- (To BE REVIEWED) update Mx YC action
 - (To BE REVIEWED) improve interpolations
 
 
 Eric
+- domain validation
+- watch on
 - SA
 - InterestRateQuoteFeed.xls: Auto_Open problem
 - discount factors output is not col/row enabled
