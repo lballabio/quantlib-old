@@ -313,6 +313,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Functions\quotes.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Functions\randomsequencegenerator.cpp"
 				>
 			</File>
@@ -334,6 +338,14 @@
 			</File>
 			<File
 				RelativePath=".\Functions\shortratemodels.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\simplecashflow.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\smilesection.cpp"
 				>
 			</File>
 			<File
@@ -473,6 +485,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Register\register_quotes.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Register\register_randomsequencegenerator.cpp"
 				>
 			</File>
@@ -494,6 +510,14 @@
 			</File>
 			<File
 				RelativePath=".\Register\register_shortratemodels.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_simplecashflow.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_smilesection.cpp"
 				>
 			</File>
 			<File
