@@ -82,6 +82,8 @@ François
 - implement abcdinterpolation
 - get ready for the second set of main cycle future options
 - review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls.
+- move the xml folder from Workbooks\ to Framework\. Change both the NSIS files and the path in the .xla
+- profiling of the workbooks under the folder Bonds\
 
 
 Cristina
