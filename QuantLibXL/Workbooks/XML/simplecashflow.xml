@@ -11,27 +11,6 @@
 
   <Functions>
 
-    <Constructor name='qlSimpleCashFlow'>
-      <libraryFunction>SimpleCashFlow</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='amount'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>cash to be received/paid</description>
-          </Parameter>
-          <Parameter name='date' libraryType='QuantLib::Date'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>payment date</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
     <Constructor name='qlSimpleCashFlowVector'>
       <libraryFunction>SimpleCashFlowVector</libraryFunction>
       <SupportedPlatforms>
