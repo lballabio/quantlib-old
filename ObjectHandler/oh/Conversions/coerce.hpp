@@ -28,13 +28,13 @@ namespace ObjHandler {
     public:
 
         TypeOut operator()(const TypeIn &in) {
-            Conversion *conversion = getConversions();
             TypeOut out;
-            while (conversion) {
+            for (Conversion *conversion = getConversions();
+                    *conversion; ++conversion) {
                 if ((*conversion)(in, out)) 
                     return out;
-                ++conversion;
             }
+
             OH_FAIL("Unable to coerce value to type " 
                 << typeid(TypeOut).name());
         }
