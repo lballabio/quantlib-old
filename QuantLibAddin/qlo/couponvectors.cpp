@@ -26,6 +26,7 @@
 #include <qlo/termstructures.hpp>
 #include <qlo/typefactory.hpp>
 
+#include <ql/cashflow.hpp>
 #include <ql/CashFlows/cashflowvectors.hpp>
 #include <ql/CashFlows/simplecashflow.hpp>
 #include <ql/CashFlows/cmscoupon.hpp>
@@ -61,24 +62,20 @@ namespace QuantLibAddin {
         return cashFlowVector_;
     }
 
-    SimpleCashFlow::SimpleCashFlow(double amount, const QuantLib::Date& date) {
-        cashFlowVector_.push_back(boost::shared_ptr<QuantLib::CashFlow>(new
-            QuantLib::SimpleCashFlow(amount,date)));
-    }
+    CashFlowStreamJoin::CashFlowStreamJoin(
+                    const std::vector<boost::shared_ptr<CashFlowStream> >& legs,
+                    bool toBeSorted) {
+        for (QuantLib::Size i=0; i<legs.size(); ++i) {
+            const Leg& leg = legs[i]->getVector();
+            cashFlowVector_.insert(cashFlowVector_.end(),
+                                   leg.begin(), leg.end());
+        }
+        if (toBeSorted)
+            std::sort(cashFlowVector_.begin(), cashFlowVector_.end(),
+            QuantLib::earlier_than<boost::shared_ptr<QuantLib::CashFlow> >());
+    };
 
-    //JointCashFlowStream::JointCashFlowStream(
-    //                const std::vector<CashFlowStream>& legs,
-    //                bool sort) {
-    //    for (QuantLib::Size i=0; i<legs.size(); ++i) {
-    //        const Leg& cfs = legs[i].getVector();
-    //        cashFlowVector_.insert(cashFlowVector_.end(),
-    //                               cfs.begin(), cfs.end());
-    //    }
-    //    if (sort)
-    //        std::sort(cashFlowVector_.begin(), cashFlowVector_.end());
-    //};
-
-    SimpleCashFlowVector::SimpleCashFlowVector(const std::vector<double> amounts,
+    SimpleCashFlowVector::SimpleCashFlowVector(const std::vector<double>& amounts,
                                                const std::vector<QuantLib::Date>& dates)
     {
         for (QuantLib::Size i=0; i < amounts.size(); ++i) {
@@ -89,7 +86,7 @@ namespace QuantLibAddin {
 
     FixedRateCouponVector::FixedRateCouponVector(
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
-                    const QuantLib::BusinessDayConvention& convention,
+                    QuantLib::BusinessDayConvention convention,
                     const std::vector<double>& nominals,
                     const std::vector<double>& couponRates,
                     const QuantLib::DayCounter& dayCounter) {
@@ -109,7 +106,7 @@ namespace QuantLibAddin {
                     const std::vector<QuantLib::Spread>& spreads,
                     QuantLib::Integer fixingDays,
                     const QuantLib::DayCounter& dayCounter,
-                    const QuantLib::BusinessDayConvention& paymentAdjustment) {
+                    QuantLib::BusinessDayConvention paymentAdjustment) {
                                  
         cashFlowVector_ = 
             QuantLib::FloatingRateCouponVector(*schedule,
@@ -132,7 +129,7 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Real>& floors,  
         QuantLib::Integer fixingDays,
         const QuantLib::DayCounter& dayCounter,
-        const QuantLib::BusinessDayConvention& paymentAdjustment,
+        QuantLib::BusinessDayConvention paymentAdjustment,
         const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility) {
             cashFlowVector_ = QuantLib::CappedFlooredFloatingRateCouponVector(*schedule,
                                                nominals,

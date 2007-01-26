@@ -45,20 +45,15 @@ namespace QuantLibAddin {
         Leg cashFlowVector_;
     };
 
-    class SimpleCashFlow : public CashFlowStream {
+    class CashFlowStreamJoin : public CashFlowStream {
       public:
-        SimpleCashFlow(double amount, const QuantLib::Date& date);
-    };
-
-    class JointCashFlowStream : public CashFlowStream {
-      public:
-          JointCashFlowStream(const std::vector<CashFlowStream>& legs, 
-                              bool sort);
+          CashFlowStreamJoin(const std::vector<boost::shared_ptr<CashFlowStream> >& legs, 
+                             bool sort);
     };
 
     class SimpleCashFlowVector : public CashFlowStream {
       public:
-        SimpleCashFlowVector(const std::vector<double> amounts, 
+        SimpleCashFlowVector(const std::vector<double>& amounts, 
                              const std::vector<QuantLib::Date>& dates);
     };
     
@@ -66,10 +61,10 @@ namespace QuantLibAddin {
       public:
         FixedRateCouponVector(
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
-            const QuantLib::BusinessDayConvention&  convention,
-            const std::vector<double>&              nominals,
-            const std::vector<double>&              couponRates,
-            const QuantLib::DayCounter&             dayCountID);
+            QuantLib::BusinessDayConvention              convention,
+            const std::vector<double>&                   nominals,
+            const std::vector<double>&                   couponRates,
+            const QuantLib::DayCounter&                  dayCountID);
     };
     
     class FloatingRateCouponVector : public CashFlowStream {
@@ -82,7 +77,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Spread>& spreads,
             QuantLib::Integer fixingDays,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::BusinessDayConvention& paymentAdjustment);
+            QuantLib::BusinessDayConvention paymentAdjustment);
     };
 
     class CappedFlooredFloatingRateCouponVector : public CashFlowStream {
@@ -97,7 +92,7 @@ namespace QuantLibAddin {
                 const std::vector<QuantLib::Real>& floors, 
                 QuantLib::Integer fixingDays,
                 const QuantLib::DayCounter& dayCounter,
-                const QuantLib::BusinessDayConvention& paymentAdjustment,
+                QuantLib::BusinessDayConvention paymentAdjustment,
                 const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility);
     };
 

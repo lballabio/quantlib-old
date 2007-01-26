@@ -400,6 +400,27 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlCashFlowStreamJoin'>
+      <libraryFunction>CashFlowStreamJoin</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='legIDs' objectClass='CashFlowStream'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>leg object IDs</description>
+          </Parameter>
+          <Parameter name='toBeSorted' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the merged CashFlow streams must be sorted according to date/amount</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Member name='qlCashFlowStreamStartDate' objectClass='CashFlowStream'>
       <description>Returns the start (i.e. first accrual) date for the given CashFlowStream object</description>
       <libraryFunction>startDate</libraryFunction>
