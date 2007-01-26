@@ -55,8 +55,6 @@ class VanillaSwapPtr : public SwapPtr {
     %rename("floating-leg-BPS") floatingLegBPS;
     #endif
   public:
-      enum Type {Receiver = -1, Payer=1};
-
     %extend {
         VanillaSwapPtr(VanillaSwap::Type type, Real nominal,
                       const Schedule& fixedSchedule, Rate fixedRate,
