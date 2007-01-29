@@ -20,6 +20,7 @@
 #include <ohxl/Register/register_all.hpp>
 #include <ohxl/Functions/export.hpp>
 #include <ohxl/Conversions/all.hpp>
+#include <ohxl/Utilities/utilities.hpp>
 #include <sstream>
 
 // instantiate the object handler singleton
@@ -69,16 +70,7 @@ DLLEXPORT int xlAutoClose() {
 }
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
-    if (px->xltype & xltypeStr && px->val.str)
-        delete [] px->val.str;
-    else if (px->xltype & xltypeMulti && px->val.array.lparray) {
-        int size = px->val.array.rows * px->val.array.columns;
-        for (int i=0; i<size; ++i)
-            if (px->val.array.lparray[i].xltype & xltypeStr
-            &&  px->val.array.lparray[i].val.str)
-                delete [] px->val.array.lparray[i].val.str;
-        delete [] px->val.array.lparray;
-    }
+    freeOper(px);
 }
 
 DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {

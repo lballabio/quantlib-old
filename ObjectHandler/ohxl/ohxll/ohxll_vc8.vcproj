@@ -491,6 +491,36 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Utilities"
+				>
+				<File
+					RelativePath="..\Utilities\utilities.cpp"
+					>
+					<FileConfiguration
+						Name="Debug CRTDLL|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release CRTDLL|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\Utilities\utilities.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="xll"

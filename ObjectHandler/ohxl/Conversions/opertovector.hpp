@@ -19,6 +19,7 @@
 #define ohxl_conversions_opertovector_hpp
 
 #include <ohxl/Conversions/opertoscalar.hpp>
+#include <ohxl/Utilities/utilities.hpp>
 #include <vector>
 
 namespace ObjHandler {
@@ -26,7 +27,8 @@ namespace ObjHandler {
     template <class T>
     std::vector<T> operToVector(const OPER &xVector) {
         OPER xTemp;
-        bool needToFree = false;
+        bool excelToFree = false;
+        bool xllToFree = false;
         try {
             if (xVector.xltype & xltypeErr)
                 throw Exception("input value has type=error");
@@ -35,12 +37,19 @@ namespace ObjHandler {
 
             const OPER *xMulti;
 
-            if (xVector.xltype == xltypeMulti)
+            if (xVector.xltype == xltypeMulti) {
                 xMulti = &xVector;
-            else {
+            } else if (xVector.xltype == xltypeStr) {
+                std::string text;
+                operToScalar(xVector, text);
+                std::vector<std::string> vec = split(text, ",;", false);
+                vectorToOper(vec, xTemp);
+                xMulti = &xTemp;
+                xllToFree = true;
+            } else {
                 Excel(xlCoerce, &xTemp, 2, &xVector, TempInt(xltypeMulti));
                 xMulti = &xTemp;
-                needToFree = true;
+                excelToFree = true;
             }
 
             std::vector<T> ret;
@@ -51,16 +60,20 @@ namespace ObjHandler {
                 ret.push_back(value);
             }
 
-            if (needToFree)
+            if (excelToFree) {
                 Excel(xlFree, 0, 1, &xTemp);
+            } else if (xllToFree) {
+                freeOper(&xTemp);
+            }
 
             return ret;
         } catch (const std::exception &e) {
-            if (needToFree)
+            if (excelToFree) {
                 Excel(xlFree, 0, 1, &xTemp);
-            std::ostringstream msg;
-            msg << "operToVector: " << e.what();
-            throw Exception(msg.str());
+            } else if (xllToFree) {
+                freeOper(&xTemp);
+            }
+            OH_FAIL("operToVector: " << e.what());
         }
     }
 

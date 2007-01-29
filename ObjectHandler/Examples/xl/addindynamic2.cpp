@@ -17,6 +17,7 @@
 
 #include <account.hpp>
 #include <ohxl/objhandlerxl.hpp>
+#include <ohxl/Utilities/utilities.hpp>
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
 */
@@ -53,6 +54,10 @@ DLLEXPORT int xlAutoOpen() {
         Excel(xlFree, 0, 1, &xDll);
         return 0;
     }
+}
+
+DLLEXPORT void xlAutoFree(XLOPER *px) {
+    freeOper(px);
 }
 
 DLLEXPORT long *addin2GetBalance(char *objectID, OPER *trigger) {

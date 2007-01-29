@@ -328,14 +328,6 @@
 				Name="Classes"
 				>
 				<File
-					RelativePath="..\..\oh\ohthing.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\oh\ohthing.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\oh\exception.cpp"
 					>
 				</File>
@@ -369,6 +361,14 @@
 				</File>
 				<File
 					RelativePath="..\..\oh\objhandlerdefines.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\ohthing.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\ohthing.hpp"
 					>
 				</File>
 				<File
@@ -605,6 +605,54 @@
 				>
 				<File
 					RelativePath="..\loop.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Utilities"
+				>
+				<File
+					RelativePath="..\Utilities\utilities.cpp"
+					>
+					<FileConfiguration
+						Name="Debug CRTDLL|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release CRTDLL|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\Utilities\utilities.hpp"
 					>
 				</File>
 			</Filter>

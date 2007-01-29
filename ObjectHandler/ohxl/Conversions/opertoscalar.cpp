@@ -57,9 +57,10 @@ namespace ObjHandler {
         try {
             const OPER *xString;
 
-            if (xScalar.xltype == xltypeStr)
+            //if (xScalar.xltype == xltypeStr) {
+            if (xScalar.xltype & xltypeStr) {
                 xString = &xScalar;
-            else {
+            } else {
                 Excel(xlCoerce, &xTemp, 2, &xScalar, TempInt(xltypeStr));
                 xString = &xTemp;
                 needToFree = true;

@@ -19,6 +19,7 @@
 #define ohxl_loop_hpp
 
 #include <ohxl/objhandlerxl.hpp>
+#include <ohxl/Utilities/utilities.hpp>
 
 namespace ObjHandler {
 
@@ -40,15 +41,20 @@ namespace ObjHandler {
               XLOPER &xOut) {
 
         OPER xTemp, *xMulti;
-        bool needToFree = false;
+        bool excelToFree = false;
+        bool xllToFree = false;
         bool errorInitialized = false;
 
         // if the input is an array then take its address & carry on
         if (xIn->xltype == xltypeMulti) {
             xMulti = xIn;
+        // if the input is a string then call split on it
+        } else if (xIn->xltype == xltypeStr) {
+            splitOper(xIn, &xTemp);
+            xMulti = &xTemp;
+            xllToFree = true;
         // if the input is a scalar then just call the function once & return
         } else if (xIn->xltype == xltypeNum
-        ||  xIn->xltype == xltypeStr
         ||  xIn->xltype == xltypeBool) {
             loopIteration<LoopFunction, InputType, OutputType>(
                 loopFunction, *xIn, xOut);
@@ -57,7 +63,7 @@ namespace ObjHandler {
         } else {
             Excel(xlCoerce, &xTemp, 2, xIn, TempInt(xltypeMulti));
             xMulti = &xTemp;
-            needToFree = true;
+            excelToFree = true;
         }
 
         xOut.val.array.rows = xMulti->val.array.rows;
@@ -65,9 +71,12 @@ namespace ObjHandler {
         int numCells = xMulti->val.array.rows * xMulti->val.array.columns;
         xOut.val.array.lparray = new XLOPER[numCells]; 
         if (!xOut.val.array.lparray) {
-            if (needToFree)
+            if (excelToFree) {
                 Excel(xlFree, 0, 1, &xTemp);
-            throw Exception("error on call to new");
+            } else if (xllToFree) {
+                freeOper(&xTemp);
+            }
+            OH_FAIL("error on call to new");
         }
         xOut.xltype = xltypeMulti | xlbitDLLFree;
 
@@ -95,8 +104,11 @@ namespace ObjHandler {
 
         // free memory
 
-        if (needToFree)
+        if (excelToFree) {
             Excel(xlFree, 0, 1, &xTemp);
+        } else if (xllToFree) {
+            freeOper(&xTemp);
+        }
 
     }
 }

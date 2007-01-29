@@ -370,6 +370,28 @@
 					RelativePath="..\Register\register_valueobjects.cpp">
 				</File>
 			</Filter>
+			<Filter
+				Name="Utilities"
+				Filter="">
+				<File
+					RelativePath="..\Utilities\utilities.cpp">
+					<FileConfiguration
+						Name="Debug CRTDLL|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release CRTDLL|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\Utilities\utilities.hpp">
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="xll"
