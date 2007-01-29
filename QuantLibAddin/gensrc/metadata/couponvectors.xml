@@ -257,7 +257,7 @@
           <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no caps are enforced.</description>
+            <description>Floor strikes. If missing, no floors are enforced.</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
@@ -324,7 +324,7 @@
           <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no caps are enforced.</description>
+            <description>Floor strikes. If missing, no floors are enforced.</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
@@ -391,7 +391,7 @@
           <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no caps are enforced.</description>
+            <description>Floor strikes. If missing, no floors are enforced.</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
@@ -458,7 +458,7 @@
           <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no caps are enforced.</description>
+            <description>Floor strikes. If missing, no floors are enforced.</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
