@@ -181,7 +181,7 @@
             <tensorRank>scalar</tensorRank>
             <description>option type (cap or floor)</description>
           </Parameter>
-          <Parameter name='legID' objectClass='CashFlowStream'>
+          <Parameter name='legID' objectClass='Leg'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>coupon vector</description>

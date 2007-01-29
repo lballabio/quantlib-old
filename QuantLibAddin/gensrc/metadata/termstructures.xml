@@ -89,10 +89,10 @@
             <tensorRank>vector</tensorRank>
             <description>vector of dates</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False'>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+            <description>TRUE allows extrapolation. The default is FALSE</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -135,10 +135,10 @@
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
-          <Parameter name='extrapolate' default='false' const='False'>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>extrapolate</description>
+            <description>TRUE allows extrapolation. The default is FALSE</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -181,10 +181,10 @@
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
-          <Parameter name='extrapolate' default='false' const='False'>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>extrapolate</description>
+            <description>TRUE allows extrapolation. The default is FALSE</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -207,7 +207,7 @@
             <tensorRank>vector</tensorRank>
             <description>date</description>
           </Parameter>
-          <Parameter name='resultDayCounterID' enumeration='QuantLib::DayCounter'>
+          <Parameter name='resultDayCounter' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>resultDayCounter</description>
@@ -222,10 +222,10 @@
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
-          <Parameter name='extrapolate' default='false' const='False'>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>extrapolate</description>
+            <description>TRUE allows extrapolation. The default is FALSE</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -258,10 +258,10 @@
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
-          <Parameter name='extrapolate' default='false' const='False'>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>extrapolate (TRUE or FALSE)</description>
+            <description>TRUE allows extrapolation. The default is FALSE</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -364,7 +364,7 @@
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
           </Parameter>
-          <Parameter name='curveDiscounts'>
+          <Parameter name='curveDiscounts'  libraryType='QuantLib::DiscountFactor'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>discount factors for the above dates</description>
@@ -390,7 +390,7 @@
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
           </Parameter>
-          <Parameter name='curveYields'>
+          <Parameter name='curveYields' libraryType='QuantLib::Rate'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>zero rates for the above dates</description>
@@ -416,7 +416,7 @@
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
           </Parameter>
-          <Parameter name='forwardYields'>
+          <Parameter name='forwardYields' libraryType='QuantLib::Rate'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>forwards rates for the above dates</description>
@@ -447,7 +447,7 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate</description>
           </Parameter>
-          <Parameter name='rate'>
+          <Parameter name='rate' libraryType='QuantLib::Rate' exampleValue='0.05'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the curve level</description>
@@ -483,7 +483,7 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='spread'>
+          <Parameter name='spread' libraryType='QuantLib::Spread'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the spread to be applied to the forward rates of the yield curve</description>

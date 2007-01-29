@@ -37,44 +37,43 @@ using QuantLib::CashFlow;
 
 namespace QuantLibAddin {
 
-    QuantLib::Date CashFlowStream::startDate() const {
-        return QuantLib::Cashflows::startDate(cashFlowVector_);
+    QuantLib::Date Leg::startDate() const {
+        return QuantLib::CashFlows::startDate(leg_);
     }
 
-    QuantLib::Date CashFlowStream::maturityDate() const {
-        return QuantLib::Cashflows::maturityDate(cashFlowVector_);
+    QuantLib::Date Leg::maturityDate() const {
+        return QuantLib::CashFlows::maturityDate(leg_);
     }
 
-    QuantLib::Real CashFlowStream::npv(const QuantLib::Handle< QuantLib::YieldTermStructure>& hYTS) const {
-        return QuantLib::Cashflows::bps(cashFlowVector_, hYTS);
+    QuantLib::Real Leg::npv(const QuantLib::Handle< QuantLib::YieldTermStructure>& hYTS) const {
+        return QuantLib::CashFlows::bps(leg_, hYTS);
     }
 
-    QuantLib::Real CashFlowStream::bps(const QuantLib::Handle< QuantLib::YieldTermStructure>& hYTS) const {
-        return QuantLib::Cashflows::bps(cashFlowVector_, hYTS);
+    QuantLib::Real Leg::bps(const QuantLib::Handle< QuantLib::YieldTermStructure>& hYTS) const {
+        return QuantLib::CashFlows::bps(leg_, hYTS);
     }
 
-    QuantLib::Rate CashFlowStream::atmRate(const QuantLib::Handle< QuantLib::YieldTermStructure>& hYTS) const {
-        return QuantLib::Cashflows::atmRate(cashFlowVector_, hYTS);
+    QuantLib::Rate Leg::atmRate(const QuantLib::Handle< QuantLib::YieldTermStructure>& hYTS) const {
+        return QuantLib::CashFlows::atmRate(leg_, hYTS);
     }
 
-    std::vector<std::vector<boost::any> > CashFlowStream::analysis() const {
-        return flowAnalysis(cashFlowVector_);
+    std::vector<std::vector<boost::any> > Leg::analysis() const {
+        return flowAnalysis(leg_);
     }
 
-    const Leg& CashFlowStream::getVector() {
-        return cashFlowVector_;
+    const QuantLib::Leg& Leg::getQuantLibLeg() {
+        return leg_;
     }
 
-    CashFlowStreamJoin::CashFlowStreamJoin(
-                    const std::vector<Leg>& legs,
+    MultiPhaseLeg::MultiPhaseLeg(
+                    const std::vector<boost::shared_ptr<Leg> >& streams,
                     bool toBeSorted) {
-        for (QuantLib::Size i=0; i<legs.size(); ++i) {
-            //const Leg& leg = legs[i]->getVector();
-            cashFlowVector_.insert(cashFlowVector_.end(),
-                                   legs[i].begin(), legs[i].end());
+        for (QuantLib::Size i=0; i<streams.size(); ++i) {
+            const QuantLib::Leg& leg = streams[i]->getQuantLibLeg();
+            leg_.insert(leg_.end(), leg.begin(), leg.end());
         }
         if (toBeSorted)
-            std::sort(cashFlowVector_.begin(), cashFlowVector_.end(),
+            std::sort(leg_.begin(), leg_.end(),
                       earlier_than<boost::shared_ptr<CashFlow> >());
     };
 
@@ -82,26 +81,26 @@ namespace QuantLibAddin {
                                                const std::vector<QuantLib::Date>& dates)
     {
         for (QuantLib::Size i=0; i < amounts.size(); ++i) {
-            cashFlowVector_.push_back(boost::shared_ptr<CashFlow>(
+            leg_.push_back(boost::shared_ptr<CashFlow>(
                 new QuantLib::SimpleCashFlow(amounts[i],dates[i])));
         }
     }
 
-    FixedRateCouponVector::FixedRateCouponVector(
+    FixedRateLeg::FixedRateLeg(
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
                     QuantLib::BusinessDayConvention convention,
                     const std::vector<double>& nominals,
                     const std::vector<double>& couponRates,
                     const QuantLib::DayCounter& dayCounter) {
-        cashFlowVector_ = QuantLib::FixedRateCouponVector(*schedule,
-                                                          nominals,
-                                                          couponRates,
-                                                          dayCounter,
-                                                          convention,
-                                                          dayCounter);
+        leg_ = QuantLib::FixedRateLeg(*schedule,
+                                      nominals,
+                                      couponRates,
+                                      dayCounter,
+                                      convention,
+                                      dayCounter);
     }
 
-    FloatingRateCouponVector::FloatingRateCouponVector(
+    FloatingRateLeg::FloatingRateLeg(
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
                     const std::vector<double>& nominals,
                     const std::vector<QuantLib::Real>& gearings,
@@ -110,18 +109,17 @@ namespace QuantLibAddin {
                     QuantLib::Integer fixingDays,
                     const QuantLib::DayCounter& dayCounter,
                     QuantLib::BusinessDayConvention paymentAdjustment) {
-                                 
-        cashFlowVector_ = 
-            QuantLib::FloatingRateCouponVector(*schedule,
-                                               nominals,
-                                               index,
-                                               dayCounter,
-                                               fixingDays,
-                                               paymentAdjustment,
-                                               gearings, spreads);
+
+        leg_ = QuantLib::FloatingRateLeg(*schedule,
+                                         nominals,
+                                         index,
+                                         dayCounter,
+                                         fixingDays,
+                                         paymentAdjustment,
+                                         gearings, spreads);
     }
 
-    CappedFlooredFloatingRateCouponVector::CappedFlooredFloatingRateCouponVector(
+    CappedFlooredFloatingRateLeg::CappedFlooredFloatingRateLeg(
         const boost::shared_ptr<QuantLib::Schedule>& schedule,
         const std::vector<QuantLib::Real>& nominals,
         const std::vector<QuantLib::Real>& gearings,
@@ -134,16 +132,15 @@ namespace QuantLibAddin {
         QuantLib::BusinessDayConvention paymentAdjustment,
         const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility) {
 
-            cashFlowVector_ = 
-                QuantLib::CappedFlooredFloatingRateCouponVector(*schedule,
-                                                                nominals,
-                                                                index,
-                                                                dayCounter,
-                                                                fixingDays,
-                                                                paymentAdjustment,
-                                                                gearings, spreads,
-                                                                caps, floors,
-                                                                volatility);
+            leg_ = QuantLib::CappedFlooredFloatingRateLeg(*schedule,
+                                                          nominals,
+                                                          index,
+                                                          dayCounter,
+                                                          fixingDays,
+                                                          paymentAdjustment,
+                                                          gearings, spreads,
+                                                          caps, floors,
+                                                          volatility);
     }
 
     VanillaCMSCouponPricer::VanillaCMSCouponPricer(
@@ -155,7 +152,7 @@ namespace QuantLibAddin {
             (typeOfVanillaCMSCouponPricer, v, modelOfYieldCurve, meanReversion);
     }
 
-    CMSCouponVector::CMSCouponVector(
+    CMSLeg::CMSLeg(
         const boost::shared_ptr<QuantLib::Schedule>& schedule,
         QuantLib::BusinessDayConvention paymentAdjustment,
         const std::vector<QuantLib::Real>& nominals,
@@ -168,20 +165,18 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Rate>& floors,
         const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer)
     {
-        cashFlowVector_ = QuantLib::CMSCouponVector(*schedule,
-                                                    nominals,
-                                                    index,
-                                                    pricer,
-                                                    paymentDayCounter,
-                                                    fixingDays,
-                                                    paymentAdjustment,
-                                                    gearings,
-                                                    spreads,
-                                                    caps,
-                                                    floors);
+        leg_ = QuantLib::CMSLeg(*schedule,
+                                nominals,
+                                index,
+                                pricer,
+                                paymentDayCounter,
+                                fixingDays,
+                                paymentAdjustment,
+                                gearings, spreads,
+                                caps, floors);
     }
 
-    CMSZeroCouponVector::CMSZeroCouponVector(
+    CMSZeroLeg::CMSZeroLeg(
         const boost::shared_ptr<QuantLib::Schedule>& schedule,
         QuantLib::BusinessDayConvention paymentAdjustment,
         const std::vector<QuantLib::Real>& nominals,
@@ -194,21 +189,18 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Rate>& floors,
         const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer)
     {
-        cashFlowVector_ = QuantLib::CMSZeroCouponVector(*schedule,
-                                                    nominals,
-                                                    index,
-                                                    pricer,
-                                                    paymentDayCounter,
-                                                    fixingDays,
-                                                    paymentAdjustment,
-                                                    gearings,
-                                                    spreads,
-                                                    caps,
-                                                    floors);
+        leg_ = QuantLib::CMSZeroLeg(*schedule,
+                                    nominals,
+                                    index,
+                                    pricer,
+                                    paymentDayCounter,
+                                    fixingDays,
+                                    paymentAdjustment,
+                                    gearings, spreads,
+                                    caps, floors);
     }
 
-
-    CMSInArrearsCouponVector::CMSInArrearsCouponVector(
+    CMSInArrearsLeg::CMSInArrearsLeg(
         const boost::shared_ptr<QuantLib::Schedule>& schedule,
         QuantLib::BusinessDayConvention paymentAdjustment,
         const std::vector<QuantLib::Real>& nominals,
@@ -221,17 +213,15 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Rate>& floors,
         const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer)
     {
-        cashFlowVector_ = QuantLib::CMSInArrearsCouponVector(*schedule,
-                                                    nominals,
-                                                    index,
-                                                    pricer,
-                                                    paymentDayCounter,
-                                                    fixingDays,
-                                                    paymentAdjustment,
-                                                    gearings,
-                                                    spreads,
-                                                    caps,
-                                                    floors);
+        leg_ = QuantLib::CMSInArrearsLeg(*schedule,
+                                         nominals,
+                                         index,
+                                         pricer,
+                                         paymentDayCounter,
+                                         fixingDays,
+                                         paymentAdjustment,
+                                         gearings, spreads,
+                                         caps, floors);
     }
 
 }

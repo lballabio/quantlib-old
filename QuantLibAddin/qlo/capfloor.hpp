@@ -28,7 +28,7 @@ namespace QuantLibAddin {
     class CapFloor : public Instrument {
       public:
         CapFloor(QuantLib::CapFloor::Type type,
-                 const boost::shared_ptr<CashFlowStream>& floatingLegWrapper,
+                 const boost::shared_ptr<Leg>& floatingLegWrapper,
                  const std::vector<QuantLib::Rate>& strikes,
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& termStructure,
                  const boost::shared_ptr<QuantLib::PricingEngine>& engine);

@@ -15,17 +15,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='effectiveDate' libraryType='QuantLib::Date'>
+          <Parameter name='effectiveDate' libraryType='QuantLib::Date' exampleValue='2M'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>effective date</description>
           </Parameter>
-          <Parameter name='terminationDate' libraryType='QuantLib::Date'>
+          <Parameter name='terminationDate' libraryType='QuantLib::Date' exampleValue='122M'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>termination date</description>
           </Parameter>
-          <Parameter name='tenor' libraryType='QuantLib::Period'>
+          <Parameter name='tenor' libraryType='QuantLib::Period' exampleValue='1Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
@@ -63,7 +63,7 @@
           <Parameter name='nextToLastDate' libraryType='QuantLib::Date' default='QuantLib::Date()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>stub date, if there is an in-arrears stub period</description>
+            <description>stub date, if there an irregular final (starting) period in backward (forward) schedule generation.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

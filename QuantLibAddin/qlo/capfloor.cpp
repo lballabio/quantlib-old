@@ -28,15 +28,14 @@ namespace QuantLibAddin {
 
     CapFloor::CapFloor(
                  QuantLib::CapFloor::Type type,
-                 const boost::shared_ptr<CashFlowStream>& floatingLegWrapper,
+                 const boost::shared_ptr<Leg>& floatingLeg,
                  const std::vector<QuantLib::Rate>& strikes,
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& termStructure,
                  const boost::shared_ptr<QuantLib::PricingEngine>& engine)
     {
-        const Leg& floatingLeg = floatingLegWrapper->getVector();
+        const QuantLib::Leg& leg = floatingLeg->getQuantLibLeg();
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
-            QuantLib::CapFloor(type, floatingLeg, strikes, termStructure,
-                                                                    engine));
+            QuantLib::CapFloor(type, leg, strikes, termStructure, engine));
     }
 
     CapFloor::CapFloor(QuantLib::CapFloor::Type capFloorType,

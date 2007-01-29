@@ -21,17 +21,13 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/types.hpp>
+#include <ql/cashflow.hpp>
 
-namespace QuantLib {
-    class CashFlow;
-}
 
 
 namespace QuantLibAddin {
     
-    typedef std::vector<boost::shared_ptr<QuantLib::CashFlow> > Leg;
-
-    std::vector<std::vector<boost::any> > flowAnalysis(const Leg& );
+    std::vector<std::vector<boost::any> > flowAnalysis(const QuantLib::Leg& );
 
 }
 

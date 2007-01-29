@@ -32,7 +32,7 @@
 
 namespace QuantLibAddin {
     
-    class CashFlowStream : public ObjHandler::Object {
+    class Leg : public ObjHandler::Object {
       public:
         QuantLib::Date startDate() const;
         QuantLib::Date maturityDate() const;
@@ -40,26 +40,26 @@ namespace QuantLibAddin {
         QuantLib::Real bps(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
         QuantLib::Rate atmRate(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
         std::vector<std::vector<boost::any> > analysis() const;
-        const Leg& getVector();        
+        const QuantLib::Leg& getQuantLibLeg();        
       protected: 
-        Leg cashFlowVector_;
+        QuantLib::Leg leg_;
     };
 
-    class CashFlowStreamJoin : public CashFlowStream {
+    class MultiPhaseLeg : public Leg {
       public:
-        CashFlowStreamJoin(const std::vector<Leg>& legs, 
-                           bool toBeSorted);
+        MultiPhaseLeg(const std::vector<boost::shared_ptr<Leg> >& legs,
+                      bool toBeSorted);
     };
 
-    class SimpleCashFlowVector : public CashFlowStream {
+    class SimpleCashFlowVector : public Leg {
       public:
         SimpleCashFlowVector(const std::vector<double>& amounts, 
                              const std::vector<QuantLib::Date>& dates);
     };
     
-    class FixedRateCouponVector : public CashFlowStream {
+    class FixedRateLeg : public Leg {
       public:
-        FixedRateCouponVector(
+        FixedRateLeg(
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
             QuantLib::BusinessDayConvention              convention,
             const std::vector<double>&                   nominals,
@@ -67,9 +67,9 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter&                  dayCountID);
     };
     
-    class FloatingRateCouponVector : public CashFlowStream {
+    class FloatingRateLeg : public Leg {
       public:
-        FloatingRateCouponVector(
+        FloatingRateLeg(
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
             const std::vector<double>& nominals,
             const std::vector<QuantLib::Real>& gearings,
@@ -80,88 +80,78 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention paymentAdjustment);
     };
 
-    class CappedFlooredFloatingRateCouponVector : public CashFlowStream {
+    class CappedFlooredFloatingRateLeg : public Leg {
       public:
-            CappedFlooredFloatingRateCouponVector(
-                const boost::shared_ptr<QuantLib::Schedule>& schedule,
-                const std::vector<QuantLib::Real>& nominals,
-                const std::vector<QuantLib::Real>& gearings,
-                const boost::shared_ptr<QuantLib::IborIndex>& index,
-                const std::vector<QuantLib::Real>& spreads,
-                const std::vector<QuantLib::Real>& caps,
-                const std::vector<QuantLib::Real>& floors, 
-                QuantLib::Integer fixingDays,
-                const QuantLib::DayCounter& dayCounter,
-                QuantLib::BusinessDayConvention paymentAdjustment,
-                const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility);
+        CappedFlooredFloatingRateLeg(
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            const std::vector<QuantLib::Real>& nominals,
+            const std::vector<QuantLib::Real>& gearings,
+            const boost::shared_ptr<QuantLib::IborIndex>& index,
+            const std::vector<QuantLib::Real>& spreads,
+            const std::vector<QuantLib::Real>& caps,
+            const std::vector<QuantLib::Real>& floors, 
+            QuantLib::Integer fixingDays,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::BusinessDayConvention paymentAdjustment,
+            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>&);
     };
 
-    class VanillaCMSCouponPricer:public ObjHandler::LibraryObject<QuantLib::VanillaCMSCouponPricer> {
+    class VanillaCMSCouponPricer : 
+        public ObjHandler::LibraryObject<QuantLib::VanillaCMSCouponPricer> {
       public:
-        VanillaCMSCouponPricer(const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,
-                               const std::string& typeOfVanillaCMSCouponPricer,
-                               QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-                               QuantLib::Real meanReversion);
-        //boost::shared_ptr<QuantLib::VanillaCMSCouponPricer> underlyingObject() {
-        //    return libraryObject_;
-        //}
+        VanillaCMSCouponPricer(
+            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,
+            const std::string& typeOfVanillaCMSCouponPricer,
+            QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
+            QuantLib::Real meanReversion);
     };
 
-    //class ConundrumPricer : public VanillaCMSCouponPricer {
-    //  public:
-    //      ConundrumPricer(
-    //             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,
-    //             const std::string & typeOfVanillaCMSCouponPricer,
-    //             const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-                // QuantLib::Real meanReversion);
-    //};
-    
-    class CMSCouponVector : public CashFlowStream {
+    class CMSLeg : public Leg {
       public:
-            CMSCouponVector(
-                const boost::shared_ptr<QuantLib::Schedule>& schedule,
-                QuantLib::BusinessDayConvention paymentAdjustment,
-                const std::vector<QuantLib::Real>& nominals,
-                const boost::shared_ptr<QuantLib::SwapIndex>& index,
-                QuantLib::Integer fixingDays,
-                const QuantLib::DayCounter& dayCounter,
-                const std::vector<QuantLib::Real>& gearings,
-                const std::vector<QuantLib::Real>& spreads,
-                const std::vector<QuantLib::Real>& caps,
-                const std::vector<QuantLib::Real>& floors,
-                const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer);
+        CMSLeg(
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::BusinessDayConvention paymentAdjustment,
+            const std::vector<QuantLib::Real>& nominals,
+            const boost::shared_ptr<QuantLib::SwapIndex>& index,
+            QuantLib::Integer fixingDays,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Real>& gearings,
+            const std::vector<QuantLib::Real>& spreads,
+            const std::vector<QuantLib::Real>& caps,
+            const std::vector<QuantLib::Real>& floors,
+            const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>&);
     };
 
-    class CMSZeroCouponVector : public CashFlowStream {
+    class CMSZeroLeg : public Leg {
       public:
-            CMSZeroCouponVector(
-                const boost::shared_ptr<QuantLib::Schedule>& schedule,
-                QuantLib::BusinessDayConvention paymentAdjustment,
-                const std::vector<QuantLib::Real>& nominals,
-                const boost::shared_ptr<QuantLib::SwapIndex>& index,
-                QuantLib::Integer fixingDays,
-                const QuantLib::DayCounter& dayCounter,
-                const std::vector<QuantLib::Real>& gearings,
-                const std::vector<QuantLib::Real>& spreads,
-                const std::vector<QuantLib::Real>& caps,
-                const std::vector<QuantLib::Real>& floors,
-                const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer);
+        CMSZeroLeg(
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::BusinessDayConvention paymentAdjustment,
+            const std::vector<QuantLib::Real>& nominals,
+            const boost::shared_ptr<QuantLib::SwapIndex>& index,
+            QuantLib::Integer fixingDays,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Real>& gearings,
+            const std::vector<QuantLib::Real>& spreads,
+            const std::vector<QuantLib::Real>& caps,
+            const std::vector<QuantLib::Real>& floors,
+            const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>&);
     };
 
-    class CMSInArrearsCouponVector : public CashFlowStream {
+    class CMSInArrearsLeg : public Leg {
       public:
-            CMSInArrearsCouponVector(
-                const boost::shared_ptr<QuantLib::Schedule>& schedule,
-                QuantLib::BusinessDayConvention paymentAdjustment,
-                const std::vector<QuantLib::Real>& nominals,
-                const boost::shared_ptr<QuantLib::SwapIndex>& index,
-                QuantLib::Integer fixingDays,
-                const QuantLib::DayCounter& dayCounter,
-                const std::vector<QuantLib::Real>& gearings,
-                const std::vector<QuantLib::Real>& spreads,
-                const std::vector<QuantLib::Real>& caps,
-                const std::vector<QuantLib::Real>& floors,
-                const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer);
+        CMSInArrearsLeg(
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::BusinessDayConvention paymentAdjustment,
+            const std::vector<QuantLib::Real>& nominals,
+            const boost::shared_ptr<QuantLib::SwapIndex>& index,
+            QuantLib::Integer fixingDays,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Real>& gearings,
+            const std::vector<QuantLib::Real>& spreads,
+            const std::vector<QuantLib::Real>& caps,
+            const std::vector<QuantLib::Real>& floors,
+            const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>&);
     };
 
 }

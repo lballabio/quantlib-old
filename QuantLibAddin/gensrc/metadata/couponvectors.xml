@@ -1,5 +1,5 @@
 <Category name='couponvectors'>
-  <description>functions to construct and use CouponVector objects</description>
+  <description>functions to construct and use Leg objects</description>
   <displayName>Coupon Vectors</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
@@ -16,151 +16,263 @@
 
   <Functions>
 
-    <Constructor name='qlFixedRateCouponVector'>
-      <libraryFunction>FixedRateCouponVector</libraryFunction>
+    <!-- Leg interface -->
+    <Member name='qlLegStartDate' objectClass='Leg'>
+      <description>Returns the start (i.e. first accrual) date for the given Leg object</description>
+      <libraryFunction>startDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegMaturityDate' objectClass='Leg'>
+      <description>Returns the maturity (i.e. last payment) date for the given Leg object</description>
+      <libraryFunction>startDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegNPV' objectClass='Leg'>
+      <description>Returns the net present value for the given Leg object</description>
+      <libraryFunction>npv</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Schedule' libraryClass='Schedule'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>schedule object ID</description>
+            <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegBPS' objectClass='Leg'>
+      <description>Returns the basis point sensitivity for the given Leg object</description>
+      <libraryFunction>bps</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business days convention. If omitted, default=Following.</description>
+            <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='Nominals'>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegAtmRate' objectClass='Leg'>
+      <description>Returns the at-the-money rate for the given Leg object, i.e. the fixed rate for which an equivalent vector of fixed-rate cash flows would have the same NPV.</description>
+      <libraryFunction>atmRate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegAnalysis' objectClass='Leg'>
+      <description>Returns the flow analysis for the given Leg object</description>
+      <libraryFunction>analysis</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- Leg constructors -->
+    <Constructor name='qlFixedRateLeg'>
+      <libraryFunction>FixedRateLeg</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ScheduleID' libraryClass='Schedule'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Schedule object ID</description>
+          </Parameter>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business days convention used for payment dates. Default is Following.</description>
+          </Parameter>
+          <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>coupon nominals</description>
+            <description>Amount vector</description>
           </Parameter>
-          <Parameter name='CouponRates' libraryType='QuantLib::Rate' exampleValue='5%'>
+          <Parameter name='CouponRates' libraryType='QuantLib::Rate' exampleValue='0.05'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>coupon fixed rates</description>
           </Parameter>
-          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
+          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter</description>
+            <description>DayCounter used for accrual periods</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlFloatingRateCouponVector'>
-      <libraryFunction>FloatingRateCouponVector</libraryFunction>
+    <Constructor name='qlFloatingRateLeg'>
+      <libraryFunction>FloatingRateLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Schedule' libraryClass='Schedule'>
+          <Parameter name='ScheduleID' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>schedule object ID</description>
+            <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='Nominals'>
+          <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>coupon nominals</description>
+            <description>Amount vector</description>
           </Parameter>
-          <Parameter name='Gearings' default='0'>
+          <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings (i.e. the multiplicative coefficients of the floating rate index)</description>
+            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
           </Parameter>
-          <Parameter name='Index' libraryClass='IborIndex'>
+          <Parameter name='IborIndex' libraryClass='IborIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>underlying index object ID</description>
+            <description>floating IborIndex object ID</description>
           </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads</description>
+            <description>floating rate additional spreads</description>
           </Parameter>
           <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixingDays. If omitted, Index default is used .</description>
+            <description>number of business days the fixing precedes the value date. If missing, the IborIndex default is used.</description>
           </Parameter>
-          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
-            <!--<Parameter name='DayCountID' enumeration='QuantLib::DayCounter' default='QuantLib::DayCounter()'>-->
+          <!--<Parameter name='DayCounter' enumeration='QuantLib::DayCounter' default='QuantLib::DayCounter()'>-->
+          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>daycounter</description>
+            <description>DayCounter used for accrual periods</description>
+            <!--<description>If missing, the IborIndex default is used</description>-->
           </Parameter>
-          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business days convention. If omitted, default=Following.</description>
+            <description>business days convention used for payment dates. Default is Following.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlCappedFlooredFloatingRateCouponVector'>
-      <libraryFunction>CappedFlooredFloatingRateCouponVector</libraryFunction>
+    <Constructor name='qlCappedFlooredFloatingRateLeg'>
+      <libraryFunction>CappedFlooredFloatingRateLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Schedule' libraryClass='Schedule'>
+          <Parameter name='ScheduleID' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>schedule object ID</description>
+            <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='Nominals'>
+          <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>coupon nominals</description>
+            <description>Amount vector</description>
           </Parameter>
-          <Parameter name='Gearings'>
+          <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings (i.e. the multiplicative coefficients of the floating rate index)</description>
+            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
           </Parameter>
-          <Parameter name='Index' libraryClass='IborIndex'>
+          <Parameter name='IborIndex' libraryClass='IborIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>underlying index object ID</description>
+            <description>floating IborIndex object ID</description>
           </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads</description>
+            <description>floating rate additional spreads</description>
           </Parameter>
           <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' >
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>If omitted, no strikes are assigned.</description>
+            <description>Cap strikes. If missing, no caps are enforced.</description>
           </Parameter>
           <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>If omitted, no strikes are assigned.</description>
+            <description>Floor strikes. If missing, no caps are enforced.</description>
           </Parameter>
           <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixingDays. If omitted, Index default is used.</description>
+            <description>number of business days the fixing precedes the value date. If missing, the IborIndex default is used.</description>
           </Parameter>
-          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
-            <!--<Parameter name='DayCountID' enumeration='QuantLib::DayCounter' default='QuantLib::DayCounter()'>-->
+          <!--<Parameter name='DayCounter' enumeration='QuantLib::DayCounter' default='QuantLib::DayCounter()'>-->
+          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>daycounter</description>
+            <description>DayCounter used for accrual periods</description>
+            <!--<description>If missing, the IborIndex default is used</description>-->
           </Parameter>
-          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business days convention. If omitted, default=Following.</description>
+            <description>business days convention used for payment dates. Default is Following.</description>
           </Parameter>
           <Parameter name='Volatility' libToHandle='CapletVolatilityStructure'>
             <type>string</type>
@@ -171,62 +283,63 @@
       </ParameterList>
     </Constructor>
     
-    <Constructor name='qlCMSCouponVector'>
-      <libraryFunction>CMSCouponVector</libraryFunction>
+    <Constructor name='qlCMSLeg'>
+      <libraryFunction>CMSLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Schedule' libraryClass='Schedule'>
+          <Parameter name='ScheduleID' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>schedule object ID</description>
+            <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business days convention. If omitted, default=Following.</description>
+            <description>business days convention used for payment dates. Default is Following.</description>
           </Parameter>
-          <Parameter name='Nominals'>
+          <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>coupon nominals</description>
+            <description>Amount vector</description>
           </Parameter>
-          <Parameter name='Index' libraryClass='SwapIndex'>
+          <Parameter name='SwapIndex' libraryClass='SwapIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>underlying swap index object ID</description>
+            <description>underlying SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='FixingDays'>
+          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixingDays</description>
+            <description>number of business days the fixing precedes the value date. If missing, the SwapIndex default is used.</description>
           </Parameter>
-          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
+          <!-- we might/should use the daycounter of the IborIndex underlying the SwapIndex -->
+          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter</description>
+            <description>DayCounter used for accrual periods</description>
           </Parameter>
-          <Parameter name='Gearings'>
+          <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings (i.e. the multiplicative coefficients of the floating rate index)</description>
+            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
           </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>spreads</description>
+            <description>floating rate additional spreads</description>
           </Parameter>
-          <Parameter name='CapRates' libraryType='QuantLib::Rate'>
+          <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' >
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>caps</description>
+            <description>Cap strikes. If missing, no caps are enforced.</description>
           </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate'>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floors</description>
+            <description>Floor strikes. If missing, no caps are enforced.</description>
           </Parameter>
           <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
             <type>string</type>
@@ -237,62 +350,63 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlCMSInArrearsCouponVector'>
-      <libraryFunction>CMSInArrearsCouponVector</libraryFunction>
+    <Constructor name='qlCMSInArrearsLeg'>
+      <libraryFunction>CMSInArrearsLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Schedule' libraryClass='Schedule'>
+          <Parameter name='ScheduleID' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>schedule object ID</description>
+            <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business days convention. If omitted, default=Following.</description>
+            <description>business days convention used for payment dates. Default is Following.</description>
           </Parameter>
-          <Parameter name='Nominals'>
+          <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>coupon nominals</description>
+            <description>Amount vector</description>
           </Parameter>
-          <Parameter name='Index' libraryClass='SwapIndex'>
+          <Parameter name='SwapIndex' libraryClass='SwapIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying swap index object ID</description>
           </Parameter>
-          <Parameter name='FixingDays'>
+          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixingDays</description>
+            <description>number of business days the fixing precedes the value date. If missing, the SwapIndex default is used.</description>
           </Parameter>
-          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
+          <!-- we might/should use the daycounter of the IborIndex underlying the SwapIndex -->
+          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter</description>
+            <description>DayCounter used for accrual periods</description>
           </Parameter>
-          <Parameter name='Gearings'>
+          <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings (i.e. the multiplicative coefficients of the floating rate index)</description>
+            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
           </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>spreads</description>
+            <description>floating rate additional spreads</description>
           </Parameter>
-          <Parameter name='CapRates' libraryType='QuantLib::Rate'>
+          <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' >
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>caps</description>
+            <description>Cap strikes. If missing, no caps are enforced.</description>
           </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate'>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floors</description>
+            <description>Floor strikes. If missing, no caps are enforced.</description>
           </Parameter>
           <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
             <type>string</type>
@@ -303,62 +417,63 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlCMSZeroCouponVector'>
-      <libraryFunction>CMSZeroCouponVector</libraryFunction>
+    <Constructor name='qlCMSZeroLeg'>
+      <libraryFunction>CMSZeroLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Schedule' libraryClass='Schedule'>
+          <Parameter name='ScheduleID' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>schedule object ID</description>
+            <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PayAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business days convention. If omitted, default=Following.</description>
+            <description>business days convention used for payment dates. Default is Following.</description>
           </Parameter>
-          <Parameter name='Nominals'>
+          <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>coupon nominals</description>
+            <description>Amount vector</description>
           </Parameter>
-          <Parameter name='Index' libraryClass='SwapIndex'>
+          <Parameter name='SwapIndex' libraryClass='SwapIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying swap index object ID</description>
           </Parameter>
-          <Parameter name='FixingDays'>
+          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixingDays</description>
+            <description>number of business days the fixing precedes the value date. If missing, the SwapIndex default is used.</description>
           </Parameter>
-          <Parameter name='DayCountID' enumeration='QuantLib::DayCounter'>
+          <!-- we might/should use the daycounter of the IborIndex underlying the SwapIndex -->
+          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter</description>
+            <description>DayCounter used for accrual periods</description>
           </Parameter>
-          <Parameter name='Gearings'>
+          <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings (i.e. the multiplicative coefficients of the floating rate index)</description>
+            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
           </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>spreads</description>
+            <description>floating rate additional spreads</description>
           </Parameter>
-          <Parameter name='CapRates' libraryType='QuantLib::Rate'>
+          <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' >
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>caps</description>
+            <description>Cap strikes. If missing, no caps are enforced.</description>
           </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate'>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floors</description>
+            <description>Floor strikes. If missing, no caps are enforced.</description>
           </Parameter>
           <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
             <type>string</type>
@@ -389,145 +504,37 @@
           <Parameter name='ModelOfYieldCurve' enumeration='QuantLib::GFunctionFactory::ModelOfYieldCurve'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>model Of YieldCurve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
+            <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
           </Parameter>
-          <Parameter name='MeanReversion'>
+          <Parameter name='MeanReversion' exampleValue='0.1'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean reversion</description>
+            <description>mean reversion speed (inverse of time)</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
-    <!--<Constructor name='qlCashFlowStreamJoin'>
-      <libraryFunction>CashFlowStreamJoin</libraryFunction>
+    <Constructor name='qlMultiPhaseLeg'>
+      <libraryFunction>MultiPhaseLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='legIDs' objectClass='CashFlowStream'>
+          <Parameter name='legIDs' objectClass='Leg'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>leg object IDs</description>
+            <description>leg object IDs, one for each phase</description>
           </Parameter>
           <Parameter name='toBeSorted' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the merged CashFlow streams must be sorted according to date/amount</description>
+            <description>TRUE if the CashFlows in the merged Leg must be sorted according to date/amount</description>
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor>-->
-
-    <Member name='qlCashFlowStreamStartDate' objectClass='CashFlowStream'>
-      <description>Returns the start (i.e. first accrual) date for the given CashFlowStream object</description>
-      <libraryFunction>startDate</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue libraryType='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCashFlowStreamMaturityDate' objectClass='CashFlowStream'>
-      <description>Returns the maturity (i.e. last payment) date for the given CashFlowStream object</description>
-      <libraryFunction>startDate</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue libraryType='QuantLib::Date'>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCashFlowStreamNPV' objectClass='CashFlowStream'>
-      <description>Returns the net present value for the given CashFlowStream object</description>
-      <libraryFunction>npv</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCashFlowStreamBPS' objectClass='CashFlowStream'>
-      <description>Returns the basis point sensitivity for the given CashFlowStream object</description>
-      <libraryFunction>bps</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCashFlowStreamAtmRate' objectClass='CashFlowStream'>
-      <description>Returns the at-the-money rate for the given CashFlowStream object, i.e. the fixed rate for which an equivalent vector of fixed-rate cash flows would have the same NPV.</description>
-      <libraryFunction>atmRate</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue libraryType='QuantLib::Rate'>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCashFlowStreamAnalysis' objectClass='CashFlowStream'>
-      <description>Returns the flow analysis for the given CashFlowStream object</description>
-      <libraryFunction>analysis</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>any</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
+    </Constructor>
 
   </Functions>
 

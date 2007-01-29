@@ -29,7 +29,7 @@ namespace QuantLibAddin {
     
     class Swap : public Instrument {
       public:
-        Swap(const std::vector<boost::shared_ptr<CashFlowStream> >& legWrappers,
+        Swap(const std::vector<boost::shared_ptr<Leg> >& legWrappers,
              const std::vector<bool>& payer,
              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
         // QuantLib::MakeCMS

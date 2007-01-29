@@ -29,13 +29,13 @@
 
 namespace QuantLibAddin {
 
-    Swap::Swap(const std::vector<boost::shared_ptr<CashFlowStream> >& legWrappers,
+    Swap::Swap(const std::vector<boost::shared_ptr<Leg> >& legWrappers,
                const std::vector<bool>& payer,
                const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS) {
 
-        std::vector<Leg> legs(legWrappers.size());
+        std::vector<QuantLib::Leg> legs(legWrappers.size());
         for (QuantLib::Size i = 0; i<legWrappers.size(); ++i)
-            legs[i] = legWrappers[i]->getVector();
+            legs[i] = legWrappers[i]->getQuantLibLeg();
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
             new QuantLib::Swap(hYTS, legs, payer));
     }

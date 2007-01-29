@@ -23,7 +23,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='legIDs' objectClass='CashFlowStream'>
+          <Parameter name='legIDs' objectClass='Leg'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>leg object IDs</description>
@@ -36,7 +36,7 @@
           <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
+            <description>discounting YieldTermStructure object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
