@@ -28,12 +28,11 @@ using QuantLib::Swap;
 using QuantLib::VanillaSwap;
 typedef boost::shared_ptr<Instrument> SwapPtr;
 typedef boost::shared_ptr<Instrument> VanillaSwapPtr;
-enum VanillaSwapType { Receiver = -1, Payer = 1};
+typedef VanillaSwap::Type VanillaSwapType;
 
-VanillaSwap::Type translateSwapType(VanillaSwapType i) {
-  if (i == Receiver) return VanillaSwap::Receiver;
-  return VanillaSwap::Payer;
-}
+//copy vanilla swap types into global name space 
+static const VanillaSwapType Receiver = VanillaSwap::Receiver;
+static const VanillaSwapType Payer = VanillaSwap::Payer;
 %}
 
 %rename(Swap) SwapPtr;
@@ -76,7 +75,7 @@ class VanillaSwapPtr : public SwapPtr {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new VanillaSwapPtr(
-                new VanillaSwap(translateSwapType(type),
+                new VanillaSwap(type,
 				nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
                                spread,
