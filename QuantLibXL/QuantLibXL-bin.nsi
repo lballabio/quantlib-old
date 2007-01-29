@@ -19,8 +19,8 @@ Name "QuantLibXL"
 Caption "QuantLibXL - Setup"
 
 # for public release - exclude timestamp from filename
-#OutFile "..\QuantLibXL-${VER_NUMBER}-${NOW}.exe"
-OutFile "..\QuantLibXL-bin-${VER_NUMBER}.exe"
+OutFile "..\QuantLibXL-bin-${VER_NUMBER}-${NOW}.exe"
+#OutFile "..\QuantLibXL-bin-${VER_NUMBER}.exe"
 
 ComponentText "This will install QuantLibXL ${VER_NUMBER} on your computer"
 SilentInstall normal
@@ -39,8 +39,8 @@ ShowInstDetails hide
 SetDateSave on
 UninstallText "This will uninstall QuantLibXL. Hit next to continue."
 
-InstType "Full (Addin, Framework, Workbooks, and Documentation)"
-InstType "No Workbooks (Addin, Framework, and Documentation)"
+InstType "Full (Addin, VBA Framework, Workbooks, and Documentation)"
+InstType "No Workbooks (Addin, VBA Framework, and Documentation)"
 
 Section "-QuantLibXL"
 SectionIn 1 2
@@ -91,7 +91,9 @@ SectionEnd
 Section "Framework"
 SectionIn 1 2
     SetOutPath "$INSTDIR\framework"
-    File "framework\*.xla"
+    File "framework\QuantLibXL.xla"
+    SetOutPath "$INSTDIR\framework\metadata"
+    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL-${VER_NUMBER}.lnk" \
                    "$INSTDIR\framework\QuantLibXL.xla"
     CreateShortCut "$DESKTOP\QuantLibXL-${VER_NUMBER}.lnk" \

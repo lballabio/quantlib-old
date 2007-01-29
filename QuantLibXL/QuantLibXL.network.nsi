@@ -80,11 +80,12 @@ Section "-QuantLibXL Network Distribution"
   ;SetOutPath "$FRAMEWORK_PATH\"
   SetOutPath "$INSTDIR\framework"
   File "framework\QuantLibXL.xla"
+  SetOutPath "$INSTDIR\framework\metadata"
+  File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
 
   ;SetOutPath "$WORKBOOK_PATH\"
   SetOutPath "$INSTDIR\Workbooks"
   File /r /x Drafts "Workbooks\*.xls"
-  File /r "Workbooks\*.xml"
 
 SectionEnd
 
