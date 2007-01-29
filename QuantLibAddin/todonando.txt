@@ -132,7 +132,7 @@ TO BE DISCUSSED: Object Builder performance issue when the control panel is left
 
 
 Cristina
-- qlFloatingRateCouponVector: if fixing days is blank, it result = 0!!
+- DONE: EXCEL BEHAVIOUR, NOT QL CODE ERROR qlFloatingRateCouponVector: if fixing days is blank, it result = 0!!
 - reorder Excel input parameters order
   - DONE in QuantLibAddin code
   - WIP in workbooks
