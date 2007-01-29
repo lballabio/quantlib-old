@@ -28,7 +28,12 @@ using QuantLib::Swap;
 using QuantLib::VanillaSwap;
 typedef boost::shared_ptr<Instrument> SwapPtr;
 typedef boost::shared_ptr<Instrument> VanillaSwapPtr;
-typedef VanillaSwap::Type VanillaSwapType;
+enum VanillaSwapType { Receiver = -1, Payer = 1};
+
+VanillaSwap::Type translateSwapType(VanillaSwapType i) {
+  if (i == Receiver) return VanillaSwap::Receiver;
+  return VanillaSwap::Payer;
+}
 %}
 
 %rename(Swap) SwapPtr;
@@ -50,6 +55,7 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
 
 enum VanillaSwapType { Receiver = -1, Payer = 1};
 
+
 class VanillaSwapPtr : public SwapPtr {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("fair-rate")        fairRate;
@@ -59,7 +65,7 @@ class VanillaSwapPtr : public SwapPtr {
     #endif
   public:
     %extend {
-        VanillaSwapPtr(VanillaSwap::Type type, Real nominal,
+        VanillaSwapPtr(VanillaSwapType type, Real nominal,
                       const Schedule& fixedSchedule, Rate fixedRate,
                       const DayCounter& fixedDayCount,
                       const Schedule& floatSchedule,
@@ -70,7 +76,7 @@ class VanillaSwapPtr : public SwapPtr {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new VanillaSwapPtr(
-                new VanillaSwap(type,
+                new VanillaSwap(translateSwapType(type),
 				nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
                                spread,
