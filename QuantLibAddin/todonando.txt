@@ -132,9 +132,9 @@ François
 Cristina
 - qlFloatingRateCouponVector: if fixing days is blank, it result = 0!!
 - reorder Excel input parametr order
-- florr<=cap coupon check
+- DONE floor<=cap coupon check
 - DONE payment business days convention and fixing days
-- DONE? test Mx sul 29/9
+- DONE test Mx sul 29/9
 - DONE capped/floored-cms comparison (shared among Cristina and Giorgio)
 - WIP coupon refactoring and extension (shared among Cristina and Giorgio)
 - WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
