@@ -28,6 +28,7 @@ using QuantLib::Swap;
 using QuantLib::VanillaSwap;
 typedef boost::shared_ptr<Instrument> SwapPtr;
 typedef boost::shared_ptr<Instrument> VanillaSwapPtr;
+typedef VanillaSwap::Type VanillaSwapType;
 %}
 
 %rename(Swap) SwapPtr;
@@ -46,6 +47,8 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
 };
 
 %rename(VanillaSwap) VanillaSwapPtr;
+
+enum VanillaSwapType { Receiver = -1, Payer = 1};
 
 class VanillaSwapPtr : public SwapPtr {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -67,7 +70,8 @@ class VanillaSwapPtr : public SwapPtr {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new VanillaSwapPtr(
-                new VanillaSwap(type,nominal,fixedSchedule,fixedRate,
+                new VanillaSwap(type,
+				nominal,fixedSchedule,fixedRate,
                                fixedDayCount,floatSchedule,libor,
                                spread,
                    floatingDayCount,
