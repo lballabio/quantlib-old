@@ -86,24 +86,29 @@ Done append/merge cash flow streams constructor
 - triggers added in bondMonitor.xls (performance problems)
 - subVersion
 
-
 François
-- priority: object builder type default (for enumeration use the Excel default), then xml default, finally exampleValue
+- permanent comment: TRUE if the object must be permanent (i.e. resistant to garbage collection). Default is FALSE.
+- ObjectID comment: id of the object to be created. If missing a unique id will be automatically assigned.
+- priority: object builder QuantLib types default (for enumeration use the Excel default), then blank if there is an xml default value, finally exampleValue
 - FALSE default value for endofmonth in schedule is not effective
 - exampleValue for tenor in schedule is not effective
 - exampleValue for rate in FlatForward is not effective
 - default for frequency in FlatForward is not effective
 - default for gearing in CMSLeg is not effective
-- libraryClass='SwapIndex' must default to EURIBORSWAPFIXA
+- libraryClass='SwapIndex' must default to the EURIBORSWAPFIXA enumeration
 - do not input the permanent field
-- insert convexity adjustment type in the constructor CmsCouponPricer, parameter VanillaCMSCouponPricerType
-- another line under the ObjectID field
 - remove the ObjectID entry field from the form, put the focus in that field after insertion
+- another line under the ObjectID field
+- constructor for CmsCouponPricer, parameter VanillaCMSCouponPricerType: insert "Convexity Adjustment Type" enumeration drop down list
 
+- (Long) Date
+- (Short) Date
 - QuantLib::DiscountFactor formatting (9 decimal digits)
 - QuantLib::Time formatting (4 decimal digits)
-- QuantLib::Spread ans QuantLib::InterestRate formatting (as for QuantLib::Rate)
+- QuantLib::Spread and QuantLib::InterestRate formatting (as for QuantLib::Rate) [Rate/Spread]
+- QuantLib::Money (Currency, symbol None, 2 decimals)
 - flow analysis formatting
+
 - OH function wizard
 - distribute XML
 - To BE REVIEWED test abcd calibration
@@ -178,7 +183,6 @@ Eric
 - native ohSplit on vector input to coerce from string to vector
 - why the error message doesn't disappear as soon as the cell is not in error anymore
 - ohConcatenate, ohRange1D, ohRange2D
-- permanent: if missing is it equal to FALSE?
 - command (remove function SetEvaluationDate, etc?)
 - domain validation
 - watch on
