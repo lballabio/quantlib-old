@@ -143,7 +143,11 @@ namespace QuantLibAddin {
         flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
         flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
         flowAnalysis_.back()[INDEX]=c.index()->name();
-        flowAnalysis_.back()[FLOOR]=c.floor();
+        try {
+            flowAnalysis_.back()[FLOOR]=c.floor();
+        } catch(...) {
+            flowAnalysis_.back()[FLOOR]=std::string("N/A");
+        }
         flowAnalysis_.back()[GEARING]=c.gearing();
         try {
             flowAnalysis_.back()[INDEX_FIXING]=c.indexFixing();
@@ -152,7 +156,11 @@ namespace QuantLibAddin {
             flowAnalysis_.back()[CONV_ADJ]=c.convexityAdjustment();
         } catch(...) {}
         flowAnalysis_.back()[SPREAD]=c.spread();
-        flowAnalysis_.back()[CAP]=c.cap();
+        try {
+            flowAnalysis_.back()[CAP]=c.cap();
+        } catch(...) {
+            flowAnalysis_.back()[CAP]=std::string("N/A");
+        }   
     }
 
     void AnalysisGenerator::visit(QuantLib::CMSCoupon& c) {
@@ -160,7 +168,10 @@ namespace QuantLibAddin {
         flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
         flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
         flowAnalysis_.back()[INDEX]=c.index()->name();
-        flowAnalysis_.back()[FLOOR]=c.floor();
+        if (c.floor() != QuantLib::Null<QuantLib::Rate>())
+            flowAnalysis_.back()[FLOOR]=c.floor();
+        else
+            flowAnalysis_.back()[FLOOR]=std::string("N/A");
         flowAnalysis_.back()[GEARING]=c.gearing();
         try {
             flowAnalysis_.back()[INDEX_FIXING]=c.indexFixing();
@@ -169,7 +180,10 @@ namespace QuantLibAddin {
             flowAnalysis_.back()[CONV_ADJ]=c.convexityAdjustment();
         } catch(...) {}
         flowAnalysis_.back()[SPREAD]=c.spread();
-        flowAnalysis_.back()[CAP]=c.cap();
+        if (c.cap() != QuantLib::Null<QuantLib::Rate>())
+            flowAnalysis_.back()[CAP]=c.cap();
+        else
+            flowAnalysis_.back()[CAP]=std::string("N/A");
     }
 
     const std::vector<std::vector<boost::any> >& AnalysisGenerator::analysis() const {
