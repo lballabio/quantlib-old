@@ -72,28 +72,28 @@ namespace QuantLibAddin {
       public:
         FloatingRateLeg(
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::BusinessDayConvention paymentAdjustment,
             const std::vector<double>& nominals,
-            const std::vector<QuantLib::Real>& gearings,
             const boost::shared_ptr<QuantLib::IborIndex>& index,
-            const std::vector<QuantLib::Spread>& spreads,
             QuantLib::Integer fixingDays,
             const QuantLib::DayCounter& dayCounter,
-            QuantLib::BusinessDayConvention paymentAdjustment);
+            const std::vector<QuantLib::Real>& gearings,
+            const std::vector<QuantLib::Spread>& spreads);
     };
 
     class CappedFlooredFloatingRateLeg : public Leg {
       public:
         CappedFlooredFloatingRateLeg(
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::BusinessDayConvention paymentAdjustment,
             const std::vector<QuantLib::Real>& nominals,
-            const std::vector<QuantLib::Real>& gearings,
             const boost::shared_ptr<QuantLib::IborIndex>& index,
-            const std::vector<QuantLib::Real>& spreads,
-            const std::vector<QuantLib::Real>& caps,
-            const std::vector<QuantLib::Real>& floors, 
             QuantLib::Integer fixingDays,
             const QuantLib::DayCounter& dayCounter,
-            QuantLib::BusinessDayConvention paymentAdjustment,
+            const std::vector<QuantLib::Real>& floors, 
+            const std::vector<QuantLib::Real>& gearings,
+            const std::vector<QuantLib::Real>& spreads,
+            const std::vector<QuantLib::Real>& caps,
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>&);
     };
 
@@ -116,10 +116,10 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::SwapIndex>& index,
             QuantLib::Integer fixingDays,
             const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Real>& floors,
             const std::vector<QuantLib::Real>& gearings,
             const std::vector<QuantLib::Real>& spreads,
             const std::vector<QuantLib::Real>& caps,
-            const std::vector<QuantLib::Real>& floors,
             const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>&);
     };
 
@@ -132,10 +132,10 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::SwapIndex>& index,
             QuantLib::Integer fixingDays,
             const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Real>& floors,
             const std::vector<QuantLib::Real>& gearings,
             const std::vector<QuantLib::Real>& spreads,
             const std::vector<QuantLib::Real>& caps,
-            const std::vector<QuantLib::Real>& floors,
             const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>&);
     };
 
@@ -148,10 +148,10 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::SwapIndex>& index,
             QuantLib::Integer fixingDays,
             const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Real>& floors,
             const std::vector<QuantLib::Real>& gearings,
             const std::vector<QuantLib::Real>& spreads,
             const std::vector<QuantLib::Real>& caps,
-            const std::vector<QuantLib::Real>& floors,
             const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>&);
     };
 

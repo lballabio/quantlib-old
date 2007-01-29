@@ -102,13 +102,13 @@ namespace QuantLibAddin {
 
     FloatingRateLeg::FloatingRateLeg(
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
+                    QuantLib::BusinessDayConvention paymentAdjustment,
                     const std::vector<double>& nominals,
-                    const std::vector<QuantLib::Real>& gearings,
                     const boost::shared_ptr<QuantLib::IborIndex>& index,
-                    const std::vector<QuantLib::Spread>& spreads,
                     QuantLib::Integer fixingDays,
                     const QuantLib::DayCounter& dayCounter,
-                    QuantLib::BusinessDayConvention paymentAdjustment) {
+                    const std::vector<QuantLib::Real>& gearings,
+                    const std::vector<QuantLib::Spread>& spreads) {
 
         leg_ = QuantLib::FloatingRateLeg(*schedule,
                                          nominals,
@@ -120,17 +120,17 @@ namespace QuantLibAddin {
     }
 
     CappedFlooredFloatingRateLeg::CappedFlooredFloatingRateLeg(
-        const boost::shared_ptr<QuantLib::Schedule>& schedule,
-        const std::vector<QuantLib::Real>& nominals,
-        const std::vector<QuantLib::Real>& gearings,
-        const boost::shared_ptr<QuantLib::IborIndex>& index,
-        const std::vector<QuantLib::Real>& spreads,
-        const std::vector<QuantLib::Real>& caps,
-        const std::vector<QuantLib::Real>& floors,  
-        QuantLib::Integer fixingDays,
-        const QuantLib::DayCounter& dayCounter,
-        QuantLib::BusinessDayConvention paymentAdjustment,
-        const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility) {
+                    const boost::shared_ptr<QuantLib::Schedule>& schedule,
+                    QuantLib::BusinessDayConvention paymentAdjustment,
+                    const std::vector<QuantLib::Real>& nominals,
+                    const boost::shared_ptr<QuantLib::IborIndex>& index,
+                    QuantLib::Integer fixingDays,
+                    const QuantLib::DayCounter& dayCounter,
+                    const std::vector<QuantLib::Real>& floors, 
+                    const std::vector<QuantLib::Real>& gearings,
+                    const std::vector<QuantLib::Real>& spreads,
+                    const std::vector<QuantLib::Real>& caps,
+                    const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility) {
 
             leg_ = QuantLib::CappedFlooredFloatingRateLeg(*schedule,
                                                           nominals,
@@ -159,10 +159,10 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::SwapIndex>& index,
         QuantLib::Integer fixingDays,
         const QuantLib::DayCounter& paymentDayCounter,
+        const std::vector<QuantLib::Rate>& floors,
         const std::vector<QuantLib::Real>& gearings,
         const std::vector<QuantLib::Real>& spreads,
         const std::vector<QuantLib::Rate>& caps,
-        const std::vector<QuantLib::Rate>& floors,
         const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer)
     {
         leg_ = QuantLib::CMSLeg(*schedule,
@@ -183,10 +183,10 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::SwapIndex>& index,
         QuantLib::Integer fixingDays,
         const QuantLib::DayCounter& paymentDayCounter,
+        const std::vector<QuantLib::Rate>& floors,
         const std::vector<QuantLib::Real>& gearings,
         const std::vector<QuantLib::Real>& spreads,
         const std::vector<QuantLib::Rate>& caps,
-        const std::vector<QuantLib::Rate>& floors,
         const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer)
     {
         leg_ = QuantLib::CMSZeroLeg(*schedule,
@@ -207,10 +207,10 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::SwapIndex>& index,
         QuantLib::Integer fixingDays,
         const QuantLib::DayCounter& paymentDayCounter,
+        const std::vector<QuantLib::Rate>& floors,
         const std::vector<QuantLib::Real>& gearings,
         const std::vector<QuantLib::Real>& spreads,
         const std::vector<QuantLib::Rate>& caps,
-        const std::vector<QuantLib::Rate>& floors,
         const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer)
     {
         leg_ = QuantLib::CMSInArrearsLeg(*schedule,
