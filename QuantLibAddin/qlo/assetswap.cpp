@@ -28,10 +28,10 @@ namespace QuantLibAddin {
                 bool payFixedRate,
                 const boost::shared_ptr<QuantLib::Bond>& bond,
                 const QuantLib::Real bondCleanPrice,
-                const boost::shared_ptr<QuantLib::Schedule>& floatSchedule,
                 const boost::shared_ptr<QuantLib::IborIndex>& index,
                 QuantLib::Spread spread,
                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                const boost::shared_ptr<QuantLib::Schedule>& floatSchedule,
                 const QuantLib::DayCounter& floatingDayCount,
                 bool parSwap)
     {
@@ -39,10 +39,10 @@ namespace QuantLibAddin {
             new QuantLib::AssetSwap(payFixedRate,
                                     bond,
                                     bondCleanPrice,
-                                    *floatSchedule,
                                     index,
                                     spread,
                                     hYTS,
+                                    *floatSchedule,
                                     floatingDayCount,
                                     parSwap));
     }

@@ -35,11 +35,6 @@
             <tensorRank>scalar</tensorRank>
             <description>market price of the underlying bond</description>
           </Parameter>
-          <Parameter name='floatingLegSchedule' libraryClass='Schedule'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>floating leg schedule object ID</description>
-          </Parameter>
           <Parameter name='index' libraryClass='IborIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
@@ -54,6 +49,12 @@
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting YieldTermStructure object ID</description>
+          </Parameter>
+          <!--<Parameter name='floatingLegSchedule' libraryClass='Schedule' default='QuantLib::Schedule()'>-->
+          <Parameter name='floatingLegSchedule' libraryClass='Schedule'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg schedule object ID</description>
           </Parameter>
           <Parameter name='floatingLegDayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
             <type>string</type>

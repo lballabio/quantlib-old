@@ -45,25 +45,12 @@ General
 - introduce type QuantLib::Money
 - reorder excel input order according to cf analysis
 
-Demo slide
-- data inizio lavori
-- cosa c'era prima
-- libreria inflazione
-- prodotti per semestri
-
-- demo
-1) esempio con i discount
-2) asset swap
-3) esempio strutturazione
-
 
 Nando
 - expose x,y of interpolation objects
-- sorted cash flow vector
 - joint calendar
 - mkt convention struct
 - YCDemo crash
-- demo Munari (mergeLeg, addLeg)
 - 0.3.14 wbk
 - alternative calibrations with null rho
 - make BlackCalculator observer/observable, make it lazy
