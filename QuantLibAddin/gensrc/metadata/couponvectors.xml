@@ -138,7 +138,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>business days convention used for payment dates. Default is Following.</description>
@@ -153,7 +153,7 @@
             <tensorRank>vector</tensorRank>
             <description>coupon fixed rates</description>
           </Parameter>
-          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter used for accrual periods</description>
@@ -174,7 +174,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>business days convention used for payment dates. Default is Following.</description>
@@ -189,13 +189,13 @@
             <tensorRank>scalar</tensorRank>
             <description>floating IborIndex object ID</description>
           </Parameter>
-          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
+          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of business days the fixing precedes the value date. If missing, the IborIndex default is used.</description>
           </Parameter>
           <!--<Parameter name='DayCounter' enumeration='QuantLib::DayCounter' default='QuantLib::DayCounter()'>-->
-          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter used for accrual periods</description>
@@ -295,7 +295,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>business days convention used for payment dates. Default is Following.</description>
@@ -316,7 +316,7 @@
             <description>number of business days the fixing precedes the value date. If missing, the SwapIndex default is used.</description>
           </Parameter>
           <!-- we might/should use the daycounter of the IborIndex underlying the SwapIndex -->
-          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter used for accrual periods</description>
@@ -377,7 +377,7 @@
             <tensorRank>scalar</tensorRank>
             <description>underlying swap index object ID</description>
           </Parameter>
-          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
+          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of business days the fixing precedes the value date. If missing, the SwapIndex default is used.</description>
@@ -491,12 +491,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Volatility' libToHandle='SwaptionVolatilityStructure'>
+          <Parameter name='Volatility' libToHandle='SwaptionVolatilityStructure' exampleValue='EURSwaptionVol'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Swaption Volatility Structure object ID</description>
           </Parameter>
-          <Parameter name='VanillaCMSCouponPricerType'>
+          <Parameter name='VanillaCMSCouponPricerType' exampleValue='ConundrumByNumericalIntegration'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Vanilla CMS Coupon Pricer Type (e.g ConundrumByBlack, ConundrumByNumericalIntegration, ClassicalAnaliticalFormula)</description>
