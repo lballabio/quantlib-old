@@ -300,7 +300,7 @@
             <tensorRank>scalar</tensorRank>
             <description>vol quotes</description>
           </Parameter>
-          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='"Actual/365 (Fixed)"'>'
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/365 (Fixed)'>'
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
