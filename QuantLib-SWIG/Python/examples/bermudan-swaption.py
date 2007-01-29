@@ -42,7 +42,7 @@ def calibrate(model, helpers, l, name):
     print name
     print rule
 
-    method = Simplex(l, 1.0e-9);
+    method = Simplex(l);
     method.setEndCriteria(EndCriteria(1000, 1.0e-7));
     model.calibrate(helpers, method);
 
@@ -88,7 +88,7 @@ floatingLegConvention = ModifiedFollowing
 fixedLegDayCounter = Thirty360(Thirty360.European);
 floatingLegFrequency = Semiannual
 
-payFixed = True
+payFixed = Payer
 fixingDays = 2
 index = Euribor6M(termStructure)
 floatingLegDayCounter = index.dayCounter()
@@ -96,32 +96,40 @@ floatingLegDayCounter = index.dayCounter()
 swapStart = calendar.advance(settlementDate,1,Years,floatingLegConvention)
 swapEnd = calendar.advance(swapStart,5,Years,floatingLegConvention)
 
-fixedSchedule = Schedule(calendar, swapStart, swapEnd,
-                         fixedLegFrequency, fixedLegConvention)
-floatingSchedule = Schedule(calendar, swapStart, swapEnd,
-                            floatingLegFrequency, floatingLegConvention)
+fixedSchedule = Schedule(swapStart, swapEnd, 
+                         Period(fixedLegFrequency),
+                         calendar,
+                         fixedLegConvention,
+                         fixedLegConvention,
+                         False, True)
+floatingSchedule = Schedule(swapStart, swapEnd,
+                            Period(floatingLegFrequency),
+                            calendar,
+                            floatingLegConvention,
+                            floatingLegConvention,
+                            False, True)
 
 atmRate = VanillaSwap(payFixed, 100.0,
                       fixedSchedule, 0.0, fixedLegDayCounter,
-                      floatingSchedule, index, fixingDays, 0.0,
+                      floatingSchedule, index, 0.0,
                       floatingLegDayCounter, termStructure).fairRate()
 
 atmSwap = VanillaSwap(payFixed, 1000.0,
                       fixedSchedule, atmRate, fixedLegDayCounter,
-                      floatingSchedule, index, fixingDays, 0.0,
+                      floatingSchedule, index, 0.0,
                       floatingLegDayCounter, termStructure)
 otmSwap = VanillaSwap(payFixed, 1000.0,
                       fixedSchedule, atmRate*1.2, fixedLegDayCounter,
-                      floatingSchedule, index, fixingDays, 0.0,
+                      floatingSchedule, index, 0.0,
                       floatingLegDayCounter, termStructure)
 itmSwap = VanillaSwap(payFixed, 1000.0,
                       fixedSchedule, atmRate*0.8, fixedLegDayCounter,
-                      floatingSchedule, index, fixingDays, 0.0,
+                      floatingSchedule, index, 0.0,
                       floatingLegDayCounter, termStructure)
 
 helpers = [ SwaptionHelper(maturity, length,
                            QuoteHandle(SimpleQuote(vol)),
-                           index, index.frequency(), index.dayCounter(),
+                           index, index.tenor(), index.dayCounter(),
                            index.dayCounter(), termStructure)
             for maturity, length, vol in swaptionVols ]
 
