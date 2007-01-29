@@ -174,25 +174,20 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business days convention used for payment dates. Default is Following.</description>
+          </Parameter>          
           <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Amount vector</description>
           </Parameter>
-          <Parameter name='Gearings' default='1.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
-          </Parameter>
           <Parameter name='IborIndex' libraryClass='IborIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>floating IborIndex object ID</description>
-          </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads</description>
           </Parameter>
           <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
             <type>long</type>
@@ -206,10 +201,15 @@
             <description>DayCounter used for accrual periods</description>
             <!--<description>If missing, the IborIndex default is used</description>-->
           </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>business days convention used for payment dates. Default is Following.</description>
+          <Parameter name='Gearings' default='1.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
+          </Parameter>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>floating rate additional spreads</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -227,35 +227,20 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business days convention used for payment dates. Default is Following.</description>
+          </Parameter>
           <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Amount vector</description>
           </Parameter>
-          <Parameter name='Gearings' default='1.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
-          </Parameter>
           <Parameter name='IborIndex' libraryClass='IborIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>floating IborIndex object ID</description>
-          </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads</description>
-          </Parameter>
-          <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' >
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Cap strikes. If missing, no caps are enforced.</description>
-          </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no caps are enforced.</description>
           </Parameter>
           <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
             <type>long</type>
@@ -269,10 +254,25 @@
             <description>DayCounter used for accrual periods</description>
             <!--<description>If missing, the IborIndex default is used</description>-->
           </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>business days convention used for payment dates. Default is Following.</description>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Floor strikes. If missing, no caps are enforced.</description>
+          </Parameter>
+          <Parameter name='Gearings' default='1.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
+          </Parameter>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>floating rate additional spreads</description>
+          </Parameter>
+          <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' >
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Cap strikes. If missing, no caps are enforced.</description>
           </Parameter>
           <Parameter name='Volatility' libToHandle='CapletVolatilityStructure'>
             <type>string</type>
@@ -321,6 +321,11 @@
             <tensorRank>scalar</tensorRank>
             <description>DayCounter used for accrual periods</description>
           </Parameter>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Floor strikes. If missing, no caps are enforced.</description>
+          </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
@@ -335,11 +340,6 @@
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Cap strikes. If missing, no caps are enforced.</description>
-          </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no caps are enforced.</description>
           </Parameter>
           <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
             <type>string</type>
@@ -388,6 +388,11 @@
             <tensorRank>scalar</tensorRank>
             <description>DayCounter used for accrual periods</description>
           </Parameter>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Floor strikes. If missing, no caps are enforced.</description>
+          </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
@@ -402,11 +407,6 @@
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Cap strikes. If missing, no caps are enforced.</description>
-          </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no caps are enforced.</description>
           </Parameter>
           <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
             <type>string</type>
@@ -455,6 +455,11 @@
             <tensorRank>scalar</tensorRank>
             <description>DayCounter used for accrual periods</description>
           </Parameter>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Floor strikes. If missing, no caps are enforced.</description>
+          </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
@@ -469,11 +474,6 @@
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Cap strikes. If missing, no caps are enforced.</description>
-          </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no caps are enforced.</description>
           </Parameter>
           <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
             <type>string</type>
