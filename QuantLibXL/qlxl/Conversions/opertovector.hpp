@@ -24,18 +24,72 @@
 
 namespace ObjHandler {
 
-    QuantLib::Array operToVector(const FP &fpVector);
+    //QuantLib::Array operToVector(const FP &fpVector);
+    QuantLib::Array operToVector(const OPER &operVector);
+
+    //template <class T>
+    //std::vector<T> fpToVectorLibrary(const FP &fpVector) {
+    //    std::vector<T> ret;
+    //    ret.reserve(fpVector.rows * fpVector.columns);
+    //    for (int i=0; i<fpVector.rows * fpVector.columns; ++i) {
+    //        T item;
+    //        cppToLibrary(fpVector.array[i], item);
+    //        ret.push_back(item);
+    //    }
+    //    return ret;
+    //}
 
     template <class T>
-    std::vector<T> fpToVectorLibrary(const FP &fpVector) {
-        std::vector<T> ret;
-        ret.reserve(fpVector.rows * fpVector.columns);
-        for (int i=0; i<fpVector.rows * fpVector.columns; ++i) {
-            T item;
-            cppToLibrary(fpVector.array[i], item);
-            ret.push_back(item);
+    std::vector<T> operToVectorLibrary(const OPER &xVector) {
+        OPER xTemp;
+        bool excelToFree = false;
+        bool xllToFree = false;
+        try {
+            if (xVector.xltype & xltypeErr)
+                throw Exception("input value has type=error");
+            if (xVector.xltype & (xltypeMissing | xltypeNil))
+                return std::vector<T>();
+
+            const OPER *xMulti;
+
+            if (xVector.xltype == xltypeMulti) {
+                xMulti = &xVector;
+            } else if (xVector.xltype == xltypeStr) {
+                splitOper(&xVector, &xTemp);
+                xMulti = &xTemp;
+                xllToFree = true;
+            } else {
+                Excel(xlCoerce, &xTemp, 2, &xVector, TempInt(xltypeMulti));
+                xMulti = &xTemp;
+                excelToFree = true;
+            }
+
+            std::vector<T> ret;
+            int size = xMulti->val.array.rows * xMulti->val.array.columns;
+            ret.reserve(size);
+            for (int i=0; i<size; ++i) {
+                double value;
+                operToScalar(xMulti->val.array.lparray[i], value);
+                T item;
+                cppToLibrary(value, item);
+                ret.push_back(item);
+            }
+
+            if (excelToFree) {
+                Excel(xlFree, 0, 1, &xTemp);
+            } else if (xllToFree) {
+                freeOper(&xTemp);
+            }
+
+            return ret;
+        } catch (const std::exception &e) {
+            if (excelToFree) {
+                Excel(xlFree, 0, 1, &xTemp);
+            } else if (xllToFree) {
+                freeOper(&xTemp);
+            }
+            OH_FAIL("operToVectorLibrary: " << e.what());
         }
-        return ret;
     }
 
     template <class qlClass, class qloClass>

@@ -41,13 +41,21 @@ lines = {
         std::vector<%(type)s> %(name)sCpp =
             ObjHandler::operToVector<%(type)s>(*%(name)s);\n''',
 
+#'code_cpp_vec_2' : '''\
+#        std::vector<long> %(name)sCpp =
+#            ObjHandler::fpToVector<long>(*%(name)s);\n''',
+
 'code_cpp_vec_2' : '''\
         std::vector<long> %(name)sCpp =
-            ObjHandler::fpToVector<long>(*%(name)s);\n''',
+            ObjHandler::operToVector<long>(*%(name)s);\n''',
+
+#'code_cpp_vec_3' : '''\
+#        std::vector<double> %(name)sCpp =
+#            ObjHandler::fpToVector<double>(*%(name)s);\n''',
 
 'code_cpp_vec_3' : '''\
         std::vector<double> %(name)sCpp =
-            ObjHandler::fpToVector<double>(*%(name)s);\n''',
+            ObjHandler::operToVector<double>(*%(name)s);\n''',
 
 'code_cpp_vec_4' : '''\
         std::vector<std::string> %(name)sCpp =
@@ -115,7 +123,7 @@ lines = {
 
 'code11b' : '''\
         std::vector<%(libraryType)s> %(name)sLib =
-            ObjHandler::fpToVectorLibrary<%(libraryType)s>(
+            ObjHandler::operToVectorLibrary<%(libraryType)s>(
             *%(name)s);\n''',
 
 'code11' : '''\

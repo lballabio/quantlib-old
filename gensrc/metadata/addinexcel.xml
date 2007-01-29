@@ -61,6 +61,27 @@
         <SubRule>
             <tensorRanks>
                 <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <loop>%(indent)sOPER *%(name)s</loop>
+                <default>%(indent)sOPER *%(name)s</default>
+                <long>
+                    <DataTypes>
+                        <libraryType>
+                            <DataValues>
+                                <DataValue name='QuantLib::Date'>%(indent)sOPER *%(name)s</DataValue>
+                                <DataValue name='other'>%(indent)sOPER *%(name)s</DataValue>
+                            </DataValues>
+                        </libraryType>
+                        <other>%(indent)sOPER *%(name)s</other>
+                    </DataTypes>
+                </long>
+                <double>%(indent)sOPER *%(name)s</double>
+                <other>%(indent)sOPER *%(name)s</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
                 <tensorRank>matrix</tensorRank>
             </tensorRanks>
             <DataTypes>

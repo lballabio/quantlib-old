@@ -40,10 +40,7 @@ namespace ObjHandler {
             if (xVector.xltype == xltypeMulti) {
                 xMulti = &xVector;
             } else if (xVector.xltype == xltypeStr) {
-                std::string text;
-                operToScalar(xVector, text);
-                std::vector<std::string> vec = split(text, ",;", false);
-                vectorToOper(vec, xTemp);
+                splitOper(&xVector, &xTemp);
                 xMulti = &xTemp;
                 xllToFree = true;
             } else {

@@ -22,6 +22,6 @@
 #include <xlsdk/xlsdkdefines.hpp>
 
 DLL_API void freeOper(XLOPER *px);
-DLL_API void splitOper(OPER *xFrom, OPER *xTo);
+DLL_API void splitOper(const OPER *xFrom, OPER *xTo);
 
 #endif
