@@ -87,7 +87,6 @@ Done append/merge cash flow streams constructor
 - subVersion
 
 
-
 François
 - priority: object builder type default (for enumeration use the Excel default), then xml default, finally exampleValue
 - FALSE default value for endofmonth in schedule is not effective
@@ -104,6 +103,7 @@ François
 - QuantLib::DiscountFactor formatting (9 decimal digits)
 - QuantLib::Time formatting (4 decimal digits)
 - QuantLib::Spread ans QuantLib::InterestRate formatting (as for QuantLib::Rate)
+- flow analysis formatting
 - OH function wizard
 - distribute XML
 - To BE REVIEWED test abcd calibration
@@ -126,6 +126,8 @@ François
 
 Cristina
 - qlFloatingRateCouponVector: if fixing days is blank, it result = 0!!
+- reorder Excel input parametr order
+- florr<=cap coupon check
 - DONE payment business days convention and fixing days
 - DONE? test Mx sul 29/9
 - DONE capped/floored-cms comparison (shared among Cristina and Giorgio)
@@ -136,8 +138,8 @@ Cristina
 
 
 Giorgio
-- gearing negativo, floor a zero: non funziona
-- check
+- 1.check npv
+- 2.cms gearing negativo, floor a zero: non funziona
 - DONE capped/floored-cms comparison (shared among Cristina and Giorgio)
 - WIP coupon refactoring and extension (shared among Cristina and Giorgio)
 - digital option in C++ (shared among Marco, Giorgio and Cristina)
@@ -176,8 +178,8 @@ Eric
 - native ohSplit on vector input to coerce from string to vector
 - why the error message doesn't disappear as soon as the cell is not in error anymore
 - ohConcatenate, ohRange1D, ohRange2D
-- command (remove function SetEvaluationDate, etc?)
 - permanent: if missing is it equal to FALSE?
+- command (remove function SetEvaluationDate, etc?)
 - domain validation
 - watch on
 - SA

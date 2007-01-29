@@ -41,7 +41,8 @@ namespace QuantLibAddin {
         QuantLib::Rate atmRate(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
         std::vector<std::vector<boost::any> > analysis() const;
         const QuantLib::Leg& getQuantLibLeg();        
-      protected: 
+      protected:
+        // copy or shared_ptr?
         QuantLib::Leg leg_;
     };
 
