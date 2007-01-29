@@ -442,27 +442,27 @@
             <tensorRank>scalar</tensorRank>
             <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0</description>
           </Parameter>
-          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar' exampleValue ='"NullCalendar"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate</description>
           </Parameter>
-          <Parameter name='rate' libraryType='QuantLib::Rate' exampleValue='0.05'>
+          <Parameter name='rate' libraryType='QuantLib::Rate' exampleValue='0.044'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the curve level</description>
           </Parameter>
-          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue ='"Actual/365"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='compounding' enumeration='QuantLib::Compounding'>
+          <Parameter name='compounding' enumeration='QuantLib::Compounding' exampleValue ='"Continuous"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
           </Parameter>
-          <Parameter name='frequency' enumeration='QuantLib::Frequency' default='"Annual"'>
+          <Parameter name='frequency' enumeration='QuantLib::Frequency' default='"Annual"' exampleValue ='"Annual"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
