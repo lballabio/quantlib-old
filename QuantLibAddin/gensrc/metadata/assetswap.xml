@@ -20,17 +20,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='PayFixed'>
+          <Parameter name='PayBondCoupon' exampleValue='FALSE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if pay the fixed rate, FALSE to receive it</description>
+            <description>TRUE to pay the bond's coupons and receive floating.</description>
           </Parameter>
-          <Parameter name='underlyingBond' libraryClass='Bond'>
+          <Parameter name='underlyingBond' libraryClass='Bond' exampleValue='DE0003088704'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying bond object ID</description>
           </Parameter>
-          <Parameter name='bondCleanPrice'>
+          <Parameter name='bondCleanPrice' exampleValue='99.16'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>market price of the underlying bond</description>
@@ -50,17 +50,17 @@
             <tensorRank>scalar</tensorRank>
             <description>Index Spread</description>
           </Parameter>
-          <Parameter name='floatingLegDayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID</description>
+          </Parameter>
+          <Parameter name='floatingLegDayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>floating day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
-          </Parameter>
-          <Parameter name='ParAssetSwap'>
+          <Parameter name='ParAssetSwap' exampleValue='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE for Par ASW, FALSE for Market ASW</description>

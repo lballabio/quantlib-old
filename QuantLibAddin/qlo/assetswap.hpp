@@ -30,8 +30,8 @@ namespace QuantLibAddin {
                   const boost::shared_ptr<QuantLib::Schedule>& floatSchedule,
                   const boost::shared_ptr<QuantLib::IborIndex>& index,
                   QuantLib::Spread spread,
-                  const QuantLib::DayCounter& floatingDayCount,
                   const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                  const QuantLib::DayCounter& floatingDayCount,
                   bool parSwap);
                                       
         std::vector<std::vector<boost::any> > bondLeg() {
