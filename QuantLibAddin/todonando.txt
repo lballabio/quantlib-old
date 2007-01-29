@@ -99,7 +99,7 @@ D libraryClass='SwapIndex' must default to the EURIBORSWAPFIXA enumeration
 D do not input the permanent field
 D remove the ObjectID entry field from the form, put the focus in that field after insertion
 D another line under the ObjectID field
-- constructor for CmsCouponPricer, parameter VanillaCMSCouponPricerType: insert "Convexity Adjustment Type" enumeration drop down list
+D constructor for CmsCouponPricer, parameter VanillaCMSCouponPricerType: insert "Convexity Adjustment Type" enumeration drop down list
 
 D (Long) Date
 D (Short) Date
