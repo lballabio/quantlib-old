@@ -46,7 +46,7 @@ namespace QuantLibAddin {
     }
 
     QuantLib::Real Leg::npv(const QuantLib::Handle< QuantLib::YieldTermStructure>& hYTS) const {
-        return QuantLib::CashFlows::bps(leg_, hYTS);
+        return QuantLib::CashFlows::npv(leg_, hYTS);
     }
 
     QuantLib::Real Leg::bps(const QuantLib::Handle< QuantLib::YieldTermStructure>& hYTS) const {
