@@ -137,6 +137,7 @@ Cristina
   - DONE in QuantLibAddin code
   - WIP in workbooks
 - DONE floor<=cap coupon check
+- WIP cap/floor rates output in cashflow analysis
 - DONE payment business days convention and fixing days
 - DONE test Mx sul 29/9
 - DONE capped/floored-cms comparison (shared among Cristina and Giorgio)
