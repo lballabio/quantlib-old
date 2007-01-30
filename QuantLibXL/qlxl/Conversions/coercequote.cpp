@@ -28,8 +28,9 @@ namespace ObjHandler {
     bool operToQuote(
             const OPER &in,
             boost::shared_ptr<QuantLib::Quote> &out) {
-        if ((in.xltype & (xltypeMissing | xltypeNil | xltypeErr)))
-            OH_FAIL("input value is invalid");
+
+        OH_REQUIRE(!(in.xltype & xltypeErr), 
+            "input value has type=error");
 
         if (in.xltype & xltypeNum) {
             out = boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(in.val.num));
@@ -43,6 +44,12 @@ namespace ObjHandler {
         } else {
             return false;
         }
+    }
+
+    bool CoerceQuote::inputMissing(const OPER &in) {
+        return ((in.xltype & xltypeNil)
+            ||  (in.xltype & xltypeMissing)
+            || ((in.xltype & xltypeErr) && (in.val.err == xlerrNA)));
     }
 
 }

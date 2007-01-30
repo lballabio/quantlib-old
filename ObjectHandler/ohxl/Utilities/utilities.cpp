@@ -37,5 +37,5 @@ DLL_API void splitOper(const OPER *xFrom, OPER *xTo) {
     std::string text;
     ObjHandler::operToScalar(*xFrom, text);
     std::vector<std::string> vec = ObjHandler::split(text, ",;", false);
-    ObjHandler::vectorToOper(vec, *xTo);
+    ObjHandler::vectorToOper(vec, *xTo, false);
 }

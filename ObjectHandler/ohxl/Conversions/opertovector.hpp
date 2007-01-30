@@ -26,15 +26,18 @@ namespace ObjHandler {
 
     template <class T>
     std::vector<T> operToVector(const OPER &xVector) {
+
+        if ((xVector.xltype & xltypeNil)
+        ||  (xVector.xltype & xltypeMissing)
+        || ((xVector.xltype & xltypeErr) && (xVector.val.err == xlerrNA)))
+            return std::vector<T>();
+        OH_REQUIRE(!(xVector.xltype & xltypeErr), 
+            "input value has type=error");
+
         OPER xTemp;
         bool excelToFree = false;
         bool xllToFree = false;
         try {
-            if (xVector.xltype & xltypeErr)
-                throw Exception("input value has type=error");
-            if (xVector.xltype & (xltypeMissing | xltypeNil))
-                return std::vector<T>();
-
             const OPER *xMulti;
 
             if (xVector.xltype == xltypeMulti) {

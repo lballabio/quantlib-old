@@ -57,8 +57,7 @@ namespace ObjHandler {
         try {
             const OPER *xString;
 
-            //if (xScalar.xltype == xltypeStr) {
-            if (xScalar.xltype & xltypeStr) {
+            if (xScalar.xltype == xltypeStr) {
                 xString = &xScalar;
             } else {
                 Excel(xlCoerce, &xTemp, 2, &xScalar, TempInt(xltypeStr));
@@ -87,11 +86,18 @@ namespace ObjHandler {
     }
 
     DLL_API void operToScalar(const OPER &xScalar, boost::any &ret) {
-        if (xScalar.xltype & xltypeErr)
-            throw std::exception("input value is #NULL (xltypeErr)");
-        if (xScalar.xltype & (xltypeMissing | xltypeNil))
+
+        if ((xScalar.xltype & xltypeNil)
+        ||  (xScalar.xltype & xltypeMissing)
+        || ((xScalar.xltype & xltypeErr) && (xScalar.val.err == xlerrNA))) {
             ret = boost::any();
-        else if (xScalar.xltype == xltypeNum)
+            return;
+        }
+
+        OH_REQUIRE(!(xScalar.xltype & xltypeErr), 
+            "input value has type=error");
+
+        if (xScalar.xltype == xltypeNum)
             ret = xScalar.val.num;
         else if (xScalar.xltype == xltypeBool)
             ret = xScalar.val.boolean != 0;

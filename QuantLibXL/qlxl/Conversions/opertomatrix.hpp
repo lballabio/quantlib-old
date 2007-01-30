@@ -35,14 +35,17 @@ namespace ObjHandler {
     template <class qloClass, class qlClass>
     std::vector<std::vector<QuantLib::Handle<qlClass> > > 
     operToMatrixHandle(const OPER &xMatrix) {
+
+        if ((xMatrix.xltype & xltypeNil)
+        ||  (xMatrix.xltype & xltypeMissing)
+        || ((xMatrix.xltype & xltypeErr) && (xMatrix.val.err == xlerrNA)))
+            return std::vector<std::vector<QuantLib::Handle<qlClass> > >();
+        OH_REQUIRE(!(xMatrix.xltype & xltypeErr), 
+            "input value has type=error");
+
         OPER xTemp;
         bool needToFree = false;
         try {
-            if (xMatrix.xltype & xltypeErr)
-                throw Exception("input value is #NULL (xltypeErr)");
-            if (xMatrix.xltype & (xltypeMissing | xltypeNil))
-                return std::vector<std::vector<QuantLib::Handle<qlClass> > >();
-
             const OPER *xMulti;
 
             if (xMatrix.xltype == xltypeMulti)
@@ -76,9 +79,7 @@ namespace ObjHandler {
         } catch (const std::exception &e) {
             if (needToFree)
                 Excel(xlFree, 0, 1, &xTemp);
-            std::ostringstream msg;
-            msg << "operToMatrixHandle: " << e.what();
-            throw Exception(msg.str());
+            OH_FAIL("operToMatrixHandle: " << e.what());
         }
     }
 

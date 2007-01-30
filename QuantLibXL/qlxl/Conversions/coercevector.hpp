@@ -21,16 +21,18 @@
 namespace ObjHandler {
 
     template <class LibType, class Coercion>
-    std::vector<LibType> CoerceVector(
-            OPER &xVector) {
+    std::vector<LibType> CoerceVector(OPER &xVector) {
+
+        if ((xVector.xltype & xltypeNil)
+        ||  (xVector.xltype & xltypeMissing)
+        || ((xVector.xltype & xltypeErr) && (xVector.val.err == xlerrNA)))
+            return std::vector<LibType>();
+        OH_REQUIRE(!(xVector.xltype & xltypeErr), 
+            "input value has type=error");
+
         OPER xTemp;
         bool needToFree = false;
         try {
-            std::vector<LibType> ret;
-            if (xVector.xltype & xltypeErr)
-                throw Exception("input value has type=error");
-            if (xVector.xltype & (xltypeMissing | xltypeNil))
-                return ret;
 
             const OPER *xMulti;
 
@@ -42,6 +44,7 @@ namespace ObjHandler {
                 needToFree = true;
             }
 
+            std::vector<LibType> ret;
             ret.reserve(xMulti->val.array.rows * xMulti->val.array.columns);
             for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; ++i) {
                 LibType value = Coercion()(xMulti->val.array.lparray[i], LibType());
@@ -55,11 +58,9 @@ namespace ObjHandler {
         } catch (const std::exception &e) {
             if (needToFree)
                 Excel(xlFree, 0, 1, &xTemp);
-            std::ostringstream msg;
-            msg << "error coercing vector of type " 
+            OH_FAIL("error coercing vector of type " 
                 << typeid(LibType).name() 
-                << " - " << e.what();
-            throw Exception(msg.str());
+                << " - " << e.what());
         }
     }
 

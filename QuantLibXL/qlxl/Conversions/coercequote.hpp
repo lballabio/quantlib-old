@@ -39,6 +39,7 @@ namespace ObjHandler {
             };
             return conversions; 
         };
+        virtual bool inputMissing(const OPER&);
     };
 
 }

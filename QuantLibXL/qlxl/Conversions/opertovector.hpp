@@ -41,15 +41,18 @@ namespace ObjHandler {
 
     template <class T>
     std::vector<T> operToVectorLibrary(const OPER &xVector) {
+
+        if ((xVector.xltype & xltypeNil)
+        ||  (xVector.xltype & xltypeMissing)
+        || ((xVector.xltype & xltypeErr) && (xVector.val.err == xlerrNA)))
+            return std::vector<T>();
+        OH_REQUIRE(!(xVector.xltype & xltypeErr), 
+            "input value has type=error");
+
         OPER xTemp;
         bool excelToFree = false;
         bool xllToFree = false;
         try {
-            if (xVector.xltype & xltypeErr)
-                throw Exception("input value has type=error");
-            if (xVector.xltype & (xltypeMissing | xltypeNil))
-                return std::vector<T>();
-
             const OPER *xMulti;
 
             if (xVector.xltype == xltypeMulti) {
@@ -95,13 +98,17 @@ namespace ObjHandler {
     template <class qlClass, class qloClass>
     std::vector<boost::shared_ptr<qlClass> >
     operToObjectVector(const OPER &xVector) {
+
+        if ((xVector.xltype & xltypeNil)
+        ||  (xVector.xltype & xltypeMissing)
+        || ((xVector.xltype & xltypeErr) && (xVector.val.err == xlerrNA)))
+            return std::vector<boost::shared_ptr<qlClass> >();
+        OH_REQUIRE(!(xVector.xltype & xltypeErr), 
+            "input value has type=error");
+
         OPER xTemp;
         bool needToFree = false;
         try {
-            if (xVector.xltype & xltypeErr)
-                throw Exception("input value is #NULL (xltypeErr)");
-            if (xVector.xltype & (xltypeMissing | xltypeNil))
-                return std::vector<boost::shared_ptr<qlClass> >();
 
             const OPER *xMulti;
 
@@ -129,9 +136,7 @@ namespace ObjHandler {
         } catch (const std::exception &e) {
             if (needToFree)
                 Excel(xlFree, 0, 1, &xTemp);
-            std::ostringstream msg;
-            msg << "operToObjectVector: " << e.what();
-            throw Exception(msg.str());
+            OH_FAIL("operToObjectVector: " << e.what());
         }
     }
 

@@ -25,14 +25,17 @@ namespace ObjHandler {
 
     template <class T>
     std::vector<std::vector<T> > operToMatrix(const OPER &xMatrix) {
+
+        if ((xMatrix.xltype & xltypeNil)
+        ||  (xMatrix.xltype & xltypeMissing)
+        || ((xMatrix.xltype & xltypeErr) && (xMatrix.val.err == xlerrNA)))
+            return std::vector<std::vector<T> >();
+        OH_REQUIRE(!(xMatrix.xltype & xltypeErr), 
+            "input value has type=error");
+
         OPER xTemp;
         bool needToFree = false;
         try {
-            if (xMatrix.xltype & xltypeErr)
-                throw Exception("input value has type=error");
-            if (xMatrix.xltype & (xltypeMissing | xltypeNil))
-                return std::vector<std::vector<T> >();
-
             const OPER *xMulti;
 
             if (xMatrix.xltype == xltypeMulti)
@@ -63,9 +66,7 @@ namespace ObjHandler {
         } catch (const std::exception &e) {
             if (needToFree)
                 Excel(xlFree, 0, 1, &xTemp);
-            std::ostringstream msg;
-            msg << "operToMatrix: " << e.what();
-            throw Exception(msg.str());
+            OH_FAIL("operToMatrix: " << e.what());
         }
     }
 

@@ -178,6 +178,13 @@
         <SubRule>
             <tensorRanks>
                 <tensorRank>vector</tensorRank>
+            </tensorRanks>
+            <DataTypes>
+                <other>P</other>
+            </DataTypes>
+        </SubRule>
+        <SubRule>
+            <tensorRanks>
                 <tensorRank>matrix</tensorRank>
             </tensorRanks>
             <DataTypes>

@@ -25,9 +25,11 @@ namespace ObjHandler {
     bool operToDate(
             const OPER &in,
             QuantLib::Date &out) {
-        if ((in.xltype & (xltypeMissing | xltypeNil | xltypeErr)))
-            OH_FAIL("input value is invalid");
-        if (in.xltype & xltypeNum) {
+
+        OH_REQUIRE(!(in.xltype & xltypeErr), 
+            "input value has type=error");
+
+       if (in.xltype & xltypeNum) {
             out = QuantLib::Date(in.val.num);
             return true;
         } else if (in.xltype & xltypeStr) {

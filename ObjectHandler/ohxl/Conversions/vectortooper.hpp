@@ -25,13 +25,19 @@
 
 namespace ObjHandler {
 
+    // FIXME emergency hack to support automatic coercion of input strings 
+    // to vectors thru a call to ohSplit().  Normally the functions below 
+    // set xlbitDLLFree but this needs to be disabled in the above case.
+    // This is accomplished with input variable dllToFree which defaults
+    // to true to preserve the old behavior.
+
     template <class T>
-    void vectorToOper(const std::vector<T> &v, OPER &xVector) {
-        vectorToOper(v.begin(), v.end(), xVector);
+    void vectorToOper(const std::vector<T> &v, OPER &xVector, bool dllToFree = true) {
+        vectorToOper(v.begin(), v.end(), xVector, dllToFree);
     }
 
     template <class T>
-    inline void vectorToOper(T begin, T end, OPER &xVector) {
+    inline void vectorToOper(T begin, T end, OPER &xVector, bool dllToFree = true) {
         std::size_t size = end-begin;
         if (size==0) {
             xVector.xltype = xltypeErr;
@@ -49,9 +55,13 @@ namespace ObjHandler {
         xVector.val.array.lparray = new OPER[size]; 
         if (!xVector.val.array.lparray)
             throw Exception("vectorToOper: error on call to new");
-        xVector.xltype = xltypeMulti | xlbitDLLFree;
+        xVector.xltype = xltypeMulti;
+        if (dllToFree)
+            xVector.xltype = (xltypeMulti | xlbitDLLFree);
+        else
+            xVector.xltype = xltypeMulti;
         for (unsigned int i=0; i<size; ++i, ++begin)
-            scalarToOper(*begin, xVector.val.array.lparray[i]);
+            scalarToOper(*begin, xVector.val.array.lparray[i], dllToFree);
     }
 
 

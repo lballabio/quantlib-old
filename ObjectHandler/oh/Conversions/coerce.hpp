@@ -28,6 +28,9 @@ namespace ObjHandler {
     public:
 
         TypeOut operator()(const TypeIn &in) {
+
+            OH_REQUIRE(!inputMissing(in), "invalid input");
+
             TypeOut out;
             for (Conversion *conversion = getConversions();
                     *conversion; ++conversion) {

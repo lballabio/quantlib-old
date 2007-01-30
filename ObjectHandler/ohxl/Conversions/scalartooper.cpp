@@ -25,33 +25,36 @@
 
 namespace ObjHandler {
 
-    DLL_API void scalarToOper(const long &value, OPER &xLong) {
+    DLL_API void scalarToOper(const long &value, OPER &xLong, bool dllToFree) {
         xLong.xltype = xltypeNum;
         xLong.val.num = value;
     }
 
-    DLL_API void scalarToOper(const double &value, OPER &xDouble) {
+    DLL_API void scalarToOper(const double &value, OPER &xDouble, bool dllToFree) {
         xDouble.xltype = xltypeNum;
         xDouble.val.num = value;
     }
 
-    DLL_API void scalarToOper(const bool &value, OPER &xBoolean) {
+    DLL_API void scalarToOper(const bool &value, OPER &xBoolean, bool dllToFree) {
         xBoolean.xltype = xltypeBool;
         xBoolean.val.boolean = value;
     }
 
-    DLL_API void scalarToOper(const std::string &value, OPER &xString) {
+    DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree) {
         int len = __min(XL_MAX_STR_LEN, value.length());
         xString.val.str = new char[ len + 1 ];
         if (!xString.val.str) 
             throw Exception("stringToOper: error calling new");
-        xString.xltype = xltypeStr | xlbitDLLFree;
+        if (dllToFree)
+            xString.xltype = (xltypeStr | xlbitDLLFree);
+        else
+            xString.xltype = xltypeStr;
         xString.val.str[0] = len;
         if (len)
             strncpy(xString.val.str + 1, value.c_str(), len);
     }
 
-    DLL_API void scalarToOper(const boost::any &value, OPER &xAny) {
+    DLL_API void scalarToOper(const boost::any &value, OPER &xAny, bool dllToFree) {
         if (value.type() == typeid(OPER)) {
             OPER xTemp = boost::any_cast<OPER>(value);
             Excel(xlCoerce, &xAny, 1, &xTemp);

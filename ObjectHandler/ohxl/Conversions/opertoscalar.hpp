@@ -35,21 +35,22 @@ namespace ObjHandler {
     T operToScalar(const OPER &xScalar, 
                    const T &defaultValue, 
                    const std::string paramName) {
-        if ((xScalar.xltype & xltypeMissing)
+
+        if ((xScalar.xltype & xltypeNil)
+        ||  (xScalar.xltype & xltypeMissing)
         || ((xScalar.xltype & xltypeErr) && (xScalar.val.err == xlerrNA)))
             return defaultValue;
+        OH_REQUIRE(!(xScalar.xltype & xltypeErr), 
+            paramName << " - input value has type=error");
+
         try {
-            if (xScalar.xltype & xltypeErr)
-                throw Exception("input value has type=error");
             T returnValue;
             operToScalar(xScalar, returnValue);
             return returnValue;
         } catch(const std::exception &e) {
-            std::ostringstream msg;
-            msg << "unable to convert parameter '" << paramName 
+            OH_FAIL("unable to convert parameter '" << paramName 
                 << "' to type " << typeid(T).name()
-                << " - " << e.what();
-            throw Exception(msg.str());
+                << " - " << e.what());
         }
     }
 
