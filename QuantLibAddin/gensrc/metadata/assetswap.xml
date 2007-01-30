@@ -50,8 +50,9 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting YieldTermStructure object ID</description>
           </Parameter>
+          <Parameter name='floatingLegSchedule' libraryClass='Schedule' default='""'>
           <!--<Parameter name='floatingLegSchedule' libraryClass='Schedule' default='QuantLib::Schedule()'>-->
-          <Parameter name='floatingLegSchedule' libraryClass='Schedule'>
+          <!--<Parameter name='floatingLegSchedule' libraryClass='Schedule'>-->
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>floating leg schedule object ID</description>
