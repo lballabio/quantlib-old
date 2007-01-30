@@ -35,6 +35,13 @@ namespace QuantLibAddin {
                 const QuantLib::DayCounter& floatingDayCount,
                 bool parSwap)
     {
+        boost::shared_ptr<QuantLib::Schedule> actualFloatSchedule;
+        if (floatSchedule.get()==NULL)
+            actualFloatSchedule = boost::shared_ptr<QuantLib::Schedule>(new
+                QuantLib::Schedule);
+        else
+            actualFloatSchedule = floatSchedule;
+
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
             new QuantLib::AssetSwap(payFixedRate,
                                     bond,
@@ -42,7 +49,7 @@ namespace QuantLibAddin {
                                     index,
                                     spread,
                                     hYTS,
-                                    *floatSchedule,
+                                    *actualFloatSchedule,
                                     floatingDayCount,
                                     parSwap));
     }
