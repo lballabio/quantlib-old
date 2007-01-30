@@ -164,6 +164,7 @@
     <Content Include="Addins\01 Production\QuantLibXL-vc80-mt-s-0_4_0.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="updateLauncherXlls.py" />
     <None Include="images\rename.bmp" />
     <None Include="images\clear.bmp" />
     <None Include="images\create.bmp" />
@@ -173,7 +174,6 @@
     <None Include="images\delete.bmp" />
     <None Include="images\copy.bmp" />
     <None Include="launcher_vc8_TemporaryKey.pfx" />
-    <None Include="updateLuncherXlls.bat" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
