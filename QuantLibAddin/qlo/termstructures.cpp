@@ -94,7 +94,7 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Date> &dates,
         const std::vector <double> &dfs,
         const QuantLib::DayCounter &dayCounter) {
-
+            QL_REQUIRE(!dates.empty(), "no input dates given");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(
             new QuantLib::DiscountCurve(dates, dfs, dayCounter));
     }
@@ -103,7 +103,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Date> &dates,
             const std::vector <double> &zeroRates,
             const QuantLib::DayCounter &dayCounter) {
-
+        QL_REQUIRE(!dates.empty(), "no input dates given");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(
             new QuantLib::ZeroCurve(dates, zeroRates, dayCounter));
     }
@@ -112,7 +112,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Date> &dates,
             const std::vector <double> &forwardRates,
             const QuantLib::DayCounter &dayCounter) {
-
+        QL_REQUIRE(!dates.empty(), "no input dates given");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(
             new QuantLib::ForwardCurve(dates, forwardRates, dayCounter));
     }
