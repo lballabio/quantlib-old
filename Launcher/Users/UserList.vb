@@ -1,5 +1,4 @@
-
-'Copyright (C) 2006 Eric Ehlers
+'Copyright (C) 2006, 2007 Eric Ehlers
 
 'This file is part of QuantLib, a free-software/open-source library
 'for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,7 +23,6 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Private userList_ As Collection = New Collection
-        Private Const USER_NAME = "USERNAME"
 
         ''''''''''''''''''''''''''''''''''''''''''
         ' properties
@@ -42,26 +40,13 @@ Namespace QuantLibXL
             serializer.serializeObjectCollection(userList_, "User")
         End Sub
 
-        Public Sub validate()
-            Dim userName As String
-            userName = Environ(USER_NAME)
-            If Len(userName) < 1 Then
-                Throw New Exception("Unable to retrieve the value of " _
-                    & "environment variable " & USER_NAME)
-            End If
+        Public Function validate(ByVal userName As String, ByVal serialNumber As String) As Boolean
 
-            Dim serialNumber As String = getSerialNumber()
             If userList_.Contains(userName) Then
-                If userList_(userName).validateSerialNumber(serialNumber) Then Exit Sub
+                validate = userList_(userName).validate(serialNumber)
             End If
 
-            Throw New Exception( _
-                "Sorry - you aren't authorized to use QuantLibXL." & vbCrLf & vbCrLf _
-                & "Please ask QuantLibXL support to grant access to:" & vbCrLf & vbCrLf _
-                & "    user name : " & userName & vbCrLf _
-                & "    hard disk serial number : " & serialNumber & vbCrLf)
-
-        End Sub
+        End Function
 
     End Class
 

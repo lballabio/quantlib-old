@@ -61,6 +61,12 @@ Partial Class FormMain
         Me.txtHelpPath = New System.Windows.Forms.TextBox
         Me.lblHelpPath = New System.Windows.Forms.Label
         Me.btnHelpFile = New System.Windows.Forms.Button
+        Me.txtXmlPath = New System.Windows.Forms.TextBox
+        Me.lblXmlPath = New System.Windows.Forms.Label
+        Me.btnXmlPath = New System.Windows.Forms.Button
+        Me.txtUserConfig = New System.Windows.Forms.TextBox
+        Me.lblUserConfig = New System.Windows.Forms.Label
+        Me.btnUserConfig = New System.Windows.Forms.Button
         Me.grpEnvironment.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.grpStartup.SuspendLayout()
@@ -114,9 +120,9 @@ Partial Class FormMain
         '
         'txtAddinDir
         '
-        Me.txtAddinDir.Location = New System.Drawing.Point(29, 104)
+        Me.txtAddinDir.Location = New System.Drawing.Point(30, 104)
         Me.txtAddinDir.Name = "txtAddinDir"
-        Me.txtAddinDir.Size = New System.Drawing.Size(316, 20)
+        Me.txtAddinDir.Size = New System.Drawing.Size(315, 20)
         Me.txtAddinDir.TabIndex = 7
         '
         'btnAddinNameSelect
@@ -139,9 +145,9 @@ Partial Class FormMain
         '
         'txtAddinName
         '
-        Me.txtAddinName.Location = New System.Drawing.Point(29, 143)
+        Me.txtAddinName.Location = New System.Drawing.Point(30, 143)
         Me.txtAddinName.Name = "txtAddinName"
-        Me.txtAddinName.Size = New System.Drawing.Size(316, 20)
+        Me.txtAddinName.Size = New System.Drawing.Size(315, 20)
         Me.txtAddinName.TabIndex = 10
         '
         'btnFrameworkSelect
@@ -427,6 +433,12 @@ Partial Class FormMain
         '
         'tpPaths
         '
+        Me.tpPaths.Controls.Add(Me.txtUserConfig)
+        Me.tpPaths.Controls.Add(Me.lblUserConfig)
+        Me.tpPaths.Controls.Add(Me.btnUserConfig)
+        Me.tpPaths.Controls.Add(Me.txtXmlPath)
+        Me.tpPaths.Controls.Add(Me.lblXmlPath)
+        Me.tpPaths.Controls.Add(Me.btnXmlPath)
         Me.tpPaths.Controls.Add(Me.txtHelpPath)
         Me.tpPaths.Controls.Add(Me.lblHelpPath)
         Me.tpPaths.Controls.Add(Me.btnHelpFile)
@@ -452,9 +464,9 @@ Partial Class FormMain
         '
         'txtHelpPath
         '
-        Me.txtHelpPath.Location = New System.Drawing.Point(29, 182)
+        Me.txtHelpPath.Location = New System.Drawing.Point(30, 182)
         Me.txtHelpPath.Name = "txtHelpPath"
-        Me.txtHelpPath.Size = New System.Drawing.Size(316, 20)
+        Me.txtHelpPath.Size = New System.Drawing.Size(315, 20)
         Me.txtHelpPath.TabIndex = 18
         '
         'lblHelpPath
@@ -462,7 +474,7 @@ Partial Class FormMain
         Me.lblHelpPath.AutoSize = True
         Me.lblHelpPath.Location = New System.Drawing.Point(10, 166)
         Me.lblHelpPath.Name = "lblHelpPath"
-        Me.lblHelpPath.Size = New System.Drawing.Size(48, 13)
+        Me.lblHelpPath.Size = New System.Drawing.Size(61, 13)
         Me.lblHelpPath.TabIndex = 17
         Me.lblHelpPath.Text = "Help Folder"
         '
@@ -474,6 +486,56 @@ Partial Class FormMain
         Me.btnHelpFile.TabIndex = 16
         Me.btnHelpFile.Text = "..."
         Me.btnHelpFile.UseVisualStyleBackColor = True
+        '
+        'txtXmlPath
+        '
+        Me.txtXmlPath.Location = New System.Drawing.Point(30, 221)
+        Me.txtXmlPath.Name = "txtXmlPath"
+        Me.txtXmlPath.Size = New System.Drawing.Size(315, 20)
+        Me.txtXmlPath.TabIndex = 21
+        '
+        'lblXmlPath
+        '
+        Me.lblXmlPath.AutoSize = True
+        Me.lblXmlPath.Location = New System.Drawing.Point(10, 205)
+        Me.lblXmlPath.Name = "lblXmlPath"
+        Me.lblXmlPath.Size = New System.Drawing.Size(96, 13)
+        Me.lblXmlPath.TabIndex = 20
+        Me.lblXmlPath.Text = "Function Metadata"
+        '
+        'btnXmlPath
+        '
+        Me.btnXmlPath.Location = New System.Drawing.Point(351, 221)
+        Me.btnXmlPath.Name = "btnXmlPath"
+        Me.btnXmlPath.Size = New System.Drawing.Size(32, 23)
+        Me.btnXmlPath.TabIndex = 19
+        Me.btnXmlPath.Text = "..."
+        Me.btnXmlPath.UseVisualStyleBackColor = True
+        '
+        'txtUserConfig
+        '
+        Me.txtUserConfig.Location = New System.Drawing.Point(30, 260)
+        Me.txtUserConfig.Name = "txtUserConfig"
+        Me.txtUserConfig.Size = New System.Drawing.Size(315, 20)
+        Me.txtUserConfig.TabIndex = 24
+        '
+        'lblUserConfig
+        '
+        Me.lblUserConfig.AutoSize = True
+        Me.lblUserConfig.Location = New System.Drawing.Point(10, 244)
+        Me.lblUserConfig.Name = "lblUserConfig"
+        Me.lblUserConfig.Size = New System.Drawing.Size(113, 13)
+        Me.lblUserConfig.TabIndex = 23
+        Me.lblUserConfig.Text = "User Configuration File"
+        '
+        'btnUserConfig
+        '
+        Me.btnUserConfig.Location = New System.Drawing.Point(351, 260)
+        Me.btnUserConfig.Name = "btnUserConfig"
+        Me.btnUserConfig.Size = New System.Drawing.Size(32, 23)
+        Me.btnUserConfig.TabIndex = 22
+        Me.btnUserConfig.Text = "..."
+        Me.btnUserConfig.UseVisualStyleBackColor = True
         '
         'FormMain
         '
@@ -541,4 +603,10 @@ Partial Class FormMain
     Friend WithEvents txtHelpPath As System.Windows.Forms.TextBox
     Friend WithEvents lblHelpPath As System.Windows.Forms.Label
     Friend WithEvents btnHelpFile As System.Windows.Forms.Button
+    Friend WithEvents txtUserConfig As System.Windows.Forms.TextBox
+    Friend WithEvents lblUserConfig As System.Windows.Forms.Label
+    Friend WithEvents btnUserConfig As System.Windows.Forms.Button
+    Friend WithEvents txtXmlPath As System.Windows.Forms.TextBox
+    Friend WithEvents lblXmlPath As System.Windows.Forms.Label
+    Friend WithEvents btnXmlPath As System.Windows.Forms.Button
 End Class

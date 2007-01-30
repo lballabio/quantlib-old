@@ -1,5 +1,5 @@
 
-'Copyright (C) 2006 Eric Ehlers
+'Copyright (C) 2007 Eric Ehlers
 
 'This file is part of QuantLib, a free-software/open-source library
 'for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,11 +16,11 @@
 
 Namespace QuantLibXL
 
-    Public Class User
+    Public Class Domain
         Implements ISerializable
 
+        Private userList_ As QuantLibXL.UserList = Nothing
         Private name_ As String
-        Private serialNumbers_() As String
 
         Public Property Name() As String Implements ISerializable.Name
             Get
@@ -33,16 +33,11 @@ Namespace QuantLibXL
 
         Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
             serializer.serializeAttribute(name_, "name")
-            serializer.serializeProperty(serialNumbers_, "serialNumber")
+            serializer.serializeObject(userList_, "Users")
         End Sub
 
-        Public Function validateSerialNumber(ByVal serialNumber As String) As Boolean
-            For Each val As String In serialNumbers_
-                If val = serialNumber Then
-                    validateSerialNumber = True
-                    Exit Function
-                End If
-            Next
+        Public Function validate(ByVal userName As String, ByVal serialNumber As String) As Boolean
+            Return userList_.validate(userName, serialNumber)
         End Function
 
     End Class

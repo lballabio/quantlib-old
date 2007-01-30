@@ -1,5 +1,5 @@
 
-'Copyright (C) 2006 Eric Ehlers
+'Copyright (C) 2006, 2007 Eric Ehlers
 
 'This file is part of QuantLib, a free-software/open-source library
 'for financial quantitative analysts and developers - http://quantlib.org/
@@ -76,6 +76,20 @@ Namespace QuantLibXL
 
         Public Sub deleteKey(ByVal keyName As String)
             rootKey_.DeleteSubKeyTree(keyName)
+        End Sub
+
+        Public Sub deleteValue(ByVal keyName As String, ByVal valueName As String)
+            Dim key As RegistryKey = openKey(keyName)
+            key.DeleteValue(valueName)
+        End Sub
+
+        Public Sub moveValue(ByVal sourceKeyName As String, ByVal targetKeyName As String, ByVal valueName As String)
+            Dim sourceKey As RegistryKey = openKey(sourceKeyName)
+            Dim targetKey As RegistryKey = createKey(targetKeyName)
+            Dim value As String
+            value = sourceKey.GetValue(valueName)
+            targetKey.SetValue(valueName, value)
+            sourceKey.DeleteValue(valueName)
         End Sub
 
         Public Sub moveKey(ByVal sourceKeyName As String, ByVal targetKeyName As String)

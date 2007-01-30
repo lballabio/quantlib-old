@@ -30,11 +30,14 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Public Property Name() As String Implements ISerializable.Name
+
             Get
                 Name = "Environments"
             End Get
+
             Set(ByVal value As String)
             End Set
+
         End Property
 
         Public ReadOnly Property Environments() As Collection
@@ -48,7 +51,9 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
+
             serializer.serializeObjectCollection(environmentList_, "Environment")
+
         End Sub
 
         Public Sub validate()

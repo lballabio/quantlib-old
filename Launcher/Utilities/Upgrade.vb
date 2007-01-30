@@ -1,5 +1,5 @@
 
-'Copyright (C) 2006 Eric Ehlers
+'Copyright (C) 2006, 2007 Eric Ehlers
 
 'This file is part of QuantLib, a free-software/open-source library
 'for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,47 +20,68 @@
 Module Upgrade
 
     Private r_ As QuantLibXL.RegistryEditor
-    Private version_ As Integer
+    Private registryVersion_ As Integer
+    Private Const thisVersion_ As Integer = 5
 
     Private Sub getVersionNumber()
+
         If r_.keyExists("QuantLibXL") Then
             If r_.valueExists("QuantLibXL\Configuration", "Version") Then
-                version_ = r_.getValue("QuantLibXL\Configuration", "Version")
+                registryVersion_ = r_.getValue("QuantLibXL\Configuration", "Version")
             Else
-                version_ = 1
+                registryVersion_ = 1
             End If
         Else
-            version_ = 0
+            registryVersion_ = 0
         End If
+
     End Sub
 
     'Private Sub initializeRegistryVersion2()
+    '
     '    r_.createKey("QuantLibXL\Configuration")
     '    r_.setValue("QuantLibXL\Configuration", "SelectedEnvConfig", "")
     '    r_.setValue("QuantLibXL\Configuration", "SelectedEnvName", "")
     '    r_.setValue("QuantLibXL\Configuration", "Version", 2)
     '    r_.createKey("QuantLibXL\Environments")
+    '
     'End Sub
 
     'Private Sub initializeRegistryVersion3()
+    '
     '    r_.createKey("QuantLibXL\Configuration")
     '    r_.setValue("QuantLibXL\Configuration", "SelectedEnvConfig", "")
     '    r_.setValue("QuantLibXL\Configuration", "SelectedEnvName", "")
     '    r_.setValue("QuantLibXL\Configuration", "Version", 3)
     '    r_.createKey("QuantLibXL\Configuration\Environments")
     '    r_.createKey("QuantLibXL\Environments")
+    '
     'End Sub
 
-    Private Sub initializeRegistryVersion4()
+    'Private Sub initializeRegistryVersion4()
+    '
+    '    r_.createKey("QuantLibXL\Configuration")
+    '    r_.setValue("QuantLibXL\Configuration", "SelectedEnvConfig", "")
+    '    r_.setValue("QuantLibXL\Configuration", "SelectedEnvName", "")
+    '    r_.setValue("QuantLibXL\Configuration", "Version", 4)
+    '    r_.createKey("QuantLibXL\Configuration\Environments")
+    '    r_.createKey("QuantLibXL\Environments")
+    '
+    'End Sub
+
+    Private Sub initializeRegistryVersion5()
+
         r_.createKey("QuantLibXL\Configuration")
         r_.setValue("QuantLibXL\Configuration", "SelectedEnvConfig", "")
         r_.setValue("QuantLibXL\Configuration", "SelectedEnvName", "")
-        r_.setValue("QuantLibXL\Configuration", "Version", 4)
-        r_.createKey("QuantLibXL\Configuration\Environments")
+        r_.setValue("QuantLibXL\Configuration", "Version", thisVersion_)
+        r_.createKey("QuantLibXL\Configuration\StartupActionsList")
         r_.createKey("QuantLibXL\Environments")
+
     End Sub
 
     Private Sub upgradeVersion1to2()
+
         r_.moveKey("QuantLibXL\Configuration\Environments", "QuantLibXL\Environments")
         r_.deleteKey("QuantLibXL\Configuration\Users")
         r_.deleteKey("QuantLibXL\Launch")
@@ -74,10 +95,12 @@ Module Upgrade
             r_.setValue(envKeyName, "IndexesTimeSeries", False)
         Next
         r_.setValue("QuantLibXL\Configuration", "Version", 2)
-        version_ = 2
+        registryVersion_ = 2
+
     End Sub
 
     Private Sub upgradeVersion2to3()
+
         Dim envKeyName As String
         For Each keyName As String In r_.subKeyNames("QuantLibXL\Environments")
             envKeyName = "QuantLibXL\Environments\" & keyName
@@ -88,10 +111,12 @@ Module Upgrade
         Next
         r_.createKey("QuantLibXL\Configuration\Environments")
         r_.setValue("QuantLibXL\Configuration", "Version", 3)
-        version_ = 3
+        registryVersion_ = 3
+
     End Sub
 
     Private Sub upgradeVersion3to4()
+
         Dim envKeyName As String
         For Each keyName As String In r_.subKeyNames("QuantLibXL\Environments")
             envKeyName = "QuantLibXL\Environments\" & keyName
@@ -102,22 +127,82 @@ Module Upgrade
             r_.setValue(envKeyName, "StaticData", False)
         Next
         r_.setValue("QuantLibXL\Configuration", "Version", 4)
-        version_ = 4
+        registryVersion_ = 4
+
+    End Sub
+
+    Private Sub upgradeVersion4to5()
+
+        Dim envKeyName As String
+
+        For Each keyName As String In r_.subKeyNames("QuantLibXL\Configuration\Environments")
+            envKeyName = "QuantLibXL\Configuration\Environments\" & keyName & "\"
+            r_.deleteValue(envKeyName, "AddinDirectory")
+            r_.deleteValue(envKeyName, "AddinName")
+            r_.deleteValue(envKeyName, "Framework")
+            r_.deleteValue(envKeyName, "HelpFile")
+            r_.deleteValue(envKeyName, "name")
+            r_.deleteValue(envKeyName, "Workbooks")
+        Next
+
+        envKeyName = "QuantLibXL\Configuration\"
+        r_.moveKey(envKeyName & "Environments", envKeyName & "StartupActionsList")
+
+        For Each keyName As String In r_.subKeyNames("QuantLibXL\Environments")
+
+            envKeyName = "QuantLibXL\Environments\" & keyName
+
+            r_.setValue(envKeyName, "UserConfigurationFile", "C:\projects\Launcher\Users\users.xml")
+            r_.setValue(envKeyName, "FunctionMetadata", "C:\projects\QuantLibAddin\gensrc\metadata")
+
+            r_.createKey(envKeyName & "\StartupActions")
+            r_.moveValue(envKeyName, envKeyName & "\StartupActions", "CapVolBootstrap")
+            r_.moveValue(envKeyName, envKeyName & "\StartupActions", "FitCMS")
+            r_.moveValue(envKeyName, envKeyName & "\StartupActions", "IndexesTimeSeries")
+            r_.moveValue(envKeyName, envKeyName & "\StartupActions", "LoadBonds")
+            r_.moveValue(envKeyName, envKeyName & "\StartupActions", "LoadMurexYieldCurve")
+            r_.moveValue(envKeyName, envKeyName & "\StartupActions", "StaticData")
+            r_.moveValue(envKeyName, envKeyName & "\StartupActions", "SwapSmileBootstrap")
+            r_.moveValue(envKeyName, envKeyName & "\StartupActions", "SwapVolBootstrap")
+            r_.moveValue(envKeyName, envKeyName & "\StartupActions", "YieldCurveBootstrap")
+
+        Next
+
+        r_.setValue("QuantLibXL\Configuration", "Version", thisVersion_)
+        registryVersion_ = thisVersion_
+
     End Sub
 
     Private Sub updateRegistry()
-        If version_ = 0 Then
-            initializeRegistryVersion4()
+
+        If registryVersion_ = 0 Then
+            initializeRegistryVersion5()
             Exit Sub
         End If
 
-        If version_ = 1 Then upgradeVersion1to2()
-        If version_ = 2 Then upgradeVersion2to3()
-        If version_ = 3 Then upgradeVersion3to4()
+        If registryVersion_ > thisVersion_ Then
+
+            Throw New Exception("Error loading user preferences:" _
+                & vbCrLf & vbCrLf _
+                & "The preferences were saved with version " & registryVersion_ _
+                & "of the Launcher." & vbCrLf & vbCrLf _
+                & "You are running version " & thisVersion_ _
+                & " of the Launcher." & vbCrLf & vbCrLf _
+                & "The Launcher which saved the preferences " _
+                & "is newer than the Launcher which is loading the preferences." _
+                & "Please use Launcher version " & registryVersion_)
+
+        End If
+
+        If registryVersion_ = 1 Then upgradeVersion1to2()
+        If registryVersion_ = 2 Then upgradeVersion2to3()
+        If registryVersion_ = 3 Then upgradeVersion3to4()
+        If registryVersion_ = 4 Then upgradeVersion4to5()
 
     End Sub
 
     Public Sub run()
+
         Try
             r_ = New QuantLibXL.RegistryEditor
             getVersionNumber()
@@ -130,7 +215,7 @@ Module Upgrade
         Try
             r_ = New QuantLibXL.RegistryEditor
             r_.deleteKey("QuantLibXL")
-            initializeRegistryVersion4()
+            initializeRegistryVersion5()
             r_ = Nothing
         Catch ex As Exception
         End Try

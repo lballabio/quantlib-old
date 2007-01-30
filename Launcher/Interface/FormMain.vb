@@ -1,5 +1,5 @@
 
-'Copyright (C) 2006 Eric Ehlers
+'Copyright (C) 2006, 2007 Eric Ehlers
 
 'This file is part of QuantLib, a free-software/open-source library
 'for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,7 +23,7 @@ Public Class FormMain
     ' private members
     ''''''''''''''''''''''''''''''''''''''''''
 
-    Private config_ As QuantLibXL.Config
+    Private config_ As QuantLibXL.Configuration
     Private envUserconfigured_ As QuantLibXL.EnvironmentList
     Private envPreconfigured_ As QuantLibXL.EnvironmentList
     Private selectedEnvironment_ As QuantLibXL.Environment
@@ -38,6 +38,7 @@ Public Class FormMain
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Property SelectedEnvironment() As QuantLibXL.Environment
+
         Get
             If selectedEnvironment_ Is Nothing Then
                 Throw New Exception("No environment selected.")
@@ -45,27 +46,16 @@ Public Class FormMain
                 SelectedEnvironment = selectedEnvironment_
             End If
         End Get
+
         Set(ByVal value As QuantLibXL.Environment)
             If value Is Nothing Then
                 Throw New Exception("No environment selected.")
             Else
                 selectedEnvironment_ = value
-                txtFramework.Text = SelectedEnvironment.Framework
-                txtWorkbooks.Text = SelectedEnvironment.Workbooks
-                txtAddinDir.Text = SelectedEnvironment.AddinDirectory
-                txtAddinName.Text = SelectedEnvironment.AddinName
-                txtHelpPath.Text = SelectedEnvironment.HelpPath
-                cbYCBootstrap.Checked = SelectedEnvironment.YieldCurveBootstrap
-                cbLoadMurexYC.Checked = SelectedEnvironment.LoadMurexYieldCurve
-                cbCapVolBootstrap.Checked = SelectedEnvironment.CapVolBootstrap
-                cbSwapVolBootstrap.Checked = SelectedEnvironment.SwapVolBootstrap
-                cbSwapSmileBootstrap.Checked = SelectedEnvironment.SwapSmileBootstrap
-                cbFitCMS.Checked = SelectedEnvironment.FitCMS
-                cbIndexesTimeSeries.Checked = SelectedEnvironment.IndexesTimeSeries
-                cbLoadBonds.Checked = SelectedEnvironment.LoadBonds
-                cbStaticData.Checked = SelectedEnvironment.StaticData
+                resetControls()
             End If
         End Set
+
     End Property
 
     ''''''''''''''''''''''''''''''''''''''''''
@@ -73,6 +63,7 @@ Public Class FormMain
     ''''''''''''''''''''''''''''''''''''''''''
 
     Public Sub New()
+
         qlxlDir_ = Environ(QUANTLIBXL_DIR)  ' not fatal if invalid
 
         InitializeComponent()
@@ -101,10 +92,13 @@ Public Class FormMain
     End Sub
 
     Private Sub selectEnvironment()
+
         ' Attempt to select the environment that was active
         ' last time the app shut down.  The index that was saved before
         ' may be invalid if the configuration has been changed.
+
         Try
+
             If config_.SelectedEnvConfig = PRECONFIGURED Then
                 If lstPreconfigured.Items.Contains(config_.SelectedEnvName) Then
                     lstPreconfigured.SelectedIndex = lstPreconfigured.Items.IndexOf(config_.SelectedEnvName)
@@ -116,15 +110,20 @@ Public Class FormMain
                     Exit Sub
                 End If
             End If
+
             ' if none of the above worked then try for a safe option
+
             If lstPreconfigured.Items.Count >= 1 Then
                 lstPreconfigured.SelectedIndex = 0
             Else
                 Throw New Exception("Could not identify an environment to activate")
             End If
+
         Catch ex As Exception
+
             Throw New Exception("Error activating environment " _
                 & ex.Message)
+
         End Try
 
     End Sub
@@ -154,24 +153,22 @@ Public Class FormMain
         '   then get the config file from the local ClickOnce directory
         ' - If this application is being run from the command line then
         '   look for config.xml in the location specified by QUANTLIBXL_CONFIG_PATH
+
         Dim configPath As String
         If (ApplicationDeployment.IsNetworkDeployed) Then
-            configPath = ApplicationDeployment.CurrentDeployment.DataDirectory & "\Configuration\config.xml"
+            configPath = ApplicationDeployment.CurrentDeployment.DataDirectory & "\Environments\config.xml"
         Else
             configPath = deriveConfigPath()
         End If
 
-        Dim userList As QuantLibXL.UserList = Nothing
         Try
             Dim xmlReader As New QuantLibXL.XmlReader(configPath, "Configuration")
             xmlReader.serializeObject(envPreconfigured_, "Environments")
-            xmlReader.serializeObject(userList, "Users")
         Catch ex As Exception
-            Throw New Exception("Error processing config file config.xml:" _
-                & vbcrlf & vbcrlf & ex.Message)
+            Throw New Exception("Error processing configuration file " & configPath & ":" _
+                & vbCrLf & vbCrLf & ex.Message)
         End Try
 
-        userList.validate()
         envPreconfigured_.validate()
         envPreconfigured_.setConfigured()
 
@@ -187,17 +184,19 @@ Public Class FormMain
     End Sub
 
     Private Sub overrideActions()
+
         ' Preconfigured environments have been loaded from the configuration file.
         ' For each of these, override the startup actions with values saved to
         ' the user's registry from previous session (if any)
+
         Try
 
             Dim envPreconfigured As QuantLibXL.Environment
-            Dim envOverride As QuantLibXL.Environment
-            For Each envOverride In config_.EnvOverrides.Environments
-                If envPreconfigured_.nameInUse(envOverride.Name) Then
-                    envPreconfigured = envPreconfigured_.nameToEnvironment(envOverride.Name)
-                    envPreconfigured.overrideActions(envOverride)
+            Dim startupActions As QuantLibXL.StartupActions
+            For Each startupActions In config_.OverrideActions.StartupActionsList
+                If envPreconfigured_.nameInUse(startupActions.Name) Then
+                    envPreconfigured = envPreconfigured_.nameToEnvironment(startupActions.Name)
+                    envPreconfigured.StartupActions = startupActions
                 End If
             Next
 
@@ -212,8 +211,13 @@ Public Class FormMain
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
+
         Try
-            config_.EnvOverrides = envPreconfigured_
+            config_.OverrideActions.clear()
+            For Each environment As QuantLibXL.Environment In envPreconfigured_.Environments
+                config_.OverrideActions.add(environment.StartupActions, environment.Name)
+            Next
+
             Dim registryWriter As New QuantLibXL.RegistryWriter()
             registryWriter.deleteKey("Configuration")
             registryWriter.serializeObject(config_, "Configuration")
@@ -223,7 +227,9 @@ Public Class FormMain
             MsgBox("Error while closing launcher:" & vbCrLf & vbCrLf & ex.Message, _
                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
         End Try
+
         Close()
+
     End Sub
 
     Private Sub btnLaunch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLaunch.Click
@@ -387,38 +393,39 @@ Public Class FormMain
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub cbYCBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbYCBootstrap.CheckedChanged
-        SelectedEnvironment.YieldCurveBootstrap = cbYCBootstrap.Checked
+        SelectedEnvironment.StartupActions.YieldCurveBootstrap = cbYCBootstrap.Checked
     End Sub
 
     Private Sub cbLoadMurexYC_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLoadMurexYC.CheckedChanged
-        SelectedEnvironment.LoadMurexYieldCurve = cbLoadMurexYC.Checked
+        SelectedEnvironment.StartupActions.LoadMurexYieldCurve = cbLoadMurexYC.Checked
     End Sub
 
     Private Sub cbCapVolBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCapVolBootstrap.CheckedChanged
-        SelectedEnvironment.CapVolBootstrap = cbCapVolBootstrap.Checked
+        SelectedEnvironment.StartupActions.CapVolBootstrap = cbCapVolBootstrap.Checked
     End Sub
 
     Private Sub cbSwapVolBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSwapVolBootstrap.CheckedChanged
-        SelectedEnvironment.SwapVolBootstrap = cbSwapVolBootstrap.Checked
+        SelectedEnvironment.StartupActions.SwapVolBootstrap = cbSwapVolBootstrap.Checked
     End Sub
 
     Private Sub cbSwapSmileBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSwapSmileBootstrap.CheckedChanged
-        SelectedEnvironment.SwapSmileBootstrap = cbSwapSmileBootstrap.Checked
+        SelectedEnvironment.StartupActions.SwapSmileBootstrap = cbSwapSmileBootstrap.Checked
     End Sub
 
     Private Sub cbFitCMS_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbFitCMS.CheckedChanged
-        SelectedEnvironment.FitCMS = cbFitCMS.Checked
+        SelectedEnvironment.StartupActions.FitCMS = cbFitCMS.Checked
     End Sub
 
     Private Sub cbIndexesTimeSeries_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbIndexesTimeSeries.CheckedChanged
-        SelectedEnvironment.IndexesTimeSeries = cbIndexesTimeSeries.Checked
+        SelectedEnvironment.StartupActions.IndexesTimeSeries = cbIndexesTimeSeries.Checked
     End Sub
 
     Private Sub cbLoadBonds_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLoadBonds.CheckedChanged
-        SelectedEnvironment.LoadBonds = cbLoadBonds.Checked
+        SelectedEnvironment.StartupActions.LoadBonds = cbLoadBonds.Checked
     End Sub
+
     Private Sub cbStaticData_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbStaticData.CheckedChanged
-        SelectedEnvironment.StaticData = cbStaticData.Checked
+        SelectedEnvironment.StartupActions.StaticData = cbStaticData.Checked
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
@@ -440,8 +447,25 @@ Public Class FormMain
         End Try
     End Function
 
-    Private Sub btnFrameworkSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFrameworkSelect.Click
+    Private Function deriveDefaultFile(ByVal testFile As String, ByVal relativePath As String) As String
         Try
+            If fileExists(testFile) Then
+                deriveDefaultFile = testFile
+            ElseIf dirExists(qlxlDir_ & "\" & relativePath) Then
+                deriveDefaultFile = qlxlDir_ & "\" & relativePath
+            Else
+                deriveDefaultFile = ""
+            End If
+            Exit Function
+        Catch ex As Exception
+            deriveDefaultFile = ""
+        End Try
+    End Function
+
+    Private Sub btnFrameworkSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFrameworkSelect.Click
+
+        Try
+
             Dim dlg As New OpenFileDialog()
             dlg.InitialDirectory = deriveDefaultDir(Path.GetFileName(txtFramework.Text), "framework")
             dlg.FileName = "QuantLibXL.xla"
@@ -450,12 +474,16 @@ Public Class FormMain
             If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 txtFramework.Text = dlg.FileName
             End If
+
         Catch ex As Exception
+
             MsgBox("Error processing framework path:" _
                  & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     Private Sub btnWorkbooks_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnWorkbooks.Click
@@ -526,6 +554,57 @@ Public Class FormMain
         End Try
     End Sub
 
+    Private Sub btnXmlPath_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnXmlPath.Click
+
+        Try
+
+            Dim dlg As New FolderBrowserDialog()
+            dlg.SelectedPath = deriveDefaultDir(txtXmlPath.Text, "..\QuantLibAddin\gensrc\metadata")
+            dlg.Description = "Select QuantLibXL Function Metadata folder"
+            dlg.ShowNewFolderButton = False
+            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                txtXmlPath.Text = dlg.SelectedPath
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("Error processing Function Metadata folder:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
+
+    End Sub
+
+    Private Sub btnUserConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUserConfig.Click
+
+        Try
+
+            Dim dlg As New OpenFileDialog()
+            dlg.InitialDirectory = deriveDefaultFile(txtUserConfig.Text, "")
+            If Len(Path.GetFileName(txtUserConfig.Text)) > 0 Then
+                dlg.FileName = Path.GetFileName(txtUserConfig.Text)
+            Else
+                dlg.FileName = "users.xml"
+            End If
+            dlg.Filter = "XML Configuration Files (*.xml)|*.xml"
+            dlg.Title = "Select QuantLibXL User Configuration File"
+            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                txtUserConfig.Text = dlg.FileName
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("Error processing User Configuration File path:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
+
+    End Sub
+
     ''''''''''''''''''''''''''''''''''''''''''
     ' events - path - text
     ''''''''''''''''''''''''''''''''''''''''''
@@ -550,11 +629,20 @@ Public Class FormMain
         SelectedEnvironment.HelpPath = txtHelpPath.Text
     End Sub
 
+    Private Sub txtXmlPath_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtXmlPath.TextChanged
+        SelectedEnvironment.XmlPath = txtXmlPath.Text
+    End Sub
+
+    Private Sub txtUserConfig_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtUserConfig.TextChanged
+        SelectedEnvironment.UserConfig = txtUserConfig.Text
+    End Sub
+
     ''''''''''''''''''''''''''''''''''''''''''
     ' private functions
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub setEnabled(ByVal enabled As Boolean)
+
         btnDelete.Enabled = enabled
         btnClear.Enabled = enabled
         btnRename.Enabled = enabled
@@ -563,19 +651,28 @@ Public Class FormMain
         btnAddinDirSelect.Enabled = enabled
         btnAddinNameSelect.Enabled = enabled
         btnHelpFile.Enabled = enabled
+        btnXmlPath.Enabled = enabled
+        btnUserConfig.Enabled = enabled
         txtFramework.Enabled = enabled
         txtWorkbooks.Enabled = enabled
         txtAddinDir.Enabled = enabled
         txtAddinName.Enabled = enabled
         txtHelpPath.Enabled = enabled
+        txtXmlPath.Enabled = enabled
+        txtUserConfig.Enabled = enabled
+
     End Sub
 
     Private Sub clear()
+
         txtFramework.Clear()
         txtWorkbooks.Clear()
         txtAddinDir.Clear()
         txtAddinName.Clear()
         txtHelpPath.Clear()
+        txtXmlPath.Clear()
+        txtUserConfig.Clear()
+
         cbYCBootstrap.Checked = False
         cbLoadMurexYC.Checked = False
         cbCapVolBootstrap.Checked = False
@@ -585,5 +682,32 @@ Public Class FormMain
         cbIndexesTimeSeries.Checked = False
         cbLoadBonds.Checked = False
         cbStaticData.Checked = False
+
     End Sub
+
+    ' After changing the selected environment, call this sub
+    ' to synch up the controls.
+
+    Private Sub resetControls()
+
+        txtFramework.Text = SelectedEnvironment.Framework
+        txtWorkbooks.Text = SelectedEnvironment.Workbooks
+        txtAddinDir.Text = SelectedEnvironment.AddinDirectory
+        txtAddinName.Text = SelectedEnvironment.AddinName
+        txtHelpPath.Text = SelectedEnvironment.HelpPath
+        txtXmlPath.Text = SelectedEnvironment.XmlPath
+        txtUserConfig.Text = SelectedEnvironment.UserConfig
+
+        cbYCBootstrap.Checked = SelectedEnvironment.StartupActions.YieldCurveBootstrap
+        cbLoadMurexYC.Checked = SelectedEnvironment.StartupActions.LoadMurexYieldCurve
+        cbCapVolBootstrap.Checked = SelectedEnvironment.StartupActions.CapVolBootstrap
+        cbSwapVolBootstrap.Checked = SelectedEnvironment.StartupActions.SwapVolBootstrap
+        cbSwapSmileBootstrap.Checked = SelectedEnvironment.StartupActions.SwapSmileBootstrap
+        cbFitCMS.Checked = SelectedEnvironment.StartupActions.FitCMS
+        cbIndexesTimeSeries.Checked = SelectedEnvironment.StartupActions.IndexesTimeSeries
+        cbLoadBonds.Checked = SelectedEnvironment.StartupActions.LoadBonds
+        cbStaticData.Checked = SelectedEnvironment.StartupActions.StaticData
+
+    End Sub
+
 End Class

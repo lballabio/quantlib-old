@@ -1,0 +1,70 @@
+<Configuration>
+
+  <Environments>
+
+    <Environment name="01 Production">
+      <Framework>X:\Offices1\CabotoXL\01 Production\framework\QuantLibXL.xla</Framework>
+      <Workbooks>X:\Offices1\CabotoXL\01 Production\Workbooks</Workbooks>
+      <HelpFile>X:\Offices1\CabotoXL\01 Production\Docs</HelpFile>
+      <UserConfigurationFile>X:\Offices1\CabotoXL\01 Production\users.xml</UserConfigurationFile>
+      <FunctionMetadata>X:\Offices1\CabotoXL\01 Production\metadata</FunctionMetadata>
+      <AddinDirectory></AddinDirectory>
+      <AddinName>QuantLibXL-vc80-mt-s-0_4_0.xll</AddinName>
+      <StartupActions>
+        <YieldCurveBootstrap>true</YieldCurveBootstrap>
+        <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
+        <CapVolBootstrap>false</CapVolBootstrap>
+        <SwapVolBootstrap>false</SwapVolBootstrap>
+        <SwapSmileBootstrap>false</SwapSmileBootstrap>
+        <FitCMS>false</FitCMS>
+        <IndexesTimeSeries>false</IndexesTimeSeries>
+        <LoadBonds>false</LoadBonds>
+        <StaticData>false</StaticData>
+      </StartupActions>
+    </Environment>
+
+    <Environment name="02 Pre-Production">
+      <Framework>X:\Offices1\CabotoXL\02 Pre-Production\framework\QuantLibXL.xla</Framework>
+      <Workbooks>X:\Offices1\CabotoXL\02 Pre-Production\Workbooks</Workbooks>
+      <HelpFile>X:\Offices1\CabotoXL\02 Pre-Production\Docs</HelpFile>
+      <UserConfigurationFile>X:\Offices1\CabotoXL\02 Pre-Production\users.xml</UserConfigurationFile>
+      <FunctionMetadata>X:\Offices1\CabotoXL\02 Pre-Production\metadata</FunctionMetadata>
+      <AddinDirectory></AddinDirectory>
+      <AddinName>QuantLibXL-vc80-mt-s-0_4_0.xll</AddinName>
+      <StartupActions>
+        <YieldCurveBootstrap>false</YieldCurveBootstrap>
+        <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
+        <CapVolBootstrap>false</CapVolBootstrap>
+        <SwapVolBootstrap>false</SwapVolBootstrap>
+        <SwapSmileBootstrap>false</SwapSmileBootstrap>
+        <FitCMS>false</FitCMS>
+        <IndexesTimeSeries>false</IndexesTimeSeries>
+        <LoadBonds>false</LoadBonds>
+        <StaticData>false</StaticData>
+      </StartupActions>
+    </Environment>
+
+    <Environment name="03 Testing">
+      <Framework>X:\Offices1\CabotoXL\03 Testing\framework\QuantLibXL.xla</Framework>
+      <Workbooks>X:\Offices1\CabotoXL\03 Testing\Workbooks</Workbooks>
+      <HelpFile>X:\Offices1\CabotoXL\03 Testing\Docs</HelpFile>
+      <UserConfigurationFile>X:\Offices1\CabotoXL\01 Production\users.xml</UserConfigurationFile>
+      <FunctionMetadata>X:\Offices1\CabotoXL\01 Production\metadata</FunctionMetadata>
+      <AddinDirectory></AddinDirectory>
+      <AddinName>QuantLibXL-vc80-mt-s-0_9_0.xll</AddinName>
+      <StartupActions>
+        <YieldCurveBootstrap>false</YieldCurveBootstrap>
+        <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
+        <CapVolBootstrap>false</CapVolBootstrap>
+        <SwapVolBootstrap>false</SwapVolBootstrap>
+        <SwapSmileBootstrap>false</SwapSmileBootstrap>
+        <FitCMS>false</FitCMS>
+        <IndexesTimeSeries>false</IndexesTimeSeries>
+        <LoadBonds>false</LoadBonds>
+        <StaticData>false</StaticData>
+      </StartupActions>
+    </Environment>
+
+  </Environments>
+
+</Configuration>

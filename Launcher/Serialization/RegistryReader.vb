@@ -97,6 +97,7 @@ Namespace QuantLibXL
                 serializable = Factory.make(className)
                 pushKey(keyName)
                 serializable.serialize(Me)
+                serializable.Name = keyName
                 serializableCollection.Add(serializable, keyName)
                 popKey()
             Next

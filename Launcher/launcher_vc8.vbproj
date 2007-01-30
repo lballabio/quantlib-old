@@ -68,13 +68,11 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Config.vb" />
-    <Compile Include="Configuration\Environment.vb" />
-    <Compile Include="Configuration\EnvironmentList.vb" />
-    <Compile Include="Configuration\Factory.vb" />
-    <Compile Include="Configuration\User.vb" />
-    <Compile Include="Configuration\UserList.vb" />
-    <Compile Include="Configuration\Volume.vb" />
+    <Compile Include="Environments\Configuration.vb" />
+    <Compile Include="Environments\Environment.vb" />
+    <Compile Include="Environments\EnvironmentList.vb" />
+    <Compile Include="Environments\StartupActions.vb" />
+    <Compile Include="Environments\StartupActionsList.vb" />
     <Compile Include="Interface\FormAddinSelect.Designer.vb">
       <DependentUpon>FormAddinSelect.vb</DependentUpon>
     </Compile>
@@ -108,16 +106,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Serialization\Factory.vb" />
     <Compile Include="Serialization\ISerializable.vb" />
     <Compile Include="Serialization\ISerializer.vb" />
     <Compile Include="Serialization\RegistryReader.vb" />
     <Compile Include="Serialization\RegistrySerializer.vb" />
     <Compile Include="Serialization\RegistryWriter.vb" />
     <Compile Include="Serialization\XmlWriter.vb" />
+    <Compile Include="Users\Domain.vb" />
+    <Compile Include="Users\DomainList.vb" />
+    <Compile Include="Users\User.vb" />
+    <Compile Include="Users\UserList.vb" />
     <Compile Include="Utilities\RegistryEditor.vb" />
     <Compile Include="Utilities\Upgrade.vb" />
     <Compile Include="Utilities\Utilities.vb" />
     <Compile Include="Serialization\XmlReader.vb" />
+    <Compile Include="Utilities\Volume.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Interface\FormAddinSelect.resx">
@@ -151,9 +155,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\config.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Environments\config.xml" />
     <Content Include="images\favicon.ico" />
     <Content Include="Addins\03 Testing\QuantLibXL-vc80-mt-s-0_9_0.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -165,6 +167,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="updateLauncherXlls.py" />
+    <Content Include="Users\users.xml" />
     <None Include="images\rename.bmp" />
     <None Include="images\clear.bmp" />
     <None Include="images\create.bmp" />
