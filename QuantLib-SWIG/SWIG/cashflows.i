@@ -51,16 +51,16 @@ IsObservable(boost::shared_ptr<CashFlow>);
 using QuantLib::SimpleCashFlow;
 using QuantLib::FixedRateCoupon;
 using QuantLib::ParCoupon;
+using QuantLib::Leg;
 using QuantLib::FloatingRateCoupon;
 /*using QuantLib::IndexedCoupon;*/
 using QuantLib::UpFrontIndexedCoupon;
 using QuantLib::InArrearIndexedCoupon;
-
-using QuantLib::IndexedCouponVector;
+using QuantLib::IndexedLeg;
 
 typedef boost::shared_ptr<CashFlow> SimpleCashFlowPtr;
-typedef boost::shared_ptr<CashFlow> FixedRateCouponPtr;
 typedef boost::shared_ptr<CashFlow> ParCouponPtr;
+typedef boost::shared_ptr<CashFlow> FixedRateCouponPtr;
 typedef boost::shared_ptr<CashFlow> FloatingRateCouponPtr;
 typedef boost::shared_ptr<CashFlow> IndexedCouponPtr;
 typedef boost::shared_ptr<CashFlow> UpFrontIndexedCouponPtr;
@@ -219,27 +219,27 @@ class InArrearIndexedCouponPtr : public FloatingRateCouponPtr {
 #if defined(SWIGCSHARP)
 SWIG_STD_VECTOR_SPECIALIZE( CashFlow, boost::shared_ptr<CashFlow> )
 #endif
-namespace std {
-    %template(CashFlowVector) vector<boost::shared_ptr<CashFlow> >;
-}
+%template(Leg) std::vector<boost::shared_ptr<CashFlow> >;
+typedef std::vector<boost::shared_ptr<CashFlow> > Leg;
+
 
 // cash flow vector builders
 
 %{
-using QuantLib::FixedRateCouponVector;
+using QuantLib::FixedRateLeg;
 %}
 
-std::vector<boost::shared_ptr<CashFlow> >
-FixedRateCouponVector(const Schedule& schedule,
-                      const std::vector<Real>& nominals,
-                      const std::vector<Rate>& couponRates,
+Leg
+FixedRateLeg(const Schedule& schedule,
+             const std::vector<Real>& nominals,
+		    const std::vector<Rate>& couponRates,
                       const DayCounter& dayCount,
                       BusinessDayConvention paymentAdjustment = Following,
                       const DayCounter& firstPeriodDayCount = DayCounter());
 
 %inline %{
-std::vector<boost::shared_ptr<CashFlow> >
-FloatingRateCouponVector(const Schedule& schedule,
+Leg
+FloatingRateLeg(const Schedule& schedule,
                          const std::vector<Real>& nominals,
 			 const IborIndexPtr& index,     
 			 const DayCounter& dayCount = DayCounter(),   
@@ -252,9 +252,9 @@ FloatingRateCouponVector(const Schedule& schedule,
                              std::vector<Spread>()) {
     const boost::shared_ptr<IborIndex> libor =
         boost::dynamic_pointer_cast<IborIndex>(index);
-    return QuantLib::FloatingRateCouponVector(schedule,
-					      nominals, 
-					      libor,
+    return QuantLib::FloatingRateLeg(schedule,
+					     nominals, 
+					            libor,
 					      dayCount,
 					      fixingDays,
 					      paymentAdjustment,
@@ -263,7 +263,7 @@ FloatingRateCouponVector(const Schedule& schedule,
 	
 }
 
-std::vector<boost::shared_ptr<CashFlow> >
+Leg
 ParCouponVector(const Schedule& schedule,
                 BusinessDayConvention paymentAdjustment,
                 const std::vector<Real>& nominals,
@@ -274,15 +274,15 @@ ParCouponVector(const Schedule& schedule,
 		bool isInArrears = false) {
     boost::shared_ptr<IborIndex> libor =
         boost::dynamic_pointer_cast<IborIndex>(index);
-    return QuantLib::IndexedCouponVector<ParCoupon>(schedule,paymentAdjustment,
+    return QuantLib::IndexedLeg<ParCoupon>(schedule,paymentAdjustment,
                                                     nominals,fixingDays,libor,
                                                     gearings,spreads,dayCount,
 						    isInArrears);
 }
 
 
-std::vector<boost::shared_ptr<CashFlow> >
-InArrearIndexedCouponVector(const Schedule& schedule,
+Leg
+InArrearIndexedLeg(const Schedule& schedule,
                             BusinessDayConvention paymentAdjustment,
                             const std::vector<Real>& nominals,
                             Integer fixingDays, IborIndexPtr& index,
@@ -294,7 +294,7 @@ InArrearIndexedCouponVector(const Schedule& schedule,
 			    bool isInArrears = false) {
     const boost::shared_ptr<IborIndex> libor =
         boost::dynamic_pointer_cast<IborIndex>(index);
-    return QuantLib::IndexedCouponVector<InArrearIndexedCoupon>(
+    return QuantLib::IndexedLeg<InArrearIndexedCoupon>(
                                                   schedule,paymentAdjustment,
                                                   nominals,fixingDays,libor,
                                                   gearings,spreads,dayCount,
@@ -307,25 +307,35 @@ InArrearIndexedCouponVector(const Schedule& schedule,
 // cash-flow analysis
 
 %{
-using QuantLib::Cashflows;
+using QuantLib::CashFlows;
 using QuantLib::Duration;
-%}
+n%}
 
 struct Duration {
     enum Type { Simple, Macaulay, Modified };
 };
 
-class Cashflows {
+class CashFlows {
   private:
-    Cashflows();
-    Cashflows(const Cashflows&);
+    CashFlows();
+    CashFlows(const CashFlows&);
   public:
-    static Real npv(const std::vector<boost::shared_ptr<CashFlow> >&,
+    static Date startDate(const Leg &);
+    static Date maturityDate(const Leg &);
+    static Real npv(const Leg&,
                     const Handle<YieldTermStructure>&);
-    static Real npv(const std::vector<boost::shared_ptr<CashFlow> >&,
+    static Real npv(const Leg&,
                     const InterestRate&,
                     Date settlementDate = Date());
-    static Rate irr(const std::vector<boost::shared_ptr<CashFlow> >&,
+    static Real bps(const Leg&,
+		    const Handle<YieldTermStructure>&);
+    static Real bps(const Leg&,
+		    const InterestRate &,
+		    Date settlementDate = Date());
+    static Rate atmRate(const Leg&,
+		    const Handle<YieldTermStructure>&,
+		    Real npv = Null<Real>());
+    static Rate irr(const Leg&,
                     Real marketPrice,
                     const DayCounter& dayCounter,
                     Compounding compounding,
@@ -334,11 +344,11 @@ class Cashflows {
                     Real tolerance = 1.0e-10,
                     Size maxIterations = 10000,
                     Rate guess = 0.05);
-    static Time duration(const std::vector<boost::shared_ptr<CashFlow> >&,
+    static Time duration(const Leg&,
                          const InterestRate&,
                          Duration::Type type = Duration::Modified,
                          Date settlementDate = Date());
-    static Real convexity(const std::vector<boost::shared_ptr<CashFlow> >&,
+    static Real convexity(const Leg&,
                           const InterestRate&,
                           Date settlementDate = Date());
 };
