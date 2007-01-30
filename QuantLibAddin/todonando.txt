@@ -74,7 +74,7 @@ Done append/merge cash flow streams constructor
 - subVersion
 
 François
-- analysis: resize is missing, no bold, no change of font size, no borders, format only 20 columns, accrual days general, accrual period 4 decimals, effective rate 4 digits
+D analysis: resize is missing, no bold, no change of font size, no borders, format only 20 columns, accrual days general, accrual period 4 decimals, effective rate 4 digits
 - no ScheduleID as input value->blank cell
 D permanent comment: TRUE if the object must be permanent (i.e. resistant to garbage collection). Default is FALSE.
 D ObjectID comment: id of the object to be created. If missing a unique id will be automatically assigned.
