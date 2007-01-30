@@ -309,7 +309,7 @@ InArrearIndexedLeg(const Schedule& schedule,
 %{
 using QuantLib::CashFlows;
 using QuantLib::Duration;
-n%}
+%}
 
 struct Duration {
     enum Type { Simple, Macaulay, Modified };
