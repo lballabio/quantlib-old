@@ -20,10 +20,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='PayBondCoupon' exampleValue='FALSE'>
+          <Parameter name='PayBondCoupon' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE to pay the bond's coupons and receive floating.</description>
+            <description>TRUE to pay the bond's coupons and receive floating. FALSE by default.</description>
           </Parameter>
           <Parameter name='underlyingBond' libraryClass='Bond' exampleValue='DE0003088704'>
             <type>string</type>
@@ -51,8 +51,6 @@
             <description>discounting YieldTermStructure object ID</description>
           </Parameter>
           <Parameter name='floatingLegSchedule' libraryClass='Schedule' default='""'>
-          <!--<Parameter name='floatingLegSchedule' libraryClass='Schedule' default='QuantLib::Schedule()'>-->
-          <!--<Parameter name='floatingLegSchedule' libraryClass='Schedule'>-->
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>floating leg schedule object ID</description>

@@ -455,7 +455,7 @@
             <tensorRank>scalar</tensorRank>
             <description>DayCounter used for accrual periods</description>
           </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
+          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' exampleValue='0.00%'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Floor strikes. If missing, no floors are enforced.</description>
