@@ -52,10 +52,11 @@ SectionIn 1 2 3
 
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
-
+    #File /r "metadata\*.xml"
 
     SetOutPath "$INSTDIR\Docs"
-    File "Docs\favicon.bmp"
+    File "Docs\images\favicon.bmp"
+    File "Docs\images\logo_ql.jpg"
 
     SetOutPath "$INSTDIR"
     File "QuantLibXL-bin.nsi"

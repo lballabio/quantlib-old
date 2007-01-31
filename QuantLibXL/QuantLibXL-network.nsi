@@ -29,7 +29,7 @@
 ; General Attributes
 
 Name "QuantLibXL Network Distribution"
-OutFile "..\QuantLibXL-${VER_NUMBER}-network.exe"
+OutFile "..\QuantLibXL-${VER_NUMBER}-${NOW}-network.exe"
 
 ; Interface Settings
 
@@ -69,33 +69,39 @@ ROOT_FOLDER\docs - the chm documentation file"
 
 Section "-QuantLibXL Network Distribution"
 
-  ;SetOutPath "$ADDIN_PATH\"
-  SetOutPath "$INSTDIR\xll"
-  File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+    SetOutPath "$INSTDIR"
+    File "Authors.txt"
+    File "Contributors.txt"
+    File "LICENSE.TXT"
+    File "NEWS.txt"
+    File "README.txt"
 
-  ;SetOutPath "$ADDIN_PATH\"
-  SetOutPath "$INSTDIR\Docs"
-  File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
-  File "Docs\favicon.bmp"
+    ;SetOutPath "$FRAMEWORK_PATH\"
+    SetOutPath "$INSTDIR\framework"
+    File "framework\QuantLibXL.xla"
 
-  ;SetOutPath "$FRAMEWORK_PATH\"
-  SetOutPath "$INSTDIR\framework"
-  File "framework\QuantLibXL.xla"
+    SetOutPath "$INSTDIR\metadata"
+    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
+    #File /r "metadata\*.xml"
 
-  SetOutPath "$INSTDIR\metadata"
-  File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
+    SetOutPath "$INSTDIR\Docs"
+    File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
+    File "Docs\images\favicon.bmp"
+    File "Docs\images\favicon.ico"
+    File "Docs\images\logo_ql.jpg"
 
-  SetOutPath "$INSTDIR"
-  File "..\Launcher\Users\users.xml"
+    SetOutPath "$INSTDIR"
+    File "QuantLibXL-bin.nsi"
+    File "QuantLibXL-network.nsi"
+    File "QuantLibXL.nsi"
 
-  SetOutPath "$INSTDIR"
-  File "QuantLibXL-bin.nsi"
-  File "QuantLibXL-network.nsi"
-  File "QuantLibXL.nsi"
+    ;SetOutPath "$ADDIN_PATH\"
+    SetOutPath "$INSTDIR\xll"
+    File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
-  ;SetOutPath "$WORKBOOK_PATH\"
-  SetOutPath "$INSTDIR\Workbooks"
-  File /r /x Drafts "Workbooks\*.xls"
+    ;SetOutPath "$WORKBOOK_PATH\"
+    SetOutPath "$INSTDIR\Workbooks"
+    File /r /x Drafts "Workbooks\*.xls"
 
 SectionEnd
 
