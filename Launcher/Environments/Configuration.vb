@@ -21,7 +21,7 @@ Namespace QuantLibXL
 
         Private selectedEnvConfig_ As String = ""
         Private selectedEnvName_ As String = ""
-        Private version_ As Integer = 3
+        Private version_ As Integer
         Private overrideActions_ As QuantLibXL.StartupActionsList
 
         Public Property Name() As String Implements ISerializable.Name
