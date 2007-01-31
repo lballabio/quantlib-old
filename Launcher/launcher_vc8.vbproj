@@ -17,7 +17,7 @@
     <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>images\favicon.ico</ApplicationIcon>
-    <PublishUrl>\\private\risorse\Private1\ametrf1a\CabotoXL\</PublishUrl>
+    <PublishUrl>\\Private\risorse\Private3\manzok1a\CabotoXL\Launcher\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -28,7 +28,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>0.12.0.4</ApplicationVersion>
+    <ApplicationVersion>0.21.0.3</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -188,47 +188,47 @@
   <ItemGroup>
     <PublishFile Include="Addins\01 Production\QuantLibXL-vc80-mt-s-0_4_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\02 Pre-Production\QuantLibXL-vc80-mt-s-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\03 Testing\QuantLibXL-vc80-mt-s-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="updateLauncherXlls.py">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Users\users.xml">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
