@@ -33,13 +33,13 @@ Namespace QuantLibXL
 
         ' paths
 
-        Private framework_ As String
-        Private workbooks_ As String
-        Private addinDir_ As String
-        Private addinName_ As String
-        Private helpPath_ As String
-        Private xmlPath_ As String
-        Private userConfig_ As String
+        Private framework_ As String = ""
+        Private workbooks_ As String = ""
+        Private addinDir_ As String = ""
+        Private addinName_ As String = ""
+        Private helpPath_ As String = ""
+        Private xmlPath_ As String = ""
+        Private userConfig_ As String = ""
 
         ' user authentication
 
@@ -47,7 +47,7 @@ Namespace QuantLibXL
 
         ' startup actions
 
-        Private startupActions_ As QuantLibXL.StartupActions = Nothing
+        Private startupActions_ As QuantLibXL.StartupActions = New QuantLibXL.StartupActions
 
         Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
 
