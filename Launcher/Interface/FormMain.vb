@@ -467,7 +467,7 @@ Public Class FormMain
         Try
 
             Dim dlg As New OpenFileDialog()
-            dlg.InitialDirectory = deriveDefaultDir(Path.GetFileName(txtFramework.Text), "framework")
+            dlg.InitialDirectory = deriveDefaultFile(txtFramework.Text, "framework")
             dlg.FileName = "QuantLibXL.xla"
             dlg.Filter = "Excel VBA Addins (*.xla)|*.xla"
             dlg.Title = "Select QuantLibXL VBA Framework"
@@ -487,7 +487,9 @@ Public Class FormMain
     End Sub
 
     Private Sub btnWorkbooks_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnWorkbooks.Click
+
         Try
+
             Dim dlg As New FolderBrowserDialog()
             dlg.SelectedPath = deriveDefaultDir(txtWorkbooks.Text, "Workbooks")
             dlg.Description = "Select QuantLibXL Workbook root folder"
@@ -495,16 +497,22 @@ Public Class FormMain
             If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 txtWorkbooks.Text = dlg.SelectedPath
             End If
+
         Catch ex As Exception
+
             MsgBox("Error processing workbooks path:" _
                  & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     Private Sub btnAddinDirSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinDirSelect.Click
+
         Try
+
             Dim dlg As New OpenFileDialog()
             dlg.InitialDirectory = deriveDefaultDir(txtAddinDir.Text, "xll")
             dlg.Filter = "Excel XLL Addins (*.xll)|*.xll"
@@ -513,32 +521,44 @@ Public Class FormMain
                 txtAddinDir.Text = System.IO.Path.GetDirectoryName(dlg.FileName)
                 txtAddinName.Text = System.IO.Path.GetFileName(dlg.FileName)
             End If
+
         Catch ex As Exception
+
             MsgBox("Error processing addin path:" _
                  & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     Private Sub btnAddinSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinNameSelect.Click
+
         Try
+
             Dim formAddinSelect As New FormAddinSelect
             formAddinSelect.AddinName = txtAddinName.Text
             If formAddinSelect.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 txtAddinName.Text = formAddinSelect.AddinName
                 SelectedEnvironment.AddinName = formAddinSelect.AddinName
             End If
+
         Catch ex As Exception
+
             MsgBox("Error processing addin path:" _
                  & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     Private Sub btnHelpFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnHelpFile.Click
+
         Try
+
             Dim dlg As New FolderBrowserDialog()
             dlg.SelectedPath = deriveDefaultDir(txtHelpPath.Text, "Docs")
             dlg.Description = "Select QuantLibXL Help folder"
@@ -546,12 +566,16 @@ Public Class FormMain
             If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 txtHelpPath.Text = dlg.SelectedPath
             End If
+
         Catch ex As Exception
+
             MsgBox("Error processing helpfile path:" _
                  & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     Private Sub btnXmlPath_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnXmlPath.Click
@@ -653,6 +677,7 @@ Public Class FormMain
         btnHelpFile.Enabled = enabled
         btnXmlPath.Enabled = enabled
         btnUserConfig.Enabled = enabled
+
         txtFramework.Enabled = enabled
         txtWorkbooks.Enabled = enabled
         txtAddinDir.Enabled = enabled
