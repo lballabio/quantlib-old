@@ -54,7 +54,7 @@ SectionIn 1 2 3
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
     #File /r "metadata\*.xml"
 
-    SetOutPath "$INSTDIR\Docs"
+    SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\favicon.bmp"
     File "Docs\images\logo_ql.jpg"
 

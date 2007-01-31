@@ -28,6 +28,8 @@
 
 ; General Attributes
 
+!define /date NOW "%Y%m%d-%H_%M"
+
 Name "QuantLibXL Network Distribution"
 OutFile "..\QuantLibXL-${VER_NUMBER}-${NOW}-network.exe"
 
@@ -86,6 +88,8 @@ Section "-QuantLibXL Network Distribution"
 
     SetOutPath "$INSTDIR\Docs"
     File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
+
+    SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\favicon.bmp"
     File "Docs\images\favicon.ico"
     File "Docs\images\logo_ql.jpg"
