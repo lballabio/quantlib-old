@@ -150,6 +150,23 @@ Namespace QuantLibXL
             End Set
         End Property
 
+        Public Function copy() As StartupActions
+
+            copy = New StartupActions
+
+            copy.ycBootstrap_ = ycBootstrap_
+            copy.loadMurexYC_ = loadMurexYC_
+            copy.capVolBootstrap_ = capVolBootstrap_
+            copy.swapVolBootstrap_ = swapVolBootstrap_
+            copy.swapSmileBootstrap_ = swapSmileBootstrap_
+            copy.fitCMS_ = fitCMS_
+            copy.indexesTimeSeries_ = indexesTimeSeries_
+            copy.loadBonds_ = loadBonds_
+            copy.staticData_ = staticData_
+
+        End Function
+
     End Class
+
 
 End Namespace

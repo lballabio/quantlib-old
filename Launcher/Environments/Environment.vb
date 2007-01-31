@@ -257,7 +257,7 @@ Namespace QuantLibXL
             copy.helpPath_ = helpPath_
             copy.xmlPath_ = xmlPath_
             copy.userConfig_ = userConfig_
-            copy.startupActions_ = startupActions_
+            copy.startupActions_ = startupActions_.copy()
 
         End Function
 

@@ -196,7 +196,7 @@ Public Class FormMain
             For Each startupActions In config_.OverrideActions.StartupActionsList
                 If envPreconfigured_.nameInUse(startupActions.Name) Then
                     envPreconfigured = envPreconfigured_.nameToEnvironment(startupActions.Name)
-                    envPreconfigured.StartupActions = startupActions
+                    envPreconfigured.StartupActions = startupActions.copy()
                 End If
             Next
 
