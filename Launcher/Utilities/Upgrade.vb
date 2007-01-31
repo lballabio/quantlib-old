@@ -182,15 +182,14 @@ Module Upgrade
 
         If registryVersion_ > thisVersion_ Then
 
-            Throw New Exception("Error loading user preferences:" _
-                & vbCrLf & vbCrLf _
-                & "The preferences were saved with version " & registryVersion_ _
-                & "of the Launcher." & vbCrLf & vbCrLf _
+            Dim msg As String = "The preferences were saved with version " & registryVersion_ _
+                & " of the Launcher." & vbCrLf & vbCrLf _
                 & "You are running version " & thisVersion_ _
                 & " of the Launcher." & vbCrLf & vbCrLf _
                 & "The Launcher which saved the preferences " _
-                & "is newer than the Launcher which is loading the preferences." _
-                & "Please use Launcher version " & registryVersion_)
+                & "is newer than the Launcher which is loading the preferences."
+
+            Throw New Exception(msg)
 
         End If
 
@@ -201,27 +200,63 @@ Module Upgrade
 
     End Sub
 
+    Private Sub restoreDefaults()
+
+        Try
+
+            r_ = New QuantLibXL.RegistryEditor
+            r_.deleteKey("QuantLibXL")
+            initializeRegistryVersion5()
+            r_ = Nothing
+
+            MsgBox("Default preferences successfully restored.")
+
+        Catch ex As Exception
+
+            MsgBox("QuantLibXL Launcher encountered an error " _
+                & "while attempting to restore default preferences: " _
+                & vbCrLf & vbCrLf & ex.Message & vbCrLf & vbCrLf _
+                & "The application will now close, please contact support.")
+
+            Environment.Exit(1)
+
+        End Try
+
+    End Sub
+
     Public Sub run()
 
         Try
+
             r_ = New QuantLibXL.RegistryEditor
             getVersionNumber()
             updateRegistry()
             r_ = Nothing
             Exit Sub
-        Catch ex As Exception
-        End Try
 
-        Try
-            r_ = New QuantLibXL.RegistryEditor
-            r_.deleteKey("QuantLibXL")
-            initializeRegistryVersion5()
-            r_ = Nothing
         Catch ex As Exception
-        End Try
 
-        MsgBox("QuantLibXL Launcher encountered an error " _
-            & "while attempting to upgrade user preferences.")
+            Dim msg As String = "QuantLibXL Launcher encountered an error " _
+                & "while attempting to upgrade user preferences: " _
+                & vbCrLf & vbCrLf & ex.Message & vbCrLf & vbCrLf _
+                & "Do you want to restore default preferences?" & vbCrLf & vbCrLf _
+                & "Click Yes to restore default preferences and continue processing." & vbCrLf & vbCrLf _
+                & "Click No to exit the application."
+
+            Dim res As MsgBoxResult = MsgBox(msg, MsgBoxStyle.YesNo + MsgBoxStyle.Critical, _
+                "QuantLibXL Launcher Error")
+
+            If res = MsgBoxResult.Yes Then
+
+                Call restoreDefaults()
+
+            Else
+
+                Environment.Exit(1)
+
+            End If
+
+        End Try
 
     End Sub
 
