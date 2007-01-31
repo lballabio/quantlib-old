@@ -30,8 +30,8 @@ Public Class FormMain
     Private processingEvents_ As Boolean = True
     Private qlxlDir_ As String
 
-    Private Const PRECONFIGURED = "Preconfigured"
-    Private Const USERCONFIGURED = "UserConfigured"
+    Private Const PRECONFIGURED As String = "Preconfigured"
+    Private Const USERCONFIGURED As String = "UserConfigured"
 
     ''''''''''''''''''''''''''''''''''''''''''
     ' properties

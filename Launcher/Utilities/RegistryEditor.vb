@@ -26,7 +26,7 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Private rootKey_ As RegistryKey
-        Private Const ROOT_KEY_NAME = "HKEY_CURRENT_USER\Software"
+        Private Const ROOT_KEY_NAME As String = "HKEY_CURRENT_USER\Software"
 
         Public Function keyExists(ByVal keyName As String) As Boolean
             keyExists = rootKey_.OpenSubKey(keyName, True) IsNot Nothing
