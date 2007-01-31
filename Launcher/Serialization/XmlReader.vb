@@ -72,6 +72,10 @@ Namespace QuantLibXL
                 serializable = Factory.make(className)
                 currentNode_ = node
                 serializable.serialize(Me)
+                If serializableCollection.Contains(serializable.Name) Then
+                    Throw New Exception("node '" & className & "' contains multiple children" _
+                    & " with tag '" & serializable.Name & "'.")
+                End If
                 serializableCollection.Add(serializable, serializable.Name)
                 currentNode_ = currentNode_.ParentNode
             Next
