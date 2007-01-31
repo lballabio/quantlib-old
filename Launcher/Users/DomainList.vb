@@ -44,18 +44,13 @@ Namespace QuantLibXL
             serializer.serializeObjectCollection(domainList_, "Domain")
         End Sub
 
-        Public Sub validate()
+        Public Sub validate(ByVal environmentName As String)
+
+            ' get the user name
+            Dim userName As String = System.Environment.UserName
 
             ' get the domain name
             Dim domainName As String = System.Environment.UserDomainName
-
-            ' get the user name
-            Dim userName As String
-            userName = Environ(USER_NAME)
-            If Len(userName) < 1 Then
-                Throw New Exception("Unable to retrieve the value of " _
-                    & "environment variable " & USER_NAME)
-            End If
 
             ' get the hard disk serial number
             Dim serialNumber As String = getSerialNumber()
@@ -69,10 +64,11 @@ Namespace QuantLibXL
             End If
 
             Throw New Exception( _
-                "Sorry - you aren't authorized to use QuantLibXL." & vbCrLf & vbCrLf _
+                "Sorry - you aren't authorized to use QuantLibXL " _
+                & "environment '" & environmentName & "'." & vbCrLf & vbCrLf _
                 & "Please ask QuantLibXL support to grant access to:" & vbCrLf & vbCrLf _
-                & "    domain name : " & domainName & vbCrLf _
                 & "    user name : " & userName & vbCrLf _
+                & "    domain name : " & domainName & vbCrLf _
                 & "    hard disk serial number : " & serialNumber & vbCrLf)
 
         End Sub

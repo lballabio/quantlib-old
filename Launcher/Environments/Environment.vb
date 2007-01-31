@@ -188,7 +188,7 @@ Namespace QuantLibXL
                     & vbCrLf & vbCrLf & ex.Message)
             End Try
 
-            domainList.validate()
+            domainList.validate(name_)
 
             userAuthenticated_ = True
 
