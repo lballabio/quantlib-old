@@ -6,7 +6,7 @@
       <Framework>X:\Offices1\CabotoXL\01 Production\framework\QuantLibXL.xla</Framework>
       <Workbooks>X:\Offices1\CabotoXL\01 Production\Workbooks</Workbooks>
       <HelpFile>X:\Offices1\CabotoXL\01 Production\Docs</HelpFile>
-      <UserConfigurationFile>X:\Offices1\CabotoXL\01 Production\users.xml</UserConfigurationFile>
+      <UserConfigurationFile>X:\Offices1\CabotoXL\Users\01 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Offices1\CabotoXL\01 Production\metadata</FunctionMetadata>
       <AddinDirectory></AddinDirectory>
       <AddinName>QuantLibXL-vc80-mt-s-0_4_0.xll</AddinName>
@@ -27,10 +27,10 @@
       <Framework>X:\Offices1\CabotoXL\02 Pre-Production\framework\QuantLibXL.xla</Framework>
       <Workbooks>X:\Offices1\CabotoXL\02 Pre-Production\Workbooks</Workbooks>
       <HelpFile>X:\Offices1\CabotoXL\02 Pre-Production\Docs</HelpFile>
-      <UserConfigurationFile>X:\Offices1\CabotoXL\02 Pre-Production\users.xml</UserConfigurationFile>
+      <UserConfigurationFile>X:\Offices1\CabotoXL\Users\02 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Offices1\CabotoXL\02 Pre-Production\metadata</FunctionMetadata>
       <AddinDirectory></AddinDirectory>
-      <AddinName>QuantLibXL-vc80-mt-s-0_4_0.xll</AddinName>
+      <AddinName>QuantLibXL-vc80-mt-s-0_9_0.xll</AddinName>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
@@ -48,8 +48,8 @@
       <Framework>X:\Offices1\CabotoXL\03 Testing\framework\QuantLibXL.xla</Framework>
       <Workbooks>X:\Offices1\CabotoXL\03 Testing\Workbooks</Workbooks>
       <HelpFile>X:\Offices1\CabotoXL\03 Testing\Docs</HelpFile>
-      <UserConfigurationFile>X:\Offices1\CabotoXL\01 Production\users.xml</UserConfigurationFile>
-      <FunctionMetadata>X:\Offices1\CabotoXL\01 Production\metadata</FunctionMetadata>
+      <UserConfigurationFile>X:\Offices1\CabotoXL\Users\03 users.xml</UserConfigurationFile>
+      <FunctionMetadata>X:\Offices1\CabotoXL\03 Testing\metadata</FunctionMetadata>
       <AddinDirectory></AddinDirectory>
       <AddinName>QuantLibXL-vc80-mt-s-0_9_0.xll</AddinName>
       <StartupActions>

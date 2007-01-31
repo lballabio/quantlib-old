@@ -16,9 +16,9 @@ file (config.xml)
 
   <Domains>
 
-    <!-- dev team -->
-    <Domain name ="xxx">
+    <Domain name ="BANCACABOTO">
       <Users>
+        <!-- dev team -->
         <User name="ametrf1a">
           <serialNumbers>
             <serialNumber>B483FFA4</serialNumber>
@@ -62,12 +62,7 @@ file (config.xml)
             <serialNumber>ECBE0C9B</serialNumber>
           </serialNumbers>
         </User>
-      </Users>
-    </Domain>
-
-    <!-- users -->
-    <Domain name ="yyy">
-      <Users>
+        <!-- users -->
         <User name="ingfin1a">
           <serialNumbers>
             <serialNumber>F45200B0</serialNumber>
@@ -85,6 +80,16 @@ file (config.xml)
           </serialNumbers>
         </User>
         <User name="denucs1a">
+          <serialNumbers>
+            <serialNumber>5CF57325</serialNumber>
+          </serialNumbers>
+        </User>
+      </Users>
+    </Domain>
+
+    <Domain name ="XXX">
+      <Users>
+        <User name="mickeymouse">
           <serialNumbers>
             <serialNumber>5CF57325</serialNumber>
           </serialNumbers>
