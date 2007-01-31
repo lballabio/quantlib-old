@@ -74,14 +74,24 @@ Section "-QuantLibXL Network Distribution"
   File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
   ;SetOutPath "$ADDIN_PATH\"
-  SetOutPath "$INSTDIR\docs"
+  SetOutPath "$INSTDIR\Docs"
   File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
+  File "Docs\favicon.bmp"
 
   ;SetOutPath "$FRAMEWORK_PATH\"
   SetOutPath "$INSTDIR\framework"
   File "framework\QuantLibXL.xla"
-  SetOutPath "$INSTDIR\framework\metadata"
+
+  SetOutPath "$INSTDIR\metadata"
   File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
+
+  SetOutPath "$INSTDIR"
+  File "..\Launcher\Users\users.xml"
+
+  SetOutPath "$INSTDIR"
+  File "QuantLibXL-bin.nsi"
+  File "QuantLibXL-network.nsi"
+  File "QuantLibXL.nsi"
 
   ;SetOutPath "$WORKBOOK_PATH\"
   SetOutPath "$INSTDIR\Workbooks"
@@ -121,4 +131,3 @@ SectionEnd
 ;    MessageBox MB_OK "The path$\n    $0$\nis invalid."
 ;    Abort
 ;FunctionEnd
-

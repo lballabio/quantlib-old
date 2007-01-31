@@ -50,8 +50,17 @@ SectionIn 1 2 3
     SetOutPath "$INSTDIR\framework"
     File "framework\*.xla"
 
-    SetOutPath "$INSTDIR\Workbooks"
-    File /r "Workbooks\*.xml"
+    SetOutPath "$INSTDIR\metadata"
+    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
+
+
+    SetOutPath "$INSTDIR\Docs"
+    File "Docs\favicon.bmp"
+
+    SetOutPath "$INSTDIR"
+    File "QuantLibXL-bin.nsi"
+    File "QuantLibXL-network.nsi"
+    File "QuantLibXL.nsi"
 
     SetOutPath "$INSTDIR\xll"
     File "xll\QuantLibXL-vc*-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
