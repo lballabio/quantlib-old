@@ -26,7 +26,6 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Private domainList_ As Collection = New Collection
-        Private Const USER_NAME As String = "USERNAME"
 
         ''''''''''''''''''''''''''''''''''''''''''
         ' properties
