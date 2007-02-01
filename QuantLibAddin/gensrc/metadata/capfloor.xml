@@ -73,21 +73,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorVega' libraryClass='CapFloor'>
-      <description>Returns the vega for the given CapFloor object</description>
-      <libraryFunction>vega</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue libraryType='QuantLib::Real'>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlCapFloorStartDate' libraryClass='CapFloor'>
       <description>Returns the start (i.e. first accrual) date for the given CapFloor object</description>
       <libraryFunction>startDate</libraryFunction>

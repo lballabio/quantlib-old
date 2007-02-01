@@ -136,20 +136,5 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionVega' libraryClass='Swaption'>
-      <description>returns the Vega for the given Swaption object</description>
-      <libraryFunction>vega</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters />
-      </ParameterList>
-      <ReturnValue libraryType='QuantLib::Real'>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
   </Functions>
 </Category>

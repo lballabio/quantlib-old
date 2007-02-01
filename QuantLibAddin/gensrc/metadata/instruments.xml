@@ -31,6 +31,30 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlInstrumentResults' libraryClass='Instrument'>
+      <description>Returns the required result (if available) for the given Instrument object</description>
+      <libraryFunction>result&lt;QuantLib::Real&gt;</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+        <Guile/>
+        <C/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='resultType'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>result type (e.g. 'vega')</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlInstrumentErrorEstimate' libraryClass='Instrument'>
       <description>Returns the NPV error estimation (for e.g. Monte Carlo simulation) for the given Instrument object</description>
       <libraryFunction>errorEstimate</libraryFunction>
