@@ -23,7 +23,7 @@ QuantLib.jar: org/quantlib
 compile_test: QuantLib.jar
 	$(JAVAC) -cp QuantLib.jar ./test/Hello.java
 
-install-exec-local: libquantlib_javawrap.@LIB_EXTENSION@ QuantLib.jar
+install-exec-local:
 	cp libjquantlib.@LIB_EXTENSION@ $(DESTDIR)/$(libdir)/libjquantlib.@LIB_EXTENSION@
 	cp QuantLib.jar $(DESTDIR)/$(libdir)/QuantLib.jar
 

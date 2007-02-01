@@ -3,7 +3,7 @@ import org.quantlib.*;
 public class Hello { 
 
 	static { 
-		System.loadLibrary("quantlib_javawrap"); 
+		System.loadLibrary("jquantlib"); 
 	} 
 
 	public static void main(String[] args) { 
