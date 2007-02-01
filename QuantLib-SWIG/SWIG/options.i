@@ -36,7 +36,7 @@ using QuantLib::Barrier;
 // declared out of its hierarchy just to export the inner enumeration
 class Option {
   public:
-    enum Type { Call = -1, Put = 1};
+    enum Type { Put = -1, Call = 1};
   private:
     Option();
 };
