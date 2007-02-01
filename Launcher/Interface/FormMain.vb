@@ -169,8 +169,17 @@ Public Class FormMain
                 & vbCrLf & vbCrLf & ex.Message)
         End Try
 
+        ' Call the setDotNetParameters() method of the Environment objects to give
+        ' them a chance to initialize properties derived from the .NET environment
+
+        envPreconfigured_.setDotNetParameters()
+
         envPreconfigured_.validate()
-        envPreconfigured_.setConfigured()
+
+        ' Load the user's preferences from the Windows registry.  The config_
+        ' object allows the user to override certain characteristics of the
+        ' preconfigured environments loaded above, and the envUserconfigured_
+        ' object contains additional environments configured by the user.
 
         Try
             Dim registryReader As New QuantLibXL.RegistryReader()
@@ -196,7 +205,7 @@ Public Class FormMain
             For Each startupActions In config_.OverrideActions.StartupActionsList
                 If envPreconfigured_.nameInUse(startupActions.Name) Then
                     envPreconfigured = envPreconfigured_.nameToEnvironment(startupActions.Name)
-                    envPreconfigured.StartupActions = startupActions.copy()
+                    envPreconfigured.StartupActions = CType(startupActions, QuantLibXL.StartupActions).Clone
                 End If
             Next
 

@@ -17,6 +17,7 @@
 Namespace QuantLibXL
 
     Public Class StartupActions
+        Implements ICloneable
         Implements ISerializable
 
         ''''''''''''''''''''''''''''''''''''''''''
@@ -70,103 +71,120 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Public Property YieldCurveBootstrap() As Boolean
+
             Get
                 YieldCurveBootstrap = ycBootstrap_
             End Get
+
             Set(ByVal value As Boolean)
                 ycBootstrap_ = value
             End Set
+
         End Property
 
         Public Property LoadMurexYieldCurve() As Boolean
+
             Get
                 LoadMurexYieldCurve = loadMurexYC_
             End Get
+
             Set(ByVal value As Boolean)
                 loadMurexYC_ = value
             End Set
+
         End Property
 
         Public Property CapVolBootstrap() As Boolean
+
             Get
                 CapVolBootstrap = capVolBootstrap_
             End Get
+
             Set(ByVal value As Boolean)
                 capVolBootstrap_ = value
             End Set
+
         End Property
 
         Public Property SwapVolBootstrap() As Boolean
+
             Get
                 SwapVolBootstrap = swapVolBootstrap_
             End Get
+
             Set(ByVal value As Boolean)
                 swapVolBootstrap_ = value
             End Set
+
         End Property
 
         Public Property SwapSmileBootstrap() As Boolean
+
             Get
                 SwapSmileBootstrap = swapSmileBootstrap_
             End Get
+
             Set(ByVal value As Boolean)
                 swapSmileBootstrap_ = value
             End Set
+
         End Property
 
         Public Property FitCMS() As Boolean
+
             Get
                 FitCMS = fitCMS_
             End Get
+
             Set(ByVal value As Boolean)
                 fitCMS_ = value
             End Set
+
         End Property
 
         Public Property IndexesTimeSeries() As Boolean
+
             Get
                 IndexesTimeSeries = indexesTimeSeries_
             End Get
+
             Set(ByVal value As Boolean)
                 indexesTimeSeries_ = value
             End Set
+
         End Property
 
         Public Property LoadBonds() As Boolean
+
             Get
                 LoadBonds = loadBonds_
             End Get
+
             Set(ByVal value As Boolean)
                 loadBonds_ = value
             End Set
+
         End Property
 
         Public Property StaticData() As Boolean
+
             Get
                 StaticData = staticData_
             End Get
+
             Set(ByVal value As Boolean)
                 staticData_ = value
             End Set
+
         End Property
 
-        Public Function copy() As StartupActions
+        Public Function Clone() As Object Implements ICloneable.Clone
 
-            copy = New StartupActions
-
-            copy.ycBootstrap_ = ycBootstrap_
-            copy.loadMurexYC_ = loadMurexYC_
-            copy.capVolBootstrap_ = capVolBootstrap_
-            copy.swapVolBootstrap_ = swapVolBootstrap_
-            copy.swapSmileBootstrap_ = swapSmileBootstrap_
-            copy.fitCMS_ = fitCMS_
-            copy.indexesTimeSeries_ = indexesTimeSeries_
-            copy.loadBonds_ = loadBonds_
-            copy.staticData_ = staticData_
+            Clone = Me.MemberwiseClone()
 
         End Function
 
     End Class
 
-
 End Namespace
+

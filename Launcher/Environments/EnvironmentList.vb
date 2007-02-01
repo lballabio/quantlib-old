@@ -1,5 +1,5 @@
 
-'Copyright (C) 2006 Eric Ehlers
+'Copyright (C) 2006, 2007 Eric Ehlers
 
 'This file is part of QuantLib, a free-software/open-source library
 'for financial quantitative analysts and developers - http://quantlib.org/
@@ -57,50 +57,66 @@ Namespace QuantLibXL
         End Sub
 
         Public Sub validate()
+
             If environmentList_.Count < 1 Then
                 Throw New Exception("No environments are configured.")
             End If
+
         End Sub
 
-        Public Sub setConfigured()
+        Public Sub setDotNetParameters()
+
             Dim env As QuantLibXL.Environment
             For Each env In environmentList_
-                env.setConfigured()
+                env.setDotNetParameters()
             Next
+
         End Sub
 
         Public Function nameToEnvironment(ByVal environmentName As String) As Environment
+
             If environmentList_.Contains(environmentName) Then
                 nameToEnvironment = environmentList_(environmentName)
             Else
                 Throw New Exception("No environment with name " & environmentName)
             End If
+
         End Function
 
-        Public Function createEnvironment(ByVal envName As String) As Environment
+        Public Function createEnvironment(ByVal environmentName As String) As Environment
+
             createEnvironment = New Environment
-            createEnvironment.Name = envName
-            environmentList_.Add(createEnvironment, envName)
+            createEnvironment.Name = environmentName
+            environmentList_.Add(createEnvironment, environmentName)
+
         End Function
 
-        Public Function copyEnvironment(ByVal environment As Environment, ByVal envName As String) As Environment
-            copyEnvironment = environment.copy(envName)
-            environmentList_.Add(copyEnvironment, envName)
+        Public Function copyEnvironment(ByVal environment As Environment, ByVal copyName As String) As Environment
+
+            copyEnvironment = environment.Clone()
+            copyEnvironment.Name = copyName
+            environmentList_.Add(copyEnvironment, copyName)
+
         End Function
 
         Public Sub deleteEnvironment(ByVal environmentName As String)
+
             If environmentList_.Contains(environmentName) Then
                 environmentList_.Remove(environmentName)
             Else
                 Throw New Exception("Attempt to delete nonexistent environment " & environmentName)
             End If
+
         End Sub
 
         Public Function nameInUse(ByVal testName As String) As Boolean
+
             nameInUse = environmentList_.Contains(testName)
+
         End Function
 
         Public Function deriveNewName() As String
+
             Dim baseCount As Integer = 1
             Do
                 deriveNewName = "Environment " & baseCount
@@ -110,9 +126,11 @@ Namespace QuantLibXL
                     Exit Function
                 End If
             Loop
+
         End Function
 
         Public Function deriveCopyName(ByVal text As String) As String
+
             deriveCopyName = "Copy of " & text
             If nameInUse(deriveCopyName) Then
                 Dim baseCount As Integer = 2
@@ -125,9 +143,11 @@ Namespace QuantLibXL
                     End If
                 Loop
             End If
+
         End Function
 
         Public Sub renameEnvironment(ByVal oldName As String, ByVal newName As String)
+
             If environmentList_.Contains(oldName) Then
                 Dim e As Environment
                 e = environmentList_(oldName)
@@ -137,6 +157,7 @@ Namespace QuantLibXL
             Else
                 Throw New Exception("Attempt to rename nonexistent environment " & oldName)
             End If
+
         End Sub
 
     End Class

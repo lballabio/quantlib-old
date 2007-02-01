@@ -32,39 +32,37 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Public Property Name() As String Implements ISerializable.Name
+
             Get
                 Name = "Domains"
             End Get
+
             Set(ByVal value As String)
             End Set
+
         End Property
 
         Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
+
             serializer.serializeObjectCollection(domainList_, "Domain")
+
         End Sub
 
         Public Sub validate(ByVal environmentName As String)
 
-            ' get the user name
             Dim userName As String = System.Environment.UserName
-
-            ' get the domain name
             Dim domainName As String = System.Environment.UserDomainName
-
-            ' get the hard disk serial number
             Dim serialNumber As String = getSerialNumber()
 
             If domainList_.Contains(domainName) Then
-
                 If domainList_(domainName).validate(userName, serialNumber) Then
                     Exit Sub
                 End If
-
             End If
 
             Throw New Exception( _
-                "Sorry - you aren't authorized to use QuantLibXL " _
-                & "environment '" & environmentName & "'." & vbCrLf & vbCrLf _
+                "Sorry - you aren't authorized to use QuantLibXL environment" _
+                & vbCrLf & "'" & environmentName & "'." & vbCrLf & vbCrLf _
                 & "Please ask QuantLibXL support to grant access to:" & vbCrLf & vbCrLf _
                 & "    user name : " & userName & vbCrLf _
                 & "    domain name : " & domainName & vbCrLf _

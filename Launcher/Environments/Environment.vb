@@ -19,6 +19,7 @@ Imports System.Deployment.Application
 Namespace QuantLibXL
 
     Public Class Environment
+        Implements ICloneable
         Implements ISerializable
 
         Private Declare Function GetCurrentProcessId Lib "kernel32" () As Long
@@ -87,75 +88,99 @@ Namespace QuantLibXL
             Get
                 Framework = framework_
             End Get
+
             Set(ByVal value As String)
                 framework_ = value
             End Set
+
         End Property
 
         Public Property Workbooks() As String
+
             Get
                 Workbooks = workbooks_
             End Get
+
             Set(ByVal value As String)
                 workbooks_ = value
             End Set
+
         End Property
 
         Public Property AddinDirectory() As String
+
             Get
                 AddinDirectory = addinDir_
             End Get
+
             Set(ByVal value As String)
                 addinDir_ = value
             End Set
+
         End Property
 
         Public Property AddinName() As String
+
             Get
                 AddinName = addinName_
             End Get
+
             Set(ByVal value As String)
                 addinName_ = value
             End Set
+
         End Property
 
         Private ReadOnly Property AddinPath() As String
+
             Get
                 AddinPath = addinDir_ & "\" & addinName_
             End Get
+
         End Property
 
         Public Property HelpPath() As String
+
             Get
                 HelpPath = helpPath_
             End Get
+
             Set(ByVal value As String)
                 helpPath_ = value
             End Set
+
         End Property
 
         Public Property XmlPath() As String
+
             Get
                 XmlPath = xmlPath_
             End Get
+
             Set(ByVal value As String)
                 xmlPath_ = value
             End Set
+
         End Property
 
         Public Property UserConfig() As String
+
             Get
                 UserConfig = userConfig_
             End Get
+
             Set(ByVal value As String)
                 userConfig_ = value
             End Set
+
         End Property
 
         Public ReadOnly Property CommandLine() As String
+
             Get
                 CommandLine = """" & EXCEL_PATH & """ /e """ & framework_ & """ """ & AddinPath & """"
             End Get
+
         End Property
 
         ''''''''''''''''''''''''''''''''''''''''''
@@ -163,12 +188,15 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Public Property StartupActions() As QuantLibXL.StartupActions
+
             Get
                 StartupActions = startupActions_
             End Get
+
             Set(ByVal value As QuantLibXL.StartupActions)
                 startupActions_ = value
             End Set
+
         End Property
 
         ''''''''''''''''''''''''''''''''''''''''''
@@ -206,6 +234,7 @@ Namespace QuantLibXL
                     & fileName & vbCrLf & vbCrLf & "could not be found")
 
             End If
+
         End Sub
 
         Private Sub validateDirectory(ByVal directoryName As String, ByVal description As String)
@@ -216,6 +245,7 @@ Namespace QuantLibXL
                     & directoryName & vbCrLf & vbCrLf & "could not be found")
 
             End If
+
         End Sub
 
         Private Sub validate()
@@ -230,38 +260,50 @@ Namespace QuantLibXL
 
         End Sub
 
+        ' launch() - Spawn a subprocess running QuantLibXL under Excel.
+        ' Write startup parameters to an XML file in a .NET temporary
+        ' directory, and set environment variable QUANTLIBXL_LAUNCH to
+        ' inform the QuantLibXL session of the location of the file.
+
         Public Sub launch()
 
             validate()
             authenticateUser()
 
+            ' Derive a name for the XML file.  We must guard against race
+            ' conditions, i.e. two instances of the Launcher creating two
+            ' temp files with the same name.  So the name is in the format
+            ' QuantLibXL.launch.xxx.yyy.xml where xxx is this process ID
+            ' and yyy is the current time in subseconds.
+
             Dim tempFilePath As String = System.IO.Path.GetTempPath() _
                 & "QuantLibXL.launch." & GetCurrentProcessId _
                 & "." & DateTime.Now.Ticks & ".xml"
+
+            ' Write this environment object to the temp file.
+
             Dim xmlWriter As New QuantLibXL.XmlWriter(tempFilePath)
             xmlWriter.serializeObject(Me, "Environment")
             xmlWriter.close()
 
+            ' Set the environment variable.
+
             System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH, tempFilePath)
+
+            ' Spawn the subprocess.
+
             Shell(CommandLine, AppWinStyle.NormalFocus)
+
         End Sub
 
-        Public Function copy(ByVal copyName As String) As Environment
+        Public Function Clone() As Object Implements ICloneable.Clone
 
-            copy = New Environment
-            copy.name_ = copyName
-            copy.framework_ = framework_
-            copy.workbooks_ = workbooks_
-            copy.addinDir_ = addinDir_
-            copy.addinName_ = addinName_
-            copy.helpPath_ = helpPath_
-            copy.xmlPath_ = xmlPath_
-            copy.userConfig_ = userConfig_
-            copy.startupActions_ = startupActions_.copy()
+            Clone = Me.MemberwiseClone()
+            Clone.StartupActions = CType(startupActions_, StartupActions).Clone
 
         End Function
 
-        Public Sub setConfigured()
+        Public Sub setDotNetParameters()
 
             If (ApplicationDeployment.IsNetworkDeployed) Then
                 addinDir_ = ApplicationDeployment.CurrentDeployment.DataDirectory & "\Addins\" & name_
