@@ -53,6 +53,7 @@ Public Class FormMain
             Else
                 selectedEnvironment_ = value
                 resetControls()
+                Me.Text = "QuantLibXL Launcher - " & selectedEnvironment_.Name
             End If
         End Set
 
