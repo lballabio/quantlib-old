@@ -2,3 +2,7 @@ quantlib_wrap.cpp
 Makefile
 Makefile.in
 org
+bin
+*.o
+*.so
+*.jar

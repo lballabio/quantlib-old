@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -145,10 +145,10 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                  ->strikeSensitivity();
         }
-    SampledCurve priceCurve() {
+        SampledCurve priceCurve() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
-                 ->priceCurve();
-    }
+                ->result<SampledCurve>("priceCurve");
+        }
         Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
@@ -258,7 +258,7 @@ class BinomialVanillaEnginePtr : public boost::shared_ptr<PricingEngine> {
         BinomialVanillaEnginePtr(const std::string& type,
                                  Size steps) {
 //            std::string s = QuantLib::lowercase(type);
-	    std::string s = type;
+        std::string s = type;
             if (s == "crr" || s == "coxrossrubinstein")
                 return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<CoxRossRubinstein>(steps));
@@ -307,7 +307,7 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                             intOrNull maxSamples = Null<Size>(),
                             BigInteger seed = 0) {
 //            std::string s = QuantLib::lowercase(traits);
-	    std::string s = traits;
+        std::string s = traits;
             QL_REQUIRE(Size(timeSteps) != Null<Size>() ||
                        Size(timeStepsPerYear) != Null<Size>(),
                        "number of steps not specified");
@@ -488,10 +488,10 @@ class DividendVanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
                  ->strikeSensitivity();
         }
-    SampledCurve priceCurve() {
+        SampledCurve priceCurve() {
             return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
-                 ->priceCurve();
-    }
+                ->result<SampledCurve>("priceCurve");
+        }
         Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
@@ -613,10 +613,10 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)
                  ->strikeSensitivity();
         }
-    SampledCurve priceCurve() {
+        SampledCurve priceCurve() {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)
-                 ->priceCurve();
-    }
+                ->result<SampledCurve>("priceCurve");
+        }
         Volatility impliedVolatility(Real targetValue,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
@@ -668,7 +668,7 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
                            bool isBiased = false,
                            BigInteger seed = 0) {
 //            std::string s = QuantLib::lowercase(traits);
-	    std::string s = traits;
+        std::string s = traits;
             if (s == "pseudorandom" || s == "pr")
                 return new MCBarrierEnginePtr(
                          new MCBarrierEngine<PseudoRandom>(timeStepsPerYear,

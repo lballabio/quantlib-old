@@ -21,7 +21,17 @@ This program is distributed in the hope that it will be useful, but WITHOUT
 ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 FOR A PARTICULAR PURPOSE.  See the license for more details.])
 
-# Check for tools
+# check target
+AC_MSG_CHECKING([system])
+target=`uname`
+AC_MSG_RESULT([$target])
+
+# check for QuantLib
+AC_MSG_CHECKING([QuantLib])
+ql_version=`quantlib-config --version`
+AC_MSG_RESULT([$ql_version])
+
+# check for tools
 AC_PATH_PROG([SWIG], [swig])
 
 AC_PATH_PROG([PYTHON], [python])
@@ -48,40 +58,43 @@ AM_CONDITIONAL(HAVE_OCAML, test "x${OCAMLC}" != "x")
 AC_PATH_PROG([R], [R])
 AM_CONDITIONAL(HAVE_R, test "x${R}" != "x")
 
-# Default compilation variables
+AC_PATH_PROG([JAVAC], [javac])
+AC_PATH_PROG([JAR], [jar])
+AM_CONDITIONAL(HAVE_JAVA, test "x${JAVAC}" != "x" && test "x${JAR}" != "x")
 
-# check target
-target=`uname`
-case "$target" in
-Linux ) AC_SUBST([SHARED_LIB],[${SHARED_LIB='-shared'}]) 
-	AC_SUBST([_JAVA_HOME_],[${_JAVA_HOME_=$JAVA_HOME}])
-	AC_SUBST([JAVA_SYSTEM_INCLUDE],[${_JAVA_SYSTEM_INCLUDE=$JAVA_HOME/include/linux}])
-	AC_SUBST([LIB_EXTENSION],[${LIB_EXTENSION='so'}]) ;;
-Darwin ) AC_SUBST([SHARED_LIB],[${SHARED_LIB='-dynamiclib'}])
-	AC_SUBST([_JAVA_HOME_],[${_JAVA_HOME_='/Library/Java/Home'}])
-	AC_SUBST([JAVA_SYSTEM_INCLUDE],[${JAVA_SYSTEM_INCLUDE='/Library/Java/Home/include'}])
-	AC_SUBST([LIB_EXTENSION],[${LIB_EXTENSION='dylib'}]) ;;
-esac
-
-AC_MSG_CHECKING([jdk include])
-
-if test -z "${_JAVA_HOME_}"
-then
-AC_MSG_ERROR([set \$JAVA_HOME enveronment to home path to jdk])
-else
-AC_SUBST([JAVA_INCLUDE],[${JAVA_INCLUDE=$_JAVA_HOME_/include}])
-JAVA_INCLUDE=$_JAVA_HOME_/include
-AC_MSG_RESULT([$JAVA_INCLUDE])
+AC_ARG_WITH([jdk-include],
+            AC_HELP_STRING([--with-jdk-include=INCLUDE_PATH],
+                           [Supply the location of JDK header files]),
+            [ql_jdk_include_path="`cd ${withval} 2>/dev/null && pwd`"],
+            [ql_jdk_include_path=""])
+if test [ -n "$ql_jdk_include_path" ] ; then
+   AC_SUBST([JDK_INCLUDE],["-I${ql_jdk_include_path}"])
+fi
+AC_ARG_WITH([jdk-system-include],
+            AC_HELP_STRING([--with-jdk-system-include=INCLUDE_PATH],
+                           [Supply the location of system-dependent JDK header files]),
+            [ql_jdk_sys_include_path="`cd ${withval} 2>/dev/null && pwd`"],
+            [ql_jdk_sys_include_path=""])
+if test [ -n "$ql_jdk_sys_include_path" ] ; then
+   AC_SUBST([JDK_SYSTEM_INCLUDE],["-I${ql_jdk_sys_include_path}"])
 fi
 
 
-AC_MSG_CHECKING([system])
-AC_MSG_RESULT([$target])
-AC_MSG_CHECKING([shared linker flag])
-AC_MSG_RESULT([$SHARED_LIB])
-
+# Default compilation variables
 
 AC_SUBST([CXXFLAGS],[${CXXFLAGS='-g -O2 -Wall'}])
+
+# flags
+
+case "$target" in
+Darwin)
+    AC_SUBST([SHARED_LIB],[${SHARED_LIB='-dynamiclib'}])
+	AC_SUBST([LIB_EXTENSION],[${LIB_EXTENSION='dylib'}]) ;;
+*)
+    AC_SUBST([SHARED_LIB],[${SHARED_LIB='-shared'}])
+	AC_SUBST([LIB_EXTENSION],[${LIB_EXTENSION='so'}]) ;;
+esac
+
 
 # done, output the configured files
 AC_CONFIG_FILES([
