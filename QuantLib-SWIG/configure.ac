@@ -50,6 +50,37 @@ AM_CONDITIONAL(HAVE_R, test "x${R}" != "x")
 
 # Default compilation variables
 
+# check target
+target=`uname`
+case "$target" in
+Linux ) AC_SUBST([SHARED_LIB],[${SHARED_LIB='-shared'}]) 
+	AC_SUBST([_JAVA_HOME_],[${_JAVA_HOME_=$JAVA_HOME}])
+	AC_SUBST([JAVA_SYSTEM_INCLUDE],[${_JAVA_SYSTEM_INCLUDE=$JAVA_HOME/include/linux}])
+	AC_SUBST([LIB_EXTENSION],[${LIB_EXTENSION='so'}]) ;;
+Darwin ) AC_SUBST([SHARED_LIB],[${SHARED_LIB='-dynamiclib'}])
+	AC_SUBST([_JAVA_HOME_],[${_JAVA_HOME_='/Library/Java/Home'}])
+	AC_SUBST([JAVA_SYSTEM_INCLUDE],[${JAVA_SYSTEM_INCLUDE='/Library/Java/Home/include'}])
+	AC_SUBST([LIB_EXTENSION],[${LIB_EXTENSION='dylib'}]) ;;
+esac
+
+AC_MSG_CHECKING([jdk include])
+
+if test -z "${_JAVA_HOME_}"
+then
+AC_MSG_ERROR([set \$JAVA_HOME enveronment to home path to jdk])
+else
+AC_SUBST([JAVA_INCLUDE],[${JAVA_INCLUDE=$_JAVA_HOME_/include}])
+JAVA_INCLUDE=$_JAVA_HOME_/include
+AC_MSG_RESULT([$JAVA_INCLUDE])
+fi
+
+
+AC_MSG_CHECKING([system])
+AC_MSG_RESULT([$target])
+AC_MSG_CHECKING([shared linker flag])
+AC_MSG_RESULT([$SHARED_LIB])
+
+
 AC_SUBST([CXXFLAGS],[${CXXFLAGS='-g -O2 -Wall'}])
 
 # done, output the configured files
