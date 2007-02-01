@@ -1,7 +1,6 @@
 ==== RANDOM NOTES =============
 
 digital in call spread
-optimization end criteria
 - abcd for displacement
 - add abcd interpolation
 
@@ -34,19 +33,14 @@ fixed sabr parameters
 - drift for SWAP-based MM
 
 
-===== DISCUSS ================
-
-- DONE create another CapletVol object instance using future option smile sections only in CapStripper.xls
-
 
 ======= TODO ===============
 
 General
 - introduce type QuantLib::Money
-- reorder excel input order according to cf analysis
-
 
 Nando
+- fogli di clerici
 - expose x,y of interpolation objects
 - joint calendar
 - mkt convention struct
@@ -62,45 +56,16 @@ Nando
 
 K
 - SA applied to cms book
-DONE new end of day live feed snapshot procedure + vol cube + mean rev + all environments
-- demo skeleton
+- update end of day procedures
 - test abcd (swap tenor) with new optimization code
 - review SwaptionVolCubeChecks.xls
-Done split Indexes Time Series procedure into Open/Close
-Done append/merge cash flow streams constructor
-- report rilascio settimanale
 - trimestrale
 - triggers added in bondMonitor.xls (performance problems)
-- subVersion
 
 François
 - add SABR interpolation to the capstripper
-- refactor the method class (remove Endcriteria)
-D analysis: resize is missing, no bold, no change of font size, no borders, format only 20 columns, accrual days general, accrual period 4 decimals, effective rate 4 digits
+- refactor the method class (move Endcriteria as argument of the minimize)
 - no ScheduleID as input value->blank cell
-D permanent comment: TRUE if the object must be permanent (i.e. resistant to garbage collection). Default is FALSE.
-D ObjectID comment: id of the object to be created. If missing a unique id will be automatically assigned.
-D priority: object builder QuantLib types default (for enumeration use the Excel default), then blank if there is an xml default value, finally exampleValue
-D FALSE default value for endofmonth in schedule is not effective
-D exampleValue for tenor in schedule is not effective
-D exampleValue for rate in FlatForward is not effective
-D default for frequency in FlatForward is not effective
-D default for gearing in CMSLeg is not effective
-D libraryClass='SwapIndex' must default to the EURIBORSWAPFIXA enumeration
-D do not input the permanent field
-D remove the ObjectID entry field from the form, put the focus in that field after insertion
-D another line under the ObjectID field
-D constructor for CmsCouponPricer, parameter VanillaCMSCouponPricerType: insert "Convexity Adjustment Type" enumeration drop down list
-
-
-D (Long) Date
-D (Short) Date
-D QuantLib::DiscountFactor formatting (9 decimal digits)
-D QuantLib::Time formatting (4 decimal digits)
-D QuantLib::Spread and QuantLib::InterestRate formatting (as for QuantLib::Rate) [Rate/Spread]
-D QuantLib::Money (Currency, symbol None, 2 decimals)
-D flow analysis formatting
-
 TO BE DISCUSSED: Object Builder performance issue when the control panel is left opened
 
 - OH function wizard
@@ -124,15 +89,8 @@ TO BE DISCUSSED: Object Builder performance issue when the control panel is left
 
 
 Cristina
-- DONE: EXCEL BEHAVIOUR, NOT QL CODE ERROR qlFloatingRateCouponVector: if fixing days is blank, it result = 0!!
-- reorder Excel input parameters order
-  - DONE in QuantLibAddin code
-  - WIP in workbooks
-- DONE floor<=cap coupon check
+- reorder Excel workbooks input parameters order
 - WIP cap/floor rates output in cashflow analysis
-- DONE payment business days convention and fixing days
-- DONE test Mx sul 29/9
-- DONE capped/floored-cms comparison (shared among Cristina and Giorgio)
 - WIP coupon refactoring and extension (shared among Cristina and Giorgio)
 - WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
 - digital option in C++ (shared among Marco, Giorgio and Cristina)
@@ -140,9 +98,7 @@ Cristina
 
 
 Giorgio
-- 1.check npv
 - 2.cms gearing negativo, floor a zero: non funziona
-- DONE capped/floored-cms comparison (shared among Cristina and Giorgio)
 - WIP coupon refactoring and extension (shared among Cristina and Giorgio)
 - digital option in C++ (shared among Marco, Giorgio and Cristina)
 - think about how to simplify mean reversion usage, cms swaption calibration
@@ -152,14 +108,9 @@ Giorgio
 
 
 Chiara
-D usare ohsplit nella costruzione dei bondobjects
 - capped/floored coupon bond
 - payment business days convention and fixing days
 - bond pricing engine
-D check asset swap termination date
-D check asw when bond redemption != 100
-D add Back Payment to par asset swap
-D perche' lo yield non ha la frequenza?
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
 
@@ -176,12 +127,17 @@ Marco
 
 
 Eric
-- metadata (and log) defaults
-- native ohSplit on vector input to coerce from string to vector
+- launcher addin dir ?
+- remove quantlibxl-bin.nsi
+- merge quantlibxl.nsi and quantlib-network.nsi
+- in the nsi generalize the location of the xml files
+- log defaults
+- launcher issues
+- oh.chm
+- review native ohSplit on vector input to coerce from string to vector
 - why the error message doesn't disappear as soon as the cell is not in error anymore
 - ohConcatenate, ohRange1D, ohRange2D
 - command (remove function SetEvaluationDate, etc?)
-- domain validation
 - watch on
 - SA
 - InterestRateQuoteFeed.xls: Auto_Open problem
@@ -244,7 +200,6 @@ LUIGI
 
 MODULES
 - reorganize file/folder/projectfolder
-- create QuantLib-other CVS mailing list
 
 QUANTLIBADDIN
 - RSG factory
@@ -258,6 +213,7 @@ QUANTLIBADDIN
 - esportare MultiStepOptionlets
 
 QUANTLIBXL WORKBOOKS
+- close live data workbook must pause reuters, close, there restore Reuters original state
 - nel ControlPanel dare evidenza dei feed: CMS
 - Property example?
 - SWAPTION spreadsheet with multiple prices
