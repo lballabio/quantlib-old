@@ -56,11 +56,19 @@ Nando
 
 K
 - SA applied to cms book
-- update end of day procedures
+- DONE update end of day procedures: calibarionParametersQuotesFeed.xls added
 - test abcd (swap tenor) with new optimization code
-- review SwaptionVolCubeChecks.xls
+- DONE: waiting for atmCalibrated=True. review SwaptionVolCubeChecks.xls
 - trimestrale
-- triggers added in bondMonitor.xls (performance problems)
+- DONE triggers added in bondMonitor.xls (performance problems)
+- murex yield curve
+- euriborswapfixB
+- DONE move calibration params out from CP.xls
+- multiLegSwap.xls: move from Drafts to IRDerivatives
+- quickCapPricer.xls: move from Drafts to IRDerivatives
+- remove action atmVolatility from Launcher/menu
+- standardizzare il nome delle quotes dei param di calibrazione
+
 
 François
 - add SABR interpolation to the capstripper
@@ -73,7 +81,7 @@ TO BE DISCUSSED: Object Builder performance issue when the control panel is left
 - To BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a single test
 - TO BE REVIEWED MultiStepSwaption
-- - DONE merge Object builder improvements into QuantLib.xla
+- DONE merge Object builder improvements into QuantLib.xla
 	->TO BE DISCUSSED: vector input, change in XML file structure to implement default values
 -> TO BE REVIEWED check sabr fit stability/accuracy for smilesections
 - add atmRate to SmileSection base class
