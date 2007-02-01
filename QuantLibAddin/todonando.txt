@@ -74,6 +74,8 @@ Done append/merge cash flow streams constructor
 - subVersion
 
 François
+- add SABR interpolation to the capstripper
+- refactor the method class (remove Endcriteria)
 D analysis: resize is missing, no bold, no change of font size, no borders, format only 20 columns, accrual days general, accrual period 4 decimals, effective rate 4 digits
 - no ScheduleID as input value->blank cell
 D permanent comment: TRUE if the object must be permanent (i.e. resistant to garbage collection). Default is FALSE.
@@ -89,6 +91,7 @@ D do not input the permanent field
 D remove the ObjectID entry field from the form, put the focus in that field after insertion
 D another line under the ObjectID field
 D constructor for CmsCouponPricer, parameter VanillaCMSCouponPricerType: insert "Convexity Adjustment Type" enumeration drop down list
+
 
 D (Long) Date
 D (Short) Date
