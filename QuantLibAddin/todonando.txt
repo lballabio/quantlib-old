@@ -128,6 +128,7 @@ Marco
 - DONE BGM book set up
 - DONE sticky/ratchet and double option instruments in C++ (shared among Marco, Giorgio)
 - sticky/ratchet and double option instruments export in Addin
+- sticky/ratchet and double option pricing
 - WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
 - digital option in C++ (shared among Marco, Giorgio and Cristina)
 - ??? foglio swaption per De Nuccio / Murex
