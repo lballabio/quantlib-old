@@ -551,4 +551,19 @@ LPXLOPER TempMissing(void)
     return lpx;
 }
 
+LPXLOPER TempNil()
+{
+    LPXLOPER lpx;
+
+    lpx = (LPXLOPER) GetTempMemory(sizeof(XLOPER));
+
+    if (!lpx)
+    {
+        return 0;
+    }
+
+    lpx->xltype = xltypeNil;
+
+    return lpx;
+}
 

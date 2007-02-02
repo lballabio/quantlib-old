@@ -43,5 +43,6 @@ LPXLOPER TempActiveRow(WORD rw);
 LPXLOPER TempActiveColumn(BYTE col);
 LPXLOPER TempErr(WORD i);
 LPXLOPER TempMissing(void);
+LPXLOPER TempNil();
 
 #endif
