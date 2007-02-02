@@ -76,7 +76,7 @@ François
 - no ScheduleID as input value->blank cell
 TO BE DISCUSSED: Object Builder performance issue when the control panel is left opened
 
-- OH function wizard
+D OH function wizard
 - distribute XML
 - To BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a single test
