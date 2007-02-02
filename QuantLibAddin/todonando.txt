@@ -73,7 +73,7 @@ K
 François
 - add SABR interpolation to the capstripper
 - refactor the method class (move Endcriteria as argument of the minimize)
-- no ScheduleID as input value->blank cell
+D no ScheduleID as input value->blank cell
 TO BE DISCUSSED: Object Builder performance issue when the control panel is left opened
 
 D OH function wizard
