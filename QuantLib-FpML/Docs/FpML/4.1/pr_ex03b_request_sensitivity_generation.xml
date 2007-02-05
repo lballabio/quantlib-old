@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML xmlns="http://www.fpml.org/2004/FpML-4-1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd"
+        xsi:type="RequestValuationReport" version="4-1">
+        <header>
+                <messageId messageIdScheme="http://www.abcdef.org/message-id">VAL003b</messageId>
+                <sentBy>ABCDEF</sentBy>
+                <sendTo>BBBBBB</sendTo>
+                <creationTimestamp>2004-06-14T12:40:12-00:00</creationTimestamp>
+        </header>
+        <party id="party1">
+                <partyId>ABCDEF</partyId>
+        </party>
+        <!--Environment -->
+        <market id="market1">
+                <!--Yield Curve-->
+                <yieldCurve id="yc1">
+                        <currency>USD</currency>
+                </yieldCurve>
+                <!--Yield Curve Valuation for yc1-vals-->
+                <yieldCurveValuation id="yc1-vals">
+                        <objectReference href="yc1"/>
+                        <baseDate>2003-10-29</baseDate>
+                        <buildDateTime>2004-06-05T10:18:30-00:00</buildDateTime>
+                        <inputs>
+                                <instrumentSet>
+                                        <deposit id="ycinput-1">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-DEP-ON</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>1</periodMultiplier>
+                                                  <period>D</period>
+                                                </term>
+                                        </deposit>
+                                        <deposit id="ycinput-2">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-DEP-TN</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>2</periodMultiplier>
+                                                  <period>D</period>
+                                                </term>
+                                        </deposit>
+                                        <deposit id="ycinput-3">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-DEP-1M</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>1</periodMultiplier>
+                                                  <period>M</period>
+                                                </term>
+                                        </deposit>
+                                        <deposit id="ycinput-4">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-DEP-3M</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>1</periodMultiplier>
+                                                  <period>M</period>
+                                                </term>
+                                        </deposit>
+                                        <future id="ycinput-5">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-DEC03</instrumentId>
+                                        </future>
+                                        <future id="ycinput-6">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-MAR04</instrumentId>
+                                        </future>
+                                        <future id="ycinput-7">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-JUN04</instrumentId>
+                                        </future>
+                                        <future id="ycinput-8">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SEP04</instrumentId>
+                                        </future>
+                                        <simpleIrSwap id="ycinput-9">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-2Y</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>2</periodMultiplier>
+                                                  <period>Y</period>
+                                                </term>
+                                        </simpleIrSwap>
+                                        <simpleIrSwap id="ycinput-10">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-3Y</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>3</periodMultiplier>
+                                                  <period>Y</period>
+                                                </term>
+                                        </simpleIrSwap>
+                                        <simpleIrSwap id="ycinput-11">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-4Y</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>4</periodMultiplier>
+                                                  <period>Y</period>
+                                                </term>
+                                        </simpleIrSwap>
+                                        <simpleIrSwap id="ycinput-12">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-5Y</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>5</periodMultiplier>
+                                                  <period>Y</period>
+                                                </term>
+                                        </simpleIrSwap>
+                                        <simpleIrSwap id="ycinput-13">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-7Y</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>7</periodMultiplier>
+                                                  <period>Y</period>
+                                                </term>
+                                        </simpleIrSwap>
+                                        <simpleIrSwap id="ycinput-14">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-10Y</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>10</periodMultiplier>
+                                                  <period>Y</period>
+                                                </term>
+                                        </simpleIrSwap>
+                                        <simpleIrSwap id="ycinput-15">
+                                                <instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-15Y</instrumentId>
+                                                <term>
+                                                  <periodMultiplier>15</periodMultiplier>
+                                                  <period>Y</period>
+                                                </term>
+                                        </simpleIrSwap>
+                                </instrumentSet>
+                                <assetQuote>
+                                        <objectReference href="ycinput-1"/>
+                                        <quote>
+                                                <value>0.0111</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-2"/>
+                                        <quote>
+                                                <value>0.012</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-3"/>
+                                        <quote>
+                                                <value>0.013</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-4"/>
+                                        <quote>
+                                                <value>0.014</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-5"/>
+                                        <quote>
+                                                <value>9850</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>IRFuturesPrice</quoteUnits>
+                                        </quote>
+                                        <quote>
+                                                <value>0.0001</value>
+                                                <measureType>ConvexityAdjustment</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-6"/>
+                                        <quote>
+                                                <value>9840</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>IRFuturesPrice</quoteUnits>
+                                        </quote>
+                                        <quote>
+                                                <value>0.00012</value>
+                                                <measureType>ConvexityAdjustment</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-7"/>
+                                        <quote>
+                                                <value>9830</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>IRFuturesPrice</quoteUnits>
+                                        </quote>
+                                        <quote>
+                                                <value>0.00014</value>
+                                                <measureType>ConvexityAdjustment</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-8"/>
+                                        <quote>
+                                                <value>9820</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>IRFuturesPrice</quoteUnits>
+                                        </quote>
+                                        <quote>
+                                                <value>0.00016</value>
+                                                <measureType>ConvexityAdjustment</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-9"/>
+                                        <quote>
+                                                <value>0.02</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-10"/>
+                                        <quote>
+                                                <value>0.021</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-11"/>
+                                        <quote>
+                                                <value>0.022</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-12"/>
+                                        <quote>
+                                                <value>0.023</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-13"/>
+                                        <quote>
+                                                <value>0.024</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-14"/>
+                                        <quote>
+                                                <value>0.025</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                                <assetQuote>
+                                        <objectReference href="ycinput-15"/>
+                                        <quote>
+                                                <value>0.026</value>
+                                                <measureType>MarketQuote</measureType>
+                                                <quoteUnits>Rate</quoteUnits>
+                                        </quote>
+                                </assetQuote>
+                        </inputs>
+                        <zeroCurve>
+                                <compoundingFrequency>Annual</compoundingFrequency>
+                                <rateCurve>
+                                        <point id="yc1-vals-zero-pt1">
+                                                <term>
+                                                  <date>2003-10-30</date>
+                                                </term>
+                                                <mid>0.0112</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt2">
+                                                <term>
+                                                  <date>2003-10-31</date>
+                                                </term>
+                                                <mid>0.0121</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt3">
+                                                <term>
+                                                  <date>2003-11-30</date>
+                                                </term>
+                                                <mid>0.0131</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt4">
+                                                <term>
+                                                  <date>2004-01-31</date>
+                                                </term>
+                                                <mid>0.0141</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt5">
+                                                <term>
+                                                  <date>2004-03-18</date>
+                                                </term>
+                                                <mid>0.0151</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt6">
+                                                <term>
+                                                  <date>2004-06-15</date>
+                                                </term>
+                                                <mid>0.0161</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt7">
+                                                <term>
+                                                  <date>2004-09-15</date>
+                                                </term>
+                                                <mid>0.0171</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt8">
+                                                <term>
+                                                  <date>2004-12-16</date>
+                                                </term>
+                                                <mid>0.0181</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt9">
+                                                <term>
+                                                  <date>2005-10-31</date>
+                                                </term>
+                                                <mid>0.0201</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt10">
+                                                <term>
+                                                  <date>2006-10-30</date>
+                                                </term>
+                                                <mid>0.0211</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt11">
+                                                <term>
+                                                  <date>2007-10-31</date>
+                                                </term>
+                                                <mid>0.0221</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt12">
+                                                <term>
+                                                  <date>2008-10-31</date>
+                                                </term>
+                                                <mid>0.0231</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt13">
+                                                <term>
+                                                  <date>2010-10-31</date>
+                                                </term>
+                                                <mid>0.0241</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt14">
+                                                <term>
+                                                  <date>2013-10-31</date>
+                                                </term>
+                                                <mid>0.0251</mid>
+                                        </point>
+                                        <point id="yc1-vals-zero-pt15">
+                                                <term>
+                                                  <date>2018-10-31</date>
+                                                </term>
+                                                <mid>0.0261</mid>
+                                        </point>
+                                </rateCurve>
+                        </zeroCurve>
+                        <discountFactorCurve>
+                                <point id="yc1-vals-df-pt1">
+                                        <term>
+                                                <date>2003-10-30</date>
+                                        </term>
+                                        <mid>0.999869757040574</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt2">
+                                        <term>
+                                                <date>2003-10-31</date>
+                                        </term>
+                                        <mid>0.999934098718365</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt3">
+                                        <term>
+                                                <date>2003-11-30</date>
+                                        </term>
+                                        <mid>0.998859615154173</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt4">
+                                        <term>
+                                                <date>2004-01-31</date>
+                                        </term>
+                                        <mid>0.996400622534765</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt5">
+                                        <term>
+                                                <date>2004-03-18</date>
+                                        </term>
+                                        <mid>0.994227178365835</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt6">
+                                        <term>
+                                                <date>2004-06-15</date>
+                                        </term>
+                                        <mid>0.989986073915221</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt7">
+                                        <term>
+                                                <date>2004-09-15</date>
+                                        </term>
+                                        <mid>0.985153364055606</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt8">
+                                        <term>
+                                                <date>2004-12-16</date>
+                                        </term>
+                                        <mid>0.979859309181877</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt9">
+                                        <term>
+                                                <date>2005-10-31</date>
+                                        </term>
+                                        <mid>0.960823172585937</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt10">
+                                        <term>
+                                                <date>2006-10-30</date>
+                                        </term>
+                                        <mid>0.939172748187296</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt11">
+                                        <term>
+                                                <date>2007-10-31</date>
+                                        </term>
+                                        <mid>0.916111677406541</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt12">
+                                        <term>
+                                                <date>2008-10-31</date>
+                                        </term>
+                                        <mid>0.891868623277781</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt13">
+                                        <term>
+                                                <date>2010-10-31</date>
+                                        </term>
+                                        <mid>0.846233270451626</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt14">
+                                        <term>
+                                                <date>2013-10-31</date>
+                                        </term>
+                                        <mid>0.78017168119187</mid>
+                                </point>
+                                <point id="yc1-vals-df-pt15">
+                                        <term>
+                                                <date>2018-10-31</date>
+                                        </term>
+                                        <mid>0.679157882776367</mid>
+                                </point>
+                        </discountFactorCurve>
+                </yieldCurveValuation>
+        </market>
+        <!--Portfolio Valuation Item-->
+        <portfolioValuationItem>
+                <queryPortfolio id="port1">
+			<queryParameter>
+				<queryParameterId queryParameterIdScheme="http://www.fpml.org/spec/2004/query-parameter-id-1-0">product</queryParameterId>
+			        </queryParameter>
+		</queryPortfolio>
+                <tradeValuationItem>
+                        <!--Trade Valuation Set-->
+                        <valuationSet>
+                                <!--Valuation Scenario-->
+                                <valuationScenario id="valscen1">
+                                        <name>EOD Valuation</name>
+                                        <valuationDate>2004-05-01</valuationDate>
+                                        <marketReference href="market1"/>
+                                </valuationScenario>
+                                <baseParty href="party1"/>
+                                <!--Requested Valuation Characteristics-->
+                                <quotationCharacteristics>
+                                        <measureType>BucketedInterestRateSensitivity</measureType>
+                                </quotationCharacteristics>
+                                <detail valuationSetDetailScheme="http://www.fpml.org/spec/2004/valuation-set-detail-1-0">Moderate</detail>
+                        </valuationSet>
+                </tradeValuationItem>
+                <!--Portfolio Valuation Set-->
+                <valuationSet>
+                        <!--Valuation Scenario-->
+                        <valuationScenarioReference href="valscen1"/>
+                        <baseParty href="party1"/>
+                </valuationSet>
+        </portfolioValuationItem>
+</FpML>

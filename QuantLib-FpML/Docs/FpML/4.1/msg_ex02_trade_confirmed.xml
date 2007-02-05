@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+
+<!--
+  == This examples shows how to use the RequestTradeConfirmation type to initiate a
+  == confirmation process.
+  -->
+<FpML version="4-1" xsi:type="TradeConfirmed" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xmlns="http://www.fpml.org/2004/FpML-4-1">
+        <header>
+                <messageId messageIdScheme="http://www.example.com/messageId">MS/2003/04/02/15-38</messageId>
+                <sentBy>MATCHSRV</sentBy>
+                <sendTo>UBSW</sendTo>
+                <creationTimestamp>2003-04-02T15:38:00-00:00</creationTimestamp>
+        </header>
+        <trade>
+                <tradeHeader>
+                        <partyTradeIdentifier>
+                                <partyReference href="JPMC"/>
+                                <tradeId tradeIdScheme="http://www.jpmorgan.com/fpmltid">XYZ789</tradeId>
+                        </partyTradeIdentifier>
+                        <partyTradeIdentifier>
+                                <partyReference href="UBSW"/>
+                                <tradeId tradeIdScheme="http://www.ubsw.com/fpmltid">FX1234</tradeId>
+                        </partyTradeIdentifier>
+                        <tradeDate>2003-04-02</tradeDate>
+                </tradeHeader>
+                <fxSingleLeg>
+                        <exchangedCurrency1>
+                                <payerPartyReference href="UBSW"/>
+                                <receiverPartyReference href="JPMC"/>
+                                <paymentAmount>
+                                        <currency>GBP</currency>
+                                        <amount>1000000</amount>
+                                </paymentAmount>
+                        </exchangedCurrency1>
+                        <exchangedCurrency2>
+                                <payerPartyReference href="JPMC"/>
+                                <receiverPartyReference href="UBSW"/>
+                                <paymentAmount>
+                                        <currency>USD</currency>
+                                        <amount>1520000</amount>
+                                </paymentAmount>
+                        </exchangedCurrency2>
+                        <valueDate>2004-04-04</valueDate>
+                        <exchangeRate>
+                                <quotedCurrencyPair>
+                                        <currency1>GBP</currency1>
+                                        <currency2>USD</currency2>
+                                        <quoteBasis>Currency2PerCurrency1</quoteBasis>
+                                </quotedCurrencyPair>
+                                <rate>1.52</rate>
+                        </exchangeRate>
+                </fxSingleLeg>
+        </trade>
+        <party id="UBSW">
+                <partyId>UBSW</partyId>
+        </party>
+        <party id="JPMC">
+                <partyId>JPMC</partyId>
+        </party>
+</FpML>

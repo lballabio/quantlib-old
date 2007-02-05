@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<!-- 
+  == Example 13 Double Knockout Barrier FX Option
+  ==              Trade Date      : 2002-01-03
+  ==              Expiry Date     : 2002-03-04
+  ==              Expiry Time     : 10:00 New York Time
+  ==              Option Buyer    : DB
+  ==              Option Seller   : Chase
+  ==              Double Barrier Option   : 2.5b JPY Put on 23,798,191.34 USD @ 105.05 strike w/ knockout at 102 & 115
+  ==              Option Premium  : 192,765.35 USD (0.81% of USD)
+  ==              Premium Payment: 2002-01-07
+  ==              Value Date      : 2002-03-06
+  ==              Business Center : New York
+  ==              Reference Spot : 106
+  -->
+<FpML version="4-1" xsi:type="DataDocument" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xmlns="http://www.fpml.org/2004/FpML-4-1">
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="CHASE"/>
+				<tradeId tradeIdScheme="http://www.chase.com/swaps/trade-id">CHASUS33</tradeId>
+			</partyTradeIdentifier>
+			<partyTradeIdentifier>
+				<partyReference href="DB"/>
+				<tradeId tradeIdScheme="http://www.db.com/swaps/trade-id">DEUTDEFF</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate>2002-01-03</tradeDate>
+		</tradeHeader>
+		<fxBarrierOption>
+			<productType>DOUBLEBARRIER</productType>
+			<buyerPartyReference href="DB"/>
+			<sellerPartyReference href="CHASE"/>
+			<expiryDateTime>
+				<expiryDate>2002-03-04</expiryDate>
+				<expiryTime>
+					<hourMinuteTime>10:00:00</hourMinuteTime>
+					<businessCenter>USNY</businessCenter>
+				</expiryTime>
+			</expiryDateTime>
+			<exerciseStyle>European</exerciseStyle>
+			<fxOptionPremium>
+				<payerPartyReference href="DB"/>
+				<receiverPartyReference href="CHASE"/>
+				<premiumAmount>
+					<currency>USD</currency>
+					<amount>192765.35</amount>
+				</premiumAmount>
+				<premiumSettlementDate>2002-01-07</premiumSettlementDate>
+				<premiumQuote>
+					<premiumValue>0.0081</premiumValue>
+					<premiumQuoteBasis>PercentageOfCallCurrencyAmount</premiumQuoteBasis>
+				</premiumQuote>
+			</fxOptionPremium>
+			<valueDate>2002-03-06</valueDate>
+			<putCurrencyAmount>
+				<currency>JPY</currency>
+				<amount>2500000000</amount>
+			</putCurrencyAmount>
+			<callCurrencyAmount>
+				<currency>USD</currency>
+				<amount>23798191.34</amount>
+			</callCurrencyAmount>
+			<fxStrikePrice>
+				<rate>105.05</rate>
+				<strikeQuoteBasis>PutCurrencyPerCallCurrency</strikeQuoteBasis>
+			</fxStrikePrice>
+			<quotedAs>
+				<optionOnCurrency>JPY</optionOnCurrency>
+				<faceOnCurrency>USD</faceOnCurrency>
+				<quotedTenor>
+					<periodMultiplier>2</periodMultiplier>
+					<period>M</period>
+				</quotedTenor>
+			</quotedAs>
+			<spotRate>106</spotRate>
+			<fxBarrier>
+				<fxBarrierType>ReverseKnockout</fxBarrierType>
+				<quotedCurrencyPair>
+					<currency1>USD</currency1>
+					<currency2>JPY</currency2>
+					<quoteBasis>Currency2PerCurrency1</quoteBasis>
+				</quotedCurrencyPair>
+				<triggerRate>102</triggerRate>
+				<informationSource>
+					<rateSource>Reuters</rateSource>
+					<rateSourcePage>JPY=</rateSourcePage>
+				</informationSource>
+			</fxBarrier>
+			<fxBarrier>
+				<fxBarrierType>Knockout</fxBarrierType>
+				<quotedCurrencyPair>
+					<currency1>USD</currency1>
+					<currency2>JPY</currency2>
+					<quoteBasis>Currency2PerCurrency1</quoteBasis>
+				</quotedCurrencyPair>
+				<triggerRate>115</triggerRate>
+				<informationSource>
+					<rateSource>Reuters</rateSource>
+					<rateSourcePage>JPY=</rateSourcePage>
+				</informationSource>
+			</fxBarrier>
+		</fxBarrierOption>
+	</trade>
+	<party id="CHASE">
+		<partyId>CHASUS33</partyId>
+	</party>
+	<party id="DB">
+		<partyId>DEUTDEFF</partyId>
+	</party>
+</FpML>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xsi:type="ValuationReport" version="4-1">
+	<!-- This is a trade valuation report for a previous valuation request -->
+	<header>
+		<messageId messageIdScheme="http://www.bbbbbb.org/message-id">RESP001</messageId>
+		<inReplyTo messageIdScheme="http://www.abcdef.org/message-id">VAL001</inReplyTo>
+		<sentBy>BBBBBB</sentBy>
+		<sendTo>ABCDEF</sendTo>
+		<creationTimestamp>2004-06-14T12:47:50-00:00</creationTimestamp>
+	</header>
+	<party id="partyA">
+		<partyId>ABCDEF</partyId>
+	</party>
+	<party id="partyB">
+		<partyId>BBBBBB</partyId>
+	</party>
+	<tradeValuationItem>
+		<partyTradeIdentifier id="tid-1">
+			<partyReference href="partyA"/>
+			<tradeId tradeIdScheme="http://www.partyA.com/trade-id">AAA123</tradeId>
+		</partyTradeIdentifier>
+		<!--Valuation Set (report)-->
+		<valuationSet id="val1">
+			<valuationScenario id="valscen1">
+				<name>EOD Valuation</name>
+				<valuationDate>2004-05-01</valuationDate>
+			</valuationScenario>
+			<baseParty href="partyA"/>
+			<quotationCharacteristics>
+				<side>Mid</side>
+				<currency>USD</currency>
+			</quotationCharacteristics>
+			<!--results for trade #1-->
+			<assetValuation>
+				<objectReference href="tid-1"/>
+				<!--quote value and NPV-->
+				<quote>
+					<value>-14875</value>
+					<measureType>NPV</measureType>
+				</quote>
+			</assetValuation>
+		</valuationSet>
+	</tradeValuationItem>
+</FpML>

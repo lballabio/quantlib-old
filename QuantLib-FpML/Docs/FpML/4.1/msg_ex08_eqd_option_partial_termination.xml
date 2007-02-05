@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<FpML version="4-1" xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd http://www.w3.org/2000/09/xmldsig# xmldsig-core-schema.xsd" xsi:type="TradeTerminationRequest">
+	<header>
+		<conversationId conversationIdScheme="http://www.drkw.com/conversationId/OTC">OTCCallorPutSpread45678</conversationId>
+		<messageId messageIdScheme="http://www.drkw.com/messageId/OTC">OTCCallorPutSpread456a789b</messageId>
+		<sentBy partyIdScheme="http://www.MsgParty.com/partyId">drkw</sentBy>
+		<creationTimestamp>2000-08-01T08:57:00-00:00</creationTimestamp>
+	</header>
+	<termination>
+		<trade>
+			<tradeHeader>
+				<partyTradeIdentifier>
+					<partyReference href="drkw"/>
+					<tradeId tradeIdScheme="http://www.drkw.com/tradeId/OTC">1234</tradeId>
+				</partyTradeIdentifier>
+				<tradeDate id="TradeDate">2001-07-13</tradeDate>
+			</tradeHeader>
+			<equityOptionTransactionSupplement>
+				<productType>americanCallStock</productType>
+				<buyerPartyReference href="PartyB"/>
+				<sellerPartyReference href="drkw"/>
+				<optionType>Put</optionType>
+				<underlyer>
+					<singleUnderlyer>
+						<equity>
+							<instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">STM-FP</instrumentId>
+							<description>STMicroelectronics N.V. ordinary shares</description>
+							<exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NSE</exchangeId>
+						</equity>
+					</singleUnderlyer>
+				</underlyer>
+				<equityExercise>
+					<equityAmericanExercise>
+						<commencementDate>
+							<adjustableDate>
+								<unadjustedDate>2001-07-13</unadjustedDate>
+								<dateAdjustments>
+									<businessDayConvention>NONE</businessDayConvention>
+								</dateAdjustments>
+							</adjustableDate>
+						</commencementDate>
+						<expirationDate>
+							<adjustableDate>
+								<unadjustedDate>2001-09-27</unadjustedDate>
+								<dateAdjustments>
+									<businessDayConvention>NONE</businessDayConvention>
+								</dateAdjustments>
+							</adjustableDate>
+						</expirationDate>
+						<latestExerciseTime>
+							<hourMinuteTime>17:15:00</hourMinuteTime>
+							<businessCenter>GBLO</businessCenter>
+						</latestExerciseTime>
+						<latestExerciseTimeType>SpecificTime</latestExerciseTimeType>
+						<equityExpirationTimeType>Close</equityExpirationTimeType>
+					</equityAmericanExercise>
+					<automaticExercise>true</automaticExercise>
+					<equityValuation>
+						<valuationTimeType>Close</valuationTimeType>
+					</equityValuation>
+					<settlementCurrency>EUR</settlementCurrency>
+					<settlementPriceSource>OfficialClose</settlementPriceSource>
+					<settlementType>Physical</settlementType>
+				</equityExercise>
+				<strike>
+					<strikePrice>32.00</strikePrice>
+				</strike>
+				<spotPrice>30.00</spotPrice>
+				<numberOfOptions>10000</numberOfOptions>
+				<equityPremium>
+					<payerPartyReference href="PartyB"/>
+					<receiverPartyReference href="drkw"/>
+					<paymentAmount>
+						<currency>EUR</currency>
+						<amount>405000</amount>
+					</paymentAmount>
+					<paymentDate>
+						<unadjustedDate>2001-07-17</unadjustedDate>
+						<dateAdjustments>
+							<businessDayConvention>NONE</businessDayConvention>
+						</dateAdjustments>
+					</paymentDate>
+					<pricePerOption>
+						<currency>EUR</currency>
+						<amount>2.70</amount>
+					</pricePerOption>
+				</equityPremium>
+			</equityOptionTransactionSupplement>
+			<calculationAgent>
+				<calculationAgentPartyReference href="drkw"/>
+			</calculationAgent>
+			<documentation>
+				<masterAgreement>
+					<masterAgreementType>ISDA2002</masterAgreementType>
+				</masterAgreement>
+				<contractualDefinitions>ISDA2002Equity</contractualDefinitions>
+			</documentation>
+			<governingLaw>GBEN</governingLaw>
+		</trade>
+		<terminationTradeDate>2004-04-28</terminationTradeDate>
+		<terminationEffectiveDate>2004-04-30</terminationEffectiveDate>
+		<partial>
+			<decreaseInNumberOfOptions>100.00</decreaseInNumberOfOptions>
+			<outstandingNumberOfOptions>30.00</outstandingNumberOfOptions>
+		</partial>
+	</termination>
+	<party id="drkw">
+		<partyId>Party A</partyId>
+	</party>
+	<party id="PartyB">
+		<partyId>Party B</partyId>
+	</party>
+</FpML>

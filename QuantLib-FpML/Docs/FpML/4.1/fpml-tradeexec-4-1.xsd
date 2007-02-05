@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+== Copyright (c) 2002-2004. All rights reserved. 
+== Financial Products Markup Language is subject to the FpML public license. 
+== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.fpml.org/2004/FpML-4-1" targetNamespace="http://www.fpml.org/2004/FpML-4-1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="fpml-msg-4-1.xsd"/>
+	<xsd:complexType name="BestFitTrade">
+		<xsd:annotation>
+			<xsd:documentation>A type used to record the differences between the current trade and another indicated trade.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="tradeIdentifier" type="TradeIdentifier">
+				<xsd:annotation>
+					<xsd:documentation>The identifier for the trade compared against.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="differences" type="TradeDifference" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>An optional set of detailed difference records.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CancelTradeConfirmation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message requesting that a previously requested TradeConfirmation process be cancelled.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="partyTradeIdentifier" type="PartyTradeIdentifier">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The trade reference identifier(s) allocated to the trade by the parties involved.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CancelTradeMatch">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message requesting that a previously requested TradeMatch process be cancelled.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="partyTradeIdentifier" type="PartyTradeIdentifier">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The trade reference identifier(s) allocated to the trade by the parties involved.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ConfirmationCancelled">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for the message generated in reponse to a CancelConfirmation request under normal circumstances.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ConfirmTrade">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message that indicates acceptance of a previously matched trade.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="partyTradeIdentifier" type="PartyTradeIdentifier">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The trade reference identifier(s) allocated to the trade by the parties involved.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ModifyTradeConfirmation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message requesting that the details of a trade previously sent for confirmation be changed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="trade" type="Trade">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The root element in an FpML trade document.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ModifyTradeMatch">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content of a message requesting that the details of a trade previously sent for matching be modified.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="trade" type="Trade">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The root element in an FpML trade document.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RequestTradeConfirmation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message requesting that the contained trade be put forward for matching and confirmation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="trade" type="Trade">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The root element in an FpML trade document.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RequestTradeMatch">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message requesting that the contained trade be put forward for matching.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="trade" type="Trade">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The root element in an FpML trade document.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeAffirmation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message that indicates that a trade is considered affirmed by the sender.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="trade" type="Trade">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The root element in an FpML trade document.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeAffirmed">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message generated when a party confirms that a trade is affirmed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeAlleged">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message sent by a confirmation provider when it believes that one party has been tardy in providing its side of a transaction.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="bestFitTradeId" type="TradeIdentifier" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A trade identifier for a transaction that closely resembles the characteristics of the trade under consideration.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeAlreadyMatched">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message sent by a confirmation provider when it believes that one party has repeated a request to confirm a trade.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeAlreadySubmitted">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message sent by a confirmation provider when it believes that one party has repeated a request to confirm a trade.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeConfirmed">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model of a message generated when a trade is determined to be confirmed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="trade" type="Trade">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The root element in an FpML trade document.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeDifference">
+		<xsd:annotation>
+			<xsd:documentation>A type used to record the details of a difference between two business objects/</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="differenceType" type="DifferenceTypeEnum">
+				<xsd:annotation>
+					<xsd:documentation>The type of difference that exists.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="differenceSeverity" type="DifferenceSeverityEnum">
+				<xsd:annotation>
+					<xsd:documentation>An indication of the severity of the difference.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="element" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>The name of the element affected.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="basePath" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>XPath to the element in the base object.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="baseValue" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The valie of the element in the base object.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="otherPath" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>XPath to the element in the other object.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="otherValue" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Value of the element in the other trade.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="missingElement" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Element(s) that are missing in the other trade.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="extraElement" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Element(s) that are extraneous in the other object.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="message" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>A human readable description of the problem.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TradeMatched">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message indicating that a correlation has been made between two transactions.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="differences" type="TradeDifference" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="party" type="Party" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeMismatched">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model of a message generated when a trade is determined to be mismatched.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="bestFitTrade" type="BestFitTrade" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="party" type="Party" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeUnmatched">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model of a message generated when a trade is determined to be unmatched.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="bestFitTradeId" type="TradeIdentifier" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A trade identifier for a transaction that closely resembles the characteristics of the trade under consideration.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

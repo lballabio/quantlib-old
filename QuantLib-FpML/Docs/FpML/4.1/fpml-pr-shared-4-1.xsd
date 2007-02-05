@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+== Copyright (c) 2002-2004. All rights reserved. 
+== Financial Products Markup Language is subject to the FpML public license. 
+== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2004/FpML-4-1" targetNamespace="http://www.fpml.org/2004/FpML-4-1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="fpml-shared-4-1.xsd"/>
+	<xsd:complexType name="AssetMeasureType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A scheme identifying the types of measures that can be used to describe an asset.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="assetMeasureScheme" default="http://www.fpml.org/spec/2004/asset-measure-scheme-1-0" type="xsd:anyURI"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="BasicAssetValuation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A structure that holds a set of measures about an asset.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Valuation">
+				<xsd:sequence>
+					<xsd:element name="quote" type="BasicQuotation" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One or more numerical measures relating to the asset, possibly together with sensitivities of that measure to pricing inputs</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="BasicQuotation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Some kind of numerical measure about an asset, eg. its NPV, together with characteristics of that measure.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:group ref="Quotation.model"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CashFlowType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A scheme identifying the types of cashflows that can be settled, e.g. Coupon payment, Premium Fee, Settlement Fee, Brokerage Fee etc..</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="typeScheme" default="http://www.fpml.org/spec/2004/cash-flow-type-1-0" type="xsd:anyURI"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="PriceQuoteUnits">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.FpML.org" xml:lang="en">The units in which a price is quoted.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="priceQuoteUnitsScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/price-quote-units-1-0"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="PricingInputReference">
+		<xsd:annotation>
+			<xsd:documentation>A reference to a pricing reference, ie. structure or data point. Can also reference things like input dates (which are represented as identified dates).</xsd:documentation>
+		</xsd:annotation>
+		<!-- nb:  this is implicitly an empty reference -->
+		<xsd:attribute name="href" use="required" type="xsd:IDREF"/>
+	</xsd:complexType>
+	<xsd:complexType name="QuotationCharacteristics">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type representing a set of characteristics that describe a quotation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:group ref="QuotationCharacteristics.model"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QuoteTiming">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.FpML.org" xml:lang="en">The type of the time of the quote.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="quoteTimingScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/quote-timing-1-0"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="Valuation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A valuation of an valuable object - an asset or a pricing input. This is an abstract type, used as a base for values of pricing structures such as yield curves as well as asset values. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="objectReference" type="PricingInputReference">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A reference to the asset or pricing structure that this values.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="valuationScenarioReference" type="ValuationScenarioReference" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A reference to the valuation scenario used to calculate this valuation. If the Valuation occurs within a ValuationSet, this value is optional and is defaulted from the ValuationSet. If this value occurs in both places, the lower level value (i.e. the one here) overrides that in the higher (i.e. ValuationSet).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+		<xsd:attribute name="definitionRef" type="xsd:IDREF">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">An optional reference to the scenario that this valuation applies to.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="ValuationScenarioReference">
+		<xsd:annotation>
+			<xsd:documentation>A reference to a valuation scenario or a derived valuation scenario.</xsd:documentation>
+		</xsd:annotation>
+		<!-- nb:  this is implicitly an empty reference -->
+		<xsd:attribute name="href" use="required" type="xsd:IDREF"/>
+	</xsd:complexType>
+	<xsd:group name="Quotation.model">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Some kind of numerical measure about an asset, eg. its price or NPV, together with characteristics of that measure.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="value" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The value of the the quotation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:group ref="QuotationCharacteristics.model">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The characteristics of the quotation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:group>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="QuotationCharacteristics.model">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A group collecting a set of characteristics that can be used to describe a quotation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="measureType" type="AssetMeasureType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The type of the value that is measured. This could be an NPV, a cash flow, a clean price, etc.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quoteUnits" type="PriceQuoteUnits" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The optional units that the measure is expressed in. If not supplied, this is assumed to be a price/value in currency units.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="side" type="QuotationSideEnum" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The side (bid/mid/ask) of the measure.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="currency" type="Currency" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="timing" type="QuoteTiming" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">When during a day the quote is for. Typically, if this element is supplied, the QuoteLocation needs also to be supplied.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:group ref="QuoteLocation.model" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Where the quote is from.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:group>
+			<xsd:element name="time" type="xsd:dateTime" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">When the quote was observed or derived.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="expiryTime" type="xsd:dateTime" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">When does the quote cease to be valid.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="cashFlowType" type="CashFlowType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">For cash flows, the type of the cash flows. Examples include: Coupon payment, Premium Fee, Settlement Fee, Brokerage Fee etc.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="QuoteLocation.model">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A group describing where a quote was or will be obtained, e.g. observed or calculated.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="businessCenter" type="BusinessCenter">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A city or other business center.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="exchangeId" type="ExchangeId">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The exchange (e.g. stock or futures exchange) from which the quote is obtained.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:group>
+</xsd:schema>

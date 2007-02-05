@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<FpML version="4-1" xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xsi:type="DataDocument">
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="PartyA"/>
+				<tradeId tradeIdScheme="http://www.PartyA.com/eqd-trade-id">1234</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate id="TradeDate">2001-07-13</tradeDate>
+		</tradeHeader>
+		<equityForward>
+			<productType>forwardStock</productType>
+			<buyerPartyReference href="PartyB"/>
+			<sellerPartyReference href="PartyA"/>
+			<optionType>Forward</optionType>
+			<underlyer>
+				<singleUnderlyer>
+					<equity>
+						<instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">STM-FP</instrumentId>
+						<description>STMicroelectronics N.V. ordinary shares</description>
+						<currency>EUR</currency>
+						<exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NSE</exchangeId>
+					</equity>
+					<openUnits>31000</openUnits>
+					<dividendPayout>
+						<dividendPayoutRatio>100</dividendPayoutRatio>
+					</dividendPayout>
+				</singleUnderlyer>
+			</underlyer>
+			<equityExercise>
+				<equityEuropeanExercise>
+					<expirationDate>
+						<adjustableDate>
+							<unadjustedDate>2004-07-13</unadjustedDate>
+							<dateAdjustments>
+								<businessDayConvention>NONE</businessDayConvention>
+							</dateAdjustments>
+						</adjustableDate>
+					</expirationDate>
+					<equityExpirationTimeType>OSP</equityExpirationTimeType>
+				</equityEuropeanExercise>
+				<prePayment>
+					<payerPartyReference href="PartyB"/>
+					<receiverPartyReference href="PartyA"/>
+					<prePayment>true</prePayment>
+					<prePaymentAmount>
+						<currency>EUR</currency>
+						<amount>40500</amount>
+					</prePaymentAmount>
+					<prePaymentDate>
+						<unadjustedDate>2004-07-13</unadjustedDate>
+						<dateAdjustments>
+							<businessDayConvention>NONE</businessDayConvention>
+						</dateAdjustments>
+					</prePaymentDate>
+				</prePayment>
+				<equityValuation>
+					<valuationDate id="FinalValuationDate">
+						<adjustableDate>
+							<unadjustedDate>2004-07-13</unadjustedDate>
+							<dateAdjustments>
+								<businessDayConvention>NotApplicable</businessDayConvention>
+							</dateAdjustments>
+						</adjustableDate>
+					</valuationDate>
+					<valuationTimeType>Close</valuationTimeType>
+				</equityValuation>
+				<settlementDate>
+					<relativeDate>
+						<periodMultiplier>2</periodMultiplier>
+						<period>D</period>
+						<dayType>CurrencyBusiness</dayType>
+						<businessDayConvention>NotApplicable</businessDayConvention>
+						<dateRelativeTo href="FinalValuationDate"/>
+					</relativeDate>
+				</settlementDate>
+				<settlementCurrency>EUR</settlementCurrency>
+				<settlementPriceSource>OfficialClose</settlementPriceSource>
+				<settlementType>Physical</settlementType>
+			</equityExercise>
+			<dividendConditions>
+				<dividendReinvestment>false</dividendReinvestment>
+				<dividendEntitlement>ExDate</dividendEntitlement>
+				<dividendPaymentDate>
+					<dividendDateReference>ExDate</dividendDateReference>
+				</dividendPaymentDate>
+				<dividendPeriodEffectiveDate href="TradeDate"/>
+				<dividendPeriodEndDate href="FinalValuationDate"/>
+				<extraOrdinaryDividends href="PartyA"/>
+				<excessDividendAmount>RecordAmount</excessDividendAmount>
+				<paymentCurrency>
+					<determinationMethod>DividendCurrency</determinationMethod>
+				</paymentCurrency>
+			</dividendConditions>
+			<methodOfAdjustment>CalculationAgent</methodOfAdjustment>
+			<extraordinaryEvents>
+				<mergerEvents>
+					<shareForShare>ModifiedCalculationAgent</shareForShare>
+					<shareForOther>ModifiedCalculationAgent</shareForOther>
+					<shareForCombined>ModifiedCalculationAgent</shareForCombined>
+				</mergerEvents>
+				<tenderOffer>true</tenderOffer>
+				<tenderOfferEvents>
+					<shareForShare>ModifiedCalculationAgent</shareForShare>
+					<shareForOther>ModifiedCalculationAgent</shareForOther>
+					<shareForCombined>ModifiedCalculationAgent</shareForCombined>
+				</tenderOfferEvents>
+				<compositionOfCombinedConsideration>true</compositionOfCombinedConsideration>
+				<additionalDisruptionEvents>
+					<changeInLaw>true</changeInLaw>
+					<failureToDeliver>true</failureToDeliver>
+					<insolvencyFiling>false</insolvencyFiling>
+					<hedgingDisruption>true</hedgingDisruption>
+					<lossOfStockBorrow>true</lossOfStockBorrow>
+					<increasedCostOfStockBorrow>false</increasedCostOfStockBorrow>
+					<increasedCostOfHedging>false</increasedCostOfHedging>
+					<determiningPartyReference href="PartyA"/>
+				</additionalDisruptionEvents>
+				<representations>
+					<nonReliance>true</nonReliance>
+					<agreementsRegardingHedging>true</agreementsRegardingHedging>
+					<additionalAcknowledgements>true</additionalAcknowledgements>
+				</representations>
+				<nationalisationOrInsolvency>CancellationAndPayment</nationalisationOrInsolvency>
+			</extraordinaryEvents>
+			<equityFeatures>
+				<asian>
+					<averagingInOut>Out</averagingInOut>
+					<averagingPeriodOut>
+						<averagingDateTimes>
+							<dateTime>2000-08-01T08:57:00-00:00</dateTime>
+							<dateTime>2000-09-01T08:57:00-00:00</dateTime>
+							<dateTime>2000-10-01T08:57:00-00:00</dateTime>
+							<dateTime>2000-11-01T08:57:00-00:00</dateTime>
+							<dateTime>2000-12-01T08:57:00-00:00</dateTime>
+							<dateTime>2001-01-04T08:57:00-00:00</dateTime>
+							<dateTime>2001-02-01T08:57:00-00:00</dateTime>
+							<dateTime>2001-03-01T08:57:00-00:00</dateTime>
+						</averagingDateTimes>
+						<marketDisruption>ModifiedPostponement</marketDisruption>
+					</averagingPeriodOut>
+				</asian>
+			</equityFeatures>
+			<forwardPrice>
+				<currency>EUR</currency>
+				<amount>10.20</amount>
+			</forwardPrice>
+		</equityForward>
+		<calculationAgent>
+			<calculationAgentPartyReference href="PartyA"/>
+		</calculationAgent>
+		<documentation>
+			<masterAgreement>
+				<masterAgreementType>ISDA2002</masterAgreementType>
+			</masterAgreement>
+			<contractualDefinitions>ISDA2002Equity</contractualDefinitions>
+		</documentation>
+		<governingLaw>GBEN</governingLaw>
+	</trade>
+	<party id="PartyA">
+		<partyId>Party A</partyId>
+	</party>
+	<party id="PartyB">
+		<partyId>Party B</partyId>
+	</party>
+</FpML>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+ -->
+<FpML version="4-1" xmlns="http://www.fpml.org/2004/FpML-4-1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd http://www.w3.org/2000/09/xmldsig# xmldsig-core-schema.xsd" xsi:type="RequestTradeConfirmation">
+        <header>
+                <conversationId conversationIdScheme="http://www.msdw.com/conversationId/OTC">EquityShareOption987</conversationId>
+                <messageId messageIdScheme="http://www.msdw.com/messageId/OTC">EquityShareOption456a789b</messageId>
+                <sentBy partyIdScheme="http://www.MsgParty.com/partyId">msdw</sentBy>
+                <creationTimestamp>2000-08-01T08:57:00-00:00</creationTimestamp>
+        </header>
+        <trade>
+                <tradeHeader>
+                        <partyTradeIdentifier>
+                                <partyReference href="PartyA"/>
+                                <tradeId tradeIdScheme="http://www.PartyA.com/eqd-trade-id">1234</tradeId>
+                        </partyTradeIdentifier>
+                        <tradeDate id="TradeDate">2001-07-13</tradeDate>
+                </tradeHeader>
+                <equityOption>
+                        <productType>americanCallStock</productType>
+                        <buyerPartyReference href="PartyB"/>
+                        <sellerPartyReference href="PartyA"/>
+                        <optionType>Call</optionType>
+                        <underlyer>
+                                <singleUnderlyer>
+                                        <equity>
+                                                <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">STM-FP</instrumentId>
+                                                <description>STMicroelectronics N.V. ordinary shares</description>
+                                                <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NSE</exchangeId>
+                                        </equity>
+                                </singleUnderlyer>
+                        </underlyer>
+                        <equityExercise>
+                                <equityAmericanExercise>
+                                        <commencementDate>
+                                                <adjustableDate>
+                                                  <unadjustedDate>2001-07-13</unadjustedDate>
+                                                  <dateAdjustments>
+                                                  <businessDayConvention>NONE</businessDayConvention>
+                                                  </dateAdjustments>
+                                                </adjustableDate>
+                                        </commencementDate>
+                                        <expirationDate>
+                                                <adjustableDate>
+                                                  <unadjustedDate>2005-09-27</unadjustedDate>
+                                                  <dateAdjustments>
+                                                  <businessDayConvention>NONE</businessDayConvention>
+                                                  </dateAdjustments>
+                                                </adjustableDate>
+                                        </expirationDate>
+                                        <latestExerciseTime>
+                                                <hourMinuteTime>17:15:00</hourMinuteTime>
+                                                <businessCenter>GBLO</businessCenter>
+                                        </latestExerciseTime>
+                                        <latestExerciseTimeType>SpecificTime</latestExerciseTimeType>
+                                        <equityExpirationTimeType>Close</equityExpirationTimeType>
+                                        <equityMultipleExercise>
+                                                <integralMultipleExercise>1</integralMultipleExercise>
+                                                <minimumNumberOfOptions>1</minimumNumberOfOptions>
+                                                <maximumNumberOfOptions>150000</maximumNumberOfOptions>
+                                        </equityMultipleExercise>
+                                </equityAmericanExercise>
+                                <automaticExercise>true</automaticExercise>
+                                <equityValuation>
+                                        <valuationTimeType>Close</valuationTimeType>
+                                </equityValuation>
+                                <settlementCurrency>EUR</settlementCurrency>
+                                <settlementPriceSource>OfficialClose</settlementPriceSource>
+                                <settlementType>Election</settlementType>
+                                <settlementMethodElectionDate>
+                                        <adjustableDate>
+                                                <unadjustedDate>2004-09-27</unadjustedDate>
+                                                <dateAdjustments>
+                                                  <businessDayConvention>NONE</businessDayConvention>
+                                                </dateAdjustments>
+                                        </adjustableDate>
+                                </settlementMethodElectionDate>
+                                <settlementMethodElectingPartyReference href="PartyA"/>
+                        </equityExercise>
+                        <methodOfAdjustment>CalculationAgent</methodOfAdjustment>
+                        <extraordinaryEvents>
+                                <mergerEvents>
+                                        <shareForShare>ModifiedCalculationAgent</shareForShare>
+                                        <shareForOther>ModifiedCalculationAgent</shareForOther>
+                                        <shareForCombined>ModifiedCalculationAgent</shareForCombined>
+                                </mergerEvents>
+                                <tenderOffer>true</tenderOffer>
+                                <tenderOfferEvents>
+                                        <shareForShare>ModifiedCalculationAgent</shareForShare>
+                                        <shareForOther>ModifiedCalculationAgent</shareForOther>
+                                        <shareForCombined>ModifiedCalculationAgent</shareForCombined>
+                                </tenderOfferEvents>
+                                <compositionOfCombinedConsideration>true</compositionOfCombinedConsideration>
+                                <additionalDisruptionEvents>
+                                        <changeInLaw>true</changeInLaw>
+                                        <failureToDeliver>true</failureToDeliver>
+                                        <insolvencyFiling>false</insolvencyFiling>
+                                        <hedgingDisruption>true</hedgingDisruption>
+                                        <lossOfStockBorrow>true</lossOfStockBorrow>
+                                        <increasedCostOfStockBorrow>false</increasedCostOfStockBorrow>
+                                        <increasedCostOfHedging>false</increasedCostOfHedging>
+                                        <determiningPartyReference href="PartyA"/>
+                                </additionalDisruptionEvents>
+                                <representations>
+                                        <nonReliance>true</nonReliance>
+                                        <agreementsRegardingHedging>true</agreementsRegardingHedging>
+                                        <additionalAcknowledgements>true</additionalAcknowledgements>
+                                </representations>
+                                <nationalisationOrInsolvency>CancellationAndPayment</nationalisationOrInsolvency>
+                        </extraordinaryEvents>
+                        <!-- start of distinct -->
+                        <strike>
+                                <strikePrice>32.00</strikePrice>
+                        </strike>
+                        <numberOfOptions>150000</numberOfOptions>
+                        <optionEntitlement>1.00</optionEntitlement>
+                        <equityPremium>
+                                <payerPartyReference href="PartyB"/>
+                                <receiverPartyReference href="PartyA"/>
+                                <paymentAmount>
+                                        <currency>EUR</currency>
+                                        <amount>405000</amount>
+                                </paymentAmount>
+                                <paymentDate>
+                                        <unadjustedDate>2001-07-17</unadjustedDate>
+                                        <dateAdjustments>
+                                                <businessDayConvention>NONE</businessDayConvention>
+                                        </dateAdjustments>
+                                </paymentDate>
+                                <pricePerOption>
+                                        <currency>EUR</currency>
+                                        <amount>2.70</amount>
+                                </pricePerOption>
+                        </equityPremium>
+                </equityOption>
+                <calculationAgent>
+                        <calculationAgentPartyReference href="PartyA"/>
+                </calculationAgent>
+                <documentation>
+                        <masterAgreement>
+                                <masterAgreementType>ISDA2002</masterAgreementType>
+                        </masterAgreement>
+                        <contractualDefinitions>ISDA2002Equity</contractualDefinitions>
+                        <!-- populate credit support document with correct value -->
+                        <creditSupportDocument>TODO</creditSupportDocument>
+                </documentation>
+                <governingLaw>GBEN</governingLaw>
+        </trade>
+        <party id="PartyA">
+                <partyId>Party A</partyId>
+        </party>
+        <party id="PartyB">
+                <partyId>Party B</partyId>
+        </party>
+</FpML>

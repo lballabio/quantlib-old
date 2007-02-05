@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML version="4-1" xsi:type="DataDocument" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xmlns="http://www.fpml.org/2004/FpML-4-1">
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="ABN"/>
+				<tradeId tradeIdScheme="http://www.abn-amro.com/fx/trade-id">ABN1234</tradeId>
+			</partyTradeIdentifier>
+			<partyTradeIdentifier>
+				<partyReference href="DB"/>
+				<tradeId tradeIdScheme="http://www.db.com/fx/trade-id">DB5678</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate>2001-11-19</tradeDate>
+		</tradeHeader>
+		<fxSingleLeg>
+			<exchangedCurrency1>
+				<payerPartyReference href="DB"/>
+				<receiverPartyReference href="ABN"/>
+				<paymentAmount>
+					<currency>EUR</currency>
+					<amount>10000000</amount>
+				</paymentAmount>
+			</exchangedCurrency1>
+			<exchangedCurrency2>
+				<payerPartyReference href="ABN"/>
+				<receiverPartyReference href="DB"/>
+				<paymentAmount>
+					<currency>USD</currency>
+					<amount>9175000</amount>
+				</paymentAmount>
+			</exchangedCurrency2>
+			<valueDate>2001-12-21</valueDate>
+			<exchangeRate>
+				<quotedCurrencyPair>
+					<currency1>EUR</currency1>
+					<currency2>USD</currency2>
+					<quoteBasis>Currency2PerCurrency1</quoteBasis>
+				</quotedCurrencyPair>
+				<rate>0.9175</rate>
+				<spotRate>0.9130</spotRate>
+				<forwardPoints>0.0045</forwardPoints>
+			</exchangeRate>
+		</fxSingleLeg>
+	</trade>
+	<party id="ABN">
+		<partyId>ABNANL2A</partyId>
+	</party>
+	<party id="DB">
+		<partyId>DEUTDEFF</partyId>
+	</party>
+</FpML>

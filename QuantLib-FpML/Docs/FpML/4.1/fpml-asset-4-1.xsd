@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+== Copyright (c) 2002-2004. All rights reserved. 
+== Financial Products Markup Language is subject to the FpML public license. 
+== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2004/FpML-4-1" targetNamespace="http://www.fpml.org/2004/FpML-4-1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="fpml-shared-4-1.xsd"/>
+	<xsd:complexType name="ActualPrice">
+		<xsd:sequence>
+			<xsd:element name="currency" type="Currency" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Specifies the currency associated with the net price. This element is not present if the price is expressed in percentage terms (as specified through the priceExpression element).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="amount" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation>Specifies the net price amount. In the case of a fixed income security or a convertible bond, this price includes the accrued interests.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="priceExpression" type="PriceExpressionEnum">
+				<xsd:annotation>
+					<xsd:documentation>Specifies whether the price is expressed in absolute or relative terms.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Basket">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type describing the underlyer features of a basket swap. Each of the basket constituents are described through an embedded component, the basketConstituentsType.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="openUnits" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The number of units (index or securities) that constitute the underlyer of the swap. In the case of a basket swap, this element is used to reference both the number of basket units, and the number of each asset components of the basket when these are expressed in absolute terms.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="basketConstituent" type="BasketConstituent" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Describes each of the components of the basket.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BasketConstituent">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type describing each of the constituents of a basket swap.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="underlyingAsset"/>
+			<xsd:element name="constituentWeight" type="ConstituentWeight" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies the weight of each of the underlyer constituent within the basket, either in absolute or relative terms. This is an optional component, as certain swaps do not specify a specific weight for each of their basket constituents.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dividendPayout" type="DividendPayout" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies the dividend payout ratio associated with an equity underlyer. A basket swap can have different payout ratios across the various underlying constituents. In certain cases the actual ratio is not known on trade inception, and only general conditions are then specified.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="underlyerPrice" type="Price" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Specifies the price that is associated with each of the basket constituents. This component is optional, as it is not absolutely required to accurately describe the economics of the trade, considering the price that characterizes the equity swap is associated to the leg of the trade.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="underlyerNotional" type="Money" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Specifies the notional (i.e. price * quantity) that is associated with each of the basket constituents. This component is optional, as it is not absolutely required to accurately describe the economics of the trade, considering the notional that characterizes the equity swap is associated to the leg of the trade.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Bond">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0">
+						<xsd:annotation>							
+							<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+							<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="issuerName" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the issuer name of a fixed income security or convertible bond.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="couponType" type="CouponType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Specifies if the bond has a variable coupon, step-up/down coupon or a zero-coupon.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="couponRate" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the coupon rate (expressed in percentage) of a fixed income security or convertible bond.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="maturity" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date when the principal amount of a security becomes due and payable.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="parValue" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the nominal amount of a fixed income security or convertible bond.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="faceAmount" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the total amount of the issue. Corresponds to the par value multiplied by the number of issued security.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="paymentFrequency" type="Interval" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the frequency at which the bond pays, e.g. 6M.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dayCountFraction" type="DayCountFraction" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The day count basis for the bond.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Cash">
+		<xsd:complexContent>
+			<xsd:restriction base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="instrumentId" type="InstrumentId" maxOccurs="unbounded"/>
+					<xsd:element name="description" type="xsd:string" minOccurs="0">
+						<xsd:annotation>							
+							<xsd:documentation xml:lang="en">The long name of a security.</xsd:documentation>
+							<xsd:documentation xml:lang="de">Vollständige Wertpapierbezeichnung.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="currency" type="Currency">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Commission">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type describing the commission that will be charged for each of the hedge transactions.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="commissionDenomination" type="CommissionDenominationEnum">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The type of units used to express a commission.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="commissionAmount" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The commission amount, expressed in the way indicated by the commissionType element.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="currency" type="Currency" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ConstituentWeight">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type describing the weight of each of the underlyer constituent within the basket, either in absolute or relative terms.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="openUnits" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The number of units (index or securities) that constitute the underlyer of the swap. In the case of a basket swap, this element is used to reference both the number of basket units, and the number of each asset components of the basket when these are expressed in absolute terms.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="basketPercentage" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The relative weight of each respective basket constituent, expressed in percentage.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="basketAmount" type="Money">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The relative weight of each respective basket constituent, expressed as a monetary amount.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="ConvertibleBond">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>							
+							<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+							<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="issuerName" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the issuer name of a fixed income security or convertible bond.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="couponRate" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the coupon rate (expressed in percentage) of a fixed income security or convertible bond.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="maturity" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date when the principal amount of a security becomes due and payable.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="parValue" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the nominal amount of a fixed income security or convertible bond.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="faceAmount" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the total amount of the issue. Corresponds to the par value multiplied by the number of issued security.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="underlyingEquity" type="UnderlyingAsset">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the equity in which the comnvertible bond can be converted.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CouponType">
+		<xsd:annotation>
+			<xsd:documentation>Defines a scheme of values for specifiying if the bond has a variable coupon, 
+step-up/down coupon or a zero-coupon.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="couponTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/coupon-type-1-0"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="Deposit">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="term" type="Interval">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the term of the deposit, e.g. 5Y.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="paymentFrequency" type="Interval" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the frequency at which the deposit pays, e.g. 6M.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dayCountFraction" type="DayCountFraction" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The day count basis for the deposit.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="DividendPayout">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type describing the dividend payout ratio associated with an equity underlyer. In certain cases the actual ratio is not known on trade inception, and only general conditions are then specified.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="dividendPayoutRatio" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies the actual dividend payout ratio associated with the equity underlyer.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dividendPayoutConditions" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies the dividend payout conditions that will be applied in the case where the actual ratio is not known, typically because of regulatory or legal uncertainties.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="EquityAsset">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>							
+							<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+							<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="optionsExchangeId" type="ExchangeId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A short form unique identifier for an exchange on which the reference option contract is listed. This is to address the case where the reference exchange for the future is different than the one for the option. The options Exchange is referenced on share options when Merger Elections are selected as Options Exchange Adjustment.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ExchangeTradedContract">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type an Exchange Traded Contract</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence minOccurs="0">
+					<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0">
+						<xsd:annotation>							
+							<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+							<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="optionsExchangeId" type="ExchangeId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A short form unique identifier for an exchange on which the reference option contract is listed. This is to address the case where the reference exchange for the future is different than the one for the option. The options Exchange is referenced on share options when Merger Elections are selected as Options Exchange Adjustment.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="multiplier" type="xsd:integer" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the contract multiplier that can be associated with the number of units.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="contractReference" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the contract that can be referenced, besides the undelyer type.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="expirationDate" type="AdjustableOrRelativeDate" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date when the contract expires.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ExchangeTradedFund">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0">
+						<xsd:annotation>							
+							<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+							<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="optionsExchangeId" type="ExchangeId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A short form unique identifier for an exchange on which the reference option contract is listed. This is to address the case where the reference exchange for the future is different than the one for the option. The options Exchange is referenced on share options when Merger Elections are selected as Options Exchange Adjustment.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fundManager" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the fund manager that is in charge of the fund.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Future">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence minOccurs="0">
+					<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0">
+						<xsd:annotation>							
+							<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+							<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="optionsExchangeId" type="ExchangeId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A short form unique identifier for an exchange on which the reference option contract is listed. This is to address the case where the reference exchange for the future is different than the one for the option. The options Exchange is referenced on share options when Merger Elections are selected as Options Exchange Adjustment.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="multiplier" type="xsd:integer" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the contract multiplier that can be associated with the number of units.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="futureContractReference" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the future contract that can be referenced, besides the equity or index reference defined as part of the UnderlyerAsset type.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="maturity" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date when the future contract expires.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="FxConversion">
+		<xsd:choice>
+			<xsd:element name="amountRelativeTo" type="Reference"/>
+			<xsd:element name="fxRate" type="FxRate" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies a currency conversion rate.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="FxRateAsset">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="quotedCurrencyPair" type="QuotedCurrencyPair">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Defines the two currencies for an FX trade and the quotation relationship between the two currencies.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="rateSource" type="FxSpotRateSource" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Defines the source of the FX rate.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Index">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>							
+							<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+							<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="futureId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A short form unique identifier for the reference future contract in the case of an index underlyer.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:simpleContent>
+								<xsd:extension base="xsd:normalizedString">
+									<xsd:attribute name="futureIdScheme" type="xsd:anyURI"/>
+								</xsd:extension>
+							</xsd:simpleContent>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MutualFund">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="openEndedFund" type="xsd:boolean" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Boolean indicator to specify whether the mutual fund is an open-ended mutual fund.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fundManager" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the fund manager that is in charge of the fund.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Price">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type describing the strike price.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="commission" type="Commission" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">This optional component specifies the commission to be charged for executing the hedge transactions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="determinationMethod" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Specifies the method according to which an amount or a date is determined.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="amountRelativeTo" type="Reference"/>
+				<xsd:sequence>
+					<xsd:element name="grossPrice" type="ActualPrice" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the price of the underlyer, before commissions.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="netPrice" type="ActualPrice">
+						<xsd:annotation>
+							<xsd:documentation>Specifies the price of the underlyer, net of commissions.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="accruedInterestPrice" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the accrued interest that are part of the dirty price in the case of a fixed income security or a convertible bond. Expressed in percentage of the notional.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fxConversion" type="FxConversion" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the currency conversion rate that applies to an amount. This rate can either be defined elsewhere in the document (case of a quanto swap), or explicitly described through this component.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RateIndex">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="floatingRateIndex" type="FloatingRateIndex"/>
+					<xsd:element name="term" type="Interval">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the term of the simple swap, e.g. 5Y.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="paymentFrequency" type="Interval" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the frequency at which the index pays, e.g. 6M.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dayCountFraction" type="DayCountFraction" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The day count basis for the index.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SimpleCreditDefaultSwap">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:group ref="CreditEntity.model">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The reference entity, index, etc. upon which the CDS is based.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:group>
+					<xsd:element name="term" type="Interval">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the term of the simple CD swap, e.g. 5Y.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="paymentFrequency" type="Interval" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the frequency at which the swap pays, e.g. 6M.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SimpleFra">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="startTerm" type="Interval">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the start term of the simple fra, e.g. 3M.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="endTerm" type="Interval">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the end term of the simple fra, e.g. 9M.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dayCountFraction" type="DayCountFraction" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The day count basis for the FRA.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SimpleIRSwap">
+		<xsd:complexContent>
+			<xsd:extension base="UnderlyingAsset">
+				<xsd:sequence>
+					<xsd:element name="term" type="Interval">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the term of the simple swap, e.g. 5Y.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="paymentFrequency" type="Interval" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the frequency at which the swap pays, e.g. 6M.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dayCountFraction" type="DayCountFraction" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The day count basis for the swap.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SingleUnderlyer">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type describing the single underlyer of a swap.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="underlyingAsset"/>
+			<xsd:element name="openUnits" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The number of units (index or securities) that constitute the underlyer of the swap. In the case of a basket swap, this element is used to reference both the number of basket units, and the number of each asset components of the basket when these are expressed in absolute terms.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dividendPayout" type="DividendPayout" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies the dividend payout ratio associated with an equity underlyer. A basket swap can have different payout ratios across the various underlying constituents. In certain cases the actual ratio is not known on trade inception, and only general conditions are then specified.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Underlyer">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type describing the whole set of possible underlyers: single underlyers or multiple underlyers, each of these having either security or index components.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="singleUnderlyer" type="SingleUnderlyer">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Describes the swap's underlyer when it has only one asset component.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="basket" type="Basket">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Describes the swap's underlyer when it has multiple asset components.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="UnderlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type describing the basic components of a security of index underlyer.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="instrumentId" type="InstrumentId" maxOccurs="unbounded"/>
+			<xsd:element name="description" type="xsd:string" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The long name of a security.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Vollständige Wertpapierbezeichnung.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="currency" type="Currency" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="exchangeId" type="ExchangeId" minOccurs="0"/>
+			<xsd:element name="clearanceSystem" type="ClearanceSystem" minOccurs="0"/>
+			<xsd:element name="definition" type="ProductReference" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">An optional reference to a full FpML product that defines the simple product in greater detail. In case of inconsistency between the terms of the simple product and those of the detailed definition, the values in the simple product override those in the detailed definition.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:element name="bond" type="Bond" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines the underlying asset when it is a bond.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="cash" type="Cash" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines a simple underlying asset type that is a cash payment. Used for specifying discounting factors for future cash flows in the pricing and risk model.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="convertibleBond" type="ConvertibleBond" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines the underlying asset when it is a convertible bond.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="deposit" type="Deposit" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines a simple underlying asset that is a term deposit.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="equity" type="EquityAsset" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines the underlying asset when it is a listed equity.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="exchangeTradedFund" type="ExchangeTradedFund" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines the underlying asset when it is an exchange-traded fund.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="future" type="Future" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines the underlying asset when it is a listed future contract.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="fxRate" type="FxRateAsset" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines a simple underlying asset type that is an FX rate. Used for specifying FX rates in the pricing and risk model.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="index" type="Index" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines the underlying asset when it is a financial index.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="mutualFund" type="MutualFund" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines the underlying asset when it is a mutual fund.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="rateIndex" type="RateIndex" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines a simple underlying asset that is an interest rate index. Used for specifying benchmark assets in the market environment in the pricing and risk model.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="simpleCreditDefaultSwap" type="SimpleCreditDefaultSwap" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines a simple underlying asset that is a credit default swap.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="simpleFra" type="SimpleFra" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines a simple underlying asset that is a forward rate agreement.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="simpleIrSwap" type="SimpleIRSwap" substitutionGroup="underlyingAsset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Defines a simple underlying asset that is a swap.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="underlyingAsset" type="UnderlyingAsset" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Define the underlying asset when it is a listed security.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:group name="CreditEntity.model">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">An item which has credit characteristics that can be modeled, e.g. a firm, index, or region</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="referenceEntity" type="LegalEntity">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The entity for which this is defined.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="creditEntityReference" type="Reference">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">An XML reference a credit entity defined elsewhere in the document.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!-- more to be added -->
+		</xsd:choice>
+	</xsd:group>
+</xsd:schema>

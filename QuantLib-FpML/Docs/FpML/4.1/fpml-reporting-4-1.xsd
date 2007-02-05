@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+== Copyright (c) 2002-2004. All rights reserved. 
+== Financial Products Markup Language is subject to the FpML public license. 
+== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.fpml.org/2004/FpML-4-1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="fpml-msg-4-1.xsd"/>
+	<xsd:include schemaLocation="fpml-pr-4-1.xsd"/>
+	<xsd:complexType name="PortfolioValuationItem">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type used in valuation enquiry messages which relates a portfolio to its trades and current value.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="portfolio">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Portfolio identifier</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tradeValuationItem" type="TradeValuationItem" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Zero or more trade valuation items.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element ref="valuationSet" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The portfolio valuation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RequestValuationReport">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message allowing one party a report containing valuations of one or many existing trades.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="party" type="Party" maxOccurs="unbounded"/>
+					<xsd:element ref="market" minOccurs="0"/>
+					<xsd:element name="portfolioValuationItem" type="PortfolioValuationItem" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique portfolio valuation.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="tradeValuationItem" type="TradeValuationItem" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade valuation.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeValuationItem">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type used in trade valuation enquiry messages which relates a trade identifier to its current value.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="partyTradeIdentifier" type="PartyTradeIdentifier" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">One or more trade identifiers needed to uniquely identify a trade.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="trade" type="Trade" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Fully-described trades whose values are reported.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element ref="valuationSet">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The trade valuation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ValuationReport">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message normally generated in response to a RequestValuationReport request.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="party" type="Party" maxOccurs="unbounded"/>
+					<xsd:element ref="market" minOccurs="0"/>
+					<xsd:element name="portfolioValuationItem" type="PortfolioValuationItem" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique portfolio valuation.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="tradeValuationItem" type="TradeValuationItem" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A collection of data values describing the state of the given trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="portfolio" type="Portfolio">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Global portfolio element used as a basis for a substitution group.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="queryPortfolio" type="QueryPortfolio" substitutionGroup="portfolio">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Global element used to substitute for "portfolio".</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+</xsd:schema>

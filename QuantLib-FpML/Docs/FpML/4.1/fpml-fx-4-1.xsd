@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+== Copyright (c) 2002-2004. All rights reserved. 
+== Financial Products Markup Language is subject to the FpML public license. 
+== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2004/FpML-4-1" targetNamespace="http://www.fpml.org/2004/FpML-4-1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="fpml-shared-4-1.xsd"/>
+	<xsd:complexType name="CutName">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Allows for an expiryDateTime cut to be described by name.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="cutNameScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2002/cut-name-1-0"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="ExchangeRate">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that is used for describing the exchange rate for a particular transaction.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="FxRate">
+				<xsd:sequence>
+					<xsd:element name="spotRate" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An optional element used for FX forwards and certain types of FX OTC options. For deals consumated in the FX Forwards Market, this represents the current market rate for a particular currency pair. For barrier and digital/binary options, it can be useful to include the spot rate at the time the option was executed to make it easier to know whether the option needs to move "up" or "down" to be triggered.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="forwardPoints" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An optional element used for deals consumated in the FX Forwards market. Forward points represent the interest rate differential between the two currencies traded and are quoted as a preminum or a discount. Forward points are added to, or subtracted from, the spot rate to create the rate of the forward trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="sideRates" type="SideRates" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An optional element that allow for definition of rates against base currency for non-base currency FX contracts.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ExpiryDateTime">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that describes the date and time in a location of the option expiry. In the case of American options this is the latest possible expiry date and time.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="expiryDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Represents a standard expiry date as defined for an FX OTC option.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="expiryTime" type="BusinessCenterTime"/>
+			<xsd:element name="cutName" type="CutName" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FxAmericanTrigger">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A tyoe that defines a particular type of payout in an FX OTC exotic option. An American trigger occurs if the trigger criteria are met at any time from the initiation to the maturity of the option.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="touchCondition" type="TouchConditionEnum">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The binary condition that applies to an American-style trigger. There can only be two domain values for this element: "touch" or "no touch".</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quotedCurrencyPair" type="QuotedCurrencyPair">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Defines the two currencies for an FX trade and the quotation relationship between the two currencies.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="triggerRate" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The market rate is observed relative to the trigger rate, and if it is found to be on the predefined side of (above or below) the trigger rate, a trigger event is deemed to have occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="informationSource" type="InformationSource" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="observationStartDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The start of the period over which observations are made to determine whether a trigger has occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="observationEndDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The end of the period over which observations are made to determine whether a trigger event has occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FxAverageRateObservationDate">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that, for average rate options, is used to describe each specific observation date, as opposed to a parametric frequency of rate observations.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="observationDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A specific date for which an observation against a particular rate will be made and will be used for subsequent computations.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="averageRateWeightingFactor" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">An optional factor that can be used for weighting certain observation dates. Typically, firms will weight each date with a factor of 1 if there are standard, unweighted adjustments.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FxAverageRateObservationSchedule">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that describes average rate options rate observations. This is used to describe a parametric frequency of rate observations against a particular rate. Typical frequencies might include daily, every Friday, etc.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="observationStartDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The start of the period over which observations are made to determine whether a trigger has occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="observationEndDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The end of the period over which observations are made to determine whether a trigger event has occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="calculationPeriodFrequency" type="CalculationPeriodFrequency">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The frequency at which calculation period end dates occur with the regular part of the calculation period schedule and their roll date convention.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FxAverageRateOption">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that is used for an option whose payout is based on the average of the price of the underlying over a specific period of time. The payout is the difference between the predetermined, fixed strike price and the average of spot rates observed and is used for hedging against prevailing spot rates over a given time period.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Product">
+				<xsd:sequence>
+					<xsd:group ref="BuyerSeller.model"/>
+					<xsd:element name="expiryDateTime" type="ExpiryDateTime">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date and time in a location of the option expiry. In the case of american options this is the latest possible expiry date and time.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="exerciseStyle" type="ExerciseStyleEnum">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The manner in which the option can be exercised.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fxOptionPremium" type="FxOptionPremium" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Premium amount or premium installment amount for an option.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="valueDate" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date on which both currencies traded will settle.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="putCurrencyAmount" type="Money">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The currency amount that the option gives the right to sell.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="callCurrencyAmount" type="Money">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The currency amount that the option gives the right to buy.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fxStrikePrice" type="FxStrikePrice">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">TBA</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="spotRate" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An optional element used for FX forwards and certain types of FX OTC options. For deals consumated in the FX Forwards Market, this represents the current market rate for a particular currency pair. For barrier and digital/binary options, it can be useful to include the spot rate at the time the option was executed to make it easier to know whether the option needs to move "up" or "down" to be triggered.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="payoutCurrency" type="Currency">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The ISO code of the currency in which a payout (if any) is to be made when a trigger is hit on a digital or barrier option.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="averageRateQuoteBasis" type="StrikeQuoteBasisEnum">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The method by which the average rate that is being observed is quoted.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="precision" type="xsd:nonNegativeInteger" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the rounding precision in terms of a number of decimal places. Note how a percentage rate rounding of 5 decimal places is expressed as a rounding precision of 7 in the FpML document since the percentage is expressed as a decimal, e.g. 9.876543% (or 0.09876543) being rounded to the nearest 5 decimal places is 9.87654% (or 0.0987654).</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="payoutFormula" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The description of the mathematical computation for how the payout is computed.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="primaryRateSource" type="InformationSource">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The primary source for where the rate observation will occur. Will typically be either a page or a reference bank published rate.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="secondaryRateSource" type="InformationSource" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An alternative, or secondary, source for where the rate observation will occur. Will typically be either a page or a reference bank published rate.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fixingTime" type="BusinessCenterTime">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The time at which the spot currency exchange rate will be observed. It is specified as a time in a specific business center, e.g. 11:00am London time.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:choice>
+						<xsd:element name="averageRateObservationSchedule" type="FxAverageRateObservationSchedule">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="en">Parametric schedule of rate observations.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="averageRateObservationDate" type="FxAverageRateObservationDate" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="en">One of more specific rate observation dates.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
+					<xsd:element name="observedRates" type="ObservedRates" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Describes prior rate observations within average rate options. Periodically, an average rate option agreement will be struck whereby some rates have already been observed in the past but will become part of computation of the average rate of the option. This structure provides for these previously observed rates to be included in the description of the trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="FxBarrier">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that is used within the FX barrier option definition to define one or more barrier levels that determine whether the option will be knocked-in or knocked-out.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="fxBarrierType" type="FxBarrierTypeEnum" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">This specifies whether the option becomes effective ("knock-in") or is annulled ("knock-out") when the respective trigger event occurs.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quotedCurrencyPair" type="QuotedCurrencyPair">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Defines the two currencies for an FX trade and the quotation relationship between the two currencies.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="triggerRate" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The market rate is observed relative to the trigger rate, and if it is found to be on the predefined side of (above or below) the trigger rate, a trigger event is deemed to have occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="informationSource" type="InformationSource" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="observationStartDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The start of the period over which observations are made to determine whether a trigger has occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="observationEndDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The end of the period over which observations are made to determine whether a trigger event has occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FxBarrierOption">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that describes an option with a put/call component, but also one or more associated barrier rates. If the market rate moves to reach a barrier rate a trigger event occurs. The trigger event may for example be necessary to enable the option, or may annul the option contract. [Since the barriers reduce the probability of exercise, the premium for an option with barriers is likely to be cheaper than one without].</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="FxOptionLeg">
+				<xsd:sequence>
+					<xsd:element name="spotRate" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An optional element used for FX forwards and certain types of FX OTC options. For deals consumated in the FX Forwards Market, this represents the current market rate for a particular currency pair. For barrier and digital/binary options, it can be useful to include the spot rate at the time the option was executed to make it easier to know whether the option needs to move "up" or "down" to be triggered.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fxBarrier" type="FxBarrier" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Information about a barrier rate in a Barrier Option - specifying the exact criteria for a trigger event to occur.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="triggerPayout" type="FxOptionPayout" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The amount of currency which becomes payable if and when a trigger event occurs.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="FxDigitalOption">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that describes an option without a put/call component (and so no associated exercise), but with one or more trigger rates) Examples are "one-touch", "no-touch", and "double-no-touch" options. For a specified period the market rate is observed relative to the trigger rates, and on a trigger event a fixed payout may become due to the buyer of the option, or alternatively the option contract may be annulled.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Product">
+				<xsd:sequence>
+					<xsd:group ref="BuyerSeller.model"/>
+					<xsd:element name="expiryDateTime" type="ExpiryDateTime">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date and time in a location of the option expiry. In the case of american options this is the latest possible expiry date and time.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fxOptionPremium" type="FxOptionPremium" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Premium amount or premium installment amount for an option.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="valueDate" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date on which both currencies traded will settle.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="quotedCurrencyPair" type="QuotedCurrencyPair">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Defines the two currencies for an FX trade and the quotation relationship between the two currencies.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="spotRate" type="xsd:decimal" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An optional element used for FX forwards and certain types of FX OTC options. For deals consumated in the FX Forwards Market, this represents the current market rate for a particular currency pair. For barrier and digital/binary options, it can be useful to include the spot rate at the time the option was executed to make it easier to know whether the option needs to move "up" or "down" to be triggered.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:choice>
+						<xsd:element name="fxEuropeanTrigger" type="FxEuropeanTrigger" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="en">A European trigger occurs if the trigger criteria are met, but these are valid (and an observation is made) only at the maturity of the option.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="fxAmericanTrigger" type="FxAmericanTrigger" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="en">An American trigger occurs if the trigger criteria are met at any time from the initiation to the maturity of the option.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
+					<xsd:element name="triggerPayout" type="FxOptionPayout">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The amount of currency which becomes payable if and when a trigger event occurs.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="FxEuropeanTrigger">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that defines a particular type of payout in an FX OTC exotic option. A European trigger occurs if the trigger criteria are met, but these are valid (and an observation is made) only at the maturity of the option.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="triggerCondition" type="TriggerConditionEnum">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The binary condition that applies to a European-style trigger, determining where the spot rate must be relative to the triggerRate for the option to be exercisable. There can only be two domain values for this element: "aboveTrigger" or "belowTrigger".</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quotedCurrencyPair" type="QuotedCurrencyPair">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Defines the two currencies for an FX trade and the quotation relationship between the two currencies.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="triggerRate" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The market rate is observed relative to the trigger rate, and if it is found to be on the predefined side of (above or below) the trigger rate, a trigger event is deemed to have occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="informationSource" type="InformationSource" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FxLeg">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that represents a single exchange of one currency for another. This is used for representing FX spot, forward, and swap transactions.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Product">
+				<xsd:sequence>
+					<xsd:element name="exchangedCurrency1" type="Payment">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">This is the first of the two currency flows that define a single leg of a standard foreign exchange transaction.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="exchangedCurrency2" type="Payment">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">This is the second of the two currency flows that define a single leg of a standard foreign exchange transaction.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:choice>
+						<xsd:element name="valueDate" type="xsd:date">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="en">The date on which both currencies traded will settle.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:sequence>
+							<xsd:element name="currency1ValueDate" type="xsd:date">
+								<xsd:annotation>
+									<xsd:documentation xml:lang="en">The date on which the currency1 amount will be settled. To be used in a split value date scenario.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="currency2ValueDate" type="xsd:date">
+								<xsd:annotation>
+									<xsd:documentation xml:lang="en">The date on which the currency2 amount will be settled. To be used in a split value date scenario.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:choice>
+					<xsd:element name="exchangeRate" type="ExchangeRate">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The rate of exchange between the two currencies.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="nonDeliverableForward" type="FxCashSettlement" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Used to describe a particular type of FX forward transaction that is settled in a single currency.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="confirmationSenderPartyReference" type="PartyReference" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The party that is sending the current document as a confirmation of the trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="FxOptionLeg">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that is used for describing a standard FX OTC option (European or American) which may be a complete trade in its own right or part of a trade strategy.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Product">
+				<xsd:sequence>
+					<xsd:group ref="BuyerSeller.model"/>
+					<xsd:element name="expiryDateTime" type="ExpiryDateTime">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date and time in a location of the option expiry. In the case of american options this is the latest possible expiry date and time.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="exerciseStyle" type="ExerciseStyleEnum">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The manner in which the option can be exercised.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fxOptionPremium" type="FxOptionPremium" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Premium amount or premium installment amount for an option.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="valueDate" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date on which both currencies traded will settle.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="cashSettlementTerms" type="FxCashSettlement" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">This optional element is only used if an option has been specified at execution time to be settled into a single cash payment. This would be used for a non-deliverable option.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="putCurrencyAmount" type="Money">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The currency amount that the option gives the right to sell.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="callCurrencyAmount" type="Money">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The currency amount that the option gives the right to buy.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fxStrikePrice" type="FxStrikePrice">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">TBA</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="quotedAs" type="QuotedAs" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Describes how the option was quoted.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="FxOptionPayout">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that contains full details of a predefined fixed payout which may occur (or not) in a Barrier Option or Digital Option when a trigger event occurs (or not).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Money">
+				<xsd:sequence>
+					<xsd:element name="payoutStyle" type="PayoutEnum">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The trigger event and payout may be asynchonous. A payout may become due on the trigger event, or the payout may (by agreeement at initiation) be deferred (for example) to the maturity date.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="settlementInformation" type="SettlementInformation" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The information required to settle a currency payment that results from a trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="FxOptionPremium">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that specifies the premium exchanged for a single option trade or option strategy.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:group ref="PayerReceiver.model"/>
+			<xsd:element name="premiumAmount" type="Money">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The specific currency and amount of the option premium.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="premiumSettlementDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The agreed-upon date when the option premium will be settled.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="settlementInformation" type="SettlementInformation" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The information required to settle a currency payment that results from a trade.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="premiumQuote" type="PremiumQuote" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">This is the option premium as quoted. It is expected to be consistent with the premiumAmount and is for information only.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FxStrikePrice">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that describes the rate of exchange at which the option has been struck.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="rate" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The rate of exchange between the two currencies of the leg of a deal. Must be specified with a quote basis.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="strikeQuoteBasis" type="StrikeQuoteBasisEnum">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The method by which the strike rate is quoted.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FxSwap">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that describes an FX swap. This is similar to FpML_FXLeg, but contains multiple legs for a particular trade.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Product">
+				<xsd:sequence>
+					<xsd:element ref="fxSingleLeg" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ObservedRates">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that describes prior rate observations within average rate options. Periodically, an average rate option agreement will be struck whereby some rates have already been observed in the past but will become part of computation of the average rate of the option. This structure provides for these previously observed rates to be included in the description of the trade.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="observationDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A specific date for which an observation against a particular rate will be made and will be used for subsequent computations.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="observedRate" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The actual observed rate before any required rate treatment is applied, e.g. before converting a rate quoted on a discount basis to an equivalent yield. An observed rate of 5% would be represented as 0.05.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PremiumQuote">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that describes the option premium as quoted.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="premiumValue" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The value of the premium quote. In general this will be either a percentage or an explicit amount.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="premiumQuoteBasis" type="PremiumQuoteBasisEnum">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The method by which the option premium was quoted.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QuotedAs">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that describes how the option was quoted.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="optionOnCurrency" type="Currency">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Either the callCurrencyAmount or the putCurrencyAmount defined elsewhere in the document. The currency reference denotes the option currency as the option was quoted (as opposed to the face currency).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="faceOnCurrency" type="Currency">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Either the callCurrencyAmount or the putCurrencyAmount defined elsewhere in the document.The currency reference denotes the face currency as the option was quoted (as opposed to the option currency).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quotedTenor" type="Interval" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Code denoting the tenor of the option leg.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SideRate">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that is used for describing a particular rate against base currency. Exists within SideRates.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="currency" type="Currency">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sideRateBasis" type="SideRateBasisEnum">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The method by which the exchange rate against base currency is quoted.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rate" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The rate of exchange between the two currencies of the leg of a deal. Must be specified with a quote basis.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="spotRate" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">An optional element used for FX forwards and certain types of FX OTC options. For deals consumated in the FX Forwards Market, this represents the current market rate for a particular currency pair. For barrier and digital/binary options, it can be useful to include the spot rate at the time the option was executed to make it easier to know whether the option needs to move "up" or "down" to be triggered.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="forwardPoints" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">An optional element used for deals consumated in the FX Forwards market. Forward points represent the interest rate differential between the two currencies traded and are quoted as a preminum or a discount. Forward points are added to, or subtracted from, the spot rate to create the rate of the forward trade.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SideRates">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that is used for including rates against base currency for non-base currency FX contracts.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="baseCurrency" type="Currency">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The currency that is used as the basis for the side rates when calculating a cross rate.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="currency1SideRate" type="SideRate" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The exchange rate for the first currency of the trade against base currency.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="currency2SideRate" type="SideRate" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The exchange rate for the second currency of the trade against base currency.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TermDeposit">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A class defining the content model for a term deposit product.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Product">
+				<xsd:sequence>
+					<xsd:element name="initialPayerReference" type="PartyReference">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A pointer style reference to a party identifier defined elsewhere in the document. The party referenced is the payer of the initial principal of the deposit on the start date.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="initialReceiverReference" type="PartyReference">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A pointer style reference to a party identifier defined elsewhere in the document. The party is the receiver of the initial principal of the deposit on the start date.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="startDate" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The averaging period start date.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="maturityDate" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The end date of the calculation period. This date should already be adjusted for any applicable business day convention.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dayCountFraction" type="DayCountFraction">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The day count fraction.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="principal" type="Money">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The principal amount of the trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fixedRate" type="xsd:decimal">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The calculation period fixed rate. A per annum rate, expressed as a decimal. A fixed rate of 5% would be represented as 0.05.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="interest" type="Money" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The total interest of at maturity of the trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="payment" type="Payment" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A known payment between two parties.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="fxAverageRateOption" type="FxAverageRateOption" substitutionGroup="product">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A component describing an FX Average Rate Option product.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="fxBarrierOption" type="FxBarrierOption" substitutionGroup="product">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A component describing a FX Barrier Option product.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="fxDigitalOption" type="FxDigitalOption" substitutionGroup="product">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A component describing a FX Digital Option product.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="fxSimpleOption" type="FxOptionLeg" substitutionGroup="product">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A component describing a FX Simple Option product</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="fxSingleLeg" type="FxLeg" substitutionGroup="product">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A single-legged FX transaction definition (e.g., spot or forward).</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="fxSwap" type="FxSwap" substitutionGroup="product">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A component describing a FX Swap product.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="termDeposit" type="TermDeposit" substitutionGroup="product">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A term deposit product definition.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+</xsd:schema>

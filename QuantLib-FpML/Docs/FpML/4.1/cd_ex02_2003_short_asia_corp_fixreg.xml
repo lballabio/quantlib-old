@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML version="4-1" xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xsi:type="DataDocument">
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="partyA"/>
+				<tradeId tradeIdScheme="http://www.xyzbank.com/cd-trade-id">xyz1234</tradeId>
+			</partyTradeIdentifier>
+			<partyTradeIdentifier>
+				<partyReference href="partyB"/>
+				<tradeId tradeIdScheme="http://www.abcbank.com/cd-trade-id">abc1234</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate>2002-12-04</tradeDate>
+		</tradeHeader>
+		<creditDefaultSwap>
+			<generalTerms>
+				<effectiveDate>
+					<unadjustedDate>2002-12-05</unadjustedDate>
+				</effectiveDate>
+				<scheduledTerminationDate>
+					<adjustableDate>
+						<unadjustedDate>2007-12-05</unadjustedDate>
+					</adjustableDate>
+				</scheduledTerminationDate>
+				<sellerPartyReference href="partyB"/>
+				<buyerPartyReference href="partyA"/>
+				<referenceInformation>
+					<referenceEntity id="referenceEntity">
+						<entityName>Aiful Corporation</entityName>
+						<entityId entityIdScheme="http://www.fpml.org/spec/2003/entity-id-RED-1-0">008FAQ</entityId>
+					</referenceEntity>
+					<referenceObligation>
+						<bond>
+							<instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-ISIN-1-0">JP310504B117</instrumentId>
+							<couponRate>0.02</couponRate>
+							<maturity>2004-01-26</maturity>
+						</bond>
+						<primaryObligorReference href="referenceEntity"/>
+					</referenceObligation>
+				</referenceInformation>
+			</generalTerms>
+			<feeLeg>
+				<periodicPayment>
+					<paymentFrequency>
+						<periodMultiplier>3</periodMultiplier>
+						<period>M</period>
+					</paymentFrequency>
+					<firstPaymentDate>2003-03-05</firstPaymentDate>
+					<rollConvention>5</rollConvention>
+					<fixedAmountCalculation>
+						<fixedRate>0.007</fixedRate>
+					</fixedAmountCalculation>
+				</periodicPayment>
+			</feeLeg>
+			<protectionTerms>
+				<calculationAmount>
+					<currency>JPY</currency>
+					<amount>500000000</amount>
+				</calculationAmount>
+				<creditEvents>
+					<restructuring/>
+				</creditEvents>
+			</protectionTerms>
+		</creditDefaultSwap>
+		<calculationAgentBusinessCenter>JPTO</calculationAgentBusinessCenter>
+		<documentation>
+			<masterConfirmation>
+				<masterConfirmationType>ISDA2003CreditJapan</masterConfirmationType>
+				<masterConfirmationDate>2003-06-06</masterConfirmationDate>
+			</masterConfirmation>
+		</documentation>
+	</trade>
+	<party id="partyA">
+		<partyId>XYZBICXXX</partyId>
+		<partyName>XYZ Bank</partyName>
+	</party>
+	<party id="partyB">
+		<partyId>ABCBICXXX</partyId>
+		<partyName>ABC Bank</partyName>
+	</party>
+</FpML>

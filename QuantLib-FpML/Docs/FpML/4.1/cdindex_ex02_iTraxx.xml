@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML version="4-1" xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xsi:type="DataDocument">
+        <trade>
+                <tradeHeader>
+                        <partyTradeIdentifier>
+                                <partyReference href="newbank"/>
+                                <tradeId tradeIdScheme="http://www.newbank.com/trade-id">ITRAXX1234</tradeId>
+                        </partyTradeIdentifier>
+                        <partyTradeIdentifier>
+                                <partyReference href="massivebank"/>
+                                <tradeId tradeIdScheme="http://www.massivebank.com/trade-id">1234B6</tradeId>
+                        </partyTradeIdentifier>
+                        <tradeDate>2004-11-03</tradeDate>
+                </tradeHeader>
+                <creditDefaultSwap>
+                        <generalTerms>
+                                <scheduledTerminationDate>
+                                        <adjustableDate>
+                                                <unadjustedDate>2010-03-20</unadjustedDate>
+                                        </adjustableDate>
+                                </scheduledTerminationDate>
+                                <sellerPartyReference href="massivebank"/>
+                                <buyerPartyReference href="newbank"/>
+                                <indexReferenceInformation>
+                                        <indexName>Dow Jones iTraxx Europe Consumers Series 2 Version 1</indexName>
+                                        <indexSeries>2</indexSeries>
+                                        <indexAnnexVersion>1</indexAnnexVersion>
+                                        <excludedReferenceEntity>
+                                                <entityName>TESCO PLC</entityName>
+                                        </excludedReferenceEntity>
+                                </indexReferenceInformation>
+                        </generalTerms>
+                        <feeLeg>
+                                <initialPayment>
+                                        <payerPartyReference href="newbank"/>
+                                        <receiverPartyReference href="massivebank"/>
+                                        <paymentAmount>
+                                                <currency>EUR</currency>
+                                                <amount>17000</amount>
+                                        </paymentAmount>
+                                </initialPayment>
+                        </feeLeg>
+                        <protectionTerms>
+                                <calculationAmount>
+                                        <currency>USD</currency>
+                                        <amount>25000000</amount>
+                                </calculationAmount>
+                        </protectionTerms>
+                </creditDefaultSwap>
+                <documentation>
+                        <masterConfirmation>
+                                <masterConfirmationType>DJ.iTraxx.Europe</masterConfirmationType>
+                                <masterConfirmationDate>2004-10-11</masterConfirmationDate>
+                        </masterConfirmation>
+                </documentation>
+        </trade>
+        <party id="newbank">
+                <partyId>NEWBANKLDNBICXXX</partyId>
+                <partyName>New Bank, New York</partyName>
+        </party>
+        <party id="massivebank">
+                <partyId>MASSIVELDNBICXXX</partyId>
+                <partyName>Massive Bank, New York</partyName>
+        </party>
+</FpML>

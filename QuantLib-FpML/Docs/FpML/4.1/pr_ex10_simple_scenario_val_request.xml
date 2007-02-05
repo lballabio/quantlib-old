@@ -1,0 +1,52 @@
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Mahmood Hanif (Bank Of America) -->
+<FpML xsi:type="RequestValuationReport" version="4-1" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd">
+	<header>
+		<messageId messageIdScheme="http://www.fpml.org/message-id">VAL001</messageId>
+		<sentBy>ABC123</sentBy>
+		<sendTo>DEF456</sendTo>
+		<creationTimestamp>2004-05-21T17:29:04-00:00</creationTimestamp>
+	</header>
+	<party id="party1">
+		<partyId>ABCDEF</partyId>
+	</party>
+	<market>
+		<!--We only need to describe curve in order to reference it in a shift. We dont need a yieldCurveValuation.-->
+		<yieldCurve id="USD-LIBOR">
+			<name>3M-LIBOR</name>
+			<currency>USD</currency>
+		</yieldCurve>
+	</market>
+	<!--Portfolio Valuation Item-->
+	<portfolioValuationItem>
+		<portfolio id="port1">
+			<tradeId id="tid-1" tradeIdScheme="http://party1.com/tids">1234</tradeId>
+			<tradeId id="tid-2" tradeIdScheme="http://party1.com/tids">2345</tradeId>
+			<tradeId id="tid-3" tradeIdScheme="http://party1.com/tids">3456</tradeId>
+		</portfolio>
+		<!--Valuation Set-->
+		<valuationSet>
+			<!--Base Valuation Scenario-->
+			<valuationScenario id="valscen1">
+				<name>EOD Valuation</name>
+				<valuationDate>2004-05-01</valuationDate>
+			</valuationScenario>
+			<!--Scenario: USD Libor shocked up 100bp-->
+			<valuationScenario id="valscen2">
+				<name>USDLibor up 100bp</name>
+				<valuationDate>2003-10-29</valuationDate>
+				<shift>
+					<parameterReference href="USD-LIBOR"/>
+					<shift>100</shift>
+					<shiftUnits>BasisPointValue</shiftUnits>
+				</shift>
+			</valuationScenario>
+			<baseParty href="party1"/>
+			<!--Requested Valuation Characteristics-->
+			<quotationCharacteristics>
+				<measureType>NPV</measureType>
+				<side>Mid</side>
+			</quotationCharacteristics>
+		</valuationSet>
+	</portfolioValuationItem>
+</FpML>
+

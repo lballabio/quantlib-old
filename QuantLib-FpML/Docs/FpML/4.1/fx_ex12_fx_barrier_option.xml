@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<!-- 
+  == Example 12 Knockin Barrier FX Option
+  ==              Trade Date      : 2001-08-16
+  ==              Expiry Date     : 2002-02-06
+  ==              Expiry Time     : 10:00 New York Time
+  ==              Option Buyer    : DB
+  ==              Option Seller   : Chase
+  ==              Single Barrier Option   : 5m EUR call on 4.5m  USD put @ 0.9 strike w/ knockin at 0.8975
+  ==              Option Premium  : 45,000 USD
+  ==              Premium Payment: 2001-08-20
+  ==              Value Date      : 2002-02-08
+  ==              Business Center : New York
+  ==              Reference Spot : 0.8935
+  ==              Trigger Rate : 0.8975 (option is knocked in when this price is hit)
+  -->
+<FpML version="4-1" xsi:type="DataDocument" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xmlns="http://www.fpml.org/2004/FpML-4-1">
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="CHASE"/>
+				<tradeId tradeIdScheme="http://www.chase.com/swaps/trade-id">CHASUS33</tradeId>
+			</partyTradeIdentifier>
+			<partyTradeIdentifier>
+				<partyReference href="DB"/>
+				<tradeId tradeIdScheme="http://www.db.com/swaps/trade-id">DEUTDEFF</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate>2001-08-16</tradeDate>
+		</tradeHeader>
+		<fxBarrierOption>
+			<buyerPartyReference href="DB"/>
+			<sellerPartyReference href="CHASE"/>
+			<expiryDateTime>
+				<expiryDate>2002-02-06</expiryDate>
+				<expiryTime>
+					<hourMinuteTime>10:00:00</hourMinuteTime>
+					<businessCenter>USNY</businessCenter>
+				</expiryTime>
+			</expiryDateTime>
+			<exerciseStyle>European</exerciseStyle>
+			<fxOptionPremium>
+				<payerPartyReference href="DB"/>
+				<receiverPartyReference href="CHASE"/>
+				<premiumAmount>
+					<currency>USD</currency>
+					<amount>45000</amount>
+				</premiumAmount>
+				<premiumSettlementDate>2001-11-06</premiumSettlementDate>
+			</fxOptionPremium>
+			<valueDate>2002-02-08</valueDate>
+			<putCurrencyAmount>
+				<currency>USD</currency>
+				<amount>4500000</amount>
+			</putCurrencyAmount>
+			<callCurrencyAmount>
+				<currency>EUR</currency>
+				<amount>5000000</amount>
+			</callCurrencyAmount>
+			<fxStrikePrice>
+				<rate>0.9</rate>
+				<strikeQuoteBasis>PutCurrencyPerCallCurrency</strikeQuoteBasis>
+			</fxStrikePrice>
+			<spotRate>0.8935</spotRate>
+			<fxBarrier>
+				<fxBarrierType>Knockin</fxBarrierType>
+				<quotedCurrencyPair>
+					<currency1>EUR</currency1>
+					<currency2>USD</currency2>
+					<quoteBasis>Currency2PerCurrency1</quoteBasis>
+				</quotedCurrencyPair>
+				<triggerRate>0.8975</triggerRate>
+				<informationSource>
+					<rateSource>Reuters</rateSource>
+					<rateSourcePage>EUR=</rateSourcePage>
+				</informationSource>
+			</fxBarrier>
+		</fxBarrierOption>
+	</trade>
+	<party id="CHASE">
+		<partyId>CHASUS33</partyId>
+	</party>
+	<party id="DB">
+		<partyId>DEUTDEFF</partyId>
+	</party>
+</FpML>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<FpML version="4-1" xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xsi:type="DataDocument">
+	<trade>
+		<!-- Variance Swap Index Example -->
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="PartyA"/>
+				<tradeId tradeIdScheme="http://www.partyA.com/eqs-trade-id">6234</tradeId>
+			</partyTradeIdentifier>
+			<partyTradeIdentifier>
+				<partyReference href="PartyB"/>
+				<tradeId tradeIdScheme="http://www.partyB.com/eqs-trade-id">6569</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate id="TradeDate">2001-09-24</tradeDate>
+		</tradeHeader>
+		<equitySwapTransactionSupplement>
+			<productType>IndexVarianceSwap</productType>
+			<buyerPartyReference href="PartyA"/>
+			<sellerPartyReference href="PartyB"/>
+			<varianceLeg>
+				<payerPartyReference href="PartyA"/>
+				<receiverPartyReference href="PartyB"/>
+				<underlyer>
+					<singleUnderlyer>
+						<index>
+							<instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">.SP500</instrumentId>
+							<description>SP 500 Index</description>
+							<currency>USD</currency>
+							<exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NYSE</exchangeId>
+							<relatedExchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">CBOE</relatedExchangeId>
+						</index>
+					</singleUnderlyer>
+				</underlyer>
+				<equityValuation>
+					<valuationDate id="FinalValuationDate">
+						<adjustableDate>
+							<unadjustedDate>2004-07-21</unadjustedDate>
+							<dateAdjustments>
+								<businessDayConvention>NotApplicable</businessDayConvention>
+							</dateAdjustments>
+						</adjustableDate>
+					</valuationDate>
+					<futuresPriceValuation>true</futuresPriceValuation>
+				</equityValuation>
+				<equityAmount>
+					<paymentCurrency id="EquityPaymentCurrency">
+						<currency>USD</currency>
+					</paymentCurrency>
+					<variance>
+						<closingLevel>true</closingLevel>
+						<varianceAmount>
+							<currency>USD</currency>
+							<amount>350000</amount>
+						</varianceAmount>
+						<varianceStrikePrice>950</varianceStrikePrice>
+						<exchangeTradedContractNearest>
+							<instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">.SP500</instrumentId>
+							<description>SP 500 INDEX</description>
+							<currency>EUR</currency>
+							<exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NYSE</exchangeId>
+							<relatedExchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">CBOE</relatedExchangeId>
+							<contractReference>CBOE SEP04 SP500 FUTURE</contractReference>
+							<expirationDate>
+								<adjustableDate>
+									<unadjustedDate>2004-09-23</unadjustedDate>
+									<dateAdjustments>
+										<businessDayConvention>NONE</businessDayConvention>
+									</dateAdjustments>
+								</adjustableDate>
+							</expirationDate>
+						</exchangeTradedContractNearest>
+					</variance>
+					<cashSettlement>true</cashSettlement>
+				</equityAmount>
+			</varianceLeg>
+		</equitySwapTransactionSupplement>
+		<calculationAgent>
+			<calculationAgentPartyReference href="PartyA"/>
+		</calculationAgent>
+		<documentation>
+			<masterAgreement>
+				<masterAgreementType>ISDA2002</masterAgreementType>
+			</masterAgreement>
+			<contractualDefinitions>ISDA2000</contractualDefinitions>
+			<contractualDefinitions>ISDA2002Equity</contractualDefinitions>
+		</documentation>
+		<governingLaw>GBEN</governingLaw>
+	</trade>
+	<party id="PartyA">
+		<partyId>Party A</partyId>
+	</party>
+	<party id="PartyB">
+		<partyId>Party B</partyId>
+	</party>
+</FpML>

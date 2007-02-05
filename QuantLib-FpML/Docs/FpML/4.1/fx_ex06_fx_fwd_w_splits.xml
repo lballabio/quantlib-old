@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML version="4-1" xsi:type="DataDocument" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xmlns="http://www.fpml.org/2004/FpML-4-1">
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="DB"/>
+				<tradeId tradeIdScheme="http://www.db.com/fx/trade-id">FX048VS</tradeId>
+			</partyTradeIdentifier>
+			<partyTradeIdentifier>
+				<partyReference href="ABN"/>
+				<tradeId tradeIdScheme="http://www.abn.com/fx/trade-id">USABC023</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate>2001-11-12</tradeDate>
+		</tradeHeader>
+		<fxSingleLeg>
+			<exchangedCurrency1>
+				<payerPartyReference href="DB"/>
+				<receiverPartyReference href="ABN"/>
+				<paymentAmount>
+					<currency>USD</currency>
+					<amount>13000000</amount>
+				</paymentAmount>
+				<settlementInformation>
+					<settlementInstruction>
+						<settlementMethod>SWIFT</settlementMethod>
+						<correspondentInformation>
+							<routingIds>
+								<routingId>DEUTUS33</routingId>
+							</routingIds>
+						</correspondentInformation>
+						<beneficiary>
+							<routingIds>
+								<routingId>ABNANL2A</routingId>
+							</routingIds>
+						</beneficiary>
+						<splitSettlement>
+							<splitSettlementAmount>
+								<currency>USD</currency>
+								<amount>3000000</amount>
+							</splitSettlementAmount>
+							<beneficiaryBank>
+								<routingIds>
+									<routingId>ABNAUS33</routingId>
+								</routingIds>
+							</beneficiaryBank>
+							<beneficiary>
+								<routingIds>
+									<routingId>ABNANL2A</routingId>
+								</routingIds>
+							</beneficiary>
+						</splitSettlement>
+						<splitSettlement>
+							<splitSettlementAmount>
+								<currency>USD</currency>
+								<amount>4000000</amount>
+							</splitSettlementAmount>
+							<beneficiaryBank>
+								<routingIds>
+									<routingId>ABNAUS4C</routingId>
+								</routingIds>
+							</beneficiaryBank>
+							<beneficiary>
+								<routingIds>
+									<routingId>ABNANL2A</routingId>
+								</routingIds>
+							</beneficiary>
+						</splitSettlement>
+						<splitSettlement>
+							<splitSettlementAmount>
+								<currency>USD</currency>
+								<amount>6000000</amount>
+							</splitSettlementAmount>
+							<beneficiaryBank>
+								<routingIds>
+									<routingId>ABNAUS6F</routingId>
+								</routingIds>
+							</beneficiaryBank>
+							<beneficiary>
+								<routingIds>
+									<routingId>ABNANL2A</routingId>
+								</routingIds>
+							</beneficiary>
+						</splitSettlement>
+					</settlementInstruction>
+				</settlementInformation>
+			</exchangedCurrency1>
+			<exchangedCurrency2>
+				<payerPartyReference href="ABN"/>
+				<receiverPartyReference href="DB"/>
+				<paymentAmount>
+					<currency>EUR</currency>
+					<amount>14393600</amount>
+				</paymentAmount>
+				<settlementInformation>
+					<settlementInstruction>
+						<beneficiaryBank>
+							<routingIdsAndExplicitDetails>
+								<routingIds>
+									<routingId>DEUTDEFF</routingId>
+								</routingIds>
+								<routingName>DeutscheBank</routingName>
+								<routingAccountNumber>/D/123-456-789</routingAccountNumber>
+							</routingIdsAndExplicitDetails>
+						</beneficiaryBank>
+						<beneficiary>
+							<routingIds>
+								<routingId>DEUTDEFF</routingId>
+							</routingIds>
+						</beneficiary>
+					</settlementInstruction>
+				</settlementInformation>
+			</exchangedCurrency2>
+			<valueDate>2002-02-14</valueDate>
+			<exchangeRate>
+				<quotedCurrencyPair>
+					<currency1>USD</currency1>
+					<currency2>EUR</currency2>
+					<quoteBasis>Currency2PerCurrency1</quoteBasis>
+				</quotedCurrencyPair>
+				<rate>1.1072</rate>
+			</exchangeRate>
+		</fxSingleLeg>
+	</trade>
+	<party id="DB">
+		<partyId>DEUTDEFF</partyId>
+	</party>
+	<party id="ABN">
+		<partyId>ABNANL2A</partyId>
+	</party>
+</FpML>

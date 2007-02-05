@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML version="4-1" xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xsi:type="DataDocument">
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="partyA"/>
+				<tradeId tradeIdScheme="http://www.xyzbank.com/cd-trade-id">xyz1234</tradeId>
+			</partyTradeIdentifier>
+			<partyTradeIdentifier>
+				<partyReference href="partyB"/>
+				<tradeId tradeIdScheme="http://www.abcbank.com/cd-trade-id">abc1234</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate>2002-12-03</tradeDate>
+		</tradeHeader>
+		<creditDefaultSwap>
+			<generalTerms>
+				<effectiveDate>
+					<unadjustedDate>2002-12-04</unadjustedDate>
+				</effectiveDate>
+				<scheduledTerminationDate>
+					<adjustableDate>
+						<unadjustedDate>2007-12-04</unadjustedDate>
+					</adjustableDate>
+				</scheduledTerminationDate>
+				<sellerPartyReference href="partyB"/>
+				<buyerPartyReference href="partyA"/>
+				<referenceInformation>
+					<referenceEntity id="referenceEntity">
+						<entityName>Amcor Ltd</entityName>
+						<entityId entityIdScheme="http://www.fpml.org/spec/2003/entity-id-RED-1-0">0C575S</entityId>
+					</referenceEntity>
+					<referenceObligation>
+						<bond>
+							<instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-ISIN-1-0">US867211AA21</instrumentId>
+							<couponRate>0.0675</couponRate>
+							<maturity>2003-06-15</maturity>
+						</bond>
+						<primaryObligor>
+							<entityName>Sunclipse, Inc.</entityName>
+						</primaryObligor>
+						<guarantorReference href="referenceEntity"/>
+					</referenceObligation>
+				</referenceInformation>
+			</generalTerms>
+			<feeLeg>
+				<periodicPayment>
+					<paymentFrequency>
+						<periodMultiplier>3</periodMultiplier>
+						<period>M</period>
+					</paymentFrequency>
+					<firstPaymentDate>2003-03-04</firstPaymentDate>
+					<rollConvention>4</rollConvention>
+					<fixedAmountCalculation>
+						<fixedRate>0.0056</fixedRate>
+					</fixedAmountCalculation>
+				</periodicPayment>
+			</feeLeg>
+			<protectionTerms>
+				<calculationAmount>
+					<currency>USD</currency>
+					<amount>10000000</amount>
+				</calculationAmount>
+				<creditEvents>
+					<restructuring>
+						<restructuringType>ModR</restructuringType>
+					</restructuring>
+				</creditEvents>
+			</protectionTerms>
+		</creditDefaultSwap>
+		<documentation>
+			<masterConfirmation>
+				<masterConfirmationType>ISDA1999Credit</masterConfirmationType>
+				<masterConfirmationDate>2001-01-03</masterConfirmationDate>
+			</masterConfirmation>
+		</documentation>
+	</trade>
+	<party id="partyA">
+		<partyId>XYZBICXXX</partyId>
+		<partyName>XYZ Bank</partyName>
+	</party>
+	<party id="partyB">
+		<partyId>ABCBICXXX</partyId>
+		<partyName>ABC Bank</partyName>
+	</party>
+</FpML>

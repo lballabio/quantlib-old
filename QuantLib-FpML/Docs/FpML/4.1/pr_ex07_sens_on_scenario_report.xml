@@ -1,0 +1,97 @@
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Mahmood Hanif (Bank Of America) -->
+<FpML xsi:type="ValuationDocument" version="4-1" xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd">
+	<!--Portfolio of trades -->
+	<portfolio id="port1">
+		<tradeId id="tid-1" tradeIdScheme="http://party1.com/tids">1234</tradeId>
+	</portfolio>
+	<party id="party1">
+		<partyId>ABCDEF</partyId>
+	</party>
+	<market>
+		<!--We only need to describe curve in order to reference it in a shift. We dont need a yieldCurveValuation.-->
+		<yieldCurve id="USD-LIBOR">
+			<name>3M-LIBOR</name>
+			<currency>USD</currency>
+		</yieldCurve>
+	</market>
+	<!--Valuation Set (report)-->
+	<valuationSet id="val1">
+		<!--Base Valuation Scenario-->
+		<valuationScenario id="valscen1">
+			<name>EOD Valuation</name>
+			<valuationDate>2004-05-01</valuationDate>
+		</valuationScenario>
+		<!--Scenario: USD Libor shocked up 100bp-->
+		<valuationScenario id="valscen2">
+			<name>USDLibor up 100bp</name>
+			<valuationDate>2004-05-01</valuationDate>
+			<shift>
+				<parameterReference href="USD-LIBOR"/>
+				<shift>100</shift>
+				<shiftUnits>BasisPointValue</shiftUnits>
+			</shift>
+		</valuationScenario>
+		<baseParty href="party1"/>
+		<quotationCharacteristics>
+			<side>Mid</side>
+		</quotationCharacteristics>
+		<!--results for trade #1-->
+		<assetValuation>
+			<objectReference href="tid-1"/>
+			<!--quote value and NPV-->
+			<quote>
+				<value>123000</value>
+				<measureType>NPV</measureType>
+				<currency>USD</currency>
+				<sensitivitySet>
+					<name>Interest Rate Delta Sensitivity in $/bp</name>
+					<sensitivity name="1D">111</sensitivity>
+					<sensitivity name="2D">112</sensitivity>
+					<sensitivity name="1M">113</sensitivity>
+					<sensitivity name="3M">114</sensitivity>
+					<sensitivity name="DEC03">115</sensitivity>
+					<sensitivity name="MAR04">116</sensitivity>
+					<sensitivity name="JUN04">117</sensitivity>
+					<sensitivity name="SEP04">118</sensitivity>
+					<sensitivity name="2Y">119</sensitivity>
+					<sensitivity name="3Y">120</sensitivity>
+					<sensitivity name="4Y">121</sensitivity>
+					<sensitivity name="5Y">122</sensitivity>
+					<sensitivity name="7Y">123</sensitivity>
+					<sensitivity name="10Y">124</sensitivity>
+					<sensitivity name="15Y">125</sensitivity>
+				</sensitivitySet>
+			</quote>
+		</assetValuation>
+		<!--result for trade #1 for USDLibor+100bp Scenario-->
+		<assetValuation>
+			<objectReference href="tid-1"/>
+			<valuationScenarioReference href="valscen2"/>
+			<!--quote value and NPV-->
+			<quote>
+				<value>123500</value>
+				<measureType>NPV</measureType>
+				<currency>USD</currency>
+				<sensitivitySet>
+					<name>Interest Rate Delta Sensitivity in $/bp</name>
+					<sensitivity name="1D">116</sensitivity>
+					<sensitivity name="2D">117</sensitivity>
+					<sensitivity name="1M">118</sensitivity>
+					<sensitivity name="3M">119</sensitivity>
+					<sensitivity name="DEC03">120</sensitivity>
+					<sensitivity name="MAR04">121</sensitivity>
+					<sensitivity name="JUN04">122</sensitivity>
+					<sensitivity name="SEP04">123</sensitivity>
+					<sensitivity name="2Y">124</sensitivity>
+					<sensitivity name="3Y">125</sensitivity>
+					<sensitivity name="4Y">126</sensitivity>
+					<sensitivity name="5Y">127</sensitivity>
+					<sensitivity name="7Y">128</sensitivity>
+					<sensitivity name="10Y">129</sensitivity>
+					<sensitivity name="15Y">130</sensitivity>
+				</sensitivitySet>
+			</quote>
+		</assetValuation>
+	</valuationSet>
+</FpML>
+

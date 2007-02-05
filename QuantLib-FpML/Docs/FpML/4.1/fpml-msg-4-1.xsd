@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+== Copyright (c) 2002-2004. All rights reserved. 
+== Financial Products Markup Language is subject to the FpML public license. 
+== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.fpml.org/2004/FpML-4-1" targetNamespace="http://www.fpml.org/2004/FpML-4-1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xsd:include schemaLocation="fpml-doc-4-1.xsd"/>
+	<xsd:complexType name="AdditionalData">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="additionalDataScheme" type="xsd:anyURI" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="ConversationId">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="conversationIdScheme" type="xsd:anyURI" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="Message" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the basic structure of all FpML messages which is refined by its derived types.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Document">
+				<xsd:sequence>
+					<xsd:element name="header" type="MessageHeader">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The generic definition of header in the Message type contains all the possible header information items and is specialised by restriction in derived classes.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:group ref="Validation.model"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MessageHeader">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a generic message header that is refined by its derived classes.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="conversationId" type="ConversationId" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A unique identifier created by the initiator of a conversation allowing a group of message exchanges to be recognized as related.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="messageId" type="MessageId">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A unique identifier (within its coding scheme) assigned to the message by its creating party.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="inReplyTo" type="MessageId" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A copy of the unique message identifier (within it own coding scheme) to which this message is responding.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sentBy" type="PartyId">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The unique identifier (within its coding scheme) for the originator of a message instance.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sendTo" type="PartyId" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A unique identifier (within its coding scheme) indicating an intended recipent of a message.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="copyTo" type="PartyId" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A unique identifier (within the specified coding scheme) giving the details of some party to whom a copy of this message will be sent for reference.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="creationTimestamp" type="xsd:dateTime">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date and time (on the source system) when this message instance was created.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="expiryTimestamp" type="xsd:dateTime" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date and time (on the source system) when this message instance will be considered expired.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element ref="dsig:Signature" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MessageId">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">The data type use for message identifiers.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="messageIdScheme" type="xsd:anyURI" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="MessageRejected">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content for a standard message sent when a recipient cannot interpret or process an earlier message.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="reason" type="Reason" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of the Reason type used to record the nature of any errors associated with a message.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="additionalData" type="AdditionalData" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Any string of additional data that may help the message processor, for example in a rejection message this might contain a code value or the text of the original request (within a CDATA section).</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NotificationMessage" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the basic content for a message sent to inform another system that some 'business event' has occured. Notifications are not expected to be replied to.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="Message">
+				<xsd:sequence>
+					<xsd:element name="header" type="NotificationMessageHeader">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Overrides the definition of header in the Message type to make it specific to NotificationMessage instances.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:group ref="Validation.model"/>
+				</xsd:sequence>
+				<xsd:attributeGroup ref="StandardAttributes.atts"/>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NotificationMessageHeader">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type that refines the generic message header to match the requirements of a NotificationMessage.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="MessageHeader">
+				<xsd:sequence>
+					<xsd:element name="conversationId" type="ConversationId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier created by the initiator of a conversation allowing a group of message exchanges to be recognized as related.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="messageId" type="MessageId">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier (within its coding scheme) assigned to the message by its creating party.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="inReplyTo" type="MessageId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A copy of the unique message identifier (within it own coding scheme) to which this message is responding.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="sentBy" type="PartyId">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The unique identifier (within its coding scheme) for the originator of a message instance.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="sendTo" type="PartyId" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier (within its coding scheme) indicating an intended recipent of a message.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="copyTo" type="PartyId" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier (within the specified coding scheme) giving the details of some party to whom a copy of this message will be sent for reference.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="creationTimestamp" type="xsd:dateTime">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date and time (on the source system) when this message instance was created.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="expiryTimestamp" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date and time (on the source system) when this message instance will be considered expired.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element ref="dsig:Signature" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Reason">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining a content model for describing the nature and possible location of a error within a previous message.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="reasonCode" type="xsd:token">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A machine interpretable error code.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="location" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>An value indicating the location of the problem within the subject message.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="locationType" type="xsd:normalizedString"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="description" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Plain English text describing the associated error condition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="validationRuleId" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A reference identifying a rule within a validation scheme</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="ValidationRuleId">
+							<xsd:attribute name="validationScheme" type="xsd:anyURI"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="additionalData" type="AdditionalData" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Any string of additional data that may help the message processor, for example in a rejection message this might contain a code value or the text of any one of the messages (within a CDATA section).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RequestMessage" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the basic content of a message that requests the receiver to perform some business operation determined by the message type and its content.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="Message">
+				<xsd:sequence>
+					<xsd:element name="header" type="RequestMessageHeader">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Overrides the definition of header in the Message type to make it specific to RequestMessage instances.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:group ref="Validation.model"/>
+				</xsd:sequence>
+				<xsd:attributeGroup ref="StandardAttributes.atts"/>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RequestMessageHeader">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type refining the generic message header content to make it specific to request messages.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="MessageHeader">
+				<xsd:sequence>
+					<xsd:element name="conversationId" type="ConversationId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier created by the initiator of a conversation allowing a group of message exchanges to be recognized as related.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="messageId" type="MessageId">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier (within its coding scheme) assigned to the message by its creating party.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="sentBy" type="PartyId">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The unique identifier (within its coding scheme) for the originator of a message instance.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="sendTo" type="PartyId" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier (within its coding scheme) indicating an intended recipent of a message.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="copyTo" type="PartyId" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier (within the specified coding scheme) giving the details of some party to whom a copy of this message will be sent for reference.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="creationTimestamp" type="xsd:dateTime">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date and time (on the source system) when this message instance was created.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="expiryTimestamp" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date and time (on the source system) when this message instance will be considered expired.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element ref="dsig:Signature" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RequestTradeStatus">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message allowing one party to query the status of one or many trades previously sent to another party.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResponseMessage" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type refining the generic message content model to make it specific to response messages.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="Message">
+				<xsd:sequence>
+					<xsd:element name="header" type="ResponseMessageHeader">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Overrides the definition of header in the Message type to make it specific to ResponseMessage instances.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:group ref="Validation.model"/>
+				</xsd:sequence>
+				<xsd:attributeGroup ref="StandardAttributes.atts"/>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResponseMessageHeader">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type refining the generic message header to make it specific to response messages.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="MessageHeader">
+				<xsd:sequence>
+					<xsd:element name="conversationId" type="ConversationId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier created by the initiator of a conversation allowing a group of message exchanges to be recognized as related.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="messageId" type="MessageId">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier (within its coding scheme) assigned to the message by its creating party.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="inReplyTo" type="MessageId">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A copy of the unique message identifier (within it own coding scheme) to which this message is responding.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="sentBy" type="PartyId">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The unique identifier (within its coding scheme) for the originator of a message instance.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="sendTo" type="PartyId" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier (within its coding scheme) indicating an intended recipent of a message.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="copyTo" type="PartyId" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A unique identifier (within the specified coding scheme) giving the details of some party to whom a copy of this message will be sent for reference.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="creationTimestamp" type="xsd:dateTime">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date and time (on the source system) when this message instance was created.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="expiryTimestamp" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The date and time (on the source system) when this message instance will be considered expired.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element ref="dsig:Signature" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeNotFound">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model of a response message generated when an operation as requested on a trade unknown to the service.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeStatus">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining the content model for a message normally generated in response to a RequestTradeStatus request.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeStatusItem" type="TradeStatusItem" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A collection of data values describing the state of the given trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="party" type="Party" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">The parties obligated to make payments from time to time during the term of the trade. This will include, at a minimum, the principal parties involved in the swap or forward rate agreement. Other parties paying or receiving fees, commissions etc. must also be specified if referenced in other party payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeStatusItem">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type used in trade status enquiry messages which relates a trade identifier to its current status value.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="tradeIdentifier" type="TradeIdentifier">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">An instance of a unique trade identifier.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tradeStatusValue" type="TradeStatusValue">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The trade status value.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TradeStatusValue">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">The type used to hold TradeStatusScheme values.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="tradeStatusScheme" type="xsd:anyURI"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>

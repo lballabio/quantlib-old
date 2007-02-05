@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML version="4-1" xmlns="http://www.fpml.org/2004/FpML-4-1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd http://www.w3.org/2000/09/xmldsig# xmldsig-core-schema.xsd" xsi:type="RequestTradeConfirmation">
+        <header>
+                <conversationId conversationIdScheme="http://www.abc.com/conversationId/OTC">BasketOption987</conversationId>
+                <messageId messageIdScheme="http://www.abc.com/messageId/OTC">BasketOption456a789b</messageId>
+                <sentBy partyIdScheme="http://www.MsgParty.com/partyId">abc</sentBy>
+                <creationTimestamp>2000-08-01T08:57:00-00:00</creationTimestamp>
+        </header>
+        <trade>
+                <tradeHeader>
+                        <partyTradeIdentifier>
+                                <partyReference href="PartyA"/>
+                                <tradeId tradeIdScheme="http://www.PartyA.com/eqd-trade-id">1234</tradeId>
+                        </partyTradeIdentifier>
+                        <tradeDate>2000-06-28</tradeDate>
+                </tradeHeader>
+                <equityOption>
+                        <productType>europeanCallBasket</productType>
+                        <buyerPartyReference href="PartyB"/>
+                        <sellerPartyReference href="PartyA"/>
+                        <optionType>Call</optionType>
+                        <underlyer>
+                                <basket>
+                                        <basketConstituent>
+                                                <equity>
+                                                  <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">AHLD.NA</instrumentId>
+                                                  <description>Ahold</description>
+                                                  <currency>EUR</currency>
+                                                  <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">ASE</exchangeId>
+                                                </equity>
+                                                <constituentWeight>
+                                                  <basketPercentage>0.40</basketPercentage>
+                                                </constituentWeight>
+                                        </basketConstituent>
+                                        <basketConstituent>
+                                                <equity>
+                                                  <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">RD.NA</instrumentId>
+                                                  <description>Royal Dutch</description>
+                                                  <currency>EUR</currency>
+                                                  <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">ASE</exchangeId>
+                                                </equity>
+                                                <constituentWeight>
+                                                  <basketPercentage>0.60</basketPercentage>
+                                                </constituentWeight>
+                                        </basketConstituent>
+                                </basket>
+                        </underlyer>
+                        <equityExercise>
+                                <equityEuropeanExercise>
+                                        <expirationDate>
+                                                <adjustableDate>
+                                                  <unadjustedDate>2002-07-01</unadjustedDate>
+                                                  <dateAdjustments>
+                                                  <businessDayConvention>NONE</businessDayConvention>
+                                                  </dateAdjustments>
+                                                </adjustableDate>
+                                        </expirationDate>
+                                        <equityExpirationTimeType>Close</equityExpirationTimeType>
+                                </equityEuropeanExercise>
+                                <automaticExercise>true</automaticExercise>
+                                <equityValuation>
+                                        <valuationTimeType>Close</valuationTimeType>
+                                </equityValuation>
+                                <settlementCurrency>EUR</settlementCurrency>
+                                <settlementType>Cash</settlementType>
+                        </equityExercise>
+                        <methodOfAdjustment>CalculationAgent</methodOfAdjustment>
+                        <extraordinaryEvents>
+                                <mergerEvents>
+                                        <shareForShare>AlternativeObligation</shareForShare>
+                                        <shareForOther>CancellationAndPayment</shareForOther>
+                                        <shareForCombined>CancellationAndPayment</shareForCombined>
+                                </mergerEvents>
+                                <tenderOffer>true</tenderOffer>
+                                <tenderOfferEvents>
+                                        <shareForShare>ModifiedCalculationAgent</shareForShare>
+                                        <shareForOther>ModifiedCalculationAgent</shareForOther>
+                                        <shareForCombined>ModifiedCalculationAgent</shareForCombined>
+                                </tenderOfferEvents>
+                                <compositionOfCombinedConsideration>true</compositionOfCombinedConsideration>
+                                <additionalDisruptionEvents>
+                                        <changeInLaw>true</changeInLaw>
+                                        <failureToDeliver>true</failureToDeliver>
+                                        <insolvencyFiling>false</insolvencyFiling>
+                                        <hedgingDisruption>true</hedgingDisruption>
+                                        <lossOfStockBorrow>true</lossOfStockBorrow>
+                                        <increasedCostOfStockBorrow>false</increasedCostOfStockBorrow>
+                                        <increasedCostOfHedging>false</increasedCostOfHedging>
+                                        <determiningPartyReference href="PartyA"/>
+                                </additionalDisruptionEvents>
+                                <representations>
+                                        <nonReliance>true</nonReliance>
+                                        <agreementsRegardingHedging>true</agreementsRegardingHedging>
+                                        <additionalAcknowledgements>true</additionalAcknowledgements>
+                                </representations>
+                                <nationalisationOrInsolvency>CancellationAndPayment</nationalisationOrInsolvency>
+                        </extraordinaryEvents>
+                        <numberOfOptions>79.099093</numberOfOptions>
+                        <optionEntitlement>1.00</optionEntitlement>
+                        <equityPremium>
+                                <payerPartyReference href="PartyB"/>
+                                <receiverPartyReference href="PartyA"/>
+                                <paymentAmount>
+                                        <currency>EUR</currency>
+                                        <amount>213.5675511</amount>
+                                </paymentAmount>
+                                <paymentDate>
+                                        <unadjustedDate>2000-07-03</unadjustedDate>
+                                        <dateAdjustments>
+                                                <businessDayConvention>NONE</businessDayConvention>
+                                        </dateAdjustments>
+                                </paymentDate>
+                                <pricePerOption>
+                                        <currency>EUR</currency>
+                                        <amount>2.70</amount>
+                                </pricePerOption>
+                        </equityPremium>
+                </equityOption>
+                <calculationAgent>
+                        <calculationAgentPartyReference href="PartyA"/>
+                </calculationAgent>
+                <documentation>
+                        <masterAgreement>
+                                <masterAgreementType>ISDA2002</masterAgreementType>
+                        </masterAgreement>
+                        <contractualDefinitions>ISDA2000</contractualDefinitions>
+                        <contractualDefinitions>ISDA2002Equity</contractualDefinitions>
+                </documentation>
+                <governingLaw>GBEN</governingLaw>
+        </trade>
+        <party id="PartyA">
+                <partyId>Party A</partyId>
+        </party>
+        <party id="PartyB">
+                <partyId>Party B</partyId>
+        </party>
+</FpML>

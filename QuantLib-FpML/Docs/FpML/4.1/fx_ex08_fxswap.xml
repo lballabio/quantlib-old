@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML version="4-1" xsi:type="DataDocument" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xmlns="http://www.fpml.org/2004/FpML-4-1">
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="CHASE"/>
+				<tradeId tradeIdScheme="http://www.citi.com/swaps/trade-id">CHASUS33</tradeId>
+			</partyTradeIdentifier>
+			<partyTradeIdentifier>
+				<partyReference href="DB"/>
+				<tradeId tradeIdScheme="http://www.ubsw.com/swaps/trade-id">DEUTDEFF</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate>2002-01-23</tradeDate>
+		</tradeHeader>
+		<fxSwap>
+			<productType>FXSWAP</productType>
+			<fxSingleLeg>
+				<exchangedCurrency1>
+					<payerPartyReference href="DB"/>
+					<receiverPartyReference href="CHASE"/>
+					<paymentAmount>
+						<currency>GBP</currency>
+						<amount>10000000</amount>
+					</paymentAmount>
+				</exchangedCurrency1>
+				<exchangedCurrency2>
+					<payerPartyReference href="CHASE"/>
+					<receiverPartyReference href="DB"/>
+					<paymentAmount>
+						<currency>USD</currency>
+						<amount>14800000</amount>
+					</paymentAmount>
+				</exchangedCurrency2>
+				<valueDate>2002-01-25</valueDate>
+				<exchangeRate>
+					<quotedCurrencyPair>
+						<currency1>GBP</currency1>
+						<currency2>USD</currency2>
+						<quoteBasis>Currency2PerCurrency1</quoteBasis>
+					</quotedCurrencyPair>
+					<rate>1.48</rate>
+				</exchangeRate>
+			</fxSingleLeg>
+			<fxSingleLeg>
+				<exchangedCurrency1>
+					<payerPartyReference href="CHASE"/>
+					<receiverPartyReference href="DB"/>
+					<paymentAmount>
+						<currency>GBP</currency>
+						<amount>10000000</amount>
+					</paymentAmount>
+				</exchangedCurrency1>
+				<exchangedCurrency2>
+					<payerPartyReference href="DB"/>
+					<receiverPartyReference href="CHASE"/>
+					<paymentAmount>
+						<currency>USD</currency>
+						<amount>15000000</amount>
+					</paymentAmount>
+				</exchangedCurrency2>
+				<valueDate>2002-02-25</valueDate>
+				<exchangeRate>
+					<quotedCurrencyPair>
+						<currency1>GBP</currency1>
+						<currency2>USD</currency2>
+						<quoteBasis>Currency2PerCurrency1</quoteBasis>
+					</quotedCurrencyPair>
+					<rate>1.5</rate>
+				</exchangeRate>
+			</fxSingleLeg>
+		</fxSwap>
+	</trade>
+	<party id="CHASE">
+		<partyId>CHASUS33</partyId>
+	</party>
+	<party id="DB">
+		<partyId>DEUTDEFF</partyId>
+	</party>
+</FpML>

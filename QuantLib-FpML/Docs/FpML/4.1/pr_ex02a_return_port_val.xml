@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xsi:type="ValuationReport" version="4-1">
+	<!-- this returns the values of trades in a portfolio -->
+	<header>
+		<messageId messageIdScheme="http://www.bbbbbb.org/message-id">RESP002a</messageId>
+		<inReplyTo messageIdScheme="http://www.abcdef.org/message-id">VAL002a</inReplyTo>
+		<sentBy>BBBBBB</sentBy>
+		<sendTo>ABCDEF</sendTo>
+		<creationTimestamp>2004-06-14T12:47:50-00:00</creationTimestamp>
+	</header>
+	<party id="party1">
+		<partyId>ABCDEF</partyId>
+	</party>
+	<portfolioValuationItem>
+		<!--Portfolio of trades -->
+		<portfolio id="port1">
+			<tradeId id="tid-1" tradeIdScheme="http://bbbbbb.com/tids">1234</tradeId>
+			<tradeId id="tid-2" tradeIdScheme="http://bbbbbb.com/tids">2345</tradeId>
+			<tradeId id="tid-3" tradeIdScheme="http://bbbbbb.com/tids">3456</tradeId>
+			<tradeId id="tid-4" tradeIdScheme="http://bbbbbb.com/tids">4576</tradeId>
+			<tradeId id="tid-5" tradeIdScheme="http://bbbbbb.com/tids">5678</tradeId>
+		</portfolio>
+		<tradeValuationItem>
+			<!--Valuation Set (report)-->
+			<valuationSet id="val1">
+				<valuationScenario id="valscen1">
+					<name>EOD Valuation</name>
+					<valuationDate>2003-04-01</valuationDate>
+				</valuationScenario>
+				<baseParty href="party1"/>
+				<quotationCharacteristics>
+					<side>Mid</side>
+					<currency>USD</currency>
+				</quotationCharacteristics>
+				<!--results for trade #1-->
+				<assetValuation>
+					<objectReference href="tid-1"/>
+					<!--quote value and NPV-->
+					<quote>
+						<value>123000</value>
+						<measureType>NPV</measureType>
+					</quote>
+				</assetValuation>
+				<!--results for trade #2-->
+				<assetValuation>
+					<objectReference href="tid-2"/>
+					<!--quote value and NPV-->
+					<quote>
+						<value>456000</value>
+						<measureType>NPV</measureType>
+					</quote>
+				</assetValuation>
+				<!--results for trade #3-->
+				<assetValuation>
+					<objectReference href="tid-3"/>
+					<!--quote value and NPV-->
+					<quote>
+						<value>789000</value>
+						<measureType>NPV</measureType>
+					</quote>
+				</assetValuation>
+				<!--results for trade #4-->
+				<assetValuation>
+					<objectReference href="tid-4"/>
+					<!--quote value and NPV-->
+					<quote>
+						<value>-123000</value>
+						<measureType>NPV</measureType>
+					</quote>
+				</assetValuation>
+				<!--results for trade #5-->
+				<assetValuation>
+					<objectReference href="tid-5"/>
+					<!--quote value and NPV-->
+					<quote>
+						<value>-456000</value>
+						<measureType>NPV</measureType>
+					</quote>
+				</assetValuation>
+			</valuationSet>
+		</tradeValuationItem>
+	</portfolioValuationItem>
+</FpML>

@@ -1,0 +1,2068 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+== Copyright (c) 2002-2004. All rights reserved. 
+== Financial Products Markup Language is subject to the FpML public license. 
+== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2004/FpML-4-1" targetNamespace="http://www.fpml.org/2004/FpML-4-1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xsd:include schemaLocation="fpml-enum-4-1.xsd"></xsd:include>
+        <xsd:simpleType name="HourMinuteTime">
+                <xsd:annotation>
+                        <xsd:documentation>A type defining a ime specified in hh:mm:ss format where the second component must be '00', e.g. 11am would be represented as 11:00:00.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:time">
+                        <xsd:pattern value="[0-2][0-9]:[0-5][0-9]:00"></xsd:pattern>
+                </xsd:restriction>
+        </xsd:simpleType>
+        <xsd:complexType name="Address">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that represents a physical postal address.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="streetAddress" type="StreetAddress" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The set of street and building number information that identifies a postal address within a city.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="city" type="xsd:string" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The city component of a postal address.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="state" type="xsd:string" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A country subdivision used in postal addresses in some countries. For example, US states, Canadian provinces, Swiss cantons.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="country" type="Country" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The ISO 3166 standard code for the country within which the postal address is located.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="postalCode" type="xsd:string" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The code, required for computerised mail sorting systems, that is allocated to a physical address by a national postal authority.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="AdjustableDate">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type for defining a date that shall be subject to adjustment if it would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="unadjustedDate" type="IdentifiedDate">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A date subject to adjustment.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="dateAdjustments" type="BusinessDayAdjustments">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The business day convention and financial business centers used for adjusting the date if it would otherwise fall on a day that is not a business date in the specified business centers.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="AdjustableDate2">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that is different from AdjustableDate in two regards. First, date adjustments can be specified with either a dateAdjustments element or a reference to an existing dateAdjustments element. Second, it does not require the specification of date adjustments.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="unadjustedDate" type="IdentifiedDate">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A date subject to adjustment.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:choice minOccurs="0">
+                                <xsd:element name="dateAdjustments" type="BusinessDayAdjustments">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">The business day convention and financial business centers used for adjusting the date if it would otherwise fall on a day that is not a business dat in the specified business centers.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="dateAdjustmentsReference" type="BusinessDayAdjustmentsReference"></xsd:element>
+                        </xsd:choice>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="AdjustableDates">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type for defining a series of dates that shall be subject to adjustment if they would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the dates.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="unadjustedDate" type="IdentifiedDate" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A date subject to adjustment.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="dateAdjustments" type="BusinessDayAdjustments">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The business day convention and financial business centers used for adjusting the date if it would otherwise fall on a day that is not a business dat in the specified business centers.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="AdjustableOrRelativeDate">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type giving the choice between defining a date as an explicit date together with applicable adjustments or as relative to some other (anchor) date.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:choice>
+                        <xsd:element name="adjustableDate" type="AdjustableDate">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A date that shall be subject to adjustment if it would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="relativeDate" type="RelativeDateOffset">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A date specified as some offset to another date (the anchor date).</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:choice>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="AdjustableOrRelativeDates">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type giving the choice between defining a series of dates as an explicit list of dates together with applicable adjustments or as relative to some other series of (anchor) dates.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:choice>
+                        <xsd:element name="adjustableDates" type="AdjustableDates">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A series of dates that shall be subject to adjustment if they would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="relativeDates" type="RelativeDates">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A series of dates specified as some offset to another series of dates (the anchor dates).</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:choice>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="AdjustableRelativeOrPeriodicDates">
+                <xsd:choice>
+                        <xsd:element name="adjustableDates" type="AdjustableDates">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A series of dates that shall be subject to adjustment if they would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="relativeDateSequence" type="RelativeDateSequence">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A series of dates specified as some offset to other dates (the anchor dates) which can</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="periodicDates" type="PeriodicDates"></xsd:element>
+                </xsd:choice>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="AmericanExercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the exercise period for an American style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="Exercise">
+                                <xsd:sequence>
+                                        <xsd:element name="commencementDate" type="AdjustableOrRelativeDate">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The first day of the exercise period for an American style option.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="expirationDate" type="AdjustableOrRelativeDate">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="relevantUnderlyingDate" type="AdjustableOrRelativeDates" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The daye on the underlying set by the exercise of an option. What this date is depends on the option (e.g. in a swaption it is the effective date, in an extendible/cancelable provision it is the termination date).</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="earliestExerciseTime" type="BusinessCenterTime">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The earliest time at which notice of exercise can be given by the buyer to the seller (or seller's agent) i) on the expriation date, in the case of a European style option, (ii) on each bermuda option exercise date and the expiration date, in the case of a Bermuda style option the commencement date to, and including, the expiration date , in the case of an American option.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="latestExerciseTime" type="BusinessCenterTime" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">For a Bermuda or American style option, the latest time on an exercise business day (excluding the expiration date) within the exercise period that notice can be given by the buyer to the seller or seller's agent. Notice of exercise given after this time will be deemed to have been given on the next exercise business day.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="expirationTime" type="BusinessCenterTime">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The latest time for exercise on expirationDate.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="multipleExercise" type="MultipleExercise" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">As defined in the 2000 ISDA Definitions, Section 12.4. Multiple Exercise, the buyer of the option has the right to exercise all or less than all the unexercised notional amount of the underlying swap on one or more days in the exercise period, but on any such day may not exercise less than the minimum notional amount or more that the maximum notional amount, and if an integral multiple amount is specified, the notional amount exercised must be equal to, or be an intergral multiple of, the integral multiple amount.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="exerciseFeeSchedule" type="ExerciseFeeSchedule" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The fees associated with an exercise date. The fees are conditional on the exercise occuring. The fees can be specified as actual currency amounts or as percentages of the notional amount being exercised.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="AmountSchedule">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a currency amount or a currency amount schedule.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="Schedule">
+                                <xsd:sequence>
+                                        <xsd:element name="currency" type="Currency">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="AutomaticExercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type to define automatic exercise of a swaption. With automatic exercise the option is deemed to have exercised if it is in the money by more than the threshold amount on the exercise date.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="thresholdRate" type="xsd:decimal">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A threshold rate. The threshold of 0.10% would be represented as 0.001</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="BermudaExercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the Bermuda option exercise dates and the expiration date together with any rules govenerning the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fee.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="Exercise">
+                                <xsd:sequence>
+                                        <xsd:element name="bermudaExerciseDates" type="AdjustableOrRelativeDates">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The dates the define the Bermuda option exercise dates and the expiration date. The last specified date is assumed to be the expiration date. The dates can either be specified as a series of explicit dates and associated adjustments or as a series of dates defined relative to another schedule of dates, for example, the calculation period start dates. Where a relative series of dates are defined the first and last possible exercise dates can be separately specified.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="relevantUnderlyingDate" type="AdjustableOrRelativeDates" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The daye on the underlying set by the exercise of an option. What this date is depends on the option (e.g. in a swaption it is the effective date, in an extendible/cancelable provision it is the termination date).</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="earliestExerciseTime" type="BusinessCenterTime">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The earliest time at which notice of exercise can be given by the buyer to the seller (or seller's agent) i) on the expriation date, in the case of a European style option, (ii) on each bermuda option exercise date and the expiration date, in the case of a Bermuda style option the commencement date to, and including, the expiration date , in the case of an American option.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="latestExerciseTime" type="BusinessCenterTime" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">For a Bermuda or American style option, the latest time on an exercise business day (excluding the expiration date) within the exercise period that notice can be given by the buyer to the seller or seller's agent. Notice of exercise given after this time will be deemed to have been given on the next exercise business day.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="expirationTime" type="BusinessCenterTime">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The latest time for exercise on expirationDate.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="multipleExercise" type="MultipleExercise" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">As defined in the 2000 ISDA Definitions, Section 12.4. Multiple Exercise, the buyer of the option has the right to exercise all or less than all the unexercised notional amount of the underlying swap on one or more days in the exercise period, but on any such day may not exercise less than the minimum notional amount or more that the maximum notional amount, and if an integral multiple amount is specified, the notional amount exercised must be equal to, or be an intergral multiple of, the integral multiple amount.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="exerciseFeeSchedule" type="ExerciseFeeSchedule" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The fees associated with an exercise date. The fees are conditional on the exercise occuring. The fees can be specified as actual currency amounts or as percentages of the notional amount being exercised.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="BrokerConfirmation">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">An entity for details on the broker confirm.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="brokerConfirmationType" type="BrokerConfirmationType">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The type of broker confirmation executed between the parties.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="BrokerConfirmationType">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="brokerConfirmationTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/broker-confirmation-type-2-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="BusinessCenter">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A code identifying a financial business center location. A business center is drawn from the list identified by the business center scheme.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="businessCenterScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/business-center-2-0"></xsd:attribute>
+                                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="BusinessCenters">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type for defining financial business centers used in determining whether a day is a business day or not. A list of business centers may be ordered in the document alphabetically based on business center code. An FpML document containing an unordered business center list is still regarded as a conformant document.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="businessCenter" type="BusinessCenter" maxOccurs="unbounded"></xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="BusinessCentersReference">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="BusinessCenterTime">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type for defining a time with respect to a business center location. For example, 11:00am London time.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="hourMinuteTime" type="HourMinuteTime">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A time specified in hh:mm:ss format where the second component must be '00', e.g. 11am would be represented as 11:00:00.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="businessCenter" type="BusinessCenter"></xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="BusinessDateRange">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a range of contiguous business days by defining an unadjusted first date, an unadjusted last date and a business day convention and business centers for adjusting the first and last dates if they would otherwise fall on a non business day in the specified business centers. The days between the first and last date must also be good business days in the specified centers to be counted in the range.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="DateRange">
+                                <xsd:sequence>
+                                        <xsd:element name="businessDayConvention" type="BusinessDayConventionEnum">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The convention for adjusting a date if it would otherwise fall on a day that is not a business day.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:group ref="BusinessCentersOrReference.model" minOccurs="0"></xsd:group>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="BusinessDayAdjustments">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the business day convention and financial business centers used for adjusting any relevant date if it would otherwise fall on a day that is not a business day in the specified business centers.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="businessDayConvention" type="BusinessDayConventionEnum">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The convention for adjusting a date if it would otherwise fall on a day that is not a business day.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:group ref="BusinessCentersOrReference.model" minOccurs="0"></xsd:group>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="BusinessDayAdjustmentsReference">
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="CalculationAgent">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the ISDA calcuation agent responsible for performing duties as defined in the applicable product definitions.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:choice>
+                        <xsd:element name="calculationAgentPartyReference" type="PartyReference" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A pointer style reference to a party identifier defined elsewhere in the document. The party referenced is the ISDA Calculation Agent for the trade. If more than one party is referenced then the parties are assumed to be co-calculation agents, i.e. they have joint reponsibility.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="calculationAgentParty" type="CalculationAgentPartyEnum">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The ISDA Calculation Agent where the actual party responsible for performing the duties associated with an optional early termination provision will be determined at exercise. For example, the Calculation Agent may be defined as being the Non-exercising Party.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:choice>
+        </xsd:complexType>
+        <xsd:complexType name="CalculationPeriodFrequency">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the frequency at which calculation period end dates occur within the regular part of the calculation period schedule and thier roll date convention.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="Interval">
+                                <xsd:sequence>
+                                        <xsd:element name="rollConvention" type="RollConventionEnum">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">Used in conjunction with a frequency and the regular period start date of a calculation period, determines each calculation period end date within the regular part of a calculation period schedule.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="ClearanceSystem">
+                <xsd:annotation>                        
+                        <xsd:documentation xml:lang="en">Unless otherwise specified, the principal clearance system customarily used for settling trades in the relevant underlying.</xsd:documentation>
+                        <xsd:documentation xml:lang="de">Sofern nicht anderweitig festgelegt, das Haupt-Clearingsystem, das Ã¼blicherweise fÃ¼r die Regulierung von GeschÃ¤ften im entsprechenden Basiswert verwendet wird.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="clearanceSystemScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2002/clearance-system-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="ContractualDefinitions">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="contractualDefinitionsScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2003/contractual-definitions-3-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="ContractualMatrix">
+                <xsd:sequence>
+                        <xsd:element name="matrixType" type="MatrixType">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Identifies the form of applicable matrix.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="publicationDate" type="xsd:date" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Specifies the publication date of the applicable version of the matrix. When this element is omitted, the ISDA supplemental language for incorporation of the relevant matrix will generally define rules for which version of the matrix is applicable.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="matrixTerm" type="MatrixTerm" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Defines any applicable “key” into the relevant matrix. For example, the Transaction Type would be the single term required for the Credit Derivatives Physical Settlement Matrix. This element should be omitted in the case of the 2000 ISDA Definitions Settlement Matrix for Early Termination and Swaptions.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="ContractualSupplement">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="contractualSupplementScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/contractual-supplement-3-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="Country">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="countryScheme" type="xsd:anyURI" default="http://www.fpml.org/ext/iso3166"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="Currency">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="currencyScheme" type="xsd:anyURI" default="http://www.fpml.org/ext/iso4217-2001-08-15"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="DateList">
+                <xsd:annotation>                        
+                        <xsd:documentation xml:lang="en">List of Dates</xsd:documentation>
+                        <xsd:documentation xml:lang="de">Liste von Daten.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="date" type="xsd:date" maxOccurs="unbounded"></xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="DateOffset">
+                <xsd:complexContent>
+                        <xsd:extension base="Offset">
+                                <xsd:sequence>
+                                        <xsd:element name="businessDayConvention" type="BusinessDayConventionEnum">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The convention for adjusting a date if it would otherwise fall on a day that is not a business day.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="sequence" type="xsd:integer" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">Sequence in which the reference to the time period multiplier should be applied.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="DateRange">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a contiguous series of calendar dates. The date range is defined as all the dates between and including the first and the last date. The first date must fall before the last date.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="unadjustedFirstDate" type="xsd:date">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The first date of a date range.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="unadjustedLastDate" type="xsd:date">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The last date of a date range.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="DateReference">
+                <xsd:annotation>
+                        <xsd:documentation>A reference to a date element within this document.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="DateRelativeTo">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">Specifies the anchor as an href attribute. The href attribute value is a pointer style reference to the element or component elsewhere in the document where the anchor date is defined.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="DateTimeList">
+                <xsd:annotation>                        
+                        <xsd:documentation xml:lang="en">List of DateTimes</xsd:documentation>
+                        <xsd:documentation xml:lang="de">Liste von Daten und Zeitpunkten.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="dateTime" type="xsd:dateTime" maxOccurs="unbounded"></xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="DayCountFraction">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">The specification for how the number of days between two dates is calculated for purposes of calculation of a fixed or floating payment amount and the basis for how many days are assumed to be in a year. Day Count Fraction is an ISDA term. The equivalent AFB (Association Francaise de Banques) term is Calculation Basis.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="dayCountFractionScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2000/day-count-fraction-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+         <xsd:complexType name="DividendConditions">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type describing the conditions governing the payment of dividends to the receiver of the equity return. With the exception of the dividend payout ratio, which is defined for each of the underlying components.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="dividendReinvestment" type="xsd:boolean" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Boolean element that defines whether the dividend will be reinvested or not.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="dividendEntitlement" type="DividendEntitlementEnum" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Defines the date on which the receiver on the equity return is entitled to the dividend.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="dividendAmount" type="DividendAmountTypeEnum" minOccurs="0"/>
+                        <xsd:element name="dividendPaymentDate" type="DividendPaymentDate" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Specifies when the dividend will be paid to the receiver of the equity return. Has the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. Is not applicable in the case of a dividend reinvestment election.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:choice>
+                                <xsd:sequence>
+                                        <xsd:element name="dividendPeriodEffectiveDate" type="DateReference" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">Dividend period has the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. This element specifies the date on which the dividend period will commence. </xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="dividendPeriodEndDate" type="DateReference" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">Dividend period has the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. This element specifies the date on which the dividend period will end. It includes a boolean attribute for defining whether this end date is included or excluded from the dividend period.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                                <xsd:element name="dividendPeriod" type="DividendPeriodEnum">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">Defines the First Period or the Second Period, as defined in the 2002 ISDA Equity Derivatives Definitions.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                        </xsd:choice>
+                        <xsd:element name="extraOrdinaryDividends" type="PartyReference" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Party which determines if dividends are extraordinary in relation to normal levels</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="excessDividendAmount" type="DividendAmountTypeEnum" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Determination of Gross Cash Dividend per Share</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="paymentCurrency" type="PaymentCurrency" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Currency in which the payment relating to the leg amount (equity amount or interest amount) or the dividend will be denominated.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="dividendFxTriggerDate" type="DividendPaymentDate" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Specifies the date on which the FX rate will be considered in the case of a Composite FX swap.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="interestAccrualsMethod" type="InterestAccrualsCompoundingMethod" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Defines the way in which interests are accrued: the applicable rate (fixed or floating reference) and the compounding method.</xsd:documentation>
+                                        <xsd:documentation xml:lang="en">FpML entity</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+         </xsd:complexType>
+        <xsd:complexType name="DividendPaymentDate">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type describing the date on which the dividend will be paid/received. This type is also used to specify the date on which the FX rate will be determined, when applicable.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:choice>
+                        <xsd:element name="dividendDateReference" type="DividendDateReferenceEnum">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Reference to a dividend date, either the pay date, the ex date or the record date.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="adjustableDate" type="AdjustableDate">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A date that shall be subject to adjustment if it would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:choice>
+        </xsd:complexType>
+        <xsd:complexType name="Documentation">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">An entity for defining the definitions that govern the document and should include the year and type of definitions referenced, along with any relevant documentation (such as master agreement) and the date it was signed.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="masterAgreement" type="MasterAgreement" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The agreement executed between the parties and intended to govern all OTC derivatives transactions between those parties.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:choice minOccurs="0">
+                                <xsd:element name="masterConfirmation" type="MasterConfirmation">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">The agreement executed between the parties and intended to govern all OTC derivatives transactions between those parties.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="brokerConfirmation" type="BrokerConfirmation">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">Specifies the deails for a broker confirm.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                        </xsd:choice>
+                        <xsd:element name="contractualDefinitions" type="ContractualDefinitions" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The definitions (such as those published by ISDA) published by ISDA that will define the terms of the trade.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="contractualSupplement" type="ContractualSupplement" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A contractual supplement (such as those published by ISDA) that will apply to the trade.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="contractualMatrix" type="ContractualMatrix" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A reference to a contractual matrix of elected terms/values (such as those published by ISDA) that shall be deemed to apply to the trade.  The applicable matrix is identified by reference to a name and optionally a publication date. Depending on the structure of the matrix, an additional term (specified in the matrixTerm element) may be required to further identify a subset of applicable terms/values within the matrix.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="creditSupportDocument" type="xsd:normalizedString" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The agreement executed between the parties and intended to govern collateral arrangement for all OTC derivatives transactions between those parties.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="Empty">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A special type meant to be used for elements with no content and not attributes.</xsd:documentation>
+                </xsd:annotation>
+        </xsd:complexType>
+        <xsd:complexType name="EntityId">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="entityIdScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2003/entity-id-RED-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="EntityName">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="entityNameScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2003/entity-name-RED-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="EuropeanExercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the exercise period for a European style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="Exercise">
+                                <xsd:sequence>
+                                        <xsd:element name="expirationDate" type="AdjustableOrRelativeDate">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="relevantUnderlyingDate" type="AdjustableOrRelativeDates" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The daye on the underlying set by the exercise of an option. What this date is depends on the option (e.g. in a swaption it is the effective date, in an extendible/cancelable provision it is the termination date).</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="earliestExerciseTime" type="BusinessCenterTime">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The earliest time at which notice of exercise can be given by the buyer to the seller (or seller's agent) i) on the expriation date, in the case of a European style option, (ii) on each bermuda option exercise date and the expiration date, in the case of a Bermuda style option the commencement date to, and including, the expiration date , in the case of an American option.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="expirationTime" type="BusinessCenterTime">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The latest time for exercise on expirationDate.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="partialExercise" type="PartialExercise" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">As defined in the 2000 ISDA Definitions, Section 12.3. Partial Exercise, the buyer of the option has the right to exercise all or less than all the notional amount of the underlying swap on the expiration date, but may not exercise less than the minimum notional amount, and if an integral multiple amount is specified, the notional amount exercised must be equal to, or be an integral multiple of, the integral multiple amount.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="exerciseFee" type="ExerciseFee" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">A fee to be paid on exercise. This could be represented as an amount or a rate and notional reference on which to apply the rate.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="ExchangeId">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A short form unique identifier for an exchange. If the element is not present then the exchange shall be the primary exchange on which the underlying is listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+                        <xsd:documentation xml:lang="de">Eindeutiges BÃ¶rsenkÃ¼rzel. Fehlt dieses Element, gilt die HauptbÃ¶rse, an der der Basiswert notiert ist, als "BÃ¶rse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="exchangeIdScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2002/exchange-id-MIC-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="Exercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">The abstract base class for all types which define way in which options may be exercised.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="ExerciseFee">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the fee payable on exercise of an option. This fee may be defined as an amount or a percentage of the notional exercised.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:group ref="PayerReceiver.model"></xsd:group>
+                        <xsd:element name="notionalReference" type="NotionalReference"></xsd:element>
+                        <xsd:choice>
+                                <xsd:element name="feeAmount" type="xsd:decimal">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">The amount of fee to be paid on exercise. The fee currency is that of the referenced notional.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="feeRate" type="xsd:decimal">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">A fee represented as a percentage of some referenced notional. A percentage of 5% would be represented as 0.05.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                        </xsd:choice>
+                        <xsd:element name="feePaymentDate" type="RelativeDateOffset">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The date on which exercise fee(s) will be paid. It is specified as a relative date.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="ExerciseFeeSchedule">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type to define a fee or schedule of fees to be payable on the exercise of an option. This fee may be defined as an amount or a percentage of the notional exercised.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:group ref="PayerReceiver.model"></xsd:group>
+                        <xsd:element name="notionalReference" type="NotionalReference"></xsd:element>
+                        <xsd:choice>
+                                <xsd:element name="feeAmountSchedule" type="AmountSchedule">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">The exercise fee amount schedule. The fees are expressed as currency amounts. The currency of the fee is assumed to be that of the notional schedule referenced.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="feeRateSchedule" type="Schedule">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">The exercise free rate schedule. The fees are expressed as percentage rates of the notional being exercised. The currency of the fee is assumed to be that of the notional schedule referenced.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                        </xsd:choice>
+                        <xsd:element name="feePaymentDate" type="RelativeDateOffset">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The date on which exercise fee(s) will be paid. It is specified as a relative date.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="ExerciseNotice">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining to whom and where notice of execution should be given. The partyReference refers to one of the principal parties of the trade. If present the exerciseNoticePartyReference refers to a party, other than the principal party, to whome notice should be given.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="partyReference" type="PartyReference">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A pointer style reference to a party identifier defined elsewhere in the document. The party referenced has allocated the trade identifier.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="exerciseNoticePartyReference" type="PartyReference" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A pointer style reference to a party identifier defined elsewhere in the document. The party referenced is the party to which notice of exercise should be given by the buyer.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="businessCenter" type="BusinessCenter"></xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="ExerciseProcedure">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type describing how notice of exercise should be given. This can be either manual or automatic.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:choice>
+                                <xsd:element name="manualExercise" type="ManualExercise">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">Specifies that the notice of exercise must be given by the buyer to the seller or seller's agent.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="automaticExercise" type="AutomaticExercise">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">If automatic is specified then the notional amount of the underlying swap, not previously exercised under the swaption will be automatically exercised at the expriration time on the expiration date if at such time the buyer is in-the-money, provided that the difference between the settlement rate and the fixed rate under the relevant underlying swap is not less than the specified threshold rate. The term in-the-money is assumed to have the meaning defining in the 2000 ISDA Definitions, Section 17.4 In-the-money.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                        </xsd:choice>
+                        <xsd:element name="followUpConfirmation" type="xsd:boolean">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A flag to indicate whether follow-up confirmation of exercise (written or electronic) is required following telephonic notice by the buyer to the seller or seller's agent.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="FloatingRate">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a floating rate.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="floatingRateIndex" type="FloatingRateIndex"></xsd:element>
+                        <xsd:element name="indexTenor" type="Interval" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The ISDA Designated Maturity, i.e. the tenor of the floating rate.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="floatingRateMultiplierSchedule" type="Schedule" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A rate multiplier or multiplier schedule to apply to the floating rate. A multiplier schedule is expressed as explicit multipliers and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in the calculationPeriodDatesAdjustments. The multiplier can be a positive or negative decimal. This element should only be included if the multiplier is not equal to 1 (one) for the term of the stream.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="spreadSchedule" type="Schedule" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The ISDA Spread or a Spread schedule expressed as explicit spreads and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The spread is a per annum rate, expressed as a decimal. For purposes of determining a calculation period amount, if positive the spread will be added to the floating rate and if negative the spread will be subtracted from the floating rate. A positive 10 basis point (0.1%) spread would be represented as 0.001.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="rateTreatment" type="RateTreatmentEnum" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The specification of any rate conversion which needs to be applied to the observed rate before being used in any calculations. The two common conversions are for securities quoted on a bank discount basis which will need to be converted to either a Money Market Yield or Bond Equivalent Yield. See the Annex to the 2000 ISDA Definitions, Section 7.3. Certain General Definitions Relating to Floating Rate Options, paragraphs (g) and (h) for definitions of these terms.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="capRateSchedule" type="StrikeSchedule" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The cap rate or cap rate schedule, if any, which applies to the floating rate. The cap rate (strike) is only required where the floating rate on a swap stream is capped at a certain level. A cap rate schedule is expressed as explicit cap rates and dates and the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The cap rate is assumed to be exclusive of any spread and is a per annum rate, expressed as a decimal. A cap rate of 5% would be represented as 0.05.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="floorRateSchedule" type="StrikeSchedule" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The floor rate or floor rate schedule, if any, which applies to the floating rate. The floor rate (strike) is only required where the floating rate on a swap stream is floored at a certain strike level. A floor rate schedule is expressed as explicit floor rates and dates and the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The floor rate is assumed to be exclusive of any spread and is a per annum rate, expressed as a decimal. A floor rate of 5% would be represented as 0.05.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="FloatingRateCalculation">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the floating rate and definitions relating to the calculation of floating rate amounts.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="FloatingRate">
+                                <xsd:sequence>
+                                        <xsd:element name="initialRate" type="xsd:decimal" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The initial floating rate reset agreed between the principal parties involved in the trade. This is assumed to be the first required reset rate for the first regular calculation period. It should only be included when the rate is not equal to the rate published on the source implied by the floating rate index. An initial rate of 5% would be represented as 0.05.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="finalRateRounding" type="Rounding" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The rounding convention to apply to the final rate used in determination of a calculation period amount.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="averagingMethod" type="AveragingMethodEnum" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">If averaging is applicable, this component specifies whether a weighted or unweighted average method of calculation is to be used. The component must only be included when averaging applies.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="negativeInterestRateTreatment" type="NegativeInterestRateTreatmentEnum" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The specification of any provisions for calculating payment obligations when a floating rate is negative (either due to a quoted negative floating rate or by operation of a spread that is subtracted from the floating rate).</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="FloatingRateIndex">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">The ISDA Floating Rate Option, i.e. the floating rate index.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="floatingRateIndexScheme" type="xsd:anyURI" default="http://www.fpml.org/ext/isda-2000-definitions"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="FxCashSettlement">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that is used for describing cash settlement of an option / non deliverable forward. It includes the currency to settle into together with the fixings required to calculate the currency amount.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="settlementCurrency" type="Currency">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The currency in which a cash settlement for non-deliverable forward and non-deliverable options.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fixing" type="FxFixing" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Specifies the source for and timing of a fixing of an exchange rate. This is used in the agreement of non-deliverable forward trades as well as various types of FX OTC options that require observations against a particular rate.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="FxFixing">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that specifies the source for and timing of a fixing of an exchange rate. This is used in the agreement of non-deliverable forward trades as well as various types of FX OTC options that require observations against a particular rate.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="FxSpotRateSource">
+                                <xsd:sequence>
+                                        <xsd:element name="quotedCurrencyPair" type="QuotedCurrencyPair">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">Defines the two currencies for an FX trade and the quotation relationship between the two currencies.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="fixingDate" type="xsd:date">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">Describes the specific date when a non-deliverable forward or non-deliverable option will "fix" against a particular rate, which will be used to compute the ultimate cash settlement.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="FxRate">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type describing the rate of a currency conversion: pair of currency, quotation mode and exchange rate.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="quotedCurrencyPair" type="QuotedCurrencyPair">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Defines the two currencies for an FX trade and the quotation relationship between the two currencies.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="rate" type="xsd:decimal">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The rate of exchange between the two currencies of the leg of a deal. Must be specified with a quote basis.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="FxSpotRateSource">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the source and time for an fx rate.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="primaryRateSource" type="InformationSource">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The primary source for where the rate observation will occur. Will typically be either a page or a reference bank published rate.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="secondaryRateSource" type="InformationSource" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">An alternative, or secondary, source for where the rate observation will occur. Will typically be either a page or a reference bank published rate.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fixingTime" type="BusinessCenterTime">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The time at which the spot currency exchange rate will be observed. It is specified as a time in a specific business center, e.g. 11:00am London time.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="GoverningLaw">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="governingLawScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2002/governing-law-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="IdentifiedCurrency">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">Specifies Currency with ID attribute.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="Currency">
+                                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="IdentifiedDate">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A date which can be referenced elsewhere.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:date">
+                                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="IdentifiedPayerReceiver">
+                <xsd:annotation>
+                        <xsd:documentation>A type extending the PayerReceiverEnum type wih an id attribute.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="PayerReceiverEnum">
+                                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="InformationProvider">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="informationProviderScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2003/information-provider-2-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="InformationSource">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the source for a piece of information (e.g. a rate refix or an fx fixing).</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="rateSource" type="InformationProvider">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">An information source for obtaining a market rate. For example Bloomberg, Reuters, Telerate etc.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="rateSourcePage" type="RateSourcePage" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A specific page for the rate source for obtaining a market rate.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="rateSourcePageHeading" type="xsd:string" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The heading for the rate source on a given rate source page.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="InstrumentId">
+                <xsd:annotation>                        
+                        <xsd:documentation xml:lang="en">A short form unique identifier for a security.</xsd:documentation>
+                        <xsd:documentation xml:lang="de">Eindeutiges WertpapierkÃ¼rzel.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="instrumentIdScheme" type="xsd:anyURI" use="required"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="InterestAccrualsCompoundingMethod">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the way in which interests are accrued: the applicable rate (fixed or floating reference) and the compounding method.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="InterestAccrualsMethod">
+                                <xsd:sequence minOccurs="0">
+                                        <xsd:element name="compoundingMethod" type="CompoundingMethodEnum">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">If more that one calculation period contributes to a single payment amount this element specifies whether compounding is applicable, and if so, what compounding method is to be used. This element must only be included when more that one calculation period contributes to a single payment amount.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="InterestAccrualsMethod">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type describing the method for accruing interests on dividends. Can be either a fixed rate reference or a floating rate reference.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:choice>
+                        <xsd:element name="floatingRateCalculation" type="FloatingRateCalculation">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The floating rate calculation definitions</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fixedRate" type="xsd:decimal">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The calculation period fixed rate. A per annum rate, expressed as a decimal. A fixed rate of 5% would be represented as 0.05.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:choice>
+        </xsd:complexType>
+        <xsd:complexType name="IntermediaryInformation">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that describes the information to identify an intermediary through which payment will be made by the correspondent bank to the ultimate beneficiary of the funds.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:choice>
+                                <xsd:element name="routingIds" type="RoutingIds">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">A set of unique identifiers for a party, eachone identifying the party within a payment system. The assumption is that each party will not have more than one identifier within the same payment system.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="routingExplicitDetails" type="RoutingExplicitDetails">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">A set of details that is used to identify a party involved in the routing of a payment when the party does not have a code that identifies it within one of the recognized payment systems.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="routingIdsAndExplicitDetails" type="RoutingIdsAndExplicitDetails">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">A combination of coded payment system identifiers and details for physical addressing for a party involved in the routing of a payment.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                        </xsd:choice>
+                        <xsd:element name="intermediarySequenceNumber" type="xsd:integer">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A sequence number that gives the position of the current intermediary in the chain of payment intermediaries. The assumed domain value set is an ascending sequence of integers starting from 1.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="Interval">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a time interval or offset, e.g. one day, three months. Used for specifying frequencies at which events occur, the tenor of a floating rate or an offset relative to another date.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="periodMultiplier" type="xsd:integer">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A time period multiplier, e.g. 1, 2 or 3 etc. A negative value can be used when specifying an offset relative to another date, e.g. -2 days. If the period value is T (Term) then periodMultiplier must contain the value 1.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="period" type="PeriodEnum">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A time period, e.g. a day, week, month, year or term of the stream. If the periodMultiplier value is 0 (zero) then period must contain the value D (day).</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="IntradocumentReference">
+                <xsd:annotation>
+                        <xsd:documentation>A reference to an element within the document</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="LegalEntity">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a legal entity.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:choice>
+                        <xsd:sequence>
+                                <xsd:element name="entityName" type="EntityName">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">The name of the party. A free format string. FpML does not define usage rules for this element.</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="entityId" type="EntityId" minOccurs="0" maxOccurs="unbounded">
+                                        <xsd:annotation>
+                                                <xsd:documentation xml:lang="en">A legal entity identifier (e.g. RED entity code)..</xsd:documentation>
+                                        </xsd:annotation>
+                                </xsd:element>
+                        </xsd:sequence>
+                        <xsd:element name="entityId" type="EntityId" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A legal entity identifier (e.g. RED entity code)..</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:choice>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="LegalEntityReference">
+                <xsd:annotation>
+                        <xsd:documentation>A reference to a legal entity (e.g. referenceEntity) within this document.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="ManualExercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining manual exercise, i.e. that the option buyer counterparty must give notice to the option seller of exercise.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="exerciseNotice" type="ExerciseNotice" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Definition of the party to whom notice of exercise should be given.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fallbackExercise" type="xsd:boolean" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">If fallback exercise is specified then the notional amount of the underlying swap, not previously exercised under the swaption, will be automatically exercised at the expiration time on the expiration date if at such time the buyer is in-the-money, provided that the difference between the settlement rate and the fixed rate under the relevant underlying swap is not less than one tenth of a percentage point (0.10% or 0.001). The term in-the-money is assumed to have the meaning defined in the 2000 ISDA Definitions, Section 17.4. In-the-money.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="MasterAgreement">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">An entity for defining the agreement executed between the parties and intended to govern all OTC derivatives transactions between those parties.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="masterAgreementType" type="MasterAgreementType">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The agreement executed between the parties and intended to govern product-specific derivatives transactions between those parties.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="masterAgreementDate" type="xsd:date" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The date on which the master agreement was signed.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="MasterAgreementType">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="masterAgreementTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2002/master-agreement-type-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="MasterConfirmation">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">An entity for defining the master confirmation agreement executed between the parties.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="masterConfirmationType" type="MasterConfirmationType">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The type of master confirmation executed between the parties.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="masterConfirmationDate" type="xsd:date">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The date of the confirmation executed between the parties and intended to govern all relevant transactions between those parties.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="masterConfirmationAnnexDate" type="xsd:date" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The date that an annex to the master confirmation was executed between the parties.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="MasterConfirmationType">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="masterConfirmationTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/master-confirmation-type-3-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="MatrixType">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="matrixTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/matrix-type-1-0"/>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="MatrixTerm">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="matrixTermScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/credit-matrix-transaction-type-1-0"/>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="Money">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a currency amount.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="currency" type="Currency">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="amount" type="xsd:decimal">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The monetary quantity in currency units.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="MultipleExercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type definint multiple exercise. As defining in the 200 ISDA Definitions, Section 12.4. Multiple Exercise, the buyer of the option has the right to exercise all or less than all the unexercised notional amount of the underlying swap on one or more days in the exercise period, but on any such day may not exercise less than the minimum notional amount or more than the maximum notional amount, and if an integral multiple amount is specified, the notional exercised must be equal to or, be an integral multiple of, the integral multiple amount.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="PartialExercise">
+                                <xsd:sequence>
+                                        <xsd:element name="maximumNotionalAmount" type="xsd:decimal" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The maximum notional amount that can be exercised on a given exercise date.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="NotionalReference">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A pointer style reference to the associated notional schedule defined elsewhere in the document.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="Offset">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining an offset used in calculating a new date relative to a reference date. Currently, the only offsets defined are expected to be expressed as either calendar or business day offsets.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="Interval">
+                                <xsd:sequence>
+                                        <xsd:element name="dayType" type="DayTypeEnum" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">In the case of an offset specified as a number of days, this element defines whether consideration is given as to whether a day is a good business day or not. If a day type of business days is specified then non-business days are ignored when calculating the offset. The financial business centers to use for determination of business days are implied by the context in which this element is used. This element must only be included when the offset is specified as a number of days. If the offset is zero days then the dayType element should not be included.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="PartialExercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining partial exercise. As defined in the 2000 ISDA Definitions, Section 12.3 Partial Exercise, the buyer of the option may exercise all or less than all the notional amount of the underlying swap but may not be less than the minimum notional amount (if specified) and must be an integral multiple of the integral multiple amount if specified.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="notionalReference" type="NotionalReference" maxOccurs="unbounded"></xsd:element>
+                        <xsd:element name="integralMultipleAmount" type="xsd:decimal" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A notional amount which restricts the amount of notional that can be exercised when partial exercise or multiple exercise is applicable. The integral multiple amount defines a lower limit of notional that can be exercised and also defines a unit multiple of notional that can be exercised, i.e. only integer multiples of this amount can be exercised.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="minimumNotionalAmount" type="xsd:decimal">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The minimum notional amount that can be exercised on a given exercise date. See multipleExercise.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="PartyReference">
+                <xsd:annotation>
+                        <xsd:documentation>A reference to a party element within this document.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="Payment">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type for defining payments</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:group ref="PayerReceiver.model"></xsd:group>
+                        <xsd:element name="paymentAmount" type="Money">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The currency amount of the payment.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="paymentDate" type="AdjustableDate" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The payment date. This date is subject to adjustment in accordance with any applicable business day convention.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="adjustedPaymentDate" type="IdentifiedDate" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but my be specified to allow the fee structure to also serve as a cashflow type component (all dates the the Cashflows type are adjusted payment dates).</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="paymentType" type="PaymentType" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A classification of the type of fee or additional payment, e.g. brokerage, upfront fee etc. FpML does not define domain values for this element.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="settlementInformation" type="SettlementInformation" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The information required to settle a currency payment that results from a trade.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="PaymentCurrency">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type describing the currency in which the payment relating to the leg amount (equity amount or interest amount) or the dividend will be denominated.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:choice minOccurs="0">
+                        <xsd:element name="currency" type="Currency">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="determinationMethod" type="xsd:string">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Specifies the method according to which an amount or a date is determined.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:choice>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+                <xsd:attribute name="href" type="xsd:IDREF"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="PaymentType">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="paymentTypeScheme" type="xsd:anyURI"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="PeriodicDates">
+                <xsd:sequence>
+                        <xsd:element name="calculationStartDate" type="AdjustableOrRelativeDate"></xsd:element>
+                        <xsd:element name="calculationEndDate" type="AdjustableOrRelativeDate" minOccurs="0"></xsd:element>
+                        <xsd:element name="calculationPeriodFrequency" type="CalculationPeriodFrequency">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The frequency at which calculation period end dates occur with the regular part of the calculation period schedule and their roll date convention.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="calculationPeriodDatesAdjustments" type="BusinessDayAdjustments">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The business day convention to apply to each calculation period end date if it would otherwise fall on a day that is not a business day in the specified financial business centers.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="PrincipalExchanges">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining which principal exchanges occur for the stream.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="initialExchange" type="xsd:boolean">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A true/false flag to indicate whether there is an initial exchange of principal on the effective date.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="finalExchange" type="xsd:boolean">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A true/false flag to indicate whether there is a final exchange of principal on the termination date.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="intermediateExchange" type="xsd:boolean">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A true/false flag to indicate whether there are intermediate or interim exchanges of principal during the term of the swap.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="Product">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">The base type which all FpML products extend.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="productType" type="ProductType" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A classification of the type of product. FpML does not define domain values for this element.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="productId" type="ProductId" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A product reference identifier allocated by a party. FpML does not define the domain values associated with this element. Note that the domain values for this element are not strictly an enumerated list.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="ProductId">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="productIdScheme" type="xsd:anyURI"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="ProductReference">
+                <xsd:annotation>
+                        <xsd:documentation>A reference to a product element within this document.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="ProductType">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="productTypeScheme" type="xsd:anyURI"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="QuotedCurrencyPair">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that describes the composition of a rate that has been quoted or is to be quoted. This includes the two currencies and the quotation relationship between the two currencies and is used as a building block throughout the FX specification.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="currency1" type="Currency">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The first currency specified when a pair of currencies is to be evaluated.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="currency2" type="Currency">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The second currency specified when a pair of currencies is to be evaluated.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="quoteBasis" type="QuoteBasisEnum">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The method by which the exchange rate is quoted.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="RateObservation">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining parameters associated with an individual observation or fixing. This type forms part of the cashflow representation of a stream.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="resetDate" type="xsd:date" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The reset date.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="adjustedFixingDate" type="xsd:date" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The adjusted fixing date, i.e. the actual date the rate is observed. The date should already be adjusted for any applicable business day convention.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="observedRate" type="xsd:decimal" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The actual observed rate before any required rate treatment is applied, e.g. before converting a rate quoted on a discount basis to an equivalent yield. An observed rate of 5% would be represented as 0.05.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="treatedRate" type="xsd:decimal" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The observed rate after any required rate treatment is applied. A treated rate of 5% would be represented as 0.05.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="observationWeight" type="xsd:positiveInteger">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The number of days weighting to be associated with the rate observation, i.e. the number of days such rate is in effect. This is applicable in the case of a weighted average method of calculation where more than one reset date is established for a single calculation period.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="rateReference" type="IntradocumentReference" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A pointer style reference to a floating rate component defined as part of a stub calculation period amount component. It is only required when it is necessary to distinguish two rate observations for the same fixing date which could occur when linear interpolation of two different rates occurs for a stub calculation period.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="RateSourcePage">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="rateSourcePageScheme" type="xsd:anyURI"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="Reference">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">Specifies the anchor as an href attribute. The href attribute value is a pointer style reference to the element or component elsewhere in the document where the anchor is defined.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="ReferenceAmount">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">Specifies the reference amount using a scheme.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="referenceAmountScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/referenceAmount-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="ReferenceBank">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type to describe an institution (party) identified by means of a coding scheme and an optional name.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="referenceBankId" type="ReferenceBankId">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">An institution (party) identifier, e.g. a bank identifier code (BIC).</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="referenceBankName" type="xsd:string" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The name of the institution (party). A free format string. FpML does not define usage rules for the element.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="ReferenceBankId">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="referenceBankIdScheme" type="xsd:anyURI"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="RelativeDateOffset">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a date (referred to as the derived date) as a relative offset from another date (referred to as the anchor date). If the anchor date is itself an adjustable date then the offset is assumed to be calculated from the adjusted anchor date. A number of different scenarios can be supported, namely; 1) the derived date my simply be a number of calendar periods (days, weeks, months or years) preceding or following the anchor date; 2) the unadjusted derived date may be a number of calendar periods(days, weeks, months or years) preceding or following the anchor date with the resulting unadjusted derived date subject to adjustment in accordance with a specified business day convention, i.e. the derived date must fall on a good business day; 3) the derived date may be a number of business days preceding or following the anchor date. Note that the businessDayConvention specifies any required adjustment to the unadjusted
+                                derived date. A negative or positive value in the periodMultiplier indicates whether the unadjusted derived precedes or follows the anchor date. The businessDayConvention should contain a value NONE if the day type element contains a value of Business (since specifying a negative or positive business days offset would already guarantee that the derived date would fall on a good business day in the specified business centers).</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="Offset">
+                                <xsd:sequence>
+                                        <xsd:element name="businessDayConvention" type="BusinessDayConventionEnum">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The convention for adjusting a date if it would otherwise fall on a day that is not a business day.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:group ref="BusinessCentersOrReference.model" minOccurs="0"></xsd:group>
+                                        <xsd:element name="dateRelativeTo" type="DateRelativeTo"></xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="RelativeDates">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type describing a set of dates defined as relative to another set of dates.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="RelativeDateOffset">
+                                <xsd:sequence>
+                                        <xsd:element name="periodSkip" type="xsd:positiveInteger" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The number of periods in the referenced date schedule that are between each date in the relative date schedule. Thus a skip of 2 would mean that dates are relative to every second date in the referenced schedule. If present this should have a value greater than 1.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="scheduleBounds" type="DateRange" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The first and last dates of a schedule. This can be used to restrict the range of values in a reference series of dates.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="RelativeDateSequence">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type describing a date when this date is defined in reference to another date through one or several date offsets.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="dateRelativeTo" type="DateRelativeTo"></xsd:element>
+                        <xsd:element name="dateOffset" type="DateOffset" maxOccurs="unbounded"></xsd:element>
+                        <xsd:group ref="BusinessCentersOrReference.model" minOccurs="0"></xsd:group>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="RequiredIdentifierDate">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A date with a required identifier which can be referenced elsewhere.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:date">
+                                <xsd:attribute name="id" type="xsd:ID" use="required"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="ResetFrequency">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining the reset frequency. In the case of a weekly reset, also specifies the day of the week that the reset occurs. If the reset frequency is greater than the calculation period frequency the this implies that more or more reset dates is established for each calculation period and some form of rate averaginhg is applicable. The specific averaging method of calculation is specified in FloatingRateCalculation.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="Interval">
+                                <xsd:sequence>
+                                        <xsd:element name="weeklyRollConvention" type="WeeklyRollConventionEnum" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The day of the week on which a weekly reset date occurs. This element must be included if the reset frequency is defined as weekly and not otherwise.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="Rounding">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a rounding direction and precision to be used in the rounding of a rate.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="roundingDirection" type="RoundingDirectionEnum">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Specifies the rounding direction.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="precision" type="xsd:nonNegativeInteger">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Specifies the rounding precision in terms of a number of decimal places. Note how a percentage rate rounding of 5 decimal places is expressed as a rounding precision of 7 in the FpML document since the percentage is expressed as a decimal, e.g. 9.876543% (or 0.09876543) being rounded to the nearest 5 decimal places is 9.87654% (or 0.0987654).</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="Routing">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that provides three alternative ways of identifying a party involved in the routing of a payment. The identification may use payment system identifiers only; actual name, address and other reference information; or a combination of both.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:choice>
+                        <xsd:element name="routingIds" type="RoutingIds">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A set of unique identifiers for a party, eachone identifying the party within a payment system. The assumption is that each party will not have more than one identifier within the same payment system.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="routingExplicitDetails" type="RoutingExplicitDetails">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A set of details that is used to identify a party involved in the routing of a payment when the party does not have a code that identifies it within one of the recognized payment systems.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="routingIdsAndExplicitDetails" type="RoutingIdsAndExplicitDetails">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A combination of coded payment system identifiers and details for physical addressing for a party involved in the routing of a payment.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:choice>
+        </xsd:complexType>
+        <xsd:complexType name="RoutingExplicitDetails">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that models name, address and supplementary textual information for the purposes of identifying a party involved in the routing of a payment.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="routingName" type="xsd:string">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A real name that is used to identify a party involved in the routing of a payment.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="routingAddress" type="Address" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A physical postal address via which a payment can be routed.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="routingAccountNumber" type="xsd:string" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">An account number via which a payment can be routed.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="routingReferenceText" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A piece of free-format text used to assist the identification of a party involved in the routing of a payment.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="RoutingId">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="routingIdCodeScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2002/routing-id-code-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="RoutingIds">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that provides for identifying a party involved in the routing of a payment by means of one or more standard identification codes. For example, both a SWIFT BIC code and a national bank identifier may be required.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="routingId" type="RoutingId" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A unique identifier for party that is a participant in a recognized payment system.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="RoutingIdsAndExplicitDetails">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that provides a combination of payment system identification codes with physical postal address details, for the purposes of identifying a party involved in the routing of a payment.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="routingIds" type="RoutingIds" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A set of unique identifiers for a party, eachone identifying the party within a payment system. The assumption is that each party will not have more than one identifier within the same payment system.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="routingName" type="xsd:string">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A real name that is used to identify a party involved in the routing of a payment.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="routingAddress" type="Address" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A physical postal address via which a payment can be routed.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="routingAccountNumber" type="xsd:string" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">An account number via which a payment can be routed.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="routingReferenceText" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A piece of free-format text used to assist the identification of a party involved in the routing of a payment.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="Schedule">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a schedule of rates or amounts in terms of an initial value and then a series of step date and value pairs. On each step date the rate or amount changes to the new step value. The series of step date and value pairs are optional. If not specified, this implies that the initial value remains unchanged over time.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="initialValue" type="xsd:decimal">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The initial rate or amount, as the case may be. An initial rate of 5% would be represented as 0.05.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="step" type="Step" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The schedule of step date and value pairs. On each step date the associated step value becomes effective A list of steps may be ordered in the document by ascending step date. An FpML document containing an unordered list of steps is still regarded as a conformant document.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="SettlementInformation">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that represents the choice of methods for settling a potential currency payment resulting from a trade: by means of a standard settlement instruction, by netting it out with other payments, or with an explicit settlement instruction.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:choice>
+                        <xsd:element name="standardSettlementStyle" type="StandardSettlementStyleEnum">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">An optional element used to describe how a trade will settle. This defines a scheme and is used for identifying trades that are identified as settling standard and/or flagged for settlement netting.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="settlementInstruction" type="SettlementInstruction">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">An explicit specification of how a currency payment is to be made, when the payment is not netted and the route is other than the recipient's standard settlement instruction.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:choice>
+        </xsd:complexType>
+        <xsd:complexType name="SettlementInstruction">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that models a complete instruction for settling a currency payment, including the settlement method to be used, the correspondent bank, any intermediary banks and the ultimate beneficary.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="settlementMethod" type="SettlementMethod" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The mechanism by which settlement is to be made. The scheme of domain values will include standard mechanisms such as CLS, Fedwire, Chips ABA, Chips UID, SWIFT, CHAPS and DDA.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="correspondentInformation" type="Routing" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The information required to identify the correspondent bank that will make delivery of the funds on the paying bank's behalf in the country where the payment is to be made</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="intermediaryInformation" type="IntermediaryInformation" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Information to identify an intermediary through which payment will be made by the correspondent bank to the ultimate beneficiary of the funds.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="beneficiaryBank" type="Routing" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The bank that acts for the ultimate beneficiary of the funds in receiving payments.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="beneficiary" type="Routing">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The ultimate beneficiary of the funds. The beneficiary can be identified either by an account at the beneficiaryBank (qv) or by explicit routingInformation. This element provides for the latter.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="splitSettlement" type="SplitSettlement" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The set of individual payments that are to be made when a currency payment settling a trade needs to be split between a number of ultimate beneficiaries. Each split payment may need to have its own routing information.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="SettlementMethod">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="settlementMethodScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2002/settlement-method-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="SettlementPriceSource">
+                <xsd:annotation>                        
+                        <xsd:documentation xml:lang="en">The source from which the settlement price is to be obtained, e.g. a Reuters page, Prezzo di Riferimento, etc.</xsd:documentation>
+                        <xsd:documentation xml:lang="de">Quelle fÃ¼r den Abrechnungspreis (z.B. eine Reuters-Seite, Prezzo di Riferimento, usw.).</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:normalizedString">
+                                <xsd:attribute name="settlementPriceSourceScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2002/settlement-price-source-1-0"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+        <xsd:complexType name="SharedAmericanExercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">TBA</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="Exercise">
+                                <xsd:sequence>
+                                        <xsd:element name="commencementDate" type="AdjustableOrRelativeDate">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The first day of the exercise period for an American style option.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="expirationDate" type="AdjustableOrRelativeDate">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="latestExerciseTime" type="BusinessCenterTime" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">For a Bermuda or American style option, the latest time on an exercise business day (excluding the expiration date) within the exercise period that notice can be given by the buyer to the seller or seller's agent. Notice of exercise given after this time will be deemed to have been given on the next exercise business day.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="SplitSettlement">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that supports the division of a gross settlement amount into a number of split settlements, each requiring its own settlement instruction.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="splitSettlementAmount" type="Money">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">One of the monetary amounts in a split settlement payment.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="beneficiaryBank" type="Routing" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The bank that acts for the ultimate beneficiary of the funds in receiving payments.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="beneficiary" type="Routing">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The ultimate beneficiary of the funds. The beneficiary can be identified either by an account at the beneficiaryBank (qv) or by explicit routingInformation. This element provides for the latter.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="Step">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type defining a step date and step value pair. This step definitions are used to define varying rate or amount schedules, e.g. a notional amortization or a step-up coupon schedule.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="stepDate" type="xsd:date">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The date on which the associated stepValue becomes effective. This day may be subject to adjustment in accordance with a business day convention.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="stepValue" type="xsd:decimal">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The rate or amount which becomes effective on the associated stepDate. A rate of 5% would be represented as 0.05.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="StreetAddress">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type that describes the set of street and building number information that identifies a postal address within a city.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="streetLine" type="xsd:string" maxOccurs="unbounded">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">An individual line of street and building number information, forming part of a postal address.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:complexType>
+        <xsd:complexType name="Strike">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type describing a single cap or floor rate.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                        <xsd:element name="strikeRate" type="xsd:decimal">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The rate for a cap or floor.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="buyer" type="IdentifiedPayerReceiver" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The buyer of the option</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="seller" type="IdentifiedPayerReceiver" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">The party that has sold.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:complexType name="StrikeSchedule">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">A type describing a schedule of cap or floor rates.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+                        <xsd:extension base="Schedule">
+                                <xsd:sequence>
+                                        <xsd:element name="buyer" type="IdentifiedPayerReceiver" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The buyer of the option</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="seller" type="IdentifiedPayerReceiver" minOccurs="0">
+                                                <xsd:annotation>
+                                                        <xsd:documentation xml:lang="en">The party that has sold.</xsd:documentation>
+                                                </xsd:annotation>
+                                        </xsd:element>
+                                </xsd:sequence>
+                                <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+                        </xsd:extension>
+                </xsd:complexContent>
+        </xsd:complexType>
+        <xsd:complexType name="TradeReference">
+                <xsd:annotation>
+                        <xsd:documentation>A reference to a trade element within this document.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:attribute name="href" type="xsd:IDREF" use="required"></xsd:attribute>
+        </xsd:complexType>
+        <xsd:element name="americanExercise" type="AmericanExercise" substitutionGroup="exercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">The parameters for defining the exercise period for an American style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees.</xsd:documentation>
+                </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="bermudaExercise" type="BermudaExercise" substitutionGroup="exercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">The parameters for defining the exercise period for a Bermuda style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees.</xsd:documentation>
+                </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="europeanExercise" type="EuropeanExercise" substitutionGroup="exercise">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">The parameters for defining the exercise period for a European style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees.</xsd:documentation>
+                </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="exercise" type="Exercise" abstract="true">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">An placeholder for the actual option exercise definitions.</xsd:documentation>
+                </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="product" type="Product" abstract="true">
+                <xsd:annotation>
+                        <xsd:documentation xml:lang="en">An abstract element used as a place holder for the substituting product elements.</xsd:documentation>
+                </xsd:annotation>
+        </xsd:element>
+        <xsd:group name="BusinessCentersOrReference.model">
+                <xsd:choice>
+                        <xsd:element name="businessCentersReference" type="BusinessCentersReference"></xsd:element>
+                        <xsd:element name="businessCenters" type="BusinessCenters"></xsd:element>
+                </xsd:choice>
+        </xsd:group>
+        <xsd:group name="BuyerSeller.model">
+                <xsd:sequence>
+                        <xsd:element name="buyerPartyReference" type="PartyReference">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="sellerPartyReference" type="PartyReference">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A reference to the party that sells ("writes") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:group>
+        <xsd:group name="PayerReceiver.model">
+                <xsd:sequence>
+                        <xsd:element name="payerPartyReference" type="PartyReference">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A reference to the party responsible for making the payments defined by this structure.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="receiverPartyReference" type="PartyReference">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A reference to the party that receives the payments corresponding to this structure.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+                </xsd:sequence>
+        </xsd:group>
+</xsd:schema>

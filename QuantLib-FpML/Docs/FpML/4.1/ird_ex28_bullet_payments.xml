@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML version="4-1" xsi:type="DataDocument" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xmlns="http://www.fpml.org/2004/FpML-4-1">
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="partyA"/>
+				<tradeId tradeIdScheme="http://www.partyA.com/trade-id">123</tradeId>
+			</partyTradeIdentifier>
+			<partyTradeIdentifier>
+				<partyReference href="partyB"/>
+				<tradeId tradeIdScheme="http://www.partyB.com/trade-id">123</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate>2001-04-29</tradeDate>
+		</tradeHeader>
+		<bulletPayment>
+			<payment>
+				<payerPartyReference href="partyA"/>
+				<receiverPartyReference href="partyB"/>
+				<paymentAmount>
+					<currency>USD</currency>
+					<amount>15000.00</amount>
+				</paymentAmount>
+				<paymentDate>
+					<unadjustedDate>2001-07-27</unadjustedDate>
+					<dateAdjustments>
+						<businessDayConvention>MODFOLLOWING</businessDayConvention>
+						<businessCenters id="businessCenters0">
+							<businessCenter>GBLO</businessCenter>
+							<businessCenter>USNY</businessCenter>
+						</businessCenters>
+					</dateAdjustments>
+				</paymentDate>
+			</payment>
+		</bulletPayment>
+	</trade>
+	<party id="partyA">
+		<partyId>partyA</partyId>
+	</party>
+	<party id="partyB">
+		<partyId>partyB</partyId>
+	</party>
+</FpML>

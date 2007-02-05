@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+== Copyright (c) 2002-2004. All rights reserved. 
+== Financial Products Markup Language is subject to the FpML public license. 
+== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2004/FpML-4-1" targetNamespace="http://www.fpml.org/2004/FpML-4-1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="fpml-asset-4-1.xsd"/>
+	<xsd:complexType name="AdditionalDisruptionEvents">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type for defining ISDA 2002 Equity Derivative Additional Disruption Events"</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="changeInLaw" type="xsd:boolean"/>
+			<xsd:element name="failureToDeliver" type="xsd:boolean" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">Where the underlying is shares and the transaction is physically settled, then, if true, a failure to deliver the shares on the settlement date will not be an event of default for the purposes of the master agreement.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Ist der Basiswert eine Aktie und wird die Transaktion effektiv beliefert, stellt die Nichtlieferung von Aktien am Abrechnungstag keinen Kündigungsgrund im Sinne des Rahmenvertrags dar, wenn der Wert "wahr" lautet.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="insolvencyFiling" type="xsd:boolean"/>
+			<xsd:element name="hedgingDisruption" type="xsd:boolean"/>
+			<xsd:element name="lossOfStockBorrow" type="xsd:boolean"/>
+			<xsd:element name="increasedCostOfStockBorrow" type="xsd:boolean"/>
+			<xsd:element name="increasedCostOfHedging" type="xsd:boolean"/>
+			<xsd:element name="determiningPartyReference" type="PartyReference"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Asian">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">As per ISDA 2002 Definitions</xsd:documentation>
+			<xsd:documentation xml:lang="de">Im Sinne der ISDA-Definitionen von 2002.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="averagingInOut" type="AveragingInOutEnum"/>
+			<xsd:element name="strikeFactor" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The factor of strike.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Strike-Faktor.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="averagingPeriodIn" type="EquityAveragingPeriod" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The averaging in period.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Averaging-In-Zeitraum.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="averagingPeriodOut" type="EquityAveragingPeriod" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The averaging out period.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Averaging-Out-Zeitraum.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Barrier">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">As per ISDA 2002 Definitions.</xsd:documentation>
+			<xsd:documentation xml:lang="de">Im Sinne der ISDA-Definitionen von 2002.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="barrierCap" type="TriggerEvent" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">A trigger level approached from beneath.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Von unten ausgelöstes Trigger-Niveau.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="barrierFloor" type="TriggerEvent" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">A trigger level approached from above.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Von oben ausgelöstes Trigger-Niveau.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Composite">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Specifies the conditions to be applied for converting into a reference currency when the actual currency rate is not determined upfront.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="determinationMethod" type="xsd:normalizedString" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies the method according to which an amount or a date is determined.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="relativeDate" type="RelativeDateOffset" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A date specified as some offset to another date (the anchor date).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fxSpotRateSource" type="FxSpotRateSource" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies the methodology (reference source and, optionally, fixing time) to be used for determining a currency conversion rate.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Equity">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">A type for defining an equity underlier.</xsd:documentation>
+			<xsd:documentation xml:lang="de">Typ zur Definition eines Aktien-Basiswerts.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="description" type="xsd:string">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The long name of a security.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Vollständige Wertpapierbezeichnung.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="instrumentId" type="InstrumentId" maxOccurs="unbounded"/>
+			<xsd:element name="currency" type="Currency" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="exchangeId" type="ExchangeId" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="clearanceSystem" type="ClearanceSystem" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EquityAveragingPeriod">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">Period over which an average value is taken</xsd:documentation>
+			<xsd:documentation xml:lang="de">Typ zur Definition der Ausübungsprozesse bei einer amerikanischen Aktienoption. Diese Einheit leitet sich ab vom Typ "SharedAmericanExercise".</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="schedule" type="EquitySchedule" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">A Equity Derivative schedule.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Zeitplan für Aktienderivate.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="averagingDateTimes" type="DateTimeList" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">Averaging DateTimes</xsd:documentation>
+					<xsd:documentation xml:lang="de">Für die Durchschnittsbildung herangezogene Daten und Zeiten.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="marketDisruption" type="MarketDisruption">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The market disruption event as defined by ISDA 2002 Definitions</xsd:documentation>
+					<xsd:documentation xml:lang="de">Marktunterbrechung im Sinne der ISDA-Definitionen von 2002.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EquityCorporateEvents">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">A type for defining the merger events and their treatment.</xsd:documentation>
+			<xsd:documentation xml:lang="de">Typ zur Definition von Fusionen und deren Behandlung.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="shareForShare" type="ShareExtraordinaryEventEnum">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The consideration paid for the original shares following the Merger Event consists wholly of new shares.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Einstandspreis für die ursprünglichen Aktien nach Fusion beinhaltet ausschließlich neue Aktien.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="shareForOther" type="ShareExtraordinaryEventEnum">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The consideration paid for the original shares following the Merger Event consists wholly of cash/securities other than new shares.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Einstandspreis für die ursprünglichen Aktien nach Fusion beinhaltet ausschließlich Barmittel/Wertpapiere (keine neuen Aktien).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="shareForCombined" type="ShareExtraordinaryEventEnum">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The consideration paid for the original shares following the Merger Event consists of both cash/securities and new shares.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Einstandspreis für die ursprünglichen Aktien nach Fusion beinhaltet sowohl Barmittel/Wertpapiere als auch neue Aktien.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EquityFeatures">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">A type for defining option features.</xsd:documentation>
+			<xsd:documentation xml:lang="de">Typ zur Definition von Optionsbestandteilen.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="asian" type="Asian" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">An option where and average price is taken on valuation.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Option, deren Bewertung auf einem Durchschnittspreis basiert.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="barrier" type="Barrier" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">An option with a barrier feature.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Option mit Barrier-Merkmal.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="knock" type="Knock" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">A knock feature.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Knock-Spezifikation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EquitySchedule">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">Method of generating a series of dates.</xsd:documentation>
+			<xsd:documentation xml:lang="de">Methode zur Generierung einer Reihe von Terminen.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="startDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The averaging period start date.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="endDate" type="xsd:date">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The averaging period end date.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Letzter Tag eines Durchschnittszeitraums.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="frequency" type="xsd:decimal">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The schedule frequency.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Zahlungsfrequenz laut Zeitplan.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="frequencyType" type="FrequencyTypeEnum">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The schedule frequency type</xsd:documentation>
+					<xsd:documentation xml:lang="de">Art der Zahlungsfrequenz laut Zeitplan.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="weekNumber" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The schedule week number.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Wochenzahl im Zeitplan.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dayOfWeek" type="WeeklyRollConventionEnum" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EquityValuation">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">A type for defining how and when an equity option is to be valued.</xsd:documentation>
+			<xsd:documentation xml:lang="de">Typ, mit dem Zeitpunkt und Art der Bewertung einer Aktienoption bestimmt wird.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="valuationDate" type="EquityValuationDate">
+					<xsd:annotation>						
+						<xsd:documentation xml:lang="en">The term "Valuation Date" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+						<xsd:documentation xml:lang="de">"Bewertungstag" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="valuationDates" type="AdjustableRelativeOrPeriodicDates">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Specifies the interim equity valuation dates of the swap.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="valuationTimeType" type="TimeTypeEnum" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The time of day at which the calculation agent values the underlying, for example the official closing time of the exchange.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Tageszeit, zu der die Berechnungsstelle den Basiswert bewertet, zum Beispiel der offizielle Börsenschluss.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="valuationTime" type="BusinessCenterTime" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The specific time of day at which the calculation agent values the underlying.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Genaue Tageszeit, zu der die Bewertungsstelle den Basiswert bewertet.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="futuresPriceValuation" type="xsd:boolean" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The official settlement price as announced by the related exchange is applicable, in accordance with the ISDA 2002 definitions.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Es gilt der von der relevanten Börse veröffentlichte offizielle Abrechnungspreis im Sinne der ISDA-Definitionen von 2002.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="optionsPriceValuation" type="xsd:boolean" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The official settlement price as announced by the related exchange is applicable, in accordance with the ISDA 2002 definitions.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Es gilt der von der relevanten Börse veröffentlichte offizielle Abrechnungspreis im Sinne der ISDA-Definitionen von 2002.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="EquityValuationDate">
+		<xsd:choice>
+			<xsd:element name="adjustableDate" type="AdjustableDate">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A date that shall be subject to adjustment if it would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="relativeDateSequence" type="RelativeDateSequence">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A date specified in relation to some other date defined in the document (the anchor date), where there is the opportunity to specify a combination of offset rules. This component will typically be used for defining the valuation date in relation to the payment date, as both the currency and the exchange holiday calendars need to be considered.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="ExtraordinaryEvents">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">Where the underlying is shares, defines market events affecting the issuer of those shares that may require the terms of the transaction to be adjusted.</xsd:documentation>
+			<xsd:documentation xml:lang="de">Ist der Basiswert eine Aktie, werden hiermit Marktereignisse angegeben, die den Emittenten der Aktie betreffen und die eine Anpassung der Transaktionsbedingungen erfordern können.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="mergerEvents" type="EquityCorporateEvents" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">Occurs when the underlying ceases to exist following a merger between the Issuer and another company.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Dieses Element ist relevant, wenn der Basiswert nach einer Fusion zwischen dem Emittenten und einer anderen Gesellschaft nicht mehr existiert.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tenderOffer" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="tenderOfferEvents" type="EquityCorporateEvents" minOccurs="0"/>
+			<xsd:element name="compositionOfCombinedConsideration" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="indexAdjustmentEvents" type="IndexAdjustmentEvents" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="additionalDisruptionEvents" type="AdditionalDisruptionEvents"/>
+				<xsd:element name="failureToDeliver" type="xsd:boolean"/>
+			</xsd:choice>
+			<xsd:element name="representations" type="Representations" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">ISDA 2002 Equity Derivative Representations</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="nationalisationOrInsolvency" type="NationalisationOrInsolvencyOrDelistingEventEnum" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The terms "Nationalisation" and "Insolvency" have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+					<xsd:documentation xml:lang="de">"Verstaatlichung" und "Insolvenz" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="delisting" type="NationalisationOrInsolvencyOrDelistingEventEnum" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The term "Delisting" has the meaning defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+					<xsd:documentation xml:lang="de">"Delisting" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FeaturePayment">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">Payment made following trigger occurence.</xsd:documentation>
+			<xsd:documentation xml:lang="de">Nach Eintritt des Trigger-Ereignisses erfolgende Zahlung.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:group ref="PayerReceiver.model"/>
+			<xsd:choice>
+				<xsd:element name="levelPercentage" type="xsd:decimal">
+					<xsd:annotation>						
+						<xsd:documentation xml:lang="en">The trigger level percentage.</xsd:documentation>
+						<xsd:documentation xml:lang="de">Triggerniveau, ausgedrückt als Prozentsatz.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="amount" type="xsd:decimal">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The monetary quantity in currency units.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="time" type="TimeTypeEnum" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The feature payment time.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Zeitpunkt der aus dem Optionsmerkmal resultierenden Zahlung.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="currency" type="Currency" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="featurePaymentDate" type="AdjustableOrRelativeDate" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The feature payment date.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Datum der aus dem Optionsmerkmal resultierenden Zahlung.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FxFeature">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">A type for defining Fx Features.</xsd:documentation>
+			<xsd:documentation xml:lang="de">Typ zur Definition von Devisenbestandteilen.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="referenceCurrency" type="IdentifiedCurrency">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies the reference currency of the trade.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="composite" type="Composite"/>
+				<xsd:element name="quanto" type="Quanto"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="IndexAdjustmentEvents">
+		<xsd:sequence>
+			<xsd:element name="indexModification" type="IndexEventConsequenceEnum"/>
+			<xsd:element name="indexCancellation" type="IndexEventConsequenceEnum"/>
+			<xsd:element name="indexDisruption" type="IndexEventConsequenceEnum"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Knock">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">Knock In means option to exercise comes into existence. Knock Out means option to exercise goes out of existence</xsd:documentation>
+			<xsd:documentation xml:lang="de">"Knock-in" bedeutet, dass eine Option durch das Überschreiten aktiviert wird. "Knock-out" bedeutet, dass eine Option nach dem Überschreiten erlischt.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="knockIn" type="TriggerEvent" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The knock in.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Knock-In.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="knockOut" type="TriggerEvent" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The knock out.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Knock-Out.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MarketDisruption">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="marketDisruptionScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/marketDisruption-1-0"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="Quanto">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Determines the currency rate that the seller of the equity amounts will apply at each valuation date for converting the respective amounts into a currency that is different from the currency denomination of the underlyer.</xsd:documentation>
+			<xsd:documentation xml:lang="en">Specifies the currency conversion rate(s) associated with the quanto. One rate will be defined for each pair of currencies involved.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="fxRate" type="FxRate" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies a currency conversion rate.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fxSpotRateSource" type="FxSpotRateSource" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Specifies the methodology (reference source and, optionally, fixing time) to be used for determining a currency conversion rate.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Representations">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type for defining ISDA 2002 Equity Derivative Representations</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="nonReliance" type="xsd:boolean"/>
+			<xsd:element name="agreementsRegardingHedging" type="xsd:boolean"/>
+			<xsd:element name="indexDisclaimer" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="additionalAcknowledgements" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Trigger">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">Trigger point at which feature is effective</xsd:documentation>
+			<xsd:documentation xml:lang="de">Trigger-Niveau, bei dem bestimmte Merkmale einsetzen.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="level" type="xsd:decimal">
+					<xsd:annotation>						
+						<xsd:documentation xml:lang="en">The trigger level.</xsd:documentation>
+						<xsd:documentation xml:lang="de">Trigger-Niveau.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="levelPercentage" type="xsd:decimal">
+					<xsd:annotation>						
+						<xsd:documentation xml:lang="en">The trigger level percentage.</xsd:documentation>
+						<xsd:documentation xml:lang="de">Triggerniveau, ausgedrückt als Prozentsatz.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TriggerEvent">
+		<xsd:annotation>			
+			<xsd:documentation xml:lang="en">Observation point for trigger</xsd:documentation>
+			<xsd:documentation xml:lang="de">Beobachtungspunkt für das Trigger-Ereignis.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="schedule" type="EquitySchedule" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">A Equity Derivative schedule.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Zeitplan für Aktienderivate.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="triggerDates" type="DateList" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The trigger Dates</xsd:documentation>
+					<xsd:documentation xml:lang="de">Trigger-Tage.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="trigger" type="Trigger">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The trigger level.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Trigger-Niveau.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="featurePayment" type="FeaturePayment" minOccurs="0">
+				<xsd:annotation>					
+					<xsd:documentation xml:lang="en">The feature payment.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Aus dem Optionsmerkmal resultierende Zahlung.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

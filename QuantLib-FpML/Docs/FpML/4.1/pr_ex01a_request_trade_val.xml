@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  == Copyright (c) 2002-2004. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd" xsi:type="RequestValuationReport" version="4-1">
+	<!-- This is a request to value a trade, where the full trade details are supplied -->
+	<header>
+		<messageId messageIdScheme="http://www.abcdef.org/message-id">VAL001</messageId>
+		<sentBy>ABCDEF</sentBy>
+		<sendTo>BBBBBB</sendTo>
+		<creationTimestamp>2004-06-14T12:40:12-00:00</creationTimestamp>
+	</header>
+	<party id="partyA">
+		<partyId>ABCDEF</partyId>
+	</party>
+	<party id="partyB">
+		<partyId>BBBBBB</partyId>
+	</party>
+	<!--Trade Valuation Item-->
+	<tradeValuationItem>
+		<trade>
+			<tradeHeader>
+				<partyTradeIdentifier>
+					<partyReference href="partyA"/>
+					<tradeId tradeIdScheme="http://www.partyA.com/trade-id">AAA123</tradeId>
+				</partyTradeIdentifier>
+				<tradeDate>2004-04-29</tradeDate>
+			</tradeHeader>
+			<bulletPayment>
+				<payment>
+					<payerPartyReference href="partyA"/>
+					<receiverPartyReference href="partyB"/>
+					<paymentAmount>
+						<currency>USD</currency>
+						<amount>15000.00</amount>
+					</paymentAmount>
+					<paymentDate>
+						<unadjustedDate>2004-07-27</unadjustedDate>
+						<dateAdjustments>
+							<businessDayConvention>MODFOLLOWING</businessDayConvention>
+							<businessCenters id="businessCenters0">
+								<businessCenter>GBLO</businessCenter>
+								<businessCenter>USNY</businessCenter>
+							</businessCenters>
+						</dateAdjustments>
+					</paymentDate>
+				</payment>
+			</bulletPayment>
+		</trade>
+		<!--Trade Valuation Set-->
+		<valuationSet>
+			<!--Valuation Scenario-->
+			<valuationScenario id="valscen1">
+				<name>EOD Valuation</name>
+				<valuationDate>2004-05-01</valuationDate>
+			</valuationScenario>
+			<baseParty href="partyA"/>
+			<!--Requested Valuation Characteristics-->
+			<quotationCharacteristics>
+				<measureType>NPV</measureType>
+			</quotationCharacteristics>
+		</valuationSet>
+		<!--Portfolio Valuation Set-->
+	</tradeValuationItem>
+</FpML>

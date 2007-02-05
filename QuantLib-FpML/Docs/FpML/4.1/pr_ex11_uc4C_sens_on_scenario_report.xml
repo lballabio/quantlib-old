@@ -1,0 +1,839 @@
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Mahmood Hanif (Bank Of America) -->
+<FpML xsi:type="ValuationDocument" version="4-1" xmlns="http://www.fpml.org/2004/FpML-4-1" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2004/FpML-4-1 ../fpml-main-4-1.xsd">
+	<!--Portfolio of trades -->
+	<portfolio id="port1">
+		<tradeId id="tid-1" tradeIdScheme="http://party1.com/tids">1234</tradeId>
+	</portfolio>
+	<party id="party1">
+		<partyId>ABCDEF</partyId>
+	</party>
+	<market>
+		<yieldCurve id="USD-LIBOR">
+			<name>3M-LIBOR</name>
+			<currency>USD</currency>
+		</yieldCurve>
+		<!--Yield Curve Valuation for USD-LIBOR-vals-->
+		<yieldCurveValuation id="USD-LIBOR-vals">
+			<objectReference href="USD-LIBOR"/>
+			<baseDate>2003-10-29</baseDate>
+			<buildDateTime>2004-05-31T12:13:59-00:00</buildDateTime>
+			<inputs>
+				<instrumentSet>
+					<deposit id="USD-LIBOR-input-1">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-DEP-ON</instrumentId>
+						<term>
+							<periodMultiplier>1</periodMultiplier>
+							<period>D</period>
+						</term>
+					</deposit>
+					<deposit id="USD-LIBOR-input-2">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-DEP-TN</instrumentId>
+						<term>
+							<periodMultiplier>2</periodMultiplier>
+							<period>D</period>
+						</term>
+					</deposit>
+					<deposit id="USD-LIBOR-input-3">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-DEP-1M</instrumentId>
+						<term>
+							<periodMultiplier>1</periodMultiplier>
+							<period>M</period>
+						</term>
+					</deposit>
+					<deposit id="USD-LIBOR-input-4">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-DEP-3M</instrumentId>
+						<term>
+							<periodMultiplier>1</periodMultiplier>
+							<period>M</period>
+						</term>
+					</deposit>
+					<future id="USD-LIBOR-input-5">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-DEC03</instrumentId>
+					</future>
+					<future id="USD-LIBOR-input-6">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-MAR04</instrumentId>
+					</future>
+					<future id="USD-LIBOR-input-7">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-JUN04</instrumentId>
+					</future>
+					<future id="USD-LIBOR-input-8">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SEP04</instrumentId>
+					</future>
+					<simpleIrSwap id="USD-LIBOR-input-9">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-2Y</instrumentId>
+						<term>
+							<periodMultiplier>2</periodMultiplier>
+							<period>Y</period>
+						</term>
+					</simpleIrSwap>
+					<simpleIrSwap id="USD-LIBOR-input-10">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-3Y</instrumentId>
+						<term>
+							<periodMultiplier>3</periodMultiplier>
+							<period>Y</period>
+						</term>
+					</simpleIrSwap>
+					<simpleIrSwap id="USD-LIBOR-input-11">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-4Y</instrumentId>
+						<term>
+							<periodMultiplier>4</periodMultiplier>
+							<period>Y</period>
+						</term>
+					</simpleIrSwap>
+					<simpleIrSwap id="USD-LIBOR-input-12">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-5Y</instrumentId>
+						<term>
+							<periodMultiplier>5</periodMultiplier>
+							<period>Y</period>
+						</term>
+					</simpleIrSwap>
+					<simpleIrSwap id="USD-LIBOR-input-13">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-7Y</instrumentId>
+						<term>
+							<periodMultiplier>7</periodMultiplier>
+							<period>Y</period>
+						</term>
+					</simpleIrSwap>
+					<simpleIrSwap id="USD-LIBOR-input-14">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-10Y</instrumentId>
+						<term>
+							<periodMultiplier>10</periodMultiplier>
+							<period>Y</period>
+						</term>
+					</simpleIrSwap>
+					<simpleIrSwap id="USD-LIBOR-input-15">
+						<instrumentId instrumentIdScheme="http://fpml.org/instruments-pr-example">USD-SWAP-15Y</instrumentId>
+						<term>
+							<periodMultiplier>15</periodMultiplier>
+							<period>Y</period>
+						</term>
+					</simpleIrSwap>
+				</instrumentSet>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-1"/>
+					<quote>
+						<value>0.0111</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-2"/>
+					<quote>
+						<value>0.012</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-3"/>
+					<quote>
+						<value>0.013</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-4"/>
+					<quote>
+						<value>0.014</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-5"/>
+					<quote>
+						<value>9850</value>
+						<quoteUnits>IRFuturesPrice</quoteUnits>
+					</quote>
+					<quote>
+						<value>0.0001</value>
+						<measureType>ConvexityAdjustment</measureType>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-6"/>
+					<quote>
+						<value>9840</value>
+						<quoteUnits>IRFuturesPrice</quoteUnits>
+					</quote>
+					<quote>
+						<value>0.00012</value>
+						<measureType>ConvexityAdjustment</measureType>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-7"/>
+					<quote>
+						<value>9830</value>
+						<quoteUnits>IRFuturesPrice</quoteUnits>
+					</quote>
+					<quote>
+						<value>0.00014</value>
+						<measureType>ConvexityAdjustment</measureType>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-8"/>
+					<quote>
+						<value>9820</value>
+						<quoteUnits>IRFuturesPrice</quoteUnits>
+					</quote>
+					<quote>
+						<value>0.00016</value>
+						<measureType>ConvexityAdjustment</measureType>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-9"/>
+					<quote>
+						<value>0.02</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-10"/>
+					<quote>
+						<value>0.021</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-11"/>
+					<quote>
+						<value>0.022</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-12"/>
+					<quote>
+						<value>0.023</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-13"/>
+					<quote>
+						<value>0.024</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-14"/>
+					<quote>
+						<value>0.025</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+				<assetQuote>
+					<objectReference href="USD-LIBOR-input-15"/>
+					<quote>
+						<value>0.026</value>
+						<quoteUnits>Rate</quoteUnits>
+					</quote>
+				</assetQuote>
+			</inputs>
+			<zeroCurve>
+				<compoundingFrequency>Annual</compoundingFrequency>
+				<rateCurve>
+					<point id="USD-LIBOR-vals-zero-pt1">
+						<term>
+							<date>2003-10-30</date>
+						</term>
+						<mid>0.0112</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt2">
+						<term>
+							<date>2003-10-31</date>
+						</term>
+						<mid>0.0121</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt3">
+						<term>
+							<date>2003-11-30</date>
+						</term>
+						<mid>0.0131</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt4">
+						<term>
+							<date>2004-01-31</date>
+						</term>
+						<mid>0.0141</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt5">
+						<term>
+							<date>2004-03-18</date>
+						</term>
+						<mid>0.0151</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt6">
+						<term>
+							<date>2004-06-15</date>
+						</term>
+						<mid>0.0161</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt7">
+						<term>
+							<date>2004-09-15</date>
+						</term>
+						<mid>0.0171</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt8">
+						<term>
+							<date>2004-12-16</date>
+						</term>
+						<mid>0.0181</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt9">
+						<term>
+							<date>2005-10-31</date>
+						</term>
+						<mid>0.0201</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt10">
+						<term>
+							<date>2006-10-30</date>
+						</term>
+						<mid>0.0211</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt11">
+						<term>
+							<date>2007-10-31</date>
+						</term>
+						<mid>0.0221</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt12">
+						<term>
+							<date>2008-10-31</date>
+						</term>
+						<mid>0.0231</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt13">
+						<term>
+							<date>2010-10-31</date>
+						</term>
+						<mid>0.0241</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt14">
+						<term>
+							<date>2013-10-31</date>
+						</term>
+						<mid>0.0251</mid>
+					</point>
+					<point id="USD-LIBOR-vals-zero-pt15">
+						<term>
+							<date>2018-10-31</date>
+						</term>
+						<mid>0.0261</mid>
+					</point>
+				</rateCurve>
+			</zeroCurve>
+			<discountFactorCurve>
+				<point id="USD-LIBOR-vals-df-pt1">
+					<term>
+						<date>2003-10-30</date>
+					</term>
+					<mid>0.999869757040574</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt2">
+					<term>
+						<date>2003-10-31</date>
+					</term>
+					<mid>0.999934098718365</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt3">
+					<term>
+						<date>2003-11-30</date>
+					</term>
+					<mid>0.998859615154173</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt4">
+					<term>
+						<date>2004-01-31</date>
+					</term>
+					<mid>0.996400622534765</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt5">
+					<term>
+						<date>2004-03-18</date>
+					</term>
+					<mid>0.994227178365835</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt6">
+					<term>
+						<date>2004-06-15</date>
+					</term>
+					<mid>0.989986073915221</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt7">
+					<term>
+						<date>2004-09-15</date>
+					</term>
+					<mid>0.985153364055606</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt8">
+					<term>
+						<date>2004-12-16</date>
+					</term>
+					<mid>0.979859309181877</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt9">
+					<term>
+						<date>2005-10-31</date>
+					</term>
+					<mid>0.960823172585937</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt10">
+					<term>
+						<date>2006-10-30</date>
+					</term>
+					<mid>0.939172748187296</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt11">
+					<term>
+						<date>2007-10-31</date>
+					</term>
+					<mid>0.916111677406541</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt12">
+					<term>
+						<date>2008-10-31</date>
+					</term>
+					<mid>0.891868623277781</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt13">
+					<term>
+						<date>2010-10-31</date>
+					</term>
+					<mid>0.846233270451626</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt14">
+					<term>
+						<date>2013-10-31</date>
+					</term>
+					<mid>0.78017168119187</mid>
+				</point>
+				<point id="USD-LIBOR-vals-df-pt15">
+					<term>
+						<date>2018-10-31</date>
+					</term>
+					<mid>0.679157882776367</mid>
+				</point>
+			</discountFactorCurve>
+		</yieldCurveValuation>
+	</market>
+	<!--Valuation Set (report)-->
+	<valuationSet id="val1">
+		<!--Base Valuation Scenario-->
+		<valuationScenario id="valscen1">
+			<name>EOD Valuation</name>
+			<valuationDate>2004-05-01</valuationDate>
+		</valuationScenario>
+		<!--Scenario: USD Libor shocked up 100bp-->
+		<valuationScenario id="valscen2">
+			<name>USDLibor up 100bp</name>
+			<valuationDate>2004-05-01</valuationDate>
+			<shift>
+				<parameterReference href="USD-LIBOR"/>
+				<shift>100</shift>
+				<shiftUnits>BasisPointValue</shiftUnits>
+			</shift>
+		</valuationScenario>
+		<baseParty href="party1"/>
+		<quotationCharacteristics>
+			<side>Mid</side>
+		</quotationCharacteristics>
+		<sensitivitySetDefinition id="sensitivity1">
+			<name>USD Curve Risk</name>
+			<sensitivityCharacteristics>
+				<!--Calculating sensitivity of NPV to changes in interest rates-->
+				<measureType>NPV</measureType>
+				<quoteUnits>BasisPointValue</quoteUnits>
+				<currency>USD</currency>
+			</sensitivityCharacteristics>
+			<!--Note: We dont really want specify a valuationScenarioReference element as we would like this definition to apply for multiple valuationScenarios. -->
+			<valuationScenarioReference href="valscen1"/>
+			<pricingInputType>YieldCurve</pricingInputType>
+			<pricingInputReference href="USD-LIBOR"/>
+			<scale>0.0001</scale>
+			<sensitivityDefinition id="sens-pt1">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-1"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt2">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-2"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt3">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-3"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt4">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-4"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt5">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-5"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt6">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-6"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt7">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-7"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt8">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-8"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt9">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-9"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt10">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-10"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt11">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-11"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt12">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-12"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt13">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-13"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt14">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-14"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens-pt15">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-15"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+		</sensitivitySetDefinition>
+		<!--Currently we have to repeat the sensitivitySetDefinition for each valuation scenario-->
+		<sensitivitySetDefinition id="sensitivity2">
+			<name>USD Curve Risk</name>
+			<sensitivityCharacteristics>
+				<!--Calculating sensitivity of NPV to changes in interest rates-->
+				<measureType>NPV</measureType>
+				<quoteUnits>BasisPointValue</quoteUnits>
+				<currency>USD</currency>
+			</sensitivityCharacteristics>
+			<!--Note: We dont really want specify a valuationScenarioReference element as we would like this definition to apply for multiple valuationScenarios. -->
+			<valuationScenarioReference href="valscen2"/>
+			<pricingInputType>YieldCurve</pricingInputType>
+			<pricingInputReference href="USD-LIBOR"/>
+			<scale>0.0001</scale>
+			<sensitivityDefinition id="sens2-pt1">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-1"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt2">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-2"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt3">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-3"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt4">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-4"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt5">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-5"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt6">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-6"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt7">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-7"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt8">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-8"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt9">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-9"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt10">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-10"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt11">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-11"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt12">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-12"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt13">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-13"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt14">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-14"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+			<sensitivityDefinition id="sens2-pt15">
+				<partialDerivative>
+					<parameterReference href="USD-LIBOR-input-15"/>
+					<calculationProcedure>
+						<perturbationAmount>0.0001</perturbationAmount>
+						<averaged>false</averaged>
+						<perturbationType>Relative</perturbationType>
+					</calculationProcedure>
+				</partialDerivative>
+			</sensitivityDefinition>
+		</sensitivitySetDefinition>
+		<!--results for trade #1-->
+		<assetValuation>
+			<objectReference href="tid-1"/>
+			<!--quote value and NPV-->
+			<quote>
+				<value>123000</value>
+				<measureType>NPV</measureType>
+				<currency>USD</currency>
+				<sensitivitySet>
+					<name>USD Curve Risk</name>
+					<definitionReference href="sensitivity1"/>
+					<sensitivity name="1D" definitionRef="sens-pt1">111</sensitivity>
+					<sensitivity name="2D" definitionRef="sens-pt2">112</sensitivity>
+					<sensitivity name="1M" definitionRef="sens-pt3">113</sensitivity>
+					<sensitivity name="3M" definitionRef="sens-pt4">114</sensitivity>
+					<sensitivity name="DEC03" definitionRef="sens-pt5">115</sensitivity>
+					<sensitivity name="MAR04" definitionRef="sens-pt6">116</sensitivity>
+					<sensitivity name="JUN04" definitionRef="sens-pt7">117</sensitivity>
+					<sensitivity name="SEP04" definitionRef="sens-pt8">118</sensitivity>
+					<sensitivity name="2Y" definitionRef="sens-pt9">119</sensitivity>
+					<sensitivity name="3Y" definitionRef="sens-pt10">120</sensitivity>
+					<sensitivity name="4Y" definitionRef="sens-pt11">121</sensitivity>
+					<sensitivity name="5Y" definitionRef="sens-pt12">122</sensitivity>
+					<sensitivity name="7Y" definitionRef="sens-pt13">123</sensitivity>
+					<sensitivity name="10Y" definitionRef="sens-pt14">124</sensitivity>
+					<sensitivity name="15Y" definitionRef="sens-pt15">125</sensitivity>
+				</sensitivitySet>
+			</quote>
+		</assetValuation>
+		<!--result for trade #1 for USDLibor+100bp Scenario-->
+		<assetValuation>
+			<objectReference href="tid-1"/>
+			<valuationScenarioReference href="valscen2"/>
+			<!--quote value and NPV-->
+			<quote>
+				<value>123500</value>
+				<measureType>NPV</measureType>
+				<currency>USD</currency>
+				<sensitivitySet>
+					<name>USD Curve Risk</name>
+					<definitionReference href="sensitivity2"/>
+					<sensitivity name="1D" definitionRef="sens2-pt1">116</sensitivity>
+					<sensitivity name="2D" definitionRef="sens2-pt2">117</sensitivity>
+					<sensitivity name="1M" definitionRef="sens2-pt3">118</sensitivity>
+					<sensitivity name="3M" definitionRef="sens2-pt4">119</sensitivity>
+					<sensitivity name="DEC03" definitionRef="sens2-pt5">120</sensitivity>
+					<sensitivity name="MAR04" definitionRef="sens2-pt6">121</sensitivity>
+					<sensitivity name="JUN04" definitionRef="sens2-pt7">122</sensitivity>
+					<sensitivity name="SEP04" definitionRef="sens2-pt8">123</sensitivity>
+					<sensitivity name="2Y" definitionRef="sens2-pt9">124</sensitivity>
+					<sensitivity name="3Y" definitionRef="sens2-pt10">125</sensitivity>
+					<sensitivity name="4Y" definitionRef="sens2-pt11">126</sensitivity>
+					<sensitivity name="5Y" definitionRef="sens2-pt12">127</sensitivity>
+					<sensitivity name="7Y" definitionRef="sens2-pt13">128</sensitivity>
+					<sensitivity name="10Y" definitionRef="sens2-pt14">129</sensitivity>
+					<sensitivity name="15Y" definitionRef="sens2-pt15">130</sensitivity>
+				</sensitivitySet>
+			</quote>
+		</assetValuation>
+	</valuationSet>
+</FpML>
+
+

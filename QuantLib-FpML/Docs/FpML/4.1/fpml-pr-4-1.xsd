@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+== Copyright (c) 2002-2005. All rights reserved. 
+== Financial Products Markup Language is subject to the FpML public license. 
+== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2004/FpML-4-1" targetNamespace="http://www.fpml.org/2004/FpML-4-1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="fpml-riskdef-4-1.xsd"/>
+	<xsd:complexType name="AssetValuation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A structure that holds a set of measures about an asset, including possibly their sensitivities.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Valuation">
+				<xsd:sequence>
+					<xsd:element name="quote" type="Quotation" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One or more numerical measures relating to the asset, possibly together with sensitivities of that measure to pricing inputs</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="DerivedValuationScenario">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A valuation scenario that is derived from another valuation scenario.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The (optional) name for this valuation scenario, used for understandability. For example "EOD Valuations".</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="baseValuationScenario" type="ValuationScenarioReference">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">An (optional) valuation scenario from which this one is derived.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="valuationDate" type="IdentifiedDate" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The (optional) date for which the assets are valued. If not present, the valuation date will be that of the base valuation scenario. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="marketReference" type="MarketReference" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A reference to the market environment used to price the asset. If not present, the market will be that of the base valuation scenario.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="shift" type="PricingParameterShift" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A collection of shifts to be applied to market inputs prior to computation of the derivative.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="PricingInputReplacement">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">The substitution of a pricing input (e.g. curve) for another, used in generating prices and risks for valuation scenarios.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="originalInputReference" type="PricingInputReference">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The original value of the pricing input.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="replacementInputReference" type="PricingInputReference">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The substitution to do.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Quotation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Some kind of numerical measure about an asset, eg. its NPV, together with characteristics of that measure, together with optional sensitivities.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:group ref="Quotation.model"/>
+			<xsd:element name="sensitivitySet" type="SensitivitySet" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Zero or more sets of sensitivities of this measure to various input parameters.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Sensitivity">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">The sensitivity of a value to a defined change in input parameters.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:decimal">
+				<xsd:attribute name="name" type="xsd:normalizedString">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">A optional name for this sensitivity. This is primarily intended for display purposes.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="definitionRef" type="xsd:IDREF">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">A optional (but normally supplied) reference to the definition of this sensitivity.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="SensitivitySet">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A collection of sensitivities. References a definition that explains the meaning/type of the sensitivities.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="definitionReference" type="SensitivitySetDefinitionReference" minOccurs="0"/>
+			<xsd:element name="sensitivity" type="Sensitivity" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="ValuationScenario">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A set of rules for generating a valuation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The (optional) name for this valuation scenario, used for understandability. For example "EOD Valuations".</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="valuationDate" type="IdentifiedDate">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date for which the assets are valued.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="marketReference" type="MarketReference" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A reference to the market environment used to price the asset.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="shift" type="PricingParameterShift" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A collection of shifts to be applied to market inputs prior to computation of the derivative.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="replacement" type="PricingInputReplacement" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A collection of shifts to be applied to market inputs prior to computation of the derivative.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="ValuationSet">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A set of valuation inputs and results. This structure can be used for requesting valuations, or for reporting them. In general, the request fills in fewer elements.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The name of the valuation set, used to understand what it means. E.g., "EOD Values and Risks for Party A". </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="valuationScenario" type="ValuationScenario" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Valuation scenerios used (requested/reported) in this valuation set. E.g., the EOD valuation scenario for a particular value date. Used for the first occurrence of a valuation scenario in a document.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="valuationScenarioReference" type="ValuationScenarioReference" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Valuation scenerios used (requested/reported) in this valuation set. E..g, a reference to the EOD valuation scenario for a particular value date. Used for subsequence occurrences of a valuation set in an FpML document.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="baseParty" type="PartyReference" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The party from whose point of view the assets are valued.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quotationCharacteristics" type="QuotationCharacteristics" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Charactistics (measure types, units, sides, etc.) of the quotes used (requested/reported) in the valuation set.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sensitivitySetDefinition" type="SensitivitySetDefinition" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Definition(s) of sensitivity sets used (requested or reported) in this valuation set.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="detail" type="ValuationSetDetail" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Does this valuation set include a market environment?</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--
+                        <xsd:element name="marketEnvironmentIncluded" type="xsd:boolean" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">Does this valuation set
+                                                include a market environment?</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+		<xsd:element name="aggregationLevel" type="AggregationLevelEnum" minOccurs="0" >
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">At what aggregation level is this reported? (e.g. trade, portfolio).</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+		-->
+			<xsd:element name="assetValuation" type="AssetValuation" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Valuations reported in this valuation set. These values can be values (NPVs, prices, etc.) or risks (DAR, etc.) and can include sensitivities. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="ValuationSetDetail">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">The amount of detail provided in the valuation set, e.g. is market environment data provided, are risk definitions provided, etc. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="valuationSetDetailScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2004/valuation-set-detail-1-0"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:element name="valuationSet" type="ValuationSet"/>
+</xsd:schema>

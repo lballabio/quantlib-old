@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+== Copyright (c) 2002-2005. All rights reserved. 
+== Financial Products Markup Language is subject to the FpML public license. 
+== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2004/FpML-4-1" targetNamespace="http://www.fpml.org/2004/FpML-4-1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="fpml-msg-4-1.xsd"/>
+	<xsd:include schemaLocation="fpml-doc-4-1.xsd"/>
+	<xsd:include schemaLocation="fpml-shared-4-1.xsd"/>
+	<xsd:complexType name="AffectedTransactions">
+		<xsd:choice>
+			<xsd:choice maxOccurs="unbounded">
+				<xsd:group ref="TradeOrTradeReference.model"/>
+			</xsd:choice>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="AllegedNovationAgreement">
+		<xsd:complexContent>
+			<xsd:restriction base="Novation">
+				<xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:group ref="NovationDetails.model"/>
+						<xsd:element name="payment" type="Payment" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Amendment">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">An event type that defines the content of an Amendment transaction.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Event">
+				<xsd:sequence>
+					<xsd:element name="trade" type="Trade"/>
+					<xsd:group ref="AmendmentDetails.model"/>
+					<xsd:element name="payment" type="Payment" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A payment for the right to amend the trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AmendmentConfirmed">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A message generated when an Amendment is determined to be confirmed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="amendment" type="Amendment"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="BankruptcyEvent">
+		<xsd:complexContent>
+			<xsd:extension base="CreditEvent"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ConfirmedNovationAgreement">
+		<xsd:complexContent>
+			<xsd:restriction base="Novation">
+				<xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:group ref="NovationDetails.model"/>
+						<xsd:element name="payment" type="Payment" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ConsentGrantedNovationAgreement">
+		<xsd:complexContent>
+			<xsd:restriction base="Novation">
+				<xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:group ref="NovationDetails.model"/>
+						<xsd:element name="payment" type="Payment" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ConsentRefusedNovationAgreement">
+		<xsd:complexContent>
+			<xsd:restriction base="Novation">
+				<xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:group ref="NovationDetails.model"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ConsentRequestNovationAgreement">
+		<xsd:complexContent>
+			<xsd:restriction base="Novation">
+				<xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:group ref="NovationDetails.model"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CreditDerivativesNotices">
+		<xsd:sequence>
+			<xsd:element name="creditEvent" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>This element corresponds to the Credit Event Notice Delivered Under Old Transaction and Deemed Delivered Under New Transaction under the EXHIBIT C to 2004 ISDA Novation Definitions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="publiclyAvailableInformation" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>This element corresponds to the Notice of Publicly Available Information Delivered Under Old Transaction and Deemed Delivered Under New Transaction under the EXHIBIT C to 2004 ISDA Novation Definitions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="physicalSettlement" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>This element corresponds to the Notice of Intended Physical Settlement Delivered Under Old Transaction under the EXHIBIT C to 2004 ISDA Novation Definitions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CreditEvent"/>
+	<xsd:complexType name="CreditEventNoticeDocument">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">An event type that records the occurrence of a credit event notice. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Event">
+				<xsd:sequence>
+					<xsd:element name="affectedTransactions" type="AffectedTransactions" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Trades affected by this event.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="referenceEntity" type="LegalEntity"/>
+					<xsd:element ref="creditEvent"/>
+					<xsd:element name="publiclyAvailableInformation" type="Resource" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A public information source, e.g. a particular newspaper or electronic news service, that may publish relevant information used in the determination of whether or not a credit event has occurred.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="notifyingPartyReference" type="PartyReference"/>
+					<xsd:element name="notifiedPartyReference" type="PartyReference"/>
+					<xsd:element name="creditEventNoticeDate" type="xsd:date"/>
+					<xsd:element name="creditEventDate" type="xsd:date"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CreditEventNotification">
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="creditEventNotice" type="CreditEventNoticeDocument"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="FailureToPayEvent">
+		<xsd:complexContent>
+			<xsd:extension base="CreditEvent"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="FirstPeriodStartDate">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:date">
+				<xsd:attribute name="href" use="required" type="xsd:IDREF"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="Increase">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">An event type that defines the content of an Increase transaction.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Event">
+				<xsd:sequence>
+					<xsd:group ref="TradeOrTradeReference.model"/>
+					<xsd:group ref="IncreaseDetails.model"/>
+					<xsd:element name="payment" type="Payment" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A payment for the right to increase the trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="IncreaseConfirmed">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A message generated when an Increase is determined to be confirmed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="increase" type="Increase"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Language">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">The data type used for indicating the language of the resource, described using the ISO 639-2/T Code</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="languageScheme" type="xsd:anyURI"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="MatchedNovationAgreement">
+		<xsd:complexContent>
+			<xsd:restriction base="Novation">
+				<xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:group ref="NovationDetails.model"/>
+						<xsd:element name="payment" type="Payment" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MimeType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">The type that indicates the type of media used to store the content. MimeType is used to determine the software product(s) that can read the content. MIME types are described in RFC 2046.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="mimeTypeScheme" type="xsd:anyURI"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovateTrade">
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="novation" type="NovateTradeNovationAgreement"/>
+					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovateTradeNovationAgreement">
+		<xsd:complexContent>
+			<xsd:restriction base="Novation">
+				<xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:group ref="NovationDetails.model"/>
+						<xsd:element name="payment" type="Payment" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Novation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">An event type that records the occurrence of a novation </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Event">
+				<xsd:sequence>
+					<xsd:group ref="NovationDetails.model"/>
+					<xsd:element name="payment" type="Payment" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovationAlleged">
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="novation" type="AllegedNovationAgreement"/>
+					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovationConfirmed">
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="novation" type="ConfirmedNovationAgreement"/>
+					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovationConsentGranted">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Response message that should be sent by the receiving parties if they agree with the novation. The transferee or transferor party may include the details of a payment representing the market value of the transaction. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="novation" type="ConsentGrantedNovationAgreement"/>
+					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovationConsentRefused">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Response message that should be sent by the transferee or remaining party if they cannot perform the requested novation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="novation" type="ConsentRefusedNovationAgreement"/>
+					<xsd:element name="reason" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovationConsentRequest">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A request message that passes details of the previously negotiated transaction that the transferor wishes to novate as well as describing the identity and roles of each party. As the same message is sent to both the transferee and remaining party it must contain the complete description of the underlying transaction (rather than just a reference) as the transferee will not have record of it.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="novation" type="ConsentRequestNovationAgreement"/>
+					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovationMatched">
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="novation" type="MatchedNovationAgreement"/>
+					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovationStatusNotification">
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="novation" type="StatusNotificationNovationAgreement"/>
+					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ObligationAccelerationEvent">
+		<xsd:complexContent>
+			<xsd:extension base="CreditEvent"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ObligationDefaultEvent">
+		<xsd:complexContent>
+			<xsd:extension base="CreditEvent"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PartialTerminationAmount">
+		<xsd:choice>
+			<xsd:sequence>
+				<xsd:element name="decreaseInNotionalAmount" type="Money">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Specifies the fixed amount by which the Notional decreases due to the Partial Termination transaction.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="outstandingNotionalAmount" type="Money">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Specifies the Notional amount after the Partial Termination.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:sequence>
+				<xsd:element name="decreaseInNumberOfOptions" type="xsd:decimal">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Specifies the fixed amount by which the Number of Options decreases due to the Partial Termination transaction.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="outstandingNumberOfOptions" type="xsd:decimal">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Specifies the Number of Options after the Partial Termination.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="RepudiationMoratoriumEvent">
+		<xsd:complexContent>
+			<xsd:extension base="CreditEvent"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RequestAmendmentConfirmation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A message for requesting that the contained amendment be put forward for matching and confirmation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="amendment" type="Amendment"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RequestConfirmationNovationAgreement">
+		<xsd:complexContent>
+			<xsd:restriction base="Novation">
+				<xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:group ref="NovationDetails.model"/>
+						<xsd:element name="payment" type="Payment" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RequestIncreaseConfirmation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A message for requesting that the contained increase be put forward for matching and confirmation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="increase" type="Increase"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RequestNovationConfirmation">
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="novation" type="RequestConfirmationNovationAgreement"/>
+					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RequestTerminationConfirmation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A message for requesting that the contained termination be put forward for matching and confirmation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="termination" type="Termination"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Resource">
+		<xsd:annotation>
+			<xsd:documentation>Describes the resource that contains the media representation of a business event. For example, can describe a file or a URL that represents the event.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="resourceId" type="ResourceId">
+				<xsd:annotation>
+					<xsd:documentation>The unique identifier of the resource within the event.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="language" type="Language" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Indicates the language of the resource, described using the ISO 639-2/T Code.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sizeInBytes" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Indicates the size of the resource in bytes. It could be used by the end user to estimate the download time and storage needs.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="length" type="ResourceLength" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Indicates the length of the resource. For example, if the resource were a PDF file, the length would be in pages.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mimeType" type="MimeType">
+				<xsd:annotation>
+					<xsd:documentation>Indicates the type of media used to store the content. mimeType is used to determine the software product(s) that can read the content. MIME Types are described in RFC 2046.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="name" type="xsd:normalizedString" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The name of the resource.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="comments" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Any additional comments that are deemed necessary. For example, which software version is required to open the document? Or, how does this resource relate to the others for this event?</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="url" type="xsd:anyURI" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Indicates the URL at which the resource can be found.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ResourceId">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">The data type used for resource identifiers.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:normalizedString">
+				<xsd:attribute name="resourceIdScheme" type="xsd:anyURI"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResourceLength">
+		<xsd:annotation>
+			<xsd:documentation>The type that indicates the length of the resource.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="lengthUnit" type="LengthUnitEnum">
+				<xsd:annotation>
+					<xsd:documentation>The length unit of the resource. For example, pages (pdf, text documents) or time (audio, video files).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lengthValue" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation>The length value of the resource.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RestructuringEvent">
+		<xsd:complexContent>
+			<xsd:extension base="CreditEvent">
+				<xsd:sequence>
+					<xsd:element name="partialExerciseAmount" type="Money" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="StatusNotificationNovationAgreement">
+		<xsd:complexContent>
+			<xsd:restriction base="Novation">
+				<xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:group ref="NovationDetails.model"/>
+						<xsd:element name="payment" type="Payment" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Termination">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">An event type that defines the content of a Termination transaction.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Event">
+				<xsd:sequence>
+					<xsd:group ref="TradeOrTradeReference.model"/>
+					<xsd:group ref="TerminationDetails.model"/>
+					<xsd:element name="payment" type="Payment" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">A payment for the right to terminate the trade.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TerminationConfirmed">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A message generated when a Termination is determined to be confirmed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="termination" type="Termination"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeAmended">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A notification to inform downstream systems when a system that acts as source of trade information detects that a trade has been modified. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="trade" type="Trade"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeAmendmentRequest">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A request message for requesting an Amendment.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="amendment" type="Amendment"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeAmendmentResponse">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A response to the request for an Amendment.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="amendment" type="Amendment"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeCancelled">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A notification to inform downstream systems when a system that acts as source of trade information detects that a trade has been cancelled. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="tradeIdentifier" type="TradeIdentifier" maxOccurs="unbounded"/>
+					<xsd:element name="party" type="Party" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeCreated">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A notification to inform downstream systems when a system that acts as source of trade information detects that a new trade has been created. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="trade" type="Trade"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeIncreaseRequest">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A request message for requesting an Increase.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="increase" type="Increase"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeIncreaseResponse">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A response to the request for an Increase.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="increase" type="Increase"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeNovated">
+		<xsd:complexContent>
+			<xsd:extension base="NotificationMessage">
+				<xsd:sequence>
+					<xsd:element name="novation" type="TradeNovatedNovationAgreement"/>
+					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeNovatedNovationAgreement">
+		<xsd:complexContent>
+			<xsd:restriction base="Novation">
+				<xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:group ref="NovationDetails.model"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeTerminationRequest">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A request message for requesting a Termination.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:element name="termination" type="Termination"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TradeTerminationResponse">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A response to the request for Termination.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:element name="termination" type="Termination"/>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="bankruptcy" type="BankruptcyEvent" substitutionGroup="creditEvent"/>
+	<xsd:element name="creditEvent" type="CreditEvent" abstract="true"/>
+	<xsd:element name="creditEventNotice" type="CreditEventNoticeDocument" substitutionGroup="event">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A global element used to hold CENs</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="failureToPay" type="FailureToPayEvent" substitutionGroup="creditEvent"/>
+	<xsd:element name="obligationAcceleration" type="ObligationAccelerationEvent" substitutionGroup="creditEvent"/>
+	<xsd:element name="obligationDefault" type="ObligationDefaultEvent" substitutionGroup="creditEvent"/>
+	<xsd:element name="repudiationMoratorium" type="RepudiationMoratoriumEvent" substitutionGroup="creditEvent"/>
+	<xsd:element name="restructuring" type="RestructuringEvent" substitutionGroup="creditEvent"/>
+	<xsd:group name="AmendmentDetails.model">
+		<xsd:sequence>
+			<xsd:element name="amendmentTradeDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date on which the the parties enter into the Amendment transaction</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="amendmentEffectiveDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date on which the Amendment becomes effective</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="IncreaseDetails.model">
+		<xsd:sequence>
+			<xsd:element name="increaseTradeDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date on which the the parties enter into the Increase transaction</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="increaseEffectiveDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date on which the Increase becomes effective</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element name="increaseInNotionalAmount" type="Money">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the fixed amount by which the Notional increases due to the Increase transaction.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="outstandingNotionalAmount" type="Money">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the Notional amount after the Increase.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:sequence>
+					<xsd:element name="increaseInNumberOfOptions" type="xsd:decimal">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the fixed amount by which the Number of Options increases due to the Increase transaction.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="outstandingNumberOfOptions" type="xsd:decimal">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Specifies the Number of Options after the Increase.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="NovationDetails.model">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:choice>
+					<xsd:element name="newTransactionReference" type="PartyTradeIdentifiers">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Indicates a reference to the new transaction between the transferee and the remaining party.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="newTransaction" type="Trade">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Indicates the new transaction between the transferee and the remaining party.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:choice>
+				<xsd:sequence>
+					<xsd:choice>
+						<xsd:element name="oldTransactionReference" type="PartyTradeIdentifiers">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="en">Indicates a reference to the original trade between the transferor and the remaining party. </xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="oldTransaction" type="Trade">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="en">Indicates the original trade between the transferor and the remaining party.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
+					<xsd:choice minOccurs="0">
+						<xsd:element name="newTransactionReference" type="PartyTradeIdentifiers"/>
+						<xsd:element name="newTransaction" type="Trade"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:choice>
+			<xsd:element name="transferor" type="PartyReference">
+				<xsd:annotation>
+					<xsd:documentation>A pointer style reference to a party identifier defined elsewhere in the document. In a three-way novation the party referenced is the Transferor (outgoing party) in the novation. The Transferor means a party which transfers by novation to a Transferee all of its rights, liabilities, duties and obligations with respect to a Remaining Party. In a four-way novation the party referenced is Transferor 1 which transfers by novation to Transferee 1 all of its rights, liabilities, duties and obligations with respect to Transferor 2. ISDA 2004 Novation Term: Transferor (three-way novation) or Transferor 1 (four-way novation).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transferee" type="PartyReference">
+				<xsd:annotation>
+					<xsd:documentation>A pointer style reference to a party identifier defined elsewhere in the document. In a three-way novation the party referenced is the Transferee (incoming party) in the novation. Transferee means a party which accepts by way of novation all rights, liabilities, duties and obligations of a Transferor with respect to a Remaining Party. In a four-way novation the party referenced is Transferee 1 which accepts by way of novation the rights, liabilities, duties and obligations of Transferor 1. ISDA 2004 Novation Term: Transferee (three-way novation) or Transferee 1 (four-way novation).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="remainingParty" type="PartyReference">
+				<xsd:annotation>
+					<xsd:documentation>A pointer style reference to a party identifier defined elsewhere in the document. In a three-way novation the party referenced is the Remaining Party in the novation. Remaining Party means a party which consents to a Transferor's transfer by novation and the acceptance thereof by the Transferee of all of the Transferor's rights, liabilities, duties and obligations with respect to such Remaining Party under and with respect of the Novated Amount of a transaction. In a four-way novation the party referenced is Transferor 2 per the ISDA definition and acts in the role of a Transferor. Transferor 2 transfers by novation to Transferee 2 all of its rights, liabilities, duties and obligations with respect to Transferor 1. ISDA 2004 Novation Term: Remaining Party (three-way novation) or Transferor 2 (four-way novation).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="otherRemainingParty" type="PartyReference" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A pointer style reference to a party identifier defined elsewhere in the document. This element is not applicable in a three-way novation and should be omitted. In a four-way novation the party referenced is Transferee 2. Transferee 2 means a party which accepts by way of novation the rights, liabilities, duties and obligations of Transferor 2. ISDA 2004 Novation Term: Transferee 2 (four-way novation).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="novationDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>Specifies the date that one party's legal obligations with regard to a trade are transferred to another party. It corresponds to the Novation Date section of the 2004 ISDA Novation Definitions, section 1.16.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="novationTradeDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Specifies the date the parties agree to assign or novate a trade. If this element is not specified, the novationTradeDate will be deemed to be the novationDate. It corresponds to the Novation Trade Date section of the 2004 ISDA Novation Definitions, section 1.17.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="novatedAmount" type="Money">
+					<xsd:annotation>
+						<xsd:documentation>The amount which represents the portion of the Old Transaction being novated.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="novatedNumberOfOptions" type="xsd:decimal">
+					<xsd:annotation>
+						<xsd:documentation>The number of options which represent the portion of the Old Transaction being novated.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="fullFirstCalculationPeriod" type="xsd:boolean" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>This element corresponds to the applicability of the Full First Calculation Period as defined in the 2004 ISDA Novation Definitions, section 1.20.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="firstPeriodStartDate" type="FirstPeriodStartDate" minOccurs="0" maxOccurs="2">
+				<xsd:annotation>
+					<xsd:documentation>Element that is used to be able to make sense of the “new transaction” without requiring reference back to the “old transaction”. In the case of interest rate products there are potentially 2 “first period start dates” to reference – one with respect to each party to the new transaction. For Credit Default Swaps there is just the one with respect to the party that is the fixed rate payer.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="nonReliance" type="Empty" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>This element corresponds to the non-Reliance section in the 2004 ISDA Novation Definitions, section 2.1 (c) (i). The element appears in the instance document when non-Reliance is applicable.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="creditDerivativesNotices" type="CreditDerivativesNotices" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>This element should be specified if one or more of either a Credit Event Notice, Notice of Publicly Available Information, Notice of Physical Settlement or Notice of Intended Physical Settlement, as applicable, has been delivered by or to the Transferor or the Remaining Party. The type of notice or notices that have been delivered should be indicated by setting the relevant boolean element value(s) to true. The absence of the element means that no Credit Event Notice, Notice of Publicly Available Information, Notice of Physical Settlement or Notice of Intended Physical Settlement, as applicable, has been delivered by or to the Transferor or the Remaining Party.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="contractualDefinitions" type="ContractualDefinitions" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The definitions (such as those published by ISDA) that will define the terms of the novation transaction.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="contractualSupplement" type="ContractualSupplement" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">A contractual supplement (such as those published by ISDA) that will apply to the novation transaction.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="TerminationDetails.model">
+		<xsd:sequence>
+			<xsd:element name="terminationTradeDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date on which the the parties enter into the Termination transaction.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="terminationEffectiveDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date on which the Termination becomes effective.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="full" type="Empty">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The use of the Full element indicates that this is a Full Termination.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="partial" type="PartialTerminationAmount">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The use of the Partial element indicates that this is a Partial Termination.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="TradeOrTradeReference.model">
+		<xsd:choice>
+			<xsd:element name="trade" type="Trade">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">An element that allows the full details of the trade to be used as a mechanism for identifying the trade for which the post-trade event pertains </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tradeReference" type="PartyTradeIdentifiers">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en"> A container since an individual trade can be referenced by two or more different partyTradeIdentifier elements - each allocated by a different party. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:group>
+</xsd:schema>
