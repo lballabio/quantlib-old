@@ -1,433 +1,443 @@
 <Category name='smilesection'>
-    <description>functions to construct and use SmileSection objects</description>
-    <displayName>Smile Section Structures</displayName>
-    <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-    <includes>
-        <include>ql/Volatilities/interpolatedsmilesection.hpp</include>
-        <include>qlo/smilesection.hpp</include>
-        <include>qlo/optimization.hpp</include>
-        <include>ql/quote.hpp</include>
-    </includes>
-    <copyright>
-        Copyright (C) 2006 Ferdinando Ametrano
-        Copyright (C) 2006 Francois du Vignaud
-    </copyright>
+  <description>functions to construct and use SmileSection objects</description>
+  <displayName>Smile Section Structures</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>ql/Volatilities/interpolatedsmilesection.hpp</include>
+    <include>qlo/smilesection.hpp</include>
+    <include>qlo/optimization.hpp</include>
+    <include>ql/quote.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006 Francois du Vignaud
+  </copyright>
 
-    <Functions>
+  <Functions>
 
-        <!-- SmileSection interface -->
-        <Member name='qlSmileSectionVolatility' libraryClass='SmileSection'>
-            <description>Returns the volatility at a given strike from the SmileSection object</description>
-            <libraryFunction>volatility</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='false' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters>
-                    <Parameter name='strike' libraryType='QuantLib::Rate'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>strike</description>
-                    </Parameter>
-                </Parameters>
-            </ParameterList>
-            <ReturnValue libraryType='QuantLib::Volatility'>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
+    <!-- SmileSection interface -->
+    <Member name='qlSmileSectionVolatility' libraryClass='SmileSection'>
+      <description>Returns the volatility at a given strike from the SmileSection object</description>
+      <libraryFunction>volatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='strike' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>strike</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Volatility'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <Member name='qlSmileSectionVariance' libraryClass='SmileSection'>
-            <description>Returns the variance at a given strike from the SmileSection object</description>
-            <libraryFunction>variance</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='false' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters>
-                    <Parameter name='strike' libraryType='QuantLib::Rate'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>strike</description>
-                    </Parameter>
-                </Parameters>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
+    <Member name='qlSmileSectionVariance' libraryClass='SmileSection'>
+      <description>Returns the variance at a given strike from the SmileSection object</description>
+      <libraryFunction>variance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='strike' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>strike</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <Member name='qlSmileSectionExerciseDate' libraryClass='SmileSection'>
-            <description>Returns the exercise date of the SmileSection object</description>
-            <libraryFunction>exerciseDate</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='true' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue libraryType='QuantLib::Date'>
-                <type>long</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
+    <Member name='qlSmileSectionExerciseDate' libraryClass='SmileSection'>
+      <description>Returns the exercise date of the SmileSection object</description>
+      <libraryFunction>exerciseDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Date'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <Member name='qlSmileSectionDayCounter' libraryClass='SmileSection'>
-            <description>Returns the DayCounter of the SmileSection object</description>
-            <libraryFunction>dayCounter</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='true' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue enumeration='QuantLib::DayCounter'>
-                <type>string</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
+    <Member name='qlSmileSectionDayCounter' libraryClass='SmileSection'>
+      <description>Returns the DayCounter of the SmileSection object</description>
+      <libraryFunction>dayCounter</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::DayCounter'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <!-- SmileSection constructors -->
-        <Constructor name='qlFlatSmileSection'>
-            <libraryFunction>FlatSmileSection</libraryFunction>
-            <functionCategory>QuantLib</functionCategory>
-            <SupportedPlatforms>
-                <Excel calcInWizard='false' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters>
-                    <Parameter name='optionDate' libraryType='QuantLib::Date'>
-                        <type>long</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>smile's expiry as date</description>
-                    </Parameter>
-                    <Parameter name='volatilities' libraryType='QuantLib::Volatility'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>volatilities</description>
-                    </Parameter>
-                    <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
-                        <type>string</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>day counter (e.g. Actual/360)</description>
-                    </Parameter>
-                    <Parameter name='refDate' libraryType='QuantLib::Date'>
-                        <type>long</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>ref date</description>
-                    </Parameter>
-                </Parameters>
-            </ParameterList>
-        </Constructor>
+    <!-- SmileSection constructors -->
+    <Constructor name='qlFlatSmileSection'>
+      <libraryFunction>FlatSmileSection</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>smile's expiry as date</description>
+          </Parameter>
+          <Parameter name='volatilities' libraryType='QuantLib::Volatility'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>volatilities</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+          <Parameter name='refDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ref date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
 
-        <Constructor name='qlSabrInterpolatedSmileSection'>
-            <libraryFunction>SabrInterpolatedSmileSection</libraryFunction>
-            <functionCategory>QuantLib</functionCategory>
-            <SupportedPlatforms>
-                <Excel calcInWizard='false' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters>
-                    <Parameter name='optionDate' libraryType='QuantLib::Date'>
-                        <type>long</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>smile's expiry as Date</description>
-                    </Parameter>
-                    <Parameter name='strikes' libraryType='QuantLib::Rate'>
-                        <type>double</type>
-                        <tensorRank>vector</tensorRank>
-                        <description>strikes</description>
-                    </Parameter>
-                    <Parameter name='stdDevs' libToHandle='Quote'>
-                        <type>string</type>
-                        <tensorRank>vector</tensorRank>
-                        <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
-                    </Parameter>
-                    <Parameter name='forward' libToHandle='Quote'>
-                        <type>string</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>atm rate</description>
-                    </Parameter>
-                    <Parameter name='alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>alpha (fixed value or guess)</description>
-                    </Parameter>
-                    <Parameter name='beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>beta (fixed value or guess)</description>
-                    </Parameter>
-                    <Parameter name='nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>nu (fixed value or guess)</description>
-                    </Parameter>
-                    <Parameter name='rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>rho (fixed value or guess)</description>
-                    </Parameter>
-                    <Parameter name='alphaIsFixed' default='false'>
-                        <type>bool</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess</description>
-                    </Parameter>
-                    <Parameter name='betaIsFixed' default='false'>
-                        <type>bool</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess</description>
-                    </Parameter>
-                    <Parameter name='nuIsFixed' default='false'>
-                        <type>bool</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess</description>
-                    </Parameter>
-                    <Parameter name='rhoIsFixed' default='false'>
-                        <type>bool</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess</description>
-                    </Parameter>
-                    <Parameter name='vegaWeighted' default='false'>
-                        <type>bool</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
-                    </Parameter>
-                    <Parameter name='method' libraryClass='OptimizationMethod' default='""'>
-                        <type>string</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>Optimization Method</description>
-                    </Parameter>
-                    <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
-                        <type>string</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>day counter (e.g. Actual/360)</description>
-                    </Parameter>
-                </Parameters>
-            </ParameterList>
-        </Constructor>
+    <Constructor name='qlSabrInterpolatedSmileSection'>
+      <libraryFunction>SabrInterpolatedSmileSection</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>smile's expiry as Date</description>
+          </Parameter>
+          <Parameter name='strikes' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>strikes</description>
+          </Parameter>
+          <Parameter name='stdDevs' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
+          </Parameter>
+          <Parameter name='forward' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>atm rate</description>
+          </Parameter>
+          <Parameter name='alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>nu (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rho (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='alphaIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='betaIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='nuIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='rhoIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='vegaWeighted' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
+          </Parameter>
+          <Parameter name="endCriteria" libraryClass='EndCriteria' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EndCriteria object ID</description>
+          </Parameter>
+          <Parameter name='method' libraryClass='OptimizationMethod' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>OptimizationMethod object ID</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
-        <Member name='qlSabrInterpolatedSmileSectionAlpha' libraryClass='SabrInterpolatedSmileSection'>
-            <description>Returns the alpha of the SABR fit for the given SabrInterpolatedSmileSection object</description>
-            <libraryFunction>alpha</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='true' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
+    <Member name='qlSabrInterpolatedSmileSectionAlpha' libraryClass='SabrInterpolatedSmileSection'>
+      <description>Returns the alpha of the SABR fit for the given SabrInterpolatedSmileSection object</description>
+      <libraryFunction>alpha</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <Member name='qlSabrInterpolatedSmileSectionBeta' libraryClass='SabrInterpolatedSmileSection'>
-            <description>Returns the beta of the SABR fit</description>
-            <libraryFunction>beta</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='true' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
+    <Member name='qlSabrInterpolatedSmileSectionBeta' libraryClass='SabrInterpolatedSmileSection'>
+      <description>Returns the beta of the SABR fit</description>
+      <libraryFunction>beta</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <Member name='qlSabrInterpolatedSmileSectionNu' libraryClass='SabrInterpolatedSmileSection'>
-            <description>Returns the nu of the SABR fit for the given SabrInterpolatedSmileSection object</description>
-            <libraryFunction>nu</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='true' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
+    <Member name='qlSabrInterpolatedSmileSectionNu' libraryClass='SabrInterpolatedSmileSection'>
+      <description>Returns the nu of the SABR fit for the given SabrInterpolatedSmileSection object</description>
+      <libraryFunction>nu</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <Member name='qlSabrInterpolatedSmileSectionRho' libraryClass='SabrInterpolatedSmileSection'>
-            <description>Returns the rho of the SABR fit for the given SabrInterpolatedSmileSection object</description>
-            <libraryFunction>rho</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='true' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
+    <Member name='qlSabrInterpolatedSmileSectionRho' libraryClass='SabrInterpolatedSmileSection'>
+      <description>Returns the rho of the SABR fit for the given SabrInterpolatedSmileSection object</description>
+      <libraryFunction>rho</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <Member name='qlSabrInterpolatedSmileSectionError' libraryClass='SabrInterpolatedSmileSection'>
-            <description>Returns the error of the SABR fit for the given SabrInterpolatedSmileSection object</description>
-            <libraryFunction>interpolationError</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='true' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
+    <Member name='qlSabrInterpolatedSmileSectionError' libraryClass='SabrInterpolatedSmileSection'>
+      <description>Returns the error of the SABR fit for the given SabrInterpolatedSmileSection object</description>
+      <libraryFunction>interpolationError</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <Member name='qlSabrInterpolatedSmileSectionMaxError' libraryClass='SabrInterpolatedSmileSection'>
-            <description>Returns the max error of the SABR fit for the given SabrInterpolatedSmileSection object</description>
-            <libraryFunction>interpolationMaxError</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='true' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
+    <Member name='qlSabrInterpolatedSmileSectionMaxError' libraryClass='SabrInterpolatedSmileSection'>
+      <description>Returns the max error of the SABR fit for the given SabrInterpolatedSmileSection object</description>
+      <libraryFunction>interpolationMaxError</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <Member name='qlSabrInterpolatedSmileSectionEndCriteria' libraryClass='SabrInterpolatedSmileSection'>
-            <description>Returns the optimization end criteria of the SABR fit for the given SabrInterpolatedSmileSection object</description>
-            <libraryFunction>endCriteria</libraryFunction>
-            <SupportedPlatforms>
-                <Excel calcInWizard='true' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue enumeration='QuantLib::EndCriteria::Type'>
-                <type>string</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
-        
-        <Constructor name='qlSabrSmileSection'>
-            <libraryFunction>SabrSmileSection</libraryFunction>
-            <functionCategory>QuantLib</functionCategory>
-            <SupportedPlatforms>
-                <Excel calcInWizard='false' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters>
-                    <Parameter name='optionTime' libraryType='QuantLib::Time'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>smile's expiry as time</description>
-                    </Parameter>
-                    <Parameter name='strikes' libraryType='QuantLib::Rate'>
-                        <type>double</type>
-                        <tensorRank>vector</tensorRank>
-                        <description>strikes</description>
-                    </Parameter>
-                    <Parameter name='stdDevs' libToHandle='Quote'>
-                        <type>string</type>
-                        <tensorRank>vector</tensorRank>
-                        <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
-                    </Parameter>
-                    <Parameter name='forward' libraryType='QuantLib::Rate'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>atm rate</description>
-                    </Parameter>
-                    <Parameter name='alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>alpha (fixed value or guess)</description>
-                    </Parameter>
-                    <Parameter name='beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>beta (fixed value or guess)</description>
-                    </Parameter>
-                    <Parameter name='nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>nu (fixed value or guess)</description>
-                    </Parameter>
-                    <Parameter name='rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>rho (fixed value or guess)</description>
-                    </Parameter>
-                    <Parameter name='alphaIsFixed' default='false'>
-                        <type>bool</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess</description>
-                    </Parameter>
-                    <Parameter name='betaIsFixed' default='false'>
-                        <type>bool</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess</description>
-                    </Parameter>
-                    <Parameter name='nuIsFixed' default='false'>
-                        <type>bool</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess</description>
-                    </Parameter>
-                    <Parameter name='rhoIsFixed' default='false'>
-                        <type>bool</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess</description>
-                    </Parameter>
-                    <Parameter name='vegaWeighted' default='false'>
-                        <type>bool</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
-                    </Parameter>
-                    <Parameter name='method' libraryClass='OptimizationMethod'>
-                        <type>string</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>Optimization Method</description>
-                    </Parameter>
-                </Parameters>
-            </ParameterList>
-        </Constructor>
+    <Member name='qlSabrInterpolatedSmileSectionEndCriteria' libraryClass='SabrInterpolatedSmileSection'>
+      <description>Returns the optimization end criteria of the SABR fit for the given SabrInterpolatedSmileSection object</description>
+      <libraryFunction>endCriteria</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue enumeration='QuantLib::EndCriteria::Type'>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-        <Constructor name='qlInterpolatedSmileSection'>
-            <libraryFunction>InterpolatedSmileSection</libraryFunction>
-            <functionCategory>QuantLib</functionCategory>
-            <SupportedPlatforms>
-                <Excel calcInWizard='false' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters>
-                    <Parameter name='optionDate' libraryType='QuantLib::Date'>
-                        <type>long</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>smile's expiry as date</description>
-                    </Parameter>
-                    <Parameter name='strikes' libraryType='QuantLib::Rate'>
-                        <type>double</type>
-                        <tensorRank>vector</tensorRank>
-                        <description>strikes</description>
-                    </Parameter>
-                    <Parameter name='stdDevs' libToHandle='Quote'>
-                        <type>string</type>
-                        <tensorRank>vector</tensorRank>
-                        <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
-                    </Parameter>
-                    <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
-                        <type>string</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>day counter (e.g. Actual/360)</description>
-                    </Parameter>
-                </Parameters>
-            </ParameterList>
-        </Constructor>
+    <Constructor name='qlSabrSmileSection'>
+      <libraryFunction>SabrSmileSection</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionTime' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>smile's expiry as time</description>
+          </Parameter>
+          <Parameter name='strikes' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>strikes</description>
+          </Parameter>
+          <Parameter name='stdDevs' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
+          </Parameter>
+          <Parameter name='forward' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>atm rate</description>
+          </Parameter>
+          <Parameter name='alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>nu (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rho (fixed value or guess)</description>
+          </Parameter>
+          <Parameter name='alphaIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='betaIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='nuIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='rhoIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess</description>
+          </Parameter>
+          <Parameter name='vegaWeighted' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
+          </Parameter>
+          <Parameter name="endCriteria" libraryClass='EndCriteria' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EndCriteria object ID</description>
+          </Parameter>
+          <Parameter name='method' libraryClass='OptimizationMethod' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Optimization Method</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
-    </Functions>
+    <Constructor name='qlInterpolatedSmileSection'>
+      <libraryFunction>InterpolatedSmileSection</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>smile's expiry as date</description>
+          </Parameter>
+          <Parameter name='strikes' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>strikes</description>
+          </Parameter>
+          <Parameter name='stdDevs' libToHandle='Quote'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
 
 </Category>

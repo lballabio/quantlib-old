@@ -60,21 +60,24 @@ namespace QuantLibAddin {
             bool isNuFixed,
             bool isRhoFixed,
             bool vegaWeighted,
-            const boost::shared_ptr<QuantLib::OptimizationMethod> method)
-    {
-    boost::shared_ptr<QuantLib::OptimizationMethod> method_;
-    if(!method){
-        QuantLib::EndCriteria endCriteria(120000, 1e-12);
-        QuantLib::Array guess(4); 
-        method_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-                        QuantLib::Simplex(1e-6, guess, endCriteria));
-    }
-    else 
-        method_ = method;
-    
-    QuantLib::SABR sabrInterpolationFactory(expiry, forward, alpha, beta,
+            const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
+            const boost::shared_ptr<QuantLib::OptimizationMethod> method) {
+
+        boost::shared_ptr<QuantLib::OptimizationMethod> method_ = method;
+        if (!method) {
+            QuantLib::Array guess(4); 
+            method_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
+                            QuantLib::Simplex(1e-6, guess));
+        }
+
+        boost::shared_ptr<QuantLib::EndCriteria> endCriteria_ = endCriteria;
+        if (!endCriteria) {
+            QuantLib::EndCriteria endCriteria(120000, 1e-12);
+        }
+
+        QuantLib::SABR sabrInterpolationFactory(expiry, forward, alpha, beta,
             nu, rho, isAlphaFixed, isBetaFixed, isNuFixed, 
-            isRhoFixed, vegaWeighted, method);
+            isRhoFixed, vegaWeighted, endCriteria, method);
 
         QuantLib::InterpolatedSmileSection<QuantLib::SABR>* 
             genericInterpolatedSmileSection = new
@@ -100,6 +103,7 @@ namespace QuantLibAddin {
             bool isNuFixed,
             bool isRhoFixed,
             bool vegaWeighted,
+            const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
             const boost::shared_ptr<QuantLib::OptimizationMethod> method,
             const QuantLib::DayCounter& dc)
     {
@@ -118,6 +122,7 @@ namespace QuantLibAddin {
                                                    isNuFixed,
                                                    isRhoFixed,
                                                    vegaWeighted,
+                                                   endCriteria,
                                                    method,
                                                    dc));
     }

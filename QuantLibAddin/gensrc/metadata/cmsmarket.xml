@@ -111,10 +111,15 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='endCriteria' libraryClass='EndCriteria' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EndCriteria object ID</description>
+          </Parameter>
           <Parameter name='optimizationMethod' libraryClass='OptimizationMethod' default='""'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>optimization method object ID</description>
+            <description>OptimizationMethod object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

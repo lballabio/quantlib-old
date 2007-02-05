@@ -38,8 +38,7 @@ namespace QuantLibAddin {
     class Simplex : public OptimizationMethod {
       public:
         Simplex(QuantLib::Real lambda,
-                const QuantLib::Array& initialValue,
-                const QuantLib::EndCriteria& endCriteria);
+                const QuantLib::Array& initialValue);
     };
 
     class LevenbergMarquardt : public OptimizationMethod {
@@ -47,8 +46,7 @@ namespace QuantLibAddin {
         LevenbergMarquardt(QuantLib::Real epsfcn,
                            QuantLib::Real xtol,
                            QuantLib::Real gtol,
-                           const QuantLib::Array& initialValue,
-                           const QuantLib::EndCriteria& endCriteria);
+                           const QuantLib::Array& initialValue);
     };
    
     class LineSearch :
@@ -66,14 +64,12 @@ namespace QuantLibAddin {
     class ConjugateGradient : public LineSearchBasedMethod {
       public:
         ConjugateGradient(const QuantLib::Array& initialValue,
-                          const QuantLib::EndCriteria& endCriteria,
                           const boost::shared_ptr<QuantLib::LineSearch>&);
     };
 
     class SteepestDescent : public LineSearchBasedMethod {
       public:
         SteepestDescent(const QuantLib::Array& initialValue,
-                        const QuantLib::EndCriteria& endCriteria,
                         const boost::shared_ptr<QuantLib::LineSearch>&);
     };
 

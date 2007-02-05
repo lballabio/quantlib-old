@@ -38,20 +38,18 @@ namespace QuantLibAddin {
 
 
     Simplex::Simplex(QuantLib::Real lambda,
-                     const QuantLib::Array& initVal,
-                     const QuantLib::EndCriteria& endC) {
+                     const QuantLib::Array& initVal) {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-            QuantLib::Simplex(lambda, initVal, endC));
+            QuantLib::Simplex(lambda, initVal));
     }
 
     LevenbergMarquardt::LevenbergMarquardt(QuantLib::Real epsfcn,
                                            QuantLib::Real xtol,
                                            QuantLib::Real gtol,
-                                           const QuantLib::Array& initVal,
-                                           const QuantLib::EndCriteria& endC)
+                                           const QuantLib::Array& initVal)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-            QuantLib::LevenbergMarquardt(epsfcn, xtol, gtol, initVal, endC));
+            QuantLib::LevenbergMarquardt(epsfcn, xtol, gtol, initVal));
     }
 
     ArmijoLineSearch::ArmijoLineSearch(QuantLib::Real eps,
@@ -63,22 +61,18 @@ namespace QuantLibAddin {
 
     ConjugateGradient::ConjugateGradient(
                    const QuantLib::Array& initVal,
-                   const QuantLib::EndCriteria& endC,
                    const boost::shared_ptr<QuantLib::LineSearch>& lineSearch)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-            QuantLib::ConjugateGradient(initVal, endC, lineSearch));
+            QuantLib::ConjugateGradient(initVal, lineSearch));
     }
-
-
 
     SteepestDescent::SteepestDescent(
                    const QuantLib::Array& initVal,
-                   const QuantLib::EndCriteria& endC,
                    const boost::shared_ptr<QuantLib::LineSearch>& lineSearch)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-            QuantLib::SteepestDescent(initVal, endC, lineSearch));
+            QuantLib::SteepestDescent(initVal, lineSearch));
     }
       
 }

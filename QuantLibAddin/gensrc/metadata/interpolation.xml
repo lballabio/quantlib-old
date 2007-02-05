@@ -172,6 +172,36 @@
       </ReturnValue>
     </Member>
 
+    <!--<Member name='qlInterpolationXvalues' libraryClass='Interpolation'>
+      <description>Returns the x array values for the given Interpolation object</description>
+      <libraryFunction>xValues</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolationYvalues' libraryClass='Interpolation'>
+      <description>Returns the y array values for the given Interpolation object</description>
+      <libraryFunction>yValues</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>-->
+
     <Member name='qlInterpolationXmin' libraryClass='Interpolation'>
       <description>Returns the minimum value of the x array for the given Interpolation object</description>
       <libraryFunction>xMin</libraryFunction>
@@ -348,7 +378,11 @@
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
           </Parameter>
-          <!-- NULL REFERENCES NO LONGER SUPPORTED-->
+          <Parameter name="endCriteria" libraryClass='EndCriteria' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EndCriteria object ID</description>
+          </Parameter>
           <Parameter name='optimizationMethod' libraryClass='OptimizationMethod' default='""'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>

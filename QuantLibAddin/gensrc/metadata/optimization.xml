@@ -143,27 +143,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptimizationSetEndCriteria' libraryClass='OptimizationMethod'>
-      <description>Sets the EndCriteria to the given OptimizationMethod object</description>
-      <libraryFunction>setEndCriteria</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name="endCriteria" underlyingClass='EndCriteria'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>end criteria</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <!-- OptimizationMethod derived classes' constructors -->
 
     <Constructor name='qlSimplex'>
@@ -182,11 +161,6 @@
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>initial value (i.e. initial guess)</description>
-          </Parameter>
-          <Parameter name="endCriteria" underlyingClass='EndCriteria'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>EndCriteria object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -219,11 +193,6 @@
             <tensorRank>vector</tensorRank>
             <description>initial value (i.e. initial guess)</description>
           </Parameter>
-          <Parameter name="endCriteria" underlyingClass='EndCriteria'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>EndCriteria object ID</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -239,11 +208,6 @@
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>initial value (i.e. initial guess)</description>
-          </Parameter>
-          <Parameter name="endCriteria" underlyingClass='EndCriteria'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>EndCriteria object ID</description>
           </Parameter>
           <Parameter name="lineSearch" libraryClass='LineSearch' default='""'>
             <type>string</type>
@@ -265,11 +229,6 @@
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>initial value (i.e. initial guess)</description>
-          </Parameter>
-          <Parameter name="endCriteria" underlyingClass='EndCriteria'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>EndCriteria object ID</description>
           </Parameter>
           <Parameter name="lineSearch" libraryClass='LineSearch' default='""'>
             <type>string</type>

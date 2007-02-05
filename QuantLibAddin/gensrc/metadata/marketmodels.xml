@@ -1147,12 +1147,15 @@
             <tensorRank>vector</tensorRank>
             <description>Reference time for the above Black vol vector.</description>
           </Parameter>
-          <!-- the way it should work -->
-          <!--<Parameter name='optimizationMethod' libraryClass='OptimizationMethod' default='boost::shared_ptr&lt;QuantLib::OptimizationMethod&gt;()'>-->
+          <Parameter name='endCriteria' libraryClass='EndCriteria' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EndCriteria object ID</description>
+          </Parameter>
           <Parameter name='optimizationMethod' libraryClass='OptimizationMethod' default='""'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>optimization method object ID</description>
+            <description>OptimizationMethod object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

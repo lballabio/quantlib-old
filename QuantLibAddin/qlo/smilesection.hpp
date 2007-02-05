@@ -61,8 +61,10 @@ namespace QuantLibAddin {
             bool isNuFixed,
             bool isRhoFixed,
             bool vegaWeighted = false,
-            const boost::shared_ptr<QuantLib::OptimizationMethod>
-                method = boost::shared_ptr<QuantLib::OptimizationMethod>());
+            const boost::shared_ptr<QuantLib::EndCriteria> endCriteria
+                = boost::shared_ptr<QuantLib::EndCriteria>(),
+            const boost::shared_ptr<QuantLib::OptimizationMethod> method
+                = boost::shared_ptr<QuantLib::OptimizationMethod>());
         
     };
 
@@ -82,6 +84,7 @@ namespace QuantLibAddin {
             bool isNuFixed,
             bool isRhoFixed,
             bool vegaWeighted,
+            const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
             const boost::shared_ptr<QuantLib::OptimizationMethod> method,
             const QuantLib::DayCounter& dc);
     };
