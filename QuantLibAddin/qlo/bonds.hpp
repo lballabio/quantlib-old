@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Chiara Fornarola
+ Copyright (C) 2006, 2007 Chiara Fornarola
  Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -137,6 +137,32 @@ namespace QuantLibAddin {
              bool fromEnd);
     };
 
+    class CappedFlooredCouponBond : public Bond {
+          public:
+               CappedFlooredCouponBond(
+                 const std::string& des,
+                 QuantLib::Real faceAmount,
+                 const QuantLib::Date& issueDate,
+                 const QuantLib::Date& datedDate,
+                 const QuantLib::Date& maturityDate,
+                 QuantLib::Integer settlementDays,
+                 const boost::shared_ptr<QuantLib::IborIndex>& index,
+                 QuantLib::Integer fixingDays,
+                 const std::vector<QuantLib::Real>& gearings,
+                 const std::vector<QuantLib::Spread>& spreads,
+                 QuantLib::Frequency couponFrequency,
+                 const QuantLib::Calendar& calendar,
+                 const QuantLib::DayCounter& dayCounter,
+                 const std::vector<QuantLib::Rate>& caps,
+                 const std::vector<QuantLib::Rate>& floors,
+                 QuantLib::BusinessDayConvention accrualConvention,
+                 QuantLib::BusinessDayConvention paymentConvention,
+                 QuantLib::Real redemption,
+                 const QuantLib::Handle<QuantLib::CapletVolatilityStructure>&,
+                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                 const QuantLib::Date& stub,
+                 bool fromEnd);
+        };
 
 }
 

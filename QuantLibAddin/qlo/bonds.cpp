@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Chiara Fornarola
+ Copyright (C) 2006, 2007 Chiara Fornarola
  Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -28,10 +28,12 @@
 #include <qlo/termstructures.hpp>
 #include <qlo/typefactory.hpp>
 #include <qlo/swaptionvolstructure.hpp>
+#include <qlo/capletvolstructure.hpp>
 #include <ql/Instruments/fixedcouponbond.hpp>
 #include <ql/Instruments/floatingratebond.hpp>
 #include <ql/Instruments/zerocouponbond.hpp>
 #include <ql/Instruments/cmscouponbond.hpp>
+#include <ql/Instruments/cappedflooredcouponbond.hpp>
 
 namespace QuantLibAddin {
 
@@ -193,6 +195,53 @@ namespace QuantLibAddin {
                                         accrualConvention,
                                         paymentConvention,
                                         redemption,
+                                        hYTS,
+                                        stub, 
+                                        fromEnd));
+}
+          CappedFlooredCouponBond::CappedFlooredCouponBond( 
+                            const std::string& des,
+                            QuantLib::Real faceAmount,
+                            const QuantLib::Date& issueDate,
+                            const QuantLib::Date& datedDate,
+                            const QuantLib::Date& maturityDate,
+                            QuantLib::Integer settlementDays,
+                            const boost::shared_ptr<QuantLib::IborIndex>& index,
+                            QuantLib::Integer fixingDays,
+                            const std::vector<QuantLib::Real>& gearings,
+                            const std::vector<QuantLib::Spread>& spreads,
+                            QuantLib::Frequency couponFrequency,
+                            const QuantLib::Calendar& calendar,
+                            const QuantLib::DayCounter& dayCounter,
+                            const std::vector<QuantLib::Rate>& caps,
+                            const std::vector<QuantLib::Rate>& floors,
+                            QuantLib::BusinessDayConvention accrualConvention,
+                            QuantLib::BusinessDayConvention paymentConvention,
+                            QuantLib::Real redemption,
+                             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility,
+                            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                            const QuantLib::Date& stub,
+                            bool fromEnd)
+        : Bond(des) {
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
+            new QuantLib::CappedFlooredCouponBond(faceAmount,
+                                        issueDate,
+                                        datedDate,
+                                        maturityDate,
+                                        settlementDays,
+                                        index,
+                                        fixingDays,
+                                        gearings,
+                                        spreads,
+                                        couponFrequency,
+                                        calendar,
+                                        dayCounter,
+                                        caps,
+                                        floors,
+                                        accrualConvention,
+                                        paymentConvention,
+                                        redemption,
+                                        volatility,
                                         hYTS,
                                         stub, 
                                         fromEnd));
