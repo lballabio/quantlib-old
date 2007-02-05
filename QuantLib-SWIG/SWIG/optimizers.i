@@ -1,4 +1,3 @@
-
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
@@ -189,17 +188,14 @@ using QuantLib::SteepestDescent;
 class OptimizationMethod {
     #if defined(SWIGRUBY)
     %rename("initialValue=") setInitialValue;
-    %rename("endCriteria=")  setEndCriteria;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("initial-value-set!") setInitialValue;
-    %rename("end-criteria-set!") setEndCriteria;
     #endif
   private:
     // prevent direct instantiation
     OptimizationMethod();
   public:
     void setInitialValue(const Array&);
-    void setEndCriteria(const EndCriteria&);
 };
 
 class ConjugateGradient : public OptimizationMethod {
@@ -210,8 +206,7 @@ class ConjugateGradient : public OptimizationMethod {
 class Simplex : public OptimizationMethod {
   public:
     Simplex(Real lambda,
-            const Array& initialValue = Array(),
-            const EndCriteria& endCriteria = EndCriteria());
+            const Array& initialValue = Array());
 };
 
 class SteepestDescent : public OptimizationMethod {
@@ -229,37 +224,42 @@ using QuantLib::Problem;
 %}
 #if defined(SWIGPYTHON)
 %extend Optimizer {
-    Array solve(PyObject* function, Constraint& c, OptimizationMethod& m) {
+    Array solve(PyObject* function, Constraint& c, 
+	  OptimizationMethod& m, EndCriteria &e) {
         PyCostFunction f(function);
         Problem p(f,c,m);
-        p.minimize();
+        p.minimize(e);
         return p.minimumValue();
     }
 }
 #elif defined(SWIGRUBY)
 %extend Optimizer {
-    Array solve(Constraint& c, OptimizationMethod& m) {
+    Array solve(Constraint& c, OptimizationMethod& m,
+	  EndCriteria &e) {
         RubyCostFunction f;
         Problem p(f,c,m);
-        p.minimize();
+        p.minimize(e);
         return p.minimumValue();
     }
 }
 #elif defined(SWIGMZSCHEME)
 %extend Optimizer {
-    Array solve(Scheme_Object* function, Constraint& c, OptimizationMethod& m) {
+    Array solve(Scheme_Object* function, Constraint& c,
+    OptimizationMethod& m,
+			EndCriteria &e) {
         MzCostFunction f(function);
         Problem p(f,c,m);
-        p.minimize();
+        p.minimize(e);
         return p.minimumValue();
     }
 }
 #elif defined(SWIGGUILE)
 %extend Optimizer {
-    Array solve(SCM function, Constraint& c, OptimizationMethod& m) {
+    Array solve(SCM function, Constraint& c, OptimizationMethod& m,
+	  EndCriteria &e) {
         GuileCostFunction f(function);
         Problem p(f,c,m);
-        p.minimize();
+        p.minimize(e);
         return p.minimumValue();
     }
 }
