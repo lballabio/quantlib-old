@@ -73,6 +73,7 @@ namespace QuantLibAddin {
             bool isNuFixed,
             bool isRhoFixed,
             bool vegaWeighted,
+            const boost::shared_ptr<QuantLib::EndCriteria>& ec,
             const boost::shared_ptr<QuantLib::OptimizationMethod>& om);
       private:
         QuantLib::Real forward_;

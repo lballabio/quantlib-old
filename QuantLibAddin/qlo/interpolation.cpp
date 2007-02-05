@@ -74,6 +74,7 @@ namespace QuantLibAddin {
         bool isNuFixed,
         bool isRhoFixed,
         bool vegaWeighted,
+        const boost::shared_ptr<QuantLib::EndCriteria>& ec,
         const boost::shared_ptr<QuantLib::OptimizationMethod>& om)
     : Interpolation(x,y), forward_(forward) {
 
@@ -82,7 +83,7 @@ namespace QuantLibAddin {
                                         t, forward_, alpha, beta, nu, rho,
                                         isAlphaFixed, isBetaFixed,
                                         isNuFixed, isRhoFixed, vegaWeighted,
-                                        om));
+                                        ec, om));
     }
    
 }
