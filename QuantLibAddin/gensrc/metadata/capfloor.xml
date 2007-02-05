@@ -67,7 +67,7 @@
       <ParameterList>
         <Parameters/>
       </ParameterList>
-      <ReturnValue libraryType='QuantLib::Real'>
+      <ReturnValue libraryType='QuantLib::Rate'>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
