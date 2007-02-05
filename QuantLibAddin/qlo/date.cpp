@@ -28,6 +28,7 @@ namespace QuantLibAddin {
 
     vector<Date> qlNextIMMdates(const Date& date,
                                 const vector<bool>& mainCycle) {
+        QL_REQUIRE(!mainCycle.empty(), "Main cycle flags vector is empty.");
         Date d = (date == Date() ?
                   Date(QuantLib::Settings::instance().evaluationDate()) :
                   date);
