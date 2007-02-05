@@ -214,7 +214,7 @@ namespace QuantLibAddin {
                     if (!depoExcludeFlag) { 
                         rhs.push_back(rhsAll[i]);       // Include all depos
                     } else {
-                        if (rhsAll[i].latestDate <= frontFuturesEarliestDate) {
+                        if (rhsAll[i].latestDate < frontFuturesEarliestDate) {
                             rhs.push_back(rhsAll[i]);   // Stop depos just after the front Futures
                         } else {
                             if (depoAfterFrontFuturesAlreadyIncluded == false) {
