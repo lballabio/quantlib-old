@@ -196,7 +196,7 @@ namespace QuantLibAddin {
         bool thereAreFutures = false;
         i=0;
         while (i<nInstruments) {
-            if (rhsAll[i].isFutures && 
+            if (rhsAll[i].isFutures && rhsAll[i].includeFlag &&
                     (rhsAll[i].earliestDate-actualFrontFuturesRollingDays >= evalDate)) {
                 thereAreFutures = true;
                 frontFuturesEarliestDate = rhsAll[i].earliestDate;
