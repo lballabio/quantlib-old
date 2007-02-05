@@ -35,7 +35,6 @@ namespace QuantLibAddin {
         vector<Date> out(1, Date::nextIMMdate(d, mainCycle[0]));
 
         QuantLib::Size n = mainCycle.size();
-        if (n==0) return out;
         out.reserve(n);
         for (QuantLib::Size i=1; i<n; ++i)
             out.push_back(Date::nextIMMdate(out[i-1]+1*Days, mainCycle[i]));
@@ -47,7 +46,6 @@ namespace QuantLibAddin {
         vector<Date> immDates = qlNextIMMdates(date, mainCycle);
         vector<string> out;
         QuantLib::Size n = mainCycle.size();
-        if (n==0) return out;
         out.reserve(n);
         for (QuantLib::Size i=0; i<n; ++i)
             out.push_back(Date::IMMcode(immDates[i]));
