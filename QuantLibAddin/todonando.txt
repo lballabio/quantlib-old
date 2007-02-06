@@ -116,8 +116,9 @@ Giorgio
 
 
 Chiara
-- capped/floored coupon bond
-- payment business days convention and fixing days
+- WIP capped/floored coupon bond
+- fix assetswap bug when date is in the range of bond's settlement date
+- implement alternative version of bond instrument which should accept a leg object
 - bond pricing engine
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
