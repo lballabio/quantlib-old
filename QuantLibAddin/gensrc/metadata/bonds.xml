@@ -732,7 +732,7 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string</description>
           </Parameter>
-          <Parameter name='FaceAmount'>
+          <Parameter name='Face'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
@@ -758,9 +758,9 @@
             <description>settlement days</description>
           </Parameter>
           <Parameter name='indexID' libraryClass='IborIndex'>
-          <type>string</type>
-          <tensorRank>scalar</tensorRank>
-          <description>floating rate index</description>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating rate index</description>
           </Parameter>
           <Parameter name='fixingDays'>
             <type>long</type>
@@ -817,11 +817,11 @@
             <tensorRank>scalar</tensorRank>
             <description>redemption</description>
           </Parameter>
-          <Parameter name='Volatility' libToHandle='CapletVolatilityStructure'>
+           <Parameter name='Vol' libToHandle='CapletVolatilityStructure'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>CapletVolatilityStructure object ID</description>
-          </Parameter>
+            <description>VolatilityStructure object ID</description>
+            </Parameter>
           <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
