@@ -68,6 +68,8 @@ K
 - quickCapPricer.xls: move from Drafts to IRDerivatives
 - remove action atmVolatility from Launcher/menu
 - standardizzare il nome delle quotes dei param di calibrazione
+- scrivere manuale applicativo Launcher
+- rilascio di 02 a 01
 
 
 François
