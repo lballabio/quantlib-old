@@ -1,5 +1,5 @@
 
-'Copyright (C) 2006 Eric Ehlers
+'Copyright (C) 2006, 2007 Eric Ehlers
 
 'This file is part of QuantLib, a free-software/open-source library
 'for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,6 +29,7 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Private Sub SetValue(ByVal name As String, ByVal value As String)
+
             Try
                 currentKey_.SetValue(name, value)
             Catch ex As Exception
@@ -36,44 +37,71 @@ Namespace QuantLibXL
                     & """ - could not set child """ & name _
                     & """ to value """ & value & """")
             End Try
+
         End Sub
 
         ''''''''''''''''''''''''''''''''''''''''''
         ' public serializer interface
         ''''''''''''''''''''''''''''''''''''''''''
 
-        Public Sub serializeObject(ByRef serializable As ISerializable, ByVal className As String) Implements ISerializer.serializeObject
+        Public Sub serializeObject(ByRef serializable As ISerializable, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObject
+
             pushKey(className)
-            serializable.serialize(Me)
+            serializable.serialize(Me, versionNumber)
             popKey()
+
         End Sub
 
-        Public Sub serializeObjectCollection(ByRef serializableCollection As Collection, ByVal className As String) Implements ISerializer.serializeObjectCollection
+        Public Sub serializeObjectCollection(ByRef serializableCollection As Collection, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObjectCollection
+
             For Each serializable As ISerializable In serializableCollection
-                serializeObject(serializable, serializable.Name)
+                serializeObject(serializable, serializable.Name, versionNumber)
             Next
+
         End Sub
 
         Public Sub serializeAttribute(ByRef attr As String, ByVal tag As String) Implements ISerializer.serializeAttribute
+
             SetValue(tag, attr)
+
+        End Sub
+
+        Public Sub serializePropertyList(ByRef attr() As String, ByVal listTag As String, ByVal itemTag As String) Implements ISerializer.serializePropertyList
+
+            If UBound(attr) > Environment.MAX_ADDIN_COUNT Then
+                Throw New Exception("The list of addins contains " _
+                & CStr(UBound(attr)) & " items but the launcher cannot " _
+                & "handle more than " & Environment.MAX_ADDIN_COUNT & " XLLs")
+            End If
+
+            pushKey(listTag)
+            For i As Integer = 0 To UBound(attr)
+                SetValue(itemTag & CStr(i), attr(i))
+            Next
+            popKey()
+
         End Sub
 
         Public Overloads Sub serializeProperty(ByRef prop As String, ByVal tag As String) Implements ISerializer.serializeProperty
-            SetValue(tag, prop)
-        End Sub
 
-        Public Overloads Sub serializeProperty(ByRef prop As String(), ByVal tag As String) Implements ISerializer.serializeProperty
+            SetValue(tag, prop)
+
         End Sub
 
         Public Overloads Sub serializeProperty(ByRef prop As Boolean, ByVal tag As String) Implements ISerializer.serializeProperty
+
             SetValue(tag, prop)
+
         End Sub
 
         Public Overloads Sub serializeProperty(ByRef prop As Integer, ByVal tag As String) Implements ISerializer.serializeProperty
+
             SetValue(tag, prop)
+
         End Sub
 
         Sub close() Implements ISerializer.close
+
         End Sub
 
     End Class

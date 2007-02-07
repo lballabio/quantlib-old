@@ -23,17 +23,22 @@ Namespace QuantLibXL
         Private serialNumbers_() As String
 
         Public Property Name() As String Implements ISerializable.Name
+
             Get
                 Name = name_
             End Get
+
             Set(ByVal value As String)
                 name_ = value
             End Set
+
         End Property
 
-        Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
+        Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
+
             serializer.serializeAttribute(name_, "name")
-            serializer.serializeProperty(serialNumbers_, "serialNumber")
+            serializer.serializePropertyList(serialNumbers_, "serialNumbers", "serialNumber")
+
         End Sub
 
         Public Function validate(ByVal serialNumber As String) As Boolean

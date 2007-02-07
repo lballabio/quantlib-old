@@ -24,18 +24,12 @@ Partial Class FormMain
         Me.lblPreconfigured = New System.Windows.Forms.Label
         Me.lblFramework = New System.Windows.Forms.Label
         Me.txtFramework = New System.Windows.Forms.TextBox
-        Me.lblAddinDir = New System.Windows.Forms.Label
-        Me.txtAddinDir = New System.Windows.Forms.TextBox
-        Me.btnAddinNameSelect = New System.Windows.Forms.Button
-        Me.lblAddinName = New System.Windows.Forms.Label
-        Me.txtAddinName = New System.Windows.Forms.TextBox
         Me.btnFrameworkSelect = New System.Windows.Forms.Button
-        Me.btnAddinDirSelect = New System.Windows.Forms.Button
         Me.btnWorkbooks = New System.Windows.Forms.Button
         Me.txtWorkbooks = New System.Windows.Forms.TextBox
         Me.lblWorkbooks = New System.Windows.Forms.Label
         Me.grpEnvironment = New System.Windows.Forms.GroupBox
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
+        Me.tstEnvironment = New System.Windows.Forms.ToolStrip
         Me.btnNew = New System.Windows.Forms.ToolStripButton
         Me.btnCopy = New System.Windows.Forms.ToolStripButton
         Me.btnDelete = New System.Windows.Forms.ToolStripButton
@@ -50,29 +44,40 @@ Partial Class FormMain
         Me.cbLoadBonds = New System.Windows.Forms.CheckBox
         Me.cbSwapSmileBootstrap = New System.Windows.Forms.CheckBox
         Me.cbIndexesTimeSeries = New System.Windows.Forms.CheckBox
-        Me.cbSwapVolBootstrap = New System.Windows.Forms.CheckBox
         Me.cbCapVolBootstrap = New System.Windows.Forms.CheckBox
         Me.cbLoadMurexYC = New System.Windows.Forms.CheckBox
         Me.cbYCBootstrap = New System.Windows.Forms.CheckBox
         Me.btnLaunch = New System.Windows.Forms.Button
-        Me.TabControl1 = New System.Windows.Forms.TabControl
-        Me.tbEnvironments = New System.Windows.Forms.TabPage
+        Me.tcLauncher = New System.Windows.Forms.TabControl
+        Me.tpEnvironments = New System.Windows.Forms.TabPage
         Me.tpPaths = New System.Windows.Forms.TabPage
-        Me.txtHelpPath = New System.Windows.Forms.TextBox
-        Me.lblHelpPath = New System.Windows.Forms.Label
-        Me.btnHelpFile = New System.Windows.Forms.Button
-        Me.txtXmlPath = New System.Windows.Forms.TextBox
-        Me.lblXmlPath = New System.Windows.Forms.Label
-        Me.btnXmlPath = New System.Windows.Forms.Button
+        Me.lblFrameworkVersion = New System.Windows.Forms.Label
+        Me.mskFrameworkVersion = New System.Windows.Forms.MaskedTextBox
         Me.txtUserConfig = New System.Windows.Forms.TextBox
         Me.lblUserConfig = New System.Windows.Forms.Label
         Me.btnUserConfig = New System.Windows.Forms.Button
+        Me.txtXmlPath = New System.Windows.Forms.TextBox
+        Me.lblXmlPath = New System.Windows.Forms.Label
+        Me.btnXmlPath = New System.Windows.Forms.Button
+        Me.txtHelpPath = New System.Windows.Forms.TextBox
+        Me.lblHelpPath = New System.Windows.Forms.Label
+        Me.btnHelpFile = New System.Windows.Forms.Button
+        Me.tpAddins = New System.Windows.Forms.TabPage
+        Me.lbAddins = New System.Windows.Forms.ListBox
+        Me.tstAddins = New System.Windows.Forms.ToolStrip
+        Me.btnAddinInsert = New System.Windows.Forms.ToolStripButton
+        Me.btnAddinDelete = New System.Windows.Forms.ToolStripButton
+        Me.btnAddinRename = New System.Windows.Forms.ToolStripButton
+        Me.btnAddinUp = New System.Windows.Forms.ToolStripButton
+        Me.btnAddinDown = New System.Windows.Forms.ToolStripButton
         Me.grpEnvironment.SuspendLayout()
-        Me.ToolStrip1.SuspendLayout()
+        Me.tstEnvironment.SuspendLayout()
         Me.grpStartup.SuspendLayout()
-        Me.TabControl1.SuspendLayout()
-        Me.tbEnvironments.SuspendLayout()
+        Me.tcLauncher.SuspendLayout()
+        Me.tpEnvironments.SuspendLayout()
         Me.tpPaths.SuspendLayout()
+        Me.tpAddins.SuspendLayout()
+        Me.tstAddins.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnClose
@@ -109,47 +114,6 @@ Partial Class FormMain
         Me.txtFramework.Size = New System.Drawing.Size(315, 20)
         Me.txtFramework.TabIndex = 5
         '
-        'lblAddinDir
-        '
-        Me.lblAddinDir.AutoSize = True
-        Me.lblAddinDir.Location = New System.Drawing.Point(10, 88)
-        Me.lblAddinDir.Name = "lblAddinDir"
-        Me.lblAddinDir.Size = New System.Drawing.Size(79, 13)
-        Me.lblAddinDir.TabIndex = 6
-        Me.lblAddinDir.Text = "Addin Directory"
-        '
-        'txtAddinDir
-        '
-        Me.txtAddinDir.Location = New System.Drawing.Point(30, 104)
-        Me.txtAddinDir.Name = "txtAddinDir"
-        Me.txtAddinDir.Size = New System.Drawing.Size(315, 20)
-        Me.txtAddinDir.TabIndex = 7
-        '
-        'btnAddinNameSelect
-        '
-        Me.btnAddinNameSelect.Location = New System.Drawing.Point(351, 143)
-        Me.btnAddinNameSelect.Name = "btnAddinNameSelect"
-        Me.btnAddinNameSelect.Size = New System.Drawing.Size(32, 23)
-        Me.btnAddinNameSelect.TabIndex = 8
-        Me.btnAddinNameSelect.Text = "..."
-        Me.btnAddinNameSelect.UseVisualStyleBackColor = True
-        '
-        'lblAddinName
-        '
-        Me.lblAddinName.AutoSize = True
-        Me.lblAddinName.Location = New System.Drawing.Point(10, 127)
-        Me.lblAddinName.Name = "lblAddinName"
-        Me.lblAddinName.Size = New System.Drawing.Size(65, 13)
-        Me.lblAddinName.TabIndex = 9
-        Me.lblAddinName.Text = "Addin Name"
-        '
-        'txtAddinName
-        '
-        Me.txtAddinName.Location = New System.Drawing.Point(30, 143)
-        Me.txtAddinName.Name = "txtAddinName"
-        Me.txtAddinName.Size = New System.Drawing.Size(315, 20)
-        Me.txtAddinName.TabIndex = 10
-        '
         'btnFrameworkSelect
         '
         Me.btnFrameworkSelect.Location = New System.Drawing.Point(351, 26)
@@ -159,18 +123,9 @@ Partial Class FormMain
         Me.btnFrameworkSelect.Text = "..."
         Me.btnFrameworkSelect.UseVisualStyleBackColor = True
         '
-        'btnAddinDirSelect
-        '
-        Me.btnAddinDirSelect.Location = New System.Drawing.Point(351, 104)
-        Me.btnAddinDirSelect.Name = "btnAddinDirSelect"
-        Me.btnAddinDirSelect.Size = New System.Drawing.Size(32, 23)
-        Me.btnAddinDirSelect.TabIndex = 12
-        Me.btnAddinDirSelect.Text = "..."
-        Me.btnAddinDirSelect.UseVisualStyleBackColor = True
-        '
         'btnWorkbooks
         '
-        Me.btnWorkbooks.Location = New System.Drawing.Point(351, 65)
+        Me.btnWorkbooks.Location = New System.Drawing.Point(351, 104)
         Me.btnWorkbooks.Name = "btnWorkbooks"
         Me.btnWorkbooks.Size = New System.Drawing.Size(32, 23)
         Me.btnWorkbooks.TabIndex = 15
@@ -179,7 +134,7 @@ Partial Class FormMain
         '
         'txtWorkbooks
         '
-        Me.txtWorkbooks.Location = New System.Drawing.Point(30, 65)
+        Me.txtWorkbooks.Location = New System.Drawing.Point(30, 104)
         Me.txtWorkbooks.Name = "txtWorkbooks"
         Me.txtWorkbooks.Size = New System.Drawing.Size(315, 20)
         Me.txtWorkbooks.TabIndex = 14
@@ -187,7 +142,7 @@ Partial Class FormMain
         'lblWorkbooks
         '
         Me.lblWorkbooks.AutoSize = True
-        Me.lblWorkbooks.Location = New System.Drawing.Point(10, 49)
+        Me.lblWorkbooks.Location = New System.Drawing.Point(10, 88)
         Me.lblWorkbooks.Name = "lblWorkbooks"
         Me.lblWorkbooks.Size = New System.Drawing.Size(62, 13)
         Me.lblWorkbooks.TabIndex = 13
@@ -195,7 +150,7 @@ Partial Class FormMain
         '
         'grpEnvironment
         '
-        Me.grpEnvironment.Controls.Add(Me.ToolStrip1)
+        Me.grpEnvironment.Controls.Add(Me.tstEnvironment)
         Me.grpEnvironment.Controls.Add(Me.lstUserconfigured)
         Me.grpEnvironment.Controls.Add(Me.lblUserConfigured)
         Me.grpEnvironment.Controls.Add(Me.lstPreconfigured)
@@ -207,18 +162,18 @@ Partial Class FormMain
         Me.grpEnvironment.TabStop = False
         Me.grpEnvironment.Text = "Environments"
         '
-        'ToolStrip1
+        'tstEnvironment
         '
-        Me.ToolStrip1.BackColor = System.Drawing.SystemColors.Control
-        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
-        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnNew, Me.btnCopy, Me.btnDelete, Me.btnClear, Me.btnRename})
-        Me.ToolStrip1.Location = New System.Drawing.Point(9, 267)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ToolStrip1.Size = New System.Drawing.Size(118, 25)
-        Me.ToolStrip1.TabIndex = 7
-        Me.ToolStrip1.Text = "ToolStrip1"
+        Me.tstEnvironment.BackColor = System.Drawing.SystemColors.Control
+        Me.tstEnvironment.Dock = System.Windows.Forms.DockStyle.None
+        Me.tstEnvironment.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.tstEnvironment.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnNew, Me.btnCopy, Me.btnDelete, Me.btnClear, Me.btnRename})
+        Me.tstEnvironment.Location = New System.Drawing.Point(9, 267)
+        Me.tstEnvironment.Name = "tstEnvironment"
+        Me.tstEnvironment.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.tstEnvironment.Size = New System.Drawing.Size(118, 25)
+        Me.tstEnvironment.TabIndex = 7
+        Me.tstEnvironment.Text = "ToolStrip1"
         '
         'btnNew
         '
@@ -299,13 +254,12 @@ Partial Class FormMain
         Me.grpStartup.Controls.Add(Me.cbLoadBonds)
         Me.grpStartup.Controls.Add(Me.cbSwapSmileBootstrap)
         Me.grpStartup.Controls.Add(Me.cbIndexesTimeSeries)
-        Me.grpStartup.Controls.Add(Me.cbSwapVolBootstrap)
         Me.grpStartup.Controls.Add(Me.cbCapVolBootstrap)
         Me.grpStartup.Controls.Add(Me.cbLoadMurexYC)
         Me.grpStartup.Controls.Add(Me.cbYCBootstrap)
         Me.grpStartup.Location = New System.Drawing.Point(202, 6)
         Me.grpStartup.Name = "grpStartup"
-        Me.grpStartup.Size = New System.Drawing.Size(190, 300)
+        Me.grpStartup.Size = New System.Drawing.Size(190, 301)
         Me.grpStartup.TabIndex = 19
         Me.grpStartup.TabStop = False
         Me.grpStartup.Text = "Startup Actions"
@@ -313,7 +267,7 @@ Partial Class FormMain
         'cbStaticData
         '
         Me.cbStaticData.AutoSize = True
-        Me.cbStaticData.Location = New System.Drawing.Point(10, 210)
+        Me.cbStaticData.Location = New System.Drawing.Point(10, 187)
         Me.cbStaticData.Name = "cbStaticData"
         Me.cbStaticData.Size = New System.Drawing.Size(159, 17)
         Me.cbStaticData.TabIndex = 8
@@ -323,7 +277,7 @@ Partial Class FormMain
         'cbFitCMS
         '
         Me.cbFitCMS.AutoSize = True
-        Me.cbFitCMS.Location = New System.Drawing.Point(10, 141)
+        Me.cbFitCMS.Location = New System.Drawing.Point(10, 118)
         Me.cbFitCMS.Name = "cbFitCMS"
         Me.cbFitCMS.Size = New System.Drawing.Size(105, 17)
         Me.cbFitCMS.TabIndex = 7
@@ -333,7 +287,7 @@ Partial Class FormMain
         'cbLoadBonds
         '
         Me.cbLoadBonds.AutoSize = True
-        Me.cbLoadBonds.Location = New System.Drawing.Point(10, 187)
+        Me.cbLoadBonds.Location = New System.Drawing.Point(10, 164)
         Me.cbLoadBonds.Name = "cbLoadBonds"
         Me.cbLoadBonds.Size = New System.Drawing.Size(83, 17)
         Me.cbLoadBonds.TabIndex = 6
@@ -343,7 +297,7 @@ Partial Class FormMain
         'cbSwapSmileBootstrap
         '
         Me.cbSwapSmileBootstrap.AutoSize = True
-        Me.cbSwapSmileBootstrap.Location = New System.Drawing.Point(10, 118)
+        Me.cbSwapSmileBootstrap.Location = New System.Drawing.Point(10, 95)
         Me.cbSwapSmileBootstrap.Name = "cbSwapSmileBootstrap"
         Me.cbSwapSmileBootstrap.Size = New System.Drawing.Size(173, 17)
         Me.cbSwapSmileBootstrap.TabIndex = 5
@@ -353,22 +307,12 @@ Partial Class FormMain
         'cbIndexesTimeSeries
         '
         Me.cbIndexesTimeSeries.AutoSize = True
-        Me.cbIndexesTimeSeries.Location = New System.Drawing.Point(10, 164)
+        Me.cbIndexesTimeSeries.Location = New System.Drawing.Point(10, 141)
         Me.cbIndexesTimeSeries.Name = "cbIndexesTimeSeries"
         Me.cbIndexesTimeSeries.Size = New System.Drawing.Size(148, 17)
         Me.cbIndexesTimeSeries.TabIndex = 4
         Me.cbIndexesTimeSeries.Text = "Load Indexes Time Series"
         Me.cbIndexesTimeSeries.UseVisualStyleBackColor = True
-        '
-        'cbSwapVolBootstrap
-        '
-        Me.cbSwapVolBootstrap.AutoSize = True
-        Me.cbSwapVolBootstrap.Location = New System.Drawing.Point(10, 95)
-        Me.cbSwapVolBootstrap.Name = "cbSwapVolBootstrap"
-        Me.cbSwapVolBootstrap.Size = New System.Drawing.Size(171, 17)
-        Me.cbSwapVolBootstrap.TabIndex = 3
-        Me.cbSwapVolBootstrap.Text = "Create Swaption ATM Volatility"
-        Me.cbSwapVolBootstrap.UseVisualStyleBackColor = True
         '
         'cbCapVolBootstrap
         '
@@ -409,30 +353,33 @@ Partial Class FormMain
         Me.btnLaunch.Text = "Launch"
         Me.btnLaunch.UseVisualStyleBackColor = True
         '
-        'TabControl1
+        'tcLauncher
         '
-        Me.TabControl1.Controls.Add(Me.tbEnvironments)
-        Me.TabControl1.Controls.Add(Me.tpPaths)
-        Me.TabControl1.Location = New System.Drawing.Point(3, 3)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(403, 336)
-        Me.TabControl1.TabIndex = 21
+        Me.tcLauncher.Controls.Add(Me.tpEnvironments)
+        Me.tcLauncher.Controls.Add(Me.tpPaths)
+        Me.tcLauncher.Controls.Add(Me.tpAddins)
+        Me.tcLauncher.Location = New System.Drawing.Point(3, 3)
+        Me.tcLauncher.Name = "tcLauncher"
+        Me.tcLauncher.SelectedIndex = 0
+        Me.tcLauncher.Size = New System.Drawing.Size(403, 336)
+        Me.tcLauncher.TabIndex = 21
         '
-        'tbEnvironments
+        'tpEnvironments
         '
-        Me.tbEnvironments.Controls.Add(Me.grpEnvironment)
-        Me.tbEnvironments.Controls.Add(Me.grpStartup)
-        Me.tbEnvironments.Location = New System.Drawing.Point(4, 22)
-        Me.tbEnvironments.Name = "tbEnvironments"
-        Me.tbEnvironments.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbEnvironments.Size = New System.Drawing.Size(395, 310)
-        Me.tbEnvironments.TabIndex = 0
-        Me.tbEnvironments.Text = "Environments"
-        Me.tbEnvironments.UseVisualStyleBackColor = True
+        Me.tpEnvironments.Controls.Add(Me.grpEnvironment)
+        Me.tpEnvironments.Controls.Add(Me.grpStartup)
+        Me.tpEnvironments.Location = New System.Drawing.Point(4, 22)
+        Me.tpEnvironments.Name = "tpEnvironments"
+        Me.tpEnvironments.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpEnvironments.Size = New System.Drawing.Size(395, 310)
+        Me.tpEnvironments.TabIndex = 0
+        Me.tpEnvironments.Text = "Environments"
+        Me.tpEnvironments.UseVisualStyleBackColor = True
         '
         'tpPaths
         '
+        Me.tpPaths.Controls.Add(Me.lblFrameworkVersion)
+        Me.tpPaths.Controls.Add(Me.mskFrameworkVersion)
         Me.tpPaths.Controls.Add(Me.txtUserConfig)
         Me.tpPaths.Controls.Add(Me.lblUserConfig)
         Me.tpPaths.Controls.Add(Me.btnUserConfig)
@@ -443,16 +390,10 @@ Partial Class FormMain
         Me.tpPaths.Controls.Add(Me.lblHelpPath)
         Me.tpPaths.Controls.Add(Me.btnHelpFile)
         Me.tpPaths.Controls.Add(Me.txtFramework)
-        Me.tpPaths.Controls.Add(Me.btnAddinDirSelect)
         Me.tpPaths.Controls.Add(Me.lblFramework)
-        Me.tpPaths.Controls.Add(Me.txtAddinName)
         Me.tpPaths.Controls.Add(Me.btnWorkbooks)
         Me.tpPaths.Controls.Add(Me.btnFrameworkSelect)
-        Me.tpPaths.Controls.Add(Me.lblAddinDir)
-        Me.tpPaths.Controls.Add(Me.lblAddinName)
         Me.tpPaths.Controls.Add(Me.txtWorkbooks)
-        Me.tpPaths.Controls.Add(Me.btnAddinNameSelect)
-        Me.tpPaths.Controls.Add(Me.txtAddinDir)
         Me.tpPaths.Controls.Add(Me.lblWorkbooks)
         Me.tpPaths.Location = New System.Drawing.Point(4, 22)
         Me.tpPaths.Name = "tpPaths"
@@ -462,59 +403,26 @@ Partial Class FormMain
         Me.tpPaths.Text = "Paths"
         Me.tpPaths.UseVisualStyleBackColor = True
         '
-        'txtHelpPath
+        'lblFrameworkVersion
         '
-        Me.txtHelpPath.Location = New System.Drawing.Point(30, 182)
-        Me.txtHelpPath.Name = "txtHelpPath"
-        Me.txtHelpPath.Size = New System.Drawing.Size(315, 20)
-        Me.txtHelpPath.TabIndex = 18
+        Me.lblFrameworkVersion.AutoSize = True
+        Me.lblFrameworkVersion.Location = New System.Drawing.Point(10, 59)
+        Me.lblFrameworkVersion.Name = "lblFrameworkVersion"
+        Me.lblFrameworkVersion.Size = New System.Drawing.Size(137, 13)
+        Me.lblFrameworkVersion.TabIndex = 0
+        Me.lblFrameworkVersion.Text = "Framework Version Number"
         '
-        'lblHelpPath
+        'mskFrameworkVersion
         '
-        Me.lblHelpPath.AutoSize = True
-        Me.lblHelpPath.Location = New System.Drawing.Point(10, 166)
-        Me.lblHelpPath.Name = "lblHelpPath"
-        Me.lblHelpPath.Size = New System.Drawing.Size(61, 13)
-        Me.lblHelpPath.TabIndex = 17
-        Me.lblHelpPath.Text = "Help Folder"
-        '
-        'btnHelpFile
-        '
-        Me.btnHelpFile.Location = New System.Drawing.Point(351, 182)
-        Me.btnHelpFile.Name = "btnHelpFile"
-        Me.btnHelpFile.Size = New System.Drawing.Size(32, 23)
-        Me.btnHelpFile.TabIndex = 16
-        Me.btnHelpFile.Text = "..."
-        Me.btnHelpFile.UseVisualStyleBackColor = True
-        '
-        'txtXmlPath
-        '
-        Me.txtXmlPath.Location = New System.Drawing.Point(30, 221)
-        Me.txtXmlPath.Name = "txtXmlPath"
-        Me.txtXmlPath.Size = New System.Drawing.Size(315, 20)
-        Me.txtXmlPath.TabIndex = 21
-        '
-        'lblXmlPath
-        '
-        Me.lblXmlPath.AutoSize = True
-        Me.lblXmlPath.Location = New System.Drawing.Point(10, 205)
-        Me.lblXmlPath.Name = "lblXmlPath"
-        Me.lblXmlPath.Size = New System.Drawing.Size(96, 13)
-        Me.lblXmlPath.TabIndex = 20
-        Me.lblXmlPath.Text = "Function Metadata"
-        '
-        'btnXmlPath
-        '
-        Me.btnXmlPath.Location = New System.Drawing.Point(351, 221)
-        Me.btnXmlPath.Name = "btnXmlPath"
-        Me.btnXmlPath.Size = New System.Drawing.Size(32, 23)
-        Me.btnXmlPath.TabIndex = 19
-        Me.btnXmlPath.Text = "..."
-        Me.btnXmlPath.UseVisualStyleBackColor = True
+        Me.mskFrameworkVersion.Location = New System.Drawing.Point(153, 56)
+        Me.mskFrameworkVersion.Mask = "0"
+        Me.mskFrameworkVersion.Name = "mskFrameworkVersion"
+        Me.mskFrameworkVersion.Size = New System.Drawing.Size(29, 20)
+        Me.mskFrameworkVersion.TabIndex = 1
         '
         'txtUserConfig
         '
-        Me.txtUserConfig.Location = New System.Drawing.Point(30, 260)
+        Me.txtUserConfig.Location = New System.Drawing.Point(30, 221)
         Me.txtUserConfig.Name = "txtUserConfig"
         Me.txtUserConfig.Size = New System.Drawing.Size(315, 20)
         Me.txtUserConfig.TabIndex = 24
@@ -522,7 +430,7 @@ Partial Class FormMain
         'lblUserConfig
         '
         Me.lblUserConfig.AutoSize = True
-        Me.lblUserConfig.Location = New System.Drawing.Point(10, 244)
+        Me.lblUserConfig.Location = New System.Drawing.Point(10, 205)
         Me.lblUserConfig.Name = "lblUserConfig"
         Me.lblUserConfig.Size = New System.Drawing.Size(113, 13)
         Me.lblUserConfig.TabIndex = 23
@@ -530,19 +438,148 @@ Partial Class FormMain
         '
         'btnUserConfig
         '
-        Me.btnUserConfig.Location = New System.Drawing.Point(351, 260)
+        Me.btnUserConfig.Location = New System.Drawing.Point(351, 221)
         Me.btnUserConfig.Name = "btnUserConfig"
         Me.btnUserConfig.Size = New System.Drawing.Size(32, 23)
         Me.btnUserConfig.TabIndex = 22
         Me.btnUserConfig.Text = "..."
         Me.btnUserConfig.UseVisualStyleBackColor = True
         '
+        'txtXmlPath
+        '
+        Me.txtXmlPath.Location = New System.Drawing.Point(30, 182)
+        Me.txtXmlPath.Name = "txtXmlPath"
+        Me.txtXmlPath.Size = New System.Drawing.Size(315, 20)
+        Me.txtXmlPath.TabIndex = 21
+        '
+        'lblXmlPath
+        '
+        Me.lblXmlPath.AutoSize = True
+        Me.lblXmlPath.Location = New System.Drawing.Point(10, 166)
+        Me.lblXmlPath.Name = "lblXmlPath"
+        Me.lblXmlPath.Size = New System.Drawing.Size(96, 13)
+        Me.lblXmlPath.TabIndex = 20
+        Me.lblXmlPath.Text = "Function Metadata"
+        '
+        'btnXmlPath
+        '
+        Me.btnXmlPath.Location = New System.Drawing.Point(351, 182)
+        Me.btnXmlPath.Name = "btnXmlPath"
+        Me.btnXmlPath.Size = New System.Drawing.Size(32, 23)
+        Me.btnXmlPath.TabIndex = 19
+        Me.btnXmlPath.Text = "..."
+        Me.btnXmlPath.UseVisualStyleBackColor = True
+        '
+        'txtHelpPath
+        '
+        Me.txtHelpPath.Location = New System.Drawing.Point(30, 143)
+        Me.txtHelpPath.Name = "txtHelpPath"
+        Me.txtHelpPath.Size = New System.Drawing.Size(315, 20)
+        Me.txtHelpPath.TabIndex = 18
+        '
+        'lblHelpPath
+        '
+        Me.lblHelpPath.AutoSize = True
+        Me.lblHelpPath.Location = New System.Drawing.Point(10, 127)
+        Me.lblHelpPath.Name = "lblHelpPath"
+        Me.lblHelpPath.Size = New System.Drawing.Size(61, 13)
+        Me.lblHelpPath.TabIndex = 17
+        Me.lblHelpPath.Text = "Help Folder"
+        '
+        'btnHelpFile
+        '
+        Me.btnHelpFile.Location = New System.Drawing.Point(351, 143)
+        Me.btnHelpFile.Name = "btnHelpFile"
+        Me.btnHelpFile.Size = New System.Drawing.Size(32, 23)
+        Me.btnHelpFile.TabIndex = 16
+        Me.btnHelpFile.Text = "..."
+        Me.btnHelpFile.UseVisualStyleBackColor = True
+        '
+        'tpAddins
+        '
+        Me.tpAddins.Controls.Add(Me.lbAddins)
+        Me.tpAddins.Controls.Add(Me.tstAddins)
+        Me.tpAddins.Location = New System.Drawing.Point(4, 22)
+        Me.tpAddins.Name = "tpAddins"
+        Me.tpAddins.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpAddins.Size = New System.Drawing.Size(395, 310)
+        Me.tpAddins.TabIndex = 2
+        Me.tpAddins.Text = "Addins"
+        Me.tpAddins.UseVisualStyleBackColor = True
+        '
+        'lbAddins
+        '
+        Me.lbAddins.FormattingEnabled = True
+        Me.lbAddins.Location = New System.Drawing.Point(6, 13)
+        Me.lbAddins.Name = "lbAddins"
+        Me.lbAddins.Size = New System.Drawing.Size(377, 173)
+        Me.lbAddins.TabIndex = 10
+        '
+        'tstAddins
+        '
+        Me.tstAddins.BackColor = System.Drawing.SystemColors.Control
+        Me.tstAddins.Dock = System.Windows.Forms.DockStyle.None
+        Me.tstAddins.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.tstAddins.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnAddinInsert, Me.btnAddinDelete, Me.btnAddinRename, Me.btnAddinUp, Me.btnAddinDown})
+        Me.tstAddins.Location = New System.Drawing.Point(6, 189)
+        Me.tstAddins.Name = "tstAddins"
+        Me.tstAddins.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.tstAddins.Size = New System.Drawing.Size(118, 25)
+        Me.tstAddins.TabIndex = 8
+        Me.tstAddins.Text = "ToolStrip1"
+        '
+        'btnAddinInsert
+        '
+        Me.btnAddinInsert.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btnAddinInsert.Image = Global.launcher.My.Resources.Resources.create
+        Me.btnAddinInsert.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnAddinInsert.Name = "btnAddinInsert"
+        Me.btnAddinInsert.Size = New System.Drawing.Size(23, 22)
+        Me.btnAddinInsert.Text = "Insert Addin"
+        Me.btnAddinInsert.ToolTipText = "Insert Addin"
+        '
+        'btnAddinDelete
+        '
+        Me.btnAddinDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btnAddinDelete.Image = Global.launcher.My.Resources.Resources.delete
+        Me.btnAddinDelete.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnAddinDelete.Name = "btnAddinDelete"
+        Me.btnAddinDelete.Size = New System.Drawing.Size(23, 22)
+        Me.btnAddinDelete.Text = "Delete Selected Addin"
+        '
+        'btnAddinRename
+        '
+        Me.btnAddinRename.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btnAddinRename.Image = Global.launcher.My.Resources.Resources.rename
+        Me.btnAddinRename.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnAddinRename.Name = "btnAddinRename"
+        Me.btnAddinRename.Size = New System.Drawing.Size(23, 22)
+        Me.btnAddinRename.Text = "Edit Selected Addin Name"
+        '
+        'btnAddinUp
+        '
+        Me.btnAddinUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btnAddinUp.Image = Global.launcher.My.Resources.Resources.up
+        Me.btnAddinUp.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnAddinUp.Name = "btnAddinUp"
+        Me.btnAddinUp.Size = New System.Drawing.Size(23, 22)
+        Me.btnAddinUp.Text = "Move Up"
+        '
+        'btnAddinDown
+        '
+        Me.btnAddinDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btnAddinDown.Image = Global.launcher.My.Resources.Resources.down
+        Me.btnAddinDown.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnAddinDown.Name = "btnAddinDown"
+        Me.btnAddinDown.Size = New System.Drawing.Size(23, 22)
+        Me.btnAddinDown.Text = "Move Down"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(407, 370)
-        Me.Controls.Add(Me.TabControl1)
+        Me.Controls.Add(Me.tcLauncher)
         Me.Controls.Add(Me.btnLaunch)
         Me.Controls.Add(Me.btnClose)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -551,14 +588,18 @@ Partial Class FormMain
         Me.Text = "QuantLibXL Launcher"
         Me.grpEnvironment.ResumeLayout(False)
         Me.grpEnvironment.PerformLayout()
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
+        Me.tstEnvironment.ResumeLayout(False)
+        Me.tstEnvironment.PerformLayout()
         Me.grpStartup.ResumeLayout(False)
         Me.grpStartup.PerformLayout()
-        Me.TabControl1.ResumeLayout(False)
-        Me.tbEnvironments.ResumeLayout(False)
+        Me.tcLauncher.ResumeLayout(False)
+        Me.tpEnvironments.ResumeLayout(False)
         Me.tpPaths.ResumeLayout(False)
         Me.tpPaths.PerformLayout()
+        Me.tpAddins.ResumeLayout(False)
+        Me.tpAddins.PerformLayout()
+        Me.tstAddins.ResumeLayout(False)
+        Me.tstAddins.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -566,13 +607,7 @@ Partial Class FormMain
     Friend WithEvents lblPreconfigured As System.Windows.Forms.Label
     Friend WithEvents lblFramework As System.Windows.Forms.Label
     Friend WithEvents txtFramework As System.Windows.Forms.TextBox
-    Friend WithEvents lblAddinDir As System.Windows.Forms.Label
-    Friend WithEvents txtAddinDir As System.Windows.Forms.TextBox
-    Friend WithEvents btnAddinNameSelect As System.Windows.Forms.Button
-    Friend WithEvents lblAddinName As System.Windows.Forms.Label
-    Friend WithEvents txtAddinName As System.Windows.Forms.TextBox
     Friend WithEvents btnFrameworkSelect As System.Windows.Forms.Button
-    Friend WithEvents btnAddinDirSelect As System.Windows.Forms.Button
     Friend WithEvents btnWorkbooks As System.Windows.Forms.Button
     Friend WithEvents txtWorkbooks As System.Windows.Forms.TextBox
     Friend WithEvents lblWorkbooks As System.Windows.Forms.Label
@@ -582,7 +617,7 @@ Partial Class FormMain
     Friend WithEvents cbYCBootstrap As System.Windows.Forms.CheckBox
     Friend WithEvents lblUserConfigured As System.Windows.Forms.Label
     Friend WithEvents lstUserconfigured As System.Windows.Forms.ListBox
-    Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
+    Friend WithEvents tstEnvironment As System.Windows.Forms.ToolStrip
     Friend WithEvents btnNew As System.Windows.Forms.ToolStripButton
     Friend WithEvents btnCopy As System.Windows.Forms.ToolStripButton
     Friend WithEvents btnDelete As System.Windows.Forms.ToolStripButton
@@ -590,11 +625,10 @@ Partial Class FormMain
     Friend WithEvents btnRename As System.Windows.Forms.ToolStripButton
     Friend WithEvents btnLaunch As System.Windows.Forms.Button
     Friend WithEvents cbIndexesTimeSeries As System.Windows.Forms.CheckBox
-    Friend WithEvents cbSwapVolBootstrap As System.Windows.Forms.CheckBox
     Friend WithEvents cbCapVolBootstrap As System.Windows.Forms.CheckBox
     Friend WithEvents cbLoadMurexYC As System.Windows.Forms.CheckBox
-    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
-    Friend WithEvents tbEnvironments As System.Windows.Forms.TabPage
+    Friend WithEvents tcLauncher As System.Windows.Forms.TabControl
+    Friend WithEvents tpEnvironments As System.Windows.Forms.TabPage
     Friend WithEvents tpPaths As System.Windows.Forms.TabPage
     Friend WithEvents cbFitCMS As System.Windows.Forms.CheckBox
     Friend WithEvents cbLoadBonds As System.Windows.Forms.CheckBox
@@ -609,4 +643,14 @@ Partial Class FormMain
     Friend WithEvents txtXmlPath As System.Windows.Forms.TextBox
     Friend WithEvents lblXmlPath As System.Windows.Forms.Label
     Friend WithEvents btnXmlPath As System.Windows.Forms.Button
+    Friend WithEvents tpAddins As System.Windows.Forms.TabPage
+    Friend WithEvents lblFrameworkVersion As System.Windows.Forms.Label
+    Friend WithEvents mskFrameworkVersion As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents tstAddins As System.Windows.Forms.ToolStrip
+    Friend WithEvents btnAddinInsert As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btnAddinDelete As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btnAddinUp As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btnAddinDown As System.Windows.Forms.ToolStripButton
+    Friend WithEvents lbAddins As System.Windows.Forms.ListBox
+    Friend WithEvents btnAddinRename As System.Windows.Forms.ToolStripButton
 End Class

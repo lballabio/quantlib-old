@@ -42,9 +42,9 @@ Namespace QuantLibXL
 
         End Property
 
-        Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
+        Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
 
-            serializer.serializeObjectCollection(domainList_, "Domain")
+            serializer.serializeObjectCollection(domainList_, "Domain", versionNumber)
 
         End Sub
 

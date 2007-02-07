@@ -50,9 +50,9 @@ Namespace QuantLibXL
         ' public interface
         ''''''''''''''''''''''''''''''''''''''''''
 
-        Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
+        Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
 
-            serializer.serializeObjectCollection(environmentList_, "Environment")
+            serializer.serializeObjectCollection(environmentList_, "Environment", versionNumber)
 
         End Sub
 

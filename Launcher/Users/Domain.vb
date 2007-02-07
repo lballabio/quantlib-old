@@ -31,9 +31,11 @@ Namespace QuantLibXL
             End Set
         End Property
 
-        Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
+        Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
+
             serializer.serializeAttribute(name_, "name")
-            serializer.serializeObject(userList_, "Users")
+            serializer.serializeObject(userList_, "Users", versionNumber)
+
         End Sub
 
         Public Function validate(ByVal userName As String, ByVal serialNumber As String) As Boolean

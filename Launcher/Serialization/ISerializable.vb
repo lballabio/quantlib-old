@@ -19,7 +19,7 @@ Namespace QuantLibXL
     Public Interface ISerializable
 
         Property Name() As String
-        Sub serialize(ByRef serializer As ISerializer)
+        Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer)
 
     End Interface
 

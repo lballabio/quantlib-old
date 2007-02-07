@@ -29,15 +29,20 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Public Property Name() As String Implements ISerializable.Name
+
             Get
                 Name = "Users"
             End Get
+
             Set(ByVal value As String)
             End Set
+
         End Property
 
-        Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
-            serializer.serializeObjectCollection(userList_, "User")
+        Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
+
+            serializer.serializeObjectCollection(userList_, "User", versionNumber)
+
         End Sub
 
         Public Function validate(ByVal userName As String, ByVal serialNumber As String) As Boolean

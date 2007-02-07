@@ -14,6 +14,19 @@
 'ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 'FOR A PARTICULAR PURPOSE.  See the license for more details.
 
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Class Environment - Encapsulate the state and behavior relating to
+' a running instance of the QuantLibXL Framework.
+'
+' This class contains some temporary hacks to support backward compatibility
+' with Framework version 5, which relies on an older version of the 
+' Launcher<->Framework interface.
+'
+' Version information is included in version 6+ of the Launcher<->Framework 
+' interface and the hacks can be removed once version 5 of the Framewok
+' is retired.
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
 Imports System.Deployment.Application
 
 Namespace QuantLibXL
@@ -24,7 +37,20 @@ Namespace QuantLibXL
 
         Private Declare Function GetCurrentProcessId Lib "kernel32" () As Long
 
+        ' Environment variable to inform the Framework of the location
+        ' of the configuration file.
+        ' QUANTLIBXL_LAUNCH is for Framework version 5.
+        ' QUANTLIBXL_LAUNCH2 is for Framework version 6+.
+
         Private Const QUANTLIBXL_LAUNCH As String = "QUANTLIBXL_LAUNCH"
+        Private Const QUANTLIBXL_LAUNCH2 As String = "QUANTLIBXL_LAUNCH2"
+
+        ' The maximum number of XLLs that the Launcher can instruct the Framework to load.
+        ' At present this value is limited to 10 only because the addin names
+        ' are written to registry keys in the format Addin0, Addin1, ..., AddinN
+        ' and this list doesn't sort correctly for values of N greater than 9.
+
+        Public Const MAX_ADDIN_COUNT As Integer = 10
 
         ''''''''''''''''''''''''''''''''''''''''''
         ' members
@@ -34,38 +60,24 @@ Namespace QuantLibXL
 
         ' paths
 
-        Private framework_ As String = ""
+        Private frameworkName_ As String = ""
+        Private frameworkVersion_ As Integer = 0
         Private workbooks_ As String = ""
-        Private addinDir_ As String = ""
-        Private addinName_ As String = ""
+        Private addinList_(0) As String
         Private helpPath_ As String = ""
         Private xmlPath_ As String = ""
         Private userConfig_ As String = ""
 
-        ' user authentication
+        ' User authentication
 
         Private userAuthenticated_ As Boolean = False
 
-        ' startup actions
+        ' Startup actions
 
         Private startupActions_ As QuantLibXL.StartupActions = New QuantLibXL.StartupActions
 
-        Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
-
-            serializer.serializeAttribute(name_, "name")
-            serializer.serializeProperty(framework_, "Framework")
-            serializer.serializeProperty(workbooks_, "Workbooks")
-            serializer.serializeProperty(addinDir_, "AddinDirectory")
-            serializer.serializeProperty(addinName_, "AddinName")
-            serializer.serializeProperty(helpPath_, "HelpFile")
-            serializer.serializeProperty(xmlPath_, "FunctionMetadata")
-            serializer.serializeProperty(userConfig_, "UserConfigurationFile")
-            serializer.serializeObject(startupActions_, "StartupActions")
-
-        End Sub
-
         ''''''''''''''''''''''''''''''''''''''''''
-        ' properties
+        ' Properties
         ''''''''''''''''''''''''''''''''''''''''''
 
         Public Property Name() As String Implements ISerializable.Name
@@ -80,17 +92,24 @@ Namespace QuantLibXL
 
         End Property
 
-        ''''''''''''''''''''''''''''''''''''''''''
-        ' properties - paths
-        ''''''''''''''''''''''''''''''''''''''''''
-
-        Public Property Framework() As String
+        Public Property FrameworkName() As String
             Get
-                Framework = framework_
+                FrameworkName = frameworkName_
             End Get
 
             Set(ByVal value As String)
-                framework_ = value
+                frameworkName_ = value
+            End Set
+
+        End Property
+
+        Public Property FrameworkVersion() As Integer
+            Get
+                FrameworkVersion = frameworkVersion_
+            End Get
+
+            Set(ByVal value As Integer)
+                frameworkVersion_ = value
             End Set
 
         End Property
@@ -107,35 +126,15 @@ Namespace QuantLibXL
 
         End Property
 
-        Public Property AddinDirectory() As String
+        Public Property AddinList() As String()
 
             Get
-                AddinDirectory = addinDir_
+                AddinList = addinList_
             End Get
 
-            Set(ByVal value As String)
-                addinDir_ = value
+            Set(ByVal value() As String)
+                addinList_ = value
             End Set
-
-        End Property
-
-        Public Property AddinName() As String
-
-            Get
-                AddinName = addinName_
-            End Get
-
-            Set(ByVal value As String)
-                addinName_ = value
-            End Set
-
-        End Property
-
-        Private ReadOnly Property AddinPath() As String
-
-            Get
-                AddinPath = addinDir_ & "\" & addinName_
-            End Get
 
         End Property
 
@@ -178,10 +177,55 @@ Namespace QuantLibXL
         Public ReadOnly Property CommandLine() As String
 
             Get
-                CommandLine = """" & EXCEL_PATH & """ /e """ & framework_ & """ """ & AddinPath & """"
+                CommandLine = """" & EXCEL_PATH & """ /e """ & frameworkName_ & """"
             End Get
 
         End Property
+
+        ''''''''''''''''''''''''''''''''''''''''''
+        ' Serializable interface
+        ''''''''''''''''''''''''''''''''''''''''''
+
+        ' serialize() - Write this object to the given serializer.
+        ' Version 6 supports a list of addin names.
+        ' Version 5 requires exactly one addin name, split into directory and file.
+
+        Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
+
+            serializer.serializeAttribute(name_, "name")
+            serializer.serializeProperty(frameworkName_, "Framework")
+            serializer.serializeProperty(frameworkVersion_, "FrameworkVersion")
+            serializer.serializeProperty(workbooks_, "Workbooks")
+            serializer.serializeProperty(helpPath_, "HelpFile")
+            serializer.serializeProperty(xmlPath_, "FunctionMetadata")
+            serializer.serializeProperty(userConfig_, "UserConfigurationFile")
+
+            If versionNumber = 5 Then
+
+                If addinList_.Length <> 1 Then
+
+                    Throw New Exception("Unable to process addin list for Framework version 5." _
+                        & " The addin list contains " & addinList_.Length & " items" _
+                        & " but version 5 of the Framework expects exactly one addin.")
+
+                End If
+
+                Dim addinFullName As String = addinList_(0)
+                Dim addinDirectory As String = System.IO.Path.GetDirectoryName(addinFullName)
+                Dim addinFile As String = System.IO.Path.GetFileName(addinFullName)
+
+                serializer.serializeProperty(addinDirectory, "AddinDirectory")
+                serializer.serializeProperty(addinFile, "AddinName")
+
+            Else
+
+                serializer.serializePropertyList(addinList_, "AddinList", "Addin")
+
+            End If
+
+            serializer.serializeObject(startupActions_, "StartupActions", versionNumber)
+
+        End Sub
 
         ''''''''''''''''''''''''''''''''''''''''''
         ' properties - startup actions
@@ -210,7 +254,7 @@ Namespace QuantLibXL
             Dim domainList As QuantLibXL.DomainList = Nothing
             Try
                 Dim xmlReader As New QuantLibXL.XmlReader(userConfig_, "Configuration")
-                xmlReader.serializeObject(domainList, "Domains")
+                xmlReader.serializeObject(domainList, "Domains", THIS_VERSION)
             Catch ex As Exception
                 Throw New Exception("Error processing configuration file " & userConfig_ & ":" _
                     & vbCrLf & vbCrLf & ex.Message)
@@ -254,9 +298,12 @@ Namespace QuantLibXL
             validateDirectory(helpPath_, "help file directory")
             validateDirectory(xmlPath_, "function metadata directory")
 
-            validateFile(framework_, "VBA framework file")
-            validateFile(AddinPath, "XLL addin file")
+            validateFile(frameworkName_, "VBA framework file")
             validateFile(userConfig_, "user configuration file")
+
+            For Each addin As String In addinList_
+                validateFile(addin, "XLL addin file")
+            Next
 
         End Sub
 
@@ -277,18 +324,24 @@ Namespace QuantLibXL
             ' and yyy is the current time in subseconds.
 
             Dim tempFilePath As String = System.IO.Path.GetTempPath() _
+                & "QuantLibXL Launcher\"
+
+            System.IO.Directory.CreateDirectory(tempFilePath)
+
+            tempFilePath = tempFilePath _
                 & "QuantLibXL.launch." & GetCurrentProcessId _
                 & "." & DateTime.Now.Ticks & ".xml"
 
             ' Write this environment object to the temp file.
 
             Dim xmlWriter As New QuantLibXL.XmlWriter(tempFilePath)
-            xmlWriter.serializeObject(Me, "Environment")
+            xmlWriter.serializeObject(Me, "Environment", frameworkVersion_)
             xmlWriter.close()
 
             ' Set the environment variable.
 
             System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH, tempFilePath)
+            System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH2, tempFilePath)
 
             ' Spawn the subprocess.
 
@@ -305,11 +358,16 @@ Namespace QuantLibXL
 
         Public Sub setDotNetParameters()
 
+            Dim addinDir As String
             If (ApplicationDeployment.IsNetworkDeployed) Then
-                addinDir_ = ApplicationDeployment.CurrentDeployment.DataDirectory & "\Addins\" & name_
+                addinDir = ApplicationDeployment.CurrentDeployment.DataDirectory & "\Addins\" & name_ & "\"
             Else
-                addinDir_ = configPath() & "\Addins\" & name_
+                addinDir = configPath() & "\Addins\" & name_ & "\"
             End If
+
+            For i As Long = 0 To UBound(addinList_)
+                addinList_(i) = addinDir & addinList_(i)
+            Next
 
         End Sub
 

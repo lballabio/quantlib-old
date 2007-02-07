@@ -73,22 +73,10 @@
     <Compile Include="Environments\EnvironmentList.vb" />
     <Compile Include="Environments\StartupActions.vb" />
     <Compile Include="Environments\StartupActionsList.vb" />
-    <Compile Include="Interface\FormAddinSelect.Designer.vb">
-      <DependentUpon>FormAddinSelect.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Interface\FormAddinSelect.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Interface\FormMain.Designer.vb">
       <DependentUpon>FormMain.vb</DependentUpon>
     </Compile>
     <Compile Include="Interface\FormMain.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Interface\FormNameEnvironment.Designer.vb">
-      <DependentUpon>FormNameEnvironment.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Interface\FormNameEnvironment.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -124,17 +112,9 @@
     <Compile Include="Utilities\Volume.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Interface\FormAddinSelect.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>FormAddinSelect.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Interface\FormMain.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FormMain.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Interface\FormNameEnvironment.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>FormNameEnvironment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -156,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Environments\config.xml" />
+    <Content Include="images\down.bmp" />
     <Content Include="images\favicon.ico" />
     <Content Include="Addins\03 Testing\QuantLibXL-vc80-mt-s-0_9_0.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -166,6 +147,7 @@
     <Content Include="Addins\01 Production\QuantLibXL-vc80-mt-s-0_4_0.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\up.bmp" />
     <Content Include="updateLauncherXlls.py" />
     <Content Include="Users\users.xml" />
     <None Include="images\rename.bmp" />

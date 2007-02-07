@@ -35,33 +35,44 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         Public Sub pushKey(ByVal keyName As String)
+
             keyStack_.Push(currentKey_)
             keyNameStack_.Push(currentKeyName_)
             currentKeyName_ = currentKeyName_ & "\" & keyName
             currentKey_ = currentKey_.CreateSubKey(keyName)
+
             If currentKey_ Is Nothing Then
                 Throw New Exception("unable to access registry key " & _
                     currentKeyName_)
             End If
+
         End Sub
 
         Protected Sub popKey()
+
             currentKey_ = keyStack_.Pop
             currentKeyName_ = keyNameStack_.Pop
+
         End Sub
 
         Public Sub deleteKey(ByVal keyName As String)
+
             currentKey_.DeleteSubKeyTree(keyName)
+
         End Sub
 
         Public Sub New()
+
             currentKey_ = Registry.CurrentUser.OpenSubKey("Software", True)
             If currentKey_ Is Nothing Then
                 Throw New Exception("unable to access registry key " & _
                 "HKEY_CURRENT_USER\Software")
             End If
+
             currentKeyName_ = "HKEY_CURRENT_USER\Software"
-            pushKey("QuantLibXL")
+            pushKey("QuantLibXL Launcher")
+            pushKey("LauncherVersion6")
+
         End Sub
 
     End Class

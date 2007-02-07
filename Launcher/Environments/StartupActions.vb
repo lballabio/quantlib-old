@@ -36,17 +36,20 @@ Namespace QuantLibXL
         Private loadBonds_ As Boolean
         Private staticData_ As Boolean
 
-        Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
+        Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
 
             serializer.serializeProperty(ycBootstrap_, "YieldCurveBootstrap")
             serializer.serializeProperty(loadMurexYC_, "LoadMurexYieldCurve")
             serializer.serializeProperty(capVolBootstrap_, "CapVolBootstrap")
-            serializer.serializeProperty(swapVolBootstrap_, "SwapVolBootstrap")
             serializer.serializeProperty(swapSmileBootstrap_, "SwapSmileBootstrap")
             serializer.serializeProperty(fitCMS_, "FitCMS")
             serializer.serializeProperty(indexesTimeSeries_, "IndexesTimeSeries")
             serializer.serializeProperty(loadBonds_, "LoadBonds")
             serializer.serializeProperty(staticData_, "StaticData")
+            If versionNumber = 5 Then
+                Dim dummyValue As Boolean = False
+                serializer.serializeProperty(dummyValue, "SwapVolBootstrap")
+            End If
 
         End Sub
 
@@ -102,18 +105,6 @@ Namespace QuantLibXL
 
             Set(ByVal value As Boolean)
                 capVolBootstrap_ = value
-            End Set
-
-        End Property
-
-        Public Property SwapVolBootstrap() As Boolean
-
-            Get
-                SwapVolBootstrap = swapVolBootstrap_
-            End Get
-
-            Set(ByVal value As Boolean)
-                swapVolBootstrap_ = value
             End Set
 
         End Property

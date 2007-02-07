@@ -88,6 +88,13 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property down() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("down", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property launch() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("launch", resourceCulture)
@@ -112,6 +119,13 @@ Namespace My.Resources
         Friend ReadOnly Property save() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("save", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property up() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("up", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

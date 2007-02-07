@@ -28,22 +28,40 @@ Namespace QuantLibXL
         Private rootKey_ As RegistryKey
         Private Const ROOT_KEY_NAME As String = "HKEY_CURRENT_USER\Software"
 
+        ''''''''''''''''''''''''''''''''''''''''''
+        ' public interface
+        ''''''''''''''''''''''''''''''''''''''''''
+
+        Public Sub New()
+
+            rootKey_ = Registry.CurrentUser.OpenSubKey("Software", True)
+            If rootKey_ Is Nothing Then
+                Throw New Exception("unable to access registry key " _
+                    & ROOT_KEY_NAME)
+            End If
+
+        End Sub
+
         Public Function keyExists(ByVal keyName As String) As Boolean
             keyExists = rootKey_.OpenSubKey(keyName, True) IsNot Nothing
         End Function
 
         Public Function valueExists(ByVal keyName As String, ByVal name As String) As Boolean
+
             Dim key As RegistryKey = rootKey_.OpenSubKey(keyName, True)
             If key Is Nothing Then Exit Function
+
             For Each testName As String In key.GetValueNames()
                 If name = testName Then
                     valueExists = True
                     Exit Function
                 End If
             Next
+
         End Function
 
         Public Function getValue(ByVal keyName As String, ByVal name As String) As String
+
             Dim key As RegistryKey = openKey(keyName)
             Try
                 getValue = key.GetValue(name)
@@ -52,17 +70,21 @@ Namespace QuantLibXL
                     & ROOT_KEY_NAME & keyName _
                     & """ - could not get value of child """ & name & """")
             End Try
+
         End Function
 
         Public Function createKey(ByVal keyName As String) As RegistryKey
+
             createKey = rootKey_.CreateSubKey(keyName)
             If createKey Is Nothing Then
                 Throw New Exception("unable to create registry key " & _
                     ROOT_KEY_NAME & keyName)
             End If
+
         End Function
 
         Public Sub setValue(ByVal keyName As String, ByVal name As String, ByVal value As Object)
+
             Dim key As RegistryKey = openKey(keyName)
             Try
                 key.SetValue(name, value)
@@ -72,28 +94,35 @@ Namespace QuantLibXL
                     & """ - could not set child """ & name _
                     & """ to value """ & value & """")
             End Try
+
         End Sub
 
         Public Sub deleteKey(ByVal keyName As String)
+
             rootKey_.DeleteSubKeyTree(keyName)
+
         End Sub
 
         Public Sub deleteValue(ByVal keyName As String, ByVal valueName As String)
+
             Dim key As RegistryKey = openKey(keyName)
             key.DeleteValue(valueName)
+
         End Sub
 
         Public Sub moveValue(ByVal sourceKeyName As String, ByVal targetKeyName As String, ByVal valueName As String)
+
             Dim sourceKey As RegistryKey = openKey(sourceKeyName)
             Dim targetKey As RegistryKey = createKey(targetKeyName)
             Dim value As String
             value = sourceKey.GetValue(valueName)
             targetKey.SetValue(valueName, value)
             sourceKey.DeleteValue(valueName)
+
         End Sub
 
         Public Sub moveKey(ByVal sourceKeyName As String, ByVal targetKeyName As String)
-            createKey(targetKeyName)
+
             Dim sourceKey As RegistryKey = openKey(sourceKeyName)
             Dim targetKey As RegistryKey = createKey(targetKeyName)
             For Each subKeyName As String In sourceKey.GetSubKeyNames()
@@ -106,14 +135,37 @@ Namespace QuantLibXL
                 Next
             Next
             deleteKey(sourceKeyName)
+
+        End Sub
+
+        Public Sub copyKey(ByVal sourceKeyName As String, ByVal targetKeyName As String)
+
+            Dim sourceKey As RegistryKey = openKey(sourceKeyName)
+            Dim targetKey As RegistryKey = createKey(targetKeyName)
+
+            Dim value As String
+            For Each name As String In sourceKey.GetValueNames
+                value = sourceKey.GetValue(name)
+                targetKey.SetValue(name, value)
+            Next
+
+            For Each subKeyName As String In sourceKey.GetSubKeyNames()
+                Dim sourceKeyName2 As String = sourceKeyName & "\" & subKeyName
+                Dim targetKeyName2 As String = targetKeyName & "\" & subKeyName
+                copyKey(sourceKeyName2, targetKeyName2)
+            Next
+
         End Sub
 
         Public Function subKeyNames(ByVal keyName As String) As String()
+
             Dim key As RegistryKey = openKey(keyName)
             subKeyNames = key.GetSubKeyNames()
+
         End Function
 
         Public Sub renameValue(ByVal keyName As String, ByVal oldValName As String, ByVal newValName As String)
+
             Dim key As RegistryKey = openKey(keyName)
             Try
                 Dim value As Object = key.GetValue(oldValName)
@@ -125,23 +177,22 @@ Namespace QuantLibXL
                     & """ - could not rename value from """ & oldValName _
                     & """ to value """ & newValName & """")
             End Try
+
         End Sub
 
+        ''''''''''''''''''''''''''''''''''''''''''
+        ' private utilities
+        ''''''''''''''''''''''''''''''''''''''''''
+
         Private Function openKey(ByVal keyName As String) As RegistryKey
+
             openKey = rootKey_.OpenSubKey(keyName, True)
             If openKey Is Nothing Then
                 Throw New Exception("unable to open registry key " & _
-                    ROOT_KEY_NAME & keyName)
+                    ROOT_KEY_NAME & "\" & keyName)
             End If
-        End Function
 
-        Public Sub New()
-            rootKey_ = Registry.CurrentUser.OpenSubKey("Software", True)
-            If rootKey_ Is Nothing Then
-                Throw New Exception("unable to access registry key " _
-                    & ROOT_KEY_NAME)
-            End If
-        End Sub
+        End Function
 
     End Class
 

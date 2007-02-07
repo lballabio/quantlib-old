@@ -20,7 +20,7 @@ Imports System.Deployment.Application
 Public Class FormMain
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' private members
+    ' Private members
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private config_ As QuantLibXL.Configuration
@@ -34,7 +34,7 @@ Public Class FormMain
     Private Const USERCONFIGURED As String = "UserConfigured"
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' properties
+    ' Properties
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Property SelectedEnvironment() As QuantLibXL.Environment
@@ -60,7 +60,7 @@ Public Class FormMain
     End Property
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' initialization
+    ' Initialization
     ''''''''''''''''''''''''''''''''''''''''''
 
     Public Sub New()
@@ -70,26 +70,33 @@ Public Class FormMain
         InitializeComponent()
 
         Try
+
             Upgrade.run()
             initializeConfig()
             overrideActions()
             initializeLists()
+            selectEnvironment()
+
         Catch ex As Exception
+
             MsgBox(ex.Message, MsgBoxStyle.OkOnly + MsgBoxStyle.Critical, _
                 "QuantLibXL Fatal Error")
             Environment.Exit(1)
+
         End Try
 
     End Sub
 
     Private Sub initializeLists()
+
         For Each environment As QuantLibXL.Environment In envPreconfigured_.Environments
             lstPreconfigured.Items.Add(environment.Name)
         Next
+
         For Each environment As QuantLibXL.Environment In envUserconfigured_.Environments
             lstUserconfigured.Items.Add(environment.Name)
         Next
-        selectEnvironment()
+
     End Sub
 
     Private Sub selectEnvironment()
@@ -112,7 +119,7 @@ Public Class FormMain
                 End If
             End If
 
-            ' if none of the above worked then try for a safe option
+            ' If none of the above worked then try for a safe option
 
             If lstPreconfigured.Items.Count >= 1 Then
                 lstPreconfigured.SelectedIndex = 0
@@ -164,7 +171,7 @@ Public Class FormMain
 
         Try
             Dim xmlReader As New QuantLibXL.XmlReader(configPath, "Configuration")
-            xmlReader.serializeObject(envPreconfigured_, "Environments")
+            xmlReader.serializeObject(envPreconfigured_, "Environments", THIS_VERSION)
         Catch ex As Exception
             Throw New Exception("Error processing configuration file " & configPath & ":" _
                 & vbCrLf & vbCrLf & ex.Message)
@@ -184,8 +191,8 @@ Public Class FormMain
 
         Try
             Dim registryReader As New QuantLibXL.RegistryReader()
-            registryReader.serializeObject(config_, "Configuration")
-            registryReader.serializeObject(envUserconfigured_, "Environments")
+            registryReader.serializeObject(config_, "Configuration", THIS_VERSION)
+            registryReader.serializeObject(envUserconfigured_, "Environments", THIS_VERSION)
         Catch ex As Exception
             Throw New Exception("Error accessing the Windows registry:" _
                  & vbCrLf & vbCrLf & ex.Message)
@@ -217,7 +224,7 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' events - main form
+    ' Events - main form
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
@@ -230,9 +237,9 @@ Public Class FormMain
 
             Dim registryWriter As New QuantLibXL.RegistryWriter()
             registryWriter.deleteKey("Configuration")
-            registryWriter.serializeObject(config_, "Configuration")
+            registryWriter.serializeObject(config_, "Configuration", THIS_VERSION)
             registryWriter.deleteKey("Environments")
-            registryWriter.serializeObject(envUserconfigured_, "Environments")
+            registryWriter.serializeObject(envUserconfigured_, "Environments", THIS_VERSION)
         Catch ex As Exception
             MsgBox("Error while closing launcher:" & vbCrLf & vbCrLf & ex.Message, _
                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
@@ -243,22 +250,30 @@ Public Class FormMain
     End Sub
 
     Private Sub btnLaunch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLaunch.Click
+
         Try
+
             SelectedEnvironment.launch()
+
         Catch ex As Exception
+
             MsgBox("Error on launch command:" _
-                 & vbcrlf & vbcrlf & ex.Message, _
+                 & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' events - environment - lists
+    ' Events - environment - lists
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub lstPreconfigured_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstPreconfigured.SelectedIndexChanged
+
         Try
+
             If lstPreconfigured.SelectedIndex = -1 Then Exit Sub
             If processingEvents_ Then
                 processingEvents_ = False
@@ -269,16 +284,22 @@ Public Class FormMain
                 config_.SelectedEnvConfig = PRECONFIGURED
                 config_.SelectedEnvName = lstPreconfigured.Text
             End If
+
         Catch ex As Exception
+
             MsgBox("Error processing environment selection:" _
-                 & vbcrlf & vbcrlf & ex.Message, _
+                 & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     Private Sub lstUserconfigured_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstUserconfigured.SelectedIndexChanged
+
         Try
+
             If lstUserconfigured.SelectedIndex = -1 Then Exit Sub
             If processingEvents_ Then
                 processingEvents_ = False
@@ -289,117 +310,164 @@ Public Class FormMain
                 config_.SelectedEnvConfig = USERCONFIGURED
                 config_.SelectedEnvName = lstUserconfigured.Text
             End If
+
         Catch ex As Exception
+
             MsgBox("Error processing environment selection:" _
-                 & vbcrlf & vbcrlf & ex.Message, _
+                 & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' events - environment - buttons
+    ' Events - environment - buttons
     ''''''''''''''''''''''''''''''''''''''''''
 
-    Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
-        Try
-            Dim text As String = envUserconfigured_.deriveNewName()
-            Dim frm As New FormNameEnvironment(envUserconfigured_, text)
-            If frm.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                SelectedEnvironment = envUserconfigured_.createEnvironment(frm.NewEnvironmentName)
-                Dim newIndex As Integer = lstUserconfigured.Items.Add(frm.NewEnvironmentName)
-                lstUserconfigured.SelectedIndex = newIndex
+    Private Function inputEnvironmentName(ByVal initialValue As String) As String
+
+        inputEnvironmentName = initialValue
+        Dim invalidEntry As Boolean = True
+        While invalidEntry
+            inputEnvironmentName = InputBox("Edit Environment Name:", _
+                "Environment Name", inputEnvironmentName)
+            If Len(inputEnvironmentName) < 1 Then Exit Function
+            invalidEntry = envUserconfigured_.nameInUse(inputEnvironmentName)
+            If invalidEntry Then
+                MsgBox("The name '" & inputEnvironmentName & "' is already in use - " _
+                & "please enter a different name.")
             End If
+        End While
+
+    End Function
+
+    Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
+
+        Try
+
+            Dim newName As String = inputEnvironmentName(envUserconfigured_.deriveNewName())
+            If Len(newName) < 1 Then Exit Sub
+
+            SelectedEnvironment = envUserconfigured_.createEnvironment(newName)
+            Dim newIndex As Integer = lstUserconfigured.Items.Add(newName)
+            lstUserconfigured.SelectedIndex = newIndex
+
         Catch ex As Exception
+
             MsgBox("Error creating new environment:" _
-                 & vbcrlf & vbcrlf & ex.Message, _
+                 & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     Private Sub btnCopy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCopy.Click
+
         Try
-            Dim text As String = envUserconfigured_.deriveCopyName(SelectedEnvironment.Name)
-            Dim frm As New FormNameEnvironment(envUserconfigured_, text)
-            If frm.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                SelectedEnvironment = envUserconfigured_.copyEnvironment(SelectedEnvironment, frm.NewEnvironmentName)
-                Dim newIndex As Integer = lstUserconfigured.Items.Add(frm.NewEnvironmentName)
-                lstUserconfigured.SelectedIndex = newIndex
-            End If
+
+            Dim newName As String = inputEnvironmentName(envUserconfigured_.deriveCopyName(SelectedEnvironment.Name))
+            If Len(newName) < 1 Then Exit Sub
+
+            SelectedEnvironment = envUserconfigured_.copyEnvironment(SelectedEnvironment, newName)
+            Dim newIndex As Integer = lstUserconfigured.Items.Add(newName)
+            lstUserconfigured.SelectedIndex = newIndex
+
         Catch ex As Exception
+
             MsgBox("Error copying environment:" _
-                 & vbcrlf & vbcrlf & ex.Message, _
+                 & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click
+
         Try
+
             If lstUserconfigured.SelectedIndex = -1 Then
                 MsgBox("No environment selected", _
                     MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                     "QuantLibXL Error")
                 Exit Sub
             End If
+
             envUserconfigured_.deleteEnvironment(lstUserconfigured.Text)
-            Dim deletedIndex As Long = lstUserconfigured.SelectedIndex
+            Dim deletedIndex As Integer = lstUserconfigured.SelectedIndex
             lstUserconfigured.Items.RemoveAt(lstUserconfigured.SelectedIndex)
-            If lstUserconfigured.Items.Count Then
-                If deletedIndex Then
-                    lstUserconfigured.SelectedIndex = deletedIndex - 1
-                Else
-                    lstUserconfigured.SelectedIndex = deletedIndex
-                End If
+
+            If lstUserconfigured.Items.Count > 0 Then
+                lstUserconfigured.SelectedIndex = Math.Min(deletedIndex, lstUserconfigured.Items.Count - 1)
             Else
                 lstPreconfigured.SelectedIndex = 0
             End If
+
         Catch ex As Exception
+
             MsgBox("Error deleting environment:" _
-                 & vbcrlf & vbcrlf & ex.Message, _
+                 & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     Private Sub btnClear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClear.Click
+
         Try
+
             clear()
+
         Catch ex As Exception
+
             MsgBox("Error clearing environment:" _
-                 & vbcrlf & vbcrlf & ex.Message, _
+                 & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     Private Sub btnRename_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRename.Click
+
         If lstUserconfigured.SelectedIndex = -1 Then Exit Sub
+
         Try
-            Dim text As String = SelectedEnvironment.Name
-            Dim frm As New FormNameEnvironment(envUserconfigured_, text)
-            If frm.ShowDialog() = System.Windows.Forms.DialogResult.OK _
-            And frm.ValueChanged Then
-                envUserconfigured_.renameEnvironment(text, frm.NewEnvironmentName)
-                SelectedEnvironment.Name = frm.NewEnvironmentName
-                config_.SelectedEnvName = frm.NewEnvironmentName
-                processingEvents_ = False
-                lstUserconfigured.Items.Remove(text)
-                Dim newIndex As Integer = lstUserconfigured.Items.Add(frm.NewEnvironmentName)
-                lstUserconfigured.SelectedIndex = newIndex
-                processingEvents_ = True
-            End If
+
+            Dim oldName As String = SelectedEnvironment.Name
+            Dim newName As String = inputEnvironmentName(oldName)
+            If Len(newName) < 1 Or newName = oldName Then Exit Sub
+
+            envUserconfigured_.renameEnvironment(oldName, newName)
+            SelectedEnvironment.Name = newName
+            config_.SelectedEnvName = newName
+            processingEvents_ = False
+            lstUserconfigured.Items.Remove(oldName)
+            Dim newIndex As Integer = lstUserconfigured.Items.Add(newName)
+            lstUserconfigured.SelectedIndex = newIndex
+            processingEvents_ = True
+
         Catch ex As Exception
+
             MsgBox("Error renaming environment:" _
-                 & vbcrlf & vbcrlf & ex.Message, _
+                 & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
+
         End Try
+
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' events - startup actions
+    ' Events - startup actions
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub cbYCBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbYCBootstrap.CheckedChanged
@@ -412,10 +480,6 @@ Public Class FormMain
 
     Private Sub cbCapVolBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCapVolBootstrap.CheckedChanged
         SelectedEnvironment.StartupActions.CapVolBootstrap = cbCapVolBootstrap.Checked
-    End Sub
-
-    Private Sub cbSwapVolBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSwapVolBootstrap.CheckedChanged
-        SelectedEnvironment.StartupActions.SwapVolBootstrap = cbSwapVolBootstrap.Checked
     End Sub
 
     Private Sub cbSwapSmileBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSwapSmileBootstrap.CheckedChanged
@@ -439,11 +503,13 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' events - path - buttons
+    ' Events - path - buttons
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Function deriveDefaultDir(ByVal testPath As String, ByVal subDir As String) As String
+
         Try
+
             If dirExists(testPath) Then
                 deriveDefaultDir = testPath
             ElseIf dirExists(qlxlDir_ & "\" & subDir) Then
@@ -452,13 +518,19 @@ Public Class FormMain
                 deriveDefaultDir = ""
             End If
             Exit Function
+
         Catch ex As Exception
+
             deriveDefaultDir = ""
+
         End Try
+
     End Function
 
     Private Function deriveDefaultFile(ByVal testFile As String, ByVal relativePath As String) As String
+
         Try
+
             If fileExists(testFile) Then
                 deriveDefaultFile = testFile
             ElseIf dirExists(qlxlDir_ & "\" & relativePath) Then
@@ -467,9 +539,13 @@ Public Class FormMain
                 deriveDefaultFile = ""
             End If
             Exit Function
+
         Catch ex As Exception
+
             deriveDefaultFile = ""
+
         End Try
+
     End Function
 
     Private Sub btnFrameworkSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFrameworkSelect.Click
@@ -511,52 +587,6 @@ Public Class FormMain
         Catch ex As Exception
 
             MsgBox("Error processing workbooks path:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
-
-        End Try
-
-    End Sub
-
-    Private Sub btnAddinDirSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinDirSelect.Click
-
-        Try
-
-            Dim dlg As New OpenFileDialog()
-            dlg.InitialDirectory = deriveDefaultDir(txtAddinDir.Text, "xll")
-            dlg.Filter = "Excel XLL Addins (*.xll)|*.xll"
-            dlg.Title = "Select QuantLibXL Addin Directory and Name"
-            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                txtAddinDir.Text = System.IO.Path.GetDirectoryName(dlg.FileName)
-                txtAddinName.Text = System.IO.Path.GetFileName(dlg.FileName)
-            End If
-
-        Catch ex As Exception
-
-            MsgBox("Error processing addin path:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
-
-        End Try
-
-    End Sub
-
-    Private Sub btnAddinSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinNameSelect.Click
-
-        Try
-
-            Dim formAddinSelect As New FormAddinSelect
-            formAddinSelect.AddinName = txtAddinName.Text
-            If formAddinSelect.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                txtAddinName.Text = formAddinSelect.AddinName
-                SelectedEnvironment.AddinName = formAddinSelect.AddinName
-            End If
-
-        Catch ex As Exception
-
-            MsgBox("Error processing addin path:" _
                  & vbCrLf & vbCrLf & ex.Message, _
                  MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
                 "QuantLibXL Error")
@@ -640,23 +670,15 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' events - path - text
+    ' Events - path - text
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub txtFramework_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFramework.TextChanged
-        SelectedEnvironment.Framework = txtFramework.Text
+        SelectedEnvironment.FrameworkName = txtFramework.Text
     End Sub
 
     Private Sub txtWorkbooks_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtWorkbooks.TextChanged
         SelectedEnvironment.Workbooks = txtWorkbooks.Text
-    End Sub
-
-    Private Sub txtAddinDir_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtAddinDir.TextChanged
-        SelectedEnvironment.AddinDirectory = txtAddinDir.Text
-    End Sub
-
-    Private Sub txtAddinName_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtAddinName.TextChanged
-        SelectedEnvironment.AddinName = txtAddinName.Text
     End Sub
 
     Private Sub txtHelpFile_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtHelpPath.TextChanged
@@ -672,51 +694,221 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' private functions
+    ' Events - environment properties
+    ''''''''''''''''''''''''''''''''''''''''''
+
+    Private Sub mskFrameworkVersion_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mskFrameworkVersion.TextChanged
+
+        If Len(mskFrameworkVersion.Text) > 0 Then
+            SelectedEnvironment.FrameworkVersion = CInt(mskFrameworkVersion.Text)
+        Else
+            SelectedEnvironment.FrameworkVersion = 0
+        End If
+
+    End Sub
+
+    ''''''''''''''''''''''''''''''''''''''''''
+    ' Events - addins
+    ''''''''''''''''''''''''''''''''''''''''''
+
+    ' Sub enableAddinButtons() - Based on the current selection,
+    ' enable or disable the following buttons: Delete, Rename, Up, Down
+
+    Private Sub enableAddinButtons()
+
+        If lbAddins.SelectedIndex = -1 Then
+            ' Nothing selected - disable all buttons
+            btnAddinDelete.Enabled = False
+            btnAddinRename.Enabled = False
+            btnAddinUp.Enabled = False
+            btnAddinDown.Enabled = False
+            Exit Sub
+        End If
+
+        ' Something is selected, so enable Delete/Rename
+        btnAddinDelete.Enabled = True
+        btnAddinRename.Enabled = True
+
+        If lbAddins.Items.Count <= 1 Then
+            ' Only one item in list - disable Up/Down
+            btnAddinUp.Enabled = False
+            btnAddinDown.Enabled = False
+            Exit Sub
+        End If
+
+        If lbAddins.SelectedIndex = 0 Then
+            ' Top item selected - disable Up, enable Down
+            btnAddinUp.Enabled = False
+            btnAddinDown.Enabled = True
+        ElseIf lbAddins.SelectedIndex = (lbAddins.Items.Count - 1) Then
+            ' Bottom item selected - enable Up, disable Down
+            btnAddinUp.Enabled = True
+            btnAddinDown.Enabled = False
+        Else
+            ' Middle item selected - enable Up & Down
+            btnAddinUp.Enabled = True
+            btnAddinDown.Enabled = True
+        End If
+
+    End Sub
+
+    Private Sub synchAddinList()
+
+        Dim addinList(lbAddins.Items.Count - 1) As String
+        Dim i As Integer = 0
+        For Each item As String In lbAddins.Items
+            addinList(i) = item
+            i = i + 1
+        Next
+        SelectedEnvironment.AddinList = addinList
+
+    End Sub
+
+    Private Sub lbAddins_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbAddins.SelectedIndexChanged
+
+        Call enableAddinButtons()
+        Call synchAddinList()
+
+    End Sub
+
+    Private Sub btnAddinInsert_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinInsert.Click
+
+        If lbAddins.Items.Count >= QuantLibXL.Environment.MAX_ADDIN_COUNT Then
+            Throw New Exception("You cannot insert another addin into the list" _
+             & " because the list currently contains " & lbAddins.Items.Count _
+             & " items and the maximum supported by the launcher is " _
+             & QuantLibXL.Environment.MAX_ADDIN_COUNT & ".")
+        End If
+
+        Dim dlg As New OpenFileDialog()
+        dlg.InitialDirectory = deriveDefaultFile(lbAddins.SelectedValue, "addin")
+        dlg.FileName = ""
+        dlg.Filter = "Excel XLL Addins (*.xll)|*.xll"
+        dlg.Title = "Select Addin"
+
+        If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            If lbAddins.SelectedIndex = -1 Then
+                lbAddins.Items.Add(dlg.FileName)
+            Else
+                lbAddins.Items.Insert(lbAddins.SelectedIndex, dlg.FileName)
+            End If
+            Call enableAddinButtons()
+            Call synchAddinList()
+        End If
+
+    End Sub
+
+    Private Sub btnAddinRename_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinRename.Click
+
+        Dim newName As String = InputBox("Edit Addin name:", _
+            "Edit Addin Name", lbAddins.SelectedItem)
+        If Len(newName) > 0 Then
+            lbAddins.Items(lbAddins.SelectedIndex) = newName
+        End If
+
+    End Sub
+
+    Private Sub btnAddinDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinDelete.Click
+
+        If lbAddins.SelectedIndex = -1 Then Exit Sub
+        Dim i As Integer = lbAddins.SelectedIndex
+        lbAddins.Items.RemoveAt(i)
+        lbAddins.SelectedIndex = Math.Min(i, lbAddins.Items.Count - 1)
+        Call enableAddinButtons()
+        Call synchAddinList()
+
+    End Sub
+
+    Private Sub btnAddinUp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinUp.Click
+
+        If lbAddins.Items.Count <= 1 Then Exit Sub
+        If lbAddins.SelectedIndex < 1 Then Exit Sub
+        Dim o As Object = lbAddins.SelectedItem
+        Dim i As Integer = lbAddins.SelectedIndex
+        lbAddins.Items.RemoveAt(i)
+        lbAddins.Items.Insert(i - 1, o)
+        lbAddins.SelectedIndex = i - 1
+
+    End Sub
+
+    Private Sub btnAddinDown_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinDown.Click
+
+        If lbAddins.SelectedIndex = -1 Then Exit Sub
+        If lbAddins.Items.Count <= 1 Then Exit Sub
+        If lbAddins.SelectedIndex = (lbAddins.Items.Count - 1) Then Exit Sub
+        Dim o As Object = lbAddins.SelectedItem
+        Dim i As Integer = lbAddins.SelectedIndex
+        lbAddins.Items.RemoveAt(i)
+        lbAddins.Items.Insert(i + 1, o)
+        lbAddins.SelectedIndex = i + 1
+
+    End Sub
+
+    ''''''''''''''''''''''''''''''''''''''''''
+    ' Private functions
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub setEnabled(ByVal enabled As Boolean)
 
+        ' Environments
         btnDelete.Enabled = enabled
         btnClear.Enabled = enabled
         btnRename.Enabled = enabled
+
+        ' Paths - text boxes
         btnFrameworkSelect.Enabled = enabled
         btnWorkbooks.Enabled = enabled
-        btnAddinDirSelect.Enabled = enabled
-        btnAddinNameSelect.Enabled = enabled
         btnHelpFile.Enabled = enabled
         btnXmlPath.Enabled = enabled
         btnUserConfig.Enabled = enabled
 
+        ' Paths - buttons
         txtFramework.Enabled = enabled
         txtWorkbooks.Enabled = enabled
-        txtAddinDir.Enabled = enabled
-        txtAddinName.Enabled = enabled
         txtHelpPath.Enabled = enabled
         txtXmlPath.Enabled = enabled
         txtUserConfig.Enabled = enabled
+
+        ' Environment properties
+        mskFrameworkVersion.Enabled = enabled
+
+        ' Addins
+        lbAddins.Enabled = enabled
+        btnAddinInsert.Enabled = enabled
+        If enabled Then
+            Call enableAddinButtons()
+        Else
+            btnAddinUp.Enabled = False
+            btnAddinDown.Enabled = False
+            btnAddinDelete.Enabled = False
+            btnAddinRename.Enabled = False
+        End If
 
     End Sub
 
     Private Sub clear()
 
+        ' Paths - text boxes
         txtFramework.Clear()
         txtWorkbooks.Clear()
-        txtAddinDir.Clear()
-        txtAddinName.Clear()
         txtHelpPath.Clear()
         txtXmlPath.Clear()
         txtUserConfig.Clear()
 
+        ' Startup actions
         cbYCBootstrap.Checked = False
         cbLoadMurexYC.Checked = False
         cbCapVolBootstrap.Checked = False
-        cbSwapVolBootstrap.Checked = False
         cbSwapSmileBootstrap.Checked = False
         cbFitCMS.Checked = False
         cbIndexesTimeSeries.Checked = False
         cbLoadBonds.Checked = False
         cbStaticData.Checked = False
+
+        ' Environment properties
+        mskFrameworkVersion.Clear()
+
+        ' Addins
 
     End Sub
 
@@ -725,23 +917,35 @@ Public Class FormMain
 
     Private Sub resetControls()
 
-        txtFramework.Text = SelectedEnvironment.Framework
+        ' Paths - text boxes
+        txtFramework.Text = SelectedEnvironment.FrameworkName
         txtWorkbooks.Text = SelectedEnvironment.Workbooks
-        txtAddinDir.Text = SelectedEnvironment.AddinDirectory
-        txtAddinName.Text = SelectedEnvironment.AddinName
         txtHelpPath.Text = SelectedEnvironment.HelpPath
         txtXmlPath.Text = SelectedEnvironment.XmlPath
         txtUserConfig.Text = SelectedEnvironment.UserConfig
 
+        ' Startup actions
         cbYCBootstrap.Checked = SelectedEnvironment.StartupActions.YieldCurveBootstrap
         cbLoadMurexYC.Checked = SelectedEnvironment.StartupActions.LoadMurexYieldCurve
         cbCapVolBootstrap.Checked = SelectedEnvironment.StartupActions.CapVolBootstrap
-        cbSwapVolBootstrap.Checked = SelectedEnvironment.StartupActions.SwapVolBootstrap
         cbSwapSmileBootstrap.Checked = SelectedEnvironment.StartupActions.SwapSmileBootstrap
         cbFitCMS.Checked = SelectedEnvironment.StartupActions.FitCMS
         cbIndexesTimeSeries.Checked = SelectedEnvironment.StartupActions.IndexesTimeSeries
         cbLoadBonds.Checked = SelectedEnvironment.StartupActions.LoadBonds
         cbStaticData.Checked = SelectedEnvironment.StartupActions.StaticData
+
+        ' Environment properties
+        mskFrameworkVersion.Text = CStr(SelectedEnvironment.FrameworkVersion)
+
+        ' Addins
+        lbAddins.Items.Clear()
+        If SelectedEnvironment.AddinList.Length > 0 Then
+            For i As Integer = 0 To UBound(SelectedEnvironment.AddinList)
+                lbAddins.Items.Add(SelectedEnvironment.AddinList(i))
+            Next
+        End If
+
+        Call enableAddinButtons()
 
     End Sub
 

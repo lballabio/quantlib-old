@@ -18,11 +18,11 @@ Namespace QuantLibXL
 
     Public Interface ISerializer
 
-        Sub serializeObject(ByRef serializable As ISerializable, ByVal className As String)
-        Sub serializeObjectCollection(ByRef serializableList As Collection, ByVal className As String)
+        Sub serializeObject(ByRef serializable As ISerializable, ByVal className As String, ByVal versionNumber As Integer)
+        Sub serializeObjectCollection(ByRef serializableList As Collection, ByVal className As String, ByVal versionNumber As Integer)
         Sub serializeAttribute(ByRef attr As String, ByVal tag As String)
+        Sub serializePropertyList(ByRef attr() As String, ByVal listTag As String, ByVal itemTag As String)
         Overloads Sub serializeProperty(ByRef prop As String, ByVal tag As String)
-        Overloads Sub serializeProperty(ByRef prop As String(), ByVal tag As String)
         Overloads Sub serializeProperty(ByRef prop As Boolean, ByVal tag As String)
         Overloads Sub serializeProperty(ByRef prop As Integer, ByVal tag As String)
         Sub close()

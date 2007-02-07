@@ -21,7 +21,7 @@ Namespace QuantLibXL
 
         Private selectedEnvConfig_ As String = ""
         Private selectedEnvName_ As String = ""
-        Private version_ As Integer
+        'Private version_ As Integer
         Private overrideActions_ As QuantLibXL.StartupActionsList
 
         Public Property Name() As String Implements ISerializable.Name
@@ -70,12 +70,11 @@ Namespace QuantLibXL
 
         End Property
 
-        Public Sub serialize(ByRef serializer As ISerializer) Implements ISerializable.serialize
+        Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
 
             serializer.serializeProperty(selectedEnvConfig_, "SelectedEnvConfig")
             serializer.serializeProperty(selectedEnvName_, "SelectedEnvName")
-            serializer.serializeProperty(version_, "Version")
-            serializer.serializeObject(overrideActions_, "StartupActionsList")
+            serializer.serializeObject(overrideActions_, "StartupActionsList", versionNumber)
 
         End Sub
 
