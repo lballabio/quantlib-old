@@ -303,7 +303,7 @@
         </Constructor>
 
         <Constructor name='qlStickyPayoff'>
-            <libraryFunction>RatchetPayoff</libraryFunction>
+            <libraryFunction>StickyPayoff</libraryFunction>
             <SupportedPlatforms>
                 <Excel calcInWizard='false' />
                 <C/>
