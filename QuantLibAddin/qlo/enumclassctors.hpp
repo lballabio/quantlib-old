@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2007 Katiuscia Manzoni
  Copyright (C) 2006 Marco Bianchetti
  Copyright (C) 2006 Giorgio Facchinetti
  Copyright (C) 2006 Eric Ehlers
@@ -275,7 +276,23 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXA_20Y();
     boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXA_25Y();
     boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXA_30Y();
-   /* *** EurliborSwapFixA *** */
+    /* *** EuriborSwapFixB *** */
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_1Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_2Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_3Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_4Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_5Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_6Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_7Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_8Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_9Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_10Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_12Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_15Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_20Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_25Y();
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_30Y();
+    /* *** EurliborSwapFixA *** */
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXA_1Y();
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXA_2Y();
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXA_3Y();

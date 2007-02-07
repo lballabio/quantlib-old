@@ -758,6 +758,82 @@ namespace QuantLibAddin {
             new QuantLib::EuriborSwapFixA30Y(
                 EuriborHandle::instance().handleYieldTermStructure()));
     }
+    /* *** EuriborSwapFixB *** */
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_1Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB1Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_2Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB2Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_3Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB3Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_4Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB4Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_5Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB5Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_6Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB6Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_7Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB7Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_8Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB8Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_9Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB9Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_10Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB10Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_12Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB12Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_15Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB15Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_20Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB20Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_25Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB25Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
+    boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXB_30Y() {
+        return boost::shared_ptr<QuantLib::Index>(
+            new QuantLib::EuriborSwapFixB30Y(
+                EuriborHandle::instance().handleYieldTermStructure()));
+    }
     /* *** EurliborSwapFixA *** */
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXA_1Y() {
         return boost::shared_ptr<QuantLib::Index>(

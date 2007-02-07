@@ -788,6 +788,82 @@
           <value>EURIBORSWAPFIXA_30Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA30Y</libraryClass>
         </EnumerationDefinition>
+        <!-- QuantLib::EuriborSwapFixB -->
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB1Y</string>
+          <value>EURIBORSWAPFIXB_1Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB1Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB2Y</string>
+          <value>EURIBORSWAPFIXB_2Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB2Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB3Y</string>
+          <value>EURIBORSWAPFIXB_3Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB3Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB4Y</string>
+          <value>EURIBORSWAPFIXB_4Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB4Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB5Y</string>
+          <value>EURIBORSWAPFIXB_5Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB5Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB6Y</string>
+          <value>EURIBORSWAPFIXB_6Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB6Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB7Y</string>
+          <value>EURIBORSWAPFIXB_7Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB7Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB8Y</string>
+          <value>EURIBORSWAPFIXB_8Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB8Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB9Y</string>
+          <value>EURIBORSWAPFIXB_9Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB9Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB10Y</string>
+          <value>EURIBORSWAPFIXB_10Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB10Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB12Y</string>
+          <value>EURIBORSWAPFIXB_12Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB12Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB15Y</string>
+          <value>EURIBORSWAPFIXB_15Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB15Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB20Y</string>
+          <value>EURIBORSWAPFIXB_20Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB20Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB25Y</string>
+          <value>EURIBORSWAPFIXB_25Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB25Y</libraryClass>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>EuriborSwapFixB30Y</string>
+          <value>EURIBORSWAPFIXB_30Y</value>
+          <libraryClass>QuantLib::EuriborSwapFixB30Y</libraryClass>
+        </EnumerationDefinition>
         <!-- QuantLib::EurliborSwapFixA -->
         <EnumerationDefinition>
           <string>EurliborSwapFixA1Y</string>
