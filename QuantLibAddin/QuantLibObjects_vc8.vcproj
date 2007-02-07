@@ -822,6 +822,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\stickyratchet.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\stickyratchet.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\swap.cpp"
 				>
 			</File>
