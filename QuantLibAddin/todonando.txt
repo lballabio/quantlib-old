@@ -56,21 +56,23 @@ Nando
 
 K
 - SA applied to cms book
-- DONE update end of day procedures: calibarionParametersQuotesFeed.xls added
-- test abcd (swap tenor) with new optimization code
-- DONE: waiting for atmCalibrated=True. review SwaptionVolCubeChecks.xls
-- trimestrale
-- DONE triggers added in bondMonitor.xls (performance problems)
-- murex yield curve
-- euriborswapfixB
-- DONE move calibration params out from CP.xls
 - multiLegSwap.xls: move from Drafts to IRDerivatives
 - quickCapPricer.xls: move from Drafts to IRDerivatives
-- remove action atmVolatility from Launcher/menu
+- remove action atmVolatility from Launcher
 - standardizzare il nome delle quotes dei param di calibrazione
 - scrivere manuale applicativo Launcher
+- demo per HelpDesk e ChangeMan
+Pending:
 - rilascio di 02 a 01
-
+- trimestrale
+- murex yield curve
+- DONE update end of day procedures: calibarionParametersQuotesFeed.xls added
+- DONE waiting for atmCalibrated=True. review SwaptionVolCubeChecks.xls
+- DONE triggers added in bondMonitor.xls (performance problems)
+- DONE euriborswapfixB
+- DONE move calibration params out from CP.xls
+- DONE remove action atmVolatility from menu
+- DONE test abcd (swap tenor) with new optimization code
 
 François
 - add SABR interpolation to the capstripper
