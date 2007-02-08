@@ -93,7 +93,7 @@ Namespace QuantLibXL
 
         Public Function copyEnvironment(ByVal environment As Environment, ByVal copyName As String) As Environment
 
-            copyEnvironment = environment.Clone()
+            copyEnvironment = CType(environment, Environment).Clone()
             copyEnvironment.Name = copyName
             environmentList_.Add(copyEnvironment, copyName)
 
