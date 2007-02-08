@@ -42,7 +42,7 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Volatility</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -208,6 +208,11 @@
             <tensorRank>scalar</tensorRank>
             <description>implied Volatility max Evaluations.</description>
           </Parameter>
+         <Parameter name='decoupledInterpolation' const='false'>
+             <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Used decoupled interpolations</description>
+         </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -263,6 +268,11 @@
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>smile sections object IDs</description>
+          </Parameter>
+          <Parameter name='decoupledInterpolation' const='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Used decoupled interpolations</description>
           </Parameter>
         </Parameters>
       </ParameterList>

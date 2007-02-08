@@ -43,7 +43,8 @@ namespace QuantLibAddin {
                      const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
                      const QuantLib::DayCounter& dayCounter,
                      QuantLib::Real impliedVolatilityAccuracy,
-                     QuantLib::Size maxEvaluations);
+                     QuantLib::Size maxEvaluations,
+                     bool decoupledInterpolation);
 
      CapsStripper(const std::vector<QuantLib::Period>& tenors,
                   const std::vector<QuantLib::Rate>& strikes,
@@ -54,7 +55,8 @@ namespace QuantLibAddin {
                   QuantLib::Real impliedVolatilityAccuracy,
                   QuantLib::Size maxEvaluations,
                   const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& 
-                    smileSectionInterfaces);
+                    smileSectionInterfaces,
+                  bool decoupledInterpolation);
     };
 
     class SmileSectionsVolStructure: public CapletVolatilityStructure {

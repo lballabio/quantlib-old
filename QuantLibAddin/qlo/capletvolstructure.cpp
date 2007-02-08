@@ -42,15 +42,18 @@ namespace QuantLibAddin {
          const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
          const QuantLib::DayCounter& dayCounter,
          QuantLib::Real impliedVolatilityAccuracy,
-             QuantLib::Size maxEvaluations)
+         QuantLib::Size maxEvaluations,
+         bool decoupledInterpolations)
     {
+        std::vector<boost::shared_ptr<QuantLib::SmileSection> > dummySmileSections;
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapsStripper(tenors, strikes, volatilities, index, 
-            yieldTermStructure, dayCounter, impliedVolatilityAccuracy, 
-            maxEvaluations));
+            QuantLib::CapsStripper(tenors, strikes, volatilities, 
+            index, yieldTermStructure, dayCounter, impliedVolatilityAccuracy, 
+                maxEvaluations, dummySmileSections, true, 
+                decoupledInterpolations));
     }
 
-
+    
  CapsStripper::CapsStripper(
       const std::vector<QuantLib::Period>& tenors,
       const std::vector<QuantLib::Rate>& strikes,
@@ -61,14 +64,14 @@ namespace QuantLibAddin {
       QuantLib::Real impliedVolatilityAccuracy,
       QuantLib::Size maxEvaluations,
       const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& 
-        smileSectionInterfaces)
+        smileSectionInterfaces,
+      bool decoupledInterpolation)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapsStripper(tenors, strikes, volatilities, index, 
-            yieldTermStructure, dayCounter, impliedVolatilityAccuracy, 
-            maxEvaluations, smileSectionInterfaces));
+            QuantLib::CapsStripper(tenors, strikes, volatilities, 
+            index, yieldTermStructure, dayCounter, impliedVolatilityAccuracy, 
+            maxEvaluations, smileSectionInterfaces, decoupledInterpolation));
     }
-
 
     SmileSectionsVolStructure::SmileSectionsVolStructure(
         const QuantLib::Date& referenceDate,
