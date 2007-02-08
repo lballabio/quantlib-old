@@ -200,13 +200,13 @@ namespace QuantLibAddin {
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
             const QuantLib::DayCounter &dayCounter);
 
-    //VanillaCMSCouponPricer
-    boost::shared_ptr<QuantLib::VanillaCMSCouponPricer> 
+    //CmsCouponPricer
+    boost::shared_ptr<QuantLib::CmsCouponPricer> 
         CONUNDRUM_BY_BLACK_Pricer(
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
             QuantLib::Real meanReversion);
-    boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>
+    boost::shared_ptr<QuantLib::CmsCouponPricer>
         CONUNDRUM_BY_NUMERICAL_INTEGRATION_Pricer(
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,

@@ -32,11 +32,11 @@ namespace QuantLibAddin {
         Swap(const std::vector<boost::shared_ptr<Leg> >& legWrappers,
              const std::vector<bool>& payer,
              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
-        // QuantLib::MakeCMS
+        // QuantLib::MakeCms
         Swap(const QuantLib::Period& swapTenor,
              const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
              const QuantLib::Spread iborSpread,
-             const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer,
+             const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
              const QuantLib::Period& forwardStart);
 
         std::vector<std::vector<boost::any> > legAnalysis(QuantLib::Size i);

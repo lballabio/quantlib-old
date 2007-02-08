@@ -247,24 +247,41 @@ namespace QuantLibAddin {
         }
     };
 
-    /* *** VanillaCMSCouponPricer *** */
-    typedef boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>(*VanillaCMSCouponPricerConstructor)( 
+    /* *** IborCouponPricer *** */
+    typedef boost::shared_ptr<QuantLib::IborCouponPricer>(*IborCouponPricerConstructor)( 
+            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& capletVol);
+
+    template<>
+    class Create<boost::shared_ptr<QuantLib::IborCouponPricer> > :
+        private RegistryManager<QuantLib::IborCouponPricer, EnumClassRegistry> {
+    public:
+        boost::shared_ptr<QuantLib::IborCouponPricer> operator() (
+                const std::string& IborCouponPricerID,
+                const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& capletVol) {
+            IborCouponPricerConstructor iborCouponPricerConstructor =
+                (IborCouponPricerConstructor)(getType(IborCouponPricerID));
+            return iborCouponPricerConstructor(capletVol);
+        }
+    };
+
+     /* *** CmsCouponPricer *** */
+    typedef boost::shared_ptr<QuantLib::CmsCouponPricer>(*CmsCouponPricerConstructor)( 
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
             QuantLib::Real meanReversion);
 
     template<>
-    class Create<boost::shared_ptr<QuantLib::VanillaCMSCouponPricer> > :
-        private RegistryManager<QuantLib::VanillaCMSCouponPricer, EnumClassRegistry> {
+    class Create<boost::shared_ptr<QuantLib::CmsCouponPricer> > :
+        private RegistryManager<QuantLib::CmsCouponPricer, EnumClassRegistry> {
     public:
-        boost::shared_ptr<QuantLib::VanillaCMSCouponPricer> operator() (
-                const std::string& vanillaCMSCouponPricerID,
+        boost::shared_ptr<QuantLib::CmsCouponPricer> operator() (
+                const std::string& CmsCouponPricerID,
                 const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
                 const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
                 QuantLib::Real meanReversion) {
-            VanillaCMSCouponPricerConstructor vanillaCMSCouponPricerConstructor =
-                (VanillaCMSCouponPricerConstructor)(getType(vanillaCMSCouponPricerID));
-            return vanillaCMSCouponPricerConstructor(swaptionVol,modelOfYieldCurve, meanReversion);
+            CmsCouponPricerConstructor cmsCouponPricerConstructor =
+                (CmsCouponPricerConstructor)(getType(CmsCouponPricerID));
+            return cmsCouponPricerConstructor(swaptionVol,modelOfYieldCurve, meanReversion);
         }
     };
 

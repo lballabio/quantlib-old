@@ -163,7 +163,7 @@
     </Constructor>
 
     <Constructor name='qlFloatingRateLeg'>
-      <libraryFunction>FloatingRateLeg</libraryFunction>
+      <libraryFunction>IborLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
@@ -216,7 +216,7 @@
     </Constructor>
 
     <Constructor name='qlCappedFlooredFloatingRateLeg'>
-      <libraryFunction>CappedFlooredFloatingRateLeg</libraryFunction>
+      <libraryFunction>IborLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
@@ -264,6 +264,11 @@
             <tensorRank>vector</tensorRank>
             <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
           </Parameter>
+          <Parameter name='IborCouponPricer' libraryClass='IborCouponPricer'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Ibor coupon pricer object ID</description>
+          </Parameter>
           <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
@@ -274,17 +279,33 @@
             <tensorRank>vector</tensorRank>
             <description>Cap strikes. If missing, no caps are enforced.</description>
           </Parameter>
-          <Parameter name='Volatility' libToHandle='CapletVolatilityStructure'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>CapletVolatilityStructure object ID</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
     
-    <Constructor name='qlCMSLeg'>
-      <libraryFunction>CMSLeg</libraryFunction>
+    <Constructor name='qlIborCouponPricer'>
+      <libraryFunction>IborCouponPricer</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Volatility' libToHandle='CapletVolatilityStructure' exampleValue='EURCapletVol'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Caplet Volatility Structure object ID</description>
+          </Parameter>
+          <Parameter name='IborCouponPricerType' exampleValue='BlackIborCouponPricer'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Ibor Coupon Pricer Type (e.g BlackIborCouponPricer, ..)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>   
+    
+    <Constructor name='qlCmsLeg'>
+      <libraryFunction>CmsLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
@@ -341,7 +362,7 @@
             <tensorRank>vector</tensorRank>
             <description>Cap strikes. If missing, no caps are enforced.</description>
           </Parameter>
-          <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
+          <Parameter name='CmsCouponPricer' libraryClass='CmsCouponPricer'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Cms coupon pricer object ID</description>
@@ -350,8 +371,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlCMSInArrearsLeg'>
-      <libraryFunction>CMSInArrearsLeg</libraryFunction>
+    <Constructor name='qlCmsInArrearsLeg'>
+      <libraryFunction>CmsInArrearsLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
@@ -408,7 +429,7 @@
             <tensorRank>vector</tensorRank>
             <description>Cap strikes. If missing, no caps are enforced.</description>
           </Parameter>
-          <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
+          <Parameter name='CmsCouponPricer' libraryClass='CmsCouponPricer'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Cms coupon pricer object ID</description>
@@ -417,8 +438,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlCMSZeroLeg'>
-      <libraryFunction>CMSZeroLeg</libraryFunction>
+    <Constructor name='qlCmsZeroLeg'>
+      <libraryFunction>CmsZeroLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
@@ -475,7 +496,7 @@
             <tensorRank>vector</tensorRank>
             <description>Cap strikes. If missing, no caps are enforced.</description>
           </Parameter>
-          <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
+          <Parameter name='CmsCouponPricer' libraryClass='CmsCouponPricer'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Cms coupon pricer object ID</description>
@@ -485,7 +506,7 @@
     </Constructor>
 
     <Constructor name='qlCmsCouponPricer'>
-      <libraryFunction>VanillaCMSCouponPricer</libraryFunction>
+      <libraryFunction>CmsCouponPricer</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
@@ -496,10 +517,10 @@
             <tensorRank>scalar</tensorRank>
             <description>Swaption Volatility Structure object ID</description>
           </Parameter>
-          <Parameter name='VanillaCMSCouponPricerType' exampleValue='ConundrumByNumericalIntegration'>
+          <Parameter name='CmsCouponPricerType' exampleValue='ConundrumByNumericalIntegration'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Vanilla CMS Coupon Pricer Type (e.g ConundrumByBlack, ConundrumByNumericalIntegration, ClassicalAnaliticalFormula)</description>
+            <description>Cms Coupon Pricer Type (e.g ConundrumByBlack, ConundrumByNumericalIntegration, ClassicalAnaliticalFormula)</description>
           </Parameter>
           <Parameter name='ModelOfYieldCurve' enumeration='QuantLib::GFunctionFactory::ModelOfYieldCurve'>
             <type>string</type>

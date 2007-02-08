@@ -42,7 +42,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlMakeCMS'>
+    <Constructor name='qlMakeCms'>
       <libraryFunction>Swap</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
@@ -64,7 +64,7 @@
             <tensorRank>scalar</tensorRank>
             <description>spread over the ibor leg</description>
           </Parameter>
-          <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
+          <Parameter name='CmsCouponPricer' libraryClass='CmsCouponPricer'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Cms coupon pricer object ID</description>

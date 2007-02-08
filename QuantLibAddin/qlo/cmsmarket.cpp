@@ -31,7 +31,7 @@ namespace QuantLibAddin {
         const std::vector< boost::shared_ptr<QuantLib::SwapIndex> >& swapIndices,
         const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& bidAskSpreads,
         const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldTermStructure,
-        const std::vector< boost::shared_ptr<QuantLib::VanillaCMSCouponPricer> >& pricers) {
+        const std::vector< boost::shared_ptr<QuantLib::CmsCouponPricer> >& pricers) {
 
         libraryObject_ = boost::shared_ptr<QuantLib::CmsMarket>(
             new QuantLib::CmsMarket(

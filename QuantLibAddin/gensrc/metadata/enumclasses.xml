@@ -34,7 +34,7 @@
       </EnumerationDefinitions>
     </Enumeration>
 
-    <Enumeration type='QuantLib::VanillaCMSCouponPricer'>
+    <Enumeration type='QuantLib::CmsCouponPricer'>
       <EnumerationDefinitions>
         <EnumerationDefinition>
           <string>ConundrumByBlack</string>

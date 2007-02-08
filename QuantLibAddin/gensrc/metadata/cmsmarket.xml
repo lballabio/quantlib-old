@@ -45,7 +45,7 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='CmsCouponPricer' libraryClass='VanillaCMSCouponPricer'>
+          <Parameter name='CmsCouponPricer' libraryClass='CmsCouponPricer'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>Cms coupon pricer object ID</description>

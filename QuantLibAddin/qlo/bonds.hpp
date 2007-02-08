@@ -126,7 +126,7 @@ namespace QuantLibAddin {
              QuantLib::Frequency couponFrequency,
              const QuantLib::Calendar& calendar,
              const QuantLib::DayCounter& dayCounter,
-             const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer,
+             const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
              const std::vector<QuantLib::Rate>& caps,
              const std::vector<QuantLib::Rate>& floors,
              QuantLib::BusinessDayConvention accrualConvention,

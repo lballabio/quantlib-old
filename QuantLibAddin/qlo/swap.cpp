@@ -40,15 +40,15 @@ namespace QuantLibAddin {
             new QuantLib::Swap(hYTS, legs, payer));
     }
 
-    // QuantLib::MakeCMS
+    // QuantLib::MakeCms
     Swap::Swap(
         const QuantLib::Period& swapTenor,
         const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
         const QuantLib::Spread iborSpread,
-        const boost::shared_ptr<QuantLib::VanillaCMSCouponPricer>& pricer,
+        const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
         const QuantLib::Period& forwardStart)
     {
-        libraryObject_ = QuantLib::MakeCMS(swapTenor, swapIndex, iborSpread,
+        libraryObject_ = QuantLib::MakeCms(swapTenor, swapIndex, iborSpread,
             pricer, forwardStart).operator
                 boost::shared_ptr<QuantLib::Swap>();
     }

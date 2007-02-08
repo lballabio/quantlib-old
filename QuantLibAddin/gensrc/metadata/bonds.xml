@@ -671,7 +671,7 @@
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='CmsPricer' libraryClass='VanillaCMSCouponPricer'>
+          <Parameter name='CmsPricer' libraryClass='CmsCouponPricer'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>cmscoupon pricer object ID</description>

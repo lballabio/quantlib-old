@@ -30,8 +30,8 @@ namespace QuantLibAddin {
                               public QuantLib::Visitor<QuantLib::CashFlow>,
                               public QuantLib::Visitor<QuantLib::Coupon>,
                               public QuantLib::Visitor<QuantLib::FloatingRateCoupon>,
-                              public QuantLib::Visitor<QuantLib::CappedFlooredCoupon>,
-                              public QuantLib::Visitor<QuantLib::CMSCoupon> {
+                              public QuantLib::Visitor<QuantLib::CappedFlooredIborCoupon>,
+                              public QuantLib::Visitor<QuantLib::CappedFlooredCmsCoupon> {
       private:
         std::vector<std::vector<boost::any> > flowAnalysis_;
         static const QuantLib::Size numberOfColumns_ = 20;
@@ -41,8 +41,8 @@ namespace QuantLibAddin {
         void visit(QuantLib::CashFlow& c);
         void visit(QuantLib::Coupon& c);
         void visit(QuantLib::FloatingRateCoupon& c);
-        void visit(QuantLib::CappedFlooredCoupon& c);
-        void visit(QuantLib::CMSCoupon& c);
+        void visit(QuantLib::CappedFlooredIborCoupon& c);
+        void visit(QuantLib::CappedFlooredCmsCoupon& c);
         const std::vector<std::vector<boost::any> >& analysis() const;
     };
 
@@ -138,7 +138,7 @@ namespace QuantLibAddin {
         flowAnalysis_.back()[CAP]=std::string("N/A");
     }
 
-    void AnalysisGenerator::visit(QuantLib::CappedFlooredCoupon& c) {
+    void AnalysisGenerator::visit(QuantLib::CappedFlooredIborCoupon& c) {
         visit(static_cast<QuantLib::Coupon&>(c));
         flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
         flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
@@ -163,7 +163,7 @@ namespace QuantLibAddin {
         }   
     }
 
-    void AnalysisGenerator::visit(QuantLib::CMSCoupon& c) {
+    void AnalysisGenerator::visit(QuantLib::CappedFlooredCmsCoupon& c) {
         visit(static_cast<QuantLib::Coupon&>(c));
         flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
         flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
