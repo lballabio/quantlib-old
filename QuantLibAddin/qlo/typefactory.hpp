@@ -268,7 +268,7 @@ namespace QuantLibAddin {
     typedef boost::shared_ptr<QuantLib::CmsCouponPricer>(*CmsCouponPricerConstructor)( 
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-            QuantLib::Real meanReversion);
+            const QuantLib::Handle<QuantLib::Quote>& meanReversion);
 
     template<>
     class Create<boost::shared_ptr<QuantLib::CmsCouponPricer> > :
@@ -278,7 +278,7 @@ namespace QuantLibAddin {
                 const std::string& CmsCouponPricerID,
                 const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
                 const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-                QuantLib::Real meanReversion) {
+                const QuantLib::Handle<QuantLib::Quote>& meanReversion) {
             CmsCouponPricerConstructor cmsCouponPricerConstructor =
                 (CmsCouponPricerConstructor)(getType(CmsCouponPricerID));
             return cmsCouponPricerConstructor(swaptionVol,modelOfYieldCurve, meanReversion);

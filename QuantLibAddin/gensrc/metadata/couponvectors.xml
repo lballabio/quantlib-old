@@ -527,10 +527,10 @@
             <tensorRank>scalar</tensorRank>
             <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
           </Parameter>
-          <Parameter name='MeanReversion' exampleValue='0.1'>
-            <type>double</type>
+          <Parameter name='MeanReversion' libToHandle='Quote'>
+            <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean reversion speed (inverse of time)</description>
+            <description>mean reversion quote.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

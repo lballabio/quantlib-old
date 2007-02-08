@@ -124,29 +124,6 @@ namespace QuantLibAddin {
                                  caps, floors);
     }
 
-    //CappedFlooredFloatingRateLeg::CappedFlooredFloatingRateLeg(
-    //                const boost::shared_ptr<QuantLib::Schedule>& schedule,
-    //                QuantLib::BusinessDayConvention paymentAdjustment,
-    //                const std::vector<QuantLib::Real>& nominals,
-    //                const boost::shared_ptr<QuantLib::IborIndex>& index,
-    //                QuantLib::Integer fixingDays,
-    //                const QuantLib::DayCounter& dayCounter,
-    //                const std::vector<QuantLib::Real>& floors, 
-    //                const std::vector<QuantLib::Real>& gearings,
-    //                const std::vector<QuantLib::Real>& spreads,
-    //                const std::vector<QuantLib::Real>& caps,
-    //                const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility) {
-
-    //        leg_ = QuantLib::CappedFlooredFloatingRateLeg(*schedule,
-    //                                                      nominals,
-    //                                                      index,
-    //                                                      dayCounter,
-    //                                                      fixingDays,
-    //                                                      paymentAdjustment,
-    //                                                      gearings, spreads,
-    //                                                      caps, floors,
-    //                                                      volatility);
-    //}
 
     IborCouponPricer::IborCouponPricer(
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& v,
@@ -231,7 +208,7 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& v,
             const std::string& typeOfCmsCouponPricer,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-            QuantLib::Real meanReversion) {
+            const QuantLib::Handle<QuantLib::Quote>& meanReversion) {
         libraryObject_ = Create<boost::shared_ptr<QuantLib::CmsCouponPricer> >()
             (typeOfCmsCouponPricer, v, modelOfYieldCurve, meanReversion);
     }

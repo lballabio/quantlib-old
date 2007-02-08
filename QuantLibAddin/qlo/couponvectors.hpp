@@ -85,22 +85,6 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Rate>& floors = std::vector<QuantLib::Rate>());
     };
 
-    //class CappedFlooredIborLeg : public Leg {
-    //  public:
-    //    CappedFlooredFloatingRateLeg(
-    //        const boost::shared_ptr<QuantLib::Schedule>& schedule,
-    //        QuantLib::BusinessDayConvention paymentAdjustment,
-    //        const std::vector<QuantLib::Real>& nominals,
-    //        const boost::shared_ptr<QuantLib::IborIndex>& index,
-    //        QuantLib::Integer fixingDays,
-    //        const QuantLib::DayCounter& dayCounter,
-    //        const std::vector<QuantLib::Real>& floors, 
-    //        const std::vector<QuantLib::Real>& gearings,
-    //        const std::vector<QuantLib::Real>& spreads,
-    //        const std::vector<QuantLib::Real>& caps,
-    //        const QuantLib::Handle<QuantLib::CapletVolatilityStructure>&);
-    //};
-
     class IborCouponPricer : 
         public ObjHandler::LibraryObject<QuantLib::IborCouponPricer> {
       public:
@@ -164,7 +148,7 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,
             const std::string& typeOfCmsCouponPricer,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-            QuantLib::Real meanReversion);
+            const QuantLib::Handle<QuantLib::Quote>& meanReversion);
     };
 
 }
