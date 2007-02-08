@@ -6,7 +6,7 @@
     <include>qlo/optimization.hpp</include>
   </includes>
   <copyright>
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
   </copyright>
 
   <Functions>

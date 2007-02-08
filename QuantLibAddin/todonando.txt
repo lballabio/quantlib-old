@@ -75,6 +75,8 @@ Pending:
 - DONE test abcd (swap tenor) with new optimization code
 
 François
+- atm backbone for caplet
+- extrapolation bug (short expity, low strike)
 - add SABR interpolation to the capstripper
 - refactor the method class (move Endcriteria as argument of the minimize)
 TO BE DISCUSSED: Object Builder performance issue when the control panel is left opened

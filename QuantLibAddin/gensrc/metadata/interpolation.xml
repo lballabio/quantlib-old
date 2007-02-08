@@ -282,20 +282,20 @@
             <tensorRank>scalar</tensorRank>
             <description>left boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
           </Parameter>
-          <Parameter name='leftConditionValue'>
+          <Parameter name='leftConditionValue' exampleValue='0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>left condition value</description>
+            <description>left condition value.</description>
           </Parameter>
           <Parameter name='rightConditionType' enumeration='QuantLib::CubicSpline::BoundaryCondition'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
           </Parameter>
-          <Parameter name='rightConditionValue'>
+          <Parameter name='rightConditionValue' exampleValue='0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>right condition value</description>
+            <description>right condition value.</description>
           </Parameter>
           <Parameter name='monotonicityConstraint'>
             <type>bool</type>
