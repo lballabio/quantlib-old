@@ -4,4 +4,4 @@ Aurelien Chanudet
 Eric Ehlers (maintainer)
 Katiuscia Manzoni
 Plamen Neykov
-
+François du Vignaud
