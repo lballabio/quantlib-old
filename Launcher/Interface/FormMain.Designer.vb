@@ -510,6 +510,7 @@ Partial Class FormMain
         'lbAddins
         '
         Me.lbAddins.FormattingEnabled = True
+        Me.lbAddins.HorizontalScrollbar = True
         Me.lbAddins.Location = New System.Drawing.Point(6, 13)
         Me.lbAddins.Name = "lbAddins"
         Me.lbAddins.Size = New System.Drawing.Size(377, 173)
