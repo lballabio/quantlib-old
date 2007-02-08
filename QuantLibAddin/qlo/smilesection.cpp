@@ -65,9 +65,8 @@ namespace QuantLibAddin {
 
         boost::shared_ptr<QuantLib::OptimizationMethod> method_ = method;
         if (!method) {
-            QuantLib::Array guess(4); 
             method_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-                            QuantLib::Simplex(1e-6, guess));
+                            QuantLib::Simplex(1e-6));
         }
 
         boost::shared_ptr<QuantLib::EndCriteria> endCriteria_ = endCriteria;

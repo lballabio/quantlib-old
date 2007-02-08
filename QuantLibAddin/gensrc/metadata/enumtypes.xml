@@ -264,19 +264,23 @@
       <EnumerationDefinitions>
         <EnumerationDefinition>
           <string>None</string>
-          <value>QuantLib::EndCriteria::none</value>
+          <value>QuantLib::EndCriteria::None</value>
         </EnumerationDefinition>
         <EnumerationDefinition>
           <string>MaxIterations</string>
-          <value>QuantLib::EndCriteria::maxIter</value>
+          <value>QuantLib::EndCriteria::MaxIterations</value>
         </EnumerationDefinition>
         <EnumerationDefinition>
           <string>StationaryPoint</string>
-          <value>QuantLib::EndCriteria::statPt</value>
+          <value>QuantLib::EndCriteria::StationaryPoint</value>
         </EnumerationDefinition>
         <EnumerationDefinition>
           <string>StationaryGradient</string>
-          <value>QuantLib::EndCriteria::statGd</value>
+          <value>QuantLib::EndCriteria::StationaryGradient</value>
+        </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>Unknown</string>
+          <value>QuantLib::EndCriteria::Unknown</value>
         </EnumerationDefinition>
       </EnumerationDefinitions>
     </Enumeration>

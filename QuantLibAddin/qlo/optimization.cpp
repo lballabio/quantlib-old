@@ -37,19 +37,17 @@ namespace QuantLibAddin {
     }
 
 
-    Simplex::Simplex(QuantLib::Real lambda,
-                     const QuantLib::Array& initVal) {
+    Simplex::Simplex(QuantLib::Real lambda) {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-            QuantLib::Simplex(lambda, initVal));
+            QuantLib::Simplex(lambda));
     }
 
     LevenbergMarquardt::LevenbergMarquardt(QuantLib::Real epsfcn,
                                            QuantLib::Real xtol,
-                                           QuantLib::Real gtol,
-                                           const QuantLib::Array& initVal)
+                                           QuantLib::Real gtol)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-            QuantLib::LevenbergMarquardt(epsfcn, xtol, gtol, initVal));
+            QuantLib::LevenbergMarquardt(epsfcn, xtol, gtol));
     }
 
     ArmijoLineSearch::ArmijoLineSearch(QuantLib::Real eps,
@@ -60,19 +58,17 @@ namespace QuantLibAddin {
     }
 
     ConjugateGradient::ConjugateGradient(
-                   const QuantLib::Array& initVal,
                    const boost::shared_ptr<QuantLib::LineSearch>& lineSearch)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-            QuantLib::ConjugateGradient(initVal, lineSearch));
+            QuantLib::ConjugateGradient(lineSearch));
     }
 
     SteepestDescent::SteepestDescent(
-                   const QuantLib::Array& initVal,
                    const boost::shared_ptr<QuantLib::LineSearch>& lineSearch)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-            QuantLib::SteepestDescent(initVal, lineSearch));
+            QuantLib::SteepestDescent(lineSearch));
     }
       
 }

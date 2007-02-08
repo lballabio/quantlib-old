@@ -49,9 +49,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlEndCriteriaMaxIteration' libraryClass='EndCriteria'>
+    <Member name='qlEndCriteriaMaxIterations' libraryClass='EndCriteria'>
       <description>Returns the number of max interation for the given EndCriteria object</description>
-      <libraryFunction>maxIteration</libraryFunction>
+      <libraryFunction>maxIterations</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='true' />
       </SupportedPlatforms>
@@ -120,29 +120,6 @@
       </ParameterList>
     </Constructor>
 
-    <!-- OptimizationMethod base class interface -->
-
-    <Member name='qlOptimizationSetInitialValue' libraryClass='OptimizationMethod'>
-      <description>Sets the initial value (guess) to the given OptimizationMethod object</description>
-      <libraryFunction>setInitialValue</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name="guess" libraryType='QuantLib::Array'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>initial value guess</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <!-- OptimizationMethod derived classes' constructors -->
 
     <Constructor name='qlSimplex'>
@@ -156,11 +133,6 @@
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>lambda</description>
-          </Parameter>
-          <Parameter name="initialValue" libraryType='QuantLib::Array'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>initial value (i.e. initial guess)</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -188,11 +160,6 @@
             <tensorRank>scalar</tensorRank>
             <description>gtol</description>
           </Parameter>
-          <Parameter name="initialValue" libraryType='QuantLib::Array'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>initial value (i.e. initial guess)</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -204,11 +171,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="initialValue" libraryType='QuantLib::Array'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>initial value (i.e. initial guess)</description>
-          </Parameter>
           <Parameter name="lineSearch" libraryClass='LineSearch' default='""'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
@@ -225,11 +187,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="initialValue" libraryType='QuantLib::Array'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>initial value (i.e. initial guess)</description>
-          </Parameter>
           <Parameter name="lineSearch" libraryClass='LineSearch' default='""'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
