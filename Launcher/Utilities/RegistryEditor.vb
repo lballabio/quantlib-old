@@ -43,7 +43,9 @@ Namespace QuantLibXL
         End Sub
 
         Public Function keyExists(ByVal keyName As String) As Boolean
+
             keyExists = rootKey_.OpenSubKey(keyName, True) IsNot Nothing
+
         End Function
 
         Public Function valueExists(ByVal keyName As String, ByVal name As String) As Boolean
@@ -99,7 +101,9 @@ Namespace QuantLibXL
 
         Public Sub deleteKey(ByVal keyName As String)
 
-            rootKey_.DeleteSubKeyTree(keyName)
+            If keyExists(keyName) Then
+                rootKey_.DeleteSubKeyTree(keyName)
+            End If
 
         End Sub
 

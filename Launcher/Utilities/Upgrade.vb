@@ -64,7 +64,7 @@ Module Upgrade
         Try
 
             r_ = New QuantLibXL.RegistryEditor
-            r_.deleteKey("QuantLibXL")
+            r_.deleteKey("QuantLibXL Launcher\LauncherVersion6")
             initializeRegistryVersion6()
             r_ = Nothing
 
