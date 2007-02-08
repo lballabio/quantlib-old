@@ -107,10 +107,14 @@ Cristina
 
 
 Giorgio
-- 2.cms gearing negativo, floor a zero: non funziona
+
+D 1.check npv
+D 2.cms gearing negativo, floor a zero: non funziona
+D capped/floored-cms comparison (shared among Cristina and Giorgio)
+- Handle<Quote> for mean reversion value (osservabile del pricer)
 - WIP coupon refactoring and extension (shared among Cristina and Giorgio)
 - digital option in C++ (shared among Marco, Giorgio and Cristina)
-- think about how to simplify mean reversion usage, cms swaption calibration
+D think about how to simplify mean reversion usage, cms swaption calibration
 - WIP ratchet Instrument C++ (shared among Marco, Giorgio)
 - spreaded swaption vol structure
 - spreaded caplet vol structure
