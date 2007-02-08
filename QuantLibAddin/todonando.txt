@@ -60,10 +60,10 @@ K
 - quickCapPricer.xls: move from Drafts to IRDerivatives
 - remove action atmVolatility from Launcher
 - standardizzare il nome delle quotes dei param di calibrazione
-- scrivere manuale applicativo Launcher
+- DONE scrivere manuale applicativo Launcher
 - demo per HelpDesk e ChangeMan
 Pending:
-- rilascio di 02 a 01
+- DONE rilascio di 02 a 01
 - trimestrale
 - murex yield curve
 - DONE update end of day procedures: calibarionParametersQuotesFeed.xls added
