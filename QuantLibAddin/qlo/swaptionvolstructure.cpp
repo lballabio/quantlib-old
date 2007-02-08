@@ -99,7 +99,9 @@ namespace QuantLibAddin {
         bool vegaWeightedSmileFit,
         const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& parametersGuess,
         const std::vector<bool>& isParameterFixed,
-        bool isAtmCalibrated)
+        bool isAtmCalibrated,
+        QuantLib::Real maxErrorTolerance,
+        QuantLib::Size maxIterations)
     {
         QL_REQUIRE(!atmVol.empty(), "atm vol handle not linked to anything");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
@@ -112,7 +114,9 @@ namespace QuantLibAddin {
                                                    vegaWeightedSmileFit, 
                                                    parametersGuess,
                                                    isParameterFixed,
-                                                   isAtmCalibrated));
+                                                   isAtmCalibrated,
+                                                   maxErrorTolerance,
+                                                   maxIterations ));
     }
 
     std::vector<std::vector<boost::any> >

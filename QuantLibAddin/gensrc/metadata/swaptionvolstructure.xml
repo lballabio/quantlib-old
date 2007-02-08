@@ -585,6 +585,16 @@
             <tensorRank>scalar</tensorRank>
             <description>if TRUE the cube is calibrated to atm matrix .</description>
           </Parameter>
+          <Parameter name='maxErrorTol' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max error tolerance</description>
+          </Parameter>
+          <Parameter name='maxIterations' default='60000'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max number of iterations</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>

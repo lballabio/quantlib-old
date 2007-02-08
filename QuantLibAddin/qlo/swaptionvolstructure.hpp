@@ -90,7 +90,9 @@ namespace QuantLibAddin {
             bool vegaWeightedSmileFit,
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& parametersGuess,
             const std::vector<bool>& isParameterFixed,
-            bool isAtmCalibrated);
+            bool isAtmCalibrated,
+            QuantLib::Real maxErrorTolerance,
+            QuantLib::Size maxIterations);
         std::vector<std::vector<boost::any> > getSparseSabrParameters();
         std::vector<std::vector<boost::any> > getDenseSabrParameters();
         std::vector<std::vector<boost::any> > getMarketVolCube();

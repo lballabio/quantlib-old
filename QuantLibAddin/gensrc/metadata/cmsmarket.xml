@@ -121,6 +121,11 @@
             <tensorRank>scalar</tensorRank>
             <description>OptimizationMethod object ID</description>
           </Parameter>
+          <Parameter name="guess" libraryType='QuantLib::Array'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>guess</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue libraryType='QuantLib::Array'>
