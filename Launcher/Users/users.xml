@@ -84,6 +84,11 @@ file (config.xml)
             <serialNumber>5CF57325</serialNumber>
           </serialNumbers>
         </User>
+        <User name="nestic1a">
+          <serialNumbers>
+            <serialNumber>4C18CCC5</serialNumber>
+          </serialNumbers>
+        </User>
       </Users>
     </Domain>
 
