@@ -53,7 +53,8 @@ Nando
 
 K
 - SA applied to cms book
-- fogli di clerici (interpolazione)
+- foglio di clerici (Drafts\QuickCapPricer.xls)
+- foglio di clerici (interpolazione)
 - test abcd (swap tenor) with new optimization code
 - multiLegSwap.xls: move from Drafts to IRDerivatives
 - quickCapPricer.xls: move from Drafts to IRDerivatives
