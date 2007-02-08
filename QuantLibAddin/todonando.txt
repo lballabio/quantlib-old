@@ -122,6 +122,7 @@ D think about how to simplify mean reversion usage, cms swaption calibration
 
 Chiara
 - WIP capped/floored coupon bond
+- with giorgio set mean rev quote in cmscouponbond contructor
 - fix assetswap bug when date is in the range of bond's settlement date
 - implement alternative version of bond instrument which should accept a leg object
 - bond pricing engine
