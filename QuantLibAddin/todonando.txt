@@ -10,7 +10,7 @@ coerce from IMMcode to date
 cvs command line
 imm functions (dates.xml) problems
 
-
+vol term structure refactoring
 null strike -> atm strike
 
 pure future option term structures
@@ -40,12 +40,9 @@ General
 - introduce type QuantLib::Money
 
 Nando
-- fogli di clerici
-- expose x,y of interpolation objects
 - joint calendar
 - mkt convention struct
 - YCDemo crash
-- 0.3.14 wbk
 - alternative calibrations with null rho
 - make BlackCalculator observer/observable, make it lazy
 - contratti
@@ -56,6 +53,8 @@ Nando
 
 K
 - SA applied to cms book
+- fogli di clerici
+- test abcd (swap tenor) with new optimization code
 - multiLegSwap.xls: move from Drafts to IRDerivatives
 - quickCapPricer.xls: move from Drafts to IRDerivatives
 - remove action atmVolatility from Launcher
@@ -77,11 +76,9 @@ Pending:
 François
 - add SABR interpolation to the capstripper
 - refactor the method class (move Endcriteria as argument of the minimize)
-D no ScheduleID as input value->blank cell
 TO BE DISCUSSED: Object Builder performance issue when the control panel is left opened
 
-D OH function wizard
-- distribute XML
+- OH function wizard
 - To BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a single test
 - TO BE REVIEWED MultiStepSwaption
