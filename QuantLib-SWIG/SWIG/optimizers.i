@@ -216,42 +216,45 @@ using QuantLib::Problem;
 #if defined(SWIGPYTHON)
 %extend Optimizer {
     Array solve(PyObject* function, Constraint& c, 
-	  OptimizationMethod& m, EndCriteria &e) {
+	  OptimizationMethod& m, EndCriteria &e,
+	  Array &iv) {
         PyCostFunction f(function);
-        Problem p(f,c,m);
-        p.minimize(e);
-        return p.minimumValue();
+        Problem p(f,c,iv);
+        m.minimize(p, e);
+        return p.currentValue();
     }
 }
 #elif defined(SWIGRUBY)
 %extend Optimizer {
     Array solve(Constraint& c, OptimizationMethod& m,
-	  EndCriteria &e) {
+	  EndCriteria &e,
+	  Array &iv) {
         RubyCostFunction f;
-        Problem p(f,c,m);
-        p.minimize(e);
-        return p.minimumValue();
+        Problem p(f,c,iv);
+        m.minimize(p, e);
+        return p.currentValue();
     }
 }
 #elif defined(SWIGMZSCHEME)
 %extend Optimizer {
     Array solve(Scheme_Object* function, Constraint& c,
     OptimizationMethod& m,
-			EndCriteria &e) {
+			EndCriteria &e,
+			Array &iv) {
         MzCostFunction f(function);
-        Problem p(f,c,m);
-        p.minimize(e);
-        return p.minimumValue();
+        Problem p(f,c,iv);
+        m.minimize(p, e);
+        return p.currentValue();
     }
 }
 #elif defined(SWIGGUILE)
 %extend Optimizer {
     Array solve(SCM function, Constraint& c, OptimizationMethod& m,
-	  EndCriteria &e) {
+	  EndCriteria &e, Array &iv) {
         GuileCostFunction f(function);
-        Problem p(f,c,m);
-        p.minimize(e);
-        return p.minimumValue();
+        Problem p(f,c,iv);
+        m.minimize(p, e);
+        return p.currentValue();
     }
 }
 #endif
