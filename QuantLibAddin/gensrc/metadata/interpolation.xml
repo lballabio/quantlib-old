@@ -313,22 +313,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xArray'>
+          <Parameter name='xArray' exampleValue='0.0300,0.0400,0.0500,0.0700'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x array</description>
           </Parameter>
-          <Parameter name='yArray'>
+          <Parameter name='yArray' exampleValue='0.0850,0.0733,0.0844,0.1082'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>y array</description>
           </Parameter>
-          <Parameter name='expiry' libraryType='QuantLib::Time'>
+          <Parameter name='expiry' libraryType='QuantLib::Time' exampleValue='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>expiry time in years</description>
           </Parameter>
-          <Parameter name='forward'>
+          <Parameter name='forward' libraryType='QuantLib::Rate' exampleValue='0.039'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>forward</description>
@@ -356,27 +356,27 @@
           <Parameter name='alphaIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess</description>
+            <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
           </Parameter>
           <Parameter name='betaIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess</description>
+            <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
           </Parameter>
           <Parameter name='nuIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess</description>
+            <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
           </Parameter>
           <Parameter name='rhoIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess</description>
+            <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
           </Parameter>
           <Parameter name='vegaWeighted' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
+            <description>TRUE if the interpolation is weighted using options Vega. Default is TRUE</description>
           </Parameter>
           <Parameter name="endCriteria" libraryClass='EndCriteria' default='""'>
             <type>string</type>
@@ -386,7 +386,7 @@
           <Parameter name='optimizationMethod' libraryClass='OptimizationMethod' default='""'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>optimization method object ID</description>
+            <description>OptimizationMethod object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

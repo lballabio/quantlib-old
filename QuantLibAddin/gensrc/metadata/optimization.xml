@@ -113,7 +113,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="lambda">
+          <Parameter name="lambda" exampleValue="0.01">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>lambda</description>
@@ -189,17 +189,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="epsilon">
+          <Parameter name="epsilon" default="1e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>epsilon</description>
           </Parameter>
-          <Parameter name="alpha">
+          <Parameter name="alpha" default="0.05">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha</description>
           </Parameter>
-          <Parameter name="beta">
+          <Parameter name="beta" default="0.65">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta</description>
