@@ -173,8 +173,7 @@ class EndCriteria {
                     Real fold,
                     Real normgold,
                     Real fnew,
-                    Real normgnew,
-                    Real);
+                    Real normgnewx) const;
 };
 
 
@@ -186,16 +185,9 @@ using QuantLib::SteepestDescent;
 %}
 
 class OptimizationMethod {
-    #if defined(SWIGRUBY)
-    %rename("initialValue=") setInitialValue;
-    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("initial-value-set!") setInitialValue;
-    #endif
   private:
     // prevent direct instantiation
     OptimizationMethod();
-  public:
-    void setInitialValue(const Array&);
 };
 
 class ConjugateGradient : public OptimizationMethod {
@@ -205,8 +197,7 @@ class ConjugateGradient : public OptimizationMethod {
 
 class Simplex : public OptimizationMethod {
   public:
-    Simplex(Real lambda,
-            const Array& initialValue = Array());
+    Simplex(Real lambda);
 };
 
 class SteepestDescent : public OptimizationMethod {

@@ -50,21 +50,14 @@ IsObservable(boost::shared_ptr<CashFlow>);
 %{
 using QuantLib::SimpleCashFlow;
 using QuantLib::FixedRateCoupon;
-using QuantLib::ParCoupon;
+using QuantLib::IborCoupon;
 using QuantLib::Leg;
 using QuantLib::FloatingRateCoupon;
-/*using QuantLib::IndexedCoupon;*/
-using QuantLib::UpFrontIndexedCoupon;
-using QuantLib::InArrearIndexedCoupon;
-using QuantLib::IndexedLeg;
 
 typedef boost::shared_ptr<CashFlow> SimpleCashFlowPtr;
-typedef boost::shared_ptr<CashFlow> ParCouponPtr;
+typedef boost::shared_ptr<CashFlow> IborCouponPtr;
 typedef boost::shared_ptr<CashFlow> FixedRateCouponPtr;
 typedef boost::shared_ptr<CashFlow> FloatingRateCouponPtr;
-typedef boost::shared_ptr<CashFlow> IndexedCouponPtr;
-typedef boost::shared_ptr<CashFlow> UpFrontIndexedCouponPtr;
-typedef boost::shared_ptr<CashFlow> InArrearIndexedCouponPtr;
 %}
 
 %rename(SimpleCashFlow) SimpleCashFlowPtr;
@@ -94,41 +87,34 @@ class FixedRateCouponPtr : public boost::shared_ptr<CashFlow> {
     }
 };
 
-%rename(ParCoupon) ParCouponPtr;
-class ParCouponPtr : public boost::shared_ptr<CashFlow> {
+%rename(IborCoupon) IborCouponPtr;
+class IborCouponPtr : public boost::shared_ptr<CashFlow> {
   public:
     %extend {
-        ParCouponPtr(const Date& paymentDate, Real nominal,
+        IborCouponPtr(const Date& paymentDate, Real nominal,
                      const Date& startDate, const Date& endDate,
-                     Integer fixingDays, IborIndexPtr& index,
+                     Integer fixingDays, InterestRateIndexPtr& index,
                      Real gearing = 1.0, Spread spread = 0.0,
                      const Date& refPeriodStart = Date(),
                      const Date& refPeriodEnd = Date(),
                      const DayCounter& dayCounter = DayCounter()) {
-            boost::shared_ptr<IborIndex> libor =
-                boost::dynamic_pointer_cast<IborIndex>(index);
-            return new ParCouponPtr(
-                new ParCoupon(paymentDate, nominal, startDate, endDate,
-                              fixingDays, libor, gearing, spread,
+	  const boost::shared_ptr<InterestRateIndex> iri =
+	    boost::dynamic_pointer_cast<InterestRateIndex>(index);
+            return new IborCouponPtr(
+				     
+                new IborCoupon(paymentDate, nominal, startDate, endDate,
+                              fixingDays, iri, gearing, spread,
                               refPeriodStart, refPeriodEnd, dayCounter));
         }
-        Date accrualStartDate() {
-            return boost::dynamic_pointer_cast<ParCoupon>(*self)
-                 ->accrualStartDate();
-        }
-        Date accrualEndDate() {
-            return boost::dynamic_pointer_cast<ParCoupon>(*self)
-                 ->accrualEndDate();
-        }
         Rate rate() {
-            return boost::dynamic_pointer_cast<ParCoupon>(*self)->rate();
+            return boost::dynamic_pointer_cast<IborCoupon>(*self)->rate();
         }
         Rate indexFixing() {
-            return boost::dynamic_pointer_cast<ParCoupon>(*self)
+            return boost::dynamic_pointer_cast<IborCoupon>(*self)
                 ->indexFixing();
         }
         Real nominal() {
-            return boost::dynamic_pointer_cast<ParCoupon>(*self)->nominal();
+            return boost::dynamic_pointer_cast<IborCoupon>(*self)->nominal();
         }
     }
 };
@@ -163,58 +149,6 @@ class FloatingRateCouponPtr : public boost::shared_ptr<CashFlow> {
 /* %rename(IndexedCoupon) IndexedCouponPtr;
 class IndexedCouponPtr : public FloatingRateCouponPtr {}; */
 
-%rename(UpFrontIndexedCoupon) UpFrontIndexedCouponPtr;
-class UpFrontIndexedCouponPtr : public FloatingRateCouponPtr {
-  public:
-    %extend {
-        UpFrontIndexedCouponPtr(const Date& paymentDate, Real nominal,
-                                const Date& startDate, const Date& endDate,
-                                Integer fixingDays, IborIndexPtr& index,
-                                Real gearing = 1.0, Spread spread = 0.0,
-                                const Date& refPeriodStart = Date(),
-                                const Date& refPeriodEnd = Date(),
-                                const DayCounter &dayCounter = DayCounter()) {
-            boost::shared_ptr<IborIndex> libor =
-                boost::dynamic_pointer_cast<IborIndex>(index);
-            return new UpFrontIndexedCouponPtr(
-                new UpFrontIndexedCoupon(paymentDate, nominal,
-                                         startDate, endDate,
-                                         fixingDays, libor,
-                                         gearing, spread,
-                                         refPeriodStart, refPeriodEnd,
-                                         dayCounter));
-        }
-    }
-};
-
-%rename(InArrearIndexedCoupon) InArrearIndexedCouponPtr;
-class InArrearIndexedCouponPtr : public FloatingRateCouponPtr {
-  public:
-    %extend {
-        InArrearIndexedCouponPtr(const Date& paymentDate, Real nominal,
-                                 const Date& startDate, const Date& endDate,
-                                 Integer fixingDays, IborIndexPtr& index,
-                                 Real gearing = 1.0, Spread spread = 0.0,
-                                 const Date& refPeriodStart = Date(),
-                                 const Date& refPeriodEnd = Date(),
-                                 const DayCounter &dayCounter = DayCounter()) {
-            boost::shared_ptr<IborIndex> libor =
-                boost::dynamic_pointer_cast<IborIndex>(index);
-            return new InArrearIndexedCouponPtr(
-                new InArrearIndexedCoupon(paymentDate, nominal,
-                                          startDate, endDate,
-                                          fixingDays, libor,
-                                          gearing, spread,
-                                          refPeriodStart, refPeriodEnd,
-                                          dayCounter));
-        }
-
-        void setCapletVolatility(const Handle<CapletVolatilityStructure>&c) {
-            boost::dynamic_pointer_cast<InArrearIndexedCoupon>(*self)
-                ->setCapletVolatility(c);
-        }
-    }
-};
 
 #if defined(SWIGCSHARP)
 SWIG_STD_VECTOR_SPECIALIZE( CashFlow, boost::shared_ptr<CashFlow> )
@@ -238,68 +172,7 @@ FixedRateLeg(const Schedule& schedule,
                       const DayCounter& firstPeriodDayCount = DayCounter());
 
 %inline %{
-Leg
-FloatingRateLeg(const Schedule& schedule,
-                         const std::vector<Real>& nominals,
-			 const IborIndexPtr& index,     
-			 const DayCounter& dayCount = DayCounter(),   
-                         Integer fixingDays = Null<Integer>(),
-			 const BusinessDayConvention paymentAdjustment
-			 = Following, 
-                         const std::vector<Real>& gearings =
-                             std::vector<Real>(),
-                         const std::vector<Spread>& spreads =
-                             std::vector<Spread>()) {
-    const boost::shared_ptr<IborIndex> libor =
-        boost::dynamic_pointer_cast<IborIndex>(index);
-    return QuantLib::FloatingRateLeg(schedule,
-					     nominals, 
-					            libor,
-					      dayCount,
-					      fixingDays,
-					      paymentAdjustment,
-					      gearings,
-					      spreads); 
-	
-}
 
-Leg
-ParCouponVector(const Schedule& schedule,
-                BusinessDayConvention paymentAdjustment,
-                const std::vector<Real>& nominals,
-                Integer fixingDays, IborIndexPtr& index,
-                const std::vector<Real>& gearings = std::vector<Real>(),
-                const std::vector<Spread>& spreads = std::vector<Spread>(),
-                const DayCounter& dayCount = DayCounter(),
-		bool isInArrears = false) {
-    boost::shared_ptr<IborIndex> libor =
-        boost::dynamic_pointer_cast<IborIndex>(index);
-    return QuantLib::IndexedLeg<ParCoupon>(schedule,paymentAdjustment,
-                                                    nominals,fixingDays,libor,
-                                                    gearings,spreads,dayCount,
-						    isInArrears);
-}
-
-
-Leg
-InArrearIndexedLeg(const Schedule& schedule,
-                            BusinessDayConvention paymentAdjustment,
-                            const std::vector<Real>& nominals,
-                            Integer fixingDays, IborIndexPtr& index,
-                            const std::vector<Real>& gearings =
-                                                      std::vector<Real>(),
-                            const std::vector<Spread>& spreads =
-                                                      std::vector<Spread>(),
-                            const DayCounter& dayCount = DayCounter(),
-			    bool isInArrears = false) {
-    const boost::shared_ptr<IborIndex> libor =
-        boost::dynamic_pointer_cast<IborIndex>(index);
-    return QuantLib::IndexedLeg<InArrearIndexedCoupon>(
-                                                  schedule,paymentAdjustment,
-                                                  nominals,fixingDays,libor,
-                                                  gearings,spreads,dayCount,
-						  isInArrears);
-} 
 %}
 
 
@@ -334,6 +207,9 @@ class CashFlows {
 		    Date settlementDate = Date());
     static Rate atmRate(const Leg&,
 		    const Handle<YieldTermStructure>&,
+		    const Date& settlementDate = Date(),
+		    const Date& npvDate = Date(),
+		    Integer exDividendDays = 0,
 		    Real npv = Null<Real>());
     static Rate irr(const Leg&,
                     Real marketPrice,
