@@ -69,22 +69,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlAssetSwapFairSpread' objectClass='AssetSwap'>
-      <description>the fair rate of the asset swap, i.e. the asset swap spread</description>
-      <libraryFunction>fairSpread</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue libraryType='QuantLib::Spread'>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlAssetSwapBondLeg' objectClass='AssetSwap'>
+    <Member name='qlAssetSwapBondLegAnalysis' objectClass='AssetSwap'>
       <description>The bond leg cash flow analysis</description>
       <libraryFunction>bondLeg</libraryFunction>
       <SupportedPlatforms>
@@ -100,7 +85,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAssetSwapFloatingLeg' objectClass='AssetSwap'>
+    <Member name='qlAssetSwapFloatingLegAnalysis' objectClass='AssetSwap'>
       <description>The floating leg cash flow analysis</description>
       <libraryFunction>floatingLeg</libraryFunction>
       <SupportedPlatforms>
@@ -112,6 +97,21 @@
       <ReturnValue>
         <type>any</type>
         <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapFairSpread' libraryClass='AssetSwap'>
+      <description>the fair rate of the asset swap, i.e. the asset swap spread</description>
+      <libraryFunction>fairSpread</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Spread'>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
 

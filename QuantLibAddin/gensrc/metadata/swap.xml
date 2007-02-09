@@ -126,27 +126,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwapLegAnalysis' objectClass='Swap'>
-      <description>Returns the cash flow analysis of the i-th leg for the given Swap object.</description>
-      <libraryFunction>legAnalysis</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='legNumber'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>any</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlSwapStartDate' libraryClass='Swap'>
       <description>Returns the start (i.e. first accrual) date for the given Swap object</description>
       <libraryFunction>startDate</libraryFunction>
@@ -174,6 +153,27 @@
       <ReturnValue libraryType='QuantLib::Date'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapLegAnalysis' objectClass='Swap'>
+      <description>Returns the cash flow analysis of the i-th leg for the given Swap object.</description>
+      <libraryFunction>legAnalysis</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='legNumber'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
 
