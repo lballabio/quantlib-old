@@ -100,8 +100,8 @@ namespace QuantLibAddin {
         const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& parametersGuess,
         const std::vector<bool>& isParameterFixed,
         bool isAtmCalibrated,
-        QuantLib::Real maxErrorTolerance,
-        QuantLib::Size maxIterations)
+        const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
+        QuantLib::Real maxErrorTolerance)
     {
         QL_REQUIRE(!atmVol.empty(), "atm vol handle not linked to anything");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
@@ -115,8 +115,8 @@ namespace QuantLibAddin {
                                                    parametersGuess,
                                                    isParameterFixed,
                                                    isAtmCalibrated,
-                                                   maxErrorTolerance,
-                                                   maxIterations ));
+                                                   endCriteria,
+                                                   maxErrorTolerance ));
     }
 
     std::vector<std::vector<boost::any> >

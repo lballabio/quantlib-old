@@ -27,6 +27,7 @@
 
 #include <ql/Indexes/swapindex.hpp>
 #include <ql/Volatilities/swaptionvolcube.hpp>
+#include <ql/Optimization/criteria.hpp>
 
 namespace QuantLibAddin {
 
@@ -91,8 +92,8 @@ namespace QuantLibAddin {
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& parametersGuess,
             const std::vector<bool>& isParameterFixed,
             bool isAtmCalibrated,
-            QuantLib::Real maxErrorTolerance,
-            QuantLib::Size maxIterations);
+            const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
+            QuantLib::Real maxErrorTolerance);
         std::vector<std::vector<boost::any> > getSparseSabrParameters();
         std::vector<std::vector<boost::any> > getDenseSabrParameters();
         std::vector<std::vector<boost::any> > getMarketVolCube();
