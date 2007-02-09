@@ -13,42 +13,6 @@
 
     <!-- EndCriteria class and interface -->
 
-    <!--<Member name='qlEndCriteriaSetPositiveOptimization' libraryClass='EndCriteria'>
-      <description>Sets positive optimization to the given EndCriteria object</description>
-      <libraryFunction>setPositiveOptimization</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name="isPositive">
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>TRUE for positive optimization</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlEndCriteriaType' libraryClass='EndCriteria'>
-      <description>Returns the end criteria type for the given EndCriteria object</description>
-      <libraryFunction>type</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue enumeration='QuantLib::EndCriteria::Type'>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>-->
-
     <Member name='qlEndCriteriaMaxIterations' libraryClass='EndCriteria'>
       <description>Returns the number of max interation for the given EndCriteria object</description>
       <libraryFunction>maxIterations</libraryFunction>
