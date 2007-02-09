@@ -212,7 +212,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Compounding' enumeration='QuantLib::Compounding'>
+          <Parameter name='Compounding' enumeration='QuantLib::Compounding' exampleValue='Compounded'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
@@ -234,7 +234,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='yield' const='False' libraryType='QuantLib::Rate'>
+          <Parameter name='yield' const='False' libraryType='QuantLib::Rate' exampleValue='4.00%'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>bond yield</description>
@@ -265,12 +265,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='yield' const='False' libraryType='QuantLib::Rate'>
+          <Parameter name='yield' const='False' libraryType='QuantLib::Rate' exampleValue='4.00%'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>bond yield</description>
           </Parameter>
-          <Parameter name='compounding' enumeration='QuantLib::Compounding' const='False'>
+          <Parameter name='compounding' enumeration='QuantLib::Compounding' const='False' exampleValue='Compounded'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>interest rate coumpounding rule ( i.e. Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
@@ -282,9 +282,9 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-      <ReturnValue libraryType='QuantLib::Rate'>
+      <ReturnValue>
         <type>double</type>
-        <tensorRank>vector</tensorRank>
+        <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
 
@@ -297,12 +297,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='cleanPrice'>
+          <Parameter name='cleanPrice' exampleValue='96.8'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>clean price</description>
           </Parameter>
-          <Parameter name='compounding' enumeration='QuantLib::Compounding'>
+          <Parameter name='compounding' enumeration='QuantLib::Compounding' exampleValue='Continuous'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
@@ -353,47 +353,47 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string</description>
           </Parameter>
-          <Parameter name='FaceAmount'>
+          <Parameter name='FaceAmount' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
           </Parameter>
-          <Parameter name='issueDate' libraryType='QuantLib::Date'>
+          <Parameter name='issueDate' libraryType='QuantLib::Date' exampleValue='38409'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>issue date</description>
           </Parameter>
-          <Parameter name='maturity' libraryType='QuantLib::Date'>
+          <Parameter name='maturity' libraryType='QuantLib::Date' exampleValue='45348'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>maturity date</description>
           </Parameter>
-          <Parameter name='settlementDays'>
+          <Parameter name='settlementDays' exampleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement days</description>
           </Parameter>
-          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/Actual (ISDA)'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar' exampleValue='TARGET'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='BDC' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='BDC' enumeration='QuantLib::BusinessDayConvention' exampleValue='Unadjusted'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>BusinessDayConvention</description>
           </Parameter>
-          <Parameter name='redemption'>
+          <Parameter name='redemption' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>redemption</description>
           </Parameter>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
@@ -414,67 +414,67 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string</description>
           </Parameter>
-          <Parameter name='FaceAmount'>
+          <Parameter name='FaceAmount' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
           </Parameter>
-          <Parameter name='issueDate' libraryType='QuantLib::Date'>
+          <Parameter name='issueDate' libraryType='QuantLib::Date' exampleValue='38356'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>issue date</description>
           </Parameter>
-          <Parameter name='intAccrualDate' libraryType='QuantLib::Date'>
+          <Parameter name='intAccrualDate' libraryType='QuantLib::Date' exampleValue='38356'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>interest accrual date</description>
           </Parameter>
-          <Parameter name='maturity' libraryType='QuantLib::Date'>
+          <Parameter name='maturity' libraryType='QuantLib::Date' exampleValue='50044'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>maturity date</description>
           </Parameter>
-          <Parameter name='settlementDays'>
+          <Parameter name='settlementDays' exampleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement days</description>
           </Parameter>
-          <Parameter name='coupons' libraryType='QuantLib::Rate'>
+          <Parameter name='coupons' libraryType='QuantLib::Rate' exampleValue='4.0000%'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>coupons</description>
           </Parameter>
-          <Parameter name='Redemption'>
+          <Parameter name='Redemption' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>redemption value</description>
           </Parameter>
-          <Parameter name='frequency' enumeration='QuantLib::Frequency'>
+          <Parameter name='frequency' enumeration='QuantLib::Frequency' exampleValue='Semiannual'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
-          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='accrualBDC' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='accrualBDC' enumeration='QuantLib::BusinessDayConvention' exampleValue='Unadjusted'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual business day convention (e.g. ModifiedFollowing)</description>
           </Parameter>
-          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>payment business day convention (e.g. ModifiedFollowing)</description>
           </Parameter>
-          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar' exampleValue='TARGET'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='startFromEnd'>
+          <Parameter name='startFromEnd' exampleValue='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>build schedule backwards (start from maturity)</description>
@@ -484,7 +484,7 @@
             <tensorRank>scalar</tensorRank>
             <description>stub date</description>
           </Parameter>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
@@ -505,27 +505,27 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string</description>
           </Parameter>
-          <Parameter name='FaceAmount'>
+          <Parameter name='FaceAmount' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
           </Parameter>
-          <Parameter name='issueDate' libraryType='QuantLib::Date'>
+          <Parameter name='issueDate' libraryType='QuantLib::Date' exampleValue='38254'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>issue date</description>
           </Parameter>
-          <Parameter name='intAccrualDate' libraryType='QuantLib::Date'>
+          <Parameter name='intAccrualDate' libraryType='QuantLib::Date' exampleValue='38254'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>interest accrual date</description>
           </Parameter>
-          <Parameter name='maturity' libraryType='QuantLib::Date'>
+          <Parameter name='maturity' libraryType='QuantLib::Date' exampleValue='43367'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>maturity date</description>
           </Parameter>
-          <Parameter name='settlementDays'>
+          <Parameter name='settlementDays' exampleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement days</description>
@@ -535,7 +535,7 @@
             <tensorRank>scalar</tensorRank>
             <description>floating rate index</description>
           </Parameter>
-          <Parameter name='fixingDays'>
+          <Parameter name='fixingDays' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
@@ -550,37 +550,37 @@
             <tensorRank>vector</tensorRank>
             <description>floating rate spreads</description>
           </Parameter>
-          <Parameter name='frequency' enumeration='QuantLib::Frequency'>
+          <Parameter name='frequency' enumeration='QuantLib::Frequency' exampleValue='Semiannual'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
-          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar' exampleValue='TARGET'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='accrualBDC' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='accrualBDC' enumeration='QuantLib::BusinessDayConvention' exampleValue='Modified Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>accrual business day convention (e.g. ModifiedFollowing)</description>
+            <description>accrual business day convention (e.g. Modified Following)</description>
           </Parameter>
-          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention' exampleValue='Modified Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention (e.g. ModifiedFollowing)</description>
+            <description>payment business day convention (e.g. Modified Following)</description>
           </Parameter>
-          <Parameter name='Redemption'>
+          <Parameter name='Redemption' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>redemption</description>
           </Parameter>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
@@ -590,7 +590,7 @@
             <tensorRank>scalar</tensorRank>
             <description>stub date</description>
           </Parameter>
-          <Parameter name='startFromEnd'>
+          <Parameter name='startFromEnd' exampleValue='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>build schedule backwards (start from maturity)</description>
@@ -611,27 +611,27 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string</description>
           </Parameter>
-          <Parameter name='FaceAmount'>
+          <Parameter name='FaceAmount' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
           </Parameter>
-          <Parameter name='issueDate' libraryType='QuantLib::Date'>
+          <Parameter name='issueDate' libraryType='QuantLib::Date' exampleValue='36339'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>issue date</description>
           </Parameter>
-          <Parameter name='intAccrualDate' libraryType='QuantLib::Date'>
+          <Parameter name='intAccrualDate' libraryType='QuantLib::Date' exampleValue='36339'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>interest accrual date</description>
           </Parameter>
-          <Parameter name='maturity' libraryType='QuantLib::Date'>
+          <Parameter name='maturity' libraryType='QuantLib::Date' exampleValue='47297'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>maturity date</description>
           </Parameter>
-          <Parameter name='settlDays'>
+          <Parameter name='settlDays' exampleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement days</description>
@@ -641,7 +641,7 @@
             <tensorRank>scalar</tensorRank>
             <description>underlying swap index</description>
           </Parameter>
-          <Parameter name='fixingDays'>
+          <Parameter name='fixingDays' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
@@ -656,52 +656,52 @@
             <tensorRank>vector</tensorRank>
             <description>floating rate spreads</description>
           </Parameter>
-          <Parameter name='freq' enumeration='QuantLib::Frequency'>
+          <Parameter name='freq' enumeration='QuantLib::Frequency' exampleValue='Annual'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
-          <Parameter name='cal' enumeration='QuantLib::Calendar'>
+          <Parameter name='cal' enumeration='QuantLib::Calendar' exampleValue='Target'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='CmsPricer' libraryClass='CmsCouponPricer'>
+          <Parameter name='CmsPricer' libraryClass='CmsCouponPricer' exampleValue='CmsCouponPricer'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>cmscoupon pricer object ID</description>
           </Parameter>
-          <Parameter name='caps' libraryType='QuantLib::Rate'>
+          <Parameter name='caps' libraryType='QuantLib::Rate' exampleValue='100%'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>caps</description>
           </Parameter>
-          <Parameter name='floors' libraryType='QuantLib::Rate'>
+          <Parameter name='floors' libraryType='QuantLib::Rate' exampleValue='4.25%'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floors</description>
           </Parameter>
-          <Parameter name='accrualBDC' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='accrualBDC' enumeration='QuantLib::BusinessDayConvention' exampleValue='Unadjusted'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>accrual BDC (e.g. ModifiedFollowing)</description>
+            <description>accrual BDC (e.g. Modified Following)</description>
           </Parameter>
-          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention' exampleValue='Modified Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment BDC (e.g. ModifiedFollowing)</description>
+            <description>payment BDC (e.g. Modified Following)</description>
           </Parameter>
-          <Parameter name='Redemption'>
+          <Parameter name='Redemption' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>redemption</description>
           </Parameter>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
@@ -711,7 +711,7 @@
             <tensorRank>scalar</tensorRank>
             <description>stub date</description>
           </Parameter>
-          <Parameter name='startFromEnd'>
+          <Parameter name='startFromEnd' exampleValue='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>build schedule backwards</description>
@@ -732,27 +732,27 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string</description>
           </Parameter>
-          <Parameter name='Face'>
+          <Parameter name='Face' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
           </Parameter>
-          <Parameter name='issueDate' libraryType='QuantLib::Date'>
+          <Parameter name='issueDate' libraryType='QuantLib::Date' exampleValue='35732'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>issue date</description>
           </Parameter>
-          <Parameter name='intAccrualDate' libraryType='QuantLib::Date'>
+          <Parameter name='intAccrualDate' libraryType='QuantLib::Date' exampleValue='36462'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>interest accrual date</description>
           </Parameter>
-          <Parameter name='maturity' libraryType='QuantLib::Date'>
+          <Parameter name='maturity' libraryType='QuantLib::Date' exampleValue='39384'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>maturity date</description>
           </Parameter>
-          <Parameter name='settlDays'>
+          <Parameter name='settlDays' examppleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement days</description>
@@ -762,7 +762,7 @@
             <tensorRank>scalar</tensorRank>
             <description>floating rate index</description>
           </Parameter>
-          <Parameter name='fixingDays'>
+          <Parameter name='fixingDays' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
@@ -777,52 +777,52 @@
             <tensorRank>vector</tensorRank>
             <description>floating rate spreads</description>
           </Parameter>
-          <Parameter name='freq' enumeration='QuantLib::Frequency'>
+          <Parameter name='freq' enumeration='QuantLib::Frequency' exampleValue='Annual'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
-          <Parameter name='cal' enumeration='QuantLib::Calendar'>
+          <Parameter name='cal' enumeration='QuantLib::Calendar' exampleValue='TARGET'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='30/360 (Bond Basis)'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='caps' libraryType='QuantLib::Rate'>
+          <Parameter name='caps' libraryType='QuantLib::Rate' exampleValue='100%'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>caps</description>
           </Parameter>
-          <Parameter name='floors' libraryType='QuantLib::Rate'>
+          <Parameter name='floors' libraryType='QuantLib::Rate' exampleValue='0%'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floors</description>
           </Parameter>
-          <Parameter name='accrualBDC' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='accrualBDC' enumeration='QuantLib::BusinessDayConvention' exampleValue='Unadjusted'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual BDC (e.g. Unadjusted)</description>
           </Parameter>
-          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>payment BDC (e.g. Following)</description>
           </Parameter>
-          <Parameter name='Redemption'>
+          <Parameter name='Redemption' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>redemption</description>
           </Parameter>
-           <Parameter name='Vol' libToHandle='CapletVolatilityStructure'>
+           <Parameter name='Vol' libToHandle='CapletVolatilityStructure' exampleValue='EUR6MCapletVol'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>VolatilityStructure object ID</description>
             </Parameter>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
@@ -832,7 +832,7 @@
             <tensorRank>scalar</tensorRank>
             <description>stub date</description>
           </Parameter>
-          <Parameter name='startFromEnd'>
+          <Parameter name='startFromEnd' exampleValue='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>build schedule backwards</description>

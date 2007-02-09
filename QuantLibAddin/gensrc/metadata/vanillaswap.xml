@@ -25,27 +25,27 @@
             <tensorRank>scalar</tensorRank>
             <description>PAYER to pay the fixed rate, RECEIVER to receive it</description>
           </Parameter>
-          <Parameter name='Nominal'>
+          <Parameter name='Nominal' exampleValue='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Notional Amount</description>
           </Parameter>
-          <Parameter name='fixedLegSchedule' libraryClass='Schedule'>
+          <Parameter name='fixedLegSchedule' libraryClass='Schedule' exampleValue='FixedSchedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg schedule object ID</description>
           </Parameter>
-          <Parameter name='fixedRate' libraryType='QuantLib::Rate'>
+          <Parameter name='fixedRate' libraryType='QuantLib::Rate' exampleValue='5%'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the fixed rate</description>
           </Parameter>
-          <Parameter name='fixedLegDayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='fixedLegDayCounter' enumeration='QuantLib::DayCounter' exampleValue='30/360 (Bond Basis)'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='floatingLegSchedule' libraryClass='Schedule'>
+          <Parameter name='floatingLegSchedule' libraryClass='Schedule' exampleValue='FloatingSchedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>floating leg schedule object ID</description>
@@ -55,17 +55,17 @@
             <tensorRank>scalar</tensorRank>
             <description>floating leg IborIndex index object ID</description>
           </Parameter>
-          <Parameter name='floatingLegSpread' libraryType='QuantLib::Spread'>
+          <Parameter name='floatingLegSpread' libraryType='QuantLib::Spread' exampleValue='0%'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Index Spread</description>
           </Parameter>
-          <Parameter name='floatingLegDayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='floatingLegDayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>floating day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
@@ -81,7 +81,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period' exampleValue='1Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>swap tenor period</description>
@@ -97,7 +97,7 @@
             <description>the fixed rate</description>
           </Parameter>
           <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
-          <Parameter name='forwardStart' libraryType='QuantLib::Period'>
+          <Parameter name='forwardStart' libraryType='QuantLib::Period' exampleValue='0D'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period</description>

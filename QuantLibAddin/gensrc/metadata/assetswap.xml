@@ -9,7 +9,7 @@
     <include>qlo/bonds.hpp</include>
   </includes>
   <copyright>
-    Copyright (C) 2006 Chiara Fornarola
+    Copyright (C) 2006, 2007 Chiara Fornarola
   </copyright>
   <Functions>
 

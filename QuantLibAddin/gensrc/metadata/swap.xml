@@ -33,7 +33,7 @@
             <tensorRank>vector</tensorRank>
             <description>TRUE for payed leg</description>
           </Parameter>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting YieldTermStructure object ID</description>
@@ -49,7 +49,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='swapTenor' libraryType='QuantLib::Period'>
+          <Parameter name='swapTenor' libraryType='QuantLib::Period' exampleValue='5Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>swap tenor period</description>
@@ -59,19 +59,19 @@
             <tensorRank>scalar</tensorRank>
             <description>swap index object ID</description>
           </Parameter>
-          <Parameter name='iborSpread' libraryType='QuantLib::Spread'>
+          <Parameter name='iborSpread' libraryType='QuantLib::Spread' exampleValue='0%'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>spread over the ibor leg</description>
           </Parameter>
-          <Parameter name='CmsCouponPricer' libraryClass='CmsCouponPricer'>
+          <Parameter name='CmsCouponPricer' libraryClass='CmsCouponPricer' exampleValue='CmsCouponPricer'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Cms coupon pricer object ID</description>
           </Parameter>
           <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='0*QuantLib::Days'>-->
           <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
-          <Parameter name='forwardStart' libraryType='QuantLib::Period'>
+          <Parameter name='forwardStart' libraryType='QuantLib::Period' exampleValue='0D'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period</description>
@@ -92,7 +92,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='legNumber'>
+          <Parameter name='legNumber' exampleValue='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>
@@ -113,7 +113,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='legNumber'>
+          <Parameter name='legNumber' exampleValue='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>
@@ -164,7 +164,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='legNumber'>
+          <Parameter name='legNumber' exampleValue='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>
