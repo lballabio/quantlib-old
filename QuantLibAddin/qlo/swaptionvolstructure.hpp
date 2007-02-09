@@ -27,10 +27,12 @@
 
 #include <ql/Indexes/swapindex.hpp>
 #include <ql/Volatilities/swaptionvolcube.hpp>
-#include <ql/Optimization/criteria.hpp>
+
+namespace QuantLib {
+    class QuantLib::EndCriteria;
+}
 
 namespace QuantLibAddin {
-
 
     class SwaptionVolatilityStructure : public TermStructure {};
 

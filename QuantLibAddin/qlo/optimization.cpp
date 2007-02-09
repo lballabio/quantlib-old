@@ -27,13 +27,15 @@
 
 namespace QuantLibAddin {
 
-    EndCriteria::EndCriteria(QuantLib::Size maxIteration,
+    EndCriteria::EndCriteria(QuantLib::Size maxIterations,
                              QuantLib::Real functionEpsilon,
-                             QuantLib::Real gradientEpsilon) {
+                             QuantLib::Real gradientEpsilon,
+                             QuantLib::Size maxStationaryStateIterations) {
         libraryObject_ = boost::shared_ptr<QuantLib::EndCriteria>(new
-            QuantLib::EndCriteria(maxIteration,
+            QuantLib::EndCriteria(maxIterations,
                                   functionEpsilon,
-                                  gradientEpsilon));
+                                  gradientEpsilon,
+                                  maxStationaryStateIterations));
     }
 
 

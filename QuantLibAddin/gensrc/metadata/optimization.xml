@@ -13,7 +13,7 @@
 
     <!-- EndCriteria class and interface -->
 
-    <Member name='qlEndCriteriaSetPositiveOptimization' libraryClass='EndCriteria'>
+    <!--<Member name='qlEndCriteriaSetPositiveOptimization' libraryClass='EndCriteria'>
       <description>Sets positive optimization to the given EndCriteria object</description>
       <libraryFunction>setPositiveOptimization</libraryFunction>
       <SupportedPlatforms>
@@ -47,11 +47,26 @@
         <type>string</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Member>-->
 
     <Member name='qlEndCriteriaMaxIterations' libraryClass='EndCriteria'>
       <description>Returns the number of max interation for the given EndCriteria object</description>
       <libraryFunction>maxIterations</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Size'>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEndCriteriaMaxStationaryStateIterations' libraryClass='EndCriteria'>
+      <description>Returns the number of max interation in a stationary state for the given EndCriteria object</description>
+      <libraryFunction>maxStationaryStateIterations</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='true' />
       </SupportedPlatforms>
@@ -101,20 +116,25 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='mxIterations' default='1000'>
+          <Parameter name='maxIter' default='1000'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>max number of iterations</description>
+            <description>max number of iterations. Default is 1000</description>
           </Parameter>
           <Parameter name='functionEpsilon' default='1e-8'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance on the function value (e.g. 1e-8)</description>
+            <description>tolerance on the function value. Default is 1e-8</description>
           </Parameter>
-          <Parameter name='gradientEpsilon' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='gradientEpsilon' default='1e-8'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance on the function gradient (e.g. 1e-8)</description>
+            <description>tolerance on the function gradient. Default is 1e-8</description>
+          </Parameter>
+          <Parameter name='maxStatStateIter' default='100'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max number of iterations in a stationary state. Default is 100</description>
           </Parameter>
         </Parameters>
       </ParameterList>

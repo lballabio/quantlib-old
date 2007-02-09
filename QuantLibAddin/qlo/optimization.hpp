@@ -27,9 +27,10 @@ namespace QuantLibAddin {
     class EndCriteria :
         public ObjHandler::LibraryObject<QuantLib::EndCriteria> {
       public:
-        EndCriteria(QuantLib::Size maxIteration,
+        EndCriteria(QuantLib::Size maxIterations,
                     QuantLib::Real functionEpsilon,
-                    QuantLib::Real gradientEpsilon);
+                    QuantLib::Real gradientEpsilon,
+                    QuantLib::Size maxStationaryStateIterations);
     };
 
     class OptimizationMethod :
