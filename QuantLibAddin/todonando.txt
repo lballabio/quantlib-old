@@ -57,14 +57,13 @@ K
 - foglio di clerici (interpolazione)
 - test abcd (swap tenor) with new optimization code
 - multiLegSwap.xls: move from Drafts to IRDerivatives
-- quickCapPricer.xls: move from Drafts to IRDerivatives
 - remove action atmVolatility from Launcher
 - standardizzare il nome delle quotes dei param di calibrazione
 - DONE scrivere manuale applicativo Launcher
 - demo per HelpDesk e ChangeMan
 Pending:
 - DONE rilascio di 02 a 01
-- trimestrale
+- DONE trimestrale
 - murex yield curve
 - DONE update end of day procedures: calibarionParametersQuotesFeed.xls added
 - DONE waiting for atmCalibrated=True. review SwaptionVolCubeChecks.xls
