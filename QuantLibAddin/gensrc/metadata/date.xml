@@ -19,7 +19,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='frequency' enumeration='QuantLib::Frequency'>
+          <Parameter name='frequency' enumeration='QuantLib::Frequency' exampleValue='Annual'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
@@ -41,7 +41,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='period' libraryType='QuantLib::Period'>
+          <Parameter name='period' libraryType='QuantLib::Period' exampleValue='1Y'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>period(s) to advance (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
@@ -62,12 +62,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='period1' libraryType='QuantLib::Period'>
+          <Parameter name='period1' libraryType='QuantLib::Period' exampleValue='1Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>left hand side</description>
           </Parameter>
-          <Parameter name='period2' libraryType='QuantLib::Period'>
+          <Parameter name='period2' libraryType='QuantLib::Period' exampleValue='2Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>right hand side</description>
@@ -118,7 +118,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='year'>
+          <Parameter name='year' exampleValue='2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>year (e.g. 2006)</description>
@@ -139,7 +139,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' libraryType='QuantLib::Date'>
+          <Parameter name='date' libraryType='QuantLib::Date' exampleValue='15-Feb-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
@@ -160,7 +160,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' libraryType='QuantLib::Date'>
+          <Parameter name='date' libraryType='QuantLib::Date' exampleValue='28-Feb-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
@@ -181,12 +181,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' libraryType='QuantLib::Date'>
+          <Parameter name='date' libraryType='QuantLib::Date' exampleValue='09-Feb-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
           </Parameter>
-          <Parameter name='weekday' enumeration='QuantLib::Weekday'>
+          <Parameter name='weekday' enumeration='QuantLib::Weekday' exampleValue='Monday'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Weekday (e.g. Wednesday, or Wed).</description>
@@ -208,22 +208,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='nth'>
+          <Parameter name='nth' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>ordinal number (greater than zero, less than 6)</description>
           </Parameter>
-          <Parameter name='weekday' enumeration='QuantLib::Weekday'>
+          <Parameter name='weekday' enumeration='QuantLib::Weekday' exampleValue='Monday'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Weekday (e.g. Wednesday, or Wed).</description>
           </Parameter>
-          <Parameter name='month' enumeration='QuantLib::Month'>
+          <Parameter name='month' enumeration='QuantLib::Month' exampleValue='Feb'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Month (e.g. January, or Jan).</description>
           </Parameter>
-          <Parameter name='year'>
+          <Parameter name='year' exampleValue='2007'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>year (e.g. 2006)</description>
@@ -244,7 +244,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' libraryType='QuantLib::Date'>
+          <Parameter name='date' libraryType='QuantLib::Date' exampleValue='21-Mar-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
@@ -270,7 +270,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='code'>
+          <Parameter name='code' exampleValue='H9'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>2 letter string (e.g. H9)</description>
@@ -296,7 +296,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='IMMdate' libraryType='QuantLib::Date'>
+          <Parameter name='IMMdate' libraryType='QuantLib::Date' exampleValue='21-Mar-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>IMM date</description>
@@ -368,7 +368,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='IMMcode'>
+          <Parameter name='IMMcode' exampleValue='H9'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>2 letter IMM code (e.q. \"H9\")</description>

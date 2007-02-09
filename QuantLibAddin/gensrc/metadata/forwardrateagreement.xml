@@ -16,27 +16,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='valueDate' libraryType='QuantLib::Date'>
+          <Parameter name='valueDate' libraryType='QuantLib::Date' exampleValue='3M'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Value date</description>
           </Parameter>
-          <Parameter name='maturityDate' libraryType='QuantLib::Date'>
+          <Parameter name='maturityDate' libraryType='QuantLib::Date' exampleValue='6M'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Maturity date</description>
           </Parameter>
-          <Parameter name='position' enumeration='QuantLib::Position::Type'>
+          <Parameter name='position' enumeration='QuantLib::Position::Type' exampleValue='Long'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Instrument position (Long = purchase, Short = sale)</description>
           </Parameter>
-          <Parameter name='strike' libraryType='QuantLib::Rate'>
+          <Parameter name='strike' libraryType='QuantLib::Rate' exampleValue='0.02'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Strike rate</description>
           </Parameter>
-          <Parameter name='notional'>
+          <Parameter name='notional' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Notional amount</description>
@@ -46,7 +46,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Underlying index object ID</description>
           </Parameter>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Discounting yield term structure object ID</description>
