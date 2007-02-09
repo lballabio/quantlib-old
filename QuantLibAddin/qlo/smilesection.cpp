@@ -64,15 +64,13 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::OptimizationMethod> method) {
 
         boost::shared_ptr<QuantLib::OptimizationMethod> method_ = method;
-        if (!method) {
+        if (!method)
             method_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
-                            QuantLib::Simplex(1e-6));
-        }
+                            QuantLib::Simplex(0.01));
 
         boost::shared_ptr<QuantLib::EndCriteria> endCriteria_ = endCriteria;
-        if (!endCriteria) {
-            QuantLib::EndCriteria endCriteria(120000, 1e-12);
-        }
+        if (!endCriteria)
+            QuantLib::EndCriteria endCriteria(60000, 1e-8);
 
         QuantLib::SABR sabrInterpolationFactory(expiry, forward, alpha, beta,
             nu, rho, isAlphaFixed, isBetaFixed, isNuFixed, 
