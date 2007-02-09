@@ -15,7 +15,7 @@
 #include <ql/Instruments/swaption.hpp>
 #include <ql/Math/cubicspline.hpp>
 #include <ql/Math/pseudosqrt.hpp>
-#include <ql/Optimization/criteria.hpp>
+#include <ql/Optimization/endcriteria.hpp>
 #include <ql/Volatilities/cmsmarket.hpp>
 #include <qlo/interpolation.hpp>
 #include <qlo/interpolation2D.hpp>
