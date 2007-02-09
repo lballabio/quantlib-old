@@ -69,7 +69,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlAssetSwapFairSpread' libraryClass='AssetSwap'>
+    <Member name='qlAssetSwapFairSpread' objectClass='AssetSwap'>
       <description>the fair rate of the asset swap, i.e. the asset swap spread</description>
       <libraryFunction>fairSpread</libraryFunction>
       <SupportedPlatforms>
