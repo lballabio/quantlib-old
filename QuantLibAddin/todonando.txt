@@ -53,18 +53,19 @@ Nando
 
 K
 - SA applied to cms book
+- send Eric updated cms book file: book1.xls desktop
+- murex yield curve: check observability
 - foglio di clerici (Drafts\QuickCapPricer.xls)
 - foglio di clerici (interpolazione)
 - test abcd (swap tenor) with new optimization code
 - multiLegSwap.xls: move from Drafts to IRDerivatives
 - remove action atmVolatility from Launcher
 - standardizzare il nome delle quotes dei param di calibrazione
-- DONE scrivere manuale applicativo Launcher
 - demo per HelpDesk e ChangeMan
 Pending:
+- DONE scrivere manuale applicativo Launcher
 - DONE rilascio di 02 a 01
 - DONE trimestrale
-- murex yield curve
 - DONE update end of day procedures: calibarionParametersQuotesFeed.xls added
 - DONE waiting for atmCalibrated=True. review SwaptionVolCubeChecks.xls
 - DONE triggers added in bondMonitor.xls (performance problems)
