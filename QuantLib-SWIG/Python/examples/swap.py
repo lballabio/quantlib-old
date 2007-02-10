@@ -127,26 +127,39 @@ index = Euribor6M(forecastTermStructure)
 floatingLegAdjustment = ModifiedFollowing
 floatingLegDayCounter = index.dayCounter()
 
-fixedSchedule = Schedule(calendar, settlementDate, maturity,
-                         fixedLegFrequency, fixedLegAdjustment)
-floatingSchedule = Schedule(calendar, settlementDate, maturity,
-                            floatingLegFrequency, floatingLegAdjustment)
+fixedSchedule = Schedule(settlementDate, maturity,
+                         Period(fixedLegFrequency),
+                         calendar,
+                         fixedLegAdjustment,
+                         fixedLegAdjustment, False, False) 
+floatingSchedule = Schedule(settlementDate, maturity,
+                            Period(floatingLegFrequency),
+                            calendar,
+                            floatingLegAdjustment,
+                            floatingLegAdjustment, False, False)
+                            
 
-spot = VanillaSwap(payFixed, nominal,
+spot = VanillaSwap(Payer, nominal,
                    fixedSchedule, fixedRate, fixedLegDayCounter,
-                   floatingSchedule, index, fixingDays, spread,
+                   floatingSchedule, index, spread,
                    floatingLegDayCounter, discountTermStructure)
 
 forwardStart = calendar.advance(settlementDate,1,Years)
 forwardEnd = calendar.advance(forwardStart,length,Years)
-fixedSchedule = Schedule(calendar, forwardStart, forwardEnd,
-                         fixedLegFrequency, fixedLegAdjustment)
-floatingSchedule = Schedule(calendar, forwardStart, forwardEnd,
-                            floatingLegFrequency, floatingLegAdjustment)
+fixedSchedule = Schedule(forwardStart, forwardEnd,
+                         Period(fixedLegFrequency),
+                         calendar,
+                         fixedLegAdjustment,
+                         fixedLegAdjustment, False, False)
+floatingSchedule = Schedule(forwardStart, forwardEnd,
+                            Period(floatingLegFrequency),
+                            calendar,
+                            floatingLegAdjustment,
+                            floatingLegAdjustment, False, False)
 
-forward = VanillaSwap(payFixed, nominal,
+forward = VanillaSwap(Payer, nominal,
                       fixedSchedule, fixedRate, fixedLegDayCounter,
-                      floatingSchedule, index, fixingDays, spread,
+                      floatingSchedule, index, spread,
                       floatingLegDayCounter, discountTermStructure)
 
 # price on the bootstrapped curves

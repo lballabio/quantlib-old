@@ -43,8 +43,7 @@ def calibrate(model, helpers, l, name):
     print rule
 
     method = Simplex(l);
-    method.setEndCriteria(EndCriteria(1000, 1.0e-7));
-    model.calibrate(helpers, method);
+    model.calibrate(helpers, method, EndCriteria(1000, 1.0e-7));
 
     print 'Parameters: %s' % model.params()
     print rule
@@ -101,13 +100,13 @@ fixedSchedule = Schedule(swapStart, swapEnd,
                          calendar,
                          fixedLegConvention,
                          fixedLegConvention,
-                         False, True)
+                         False, False)
 floatingSchedule = Schedule(swapStart, swapEnd,
                             Period(floatingLegFrequency),
                             calendar,
                             floatingLegConvention,
                             floatingLegConvention,
-                            False, True)
+                            False, False)
 
 atmRate = VanillaSwap(payFixed, 100.0,
                       fixedSchedule, 0.0, fixedLegDayCounter,
