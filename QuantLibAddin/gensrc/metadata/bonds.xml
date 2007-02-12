@@ -284,7 +284,7 @@
       </ParameterList>
       <ReturnValue>
         <type>double</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
