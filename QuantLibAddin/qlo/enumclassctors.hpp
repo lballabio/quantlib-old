@@ -35,7 +35,7 @@
 #include <ql/Math/bicubicsplineinterpolation.hpp>
 #include <ql/Math/sabrinterpolation.hpp>
 #include <ql/CashFlows/cmscoupon.hpp>
-#include <ql/CashFlows/conundrumpricer.hpp>
+#include <ql/CashFlows/couponpricer.hpp>
 
 namespace QuantLibAddin {
 
@@ -200,7 +200,12 @@ namespace QuantLibAddin {
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
             const QuantLib::DayCounter &dayCounter);
 
-    //CmsCouponPricer
+    /* *** Pricers *** */
+    /* *** IborCouponPricer *** */
+    boost::shared_ptr<QuantLib::IborCouponPricer> 
+        IBOR_BY_BLACK_Pricer(
+            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& capletVol);
+    /* *** CmsCouponPricer **** */
     boost::shared_ptr<QuantLib::CmsCouponPricer> 
         CONUNDRUM_BY_BLACK_Pricer(
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,

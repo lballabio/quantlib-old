@@ -442,7 +442,13 @@ namespace QuantLibAddin {
                 1.0e-6));
     }
 
-    //VanillaCmsCouponPricer
+    // IborCouponPricer
+    boost::shared_ptr<QuantLib::IborCouponPricer> IBOR_BY_BLACK_Pricer(
+        const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& capletVol){
+        return boost::shared_ptr<QuantLib::IborCouponPricer>(
+            new QuantLib::BlackIborCouponPricer(capletVol));
+    };
+    // CmsCouponPricer
     boost::shared_ptr<QuantLib::CmsCouponPricer> CONUNDRUM_BY_BLACK_Pricer(
         const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
         const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,

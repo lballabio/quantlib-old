@@ -298,7 +298,7 @@
           <Parameter name='IborCouponPricerType' exampleValue='BlackIborCouponPricer'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Ibor Coupon Pricer Type (e.g BlackIborCouponPricer, ..)</description>
+            <description>Ibor Coupon Pricer Type (e.g IborByBlack, ..)</description>
           </Parameter>
         </Parameters>
       </ParameterList>
