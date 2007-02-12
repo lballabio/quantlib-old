@@ -97,26 +97,26 @@ namespace QuantLibAddin {
                                aIsFixed, bIsFixed, cIsFixed, dIsFixed));
     }
 
-    DriftCalculator::DriftCalculator(const QuantLib::Matrix& pseudo,
+    LMMDriftCalculator::LMMDriftCalculator(const QuantLib::Matrix& pseudo,
                                      const std::vector<QuantLib::Rate>& displacements,
                                      const std::vector<QuantLib::Time>& taus,
                                      QuantLib::Size numeraire,
                                      QuantLib::Size alive)
     : size_(taus.size())
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::DriftCalculator>(
-            new QuantLib::DriftCalculator(pseudo, displacements,
+        libraryObject_ = boost::shared_ptr<QuantLib::LMMDriftCalculator>(
+            new QuantLib::LMMDriftCalculator(pseudo, displacements,
                                           taus, numeraire, alive));
     }
 
-    std::vector<QuantLib::Real> DriftCalculator::computePlain(
+    std::vector<QuantLib::Real> LMMDriftCalculator::computePlain(
         const std::vector<QuantLib::Rate>& forwards) const {
         std::vector<QuantLib::Real> results(size_);
         libraryObject_->computePlain(forwards, results);
         return results;
     }
 
-    std::vector<QuantLib::Real> DriftCalculator::computeReduced(
+    std::vector<QuantLib::Real> LMMDriftCalculator::computeReduced(
         const std::vector<QuantLib::Rate>& forwards) const {
         std::vector<QuantLib::Real> results(size_);
         libraryObject_->computeReduced(forwards, results);

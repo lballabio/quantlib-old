@@ -25,7 +25,7 @@
 #include <ql/MarketModels/marketmodel.hpp>
 #include <ql/MarketModels/evolutiondescription.hpp>
 #include <ql/MarketModels/curvestate.hpp>
-#include <ql/MarketModels/driftcalculator.hpp>
+#include <ql/MarketModels/DriftComputation/lmmdriftcalculator.hpp>
 #include <ql/MarketModels/swapforwardconversionmatrix.hpp>
 #include <ql/MarketModels/browniangenerator.hpp>
 #include <ql/MarketModels/marketmodelevolver.hpp>
@@ -95,9 +95,9 @@ namespace QuantLibAddin {
 
     };
 
-    class DriftCalculator : public ObjHandler::LibraryObject<QuantLib::DriftCalculator> {
+    class LMMDriftCalculator : public ObjHandler::LibraryObject<QuantLib::LMMDriftCalculator> {
       public:
-        DriftCalculator(const QuantLib::Matrix& pseudo,
+        LMMDriftCalculator(const QuantLib::Matrix& pseudo,
                         const std::vector<QuantLib::Rate>& displacements,
                         const std::vector<QuantLib::Time>& taus,
                         QuantLib::Size numeraire,

@@ -1491,10 +1491,10 @@
       </ParameterList>
     </Constructor>
 
-    <!-- DriftCalculator class constructor and interfaces -->
+    <!-- LMMDriftCalculator class constructor and interfaces -->
 
-    <Constructor name='qlDriftCalculator'>
-      <libraryFunction>DriftCalculator</libraryFunction>
+    <Constructor name='qlLMMDriftCalculator'>
+      <libraryFunction>LMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
@@ -1529,8 +1529,8 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlDriftCalculatorComputePlain' objectClass='DriftCalculator'>
-      <description>Full factor drift computation using the DriftCalculator object</description>
+    <Member name='qlLMMDriftCalculatorComputePlain' objectClass='LMMDriftCalculator'>
+      <description>Full factor drift computation using the LMMDriftCalculator object</description>
       <libraryFunction>computePlain</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
@@ -1550,8 +1550,8 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlDriftCalculatorComputeReduced' objectClass='DriftCalculator'>
-      <description>Reduced factor (Joshi algorithm) drift computation using the DriftCalculator object</description>
+    <Member name='qlLMMDriftCalculatorComputeReduced' objectClass='LMMDriftCalculator'>
+      <description>Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object</description>
       <libraryFunction>computeReduced</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
