@@ -32,7 +32,7 @@
 // if the include below fails, it means you're using the wrong
 // version of log4cxx.
 #include <log4cxx/log4cxxdefines.h>
-#if LOG4CXX_VERSION != 0x030907f1
+#if LOG4CXX_VERSION != 0x030907f3
     #error using an incorrect version of log4cxx, please update.
 #endif
 
