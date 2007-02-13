@@ -53,7 +53,6 @@ Nando
 
 K
 - SA applied to cms book
-- send Eric updated cms book file: book1.xls desktop
 - murex yield curve: check observability
 - foglio di clerici (Drafts\QuickCapPricer.xls)
 - foglio di clerici (interpolazione)
@@ -63,6 +62,8 @@ K
 - standardizzare il nome delle quotes dei param di calibrazione
 - demo per HelpDesk e ChangeMan
 Pending:
+- DONE added exampleValue to assigned files
+- DONE send Eric updated cms book file: book1.xls desktop
 - DONE scrivere manuale applicativo Launcher
 - DONE rilascio di 02 a 01
 - DONE trimestrale
