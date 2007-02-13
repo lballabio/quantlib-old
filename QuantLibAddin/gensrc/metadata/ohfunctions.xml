@@ -39,7 +39,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ObjectID'>
+          <Parameter name='ObjectID' exampleValue='DummyObject'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be deleted</description>
@@ -60,17 +60,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dummy0' ignore='true'>
+          <Parameter name='dummy0' ignore='true' exampleValue='Trigger0'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy1' ignore='true'>
+          <Parameter name='dummy1' ignore='true' exampleValue='Trigger1'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy2' ignore='true'>
+          <Parameter name='dummy2' ignore='true' exampleValue='Trigger2'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
@@ -126,7 +126,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='regex'>
+          <Parameter name='regex' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>optional matching pattern in UNIX format (wildcard is .*)</description>
@@ -164,7 +164,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='logMessage'>
+          <Parameter name='logMessage' exampleValue='Log this message'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>message to be logged</description>
@@ -192,7 +192,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectID'>
+          <Parameter name='objectID' exampleValue='DummyObject'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be logged</description>
@@ -266,7 +266,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='logFileName'>
+          <Parameter name='logFileName' exampleValue='MyLogFile'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>path and name of log file</description>
