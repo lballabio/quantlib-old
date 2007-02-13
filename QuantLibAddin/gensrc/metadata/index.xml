@@ -39,7 +39,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fixingDate' libraryType='QuantLib::Date'>
+          <Parameter name='fixingDate' libraryType='QuantLib::Date' exampleValue='10-Feb-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>fixing date(s)</description>
@@ -60,7 +60,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fixingDate' libraryType='QuantLib::Date'>
+          <Parameter name='fixingDate' libraryType='QuantLib::Date' exampleValue='02-Jan-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>fixing date(s)</description>
@@ -233,7 +233,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fixingDate' libraryType='QuantLib::Date'>
+          <Parameter name='fixingDate' libraryType='QuantLib::Date' exampleValue='02-Jan-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>fixing date(s)</description>
@@ -254,7 +254,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fixingDate' libraryType='QuantLib::Date'>
+          <Parameter name='fixingDate' libraryType='QuantLib::Date' exampleValue='02-Jan-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>fixing date</description>
@@ -275,7 +275,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='valueDate' libraryType='QuantLib::Date'>
+          <Parameter name='valueDate' libraryType='QuantLib::Date' exampleValue='02-Jan-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>value date</description>
@@ -296,7 +296,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='valueDate' libraryType='QuantLib::Date'>
+          <Parameter name='valueDate' libraryType='QuantLib::Date' exampleValue='02-Jan-2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>value date</description>
@@ -365,49 +365,49 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='familyName'>
+          <Parameter name='familyName' exampleValue='Euribor6M Actual/360'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>index name</description>
           </Parameter>
-          <Parameter name='tenor' libraryType='QuantLib::Period'>
+          <Parameter name='tenor' libraryType='QuantLib::Period' exampleValue='6M'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='fixingDays'>
+          <Parameter name='fixingDays'  exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
           </Parameter>
-          <Parameter name='Currency' enumeration='QuantLib::Currency'>
+          <Parameter name='Currency' enumeration='QuantLib::Currency'  exampleValue='EUR'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Index Currency</description>
           </Parameter>
-          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar'  exampleValue='TARGET'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='BDayConvention' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='BDayConvention' enumeration='QuantLib::BusinessDayConvention'  exampleValue='Modified Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>business day convention (e.g. ModifiedFollowing)</description>
           </Parameter>
-          <Parameter name='endOfMonth'>
+          <Parameter name='endOfMonth'  exampleValue='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the index follow the 'end of month' convention</description>
           </Parameter>
-          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter'  exampleValue='Actual/360'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual360)</description>
           </Parameter>
           <!-- NULL REFERENCES NO LONGER SUPPORTED 
           <Parameter name='YieldCurve' libToHandle='YieldTermStructure' default='""'-->
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'  exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>forecasting yield term structure</description>
@@ -425,7 +425,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='termStructureID' handleToLib='YieldTermStructure'>
+          <Parameter name='termStructureID' handleToLib='YieldTermStructure'  exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>yield term structure to be referenced by all enumerated Euribor objects</description>
@@ -498,47 +498,47 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='familyName'>
+          <Parameter name='familyName' exampleValue='EuriborSwapFixA10Y 30/360 (BondBasis)'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>index name</description>
           </Parameter>
-          <Parameter name='tenor' libraryType='QuantLib::Period'>
+          <Parameter name='tenor' libraryType='QuantLib::Period' exampleValue='10Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='fixingDays'>
+          <Parameter name='fixingDays' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>swap rate fixing days (e.g. 2)</description>
           </Parameter>
-          <Parameter name='Currency' enumeration='QuantLib::Currency'>
+          <Parameter name='Currency' enumeration='QuantLib::Currency' exampleValue='EUR'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Index Currency</description>
           </Parameter>
-          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar' exampleValue='TARGET'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='fixedLegTenor' libraryType='QuantLib::Period'>
+          <Parameter name='fixedLegTenor' libraryType='QuantLib::Period' exampleValue='1Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>tenor of the underlying swap's fixed leg (e.g. 6M, 1Y, 3M)</description>
           </Parameter>
-          <Parameter name='fixedLegBDC' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='fixedLegBDC' enumeration='QuantLib::BusinessDayConvention' exampleValue='Unadjusted'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>business day convention of the underlying swap's fixed leg (e.g. ModifiedFollowing)</description>
           </Parameter>
-          <Parameter name='fixedLegDayCounter' enumeration='QuantLib::DayCounter'>
+          <Parameter name='fixedLegDayCounter' enumeration='QuantLib::DayCounter' exampleValue='30/360 (Bond Basis)'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter of the underlying swap's fixed leg (e.g. 30/360::BondBasis)</description>
           </Parameter>
-          <Parameter name='index' libraryClass='IborIndex'>
+          <Parameter name='index' libraryClass='IborIndex' exampleValue='Euribor6M'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>swap's floating ibor index object ID</description>

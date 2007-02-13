@@ -36,7 +36,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='evalDate' libraryType='QuantLib::Date'>
+          <Parameter name='evalDate' libraryType='QuantLib::Date' exampleValue='13-Feb-2007'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>new value for the evaluation date</description>

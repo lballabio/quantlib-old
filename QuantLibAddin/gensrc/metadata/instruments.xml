@@ -42,7 +42,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='resultType'>
+          <Parameter name='resultType' exampleValue='vega'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>result type (e.g. 'vega')</description>
@@ -93,7 +93,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='pricingEngine' libraryClass='PricingEngine'>
+          <Parameter name='pricingEngine' libraryClass='PricingEngine' exampleValue='PricingEngineID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
