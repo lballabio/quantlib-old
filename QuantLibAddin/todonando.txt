@@ -53,7 +53,6 @@ Nando
 
 K
 - SA applied to cms book
-- murex yield curve: check observability
 - foglio di clerici (Drafts\QuickCapPricer.xls)
 - foglio di clerici (interpolazione)
 - test abcd (swap tenor) with new optimization code
@@ -62,6 +61,7 @@ K
 - standardizzare il nome delle quotes dei param di calibrazione
 - demo per HelpDesk e ChangeMan
 Pending:
+- DONE murex yield curve
 - DONE added exampleValue to assigned files
 - DONE send Eric updated cms book file: book1.xls desktop
 - DONE scrivere manuale applicativo Launcher
