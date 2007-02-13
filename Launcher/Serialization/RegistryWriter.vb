@@ -68,16 +68,14 @@ Namespace QuantLibXL
 
         Public Sub serializePropertyList(ByRef attr() As String, ByVal listTag As String, ByVal itemTag As String) Implements ISerializer.serializePropertyList
 
-            If UBound(attr) > Environment.MAX_ADDIN_COUNT Then
-                Throw New Exception("The list of addins contains " _
-                & CStr(UBound(attr)) & " items but the launcher cannot " _
-                & "handle more than " & Environment.MAX_ADDIN_COUNT & " XLLs")
+            pushKey(listTag)
+
+            If attr IsNot Nothing Then
+                For i As Integer = 0 To UBound(attr)
+                    SetValue(itemTag & CStr(i), attr(i))
+                Next
             End If
 
-            pushKey(listTag)
-            For i As Integer = 0 To UBound(attr)
-                SetValue(itemTag & CStr(i), attr(i))
-            Next
             popKey()
 
         End Sub

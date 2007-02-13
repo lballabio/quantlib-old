@@ -63,7 +63,7 @@ Namespace QuantLibXL
         Private frameworkName_ As String = ""
         Private frameworkVersion_ As Integer = 0
         Private workbooks_ As String = ""
-        Private addinList_(0) As String
+        Private addinList_() As String
         Private helpPath_ As String = ""
         Private xmlPath_ As String = ""
         Private userConfig_ As String = ""

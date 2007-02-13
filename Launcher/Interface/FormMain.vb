@@ -939,10 +939,13 @@ Public Class FormMain
 
         ' Addins
         lbAddins.Items.Clear()
-        If SelectedEnvironment.AddinList.Length > 0 Then
-            For i As Integer = 0 To UBound(SelectedEnvironment.AddinList)
-                lbAddins.Items.Add(SelectedEnvironment.AddinList(i))
-            Next
+
+        If SelectedEnvironment.AddinList IsNot Nothing Then
+            If SelectedEnvironment.AddinList.Length > 0 Then
+                For i As Integer = 0 To UBound(SelectedEnvironment.AddinList)
+                    lbAddins.Items.Add(SelectedEnvironment.AddinList(i))
+                Next
+            End If
         End If
 
         Call enableAddinButtons()
