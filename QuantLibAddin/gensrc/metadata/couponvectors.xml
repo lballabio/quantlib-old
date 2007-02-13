@@ -295,7 +295,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Caplet Volatility Structure object ID</description>
           </Parameter>
-          <Parameter name='IborCouponPricerType' exampleValue='BlackIborCouponPricer'>
+          <Parameter name='IborCouponPricerType' exampleValue='IborByBlack'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Ibor Coupon Pricer Type (e.g IborByBlack, ..)</description>

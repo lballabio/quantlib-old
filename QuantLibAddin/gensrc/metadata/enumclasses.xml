@@ -1,5 +1,6 @@
 <root>
   <enumClassCopyright>
+    Copyright (C) 2007 Cristina Duminuco
     Copyright (C) 2006 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2006 Giorgio Facchinetti
@@ -34,6 +35,16 @@
       </EnumerationDefinitions>
     </Enumeration>
 
+    <Enumeration type='QuantLib::IborCouponPricer'>
+      <EnumerationDefinitions>      
+        <EnumerationDefinition>
+          <string>IborByBlack</string>
+          <value>IBOR_BY_BLACK_Pricer</value>
+          <libraryClass>QuantLib::BlackIborCouponPricer</libraryClass>
+        </EnumerationDefinition>
+      </EnumerationDefinitions>        
+    </Enumeration> 
+    
     <Enumeration type='QuantLib::CmsCouponPricer'>
       <EnumerationDefinitions>
         <EnumerationDefinition>
