@@ -1386,6 +1386,27 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlCurveStateCMSwapRates' libraryClass='CurveState'>
+      <description>Returns the current swap rates of the CurveState object</description>
+      <libraryFunction>cmSwapRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='spanningForwards' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of forwards underlying the CMS</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <!--<Constructor name='qlCurveState'>
       <libraryFunction>CurveState</libraryFunction>
       <SupportedPlatforms>
@@ -1417,7 +1438,7 @@
           <Parameter name='spanningForwards' libraryType='QuantLib::Size'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of forwards to be spanned</description>
+            <description>number of forwards underlying the CMS</description>
           </Parameter>
         </Parameters>
       </ParameterList>
