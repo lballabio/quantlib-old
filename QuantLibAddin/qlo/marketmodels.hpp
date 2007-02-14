@@ -94,7 +94,7 @@ namespace QuantLibAddin {
     class CurveState : public ObjHandler::LibraryObject<QuantLib::CurveState> {};
 
 	class CMSwapCurveState : public CurveState {
-    public:
+      public:
 		CMSwapCurveState(std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards) {
             libraryObject_ = boost::shared_ptr<QuantLib::CMSwapCurveState>(new
                 QuantLib::CMSwapCurveState(rateTimes, spanningForwards));
@@ -102,7 +102,7 @@ namespace QuantLibAddin {
     };
 
 	class CoterminalSwapCurveState : public CurveState {
-    public:
+      public:
 		CoterminalSwapCurveState(std::vector<QuantLib::Time>& rateTimes) {
             libraryObject_ = boost::shared_ptr<QuantLib::CoterminalSwapCurveState>(new
                 QuantLib::CoterminalSwapCurveState(rateTimes));
@@ -110,7 +110,7 @@ namespace QuantLibAddin {
     };
 
 	class LMMCurveState : public CurveState {
-    public:
+      public:
 		LMMCurveState(std::vector<QuantLib::Time>& rateTimes) {
             libraryObject_ = boost::shared_ptr<QuantLib::LMMCurveState>(new
                 QuantLib::LMMCurveState(rateTimes));
@@ -120,21 +120,37 @@ namespace QuantLibAddin {
     class LMMDriftCalculator : public ObjHandler::LibraryObject<QuantLib::LMMDriftCalculator> {
       public:
         LMMDriftCalculator(const QuantLib::Matrix& pseudo,
+                           const std::vector<QuantLib::Rate>& displacements,
+                           const std::vector<QuantLib::Time>& taus,
+                           QuantLib::Size numeraire,
+                           QuantLib::Size alive);
+        std::vector<QuantLib::Real> compute(
+            const QuantLib::LMMCurveState& cs) const;
+        std::vector<QuantLib::Real> computePlain(
+            const QuantLib::LMMCurveState& cs) const;
+        std::vector<QuantLib::Real> computeReduced(
+            const QuantLib::LMMCurveState& cs) const;
+      private:
+        mutable std::vector<QuantLib::Real> drifts_;
+    };
+
+    class LMMNormalDriftCalculator : public ObjHandler::LibraryObject<QuantLib::LMMNormalDriftCalculator> {
+      public:
+        LMMNormalDriftCalculator(const QuantLib::Matrix& pseudo,
                         const std::vector<QuantLib::Rate>& displacements,
                         const std::vector<QuantLib::Time>& taus,
                         QuantLib::Size numeraire,
                         QuantLib::Size alive);
-
+        std::vector<QuantLib::Real> compute(
+            const QuantLib::LMMCurveState& cs) const;
         std::vector<QuantLib::Real> computePlain(
-            const std::vector<QuantLib::Rate>& forwards,
-			std::vector<double>& drifts) const;
-
+            const QuantLib::LMMCurveState& cs) const;
         std::vector<QuantLib::Real> computeReduced(
-            const std::vector<QuantLib::Rate>& forwards,
-			std::vector<double>& drifts) const;
+            const QuantLib::LMMCurveState& cs) const;
       private:
-        QuantLib::Size size_;
+        mutable std::vector<QuantLib::Real> drifts_;
     };
+
     class CMSMMDriftCalculator : public ObjHandler::LibraryObject<QuantLib::CMSMMDriftCalculator> {
       public:
         CMSMMDriftCalculator(const QuantLib::Matrix& pseudo,
@@ -144,40 +160,23 @@ namespace QuantLibAddin {
 							 QuantLib::Size alive,
 							 QuantLib::Size spanningFwds);
         std::vector<QuantLib::Real> compute(
-			const QuantLib::CMSwapCurveState& cs,
-            std::vector<double>& drifts) const;
+            const QuantLib::CMSwapCurveState& cs) const;
       private:
-        QuantLib::Size size_;
+        mutable std::vector<QuantLib::Real> drifts_;
     };
-    class LMMNormalDriftCalculator : public ObjHandler::LibraryObject<QuantLib::LMMNormalDriftCalculator> {
+
+    class SMMDriftCalculator : public ObjHandler::LibraryObject<QuantLib::SMMDriftCalculator> {
       public:
-        LMMNormalDriftCalculator(const QuantLib::Matrix& pseudo,
-                        const std::vector<QuantLib::Rate>& displacements,
-                        const std::vector<QuantLib::Time>& taus,
-                        QuantLib::Size numeraire,
-                        QuantLib::Size alive);
-        std::vector<QuantLib::Real> computePlain(
-            const std::vector<QuantLib::Rate>& forwards,
-			std::vector<double>& drifts) const;
-        std::vector<QuantLib::Real> computeReduced(
-            const std::vector<QuantLib::Rate>& forwards,
-			std::vector<double>& drifts) const;
+        SMMDriftCalculator(const QuantLib::Matrix& pseudo,
+						   const std::vector<QuantLib::Rate>& displacements,
+						   const std::vector<QuantLib::Time>& taus,
+						   QuantLib::Size numeraire,
+						   QuantLib::Size alive);
+        std::vector<QuantLib::Real> compute(
+            const QuantLib::CoterminalSwapCurveState& cs) const;
       private:
-        QuantLib::Size size_;
+        mutable std::vector<QuantLib::Real> drifts_;
     };
-   // class SMMDriftCalculator : public ObjHandler::LibraryObject<QuantLib::SMMDriftCalculator> {
-   //   public:
-   //     SMMDriftCalculator(const QuantLib::Matrix& pseudo,
-			//			   const std::vector<QuantLib::Rate>& displacements,
-			//			   const std::vector<QuantLib::Time>& taus,
-			//			   QuantLib::Size numeraire,
-			//			   QuantLib::Size alive);
-   //     std::vector<QuantLib::Real> compute(
-			//QuantLib::CurveState cs,
-   //         const std::vector<double>& drifts) const;
-   //   private:
-   //     QuantLib::Size size_;
-   // };
 
     //class SwapCovarianceApproximator : public ObjHandler::LibraryObject<
     //    QuantLib::SwapCovarianceApproximator> {

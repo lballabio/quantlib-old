@@ -1608,15 +1608,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='forwards' libraryType='QuantLib::Rate'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Forward rates</description>
-          </Parameter>
-          <Parameter name='drifts'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Drift rates</description>
+          <Parameter name='curveState' underlyingClass='LMMCurveState'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>LMMCurveState object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1634,15 +1629,132 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='forwards' libraryType='QuantLib::Rate'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Forward rates</description>
+          <Parameter name='curveState' underlyingClass='LMMCurveState'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>LMMCurveState object ID</description>
           </Parameter>
-          <Parameter name='drifts'>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLMMDriftCalculatorCompute' objectClass='LMMDriftCalculator'>
+      <description>Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object</description>
+      <libraryFunction>compute</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='curveState' underlyingClass='LMMCurveState'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>LMMCurveState object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- LMMNormalDriftCalculator class constructor and interfaces -->
+
+    <Constructor name='qlLMMNormalDriftCalculator'>
+      <libraryFunction>LMMNormalDriftCalculator</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='pseudo_square_root' libraryType='QuantLib::Matrix'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Pseudo square root of the covariance matrix</description>
+          </Parameter>
+          <Parameter name='displacements' libraryType='QuantLib::Spread'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Drift rates</description>
+            <description>displacements</description>
+          </Parameter>
+          <Parameter name='taus' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>taus</description>
+          </Parameter>
+          <Parameter name='numeraire' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>numeraire</description>
+          </Parameter>
+          <Parameter name='alive' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index of the first rates still alive</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlLMMNormalDriftCalculatorComputePlain' objectClass='LMMNormalDriftCalculator'>
+      <description>Full factor drift computation using the LMMNormalDriftCalculator object</description>
+      <libraryFunction>computePlain</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='curveState' underlyingClass='LMMCurveState'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>LMMCurveState object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLMMNormalDriftCalculatorComputeReduced' objectClass='LMMNormalDriftCalculator'>
+      <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object</description>
+      <libraryFunction>computeReduced</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='curveState' underlyingClass='LMMCurveState'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>LMMCurveState object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLMMNormalDriftCalculatorCompute' objectClass='LMMNormalDriftCalculator'>
+      <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object</description>
+      <libraryFunction>compute</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='curveState' underlyingClass='LMMCurveState'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>LMMCurveState object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1706,102 +1818,7 @@
           <Parameter name='curveState' underlyingClass='CMSwapCurveState'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
-          </Parameter>
-          <Parameter name='drifts'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Drift rates</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <!-- LMMNormalDriftCalculator class constructor and interfaces -->
-
-    <Constructor name='qlLMMNormalDriftCalculator'>
-      <libraryFunction>LMMNormalDriftCalculator</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='pseudo_square_root' libraryType='QuantLib::Matrix'>
-            <type>double</type>
-            <tensorRank>matrix</tensorRank>
-            <description>Pseudo square root of the covariance matrix</description>
-          </Parameter>
-          <Parameter name='displacements' libraryType='QuantLib::Spread'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>displacements</description>
-          </Parameter>
-          <Parameter name='taus' libraryType='QuantLib::Time'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>taus</description>
-          </Parameter>
-          <Parameter name='numeraire' libraryType='QuantLib::Size'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>numeraire</description>
-          </Parameter>
-          <Parameter name='alive' libraryType='QuantLib::Size'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>index of the first rates still alive</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Member name='qlLMMNormalDriftCalculatorComputePlain' objectClass='LMMNormalDriftCalculator'>
-      <description>Full factor drift computation using the LMMNormalDriftCalculator object</description>
-      <libraryFunction>computePlain</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='forwards' libraryType='QuantLib::Rate'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Forward rates</description>
-          </Parameter>
-          <Parameter name='drifts'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Drift rates</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlLMMNormalDriftCalculatorComputeReduced' objectClass='LMMNormalDriftCalculator'>
-      <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object</description>
-      <libraryFunction>computeReduced</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='forwards' libraryType='QuantLib::Rate'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Forward rates</description>
-          </Parameter>
-          <Parameter name='drifts'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Drift rates</description>
+            <description>CMSwapCurveState object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1813,7 +1830,7 @@
 
     <!-- SMMDriftCalculator class constructor and interfaces -->
 
-    <!--<Constructor name='qlSMMDriftCalculator'>
+    <Constructor name='qlSMMDriftCalculator'>
       <libraryFunction>SMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
@@ -1849,23 +1866,18 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlSMMDriftCalculatorComputePlain' objectClass='SMMDriftCalculator'>
+    <Member name='qlSMMDriftCalculatorCompute' objectClass='SMMDriftCalculator'>
       <description>Full factor drift computation using the SMMDriftCalculator object</description>
-      <libraryFunction>computePlain</libraryFunction>
+      <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' underlyingClass='CurveState'>
+          <Parameter name='curveState' underlyingClass='CoterminalSwapCurveState'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
-          </Parameter>
-          <Parameter name='drifts'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Drift rates</description>
+            <description>CoterminalSwapCurveState object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1873,7 +1885,7 @@
         <type>double</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
-    </Member>-->
+    </Member>
 
     <!-- BrownianGeneratorFactory derived classes constructors  -->
 

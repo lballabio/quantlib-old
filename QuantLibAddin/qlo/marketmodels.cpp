@@ -97,82 +97,104 @@ namespace QuantLibAddin {
                                aIsFixed, bIsFixed, cIsFixed, dIsFixed));
     }
 
-    LMMDriftCalculator::LMMDriftCalculator(const QuantLib::Matrix& pseudo,
-                                     const std::vector<QuantLib::Rate>& displacements,
-                                     const std::vector<QuantLib::Time>& taus,
-                                     QuantLib::Size numeraire,
-                                     QuantLib::Size alive)
-    : size_(taus.size())
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::LMMDriftCalculator>(
-            new QuantLib::LMMDriftCalculator(pseudo, displacements,
-                                          taus, numeraire, alive));
+    LMMDriftCalculator::LMMDriftCalculator(
+                                    const QuantLib::Matrix& pseudo,
+                                    const std::vector<QuantLib::Rate>& displ,
+                                    const std::vector<QuantLib::Time>& taus,
+                                    QuantLib::Size numeraire,
+                                    QuantLib::Size alive)
+    : drifts_(taus.size()) {
+        libraryObject_ = boost::shared_ptr<QuantLib::LMMDriftCalculator>(new
+            QuantLib::LMMDriftCalculator(pseudo, displ,
+                                         taus, numeraire, alive));
+    }
+
+    std::vector<QuantLib::Real> LMMDriftCalculator::compute(
+                                const QuantLib::LMMCurveState& cs) const {
+        libraryObject_->compute(cs, drifts_);
+        return drifts_;
     }
 
     std::vector<QuantLib::Real> LMMDriftCalculator::computePlain(
-        const std::vector<QuantLib::Rate>& forwards,
-		std::vector<double>& drifts) const {
-        std::vector<QuantLib::Real> results(size_);
-        libraryObject_->computePlain(forwards, results);
-        return results;
+                                const QuantLib::LMMCurveState& cs) const {
+        libraryObject_->computePlain(cs, drifts_);
+        return drifts_;
     }
 
     std::vector<QuantLib::Real> LMMDriftCalculator::computeReduced(
-        const std::vector<QuantLib::Rate>& forwards,
-		std::vector<double>& drifts) const {
-        std::vector<QuantLib::Real> results(size_);
-        libraryObject_->computeReduced(forwards, results);
-        return results;
+                                const QuantLib::LMMCurveState& cs) const {
+        libraryObject_->computeReduced(cs, drifts_);
+        return drifts_;
     }
 
-    CMSMMDriftCalculator::CMSMMDriftCalculator(const QuantLib::Matrix& pseudo,
-                                     const std::vector<QuantLib::Rate>& displacements,
-                                     const std::vector<QuantLib::Time>& taus,
-                                     QuantLib::Size numeraire,
-                                     QuantLib::Size alive,
-									 QuantLib::Size spanningFwds)
-    : size_(taus.size())
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::CMSMMDriftCalculator>(
-            new QuantLib::CMSMMDriftCalculator(pseudo, displacements,
-                                          taus, numeraire, alive, spanningFwds));
-    }
-
-    std::vector<QuantLib::Real> CMSMMDriftCalculator::compute(
-        const QuantLib::CMSwapCurveState& cs,
-		std::vector<double>& drifts) const {
-        std::vector<QuantLib::Real> results(size_);
-        libraryObject_->compute(cs, results);
-        return results;
-    }
-
-    LMMNormalDriftCalculator::LMMNormalDriftCalculator(const QuantLib::Matrix& pseudo,
-                                     const std::vector<QuantLib::Rate>& displacements,
-                                     const std::vector<QuantLib::Time>& taus,
-                                     QuantLib::Size numeraire,
-                                     QuantLib::Size alive)
-    : size_(taus.size())
-    {
+    LMMNormalDriftCalculator::LMMNormalDriftCalculator(
+                                const QuantLib::Matrix& pseudo,
+                                const std::vector<QuantLib::Rate>& displ,
+                                const std::vector<QuantLib::Time>& taus,
+                                QuantLib::Size numeraire,
+                                QuantLib::Size alive)
+    : drifts_(taus.size()) {
         libraryObject_ = boost::shared_ptr<QuantLib::LMMNormalDriftCalculator>(
-            new QuantLib::LMMNormalDriftCalculator(pseudo, displacements,
-                                          taus, numeraire, alive));
+            new QuantLib::LMMNormalDriftCalculator(pseudo, displ,
+                                                   taus, numeraire, alive));
+    }
+
+    std::vector<QuantLib::Real> LMMNormalDriftCalculator::compute(
+                                const QuantLib::LMMCurveState& cs) const {
+        libraryObject_->compute(cs, drifts_);
+        return drifts_;
     }
 
     std::vector<QuantLib::Real> LMMNormalDriftCalculator::computePlain(
-        const std::vector<QuantLib::Rate>& forwards,
-		std::vector<double>& drifts) const {
-        std::vector<QuantLib::Real> results(size_);
-        libraryObject_->computePlain(forwards, results);
-        return results;
+                                const QuantLib::LMMCurveState& cs) const {
+        libraryObject_->computePlain(cs, drifts_);
+        return drifts_;
     }
 
     std::vector<QuantLib::Real> LMMNormalDriftCalculator::computeReduced(
-        const std::vector<QuantLib::Rate>& forwards,
-		std::vector<double>& drifts) const {
-        std::vector<QuantLib::Real> results(size_);
-        libraryObject_->computeReduced(forwards, results);
-        return results;
+                                const QuantLib::LMMCurveState& cs) const {
+        libraryObject_->computeReduced(cs, drifts_);
+        return drifts_;
     }
+
+    CMSMMDriftCalculator::CMSMMDriftCalculator(
+                                const QuantLib::Matrix& pseudo,
+                                const std::vector<QuantLib::Rate>& displ,
+                                const std::vector<QuantLib::Time>& taus,
+                                QuantLib::Size numeraire,
+                                QuantLib::Size alive,
+                                QuantLib::Size spanningFwds)
+    : drifts_(taus.size()) {
+        libraryObject_= boost::shared_ptr<QuantLib::CMSMMDriftCalculator>(new
+            QuantLib::CMSMMDriftCalculator(pseudo, displ,
+                                           taus, numeraire, alive,
+                                           spanningFwds));
+    }
+
+    std::vector<QuantLib::Real> CMSMMDriftCalculator::compute(
+                                const QuantLib::CMSwapCurveState& cs) const {
+        libraryObject_->compute(cs, drifts_);
+        return drifts_;
+    }
+
+    SMMDriftCalculator::SMMDriftCalculator(
+                                const QuantLib::Matrix& pseudo,
+                                const std::vector<QuantLib::Rate>& displ,
+                                const std::vector<QuantLib::Time>& taus,
+                                QuantLib::Size numeraire,
+                                QuantLib::Size alive)
+    : drifts_(taus.size()) {
+        libraryObject_= boost::shared_ptr<QuantLib::SMMDriftCalculator>(new
+            QuantLib::SMMDriftCalculator(pseudo, displ,
+                                         taus, numeraire, alive));
+    }
+
+    std::vector<QuantLib::Real> SMMDriftCalculator::compute(
+                                const QuantLib::CoterminalSwapCurveState& cs) const {
+        libraryObject_->compute(cs, drifts_);
+        return drifts_;
+    }
+
     //SwapCovarianceApproximator::SwapCovarianceApproximator(
     //                            const QuantLib::CurveState& initialCurveState,
     //                            QuantLib::Size expiry,
