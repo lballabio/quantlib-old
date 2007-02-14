@@ -1355,68 +1355,6 @@
       </ReturnValue>
     </Member>
 
-    <!--<Member name='qlCurveStateSetOnForwardRates' libraryClass='CurveState'>
-      <description>set the CurveState object on given vector of forward rates</description>
-      <libraryFunction>setOnForwardRates</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='rates' libraryType='QuantLib::Rate' vectorIterator='beginAndEnd'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>forward rates</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCurveStateSetOnDiscountRatios' libraryClass='CurveState'>
-      <description>set the CurveState object on given vector of discount ratios</description>
-      <libraryFunction>setOnDiscountRatios</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='discountRatios' vectorIterator='beginAndEnd'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>discount ratios</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCurveStateSetOnCoterminalSwapRates' libraryClass='CurveState'>
-      <description>set the CurveState object on given vector of coterminal swaps</description>
-      <libraryFunction>setOnCoterminalSwapRates</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='CoterminalSwaps' libraryType='QuantLib::Rate' vectorIterator='beginAndEnd'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Coterminal Swaps</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>-->
 
     <Member name='qlCurveStateForwardRates' libraryClass='CurveState'>
       <description>Returns the current forward rates of the CurveState object</description>
@@ -1516,6 +1454,93 @@
         </Parameters>
       </ParameterList>
     </Constructor>
+
+
+    <Member name='qlLMMCurveStateSetOnForwardRates' libraryClass='LMMCurveState'>
+      <description>set the CurveState object on given vector of forward rates</description>
+      <libraryFunction>setOnForwardRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rates' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>forward rates</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLMMCurveStateSetOnDiscountRatios' libraryClass='LMMCurveState'>
+      <description>set the CurveState object on given vector of discount ratios</description>
+      <libraryFunction>setOnDiscountRatios</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='discountRatios'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>discount ratios</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCoterminalSwapCurveStateSetOnCoterminalSwapRates' libraryClass='CoterminalSwapCurveState'>
+      <description>set the CurveState object on given vector of coterminal swaps</description>
+      <libraryFunction>setOnCoterminalSwapRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CoterminalSwaps' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Coterminal Swaps</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCMSwapCurveStateSetOnCMSwapRates' libraryClass='CMSwapCurveState'>
+      <description>set the CurveState object on given vector of coterminal swaps</description>
+      <libraryFunction>setOnCMSwapRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CMSwapRates' libraryType='QuantLib::Rate'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Coterminal Swaps</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+
 
     <!-- LMMDriftCalculator class constructor and interfaces -->
 
