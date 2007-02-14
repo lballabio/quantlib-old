@@ -123,25 +123,25 @@ namespace QuantLibAddin {
         return results;
     }
 
-    SwapCovarianceApproximator::SwapCovarianceApproximator(
-                                const QuantLib::CurveState& initialCurveState,
-                                QuantLib::Size expiry,
-                                QuantLib::Size maturity,
-                                QuantLib::Spread displacement,
-                                const QuantLib::Matrix& forwardCovarianceMatrix)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::SwapCovarianceApproximator>(
-            new QuantLib::SwapCovarianceApproximator(
-                            initialCurveState, expiry,maturity, displacement, 
-                            forwardCovarianceMatrix));
-    }
+    //SwapCovarianceApproximator::SwapCovarianceApproximator(
+    //                            const QuantLib::CurveState& initialCurveState,
+    //                            QuantLib::Size expiry,
+    //                            QuantLib::Size maturity,
+    //                            QuantLib::Spread displacement,
+    //                            const QuantLib::Matrix& forwardCovarianceMatrix)
+    //{
+    //    libraryObject_ = boost::shared_ptr<QuantLib::SwapCovarianceApproximator>(
+    //        new QuantLib::SwapCovarianceApproximator(
+    //                        initialCurveState, expiry,maturity, displacement, 
+    //                        forwardCovarianceMatrix));
+    //}
 
-    QuantLib::Disposable<QuantLib::Matrix> SwapCovarianceApproximator::swapCovarianceMatrix()
-        {
-        QuantLib::Matrix result;
-        libraryObject_->swapCovarianceMatrix();
-        return result;
-    }
+    //QuantLib::Disposable<QuantLib::Matrix> SwapCovarianceApproximator::swapCovarianceMatrix()
+    //    {
+    //    QuantLib::Matrix result;
+    //    libraryObject_->swapCovarianceMatrix();
+    //    return result;
+    //}
 
     OneStepForwards::OneStepForwards(
         const std::vector<QuantLib::Time>& rateTimes,

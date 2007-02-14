@@ -162,6 +162,7 @@
         </Parameters>
       </ParameterList>
     </Constructor>
+
     <!--<Constructor name='qlMarketModelOneStepOptionlets'>
       <libraryFunction>OneStepOptionlets</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
@@ -1220,7 +1221,7 @@
 
     <!-- SwapForwardConversionMatrix class constructor and interfaces -->
 
-    <Constructor name='qlSwapCovarianceApproximator'>
+    <!--<Constructor name='qlSwapCovarianceApproximator'>
       <libraryFunction>SwapCovarianceApproximator</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
@@ -1269,7 +1270,7 @@
         <type>double</type>
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
-    </Member>
+    </Member>-->
 
     <Procedure name='qlCoterminalSwapForwardJacobian'>
       <description>Returns the jacobian between coterminal swap rates and forward rates</description>
@@ -1354,7 +1355,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCurveStateSetOnForwardRates' libraryClass='CurveState'>
+    <!--<Member name='qlCurveStateSetOnForwardRates' libraryClass='CurveState'>
       <description>set the CurveState object on given vector of forward rates</description>
       <libraryFunction>setOnForwardRates</libraryFunction>
       <SupportedPlatforms>
@@ -1415,7 +1416,7 @@
         <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Member>-->
 
     <Member name='qlCurveStateForwardRates' libraryClass='CurveState'>
       <description>Returns the current forward rates of the CurveState object</description>
@@ -1427,21 +1428,6 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue libraryType='QuantLib::Rate'>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCurveStateDiscountRatios' libraryClass='CurveState'>
-      <description>Returns the current discount ratios of the CurveState object</description>
-      <libraryFunction>discountRatios</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
         <type>double</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
@@ -1462,22 +1448,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCurveStateCoterminalSwapAnnuities' libraryClass='CurveState'>
-      <description>Returns the current swap annuities of the CurveState object</description>
-      <libraryFunction>coterminalSwapAnnuities</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue libraryType='QuantLib::Real'>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Constructor name='qlCurveState'>
+    <!--<Constructor name='qlCurveState'>
       <libraryFunction>CurveState</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
@@ -1491,8 +1462,61 @@
           </Parameter>
         </Parameters>
       </ParameterList>
+    </Constructor>-->
+
+    <Constructor name='qlCMSwapCurveState'>
+      <libraryFunction>CMSwapCurveState</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='spanningForwards' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of forwards to be spanned</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
     </Constructor>
-    
+
+    <Constructor name='qlCoterminalSwapCurveState'>
+      <libraryFunction>CoterminalSwapCurveState</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlLMMCurveState'>
+      <libraryFunction>LMMCurveState</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <!-- LMMDriftCalculator class constructor and interfaces -->
 
     <Constructor name='qlLMMDriftCalculator'>
@@ -1754,74 +1778,5 @@
       </ReturnValue>
     </Member>
 
-    <!--<Constructor name='qlNewCurveState'>
-      <libraryFunction>NewCurveState</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>-->
-    
-    <Constructor name='qlCMSwapCurveState'>
-      <libraryFunction>CMSwapCurveState</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
-          </Parameter>
-          <Parameter name='spanningForwards' libraryType='QuantLib::Size'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>number of forwards to be spanned</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlCoterminalSwapCurveState'>
-      <libraryFunction>CoterminalSwapCurveState</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlLMMCurveState'>
-      <libraryFunction>LMMCurveState</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-    
   </Functions>
 </Category>

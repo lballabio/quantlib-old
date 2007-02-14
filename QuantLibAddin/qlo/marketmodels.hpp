@@ -30,7 +30,6 @@
 #include <ql/MarketModels/browniangenerator.hpp>
 #include <ql/MarketModels/marketmodelevolver.hpp>
 #include <ql/MarketModels/Models/expcorrabcdvol.hpp>
-#include <ql/MarketModels/newcurvestate.hpp>
 #include <ql/MarketModels/CurveStates/cmswapcurvestate.hpp>
 #include <ql/MarketModels/CurveStates/coterminalswapcurvestate.hpp>
 #include <ql/MarketModels/CurveStates/lmmcurvestate.hpp>
@@ -114,16 +113,16 @@ namespace QuantLibAddin {
         QuantLib::Size size_;
     };
 
-    class SwapCovarianceApproximator : public ObjHandler::LibraryObject<
-        QuantLib::SwapCovarianceApproximator> {
-      public:
-        SwapCovarianceApproximator(const QuantLib::CurveState& initialCurveState,
-                                   QuantLib::Size expiry,
-                                   QuantLib::Size maturity,
-                                   QuantLib::Spread displacement,
-                                   const QuantLib::Matrix& forwardCovarianceMatrix);
-        QuantLib::Disposable<QuantLib::Matrix> swapCovarianceMatrix();
-    };
+    //class SwapCovarianceApproximator : public ObjHandler::LibraryObject<
+    //    QuantLib::SwapCovarianceApproximator> {
+    //  public:
+    //    SwapCovarianceApproximator(const QuantLib::CurveState& initialCurveState,
+    //                               QuantLib::Size expiry,
+    //                               QuantLib::Size maturity,
+    //                               QuantLib::Spread displacement,
+    //                               const QuantLib::Matrix& forwardCovarianceMatrix);
+    //    QuantLib::Disposable<QuantLib::Matrix> swapCovarianceMatrix();
+    //};
 
     class MarketModelMultiProduct : public ObjHandler::LibraryObject<
         QuantLib::MarketModelMultiProduct> {
