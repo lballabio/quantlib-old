@@ -6,8 +6,6 @@
     <include>ql/Optimization/method.hpp</include>
     <include>ql/MarketModels/swapforwardconversionmatrix.hpp</include>
     <include>ql/MarketModels/swapforwardmappings.hpp</include>
-    <include>ql/MarketModels/curvestate.hpp</include>
-    <include>ql/MarketModels/newcurvestate.hpp</include>
     <include>ql/MarketModels/CurveStates/cmswapcurvestate.hpp</include>
     <include>ql/MarketModels/CurveStates/coterminalswapcurvestate.hpp</include>
     <include>ql/MarketModels/CurveStates/lmmcurvestate.hpp</include>
