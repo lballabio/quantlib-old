@@ -1,5 +1,6 @@
+#pragma warning(disable : 4996)
+
 #include <windows.h>
-#include <oh/objhandlerdefines.hpp>
 #include <xlsdk/xlcall.h>
 #include <xlsdk/framewrk.hpp>
 #include <sstream>

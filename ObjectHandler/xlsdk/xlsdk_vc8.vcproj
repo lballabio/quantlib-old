@@ -15,8 +15,8 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\build\vc80\xlsdk\$(ConfigurationName)"
-			IntermediateDirectory="..\build\vc80\xlsdk\$(ConfigurationName)"
+			OutputDirectory="..\build\vc80\xlsdk\Release"
+			IntermediateDirectory="..\build\vc80\xlsdk\Release"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -43,15 +43,15 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".."
-				PreprocessorDefinitions="BOOST_LIB_DIAGNOSTIC;NDEBUG;_LIB;WIN32;LOG4CXX_STATIC"
+				PreprocessorDefinitions="BOOST_LIB_DIAGNOSTIC;NDEBUG;_LIB;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="..\build\vc80\xlsdk\$(ConfigurationName)/xlsdk.pch"
-				AssemblerListingLocation="..\build\vc80\xlsdk\$(ConfigurationName)/"
-				ObjectFile="..\build\vc80\xlsdk\$(ConfigurationName)/"
-				ProgramDataBaseFileName="..\build\vc80\xlsdk\$(ConfigurationName)/"
+				PrecompiledHeaderFile="..\build\vc80\xlsdk\Release/xlsdk.pch"
+				AssemblerListingLocation="..\build\vc80\xlsdk\Release\"
+				ObjectFile="..\build\vc80\xlsdk\Release\"
+				ProgramDataBaseFileName="..\build\vc80\xlsdk\Release\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -80,7 +80,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile="..\build\vc80\xlsdk\$(ConfigurationName)/xlsdk.bsc"
+				OutputFile="..\build\vc80\xlsdk\Release\xlsdk.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -91,8 +91,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\build\vc80\xlsdk\$(ConfigurationName)"
-			IntermediateDirectory="..\build\vc80\xlsdk\$(ConfigurationName)"
+			OutputDirectory="..\build\vc80\xlsdk\Debug"
+			IntermediateDirectory="..\build\vc80\xlsdk\Debug"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -118,15 +118,15 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".."
-				PreprocessorDefinitions="_DEBUG;_LIB;WIN32;LOG4CXX_STATIC"
+				PreprocessorDefinitions="_DEBUG;_LIB;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="..\build\vc80\xlsdk\$(ConfigurationName)/xlsdk.pch"
-				AssemblerListingLocation="..\build\vc80\xlsdk\$(ConfigurationName)/"
-				ObjectFile="..\build\vc80\xlsdk\$(ConfigurationName)/"
-				ProgramDataBaseFileName="..\build\vc80\xlsdk\$(ConfigurationName)/"
+				PrecompiledHeaderFile="..\build\vc80\xlsdk\Debug\xlsdk.pch"
+				AssemblerListingLocation="..\build\vc80\xlsdk\Debug\"
+				ObjectFile="..\build\vc80\xlsdk\Debug\"
+				ProgramDataBaseFileName="..\build\vc80\xlsdk\Debug\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -156,7 +156,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile="..\build\vc80\xlsdk\$(ConfigurationName)/xlsdk.bsc"
+				OutputFile="..\build\vc80\xlsdk\Debug\xlsdk.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -167,8 +167,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release CRTDLL|Win32"
-			OutputDirectory="..\build\vc80\xlsdk\$(ConfigurationName)"
-			IntermediateDirectory="..\build\vc80\xlsdk\$(ConfigurationName)"
+			OutputDirectory="..\build\vc80\xlsdk\Release CRTDLL"
+			IntermediateDirectory="..\build\vc80\xlsdk\Release CRTDLL"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -195,15 +195,15 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".."
-				PreprocessorDefinitions="BOOST_LIB_DIAGNOSTIC;NDEBUG;_LIB;WIN32;LOG4CXX_STATIC"
+				PreprocessorDefinitions="BOOST_LIB_DIAGNOSTIC;NDEBUG;_LIB;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="..\build\vc80\xlsdk\$(ConfigurationName)/xlsdk.pch"
-				AssemblerListingLocation="..\build\vc80\xlsdk\$(ConfigurationName)/"
-				ObjectFile="..\build\vc80\xlsdk\$(ConfigurationName)/"
-				ProgramDataBaseFileName="..\build\vc80\xlsdk\$(ConfigurationName)/"
+				PrecompiledHeaderFile="..\build\vc80\xlsdk\Release CRTDLL\xlsdk.pch"
+				AssemblerListingLocation="..\build\vc80\xlsdk\Release CRTDLL\"
+				ObjectFile="..\build\vc80\xlsdk\Release CRTDLL\"
+				ProgramDataBaseFileName="..\build\vc80\xlsdk\Release CRTDLL\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -232,7 +232,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile="..\build\vc80\xlsdk\$(ConfigurationName)/xlsdk.bsc"
+				OutputFile="..\build\vc80\xlsdk\Release CRTDLL\xlsdk.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -243,8 +243,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug CRTDLL|Win32"
-			OutputDirectory="..\build\vc80\xlsdk\$(ConfigurationName)"
-			IntermediateDirectory="..\build\vc80\xlsdk\$(ConfigurationName)"
+			OutputDirectory="..\build\vc80\xlsdk\Debug CRTDLL"
+			IntermediateDirectory="..\build\vc80\xlsdk\Debug CRTDLL"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -270,15 +270,15 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".."
-				PreprocessorDefinitions="_DEBUG;_LIB;WIN32;LOG4CXX_STATIC"
+				PreprocessorDefinitions="_DEBUG;_LIB;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="..\build\vc80\xlsdk\$(ConfigurationName)/xlsdk.pch"
-				AssemblerListingLocation="..\build\vc80\xlsdk\$(ConfigurationName)/"
-				ObjectFile="..\build\vc80\xlsdk\$(ConfigurationName)/"
-				ProgramDataBaseFileName="..\build\vc80\xlsdk\$(ConfigurationName)/"
+				PrecompiledHeaderFile="..\build\vc80\xlsdk\Debug CRTDLL\xlsdk.pch"
+				AssemblerListingLocation="..\build\vc80\xlsdk\Debug CRTDLL\"
+				ObjectFile="..\build\vc80\xlsdk\Debug CRTDLL\"
+				ProgramDataBaseFileName="..\build\vc80\xlsdk\Debug CRTDLL\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -308,7 +308,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile="..\build\vc80\xlsdk\$(ConfigurationName)/xlsdk.bsc"
+				OutputFile="..\build\vc80\xlsdk\Debug CRTDLL\xlsdk.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
