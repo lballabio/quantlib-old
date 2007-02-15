@@ -1679,12 +1679,7 @@
             <tensorRank>matrix</tensorRank>
             <description>Pseudo square root of the covariance matrix</description>
           </Parameter>
-          <Parameter name='displacements' libraryType='QuantLib::Spread'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>displacements</description>
-          </Parameter>
-          <Parameter name='taus' libraryType='QuantLib::Time'>
+         <Parameter name='taus' libraryType='QuantLib::Time'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>taus</description>
