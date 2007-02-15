@@ -102,12 +102,15 @@ TO BE DISCUSSED: Object Builder performance issue when the control panel is left
 
 
 Cristina
-- reorder Excel workbooks input parameters order
+- DONE reorder Excel workbooks input parameters order
+- DONE coupon refactoring (shared among Cristina and Giorgio)
+- WIP expose to QXL new IborLeg (following coupon refactoring in QL)
 - WIP cap/floor rates output in cashflow analysis
-- WIP coupon refactoring and extension (shared among Cristina and Giorgio)
+- coupon extension (shared among Cristina and Giorgio)
 - WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
 - digital option in C++ (shared among Marco, Giorgio and Cristina)
 - bond pricing engine
+- error in cashflowvectors if a single cash flow exists
 
 
 Giorgio
