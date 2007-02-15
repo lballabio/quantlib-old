@@ -28,7 +28,7 @@ RELEASE_VALUES = [
     ]
 
 TRUNK_VALUES = [
-    ('LOG4CXX_DIR', 'trunk\\log4cxx-0.9.7'),
+    ('LOG4CXX_DIR', 'trunk\\log4cxx'),
     ('GENSRC_DIR', 'trunk\\gensrc'),
     ('OBJECT_HANDLER_DIR', 'trunk\\ObjectHandler'),
     ('QUANTLIBADDIN_DIR', 'trunk\\QuantLibAddin'),
