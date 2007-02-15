@@ -14,7 +14,9 @@
     <include>qlo/sequencestatistics.hpp</include>
   </includes>
   <copyright>
-    Copyright (C) 2006 Ferdinando Ametrano
+
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2007 Chiara Fornarola
     Copyright (C) 2006 Marco Bianchetti
     Copyright (C) 2006 Cristina Duminuco
     Copyright (C) 2006 Giorgio Facchinetti
@@ -2067,6 +2069,171 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
+
+    <Procedure name='qlForwardsFromDiscountRatios'>
+      <description>Returns the forward rates implied from discount bond ratios</description>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='firstValidIndex' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>marks the first non expired discount bond</description>
+          </Parameter>
+          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of discount bond ratios</description>
+          </Parameter>
+          <Parameter name='taus' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate time intervals</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCoterminalSwapRatesFromDiscountRatios'>
+      <description>Returns the coterminal swap rates implied from discount bond ratios</description>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='firstValidIndex' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>marks the first non expired discount bond</description>
+          </Parameter>
+          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of discount bond ratios</description>
+          </Parameter>
+          <Parameter name='taus' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate time intervals</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCoterminalSwapAnnuitiesFromDiscountRatios'>
+      <description>Returns the coterminal swap annuities implied from discount bond ratios</description>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='firstValidIndex' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>marks the first non expired discount bond</description>
+          </Parameter>
+          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of discount bond ratios</description>
+          </Parameter>
+          <Parameter name='taus' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate time intervals</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Real'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlConstantMaturitySwapRatesFromDiscountRatios'>
+      <description>Returns constant maturity swap rates from discount ratios</description>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='spanningForwards' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of forward rates spanned by the constant maturity swap</description>
+          </Parameter>
+          <Parameter name='firstValidIndex' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>marks the first non expired discount bond</description>
+          </Parameter>
+          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of discount bond ratios</description>
+          </Parameter>
+          <Parameter name='taus' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate time intervals</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Rate'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlConstantMaturitySwapAnnuitiesFromDiscountRatios'>
+      <description>Returns constant maturity swap annuities from discount ratios</description>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='spanningForwards' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of forward rates spanned by the constant maturity swap</description>
+          </Parameter>
+          <Parameter name='firstValidIndex' libraryType='QuantLib::Size'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>marks the first non expired discount bond</description>
+          </Parameter>
+          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of discount bond ratios</description>
+          </Parameter>
+          <Parameter name='taus' libraryType='QuantLib::Time'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate time intervals</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue libraryType='QuantLib::Real'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
 
   </Functions>
 </Category>

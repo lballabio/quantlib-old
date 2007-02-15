@@ -20,6 +20,7 @@
 #endif
 #include <qlo/marketmodels.hpp>
 #include <qlo/ValueObjects/vo_marketmodels.hpp>
+#include <ql/MarketModels/curvestate.hpp>
 #include <ql/MarketModels/Models/expcorrflatvol.hpp>
 #include <ql/MarketModels/Models/expcorrabcdvol.hpp>
 #include <ql/MarketModels/BrownianGenerators/mtbrowniangenerator.hpp>
@@ -311,6 +312,65 @@ namespace QuantLibAddin {
                                            //*(product.get()),
                                            product,
                                            initialNumeraireValue));
+    }
+
+
+    std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
+                            const QuantLib::Size firstValidIndex,
+                            const std::vector<QuantLib::DiscountFactor>& ds,
+                            const std::vector<QuantLib::Time>& taus) {
+        std::vector<QuantLib::Rate> result(taus.size());
+        QuantLib::forwardsFromDiscountRatios(firstValidIndex, ds, taus,
+                                             result);
+        return result;
+    }
+
+    std::vector<QuantLib::Rate> qlCoterminalSwapRatesFromDiscountRatios(
+                            const QuantLib::Size firstValidIndex,
+                            const std::vector<QuantLib::DiscountFactor>& ds,
+                            const std::vector<QuantLib::Time>& taus) {
+        std::vector<QuantLib::Real> rates(taus.size());
+        std::vector<QuantLib::Real> annuities(taus.size());
+        QuantLib::coterminalFromDiscountRatios(firstValidIndex, ds, taus,
+                                               rates, annuities);
+        return rates;
+    }
+
+    std::vector<QuantLib::Real> qlCoterminalSwapAnnuitiesFromDiscountRatios(
+                            const QuantLib::Size firstValidIndex,
+                            const std::vector<QuantLib::DiscountFactor>& ds,
+                            const std::vector<QuantLib::Time>& taus) {
+        std::vector<QuantLib::Real> rates(taus.size());
+        std::vector<QuantLib::Real> annuities(taus.size());
+        QuantLib::coterminalFromDiscountRatios(firstValidIndex, ds, taus,
+                                               rates, annuities);
+        return annuities;
+    }
+
+    std::vector<QuantLib::Rate> qlConstantMaturitySwapRatesFromDiscountRatios(
+                            const QuantLib::Size spanningForwards,
+                            const QuantLib::Size firstValidIndex,
+                            const std::vector<QuantLib::DiscountFactor>& ds,
+                            const std::vector<QuantLib::Time>& taus) {
+        std::vector<QuantLib::Real> rates(taus.size());
+        std::vector<QuantLib::Real> annuities(taus.size());
+        QuantLib::constantMaturityFromDiscountRatios(spanningForwards,
+                                                     firstValidIndex, ds, taus,
+                                                     rates, annuities);
+        return rates;
+    }
+
+    std::vector<QuantLib::Real> qlConstantMaturitySwapAnnuitiesFromDiscountRatios(
+                            const QuantLib::Size spanningForwards,
+                            const QuantLib::Size firstValidIndex,
+                            const std::vector<QuantLib::DiscountFactor>& ds,
+                            const std::vector<QuantLib::Time>& taus) {
+        std::vector<QuantLib::Real> rates(taus.size());
+        std::vector<QuantLib::Real> annuities(taus.size());
+        QuantLib::constantMaturityFromDiscountRatios(spanningForwards,
+                                                     firstValidIndex, ds, taus,
+                                                     rates, annuities);
+        return annuities;
     }
 
 }

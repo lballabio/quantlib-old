@@ -262,6 +262,34 @@ namespace QuantLibAddin {
     };
 
 
+
+    std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
+                            const QuantLib::Size firstValidIndex,
+                            const std::vector<QuantLib::DiscountFactor>& ds,
+                            const std::vector<QuantLib::Time>& taus);
+
+    std::vector<QuantLib::Rate> qlCoterminalSwapRatesFromDiscountRatios(
+                            const QuantLib::Size firstValidIndex,
+                            const std::vector<QuantLib::DiscountFactor>& ds,
+                            const std::vector<QuantLib::Time>& taus);
+    std::vector<QuantLib::Real> qlCoterminalSwapAnnuitiesFromDiscountRatios(
+                            const QuantLib::Size firstValidIndex,
+                            const std::vector<QuantLib::DiscountFactor>& ds,
+                            const std::vector<QuantLib::Time>& taus);
+
+    std::vector<QuantLib::Rate> qlConstantMaturitySwapRatesFromDiscountRatios(
+                            const QuantLib::Size spanningForwards,
+                            const QuantLib::Size firstValidIndex,
+                            const std::vector<QuantLib::DiscountFactor>& ds,
+                            const std::vector<QuantLib::Time>& taus);
+    std::vector<QuantLib::Real> qlConstantMaturitySwapAnnuitiesFromDiscountRatios(
+                            const QuantLib::Size spanningForwards,
+                            const QuantLib::Size firstValidIndex,
+                            const std::vector<QuantLib::DiscountFactor>& ds,
+                            const std::vector<QuantLib::Time>& taus);
+
+
+
 }
 
 #endif
