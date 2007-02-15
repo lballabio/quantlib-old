@@ -130,13 +130,12 @@ namespace QuantLibAddin {
 
     LMMNormalDriftCalculator::LMMNormalDriftCalculator(
                                 const QuantLib::Matrix& pseudo,
-                                const std::vector<QuantLib::Rate>& displ,
                                 const std::vector<QuantLib::Time>& taus,
                                 QuantLib::Size numeraire,
                                 QuantLib::Size alive)
     : drifts_(taus.size()) {
         libraryObject_ = boost::shared_ptr<QuantLib::LMMNormalDriftCalculator>(
-            new QuantLib::LMMNormalDriftCalculator(pseudo, displ,
+            new QuantLib::LMMNormalDriftCalculator(pseudo,
                                                    taus, numeraire, alive));
     }
 

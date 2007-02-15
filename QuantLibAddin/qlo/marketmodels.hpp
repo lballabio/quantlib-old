@@ -137,7 +137,6 @@ namespace QuantLibAddin {
     class LMMNormalDriftCalculator : public ObjHandler::LibraryObject<QuantLib::LMMNormalDriftCalculator> {
       public:
         LMMNormalDriftCalculator(const QuantLib::Matrix& pseudo,
-                        const std::vector<QuantLib::Rate>& displacements,
                         const std::vector<QuantLib::Time>& taus,
                         QuantLib::Size numeraire,
                         QuantLib::Size alive);
