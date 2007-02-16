@@ -32,14 +32,14 @@ using QuantLib::Currency;
 
 class Currency {
     #if defined(SWIGPYTHON)
-    %rename(__nonzero__) isValid;
+    %rename(__nonzero__) empty;
     #elif defined(SWIGRUBY)
-    %rename("isValid?") isValid;
+    %rename("empty?") empty;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("numeric-code")           numericCode;
     %rename("fraction-symbol")        fractionSymbol;
     %rename("fractions-per-unit")     fractionsPerUnit;
-    %rename("is-valid?")              isValid;
+    %rename("empty?")              empty;
     %rename("triangulation-currency") triangulationCurrency;
     #endif
   public:
@@ -50,7 +50,8 @@ class Currency {
     const std::string& fractionSymbol() const;
     Integer fractionsPerUnit() const;
     const Rounding& rounding() const;
-    bool isValid() const;
+    std::string format() const;
+    bool empty() const;
     const Currency& triangulationCurrency() const;
     %extend {
         std::string __str__() {

@@ -164,9 +164,12 @@ class EndCriteria {
     %rename("positive-optimization-set!") setPositiveOptimization;
     #elif defined(SWIGCSHARP) || defined(SWIGPERL)
     %rename(call) operator();
+    #elif defined(SWIGPYTHON)
+    %rename(NoCriteria) None;
     #endif
   public:
-  enum Type { None,
+  enum Type { 
+  None,
 	      MaxIterations,
 	      StationaryPoint,
 	      StationaryGradient,
