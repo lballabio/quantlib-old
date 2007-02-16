@@ -145,7 +145,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="0"
+				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions,$(QUANTLIBADDIN_DIR)"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS"
