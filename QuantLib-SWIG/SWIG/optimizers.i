@@ -166,14 +166,23 @@ class EndCriteria {
     %rename(call) operator();
     #endif
   public:
-    EndCriteria();
-    EndCriteria(Size maxIteration, Real epsilon);
-    void setPositiveOptimization(bool);
+  enum Type { None,
+	      MaxIterations,
+	      StationaryPoint,
+	      StationaryGradient,
+	      Unknown };
+    EndCriteria(Size maxIteration = 1000,
+		Real functionEpsilon = 1-e8,
+		Real gradientEpsilon = Null<Real>(),
+		Size maxStationaryStateIterations = Null<Size>());
     bool operator()(Size iteration,
-                    Real fold,
-                    Real normgold,
-                    Real fnew,
-                    Real normgnewx) const;
+		    Size &statState,
+		    const bool positiveOptimization,
+                    const Real fold,
+                    const Real normgold,
+                    const Real fnew,
+                    const Real normgnewx,
+		    EndCriteria::Type & ecType) const;
 };
 
 
