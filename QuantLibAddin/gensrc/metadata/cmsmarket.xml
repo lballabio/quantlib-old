@@ -126,6 +126,11 @@
             <tensorRank>vector</tensorRank>
             <description>guess</description>
           </Parameter>
+          <Parameter name='isMeanRevFixed'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>if TRUE parameter guess is not calibrated.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue libraryType='QuantLib::Array'>
