@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2007 Cristina Duminuco
  Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2006 Eric Ehlers
  Copyright (C) 2006 Giorgio Facchinetti
@@ -100,6 +101,7 @@ namespace QuantLibAddin {
                                       dayCounter);
     }
 
+    // no embedded options
     IborLeg::IborLeg(
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
                     QuantLib::BusinessDayConvention paymentAdjustment,
@@ -108,10 +110,29 @@ namespace QuantLibAddin {
                     QuantLib::Integer fixingDays,
                     const QuantLib::DayCounter& dayCounter,
                     const std::vector<QuantLib::Real>& gearings,
+                    const std::vector<QuantLib::Spread>& spreads) {
+
+        leg_ = QuantLib::IborLeg(*schedule,
+                                 nominals,
+                                 index,
+                                 dayCounter,
+                                 fixingDays,
+                                 paymentAdjustment,
+                                 gearings, spreads);
+    }
+    // with embedded options
+    IborLeg::IborLeg(
+                    const boost::shared_ptr<QuantLib::Schedule>& schedule,
+                    QuantLib::BusinessDayConvention paymentAdjustment,
+                    const std::vector<double>& nominals,
+                    const boost::shared_ptr<QuantLib::IborIndex>& index,
+                    QuantLib::Integer fixingDays,
+                    const QuantLib::DayCounter& dayCounter,
+                    const std::vector<QuantLib::Rate>& floors,
+                    const std::vector<QuantLib::Real>& gearings,
                     const std::vector<QuantLib::Spread>& spreads,
-                    const boost::shared_ptr<QuantLib::IborCouponPricer>& pricer,
                     const std::vector<QuantLib::Rate>& caps,
-                    const std::vector<QuantLib::Rate>& floors) {
+                    const boost::shared_ptr<QuantLib::IborCouponPricer>& pricer) {
 
         leg_ = QuantLib::IborLeg(*schedule,
                                  nominals,
