@@ -56,11 +56,10 @@ K
 - SA applied to cms book
 - foglio di clerici (Drafts\QuickCapPricer.xls)
 - foglio di clerici (interpolazione)
-- test abcd (swap tenor) with new optimization code
 - multiLegSwap.xls: move from Drafts to IRDerivatives
 - remove action atmVolatility from Launcher
 - standardizzare il nome delle quotes dei param di calibrazione
-- demo per HelpDesk e ChangeMan
+- demo per HelpDesk e ChangeMan -> mar 27 feb?
 Pending:
 - DONE test abcd (swap tenor) with new optimization code
 - DONE test sensitivity of IRS_CMS_MxBook_30Y.xls to atm and smile vols
