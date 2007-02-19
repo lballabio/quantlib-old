@@ -30,17 +30,17 @@
             <tensorRank>scalar</tensorRank>
             <description>tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar' exampleValue='TARGET'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='convention' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='convention' enumeration='QuantLib::BusinessDayConvention' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual dates business day convention</description>
           </Parameter>
-          <Parameter name='termDateConv' enumeration='QuantLib::BusinessDayConvention'>
+          <Parameter name='termDateConv' enumeration='QuantLib::BusinessDayConvention' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>termination date business day convention</description>
