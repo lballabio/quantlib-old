@@ -37,9 +37,37 @@
 #include <ql/MarketModels/CurveStates/coterminalswapcurvestate.hpp>
 #include <ql/MarketModels/CurveStates/lmmcurvestate.hpp>
 #include <ql/MarketModels/Models/swapfromfracorrelationstructure.hpp>
+#include <ql/MarketModels/Models/capletcoterminalcalibration.hpp>
+
 
 namespace QuantLibAddin {
-    class SwapFromFRACorrelationStructure : public ObjHandler::LibraryObject<QuantLib::SwapFromFRACorrelationStructure> {
+
+    class PiecewiseConstantVariance: public ObjHandler::LibraryObject<QuantLib::PiecewiseConstantVariance>{};
+
+    inline QuantLib::Matrix capletCoterminalCalibration(const QuantLib::TimeDependantCorrelationStructure& corr,
+            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
+            const std::vector<QuantLib::Volatility>& capletVols,
+            const QuantLib::CurveState& cs,
+            const QuantLib::Spread displacement,
+            const std::vector<QuantLib::Real>& alpha,
+            QuantLib::Size timeIndex){
+                QuantLib::Size nbRates = cs.rateTimes().size();
+                std::vector<QuantLib::Matrix> pseudoRoots(nbRates);
+            for (QuantLib::Size i = 0; i < nbRates; ++i)
+                pseudoRoots[i] = QuantLib::Matrix(nbRates, nbRates);
+
+            bool result = QuantLib::capletCoterminalCalibration(corr, 
+                        swapVariances, capletVols, cs, displacement, alpha, pseudoRoots);
+            if (result)
+                return pseudoRoots[timeIndex];
+            else
+                QL_FAIL("caplets coterminal calibration has failed");
+    };
+
+    class TimeDependantCorrelationStructure : 
+        public ObjHandler::LibraryObject<QuantLib::TimeDependantCorrelationStructure>{};
+
+    class SwapFromFRACorrelationStructure : public TimeDependantCorrelationStructure {
         public:
             SwapFromFRACorrelationStructure(
             const QuantLib::Real longTermCorr,

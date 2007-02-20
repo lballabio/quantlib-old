@@ -1330,6 +1330,58 @@
               <tensorRank>matrix</tensorRank>
           </ReturnValue>
       </Member>
+
+      <Procedure name='qlcapletCoterminalCalibration'>
+          <description>Calibrate ...</description>
+          <alias>QuantLibAddin::capletCoterminalCalibration</alias>
+          <functionCategory>QuantLib</functionCategory>
+          <SupportedPlatforms>
+              <Excel calcInWizard='false' />
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters>
+                  <Parameter name='correlations' underlyingClass='TimeDependantCorrelationStructure'>
+                      <type>string</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>correlations ID</description>
+                  </Parameter>
+                  <Parameter name='swapVariances' libraryClass='PiecewiseConstantVariance'>
+                      <type>string</type>
+                      <tensorRank>vector</tensorRank>
+                      <description>PiecewiseConstantVariances ID</description>
+                  </Parameter>
+                  <Parameter name='capletVols' libraryType='QuantLib::Volatility'>
+                      <type>double</type>
+                      <tensorRank>vector</tensorRank>
+                      <description>CurveState object ID</description>
+                  </Parameter>
+                  <Parameter name='curveState' underlyingClass='CurveState'>
+                      <type>string</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>CurveState object ID</description>
+                  </Parameter>
+                  <Parameter name='displacement' libraryType='QuantLib::Volatility'>
+                      <type>double</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>displacement</description>
+                  </Parameter>
+                  <Parameter name='alpha' libraryType='QuantLib::Real'>
+                      <type>double</type>
+                      <tensorRank>vector</tensorRank>
+                      <description>alpha</description>
+                  </Parameter>
+                  <Parameter name='timeIndex' libraryType='QuantLib::Size'>
+                      <type>long</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>timeIndex</description>
+                  </Parameter>
+              </Parameters>
+          </ParameterList>
+          <ReturnValue libraryType='QuantLib::Matrix'>
+              <type>double</type>
+              <tensorRank>matrix</tensorRank>
+          </ReturnValue>
+      </Procedure>   
       
      
     <Procedure name='qlCoterminalSwapForwardJacobian'>
