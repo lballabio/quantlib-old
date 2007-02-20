@@ -1274,6 +1274,64 @@
       </ReturnValue>
     </Member>-->
 
+      <Constructor name='qlSwapFromFRACorrelationStructure'>
+          <libraryFunction>SwapFromFRACorrelationStructure</libraryFunction>
+          <SupportedPlatforms>
+              <Excel calcInWizard='false' />
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters>
+                  <Parameter name='longTermCorr' libraryType='QuantLib::Real'>
+                      <type>double</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>Long term correlation</description>
+                  </Parameter>
+                  <Parameter name='beta' libraryType='QuantLib::Real'>
+                      <type>double</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>decay factor</description>
+                  </Parameter>
+                  <Parameter name='curveState' underlyingClass='CurveState'>
+                      <type>string</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>curveState</description>
+                  </Parameter>
+                  <Parameter name='evolution'  underlyingClass='EvolutionDescription'>
+                      <type>string</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>Evolution Description</description>
+                  </Parameter>
+                  <Parameter name='numberOfFactors' libraryType='QuantLib::Size'>
+                      <type>long</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>number of factors</description>
+                  </Parameter>
+              </Parameters>
+          </ParameterList>
+      </Constructor>
+
+      <Member name='qlSwapFromFRACorrelationStructurePseudoRoot' libraryClass='SwapFromFRACorrelationStructure'>
+          <description>Returns the pseudo-root of the equivalent covariance swap rates matrix</description>
+          <libraryFunction>pseudoRoot</libraryFunction>
+          <SupportedPlatforms>
+              <Excel calcInWizard='false' />
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters>
+                  <Parameter name='timeIndex' libraryType='QuantLib::Size'>
+                      <type>long</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>time index.</description>
+                  </Parameter>
+              </Parameters>
+          </ParameterList>
+          <ReturnValue libraryType='QuantLib::Matrix'>
+              <type>double</type>
+              <tensorRank>matrix</tensorRank>
+          </ReturnValue>
+      </Member>
+      
+     
     <Procedure name='qlCoterminalSwapForwardJacobian'>
       <description>Returns the jacobian between coterminal swap rates and forward rates</description>
       <alias>QuantLib::SwapForwardMappings::coterminalSwapForwardJacobian</alias>
@@ -2194,6 +2252,7 @@
       </ReturnValue>
     </Procedure>
 
+      
     <Procedure name='qlConstantMaturitySwapAnnuitiesFromDiscountRatios'>
       <description>Returns constant maturity swap annuities from discount ratios</description>
       <functionCategory>QuantLib</functionCategory>

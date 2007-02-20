@@ -36,8 +36,21 @@
 #include <ql/MarketModels/CurveStates/cmswapcurvestate.hpp>
 #include <ql/MarketModels/CurveStates/coterminalswapcurvestate.hpp>
 #include <ql/MarketModels/CurveStates/lmmcurvestate.hpp>
+#include <ql/MarketModels/Models/swapfromfracorrelationstructure.hpp>
 
 namespace QuantLibAddin {
+    class SwapFromFRACorrelationStructure : public ObjHandler::LibraryObject<QuantLib::SwapFromFRACorrelationStructure> {
+        public:
+            SwapFromFRACorrelationStructure(
+            const QuantLib::Real longTermCorr,
+            const QuantLib::Real beta,
+            const QuantLib::CurveState& curveState,
+            const QuantLib::EvolutionDescription& evolution,
+            const QuantLib::Size numberOfFactors);
+        const QuantLib::EvolutionDescription& evolution() const;
+        QuantLib::Size numberOfFactors() const;
+        const QuantLib::Matrix& pseudoRoot(QuantLib::Size i) const;
+    };
 
     class EvolutionDescription : public ObjHandler::LibraryObject<QuantLib::EvolutionDescription> {
     public:

@@ -32,6 +32,19 @@
 
 namespace QuantLibAddin {
 
+    SwapFromFRACorrelationStructure::SwapFromFRACorrelationStructure(
+            const QuantLib::Real longTermCorr,
+            const QuantLib::Real beta,
+            const QuantLib::CurveState& curveState,
+            const QuantLib::EvolutionDescription& evolution,
+            const QuantLib::Size numberOfFactors){
+        libraryObject_ = 
+            boost::shared_ptr<QuantLib::SwapFromFRACorrelationStructure>(
+                new QuantLib::SwapFromFRACorrelationStructure(longTermCorr, 
+                                                    beta, curveState, 
+                                                    evolution,numberOfFactors));    
+    }
+
     EvolutionDescription::EvolutionDescription(
             const std::vector<QuantLib::Time>& rateTimes,
             const std::vector<QuantLib::Time>& evolutionTimes)
