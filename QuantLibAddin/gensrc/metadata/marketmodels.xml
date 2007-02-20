@@ -9,6 +9,7 @@
     <include>ql/MarketModels/CurveStates/cmswapcurvestate.hpp</include>
     <include>ql/MarketModels/CurveStates/coterminalswapcurvestate.hpp</include>
     <include>ql/MarketModels/CurveStates/lmmcurvestate.hpp</include>
+    <!--<include>ql/MarketModels/Models/piecewiseconstantabcdvariance.hpp</include>-->    
     <include>qlo/optimization.hpp</include>
     <include>qlo/marketmodels.hpp</include>
     <include>qlo/sequencestatistics.hpp</include>
@@ -17,9 +18,9 @@
 
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2007 Chiara Fornarola
-    Copyright (C) 2006 Marco Bianchetti
-    Copyright (C) 2006 Cristina Duminuco
-    Copyright (C) 2006 Giorgio Facchinetti
+    Copyright (C) 2006, 2007 Marco Bianchetti
+    Copyright (C) 2006, 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
   </copyright>
   <Functions>
 
@@ -617,6 +618,7 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
+        
 
     <!-- MarketModel derived class constructors -->
 
@@ -1220,6 +1222,80 @@
         </Parameters>
       </ParameterList>
     </Constructor>
+
+    <!-- PiecewiseConstantAbcdVariance -->
+
+    <Constructor name='qlPiecewiseConstantAbcdVariance'>
+      <libraryFunction>PiecewiseConstantAbcdVariance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='a' default='-0.06'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='b' default='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='c' default='0.54'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='d' default='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='ResetIndex'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index that defines the reset time of rate.</description>
+          </Parameter>
+          <Parameter name='evolutionDescription' underlyingClass='EvolutionDescription'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EvolutionDescription object</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlPiecewiseConstantAbcdVariances' libraryClass='PiecewiseConstantAbcdVariance'>
+      <description>Returns the piecewise constant abcd variances.</description>
+      <libraryFunction>variances</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>        
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlpiecewiseConstantVolatilities' libraryClass='PiecewiseConstantAbcdVariance'>
+      <description>Returns the piecewise constant abcd instantaneous volatilities.</description>
+      <libraryFunction>piecewiseConstantVolatilities</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>        
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
 
     <!-- SwapForwardConversionMatrix class constructor and interfaces -->
 

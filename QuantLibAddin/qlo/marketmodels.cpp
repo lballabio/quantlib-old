@@ -327,6 +327,17 @@ namespace QuantLibAddin {
     }
 
 
+    PiecewiseConstantAbcdVariance::PiecewiseConstantAbcdVariance(
+        QuantLib::Real a, QuantLib::Real b, 
+        QuantLib::Real c, QuantLib::Real d,
+        const QuantLib::Size resetIndex,
+        const QuantLib::EvolutionDescription& evolution) {
+
+         libraryObject_ = boost::shared_ptr<QuantLib::PiecewiseConstantAbcdVariance>(
+            new QuantLib::PiecewiseConstantAbcdVariance(a,b,c,d,resetIndex,evolution));
+    
+    }
+
     std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
                             const QuantLib::Size firstValidIndex,
                             const std::vector<QuantLib::DiscountFactor>& ds,

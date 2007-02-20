@@ -36,6 +36,7 @@
 #include <ql/MarketModels/CurveStates/cmswapcurvestate.hpp>
 #include <ql/MarketModels/CurveStates/coterminalswapcurvestate.hpp>
 #include <ql/MarketModels/CurveStates/lmmcurvestate.hpp>
+#include <ql/MarketModels/Models/piecewiseconstantabcdvariance.hpp>
 #include <ql/MarketModels/Models/swapfromfracorrelationstructure.hpp>
 #include <ql/MarketModels/Models/capletcoterminalcalibration.hpp>
 
@@ -302,6 +303,15 @@ namespace QuantLibAddin {
     };
 
 
+    class PiecewiseConstantAbcdVariance : public ObjHandler::LibraryObject<
+        QuantLib::PiecewiseConstantAbcdVariance> {
+    public:
+        PiecewiseConstantAbcdVariance(QuantLib::Real a, QuantLib::Real b, 
+                                      QuantLib::Real c, QuantLib::Real d,
+                                      const QuantLib::Size resetIndex,
+                                      const QuantLib::EvolutionDescription& evolution);
+
+    };
 
     std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
                             const QuantLib::Size firstValidIndex,
