@@ -52,7 +52,7 @@
 				PrecompiledHeaderFile=".\build\vc80\$(ConfigurationName)/static.pch"
 				AssemblerListingLocation=".\build\vc80\$(ConfigurationName)/"
 				ObjectFile=".\build\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\build\vc80\$(ConfigurationName)/"
+				ProgramDataBaseFileName="..\lib\Unicode_R\log4cxxs"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -71,7 +71,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../lib/Unicode_R/log4cxxs.lib"
+				OutputFile="..\lib\Unicode_R\log4cxxs.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -126,7 +126,7 @@
 				PrecompiledHeaderFile=".\build\vc80\$(ConfigurationName)/static.pch"
 				AssemblerListingLocation=".\build\vc80\$(ConfigurationName)/"
 				ObjectFile=".\build\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\build\vc80\$(ConfigurationName)/"
+				ProgramDataBaseFileName="..\lib\log4cxxs-vc80-mt-sgd"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -145,7 +145,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../lib/log4cxxs-vc80-mt-sgd.lib"
+				OutputFile="..\lib\log4cxxs-vc80-mt-sgd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -200,7 +200,7 @@
 				PrecompiledHeaderFile=".\build\vc80\$(ConfigurationName)/static.pch"
 				AssemblerListingLocation=".\build\vc80\$(ConfigurationName)/"
 				ObjectFile=".\build\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\build\vc80\$(ConfigurationName)/"
+				ProgramDataBaseFileName="..\lib\Unicode_D\log4cxxs"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -219,7 +219,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../lib/Unicode_D/log4cxxs.lib"
+				OutputFile="..\lib\Unicode_D\log4cxxs.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -276,7 +276,7 @@
 				PrecompiledHeaderFile=".\build\vc80\$(ConfigurationName)/static.pch"
 				AssemblerListingLocation=".\build\vc80\$(ConfigurationName)/"
 				ObjectFile=".\build\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\build\vc80\$(ConfigurationName)/"
+				ProgramDataBaseFileName="..\lib\log4cxxs-vc80-mt-s"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -295,7 +295,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../lib/log4cxxs-vc80-mt-s.lib"
+				OutputFile="..\lib\log4cxxs-vc80-mt-s.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -350,7 +350,7 @@
 				PrecompiledHeaderFile=".\build\vc80\$(ConfigurationName)/static.pch"
 				AssemblerListingLocation=".\build\vc80\$(ConfigurationName)/"
 				ObjectFile=".\build\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\build\vc80\$(ConfigurationName)/"
+				ProgramDataBaseFileName="..\lib\log4cxxs-vc80-mt-gd"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -369,7 +369,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../lib/log4cxxs-vc80-mt-gd.lib"
+				OutputFile="..\lib\log4cxxs-vc80-mt-gd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -424,7 +424,7 @@
 				PrecompiledHeaderFile=".\build\vc80\$(ConfigurationName)/static.pch"
 				AssemblerListingLocation=".\build\vc80\$(ConfigurationName)/"
 				ObjectFile=".\build\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\build\vc80\$(ConfigurationName)/"
+				ProgramDataBaseFileName="..\lib\log4cxxs-vc80-mt"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -443,7 +443,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../lib/log4cxxs-vc80-mt.lib"
+				OutputFile="..\lib\log4cxxs-vc80-mt.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
