@@ -1,5 +1,5 @@
 
-; Copyright (C) 2004, 2005, 2006 StatPro Italia srl
+; Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -121,9 +121,11 @@
 
 (define swap-settlement-days 2)
 (define fixed-leg-frequency (Annual))
+(define fixed-leg-tenor (new-Period 1 (Years)))
 (define fixed-leg-adjustment (Unadjusted))
 (define fixed-leg-day-counter (new-Thirty360))
 (define floating-leg-frequency (Semiannual))
+(define floating-leg-tenor (new-Period 6 (Months)))
 (define floating-leg-adjustment (ModifiedFollowing))
 (define swap-helpers
   (map (lambda (datum)
@@ -173,31 +175,39 @@
 (define index (new-Euribor6M forecast-term-structure))
 (define floating-leg-day-counter (InterestRateIndex-day-counter index))
 
-(define fixed-schedule (new-Schedule calendar settlement-date maturity
-                                     fixed-leg-frequency fixed-leg-adjustment))
-(define floating-schedule (new-Schedule calendar settlement-date maturity
-                                        floating-leg-frequency
-                                        floating-leg-adjustment))
+(define fixed-schedule (new-Schedule settlement-date maturity
+                                     fixed-leg-tenor calendar
+                                     fixed-leg-adjustment fixed-leg-adjustment
+                                     #f #f))
+(define floating-schedule (new-Schedule settlement-date maturity
+                                        floating-leg-tenor calendar
+                                        floating-leg-adjustment
+                                        floating-leg-adjustment
+                                        #f #f))
 
 (define spot (new-VanillaSwap pay-fixed nominal
                               fixed-schedule fixed-rate fixed-leg-day-counter
-                              floating-schedule index index-fixing-days spread
+                              floating-schedule index spread
                               floating-leg-day-counter
                               discount-term-structure))
 
 (define forward-start (Calendar-advance calendar settlement-date 1 (Years)))
 (define forward-end (Calendar-advance calendar forward-start length (Years)))
-(define fixed-fwd-schedule (new-Schedule calendar forward-start forward-end
-                                         fixed-leg-frequency
-                                         fixed-leg-adjustment))
-(define floating-fwd-schedule (new-Schedule calendar forward-start forward-end
-                                            floating-leg-frequency
-                                            floating-leg-adjustment))
+(define fixed-fwd-schedule (new-Schedule forward-start forward-end
+                                         fixed-leg-tenor calendar
+                                         fixed-leg-adjustment
+                                         fixed-leg-adjustment
+                                         #f #f))
+(define floating-fwd-schedule (new-Schedule forward-start forward-end
+                                            floating-leg-tenor calendar
+                                            floating-leg-adjustment
+                                            floating-leg-adjustment
+                                            #f #f))
 (define forward (new-VanillaSwap pay-fixed nominal
                                  fixed-fwd-schedule fixed-rate
                                  fixed-leg-day-counter
                                  floating-fwd-schedule
-                                 index index-fixing-days spread
+                                 index spread
                                  floating-leg-day-counter
                                  discount-term-structure))
 

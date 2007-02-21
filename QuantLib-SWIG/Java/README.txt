@@ -10,3 +10,4 @@ the JDK to configure, as in (for example)
   --with-jdk-system-include=usr/lib/jvm/java-1.5.0-sun-1.5.0.08/include/linux
 
 and by running 'make' afterwards.
+

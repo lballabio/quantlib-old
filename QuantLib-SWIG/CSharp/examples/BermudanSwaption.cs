@@ -37,7 +37,7 @@ namespace BermudanSwaption
 			CalibrationHelperVector helpers,
 			double lambda ) 
 		{
-			Simplex om = new Simplex( lambda, 1e-9 );
+			Simplex om = new Simplex( lambda );
 			om.setEndCriteria( new EndCriteria(10000, 1e-7) );
 			model.calibrate(helpers, om);
 
@@ -83,6 +83,7 @@ namespace BermudanSwaption
 
 			// Define the ATM/OTM/ITM swaps
 			Frequency fixedLegFrequency = Frequency.Annual;
+			Period fixedLegTenor = new Period(1,TimeUnit.Years);
 			BusinessDayConvention fixedLegConvention =
                 BusinessDayConvention.Unadjusted;
 			BusinessDayConvention floatingLegConvention =
@@ -90,6 +91,7 @@ namespace BermudanSwaption
 			DayCounter fixedLegDayCounter =
                 new Thirty360( Thirty360.Convention.European );
 			Frequency floatingLegFrequency = Frequency.Semiannual;
+			Period floatingLegTenor = new Period(6,TimeUnit.Months);
 			bool payFixedRate = true;
 			int fixingDays = 2;
 			double dummyFixedRate = 0.03;
@@ -99,14 +101,16 @@ namespace BermudanSwaption
 				floatingLegConvention);
 			Date maturity = calendar.advance(startDate,5,TimeUnit.Years,
 				floatingLegConvention);
-			Schedule fixedSchedule = new Schedule(calendar,startDate,maturity,
-			fixedLegFrequency,fixedLegConvention);
-			Schedule floatSchedule = new Schedule(calendar,startDate,maturity,
-			floatingLegFrequency,floatingLegConvention);
+			Schedule fixedSchedule = new Schedule(startDate,maturity,
+				fixedLegTenor,calendar,fixedLegConvention,fixedLegConvention,
+				false,false);
+			Schedule floatSchedule = new Schedule(startDate,maturity,
+				floatingLegTenor,calendar,floatingLegConvention,floatingLegConvention,
+				false,false);
 			VanillaSwap swap = new VanillaSwap(
 					   payFixedRate, 1000.0,
 					   fixedSchedule, dummyFixedRate, fixedLegDayCounter,
-					   floatSchedule, indexSixMonths, fixingDays, 0.0,
+					   floatSchedule, indexSixMonths, 0.0,
 					   indexSixMonths.dayCounter(), rhTermStructure);
 			double fixedATMRate = swap.fairRate();
 			double fixedOTMRate = fixedATMRate * 1.2;
@@ -115,17 +119,17 @@ namespace BermudanSwaption
 			VanillaSwap atmSwap = new VanillaSwap(
 					   payFixedRate, 1000.0,
 					   fixedSchedule, fixedATMRate, fixedLegDayCounter,
-					   floatSchedule, indexSixMonths, fixingDays, 0.0,
+					   floatSchedule, indexSixMonths, 0.0,
 					   indexSixMonths.dayCounter(), rhTermStructure );
 			VanillaSwap otmSwap = new VanillaSwap(
 					   payFixedRate, 1000.0,
 					   fixedSchedule, fixedOTMRate, fixedLegDayCounter,
-					   floatSchedule, indexSixMonths, fixingDays, 0.0,
+					   floatSchedule, indexSixMonths, 0.0,
 					   indexSixMonths.dayCounter(), rhTermStructure);
 			VanillaSwap itmSwap = new VanillaSwap(
 					   payFixedRate, 1000.0,
 					   fixedSchedule, fixedITMRate, fixedLegDayCounter,
-					   floatSchedule, indexSixMonths, fixingDays, 0.0,
+					   floatSchedule, indexSixMonths, 0.0,
 					   indexSixMonths.dayCounter(), rhTermStructure);
 
 			// defining the swaptions to be used in model calibration
@@ -150,7 +154,7 @@ namespace BermudanSwaption
                                new Period(swapLenghts[j], TimeUnit.Years),
                                new QuoteHandle(vol),
                                indexSixMonths,
-                               indexSixMonths.frequency(),
+                               indexSixMonths.tenor(),
                                indexSixMonths.dayCounter(),
                                indexSixMonths.dayCounter(),
                                rhTermStructure );
@@ -221,8 +225,9 @@ namespace BermudanSwaption
                                fixedATMRate );
 
 	        DateVector bermudanDates = new DateVector();
-			Schedule schedule = new Schedule(calendar,startDate,maturity,
-				Frequency.Quarterly,BusinessDayConvention.Following);
+			Schedule schedule = new Schedule(startDate,maturity,
+				new Period(3,TimeUnit.Months),calendar,BusinessDayConvention.Following,
+				BusinessDayConvention.Following,false,false);
 
 			for (uint i=0; i<schedule.size(); i++)
 				bermudanDates.Add( schedule.date( i ) );

@@ -1,5 +1,5 @@
 
-# Copyright (C) 2004, 2005, 2006 StatPro Italia srl
+# Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -82,10 +82,12 @@ termStructure.linkTo(FlatForward(settlementDate,rate,Actual365Fixed()))
 # define the ATM/OTM/ITM swaps
 
 fixedLegFrequency = Annual
+fixedLegTenor = Period(1,Years)
 fixedLegConvention = Unadjusted
 floatingLegConvention = ModifiedFollowing
 fixedLegDayCounter = Thirty360(Thirty360.European);
 floatingLegFrequency = Semiannual
+floatingLegTenor = Period(6,Months)
 
 payFixed = Payer
 fixingDays = 2
@@ -95,17 +97,13 @@ floatingLegDayCounter = index.dayCounter()
 swapStart = calendar.advance(settlementDate,1,Years,floatingLegConvention)
 swapEnd = calendar.advance(swapStart,5,Years,floatingLegConvention)
 
-fixedSchedule = Schedule(swapStart, swapEnd, 
-                         Period(fixedLegFrequency),
-                         calendar,
-                         fixedLegConvention,
-                         fixedLegConvention,
+fixedSchedule = Schedule(swapStart, swapEnd,
+                         fixedLegTenor, calendar,
+                         fixedLegConvention, fixedLegConvention,
                          False, False)
 floatingSchedule = Schedule(swapStart, swapEnd,
-                            Period(floatingLegFrequency),
-                            calendar,
-                            floatingLegConvention,
-                            floatingLegConvention,
+                            floatingLegTenor, calendar,
+                            floatingLegConvention, floatingLegConvention,
                             False, False)
 
 atmRate = VanillaSwap(payFixed, 100.0,

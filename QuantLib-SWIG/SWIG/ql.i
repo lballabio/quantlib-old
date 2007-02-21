@@ -121,7 +121,6 @@
 %include optimizers.i
 %include options.i
 %include payoffs.i
-%include piecewiseflatforward.i
 %include piecewiseyieldcurve.i
 %include randomnumbers.i
 %include ratehelpers.i

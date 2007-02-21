@@ -27,7 +27,7 @@ target=`uname`
 AC_MSG_RESULT([$target])
 
 # check for QuantLib
-AC_MSG_CHECKING([QuantLib])
+AC_MSG_CHECKING([for QuantLib])
 ql_version=`quantlib-config --version`
 AC_MSG_RESULT([$ql_version])
 
@@ -60,6 +60,7 @@ AM_CONDITIONAL(HAVE_R, test "x${R}" != "x")
 
 AC_PATH_PROG([JAVAC], [javac])
 AC_PATH_PROG([JAR], [jar])
+AC_PATH_PROG([JAVA], [java])
 AM_CONDITIONAL(HAVE_JAVA, test "x${JAVAC}" != "x" && test "x${JAR}" != "x")
 
 AC_ARG_WITH([jdk-include],
@@ -89,10 +90,10 @@ AC_SUBST([CXXFLAGS],[${CXXFLAGS='-g -O2 -Wall'}])
 case "$target" in
 Darwin)
     AC_SUBST([SHARED_LIB],[${SHARED_LIB='-dynamiclib'}])
-	AC_SUBST([LIB_EXTENSION],[${LIB_EXTENSION='dylib'}]) ;;
+	AC_SUBST([JNILIB_EXTENSION],[${JNILIB_EXTENSION='jnilib'}]) ;;
 *)
     AC_SUBST([SHARED_LIB],[${SHARED_LIB='-shared'}])
-	AC_SUBST([LIB_EXTENSION],[${LIB_EXTENSION='so'}]) ;;
+	AC_SUBST([JNILIB_EXTENSION],[${JNILIB_EXTENSION='so'}]) ;;
 esac
 
 

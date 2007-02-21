@@ -1,5 +1,5 @@
 
-# Copyright (C) 2004, 2005, 2006 StatPro Italia srl
+# Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -45,7 +45,7 @@ def calibrate(model, helpers, l, name)
   puts name
   puts rule
 
-  method = Simplex.new(l, 1.0e-9);
+  method = Simplex.new(l);
   method.endCriteria = EndCriteria.new(1000, 1.0e-7)
   model.calibrate!(helpers, method)
 
@@ -90,10 +90,12 @@ termStructure.linkTo!(FlatForward.new(settlementDate,rate,Actual365Fixed.new))
 
 # define the ATM/OTM/ITM swaps
 fixedLegFrequency = Annual
+fixedLegTenor = Period.new(1,Years)
 fixedLegConvention = Unadjusted
 floatingLegConvention = ModifiedFollowing
 fixedLegDayCounter = Thirty360.new(Thirty360::European)
 floatingLegFrequency = Semiannual
+floatingLegTenor = Period.new(6,Months)
 
 payFixed = true
 fixingDays = 2
@@ -103,33 +105,37 @@ floatingLegDayCounter = index.dayCounter
 swapStart = calendar.advance(settlementDate,1,Years,floatingLegConvention)
 swapEnd = calendar.advance(swapStart,5,Years,floatingLegConvention)
 
-fixedSchedule = Schedule.new(calendar, swapStart, swapEnd,
-                             fixedLegFrequency, fixedLegConvention)
-floatingSchedule = Schedule.new(calendar, swapStart, swapEnd,
-                                floatingLegFrequency, floatingLegConvention)
+fixedSchedule = Schedule.new(swapStart, swapEnd,
+                             fixedLegTenor, calendar,
+                             fixedLegConvention, fixedLegConvention,
+                             false, false)
+floatingSchedule = Schedule.new(swapStart, swapEnd,
+                                floatingLegTenor, calendar,
+                                floatingLegConvention, floatingLegConvention,
+                                false, false)
 
 atmRate = VanillaSwap.new(payFixed, 100.0,
                           fixedSchedule, 0.0, fixedLegDayCounter,
-                          floatingSchedule, index, fixingDays, 0.0,
+                          floatingSchedule, index, 0.0,
                           floatingLegDayCounter, termStructure).fairRate
 
 atmSwap = VanillaSwap.new(payFixed, 1000.0,
                           fixedSchedule, atmRate, fixedLegDayCounter,
-                          floatingSchedule, index, fixingDays, 0.0,
+                          floatingSchedule, index, 0.0,
                           floatingLegDayCounter, termStructure)
 otmSwap = VanillaSwap.new(payFixed, 1000.0,
                           fixedSchedule, atmRate*1.2, fixedLegDayCounter,
-                          floatingSchedule, index, fixingDays, 0.0,
+                          floatingSchedule, index, 0.0,
                           floatingLegDayCounter, termStructure)
 itmSwap = VanillaSwap.new(payFixed, 1000.0,
                           fixedSchedule, atmRate*0.8, fixedLegDayCounter,
-                          floatingSchedule, index, fixingDays, 0.0,
+                          floatingSchedule, index, 0.0,
                           floatingLegDayCounter, termStructure)
 
 helpers = SwaptionVols.map { |maturity, length, vol|
   SwaptionHelper.new(maturity, length,
                      QuoteHandle.new(SimpleQuote.new(vol)),
-                     index, index.frequency, index.dayCounter,
+                     index, index.tenor, index.dayCounter,
                      index.dayCounter, termStructure)
 }
 

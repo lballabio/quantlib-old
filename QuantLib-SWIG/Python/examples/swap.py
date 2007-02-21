@@ -1,5 +1,5 @@
 
-# Copyright (C) 2004, 2005, 2006 StatPro Italia srl
+# Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -84,9 +84,11 @@ futuresHelpers = [ FuturesRateHelper(QuoteHandle(futures[d]),
 
 settlementDays = 2
 fixedLegFrequency = Annual
+fixedLegTenor = Period(1,Years)
 fixedLegAdjustment = Unadjusted
 fixedLegDayCounter = Thirty360()
 floatingLegFrequency = Semiannual
+floatingLegTenor = Period(6,Months)
 floatingLegAdjustment = ModifiedFollowing
 swapHelpers = [ SwapRateHelper(QuoteHandle(swaps[(n,unit)]),
                                Period(n,unit), settlementDays, calendar,
@@ -128,16 +130,13 @@ floatingLegAdjustment = ModifiedFollowing
 floatingLegDayCounter = index.dayCounter()
 
 fixedSchedule = Schedule(settlementDate, maturity,
-                         Period(fixedLegFrequency),
-                         calendar,
-                         fixedLegAdjustment,
-                         fixedLegAdjustment, False, False) 
+                         fixedLegTenor, calendar,
+                         fixedLegAdjustment, fixedLegAdjustment,
+                         False, False)
 floatingSchedule = Schedule(settlementDate, maturity,
-                            Period(floatingLegFrequency),
-                            calendar,
-                            floatingLegAdjustment,
-                            floatingLegAdjustment, False, False)
-                            
+                            floatingLegTenor, calendar,
+                            floatingLegAdjustment, floatingLegAdjustment,
+                            False, False)
 
 spot = VanillaSwap(Payer, nominal,
                    fixedSchedule, fixedRate, fixedLegDayCounter,
@@ -147,15 +146,13 @@ spot = VanillaSwap(Payer, nominal,
 forwardStart = calendar.advance(settlementDate,1,Years)
 forwardEnd = calendar.advance(forwardStart,length,Years)
 fixedSchedule = Schedule(forwardStart, forwardEnd,
-                         Period(fixedLegFrequency),
-                         calendar,
-                         fixedLegAdjustment,
-                         fixedLegAdjustment, False, False)
+                         fixedLegTenor, calendar,
+                         fixedLegAdjustment, fixedLegAdjustment,
+                         False, False)
 floatingSchedule = Schedule(forwardStart, forwardEnd,
-                            Period(floatingLegFrequency),
-                            calendar,
-                            floatingLegAdjustment,
-                            floatingLegAdjustment, False, False)
+                            floatingLegTenor, calendar,
+                            floatingLegAdjustment, floatingLegAdjustment,
+                            False, False)
 
 forward = VanillaSwap(Payer, nominal,
                       fixedSchedule, fixedRate, fixedLegDayCounter,

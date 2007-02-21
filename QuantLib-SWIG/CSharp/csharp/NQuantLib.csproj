@@ -279,12 +279,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "BlackScholes73Process.cs"
+                    RelPath = "BlackScholesMertonProcess.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "BlackScholesMertonProcess.cs"
+                    RelPath = "BlackScholesProcess.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -1619,7 +1619,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "GeneralizedBlackScholesProcess.cs"
+                    RelPath = "GeneralizedBlackScholesPress.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -1690,11 +1690,6 @@
                 />
                 <File
                     RelPath = "Index.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IndexedCoupon.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -12,4 +12,5 @@ EXTRA_DIST = \
 dist-hook:
 	mkdir -p $(distdir)/SWIG
 	cp -p ./SWIG/*.i $(distdir)/SWIG
+	rm -f $(distdir)/SWIG/piecewiseflatforward.i
 

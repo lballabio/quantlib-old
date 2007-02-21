@@ -1,5 +1,5 @@
 
-; Copyright (C) 2004, 2005, 2006 StatPro Italia srl
+; Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -68,7 +68,7 @@
     (display name) (newline)
     (display rule) (newline)
 
-    (let ((method (new-Simplex l 1.0e-9)))
+    (let ((method (new-Simplex l)))
       (OptimizationMethod-end-criteria-set! method
                                             (new-EndCriteria 1000 1.0e-7))
       (ShortRateModel-calibrate! model helpers method)
@@ -123,10 +123,12 @@
 ; define the ATM/OTM/ITM swaps
 
 (define fixed-leg-frequency (Annual))
+(define fixed-leg-tenor (new-Period 1 (Years)))
 (define fixed-leg-convention (Unadjusted))
 (define floating-leg-convention (ModifiedFollowing))
 (define fixed-leg-day-counter (new-Thirty360 (Thirty360-European)))
 (define floating-leg-frequency (Semiannual))
+(define floating-leg-tenor (new-Period 6 (Months)))
 
 (define pay-fixed #t)
 (define fixing-days 2)
@@ -138,31 +140,36 @@
 (define swap-end (Calendar-advance calendar swap-start 5 (Years)
                                    floating-leg-convention))
 
-(define fixed-schedule (new-Schedule calendar swap-start swap-end
-                                     fixed-leg-frequency fixed-leg-convention))
-(define floating-schedule (new-Schedule calendar swap-start swap-end
-                                        floating-leg-frequency
-                                        floating-leg-convention))
+(define fixed-schedule (new-Schedule swap-start swap-end
+                                     fixed-leg-tenor calendar
+                                     fixed-leg-convention
+                                     fixed-leg-convention
+                                     #f #f))
+(define floating-schedule (new-Schedule swap-start swap-end
+                                        floating-leg-tenor calendar
+                                        floating-leg-convention
+                                        floating-leg-convention
+                                        #f #f))
 
 (define atm-rate (VanillaSwap-fair-rate
                   (new-VanillaSwap pay-fixed 100.0 fixed-schedule 0.0
                                    fixed-leg-day-counter floating-schedule
-                                   index fixing-days 0.0
+                                   index 0.0
                                    floating-leg-day-counter term-structure)))
 
 (define atm-swap (new-VanillaSwap pay-fixed 1000.0 fixed-schedule atm-rate
                                   fixed-leg-day-counter floating-schedule
-                                  index fixing-days 0.0
+                                  index 0.0
                                   floating-leg-day-counter term-structure))
 (define otm-swap (new-VanillaSwap pay-fixed 1000.0 fixed-schedule
                                   (* 1.2 atm-rate)
                                   fixed-leg-day-counter floating-schedule
-                                  index fixing-days 0.0
+                                  index 0.0
                                   floating-leg-day-counter term-structure))
 (define itm-swap (new-VanillaSwap pay-fixed 1000.0 fixed-schedule
                                   (* 0.8 atm-rate)
                                   fixed-leg-day-counter floating-schedule
-                                  index fixing-days 0.0
+                                  index 0.0
                                   floating-leg-day-counter term-structure))
 
 (define helpers
@@ -171,7 +178,7 @@
           (lambda (maturity length vol)
             (new-SwaptionHelper maturity length
                                 (new-QuoteHandle (new-SimpleQuote vol))
-                                index (Xibor-frequency index)
+                                index (InterestRateIndex-tenor index)
                                 (InterestRateIndex-day-counter index)
                                 (InterestRateIndex-day-counter index)
                                 term-structure))

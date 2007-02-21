@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005, 2006 StatPro Italia srl
+ Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -119,10 +119,11 @@ class BondPtr : public boost::shared_ptr<Instrument> {
 
 %rename(ZeroCouponBond) ZeroCouponBondPtr;
 class ZeroCouponBondPtr : public BondPtr {
+    %feature("kwargs") ZeroCouponBondPtr;
   public:
     %extend {
         ZeroCouponBondPtr(Real faceAmount,
-			  const Date& issueDate,
+              const Date& issueDate,
                           const Date& maturityDate,
                           Integer settlementDays,
                           const DayCounter& dayCounter,
@@ -133,8 +134,8 @@ class ZeroCouponBondPtr : public BondPtr {
                           const Handle<YieldTermStructure>& discountCurve
                                               = Handle<YieldTermStructure>()) {
             return new ZeroCouponBondPtr(
-                new ZeroCouponBond(faceAmount, 
-				   issueDate, maturityDate, settlementDays,
+                new ZeroCouponBond(faceAmount,
+                   issueDate, maturityDate, settlementDays,
                                    dayCounter, calendar, convention,
                                    redemption, discountCurve));
         }
@@ -143,10 +144,11 @@ class ZeroCouponBondPtr : public BondPtr {
 
 %rename(FixedCouponBond) FixedCouponBondPtr;
 class FixedCouponBondPtr : public BondPtr {
+    %feature("kwargs") FixedCouponBondPtr;
   public:
     %extend {
         FixedCouponBondPtr(Real faceAmount,
-			   const Date& issueDate,
+               const Date& issueDate,
                            const Date& datedDate,
                            const Date& maturityDate,
                            Integer settlementDays,
@@ -165,12 +167,12 @@ class FixedCouponBondPtr : public BondPtr {
                            bool fromEnd = true) {
             return new FixedCouponBondPtr(
                 new FixedCouponBond(faceAmount,
-				    issueDate, datedDate, maturityDate,
+                    issueDate, datedDate, maturityDate,
                                     settlementDays, coupons, couponFrequency,
                                     calendar,
-				    dayCounter,
-				    accrualConvention,
-				    paymentConvention,
+                    dayCounter,
+                    accrualConvention,
+                    paymentConvention,
                                     redemption, discountCurve, stub, fromEnd));
         }
     }
@@ -178,10 +180,11 @@ class FixedCouponBondPtr : public BondPtr {
 
 %rename(FloatingRateBond) FloatingRateBondPtr;
 class FloatingRateBondPtr : public BondPtr {
+    %feature("kwargs") FloatingRateBondPtr;
   public:
     %extend {
         FloatingRateBondPtr(Real faceAmount,
-			    const Date& issueDate,
+                const Date& issueDate,
                             const Date& datedDate,
                             const Date& maturityDate,
                             Integer settlementDays,
@@ -205,7 +208,7 @@ class FloatingRateBondPtr : public BondPtr {
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new FloatingRateBondPtr(
                 new FloatingRateBond(faceAmount,
-				     issueDate, datedDate, maturityDate,
+                     issueDate, datedDate, maturityDate,
                                      settlementDays, libor, fixingDays,
                                      gearings, spreads, couponFrequency,
                                      calendar, dayCounter,

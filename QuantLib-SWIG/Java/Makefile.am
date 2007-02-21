@@ -1,31 +1,39 @@
 
-CLEANFILES = quantlib_wrap.cpp libjquantlib.@LIB_EXTENSION@ QuantLib.jar
+CLEANFILES = quantlib_wrap.cpp libQuantLibJNI.@JNILIB_EXTENSION@ QuantLib.jar
 
 BUILT_SOURCES = quantlib_wrap.cpp
 
-all: libjquantlib.@LIB_EXTENSION@ QuantLib.jar
+if HAVE_JAVA
 
-quantlib_wrap.cpp: org/quantlib ../SWIG/*.i
-	$(SWIG) -java -c++ -I../SWIG -outdir org/quantlib \
-            -package org.quantlib -o quantlib_wrap.cpp quantlib.i
+all-local: libQuantLibJNI.@JNILIB_EXTENSION@ QuantLib.jar
 
 quantlib_wrap.o: quantlib_wrap.cpp
 	g++ -c quantlib_wrap.cpp $(CXXFLAGS) @JDK_INCLUDE@ @JDK_SYSTEM_INCLUDE@ `quantlib-config --cflags` -o quantlib_wrap.o
 
-libjquantlib.@LIB_EXTENSION@: quantlib_wrap.o
-	g++ @SHARED_LIB@ quantlib_wrap.o -Wl -o libjquantlib.@LIB_EXTENSION@ `quantlib-config --libs`
+libQuantLibJNI.@JNILIB_EXTENSION@: quantlib_wrap.o
+	g++ @SHARED_LIB@ quantlib_wrap.o -Wl -o libQuantLibJNI.@JNILIB_EXTENSION@ `quantlib-config --libs`
 
 QuantLib.jar: org/quantlib
 	mkdir -p bin
 	find org/quantlib -name '*.java' | xargs $(JAVAC) -d bin
 	$(JAR) cf QuantLib.jar -C bin org
 
-compile_test: QuantLib.jar
-	$(JAVAC) -cp QuantLib.jar ./test/Hello.java
-
 install-exec-local:
-	cp libjquantlib.@LIB_EXTENSION@ $(DESTDIR)/$(libdir)/libjquantlib.@LIB_EXTENSION@
-	cp QuantLib.jar $(DESTDIR)/$(libdir)/QuantLib.jar
+	cp -p libQuantLibJNI.@JNILIB_EXTENSION@ $(DESTDIR)/$(libdir)/libQuantLibJNI.@JNILIB_EXTENSION@
+	cp -p QuantLib.jar $(DESTDIR)/$(libdir)/QuantLib.jar
+
+check-local: test/Hello.class
+	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" test.Hello
+
+test/Hello.class: test/Hello.java QuantLib.jar
+	$(JAVAC) -cp QuantLib.jar test/Hello.java
+
+endif
+
+
+quantlib_wrap.cpp: org/quantlib ../SWIG/*.i
+	$(SWIG) -java -c++ -I../SWIG -outdir org/quantlib \
+            -package org.quantlib -o quantlib_wrap.cpp quantlib.i
 
 org/quantlib:
 	mkdir -p org/quantlib
@@ -34,6 +42,8 @@ dist-hook:
 	mkdir -p $(distdir)/org/quantlib
 	cp ./org/quantlib/*.java $(distdir)/org/quantlib
 	touch $(distdir)/quantlib_wrap.cpp
+	mkdir -p $(distdir)/test
+	cp ./test/*.java $(distdir)/test
 
 clean-local:
 	rm -rf org 

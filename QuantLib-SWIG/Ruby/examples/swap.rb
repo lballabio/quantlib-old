@@ -1,5 +1,5 @@
 
-# Copyright (C) 2004, 2005, 2006 StatPro Italia srl
+# Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -111,37 +111,47 @@ maturity = calendar.advance(settlementDate,length,Years)
 payFixed = true
 
 fixedLegFrequency = Annual
+fixedLegTenor = Period.new(1,Years)
 fixedLegAdjustment = Unadjusted
 fixedLegDayCounter = Thirty360.new
 fixedRate = 0.04
 
 floatingLegFrequency = Semiannual
+floatingLegTenor = Period.new(6,Months)
 spread = 0.0
 fixingDays = 2
 index = Euribor6M.new(forecastTermStructure)
 floatingLegAdjustment = ModifiedFollowing
 floatingLegDayCounter = index.dayCounter
 
-fixedSchedule = Schedule.new(calendar, settlementDate, maturity,
-                             fixedLegFrequency, fixedLegAdjustment)
-floatingSchedule = Schedule.new(calendar, settlementDate, maturity,
-                                floatingLegFrequency, floatingLegAdjustment)
+fixedSchedule = Schedule.new(settlementDate, maturity,
+                             fixedLegTenor, calendar,
+                             fixedLegAdjustment, fixedLegAdjustment,
+                             false, false)
+floatingSchedule = Schedule.new(settlementDate, maturity,
+                                floatingLegTenor, calendar,
+                                floatingLegAdjustment, floatingLegAdjustment,
+                                false, false)
 
 spot = VanillaSwap.new(payFixed, nominal,
                        fixedSchedule, fixedRate, fixedLegDayCounter,
-                       floatingSchedule, index, fixingDays, spread,
+                       floatingSchedule, index, spread,
                        floatingLegDayCounter, discountTermStructure)
 
 forwardStart = calendar.advance(settlementDate,1,Years)
 forwardEnd = calendar.advance(forwardStart,length,Years)
-fixedSchedule = Schedule.new(calendar, forwardStart, forwardEnd,
-                             fixedLegFrequency, fixedLegAdjustment)
-floatingSchedule = Schedule.new(calendar, forwardStart, forwardEnd,
-                                floatingLegFrequency, floatingLegAdjustment)
+fixedSchedule = Schedule.new(forwardStart, forwardEnd,
+                             fixedLegTenor, calendar,
+                             fixedLegAdjustment, fixedLegAdjustment,
+                             false, false)
+floatingSchedule = Schedule.new(forwardStart, forwardEnd,
+                                floatingLegTenor, calendar,
+                                floatingLegAdjustment, floatingLegAdjustment,
+                                false, false)
 
 forward = VanillaSwap.new(payFixed, nominal,
                           fixedSchedule, fixedRate, fixedLegDayCounter,
-                          floatingSchedule, index, fixingDays, spread,
+                          floatingSchedule, index, spread,
                           floatingLegDayCounter, discountTermStructure)
 
 # price on the bootstrapped curves
