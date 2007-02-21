@@ -77,8 +77,9 @@ class BlackVolTermStructure : public Extrapolator {
 %template(BlackVolTermStructure) boost::shared_ptr<BlackVolTermStructure>;
 IsObservable(boost::shared_ptr<BlackVolTermStructure>);
 
-%template(BlackVolTermStructureHandle) Handle<BlackVolTermStructure>;
-IsObservable(Handle<BlackVolTermStructure>);
+%template(BaseBlackVolTermStructureHandle) Handle<BlackVolTermStructure>;
+%template(BlackVolTermStructureHandle) RelinkableHandle<BlackVolTermStructure>;
+IsObservable(RelinkableHandle<BlackVolTermStructure>);
 
 
 %ignore LocalVolTermStructure;

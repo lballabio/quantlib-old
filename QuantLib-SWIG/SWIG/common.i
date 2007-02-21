@@ -25,6 +25,7 @@
 // generally useful classes
 using QuantLib::Error;
 using QuantLib::Handle;
+using QuantLib::RelinkableHandle;
 %}
 
 namespace boost {
@@ -77,6 +78,14 @@ class Handle {
     #endif
 };
 
+template <class T>
+class RelinkableHandle : public Handle<T> {
+      public:
+      RelinkableHandle(const boost::shared_ptr<T>& =
+      boost::shared_ptr<T>(), bool registerAsObserver = true);
+      void linkTo(const boost::shared_ptr<T>&,
+      bool registerAsObserver = true);
+};
 
 %define swigr_list_converter(ContainerRType,
                              ContainerCType, ElemCType)
