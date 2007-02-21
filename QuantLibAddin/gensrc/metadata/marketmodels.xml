@@ -705,7 +705,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
           </Parameter>
-          <Parameter name='beta' exampleValue ='0.1>
+          <Parameter name='beta' exampleValue ='0.1'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
