@@ -51,10 +51,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='enumId'>
+          <Parameter name='enumId' exampleValue='=qlListEnumeratedTypes()'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>name of enumerated type</description>
+            <description>name of enumerated type e.g class QuantLib::Calendar</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -87,10 +87,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='typeId'>
+          <Parameter name='typeId' exampleValue='class QuantLib::Index'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>name of enumerated class</description>
+            <description>name of enumerated class e.g. class QuantLib::Index</description>
           </Parameter>
         </Parameters>
       </ParameterList>
