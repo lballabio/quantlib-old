@@ -234,6 +234,7 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Time>& paymentTimes,
         const std::vector<QuantLib::Rate>& strikes)
     {
+		QL_REQUIRE(rateTimes.size()>1, "rate times vector must contain at least two values");
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelMultiProduct>(
             new QuantLib::OneStepForwards(rateTimes, accruals,
                                           paymentTimes, strikes));
