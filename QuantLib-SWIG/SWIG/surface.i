@@ -14,6 +14,9 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
+
+%include types.i
+
 %{
 using QuantLib::Surface;
 using QuantLib::Domain;
@@ -21,20 +24,17 @@ using QuantLib::Domain;
 
 %ignore Surface;
 class Surface {
-Real operator()(Real x, Real y);
-boost::shared_ptr<Domain> domain();
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) \
+     || defined(SWIGCSHARP) || defined(SWIGPERL)
+    %rename(apply) operator();
+    #endif
+  public:
+    Real operator()(Real x, Real y);
+    boost::shared_ptr<Domain> domain();
 };
 
 %template(Surface) boost::shared_ptr<Surface>;
-%extend boost::shared_ptr<Surface> {
-Real operator()(Real x, Real y) {
-return (**self)(x, y);
-}
 
-boost::shared_ptr<Domain> domain() {
-return (*self)->domain();
-}
-}
 
 // Surface
 %{
@@ -44,10 +44,11 @@ typedef boost::shared_ptr<Surface> TestSurfacePtr;
 
 %rename(TestSurface) TestSurfacePtr;
 class TestSurfacePtr : public boost::shared_ptr<Surface> {
-      public:
-%extend {
-      TestSurfacePtr() {
-      return new TestSurfacePtr(new TestSurface());
-      }
-}
+  public:
+    %extend {
+        TestSurfacePtr() {
+            return new TestSurfacePtr(new TestSurface);
+        }
+    }
 };
+
