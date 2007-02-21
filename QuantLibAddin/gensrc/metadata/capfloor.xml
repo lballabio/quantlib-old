@@ -126,7 +126,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='price'>
+          <Parameter name='price' exampleValue = '.01454'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Price used to infer the implied volatility</description>
@@ -171,7 +171,7 @@
             <tensorRank>scalar</tensorRank>
             <description>coupon vector</description>
           </Parameter>
-          <Parameter name='strikes' libraryType='QuantLib::Rate'>
+          <Parameter name='strikes' libraryType='QuantLib::Rate' exampleValue = '.04'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
@@ -202,7 +202,7 @@
             <tensorRank>scalar</tensorRank>
             <description>option type (cap or floor)</description>
           </Parameter>
-          <Parameter name='length' libraryType='QuantLib::Period'>
+          <Parameter name='length' libraryType='QuantLib::Period' exampleValue = '5Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>as period (e.g. 2Y)</description>
@@ -218,7 +218,7 @@
             <description>strike</description>
           </Parameter>
           <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
-          <Parameter name='forwardStart' libraryType='QuantLib::Period'>
+          <Parameter name='forwardStart' libraryType='QuantLib::Period' exampleValue = '0D'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>as period (e.g. '2Y'). The default is '0D'. If '0D' the first caplet is removed.</description>
