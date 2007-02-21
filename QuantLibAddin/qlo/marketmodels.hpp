@@ -39,6 +39,7 @@
 #include <ql/MarketModels/Models/piecewiseconstantabcdvariance.hpp>
 #include <ql/MarketModels/Models/swapfromfracorrelationstructure.hpp>
 #include <ql/MarketModels/Models/capletcoterminalcalibration.hpp>
+#include <ql/Volatilities/abcd.hpp>
 
 
 namespace QuantLibAddin {
