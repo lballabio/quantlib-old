@@ -1,46 +1,36 @@
 
-# to be used with NSIS 2.0 and up
+
+# !defines
+
+!define APP "log4cxx"
+!define VER_NUMBER "0.9.7c"
+!define DEFAULT_PATH "c:\build_ql_0_4_0\${APP}"
+
+# Compiler Flags
 
 SetCompressor lzma
 
-!define VER_NUMBER "0.9.7c"
-!define /date NOW "%Y%m%d-%H_%M"
+# Installer Attributes
 
-# HEADER CONFIGURATION COMMANDS
-Name "log4cxx"
-Caption "log4cxx - Setup"
-#do not change the name below
-# exclude timestamp from filename for public release
-#OutFile "..\log4cxx-oh-${VER_NUMBER}-${NOW}.exe"
-OutFile "..\log4cxx-${VER_NUMBER}.exe"
+Caption "${APP} - Setup"
+DirText "Please select a location to install ${APP} (or use the default):"
+InstallDir "${DEFAULT_PATH}"
+LicenseData "LICENSE.txt"
+LicenseText "${APP} is released under the following license:"
+Name "${APP}"
+OutFile "..\${APP}-${VER_NUMBER}.exe"
 
-SilentInstall normal
-CRCCheck on
-LicenseText "log4cxx is released under the following license:"
-LicenseData license.apl
-DirText "Please select a location to install log4cxx (or use the default):"
-InstallDir $PROGRAMFILES\log4cxx-${VER_NUMBER}
-InstallDirRegKey HKEY_LOCAL_MACHINE SOFTWARE\log4cxx-${VER_NUMBER} "Install_Dir"
-AutoCloseWindow false
-ShowInstDetails hide
-SetDateSave on
+# Installer Instructions
 
-# INSTALLATION EXECUTION COMMANDS
+Section
 
-
-
-Section "-log4cxx-oh"
-# this directory must be created first, or the CreateShortCut will not work
-    CreateDirectory "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}"
     SetOutPath $INSTDIR
 
-    # these MUST be present
     File "AUTHORS"
     File "COPYING"
-    File "INSTALL"
-    File "license.apl"
+    File "LICENSE.txt"
     File "NEWS"
-    File "README"
+    File "README.txt"
 
     File "*.nsi"
     File /r "*.sln"
@@ -51,64 +41,54 @@ Section "-log4cxx-oh"
     File /r "*.am"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-oh-${VER_NUMBER}" \
-                "DisplayName" "log4cxx-oh ${VER_NUMBER} (remove only)"
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-${VER_NUMBER}" \
+                "DisplayName" "log4cxx-${VER_NUMBER} (remove only)"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-oh-${VER_NUMBER}" \
-                "UninstallString" '"log4cxx-oh_Uninstall.exe"'
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-${VER_NUMBER}" \
+                "UninstallString" "$INSTDIR\log4cxxUninstall.exe"
 
     WriteRegStr HKEY_CURRENT_USER "Environment" "LOG4CXX_DIR" "$INSTDIR"
 
-    WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\log4cxx-oh-${VER_NUMBER}" \
-                "Install_Dir" "$INSTDIR"
+    CreateDirectory "$SMPROGRAMS\log4cxx-${VER_NUMBER}"
 
-    CreateShortCut "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\Uninstall log4cxx-oh.lnk" \
-                   "$INSTDIR\log4cxx-oh_Uninstall.exe" "" \
-                   "$INSTDIR\log4cxx-oh_Uninstall.exe" 0
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\Uninstall log4cxx.lnk" \
+                   "$INSTDIR\log4cxxUninstall.exe" "" \
+                   "$INSTDIR\log4cxxUninstall.exe" 0
 
-    CreateShortCut "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\AUTHORS.lnk" \
-                   "$INSTDIR\AUTHORS"
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\README.lnk" \
+                   "$INSTDIR\README.txt"
 
-    CreateShortCut "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\COPYING.lnk" \
-                   "$INSTDIR\COPYING"
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\License.lnk" \
+                   "$INSTDIR\LICENSE.txt"
 
-    CreateShortCut "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\INSTALL.lnk" \
-                   "$INSTDIR\INSTALL"
-
-    CreateShortCut "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\NEWS.lnk" \
-                   "$INSTDIR\NEWS"
-
-    CreateShortCut "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\README.lnk" \
-                   "$INSTDIR\README"
-
-    CreateShortCut "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\License.lnk" \
-                   "$INSTDIR\license.apl"
-
-    CreateShortCut "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\log4cxx-oh VC 7 project workspace.lnk" \
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx VC 7 project workspace.lnk" \
                    "$INSTDIR\msvc\log4cxx.sln"
 
-    CreateShortCut "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\log4cxx-oh VC 8 project workspace.lnk" \
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx VC 8 project workspace.lnk" \
                    "$INSTDIR\msvc\log4cxx_vc8.sln"
 
-    CreateShortCut "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\log4cxx-oh Folder.lnk" \
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx Folder.lnk" \
                    "$INSTDIR"
 
-    WriteINIStr "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}\log4cxx-ObjectHandler Home Page.url" \
-                "InternetShortcut" "URL" "http://sourceforge.net/projects/objecthandler"
+    WriteINIStr "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx-ObjectHandler Home Page.url" \
+                "InternetShortcut" "URL" "http://www.objecthandler.org"
 
-    WriteUninstaller "log4cxx-oh_Uninstall.exe"
+    WriteUninstaller "log4cxxUninstall.exe"
 
 SectionEnd
 
 
-UninstallText "This will uninstall log4cxx-oh. Hit next to continue."
+UninstallText "This will uninstall log4cxx. Hit next to continue."
 
 Section "Uninstall"
-    DeleteRegKey HKEY_LOCAL_MACHINE \
-        "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-oh-${VER_NUMBER}"
-    DeleteRegKey HKEY_LOCAL_MACHINE SOFTWARE\log4cxx-oh-${VER_NUMBER}
-    DeleteRegValue HKEY_CURRENT_USER  "Environment" "LOG4CXX_DIR"
-    RMDir /r /REBOOTOK "$SMPROGRAMS\log4cxx-oh-${VER_NUMBER}"
+
     RMDir /r /REBOOTOK "$INSTDIR"
+    RMDir /r /REBOOTOK "$SMPROGRAMS\log4cxx-${VER_NUMBER}"
+
+    DeleteRegKey HKEY_LOCAL_MACHINE \
+        "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-${VER_NUMBER}"
+    DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\log4cxx-${VER_NUMBER}"
+    DeleteRegValue HKEY_CURRENT_USER  "Environment" "LOG4CXX_DIR"
+
 SectionEnd

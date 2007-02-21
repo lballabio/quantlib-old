@@ -1,3 +1,21 @@
+***************************************************************************
+* this is log4cxx version "0.9.7c", adapted from log4cxx 0.9.7 for use by
+* the QuantLib project.
+*
+* for Windows build, workspaces are provided for VC versions 7 and 8.
+*
+* to build on posix systems e.g. linux:
+* ./autogen.sh
+* ./configure
+* make
+* make install
+* 
+* Visit www.objecthandler.org for more info.
+* 
+* below is the original readme.txt from the official release.
+*
+***************************************************************************
+
 Introduction
 ============
 Log4cxx is a port to C++ of the log4j project.
