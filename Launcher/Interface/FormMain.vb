@@ -783,7 +783,7 @@ Public Class FormMain
         Dim dlg As New OpenFileDialog()
         dlg.InitialDirectory = deriveDefaultFile(lbAddins.SelectedValue, "addin")
         dlg.FileName = ""
-        dlg.Filter = "Excel XLL Addins (*.xll)|*.xll"
+        dlg.Filter = "Excel Addins (*.xll;*.xla)|*.xll;*.xla"
         dlg.Title = "Select Addin"
 
         If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
