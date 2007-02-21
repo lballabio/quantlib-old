@@ -48,17 +48,8 @@ namespace QuantLibAddin {
         PseudoRandomSequenceGenerator(long dimension, const URNG& urng)
       : ursg_(QuantLib::RandomSequenceGenerator<URNG>(dimension, urng)) { }
 
-        virtual std::vector<double> nextSequence() const {
-            QuantLib::Array sample = ursg_.nextSequence().value;
-
-            std::vector<double> v;
-            QuantLib::Size n = sample.size();
-            v.reserve(n);
-            for (QuantLib::Size j=0 ; j<n ; ++j) {
-                v.push_back(sample[j]);
-            }
-
-            return v;
+        virtual std::vector<QuantLib::Real> nextSequence() const {
+            return ursg_.nextSequence().value;
         }
 
       private:
@@ -80,16 +71,7 @@ namespace QuantLibAddin {
         LowDiscrepancySequenceGenerator(const URSG& ursg) : ursg_(ursg) { }
 
         virtual std::vector<double> nextSequence() const {
-            QuantLib::Array sample = ursg_.nextSequence().value;
-
-            std::vector<double> v;
-            QuantLib::Size n = sample.size();
-            v.reserve(n);
-            for (std::size_t j=0 ; j<n ; ++j) {
-                v.push_back(sample[j]);
-            }
-
-            return v;
+            return ursg_.nextSequence().value;
         }
 
       private:
