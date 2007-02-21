@@ -167,7 +167,7 @@
 (define nominal 1000000)
 (define length 5)
 (define maturity (Calendar-advance calendar settlement-date length (Years)))
-(define pay-fixed #t)
+(define pay-fixed (VanillaSwap-Payer))
 
 (define fixed-rate 0.04)
 (define spread 0.0)

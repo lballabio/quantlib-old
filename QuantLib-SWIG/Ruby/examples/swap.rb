@@ -108,7 +108,7 @@ depoFraSwapCurve = PiecewiseFlatForward.new(settlementDate,
 nominal = 1000000
 length = 5
 maturity = calendar.advance(settlementDate,length,Years)
-payFixed = true
+payFixed = VanillaSwap::Payer
 
 fixedLegFrequency = Annual
 fixedLegTenor = Period.new(1,Years)

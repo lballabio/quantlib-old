@@ -46,8 +46,7 @@ def calibrate(model, helpers, l, name)
   puts rule
 
   method = Simplex.new(l);
-  method.endCriteria = EndCriteria.new(1000, 1.0e-7)
-  model.calibrate!(helpers, method)
+  model.calibrate!(helpers, method, EndCriteria.new(1000, 1.0e-7))
 
   puts "Parameters: #{model.params}"
   puts rule
@@ -97,7 +96,7 @@ fixedLegDayCounter = Thirty360.new(Thirty360::European)
 floatingLegFrequency = Semiannual
 floatingLegTenor = Period.new(6,Months)
 
-payFixed = true
+payFixed = VanillaSwap::Payer
 fixingDays = 2
 index = Euribor6M.new(termStructure)
 floatingLegDayCounter = index.dayCounter

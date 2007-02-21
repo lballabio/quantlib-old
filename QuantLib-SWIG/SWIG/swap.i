@@ -28,11 +28,6 @@ using QuantLib::Swap;
 using QuantLib::VanillaSwap;
 typedef boost::shared_ptr<Instrument> SwapPtr;
 typedef boost::shared_ptr<Instrument> VanillaSwapPtr;
-typedef VanillaSwap::Type VanillaSwapType;
-
-//copy vanilla swap types into global name space 
-static const VanillaSwapType Receiver = VanillaSwap::Receiver;
-static const VanillaSwapType Payer = VanillaSwap::Payer;
 %}
 
 %rename(Swap) SwapPtr;
@@ -50,11 +45,22 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
     }
 };
 
+
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+%rename(_VanillaSwap) VanillaSwap;
+#else
+%ignore VanillaSwap;
+#endif
+class VanillaSwap {
+  public:
+    enum Type { Receiver = -1, Payer = 1 };
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+  private:
+    VanillaSwap();
+#endif
+};
+
 %rename(VanillaSwap) VanillaSwapPtr;
-
-enum VanillaSwapType { Receiver = -1, Payer = 1};
-
-
 class VanillaSwapPtr : public SwapPtr {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("fair-rate")        fairRate;
@@ -64,23 +70,22 @@ class VanillaSwapPtr : public SwapPtr {
     #endif
   public:
     %extend {
-        VanillaSwapPtr(VanillaSwapType type, Real nominal,
-                      const Schedule& fixedSchedule, Rate fixedRate,
-                      const DayCounter& fixedDayCount,
-                      const Schedule& floatSchedule,
-                      const IborIndexPtr& index,
-                      Spread spread,
-                      const DayCounter& floatingDayCount,
-                      const Handle<YieldTermStructure>& termStructure) {
+        static const VanillaSwap::Type Receiver = VanillaSwap::Receiver;
+        static const VanillaSwap::Type Payer = VanillaSwap::Payer;
+        VanillaSwapPtr(VanillaSwap::Type type, Real nominal,
+                       const Schedule& fixedSchedule, Rate fixedRate,
+                       const DayCounter& fixedDayCount,
+                       const Schedule& floatSchedule,
+                       const IborIndexPtr& index,
+                       Spread spread,
+                       const DayCounter& floatingDayCount,
+                       const Handle<YieldTermStructure>& termStructure) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new VanillaSwapPtr(
-                new VanillaSwap(type,
-				nominal,fixedSchedule,fixedRate,
-                               fixedDayCount,floatSchedule,libor,
-                               spread,
-                   floatingDayCount,
-                   termStructure));
+                    new VanillaSwap(type, nominal,fixedSchedule,fixedRate,
+                                    fixedDayCount,floatSchedule,libor,
+                                    spread, floatingDayCount, termStructure));
         }
         Rate fairRate() {
             return boost::dynamic_pointer_cast<VanillaSwap>(*self)->fairRate();

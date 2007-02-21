@@ -89,7 +89,7 @@ fixedLegDayCounter = Thirty360(Thirty360.European);
 floatingLegFrequency = Semiannual
 floatingLegTenor = Period(6,Months)
 
-payFixed = Payer
+payFixed = VanillaSwap.Payer
 fixingDays = 2
 index = Euribor6M(termStructure)
 floatingLegDayCounter = index.dayCounter()

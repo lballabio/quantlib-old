@@ -69,9 +69,8 @@
     (display rule) (newline)
 
     (let ((method (new-Simplex l)))
-      (OptimizationMethod-end-criteria-set! method
-                                            (new-EndCriteria 1000 1.0e-7))
-      (ShortRateModel-calibrate! model helpers method)
+      (ShortRateModel-calibrate! model helpers method
+                                 (new-EndCriteria 1000 1.0e-7))
 
       (display (format "Parameters: ~a" (Array->string
                                          (ShortRateModel-params model))))
@@ -129,7 +128,7 @@
 (define floating-leg-frequency (Semiannual))
 (define floating-leg-tenor (new-Period 6 (Months)))
 
-(define pay-fixed #t)
+(define pay-fixed (VanillaSwap-Payer))
 (define fixing-days 2)
 (define index (new-Euribor6M term-structure))
 (define floating-leg-day-counter (InterestRateIndex-day-counter index))

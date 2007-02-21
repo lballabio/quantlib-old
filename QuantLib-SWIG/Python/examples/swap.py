@@ -138,7 +138,7 @@ floatingSchedule = Schedule(settlementDate, maturity,
                             floatingLegAdjustment, floatingLegAdjustment,
                             False, False)
 
-spot = VanillaSwap(Payer, nominal,
+spot = VanillaSwap(VanillaSwap.Payer, nominal,
                    fixedSchedule, fixedRate, fixedLegDayCounter,
                    floatingSchedule, index, spread,
                    floatingLegDayCounter, discountTermStructure)
@@ -154,7 +154,7 @@ floatingSchedule = Schedule(forwardStart, forwardEnd,
                             floatingLegAdjustment, floatingLegAdjustment,
                             False, False)
 
-forward = VanillaSwap(Payer, nominal,
+forward = VanillaSwap(VanillaSwap.Payer, nominal,
                       fixedSchedule, fixedRate, fixedLegDayCounter,
                       floatingSchedule, index, spread,
                       floatingLegDayCounter, discountTermStructure)
