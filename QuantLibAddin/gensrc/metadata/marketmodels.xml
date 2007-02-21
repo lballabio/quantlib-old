@@ -85,22 +85,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='accruals'>
+          <Parameter name='accruals' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>accrual factors</description>
           </Parameter>
-          <Parameter name='paymentTimes' libraryType='QuantLib::Time'>
+          <Parameter name='paymentTimes' libraryType='QuantLib::Time' exampleValue ='1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>payment times of the product</description>
           </Parameter>
-          <Parameter name='strikes' libraryType='QuantLib::Rate'>
+          <Parameter name='strikes' libraryType='QuantLib::Rate' exampleValue ='0.01,0.01,0.01,0.01,0.01'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>forward strikes</description>
@@ -117,47 +117,47 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='accruals'>
+          <Parameter name='accruals' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>accrual factors</description>
           </Parameter>
-          <Parameter name='paymentTimes' libraryType='QuantLib::Time'>
+          <Parameter name='paymentTimes' libraryType='QuantLib::Time' exampleValue ='1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>payment times of the product</description>
           </Parameter>
-          <Parameter name='gearingOfFloor' libraryType='QuantLib::Real'>
+          <Parameter name='gearingOfFloor' libraryType='QuantLib::Real' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing of floor</description>
           </Parameter>
-          <Parameter name='gearingOfFixing' libraryType='QuantLib::Real'>
+          <Parameter name='gearingOfFixing' libraryType='QuantLib::Real' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing of fixing</description>
           </Parameter>
-          <Parameter name='spreadOfFloor' libraryType='QuantLib::Real'>
+          <Parameter name='spreadOfFloor' libraryType='QuantLib::Real' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>spread of floor</description>
           </Parameter>
-          <Parameter name='spreadOfFixing' libraryType='QuantLib::Real'>
+          <Parameter name='spreadOfFixing' libraryType='QuantLib::Real' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>spread of fixing</description>
           </Parameter>
-          <Parameter name='initialFloor' libraryType='QuantLib::Real'>
+          <Parameter name='initialFloor' libraryType='QuantLib::Real' exampleValue ='0.01'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>initial floor</description>
           </Parameter>
-          <Parameter name='payer'>
+          <Parameter name='payer' exampleValue ='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>payer if true</description>
@@ -209,14 +209,14 @@
       <ParameterList>
         <Parameters/>
       </ParameterList>
-      <ReturnValue libraryType='QuantLib::Time'>
+      <ReturnValue libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
     <Member name='qlEvolutionDescriptionRateTaus' libraryClass='EvolutionDescription'>
-      <description>rates taus for the EvolutionDescription object</description>
+      <description>rate taus for the EvolutionDescription object</description>
       <libraryFunction>rateTaus</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='true' />
@@ -224,7 +224,7 @@
       <ParameterList>
         <Parameters/>
       </ParameterList>
-      <ReturnValue libraryType='QuantLib::Time'>
+      <ReturnValue libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
@@ -239,7 +239,7 @@
       <ParameterList>
         <Parameters/>
       </ParameterList>
-      <ReturnValue libraryType='QuantLib::Time'>
+      <ReturnValue libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
@@ -465,12 +465,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='evolutionTimes' libraryType='QuantLib::Time'>
+          <Parameter name='evolutionTimes' libraryType='QuantLib::Time' exampleValue ='1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>evolution times in the simulation</description>
@@ -629,17 +629,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='LongTermCorr'>
+          <Parameter name='LongTermCorr' exampleValue ='0.1'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
           </Parameter>
-          <Parameter name='beta'>
+          <Parameter name='beta' exampleValue ='0.1'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
           </Parameter>
-          <Parameter name='volatilities' libraryType='QuantLib::Volatility'>
+          <Parameter name='volatilities' libraryType='QuantLib::Volatility' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>volatilities</description>
@@ -649,17 +649,17 @@
             <tensorRank>scalar</tensorRank>
             <description>EvolutionDescription object</description>
           </Parameter>
-          <Parameter name='Factors'>
+          <Parameter name='Factors' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of factors to be retained in the simulation</description>
           </Parameter>
-          <Parameter name='initialRates' libraryType='QuantLib::Rate'>
+          <Parameter name='initialRates' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>initial rates</description>
           </Parameter>
-          <Parameter name='displacements' libraryType='QuantLib::Spread'>
+          <Parameter name='displacements' libraryType='QuantLib::Spread' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
@@ -675,37 +675,37 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='a'>
+          <Parameter name='a' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the a coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='b'>
+          <Parameter name='b' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the b coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='c'>
+          <Parameter name='c' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the c coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='d'>
+          <Parameter name='d' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the d coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='ks'>
+          <Parameter name='ks' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>K_i adjustment factors in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='LongTermCorr'>
+          <Parameter name='LongTermCorr' exampleValue ='0.1'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
           </Parameter>
-          <Parameter name='beta'>
+          <Parameter name='beta' exampleValue ='0.1>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
@@ -715,17 +715,17 @@
             <tensorRank>scalar</tensorRank>
             <description>EvolutionDescription object</description>
           </Parameter>
-          <Parameter name='Factors'>
+          <Parameter name='Factors' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of factors to be retained in the simulation</description>
           </Parameter>
-          <Parameter name='initialRates' libraryType='QuantLib::Rate'>
+          <Parameter name='initialRates' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>initial rates</description>
           </Parameter>
-          <Parameter name='displacements' libraryType='QuantLib::Spread'>
+          <Parameter name='displacements' libraryType='QuantLib::Spread' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
@@ -744,7 +744,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='u' const='False'>
+          <Parameter name='u' const='False' exampleValue ='5.0,4.0,3.0,2.0,1.0,'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>residual time(s) to maturity</description>
@@ -770,7 +770,7 @@
             <tensorRank>vector</tensorRank>
             <description>calendar time(s)</description>
           </Parameter>
-          <Parameter name='T' const='False'>
+          <Parameter name='T' const='False' >
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing time of first rate</description>
@@ -1582,7 +1582,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spanningForwards' libraryType='QuantLib::Size'>
+          <Parameter name='spanningForwards' libraryType='QuantLib::Size' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forwards underlying the CMS</description>
@@ -1618,12 +1618,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='spanningForwards' libraryType='QuantLib::Size'>
+          <Parameter name='spanningForwards' libraryType='QuantLib::Size' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forwards underlying the CMS</description>
@@ -1639,7 +1639,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -1655,7 +1655,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time'>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -1663,7 +1663,6 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
 
     <Member name='qlLMMCurveStateSetOnForwardRates' libraryClass='LMMCurveState'>
       <description>set the CurveState object on given vector of forward rates</description>
@@ -1673,7 +1672,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rates' libraryType='QuantLib::Rate'>
+          <Parameter name='rates' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>forward rates</description>
@@ -1694,7 +1693,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='discountRatios'>
+          <Parameter name='discountRatios' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>discount ratios</description>
@@ -1715,7 +1714,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='CoterminalSwaps' libraryType='QuantLib::Rate'>
+          <Parameter name='CoterminalSwaps' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Coterminal Swaps</description>
@@ -1736,7 +1735,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='CMSwapRates' libraryType='QuantLib::Rate'>
+          <Parameter name='CMSwapRates' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Coterminal Swaps</description>
@@ -1764,22 +1763,22 @@
             <tensorRank>matrix</tensorRank>
             <description>Pseudo square root of the covariance matrix</description>
           </Parameter>
-          <Parameter name='displacements' libraryType='QuantLib::Spread'>
+          <Parameter name='displacements' libraryType='QuantLib::Spread' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
           </Parameter>
-          <Parameter name='taus' libraryType='QuantLib::Time'>
+          <Parameter name='taus' libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>taus</description>
           </Parameter>
-          <Parameter name='numeraire' libraryType='QuantLib::Size'>
+          <Parameter name='numeraire' libraryType='QuantLib::Size' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>numeraire</description>
           </Parameter>
-          <Parameter name='alive' libraryType='QuantLib::Size'>
+          <Parameter name='alive' libraryType='QuantLib::Size' exampleValue ='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>index of the first rates still alive</description>
@@ -1865,17 +1864,17 @@
             <tensorRank>matrix</tensorRank>
             <description>Pseudo square root of the covariance matrix</description>
           </Parameter>
-         <Parameter name='taus' libraryType='QuantLib::Time'>
+         <Parameter name='taus' libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>taus</description>
           </Parameter>
-          <Parameter name='numeraire' libraryType='QuantLib::Size'>
+          <Parameter name='numeraire' libraryType='QuantLib::Size' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>numeraire</description>
           </Parameter>
-          <Parameter name='alive' libraryType='QuantLib::Size'>
+          <Parameter name='alive' libraryType='QuantLib::Size' exampleValue ='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>index of the first rates still alive</description>
@@ -1961,27 +1960,27 @@
             <tensorRank>matrix</tensorRank>
             <description>Pseudo square root of the covariance matrix</description>
           </Parameter>
-          <Parameter name='displacements' libraryType='QuantLib::Spread'>
+          <Parameter name='displacements' libraryType='QuantLib::Spread' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
           </Parameter>
-          <Parameter name='taus' libraryType='QuantLib::Time'>
+          <Parameter name='taus' libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>taus</description>
           </Parameter>
-          <Parameter name='numeraire' libraryType='QuantLib::Size'>
+          <Parameter name='numeraire' libraryType='QuantLib::Size' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>numeraire</description>
           </Parameter>
-          <Parameter name='alive' libraryType='QuantLib::Size'>
+          <Parameter name='alive' libraryType='QuantLib::Size' exampleValue ='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>index of the first rates still alive</description>
           </Parameter>
-          <Parameter name='spanningFwds' libraryType='QuantLib::Size'>
+          <Parameter name='spanningFwds' libraryType='QuantLib::Size' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forwards to be spanned</description>
@@ -2025,22 +2024,22 @@
             <tensorRank>matrix</tensorRank>
             <description>Pseudo square root of the covariance matrix</description>
           </Parameter>
-          <Parameter name='displacements' libraryType='QuantLib::Spread'>
+          <Parameter name='displacements' libraryType='QuantLib::Spread' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
           </Parameter>
-          <Parameter name='taus' libraryType='QuantLib::Time'>
+          <Parameter name='taus' libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>taus</description>
           </Parameter>
-          <Parameter name='numeraire' libraryType='QuantLib::Size'>
+          <Parameter name='numeraire' libraryType='QuantLib::Size' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>numeraire</description>
           </Parameter>
-          <Parameter name='alive' libraryType='QuantLib::Size'>
+          <Parameter name='alive' libraryType='QuantLib::Size' exampleValue ='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>index of the first rates still alive</description>
@@ -2159,7 +2158,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Brownian generator factory</description>
           </Parameter>
-          <Parameter name='numeraires' libraryType='QuantLib::Size'>
+          <Parameter name='numeraires' libraryType='QuantLib::Size' exampleValue ='5,5,5,5,5'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>numeraire vector</description>
@@ -2186,7 +2185,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Brownian generator factory</description>
           </Parameter>
-          <Parameter name='numeraires' libraryType='QuantLib::Size'>
+          <Parameter name='numeraires' libraryType='QuantLib::Size' exampleValue ='5,5,5,5,5'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>numeraire vector</description>
@@ -2238,7 +2237,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Sequence Statistics object ID</description>
           </Parameter>
-          <Parameter name='paths'>
+          <Parameter name='paths' exampleValue ='1000'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of paths</description>
@@ -2259,17 +2258,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='firstValidIndex' libraryType='QuantLib::Size'>
+          <Parameter name='firstValidIndex' libraryType='QuantLib::Size' exampleValue ='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>marks the first non expired discount bond</description>
           </Parameter>
-          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor'>
+          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>vector of discount bond ratios</description>
           </Parameter>
-          <Parameter name='taus' libraryType='QuantLib::Time'>
+          <Parameter name='taus' libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate time intervals</description>
@@ -2290,17 +2289,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='firstValidIndex' libraryType='QuantLib::Size'>
+          <Parameter name='firstValidIndex' libraryType='QuantLib::Size' exampleValue ='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>marks the first non expired discount bond</description>
           </Parameter>
-          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor'>
+          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>vector of discount bond ratios</description>
           </Parameter>
-          <Parameter name='taus' libraryType='QuantLib::Time'>
+          <Parameter name='taus' libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate time intervals</description>
@@ -2321,17 +2320,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='firstValidIndex' libraryType='QuantLib::Size'>
+          <Parameter name='firstValidIndex' libraryType='QuantLib::Size' exampleValue ='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>marks the first non expired discount bond</description>
           </Parameter>
-          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor'>
+          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>vector of discount bond ratios</description>
           </Parameter>
-          <Parameter name='taus' libraryType='QuantLib::Time'>
+          <Parameter name='taus' libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate time intervals</description>
@@ -2352,22 +2351,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spanningForwards' libraryType='QuantLib::Size'>
+          <Parameter name='spanningForwards' libraryType='QuantLib::Size' exampleValue ='10'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forward rates spanned by the constant maturity swap</description>
           </Parameter>
-          <Parameter name='firstValidIndex' libraryType='QuantLib::Size'>
+          <Parameter name='firstValidIndex' libraryType='QuantLib::Size' exampleValue ='0.001'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>marks the first non expired discount bond</description>
           </Parameter>
-          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor'>
+          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>vector of discount bond ratios</description>
           </Parameter>
-          <Parameter name='taus' libraryType='QuantLib::Time'>
+          <Parameter name='taus' libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate time intervals</description>
@@ -2389,22 +2388,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spanningForwards' libraryType='QuantLib::Size'>
+          <Parameter name='spanningForwards' libraryType='QuantLib::Size' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forward rates spanned by the constant maturity swap</description>
           </Parameter>
-          <Parameter name='firstValidIndex' libraryType='QuantLib::Size'>
+          <Parameter name='firstValidIndex' libraryType='QuantLib::Size' exampleValue ='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>marks the first non expired discount bond</description>
           </Parameter>
-          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor'>
+          <Parameter name='DiscountRatios' libraryType='QuantLib::DiscountFactor' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>vector of discount bond ratios</description>
           </Parameter>
-          <Parameter name='taus' libraryType='QuantLib::Time'>
+          <Parameter name='taus' libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate time intervals</description>
