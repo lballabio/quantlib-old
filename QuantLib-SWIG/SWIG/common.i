@@ -59,16 +59,13 @@ class Handle {
     #if defined(SWIGRUBY)
     %rename("null?")   isNull;
     %rename("empty?")  empty;
-    %rename("linkTo!") linkTo;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("null?")    isNull;
     %rename("empty?")  empty;
-    %rename("link-to!") linkTo;
     #endif
   public:
     Handle(const boost::shared_ptr<T>& = boost::shared_ptr<T>());
     boost::shared_ptr<T> operator->();
-    void linkTo(const boost::shared_ptr<T>&);
     #if defined(SWIGPYTHON)
     %extend {
         bool __nonzero__() {

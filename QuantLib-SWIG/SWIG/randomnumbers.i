@@ -70,6 +70,7 @@ class Sample {
 
 %template(SampleNumber) Sample<Real>;
 %template(SampleArray) Sample<Array>;
+%template(SampleRealVector) Sample<std::vector<Real> >; 
 
 /************* Uniform number generators *************/
 
@@ -153,14 +154,14 @@ class GaussianRandomGenerator {
 class HaltonRsg {
   public:
     HaltonRsg(Size dimensionality);
-    const Sample<Array>& nextSequence() const;
+    const Sample<std::vector<Real> >& nextSequence() const;
     Size dimension() const;
 };
 
 class SobolRsg {
   public:
     SobolRsg(Size dimensionality, BigInteger seed=0);
-    const Sample<Array>& nextSequence() const;
+    const Sample<std::vector<Real> >& nextSequence() const;
     Size dimension() const;
 };
 
@@ -168,7 +169,7 @@ template<class RNG> class RandomSequenceGenerator {
   public:
     RandomSequenceGenerator(Size dimensionality,
                             const RNG& rng);
-    const Sample<Array>& nextSequence() const;
+    const Sample<std::vector<Real> >& nextSequence() const;
     Size dimension() const;
 };
 
@@ -183,14 +184,14 @@ class UniformRandomSequenceGenerator {
   public:
     UniformRandomSequenceGenerator(Size dimensionality,
                                    const UniformRandomGenerator& rng);
-    const Sample<Array>& nextSequence() const;
+    const Sample<std::vector<Real> >& nextSequence() const;
     Size dimension() const;
 };
 
 class UniformLowDiscrepancySequenceGenerator {
   public:
     UniformLowDiscrepancySequenceGenerator(Size dimensionality);
-    const Sample<Array>& nextSequence() const;
+    const Sample<std::vector<Real> >& nextSequence() const;
     Size dimension() const;
 };
 
@@ -200,7 +201,7 @@ template <class U, class I>
 class InverseCumulativeRsg {
   public:
     InverseCumulativeRsg(const U& uniformSequenceGenerator);
-    const Sample<Array>& nextSequence() const;
+    const Sample<std::vector<Real> >& nextSequence() const;
     Size dimension() const;
 };
 
@@ -233,7 +234,7 @@ class GaussianRandomSequenceGenerator {
   public:
     GaussianRandomSequenceGenerator(
         const UniformRandomSequenceGenerator& uniformSequenceGenerator);
-    const Sample<Array>& nextSequence() const;
+    const Sample<std::vector<Real> >& nextSequence() const;
     Size dimension() const;
 };
 
@@ -241,7 +242,7 @@ class GaussianLowDiscrepancySequenceGenerator {
   public:
     GaussianLowDiscrepancySequenceGenerator(
         const UniformLowDiscrepancySequenceGenerator& u);
-    const Sample<Array>& nextSequence() const;
+    const Sample<std::vector<Real> >& nextSequence() const;
     Size dimension() const;
 };
 
