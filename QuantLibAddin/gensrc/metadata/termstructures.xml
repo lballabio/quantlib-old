@@ -84,7 +84,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='DfDates' libraryType='QuantLib::Date'>
+          <Parameter name='DfDates' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>vector of dates</description>
@@ -110,12 +110,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='d1' libraryType='QuantLib::Date'>
+          <Parameter name='d1' libraryType='QuantLib::Date' exampleValue ='39134'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>first date</description>
           </Parameter>
-          <Parameter name='d2' libraryType='QuantLib::Date'>
+          <Parameter name='d2' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>second date</description>
@@ -156,12 +156,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' libraryType='QuantLib::Date'>
+          <Parameter name='date' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>first date</description>
           </Parameter>
-          <Parameter name='Period' libraryType='QuantLib::Period'>
+          <Parameter name='Period' libraryType='QuantLib::Period' exampleValue ='1Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Period (e.g. '7D', '3M', '1Y', etc)</description>
@@ -202,7 +202,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dates' libraryType='QuantLib::Date'>
+          <Parameter name='dates' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
@@ -243,12 +243,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='tenor'>
+          <Parameter name='tenor' exampleValue ='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>tenor in years</description>
           </Parameter>
-          <Parameter name='startDate' libraryType='QuantLib::Date'>
+          <Parameter name='startDate' libraryType='QuantLib::Date' exampleValue ='39134'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>start date</description>
@@ -328,7 +328,7 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate</description>
           </Parameter>
-          <Parameter name='rateHelpers'>
+          <Parameter name='rateHelpers' exampleValue ='EUROND,EURTND,EURSND,EURSWD,EUR2WD'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>vector of rate-helpers</description>
@@ -359,12 +359,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveDates' libraryType='QuantLib::Date'>
+          <Parameter name='curveDates' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
           </Parameter>
-          <Parameter name='curveDiscounts'  libraryType='QuantLib::DiscountFactor'>
+          <Parameter name='curveDiscounts'  libraryType='QuantLib::DiscountFactor' exampleValue ='1.0,0.95,0.9,0.85,0.8'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>discount factors for the above dates</description>
@@ -385,12 +385,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveDates' libraryType='QuantLib::Date'>
+          <Parameter name='curveDates' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
           </Parameter>
-          <Parameter name='curveYields' libraryType='QuantLib::Rate'>
+          <Parameter name='curveYields' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>zero rates for the above dates</description>
@@ -411,12 +411,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveDates' libraryType='QuantLib::Date'>
+          <Parameter name='curveDates' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
           </Parameter>
-          <Parameter name='forwardYields' libraryType='QuantLib::Rate'>
+          <Parameter name='forwardYields' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>forwards rates for the above dates</description>
@@ -483,7 +483,7 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='spread' libraryType='QuantLib::Spread'>
+          <Parameter name='spread' libraryType='QuantLib::Spread' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the spread to be applied to the forward rates of the yield curve</description>
@@ -504,7 +504,7 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='referenceDate' libraryType='QuantLib::Date'>
+          <Parameter name='referenceDate' libraryType='QuantLib::Date' exampleValue ='39499'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>the reference date the base YieldTermStructure should be shifted to</description>

@@ -47,12 +47,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='earliestDate' libraryType='QuantLib::Date'>
+          <Parameter name='earliestDate' libraryType='QuantLib::Date' exampleValue ='39083'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>earliest exercise date</description>
           </Parameter>
-          <Parameter name='latestDate' libraryType='QuantLib::Date'>
+          <Parameter name='latestDate' libraryType='QuantLib::Date' exampleValue ='39448'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>latest exercise date</description>
@@ -76,7 +76,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='expiryDate' libraryType='QuantLib::Date'>
+          <Parameter name='expiryDate' libraryType='QuantLib::Date' exampleValue ='39448'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>expiry date</description>
@@ -93,7 +93,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dates' libraryType='QuantLib::Date'>
+          <Parameter name='dates' libraryType='QuantLib::Date' exampleValue ='39083;39448'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>dates</description>

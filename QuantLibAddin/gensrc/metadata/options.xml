@@ -25,12 +25,12 @@
             <tensorRank>scalar</tensorRank>
             <description>barrier type</description>
           </Parameter>
-          <Parameter name='barrier'>
+          <Parameter name='barrier' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>barrier</description>
           </Parameter>
-          <Parameter name='rebate'>
+          <Parameter name='rebate' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>rebate</description>
@@ -231,7 +231,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='moneyness'>
+          <Parameter name='moneyness' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>moneyness</description>
@@ -349,7 +349,7 @@
             <tensorRank>scalar</tensorRank>
             <description>BlackVolTermStructure ID</description>
           </Parameter>
-          <Parameter name='correlation'>
+          <Parameter name='correlation' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>correlation</description>
@@ -396,12 +396,12 @@
             <tensorRank>scalar</tensorRank>
             <description>BlackVolTermStructure object ID</description>
           </Parameter>
-          <Parameter name='correlation'>
+          <Parameter name='correlation' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>correlation</description>
           </Parameter>
-          <Parameter name='moneyness'>
+          <Parameter name='moneyness' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>moneyness</description>

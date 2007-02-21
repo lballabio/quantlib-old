@@ -24,7 +24,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='N'>
+          <Parameter name='N' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>index of the prime number (e.g N=2 returns 3)</description>
@@ -45,7 +45,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="X">
+          <Parameter name="X" exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is the value for which you want the distribution</description>
@@ -81,7 +81,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="Z">
+          <Parameter name="Z" exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is the value for which you want the distribution</description>
@@ -102,7 +102,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="Probability">
+          <Parameter name="Probability" exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive</description>
@@ -133,7 +133,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="Probability">
+          <Parameter name="Probability" exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive</description>
@@ -263,7 +263,7 @@
             <tensorRank>matrix</tensorRank>
             <description>symmetric matrix (hopefully positive semi-definite at least)</description>
           </Parameter>
-          <Parameter name="maxRank">
+          <Parameter name="maxRank" exampleValue ='10'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of principal components retained, i.e. max rank for the result matrix</description>

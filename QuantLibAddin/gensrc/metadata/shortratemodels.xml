@@ -18,17 +18,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'  exampleValue ='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>yield term structure</description>
           </Parameter>
-          <Parameter name='a'>
+          <Parameter name='a' exampleValue ='0.03'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>a</description>
           </Parameter>
-          <Parameter name='sigma'>
+          <Parameter name='sigma' exampleValue ='0.15'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>volatility</description>
@@ -44,22 +44,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='a'>
+          <Parameter name='a' exampleValue ='0.03'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>mean reverting speed</description>
           </Parameter>
-          <Parameter name='b'>
+          <Parameter name='b' exampleValue ='0.03'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>short-rate limit value</description>
           </Parameter>
-          <Parameter name='lambda'>
+          <Parameter name='lambda' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>risk premium</description>
           </Parameter>
-          <Parameter name='sigma'>
+          <Parameter name='sigma' exampleValue ='0.15'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>volatility</description>
@@ -76,22 +76,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='futuresPrice'>
+          <Parameter name='futuresPrice' exampleValue ='94.56'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Futures price (e.g. 94.56)</description>
           </Parameter>
-          <Parameter name='t'>
+          <Parameter name='t' exampleValue ='5.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Maturity date of the futures contract in years(e.g. 5.0)</description>
           </Parameter>
-          <Parameter name='T'>
+          <Parameter name='T' exampleValue ='5.25'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Maturity of the underlying Libor deposit in years (e.g. 5.25)</description>
           </Parameter>
-          <Parameter name='sigma'>
+          <Parameter name='sigma' exampleValue ='0.015'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Hull-White volatility (e.g. 0.015)</description>
