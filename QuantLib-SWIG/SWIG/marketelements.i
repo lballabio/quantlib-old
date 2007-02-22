@@ -37,7 +37,7 @@ class Quote {
 %template(Quote) boost::shared_ptr<Quote>;
 IsObservable(boost::shared_ptr<Quote>);
 
-%template(BaseQuoteHandle) Handle<Quote>;
+%template() Handle<Quote>;
 %template(QuoteHandle) RelinkableHandle<Quote>;
 IsObservable(RelinkableHandle<Quote>);
 
@@ -123,11 +123,11 @@ class CompositeQuotePtr : public boost::shared_ptr<Quote> {
 
 #if defined(SWIGCSHARP)
 SWIG_STD_VECTOR_SPECIALIZE( Quote, boost::shared_ptr<Quote> )
-SWIG_STD_VECTOR_SPECIALIZE( QuoteHandle, Handle<Quote> )
+SWIG_STD_VECTOR_SPECIALIZE( QuoteHandle, RelinkableHandle<Quote> )
 #endif
 namespace std {
     %template(QuoteVector) vector<boost::shared_ptr<Quote> >;
-    %template(QuoteHandleVector) vector<Handle<Quote> >;
+    %template(QuoteHandleVector) vector<RelinkableHandle<Quote> >;
 }
 
 
