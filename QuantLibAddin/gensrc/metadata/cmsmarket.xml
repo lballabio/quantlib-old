@@ -25,7 +25,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='expiries' libraryType='QuantLib::Period'>
+          <Parameter name='expiries' libraryType='QuantLib::Period' exampleValue = '10Y'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>cms matrix's expiries as periods</description>
@@ -126,7 +126,7 @@
             <tensorRank>vector</tensorRank>
             <description>guess</description>
           </Parameter>
-          <Parameter name='isMeanRevFixed'>
+          <Parameter name='isMeanRevFixed' exampleValue = 'FALSE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>if TRUE parameter guess is not calibrated.</description>
