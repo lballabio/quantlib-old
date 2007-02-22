@@ -97,7 +97,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' libraryType='QuantLib::Date' exampleValue ='39415'>
+          <Parameter name='optionDate' libraryType='QuantLib::Date' exampleValue ='3m'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as date</description>
@@ -112,7 +112,7 @@
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='refDate' libraryType='QuantLib::Date' exampleValue ='39135'>
+          <Parameter name='refDate' libraryType='QuantLib::Date' exampleValue ='0D'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>ref date</description>
@@ -130,7 +130,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' libraryType='QuantLib::Date' exampleValue ='39415'>
+          <Parameter name='optionDate' libraryType='QuantLib::Date' exampleValue ='3m'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as Date</description>
@@ -414,7 +414,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+          <Parameter name='optionDate' libraryType='QuantLib::Date' exampleValue ='3m'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as date</description>
