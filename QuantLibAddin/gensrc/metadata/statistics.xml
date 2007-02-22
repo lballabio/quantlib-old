@@ -169,7 +169,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x'>
+          <Parameter name='x' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
@@ -190,7 +190,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x'>
+          <Parameter name='x' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
@@ -243,7 +243,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -264,7 +264,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x'>
+          <Parameter name='x' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
@@ -285,7 +285,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x'>
+          <Parameter name='x' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1].</description>
@@ -306,7 +306,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -327,7 +327,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -369,7 +369,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -390,7 +390,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -473,7 +473,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -494,7 +494,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='centile'>
+          <Parameter name='centile' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the centile</description>
@@ -515,7 +515,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -536,7 +536,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='centile'>
+          <Parameter name='centile' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the centile</description>
@@ -557,7 +557,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -578,7 +578,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -603,12 +603,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='values' default='std::vector&lt;QuantLib::Real&gt;()'>
+          <Parameter name='values' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.5,2.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Sampled values. If omitted, an empty statistics is created.</description>
           </Parameter>
-          <Parameter name='weights' default='std::vector&lt;QuantLib::Real&gt;()'>
+          <Parameter name='weights' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Weights. If omitted, all sampled values have the same weight.</description>
@@ -631,12 +631,12 @@
           <Parameter name='mean' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the mean of the gaussian distribution</description>
+            <description>the mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution</description>
+            <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -657,12 +657,12 @@
           <Parameter name='mean' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean of the gaussian distribution</description>
+            <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution</description>
+            <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -680,7 +680,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -688,12 +688,12 @@
           <Parameter name='mean' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean of the gaussian distribution</description>
+            <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution</description>
+            <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -711,7 +711,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x'>
+          <Parameter name='x' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -719,12 +719,12 @@
           <Parameter name='mean' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean of the gaussian distribution</description>
+            <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution</description>
+            <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -742,7 +742,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x'>
+          <Parameter name='x' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -750,12 +750,12 @@
           <Parameter name='mean' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omittted, it is assumet equal to 0.</description>
+            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omittted, it is assumed equal to 1.</description>
+            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -773,7 +773,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -781,12 +781,12 @@
           <Parameter name='mean' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omittted, it is assumed equal to 0.</description>
+            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omittted, it is assumed equal to 1.</description>
+            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -804,7 +804,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -812,12 +812,12 @@
           <Parameter name='mean' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omittted, it is assumed equal to 0.</description>
+            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omittted, it is assumed equal to 1.</description>
+            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -835,7 +835,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -843,12 +843,12 @@
           <Parameter name='mean' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omittted, it is assumed equal to 0.</description>
+            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omittted, it is assumed equal to 1.</description>
+            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -866,7 +866,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -874,12 +874,12 @@
           <Parameter name='mean' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omittted, it is assumed equal to 0.</description>
+            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omittted, it is assumed equal to 1.</description>
+            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -897,7 +897,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -905,12 +905,12 @@
           <Parameter name='mean' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omittted, it is assumed equal to 0.</description>
+            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omittted, it is assumed equal to 1.</description>
+            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

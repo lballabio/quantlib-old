@@ -55,7 +55,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
@@ -76,7 +76,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
@@ -97,7 +97,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure'>
+          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
@@ -141,7 +141,7 @@
           <Parameter name='PaymentAdj' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment Adjustment: business days convention used for payment dates. Default is Following.</description>
+            <description>Payment Adjustment: business days convention used for payment dates. If omitted, default = Following.</description>
           </Parameter>
           <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
@@ -177,7 +177,7 @@
           <Parameter name='PaymentAdj' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment Adjustment: business days convention used for payment dates. Default is Following.</description>
+            <description>Payment Adjustment: business days convention used for payment dates. If omitted, default = Following.</description>
           </Parameter>          
           <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
@@ -201,15 +201,15 @@
             <description>DayCounter used for accrual periods</description>
             <!--<description>If missing, the IborIndex default is used</description>-->
           </Parameter>
-          <Parameter name='Gearings' default='1.0' exampleValue='1'>
+          <Parameter name='Gearings' default='1.0' exampleValue='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
+            <description>the multiplicative coefficients of the floating rate index. If omitted, default = 1.</description>
           </Parameter>
           <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0' exampleValue='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads</description>
+            <description>floating rate additional spreads. If omitted, default = 0.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -227,10 +227,10 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PaymentAdj' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='"Following"'>
+          <Parameter name='PaymentAdj' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment Adjustment: business days convention used for payment dates. Default is Following.</description>
+            <description>Payment Adjustment: business days convention used for payment dates. If omitted, default = Following.</description>
           </Parameter>
           <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
@@ -262,12 +262,12 @@
           <Parameter name='Gearings' default='1.0' exampleValue='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
+            <description>the multiplicative coefficients of the floating rate index. If omitted, default = 1.</description>
           </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0' exampleValue='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads</description>
+            <description>floating rate additional spreads.  If omitted, default = 0.</description>
           </Parameter>
           <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' exampleValue='0.05'>
             <type>double</type>
@@ -319,7 +319,7 @@
           <Parameter name='PaymentAdj' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment Adjustment: business days convention used for payment dates. Default is Following.</description>
+            <description>Payment Adjustment: business days convention used for payment dates. If omitted, default = Following.</description>
           </Parameter>
           <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
@@ -337,7 +337,7 @@
             <description>number of business days the fixing precedes the value date. If missing, the SwapIndex default is used.</description>
           </Parameter>
           <!-- we might/should use the daycounter of the IborIndex underlying the SwapIndex -->
-          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
+          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter used for accrual periods</description>
@@ -350,12 +350,12 @@
           <Parameter name='Gearings' default='1.0' exampleValue='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
+            <description>the multiplicative coefficients of the floating rate index. If omitted, default = 1.</description>
           </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads</description>
+            <description>floating rate additional spreads. If omitted, default = 0.</description>
           </Parameter>
           <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' >
             <type>double</type>
@@ -383,10 +383,10 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>business days convention used for payment dates. Default is Following.</description>
+            <description>business days convention used for payment dates. If omitted, default = Following.</description>
           </Parameter>
           <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
@@ -414,15 +414,15 @@
             <tensorRank>vector</tensorRank>
             <description>Floor strikes. If missing, no floors are enforced.</description>
           </Parameter>
-          <Parameter name='Gearings' default='1.0'>
+          <Parameter name='Gearings' default='1.0' exampleValue='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
+            <description>the multiplicative coefficients of the floating rate index. If omitted, default = 1.</description>
           </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0' exampleValue='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads</description>
+            <description>floating rate additional spreads. f omitted, default = 0.</description>
           </Parameter>
           <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' >
             <type>double</type>
@@ -450,10 +450,10 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='Following'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>business days convention used for payment dates. Default is Following.</description>
+            <description>business days convention used for payment dates. If omitted, default = Following.</description>
           </Parameter>
           <Parameter name='Nominal' exampleValue='1000000'>
             <type>double</type>
@@ -465,7 +465,7 @@
             <tensorRank>scalar</tensorRank>
             <description>underlying swap index object ID</description>
           </Parameter>
-          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
+          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of business days the fixing precedes the value date. If missing, the SwapIndex default is used.</description>
@@ -481,15 +481,15 @@
             <tensorRank>vector</tensorRank>
             <description>Floor strikes. If missing, no floors are enforced.</description>
           </Parameter>
-          <Parameter name='Gearings' default='1.0'>
+          <Parameter name='Gearings' default='1.0' exampleValue='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. Default is 1.0</description>
+            <description>the multiplicative coefficients of the floating rate index. If omitted, default = 1.</description>
           </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
+          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0' exampleValue='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads</description>
+            <description>floating rate additional spreads. If omitted, default = 0.</description>
           </Parameter>
           <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()' >
             <type>double</type>
@@ -527,7 +527,7 @@
             <tensorRank>scalar</tensorRank>
             <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
           </Parameter>
-          <Parameter name='MeanReversion' libToHandle='Quote'>
+          <Parameter name='MeanReversion' libToHandle='Quote' exampleValue='0.1'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>mean reversion quote.</description>

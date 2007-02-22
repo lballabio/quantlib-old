@@ -7,7 +7,7 @@
     <include>qlo/sequencestatistics.hpp</include>
   </includes>
   <copyright>
-    Copyright (C) 2006 Cristina Duminuco
+    Copyright (C) 2006, 2007 Cristina Duminuco
   </copyright>
 
   <Functions>
@@ -234,7 +234,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x'>
+          <Parameter name='x' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
@@ -255,7 +255,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x'>
+          <Parameter name='x' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
@@ -276,7 +276,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -297,7 +297,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='centile'>
+          <Parameter name='centile' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the centile</description>
@@ -318,7 +318,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -339,7 +339,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -360,7 +360,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -381,7 +381,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -402,7 +402,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -423,7 +423,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -444,7 +444,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='target' exampleValue='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -499,7 +499,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dimension'>
+          <Parameter name='dimension' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Statistics dimensionality.</description>
@@ -510,7 +510,7 @@
             <tensorRank>matrix</tensorRank>
             <description>Sampled values. If omitted, an empty statistics is created.</description>
           </Parameter>
-          <Parameter name='weights' default='std::vector&lt;QuantLib::Real&gt;()'>
+          <Parameter name='weights' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>If omitted, all sampled values have the same weight.</description>

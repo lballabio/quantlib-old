@@ -68,17 +68,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='quote' libToHandle='Quote'>
+          <Parameter name='quote' libToHandle='Quote' exampleValue='0.036'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>quote</description>
+            <description>deposit quote</description>
           </Parameter>
-          <Parameter name='period' libraryType='QuantLib::Period'>
+          <Parameter name='period' libraryType='QuantLib::Period' exampleValue='3M'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>deposit legth (e.g. 3M for three months)</description>
+            <description>deposit length (e.g. 3M for three months)</description>
           </Parameter>
-          <Parameter name='fixingDays'>
+          <Parameter name='fixingDays' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
@@ -109,17 +109,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='quote' libToHandle='Quote'>
+          <Parameter name='quote' libToHandle='Quote' exampleValue='0.042'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>quote</description>
           </Parameter>
-          <Parameter name='period' libraryType='QuantLib::Period'>
+          <Parameter name='period' libraryType='QuantLib::Period' exampleValue='5Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>deposit legth (e.g. 5Y for five years)</description>
           </Parameter>
-          <Parameter name='fixingDays'>
+          <Parameter name='fixingDays' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
@@ -175,20 +175,20 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='priceQuote' libToHandle='Quote'>
+          <Parameter name='priceQuote' libToHandle='Quote' exampleValue='95.9'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>price quote</description>
           </Parameter>
-          <Parameter name='IMM'>
+          <Parameter name='IMM' exampleValue='H2'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>IMM code</description>
           </Parameter>
-          <Parameter name='months'>
+          <Parameter name='months' exampleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>future contract lenght in months</description>
+            <description>future contract length in months</description>
           </Parameter>
           <Parameter name='calendar' enumeration ='QuantLib::Calendar'>
             <type>string</type>
@@ -205,7 +205,7 @@
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='convexityAdjQuote' libToHandle='Quote'>
+          <Parameter name='convexityAdjQuote' libToHandle='Quote' exampleValue='0.0'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>convexity adjustment quote (i.e. Forward rate = Futures rate - convexity adjustment)</description>
