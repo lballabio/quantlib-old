@@ -55,7 +55,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' const='False'>
+          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
@@ -81,7 +81,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' const='False'>
+          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
@@ -107,7 +107,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' const='False'>
+          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
@@ -133,7 +133,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' const='False'>
+          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
@@ -159,7 +159,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' const='False'>
+          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
@@ -241,17 +241,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='linearInterpolationType'>
+          <Parameter name='linearInterpolationType' exampleValue ='Linear'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>linear interpolation type (e.g Linear, BackwardFlat, ForwardFlat)</description>
           </Parameter>
-          <Parameter name='xArray'>
+          <Parameter name='xArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x array</description>
           </Parameter>
-          <Parameter name='yArray'>
+          <Parameter name='yArray' exampleValue ='2.0,4.0,6.0,8.0,10.0,12.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>y array</description>
@@ -267,12 +267,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xArray'>
+          <Parameter name='xArray' exampleValue ='1.0,2.0,3.0,4.0,5.0' >
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x array</description>
           </Parameter>
-          <Parameter name='yArray'>
+          <Parameter name='yArray' exampleValue ='1.0,8.0,27.0,64.0,125.0' >
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>y array</description>
@@ -297,7 +297,7 @@
             <tensorRank>scalar</tensorRank>
             <description>right condition value.</description>
           </Parameter>
-          <Parameter name='monotonicityConstraint'>
+          <Parameter name='monotonicityConstraint' exampleValue='FALSE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>monotonicity constraint flag</description>
@@ -644,12 +644,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' const='False'>
+          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='yValue' const='False'>
+          <Parameter name='yValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>y value</description>
@@ -671,12 +671,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValue' const='False'>
+          <Parameter name='xValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x value(s)</description>
           </Parameter>
-          <Parameter name='yValue' const='False'>
+          <Parameter name='yValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>y value</description>
@@ -703,17 +703,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='interpolationType'>
+          <Parameter name='interpolationType' exampleValue ='BiLinear'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>2D-interpolation type (e.g BiLinear, BiCubic)</description>
           </Parameter>
-          <Parameter name='xArray'>
+          <Parameter name='xArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x array</description>
           </Parameter>
-          <Parameter name='yArray'>
+          <Parameter name='yArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>y array</description>
