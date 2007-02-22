@@ -84,7 +84,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='DfDates' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
+          <Parameter name='DfDates' libraryType='QuantLib::Date' exampleValue ="'1Y,2Y,3Y,4Y,5Y">
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>vector of dates</description>
@@ -92,7 +92,7 @@
           <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. The default is FALSE</description>
+            <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -110,12 +110,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='d1' libraryType='QuantLib::Date' exampleValue ='39134'>
+          <Parameter name='d1' libraryType='QuantLib::Date' exampleValue ='1M'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>first date</description>
           </Parameter>
-          <Parameter name='d2' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
+          <Parameter name='d2' libraryType='QuantLib::Date' exampleValue ="'2M,3M,4M,5M,6M">
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>second date</description>
@@ -133,12 +133,12 @@
           <Parameter name='frequency' enumeration='QuantLib::Frequency' default='"Annual"' const='False'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
           </Parameter>
           <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. The default is FALSE</description>
+            <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -156,7 +156,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
+          <Parameter name='date' libraryType='QuantLib::Date' exampleValue ="'2M,3M,4M,5M,6M">
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>first date</description>
@@ -179,12 +179,12 @@
           <Parameter name='frequency' enumeration='QuantLib::Frequency' default='"Annual"' const='False'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
           </Parameter>
           <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. The default is FALSE</description>
+            <description>TRUE allows extrapolation. If omitted, default = Annual is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -202,7 +202,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dates' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
+          <Parameter name='dates' libraryType='QuantLib::Date' exampleValue ="'2M,3M,4M,5M,6M">
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
@@ -220,12 +220,12 @@
           <Parameter name='frequency' enumeration='QuantLib::Frequency' default='"Annual"' const='False'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
           </Parameter>
           <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. The default is FALSE</description>
+            <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -248,7 +248,7 @@
             <tensorRank>scalar</tensorRank>
             <description>tenor in years</description>
           </Parameter>
-          <Parameter name='startDate' libraryType='QuantLib::Date' exampleValue ='39134'>
+          <Parameter name='startDate' libraryType='QuantLib::Date' exampleValue ='0D'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>start date</description>
@@ -256,12 +256,12 @@
           <Parameter name='frequency' enumeration='QuantLib::Frequency' default='"Annual"' const='False'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
           </Parameter>
           <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. The default is FALSE</description>
+            <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -282,7 +282,7 @@
           <Parameter name='YieldCurve' libraryClass='YieldTermStructure' default='""'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>YieldTermStructure object ID</description>
+            <description>YieldTermStructure object ID. If omitted, default = "" is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -321,7 +321,7 @@
           <Parameter name='nDays' default='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0</description>
+            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='calendar' enumeration='QuantLib::Calendar'>
             <type>string</type>
@@ -341,12 +341,12 @@
           <Parameter name='traitsID' default='"Discount"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Discount, ZeroRate, or ForwardRate</description>
+            <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
           </Parameter>
           <Parameter name='interpolatorID' default='"LogLinear"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Linear, LogLinear, or Cubic</description>
+            <description>Linear, LogLinear, or Cubic. If omitted, default = LogLinear is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -359,7 +359,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveDates' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
+          <Parameter name='curveDates' libraryType='QuantLib::Date' exampleValue ="'2M,3M,4M,5M,6M">
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
@@ -385,7 +385,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveDates' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
+          <Parameter name='curveDates' libraryType='QuantLib::Date' exampleValue ="'2M,3M,4M,5M,6M">
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
@@ -411,7 +411,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveDates' libraryType='QuantLib::Date' exampleValue ='39134;39499;39865;40230;40595'>
+          <Parameter name='curveDates' libraryType='QuantLib::Date' exampleValue ="'2M,3M,4M,5M,6M">
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
@@ -440,7 +440,7 @@
           <Parameter name='nDays' default='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0</description>
+            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='calendar' enumeration='QuantLib::Calendar' exampleValue ='NullCalendar'>
             <type>string</type>
@@ -465,7 +465,7 @@
           <Parameter name='frequency' enumeration='QuantLib::Frequency' default='"Annual"' exampleValue ='Annual'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -504,7 +504,7 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='referenceDate' libraryType='QuantLib::Date' exampleValue ='39499'>
+          <Parameter name='referenceDate' libraryType='QuantLib::Date' exampleValue ='1D'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>the reference date the base YieldTermStructure should be shifted to</description>

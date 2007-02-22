@@ -142,17 +142,17 @@
             <tensorRank>scalar</tensorRank>
             <description>average type</description>
           </Parameter>
-          <Parameter name='runningAccumulator'>
+          <Parameter name='runningAccumulator' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>running accumulator</description>
           </Parameter>
-          <Parameter name='pastFixings'>
+          <Parameter name='pastFixings' exampleValue ='0.1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>past fixings</description>
           </Parameter>
-          <Parameter name='fixingDates' libraryType='QuantLib::Date'>
+          <Parameter name='fixingDates' libraryType='QuantLib::Date' exampleValue ='1Y,2Y'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>fixing dates</description>
@@ -204,12 +204,12 @@
             <tensorRank>scalar</tensorRank>
             <description>Exercise object ID</description>
           </Parameter>
-          <Parameter name='dividendDates' libraryType='QuantLib::Date'>
+          <Parameter name='dividendDates' libraryType='QuantLib::Date' exampleValue ='1Y,2Y'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>vector of dividend dates</description>
           </Parameter>
-          <Parameter name='dividends'>
+          <Parameter name='dividends' exampleValue ='0.1,0.1'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>vector of dividends</description>
@@ -236,7 +236,7 @@
             <tensorRank>scalar</tensorRank>
             <description>moneyness</description>
           </Parameter>
-          <Parameter name='resetDate'>
+          <Parameter name='resetDate' libraryType='QuantLib::Date' exampleValue ='1Y'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>reset date</description>
@@ -406,7 +406,7 @@
             <tensorRank>scalar</tensorRank>
             <description>moneyness</description>
           </Parameter>
-          <Parameter name='resetDate'>
+          <Parameter name='resetDate' libraryType='QuantLib::Date' exampleValue ='1Y'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>reset date</description>

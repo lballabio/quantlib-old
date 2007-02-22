@@ -182,7 +182,7 @@
                     <Parameter name='thirdParameter' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
                         <type>double</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>the 3rd paramenter for the payoff definition of CashOrNothing (cash), Gap (determines the size of the payoff), SuperFund (second strike)</description>
+                        <description>the 3rd paramenter for the payoff definition of CashOrNothing (cash), Gap (determines the size of the payoff), SuperFund (second strike).</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>

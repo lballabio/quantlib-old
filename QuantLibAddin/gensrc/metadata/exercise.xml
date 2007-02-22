@@ -47,12 +47,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='earliestDate' libraryType='QuantLib::Date' exampleValue ='39083'>
+          <Parameter name='earliestDate' libraryType='QuantLib::Date' exampleValue ='1Y'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>earliest exercise date</description>
           </Parameter>
-          <Parameter name='latestDate' libraryType='QuantLib::Date' exampleValue ='39448'>
+          <Parameter name='latestDate' libraryType='QuantLib::Date' exampleValue ='2Y'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>latest exercise date</description>
@@ -60,7 +60,7 @@
           <Parameter name='payoffAtExpiry' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>payoff at expiry</description>
+            <description>payoff at expiry. If omitted, default = FALSE is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -76,7 +76,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='expiryDate' libraryType='QuantLib::Date' exampleValue ='39448'>
+          <Parameter name='expiryDate' libraryType='QuantLib::Date' exampleValue ='1Y'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>expiry date</description>
@@ -93,7 +93,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dates' libraryType='QuantLib::Date' exampleValue ='39083;39448'>
+          <Parameter name='dates' libraryType='QuantLib::Date' exampleValue ="'1Y,2Y">
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>dates</description>
@@ -101,7 +101,7 @@
           <Parameter name='payoffAtExpiry' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>payoff at expiry</description>
+            <description>payoff at expiry. If omitted, default = FALSE is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

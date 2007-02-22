@@ -9,7 +9,6 @@
     <include>ql/MarketModels/CurveStates/cmswapcurvestate.hpp</include>
     <include>ql/MarketModels/CurveStates/coterminalswapcurvestate.hpp</include>
     <include>ql/MarketModels/CurveStates/lmmcurvestate.hpp</include>
-    <!--<include>ql/MarketModels/Models/piecewiseconstantabcdvariance.hpp</include>-->    
     <include>qlo/optimization.hpp</include>
     <include>qlo/marketmodels.hpp</include>
     <include>qlo/sequencestatistics.hpp</include>
@@ -90,7 +89,7 @@
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='accruals' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='accruals' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>accrual factors</description>
@@ -122,32 +121,32 @@
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='accruals' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='accruals' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>accrual factors</description>
+            <description>accrual factors between rate fixing times</description>
           </Parameter>
           <Parameter name='paymentTimes' libraryType='QuantLib::Time' exampleValue ='1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>payment times of the product</description>
           </Parameter>
-          <Parameter name='gearingOfFloor' libraryType='QuantLib::Real' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
+          <Parameter name='gearingOfFloor' libraryType='QuantLib::Real' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing of floor</description>
           </Parameter>
-          <Parameter name='gearingOfFixing' libraryType='QuantLib::Real' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
+          <Parameter name='gearingOfFixing' libraryType='QuantLib::Real' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing of fixing</description>
           </Parameter>
-          <Parameter name='spreadOfFloor' libraryType='QuantLib::Real' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+          <Parameter name='spreadOfFloor' libraryType='QuantLib::Real' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>spread of floor</description>
           </Parameter>
-          <Parameter name='spreadOfFixing' libraryType='QuantLib::Real' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+          <Parameter name='spreadOfFixing' libraryType='QuantLib::Real' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>spread of fixing</description>
@@ -198,8 +197,29 @@
       </ParameterList>
     </Constructor>-->
 
-    <!-- EvolutionDescription class interface and costructor -->
+    <!-- EvolutionDescription class costructor -->
+    <Constructor name='qlEvolutionDescription'>
+      <libraryFunction>EvolutionDescription</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='evolutionTimes' libraryType='QuantLib::Time' exampleValue ='1.0,2.0,3.0,4.0,5.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>evolution times in the simulation</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
+    <!-- EvolutionDescription class interfaces -->
     <Member name='qlEvolutionDescriptionRateTimes' libraryClass='EvolutionDescription'>
       <description>rates fixing times for the EvolutionDescription object</description>
       <libraryFunction>rateTimes</libraryFunction>
@@ -209,7 +229,7 @@
       <ParameterList>
         <Parameters/>
       </ParameterList>
-      <ReturnValue libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+      <ReturnValue libraryType='QuantLib::Time'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
@@ -224,7 +244,7 @@
       <ParameterList>
         <Parameters/>
       </ParameterList>
-      <ReturnValue libraryType='QuantLib::Time' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+      <ReturnValue libraryType='QuantLib::Time'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
@@ -239,7 +259,7 @@
       <ParameterList>
         <Parameters/>
       </ParameterList>
-      <ReturnValue libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+      <ReturnValue libraryType='QuantLib::Time'>
         <type>double</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
@@ -275,8 +295,6 @@
       </ReturnValue>
     </Member>
 
-    <!--Member name='qlEvolutionDescriptionRelevanceRates' libraryClass='EvolutionDescription'-->
-
     <Member name='qlEvolutionDescriptionNumberOfRates' libraryClass='EvolutionDescription'>
       <description>number of rates for the EvolutionDescription object</description>
       <libraryFunction>numberOfRates</libraryFunction>
@@ -307,6 +325,7 @@
       </ReturnValue>
     </Member>
 
+    <!-- EvolutionDescription object procedures -->
     <Procedure name='qlTerminalMeasure'>
       <description>Returns the terminal measure for the given EvolutionDescription object</description>
       <alias>QuantLib::terminalMeasure</alias>
@@ -365,7 +384,7 @@
           <Parameter name='offset' libraryType='QuantLib::Size' default='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>offset applied to the MoneyMarket measure (default = 1)</description>
+            <description>offset applied to the MoneyMarket measure. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -388,7 +407,7 @@
             <tensorRank>scalar</tensorRank>
             <description>ID of EvolutionDescription object</description>
           </Parameter>
-          <Parameter name='numeraires' libraryType='QuantLib::Size'>
+          <Parameter name='numeraires' libraryType='QuantLib::Size' exampleValue ='5,5'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>vector of numeraires</description>
@@ -414,7 +433,7 @@
             <tensorRank>scalar</tensorRank>
             <description>ID of EvolutionDescription object</description>
           </Parameter>
-          <Parameter name='numeraires' libraryType='QuantLib::Size'>
+          <Parameter name='numeraires' libraryType='QuantLib::Size' exampleValue ='5,5'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>vector of numeraires</description>
@@ -440,7 +459,7 @@
             <tensorRank>scalar</tensorRank>
             <description>ID of EvolutionDescription object</description>
           </Parameter>
-          <Parameter name='numeraires' libraryType='QuantLib::Size'>
+          <Parameter name='numeraires' libraryType='QuantLib::Size' exampleValue ='5,5'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>vector of numeraires</description>
@@ -448,7 +467,7 @@
           <Parameter name='offset' default='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>offset applied to the MoneyMarket measure (default = 1)</description>
+            <description>offset applied to the MoneyMarket measure If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -458,29 +477,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Constructor name='qlEvolutionDescription'>
-      <libraryFunction>EvolutionDescription</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='rateTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
-          </Parameter>
-          <Parameter name='evolutionTimes' libraryType='QuantLib::Time' exampleValue ='1.0,2.0,3.0,4.0,5.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>evolution times in the simulation</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
     <!-- MarketModel base class interfaces -->
-
     <Member name='qlMarketModelInitialRates' libraryClass='MarketModel'>
       <description>initial rates for the MarketModel object</description>
       <libraryFunction>initialRates</libraryFunction>
@@ -564,7 +561,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="index">
+          <Parameter name="index" exampleValue ='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>evolution step index</description>
@@ -585,7 +582,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="index">
+          <Parameter name="index" exampleValue ='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>evolution step index</description>
@@ -606,7 +603,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="index">
+          <Parameter name="index" exampleValue ='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>evolution step index</description>
@@ -619,9 +616,7 @@
       </ReturnValue>
     </Member>
         
-
     <!-- MarketModel derived class constructors -->
-
     <Constructor name='qlExpCorrFlatVol'>
       <libraryFunction>ExpCorrFlatVol</libraryFunction>
       <SupportedPlatforms>
@@ -629,12 +624,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='LongTermCorr' exampleValue ='0.1'>
+          <Parameter name='LongTermCorr' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
           </Parameter>
-          <Parameter name='beta' exampleValue ='0.1'>
+          <Parameter name='beta' exampleValue ='0.2'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
@@ -675,22 +670,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='a' exampleValue ='1.0'>
+          <Parameter name='a' exampleValue ='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the a coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='b' exampleValue ='1.0'>
+          <Parameter name='b' exampleValue ='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the b coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='c' exampleValue ='1.0'>
+          <Parameter name='c' exampleValue ='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the c coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='d' exampleValue ='1.0'>
+          <Parameter name='d' exampleValue ='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the d coefficient in the abcd vol parametrization</description>
@@ -700,12 +695,12 @@
             <tensorRank>vector</tensorRank>
             <description>K_i adjustment factors in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='LongTermCorr' exampleValue ='0.1'>
+          <Parameter name='LongTermCorr' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
           </Parameter>
-          <Parameter name='beta' exampleValue ='0.1'>
+          <Parameter name='beta' exampleValue ='0.2'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
@@ -734,17 +729,68 @@
       </ParameterList>
     </Constructor>
 
-    <!-- Abcd Volatility -->
+    <!-- Abcd (volatility) class costructor -->
+    <Constructor name='qlAbcd'>
+      <libraryFunction>Abcd</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='a' default='-0.06'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.  If omitted, default = -0.06 is used.</description>
+          </Parameter>
+          <Parameter name='b' default='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
+          </Parameter>
+          <Parameter name='c' default='0.54'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.54 is used.</description>
+          </Parameter>
+          <Parameter name='d' default='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
+          </Parameter>
+          <Parameter name='aIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
+          </Parameter>
+          <Parameter name='bIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
+          </Parameter>
+          <Parameter name='cIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
+          </Parameter>
+          <Parameter name='dIsFixed' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
+    <!-- Abcd (volatility) class interfaces -->
     <Member name='qlAbcdInstantaneousValue' libraryClass='Abcd' loopParameter='u'>
-      <description>Returns the instantaneous volatility as function of residual time to maturity. [a + b*T] * e^{-c*T} + d</description>
+      <description>Returns the instantaneous volatility as function of residual time to maturity u=T-t: [a + b*u] * e^{-c*u} + d</description>
       <libraryFunction>operator()</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='u' const='False' exampleValue ='5.0,4.0,3.0,2.0,1.0,'>
+          <Parameter name='u' const='False' exampleValue ='5.0,4.0,3.0,2.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>residual time(s) to maturity</description>
@@ -758,24 +804,24 @@
     </Member>
 
     <Member name='qlAbcdInstantaneousCovariance' libraryClass='Abcd' loopParameter='u'>
-      <description>Returns covariance at calendar time u between T and S fixing rates.</description>
+      <description>Returns covariance at calendar time u between T and S rates fixing times.</description>
       <libraryFunction>instantaneousCovariance</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='u' const='False'>
+          <Parameter name='u' const='False' exampleValue ='0.0,0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>calendar time(s)</description>
           </Parameter>
-          <Parameter name='T' const='False' >
+          <Parameter name='T' const='False'  exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing time of first rate</description>
           </Parameter>
-          <Parameter name='S' const='False'>
+          <Parameter name='S' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing time of second rate</description>
@@ -789,19 +835,19 @@
     </Member>
 
     <Member name='qlAbcdInstantaneousVariance' libraryClass='Abcd' loopParameter='u'>
-      <description>Returns variance at calendar time u of T-fixing rate.</description>
+      <description>Returns variance at calendar time(s) u of T-fixing rate.</description>
       <libraryFunction>instantaneousVariance</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='u' const='False'>
+          <Parameter name='u' const='False' exampleValue ='0.0,0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>calendar time(s)</description>
           </Parameter>
-          <Parameter name='T' const='False'>
+          <Parameter name='T' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing time of the rate</description>
@@ -815,19 +861,19 @@
     </Member>
 
     <Member name='qlAbcdInstantaneousVolatility' libraryClass='Abcd' loopParameter='u'>
-      <description>Returns volatility at calendar time u of T-fixing rate.</description>
+      <description>Returns volatility/ies at calendar time(s) u of T-fixing rate.</description>
       <libraryFunction>instantaneousVolatility</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='u' const='False'>
+          <Parameter name='u' const='False' exampleValue ='0.0,0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>calendar time(s)</description>
           </Parameter>
-          <Parameter name='T' const='False'>
+          <Parameter name='T' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing calendar time of the rate</description>
@@ -841,29 +887,29 @@
     </Member>
 
     <Member name='qlAbcdCovariance' libraryClass='Abcd' loopParameter='tMax'>
-      <description>Returns covariance in [tMin,tMax] between T and S fixing rates.</description>
+      <description>Returns covariance(s) in [tMin,tMax] between T and S rate fixing times.</description>
       <libraryFunction>covariance</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='tMin' const='False'>
+          <Parameter name='tMin' const='False' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>lower bound of the covariance integral</description>
           </Parameter>
-          <Parameter name='tMax' const='False'>
+          <Parameter name='tMax' const='False' exampleValue ='0.25,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>upper bound of the covariance integral</description>
+            <description>upper bound(s) of the covariance integral(s)</description>
           </Parameter>
-          <Parameter name='T' const='False'>
+          <Parameter name='T' const='False' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing calendar time of first rate</description>
           </Parameter>
-          <Parameter name='S' const='False'>
+          <Parameter name='S' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing calendar time of second rate</description>
@@ -877,24 +923,24 @@
     </Member>
 
     <Member name='qlAbcdVariance' libraryClass='Abcd' loopParameter='tMax'>
-      <description>Returns variance in [tMin,tMax] of T-fixing rate.</description>
+      <description>Returns variance(s) in [tMin,tMax] of T rate fixing time.</description>
       <libraryFunction>variance</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='tMin' const='False'>
+          <Parameter name='tMin' const='False' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>lower bound of the covariance integral</description>
           </Parameter>
-          <Parameter name='tMax' const='False'>
+          <Parameter name='tMax' const='False' exampleValue ='0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>upper bound of the covariance integral</description>
           </Parameter>
-          <Parameter name='T' const='False'>
+          <Parameter name='T' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing calendar time of the rate</description>
@@ -908,27 +954,27 @@
     </Member>
 
     <Member name='qlAbcdVolatility' libraryClass='Abcd' loopParameter='tMax'>
-      <description>Returns volatility in [tMin,tMax] of T fixing rate.</description>
+      <description>Returns volatility/ies in [tMin,tMax] of T rate fixing time.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='tMin' const='False'>
+          <Parameter name='tMin' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>lower bound of the covariance integral</description>
           </Parameter>
-          <Parameter name='tMax' const='False'>
+          <Parameter name='tMax' const='False' exampleValue ='0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>upper bound of the covariance integral</description>
+            <description>upper bound(s) of the covariance integral(s)</description>
           </Parameter>
-          <Parameter name='T' const='False'>
+          <Parameter name='T' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing time of the rate</description>
+            <description>fixing calendar time of the rate</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1066,12 +1112,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackVols'>
+          <Parameter name='blackVols' libraryType='QuantLib::Volatility' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Black vol vector.</description>
           </Parameter>
-          <Parameter name='times' vectorIterator='begin'>
+          <Parameter name='times' vectorIterator='begin' exampleValue ='0,1,2,3,4'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Reference time for the above Black vol vector.</description>
@@ -1092,12 +1138,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackVols'>
+          <Parameter name='blackVols' libraryType='QuantLib::Volatility' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Black vol vector.</description>
           </Parameter>
-          <Parameter name='times' vectorIterator='begin'>
+          <Parameter name='times' vectorIterator='begin' exampleValue ='0,1,2,3,4'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Reference time for the above Black vol vector.</description>
@@ -1118,12 +1164,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackVols'>
+          <Parameter name='blackVols' libraryType='QuantLib::Volatility' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Black vol vector.</description>
           </Parameter>
-          <Parameter name='times' vectorIterator='begin'>
+          <Parameter name='times' vectorIterator='begin' exampleValue ='0,1,2,3,4'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Reference time for the above Black vol vector.</description>
@@ -1144,12 +1190,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackVols' libraryType='QuantLib::Volatility'>
+          <Parameter name='blackVols' libraryType='QuantLib::Volatility' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Black vol vector.</description>
           </Parameter>
-          <Parameter name='times' vectorIterator='begin'>
+          <Parameter name='times' vectorIterator='begin' exampleValue ='0,1,2,3,4'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Reference time for the above Black vol vector.</description>
@@ -1157,12 +1203,12 @@
           <Parameter name='endCriteria' libraryClass='EndCriteria' default='""'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>EndCriteria object ID</description>
+            <description>EndCriteria object ID. If omitted, default = "" is used.</description>
           </Parameter>
           <Parameter name='optimizationMethod' libraryClass='OptimizationMethod' default='""'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>OptimizationMethod object ID</description>
+            <description>OptimizationMethod object ID. If omitted, default = "" is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1172,59 +1218,7 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlAbcd'>
-      <libraryFunction>Abcd</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='a' default='-0.06'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
-          </Parameter>
-          <Parameter name='b' default='0.17'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
-          </Parameter>
-          <Parameter name='c' default='0.54'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
-          </Parameter>
-          <Parameter name='d' default='0.17'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
-          </Parameter>
-          <Parameter name='aIsFixed' default='false'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
-          </Parameter>
-          <Parameter name='bIsFixed' default='false'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
-          </Parameter>
-          <Parameter name='cIsFixed' default='false'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
-          </Parameter>
-          <Parameter name='dIsFixed' default='false'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <!-- PiecewiseConstantAbcdVariance -->
-
+    <!-- PiecewiseConstantAbcdVariance class constructor -->
     <Constructor name='qlPiecewiseConstantAbcdVariance'>
       <libraryFunction>PiecewiseConstantAbcdVariance</libraryFunction>
       <SupportedPlatforms>
@@ -1235,22 +1229,22 @@
           <Parameter name='a' default='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+            <description>coefficient in abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = -0.06 is used. </description>
           </Parameter>
           <Parameter name='b' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
           </Parameter>
           <Parameter name='c' default='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.54 is used.</description>
           </Parameter>
           <Parameter name='d' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
           </Parameter>
           <Parameter name='ResetIndex'>
             <type>long</type>
@@ -1266,6 +1260,7 @@
       </ParameterList>
     </Constructor>
 
+    <!-- PiecewiseConstantAbcdVariance class interfaces -->
     <Member name='qlPiecewiseConstantAbcdVariances' libraryClass='PiecewiseConstantAbcdVariance'>
       <description>Returns the piecewise constant abcd variances.</description>
       <libraryFunction>variances</libraryFunction>
@@ -1350,6 +1345,7 @@
       </ReturnValue>
     </Member>-->
 
+    <!-- SwapFromFRACorrelationStructure class constructor -->
       <Constructor name='qlSwapFromFRACorrelationStructure'>
           <libraryFunction>SwapFromFRACorrelationStructure</libraryFunction>
           <SupportedPlatforms>
@@ -1357,12 +1353,12 @@
           </SupportedPlatforms>
           <ParameterList>
               <Parameters>
-                  <Parameter name='longTermCorr' libraryType='QuantLib::Real'>
+                  <Parameter name='longTermCorr' libraryType='QuantLib::Real' exampleValue ='0.5'>
                       <type>double</type>
                       <tensorRank>scalar</tensorRank>
                       <description>Long term correlation</description>
                   </Parameter>
-                  <Parameter name='beta' libraryType='QuantLib::Real'>
+                  <Parameter name='beta' libraryType='QuantLib::Real' exampleValue ='0.2'>
                       <type>double</type>
                       <tensorRank>scalar</tensorRank>
                       <description>decay factor</description>
@@ -1377,7 +1373,7 @@
                       <tensorRank>scalar</tensorRank>
                       <description>Evolution Description</description>
                   </Parameter>
-                  <Parameter name='numberOfFactors' libraryType='QuantLib::Size'>
+                  <Parameter name='numberOfFactors' libraryType='QuantLib::Size' exampleValue ='5'>
                       <type>long</type>
                       <tensorRank>scalar</tensorRank>
                       <description>number of factors</description>
@@ -1386,6 +1382,7 @@
           </ParameterList>
       </Constructor>
 
+    <!-- SwapFromFRACorrelationStructure class interfaces -->
       <Member name='qlSwapFromFRACorrelationStructurePseudoRoot' libraryClass='SwapFromFRACorrelationStructure'>
           <description>Returns the pseudo-root of the equivalent covariance swap rates matrix</description>
           <libraryFunction>pseudoRoot</libraryFunction>
@@ -1394,7 +1391,7 @@
           </SupportedPlatforms>
           <ParameterList>
               <Parameters>
-                  <Parameter name='timeIndex' libraryType='QuantLib::Size'>
+                  <Parameter name='timeIndex' libraryType='QuantLib::Size' exampleValue ='0'>
                       <type>long</type>
                       <tensorRank>scalar</tensorRank>
                       <description>time index.</description>
@@ -1407,7 +1404,7 @@
           </ReturnValue>
       </Member>
 
-      <Procedure name='qlcapletCoterminalCalibration'>
+      <Procedure name='qlCapletCoterminalCalibration'>
           <description>Calibrate ...</description>
           <alias>QuantLibAddin::capletCoterminalCalibration</alias>
           <functionCategory>QuantLib</functionCategory>
@@ -1426,27 +1423,27 @@
                       <tensorRank>vector</tensorRank>
                       <description>PiecewiseConstantVariances ID</description>
                   </Parameter>
-                  <Parameter name='capletVols' libraryType='QuantLib::Volatility'>
+                  <Parameter name='capletVols' libraryType='QuantLib::Volatility' exampleValue ='0.1,0.1,0.1,0.1,0.1'>
                       <type>double</type>
                       <tensorRank>vector</tensorRank>
-                      <description>CurveState object ID</description>
+                      <description>caplet volatilities</description>
                   </Parameter>
                   <Parameter name='curveState' underlyingClass='CurveState'>
                       <type>string</type>
                       <tensorRank>scalar</tensorRank>
                       <description>CurveState object ID</description>
                   </Parameter>
-                  <Parameter name='displacement' libraryType='QuantLib::Volatility'>
+                  <Parameter name='displacement' libraryType='QuantLib::Volatility' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
                       <type>double</type>
                       <tensorRank>scalar</tensorRank>
                       <description>displacement</description>
                   </Parameter>
-                  <Parameter name='alpha' libraryType='QuantLib::Real'>
+                  <Parameter name='alpha' libraryType='QuantLib::Real' exampleValue ='0.01'>
                       <type>double</type>
                       <tensorRank>vector</tensorRank>
                       <description>alpha</description>
                   </Parameter>
-                  <Parameter name='timeIndex' libraryType='QuantLib::Size'>
+                  <Parameter name='timeIndex' libraryType='QuantLib::Size' exampleValue ='0'>
                       <type>long</type>
                       <tensorRank>scalar</tensorRank>
                       <description>timeIndex</description>
@@ -1457,8 +1454,7 @@
               <type>double</type>
               <tensorRank>matrix</tensorRank>
           </ReturnValue>
-      </Procedure>   
-      
+      </Procedure>
      
     <Procedure name='qlCoterminalSwapForwardJacobian'>
       <description>Returns the jacobian between coterminal swap rates and forward rates</description>
@@ -1496,7 +1492,7 @@
             <tensorRank>scalar</tensorRank>
             <description>CurveState object ID</description>
           </Parameter>
-          <Parameter name='dispacement' libraryType='QuantLib::Spread'>
+          <Parameter name='displacement' libraryType='QuantLib::Spread' exampleValue ='0.0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement spread</description>
@@ -1509,8 +1505,7 @@
       </ReturnValue>
     </Procedure>
 
-    <!-- CurveState class interfaces and costructor -->
-
+    <!-- CurveState base class interfaces -->
     <Member name='qlCurveStateRateTimes' libraryClass='CurveState'>
       <description>return the rate times of the CurveState object</description>
       <libraryFunction>rateTimes</libraryFunction>
@@ -1542,7 +1537,6 @@
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
-
 
     <Member name='qlCurveStateForwardRates' libraryClass='CurveState'>
       <description>Returns the current forward rates of the CurveState object</description>
@@ -1611,6 +1605,7 @@
       </ParameterList>
     </Constructor>-->
 
+    <!-- CMSwapCurveState derived class constructor -->
     <Constructor name='qlCMSwapCurveState'>
       <libraryFunction>CMSwapCurveState</libraryFunction>
       <SupportedPlatforms>
@@ -1632,6 +1627,29 @@
       </ParameterList>
     </Constructor>
 
+    <!-- CMSwapCurveState class interfaces -->
+    <Member name='qlCMSwapCurveStateSetOnCMSwapRates' libraryClass='CMSwapCurveState'>
+      <description>set the CurveState object on given vector of coterminal swaps</description>
+      <libraryFunction>setOnCMSwapRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CMSwapRates' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Coterminal swap rates</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- CoterminalSwapCurveState derived class constructor -->
     <Constructor name='qlCoterminalSwapCurveState'>
       <libraryFunction>CoterminalSwapCurveState</libraryFunction>
       <SupportedPlatforms>
@@ -1648,6 +1666,29 @@
       </ParameterList>
     </Constructor>
 
+    <!-- CoterminalSwapCurveState class interfaces -->
+    <Member name='qlCoterminalSwapCurveStateSetOnCoterminalSwapRates' libraryClass='CoterminalSwapCurveState'>
+      <description>set the CurveState object on given vector of coterminal swaps</description>
+      <libraryFunction>setOnCoterminalSwapRates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CoterminalSwaps' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Coterminal swap rates</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- LMMCurveState derived class constructor -->
     <Constructor name='qlLMMCurveState'>
       <libraryFunction>LMMCurveState</libraryFunction>
       <SupportedPlatforms>
@@ -1664,6 +1705,7 @@
       </ParameterList>
     </Constructor>
 
+    <!-- LMMCurveState class interfaces -->
     <Member name='qlLMMCurveStateSetOnForwardRates' libraryClass='LMMCurveState'>
       <description>set the CurveState object on given vector of forward rates</description>
       <libraryFunction>setOnForwardRates</libraryFunction>
@@ -1706,51 +1748,8 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCoterminalSwapCurveStateSetOnCoterminalSwapRates' libraryClass='CoterminalSwapCurveState'>
-      <description>set the CurveState object on given vector of coterminal swaps</description>
-      <libraryFunction>setOnCoterminalSwapRates</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='CoterminalSwaps' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Coterminal Swaps</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
 
-    <Member name='qlCMSwapCurveStateSetOnCMSwapRates' libraryClass='CMSwapCurveState'>
-      <description>set the CurveState object on given vector of coterminal swaps</description>
-      <libraryFunction>setOnCMSwapRates</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='CMSwapRates' libraryType='QuantLib::Rate' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Coterminal Swaps</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-
-    <!-- LMMDriftCalculator class constructor and interfaces -->
-
+    <!-- LMMDriftCalculator derived class constructor -->
     <Constructor name='qlLMMDriftCalculator'>
       <libraryFunction>LMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
@@ -1787,6 +1786,7 @@
       </ParameterList>
     </Constructor>
 
+    <!-- LMMDriftCalculator class interfaces -->
     <Member name='qlLMMDriftCalculatorComputePlain' objectClass='LMMDriftCalculator'>
       <description>Full factor drift computation using the LMMDriftCalculator object</description>
       <libraryFunction>computePlain</libraryFunction>
@@ -1850,8 +1850,7 @@
       </ReturnValue>
     </Member>
 
-    <!-- LMMNormalDriftCalculator class constructor and interfaces -->
-
+    <!-- LMMNormalDriftCalculator derived class constructor -->
     <Constructor name='qlLMMNormalDriftCalculator'>
       <libraryFunction>LMMNormalDriftCalculator</libraryFunction>
       <SupportedPlatforms>
@@ -1883,6 +1882,7 @@
       </ParameterList>
     </Constructor>
 
+    <!-- LMMNormalDriftCalculator class interfaces -->
     <Member name='qlLMMNormalDriftCalculatorComputePlain' objectClass='LMMNormalDriftCalculator'>
       <description>Full factor drift computation using the LMMNormalDriftCalculator object</description>
       <libraryFunction>computePlain</libraryFunction>
@@ -1946,8 +1946,7 @@
       </ReturnValue>
     </Member>
 
-    <!-- CMSMMDriftCalculator class constructor and interfaces -->
-
+    <!-- CMSMMDriftCalculator derived class constructor -->
     <Constructor name='qlCMSMMDriftCalculator'>
       <libraryFunction>CMSMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
@@ -1989,6 +1988,7 @@
       </ParameterList>
     </Constructor>
 
+    <!-- CMSMMDriftCalculator class interfaces -->
     <Member name='qlCMSMMDriftCalculatorCompute' objectClass='CMSMMDriftCalculator'>
       <description>Full factor drift computation using the CMSMMDriftCalculator object</description>
       <libraryFunction>compute</libraryFunction>
@@ -2010,8 +2010,7 @@
       </ReturnValue>
     </Member>
 
-    <!-- SMMDriftCalculator class constructor and interfaces -->
-
+    <!-- SMMDriftCalculator derived class constructor -->
     <Constructor name='qlSMMDriftCalculator'>
       <libraryFunction>SMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
@@ -2048,6 +2047,7 @@
       </ParameterList>
     </Constructor>
 
+    <!-- SMMDriftCalculator class interfaces -->
     <Member name='qlSMMDriftCalculatorCompute' objectClass='SMMDriftCalculator'>
       <description>Full factor drift computation using the SMMDriftCalculator object</description>
       <libraryFunction>compute</libraryFunction>
@@ -2069,8 +2069,7 @@
       </ReturnValue>
     </Member>
 
-    <!-- BrownianGeneratorFactory derived classes constructors  -->
-
+    <!-- BrownianGeneratorFactory derived classes constructor  -->
     <Constructor name='qlMTBrownianGeneratorFactory'>
       <libraryFunction>MTBrownianGeneratorFactory</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
@@ -2079,7 +2078,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='seed'>
+          <Parameter name='seed' default='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>seed for random sequence generator</description>
@@ -2088,8 +2087,7 @@
       </ParameterList>
     </Constructor>
 
-    <!-- MarketModelEvolver base class interface  -->
-
+    <!-- MarketModelEvolver base class interfaces  -->
     <Member name='qlMarketModelEvolverStartNewPath' libraryClass='MarketModelEvolver'>
       <description>start a new path for the MarketModelEvolver object</description>
       <libraryFunction>startNewPath</libraryFunction>
@@ -2138,8 +2136,7 @@
       </ReturnValue>
     </Member>
 
-    <!-- MarketModelEvolver derived classes' constructors  -->
-
+    <!-- MarketModelEvolver derived classes constructors  -->
     <Constructor name='qlForwardRatePcEvolver'>
       <libraryFunction>ForwardRatePcEvolver</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
@@ -2194,8 +2191,7 @@
       </ParameterList>
     </Constructor>
 
-    <!-- AccountingEngine class interface and constructor -->
-
+    <!-- AccountingEngine class constructor -->
     <Constructor name='qlAccountingEngine'>
       <libraryFunction>AccountingEngine</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
@@ -2212,7 +2208,7 @@
           <Parameter name='product' underlyingClass='MarketModelMultiProduct'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>MarketModelMultiProduct object</description>
+            <description>MarketModelMultiProduct object ID</description>
           </Parameter>
           <Parameter name='initialNumeraireValue'>
             <type>double</type>
@@ -2223,6 +2219,7 @@
       </ParameterList>
     </Constructor>
 
+    <!-- AccountingEngine class interfaces -->
     <Member name='qlAccountingEngineMultiplePathValues' libraryClass='AccountingEngine'>
       <description>return multiple path values</description>
       <libraryFunction>multiplePathValues</libraryFunction>
@@ -2237,7 +2234,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Sequence Statistics object ID</description>
           </Parameter>
-          <Parameter name='paths' exampleValue ='1000'>
+          <Parameter name='paths' exampleValue ='8191'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of paths</description>
@@ -2250,6 +2247,7 @@
       </ReturnValue>
     </Member>
 
+    <!-- Discount bond ratios procedures -->
     <Procedure name='qlForwardsFromDiscountRatios'>
       <description>Returns the forward rates implied from discount bond ratios</description>
       <functionCategory>QuantLib</functionCategory>
@@ -2379,7 +2377,6 @@
       </ReturnValue>
     </Procedure>
 
-      
     <Procedure name='qlConstantMaturitySwapAnnuitiesFromDiscountRatios'>
       <description>Returns constant maturity swap annuities from discount ratios</description>
       <functionCategory>QuantLib</functionCategory>
