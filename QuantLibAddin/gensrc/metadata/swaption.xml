@@ -108,7 +108,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='price'>
+          <Parameter name='price' exampleValue ='0.2'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Price used to infer the implied volatility</description>

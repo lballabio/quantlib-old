@@ -24,7 +24,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='strike' libraryType='QuantLib::Rate'>
+          <Parameter name='strike' libraryType='QuantLib::Rate' exampleValue ='0.04 '>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>strike</description>
@@ -45,7 +45,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='strike' libraryType='QuantLib::Rate'>
+          <Parameter name='strike' libraryType='QuantLib::Rate' exampleValue ='0.04 '>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>strike</description>
@@ -97,12 +97,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+          <Parameter name='optionDate' libraryType='QuantLib::Date' exampleValue ='39415'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as date</description>
           </Parameter>
-          <Parameter name='volatilities' libraryType='QuantLib::Volatility'>
+          <Parameter name='volatility' libraryType='QuantLib::Volatility' exampleValue ='0.14'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>volatilities</description>
@@ -112,7 +112,7 @@
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='refDate' libraryType='QuantLib::Date'>
+          <Parameter name='refDate' libraryType='QuantLib::Date' exampleValue ='39135'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>ref date</description>
@@ -130,22 +130,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' libraryType='QuantLib::Date'>
+          <Parameter name='optionDate' libraryType='QuantLib::Date' exampleValue ='39415'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as Date</description>
           </Parameter>
-          <Parameter name='strikes' libraryType='QuantLib::Rate'>
+          <Parameter name='strikes' libraryType='QuantLib::Rate' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
           </Parameter>
-          <Parameter name='stdDevs' libToHandle='Quote'>
+          <Parameter name='stdDevs' libToHandle='Quote' exampleValue ='0.1, 0.2, 0.3, 0.4 '>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
           </Parameter>
-          <Parameter name='forward' libToHandle='Quote'>
+          <Parameter name='forward' libToHandle='Quote' exampleValue ='0.045'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>atm rate</description>
@@ -327,22 +327,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionTime' libraryType='QuantLib::Time'>
+          <Parameter name='optionTime' libraryType='QuantLib::Time' exampleValue ='1.0 '>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as time</description>
           </Parameter>
-          <Parameter name='strikes' libraryType='QuantLib::Rate'>
+          <Parameter name='strikes' libraryType='QuantLib::Rate' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
           </Parameter>
-          <Parameter name='stdDevs' libToHandle='Quote'>
+          <Parameter name='stdDevs' libToHandle=' Quote' exampleValue ='0.1, 0.2, 0.3, 0.4 '>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
           </Parameter>
-          <Parameter name='forward' libraryType='QuantLib::Rate'>
+          <Parameter name='forward' libraryType='QuantLib::Rate' exampleValue ='0.045 '>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>atm rate</description>
@@ -419,12 +419,12 @@
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as date</description>
           </Parameter>
-          <Parameter name='strikes' libraryType='QuantLib::Rate'>
+          <Parameter name='strikes' libraryType='QuantLib::Rate' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
           </Parameter>
-          <Parameter name='stdDevs' libToHandle='Quote'>
+          <Parameter name='stdDevs' libToHandle='Quote' exampleValue ='0.1, 0.2, 0.3, 0.4 '>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
