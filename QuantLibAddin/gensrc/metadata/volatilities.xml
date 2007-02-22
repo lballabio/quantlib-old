@@ -19,37 +19,37 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='strike'>
+          <Parameter name='strike' exampleValue ='0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='forward'>
+          <Parameter name='forward' exampleValue ='0.04'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying forward value</description>
           </Parameter>
-          <Parameter name='expTime'>
+          <Parameter name='expTime' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>expiry time (in years)</description>
           </Parameter>
-          <Parameter name='alpha'>
+          <Parameter name='alpha' exampleValue ='0.02'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha</description>
           </Parameter>
-          <Parameter name='beta'>
+          <Parameter name='beta' exampleValue ='0.6'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta</description>
           </Parameter>
-          <Parameter name='nu'>
+          <Parameter name='nu' exampleValue ='.02'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>nu</description>
           </Parameter>
-          <Parameter name='rho'>
+          <Parameter name='rho' exampleValue ='0.03'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>rho</description>
@@ -72,12 +72,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='settlementDate' libraryType='QuantLib::Date'>
+          <Parameter name='settlementDate' libraryType='QuantLib::Date' exampleValue ='0D'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement date</description>
           </Parameter>
-          <Parameter name='volatility'>
+          <Parameter name='volatility' exampleValue ='0.2'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>volatility</description>
@@ -98,17 +98,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='settlementDate' libraryType='QuantLib::Date'>
+          <Parameter name='settlementDate' libraryType='QuantLib::Date' exampleValue ='0D'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement date</description>
           </Parameter>
-          <Parameter name='dates' libraryType='QuantLib::Date'>
+          <Parameter name='dates' libraryType='QuantLib::Date' exampleValue ='3m, 1y, 5y'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>dates</description>
           </Parameter>
-          <Parameter name='strikes'>
+          <Parameter name='strikes' exampleValue ='0.03, 0.05, 0.10'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
