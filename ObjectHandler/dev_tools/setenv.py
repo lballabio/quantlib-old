@@ -12,11 +12,11 @@ import os
 PROJ_DIR='C:\\erik\\projects\\'
 
 BRANCH_VALUES = [
-    ('LOG4CXX_DIR', 'branch\\log4cxx-0.9.7b'),
-    ('GENSRC_DIR', 'branch\\gensrc-0.1.5'),
-    ('OBJECT_HANDLER_DIR', 'branch\\ObjectHandler-0.1.5'),
-    ('QUANTLIBADDIN_DIR', 'branch\\QuantLibAddin-0.3.14'),
-    ('QL_DIR', 'release\\QuantLib-0.3.14'),
+    ('LOG4CXX_DIR', 'trunk\\log4cxx'),
+    ('GENSRC_DIR', 'branch\\gensrc'),
+    ('OBJECT_HANDLER_DIR', 'branch\\ObjectHandler'),
+    ('QUANTLIBADDIN_DIR', 'branch\\QuantLibAddin'),
+    ('QL_DIR', 'branch\\QuantLib'),
     ]
 
 RELEASE_VALUES = [
