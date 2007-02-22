@@ -38,7 +38,7 @@ namespace QuantLibAddin {
         public:
         CapsStripper(const std::vector<QuantLib::Period>& tenors,
                      const std::vector<QuantLib::Rate>& strikes,
-                     const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volatilities,
+                     const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
                      const boost::shared_ptr<QuantLib::IborIndex>& index,
                      const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
                      const QuantLib::DayCounter& dayCounter,
@@ -48,7 +48,7 @@ namespace QuantLibAddin {
 
      CapsStripper(const std::vector<QuantLib::Period>& tenors,
                   const std::vector<QuantLib::Rate>& strikes,
-                  const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volatilities,
+                  const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
                   const boost::shared_ptr<QuantLib::IborIndex>& index,
                   const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
                   const QuantLib::DayCounter& dayCounter,

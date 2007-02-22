@@ -29,15 +29,23 @@ namespace QuantLibAddin {
    CmsMarket::CmsMarket(
         const std::vector<QuantLib::Period>& expiries,
         const std::vector< boost::shared_ptr<QuantLib::SwapIndex> >& swapIndices,
-        const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& bidAskSpreads,
+        const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& bidAskSpreads,
         const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldTermStructure,
         const std::vector< boost::shared_ptr<QuantLib::CmsCouponPricer> >& pricers) {
 
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(bidAskSpreads.size());
+        QuantLib::Size nbColumns  = bidAskSpreads.front().size();
+        for(QuantLib::Size i = 0; i<temp.size(); ++i){
+            temp[i].resize(nbColumns);
+            for (QuantLib::Size j = 0; j<nbColumns; ++j)
+                temp[i][j]=  bidAskSpreads[i][j];
+        }
+        
         libraryObject_ = boost::shared_ptr<QuantLib::CmsMarket>(
             new QuantLib::CmsMarket(
                             expiries,
                             swapIndices,
-                            bidAskSpreads,
+                            temp,
                             pricers,
                             yieldTermStructure));
         cmsMarket_ = libraryObject_->browse();

@@ -41,7 +41,7 @@ namespace QuantLibAddin {
         InterpolatedSmileSection(
               const QuantLib::Date& optionDate,
               const std::vector<QuantLib::Rate>& strikes,
-              const std::vector<QuantLib::Handle<QuantLib::Quote> >& stdDevs,
+              const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& stdDevs,
               const QuantLib::DayCounter& dc);
     };
 
@@ -50,7 +50,7 @@ namespace QuantLibAddin {
         SabrSmileSection(
             const QuantLib::Time expiry,
             const std::vector<QuantLib::Rate>& strikes,
-            const std::vector<QuantLib::Handle<QuantLib::Quote> >& stdDevs,
+            const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& stdDevs,
             QuantLib::Real forward, 
             QuantLib::Real alpha, 
             QuantLib::Real beta,
@@ -73,8 +73,8 @@ namespace QuantLibAddin {
         SabrInterpolatedSmileSection(
             const QuantLib::Date& optionDate,
             const std::vector<QuantLib::Rate>& strikes,
-            const std::vector<QuantLib::Handle<QuantLib::Quote> >& stdDevs,
-            QuantLib::Handle<QuantLib::Quote> forward, 
+            const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& stdDevs,
+            QuantLib::RelinkableHandle<QuantLib::Quote> forward, 
             QuantLib::Real alpha, 
             QuantLib::Real beta,
             QuantLib::Real nu,

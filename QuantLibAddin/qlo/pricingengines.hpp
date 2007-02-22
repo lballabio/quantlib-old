@@ -49,7 +49,7 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>&);
     private:
         boost::shared_ptr<QuantLib::SimpleQuote> quote_;
-        QuantLib::Handle<QuantLib::Quote> quoteHandle_;
+        QuantLib::RelinkableHandle<QuantLib::Quote> quoteHandle_;
     };
 
     class AnalyticCapFloorEngine : public PricingEngine {

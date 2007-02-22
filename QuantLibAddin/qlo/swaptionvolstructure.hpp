@@ -50,7 +50,7 @@ namespace QuantLibAddin {
         SwaptionVolatilityMatrix(const QuantLib::Calendar& calendar,
                                  const std::vector<QuantLib::Period>& optionTenors,
                                  const std::vector<QuantLib::Period>& tenors,
-                                 const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& vols,
+                                 const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& vols,
                                  const QuantLib::DayCounter& dayCounter,
                                  const QuantLib::BusinessDayConvention bdc);
         std::vector<long> locate(const QuantLib::Date& d,
@@ -68,7 +68,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Period>& optionTenors,
             const std::vector<QuantLib::Period>& swapTenors,
             const std::vector<QuantLib::Spread>& strikeSpreads,
-            const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
+            const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volSpreads,
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndexBase,
             bool vegaWeightedSmileFit);
     };
@@ -88,10 +88,10 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Period>& optionTenors,
             const std::vector<QuantLib::Period>& swapTenors,
             const std::vector<QuantLib::Spread>& strikeSpreads,
-            const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
+            const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volSpreads,
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndexBase,
             bool vegaWeightedSmileFit,
-            const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& parametersGuess,
+            const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& parametersGuess,
             const std::vector<bool>& isParameterFixed,
             bool isAtmCalibrated,
             const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,

@@ -35,11 +35,11 @@ namespace QuantLibAddin {
                 << typeid(this).name() << " - input object is null");
             handle_.linkTo(observable);
         }
-        QuantLib::Handle<T> getHandle() {
+        QuantLib::RelinkableHandle<T> getHandle() {
             return handle_;
         }
     private:
-        QuantLib::Handle<T> handle_;
+        QuantLib::RelinkableHandle<T> handle_;
     };
 
 }

@@ -297,7 +297,7 @@ namespace QuantLibAddin {
             handleYieldTermStructure_.linkTo(yieldTermStructure);
         }
     private:
-        QuantLib::Handle<QuantLib::YieldTermStructure> handleYieldTermStructure_;
+        QuantLib::RelinkableHandle<QuantLib::YieldTermStructure> handleYieldTermStructure_;
     };
     
     ///* *** Index *** */

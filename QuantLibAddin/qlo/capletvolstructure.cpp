@@ -36,7 +36,7 @@ namespace QuantLibAddin {
     CapsStripper::CapsStripper(
          const std::vector<QuantLib::Period>& tenors,
          const std::vector<QuantLib::Rate>& strikes,
-         const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& 
+         const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& 
          volatilities,
          const boost::shared_ptr<QuantLib::IborIndex>& index,
          const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
@@ -46,8 +46,15 @@ namespace QuantLibAddin {
          bool decoupledInterpolations)
     {
         std::vector<boost::shared_ptr<QuantLib::SmileSection> > dummySmileSections;
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
+        QuantLib::Size nbColumns  = volatilities.front().size();
+        for(QuantLib::Size i = 0; i<temp.size(); ++i){
+            temp[i].resize(nbColumns);
+            for (QuantLib::Size j = 0; j<nbColumns; ++j)
+                temp[i][j]=  volatilities[i][j];
+        }
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapsStripper(tenors, strikes, volatilities, 
+            QuantLib::CapsStripper(tenors, strikes, temp, 
             index, yieldTermStructure, dayCounter, impliedVolatilityAccuracy, 
                 maxEvaluations, dummySmileSections, true, 
                 decoupledInterpolations));
@@ -57,7 +64,7 @@ namespace QuantLibAddin {
  CapsStripper::CapsStripper(
       const std::vector<QuantLib::Period>& tenors,
       const std::vector<QuantLib::Rate>& strikes,
-      const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volatilities,
+      const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
       const boost::shared_ptr<QuantLib::IborIndex>& index,
       const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
       const QuantLib::DayCounter& dayCounter,
@@ -67,8 +74,15 @@ namespace QuantLibAddin {
         smileSectionInterfaces,
       bool decoupledInterpolation)
     {
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
+        QuantLib::Size nbColumns  = volatilities.front().size();
+        for(QuantLib::Size i = 0; i<temp.size(); ++i){
+            temp[i].resize(nbColumns);
+            for (QuantLib::Size j = 0; j<nbColumns; ++j)
+                temp[i][j]=  volatilities[i][j];
+        }
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapsStripper(tenors, strikes, volatilities, 
+            QuantLib::CapsStripper(tenors, strikes, temp, 
             index, yieldTermStructure, dayCounter, impliedVolatilityAccuracy, 
             maxEvaluations, smileSectionInterfaces, decoupledInterpolation));
     }
