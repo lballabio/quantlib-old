@@ -29,17 +29,17 @@ namespace ObjHandler {
 
     QuantLib::Matrix operToMatrix(const FP &fpVector);
 
-    //std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > 
+    //std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > > 
     //fpToMatrixHandle(const FP &fpVector);
 
     template <class qloClass, class qlClass>
-    std::vector<std::vector<QuantLib::Handle<qlClass> > > 
+    std::vector<std::vector<QuantLib::RelinkableHandle<qlClass> > > 
     operToMatrixHandle(const OPER &xMatrix) {
 
         if ((xMatrix.xltype & xltypeNil)
         ||  (xMatrix.xltype & xltypeMissing)
         || ((xMatrix.xltype & xltypeErr) && (xMatrix.val.err == xlerrNA)))
-            return std::vector<std::vector<QuantLib::Handle<qlClass> > >();
+            return std::vector<std::vector<QuantLib::RelinkableHandle<qlClass> > >();
         OH_REQUIRE(!(xMatrix.xltype & xltypeErr), 
             "input value has type=error");
 
@@ -56,16 +56,16 @@ namespace ObjHandler {
                 needToFree = true;
             }
 
-            std::vector<std::vector<QuantLib::Handle<qlClass> > > ret;
+            std::vector<std::vector<QuantLib::RelinkableHandle<qlClass> > > ret;
             ret.reserve(xMulti->val.array.rows);
             for (int i=0; i<xMulti->val.array.rows; ++i) {
-                std::vector<QuantLib::Handle<qlClass> > row;
+                std::vector<QuantLib::RelinkableHandle<qlClass> > row;
                 row.reserve(xMulti->val.array.columns);
                 for (int j=0; j<xMulti->val.array.columns; ++j) {
                     std::string id;
                     operToScalar(xMulti->val.array.lparray[i * xMulti->val.array.columns + j], id);
                     OH_GET_OBJECT(obj, id, ObjHandler::Object)
-                    QuantLib::Handle<qlClass> handle =
+                    QuantLib::RelinkableHandle<qlClass> handle =
                         ObjHandler::CoerceHandle<qloClass, qlClass>()(obj);
                     row.push_back(handle);
                 }

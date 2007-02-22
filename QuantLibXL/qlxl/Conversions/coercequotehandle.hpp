@@ -28,11 +28,11 @@ namespace ObjHandler {
 
     bool operToQuoteHandle(
             const OPER &in,
-            QuantLib::Handle<QuantLib::Quote> &out);
+            QuantLib::RelinkableHandle<QuantLib::Quote> &out);
 
     class CoerceQuoteHandle : public ObjHandler::Coerce<
             OPER, 
-            QuantLib::Handle<QuantLib::Quote> > {
+            QuantLib::RelinkableHandle<QuantLib::Quote> > {
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 operToQuoteHandle,

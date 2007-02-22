@@ -27,14 +27,14 @@ namespace ObjHandler {
         return m;
     }
 
-    //std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >
+    //std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >
     //fpToMatrixHandle(const FP &fpVector) {
-    //    std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > ret;
+    //    std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > > ret;
     //    for (int i=0; i<fpVector.rows; ++i) {
-    //        std::vector<QuantLib::Handle<QuantLib::Quote> > row;
+    //        std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > row;
     //        for (int j=0; j<fpVector.columns; ++j) {
     //            row.push_back(
-    //                QuantLib::Handle<QuantLib::Quote>(
+    //                QuantLib::RelinkableHandle<QuantLib::Quote>(
     //                boost::shared_ptr<QuantLib::Quote>(
     //                new QuantLib::SimpleQuote(
     //                fpVector.array[i*fpVector.columns+j]))));

@@ -28,7 +28,7 @@ namespace ObjHandler {
 
     bool operToQuoteHandle(
             const OPER &in,
-            QuantLib::Handle<QuantLib::Quote> &out) {
+            QuantLib::RelinkableHandle<QuantLib::Quote> &out) {
 
         OH_REQUIRE(!(in.xltype & xltypeErr), 
             "input value has type=error");

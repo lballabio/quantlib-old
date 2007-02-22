@@ -195,19 +195,19 @@ std::vector<std::vector<boost::any> > returnValue = ''',
             *%(name)s);\n''',
 
 'code19d' : '''\
-        std::vector<QuantLib::Handle<QuantLib::Quote> > %(name)sLibObj =
-            ObjHandler::CoerceVector<QuantLib::Handle<QuantLib::Quote>, ObjHandler::CoerceQuoteHandle>(*%(name)s);\n''',
+        std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > %(name)sLibObj =
+            ObjHandler::CoerceVector<QuantLib::RelinkableHandle<QuantLib::Quote>, ObjHandler::CoerceQuoteHandle>(*%(name)s);\n''',
 
 'code20a' : '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjHandler::Object)
-        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
+        %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
             ObjHandler::CoerceHandle<
                 %(namespaceObjects)s::%(libToHandle)s,
                 %(namespaceLibrary)s::%(libToHandle)s>()(
                     %(name)sTemp);\n''',
 
 'code20b' : '''\
-        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
+        %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
             ObjHandler::CoerceQuoteHandle()(*%(name)s);\n''',
 
 'code21a' : '''\
@@ -302,11 +302,11 @@ std::vector<std::vector<boost::any> > returnValue = ''',
             %(name)sCpp.end()''',
 
 #'code70' : '''\
-#        std::vector<std::vector<%(namespaceLibrary)s::Handle<%(namespaceLibrary)s::Quote> > > %(name)sLibObj =
+#        std::vector<std::vector<%(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::Quote> > > %(name)sLibObj =
 #            ObjHandler::fpToMatrixHandle(*%(name)s);\n''',
 
 'code70' : '''\
-        std::vector<std::vector<%(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> > > %(name)sLibObj =
+        std::vector<std::vector<%(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(libToHandle)s> > > %(name)sLibObj =
             ObjHandler::operToMatrixHandle<%(namespaceObjects)s::%(libToHandle)s, %(namespaceLibrary)s::%(libToHandle)s>(*%(name)s);\n''',
 
 ##########################################################################
@@ -415,20 +415,20 @@ std::vector<std::vector<boost::any> > returnValue = ''',
         return returnValueCalc;\n''',
 
 #'code62' : '''\
-#        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
+#        %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
 #            ObjHandler::libToHandle<%(namespaceLibrary)s::%(libToHandle)s, %(namespaceObjects)s::%(libToHandle)s>(
 #            %(name)sCpp);\n''',
 
 'code62a' : '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjHandler::Object)
-        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
+        %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
             ObjHandler::CoerceHandle<
                 %(namespaceObjects)s::%(libToHandle)s,
                 %(namespaceLibrary)s::%(libToHandle)s>()(
                     %(name)sTemp);\n''',
 
 #'code62b' : '''\
-#        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
+#        %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(libToHandle)s> %(name)sLibObj =
 #            ObjHandler::CoerceQuoteHandle()(*%(name)sCpp);\n''',
 
 'code63' : '''\
