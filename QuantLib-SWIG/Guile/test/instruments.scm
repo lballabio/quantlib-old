@@ -26,17 +26,17 @@
  (let ((flag #f))
    (let* ((me1 (new-SimpleQuote 0.0))
           (me2 (new-SimpleQuote 0.0))
-          (h (new-QuoteHandle me1))
+          (h (new-RelinkableQuoteHandle me1))
           (s (new-Stock h))
           (obs (new-Observer (lambda () (set! flag #t)))))
      (let ((temp (Instrument->Observable s)))
        (Observer-register-with obs temp))
-     (and 
+     (and
       (begin (SimpleQuote-value-set! me1 3.14)
              (check flag
                     "Observer was not notified of instrument change"))
       (begin (set! flag #f)
-             (QuoteHandle-link-to! h me2)
+             (RelinkableQuoteHandle-link-to! h me2)
              (check flag
                     "Observer was not notified of instrument change"))
       (begin (set! flag #f)

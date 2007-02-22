@@ -34,7 +34,7 @@
   (let ((flag #f))
     (let* ((me1 (new-SimpleQuote 0.0))
            (me2 (new-SimpleQuote 0.0))
-           (h (new-QuoteHandle me1))
+           (h (new-RelinkableQuoteHandle me1))
            (obs (new-Observer (lambda () (set! flag #t)))))
       (let ((temp (QuoteHandle->Observable h)))
         (Observer-register-with obs temp))
@@ -42,14 +42,14 @@
       (if (not flag)
           (error "Observer was not notified of market element change"))
       (set! flag #f)
-      (QuoteHandle-link-to! h me2)
+      (RelinkableQuoteHandle-link-to! h me2)
       (if (not flag)
           (error "Observer was not notified of market element change")))))
 
 (define MarketElement-suite
-  (make-test-suite 
+  (make-test-suite
    "Market element tests"
-   (make-test-case/msg "Testing observability of market elements" 
+   (make-test-case/msg "Testing observability of market elements"
                        (Market-element-observability-test))
    (make-test-case/msg "Testing observability of market element handles"
                        (Market-element-handle-observability-test))))

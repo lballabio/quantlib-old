@@ -83,9 +83,8 @@ settlementDate = Date.new(19,February,2002);
 
 # flat yield term structure impling 1x5 swap at 5%
 rate = QuoteHandle.new(SimpleQuote.new(0.04875825))
-termStructure = YieldTermStructureHandle.new
-termStructure.linkTo!(FlatForward.new(settlementDate,rate,Actual365Fixed.new))
-
+termStructure = YieldTermStructureHandle.new(
+                      FlatForward.new(settlementDate,rate,Actual365Fixed.new))
 
 # define the ATM/OTM/ITM swaps
 fixedLegFrequency = Annual

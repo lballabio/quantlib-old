@@ -63,7 +63,7 @@
                               settlement
                               (append deposits swaps)
                               day-counter)))
-        (new-YieldTermStructureHandle term-structure))))
+        (new-RelinkableYieldTermStructureHandle term-structure))))
   ; setup
   (let ((term-structure (make-test-structure-handle)))
     (cond ((equal? tag 'implied-obs)
@@ -84,8 +84,9 @@
                (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
-                 (YieldTermStructureHandle-link-to! term-structure
-                                                    new-term-structure))
+                 (RelinkableYieldTermStructureHandle-link-to!
+                  term-structure
+                  new-term-structure))
                (check flag
                       "Observer was not notified of term structure change"))))
           ((equal? tag 'fw-spreaded-obs)
@@ -106,8 +107,9 @@
                (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
-                 (YieldTermStructureHandle-link-to! term-structure
-                                                    new-term-structure))
+                 (RelinkableYieldTermStructureHandle-link-to!
+                  term-structure
+                  new-term-structure))
                (and
                 (check flag
                        "Observer was not notified of term structure change")
@@ -134,8 +136,9 @@
                (let ((new-term-structure (new-FlatForward settlement
                                                           0.05
                                                           day-counter)))
-                 (YieldTermStructureHandle-link-to! term-structure
-                                                    new-term-structure))
+                 (RelinkableYieldTermStructureHandle-link-to!
+                  term-structure
+                  new-term-structure))
                (and
                 (check flag
                        "Observer was not notified of term structure change")

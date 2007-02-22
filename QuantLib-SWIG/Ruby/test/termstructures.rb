@@ -66,7 +66,7 @@ class TermStructureTest < Test::Unit::TestCase
   end
   def testImpliedObs
     flag = false
-    h = YieldTermStructureHandle.new
+    h = RelinkableYieldTermStructureHandle.new
     settlement = @termStructure.referenceDate
     new_settlement = @calendar.advance(settlement,3,Years)
     implied = ImpliedTermStructure.new(h,new_settlement)
@@ -81,7 +81,7 @@ class TermStructureTest < Test::Unit::TestCase
     flag = false
     me = SimpleQuote.new(0.01)
     mh = QuoteHandle.new(me)
-    h = YieldTermStructureHandle.new
+    h = RelinkableYieldTermStructureHandle.new
     spreaded = ForwardSpreadedTermStructure.new(h,mh)
     obs = Observer.new { flag = true }
     obs.registerWith(spreaded)
@@ -99,7 +99,7 @@ class TermStructureTest < Test::Unit::TestCase
     flag = false
     me = SimpleQuote.new(0.01)
     mh = QuoteHandle.new(me)
-    h = YieldTermStructureHandle.new
+    h = RelinkableYieldTermStructureHandle.new
     spreaded = ZeroSpreadedTermStructure.new(h,mh)
     obs = Observer.new { flag = true }
     obs.registerWith(spreaded)

@@ -25,7 +25,7 @@ class InstrumentTest < Test::Unit::TestCase
   def testStock
     flag = false
     me1 = QuantLib::SimpleQuote.new(0.0)
-    h = QuantLib::QuoteHandle.new(me1)
+    h = QuantLib::RelinkableQuoteHandle.new(me1)
     s = QuantLib::Stock.new(h)
     obs = QuantLib::Observer.new { flag = true }
     obs.registerWith(s)

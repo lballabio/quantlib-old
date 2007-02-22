@@ -44,9 +44,10 @@ class CapVolatilityStructure {
 %template(CapVolatilityStructure) boost::shared_ptr<CapVolatilityStructure>;
 IsObservable(boost::shared_ptr<CapVolatilityStructure>);
 
-%template() Handle<CapVolatilityStructure>;
-%template(CapVolatilityStructureHandle) RelinkableHandle<CapVolatilityStructure>;
-IsObservable(RelinkableHandle<CapVolatilityStructure>);
+%template(CapVolatilityStructureHandle) Handle<CapVolatilityStructure>;
+IsObservable(Handle<CapVolatilityStructure>);
+%template(RelinkableCapVolatilityStructureHandle)
+RelinkableHandle<CapVolatilityStructure>;
 
 %{
 using QuantLib::CapVolatilityVector;

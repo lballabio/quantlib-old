@@ -41,7 +41,7 @@ class MarketElementHandleTest < Test::Unit::TestCase
   def testObservability
     flag = false
     me1 = QuantLib::SimpleQuote.new(0.0)
-    h = QuantLib::QuoteHandle.new(me1)
+    h = QuantLib::RelinkableQuoteHandle.new(me1)
     obs = QuantLib::Observer.new { flag = true }
     obs.registerWith(h)
     me1.value = 3.14

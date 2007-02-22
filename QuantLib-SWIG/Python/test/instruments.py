@@ -28,7 +28,7 @@ class InstrumentTest(unittest.TestCase):
         global flag
         flag = None
         me1 = QuantLib.SimpleQuote(0.0)
-        h = QuantLib.QuoteHandle(me1)
+        h = QuantLib.RelinkableQuoteHandle(me1)
         s = QuantLib.Stock(h)
 
         obs = QuantLib.Observer(raiseFlag)
@@ -52,7 +52,7 @@ class InstrumentTest(unittest.TestCase):
         s.unfreeze()
         if not flag:
             self.fail("Observer was not notified of instrument change")
-        
+
 if __name__ == '__main__':
     print 'testing QuantLib', QuantLib.__version__
     suite = unittest.TestSuite()

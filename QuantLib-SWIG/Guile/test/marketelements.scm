@@ -37,7 +37,7 @@
  (let ((flag #f))
    (let* ((me1 (new-SimpleQuote 0.0))
           (me2 (new-SimpleQuote 0.0))
-          (h (new-QuoteHandle me1))
+          (h (new-RelinkableQuoteHandle me1))
           (obs (new-Observer (lambda () (set! flag #t)))))
      (let ((temp (QuoteHandle->Observable h)))
        (Observer-register-with obs temp))
@@ -46,7 +46,7 @@
              (check flag
                     "Observer was not notified of market element change"))
       (begin (set! flag #f)
-             (QuoteHandle-link-to! h me2)
+             (RelinkableQuoteHandle-link-to! h me2)
              (check flag
                     "Observer was not notified of market element change"))))))
 

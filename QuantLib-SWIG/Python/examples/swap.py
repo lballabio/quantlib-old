@@ -98,8 +98,8 @@ swapHelpers = [ SwapRateHelper(QuoteHandle(swaps[(n,unit)]),
 
 # term structure handles
 
-discountTermStructure = YieldTermStructureHandle()
-forecastTermStructure = YieldTermStructureHandle()
+discountTermStructure = RelinkableYieldTermStructureHandle()
+forecastTermStructure = RelinkableYieldTermStructureHandle()
 
 # term-structure construction
 

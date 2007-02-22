@@ -80,11 +80,14 @@ class Handle {
 
 template <class T>
 class RelinkableHandle : public Handle<T> {
-      public:
-      RelinkableHandle(const boost::shared_ptr<T>& =
-      boost::shared_ptr<T>(), bool registerAsObserver = true);
-      void linkTo(const boost::shared_ptr<T>&,
-      bool registerAsObserver = true);
+    #if defined(SWIGRUBY)
+    %rename("linkTo!")  linkTo;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("link-to!") linkTo;
+    #endif
+  public:
+    RelinkableHandle(const boost::shared_ptr<T>& = boost::shared_ptr<T>());
+    void linkTo(const boost::shared_ptr<T>&);
 };
 
 %define swigr_list_converter(ContainerRType,

@@ -112,12 +112,9 @@
 
 ; flat yield term structure impling 1x5 swap at 5%
 (define rate (new-QuoteHandle (new-SimpleQuote 0.04875825)))
-(define term-structure (new-YieldTermStructureHandle))
-(YieldTermStructureHandle-link-to! term-structure
-                                   (new-FlatForward
-                                    settlement-date rate
-                                    (new-Actual365Fixed)))
-
+(define term-structure (new-YieldTermStructureHandle
+                        (new-FlatForward settlement-date rate
+                                         (new-Actual365Fixed))))
 
 ; define the ATM/OTM/ITM swaps
 

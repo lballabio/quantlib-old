@@ -70,9 +70,10 @@ class YieldTermStructure : public Extrapolator {
 %template(YieldTermStructure) boost::shared_ptr<YieldTermStructure>;
 IsObservable(boost::shared_ptr<YieldTermStructure>);
 
-%template() Handle<YieldTermStructure>;
-%template(YieldTermStructureHandle) RelinkableHandle<YieldTermStructure>;
-IsObservable(RelinkableHandle<YieldTermStructure>);
+%template(YieldTermStructureHandle) Handle<YieldTermStructure>;
+IsObservable(Handle<YieldTermStructure>);
+%template(RelinkableYieldTermStructureHandle)
+RelinkableHandle<YieldTermStructure>;
 
 
 // implied term structure

@@ -90,8 +90,8 @@ swapHelpers = swaps.map {|(n,unit),v|
 
 # term structure handles
 
-discountTermStructure = YieldTermStructureHandle.new
-forecastTermStructure = YieldTermStructureHandle.new
+discountTermStructure = RelinkableYieldTermStructureHandle.new
+forecastTermStructure = RelinkableYieldTermStructureHandle.new
 
 # term-structure construction
 

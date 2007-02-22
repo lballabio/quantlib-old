@@ -77,9 +77,10 @@ class BlackVolTermStructure : public Extrapolator {
 %template(BlackVolTermStructure) boost::shared_ptr<BlackVolTermStructure>;
 IsObservable(boost::shared_ptr<BlackVolTermStructure>);
 
-%template() Handle<BlackVolTermStructure>;
-%template(BlackVolTermStructureHandle) RelinkableHandle<BlackVolTermStructure>;
-IsObservable(RelinkableHandle<BlackVolTermStructure>);
+%template(BlackVolTermStructureHandle) Handle<BlackVolTermStructure>;
+IsObservable(Handle<BlackVolTermStructure>);
+%template(RelinkableBlackVolTermStructureHandle)
+RelinkableHandle<BlackVolTermStructure>;
 
 
 %ignore LocalVolTermStructure;
@@ -110,9 +111,10 @@ class LocalVolTermStructure : public Extrapolator {
 %template(LocalVolTermStructure) boost::shared_ptr<LocalVolTermStructure>;
 IsObservable(boost::shared_ptr<LocalVolTermStructure>);
 
-%template() Handle<LocalVolTermStructure>;
-%template(LocalVolTermStructureHandle) RelinkableHandle<LocalVolTermStructure>;
+%template(LocalVolTermStructureHandle) Handle<LocalVolTermStructure>;
 IsObservable(Handle<LocalVolTermStructure>);
+%template(RelinkableLocalVolTermStructureHandle)
+RelinkableHandle<LocalVolTermStructure>;
 
 
 %ignore CapletVolatilityStructure;
@@ -147,10 +149,10 @@ class CapletVolatilityStructure : public Extrapolator {
 %template(CapletVolatilityStructure) boost::shared_ptr<CapletVolatilityStructure>;
 IsObservable(boost::shared_ptr<CapletVolatilityStructure>);
 
-%template() Handle<CapletVolatilityStructure>;
-%template(CapletVolatilityStructureHandle) 
+%template(CapletVolatilityStructureHandle) Handle<CapletVolatilityStructure>;
+IsObservable(Handle<CapletVolatilityStructure>);
+%template(RelinkableCapletVolatilityStructureHandle)
 RelinkableHandle<CapletVolatilityStructure>;
-IsObservable(RelinkableHandle<CapletVolatilityStructure>);
 
 
 
@@ -193,10 +195,11 @@ class SwaptionVolatilityStructure : public Extrapolator {
     boost::shared_ptr<SwaptionVolatilityStructure>;
 IsObservable(boost::shared_ptr<SwaptionVolatilityStructure>);
 
-%template() Handle<SwaptionVolatilityStructure>;
 %template(SwaptionVolatilityStructureHandle)
-    RelinkableHandle<SwaptionVolatilityStructure>;
-IsObservable(RelinkableHandle<SwaptionVolatilityStructure>);
+Handle<SwaptionVolatilityStructure>;
+IsObservable(Handle<SwaptionVolatilityStructure>);
+%template(RelinkableSwaptionVolatilityStructureHandle)
+RelinkableHandle<SwaptionVolatilityStructure>;
 
 
 

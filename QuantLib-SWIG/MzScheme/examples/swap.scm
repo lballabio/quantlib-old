@@ -141,8 +141,8 @@
 
 ; term structure handles
 
-(define discount-term-structure (new-YieldTermStructureHandle))
-(define forecast-term-structure (new-YieldTermStructureHandle))
+(define discount-term-structure (new-RelinkableYieldTermStructureHandle))
+(define forecast-term-structure (new-RelinkableYieldTermStructureHandle))
 
 ; term-structure construction
 
@@ -252,16 +252,16 @@
 (display header) (newline)
 (rule)
 
-(YieldTermStructureHandle-link-to! discount-term-structure
-                                   depo-futures-swap-curve)
-(YieldTermStructureHandle-link-to! forecast-term-structure
-                                   depo-futures-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! discount-term-structure
+                                             depo-futures-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! forecast-term-structure
+                                             depo-futures-swap-curve)
 (report spot "depo-fut-swap")
 
-(YieldTermStructureHandle-link-to! discount-term-structure
-                                   depo-fra-swap-curve)
-(YieldTermStructureHandle-link-to! forecast-term-structure
-                                   depo-fra-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! discount-term-structure
+                                             depo-fra-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! forecast-term-structure
+                                             depo-fra-swap-curve)
 (report spot "depo-fra-swap")
 
 (rule)
@@ -273,16 +273,16 @@
                  (format-rate fixed-rate 2)))
 (rule)
 
-(YieldTermStructureHandle-link-to! discount-term-structure
-                                   depo-futures-swap-curve)
-(YieldTermStructureHandle-link-to! forecast-term-structure
-                                   depo-futures-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! discount-term-structure
+                                             depo-futures-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! forecast-term-structure
+                                             depo-futures-swap-curve)
 (report forward "depo-fut-swap")
 
-(YieldTermStructureHandle-link-to! discount-term-structure
-                                   depo-fra-swap-curve)
-(YieldTermStructureHandle-link-to! forecast-term-structure
-                                   depo-fra-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! discount-term-structure
+                                             depo-fra-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! forecast-term-structure
+                                             depo-fra-swap-curve)
 (report forward "depo-fra-swap")
 
 ; modify the 5-years swap rate and reprice
@@ -300,16 +300,16 @@
 (display header) (newline)
 (rule)
 
-(YieldTermStructureHandle-link-to! discount-term-structure
-                                   depo-futures-swap-curve)
-(YieldTermStructureHandle-link-to! forecast-term-structure
-                                   depo-futures-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! discount-term-structure
+                                             depo-futures-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! forecast-term-structure
+                                             depo-futures-swap-curve)
 (report spot "depo-fut-swap")
 
-(YieldTermStructureHandle-link-to! discount-term-structure
-                                   depo-fra-swap-curve)
-(YieldTermStructureHandle-link-to! forecast-term-structure
-                                   depo-fra-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! discount-term-structure
+                                             depo-fra-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! forecast-term-structure
+                                             depo-fra-swap-curve)
 (report spot "depo-fra-swap")
 
 (rule)
@@ -319,15 +319,15 @@
                  (format-rate fixed-rate 2)))
 (rule)
 
-(YieldTermStructureHandle-link-to! discount-term-structure
-                                   depo-futures-swap-curve)
-(YieldTermStructureHandle-link-to! forecast-term-structure
-                                   depo-futures-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! discount-term-structure
+                                             depo-futures-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! forecast-term-structure
+                                             depo-futures-swap-curve)
 (report forward "depo-fut-swap")
 
-(YieldTermStructureHandle-link-to! discount-term-structure
-                                   depo-fra-swap-curve)
-(YieldTermStructureHandle-link-to! forecast-term-structure
-                                   depo-fra-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! discount-term-structure
+                                             depo-fra-swap-curve)
+(RelinkableYieldTermStructureHandle-link-to! forecast-term-structure
+                                             depo-fra-swap-curve)
 (report forward "depo-fra-swap")
 

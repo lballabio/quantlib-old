@@ -38,7 +38,7 @@ class MarketElementTest(unittest.TestCase):
         global flag
         flag = None
         me1 = QuantLib.SimpleQuote(0.0)
-        h = QuantLib.QuoteHandle(me1)
+        h = QuantLib.RelinkableQuoteHandle(me1)
         obs = QuantLib.Observer(raiseFlag)
         obs.registerWith(h)
         me1.setValue(3.14)

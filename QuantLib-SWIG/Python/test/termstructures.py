@@ -60,7 +60,7 @@ class TermStructureTest(unittest.TestCase):
         "Testing observability of implied term structure"
         global flag
         flag = None
-        h = YieldTermStructureHandle()
+        h = RelinkableYieldTermStructureHandle()
         settlement = self.termStructure.referenceDate()
         new_settlement = self.calendar.advance(settlement,3,Years)
         implied = ImpliedTermStructure(h,new_settlement)
@@ -75,7 +75,7 @@ class TermStructureTest(unittest.TestCase):
         flag = None
         me = SimpleQuote(0.01)
         mh = QuoteHandle(me)
-        h = YieldTermStructureHandle()
+        h = RelinkableYieldTermStructureHandle()
         spreaded = ForwardSpreadedTermStructure(h,mh)
         obs = Observer(raiseFlag)
         obs.registerWith(spreaded)
@@ -92,7 +92,7 @@ class TermStructureTest(unittest.TestCase):
         flag = None
         me = SimpleQuote(0.01)
         mh = QuoteHandle(me)
-        h = YieldTermStructureHandle()
+        h = RelinkableYieldTermStructureHandle()
         spreaded = ZeroSpreadedTermStructure(h,mh)
         obs = Observer(raiseFlag)
         obs.registerWith(spreaded)
