@@ -52,14 +52,15 @@ Nando
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 
 K
-- EurliborSwapFixA: problem with missing fixings for some maturities
+- IN PROGRESS EurliborSwapFixA: problem with missing fixings for some maturities
+- IN PROGRESS foglio di clerici (Drafts\QuickCapPricer.xls)
 - SA applied to cms book
-- foglio di clerici (Drafts\QuickCapPricer.xls)
+- review of .xls used in Eods
 - foglio di clerici (interpolazione)
 - multiLegSwap.xls: move from Drafts to IRDerivatives
 - remove action atmVolatility from Launcher
 - standardizzare il nome delle quotes dei param di calibrazione
-- demo per HelpDesk e ChangeMan -> mar 27 feb?
+- demo per HelpDesk e ChangeMan
 Pending:
 - DONE test abcd (swap tenor) with new optimization code
 - DONE test sensitivity of IRS_CMS_MxBook_30Y.xls to atm and smile vols
