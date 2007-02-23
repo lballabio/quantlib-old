@@ -54,11 +54,12 @@ Nando
 K
 - IN PROGRESS foglio di clerici (Drafts\QuickCapPricer.xls)
 - SA applied to cms book
-- review of .xls used in Eods
+- create new .xls with NPVs of 4 cms books
 - foglio di clerici (interpolazione)
 - multiLegSwap.xls: move from Drafts to IRDerivatives
 - remove action atmVolatility from Launcher
 Pending:
+- DONE review of .xls used in Eods
 - DONE standardizzare il nome delle quotes dei param di calibrazione
 - DONE demo per HelpDesk e ChangeMan
 - DONE EurliborSwapFixA problem with missing fixings for some maturities
