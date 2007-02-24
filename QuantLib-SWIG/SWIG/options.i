@@ -187,6 +187,90 @@ class EuropeanOptionPtr : public VanillaOptionPtr {
     }
 };
 
+// QuantoVanillaOption
+
+%{
+using QuantLib::QuantoVanillaOption;
+typedef boost::shared_ptr<Instrument> QuantoVanillaOptionPtr;
+%}
+
+%rename(QuantoVanillaOption) QuantoVanillaOptionPtr;
+class QuantoVanillaOptionPtr : public VanillaOptionPtr {
+  public:
+    %extend {
+        QuantoVanillaOptionPtr(
+		const Handle<YieldTermStructure>& foreignRiskFreeTS,
+                const Handle<BlackVolTermStructure>& exchRateVolTS,
+                const Handle<Quote>& correlation,
+                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<Payoff>& payoff,
+                const boost::shared_ptr<Exercise>& exercise,
+                const boost::shared_ptr<PricingEngine>& engine
+                   = boost::shared_ptr<PricingEngine>()) {
+            boost::shared_ptr<StrikedTypePayoff> stPayoff =
+                 boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
+            QL_REQUIRE(stPayoff, "wrong payoff given");
+            return new QuantoVanillaOptionPtr(
+		 new QuantoVanillaOption(foreignRiskFreeTS,
+					 exchRateVolTS,
+					 correlation,
+					 process,
+					 stPayoff,
+					 exercise,
+					 engine));
+        }
+	Real qvega() {
+	  return 
+	    boost::dynamic_pointer_cast<QuantoVanillaOption>(*self)->qvega();
+	}
+	Real qrho() {
+	  return 
+	    boost::dynamic_pointer_cast<QuantoVanillaOption>(*self)->qrho();
+	}
+	Real qlambda() {
+	  return 
+	    boost::dynamic_pointer_cast<QuantoVanillaOption>(*self)->qlambda();
+	}
+    }
+};
+
+%{
+using QuantLib::QuantoForwardVanillaOption;
+typedef boost::shared_ptr<Instrument> QuantoForwardVanillaOptionPtr;
+%}
+
+%rename(QuantoForwardVanillaOption) QuantoForwardVanillaOptionPtr;
+class QuantoForwardVanillaOptionPtr : public QuantoVanillaOptionPtr {
+  public:
+    %extend {
+        QuantoForwardVanillaOptionPtr(
+		const Handle<YieldTermStructure>& foreignRiskFreeTS,
+                const Handle<BlackVolTermStructure>& exchRateVolTS,
+                const Handle<Quote>& correlation,
+		Real moneyness,
+		Date resetDate,
+                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<Payoff>& payoff,
+                const boost::shared_ptr<Exercise>& exercise,
+                const boost::shared_ptr<PricingEngine>& engine
+                   = boost::shared_ptr<PricingEngine>()) {
+            boost::shared_ptr<StrikedTypePayoff> stPayoff =
+                 boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
+            QL_REQUIRE(stPayoff, "wrong payoff given");
+            return new QuantoForwardVanillaOptionPtr(
+		 new QuantoForwardVanillaOption(foreignRiskFreeTS,
+						exchRateVolTS,
+						correlation,
+						moneyness,
+						resetDate,
+						process,
+						stPayoff,
+						exercise,
+						engine));
+        }
+    }
+};
+
 
 // European engines
 

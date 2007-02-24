@@ -95,4 +95,34 @@ class StockPtr : public boost::shared_ptr<Instrument> {
 };
 
 
+%{
+using QuantLib::CompositeInstrument;
+typedef boost::shared_ptr<Instrument> CompositeInstrumentPtr;
+%}
+
+%rename(CompositeInstrument) CompositeInstrumentPtr;
+class CompositeInstrumentPtr : public boost::shared_ptr<Instrument> {
+  public:
+    %extend {
+        CompositeInstrumentPtr() {
+	        return new CompositeInstrumentPtr(new CompositeInstrument);
+	}
+        void add(const boost::shared_ptr<Instrument>& instrument,
+                 Real multiplier = 1.0) {
+	  boost::dynamic_pointer_cast<CompositeInstrument>(*self)->
+	    add(instrument, multiplier);
+	}
+        void subtract(const boost::shared_ptr<Instrument>& instrument,
+                 Real multiplier = 1.0) {
+	  boost::dynamic_pointer_cast<CompositeInstrument>(*self)->
+	    subtract(instrument, multiplier);
+	}
+        bool isExpired() const {
+	  return boost::dynamic_pointer_cast<CompositeInstrument>(*self)->
+	    isExpired();
+	}
+    }
+};
+
+
 #endif
