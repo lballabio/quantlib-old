@@ -94,6 +94,7 @@ ans
 
 %{
 using QuantLib::VanillaOption;
+using QuantLib::ForwardVanillaOption;
 typedef boost::shared_ptr<Instrument> VanillaOptionPtr;
 %}
 
@@ -183,6 +184,39 @@ class EuropeanOptionPtr : public VanillaOptionPtr {
             QL_REQUIRE(stPayoff, "wrong payoff given");
             return new EuropeanOptionPtr(
                         new EuropeanOption(process,stPayoff,exercise,engine));
+        }
+    }
+};
+
+// ForwardVanillaOption
+
+%{
+using QuantLib::ForwardVanillaOption;
+typedef boost::shared_ptr<Instrument> ForwardVanillaOptionPtr;
+%}
+
+%rename(ForwardVanillaOption) ForwardVanillaOptionPtr;
+class ForwardVanillaOptionPtr : public VanillaOptionPtr {
+  public:
+    %extend {
+        ForwardVanillaOptionPtr(
+				Real moneyness,
+				Date resetDate,
+                const boost::shared_ptr<StochasticProcess>& process,
+                const boost::shared_ptr<Payoff>& payoff,
+                const boost::shared_ptr<Exercise>& exercise,
+                const boost::shared_ptr<PricingEngine>& engine
+                   = boost::shared_ptr<PricingEngine>()) {
+            boost::shared_ptr<StrikedTypePayoff> stPayoff =
+                 boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
+            QL_REQUIRE(stPayoff, "wrong payoff given");
+            return new ForwardVanillaOptionPtr(
+					      new ForwardVanillaOption(moneyness,
+								      resetDate,
+								      process,
+								      stPayoff,
+								      exercise,
+								      engine));
         }
     }
 };
@@ -781,5 +815,59 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
     }
 };
 
+%{
+using QuantLib::QuantoEngine;
+using QuantLib::ForwardEngine;
+typedef boost::shared_ptr<PricingEngine> ForwardVanillaEnginePtr;
+typedef boost::shared_ptr<PricingEngine> QuantoVanillaEnginePtr;
+typedef boost::shared_ptr<PricingEngine> QuantoForwardVanillaEnginePtr;
+%}
+
+
+%rename(ForwardVanillaEngine) ForwardVanillaEnginePtr;
+
+class ForwardVanillaEnginePtr: public boost::shared_ptr<PricingEngine> {
+public:
+  %extend {
+  ForwardVanillaEnginePtr(boost::shared_ptr<PricingEngine> engine) {
+    boost::shared_ptr<VanillaOption::engine> uengine =
+      boost::dynamic_pointer_cast<VanillaOption::engine>(engine);
+    return new
+      ForwardVanillaEnginePtr(new ForwardVanillaOption::engine(uengine));
+  }
+  }
+};
+
+
+%rename(QuantoVanillaEngine) QuantoVanillaEnginePtr;
+
+class QuantoVanillaEnginePtr: public boost::shared_ptr<PricingEngine> {
+public:
+  %extend {
+  QuantoVanillaEnginePtr(boost::shared_ptr<PricingEngine> engine) {
+    boost::shared_ptr<VanillaOption::engine> uengine =
+      boost::dynamic_pointer_cast<VanillaOption::engine>(engine);
+    return new
+      QuantoVanillaEnginePtr(new QuantoVanillaOption::engine(uengine));
+  }
+  }
+};
+
+%rename(QuantoForwardVanillaEngine) QuantoForwardVanillaEnginePtr;
+
+class QuantoForwardVanillaEnginePtr: public boost::shared_ptr<PricingEngine> {
+public:
+  %extend {
+  QuantoForwardVanillaEnginePtr(boost::shared_ptr<PricingEngine> engine) {
+    boost::shared_ptr<VanillaOption::engine> vengine =
+      boost::dynamic_pointer_cast<VanillaOption::engine>(vengine);
+    boost::shared_ptr<ForwardVanillaOption::engine> 
+      fengine(new ForwardVanillaOption::engine(vengine));
+    return new
+      QuantoForwardVanillaEnginePtr(new 
+				    QuantoForwardVanillaOption::engine(fengine));
+  }
+  }
+};
 
 #endif
