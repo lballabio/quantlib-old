@@ -117,10 +117,6 @@ class CompositeInstrumentPtr : public boost::shared_ptr<Instrument> {
 	  boost::dynamic_pointer_cast<CompositeInstrument>(*self)->
 	    subtract(instrument, multiplier);
 	}
-        bool isExpired() const {
-	  return boost::dynamic_pointer_cast<CompositeInstrument>(*self)->
-	    isExpired();
-	}
     }
 };
 
