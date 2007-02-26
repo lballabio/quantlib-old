@@ -337,7 +337,7 @@
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
           </Parameter>
-          <Parameter name='stdDevs' libToHandle=' Quote' exampleValue ='0.1, 0.2, 0.3, 0.4 '>
+          <Parameter name='stdDevs' libToHandle='Quote' exampleValue ='0.1, 0.2, 0.3, 0.4 '>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
