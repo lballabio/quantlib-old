@@ -32,7 +32,7 @@ namespace QuantLibAddin {
                 const boost::shared_ptr < QuantLib::BlackVolTermStructure > &blackVolTermStructure,
                 const double &correlation,
                 const double &moneyness,
-                const long &resetDate,
+                QuantLib::Date resetDate,
                 const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
                 const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
                 const boost::shared_ptr < QuantLib::Exercise > &exercise,

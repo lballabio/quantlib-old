@@ -26,7 +26,7 @@ namespace QuantLibAddin {
 
     ForwardVanillaOption::ForwardVanillaOption(
             const double &moneyness,
-            const long &resetDate,
+            QuantLib::Date resetDate,
             const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
             const boost::shared_ptr < QuantLib::Exercise > &exercise,
@@ -34,7 +34,7 @@ namespace QuantLibAddin {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
             new QuantLib::ForwardVanillaOption(
                 moneyness,
-                QuantLib::Date(resetDate),
+                resetDate,
                 blackScholesProcess, 
                 payoff, 
                 exercise, 
