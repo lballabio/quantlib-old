@@ -40,6 +40,20 @@ General
 - introduce type QuantLib::Money
 
 Nando
+- MM clean up tests
+- MM make caplet/swaption calibration do work
+- MM check increasing times
+- MM restore floating exception
+- MM equality for evolution description
+- MM drift test
+- MM coterminal products
+- MM add ipc algorythms
+- MM linear combination of bonds as numeraire
+- new release
+- calibrations
+- SA
+- CW Clerici
+- redesign fogli chiusure
 - joint calendar
 - mkt convention struct
 - YCDemo crash
@@ -80,6 +94,7 @@ Pending:
 - DONE test abcd (swap tenor) with new optimization code
 
 François
+- profiling: bond, calibrations, interpolations
 - atm backbone for caplet
 - extrapolation bug (short expity, low strike)
 - add SABR interpolation to the capstripper
@@ -122,6 +137,7 @@ Giorgio
 D 1.check npv
 D 2.cms gearing negativo, floor a zero: non funziona
 D capped/floored-cms comparison (shared among Cristina and Giorgio)
+- observability: cmspricer, etc
 - Handle<Quote> for mean reversion value (osservabile del pricer)
 - WIP coupon refactoring and extension (shared among Cristina and Giorgio)
 - digital option in C++ (shared among Marco, Giorgio and Cristina)
