@@ -73,6 +73,7 @@ K
 - multiLegSwap.xls: move from Drafts to IRDerivatives
 - remove action atmVolatility from Launcher
 Pending:
+- DONE new calibrations QuantLibXL actions
 - DONE review of .xls used in Eods
 - DONE standardizzare il nome delle quotes dei param di calibrazione
 - DONE demo per HelpDesk e ChangeMan
