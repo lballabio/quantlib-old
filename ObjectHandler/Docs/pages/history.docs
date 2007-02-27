@@ -23,6 +23,24 @@
 
 /*! \page history Version History
 
+<strong>Release 0.2.0 - February 2007</strong>
+
+DESIGN
+
+- multiple minor enhancements to design
+
+LOG4CXX
+
+- a couple of minor fixes to makefiles
+- repackaged as version 0.9.7c (see below for explanation of
+  log4cxx version numbers)
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7.c
+- gensrc version 0.2.0
+
 <strong>Release 0.1.5 - December 2006</strong>
 
 EXCEL

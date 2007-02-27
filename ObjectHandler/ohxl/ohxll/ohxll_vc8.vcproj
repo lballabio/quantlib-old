@@ -80,8 +80,8 @@
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\..\xll/ObjectHandler-xll-vc80-mt-gd-0_9_0.pdb"
-				ImportLibrary="..\..\xll/ObjectHandler-xll-vc80-mt-gd-0_9_0.lib"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc80-mt-gd-0_9_0.pdb"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc80-mt-gd-0_9_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -177,8 +177,8 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\lib"
-				ProgramDatabaseFile="..\..\xll/ObjectHandler-xll-vc80-mt-0_9_0.pdb"
-				ImportLibrary="..\..\xll/ObjectHandler-xll-vc80-mt-0_9_0.lib"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc80-mt-0_9_0.pdb"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc80-mt-0_9_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool

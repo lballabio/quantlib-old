@@ -1,148 +1,101 @@
 
-# tested with NSIS version 2.22
-
 # !defines
 
+!define APP "QuantLibXL"
 !define VER_NUMBER "0.9.0"
 !define VER_NUMBER_UNDERSCORE "0_9_0"
-!define /date NOW "%Y%m%d-%H_%M"
 
-# Compiler flags
+# Compiler Flags
 
-# Uncommenting the line below should result in a smaller, faster installer
-# but the NSIS compilation is much slower.
-#SetCompressor /SOLID lzma
+SetCompressor lzma
 
-# General attributes
+# Installer Attributes
 
-Name "QuantLibXL"
-Caption "QuantLibXL - Setup"
-
-# for public release - exclude timestamp from filename
-OutFile "..\QuantLibXL-bin-${VER_NUMBER}-${NOW}.exe"
-#OutFile "..\QuantLibXL-bin-${VER_NUMBER}.exe"
-
-ComponentText "This will install QuantLibXL ${VER_NUMBER} on your computer"
-SilentInstall normal
-CRCCheck on
-LicenseText "You must agree with the following license before installing:"
-LicenseData "LICENSE.TXT"
-DirText "Please select a location to install QuantLibXL (or use the default):"
-# VC relative paths break if version number is included in QLXL install dir
-#InstallDir $PROGRAMFILES\QuantLibXL
-InstallDir $PROGRAMFILES\QuantLibXL-${VER_NUMBER}
-InstallDirRegKey HKEY_LOCAL_MACHINE "SOFTWARE\QuantLibXL" "Install_Dir"
+Caption "${APP} - Setup"
+DirText "Please select a location to install ${APP} (or use the default):"
 Icon "Docs\images\favicon.ico"
+InstallDir $PROGRAMFILES\${APP}-${VER_NUMBER}
+LicenseData "LICENSE.TXT"
+LicenseText "${APP} is released under the following license:"
+Name "${APP}"
+OutFile "..\${APP}-bin-${VER_NUMBER}.exe"
 UninstallIcon "Docs\images\favicon.ico"
-AutoCloseWindow false
-ShowInstDetails hide
-SetDateSave on
 UninstallText "This will uninstall QuantLibXL. Hit next to continue."
 
-InstType "Full (Addin, VBA Framework, Workbooks, and Documentation)"
-InstType "No Workbooks (Addin, VBA Framework, and Documentation)"
+# Installer Instructions
 
-Section "-QuantLibXL"
-SectionIn 1 2
+Section
+
     SetOutPath "$INSTDIR"
+
     File "Authors.txt"
     File "Contributors.txt"
     File "LICENSE.TXT"
     File "NEWS.txt"
     File "README.txt"
 
+    SetOutPath "$INSTDIR\xll"
+    File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+
+    SetOutPath "$INSTDIR\Workbooks\DateCalendarsDayCounters"
+    File "Workbooks\DateCalendarsDayCounters\*.xls"
+
+    SetOutPath "$INSTDIR\Workbooks\Math"
+    File "Workbooks\Math\*.xls"
+
+    SetOutPath "$INSTDIR\Workbooks\OriginalExamples"
+    File "Workbooks\OriginalExamples\*.xls"
+    File "Workbooks\OriginalExamples\README.txt"
+
+    SetOutPath "$INSTDIR\Workbooks\Utilities"
+    File "Workbooks\Utilities\*.xls"
+
+    SetOutPath "$INSTDIR\Docs"
+    File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
+
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
-                "DisplayName" "QuantLibXL ${VER_NUMBER} (remove only)"
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXLL-bin-${VER_NUMBER}" \
+                "DisplayName" "QuantLibXL-bin ${VER_NUMBER} (remove only)"
+
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL" \
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-bin-${VER_NUMBER}" \
                 "UninstallString" '"$INSTDIR\QuantLibXLUninstall.exe"'
-    WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\QuantLibXL" "Install_Dir" "$INSTDIR"
-    WriteRegStr HKEY_CURRENT_USER "Environment" "QUANTLIBXL_DIR" "$INSTDIR"
 
-    # this directory must be created first, or the CreateShortCut will not work
-    CreateDirectory "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}"
+    CreateDirectory "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\README.txt.lnk" \
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\LICENSE.txt.lnk" \
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\LICENSE.txt.lnk" \
                    "$INSTDIR\LICENSE.txt"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\What's new.lnk" \
-                   "$INSTDIR\News.txt"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL Directory.lnk" \
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\QuantLibXL Directory.lnk" \
                    "$INSTDIR"
 
-    WriteINIStr "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL Home Page.url" \
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\Example workbooks.lnk" \
+                   "$INSTDIR\Workbooks"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\Documentation (WinHelp).lnk" \
+        "$INSTDIR\Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
+
+    WriteINIStr "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\QuantLibXL Home Page.url" \
                 "InternetShortcut" "URL" "http://www.quantlibxl.org/"
 
     WriteUninstaller "QuantLibXLUninstall.exe"
 
 SectionEnd
 
-Section "Addin"
-SectionIn 1 2
-    SetOutPath "$INSTDIR\xll"
-    File "xll\QuantLibXL-vc*-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
-SectionEnd
-
-Section "Framework"
-SectionIn 1 2
-    SetOutPath "$INSTDIR\framework"
-    File "framework\QuantLibXL.xla"
-    SetOutPath "$INSTDIR\framework\metadata"
-    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL-${VER_NUMBER}.lnk" \
-                   "$INSTDIR\framework\QuantLibXL.xla"
-    CreateShortCut "$DESKTOP\QuantLibXL-${VER_NUMBER}.lnk" \
-                   "$INSTDIR\framework\QuantLibXL.xla"
-SectionEnd
-
-Section "Documentation"
-SectionIn 1 2
-    SetOutPath "$INSTDIR\Docs"
-    File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Documentation (WinHelp).lnk" \
-        "$INSTDIR\Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
-SectionEnd
-
-Section "Workbooks"
-SectionIn 1
-    SetOutPath "$INSTDIR"
-    File /r "*.xls"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Example workbooks.lnk" \
-                   "$INSTDIR\Workbooks"
-SectionEnd
-
-Section "-promptReboot"
-SectionIn 1 2
-    MessageBox MB_YESNO|MB_ICONQUESTION \
-        "You need to reboot your computer before using QuantLibXL.  Do you want to reboot now?" \
-        IDNO +2
-    Reboot
-SectionEnd
-
-Function .onInit
-    SetOutPath $TEMP
-    File /oname=spltmp.bmp "Docs\images\logo_ql.jpg"
-    splash::show 2000 $TEMP\spltmp
-    Pop $0 ; $0 has '1' if the user closed the splash screen early,
-         ;        '0' if everything closed normal,
-         ;        '-1' if some error occured.
-    Delete $TEMP\spltmp.bmp
-FunctionEnd
-
 Section "Uninstall"
 
     RMDir /r "$INSTDIR"
-    RMDir /r "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}"
+    RMDir /r "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}"
 
     DeleteRegKey HKEY_LOCAL_MACHINE \
-        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL"
-    DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\QuantLibXL"
-    DeleteRegValue HKEY_CURRENT_USER  "Environment" "QUANTLIBXL_DIR"
+        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-bin-${VER_NUMBER}"
 
 SectionEnd
 

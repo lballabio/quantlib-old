@@ -28,6 +28,11 @@ implementation of QuantLibAddin.  For a summary of updates to the core
 QuantLibAddin project, please refer to
 <a href="http://www.quantlibaddin.org/history.html">http://www.quantlibaddin.org/history.html</a>
 
+<strong>Release 0.4.0 - February 2007</strong>
+
+- Consolidated build process.
+- Added additional example workbooks.
+
 <strong>Release 0.3.14 - December 2006</strong>
 
 Resolved problem of VC8 build running slowly.

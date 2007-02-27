@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="QuantLibXLDynamic"
-	ProjectGUID="{0D4D2F44-4491-4412-9782-A9F6D5ACB5E4}"
+	ProjectGUID="{AD2B301F-9217-467C-A5C2-DFF8A715D394}"
 	RootNamespace="QuantLibXLDynamic"
 	>
 	<Platforms>
@@ -48,7 +48,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions,$(QUANTLIBADDIN_DIR)"
+				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -79,7 +79,7 @@
 				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-gd-0_9_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(LOG4CXX_DIR)\msvc\lib,$(OBJECT_HANDLER_DIR)\lib,$(OBJECT_HANDLER_DIR)\xll,$(QL_DIR)\lib,$(QUANTLIBADDIN_DIR)\lib"
+				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-gd-0_9_0.pdb"
 				ImportLibrary=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-gd-0_9_0.lib"
@@ -147,7 +147,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions,$(QUANTLIBADDIN_DIR)"
+				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -177,7 +177,7 @@
 				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(LOG4CXX_DIR)\msvc\lib,$(OBJECT_HANDLER_DIR)\lib,$(OBJECT_HANDLER_DIR)\xll,$(QL_DIR)\lib,$(QUANTLIBADDIN_DIR)\lib"
+				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,$(LOG4CXX_DIR)/msvc/lib"
 				ProgramDatabaseFile=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-0_9_0.pdb"
 				ImportLibrary=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-0_9_0.lib"
 				TargetMachine="1"
@@ -195,6 +195,65 @@
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
 				OutputFile=".\buildDynamic\vc80\$(ConfigurationName)/AddinExcelDynamic.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="All|Win32"
+			ConfigurationType="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
 			/>
 			<Tool
 				Name="VCFxCopTool"

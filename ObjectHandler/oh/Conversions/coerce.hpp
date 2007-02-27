@@ -49,6 +49,7 @@ namespace ObjHandler {
                 return this->operator()(in);
             }
         }
+        virtual ~Coerce() {}
 
     protected:
         typedef bool (*Conversion)(const TypeIn&, TypeOut&);
@@ -59,3 +60,4 @@ namespace ObjHandler {
 }
 
 #endif
+

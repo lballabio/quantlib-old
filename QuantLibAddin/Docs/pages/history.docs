@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,6 +22,19 @@
 */
 
 /*! \page history Version History
+
+<strong>Release 0.4.0 - February 2007</strong>
+
+REQUIRED PACKAGES
+
+- QuantLib version 0.4.0
+- ObjectHandler version 0.2.0
+- gensrc version 0.2.0
+
+FUNCTIONALITY
+
+- 117 new functions / 562 in total
+- new categories: Simple Cash Flow,  Smile Section Structures
 
 <strong>Release 0.3.14 - December 2006</strong>
 

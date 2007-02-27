@@ -31,7 +31,6 @@ Installation instructions are available at
 Information on troubleshooting common QuantLibAddin problems is available at
 <http://www.quantlibaddin.org/troubleshooting.html>.
 
-A list of changes since the previous release is available in NEWS.txt
-(included in this distribution) while a list of past changes can be
-browsed at <http://www.quantlibaddin.org/history.html>.
+A list of changes for this and previous release can be browsed at 
+<http://www.quantlibaddin.org/history.html>.
 

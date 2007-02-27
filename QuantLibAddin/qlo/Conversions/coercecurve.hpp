@@ -61,6 +61,13 @@ namespace ObjHandler {
     class CoerceCurve : public ObjHandler::Coerce<
             boost::shared_ptr<ObjHandler::Object>, 
             boost::shared_ptr<QuantLib::TermStructure> > {
+
+    public:
+
+        ~CoerceCurve() {}
+
+    private:
+
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 curveFromObject, 

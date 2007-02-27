@@ -33,7 +33,6 @@ interests.
 Installation instructions are available at
 <http://www.quantlibxl.org/installation.html>.
 
-A list of changes since the previous release is available in NEWS.txt
-(included in this distribution) while a list of past changes can be
-browsed at <http://www.quantlibxl.org/history.html>.
+A list of changes for this and previous release can be browsed at 
+<http://www.quantlibxl.org/history.html>.
 

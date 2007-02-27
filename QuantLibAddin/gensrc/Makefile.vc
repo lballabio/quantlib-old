@@ -65,7 +65,7 @@ $(BUILD_DIR) :
 
 $(BUILDFLAG) : $(SCRIPT) $(INPUTS) $(BUILD_DIR) $(MAKEFILE)
     set PYTHONPATH=$(PYTHONPATH);$(GENSRC_DIR)\import
-#   $(SCRIPT) -a
+#    $(SCRIPT) -a
 	$(SCRIPT) -qedvl
 	echo flagged > $@
 

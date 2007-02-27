@@ -52,8 +52,8 @@ GENSRC_STUBS := stubs/stub.copyright \
 
 # this should prevent running from a distributed tarball
 EXTRA_DIST = .time-stamp \
-             gensrc_vc8.vcproj \
-             gensrc.vcproj \
+             qlgensrc_vc8.vcproj \
+             qlgensrc.vcproj \
              Makefile.vc \
              $(GENSRC_INPUT) \
              $(GENSRC_PYS) \

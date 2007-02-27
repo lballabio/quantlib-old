@@ -48,7 +48,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions,$(QUANTLIBADDIN_DIR)"
+				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -79,7 +79,7 @@
 				OutputFile="..\xll\QuantLibXL-vc80-mt-sgd-0_9_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib,$(QUANTLIBADDIN_DIR)\lib"
+				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-0_9_0.pdb"
@@ -147,7 +147,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions,$(QUANTLIBADDIN_DIR)"
+				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -178,7 +178,7 @@
 				OutputFile="..\xll\QuantLibXL-vc80-mt-gd-0_9_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib,$(QUANTLIBADDIN_DIR)\lib"
+				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-0_9_0.pdb"
@@ -247,7 +247,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions,$(QUANTLIBADDIN_DIR)"
+				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -277,7 +277,7 @@
 				OutputFile="..\xll\QuantLibXL-vc80-mt-s-0_9_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib,$(QUANTLIBADDIN_DIR)\lib"
+				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateManifest="false"
 				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-0_9_0.pdb"
 				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-0_9_0.lib"
@@ -345,7 +345,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..,$(OBJECT_HANDLER_DIR),$(QL_DIR),$(QL_DIR)/functions,$(QUANTLIBADDIN_DIR)"
+				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -375,7 +375,7 @@
 				OutputFile="..\xll\QuantLibXL-vc80-mt-0_9_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OBJECT_HANDLER_DIR)\lib,$(QL_DIR)\lib,$(LOG4CXX_DIR)/msvc/lib,$(QUANTLIBADDIN_DIR)\lib"
+				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,$(LOG4CXX_DIR)/msvc/lib"
 				GenerateManifest="false"
 				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-0_9_0.pdb"
 				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-0_9_0.lib"
@@ -394,6 +394,65 @@
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
 				OutputFile=".\buildStatic\vc80\$(ConfigurationName)/AddinExcelStatic.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="All|Win32"
+			ConfigurationType="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
 			/>
 			<Tool
 				Name="VCFxCopTool"

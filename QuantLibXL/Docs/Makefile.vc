@@ -10,6 +10,15 @@ DOXY_CONFIG_ROOT=quantlibxl.root.doxy
 
 ALL : $(BUILDFLAG)
 
+DEPENDENCIES = \
+	pages\*.docs \
+	images\*.jpg \
+	images\*.png \
+	images\*.gif \
+	images\*.ico \
+	$(DOXY_CONFIG_AUTO) \
+	$(DOXY_CONFIG_ROOT)
+
 $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
 
@@ -17,7 +26,7 @@ $(IMG_DIR) :
     if not exist $(HTML_DIR) mkdir $(HTML_DIR)
     if not exist $(IMG_DIR) mkdir $(IMG_DIR)
 
-$(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(DOXY_CONFIG)
+$(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR)
     copy /Y images\* $(IMG_DIR)
 	$(DOXYGEN) $(DOXY_CONFIG_AUTO)
 	$(DOXYGEN) $(DOXY_CONFIG_ROOT)

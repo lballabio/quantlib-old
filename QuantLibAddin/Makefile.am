@@ -28,8 +28,6 @@ EXTRA_DIST = \
     QuantLibObjects_vc8.vcproj \
     QuantLibObjects.vcproj \
     README.txt \
-    todo.csv \
-    todonando.txt \
     todo.txt
 
 .PHONY: docs docs-online docs-dist docs-clean

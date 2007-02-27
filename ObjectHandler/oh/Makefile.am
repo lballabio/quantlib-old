@@ -3,7 +3,9 @@ includedir = $(prefix)/include/oh
 
 include_HEADERS = \
     config.hpp \
+    demo.hpp \
     exception.hpp \
+    iless.hpp \
     logger.hpp \
     objecthandler.hpp \
     object.hpp \

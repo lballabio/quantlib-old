@@ -22,7 +22,6 @@
 #define qla_termstructures_hpp
 
 #include <ql/termstructure.hpp>
-#include <ql/TermStructures/piecewiseflatforward.hpp>
 #include <ql/TermStructures/forwardspreadedtermstructure.hpp>
 #include <ql/TermStructures/ratehelpers.hpp>
 #ifdef QL_DISABLE_DEPRECATED

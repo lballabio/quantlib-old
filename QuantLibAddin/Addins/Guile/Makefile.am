@@ -46,5 +46,5 @@ libQuantLibAddinGuile_la_SOURCES = \
 endif
 
 libQuantLibAddinGuile_la_LDFLAGS = \
-    -lQuantLib -lQuantLibFunctions -lObjectHandler -lguile
+    -lQuantLib -lObjectHandler -lguile
 

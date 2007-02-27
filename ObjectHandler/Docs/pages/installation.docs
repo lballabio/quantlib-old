@@ -35,10 +35,10 @@ ObjectHandler.
 ObjectHandler logging is performed by
 <a href="http://logging.apache.org/log4cxx/index.html">log4cxx</a>,
 the logging framework for the Apache project.  ObjectHandler uses a customized
-copy of log4cxx version 0.9.7, called "log4cxx 0.9.7b", amended to provide a
+copy of log4cxx version 0.9.7, called "log4cxx 0.9.7c", amended to provide a
 boost compliant build process and other minor enhancements.
 
-ObjectHandler and log4cxx 0.9.7b are available for download from the
+ObjectHandler and log4cxx 0.9.7c are available for download from the
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">QuantLib downloads page on sourceforge</a>
 
 <dl>
@@ -74,17 +74,17 @@ These instructions assume a release build.
 
 \subsection inst_win_prerequisites Prerequisites
 
-Before building ObjectHandler you need to build log4cxx 0.9.7b.
+Before building ObjectHandler you need to build log4cxx 0.9.7c.
 
 <ul>
-<li>download the log4cxx 0.9.7b zip from the QuantLib downloads page</li>
+<li>download the log4cxx 0.9.7c zip from the QuantLib downloads page</li>
 <li>log4cxx should be unzipped to a path containing no spaces as the
 library seems to complain otherwise</li>
 <li>choose project \b static, configuration <b>Win32 Release</b>.</li>
 <li>build the chosen log4cxx project.  The resulting lib file is written
 to directory <tt>log4cxx-0.9.7\\msvc\\Lib</tt></li>
 <li>you need to manually set environment variable \c LOG4CXX_DIR to the
-top level log4cxx directory e.g. <tt>C:\\log4cxx-0.9.7b</tt></li>
+top level log4cxx directory e.g. <tt>C:\\log4cxx-0.9.7c</tt></li>
 <li>if VC is running you need to restart it to pick up the new environment
 variable.</li>
 </ul>
@@ -248,8 +248,8 @@ The location of the library depends on which project you're using
 Before building ObjectHandler you need to build log4cxx.  Download the log4cxx
 tar file from the QuantLib downloads page and install as follows:
 \verbatim
-tar zxfv log4cxx-0.9.7b.tar.gz
-cd log4cxx-0.9.7b
+tar zxfv log4cxx-0.9.7c.tar.gz
+cd log4cxx-0.9.7c
 ./autogen.sh
 ./configure
 make

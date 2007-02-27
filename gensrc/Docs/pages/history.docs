@@ -23,6 +23,11 @@
 
 /*! \page history Version History
 
+<strong>Release 0.2.0 - February 2007</strong>
+
+- multiple small fixes in support of changes in syntax of QuantLibAddin
+  and ObjectHandler source code
+
 <strong>Release 0.1.5 - December 2006</strong>
 
 - extended Rule class to allow algorithms to be applied recursively
