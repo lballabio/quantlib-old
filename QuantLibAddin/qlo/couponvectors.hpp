@@ -39,6 +39,9 @@ namespace QuantLibAddin {
         QuantLib::Real npv(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
         QuantLib::Real bps(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
         QuantLib::Rate atmRate(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
+        void setPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
+        void setPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
+
         std::vector<std::vector<boost::any> > analysis() const;
         const QuantLib::Leg& getQuantLibLeg();        
       protected:
@@ -67,6 +70,12 @@ namespace QuantLibAddin {
             const std::vector<double>&                   couponRates,
             const QuantLib::DayCounter&                  dayCountID);
     };
+
+    class FloatingRateCouponPricer : 
+        public ObjHandler::LibraryObject<QuantLib::FloatingRateCouponPricer> {
+      public:
+          FloatingRateCouponPricer(){};
+    };
     
     class IborLeg : public Leg {
       public:
@@ -91,13 +100,11 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Rate>& floors,
             const std::vector<QuantLib::Real>& gearings,
             const std::vector<QuantLib::Spread>& spreads,
-            const std::vector<QuantLib::Rate>& caps,
-            const boost::shared_ptr<QuantLib::IborCouponPricer>& pricer
-                = boost::shared_ptr<QuantLib::IborCouponPricer>());
+            const std::vector<QuantLib::Rate>& caps);
     };
 
     class IborCouponPricer : 
-        public ObjHandler::LibraryObject<QuantLib::IborCouponPricer> {
+        public FloatingRateCouponPricer {
       public:
         IborCouponPricer(
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& vol,
@@ -116,8 +123,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& floors,
             const std::vector<QuantLib::Real>& gearings,
             const std::vector<QuantLib::Real>& spreads,
-            const std::vector<QuantLib::Real>& caps,
-            const boost::shared_ptr<QuantLib::CmsCouponPricer>&);
+            const std::vector<QuantLib::Real>& caps);
     };
 
     class CmsZeroLeg : public Leg {
@@ -132,8 +138,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& floors,
             const std::vector<QuantLib::Real>& gearings,
             const std::vector<QuantLib::Real>& spreads,
-            const std::vector<QuantLib::Real>& caps,
-            const boost::shared_ptr<QuantLib::CmsCouponPricer>&);
+            const std::vector<QuantLib::Real>& caps);
     };
 
     class CmsInArrearsLeg : public Leg {
@@ -148,12 +153,11 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& floors,
             const std::vector<QuantLib::Real>& gearings,
             const std::vector<QuantLib::Real>& spreads,
-            const std::vector<QuantLib::Real>& caps,
-            const boost::shared_ptr<QuantLib::CmsCouponPricer>&);
+            const std::vector<QuantLib::Real>& caps);
     };
 
     class CmsCouponPricer : 
-        public ObjHandler::LibraryObject<QuantLib::CmsCouponPricer> {
+        public FloatingRateCouponPricer {
       public:
         CmsCouponPricer(
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,

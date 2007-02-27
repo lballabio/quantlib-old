@@ -62,6 +62,16 @@ namespace QuantLibAddin {
         return flowAnalysis(leg_);
     }
 
+    void Leg::setPricer(
+            const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer) {
+        return QuantLib::CashFlows::setPricer(leg_,pricer);
+    }
+
+    void Leg::setPricers(
+            const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers) {
+        return QuantLib::CashFlows::setPricers(leg_,pricers);
+    }
+
     const QuantLib::Leg& Leg::getQuantLibLeg() {
         return leg_;
     }
@@ -131,8 +141,7 @@ namespace QuantLibAddin {
                     const std::vector<QuantLib::Rate>& floors,
                     const std::vector<QuantLib::Real>& gearings,
                     const std::vector<QuantLib::Spread>& spreads,
-                    const std::vector<QuantLib::Rate>& caps,
-                    const boost::shared_ptr<QuantLib::IborCouponPricer>& pricer) {
+                    const std::vector<QuantLib::Rate>& caps) {
 
         leg_ = QuantLib::IborLeg(*schedule,
                                  nominals,
@@ -141,7 +150,6 @@ namespace QuantLibAddin {
                                  fixingDays,
                                  paymentAdjustment,
                                  gearings, spreads,
-                                 pricer,
                                  caps, floors);
     }
 
@@ -163,13 +171,11 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Rate>& floors,
         const std::vector<QuantLib::Real>& gearings,
         const std::vector<QuantLib::Real>& spreads,
-        const std::vector<QuantLib::Rate>& caps,
-        const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer)
+        const std::vector<QuantLib::Rate>& caps)
     {
         leg_ = QuantLib::CmsLeg(*schedule,
                                 nominals,
                                 index,
-                                pricer,
                                 paymentDayCounter,
                                 fixingDays,
                                 paymentAdjustment,
@@ -187,13 +193,11 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Rate>& floors,
         const std::vector<QuantLib::Real>& gearings,
         const std::vector<QuantLib::Real>& spreads,
-        const std::vector<QuantLib::Rate>& caps,
-        const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer)
+        const std::vector<QuantLib::Rate>& caps)
     {
         leg_ = QuantLib::CmsZeroLeg(*schedule,
                                     nominals,
                                     index,
-                                    pricer,
                                     paymentDayCounter,
                                     fixingDays,
                                     paymentAdjustment,
@@ -211,13 +215,11 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Rate>& floors,
         const std::vector<QuantLib::Real>& gearings,
         const std::vector<QuantLib::Real>& spreads,
-        const std::vector<QuantLib::Rate>& caps,
-        const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer)
+        const std::vector<QuantLib::Rate>& caps)
     {
         leg_ = QuantLib::CmsInArrearsLeg(*schedule,
                                          nominals,
                                          index,
-                                         pricer,
                                          paymentDayCounter,
                                          fixingDays,
                                          paymentAdjustment,
