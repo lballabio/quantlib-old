@@ -71,25 +71,8 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter&                  dayCountID);
     };
 
-    class FloatingRateCouponPricer : 
-        public ObjHandler::LibraryObject<QuantLib::FloatingRateCouponPricer> {
-      public:
-          FloatingRateCouponPricer(){};
-    };
-    
     class IborLeg : public Leg {
       public:
-        // no embedded options
-        IborLeg(
-            const boost::shared_ptr<QuantLib::Schedule>& schedule,
-            QuantLib::BusinessDayConvention paymentAdjustment,
-            const std::vector<double>& nominals,
-            const boost::shared_ptr<QuantLib::IborIndex>& index,
-            QuantLib::Integer fixingDays,
-            const QuantLib::DayCounter& dayCounter,
-            const std::vector<QuantLib::Real>& gearings,
-            const std::vector<QuantLib::Spread>& spreads);
-        // with embedded options
         IborLeg(
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
             QuantLib::BusinessDayConvention paymentAdjustment,
@@ -101,14 +84,6 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& gearings,
             const std::vector<QuantLib::Spread>& spreads,
             const std::vector<QuantLib::Rate>& caps);
-    };
-
-    class IborCouponPricer : 
-        public FloatingRateCouponPricer {
-      public:
-        IborCouponPricer(
-            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& vol,
-            const std::string& typeOfIborCouponPricer);
     };
 
     class CmsLeg : public Leg {
@@ -156,8 +131,20 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& caps);
     };
 
-    class CmsCouponPricer : 
-        public FloatingRateCouponPricer {
+    class FloatingRateCouponPricer : 
+        public ObjHandler::LibraryObject<QuantLib::FloatingRateCouponPricer> {
+      public:
+          FloatingRateCouponPricer(){};
+    };
+    
+    class IborCouponPricer : public FloatingRateCouponPricer {
+      public:
+        IborCouponPricer(
+            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& vol,
+            const std::string& typeOfIborCouponPricer);
+    };
+
+    class CmsCouponPricer : public FloatingRateCouponPricer {
       public:
         CmsCouponPricer(
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,

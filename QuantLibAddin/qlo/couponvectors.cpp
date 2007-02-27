@@ -111,26 +111,6 @@ namespace QuantLibAddin {
                                       dayCounter);
     }
 
-    // no embedded options
-    IborLeg::IborLeg(
-                    const boost::shared_ptr<QuantLib::Schedule>& schedule,
-                    QuantLib::BusinessDayConvention paymentAdjustment,
-                    const std::vector<double>& nominals,
-                    const boost::shared_ptr<QuantLib::IborIndex>& index,
-                    QuantLib::Integer fixingDays,
-                    const QuantLib::DayCounter& dayCounter,
-                    const std::vector<QuantLib::Real>& gearings,
-                    const std::vector<QuantLib::Spread>& spreads) {
-
-        leg_ = QuantLib::IborLeg(*schedule,
-                                 nominals,
-                                 index,
-                                 dayCounter,
-                                 fixingDays,
-                                 paymentAdjustment,
-                                 gearings, spreads);
-    }
-    // with embedded options
     IborLeg::IborLeg(
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
                     QuantLib::BusinessDayConvention paymentAdjustment,

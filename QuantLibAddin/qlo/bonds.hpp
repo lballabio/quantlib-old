@@ -84,31 +84,6 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
     };
 
-    class FloatingCouponBond : public Bond {
-      public:
-        FloatingCouponBond(
-            const std::string& des,
-            QuantLib::Real faceAmount,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Date& datedDate,
-            const QuantLib::Date& maturityDate,
-            QuantLib::Integer settlementDays,
-            const boost::shared_ptr<QuantLib::IborIndex>& index,
-            QuantLib::Integer fixingDays,
-            const std::vector<QuantLib::Real>& gearings,
-            const std::vector<QuantLib::Spread>& spreads,
-            QuantLib::Frequency couponFrequency,
-            const QuantLib::Calendar& calendar,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::BusinessDayConvention accrualConvention,
-            QuantLib::BusinessDayConvention paymentConvention,
-            QuantLib::Real redemption,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const QuantLib::Date& stub,
-            bool fromEnd);
-      };
-
- 
 
     class CmsCouponBond : public Bond {
       public:
@@ -126,12 +101,12 @@ namespace QuantLibAddin {
              QuantLib::Frequency couponFrequency,
              const QuantLib::Calendar& calendar,
              const QuantLib::DayCounter& dayCounter,
-             const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
              const std::vector<QuantLib::Rate>& caps,
              const std::vector<QuantLib::Rate>& floors,
              QuantLib::BusinessDayConvention accrualConvention,
              QuantLib::BusinessDayConvention paymentConvention,
              QuantLib::Real redemption,
+             const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
              const QuantLib::Date& stub,
              bool fromEnd);
