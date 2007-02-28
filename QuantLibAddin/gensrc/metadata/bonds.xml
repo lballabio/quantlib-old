@@ -515,7 +515,7 @@
             <tensorRank>scalar</tensorRank>
             <description>maturity date</description>
           </Parameter>
-          <Parameter name='settlDays' examppleValue='3'>
+          <Parameter name='settlDays' exampleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement days</description>
