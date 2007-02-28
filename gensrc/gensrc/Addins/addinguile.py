@@ -46,7 +46,7 @@ class AddinGuile(addin.Addin):
         """Generate code to register function."""
         ret = '    /* ' + cat.displayName + ' */\n'
         stub = '    gh_new_procedure("%s", %s, 1, 0, 0);\n'
-        for func in cat.getFunctions(self.name): 
+        for func in cat.functions(self.name): 
             ret += stub % (func.name, func.name)
         return ret
 
@@ -68,7 +68,7 @@ class AddinGuile(addin.Addin):
     def generateFuncHeaders(self, cat):
         """Generate source for function prototypes."""
         prototypes = ''
-        for func in cat.getFunctions(self.name): 
+        for func in cat.functions(self.name): 
             prototypes += AddinGuile.BUF_HEADER % (func.name, ';\n')
         buf = self.bufferHeader.text % {
             'categoryName' : cat.name,
@@ -92,7 +92,7 @@ class AddinGuile(addin.Addin):
         for cat in self.categoryList_.categories(self.name):
             self.generateFuncHeaders(cat)
             code = ''
-            for func in cat.getFunctions(self.name): 
+            for func in cat.functions(self.name): 
                 code += AddinGuile.BUF_HEADER % (func.name, ' {')
                 code += self.generateFunction(func)
             buf = self.bufferIncludes.text % {

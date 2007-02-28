@@ -50,17 +50,17 @@ class Category(serializable.Serializable):
 
     def platformSupported(self, platformName, implementation):
         """Determine whether this category is supported for given platform."""
-        for function in self.Functions.values():
-            if function.platformSupported(platformName, implementation):
+        for func in self.Functions.values():
+            if func.platformSupported(platformName, implementation):
                 return True
 
-    def getFunctions(self, platformName, implementation = function.AUTO):
+    def functions(self, platformName, implementation = function.AUTO):
         """Serve up functions alphabetically by name."""
         for functionKey in self.FunctionKeys: 
-            function = self.Functions[functionKey]
+            func = self.Functions[functionKey]
             if platformName == '*' \
-            or function.platformSupported(platformName, implementation):
-                yield function
+            or func.platformSupported(platformName, implementation):
+                yield func
 
     def includeList(self):
         """Generate list of #include directives necessary to compile code
@@ -78,4 +78,8 @@ class Category(serializable.Serializable):
                 environment.config().voRootDirectory,
                 self.name)
         return ret
+
+    def printDebug(self):
+        for func in self.functions('*'):
+            func.printDebug()
 

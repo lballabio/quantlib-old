@@ -78,3 +78,7 @@ class ParameterList(serializable.Serializable):
         param.lastParameter = True
         self.ParameterCount += 1
 
+    def printDebug(self):
+        for param in self.Parameters:
+            param.printDebug()
+

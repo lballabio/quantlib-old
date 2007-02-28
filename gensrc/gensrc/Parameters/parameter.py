@@ -42,6 +42,33 @@ class Value(serializable.Serializable):
     vectorIterator = ''
     lastParameter = False
 
+    ignore = False
+
+    def printValue(self, value):
+        if value is None:
+            return 'None,'
+        else:
+            return str(value) + ','
+
+    def printDebug(self):
+        print self.printValue(self.name) + \
+            self.printValue(self.tensorRank) + \
+            self.printValue(self.type) + \
+            self.printValue(self.handleToLib) + \
+            self.printValue(self.enumeration) + \
+            self.printValue(self.handleToLib2) + \
+            self.printValue(self.libraryClass) + \
+            self.printValue(self.libraryType) + \
+            self.printValue(self.libToHandle) + \
+            self.printValue(self.loop) + \
+            self.printValue(self.objectClass) + \
+            self.printValue(self.underlyingClass) + \
+            self.printValue(self.underlyingClassNonconst) + \
+            self.printValue(self.vectorIterator) + \
+            self.printValue(self.default) + \
+            self.printValue(self.ignore) + \
+            self.printValue(self.const)
+
 class Parameter(Value):
     """Encapsulate state necessary to generate source code 
     relating to a function parameter."""
@@ -75,7 +102,6 @@ class Parameter(Value):
             sys.exit('illegal parameter name: ' + self.name)
         if not self.handleToLib2:
             self.handleToLib2 = self.handleToLib
-
 
 class ReturnValue(Value):
     """Encapsulate state necessary to generate source code 

@@ -58,7 +58,7 @@ namespace %(namespace)s {
     def generateLoops(self, cat):
         """Generate type definitions required for source code for loop functions."""
         buf = ''
-        for func in cat.getFunctions('*'): 
+        for func in cat.functions('*'): 
             if func.loopParameter:
                 buf += self.generateLoop(func)
         bufFile = Loop.BUF_FILE % {

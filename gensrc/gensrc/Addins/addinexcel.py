@@ -130,7 +130,7 @@ class AddinExcel(addin.Addin):
                     cat.name)
             buf = self.bufferIncludes.text % { 
                 'categoryIncludes' : categoryIncludes }
-            for func in cat.getFunctions(self.name): 
+            for func in cat.functions(self.name): 
                 buf += self.generateFunction(func)
             fileName = '%sFunctions/%s.cpp' % (
                 environment.config().excelFullPath, cat.name)
@@ -248,7 +248,7 @@ class AddinExcel(addin.Addin):
     def generateRegisterFunctions(self, cat):
         registerCode = ''
         unregisterCode = ''
-        for func in cat.getFunctions(self.name, function.MANUAL): 
+        for func in cat.functions(self.name, function.MANUAL): 
             self.functionCount += 1
             registerCode += self.generateRegisterFunction(func, 
                 cat.xlFunctionWizardCategory)
@@ -285,7 +285,7 @@ class AddinExcel(addin.Addin):
         clients of this Addin."""
         exportSymbols = ''
         for cat in self.categoryList_.categories(self.name, function.MANUAL):
-            for func in cat.getFunctions(self.name, function.MANUAL): 
+            for func in cat.functions(self.name, function.MANUAL): 
                 exportSymbols += '#pragma comment (linker, "/export:_%s")\n' % func.name
         buf = self.exportStub.text % exportSymbols
         fileName = environment.config().excelFullPath + 'Functions/export.hpp'

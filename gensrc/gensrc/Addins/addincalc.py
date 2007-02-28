@@ -65,7 +65,7 @@ class AddinCalc(addin.Addin):
         buf = ''
         for cat in self.categoryList_.categories(self.name, function.MANUAL):
             buf += '    // %s\n\n' % cat.displayName
-            for func in cat.getFunctions(self.name, function.MANUAL): 
+            for func in cat.functions(self.name, function.MANUAL): 
                 buf += '    // %s\n\n' % func.name
                 buf += MAPLINE % ('funcMap', func.name, func.name)
                 buf += MAPLINE % ('funcDesc', func.name, func.description)
@@ -104,7 +104,7 @@ class AddinCalc(addin.Addin):
         """Generate source for function prototypes."""
         for cat in self.categoryList_.categories(self.name, function.MANUAL):
             buf = ''
-            for func in cat.getFunctions(self.name, function.MANUAL): 
+            for func in cat.functions(self.name, function.MANUAL): 
                 buf += self.generateHeader(func)
             buf2 = self.bufferCategory.text % {
                 'categoryName' : cat.name,
@@ -133,7 +133,7 @@ class AddinCalc(addin.Addin):
         """Generate source for function implementations."""
         for cat in self.categoryList_.categories(self.name):
             buf = ''
-            for func in cat.getFunctions(self.name): 
+            for func in cat.functions(self.name): 
                 buf += self.generateFunction(func)
             categoryIncludes = cat.includeList()
             if cat.containsLoopFunction:
@@ -155,7 +155,7 @@ class AddinCalc(addin.Addin):
         buf = ''
         for cat in self.categoryList_.categories(self.name, function.MANUAL):
             buf += '                // %s\n\n' % cat.name
-            for func in cat.getFunctions(self.name, function.MANUAL): 
+            for func in cat.functions(self.name, function.MANUAL): 
                 parameterList = func.ParameterList.generate(self.ruleIDL)
                 returnTypeIDL = self.returnTypeIDL.apply(func.returnValue)
                 buf += self.bufferIdlFunction.text % (returnTypeIDL, 

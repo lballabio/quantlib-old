@@ -124,6 +124,9 @@ class Function(serializable.Serializable):
 
     def generateVO(self, addin): return "/* no VO - not a constructor*/"
 
+    def printDebug(self):
+        self.ParameterList.printDebug()
+
 class Constructor(Function):
     """Function which constructs a QuantLib object."""
 

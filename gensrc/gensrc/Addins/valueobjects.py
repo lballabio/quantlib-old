@@ -53,7 +53,7 @@ class ValueObjects(addin.Addin):
     def generateHeaders(self, cat):
         """Generate class source for constructor function prototypes."""
         bufHeader = ''
-        for func in cat.getFunctions('*'):
+        for func in cat.functions('*'):
             bufHeader += self.generateHeader(func)
         buf = self.bufferIncludesDecl.text % {
             'categoryName' : cat.name,
@@ -78,7 +78,7 @@ class ValueObjects(addin.Addin):
     def generateFunctions(self, cat):
         """Generate source for function implementations."""
         bufFunc = ''
-        for func in cat.getFunctions('*'): 
+        for func in cat.functions('*'): 
             bufFunc += self.generateFunction(func)
         buf = self.bufferIncludes.text % {
             'categoryName' : cat.name,

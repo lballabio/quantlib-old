@@ -80,4 +80,5 @@ if not len(addinIds):
 
 addinList = addinlist.AddinList(addinIds)
 addinList.generate()
+#addinList.printDebug()
 

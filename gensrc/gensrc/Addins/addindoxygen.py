@@ -136,7 +136,7 @@ class AddinDoxygen(addin.Addin):
         for cat in self.categoryList_.categories('*'):
             bufLink = ''
             bufDoc = ''
-            for func in cat.getFunctions('*'): 
+            for func in cat.functions('*'): 
                 bufLink += '\\ref %s ()\\n\n' % func.name
                 bufDoc += self.generateFunctionDoc(func)
                 allFuncs.append(func.name)

@@ -63,7 +63,7 @@ addin           unchanged   updated     created     total'''
         self.categoryList_ = categorylist.CategoryList()
         if config.usingEnumerations:
             self.enumerationList_ = enumerationlist.EnumerationList()
-	else:
+        else:
             self.enumerationList_ = None
 
         self.addins = []
@@ -79,12 +79,12 @@ addin           unchanged   updated     created     total'''
     def generateCode(self):
 
         log.Log.instance().logMessage('begin ...')
-        
+
         for addin in self.addins:
             addin.generate(self.categoryList_, self.enumerationList_)
-    
+
         log.Log.instance().logMessage('end')
-    
+
     def printSummary(self):
 
         log.Log.instance().logMessage()
@@ -105,10 +105,33 @@ addin           unchanged   updated     created     total'''
             msg = AddinList.LINE_FORMAT % (addin.name, addin.unchanged, 
                 addin.updated, addin.created, totalLine)
             log.Log.instance().logMessage(msg)
-    
+
         if len(self.addins) > 1:
             msg = AddinList.LINE_FORMAT % ('total', totalUnchanged, 
                 totalUpdated, totalCreated, totalAll)
             log.Log.instance().logMessage(AddinList.LINE_HEADER2)
             log.Log.instance().logMessage(msg)
-    
+
+    def printDebug(self):
+
+        print "name," + \
+            "tensorRank," + \
+            "type," + \
+            "handleToLib," + \
+            "enumeration," + \
+            "handleToLib2," + \
+            "libraryClass," + \
+            "libraryType," + \
+            "libToHandle," + \
+            "loop," + \
+            "objectClass," + \
+            "underlyingClass," + \
+            "underlyingClassNonconst," + \
+            "vectorIterator," + \
+            "default," + \
+            "ignore," + \
+            "const"
+
+        for cat in self.categoryList_.categories('*'):
+            cat.printDebug()
+

@@ -69,7 +69,7 @@ class AddinC(addin.Addin):
     def generateHeaders(self, cat):
         """Generate source for function prototypes."""
         bufHeader = ''
-        for func in cat.getFunctions(self.name): 
+        for func in cat.functions(self.name): 
             bufHeader += self.generateHeader(func, ';\n')
         buf = AddinC.BUFFER_HEADER % {
             'cat_name' : cat.name,
@@ -90,7 +90,7 @@ class AddinC(addin.Addin):
     def generateFunctions(self, cat):
         """Generate source for function implementations."""
         codeBuffer = ''
-        for func in cat.getFunctions(self.name): 
+        for func in cat.functions(self.name): 
             codeBuffer += self.generateHeader(func, ' {')
             codeBuffer += self.generateFunction(func)
         buf = self.bufferIncludes.text % {
