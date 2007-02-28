@@ -81,6 +81,7 @@ Section "-QuantLibXL Network Distribution"
     ;SetOutPath "$FRAMEWORK_PATH\"
     SetOutPath "$INSTDIR\framework"
     File "framework\QuantLibXL.xla"
+    File "framework\QuantLibXLDeveloperTeam.cer"
 
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"

@@ -48,7 +48,8 @@ SectionIn 1 2 3
     File "README.txt"
 
     SetOutPath "$INSTDIR\framework"
-    File "framework\*.xla"
+    File "framework\QuantLibXL.xla"
+    File "framework\QuantLibXLDeveloperTeam.cer"
 
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
