@@ -12,7 +12,7 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Debug|Win32"
+			Name="All|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
@@ -56,281 +56,284 @@
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
-			CharacterSet="2"
-			ManagedExtensions="TRUE">
-			<Tool
-				Name="VCCLCompilerTool"
-				PreprocessorDefinitions="WIN32;NDEBUG"
-				MinimalRebuild="FALSE"
-				RuntimeLibrary="0"
-				WarningLevel="3"
-				DebugInformationFormat="3"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
-				LinkIncremental="1"
-				GenerateDebugInformation="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
 	</Configurations>
 	<References>
 	</References>
 	<Files>
 		<Filter
-			Name="import"
+			Name="Addins"
 			Filter="">
 			<File
-				RelativePath=".\import\addin.py">
+				RelativePath="gensrc\Addins\addin.py">
 			</File>
 			<File
-				RelativePath=".\import\addinc.py">
+				RelativePath="gensrc\Addins\addinc.py">
 			</File>
 			<File
-				RelativePath=".\import\addincalc.py">
+				RelativePath="gensrc\Addins\addincalc.py">
 			</File>
 			<File
-				RelativePath=".\import\addindoxygen.py">
+				RelativePath="gensrc\Addins\addindoxygen.py">
 			</File>
 			<File
-				RelativePath=".\import\addinexcel.py">
+				RelativePath="gensrc\Addins\addinexcel.py">
 			</File>
 			<File
-				RelativePath=".\import\addinguile.py">
+				RelativePath="gensrc\Addins\addinguile.py">
 			</File>
 			<File
-				RelativePath=".\import\addinqla.py">
+				RelativePath="gensrc\Addins\addinqla.py">
 			</File>
 			<File
-				RelativePath=".\import\behavior.py">
+				RelativePath="gensrc\Addins\loop.py">
 			</File>
 			<File
-				RelativePath=".\import\buffer.py">
+				RelativePath="gensrc\Addins\valueobjects.py">
+			</File>
+		</Filter>
+		<Filter
+			Name="Categories"
+			Filter="">
+			<File
+				RelativePath="gensrc\Categories\category.py">
 			</File>
 			<File
-				RelativePath=".\import\category.py">
+				RelativePath="gensrc\Categories\categorylist.py">
+			</File>
+		</Filter>
+		<Filter
+			Name="Configuration"
+			Filter="">
+			<File
+				RelativePath="gensrc\Configuration\configuration.py">
 			</File>
 			<File
-				RelativePath=".\import\code.py">
+				RelativePath="gensrc\Configuration\environment.py">
+			</File>
+		</Filter>
+		<Filter
+			Name="Enumerations"
+			Filter="">
+			<File
+				RelativePath="gensrc\Enumerations\enumeration.py">
 			</File>
 			<File
-				RelativePath=".\import\common.py">
+				RelativePath="gensrc\Enumerations\enumerationlist.py">
+			</File>
+		</Filter>
+		<Filter
+			Name="Functions"
+			Filter="">
+			<File
+				RelativePath="gensrc\Functions\behavior.py">
 			</File>
 			<File
-				RelativePath=".\import\config.py">
+				RelativePath="gensrc\Functions\function.py">
+			</File>
+		</Filter>
+		<Filter
+			Name="Parameters"
+			Filter="">
+			<File
+				RelativePath="gensrc\Parameters\parameter.py">
 			</File>
 			<File
-				RelativePath=".\import\enumeration.py">
+				RelativePath="gensrc\Parameters\parameterlist.py">
+			</File>
+		</Filter>
+		<Filter
+			Name="Patterns"
+			Filter="">
+			<File
+				RelativePath="gensrc\Patterns\singleton.py">
+			</File>
+		</Filter>
+		<Filter
+			Name="Rules"
+			Filter="">
+			<File
+				RelativePath="gensrc\Rules\rule.py">
+			</File>
+		</Filter>
+		<Filter
+			Name="Serialization"
+			Filter="">
+			<File
+				RelativePath="gensrc\Serialization\factory.py">
 			</File>
 			<File
-				RelativePath=".\import\factory.py">
+				RelativePath="gensrc\Serialization\serializable.py">
 			</File>
 			<File
-				RelativePath=".\import\function.py">
+				RelativePath="gensrc\Serialization\serializer.py">
 			</File>
 			<File
-				RelativePath=".\import\log.py">
+				RelativePath="gensrc\Serialization\xmlreader.py">
+			</File>
+		</Filter>
+		<Filter
+			Name="Utilities"
+			Filter="">
+			<File
+				RelativePath="gensrc\Utilities\buffer.py">
 			</File>
 			<File
-				RelativePath=".\import\loop.py">
+				RelativePath="gensrc\Utilities\code.py">
 			</File>
 			<File
-				RelativePath=".\import\outputfile.py">
+				RelativePath="gensrc\Utilities\common.py">
 			</File>
 			<File
-				RelativePath=".\import\parameter.py">
+				RelativePath="gensrc\Utilities\log.py">
 			</File>
 			<File
-				RelativePath=".\import\parameterlist.py">
+				RelativePath="gensrc\Utilities\outputfile.py">
 			</File>
 			<File
-				RelativePath=".\import\rule.py">
-			</File>
-			<File
-				RelativePath=".\import\serializable.py">
-			</File>
-			<File
-				RelativePath=".\import\serializer.py">
-			</File>
-			<File
-				RelativePath=".\import\singleton.py">
-			</File>
-			<File
-				RelativePath=".\import\utilities.py">
-			</File>
-			<File
-				RelativePath=".\import\valueobjects.py">
-			</File>
-			<File
-				RelativePath=".\import\xmlreader.py">
+				RelativePath="gensrc\Utilities\utilities.py">
 			</File>
 		</Filter>
 		<Filter
 			Name="stubs"
 			Filter="">
 			<File
-				RelativePath=".\stubs\stub.c.function">
+				RelativePath="gensrc\stubs\stub.c.function">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.c.header">
+				RelativePath="gensrc\stubs\stub.c.header">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.c.includes">
+				RelativePath="gensrc\stubs\stub.c.includes">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.calc.category">
+				RelativePath="gensrc\stubs\stub.calc.category">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.calc.function">
+				RelativePath="gensrc\stubs\stub.calc.function">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.calc.header">
+				RelativePath="gensrc\stubs\stub.calc.header">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.calc.idlfunc">
+				RelativePath="gensrc\stubs\stub.calc.idlfunc">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.calc.idlhead">
+				RelativePath="gensrc\stubs\stub.calc.idlhead">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.calc.includes">
+				RelativePath="gensrc\stubs\stub.calc.includes">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.calc.loop">
+				RelativePath="gensrc\stubs\stub.calc.loop">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.calc.map">
+				RelativePath="gensrc\stubs\stub.calc.map">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.doxygen.categories">
+				RelativePath="gensrc\stubs\stub.doxygen.categories">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.doxygen.enums">
+				RelativePath="gensrc\stubs\stub.doxygen.enums">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.doxygen.file">
+				RelativePath="gensrc\stubs\stub.doxygen.file">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.doxygen.function">
+				RelativePath="gensrc\stubs\stub.doxygen.function">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.doxygen.header">
+				RelativePath="gensrc\stubs\stub.doxygen.header">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.enum.classes">
+				RelativePath="gensrc\stubs\stub.enum.classes">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.enum.types">
+				RelativePath="gensrc\stubs\stub.enum.types">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.excel.function">
+				RelativePath="gensrc\stubs\stub.excel.function">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.excel.loop">
+				RelativePath="gensrc\stubs\stub.excel.loop">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.excel.numfunc">
+				RelativePath="gensrc\stubs\stub.excel.numfunc">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.excel.register.call">
+				RelativePath="gensrc\stubs\stub.excel.register.call">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.excel.register.file">
+				RelativePath="gensrc\stubs\stub.excel.register.file">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.excel.register.function">
+				RelativePath="gensrc\stubs\stub.excel.register.function">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.func.constructor">
+				RelativePath="gensrc\stubs\stub.func.constructor">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.func.member">
+				RelativePath="gensrc\stubs\stub.func.member">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.func.procedure">
+				RelativePath="gensrc\stubs\stub.func.procedure">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.guile.function">
+				RelativePath="gensrc\stubs\stub.guile.function">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.guile.header">
+				RelativePath="gensrc\stubs\stub.guile.header">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.guile.includes">
+				RelativePath="gensrc\stubs\stub.guile.includes">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.guile.initfunc">
+				RelativePath="gensrc\stubs\stub.guile.initfunc">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.loop.bind">
+				RelativePath="gensrc\stubs\stub.loop.bind">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.qla.mainheader">
+				RelativePath="gensrc\stubs\stub.qla.mainheader">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.vo.class.body">
+				RelativePath="gensrc\stubs\stub.vo.class.body">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.vo.class.decl">
+				RelativePath="gensrc\stubs\stub.vo.class.decl">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.vo.includes.body">
+				RelativePath="gensrc\stubs\stub.vo.includes.body">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.vo.includes.decl">
+				RelativePath="gensrc\stubs\stub.vo.includes.decl">
 			</File>
 		</Filter>
 		<Filter
 			Name="metadata"
 			Filter="">
 			<File
-				RelativePath="metadata\addinc.xml">
+				RelativePath="gensrc\metadata\addinc.xml">
 			</File>
 			<File
-				RelativePath="metadata\addincalc.xml">
+				RelativePath="gensrc\metadata\addincalc.xml">
 			</File>
 			<File
-				RelativePath="metadata\addindoxygen.xml">
+				RelativePath="gensrc\metadata\addindoxygen.xml">
 			</File>
 			<File
-				RelativePath="metadata\addinexcel.xml">
+				RelativePath="gensrc\metadata\addinexcel.xml">
 			</File>
 			<File
-				RelativePath="metadata\addinguile.xml">
+				RelativePath="gensrc\metadata\addinguile.xml">
 			</File>
 			<File
-				RelativePath="metadata\addinqla.xml">
+				RelativePath="gensrc\metadata\addinqla.xml">
 			</File>
 			<File
-				RelativePath="metadata\loop.xml">
+				RelativePath="gensrc\metadata\loop.xml">
 			</File>
 			<File
-				RelativePath="metadata\valueobjects.xml">
+				RelativePath="gensrc\metadata\valueobjects.xml">
 			</File>
 		</Filter>
 		<File

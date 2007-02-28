@@ -1,10 +1,10 @@
 # ObjectHandler\gensrc\Makefile.vc
 
-!INCLUDE $(GENSRC_DIR)\dependencies.vc
-
+GENSRC_DIR=..\..\gensrc_new
 BUILD_DIR=build\vc
 BUILDFLAG=$(BUILD_DIR)\buildflag
-SCRIPT=scripts\gensrc.py
+
+!INCLUDE $(GENSRC_DIR)\dependencies.vc
 
 METADATA=   metadata\demo.xml \
             metadata\garbagecollection.xml \
@@ -28,7 +28,7 @@ $(BUILD_DIR) :
 
 $(BUILDFLAG) : $(SCRIPT) $(INPUTS) $(BUILD_DIR)
     set PYTHONPATH=$(PYTHONPATH);$(GENSRC_DIR)\import
-	$(SCRIPT)
+	$(GENSRC_DIR)\gensrc.py -e -d -v -l
 	echo flagged > $@
 
 CLEAN :

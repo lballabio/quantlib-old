@@ -1,33 +1,37 @@
 
-# !defines
-
-!define APP "gensrc"
-!define VER_NUMBER "0.9.0"
-!define DEFAULT_PATH "c:\build_ql_0_9_0\${APP}"
-
-# Compiler Flags
+# to be used with NSIS 2.0 and up
 
 SetCompressor lzma
 
-# Installer Attributes
+!define VER_NUMBER "0.9.0"
+!define /date NOW "%Y%m%d-%H_%M"
 
-Caption "${APP} - Setup"
-DirText "Please select a location to install ${APP} (or use the default):"
+# HEADER CONFIGURATION COMMANDS
+Name "gensrc"
+Caption "gensrc - Setup"
+OutFile "..\gensrc-${VER_NUMBER}.exe"
+
+SilentInstall normal
 Icon "Docs\images\favicon.ico"
-InstallDir "${DEFAULT_PATH}"
-LicenseData "LICENSE.TXT"
-LicenseText "${APP} is released under the following license:"
-Name "${APP}"
-OutFile "..\${APP}-${VER_NUMBER}.exe"
 UninstallIcon "Docs\images\favicon.ico"
-UninstallText "This will uninstall ${APP}. Hit next to continue."
+CRCCheck on
+LicenseText "gensrc is released under the following license:"
+LicenseData LICENSE.txt
+DirText "Please select a location to install gensrc (or use the default):"
+InstallDir $PROGRAMFILES\gensrc-${VER_NUMBER}
+InstallDirRegKey HKEY_LOCAL_MACHINE SOFTWARE\gensrc-${VER_NUMBER} "Install_Dir"
+AutoCloseWindow false
+ShowInstDetails hide
+SetDateSave on
 
-# Installer Instructions
+# INSTALLATION EXECUTION COMMANDS
 
-Section
-
+Section "-gensrc"
+# this directory must be created first, or the CreateShortCut will not work
+    CreateDirectory "$SMPROGRAMS\gensrc-${VER_NUMBER}"
     SetOutPath $INSTDIR
 
+    # these MUST be present
     File "Authors.txt"
     File "dependencies.vc"
     File "gensrc.sln"
@@ -38,13 +42,13 @@ Section
     File "NEWS.txt"
     File "README.txt"
 
-    SetOutPath "$INSTDIR\import"
+    SetOutPath $INSTDIR\import
     File "import\*.py"
 
-    SetOutPath "$INSTDIR\metadata"
+    SetOutPath $INSTDIR\metadata
     File "metadata\*.xml"
 
-    SetOutPath "$INSTDIR\stubs"
+    SetOutPath $INSTDIR\stubs
     File "stubs\stub.*"
 
     SetOutPath "$INSTDIR\Docs"
@@ -73,15 +77,19 @@ Section
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\gensrc-${VER_NUMBER}" \
-                "UninstallString" "$INSTDIR\gensrcUninstall.exe"
+                "UninstallString" '"gensrcUninstall.exe"'
 
     WriteRegStr HKEY_CURRENT_USER "Environment" "GENSRC_DIR" "$INSTDIR"
 
-    CreateDirectory "$SMPROGRAMS\gensrc-${VER_NUMBER}"
+    WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\gensrc-${VER_NUMBER}" \
+                "Install_Dir" "$INSTDIR"
 
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\Uninstall gensrc.lnk" \
                    "$INSTDIR\gensrcUninstall.exe" "" \
                    "$INSTDIR\gensrcUninstall.exe" 0
+
+    CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\Authors.txt.lnk" \
+                   "$INSTDIR\README.txt"
 
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"
@@ -89,11 +97,11 @@ Section
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\LICENSE.txt.lnk" \
                    "$INSTDIR\LICENSE.TXT"
 
+    CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\What's new.lnk" \
+                   "$INSTDIR\NEWS.txt"
+
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\Documentation (WinHelp).lnk" \
                    "$INSTDIR\Docs\gensrc-docs-${VER_NUMBER}.chm"
-
-    CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc Folder.lnk" \
-                   "$INSTDIR"
 
     WriteINIStr "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc Home Page.url" \
                 "InternetShortcut" "URL" "http://www.gensrc.org"
@@ -102,14 +110,24 @@ Section
 
 SectionEnd
 
+Section "Start Menu Group"
+  SetOutPath $SMPROGRAMS\gensrc-${VER_NUMBER}
+
+  WriteINIStr "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc Home Page.url" \
+              "InternetShortcut" "URL" "http://www.gensrc.org/"
+
+  CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc Folder.lnk" \
+                 "$INSTDIR"
+SectionEnd
+
+UninstallText "This will uninstall gensrc. Hit next to continue."
+
 Section "Uninstall"
-
-    RMDir /r /REBOOTOK "$INSTDIR"
-    RMDir /r /REBOOTOK "$SMPROGRAMS\gensrc-${VER_NUMBER}"
-
     DeleteRegKey HKEY_LOCAL_MACHINE \
         "Software\Microsoft\Windows\CurrentVersion\Uninstall\gensrc-${VER_NUMBER}"
+    DeleteRegKey HKEY_LOCAL_MACHINE SOFTWARE\gensrc-${VER_NUMBER}
     DeleteRegValue HKEY_CURRENT_USER  "Environment" "GENSRC_DIR"
-
+    RMDir /r /REBOOTOK "$SMPROGRAMS\gensrc-${VER_NUMBER}"
+    RMDir /r /REBOOTOK "$INSTDIR"
 SectionEnd
 
