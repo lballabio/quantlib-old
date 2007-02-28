@@ -8,6 +8,7 @@ DOXYGEN=doxygen.exe
 DOXY_CONFIG_AUTO=qladdin.auto.doxy
 DOXY_CONFIG_QLO=qladdin.qlo.doxy
 DOXY_CONFIG_ROOT=qladdin.root.doxy
+MAKEFILE=Makefile.vc
 
 ALL : $(BUILDFLAG)
 
@@ -28,7 +29,7 @@ $(IMG_DIR) :
     if not exist $(HTML_DIR) mkdir $(HTML_DIR)
     if not exist $(IMG_DIR) mkdir $(IMG_DIR)
 
-$(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR)
+$(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(MAKEFILE)
     copy /Y images\* $(IMG_DIR)
 	$(DOXYGEN) $(DOXY_CONFIG_AUTO)
 	$(DOXYGEN) $(DOXY_CONFIG_QLO)
