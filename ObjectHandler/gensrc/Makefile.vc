@@ -3,6 +3,7 @@
 GENSRC_DIR=..\..\gensrc
 BUILD_DIR=build\vc
 BUILDFLAG=$(BUILD_DIR)\buildflag
+MAKEFILE=Makefile.vc
 
 !INCLUDE $(GENSRC_DIR)\dependencies.vc
 
@@ -26,9 +27,9 @@ ALL : $(BUILDFLAG)
 $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
 
-$(BUILDFLAG) : $(SCRIPT) $(INPUTS) $(BUILD_DIR)
-    set PYTHONPATH=$(PYTHONPATH);$(GENSRC_DIR)\import
-	$(GENSRC_DIR)\gensrc.py -e -d -v -l
+$(BUILDFLAG) : $(SCRIPT) $(INPUTS) $(BUILD_DIR) $(MAKEFILE)
+    set PYTHONPATH=$(GENSRC_DIR)
+	$(GENSRC_DIR)\gensrc.py -edvl
 	echo flagged > $@
 
 CLEAN :

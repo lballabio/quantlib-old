@@ -48,7 +48,7 @@ METADATA= \
          metadata\vanillaswap.xml \
          metadata\volatilities.xml \
          metadata\smilesection.xml \
-         metadata\quotes.xml \
+         metadata\quotes.xml
          
 CONFIG=config\config.xml \
        config\excel.xml
@@ -64,7 +64,7 @@ $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
 
 $(BUILDFLAG) : $(SCRIPT) $(INPUTS) $(BUILD_DIR) $(MAKEFILE)
-    set PYTHONPATH=$(PYTHONPATH);$(GENSRC_DIR)\import
+    set PYTHONPATH=$(GENSRC_DIR)
     $(GENSRC_DIR)\gensrc.py -a
 #    $(GENSRC_DIR)\gensrc.py -qedvl
 	echo flagged > $@
