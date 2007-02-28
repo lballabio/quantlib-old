@@ -55,13 +55,6 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="scripts"
-			Filter="">
-			<File
-				RelativePath="scripts\gensrc.py">
-			</File>
-		</Filter>
-		<Filter
 			Name="stubs"
 			Filter="">
 			<File

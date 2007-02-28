@@ -26,13 +26,6 @@
 	</References>
 	<Files>
 		<Filter
-			Name="scripts"
-			Filter="">
-			<File
-				RelativePath="scripts\gensrc.py">
-			</File>
-		</Filter>
-		<Filter
 			Name="metadata"
 			Filter="">
 			<File

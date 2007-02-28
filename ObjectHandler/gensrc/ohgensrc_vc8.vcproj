@@ -39,14 +39,6 @@
 	</References>
 	<Files>
 		<Filter
-			Name="scripts"
-			>
-			<File
-				RelativePath="scripts\gensrc.py"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="config"
 			>
 			<File
