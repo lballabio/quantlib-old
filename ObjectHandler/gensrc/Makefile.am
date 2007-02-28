@@ -6,8 +6,6 @@ GENSRC_INPUT := metadata/demo.xml \
                 metadata/ohutils.xml \
                 metadata/valueobjects.xml
 
-GENSRC_PYS := scripts/gensrc.py
-
 GENSRC_STUBS := stubs/stub.copyright \
                 stubs/stub.excel.exports \
                 stubs/stub.excel.includes
@@ -20,8 +18,8 @@ EXTRA_DIST = .time-stamp \
 
 all-local: .time-stamp
 
-.time-stamp: $(GENSRC_INPUT) $(GENSRC_PYS) $(GENSRC_STUBS)
-	python scripts/gensrc.py $(GENSRC_ARGS)
+.time-stamp: $(GENSRC_INPUT) $(GENSRC_STUBS)
+	python ../../gensrc/gensrc.py -edvl
 	touch .time-stamp
 
 dist-hook:
