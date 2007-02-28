@@ -29,11 +29,11 @@
 using QuantLib::Bond;
 using QuantLib::ZeroCouponBond;
 using QuantLib::FixedCouponBond;
-using QuantLib::FloatingRateBond;
+
 typedef boost::shared_ptr<Instrument> BondPtr;
 typedef boost::shared_ptr<Instrument> ZeroCouponBondPtr;
 typedef boost::shared_ptr<Instrument> FixedCouponBondPtr;
-typedef boost::shared_ptr<Instrument> FloatingRateBondPtr;
+
 %}
 
 %rename(Bond) BondPtr;
@@ -62,10 +62,6 @@ class BondPtr : public boost::shared_ptr<Instrument> {
         }
         Calendar calendar() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->calendar();
-        }
-        BusinessDayConvention accrualConvention() const {
-            return boost::dynamic_pointer_cast<Bond>(*self)
-                ->accrualConvention();
         }
         BusinessDayConvention paymentConvention() const {
             return boost::dynamic_pointer_cast<Bond>(*self)
@@ -177,47 +173,5 @@ class FixedCouponBondPtr : public BondPtr {
         }
     }
 };
-
-%rename(FloatingRateBond) FloatingRateBondPtr;
-class FloatingRateBondPtr : public BondPtr {
-    %feature("kwargs") FloatingRateBondPtr;
-  public:
-    %extend {
-        FloatingRateBondPtr(Real faceAmount,
-                const Date& issueDate,
-                            const Date& datedDate,
-                            const Date& maturityDate,
-                            Integer settlementDays,
-                            const IborIndexPtr& index,
-                            Integer fixingDays,
-                            const std::vector<Real>& gearings,
-                            const std::vector<Spread>& spreads,
-                            Frequency couponFrequency,
-                            const Calendar& calendar,
-                            const DayCounter& dayCounter,
-                            BusinessDayConvention accrualConvention =
-                                Following,
-                            BusinessDayConvention paymentConvention =
-                                Following,
-                            Real redemption = 100.0,
-                            const Handle<YieldTermStructure>& discountCurve
-                                              = Handle<YieldTermStructure>(),
-                            const Date& stub = Date(),
-                            bool fromEnd = true) {
-            boost::shared_ptr<IborIndex> libor =
-                boost::dynamic_pointer_cast<IborIndex>(index);
-            return new FloatingRateBondPtr(
-                new FloatingRateBond(faceAmount,
-                     issueDate, datedDate, maturityDate,
-                                     settlementDays, libor, fixingDays,
-                                     gearings, spreads, couponFrequency,
-                                     calendar, dayCounter,
-                                     accrualConvention, paymentConvention,
-                                     redemption, discountCurve,
-                                     stub, fromEnd));
-        }
-    }
-};
-
 
 #endif
