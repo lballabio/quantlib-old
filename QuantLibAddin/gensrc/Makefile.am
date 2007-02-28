@@ -45,8 +45,6 @@ GENSRC_INPUT := metadata/assetswap.xml \
                 metadata/vanillaswap.xml \
                 metadata/volatilities.xml
 
-GENSRC_PYS :=   scripts/gensrc.py
-
 GENSRC_STUBS := stubs/stub.copyright \
                 stubs/stub.excel.includes
 
@@ -56,7 +54,6 @@ EXTRA_DIST = .time-stamp \
              qlgensrc.vcproj \
              Makefile.vc \
              $(GENSRC_INPUT) \
-             $(GENSRC_PYS) \
              $(GENSRC_STUBS)
 
 # Get the command line arguments to be passed to gensrc.
@@ -88,8 +85,8 @@ endif
 
 all-local: .time-stamp
 
-.time-stamp: $(GENSRC_INPUT) $(GENSRC_PYS) $(GENSRC_STUBS)
-	python scripts/gensrc.py $(GENSRC_ARGS)
+.time-stamp: $(GENSRC_INPUT) $(GENSRC_STUBS)
+	python ../../gensrc/gensrc.py $(GENSRC_ARGS)
 	touch .time-stamp
 	
 dist-hook:
