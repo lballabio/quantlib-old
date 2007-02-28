@@ -7,63 +7,18 @@ MAKEFILE=Makefile.vc
 
 !INCLUDE $(GENSRC_DIR)\dependencies.vc
 
-METADATA= \
-		 metadata\assetswap.xml \
-		 metadata\bonds.xml \
-		 metadata\calendar.xml \
-         metadata\capletvolstructure.xml \
-         metadata\capfloor.xml \
-         metadata\cmsmarket.xml \
-         metadata\couponvectors.xml \
-         metadata\date.xml \
-         metadata\daycounter.xml \
-         metadata\enumclasses.xml \
-         metadata\enumcurves.xml \
-         metadata\enumtypes.xml \
-         metadata\exercise.xml \
-         metadata\forwardrateagreement.xml \
-         metadata\index.xml \
-         metadata\instruments.xml \
-         metadata\interpolation.xml \
-         metadata\mathf.xml \
-         metadata\marketmodels.xml \
-         metadata\optimization.xml \
-         metadata\options.xml \
-         metadata\prices.xml \
-         metadata\pricingengines.xml \
-         metadata\processes.xml \
-         metadata\randomsequencegenerator.xml \
-         metadata\ratehelpers.xml \
-         metadata\schedule.xml \
-         metadata\sequencestatistics.xml \
-         metadata\settings.xml \
-         metadata\shortratemodels.xml \
-         metadata\simplecashflow.xml \
-         metadata\statistics.xml \
-         metadata\swap.xml \
-         metadata\swaption.xml \
-         metadata\swaptionvolstructure.xml \
-         metadata\termstructures.xml \
-         metadata\utilities.xml \
-         metadata\vanillaswap.xml \
-         metadata\volatilities.xml \
-         metadata\smilesection.xml \
-         metadata\quotes.xml
-         
-CONFIG=config\config.xml \
-       config\excel.xml
+METADATA=metadata\*.xml
+CONFIG=config\*.xml
+STUBS=stubs\stub.*
 
-STUBS=stubs\stub.copyright \
-      stubs\stub.excel.includes
-
-INPUTS = $(METADATA) $(CONFIG) $(STUBS) $(SCRIPT) $(CORE_DEPENDENCIES)
+INPUTS = $(METADATA) $(CONFIG) $(STUBS) $(CORE_DEPENDENCIES)
 
 ALL : $(BUILDFLAG)
 
 $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
 
-$(BUILDFLAG) : $(SCRIPT) $(INPUTS) $(BUILD_DIR) $(MAKEFILE)
+$(BUILDFLAG) : $(INPUTS) $(BUILD_DIR) $(MAKEFILE)
     set PYTHONPATH=$(GENSRC_DIR)
     $(GENSRC_DIR)\gensrc.py -a
 #    $(GENSRC_DIR)\gensrc.py -qedvl
