@@ -46,12 +46,12 @@ class AddinDoxygen(addin.Addin):
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
 
-        log.Log.getInstance().logMessage(' begin generating Doxygen ...')
+        log.Log.instance().logMessage(' begin generating Doxygen ...')
         self.generateDocs()
         if environment.config().usingEnumerations:
             self.generateEnums()
         self.generateCategoryDoc()
-        log.Log.getInstance().logMessage(' done generating Doxygen.')
+        log.Log.instance().logMessage(' done generating Doxygen.')
 
     def generateEnum(self, enumeration, i, line1, line2):
         ret = line1 % (i, enumeration.type)

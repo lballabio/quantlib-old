@@ -23,9 +23,10 @@ from gensrc.Configuration import environment
 def serializeObject(objectClass, fileName = None):
     """instantiate an xml reader and load requested object."""
     if not fileName: 
-        fileName = environment.Environment.getInstance().rootDirectory() + '/metadata/' + objectClass.__name__.lower()
+        fileName = environment.Environment.instance().rootDirectory() + '/metadata/' + objectClass.__name__.lower()
     objectInstance = objectClass()
     serializer = xmlreader.XmlReader(fileName)
     objectInstance.serialize(serializer)
     objectInstance.postSerialize()
     return objectInstance
+

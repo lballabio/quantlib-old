@@ -113,12 +113,12 @@ class AddinExcel(addin.Addin):
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
 
-        log.Log.getInstance().logMessage(' begin generating %s...' % self.name)
+        log.Log.instance().logMessage(' begin generating %s...' % self.name)
         self.generateAddin()
         self.generateFunctions()
         self.generateFunctionCount()
         if self.exportSymbols: self.generateExportSymbols()
-        log.Log.getInstance().logMessage(' done generating %s.' % self.name)
+        log.Log.instance().logMessage(' done generating %s.' % self.name)
 
     def generateFunctions(self):
         """Generate source code for all functions in all categories."""

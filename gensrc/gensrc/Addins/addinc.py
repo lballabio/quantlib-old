@@ -45,7 +45,7 @@ class AddinC(addin.Addin):
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
 
-        log.Log.getInstance().logMessage(' begin generating C ...')
+        log.Log.instance().logMessage(' begin generating C ...')
         summaryHeaders = ''
         for cat in self.categoryList_.categories(self.name):
             self.generateHeaders(cat)
@@ -54,7 +54,7 @@ class AddinC(addin.Addin):
         buf = self.bufferHeader.text % summaryHeaders
         fileName = self.rootDirectory + 'qladdin.h'
         outputfile.OutputFile(self, fileName, self.copyright, buf, False)
-        log.Log.getInstance().logMessage(' done generating C.')
+        log.Log.instance().logMessage(' done generating C.')
 
     def generateHeader(self, func, suffix):
         """Generate source for prototype of given function."""

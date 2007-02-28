@@ -21,7 +21,7 @@ import gensrc
 from gensrc.Patterns import singleton
 
 def config():
-    return Environment.getInstance().configuration()
+    return Environment.instance().configuration()
 
 class Environment(singleton.Singleton):
     """global configuration state for gensrc application."""

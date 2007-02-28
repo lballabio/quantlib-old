@@ -41,11 +41,11 @@ class AddinQla(addin.Addin):
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
 
-        log.Log.getInstance().logMessage(' begin generating QuantLibAddin ...')
+        log.Log.instance().logMessage(' begin generating QuantLibAddin ...')
         self.generateEnumTypes()
         self.generateEnumClasses()
         self.generateMainHeader()
-        log.Log.getInstance().logMessage(' done generating QuantLibAddin.')
+        log.Log.instance().logMessage(' done generating QuantLibAddin.')
 
     def generateEnumeration(self, enumeration, buffer):
         """generate source code for given enumeration."""

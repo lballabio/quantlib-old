@@ -166,7 +166,7 @@ class XmlReader(serializer.Serializer):
         dict = {}
         keys = []
         for childNode in self.iterateChildren(dictElement):
-            objectInstance = factory.Factory.getInstance().makeObject(childNode.nodeName)
+            objectInstance = factory.Factory.instance().makeObject(childNode.nodeName)
             self.node = childNode
             objectInstance.serialize(self)
             objectInstance.postSerialize()
@@ -219,7 +219,7 @@ class XmlReader(serializer.Serializer):
             return
         dict = {}
         for childNode in self.iterateChildren(dictElement):
-            objectInstance = factory.Factory.getInstance().makeObject(objectClass.__name__)
+            objectInstance = factory.Factory.instance().makeObject(objectClass.__name__)
             self.node = childNode
             objectInstance.serialize(self)
             objectInstance.postSerialize()
@@ -227,7 +227,7 @@ class XmlReader(serializer.Serializer):
             dict[childNode.nodeName] = objectInstance
         if not len(dict): 
             self.abort('dict element "%s" is empty' % objectClass.groupName)
-        dictInstance = factory.Factory.getInstance().makeObject(objectClass.groupName)
+        dictInstance = factory.Factory.instance().makeObject(objectClass.groupName)
         setattr(dictInstance, objectClass.groupName, dict)
         setattr(caller, objectClass.groupName, dictInstance)
 

@@ -36,11 +36,11 @@ namespace %(namespace)s {
     def generate(self, categoryList, enumerationList):
         """Generate source code for Loops."""
 
-        log.Log.getInstance().logMessage(' begin generating Loops ...')
+        log.Log.instance().logMessage(' begin generating Loops ...')
         for cat in categoryList.categories('*'):
             if cat.containsLoopFunction:
                 self.generateLoops(cat)
-        log.Log.getInstance().logMessage(' done generating Loops.')
+        log.Log.instance().logMessage(' done generating Loops.')
 
     def generateLoop(self, func):
         """Generate loop typedefs for given function."""

@@ -33,16 +33,11 @@ from gensrc.Configuration import environment
 class BehaviorMemberNormal(object):
     """Generate source code for a Member function which does not loop."""
 
-    funcMemberBuffer = None
+    funcMemberBuffer = buffer.loadBuffer('stub.func.member')
 
     def __init__(self, func):
         """Save a reference to the function."""
         self.func = func
-        # Initialize the class-level code buffer, this can't be done in the class
-        # code because that code executes before the Config singleton is instantiated.
-        if not BehaviorMemberNormal.funcMemberBuffer:
-            BehaviorMemberNormal.funcMemberBuffer = \
-                buffer.loadBuffer('stub.func.member')
 
     def generateBody(self, addin):
         """Generate source code for the body of the function."""
@@ -56,16 +51,11 @@ class BehaviorMemberNormal(object):
 class BehaviorProcedureNormal(object):
     """Generate source code for a Procedure function which does not loop."""
 
-    funcProcedureBuffer = None
+    funcProcedureBuffer = buffer.loadBuffer('stub.func.procedure')
 
     def __init__(self, func):
         """Save a reference to the function."""
         self.func = func
-        # Initialize the class-level code buffer, this can't be done in the class
-        # code because that code executes before the Config singleton is instantiated.
-        if not BehaviorProcedureNormal.funcProcedureBuffer:
-            BehaviorProcedureNormal.funcProcedureBuffer = \
-                buffer.loadBuffer('stub.func.procedure')
 
     def generateBody(self, addin):
         """Generate source code for the body of the function."""

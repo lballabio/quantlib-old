@@ -63,15 +63,15 @@ class OutputFile(object):
         if os.path.exists(self.fileName):
             if filecmp.cmp(self.fileName, self.fileNameTemp):
                 os.unlink(self.fileNameTemp)
-                log.Log.getInstance().logMessage(UPDATE_MSG % (self.fileName, 'unchanged'))
+                log.Log.instance().logMessage(UPDATE_MSG % (self.fileName, 'unchanged'))
                 self.addin.unchanged += 1
             else:
                 os.unlink(self.fileName)
                 os.rename(self.fileNameTemp, self.fileName)
-                log.Log.getInstance().logMessage(UPDATE_MSG % (self.fileName, 'updated'))
+                log.Log.instance().logMessage(UPDATE_MSG % (self.fileName, 'updated'))
                 self.addin.updated += 1
         else:
             os.rename(self.fileNameTemp, self.fileName)
-            log.Log.getInstance().logMessage(UPDATE_MSG % (self.fileName, 'created'))
+            log.Log.instance().logMessage(UPDATE_MSG % (self.fileName, 'created'))
             self.addin.created += 1
 

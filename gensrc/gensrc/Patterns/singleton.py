@@ -29,20 +29,20 @@ class MetaSingleton(type):
         return super(MetaSingleton,metaclass).__new__(metaclass, strName, tupBases, dict)
         
     def __call__(cls, *lstArgs, **dictArgs):
-        sys.exit('Singletons may only be instantiated through getInstance()')
+        sys.exit('Singletons may only be instantiated through instance()')
 
 class Singleton(object):
     """Implementation of the Singleton pattern."""
     __metaclass__ = MetaSingleton
     
-    def getInstance(cls):
+    def instance(cls):
         """Call this to instantiate an instance or retrieve the existing instance."""
         if not cls._isInstantiated():
             instance = cls.__new__(cls)
             instance.__init__()
             cls.cInstance = instance
         return cls.cInstance
-    getInstance = classmethod(getInstance)
+    instance = classmethod(instance)
     
     def _isInstantiated(cls):
         return hasattr(cls, 'cInstance')

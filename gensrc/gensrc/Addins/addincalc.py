@@ -52,13 +52,13 @@ class AddinCalc(addin.Addin):
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
 
-        log.Log.getInstance().logMessage(' begin generating Calc...')
+        log.Log.instance().logMessage(' begin generating Calc...')
         self.generateFuncMap()
         self.generateAutoHeader()
         self.generateHeaders()
         self.generateFunctions()
         self.generateIDL()
-        log.Log.getInstance().logMessage(' done generating Calc.')
+        log.Log.instance().logMessage(' done generating Calc.')
 
     def generateFuncMap(self):
         """Generate help text for function wizard."""

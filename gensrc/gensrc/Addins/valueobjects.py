@@ -35,12 +35,12 @@ class ValueObjects(addin.Addin):
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
 
-        log.Log.getInstance().logMessage(' begin generating ValueObjects ...')
+        log.Log.instance().logMessage(' begin generating ValueObjects ...')
         for cat in self.categoryList_.categories('*'):
             if cat.generateVOs:
                 self.generateHeaders(cat)
                 self.generateFunctions(cat)
-        log.Log.getInstance().logMessage(' done generating ValueObjects.')
+        log.Log.instance().logMessage(' done generating ValueObjects.')
 
     def generateHeader(self, func):
         """Generate class definition source for prototype of given constructor function."""

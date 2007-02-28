@@ -58,7 +58,7 @@ addin           unchanged   updated     created     total'''
         """initialize"""
 
         config = utilities.serializeObject(configuration.Configuration, 'config/config')
-        environment.Environment.getInstance().setConfiguration(config)
+        environment.Environment.instance().setConfiguration(config)
 
         self.categoryList_ = categorylist.CategoryList()
         if config.usingEnumerations:
@@ -78,18 +78,18 @@ addin           unchanged   updated     created     total'''
 
     def generateCode(self):
 
-        log.Log.getInstance().logMessage('begin ...')
+        log.Log.instance().logMessage('begin ...')
         
         for addin in self.addins:
             addin.generate(self.categoryList_, self.enumerationList_)
     
-        log.Log.getInstance().logMessage('end')
+        log.Log.instance().logMessage('end')
     
     def printSummary(self):
 
-        log.Log.getInstance().logMessage()
-        log.Log.getInstance().logMessage(AddinList.LINE_HEADER1)
-        log.Log.getInstance().logMessage(AddinList.LINE_HEADER2)
+        log.Log.instance().logMessage()
+        log.Log.instance().logMessage(AddinList.LINE_HEADER1)
+        log.Log.instance().logMessage(AddinList.LINE_HEADER2)
 
         totalAll = 0
         totalUnchanged = 0
@@ -104,11 +104,11 @@ addin           unchanged   updated     created     total'''
             totalAll += totalLine
             msg = AddinList.LINE_FORMAT % (addin.name, addin.unchanged, 
                 addin.updated, addin.created, totalLine)
-            log.Log.getInstance().logMessage(msg)
+            log.Log.instance().logMessage(msg)
     
         if len(self.addins) > 1:
             msg = AddinList.LINE_FORMAT % ('total', totalUnchanged, 
                 totalUpdated, totalCreated, totalAll)
-            log.Log.getInstance().logMessage(AddinList.LINE_HEADER2)
-            log.Log.getInstance().logMessage(msg)
+            log.Log.instance().logMessage(AddinList.LINE_HEADER2)
+            log.Log.instance().logMessage(msg)
     

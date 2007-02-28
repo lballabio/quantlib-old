@@ -37,10 +37,10 @@ class AddinGuile(addin.Addin):
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
 
-        log.Log.getInstance().logMessage(' begin generating Guile ...')
+        log.Log.instance().logMessage(' begin generating Guile ...')
         self.generateInitFunc()
         self.generateFunctions()
-        log.Log.getInstance().logMessage(' done generating Guile.')
+        log.Log.instance().logMessage(' done generating Guile.')
 
     def generateRegistrations(self, cat):
         """Generate code to register function."""

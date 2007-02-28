@@ -22,7 +22,7 @@ from gensrc.Configuration import environment
 from gensrc.Serialization import serializable
 
 def loadBuffer(bufferName):
-    fileName = environment.Environment.getInstance().rootDirectory() + '/stubs/' + bufferName
+    fileName = environment.Environment.instance().rootDirectory() + '/stubs/' + bufferName
     fileBuffer = open(fileName)
     ret = fileBuffer.read()
     fileBuffer.close()
@@ -44,7 +44,7 @@ class Buffer(serializable.Serializable):
         if self.local:
             fileBuffer = open('stubs/' + self.fileName)
         else:
-            fileBuffer = open(environment.Environment.getInstance().rootDirectory() + '/stubs/' + self.fileName)
+            fileBuffer = open(environment.Environment.instance().rootDirectory() + '/stubs/' + self.fileName)
         self.text = fileBuffer.read()
         fileBuffer.close()
 
