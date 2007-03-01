@@ -35,6 +35,10 @@ fixed sabr parameters
 
 
 ======= TODO ===============
+- verify sensitivity of beta and mean best calibrated values. Compare  values
+  using as guess the previous day values (global cms market) or using the current
+  day guesses as from the 5 cms market sections (Giorgio) 
+  from the whole cms market calibration
 - multiLegSwap.xls: finalise and move from Drafts to IRDerivatives (Cristina)
 - testing that the manual procedure to set back/forward the evaluation date
   returns the same results of the automantic procedure (Cristina)
