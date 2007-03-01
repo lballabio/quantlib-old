@@ -139,12 +139,13 @@ Giorgio
 D 1.check npv
 D 2.cms gearing negativo, floor a zero: non funziona
 D capped/floored-cms comparison (shared among Cristina and Giorgio)
-- observability: cmspricer, etc
-- Handle<Quote> for mean reversion value (osservabile del pricer)
-- WIP coupon refactoring and extension (shared among Cristina and Giorgio)
-- digital option in C++ (shared among Marco, Giorgio and Cristina)
+D observability: cmspricer, cmsmarket
+D Handle<Quote> for mean reversion value (osservabile del pricer)
+D coupon refactoring and extension (shared among Cristina and Giorgio)
+WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
 D think about how to simplify mean reversion usage, cms swaption calibration
-- WIP ratchet Instrument C++ (shared among Marco, Giorgio)
+WIP ratchet Instrument C++ (shared among Marco, Giorgio)
+- range accrual coupon
 - spreaded swaption vol structure
 - spreaded caplet vol structure
 
