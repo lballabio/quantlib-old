@@ -35,26 +35,13 @@ fixed sabr parameters
 
 
 ======= TODO ===============
-- verify sensitivity of beta and mean best calibrated values. Compare  values
-  using as guess the previous day values (global cms market) or using the current
-  day guesses as from the 5 cms market sections (Giorgio) 
-  from the whole cms market calibration
-- multiLegSwap.xls: finalise and move from Drafts to IRDerivatives (Cristina)
-- testing that the manual procedure to set back/forward the evaluation date
-  returns the same results of the automantic procedure (Cristina)
-- ottimizzare foglio di contribuzione delle vola su Mx: 
-  QuantLibXL\Workbooks\MarketMetaData\QL_MX_swaptions_EUR.xls (Cristina)
-- prepare .doc for EOD procedure for De Nuccio's desk (Giorgio)
-- move out from controlPanel.xls to a separate wkb all functions' checks 
-- Clerici for covered warrants (Ferdinando)
-- Pellegatta for access to Citrix (Ferdinando)
-- profile CoveredWarrants.xls (Francois)
-- any way to improve stripping 3M caplet? (Francois)
 
 General
 - introduce type QuantLib::Money
 
 Nando
+- Clerici for covered warrants (Ferdinando)
+- Pellegatta for access to Citrix (Ferdinando)
 - MM clean up tests
 - MM make caplet/swaption calibration do work
 - MM check increasing times
@@ -111,6 +98,9 @@ Pending:
 - DONE test abcd (swap tenor) with new optimization code
 
 François
+- profile one of the time series workbook
+- profile CoveredWarrants.xls 
+- any way to improve stripping 3M caplet? 
 - profiling: bond, calibrations, interpolations
 - atm backbone for caplet
 - extrapolation bug (short expity, low strike)
@@ -138,6 +128,12 @@ TO BE DISCUSSED: Object Builder performance issue when the control panel is left
 
 
 Cristina
+- multiLegSwap.xls: finalise and move from Drafts to IRDerivatives 
+- testing that the manual procedure to set back/forward the evaluation date
+  returns the same results of the automantic procedure 
+- ottimizzare foglio di contribuzione delle vola su Mx: 
+  QuantLibXL\Workbooks\MarketMetaData\QL_MX_swaptions_EUR.xls 
+- move out from controlPanel.xls to a separate wkb all functions' checks 
 - DONE reorder Excel workbooks input parameters order
 - DONE coupon refactoring (shared among Cristina and Giorgio)
 - WIP expose to QXL new IborLeg (following coupon refactoring in QL)
@@ -154,7 +150,10 @@ Cristina
 
 
 Giorgio
-
+- prepare .doc for EOD procedure for De Nuccio's desk 
+- verify sensitivity of beta and mean best calibrated values. Compare  values
+  using as guess the previous day values (global cms market) or using the current
+  day guesses as from the 5 cms market sections 
 D 1.check npv
 D 2.cms gearing negativo, floor a zero: non funziona
 D capped/floored-cms comparison (shared among Cristina and Giorgio)
