@@ -141,12 +141,16 @@ Cristina
 - DONE reorder Excel workbooks input parameters order
 - DONE coupon refactoring (shared among Cristina and Giorgio)
 - WIP expose to QXL new IborLeg (following coupon refactoring in QL)
-- WIP cap/floor rates output in cashflow analysis
-- coupon extension (shared among Cristina and Giorgio)
+- DONE cap/floor rates output in cashflow analysis
+- DONE added exampleValue to assigned files
+- DONE adaption of pricers workbooks to new Ibor and CmsCoupon constructors
+- DONE added automated evaluation of deals having IborLeg with embedded option in Cms book
+- DONE adaption of Cms book to new Ibor and CmsCoupon constructors / setPricer methods
+- DONE review of CmsMarket.xls and SingleMeanRevCalibration.xls used in Sabr calibration
 - WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
-- digital option in C++ (shared among Marco, Giorgio and Cristina)
+- WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
 - bond pricing engine
-- error in cashflowvectors if a single cash flow exists
+- TO BE DISCUSSED error in cashflowvectors if a single cash flow exists
 
 
 Giorgio
