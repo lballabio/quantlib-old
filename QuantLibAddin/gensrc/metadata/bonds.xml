@@ -390,10 +390,10 @@
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
           </Parameter>
-          <Parameter name='issueDate' libraryType='QuantLib::Date' exampleValue='38409'>
+          <Parameter name='issueDate' libraryType='QuantLib::Date' default='QuantLib::Date()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>issue date</description>
+            <description>issue date: the bond can't be traded until then</description>
           </Parameter>
           <Parameter name='maturity' libraryType='QuantLib::Date' exampleValue='45348'>
             <type>long</type>
@@ -451,10 +451,10 @@
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
           </Parameter>
-          <Parameter name='issueDate' libraryType='QuantLib::Date' exampleValue='38356'>
+          <Parameter name='issueDate' libraryType='QuantLib::Date' default='QuantLib::Date()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>issue date</description>
+            <description>issue date: the bond can't be traded until then</description>
           </Parameter>
           <Parameter name='intAccrualDate' libraryType='QuantLib::Date' exampleValue='38356'>
             <type>long</type>
@@ -542,10 +542,10 @@
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
           </Parameter>
-          <Parameter name='issueDate' libraryType='QuantLib::Date' exampleValue='35732'>
+          <Parameter name='issueDate' libraryType='QuantLib::Date' default='QuantLib::Date()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>issue date</description>
+            <description>issue date: the bond can't be traded until then</description>
           </Parameter>
           <Parameter name='intAccrualDate' libraryType='QuantLib::Date' exampleValue='36462'>
             <type>long</type>
@@ -663,10 +663,10 @@
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
           </Parameter>
-          <Parameter name='issueDate' libraryType='QuantLib::Date' exampleValue='36339'>
+          <Parameter name='issueDate' libraryType='QuantLib::Date' default='QuantLib::Date()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>issue date</description>
+            <description>issue date: the bond can't be traded until then</description>
           </Parameter>
           <Parameter name='intAccrualDate' libraryType='QuantLib::Date' exampleValue='36339'>
             <type>long</type>
