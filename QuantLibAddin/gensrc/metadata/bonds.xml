@@ -215,6 +215,48 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlBondSetPricer' libraryClass='Bond'>
+      <description>Set the coupon pricer at the given Bond object</description>
+      <libraryFunction>setPricer</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FloatingRateCouponPricer' libraryClass='FloatingRateCouponPricer'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FloatingRate coupon pricer object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondSetPricers' libraryClass='Bond'>
+      <description>Set the coupon pricer at the given Bond object</description>
+      <libraryFunction>setPricers</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FloatingRateCouponPricer' libraryClass='FloatingRateCouponPricer'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>FloatingRate coupon pricer object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <!--<Member name='qlBondCleanPrice2' libraryClass='Bond' loopParameter='yield'>-->
     <Member name='qlBondCleanPrice2' libraryClass='Bond'>
       <description>Returns the clean price for the given bond corresponding to the given yield and settlement date. The default bond settlement is used if no date is given.</description>
