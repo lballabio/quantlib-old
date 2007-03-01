@@ -35,6 +35,17 @@ fixed sabr parameters
 
 
 ======= TODO ===============
+- multiLegSwap.xls: finalise and move from Drafts to IRDerivatives (Cristina)
+- testing that the manual procedure to set back/forward the evaluation date
+  returns the same results of the automantic procedure (Cristina)
+- ottimizzare foglio di contribuzione delle vola su Mx: 
+  QuantLibXL\Workbooks\MarketMetaData\QL_MX_swaptions_EUR.xls (Cristina)
+- prepare .doc for EOD procedure for De Nuccio's desk (Giorgio)
+- move out from controlPanel.xls to a separate wkb all functions' checks 
+- Clerici for covered warrants (Ferdinando)
+- Pellegatta for access to Citrix (Ferdinando)
+- profile CoveredWarrants.xls (Francois)
+- any way to improve stripping 3M caplet? (Francois)
 
 General
 - introduce type QuantLib::Money
@@ -66,12 +77,12 @@ Nando
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 
 K
-- IN PROGRESS foglio di clerici (Drafts\QuickCapPricer.xls)
+- coveredWarrants.xls
+- prepare report for release in Production: 28 Feb 9:10
 - SA: test CmsPricer() observability 
 - SA: applied to cms book
 - create new .xls with NPVs of 4 cms books
 - foglio di clerici (interpolazione)
-- multiLegSwap.xls: move from Drafts to IRDerivatives
 - remove action atmVolatility from Launcher
 Pending:
 - DONE new calibrations QuantLibXL actions
