@@ -44,6 +44,8 @@
 <li class="navlink"><a href="http://www.wilmott.com/">Wilmott</a></li>
 
 <li class="navlink"><a href="http://www.quantnotes.com/">QuantNotes</a></li>
+
+<li class="navlink"><a href="http://www.compplusplus.com/">C(omp)++</a></li>
 </ul>
 
 <hr>
