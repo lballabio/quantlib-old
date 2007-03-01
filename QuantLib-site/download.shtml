@@ -19,9 +19,9 @@
 </div>
 <div id="content">
 
-<h1 class="center">Download Page</h1>
-<p>The latest QuantLib release is the 0.3.14 version (November 2006.)</p>
-<p><b>Debian users</b> will find version 0.3.14 of the different
+<h1 class="center">Download QuantLib</h1>
+<p>The latest QuantLib release is the 0.4.0 version (February 2007.)</p>
+<p><b>Debian users</b> will find version 0.4.0 of the different
 QuantLib packages in the "unstable" (a.k.a. "Sid") distribution;
 see the <a href=
 "http://packages.debian.org/cgi-bin/search_packages.pl?keywords=quantlib&amp;searchon=names&amp;subword=1&amp;version=unstable&amp;release=all">

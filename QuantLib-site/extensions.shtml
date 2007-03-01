@@ -19,7 +19,7 @@
 </div>
 <div id="content">
 
-<h1>QuantLib Extensions</h1>
+<h1 class="center">QuantLib Extensions</h1>
 <p>QuantLib is <a href="download.shtml">available</a> as a C#, Guile,
 Java, MzScheme, Perl, Python, and Ruby module by means of <a
 href="http://swig.sourceforge.net">SWIG</a>. Experimental bindings to
