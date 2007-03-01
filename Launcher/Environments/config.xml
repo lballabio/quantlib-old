@@ -29,7 +29,7 @@
 
     <Environment name="02 Pre-Production">
       <Framework>X:\Offices1\CabotoXL\02 Pre-Production\framework\QuantLibXL.xla</Framework>
-      <FrameworkVersion>7</FrameworkVersion>
+      <FrameworkVersion>6</FrameworkVersion>
       <Workbooks>X:\Offices1\CabotoXL\02 Pre-Production\Workbooks</Workbooks>
       <HelpFile>X:\Offices1\CabotoXL\02 Pre-Production\Docs</HelpFile>
       <UserConfigurationFile>X:\Offices1\CabotoXL\Users\02 users.xml</UserConfigurationFile>
@@ -52,7 +52,7 @@
 
     <Environment name="03 Testing">
       <Framework>X:\Offices1\CabotoXL\03 Testing\framework\QuantLibXL.xla</Framework>
-      <FrameworkVersion>7</FrameworkVersion>
+      <FrameworkVersion>6</FrameworkVersion>
       <Workbooks>X:\Offices1\CabotoXL\03 Testing\Workbooks</Workbooks>
       <HelpFile>X:\Offices1\CabotoXL\03 Testing\Docs</HelpFile>
       <UserConfigurationFile>X:\Offices1\CabotoXL\Users\03 users.xml</UserConfigurationFile>
