@@ -41,11 +41,10 @@ namespace QuantLibAddin {
         
         const std::vector<std::vector<boost::any> > getCmsMarket()
         {
-            return browseCmsMarket(cmsMarket_);
+            QuantLib::Matrix cmsMarket = libraryObject_->browse();
+            return browseCmsMarket(cmsMarket);
         }
 
-        protected:
-        QuantLib::Matrix cmsMarket_;
     };  
 
     class SmileAndCmsCalibrationBySabr: public ObjHandler::LibraryObject<QuantLib::SmileAndCmsCalibrationBySabr>{

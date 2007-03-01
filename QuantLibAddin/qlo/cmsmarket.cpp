@@ -48,7 +48,6 @@ namespace QuantLibAddin {
                             temp,
                             pricers,
                             yieldTermStructure));
-        cmsMarket_ = libraryObject_->browse();
     }
 
     std::vector<std::vector<boost::any> > browseCmsMarket(QuantLib::Matrix & cmsMarket){
