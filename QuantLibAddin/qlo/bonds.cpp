@@ -33,6 +33,7 @@
 #include <ql/Instruments/zerocouponbond.hpp>
 #include <ql/Instruments/cmscouponbond.hpp>
 #include <ql/Instruments/floatingcouponbond.hpp>
+#include <ql/CashFlows/analysis.hpp>
 
 namespace QuantLibAddin {
 
