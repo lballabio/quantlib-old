@@ -6,7 +6,7 @@
     <include>ql/Instruments/fixedcouponbond.hpp</include>
     <include>ql/Instruments/zerocouponbond.hpp</include>
     <include>ql/Instruments/cmscouponbond.hpp</include>
-    <include>ql/Instruments/cappedflooredcouponbond.hpp</include>
+    <include>ql/Instruments/floatingcouponbond.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/bonds.hpp</include>
@@ -15,7 +15,7 @@
   </includes>
   <copyright>
     Copyright (C) 2006, 2007 Chiara Fornarola
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Walter Penschke
@@ -525,8 +525,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlCappedFlooredCouponBond'>
-      <libraryFunction>CappedFlooredCouponBond</libraryFunction>
+    <Constructor name='qlFloatingCouponBond'>
+      <libraryFunction>FloatingCouponBond</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
       </SupportedPlatforms>
@@ -537,7 +537,7 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string</description>
           </Parameter>
-          <Parameter name='Face' default='100'>
+          <Parameter name='FaceAmount' default='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>bond face amount</description>
@@ -562,7 +562,7 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement days</description>
           </Parameter>
-          <Parameter name='indexID' libraryClass='IborIndex'>
+          <Parameter name='iborIndex' libraryClass='IborIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>floating rate index</description>
@@ -698,7 +698,7 @@
             <tensorRank>vector</tensorRank>
             <description>floating rate gearings</description>
           </Parameter>
-          <Parameter name='spreads' default='0.0' libraryType='QuantLib::Spread'>
+          <Parameter name='spreads' libraryType='QuantLib::Spread' default='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>floating rate spreads</description>

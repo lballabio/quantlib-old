@@ -32,7 +32,7 @@
 #include <ql/Instruments/fixedcouponbond.hpp>
 #include <ql/Instruments/zerocouponbond.hpp>
 #include <ql/Instruments/cmscouponbond.hpp>
-#include <ql/Instruments/cappedflooredcouponbond.hpp>
+#include <ql/Instruments/floatingcouponbond.hpp>
 
 namespace QuantLibAddin {
 
@@ -163,7 +163,7 @@ namespace QuantLibAddin {
                                         fromEnd));
 }
 
-     CappedFlooredCouponBond::CappedFlooredCouponBond( 
+     FloatingCouponBond::FloatingCouponBond( 
                             const std::string& des,
                             QuantLib::Real faceAmount,
                             const QuantLib::Date& issueDate,
@@ -188,7 +188,7 @@ namespace QuantLibAddin {
                             bool fromEnd)
         : Bond(des) {
             libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
-                QuantLib::CappedFlooredCouponBond(
+                QuantLib::FloatingCouponBond(
                                         settlementDays,
                                         issueDate,
                                         calendar,

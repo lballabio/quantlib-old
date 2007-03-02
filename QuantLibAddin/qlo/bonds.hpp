@@ -112,9 +112,9 @@ namespace QuantLibAddin {
              bool fromEnd);
     };
 
-    class CappedFlooredCouponBond : public Bond {
+    class FloatingCouponBond : public Bond {
           public:
-               CappedFlooredCouponBond(
+               FloatingCouponBond(
                  const std::string& des,
                  QuantLib::Real faceAmount,
                  const QuantLib::Date& issueDate,
