@@ -46,6 +46,22 @@ namespace QuantLibAddin {
         return QuantLibAddin::flowAnalysis(cashflows);
     }
 
+    void Bond::setPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer){
+        boost::shared_ptr<QuantLib::Bond> temp;
+        getLibraryObject(temp);
+        const std::vector<boost::shared_ptr<QuantLib::CashFlow> >& cashflows = 
+            temp->cashflows();
+        QuantLib::CashFlows::setPricer(cashflows, pricer);
+    }
+
+    void Bond::setPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers){
+        boost::shared_ptr<QuantLib::Bond> temp;
+        getLibraryObject(temp);
+        const std::vector<boost::shared_ptr<QuantLib::CashFlow> >& cashflows = 
+            temp->cashflows();
+        QuantLib::CashFlows::setPricers(cashflows, pricers);
+    } 
+
     ZeroCouponBond::ZeroCouponBond(
             const std::string& des,
             QuantLib::Real faceAmount,
@@ -127,7 +143,6 @@ namespace QuantLibAddin {
                             QuantLib::BusinessDayConvention accrualConvention,
                             QuantLib::BusinessDayConvention paymentConvention,
                             QuantLib::Real redemption,
-                            const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
                             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                             const QuantLib::Date& stub,
                             bool fromEnd)
@@ -146,8 +161,6 @@ namespace QuantLibAddin {
 
                                         index,
                                         dayCounter,
-
-                                        pricer,
 
                                         fixingDays,
                                         paymentConvention,
@@ -182,7 +195,6 @@ namespace QuantLibAddin {
                             QuantLib::BusinessDayConvention accrualConvention,
                             QuantLib::BusinessDayConvention paymentConvention,
                             QuantLib::Real redemption,
-                            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& volatility,
                             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                             const QuantLib::Date& stub,
                             bool fromEnd)
@@ -201,8 +213,6 @@ namespace QuantLibAddin {
 
                                         index,
                                         dayCounter,
-
-                                        volatility,
 
                                         fixingDays,
                                         paymentConvention,

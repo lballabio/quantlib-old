@@ -215,7 +215,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondSetPricer' libraryClass='Bond'>
+    <Member name='qlBondSetPricer' objectClass='Bond'>
       <description>Set the coupon pricer at the given Bond object</description>
       <libraryFunction>setPricer</libraryFunction>
       <SupportedPlatforms>
@@ -236,7 +236,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondSetPricers' libraryClass='Bond'>
+    <Member name='qlBondSetPricers' objectClass='Bond'>
       <description>Set the coupon pricer at the given Bond object</description>
       <libraryFunction>setPricers</libraryFunction>
       <SupportedPlatforms>
@@ -622,11 +622,6 @@
             <tensorRank>scalar</tensorRank>
             <description>redemption</description>
           </Parameter>
-           <Parameter name='Vol' libToHandle='CapletVolatilityStructure' exampleValue='EUR6MCapletVol'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>VolatilityStructure object ID</description>
-            </Parameter>
           <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
@@ -742,11 +737,6 @@
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>redemption</description>
-          </Parameter>
-          <Parameter name='CmsPricer' libraryClass='CmsCouponPricer' exampleValue='CmsCouponPricer'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>cmscoupon pricer object ID</description>
           </Parameter>
           <Parameter name='YieldCurve' libToHandle='YieldTermStructure' exampleValue='EURYC'>
             <type>string</type>

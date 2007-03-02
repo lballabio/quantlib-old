@@ -44,6 +44,9 @@ namespace QuantLibAddin {
         virtual ~Bond() {}
         std::vector<std::vector<boost::any> > flowAnalysis();
         const std::string& description() { return description_; }
+        void setPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
+        void setPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
+
       private:
         std::string description_;
     };
@@ -106,7 +109,6 @@ namespace QuantLibAddin {
              QuantLib::BusinessDayConvention accrualConvention,
              QuantLib::BusinessDayConvention paymentConvention,
              QuantLib::Real redemption,
-             const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
              const QuantLib::Date& stub,
              bool fromEnd);
@@ -133,7 +135,6 @@ namespace QuantLibAddin {
                  QuantLib::BusinessDayConvention accrualConvention,
                  QuantLib::BusinessDayConvention paymentConvention,
                  QuantLib::Real redemption,
-                 const QuantLib::Handle<QuantLib::CapletVolatilityStructure>&,
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                  const QuantLib::Date& stub,
                  bool fromEnd);
