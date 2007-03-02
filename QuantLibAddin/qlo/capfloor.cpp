@@ -53,10 +53,8 @@ namespace QuantLibAddin {
     {
         boost::shared_ptr<QuantLib::CapFloor> temp;
         getLibraryObject(temp);
-        const std::vector<boost::shared_ptr<QuantLib::CashFlow> >& cashflows = 
-            temp->floatingLeg();
+        const QuantLib::Leg& cashflows = temp->floatingLeg();
         return flowAnalysis(cashflows);
     }
 
 }
-
