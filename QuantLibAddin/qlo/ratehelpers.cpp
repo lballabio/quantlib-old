@@ -38,13 +38,15 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dayCounter)
     {
         quoteHandle_ = quote;
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(
-            new QuantLib::DepositRateHelper(quoteHandle_,
-                                            p,
-                                            fixingDays,
-                                            calendar,
-                                            convention,
-                                            dayCounter));
+        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::DepositRateHelper(quoteHandle_,
+                                        p,
+                                        fixingDays,
+                                        calendar,
+                                        convention,
+                                        false,      // FIXME
+                                        fixingDays, // FIXME
+                                        dayCounter));
     }
 
     FuturesRateHelper::FuturesRateHelper(
@@ -81,15 +83,15 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::IborIndex>& index)
     {
         quoteHandle_ = quote;
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(
-            new QuantLib::SwapRateHelper(quoteHandle_,
-                                         p,
-                                         fixingDays,
-                                         calendar,
-                                         fixedFrequency,
-                                         fixedConvention,
-                                         fixedDayCounter,
-                                         index));
+        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::SwapRateHelper(quoteHandle_,
+                                     p,
+                                     fixingDays,
+                                     calendar,
+                                     fixedFrequency,
+                                     fixedConvention,
+                                     fixedDayCounter,
+                                     index));
     }
 
 
