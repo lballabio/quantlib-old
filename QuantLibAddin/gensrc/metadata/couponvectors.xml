@@ -205,7 +205,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlCappedFlooredFloatingRateLeg'>
+    <Constructor name='qlIborLeg'>
       <libraryFunction>IborLeg</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
@@ -263,6 +263,11 @@
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Cap strikes. If missing, no caps are enforced.</description>
+          </Parameter>
+          <Parameter name='isInArrears' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -326,67 +331,10 @@
             <tensorRank>vector</tensorRank>
             <description>Cap strikes. If missing, no caps are enforced.</description>
           </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlCmsInArrearsLeg'>
-      <libraryFunction>CmsInArrearsLeg</libraryFunction>
-      <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='ScheduleID' libraryClass='Schedule'>
-            <type>string</type>
+          <Parameter name='isInArrears' default='false'>
+            <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Schedule object ID</description>
-          </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>business days convention used for payment dates. If omitted, default = Following.</description>
-          </Parameter>
-          <Parameter name='Nominal' exampleValue='1000000'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Amount vector</description>
-          </Parameter>
-          <Parameter name='SwapIndex' libraryClass='SwapIndex'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>underlying swap index object ID</description>
-          </Parameter>
-          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>number of business days the fixing precedes the value date. If missing, the SwapIndex default is used.</description>
-          </Parameter>
-          <!-- we might/should use the daycounter of the IborIndex underlying the SwapIndex -->
-          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>DayCounter used for accrual periods</description>
-          </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no floors are enforced.</description>
-          </Parameter>
-          <Parameter name='Gearings' default='1.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. If omitted, default = 1.</description>
-          </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads. f omitted, default = 0.</description>
-          </Parameter>
-          <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Cap strikes. If missing, no caps are enforced.</description>
+            <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
           </Parameter>
         </Parameters>
       </ParameterList>

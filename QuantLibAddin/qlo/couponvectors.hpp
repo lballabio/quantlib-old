@@ -66,59 +66,44 @@ namespace QuantLibAddin {
         FixedRateLeg(
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
             QuantLib::BusinessDayConvention              convention,
-            const std::vector<double>&                   nominals,
-            const std::vector<double>&                   couponRates,
+            const std::vector<QuantLib::Real>&           nominals,
+            const std::vector<QuantLib::Rate>&           couponRates,
             const QuantLib::DayCounter&                  dayCountID);
     };
 
     class IborLeg : public Leg {
       public:
-        IborLeg(
-            const boost::shared_ptr<QuantLib::Schedule>& schedule,
-            QuantLib::BusinessDayConvention paymentAdjustment,
-            const std::vector<double>& nominals,
-            const boost::shared_ptr<QuantLib::IborIndex>& index,
-            QuantLib::Integer fixingDays,
-            const QuantLib::DayCounter& dayCounter,
-            const std::vector<QuantLib::Rate>& floors,
-            const std::vector<QuantLib::Real>& gearings,
-            const std::vector<QuantLib::Spread>& spreads,
-            const std::vector<QuantLib::Rate>& caps);
+        IborLeg(const boost::shared_ptr<QuantLib::Schedule>& schedule,
+                QuantLib::BusinessDayConvention paymentAdjustment,
+                const std::vector<QuantLib::Real>& nominals,
+                const boost::shared_ptr<QuantLib::IborIndex>& index,
+                QuantLib::Integer fixingDays,
+                const QuantLib::DayCounter& dayCounter,
+                const std::vector<QuantLib::Rate>& floors,
+                const std::vector<QuantLib::Real>& gearings,
+                const std::vector<QuantLib::Spread>& spreads,
+                const std::vector<QuantLib::Rate>& caps,
+                bool isInArrears);
     };
 
     class CmsLeg : public Leg {
       public:
-        CmsLeg(
-            const boost::shared_ptr<QuantLib::Schedule>& schedule,
-            QuantLib::BusinessDayConvention paymentAdjustment,
-            const std::vector<QuantLib::Real>& nominals,
-            const boost::shared_ptr<QuantLib::SwapIndex>& index,
-            QuantLib::Integer fixingDays,
-            const QuantLib::DayCounter& dayCounter,
-            const std::vector<QuantLib::Real>& floors,
-            const std::vector<QuantLib::Real>& gearings,
-            const std::vector<QuantLib::Real>& spreads,
-            const std::vector<QuantLib::Real>& caps);
+        CmsLeg(const boost::shared_ptr<QuantLib::Schedule>& schedule,
+               QuantLib::BusinessDayConvention paymentAdjustment,
+               const std::vector<QuantLib::Real>& nominals,
+               const boost::shared_ptr<QuantLib::SwapIndex>& index,
+               QuantLib::Integer fixingDays,
+               const QuantLib::DayCounter& dayCounter,
+               const std::vector<QuantLib::Real>& floors,
+               const std::vector<QuantLib::Real>& gearings,
+               const std::vector<QuantLib::Real>& spreads,
+               const std::vector<QuantLib::Real>& caps,
+               bool isInArrears);
     };
 
     class CmsZeroLeg : public Leg {
       public:
         CmsZeroLeg(
-            const boost::shared_ptr<QuantLib::Schedule>& schedule,
-            QuantLib::BusinessDayConvention paymentAdjustment,
-            const std::vector<QuantLib::Real>& nominals,
-            const boost::shared_ptr<QuantLib::SwapIndex>& index,
-            QuantLib::Integer fixingDays,
-            const QuantLib::DayCounter& dayCounter,
-            const std::vector<QuantLib::Real>& floors,
-            const std::vector<QuantLib::Real>& gearings,
-            const std::vector<QuantLib::Real>& spreads,
-            const std::vector<QuantLib::Real>& caps);
-    };
-
-    class CmsInArrearsLeg : public Leg {
-      public:
-        CmsInArrearsLeg(
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
             QuantLib::BusinessDayConvention paymentAdjustment,
             const std::vector<QuantLib::Real>& nominals,
