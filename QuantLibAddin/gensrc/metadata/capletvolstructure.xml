@@ -305,7 +305,7 @@
     </Constructor>
 
     <!-- Handle<CapletVolatilityStructure> -->
-    <Constructor name='qlHandleCapletVolatilityStructuree'>
+    <Constructor name='qlHandleCapletVolatilityStructure'>
       <libraryFunction>Handle&lt;QuantLib::CapletVolatilityStructure&gt;</libraryFunction>
       <SupportedPlatforms>
         <Excel calcInWizard='false' />
