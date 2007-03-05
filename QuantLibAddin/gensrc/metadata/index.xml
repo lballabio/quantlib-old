@@ -174,7 +174,7 @@
       <ParameterList>
         <Parameters/>
       </ParameterList>
-      <ReturnValue>
+      <ReturnValue libraryType='QuantLib::Size'>
         <type>long</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
@@ -375,7 +375,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='fixingDays'  exampleValue='2'>
+          <Parameter name='fixingDays' libraryType='QuantLib::Size' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
@@ -508,7 +508,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='fixingDays' exampleValue='2'>
+          <Parameter name='fixingDays' libraryType='QuantLib::Size' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>swap rate fixing days (e.g. 2)</description>

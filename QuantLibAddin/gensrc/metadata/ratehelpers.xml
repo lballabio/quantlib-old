@@ -78,7 +78,7 @@
             <tensorRank>scalar</tensorRank>
             <description>deposit length (e.g. 3M for three months)</description>
           </Parameter>
-          <Parameter name='fixingDays' exampleValue='2'>
+          <Parameter name='fixingDays' libraryType='QuantLib::Size' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
@@ -119,7 +119,7 @@
             <tensorRank>scalar</tensorRank>
             <description>deposit legth (e.g. 5Y for five years)</description>
           </Parameter>
-          <Parameter name='fixingDays' exampleValue='2'>
+          <Parameter name='fixingDays' libraryType='QuantLib::Size' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
@@ -231,17 +231,17 @@
             <tensorRank>vector</tensorRank>
             <description>vector of instrument inclusion boolean</description>
           </Parameter>
-          <Parameter name='priority'>
+          <Parameter name='priority' libraryType='QuantLib::Size'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>vector of priority integers (higher number for higher priority)</description>
           </Parameter>
-          <Parameter name='nFutures'>
+          <Parameter name='nFutures' libraryType='QuantLib::Size'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>max number of Futures to be included</description>
           </Parameter>
-          <Parameter name='frontFuturesRollingDays' default='0'>
+          <Parameter name='frontFuturesRollingDays' libraryType='QuantLib::Size' default='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>discard the front Futures the given number of days before its expiry (e.g zero implies the use of the front Futures during its expiry day)</description>

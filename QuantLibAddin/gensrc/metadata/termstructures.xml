@@ -318,7 +318,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='nDays' default='0'>
+          <Parameter name='nDays' libraryType='QuantLib::Size' default='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. If omitted, default = 0 is used.</description>
@@ -437,7 +437,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='nDays' default='0'>
+          <Parameter name='nDays' libraryType='QuantLib::Size' default='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. If omitted, default = 0 is used.</description>

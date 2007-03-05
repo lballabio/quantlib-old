@@ -75,12 +75,11 @@ namespace QuantLibAddin {
     std::vector<std::string> qlRateHelperSelection(
         const std::vector<std::string>& instrumentIDs,
         const std::vector<bool>& includeFlag,
-        const std::vector<long>& priority,
-        const long nFutures,
-        const long frontFuturesRollingDays,
+        const std::vector<QuantLib::Size>& priority,
+        const QuantLib::Size nFutures,
+        const QuantLib::Size frontFuturesRollingDays,
         bool depoExcludeFlag);
 
 }
 
 #endif
-

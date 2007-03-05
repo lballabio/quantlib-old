@@ -9,7 +9,7 @@
     <include>qlo/capletvolstructure.hpp</include>
   </includes>
   <copyright>
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006, 2007 Cristina Duminuco
     Copyright (C) 2005 Aurelien Chanudet
   </copyright>
@@ -155,9 +155,9 @@
       <ParameterList>
         <Parameters>
           <Parameter name='FloatingRateCouponPricer' libraryClass='FloatingRateCouponPricer'>
-              <type>string</type>
-              <tensorRank>vector</tensorRank>
-              <description>FloatingRate coupon pricer object ID</description>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>FloatingRate coupon pricer object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -176,30 +176,30 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment business day convention. If omitted, default = Following.</description>
+          </Parameter>
+          <Parameter name='Nominals' exampleValue='1000000'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Nominal amount vector. If omitted, default = 1000000</description>
+          </Parameter>
           <Parameter name='ScheduleID' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PaymentAdj' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Payment Adjustment: business days convention used for payment dates. If omitted, default = Following.</description>
-          </Parameter>
-          <Parameter name='Nominal' exampleValue='1000000'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Amount vector</description>
-          </Parameter>
-          <Parameter name='CouponRates' libraryType='QuantLib::Rate' exampleValue='0.05'>
+          <Parameter name='Coupons' libraryType='QuantLib::Rate' exampleValue='0.04'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>coupon fixed rates</description>
           </Parameter>
-          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/Actual (ISMA)'>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>DayCounter used for accrual periods</description>
+            <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -212,67 +212,65 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment business day convention. If omitted, default = Following.</description>
+          </Parameter>
+          <Parameter name='Nominals' exampleValue='1000000'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Nominal amount vector. If omitted, default = 1000000</description>
+          </Parameter>
           <Parameter name='ScheduleID' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PaymentAdj' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Payment Adjustment: business days convention used for payment dates. If omitted, default = Following.</description>
-          </Parameter>
-          <Parameter name='Nominal' exampleValue='1000000'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Amount vector</description>
-          </Parameter>
-          <Parameter name='IborIndex' libraryClass='IborIndex'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>floating IborIndex object ID</description>
-          </Parameter>
-          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
+          <Parameter name='fixingDays' libraryType='QuantLib::Size' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of business days the fixing precedes the value date. If missing, the IborIndex default is used.</description>
-          </Parameter>
-          <!--<Parameter name='DayCounter' enumeration='QuantLib::DayCounter' default='QuantLib::DayCounter()'>-->
-          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>DayCounter used for accrual periods</description>
-            <!--<description>If missing, the IborIndex default is used</description>-->
-          </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no floors are enforced.</description>
-          </Parameter>
-          <Parameter name='Gearings' default='1.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. If omitted, default = 1.0</description>
-          </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads. If omitted, default = 0.0</description>
-          </Parameter>
-          <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Cap strikes. If missing, no caps are enforced.</description>
+            <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
           </Parameter>
           <Parameter name='isInArrears' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
           </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
+          </Parameter>
+          <Parameter name='floors' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>floor strikes. If omitted, default = no floor</description>
+          </Parameter>
+          <Parameter name='gearings' default='1.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>floating rate gearings. If omitted, default = 1.0</description>
+          </Parameter>
+          <Parameter name='iborIndex' libraryClass='IborIndex'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating rate index</description>
+          </Parameter>
+          <Parameter name='spreads' libraryType='QuantLib::Spread' default='0.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>floating rate spreads. If omitted, default = 0%</description>
+          </Parameter>
+          <Parameter name='caps' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>cap strikes. If omitted, default = no cap</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
-    
+
     <Constructor name='qlCmsLeg'>
       <libraryFunction>CmsLeg</libraryFunction>
       <SupportedPlatforms>
@@ -280,61 +278,60 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment business day convention. If omitted, default = Following.</description>
+          </Parameter>
+          <Parameter name='Nominals' exampleValue='1000000'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Nominal amount vector. If omitted, default = 1000000</description>
+          </Parameter>
           <Parameter name='ScheduleID' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PaymentAdj' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+          <Parameter name='fixingDays' libraryType='QuantLib::Size' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
+          </Parameter>
+          <Parameter name='isInArrears' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment Adjustment: business days convention used for payment dates. If omitted, default = Following.</description>
+            <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
           </Parameter>
-          <Parameter name='Nominal' exampleValue='1000000'>
+          <Parameter name='floors' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Amount vector</description>
+            <description>floor strikes. If omitted, default = no floor</description>
+          </Parameter>
+          <Parameter name='gearings' default='1.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>floating rate gearings. If omitted, default = 1.0</description>
           </Parameter>
           <Parameter name='SwapIndex' libraryClass='SwapIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>number of business days the fixing precedes the value date. If missing, the SwapIndex default is used.</description>
-          </Parameter>
-          <!-- we might/should use the daycounter of the IborIndex underlying the SwapIndex -->
-          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>DayCounter used for accrual periods</description>
-          </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
+          <Parameter name='spreads' libraryType='QuantLib::Spread' default='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no floors are enforced.</description>
+            <description>floating rate spreads. If omitted, default = 0%</description>
           </Parameter>
-          <Parameter name='Gearings' default='1.0'>
+          <Parameter name='caps' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. If omitted, default = 1.</description>
-          </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads. If omitted, default = 0.</description>
-          </Parameter>
-          <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Cap strikes. If missing, no caps are enforced.</description>
-          </Parameter>
-          <Parameter name='isInArrears' default='false'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
+            <description>cap strikes. If omitted, default = no cap</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -347,56 +344,60 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='paymentBDC' enumeration='QuantLib::BusinessDayConvention' default='"Following"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment business day convention. If omitted, default = Following.</description>
+          </Parameter>
+          <Parameter name='Nominals' exampleValue='1000000'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Nominal amount vector. If omitted, default = 1000000</description>
+          </Parameter>
           <Parameter name='ScheduleID' libraryClass='Schedule'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='PaymentAdjustment' enumeration='QuantLib::BusinessDayConvention' default='"Following"' exampleValue='Following'>
+          <Parameter name='fixingDays' libraryType='QuantLib::Size' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
+          </Parameter>
+          <Parameter name='isInArrears' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
+          </Parameter>
+          <Parameter name='dayCounter' enumeration='QuantLib::DayCounter' exampleValue='Actual/360'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>business days convention used for payment dates. If omitted, default = Following.</description>
+            <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
           </Parameter>
-          <Parameter name='Nominal' exampleValue='1000000'>
+          <Parameter name='floors' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Amount vector</description>
+            <description>floor strikes. If omitted, default = no floor</description>
+          </Parameter>
+          <Parameter name='gearings' default='1.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>floating rate gearings. If omitted, default = 1.0</description>
           </Parameter>
           <Parameter name='SwapIndex' libraryClass='SwapIndex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>underlying swap index object ID</description>
+            <description>underlying SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Integer&gt;()' exampleValue='2'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>number of business days the fixing precedes the value date. If missing, the SwapIndex default is used.</description>
-          </Parameter>
-          <!-- we might/should use the daycounter of the IborIndex underlying the SwapIndex -->
-          <Parameter name='DayCounter' enumeration='QuantLib::DayCounter'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>DayCounter used for accrual periods</description>
-          </Parameter>
-          <Parameter name='FloorRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
+          <Parameter name='spreads' libraryType='QuantLib::Spread' default='0.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Floor strikes. If missing, no floors are enforced.</description>
+            <description>floating rate spreads. If omitted, default = 0%</description>
           </Parameter>
-          <Parameter name='Gearings' default='1.0'>
+          <Parameter name='caps' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>the multiplicative coefficients of the floating rate index. If omitted, default = 1.</description>
-          </Parameter>
-          <Parameter name='Spreads' libraryType='QuantLib::Spread' default='0.0'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>floating rate additional spreads. If omitted, default = 0.</description>
-          </Parameter>
-          <Parameter name='CapRates' libraryType='QuantLib::Rate' default='std::vector&lt;QuantLib::Rate&gt;()'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Cap strikes. If missing, no caps are enforced.</description>
+            <description>cap strikes. If omitted, default = no cap</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -57,63 +57,66 @@ namespace QuantLibAddin {
 
     class SimpleCashFlowVector : public Leg {
       public:
-        SimpleCashFlowVector(const std::vector<double>& amounts, 
+        SimpleCashFlowVector(const std::vector<QuantLib::Real>& amounts, 
                              const std::vector<QuantLib::Date>& dates);
     };
     
     class FixedRateLeg : public Leg {
       public:
         FixedRateLeg(
-            const boost::shared_ptr<QuantLib::Schedule>& schedule,
-            QuantLib::BusinessDayConvention              convention,
+            QuantLib::BusinessDayConvention              paymentConvention,
             const std::vector<QuantLib::Real>&           nominals,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
             const std::vector<QuantLib::Rate>&           couponRates,
-            const QuantLib::DayCounter&                  dayCountID);
+            const QuantLib::DayCounter&                  paymentDayCounter);
     };
 
     class IborLeg : public Leg {
       public:
-        IborLeg(const boost::shared_ptr<QuantLib::Schedule>& schedule,
-                QuantLib::BusinessDayConvention paymentAdjustment,
-                const std::vector<QuantLib::Real>& nominals,
-                const boost::shared_ptr<QuantLib::IborIndex>& index,
-                QuantLib::Integer fixingDays,
-                const QuantLib::DayCounter& dayCounter,
-                const std::vector<QuantLib::Rate>& floors,
-                const std::vector<QuantLib::Real>& gearings,
-                const std::vector<QuantLib::Spread>& spreads,
-                const std::vector<QuantLib::Rate>& caps,
-                bool isInArrears);
+        IborLeg(
+            QuantLib::BusinessDayConvention paymentConvention,
+            const std::vector<QuantLib::Real>& nominals,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::Size fixingDays,
+            bool isInArrears,
+            const QuantLib::DayCounter& paymentDayCounter,
+            const std::vector<QuantLib::Rate>& floors,
+            const std::vector<QuantLib::Real>& gearings,
+            const boost::shared_ptr<QuantLib::IborIndex>& index,
+            const std::vector<QuantLib::Spread>& spreads,
+            const std::vector<QuantLib::Rate>& caps);
     };
 
     class CmsLeg : public Leg {
       public:
-        CmsLeg(const boost::shared_ptr<QuantLib::Schedule>& schedule,
-               QuantLib::BusinessDayConvention paymentAdjustment,
-               const std::vector<QuantLib::Real>& nominals,
-               const boost::shared_ptr<QuantLib::SwapIndex>& index,
-               QuantLib::Integer fixingDays,
-               const QuantLib::DayCounter& dayCounter,
-               const std::vector<QuantLib::Real>& floors,
-               const std::vector<QuantLib::Real>& gearings,
-               const std::vector<QuantLib::Real>& spreads,
-               const std::vector<QuantLib::Real>& caps,
-               bool isInArrears);
+        CmsLeg(
+            QuantLib::BusinessDayConvention paymentConvention,
+            const std::vector<QuantLib::Real>& nominals,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::Size fixingDays,
+            bool isInArrears,
+            const QuantLib::DayCounter& paymentDayCounter,
+            const std::vector<QuantLib::Rate>& floors,
+            const std::vector<QuantLib::Real>& gearings,
+            const boost::shared_ptr<QuantLib::SwapIndex>& index,
+            const std::vector<QuantLib::Spread>& spreads,
+            const std::vector<QuantLib::Rate>& caps);
     };
 
     class CmsZeroLeg : public Leg {
       public:
         CmsZeroLeg(
-            const boost::shared_ptr<QuantLib::Schedule>& schedule,
-            QuantLib::BusinessDayConvention paymentAdjustment,
+            QuantLib::BusinessDayConvention paymentConvention,
             const std::vector<QuantLib::Real>& nominals,
-            const boost::shared_ptr<QuantLib::SwapIndex>& index,
-            QuantLib::Integer fixingDays,
-            const QuantLib::DayCounter& dayCounter,
-            const std::vector<QuantLib::Real>& floors,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::Size fixingDays,
+            bool isInArrears,
+            const QuantLib::DayCounter& paymentDayCounter,
+            const std::vector<QuantLib::Rate>& floors,
             const std::vector<QuantLib::Real>& gearings,
-            const std::vector<QuantLib::Real>& spreads,
-            const std::vector<QuantLib::Real>& caps);
+            const boost::shared_ptr<QuantLib::SwapIndex>& index,
+            const std::vector<QuantLib::Spread>& spreads,
+            const std::vector<QuantLib::Rate>& caps);
     };
 
     class FloatingRateCouponPricer : 
