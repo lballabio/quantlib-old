@@ -195,21 +195,21 @@ namespace QuantLibAddin {
         // Look for the front Futures
         QuantLib::Date frontFuturesEarliestDate;
         bool thereAreFutures = false;
-        QuantLib::Size i=0;
-        while (i<nInstruments) {
-            if (rhsAll[i].isFutures && rhsAll[i].includeFlag &&
-                    (rhsAll[i].earliestDate-actualFrontFuturesRollingDays >= evalDate)) {
+        QuantLib::Size j=0;
+        while (j<nInstruments) {
+            if (rhsAll[j].isFutures && rhsAll[j].includeFlag &&
+                    (rhsAll[j].earliestDate-actualFrontFuturesRollingDays >= evalDate)) {
                 thereAreFutures = true;
-                frontFuturesEarliestDate = rhsAll[i].earliestDate;
+                frontFuturesEarliestDate = rhsAll[j].earliestDate;
                 break;
             }
-            i++;
+            ++j;
         }
         // If there are NOT Futures, force Depo exclude flag at false
         if (!thereAreFutures) depoExcludeFlag = false;
         // Start selection
         bool depoAfterFrontFuturesAlreadyIncluded = false;
-        for (i=0; i<nInstruments; ++i) {
+        for (QuantLib::Size i=0; i<nInstruments; ++i) {
             if (rhsAll[i].includeFlag && rhsAll[i].earliestDate >= evalDate) {
                 if (rhsAll[i].isDepo) {                 // Check Depo conditions
                     if (!depoExcludeFlag) { 
@@ -249,12 +249,12 @@ namespace QuantLibAddin {
         std::sort(rhs.begin(), rhs.end(), detail::RateHelperPrioritySorter());
 
         // remove RateHelpers with duplicate latestDate
-        for (i=0; i<rhs.size()-1; ++i) {
+        for (QuantLib::Size i=0; i<rhs.size()-1; ++i) {
             if (rhs[i].latestDate < rhs[i+1].latestDate) 
                 result.push_back(rhs[i].objectID);
         }
         // Add the last one in any case
-        result.push_back(rhs[i].objectID);
+        result.push_back(rhs[rhs.size()-1].objectID);
 
         return result;
     }
