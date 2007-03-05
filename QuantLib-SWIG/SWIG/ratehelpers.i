@@ -49,19 +49,29 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
         DepositRateHelperPtr(
                 const Handle<Quote>& rate,
                 const Period& tenor, Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention,
+                const Calendar& calendar, 
+		BusinessDayConvention convention,
+		bool endOfMonth,
+		Integer fixingDays,
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
                 new DepositRateHelper(rate,tenor,settlementDays,
-                                      calendar,convention,dayCounter));
+                                      calendar,convention,
+				      endOfMonth, fixingDays,
+				      dayCounter));
         }
         DepositRateHelperPtr(
                 Rate rate, const Period& tenor, Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention,
+                const Calendar& calendar, 
+		BusinessDayConvention convention,
+		bool endOfMonth,
+		Integer fixingDays,
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
                 new DepositRateHelper(rate,tenor,settlementDays,
-                                      calendar,convention,dayCounter));
+                                      calendar,convention,
+				      endOfMonth, fixingDays,
+				      dayCounter));
         }
     }
 };
@@ -74,22 +84,31 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const Handle<Quote>& rate,
                 Integer monthsToStart, Integer monthsToEnd,
                 Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention,
+                const Calendar& calendar, 
+		BusinessDayConvention convention,
+		bool endOfMonth,
+		Integer fixingDays,	
                 const DayCounter& dayCounter) {
             return new FraRateHelperPtr(
                 new FraRateHelper(rate,monthsToStart,monthsToEnd,
                                   settlementDays,calendar,convention,
+				  endOfMonth, fixingDays,
                                   dayCounter));
         }
         FraRateHelperPtr(
-                Rate rate,
-                Integer monthsToStart, Integer monthsToEnd,
-                Integer settlementDays,
-                const Calendar& calendar, BusinessDayConvention convention,
-                const DayCounter& dayCounter) {
+	                Rate rate,	
+			Integer monthsToStart, Integer monthsToEnd,
+			Integer settlementDays,
+			const Calendar& calendar, 
+			BusinessDayConvention convention,
+			bool endOfMonth,
+			Integer fixingDays,
+			const DayCounter& dayCounter) {
             return new FraRateHelperPtr(
                 new FraRateHelper(rate,monthsToStart,monthsToEnd,
                                   settlementDays,calendar,convention,
+				  endOfMonth,
+				  fixingDays,
                                   dayCounter));
         }
     }
