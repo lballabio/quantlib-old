@@ -20,10 +20,14 @@
 #define qlo_conversions_hpp
 
 #include <qlo/qladdindefines.hpp>
-#include <ql/date.hpp>
-#include <ql/calendar.hpp>
-#include <ql/interestrate.hpp>
+#include <ql/types.hpp>
 #include <vector>
+
+namespace QuantLib {
+    class InterestRate;
+    class Date;
+    class Period;
+}
 
 namespace ObjHandler {
 

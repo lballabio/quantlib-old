@@ -20,15 +20,19 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/Conversions/conversions.hpp>
+#include <ql/date.hpp>
+#include <ql/period.hpp>
+#include <ql/interestrate.hpp>
 
 using std::vector;
 using QuantLib::Date;
 using QuantLib::Period;
 using QuantLib::Size;
+using QuantLib::InterestRate;
 
 namespace ObjHandler {
 
-    double libraryToScalar(const QuantLib::InterestRate &i) {
+    double libraryToScalar(const InterestRate &i) {
         return i.rate();
     }
 
