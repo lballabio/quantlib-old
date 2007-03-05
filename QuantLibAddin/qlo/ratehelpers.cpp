@@ -160,8 +160,7 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLib::RateHelper> qlrh;
         std::vector<detail::RateHelperItem> rhsAll;
         rhsAll.reserve(nInstruments);
-        QuantLib::Size i = 0;
-        for (i=0; i<nInstruments; ++i) {
+        for (QuantLib::Size i=0; i<nInstruments; ++i) {
             OH_GET_OBJECT(qlarh, instrumentIDs[i], RateHelper);
             bool isFutures, isDepo;
             if (boost::dynamic_pointer_cast<FuturesRateHelper>(qlarh))
@@ -189,14 +188,14 @@ namespace QuantLibAddin {
 
         // Select input rate helpers according to their includeFlag,
         // their expiration, maximum number of allowed Futures and depoExcludeFlag
-        long futuresCounter = 0;
+        QuantLib::Size futuresCounter = 0;
         QuantLib::Date evalDate = QuantLib::Settings::instance().evaluationDate();
         std::vector<detail::RateHelperItem> rhs, rhsDepo;
         long actualFrontFuturesRollingDays = 2+frontFuturesRollingDays;
         // Look for the front Futures
         QuantLib::Date frontFuturesEarliestDate;
         bool thereAreFutures = false;
-        i=0;
+        QuantLib::Size i=0;
         while (i<nInstruments) {
             if (rhsAll[i].isFutures && rhsAll[i].includeFlag &&
                     (rhsAll[i].earliestDate-actualFrontFuturesRollingDays >= evalDate)) {
