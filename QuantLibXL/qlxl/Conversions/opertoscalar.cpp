@@ -17,6 +17,7 @@
 
 #include <qlxl/Conversions/opertoscalar.hpp>
 #include <ql/Utilities/dataparsers.hpp>
+#include <ql/period.hpp>
 #include <ohxl/Conversions/opertoscalar.hpp>
 
 namespace ObjHandler {
