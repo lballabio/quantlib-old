@@ -41,8 +41,8 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Volatility</type>
+      <ReturnValue libraryType='QuantLib::Volatility'>
+        <type>double</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
