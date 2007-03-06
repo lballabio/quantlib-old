@@ -190,7 +190,7 @@
             <tensorRank>scalar</tensorRank>
             <description>future contract length in months</description>
           </Parameter>
-          <Parameter name='calendar' enumeration ='QuantLib::Calendar'>
+          <Parameter name='calendar' enumeration='QuantLib::Calendar'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
