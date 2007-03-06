@@ -206,11 +206,6 @@
             <tensorRank>scalar</tensorRank>
             <description>rolling convention</description>
           </Parameter>
-          <Parameter name='origin' libraryType='QuantLib::Date' default='QuantLib::Date()'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>date to be adjusted</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue libraryType='QuantLib::Date'>
