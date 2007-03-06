@@ -159,7 +159,7 @@
       <ParameterList>
         <Parameters/>
       </ParameterList>
-      <ReturnValue enumeration='QuantLib::Period'>
+      <ReturnValue libraryType='QuantLib::Period'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
@@ -449,7 +449,7 @@
       <ParameterList>
         <Parameters/>
       </ParameterList>
-      <ReturnValue enumeration='QuantLib::Period'>
+      <ReturnValue libraryType='QuantLib::Period'>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
