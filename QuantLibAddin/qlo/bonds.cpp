@@ -62,6 +62,7 @@ namespace QuantLibAddin {
 
     ZeroCouponBond::ZeroCouponBond(
             const std::string& des,
+            const std::string& cur,
             QuantLib::Size settlementDays,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,
@@ -71,7 +72,7 @@ namespace QuantLibAddin {
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
-    : Bond(des) {
+    : Bond(des, cur) {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::ZeroCouponBond(settlementDays, faceAmount,
                                      calendar, maturityDate,
@@ -82,6 +83,7 @@ namespace QuantLibAddin {
 
     FixedRateBond::FixedRateBond(
             const std::string& des,
+            const std::string& cur,
             QuantLib::Size settlementDays,
             QuantLib::BusinessDayConvention payConvention,
             QuantLib::Real faceAmount,
@@ -91,7 +93,7 @@ namespace QuantLibAddin {
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
-    : Bond(des) {
+    : Bond(des, cur) {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::FixedRateBond(settlementDays, faceAmount, *sch,
                                     coupons, payDayCounter, payConvention,
@@ -100,6 +102,7 @@ namespace QuantLibAddin {
 
      FloatingRateBond::FloatingRateBond( 
             const std::string& des,
+            const std::string& cur,
             QuantLib::Size settlementDays,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,
@@ -115,7 +118,7 @@ namespace QuantLibAddin {
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
-    : Bond(des) {
+    : Bond(des, cur) {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::FloatingRateBond(settlementDays, faceAmount, *schedule,
                                        index, paymentDayCounter,
@@ -128,6 +131,7 @@ namespace QuantLibAddin {
 
     CmsRateBond::CmsRateBond( 
             const std::string& des,
+            const std::string& cur,
             QuantLib::Size settlementDays,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,
@@ -143,7 +147,7 @@ namespace QuantLibAddin {
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
-    : Bond(des) {
+    : Bond(des, cur) {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::CmsRateBond(settlementDays, faceAmount, *schedule,
                                   index, paymentDayCounter,

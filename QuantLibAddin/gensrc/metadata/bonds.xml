@@ -53,6 +53,21 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlBondCurrency' objectClass='Bond'>
+      <description>Returns the bond currency</description>
+      <libraryFunction>currency</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlBondSettlementDate' libraryClass='Bond'>
       <description>Returns the settlement date of the bond.</description>
       <libraryFunction>settlementDate</libraryFunction>
@@ -385,6 +400,11 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string. If omitted, default = 'no description available'</description>
           </Parameter>
+          <Parameter name='Currency' default='"no description available"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond currency</description>
+          </Parameter>
           <Parameter name='settlementDays' libraryType='QuantLib::Size' exampleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
@@ -446,6 +466,11 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string. If omitted, default = 'no description available'</description>
           </Parameter>
+          <Parameter name='Currency' default='"no description available"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond currency</description>
+          </Parameter>
           <Parameter name='settlementDays' libraryType='QuantLib::Size' exampleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
@@ -506,6 +531,11 @@
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>bond description string. If omitted, default = 'no description available'</description>
+          </Parameter>
+          <Parameter name='Currency' default='"no description available"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond currency</description>
           </Parameter>
           <Parameter name='settlementDays' libraryType='QuantLib::Size' exampleValue='3'>
             <type>long</type>
@@ -597,6 +627,11 @@
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>bond description string. If omitted, default = 'no description available'</description>
+          </Parameter>
+          <Parameter name='Currency' default='"no description available"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond currency</description>
           </Parameter>
           <Parameter name='settlementDays' libraryType='QuantLib::Size' exampleValue='3'>
             <type>long</type>
