@@ -1493,7 +1493,7 @@
             <description>CurveState object ID</description>
           </Parameter>
           <Parameter name='displacement' libraryType='QuantLib::Spread' exampleValue ='0.0'>
-            <type>long</type>
+            <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement spread</description>
           </Parameter>
