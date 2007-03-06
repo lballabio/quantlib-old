@@ -98,7 +98,7 @@ namespace QuantLibAddin {
     }
 
     void AnalysisGenerator::visit(QuantLib::CashFlow& c) {
-        std::vector<boost::any> cf(numberOfColumns_, std::string("N/A"));
+        std::vector<boost::any> cf(numberOfColumns_, std::string("#N/A"));
         cf[PAYMENT_DATE]=c.date().serialNumber();
         try {
             cf[AMOUNT]=c.amount();
@@ -124,7 +124,7 @@ namespace QuantLibAddin {
         flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
         flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
         flowAnalysis_.back()[INDEX]=c.index()->name();
-        flowAnalysis_.back()[FLOOR]=std::string("N/A");
+        flowAnalysis_.back()[FLOOR]=std::string("#N/A");
         flowAnalysis_.back()[GEARING]=c.gearing();
         try {
             flowAnalysis_.back()[INDEX_FIXING]=c.indexFixing();
@@ -133,57 +133,8 @@ namespace QuantLibAddin {
             flowAnalysis_.back()[CONV_ADJ]=c.convexityAdjustment();
         } catch(...) {}
         flowAnalysis_.back()[SPREAD]=c.spread();
-        flowAnalysis_.back()[CAP]=std::string("N/A");
+        flowAnalysis_.back()[CAP]=std::string("#N/A");
     }
-
-    //void AnalysisGenerator::visit(QuantLib::CappedFlooredCoupon& c) {
-    //    visit(static_cast<QuantLib::Coupon&>(c));
-    //    flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
-    //    flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
-    //    flowAnalysis_.back()[INDEX]=c.index()->name();
-    //    try {
-    //        flowAnalysis_.back()[FLOOR]=c.floor();
-    //    } catch(...) {
-    //        flowAnalysis_.back()[FLOOR]=std::string("N/A");
-    //    }
-    //    flowAnalysis_.back()[GEARING]=c.gearing();
-    //    try {
-    //        flowAnalysis_.back()[INDEX_FIXING]=c.indexFixing();
-    //    } catch(...) {}
-    //    try {
-    //        flowAnalysis_.back()[CONV_ADJ]=c.convexityAdjustment();
-    //    } catch(...) {}
-    //    flowAnalysis_.back()[SPREAD]=c.spread();
-    //    try {
-    //        flowAnalysis_.back()[CAP]=c.cap();
-    //    } catch(...) {
-    //        flowAnalysis_.back()[CAP]=std::string("N/A");
-    //    }   
-    //}
-    //void AnalysisGenerator::visit(QuantLib::CappedFlooredIborCoupon& c) {
-    //    visit(static_cast<QuantLib::Coupon&>(c));
-    //    flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
-    //    flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
-    //    flowAnalysis_.back()[INDEX]=c.index()->name();
-    //    try {
-    //        flowAnalysis_.back()[FLOOR]=c.floor();
-    //    } catch(...) {
-    //        flowAnalysis_.back()[FLOOR]=std::string("N/A");
-    //    }
-    //    flowAnalysis_.back()[GEARING]=c.gearing();
-    //    try {
-    //        flowAnalysis_.back()[INDEX_FIXING]=c.indexFixing();
-    //    } catch(...) {}
-    //    try {
-    //        flowAnalysis_.back()[CONV_ADJ]=c.convexityAdjustment();
-    //    } catch(...) {}
-    //    flowAnalysis_.back()[SPREAD]=c.spread();
-    //    try {
-    //        flowAnalysis_.back()[CAP]=c.cap();
-    //    } catch(...) {
-    //        flowAnalysis_.back()[CAP]=std::string("N/A");
-    //    }   
-    //}
 
     void AnalysisGenerator::visit(QuantLib::CappedFlooredCoupon& c) {
         visit(static_cast<QuantLib::Coupon&>(c));
@@ -193,7 +144,7 @@ namespace QuantLibAddin {
         if (c.floor() != QuantLib::Null<QuantLib::Rate>())
             flowAnalysis_.back()[FLOOR]=c.floor();
         else
-            flowAnalysis_.back()[FLOOR]=std::string("N/A");
+            flowAnalysis_.back()[FLOOR]=std::string("#N/A");
         flowAnalysis_.back()[GEARING]=c.gearing();
         try {
             flowAnalysis_.back()[INDEX_FIXING]=c.indexFixing();
@@ -205,7 +156,7 @@ namespace QuantLibAddin {
         if (c.cap() != QuantLib::Null<QuantLib::Rate>())
             flowAnalysis_.back()[CAP]=c.cap();
         else
-            flowAnalysis_.back()[CAP]=std::string("N/A");
+            flowAnalysis_.back()[CAP]=std::string("#N/A");
     }
 
     const std::vector<std::vector<boost::any> >& AnalysisGenerator::analysis() const {
@@ -214,7 +165,7 @@ namespace QuantLibAddin {
 
     std::vector<std::vector<boost::any> > flowAnalysis(const QuantLib::Leg& leg) {
         AnalysisGenerator generator;
-        for(QuantLib::Size i=0; i<leg.size(); ++i)
+        for (QuantLib::Size i=0; i<leg.size(); ++i)
             leg[i]->accept(generator);
         return generator.analysis();
     }
