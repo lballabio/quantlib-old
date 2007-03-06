@@ -188,6 +188,7 @@ DONE profiling session with Francois on BondMonitor_EUR.xls
 
 
 Marco
+- verifica documento di McKinsey
 - DONE BGM payoffs review
 - DONE BGM book set up
 - DONE sticky/ratchet and double option instruments in C++ (shared among Marco, Giorgio)
