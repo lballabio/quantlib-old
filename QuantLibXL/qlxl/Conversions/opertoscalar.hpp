@@ -44,4 +44,3 @@ namespace ObjHandler {
 }
 
 #endif
-
