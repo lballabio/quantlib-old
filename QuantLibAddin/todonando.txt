@@ -169,18 +169,20 @@ WIP ratchet Instrument C++ (shared among Marco, Giorgio)
 
 
 Chiara
-- Add QuantLib currency to bond static data
+- insert new bond objects needed by the trader
+- create a new spreadsheet where bond's pricer should be set
 - With Nando add tests for asset swap in the test suite
 - with Nando review bond euivalent fo Reverse FRN
 - Digital Bond contructor
 - Multicallable bond constructor
 - Z-spread function
-- with Nando review all the signatures of bond functions in excel
+DONE Add QuantLib currency to bond static data
+DONE with Nando review all the signatures of bond functions in excel
 DONE capped/floored coupon bond
 DONE fix-to-float bond
 DONE with giorgio set mean rev quote in cmscouponbond contructor
 DONE fix assetswap bug when date is in the range of bond's settlement date
-DONE profiling session with Francois on BondMonitor_EUR.xls
+WIP profiling session with Francois on BondMonitor_EUR.xls
 - implement alternative version of bond instrument which should accept a leg object
 - bond pricing engine
 - fare tutti i metodi dei bond restituiscano un InterestRate
