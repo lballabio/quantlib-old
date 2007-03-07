@@ -38,7 +38,7 @@ namespace QuantLibAddin {
 
     IborIndex::IborIndex(const std::string& indexName,
                  const QuantLib::Period& p,
-                 const long fixingDays,
+                 const QuantLib::Natural fixingDays,
                  const QuantLib::Currency& crr,
                  const QuantLib::Calendar& calendar,
                  QuantLib::BusinessDayConvention fltBDC,
@@ -56,7 +56,7 @@ namespace QuantLibAddin {
 
     SwapIndex::SwapIndex(const std::string& familyName,
                          const QuantLib::Period& p,
-                         long fixingDays,
+                         QuantLib::Natural fixingDays,
                          QuantLib::Currency& crr,
                          const QuantLib::Calendar& calendar,
                          const QuantLib::Period& fixedLegTenor,

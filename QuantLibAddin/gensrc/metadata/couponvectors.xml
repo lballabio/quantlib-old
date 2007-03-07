@@ -227,7 +227,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='fixingDays' libraryType='QuantLib::Size' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
+          <Parameter name='fixingDays' libraryType='QuantLib::Natural' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
@@ -293,7 +293,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='fixingDays' libraryType='QuantLib::Size' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
+          <Parameter name='fixingDays' libraryType='QuantLib::Natural' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
@@ -359,7 +359,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='fixingDays' libraryType='QuantLib::Size' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
+          <Parameter name='fixingDays' libraryType='QuantLib::Natural' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>

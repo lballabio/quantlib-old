@@ -36,7 +36,7 @@ namespace QuantLibAddin {
         DepositRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
-            const long fixingDays,
+            const QuantLib::Natural fixingDays,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
             const QuantLib::DayCounter& dayCounter);
@@ -62,7 +62,7 @@ namespace QuantLibAddin {
         SwapRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
-            const long fixingDays,
+            const QuantLib::Natural fixingDays,
             const QuantLib::Calendar& calendar,
             const QuantLib::Frequency& fixedFrequency,
             QuantLib::BusinessDayConvention fixedConvention,
@@ -76,8 +76,8 @@ namespace QuantLibAddin {
         const std::vector<std::string>& instrumentIDs,
         const std::vector<bool>& includeFlag,
         const std::vector<QuantLib::Size>& priority,
-        const QuantLib::Size nFutures,
-        const QuantLib::Size frontFuturesRollingDays,
+        const QuantLib::Natural nFutures,
+        const QuantLib::Natural frontFuturesRollingDays,
         bool depoExcludeFlag);
 
 }

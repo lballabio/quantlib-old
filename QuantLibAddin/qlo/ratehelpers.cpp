@@ -32,7 +32,7 @@ namespace QuantLibAddin {
     DepositRateHelper::DepositRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
-            const long fixingDays,
+            const QuantLib::Natural fixingDays,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
             const QuantLib::DayCounter& dayCounter)
@@ -75,7 +75,7 @@ namespace QuantLibAddin {
     SwapRateHelper::SwapRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
-            const long fixingDays,
+            const QuantLib::Natural fixingDays,
             const QuantLib::Calendar& calendar,
             const QuantLib::Frequency& fixedFrequency,
             QuantLib::BusinessDayConvention fixedConvention,
@@ -141,20 +141,18 @@ namespace QuantLibAddin {
         const std::vector<std::string>& instrumentIDs,
         const std::vector<bool>& includeFlag,
         const std::vector<QuantLib::Size>& priority,
-        const QuantLib::Size nFutures,
-        const QuantLib::Size frontFuturesRollingDays,
+        const QuantLib::Natural nFutures,
+        const QuantLib::Natural frontFuturesRollingDays,
         bool depoExcludeFlag)
     {
         // Checks
         QL_REQUIRE(!instrumentIDs.empty(), "no instrument given");
-        QL_REQUIRE(frontFuturesRollingDays>=0,
-            "negative (" << frontFuturesRollingDays <<
-            ")frontFuturesRollingDays");
+
         QuantLib::Size nInstruments = instrumentIDs.size();
         QL_REQUIRE(includeFlag.size()==nInstruments,
-            "includeFlag / instruments mismatch");
+                   "includeFlag / instruments mismatch");
         QL_REQUIRE(priority.size()==nInstruments,
-            "priority / instruments mismatch");
+                   "priority / instruments mismatch");
 
         // RateHelperItem
         boost::shared_ptr<QuantLib::RateHelper> qlrh;
@@ -188,7 +186,7 @@ namespace QuantLibAddin {
 
         // Select input rate helpers according to their includeFlag,
         // their expiration, maximum number of allowed Futures and depoExcludeFlag
-        QuantLib::Size futuresCounter = 0;
+        QuantLib::Natural futuresCounter = 0;
         QuantLib::Date evalDate = QuantLib::Settings::instance().evaluationDate();
         std::vector<detail::RateHelperItem> rhs, rhsDepo;
         long actualFrontFuturesRollingDays = 2+frontFuturesRollingDays;
