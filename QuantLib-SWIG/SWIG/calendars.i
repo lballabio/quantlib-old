@@ -81,12 +81,20 @@ class Calendar {
     void addHoliday(const Date&);
     void removeHoliday(const Date&);
     Date adjust(const Date& d,
-                BusinessDayConvention convention = QuantLib::Following,
-                const Date& origin = Date());
+                BusinessDayConvention convention = QuantLib::Following);
     Date advance(const Date& d, Integer n, TimeUnit unit,
-                 BusinessDayConvention convention = QuantLib::Following);
+                 BusinessDayConvention convention =
+		 QuantLib::Following,
+		 bool endOfMonth = false);
     Date advance(const Date& d, const Period& period,
-                 BusinessDayConvention convention = QuantLib::Following);
+                 BusinessDayConvention convention =
+		 QuantLib::Following,
+		 bool endOfMonth = false);
+    BigInteger businessDaysBetween(const Date& from,
+                 const Date& to,
+                 bool includeFirst = true,
+                 bool includeLast = false);
+		 
     %extend {
         std::string __str__() {
             return self->name()+" calendar";
