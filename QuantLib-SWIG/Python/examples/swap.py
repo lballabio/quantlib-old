@@ -64,7 +64,7 @@ dayCounter = Actual360()
 settlementDays = 2
 depositHelpers = [ DepositRateHelper(QuoteHandle(deposits[(n,unit)]),
                                      Period(n,unit), settlementDays,
-                                     calendar, ModifiedFollowing, dayCounter)
+                                     calendar, ModifiedFollowing, False, 0, dayCounter)
                    for n, unit in [(1,Weeks),(1,Months),(3,Months),
                                    (6,Months),(9,Months),(1,Years)] ]
 
@@ -72,7 +72,7 @@ dayCounter = Actual360()
 settlementDays = 2
 fraHelpers = [ FraRateHelper(QuoteHandle(FRAs[(n,m)]),
                              n, m, settlementDays,
-                             calendar, ModifiedFollowing, dayCounter)
+                             calendar, ModifiedFollowing, False, 0, dayCounter)
                for n, m in FRAs.keys() ]
 
 dayCounter = Actual360()
