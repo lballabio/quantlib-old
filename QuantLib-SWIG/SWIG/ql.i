@@ -88,6 +88,7 @@
 
 
 %include common.i
+%include basketoptions.i
 %include bonds.i
 %include calendars.i
 %include callability.i

@@ -96,6 +96,7 @@ ans
 using QuantLib::VanillaOption;
 using QuantLib::ForwardVanillaOption;
 typedef boost::shared_ptr<Instrument> VanillaOptionPtr;
+typedef boost::shared_ptr<Instrument> MultiAssetOptionPtr;
 %}
 
 
@@ -305,6 +306,12 @@ class QuantoForwardVanillaOptionPtr : public QuantoVanillaOptionPtr {
     }
 };
 
+%{
+using QuantLib::MultiAssetOption;
+%}
+%rename(MultiAssetOption) MultiAssetOptionPtr;
+class MultiAssetOptionPtr : public boost::shared_ptr<Instrument> {
+};
 
 // European engines
 
@@ -356,7 +363,6 @@ class FDEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
         }
     }
 };
-
 
 %{
 using QuantLib::BinomialVanillaEngine;
