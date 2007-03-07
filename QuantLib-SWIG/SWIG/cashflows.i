@@ -164,8 +164,8 @@ using QuantLib::FixedRateLeg;
 %}
 
 Leg
-FixedRateLeg(const Schedule& schedule,
-             const std::vector<Real>& nominals,
+FixedRateLeg(const std::vector<Real>& nominals,
+		   const Schedule& schedule,
 		    const std::vector<Rate>& couponRates,
                       const DayCounter& dayCount,
                       BusinessDayConvention paymentAdjustment = Following,

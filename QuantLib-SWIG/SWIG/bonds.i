@@ -28,12 +28,12 @@
 %{
 using QuantLib::Bond;
 using QuantLib::ZeroCouponBond;
-using QuantLib::FixedCouponBond;
+using QuantLib::FixedRateBond;
 using QuantLib::FloatingRateBond;
 
 typedef boost::shared_ptr<Instrument> BondPtr;
 typedef boost::shared_ptr<Instrument> ZeroCouponBondPtr;
-typedef boost::shared_ptr<Instrument> FixedCouponBondPtr;
+typedef boost::shared_ptr<Instrument> FixedRateBondPtr;
 typedef boost::shared_ptr<Instrument> FloatingRateBondPtr;
 %}
 
@@ -119,58 +119,55 @@ class ZeroCouponBondPtr : public BondPtr {
     %feature("kwargs") ZeroCouponBondPtr;
   public:
     %extend {
-        ZeroCouponBondPtr(Real faceAmount,
-              const Date& issueDate,
-                          const Date& maturityDate,
-                          Integer settlementDays,
-                          const DayCounter& dayCounter,
-                          const Calendar& calendar,
-                          BusinessDayConvention convention
+        ZeroCouponBondPtr(
+                Integer settlementDays,
+		Real faceAmount,
+		const Calendar &calendar,
+		const Date & maturityDate,
+                const DayCounter& dayCounter,
+                BusinessDayConvention paymentConvention
                                                        = QuantLib::Following,
-                          Real redemption = 100.0,
-                          const Handle<YieldTermStructure>& discountCurve
-                                              = Handle<YieldTermStructure>()) {
+                Real redemption = 100.0,
+		const Date& issueDate = Date(),
+                const Handle<YieldTermStructure>& discountCurve
+                                              =
+                           Handle<YieldTermStructure>()) {
             return new ZeroCouponBondPtr(
-                new ZeroCouponBond(faceAmount,
-                   issueDate, maturityDate, settlementDays,
-                                   dayCounter, calendar, convention,
-                                   redemption, discountCurve));
+                new ZeroCouponBond(settlementDays, faceAmount,
+		    calendar, maturityDate, dayCounter,
+                    paymentConvention,
+                                    redemption, 
+				    issueDate,
+				    discountCurve));
         }
     }
 };
 
-%rename(FixedCouponBond) FixedCouponBondPtr;
-class FixedCouponBondPtr : public BondPtr {
-    %feature("kwargs") FixedCouponBondPtr;
+%rename(FixedRateBond) FixedRateBondPtr;
+class FixedRateBondPtr : public BondPtr {
+    %feature("kwargs") FixedRateBondPtr;
   public:
     %extend {
-        FixedCouponBondPtr(Real faceAmount,
-               const Date& issueDate,
-                           const Date& datedDate,
-                           const Date& maturityDate,
-                           Integer settlementDays,
-                           const std::vector<Rate>& coupons,
-                           Frequency couponFrequency,
-                           const Calendar& calendar,
-                           const DayCounter& dayCounter,
-                           BusinessDayConvention accrualConvention
+        FixedRateBondPtr(
+                Integer settlementDays,
+		Real faceAmount,
+		const Schedule &schedule,
+               const std::vector<Rate>& coupons,
+                const DayCounter& paymentDayCounter,
+                BusinessDayConvention paymentConvention
                                                        = QuantLib::Following,
-                           BusinessDayConvention paymentConvention
-                                                       = QuantLib::Following,
-                           Real redemption = 100.0,
-                           const Handle<YieldTermStructure>& discountCurve
-                                              = Handle<YieldTermStructure>(),
-                           const Date& stub = Date(),
-                           bool fromEnd = true) {
-            return new FixedCouponBondPtr(
-                new FixedCouponBond(faceAmount,
-                    issueDate, datedDate, maturityDate,
-                                    settlementDays, coupons, couponFrequency,
-                                    calendar,
-                    dayCounter,
-                    accrualConvention,
-                    paymentConvention,
-                                    redemption, discountCurve, stub, fromEnd));
+                Real redemption = 100.0,
+		Date issueDate = Date(),
+                const Handle<YieldTermStructure>& discountCurve
+                                              =
+                           Handle<YieldTermStructure>()) {
+            return new FixedRateBondPtr(
+                new FixedRateBond(settlementDays, faceAmount,
+		schedule, coupons, paymentDayCounter,
+                paymentConvention,
+		redemption, 
+		issueDate,
+		discountCurve));
         }
     }
 };
@@ -180,36 +177,39 @@ class FloatingRateBondPtr : public BondPtr {
     %feature("kwargs") FloatingRateBondPtr;
   public:
     %extend {
-        FloatingRateBondPtr(Real faceAmount,
-                            const Date& issueDate,
-                            const Date& datedDate,
-                            const Date& maturityDate,
-                            Integer settlementDays,
-                            const IborIndexPtr& index,
-                            Integer fixingDays,
-                            const std::vector<Real>& gearings,
-                            const std::vector<Spread>& spreads,
-                            Frequency couponFrequency,
-                            const Calendar& calendar,
-                            const DayCounter& dayCounter,
-                            BusinessDayConvention accrualConvention = Following,
-                            BusinessDayConvention paymentConvention = Following,
-                            Real redemption = 100.0,
-                            const Handle<YieldTermStructure>& discountCurve
-                                               = Handle<YieldTermStructure>(),
-                            const Date& stub = Date(),
-                            bool fromEnd = true) {
+        FloatingRateBondPtr(Size settlementDays,
+                           Real faceAmount,
+                           const Schedule& schedule,
+                           const boost::shared_ptr<IborIndex>& index,
+                           const DayCounter& paymentDayCounter,
+                           BusinessDayConvention paymentConvention,
+                           Size fixingDays,
+                           const std::vector<Real>& gearings,
+                           const std::vector<Spread>& spreads,
+                           const std::vector<Rate>& caps,
+                           const std::vector<Rate>& floors,
+                           bool inArrears,
+                           Real redemption,
+                           const Date& issueDate,
+                           const Handle<YieldTermStructure>& discountCurve) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new FloatingRateBondPtr(
-                new FloatingRateBond(faceAmount,
-                                     issueDate, datedDate, maturityDate,
-                                     settlementDays, libor, fixingDays,
-                                     gearings, spreads, couponFrequency,
-                                     calendar, dayCounter,
-                                     accrualConvention, paymentConvention,
-                                     redemption, discountCurve,
-                                     stub, fromEnd));
+                new FloatingRateBond(settlementDays, 
+				     faceAmount,
+				     schedule,
+				     libor, 
+				     paymentDayCounter,
+				     paymentConvention,
+				     fixingDays,
+				     gearings,
+				     spreads, 
+				     caps,
+				     floors,
+				     inArrears,
+				     redemption,
+				     issueDate,
+				     discountCurve));
         }
     }
 };

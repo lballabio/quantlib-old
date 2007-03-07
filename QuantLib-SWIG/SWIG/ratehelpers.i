@@ -196,27 +196,20 @@ class FixedCouponBondHelperPtr : public boost::shared_ptr<RateHelper> {
     %extend {
         FixedCouponBondHelperPtr(
                 const Handle<Quote>& cleanPrice,
-                const Date& issueDate, const Date& datedDate,
-                const Date& maturityDate, Integer settlementDays,
-                const std::vector<Rate>& coupons,
-                Frequency frequency,
-                const Calendar& calendar,
-                const DayCounter& dayCounter,
-                BusinessDayConvention accrualConvention = Following,
-                BusinessDayConvention paymentConvention = Following,
-                Real redemption = 100.0,
-                const Date& stub = Date(),
-                bool fromEnd = true) {
+		      Size settlementDays,
+                      const Schedule& schedule,
+                      const std::vector<Rate>& coupons,
+                      const DayCounter& paymentDayCounter,
+                      BusinessDayConvention paymentConvention = Following,
+                      Real redemption = 100.0,
+                      const Date& issueDate = Date()) {
             return new FixedCouponBondHelperPtr(
-                new FixedCouponBondHelper(cleanPrice, issueDate, datedDate,
-                                          maturityDate, settlementDays,
-                                          coupons, frequency,
-                                          calendar,
-                                          dayCounter,
-                                          accrualConvention,
-                                          paymentConvention,
-                                          redemption,
-                                          stub, fromEnd));
+                new FixedCouponBondHelper(cleanPrice,
+		settlementDays, 
+		schedule, coupons, paymentDayCounter,
+                paymentConvention,
+		redemption, 
+		issueDate));
         }
     }
 };
