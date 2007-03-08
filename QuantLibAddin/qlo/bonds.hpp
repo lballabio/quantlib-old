@@ -34,31 +34,39 @@
 #include <ql/Volatilities/all.hpp>
 #include <ql/Indexes/iborindex.hpp>
 #include <ql/Indexes/swapindex.hpp>
+//#include <ql/currency.hpp>
+#include <string>
+
+namespace QuantLib {
+    class Currency;
+}
 
 namespace QuantLibAddin {
 
+
     class Bond : public Instrument {
       public:
-        Bond(const std::string& des, const std::string& cur)
-        : description_(des), currency_(cur){}
-        
+        Bond(const std::string& des,
+             const QuantLib::Currency& cur)
+        : description_(des), currency_(cur) {}
+       
         virtual ~Bond() {}
         std::vector<std::vector<boost::any> > flowAnalysis();
         const std::string& description() { return description_; }
-        const std::string& currency() { return currency_; }
+        const QuantLib::Currency& currency() { return currency_; }
         void setPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
         void setPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
 
       private:
         std::string description_;
-        std::string currency_;
+        QuantLib::Currency currency_;
     };
 
     class ZeroCouponBond : public Bond {
       public:
         ZeroCouponBond(
             const std::string& des,
-            const std::string& cur,
+            const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,
@@ -74,7 +82,7 @@ namespace QuantLibAddin {
       public:
         FixedRateBond(
             const std::string& des,
-            const std::string& cur,
+            const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,
@@ -90,7 +98,7 @@ namespace QuantLibAddin {
       public:
         FloatingRateBond(
             const std::string& des,
-            const std::string& cur,
+            const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,
@@ -112,7 +120,7 @@ namespace QuantLibAddin {
       public:
         CmsRateBond(
             const std::string& des,
-            const std::string& cur,
+            const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,

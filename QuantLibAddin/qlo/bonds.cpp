@@ -62,7 +62,7 @@ namespace QuantLibAddin {
 
     ZeroCouponBond::ZeroCouponBond(
             const std::string& des,
-            const std::string& cur,
+            const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,
@@ -83,7 +83,7 @@ namespace QuantLibAddin {
 
     FixedRateBond::FixedRateBond(
             const std::string& des,
-            const std::string& cur,
+            const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
             QuantLib::BusinessDayConvention payConvention,
             QuantLib::Real faceAmount,
@@ -102,7 +102,7 @@ namespace QuantLibAddin {
 
      FloatingRateBond::FloatingRateBond( 
             const std::string& des,
-            const std::string& cur,
+            const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,
@@ -131,7 +131,7 @@ namespace QuantLibAddin {
 
     CmsRateBond::CmsRateBond( 
             const std::string& des,
-            const std::string& cur,
+            const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,
