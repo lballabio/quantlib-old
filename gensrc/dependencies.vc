@@ -9,6 +9,7 @@ CORE_IMPORT=$(GENSRC_DIR)\gensrc\Addins\addin.py \
             $(GENSRC_DIR)\gensrc\Addins\addinguile.py \
             $(GENSRC_DIR)\gensrc\Addins\addinlist.py \
             $(GENSRC_DIR)\gensrc\Addins\addinqla.py \
+            $(GENSRC_DIR)\gensrc\Addins\excelexceptions.py \
             $(GENSRC_DIR)\gensrc\Addins\loop.py \
             $(GENSRC_DIR)\gensrc\Addins\valueobjects.py \
             $(GENSRC_DIR)\gensrc\Categories\category.py \
@@ -17,16 +18,24 @@ CORE_IMPORT=$(GENSRC_DIR)\gensrc\Addins\addin.py \
             $(GENSRC_DIR)\gensrc\Configuration\environment.py \
             $(GENSRC_DIR)\gensrc\Enumerations\enumeration.py \
             $(GENSRC_DIR)\gensrc\Enumerations\enumerationlist.py \
+            $(GENSRC_DIR)\gensrc\Exceptions\exceptions.py \
             $(GENSRC_DIR)\gensrc\Functions\behavior.py \
+            $(GENSRC_DIR)\gensrc\Functions\exceptions.py \
             $(GENSRC_DIR)\gensrc\Functions\function.py \
+            $(GENSRC_DIR)\gensrc\Parameters\exceptions.py \
             $(GENSRC_DIR)\gensrc\Parameters\parameter.py \
             $(GENSRC_DIR)\gensrc\Parameters\parameterlist.py \
+            $(GENSRC_DIR)\gensrc\Patterns\exceptions.py \
             $(GENSRC_DIR)\gensrc\Patterns\singleton.py \
+            $(GENSRC_DIR)\gensrc\Rules\exceptions.py \
             $(GENSRC_DIR)\gensrc\Rules\rule.py \
+            $(GENSRC_DIR)\gensrc\Serialization\exceptions.py \
             $(GENSRC_DIR)\gensrc\Serialization\factory.py \
             $(GENSRC_DIR)\gensrc\Serialization\serializable.py \
             $(GENSRC_DIR)\gensrc\Serialization\serializer.py \
             $(GENSRC_DIR)\gensrc\Serialization\xmlreader.py \
+            $(GENSRC_DIR)\gensrc\Types\exceptions.py \
+            $(GENSRC_DIR)\gensrc\Types\supertypelist.py \
             $(GENSRC_DIR)\gensrc\Utilities\buffer.py \
             $(GENSRC_DIR)\gensrc\Utilities\common.py \
             $(GENSRC_DIR)\gensrc\Utilities\log.py \

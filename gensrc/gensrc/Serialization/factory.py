@@ -17,12 +17,12 @@
 
 """construct an object given its class name."""
 
+from gensrc.Serialization import exceptions
 from gensrc.Patterns import singleton
 from gensrc.Enumerations import enumeration
 from gensrc.Functions import function
 from gensrc.Rules import rule
 from gensrc.Types import supertypelist
-import sys
 
 class Factory(singleton.Singleton):
     """construct an object given its class name."""
@@ -35,11 +35,8 @@ class Factory(singleton.Singleton):
         'Member' : function.Member,
         'Procedure' : function.Procedure,
         'SuperType' : supertypelist.SuperType,
-        'SuperTypeList' : supertypelist.SuperTypeList,
         'SupportedPlatform' : function.SupportedPlatform,
         'SupportedPlatforms' : function.SupportedPlatforms,
-        'DataType' : supertypelist.DataType,
-        'Wrap' : rule.Wrap,
     }
 
     def makeObject(self, className):
@@ -47,6 +44,5 @@ class Factory(singleton.Singleton):
         if self.creators.has_key(className):
             return self.creators[className]()
         else:
-            sys.exit('no creator function found for class ' + className)
-
+            raise exceptions.SerializationCreatorException(className)
 

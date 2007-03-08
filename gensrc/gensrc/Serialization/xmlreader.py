@@ -22,8 +22,8 @@ a (De)Serializable object from an XML stream."""
 
 from gensrc.Serialization import serializer
 from gensrc.Serialization import factory
+from gensrc.Serialization import exceptions
 import xml.dom.minidom
-import sys
 from gensrc.Utilities import common
 
 class XmlReader(serializer.Serializer):
@@ -40,8 +40,7 @@ class XmlReader(serializer.Serializer):
         try:
             dom = xml.dom.minidom.parse(self.documentName)
         except:
-            print 'Error processing XML document ' + self.documentName
-            raise
+            raise exceptions.SerializationParseException(self.documentName)
         self.node = dom.documentElement
 
     ################################################
@@ -228,7 +227,7 @@ class XmlReader(serializer.Serializer):
             self.node = self.node.parentNode.parentNode
             dict[childNode.nodeName] = objectInstance
         if not len(dict): 
-            self.abort('dict element "%s" is empty' % objectClass.groupName)
+            raise exceptions.SerializationDictException(self.documentName, objectClass.groupName)
         dictInstance = factory.Factory.instance().makeObject(objectClass.groupName)
         setattr(dictInstance, objectClass.groupName, dict)
         setattr(caller, objectClass.groupName, dictInstance)
@@ -277,7 +276,7 @@ class XmlReader(serializer.Serializer):
             if childNode.nodeName == tagName:
                 return childNode
         if not allowNone:
-            self.abort('No element with name "%s"' % tagName)
+            raise exceptions.SerializationElementMissingException(self.documentName, tagName)
 
     def iterateChildren(self, node):
         """Iterate through children of given node, skipping child nodes which
@@ -307,10 +306,5 @@ class XmlReader(serializer.Serializer):
         elif str.lower() == common.FALSE:
             return False
         else:
-            self.abort('Unable to convert string "%s" to boolean' % str)
-
-    def abort(self, errorMessage):
-        """Identify the XML document before failing."""
-        sys.exit('Error loading XML document %s : %s' 
-            % (self.documentName, errorMessage))
+            raise exceptions.SerializationConvertBooleanException(self.documentName, str)
 

@@ -15,9 +15,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import sys
-import getopt
-
 from gensrc.Addins import addinqla
 from gensrc.Addins import addinexcel
 from gensrc.Addins import addincalc

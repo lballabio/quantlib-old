@@ -85,6 +85,9 @@
 				RelativePath="gensrc\Addins\addinqla.py">
 			</File>
 			<File
+				RelativePath="gensrc\Addins\excelexceptions.py">
+			</File>
+			<File
 				RelativePath="gensrc\Addins\loop.py">
 			</File>
 			<File
@@ -122,10 +125,20 @@
 			</File>
 		</Filter>
 		<Filter
+			Name="Exceptions"
+			Filter="">
+			<File
+				RelativePath="gensrc\Exceptions\exceptions.py">
+			</File>
+		</Filter>
+		<Filter
 			Name="Functions"
 			Filter="">
 			<File
 				RelativePath="gensrc\Functions\behavior.py">
+			</File>
+			<File
+				RelativePath="gensrc\Functions\exceptions.py">
 			</File>
 			<File
 				RelativePath="gensrc\Functions\function.py">
@@ -134,6 +147,9 @@
 		<Filter
 			Name="Parameters"
 			Filter="">
+			<File
+				RelativePath="gensrc\Parameters\exceptions.py">
+			</File>
 			<File
 				RelativePath="gensrc\Parameters\parameter.py">
 			</File>
@@ -145,6 +161,9 @@
 			Name="Patterns"
 			Filter="">
 			<File
+				RelativePath="gensrc\Patterns\exceptions.py">
+			</File>
+			<File
 				RelativePath="gensrc\Patterns\singleton.py">
 			</File>
 		</Filter>
@@ -152,12 +171,18 @@
 			Name="Rules"
 			Filter="">
 			<File
+				RelativePath="gensrc\Rules\exceptions.py">
+			</File>
+			<File
 				RelativePath="gensrc\Rules\rule.py">
 			</File>
 		</Filter>
 		<Filter
 			Name="Serialization"
 			Filter="">
+			<File
+				RelativePath="gensrc\Serialization\exceptions.py">
+			</File>
 			<File
 				RelativePath="gensrc\Serialization\factory.py">
 			</File>
@@ -174,6 +199,9 @@
 		<Filter
 			Name="Types"
 			Filter="">
+			<File
+				RelativePath="gensrc\Types\exceptions.py">
+			</File>
 			<File
 				RelativePath="gensrc\Types\supertypelist.py">
 			</File>

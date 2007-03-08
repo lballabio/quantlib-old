@@ -20,11 +20,11 @@
 """encapsulate state necessary to generate source code 
 relating to a function parameter."""
 
+from gensrc.Parameters import exceptions
 from gensrc.Utilities import common
 from gensrc.Serialization import serializable
 from gensrc.Configuration import environment
 import re
-import sys
 
 class Value(serializable.Serializable):
     """Represent any value which may be passed to or received from a Function."""
@@ -56,6 +56,9 @@ class Parameter(Value):
     relating to a function parameter."""
 
     groupName = 'Parameters'
+
+    # strings which are not valid as parameter names.
+    # TODO add C++ keywords etc.
     ILLEGAL_NAMES = [ 'type', 'None' ]
 
     def serialize(self, serializer):
@@ -73,7 +76,7 @@ class Parameter(Value):
     def postSerialize(self):
         """Perform post serialization initialization."""
         if Parameter.ILLEGAL_NAMES.count(self.name):
-            sys.exit('illegal parameter name: ' + self.name)
+            raise exceptions.ParameterNameInvalidException(self.name)
         self.dataType = environment.getType(self.type, self.superType)
 
 class ReturnValue(Value):

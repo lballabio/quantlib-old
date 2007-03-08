@@ -26,7 +26,7 @@ class Serializable(object):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        sys.exit('method not implemented')
+        pass
 
     def postSerialize(self):
         """invoke any post serialization behavior that may be required."""

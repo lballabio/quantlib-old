@@ -171,6 +171,10 @@
 				>
 			</File>
 			<File
+				RelativePath="gensrc\Addins\excelexceptions.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\Addins\loop.py"
 				>
 			</File>
@@ -216,10 +220,22 @@
 			</File>
 		</Filter>
 		<Filter
+			Name="Exceptions"
+			>
+			<File
+				RelativePath="gensrc\Exceptions\exceptions.py"
+				>
+			</File>
+		</Filter>
+		<Filter
 			Name="Functions"
 			>
 			<File
 				RelativePath="gensrc\Functions\behavior.py"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\Functions\exceptions.py"
 				>
 			</File>
 			<File
@@ -230,6 +246,10 @@
 		<Filter
 			Name="Parameters"
 			>
+			<File
+				RelativePath="gensrc\Parameters\exceptions.py"
+				>
+			</File>
 			<File
 				RelativePath="gensrc\Parameters\parameter.py"
 				>
@@ -243,6 +263,10 @@
 			Name="Patterns"
 			>
 			<File
+				RelativePath="gensrc\Patterns\exceptions.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\Patterns\singleton.py"
 				>
 			</File>
@@ -251,6 +275,10 @@
 			Name="Rules"
 			>
 			<File
+				RelativePath="gensrc\Rules\exceptions.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\Rules\rule.py"
 				>
 			</File>
@@ -258,6 +286,10 @@
 		<Filter
 			Name="Serialization"
 			>
+			<File
+				RelativePath="gensrc\Serialization\exceptions.py"
+				>
+			</File>
 			<File
 				RelativePath="gensrc\Serialization\factory.py"
 				>
@@ -278,6 +310,10 @@
 		<Filter
 			Name="Types"
 			>
+			<File
+				RelativePath="gensrc\Types\exceptions.py"
+				>
+			</File>
 			<File
 				RelativePath="gensrc\Types\supertypelist.py"
 				>

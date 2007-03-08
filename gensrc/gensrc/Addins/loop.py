@@ -22,7 +22,6 @@ from gensrc.Utilities import outputfile
 from gensrc.Utilities import log
 from gensrc.Categories import category
 from gensrc.Configuration import environment
-import sys
 
 class Loop(addin.Addin):
     """Generate source code for loop functions."""

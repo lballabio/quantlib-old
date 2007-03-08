@@ -18,6 +18,9 @@
 """
 
 import sys
+from gensrc.Exceptions import exceptions
+# initialize the exception handler
+sys.excepthook = exceptions.gensrc_excepthook
 import getopt
 from gensrc.Addins import addinlist
 

@@ -17,11 +17,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+from gensrc.Rules import exceptions
 from gensrc.Configuration import environment
 from gensrc.Serialization import serializable
 from gensrc.Utilities import common
 import code
-import sys
 
 """Algorithms required to generate the source code for a given function 
 parameter in a given context."""
@@ -30,7 +30,7 @@ def getCode(codeID):
     if code.__dict__.has_key(codeID):
         return code.__dict__[codeID]
     else:
-        sys.exit('invalid code ID: "%s"' % codeID)
+        raise exceptions.RuleCodeInvalidException(codeID)
 
 class Rule(serializable.Serializable):
     """the subset of a Rule pertaining to one or more tensor ranks."""

@@ -29,8 +29,6 @@ def getType(typeName, superTypeName = None):
 class Environment(singleton.Singleton):
     """global configuration state for gensrc application."""
 
-    #superTypeList_ = None
-
     def rootDirectory(self):
         return gensrc.__path__[0]
 
@@ -45,7 +43,4 @@ class Environment(singleton.Singleton):
 
     def superTypeList(self):
         return self.superTypeList_
-
-#config = Environment.instance().configuration
-#initializeType = Environment.instance().superTypeList().initializeType
 

@@ -20,6 +20,7 @@
 """Generate source code for Excel addin."""
 
 from gensrc.Addins import addin
+from gensrc.Addins import excelexceptions
 from gensrc.Serialization import serializable
 from gensrc.Utilities import outputfile
 from gensrc.Functions import function
@@ -30,7 +31,6 @@ from gensrc.Utilities import log
 from gensrc.Categories import category
 from gensrc.Configuration import environment
 
-import sys
 import re
 import string
 
@@ -40,8 +40,6 @@ MAXLEN = 255                        # max length of excel string
 MAXPARAM = 30                       # max #/params to an Excel function
 NUMDESC = 10                        # #/params to register a function
 MAXUSERPARAM = MAXPARAM - NUMDESC   # #/slots remaining for param descriptions
-MAXLENERR = 'string length of %d exceeds Excel maximum of %d:\n\n%s'
-MAXPARAMERR = 'number of parameters to function "%s" exceeds Excel max of %d'
 REGLINE = '            TempStrNoSize("\\x%02X""%s")%s'
 UNREGISTER = '''
         Excel4(xlfRegisterId, &xlRegID, 2, &xDll,
@@ -51,21 +49,6 @@ UNREGISTER = '''
 # For some reason we find that the Excel Function Wizard malfunctions
 # if the length of the comma-delimited list of param names exceeds 232 bytes.
 MAX_LEN_PARAMLIST = 232
-PARAM_ERROR = '''
- 
-***********************************************************************
- 
-Error processing function %(funcname)s -
-The comma-delimited list of parameter names is invalid:
- 
-%(paramNames)s
- 
-This string has a length of %(len)d which exceeds the max of %(max)d
-allowed by the Excel function wizard.
-Please shorten the names of the parameters.
- 
-***********************************************************************
- '''
 
 LOOP_INCLUDES = '''\
 #include <%s/loop_%s.hpp>
@@ -78,19 +61,6 @@ CELL_MAX_ROW_NUM = 1048576      # the last row in Excel 2007
 CELL_NAME_REGEX = re.compile(r'(?P<colLabel>[A-Z]+)(?P<rowLabel>\d+)', re.I)
 # we need the 1-based index of letters so prefix the alphabet with a dummy character
 COL_TO_NUM = "_" + string.lowercase
-CELL_NAME_ERROR = '''
- 
-***********************************************************************
- 
-Error processing function %(funcname)s -
-The function name "%(funcname)s" is invalid, because
-it conflicts with an Excel cell range name.
- 
-Excel 2007 cells are named from A1 to %(maxcol)s%(maxrow)s
-and these identifiers may not be used as function names.
- 
-***********************************************************************
- '''
 
 class AddinExcel(addin.Addin):
     """Generate source code for Excel addin."""
@@ -149,12 +119,11 @@ class AddinExcel(addin.Addin):
     def generateFunction(self, func):
         """Generate source code for a given function."""
         if func.ParameterList.ParameterCount > MAXPARAM:
-            sys.exit(MAXPARAMERR % (func.name, MAXPARAM))
+            raise excelexceptions.ExcelParameterCountException(
+                func.name, func.ParameterList.ParameterCount, MAXPARAM)
         if self.cellNameConflict(func.name):
-            sys.exit(CELL_NAME_ERROR % {
-                'funcname' : func.name,
-                'maxcol' : CELL_MAX_COL_ID,
-                'maxrow' : CELL_MAX_ROW_NUM })
+            raise excelexceptions.ExcelCellNameException(
+                func.name, CELL_MAX_COL_ID, CELL_MAX_ROW_NUM)
         return self.bufferFunction.text % {
             'cppConversions' : func.ParameterList.generate(self.cppConversions),
             'enumConversions' : func.ParameterList.generate(self.enumConversions),
@@ -172,12 +141,12 @@ class AddinExcel(addin.Addin):
             'xlWizardRecalc' : func.xlWizardCheck }
 
     def checkLen(self, str):
-        "Ensure that the length of the string doesn't exceed Excel's limit."
+        """Calculate the length of the string, ensure that this value doesn't exceed
+        Excel's limit, and return the value."""
         strLen = len(str)
         if strLen >= MAXLEN:
-            sys.exit(MAXLENERR % (strLen, MAXLEN, str))
-        else:
-            return strLen
+            raise excelexceptions.ExcelStringLengthException(str, strLen, MAXLEN)
+        return strLen
 
     def generateRegisterFunction(self, func, categoryName, register = True):
         """Generate code to register/unregister given function."""
@@ -188,11 +157,7 @@ class AddinExcel(addin.Addin):
             paramStr += '#'
         paramNames = func.ParameterList.generate(self.parameterList)
         if len(paramNames) > MAX_LEN_PARAMLIST:
-            sys.exit(PARAM_ERROR % {
-                'funcname' : func.name,
-                'paramNames' : paramNames,
-                'max' : MAX_LEN_PARAMLIST,
-                'len' : len(paramNames) })
+            raise excelexceptions.ExcelParameterLengthException(func.name, paramNames, MAX_LEN_PARAMLIST)
 
         # Configure call to xlfRegister.  We will pass in NUMDESC params to
         # register the function, plus one additional param to describe each
@@ -298,7 +263,5 @@ class AddinExcel(addin.Addin):
         outputfile.OutputFile(self, fileName, self.copyright, buf)
 
     def printDebug(self):
-        print ">>>>>>>>>>>>>>>>"
         self.xlRegisterParam.printDebug()
-        print "<<<<<<<<<<<<<<<<"
 

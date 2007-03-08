@@ -25,7 +25,7 @@ and the Addin function loops on this vector, calling the underlying library
 function once for each iteration of the vector.  The results are saved in
 a vector which is the return value of the Addin function. """
 
-import sys
+from gensrc.Functions import exceptions
 from gensrc.Utilities import common
 from gensrc.Utilities import buffer
 from gensrc.Configuration import environment
@@ -68,24 +68,6 @@ class BehaviorLoop(object):
     """Generate source code for a Member function which loops on one of
     its input parameters."""
 
-    # some strings for error handling
-    LOOP_ERROR = """
-*********************************************************************
-Error processing function %(functionName)s.
-Function has been configured to loop on parameter %(loopParameterName)s.
-But configuration of loop behavior failed because %(reason)s.
-Please either rectify the above problem or disable looping 
-for this function.
-*********************************************************************"""
-    REASON_NOT_FOUND = '''\
-there is no input parameter with that name'''
-#    REASON_LOOP_DEFAULT = '''\
-#a default value has been specified for the loop parameter'''
-    REASON_LOOP_NONVECTOR = '''\
-the loop parameter is not a vector'''
-    REASON_RETURN_NONVECTOR = '''\
-the return value is not a vector'''
-
     def __init__(self):
         """Configure the function to loop."""
 
@@ -96,29 +78,21 @@ the return value is not a vector'''
                 self.loopParamRef = param
                 break
         if not self.loopParamRef:
-            self.fail(BehaviorLoop.REASON_NOT_FOUND)
+            raise exceptions.BehaviorLoopParameterException(self.func.name, self.func.loopParameter)
 
         # Try to trap a few of the common problems that would prevent
         # the generated source code of the loop function from compiling.
-        #if self.loopParamRef.default:
-        #    self.fail(BehaviorLoop.REASON_LOOP_DEFAULT)
         if self.loopParamRef.tensorRank != common.VECTOR:
-            self.fail(BehaviorLoop.REASON_LOOP_NONVECTOR)
+            raise exceptions.BehaviorLoopNonVectorException(self.func.name, self.func.loopParameter)
         if self.func.returnValue.tensorRank != common.VECTOR:
-            self.fail(BehaviorLoop.REASON_RETURN_NONVECTOR)
+            raise exceptions.BehaviorReturnNonVectorException(self.func.name, self.func.loopParameter)
 
         # Configure the function to loop on the given parameter.
         self.loopParamRef.loop = True
-        self.loopParamRef.default = None    # really should fail instead
         self.func.returnValue.loop = True
-
-    def fail(self, reason):
-        """Abort with an explanation."""
-        errorMessage = BehaviorLoop.LOOP_ERROR % {
-            'functionName' : self.func.name,
-            'loopParameterName' : self.func.loopParameter,
-            'reason' : reason }
-        sys.exit(errorMessage)
+        # Set the default value of the loop parameter to None, overwriting any default value that
+        # may have been configured.  FIXME should raise an exception instead.
+        self.loopParamRef.default = None
 
     def generateBody(self, addin):
         """Generate source code for the body of the function."""

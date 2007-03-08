@@ -15,6 +15,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+from gensrc.Patterns import exceptions
+
 """
     Implementation of the Singleton pattern.
     Derived from code placed in the public domain by Gary Robinson.
@@ -25,11 +27,11 @@ class MetaSingleton(type):
 
     def __new__(metaclass, strName, tupBases, dict):
         if dict.has_key('__new__'):
-            sys.exit('Can not override __new__ in a Singleton')
+            raise exceptions.SingletonOverrideNewException()
         return super(MetaSingleton,metaclass).__new__(metaclass, strName, tupBases, dict)
         
     def __call__(cls, *lstArgs, **dictArgs):
-        sys.exit('Singletons may only be instantiated through instance()')
+        raise exceptions.SingletonCallException()
 
 class Singleton(object):
     """Implementation of the Singleton pattern."""

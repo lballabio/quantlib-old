@@ -20,7 +20,6 @@
 """Encapsulate state and behavior required to generate source code for a
 function."""
 
-import sys
 from gensrc.Utilities import common
 from gensrc.Utilities import buffer
 from gensrc.Serialization import serializable

@@ -15,9 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+from gensrc.Types import exceptions
 from gensrc.Utilities import common
 from gensrc.Serialization import serializable
-import sys
 import re
 
 class DataType(serializable.Serializable):
@@ -76,19 +76,19 @@ class SuperTypeList(serializable.Serializable):
 
     def getType(self, typeName, superTypeName = None):
         if not self.typeNames_.has_key(typeName):
-            sys.exit('invalid type name: "%s"' % typeName)
+            raise exceptions.TypeNameUndefinedException(typeName)
 
         if superTypeName:
             if self.SuperTypes.has_key(superTypeName):
                 for typeItem in self.SuperTypes[superTypeName].DataTypes:
                     if typeItem.value == typeName:
                         return typeItem
-                sys.exit('supertype "%s" does not have type "%s"' % (superTypeName, typeName))
+                raise exceptions.TypeSuperUndefinedException(typeName, superTypeName)
             else:
-                sys.exit('invalid supertype name: "%s"' % superTypeName)
+                raise exceptions.SupertypeNameUndefinedException(superTypeName)
         else:
             if len(self.typeNames_[typeName]) > 1:
-                sys.exit('ambiguous type name: "%s" - "%s"' % (typeName, self.typeNames_[typeName]))
+                raise exceptions.TypeNameAmbiguousException(typeName, self.typeNames_[typeName])
             for typeItem in self.SuperTypes[self.typeNames_[typeName][0]].DataTypes:
                 if typeItem.value == typeName:
                     return typeItem
