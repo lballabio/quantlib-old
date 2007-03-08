@@ -40,6 +40,14 @@
 	</References>
 	<Files>
 		<Filter
+			Name="code"
+			>
+			<File
+				RelativePath="code\code.py"
+				>
+			</File>
+		</Filter>
+		<Filter
 			Name="config"
 			>
 			<File
