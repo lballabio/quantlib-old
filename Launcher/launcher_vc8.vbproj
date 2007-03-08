@@ -17,7 +17,7 @@
     <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>images\favicon.ico</ApplicationIcon>
-    <PublishUrl>\\srv0001\risorse\Offices1\CabotoXL\Launcher\</PublishUrl>
+    <PublishUrl>\\Private\risorse\Private3\manzok1a\CabotoXL\Launcher\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -28,7 +28,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>0.21.11.0</ApplicationVersion>
+    <ApplicationVersion>0.21.12.0</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
