@@ -1,0 +1,283 @@
+<Category name='demo'>
+  <description>demo</description>
+  <displayName>Demo</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <includes>
+    <include>oh/ohthing.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Eric Ehlers
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='ohThing'>
+      <libraryFunction>Thing</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='stringParameter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>string parameter</description>
+          </Parameter>
+          <Parameter name='doubleParameter' default='42.5'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>double parameter (default is 42.5)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='ohThingStringParameter' type='ObjHandler::Thing'>
+      <description>returns the string parameter for the given Thing object</description>
+      <libraryFunction>stringParameter</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='ohThingSetStringParameter' type='ObjHandler::Thing'>
+      <description>sets the string parameter for the given Thing object</description>
+      <libraryFunction>setStringParameter</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='stringParameter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>new value for string parameter</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='ohThingDoubleParameter' type='ObjHandler::Thing'>
+      <description>returns the double parameter for the given Thing object</description>
+      <libraryFunction>doubleParameter</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='ohThingSetDoubleParameter' type='ObjHandler::Thing'>
+      <description>sets the double parameter for the given Thing object</description>
+      <libraryFunction>setDoubleParameter</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='doubleParameter'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>new value for double parameter</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='ohThingFunc0' type='ObjHandler::Thing'>
+      <description></description>
+      <libraryFunction>ohThingFunc0</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='p0'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='ohThingFunc1' type='ObjHandler::Thing'>
+      <description></description>
+      <libraryFunction>ohThingFunc1</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='p0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  <Member name='ohThingFunc2' type='ObjHandler::Thing'>
+    <description></description>
+    <libraryFunction>ohThingFunc2</libraryFunction>
+    <SupportedPlatforms>
+      <Excel calcInWizard='false' />
+    </SupportedPlatforms>
+    <ParameterList>
+      <Parameters>
+        <Parameter name='p0'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description></description>
+        </Parameter>
+        <Parameter name='p1'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description></description>
+        </Parameter>
+        <Parameter name='p2'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description></description>
+        </Parameter>
+      </Parameters>
+    </ParameterList>
+    <ReturnValue>
+      <type>string</type>
+      <tensorRank>scalar</tensorRank>
+    </ReturnValue>
+  </Member>
+
+  <Member name='ohThingFunc3' type='ObjHandler::Thing'>
+    <description></description>
+    <libraryFunction>ohThingFunc3</libraryFunction>
+    <SupportedPlatforms>
+      <Excel calcInWizard='false' />
+    </SupportedPlatforms>
+    <ParameterList>
+      <Parameters>
+        <Parameter name='p0'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description></description>
+        </Parameter>
+        <Parameter name='p1'>
+          <type>string</type>
+          <tensorRank>vector</tensorRank>
+          <description></description>
+        </Parameter>
+      </Parameters>
+    </ParameterList>
+    <ReturnValue>
+      <type>string</type>
+      <tensorRank>scalar</tensorRank>
+    </ReturnValue>
+  </Member>
+
+  <Member name='ohThingFunc4' type='ObjHandler::Thing'>
+    <description></description>
+    <libraryFunction>ohThingFunc4</libraryFunction>
+    <SupportedPlatforms>
+      <Excel calcInWizard='false' />
+    </SupportedPlatforms>
+    <ParameterList>
+      <Parameters>
+        <Parameter name='p0'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description></description>
+        </Parameter>
+        <Parameter name='p1'>
+          <type>string</type>
+          <tensorRank>vector</tensorRank>
+          <description></description>
+        </Parameter>
+      </Parameters>
+    </ParameterList>
+    <ReturnValue>
+      <type>string</type>
+      <tensorRank>vector</tensorRank>
+    </ReturnValue>
+  </Member>
+
+    <Member name='ohThingFunc5' type='ObjHandler::Thing' loopParameter='p1'>
+      <description></description>
+      <libraryFunction>ohThingFunc5</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='p0'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+          <Parameter name='p1'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description></description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  <Member name='ohThingFunc6' type='ObjHandler::Thing'>
+    <description></description>
+    <libraryFunction>ohThingFunc6</libraryFunction>
+    <SupportedPlatforms>
+      <Excel calcInWizard='false' />
+    </SupportedPlatforms>
+    <ParameterList>
+      <Parameters>
+        <Parameter name='p0'>
+          <type>string</type>
+          <tensorRank>scalar</tensorRank>
+          <description></description>
+        </Parameter>
+      </Parameters>
+    </ParameterList>
+    <ReturnValue>
+      <type>string</type>
+      <tensorRank>vector</tensorRank>
+    </ReturnValue>
+  </Member>
+
+  </Functions>
+
+</Category>
+

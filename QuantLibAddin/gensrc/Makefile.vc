@@ -7,21 +7,25 @@ MAKEFILE=Makefile.vc
 
 !INCLUDE $(GENSRC_DIR)\dependencies.vc
 
-METADATA=metadata\*.xml
+CODE=code\*.py
 CONFIG=config\*.xml
+METADATA=metadata\Addins\*.xml \
+         metadata\Enumerations\*.xml \
+         metadata\Functions\*.xml \
+         metadata\Types\*.xml
 STUBS=stubs\stub.*
 
-INPUTS = $(METADATA) $(CONFIG) $(STUBS) $(CORE_DEPENDENCIES)
+INPUTS = $(MAKEFILE) $(CORE_DEPENDENCIES) $(CODE) $(CONFIG) $(METADATA) $(STUBS)
 
 ALL : $(BUILDFLAG)
 
 $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
 
-$(BUILDFLAG) : $(INPUTS) $(BUILD_DIR) $(MAKEFILE)
-    set PYTHONPATH=$(GENSRC_DIR)
-    $(GENSRC_DIR)\gensrc.py -a
-#    $(GENSRC_DIR)\gensrc.py -qedvl
+$(BUILDFLAG) : $(INPUTS) $(BUILD_DIR)
+    set PYTHONPATH=.\code
+#    $(GENSRC_DIR)\gensrc.py -a
+    $(GENSRC_DIR)\gensrc.py -qevld
 	echo flagged > $@
 
 CLEAN :

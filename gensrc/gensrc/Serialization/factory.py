@@ -21,6 +21,7 @@ from gensrc.Patterns import singleton
 from gensrc.Enumerations import enumeration
 from gensrc.Functions import function
 from gensrc.Rules import rule
+from gensrc.Types import supertypelist
 import sys
 
 class Factory(singleton.Singleton):
@@ -28,16 +29,16 @@ class Factory(singleton.Singleton):
 
     creators = {
         'Constructor' : function.Constructor,
-        'DataType' : rule.DataType,
-        'DataTypes' : rule.DataTypes,
-        'DataValue' : rule.DataValue,
         'Enumeration' : enumeration.Enumeration,
         'EnumerationDefinition' : enumeration.EnumerationDefinition,
         'EnumerationMember' : function.EnumerationMember,
         'Member' : function.Member,
         'Procedure' : function.Procedure,
+        'SuperType' : supertypelist.SuperType,
+        'SuperTypeList' : supertypelist.SuperTypeList,
         'SupportedPlatform' : function.SupportedPlatform,
         'SupportedPlatforms' : function.SupportedPlatforms,
+        'DataType' : supertypelist.DataType,
         'Wrap' : rule.Wrap,
     }
 

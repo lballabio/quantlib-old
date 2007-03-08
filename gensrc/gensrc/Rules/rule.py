@@ -17,129 +17,70 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+from gensrc.Configuration import environment
+from gensrc.Serialization import serializable
+from gensrc.Utilities import common
+import code
+import sys
+
 """Algorithms required to generate the source code for a given function 
 parameter in a given context."""
 
-from gensrc.Serialization import serializable
-from gensrc.Utilities import common
-from gensrc.Utilities import code
-from gensrc.Configuration import environment
+def getCode(codeID):
+    if code.__dict__.has_key(codeID):
+        return code.__dict__[codeID]
+    else:
+        sys.exit('invalid code ID: "%s"' % codeID)
 
-class DataValue(serializable.Serializable):
-
-    groupName = 'DataValues'
-
-    def serialize(self, serializer):
-        """Load/unload class state to/from serializer object."""
-        serializer.serializeValue(self)
-        serializer.serializeAttribute(self, common.NAME)
-        serializer.serializeAttribute(self, 'codeID')
-
-    def apply(self):
-        if self.codeID:
-            return code.lines[self.codeID]
-        else:
-            return self.value
-
-class DataType(serializable.Serializable):
-
-    groupName = 'DataTypes'
-
-    def serialize(self, serializer):
-        """Load/unload class state to/from serializer object."""
-        serializer.serializeValue(self)
-        serializer.serializeAttribute(self, 'codeID')
-        serializer.serializeObjectContainer(self, DataType, True)
-        serializer.serializeObjectDict(self, DataValue, allowNone = True)
-
-    def valueRetrieve(self, const, value):
-        if not self.DataValues:
-            return None
-        if self.DataValues.has_key(value):
-            return self.DataValues[value].apply()
-        elif self.DataValues.has_key(common.CONST) and const:
-            return self.DataValues[common.CONST].apply()
-        elif self.DataValues.has_key(common.OTHER):
-            return self.DataValues[common.OTHER].apply()
-        else:
-            return None
-
-    def apply(self, param, value = None):
-        valueRetrieve = self.valueRetrieve(param.const, value)
-        if valueRetrieve:
-            return valueRetrieve
-        elif self.DataTypes:
-            return self.DataTypes.apply(param)
-        elif self.codeID:
-            return code.lines[self.codeID]
-        else:
-            return self.value
-
-class DataTypes(serializable.Serializable):
-
-    def apply(self, param):
-        """Invoke portion of SubRule that pertains to given parameter."""
-
-        # loopParameter
-        if param.loop and self.DataTypes.has_key(common.LOOP):
-            return self.DataTypes[common.LOOP].apply(param, param.loop)
-        # libraryClass
-        elif param.libraryClass and self.DataTypes.has_key(common.LIBRARY_CLASS):
-            return self.DataTypes[common.LIBRARY_CLASS].apply(param, param.libraryClass)
-        # libraryType:
-        # - if the given library type is listed under 'implicit conversions', then fall 
-        #   through to cases below (where the parameter will be treated as a native 
-        #   datatype e.g. long/double/etc.)
-        # - otherwise, if rule libraryType has been specified then apply that rule.
-        elif param.libraryType and self.DataTypes.has_key(common.LIBRARY_TYPE) \
-        and param.libraryType not in environment.config().implicitConversions:
-            return self.DataTypes[common.LIBRARY_TYPE].apply(param, param.libraryType)
-        # objectClass
-        elif param.objectClass and self.DataTypes.has_key(common.OBJECT):
-            return self.DataTypes[common.OBJECT].apply(param, param.objectClass)
-        # enumeration
-        elif param.enumeration and self.DataTypes.has_key(common.ENUM):
-            return self.DataTypes[common.ENUM].apply(param, param.enumeration)
-        # libToHandle
-        elif param.libToHandle and self.DataTypes.has_key(common.LIB_TO_HANDLE):
-            return self.DataTypes[common.LIB_TO_HANDLE].apply(param, param.libToHandle)
-        # handleToLib
-        elif param.handleToLib and self.DataTypes.has_key(common.HANDLE_TO_LIB):
-            return self.DataTypes[common.HANDLE_TO_LIB].apply(param, param.handleToLib)
-        # underlyingClass
-        elif param.underlyingClass and self.DataTypes.has_key(common.UNDERLYING_CLASS):
-            return self.DataTypes[common.UNDERLYING_CLASS].apply(param, param.underlyingClass)
-        # underlyingClassnonconst
-        elif param.underlyingClassNonconst and self.DataTypes.has_key(common.UNDERLYING_CLASS_NONCONST):
-            return self.DataTypes[common.UNDERLYING_CLASS_NONCONST].apply(param, param.underlyingClassNonconst)
-        # default
-        elif param.default and self.DataTypes.has_key(common.DEFAULT):
-            return self.DataTypes[common.DEFAULT].apply(param, param.default)
-        # vectorIterator
-        elif param.vectorIterator and self.DataTypes.has_key(common.VECTOR_ITERATOR):
-            return self.DataTypes[common.VECTOR_ITERATOR].apply(param, param.vectorIterator)
-        # datatype
-        elif self.DataTypes.has_key(param.type):
-            return self.DataTypes[param.type].apply(param, param.type)
-        # other
-        elif self.DataTypes.has_key(common.OTHER):
-            return self.DataTypes[common.OTHER].apply(param)
-        else:
-            return None
-
-class SubRule(serializable.Serializable):
+class Rule(serializable.Serializable):
     """the subset of a Rule pertaining to one or more tensor ranks."""
 
-    groupName = 'SubRules'
+    groupName = 'Rules'
+
+    tensorRank = None
+    superType = None
+    nativeType = None
+    type = None
+    default = None
+    loop = None
+    codeID = None
+    vectorIterator = None
+    const = None
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeList(self, 'tensorRanks', 'tensorRank')
-        serializer.serializeObjectContainer(self, DataType)
+        serializer.serializeAttribute(self, common.TENSOR_RANK)
+        serializer.serializeAttribute(self, common.SUPER_TYPE)
+        serializer.serializeAttribute(self, common.NATIVE_TYPE)
+        serializer.serializeAttribute(self, common.TYPE)
+        serializer.serializeAttribute(self, common.VECTOR_ITERATOR)
+        # FIXME change serializeAttributeBoolean() to have default value = None
+        serializer.serializeAttributeBoolean(self, common.DEFAULT, None)
+        serializer.serializeAttributeBoolean(self, common.LOOP, None)
+        serializer.serializeAttributeBoolean(self, common.CONST, None)
+        serializer.serializeAttribute(self, 'codeID')
+        serializer.serializeValue(self)
 
-    def apply(self, param):
-        """invoke portion of SubRule that pertains to given parameter."""
-        return self.DataTypes.apply(param)
+    def postSerialize(self):
+        """Perform post serialization initialization."""
+        if self.codeID:
+            self.code = getCode(self.codeID)
+        else:
+            self.code = self.value
+
+    def match(self, param):
+        return (self.tensorRank == None or self.tensorRank == param.tensorRank) \
+            and (self.superType == None or self.superType == param.dataType.superType) \
+            and (self.nativeType == None or self.nativeType == param.dataType.nativeType) \
+            and (self.type == None or self.type == param.dataType.value) \
+            and (self.vectorIterator == None or self.vectorIterator == param.vectorIterator) \
+            and (self.default == None or self.default == bool(param.default)) \
+            and (self.loop == None or self.loop == bool(param.loop)) \
+            and (self.const == None or self.const == bool(param.const))
+
+    def printDebug(self):
+        print self.tensorRank, self.superType, self.nativeType, self.type, \
+            self.default, self.loop, self.code
 
 class Wrap(serializable.Serializable):
     """A class to process the 'wrap' text for a rule.  If this class
@@ -149,7 +90,8 @@ class Wrap(serializable.Serializable):
     where R is the text derived from Rule, W is the value of Wrap, and
     T is the final text to be returned to the Addin.
 
-    This can be used e.g. to prepend a comment to the generated code."""
+    This can be used e.g. when the autogenerated code needs to be prefixed
+    and/or suffixed with comments."""
 
     name = 'Wrap'
 
@@ -160,15 +102,15 @@ class Wrap(serializable.Serializable):
 
     def postSerialize(self):
         if self.codeID:
-            self.text = code.lines[self.codeID]
+            self.text = getCode(self.codeID)
         else:
             self.text = self.value
 
-class Rule(serializable.Serializable):
+class RuleGroup(serializable.Serializable):
     """This class encapsulates an algorithm required to generate the source
     code for a given function parameter in a given context."""
 
-    groupName = 'Rules'
+    groupName = 'RuleGroups'
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -179,7 +121,7 @@ class Rule(serializable.Serializable):
         serializer.serializeAttributeBoolean(self, common.PAD_LAST_PARAM, False)
         serializer.serializeAttributeInteger(self, common.INDENT, 0)
         serializer.serializeObject(self, Wrap, True)
-        serializer.serializeObjectList(self, SubRule)
+        serializer.serializeObjectList(self, Rule)
 
     def postSerialize(self):
         """Perform post serialization initialization."""
@@ -201,36 +143,37 @@ class Rule(serializable.Serializable):
 
         self.param = param
 
-        if self.applySubRule():
+        if self.applyRule():
             return self.invokeRule()
 
-    def applySubRule(self):
-        '''Apply the SubRule, if any, which pertains to the tensor rank
-        of the given parameter'''
-        for subRule in self.SubRules:
-            if self.param.tensorRank in subRule.tensorRanks:
-                self.subRuleResult = subRule.apply(self.param)
-                return self.subRuleResult != None
+    def applyRule(self):
+        '''Apply the Rule, if any, which matches the given parameter'''
+        for ruleItem in self.Rules:
+            if ruleItem.match(self.param):
+                self.ruleResult = ruleItem.code
+                return self.ruleResult != None
 
     def invokeRule(self):
-        return self.subRuleResult % {
+        return self.ruleResult % {
+            'classname' : self.param.dataType.classname,
             common.DEFAULT_VALUE : self.param.default,
-            common.DESCRIPTION : self.paramDesc,
             common.DESC_LEN : len(self.paramDesc),
-            common.ENUM : self.param.enumeration,
-            common.HANDLE_TO_LIB : self.param.handleToLib,
-            common.HANDLE_TO_LIB2 : self.param.handleToLib2,
-            common.INDENT : self.indent,
+            common.DESCRIPTION : self.paramDesc,
             common.INDENT2 : self.indent + '    ',
-            common.LIB_TO_HANDLE : self.param.libToHandle,
-            common.LIBRARY_CLASS : self.param.libraryClass,
-            common.LIBRARY_TYPE : self.param.libraryType,
+            common.INDENT : self.indent,
             common.NAME : self.param.name,
             common.NAMESPACE_LIB : environment.config().namespaceLibrary,
             common.NAMESPACE_OBJ : environment.config().namespaceObjects,
-            common.OBJECT : self.param.objectClass,
+            common.NATIVE_TYPE : self.param.dataType.nativeType,
+            common.SUPER_TYPE : self.param.dataType.superType,
             common.TENSOR_RANK : self.param.tensorRank,
-            common.TYPE : self.param.type,
-            common.UNDERLYING_CLASS : self.param.underlyingClass,
-            common.UNDERLYING_CLASS_NONCONST : self.param.underlyingClassNonconst }
+            common.TYPE : self.param.dataType.value }
+
+    def printDebug(self):
+        print "debug rule group *****"
+        print self.name, self.delimiter, self.checkParameterIgnore, \
+            self.checkSkipFirst, self.indent
+        for ruleItem in self.Rules:
+            print "print rule item: *****"
+            ruleItem.printDebug()
 

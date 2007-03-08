@@ -1,0 +1,144 @@
+<Category name='utilities'>
+  <description>diagnostic and utility functions</description>
+  <displayName>Utilities</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/utilities.hpp</include>
+    <include>ql/MarketModels/utilities.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Procedure name='qlVersion'>
+      <description>returns the version number of QuantLib</description>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlListEnumeratedTypes'>
+      <description>lists supported enumerated types</description>
+      <alias>QuantLibAddin::EnumTypeRegistry::instance().getAllRegisteredTypes</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlEnumeratedType'>
+      <description>returns the members of a given enumerated type</description>
+      <alias>QuantLibAddin::EnumTypeRegistry::instance().getTypeElements</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='enumId' exampleValue='=qlListEnumeratedTypes()'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>name of enumerated type e.g class QuantLib::Calendar</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlListEnumeratedClasses'>
+      <description>lists supported enumerated classes</description>
+      <alias>QuantLibAddin::EnumClassRegistry::instance().getAllRegisteredTypes</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlEnumeratedClass'>
+      <description>returns the members of a given enumerated class</description>
+      <alias>QuantLibAddin::EnumClassRegistry::instance().getTypeElements</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='typeId' exampleValue='class QuantLib::Index'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>name of enumerated class e.g. class QuantLib::Index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlFunctionCount'>
+      <description>returns the number of functions in this Addin</description>
+      <SupportedPlatforms>
+        <Excel implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIsInSubset'>
+      <description>Looks for elements of a set in a subset. Returns a vector of present/not present booleans, one for each element of the set.</description>
+      <alias>QuantLib::isInSubset</alias>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='set' exampleValue='0,1,2,3,4,5,6,7,8,9'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>set</description>
+          </Parameter>
+          <Parameter name='subset' exampleValue='1,3,5,7,9'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>subset</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+</Category>

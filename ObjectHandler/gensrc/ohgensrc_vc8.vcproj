@@ -67,26 +67,54 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="metadata"
+			Name="Functions"
 			>
 			<File
-				RelativePath=".\metadata\demo.xml"
+				RelativePath=".\metadata\Functions\demo.xml"
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\garbagecollection.xml"
+				RelativePath=".\metadata\Functions\garbagecollection.xml"
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\logging.xml"
+				RelativePath=".\metadata\Functions\logging.xml"
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\ohutils.xml"
+				RelativePath=".\metadata\Functions\ohutils.xml"
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\valueobjects.xml"
+				RelativePath=".\metadata\Functions\valueobjects.xml"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Types"
+			>
+			<File
+				RelativePath=".\metadata\Types\types.xml"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Addins"
+			>
+			<File
+				RelativePath=".\metadata\Addins\addindoxygen.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\metadata\Addins\addinexcel.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\metadata\Addins\loop.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\metadata\Addins\valueobjects.xml"
 				>
 			</File>
 		</Filter>

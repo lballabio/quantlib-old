@@ -1,0 +1,111 @@
+<Category name='exercise'>
+  <description>functions to construct and use Exercise objects</description>
+  <displayName>Exercise</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006 Cristina Duminuco
+    Copyright (C) 2006 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Member name='qlExerciseDates' type='QuantLib::Exercise'>
+      <description>Returns all exercise dates</description>
+      <libraryFunction>dates</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue >
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlExerciseLastDate' type='QuantLib::Exercise'>
+      <description>Returns last exercise date</description>
+      <libraryFunction>lastDate</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue >
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlAmericanExercise'>
+      <libraryFunction>AmericanExercise</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='earliestDate' exampleValue ='1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>earliest exercise date</description>
+          </Parameter>
+          <Parameter name='latestDate' exampleValue ='2Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>latest exercise date</description>
+          </Parameter>
+          <Parameter name='payoffAtExpiry' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payoff at expiry. If omitted, default = FALSE is used.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEuropeanExercise'>
+      <libraryFunction>EuropeanExercise</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+        <Guile/>
+        <C/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='expiryDate' exampleValue ='1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>expiry date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBermudanExercise'>
+      <libraryFunction>BermudanExercise</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='dates' exampleValue ="'1Y,2Y">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>dates</description>
+          </Parameter>
+          <Parameter name='payoffAtExpiry' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payoff at expiry. If omitted, default = FALSE is used.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

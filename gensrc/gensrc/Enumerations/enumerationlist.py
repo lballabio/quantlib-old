@@ -23,15 +23,15 @@ class EnumerationList(object):
 
     def __init__(self):
 
-        xmlEnumTypes = xmlreader.XmlReader('metadata/enumtypes')
+        xmlEnumTypes = xmlreader.XmlReader('metadata/Enumerations/enumtypes')
         xmlEnumTypes.serializeObjectDict(self, enumeration.Enumeration, 'EnumType')
         xmlEnumTypes.serializeProperty(self, common.ENUM_TYPE_COPYRIGHT)
 
-        xmlEnumClasses = xmlreader.XmlReader('metadata/enumclasses')
+        xmlEnumClasses = xmlreader.XmlReader('metadata/Enumerations/enumclasses')
         xmlEnumClasses.serializeObjectDict(self, enumeration.Enumeration, 'EnumClass')
         xmlEnumClasses.serializeProperty(self, common.ENUM_CLASS_COPYRIGHT)
 
-        xmlEnumCurves = xmlreader.XmlReader('metadata/enumcurves')
+        xmlEnumCurves = xmlreader.XmlReader('metadata/Enumerations/enumcurves')
         xmlEnumCurves.serializeObjectDict(self, enumeration.Enumeration, 'EnumCurve')
 
     def enumeratedTypes(self):

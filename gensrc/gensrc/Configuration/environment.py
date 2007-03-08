@@ -23,8 +23,13 @@ from gensrc.Patterns import singleton
 def config():
     return Environment.instance().configuration()
 
+def getType(typeName, superTypeName = None):
+    return Environment.instance().superTypeList().getType(typeName, superTypeName)
+
 class Environment(singleton.Singleton):
     """global configuration state for gensrc application."""
+
+    #superTypeList_ = None
 
     def rootDirectory(self):
         return gensrc.__path__[0]
@@ -32,6 +37,15 @@ class Environment(singleton.Singleton):
     def setConfiguration(self, configuration):
         self.configuration_ = configuration
 
+    def setTypes(self, superTypeList):
+        self.superTypeList_ = superTypeList
+
     def configuration(self):
         return self.configuration_
+
+    def superTypeList(self):
+        return self.superTypeList_
+
+#config = Environment.instance().configuration
+#initializeType = Environment.instance().superTypeList().initializeType
 

@@ -32,7 +32,7 @@ class CategoryList(object):
         self.categoryDict_ = {}
         for categoryName in self.categoryNames_:
             self.categoryDict_[categoryName] = \
-                utilities.serializeObject(category.Category, 'metadata/' + categoryName)
+                utilities.serializeObject(category.Category, 'metadata/Functions/' + categoryName)
 
     def categoryNames(self):
         return self.categoryNames_

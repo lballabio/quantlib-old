@@ -1,0 +1,89 @@
+<Category name='daycounter'>
+  <description>Daycounter related functions</description>
+  <displayName>Daycounter</displayName>
+  <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
+  <includes/>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+  </copyright>
+  <Functions>
+
+    <EnumerationMember name='qlDayCounterName' type='QuantLib::DayCounter'>
+      <description>returns the name of the given DayCounter</description>
+      <libraryFunction>name</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <EnumerationMember name='qlDayCounterDayCount' type='QuantLib::DayCounter' loopParameter='endDate'>
+      <description>calculate the number of days in a period according to a given day count convention</description>
+      <libraryFunction>dayCount</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='startDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start date</description>
+          </Parameter>
+          <Parameter name='endDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>end date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <EnumerationMember name='qlDayCounterYearFraction' type='QuantLib::DayCounter' loopParameter='endDate'>
+      <description>calculate a year fraction</description>
+      <libraryFunction>yearFraction</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='startDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start date</description>
+          </Parameter>
+          <Parameter name='endDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>end date</description>
+          </Parameter>
+          <Parameter name='refPeriodStart' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start date for reference period</description>
+          </Parameter>
+          <Parameter name='refPeriodEnd' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end date for reference period</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+  </Functions>
+</Category>

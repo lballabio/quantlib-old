@@ -1,0 +1,69 @@
+<?xml version='1.0'?>
+<Addin name='ValueObjects'>
+
+<copyright>
+ Copyright (C) 2005, 2006 Plamen Neykov
+</copyright>
+
+<Buffers>
+<Buffer name='bufferClassBody' fileName='stub.vo.class.body'/>
+<Buffer name='bufferClassDecl' fileName='stub.vo.class.decl'/>
+<Buffer name='bufferIncludesDecl' fileName='stub.vo.includes.decl'/>
+<Buffer name='bufferIncludes' fileName='stub.vo.includes.body'/>
+</Buffers>
+
+<RuleGroups>
+
+<RuleGroup name='constructorDeclaration' indent='3' delimiter=',&#10;' checkParameterIgnore='true'>
+    <Wrap>&#10;%s</Wrap>
+    <Rules>
+        <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string&amp; %(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst boost::any&amp; %(name)s</Rule>
+        <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s</Rule>
+        <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;boost::any&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='string'>%(indent)sconst std::vector&lt;std::vector&lt;std::string&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;boost::any&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='memberDeclaration' indent='2' delimiter=';&#10;' checkParameterIgnore='true'>
+    <Wrap>&#10;%s</Wrap>
+    <Rules>
+        <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string %(name)s_</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sboost::any %(name)s_</Rule>
+        <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s_</Rule>
+        <Rule tensorRank='vector' nativeType='string'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sstd::vector&lt;boost::any&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector'>%(indent)sstd::vector&lt;%(nativeType)s&gt; %(name)s_</Rule>
+        <Rule tensorRank='matrix' nativeType='string'>%(indent)sstd::vector&lt;std::vector&lt;std::string&gt; &gt; %(name)s_</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sstd::vector&lt;std::vector &lt;boost::any&gt; &gt; %(name)s_</Rule>
+        <Rule tensorRank='matrix'>%(indent)sstd::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt; %(name)s_</Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='propertyDeclaration' indent='2' delimiter=',&#10;' checkParameterIgnore='true'>
+    <Wrap>&#10;%s</Wrap>
+    <Rules>
+        <Rule>%(indent)s"%(name)s"</Rule>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='propertyGet' checkParameterIgnore='true'>
+    <Rules>
+        <Rule codeID='code66'/>
+    </Rules>
+</RuleGroup>
+
+<RuleGroup name='constructorInit' indent='2' checkParameterIgnore='true' delimiter=',&#10;'>
+    <Rules>
+        <Rule>%(indent)s%(name)s_(%(name)s)</Rule>
+    </Rules>
+</RuleGroup>
+
+</RuleGroups>
+
+</Addin>
+

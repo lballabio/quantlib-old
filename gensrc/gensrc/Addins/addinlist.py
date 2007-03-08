@@ -32,6 +32,7 @@ from gensrc.Utilities import utilities
 from gensrc.Utilities import log
 from gensrc.Configuration import configuration
 from gensrc.Configuration import environment
+from gensrc.Types import supertypelist
 
 class AddinList(object):
     """class to encapsulate data and behavior 
@@ -44,14 +45,14 @@ addin           unchanged   updated     created     total'''
     LINE_FORMAT = '%-15s%12d%12d%12d%12d'
 
     creators = {
-        'q' : addinqla.AddinQla,
-        'e' : addinexcel.AddinExcel,
-        'o' : addincalc.AddinCalc,
-        'c' : addinc.AddinC,
-        'g' : addinguile.AddinGuile,
-        'd' : addindoxygen.AddinDoxygen,
-        'v' : valueobjects.ValueObjects,
-        'l' : loop.Loop,
+        'q' : (addinqla.AddinQla, 'addinqla'),
+        'e' : (addinexcel.AddinExcel, 'addinexcel'),
+        'o' : (addincalc.AddinCalc, 'addincalc'),
+        'c' : (addinc.AddinC, 'addinc'),
+        'g' : (addinguile.AddinGuile, 'addinguile'),
+        'd' : (addindoxygen.AddinDoxygen, 'addindoxygen'),
+        'v' : (valueobjects.ValueObjects, 'valueobjects'),
+        'l' : (loop.Loop, 'loop'),
     }
 
     def __init__(self, addinIds):
@@ -59,6 +60,9 @@ addin           unchanged   updated     created     total'''
 
         config = utilities.serializeObject(configuration.Configuration, 'config/config')
         environment.Environment.instance().setConfiguration(config)
+
+        superTypeList = utilities.serializeObject(supertypelist.SuperTypeList, 'metadata/Types/types')
+        environment.Environment.instance().setTypes(superTypeList)
 
         self.categoryList_ = categorylist.CategoryList()
         if config.usingEnumerations:
@@ -68,8 +72,8 @@ addin           unchanged   updated     created     total'''
 
         self.addins = []
         for addinId in addinIds:
-            creator = AddinList.creators[addinId]
-            self.addins.append(utilities.serializeObject(creator))
+            creator, fileName = AddinList.creators[addinId]
+            self.addins.append(utilities.serializeObject(creator, 'metadata/Addins/' + fileName))
 
     def generate(self):
 
@@ -114,24 +118,9 @@ addin           unchanged   updated     created     total'''
 
     def printDebug(self):
 
-        print "name," + \
-            "tensorRank," + \
-            "type," + \
-            "handleToLib," + \
-            "enumeration," + \
-            "handleToLib2," + \
-            "libraryClass," + \
-            "libraryType," + \
-            "libToHandle," + \
-            "loop," + \
-            "objectClass," + \
-            "underlyingClass," + \
-            "underlyingClassNonconst," + \
-            "vectorIterator," + \
-            "default," + \
-            "ignore," + \
-            "const"
-
         for cat in self.categoryList_.categories('*'):
             cat.printDebug()
+
+        for addin in self.addins:
+            addin.printDebug()
 

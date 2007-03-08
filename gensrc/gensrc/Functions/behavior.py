@@ -153,14 +153,10 @@ class BehaviorMemberLoop(BehaviorLoop):
 
     def setScope(self):
         """Set a few properties that will be required to generate source code."""
-        if self.func.handleToLib:
-            libClass = self.func.handleToLib
-        elif self.func.objectClass:
-            libClass = self.func.objectClass
-        else:
-            libClass = self.func.libraryClass
+        #self.functionScope = '%s::%s' % (
+        #    environment.config().namespaceLibrary, self.func.type)
         self.functionScope = '%s::%s' % (
-            environment.config().namespaceLibrary, libClass)
+            environment.config().namespaceLibrary, self.func.parameterObjectID.dataType.classname)
         self.functionReference = 'boost::shared_ptr<%s>' % self.functionScope
         self.functionScope2 = self.functionScope + '::* '
 
@@ -185,8 +181,8 @@ class BehaviorEnumerationLoop(BehaviorMemberLoop):
 
     def setScope(self):
         """Set a few properties that will be required to generate source code."""
-        self.functionScope = self.func.enumeration
-        self.functionReference = self.func.enumeration
+        self.functionScope = self.func.type
+        self.functionReference = self.func.type
         self.functionScope2 = self.functionScope + '::* '
 
 class BehaviorProcedureLoop(BehaviorLoop):

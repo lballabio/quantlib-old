@@ -28,20 +28,10 @@ CORE_IMPORT=$(GENSRC_DIR)\gensrc\Addins\addin.py \
             $(GENSRC_DIR)\gensrc\Serialization\serializer.py \
             $(GENSRC_DIR)\gensrc\Serialization\xmlreader.py \
             $(GENSRC_DIR)\gensrc\Utilities\buffer.py \
-            $(GENSRC_DIR)\gensrc\Utilities\code.py \
             $(GENSRC_DIR)\gensrc\Utilities\common.py \
             $(GENSRC_DIR)\gensrc\Utilities\log.py \
             $(GENSRC_DIR)\gensrc\Utilities\outputfile.py \
             $(GENSRC_DIR)\gensrc\Utilities\utilities.py
-
-CORE_METADATA=$(GENSRC_DIR)\gensrc\metadata\addinc.xml \
-              $(GENSRC_DIR)\gensrc\metadata\addincalc.xml \
-              $(GENSRC_DIR)\gensrc\metadata\addindoxygen.xml \
-              $(GENSRC_DIR)\gensrc\metadata\addinexcel.xml \
-              $(GENSRC_DIR)\gensrc\metadata\addinguile.xml \
-              $(GENSRC_DIR)\gensrc\metadata\addinqla.xml \
-              $(GENSRC_DIR)\gensrc\metadata\loop.xml \
-              $(GENSRC_DIR)\gensrc\metadata\valueobjects.xml
 
 CORE_STUBS=$(GENSRC_DIR)\gensrc\stubs\stub.c.function \
            $(GENSRC_DIR)\gensrc\stubs\stub.c.header \

@@ -297,3 +297,8 @@ class AddinExcel(addin.Addin):
         fileName = environment.config().excelFullPath + 'Functions/functioncount.hpp'
         outputfile.OutputFile(self, fileName, self.copyright, buf)
 
+    def printDebug(self):
+        print ">>>>>>>>>>>>>>>>"
+        self.xlRegisterParam.printDebug()
+        print "<<<<<<<<<<<<<<<<"
+

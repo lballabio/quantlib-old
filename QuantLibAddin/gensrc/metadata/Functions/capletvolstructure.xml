@@ -1,0 +1,353 @@
+<Category name='capletvolstructure'>
+  <description>functions to construct and use CapletVolatilityStructure objects</description>
+  <displayName>Caplet Volatility Term Structures</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/index.hpp</include>
+    <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/quotes.hpp</include>
+    <include>ql/Volatilities/capletconstantvol.hpp</include>
+    <include>ql/Volatilities/capstripper.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+  </copyright>
+  <Functions>
+
+    <!-- CapletVolatilityStructure interface-->
+    <Member name='qlCapletVTSVolatility' type='QuantLib::CapletVolatilityStructure' superType='libraryClass' loopParameter='strikes'>
+      <description>Returns a vector of volatilities corresponding to a vector of strikes for a given exercise date.</description>
+      <libraryFunction>volatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='expiry'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cap/floor expiry date</description>
+          </Parameter>
+          <Parameter name='strikes' const='False'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>cap/floor strike vector</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapletVTSBlackVariance' type='QuantLib::CapletVolatilityStructure' superType='libraryClass' loopParameter='strikes'>
+      <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
+      <libraryFunction>blackVariance</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='expiry'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cap/floor expiry date</description>
+          </Parameter>
+          <Parameter name='strikes' const='False'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>cap/floor strike vector</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapletVTSMinStrike' type='QuantLib::CapletVolatilityStructure' superType='libraryClass'>
+      <description>Returns the minimum strike for which the term structure can return vols.</description>
+      <libraryFunction>minStrike</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapletVTSMaxStrike' type='QuantLib::CapletVolatilityStructure' superType='libraryClass'>
+      <description>Returns the maximum strike for which the term structure can return vols.</description>
+      <libraryFunction>maxStrike</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- CapletVolatilityStructure constructors -->
+    <Constructor name='qlCapletVTSConstant'>
+      <libraryFunction>CapletConstantVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='volatility' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>cap/floor constant volatility Quote</description>
+          </Parameter>
+          <Parameter name='dayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- CapsStripper interface-->
+    <Member name='qlCapsStripperStrikes' type='QuantLib::CapsStripper'>
+      <description>Returns the vector of cap strikes underlying the given ObjectID.</description>
+      <libraryFunction>strikes</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapsStripperTenors' type='QuantLib::CapsStripper'>
+      <description>Returns the vector of cap tenors underlying the given ObjectID.</description>
+      <libraryFunction>tenors</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlCapsStripper'>
+      <libraryFunction>CapsStripper</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='capTenors'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>cap lengths.</description>
+          </Parameter>
+          <Parameter name='capStrikes'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>cap strikes.</description>
+          </Parameter>
+          <Parameter name='volatilities' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>matrix</tensorRank>
+            <description>cap volatilities.</description>
+          </Parameter>
+          <Parameter name="index">
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cap index object ID</description>
+          </Parameter>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+          <Parameter name='dayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+          <Parameter name='impliedVolatilityAccuracy'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>implied Volatility Accuracy.</description>
+          </Parameter>
+          <Parameter name='maxEvaluations'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>implied Volatility max Evaluations.</description>
+          </Parameter>
+         <Parameter name='decoupledInterpolation' const='false'>
+             <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Used decoupled interpolations</description>
+         </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlCapsStripper2'>
+      <libraryFunction>CapsStripper</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='capTenors'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>cap lengths.</description>
+          </Parameter>
+          <Parameter name='capStrikes'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>cap strikes.</description>
+          </Parameter>
+          <Parameter name='volatilities' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>matrix</tensorRank>
+            <description>cap volatilities.</description>
+          </Parameter>
+          <Parameter name="index">
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cap index object ID</description>
+          </Parameter>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+          <Parameter name='dayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+          <Parameter name='impliedVolatilityAccuracy'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>implied Volatility Accuracy.</description>
+          </Parameter>
+          <Parameter name='maxEvaluations'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>implied Volatility max Evaluations.</description>
+          </Parameter>
+          <Parameter name='smileSections'>
+            <type>QuantLib::SmileSection</type>
+            <tensorRank>vector</tensorRank>
+            <description>smile sections object IDs</description>
+          </Parameter>
+          <Parameter name='decoupledInterpolation' const='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Used decoupled interpolations</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSmileSectionsVolStructure'>
+      <libraryFunction>SmileSectionsVolStructure</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='referenceDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reference date</description>
+          </Parameter>
+          <Parameter name='dayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+          <Parameter name='smileSections'>
+            <type>QuantLib::SmileSection</type>
+            <tensorRank>vector</tensorRank>
+            <description>smile sections object IDs</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- Handle<CapletVolatilityStructure> -->
+    <Constructor name='qlHandleCapletVolatilityStructure'>
+      <libraryFunction>Handle&lt;QuantLib::CapletVolatilityStructure&gt;</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='capletVol' >
+            <type>QuantLib::CapletVolatilityStructure</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CapletVolatilityStructure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlHandleCapletVolatilityStructureLinkTo' type='QuantLib::CapletVolatilityStructure' superType='objectHandle'>
+      <libraryFunction>linkTo</libraryFunction>
+      <description>relink handle</description>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='capletVol' >
+            <type>QuantLib::CapletVolatilityStructure</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CapletVolatilityStructure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

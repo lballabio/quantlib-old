@@ -71,7 +71,7 @@ class SupportedPlatforms(serializable.Serializable):
             and self.SupportedPlatforms['Excel'].xlMacro
 
     def xlCalcInWizard(self):
-        """Determine whether this function requires macro on excel platform."""
+        """Determine whether this function should be enabled under excel wizard."""
         return self.SupportedPlatforms.has_key('Excel') \
             and self.SupportedPlatforms['Excel'].calcInWizard
 
@@ -130,7 +130,6 @@ class Function(serializable.Serializable):
 class Constructor(Function):
     """Function which constructs a QuantLib object."""
 
-    returnValue = parameter.ConstructorReturnValue
     resetCaller = 'true'
     generateVOs = True
     validatePermanent = '''
@@ -147,6 +146,7 @@ class Constructor(Function):
     funcCtorBuffer = None
 
     def __init__(self):
+        self.returnValue = parameter.ConstructorReturnValue()
         if not Constructor.funcCtorBuffer:
             Constructor.funcCtorBuffer = buffer.loadBuffer('stub.func.constructor')
 
@@ -160,7 +160,7 @@ class Constructor(Function):
         Function.postSerialize(self)
         # implicit in the definition of a Constructor is that the first parameter
         # is a string to be used as the objectID of the new object
-        self.ParameterList.prepend(parameter.ParameterObjectID())
+        self.ParameterList.prepend(parameter.ConstructorObjectID())
         # All ctors have a final optional boolean parameter 'permanent'
         self.ParameterList.append(parameter.PermanentFlag())
         # dependency tracking trigger
@@ -197,22 +197,20 @@ class Member(Function):
         """Load/unload class state to/from serializer object."""
         super(Member, self).serialize(serializer)
         serializer.serializeProperty(self, common.LIBRARY_FUNCTION)
-        serializer.serializeAttribute(self, common.LIBRARY_CLASS)
-        serializer.serializeAttribute(self, common.OBJECT_CLASS)
+        serializer.serializeAttribute(self, common.TYPE)
+        serializer.serializeAttribute(self, 'superType')
         serializer.serializeAttribute(self, common.LOOP_PARAMETER)
         serializer.serializeObject(self, parameter.ReturnValue)
-        serializer.serializeAttribute(self, common.HANDLE_TO_LIB)
-        serializer.serializeAttribute(self, common.HANDLE_TO_LIB2)
 
     def postSerialize(self):
         """Perform post serialization initialization."""
         Function.postSerialize(self)
-        if not self.handleToLib2:
-            self.handleToLib2 = self.handleToLib
         # implicit in the definition of a Member is that the first parameter
         # is the objectID of the object to be retrieved
-        self.parameterObjectID = parameter.ParameterObjectID(
-            self.objectClass, self.libraryClass, self.handleToLib, self.handleToLib2)
+
+        # FIXME rework so not necessary to retain "self.parameterObjectID"
+        # as reference to first parameter
+        self.parameterObjectID = parameter.MemberObjectID(self.type, self.superType)
         self.ParameterList.prepend(self.parameterObjectID)
         # dependency tracking trigger
         if self.dependencyTrigger:
@@ -234,15 +232,16 @@ class EnumerationMember(Member):
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
         super(EnumerationMember, self).serialize(serializer)
-        serializer.serializeAttribute(self, common.ENUM)
-        serializer.serializeAttribute(self, common.LIBRARY_TYPE)
 
     def postSerialize(self):
         """Perform post serialization initialization."""
         Function.postSerialize(self)
         # implicit in the definition of an EnumerationMember is that the first parameter
         # is the ID of the enumeration to be retrieved
-        self.parameterObjectID = parameter.EnumerationId(self.enumeration)
+
+        # FIXME rework so not necessary to retain "self.parameterObjectID"
+        # as reference to first parameter
+        self.parameterObjectID = parameter.EnumerationId(self.type, self.superType)
         self.ParameterList.prepend(self.parameterObjectID)
         # dependency tracking trigger
         if self.dependencyTrigger:

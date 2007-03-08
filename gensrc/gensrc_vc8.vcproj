@@ -276,14 +276,18 @@
 			</File>
 		</Filter>
 		<Filter
+			Name="Types"
+			>
+			<File
+				RelativePath="gensrc\Types\supertypelist.py"
+				>
+			</File>
+		</Filter>
+		<Filter
 			Name="Utilities"
 			>
 			<File
 				RelativePath="gensrc\Utilities\buffer.py"
-				>
-			</File>
-			<File
-				RelativePath="gensrc\Utilities\code.py"
 				>
 			</File>
 			<File
@@ -300,42 +304,6 @@
 			</File>
 			<File
 				RelativePath="gensrc\Utilities\utilities.py"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="metadata"
-			>
-			<File
-				RelativePath="gensrc\metadata\addinc.xml"
-				>
-			</File>
-			<File
-				RelativePath="gensrc\metadata\addincalc.xml"
-				>
-			</File>
-			<File
-				RelativePath="gensrc\metadata\addindoxygen.xml"
-				>
-			</File>
-			<File
-				RelativePath="gensrc\metadata\addinexcel.xml"
-				>
-			</File>
-			<File
-				RelativePath="gensrc\metadata\addinguile.xml"
-				>
-			</File>
-			<File
-				RelativePath="gensrc\metadata\addinqla.xml"
-				>
-			</File>
-			<File
-				RelativePath="gensrc\metadata\loop.xml"
-				>
-			</File>
-			<File
-				RelativePath="gensrc\metadata\valueobjects.xml"
 				>
 			</File>
 		</Filter>

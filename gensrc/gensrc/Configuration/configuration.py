@@ -41,7 +41,6 @@ class Configuration(serializable.Serializable):
         serializer.serializeProperty(self, common.NAMESPACE_LIB)
         serializer.serializeProperty(self, 'prefix')
         serializer.serializeBoolean(self, 'usingEnumerations')
-        serializer.serializeList(self, 'implicitConversions', 'implicitConversion')
 
     def postSerialize(self):
 

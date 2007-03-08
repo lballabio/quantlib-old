@@ -53,15 +53,18 @@
     <categoryName>quotes</categoryName>
   </categoryNames>
 
-  <implicitConversions>
+  <!-- 
+    implicit conversions: this information now appears in file
+	QuantLibAddin\gensrc\metadata\Types\types.xml
+  -->
+  <!--implicitConversions>
     <implicitConversion>QuantLib::DiscountFactor</implicitConversion>
     <implicitConversion>QuantLib::Rate</implicitConversion>
     <implicitConversion>QuantLib::Spread</implicitConversion>
     <implicitConversion>QuantLib::Volatility</implicitConversion>
     <implicitConversion>QuantLib::Time</implicitConversion>
     <implicitConversion>QuantLib::Real</implicitConversion>
-    <!--<implicitConversion>QuantLib::Size</implicitConversion>-->
-  </implicitConversions>
+  </implicitConversions-->
 
 </Config>
 

@@ -38,7 +38,7 @@ class Addin(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeProperty(self, common.ROOT_DIRECTORY)
-        serializer.serializeObjectPropertyDict(self, rule.Rule)
+        serializer.serializeObjectPropertyDict(self, rule.RuleGroup)
         serializer.serializeObjectPropertyDict(self, buffer.Buffer)
         serializer.serializeProperty(self, common.COPYRIGHT)
 

@@ -1,0 +1,601 @@
+<Category name='options'>
+  <description>functions to construct and use Option objects</description>
+  <displayName>Options</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/options.hpp</include>
+    <include>qlo/pricingengines.hpp</include>
+    <include>qlo/payoffs.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2005, 2006 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Constructor name='qlBarrierOption'>
+      <libraryFunction>BarrierOption</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='barrierType'>
+            <type>QuantLib::Barrier::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>barrier type</description>
+          </Parameter>
+          <Parameter name='barrier' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>barrier</description>
+          </Parameter>
+          <Parameter name='rebate' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rebate</description>
+          </Parameter>
+          <Parameter name='blackScholes'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
+          <Parameter name='payoff'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>striked type payoff object ID</description>
+          </Parameter>
+          <Parameter name='exercise'>
+            <type>QuantLib::Exercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise ID</description>
+          </Parameter>
+          <Parameter name='pricingEngine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlCaAsianOption'>
+      <libraryFunction>ContinuousAveragingAsianOption</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='average'>
+            <type>QuantLib::Average::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>average type</description>
+          </Parameter>
+          <Parameter name='blackScholes'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
+          <Parameter name='payoff'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>striked type payoff object ID</description>
+          </Parameter>
+          <Parameter name='exercise'>
+            <type>QuantLib::Exercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID</description>
+          </Parameter>
+          <Parameter name='pricingEngine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!--Constructor name='qlCliquetOption'>
+      <libraryFunction>CliquetOption</libraryFunction>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='blackScholes'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
+          <Parameter name='payoff'>
+            <type>QuantLib::PercentageStrikePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>striked type payoff object ID</description>
+          </Parameter>
+          <Parameter name='exercise'>
+            <type>QuantLib::EuropeanExercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID</description>
+          </Parameter>
+          <Parameter name='resetDates'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of reset dates</description>
+          </Parameter>
+          <Parameter name='pricingEngine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor-->
+
+    <Constructor name='qlDaAsianOption'>
+      <libraryFunction>DiscreteAveragingAsianOption</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='average'>
+            <type>QuantLib::Average::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>average type</description>
+          </Parameter>
+          <Parameter name='runningAccumulator' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>running accumulator</description>
+          </Parameter>
+          <Parameter name='pastFixings' exampleValue ='0.1'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>past fixings</description>
+          </Parameter>
+          <Parameter name='fixingDates' exampleValue ='1Y,2Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing dates</description>
+          </Parameter>
+          <Parameter name='blackScholes'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
+          <Parameter name='payoff'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>striked type payoff object object ID</description>
+          </Parameter>
+          <Parameter name='exercise'>
+            <type>QuantLib::Exercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID</description>
+          </Parameter>
+          <Parameter name='pricingEngine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlDividendVanillaOption'>
+      <libraryFunction>DividendVanillaOption</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='blackScholes'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
+          <Parameter name='payoff'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>striked type payoff object ID</description>
+          </Parameter>
+          <Parameter name='exercise'>
+            <type>QuantLib::Exercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID</description>
+          </Parameter>
+          <Parameter name='dividendDates' exampleValue ='1Y,2Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of dividend dates</description>
+          </Parameter>
+          <Parameter name='dividends' exampleValue ='0.1,0.1'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of dividends</description>
+          </Parameter>
+          <Parameter name='pricingEngine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlForwardVanillaOption'>
+      <libraryFunction>ForwardVanillaOption</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='moneyness' exampleValue ='0.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>moneyness</description>
+          </Parameter>
+          <Parameter name='resetDate' exampleValue ='1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reset date</description>
+          </Parameter>
+          <Parameter name='blackScholes'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
+          <Parameter name='payoff'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>striked type payoff object ID</description>
+          </Parameter>
+          <Parameter name='exercise'>
+            <type>QuantLib::Exercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID</description>
+          </Parameter>
+          <Parameter name='pricingEngine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlVanillaOption'>
+      <libraryFunction>VanillaOption</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+        <C/>
+        <Guile/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='blackScholes'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
+          <Parameter name='payoff'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>striked type payoff object ID</description>
+          </Parameter>
+          <Parameter name='exercise'>
+            <type>QuantLib::Exercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID</description>
+          </Parameter>
+          <Parameter name='pricingEngine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEuropeanOption'>
+      <libraryFunction>EuropeanOption</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='blackScholes'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
+          <Parameter name='payoff'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>striked type payoff object ID</description>
+          </Parameter>
+          <Parameter name='exercise'>
+            <type>QuantLib::Exercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID</description>
+          </Parameter>
+          <Parameter name='pricingEngine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlQuantoVanillaOption'>
+      <libraryFunction>QuantoVanillaOption</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+          <Parameter name='blackVolID'>
+            <type>QuantLib::BlackVolTermStructure</type>
+            <tensorRank>scalar</tensorRank>
+            <description>BlackVolTermStructure ID</description>
+          </Parameter>
+          <Parameter name='correlation' exampleValue ='0.5'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>correlation</description>
+          </Parameter>
+          <Parameter name='blackScholes'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
+          <Parameter name='payoff'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>striked type payoff object ID</description>
+          </Parameter>
+          <Parameter name='exercise'>
+            <type>QuantLib::Exercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID</description>
+          </Parameter>
+          <Parameter name='pricingEngine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlQuantoForwardVanillaOption'>
+      <libraryFunction>QuantoForwardVanillaOption</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+          <Parameter name='blackVol'>
+            <type>QuantLib::BlackVolTermStructure</type>
+            <tensorRank>scalar</tensorRank>
+            <description>BlackVolTermStructure object ID</description>
+          </Parameter>
+          <Parameter name='correlation' exampleValue ='0.5'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>correlation</description>
+          </Parameter>
+          <Parameter name='moneyness' exampleValue ='0.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>moneyness</description>
+          </Parameter>
+          <Parameter name='resetDate' exampleValue ='1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reset date</description>
+          </Parameter>
+          <Parameter name='blackScholes'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
+          <Parameter name='payoff'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>striked type payoff object ID</description>
+          </Parameter>
+          <Parameter name='exercise'>
+            <type>QuantLib::Exercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID</description>
+          </Parameter>
+          <Parameter name='pricingEngine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlDelta' type='QuantLib::OneAssetOption'>
+      <description>delta of an option</description>
+      <libraryFunction>delta</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlDeltaForward' type='QuantLib::OneAssetOption'>
+      <description>delta forward of an option</description>
+      <libraryFunction>deltaForward</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlElasticity' type='QuantLib::OneAssetOption'>
+      <description>elasticity of an option</description>
+      <libraryFunction>elasticity</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlGamma' type='QuantLib::OneAssetOption'>
+      <description>gamma of an option</description>
+      <libraryFunction>gamma</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTheta' type='QuantLib::OneAssetOption'>
+      <description>theta of an option</description>
+      <libraryFunction>theta</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlThetaPerDay' type='QuantLib::OneAssetOption'>
+      <description>theta per day of an option</description>
+      <libraryFunction>thetaPerDay</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVega' type='QuantLib::OneAssetOption'>
+      <description>vega of an option</description>
+      <libraryFunction>vega</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRho' type='QuantLib::OneAssetOption'>
+      <description>rho of an option</description>
+      <libraryFunction>rho</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlDividendRho' type='QuantLib::OneAssetOption'>
+      <description>dividend rho of an option</description>
+      <libraryFunction>dividendRho</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlItmCashProbability' type='QuantLib::OneAssetOption'>
+      <description>itm cash probability of an option</description>
+      <libraryFunction>itmCashProbability</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+        <Calc/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>
