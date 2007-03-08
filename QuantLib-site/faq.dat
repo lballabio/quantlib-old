@@ -1,0 +1,262 @@
+
+<c>General questions
+<q>Is it OK to email a QuantLib developer to ask questions, or seek
+   help, or report a bug?
+<a>Yes, it is.  However, we urge you to consider posting to the
+   QuantLib mailing list instead.  This is for two reasons.  The
+   first is that messages on the list are stored: the next one with
+   your problem will be able to find the answer by searching the
+   archives.  The second is that you might get your answer sooner.
+   For instance, it just so happens that I am writing this entry in
+   the middle of a two-weeks period without an Internet connection.
+   If anybody wrote me last Monday, the poor soul will wait two weeks
+   for an answer which could have been given already by someone else
+   on the list.
+
+   <br>
+   However, if your intent in writing was to call the developer
+   names, disregard the above.  By all means write personally to the
+   developer.  And possibly, add the line:
+   <pre>
+   X-Bogosity: Yes
+   </pre>
+   to the mail headers, so that our filters---I mean, <em>we</em>
+   can take immediate care of it.
+
+<c>General questions
+<q>How should I report a bug?
+<a>You can file a bug report using the <a
+   href="http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">
+   SourceForge interface</a>, or you could write to a QuantLib mailing
+   list.
+
+   In any case please report as much details as possible.
+
+   If it is a compilation problem please state at least:
+   <ul>
+   <li>operating system;</li>
+   <li>compiler (version number, patch level, etc.);</li>
+   <li>Boost version;</li>
+   <li>the compilation error and the file affected;</li>
+   </ul>
+
+   If the test suite fails please report the output obtained by executing the
+   test suite with the following command line options:
+   <pre>
+   --log_level=messages --build_info=yes --result_code=no --report_level=short
+   </pre>
+
+<c>General questions
+<q>Thanks for this project. How can I give back to it?
+
+<a>In true open-source fashion, you can contribute code to the
+   project; see the 'Contributing to the project' section below. This
+   is by far the preferred contribution, closely followed by using the
+   library intensively and reporting any bugs you might find---and
+   possibly patches for fixing them.
+
+   <br>
+   However, if you made money by using QuantLib and feel that, as
+   Christmas is getting near, you want to give us a token of your
+   gratitude---well, who am I to discourage you? (for instance, &lt;
+   grin &gt; Luigi's wish list on Amazon UK is <a
+   href="http://www.amazon.co.uk/exec/obidos/registry/2PC411P4U28CG/ref=wl_em_to">here</a>,
+   and Nando's is <a
+   href="http://www.amazon.co.uk/exec/obidos/registry/Q94W7HUR49Z5/ref=wl_em_to">here</a>.)
+
+<c>General questions
+<q>Amazon Wish List? Aren't you ashamed of yourselves?
+<a>&lt; broad grin &gt; No, we aren't.
+
+<c>Contributing to the project
+<q>I'm interested in getting involved with the project. What should
+   I do?
+
+<a>Contact the QuantLib group by posting to the developers' mailing
+   list (<quantlib-dev@lists.sourceforge.net>) and describe your
+   experience and interests. Before doing this, please read:
+   <ul>
+   <li>the <a href="http://quantlib.org/newdeveloper.shtml">introduction</a>
+       for new developers;<li>
+   <li>the <a href="http://quantlib.org/reference/overview.html">project
+       overview</a> with its to-do suggestions;</li>
+   <li>the <a href="http://quantlib.org/developerFAQ.shtml">developer
+       FAQ</a>;</li>
+   <li>the <a href="http://quantlib.org/style.shtml">programming style
+       guidelines</a>;</li>
+   <li>the detailed low-level
+       <a href="http://quantlib.org/reference/todo.html">to-do list</a>.</li>
+   </ul>
+   Also, you might want to specify an area of the library you are
+   particularly interested to, or which would be most useful to you.
+   Asking the administrators to choose a task for you is ok, but it
+   might take time to get an answer and it increases the odds that the
+   chosen task will bore you or otherwise discourage you from
+   completing it.
+
+<c>Contributing to the project
+<q>How do I contribute code to the project?
+
+<a>First of all, make sure that contributing code on your part cannot
+   result in litigation about intellectual property. If you work at
+   some financial institution, ask for permission before contributing
+   any relevant portion of code---and get a statement in print.
+
+   <br>
+   As for the mechanics of contribution, the preferred way is to
+   submit a patch to the <a
+   href="http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">
+   SourceForge patch tracker</a>.  This will make it less likely that
+   your files are forgotten in the depths of a developer's mailbox.
+
+   <br>
+   The preferred format is a diff file as created by the 'patch'
+   utility.  If possible, send differences against the CVS repository;
+   diff files based on the latest release might not apply to the
+   latest sources.
+
+   <br>
+   If 'patch' is not available on your system or you are not familiar
+   with it, submit the modified files. However, keep in mind that
+   integrating such a contribution will require more work and
+   therefore will take longer.
+
+   <br>
+   Finally, contributions should be accompanied by one or more test
+   cases checking the functionality of the new code. While this is not
+   a strict requirement, complying with it will buy from the
+   developers a lot more sympathy towards your contribution.
+
+<c>Building QuantLib
+<q>I'm having trouble building Boost.
+<a>If you're using Visual C++ 7.1 or 8.0, you don't need to build
+   Boost: an installer for precompiled binaries is available <a
+   href="http://www.boost-consulting.com/download.html">here</a>
+   (note, though, that at this time it won't work through a proxy
+   server.)
+
+   <br>
+   If you're using another compiler (or you are, alas, behind a proxy
+   server) you can ask for help on the QuantLib mailing list. However,
+   you'll probably get better help from the <a
+   href="http://boost.org/more/mailing_lists.htm#users">Boost mailing
+   list</a> since the Boost people have much better expertise in
+   troubleshooting their libraries than we have.
+
+<c>Building QuantLib
+<q>I'm having trouble building QuantLib with MinGW.
+<a>Terry August was kind enough to put together detailed instructions
+   for MinGW users. They can be found <a
+   href="http://www.stanford.edu/~taugust/quantlib.html">here</a>.
+
+<c>Building QuantLib
+<q>When building QuantLib, I get a compile error about a missing
+   boost/something header.
+<a>As mentioned in the readme, QuantLib depends on the Boost library
+   (<a href="http://www.boost.org">http://www.boost.org</a>). You must
+   download and install it before building QuantLib. After
+   installation, you might have to setup your IDE so that the Boost
+   headers are in its include path.
+
+<c>Building QuantLib
+<q>When building the test-suite, I encounter a linking error about
+   libboost_unit_test_framework-xxx.
+<a>The folder including the Boost libraries in not in your link path.
+   See the documentation of your compiler for instructions on how to
+   add it.
+
+<c>Building QuantLib
+<q>But I have no such library on my machine!
+<a>Most likely, you downloaded the Boost distribution and just copied
+   its header files somewhere in your include path. The Boost
+   libraries must be built as well; see <a
+   href="http://www.boost.org/more/getting_started.html">here</a> for
+   instructions.
+
+<c>Building QuantLib
+<q>Ok, now I have the library; and the library path is set correctly.
+   But I still cannot link!
+<a>You're using Dev-C++ or MinGW, aren't you? gcc is looking for a
+   library called libboost_unit_test_framework-xxx.a, but the Boost
+   installation process created a libboost_unit_test_framework-xxx.lib
+   instead. Make a copy of the latter in the same location and rename
+   the copy so that it has the correct extension.
+
+<c>Building QuantLib
+<q>I'm having trouble building QuantLib with the Sun Studio 11 compiler.
+
+<a>If the error you're getting resembles to
+   <pre>
+>> Assertion:   (../lnk/init.cc, line 1032)
+    while processing ../../ql/history.hpp at line 135.
+*** Error code 1 
+   </pre>
+   you need to patch your compiler. Sun makes the needed patches
+   available <a
+   href="http://developers.sun.com/prodtech/cc/downloads/patches/ss11_patches.html">here</a>;
+   you need the ones labeled as "Compilers back-end" and "C++".
+
+<c>Testing QuantLib
+<q>The QuantLib test-suite fails when compiling under Mac OS X.
+<a>We are aware of the problem; apparently, there are issues with
+   global and/or static variables when using shared libraries. As a
+   workaround, compile QuantLib as a static library. This can be
+   accomplished by running configure as:
+   <pre>
+   configure --disable-shared
+   </pre>
+
+<c>Using QuantLib
+<q>I cannot link QuantLib to my project under Visual C++
+<a>If you're encountering the linking error
+   <pre>
+   LINK : fatal error LNK1104: cannot open file "QuantLib-vcX-xx-xxx-a_b_c.lib"
+   </pre>
+   the folder including QuantLib-vcX-xx-xxx-a_b_c.lib is not in your
+   link path (See the menu Property Pages | Linker | Input) or you
+   haven't really built QuantLib-vcX-xx-xxx-a_b_c.lib yet.  Note that
+   each build configuration produces a different library.
+
+<c>Using QuantLib
+<q>Programs linking QuantLib fail to run correctly under Mac OS X.
+<a>We are aware of the problem; apparently, there are issues with
+   global and/or static variables when using shared libraries. As a
+   workaround, compile QuantLib as a static library. This can be
+   accomplished by running configure as:
+   <pre>
+   configure --disable-shared
+   </pre>
+
+<c>QuantLib features
+<q>Why is feature X missing from QuantLib? It would be a very useful one.
+<a>See the 'Contributing to the project' section in this FAQ.
+
+<c>QuantLib extensions
+<q>I'm having trouble building/using QuantLibXL or QuantLibAddin.
+<a>The QuantLibAddin project has its own FAQ; see <a
+   href="http://www.quantlibaddin.org/faq.html">http://www.quantlibaddin.org/faq.html</a>.
+
+<c>QuantLib mailing lists
+<q>How do I start a new topic?
+<a>Use the "New message" command on your mail client; do not reply to
+   another post and change the subject. Although seemingly more
+   convenient for you, replying will cause your message to appear in
+   the wrong thread in the mailing list archive, in the newsgroup
+   interface at Gmane, and in mail clients that support threads.  This
+   brings a whole lot of inconvenience on a number of
+   people---possibly including you, as your message might be
+   overlooked by people not interested in the original topic.
+
+<c>QuantLib extensions
+<q>Does QuantLib support .NET?
+<a>Not directly. C# bindings for QuantLib are available, though; see
+   the <a href="http://quantlib.org/extensions.shtml">extensions page</a>.
+
+<c>QuantLib extensions
+<q>Does QuantLib support FpML? Serialization?
+<a>Not yet. The subject has been discussed in the mailing lists (look
+   in the archives for the relevant threads) but no actual work has
+   been done and help is needed in this area.  The first step would be
+   to formalize and document the proposed design, perhaps as a <a
+   href="http://quantlib.org/quep.shtml">QuEP</a>.
+

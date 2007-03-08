@@ -17,7 +17,7 @@
 <li class="navlink"><a href=
 "http://sourceforge.net/news/?group_id=12740">News</a></li>
 
-<li class="navlink"><a href="/reference/faq.html">FAQ</a></li>
+<li class="navlink"><a href="/faq.shtml">FAQ</a></li>
 
 <li class="navlink"><a href="/docs.shtml">Documentation</a></li>
 
