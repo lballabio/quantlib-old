@@ -1,15 +1,15 @@
 <h3 class="navbartitle">Developer Pages</h3>
 <ul class="navbarlist">
-<li class="navlink"><a href="newdeveloper.shtml">Developer&nbsp;Intro</a></li>
+<li class="navlink"><a href="/newdeveloper.shtml">Developer&nbsp;Intro</a></li>
 
 <li class="navlink"><a href=
 "http://sourceforge.net/projects/quantlib">Project&nbsp;page</a></li>
 
-<li class="navlink"><a href="reference/index.html">Reference Manual</a></li>
+<li class="navlink"><a href="/reference/index.html">Reference Manual</a></li>
 
-<li class="navlink"><a href="quep.shtml">Enhancement Proposals</a></li>
+<li class="navlink"><a href="/quep.shtml">Enhancement Proposals</a></li>
 
-<li class="navlink"><a href="cvs.shtml">CVS</a></li>
+<li class="navlink"><a href="/cvs.shtml">CVS</a></li>
 
 <li class="navlink"><a href=
 "http://wiki.quantlib.org">QuantLib Wiki</a></li>
@@ -24,9 +24,9 @@
 <li class="navlink"><a href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests</a></li>
 
-<li class="navlink"><a href="developerFAQ.shtml">Developer&nbsp;FAQ</a></li>
+<li class="navlink"><a href="/developerFAQ.shtml">Developer&nbsp;FAQ</a></li>
 
-<li class="navlink"><a href="style.shtml">Style Guidelines</a></li>
+<li class="navlink"><a href="/style.shtml">Style Guidelines</a></li>
 </ul>
 
 <hr>
