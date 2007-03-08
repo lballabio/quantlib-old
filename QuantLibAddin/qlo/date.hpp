@@ -18,19 +18,19 @@
 #ifndef qla_date_hpp
 #define qla_date_hpp
 
-#include <oh/object.hpp>
-#include <ql/period.hpp>
-#include <ql/date.hpp>
+#include <ql/frequency.hpp>
+#include <vector>
+
+namespace QuantLib {
+    class Period;
+    class Date;
+}
 
 namespace QuantLibAddin {
 
-    inline QuantLib::Period periodFromFrequency(QuantLib::Frequency f) {
-        return QuantLib::Period(f);
-    }
-
-    inline QuantLib::Frequency frequencyFromPeriod(const QuantLib::Period& p) {
-        return p.frequency();
-    }
+    // to be removed using coercion
+    QuantLib::Period periodFromFrequency(QuantLib::Frequency f);
+    QuantLib::Frequency frequencyFromPeriod(const QuantLib::Period& p);
 
     std::vector<QuantLib::Date> qlNextIMMdates(const QuantLib::Date& d,
                                                const std::vector<bool>& mainCycle);

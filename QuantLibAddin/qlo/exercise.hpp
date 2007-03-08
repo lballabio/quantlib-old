@@ -19,7 +19,11 @@
 #define qla_exercise_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/exercise.hpp>
+
+namespace QuantLib {
+    class Exercise;
+    class Date;
+}
 
 namespace QuantLibAddin {
 

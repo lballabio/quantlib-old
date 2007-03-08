@@ -17,6 +17,7 @@
 
 
 #include <qlo/date.hpp>
+#include <ql/date.hpp>
 #include <ql/settings.hpp>
 
 using QuantLib::Date;
@@ -25,6 +26,14 @@ using std::vector;
 using std::string;
 
 namespace QuantLibAddin {
+
+    QuantLib::Period periodFromFrequency(QuantLib::Frequency f) {
+        return QuantLib::Period(f);
+    }
+
+    QuantLib::Frequency frequencyFromPeriod(const QuantLib::Period& p) {
+        return p.frequency();
+    }
 
     vector<Date> qlNextIMMdates(const Date& date,
                                 const vector<bool>& mainCycle) {

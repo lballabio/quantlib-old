@@ -19,34 +19,31 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/exercise.hpp>
+#include <ql/exercise.hpp>
 
 namespace QuantLibAddin {
 
     AmericanExercise::AmericanExercise(
             const QuantLib::Date& earliestDate,
             const QuantLib::Date& latestDate,
-            const bool payoffAtExpiry)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::Exercise>(
-            new QuantLib::AmericanExercise(earliestDate,
-                                           latestDate,
-                                           payoffAtExpiry));
+            const bool payoffAtExpiry) {
+        libraryObject_ = boost::shared_ptr<QuantLib::Exercise>(new
+            QuantLib::AmericanExercise(earliestDate,
+                                       latestDate,
+                                       payoffAtExpiry));
     }
 
-    EuropeanExercise::EuropeanExercise(const QuantLib::Date& expiryDate)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::Exercise>(
-            new QuantLib::EuropeanExercise(expiryDate));
+    EuropeanExercise::EuropeanExercise(const QuantLib::Date& expiryDate) {
+        libraryObject_ = boost::shared_ptr<QuantLib::Exercise>(new
+            QuantLib::EuropeanExercise(expiryDate));
     }
 
     BermudanExercise::BermudanExercise(
         const std::vector<QuantLib::Date>& dates,
-        const bool payoffAtExpiry)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::Exercise>(
-            new QuantLib::BermudanExercise(dates,
-                                           payoffAtExpiry));
+        const bool payoffAtExpiry) {
+        libraryObject_ = boost::shared_ptr<QuantLib::Exercise>(new
+            QuantLib::BermudanExercise(dates,
+                                       payoffAtExpiry));
     }
 
 }
-

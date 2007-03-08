@@ -22,9 +22,21 @@
 #define qla_xibor_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/Indexes/iborindex.hpp>
+#include <ql/businessdayconvention.hpp>
 #include <ql/handle.hpp>
-#include <ql/yieldtermstructure.hpp>
+#include <ql/types.hpp>
+#include <string>
+
+namespace QuantLib {
+    class Date;
+    class Period;
+    class Index;
+    class Currency;
+    class Calendar;
+    class DayCounter;
+    class IborIndex;
+    class YieldTermStructure;
+}
 
 namespace QuantLibAddin {
 
@@ -37,20 +49,20 @@ namespace QuantLibAddin {
     class InterestRateIndex : public Index {};
 
     class IborIndex : public InterestRateIndex {
-    public:
+      public:
         IborIndex(const std::string& indexName,
-              const QuantLib::Period& p,
-              const QuantLib::Natural fixingDays,
-              const QuantLib::Currency& crr,
-              const QuantLib::Calendar& calendar,
-              QuantLib::BusinessDayConvention fltBDC,
-              bool endOfMonth,
-              const QuantLib::DayCounter& fltDayCounter,
-              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+                  const QuantLib::Period& p,
+                  const QuantLib::Natural fixingDays,
+                  const QuantLib::Currency& crr,
+                  const QuantLib::Calendar& calendar,
+                  QuantLib::BusinessDayConvention fltBDC,
+                  bool endOfMonth,
+                  const QuantLib::DayCounter& fltDayCounter,
+                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
     };
 
     class SwapIndex : public InterestRateIndex {
-    public:
+      public:
         SwapIndex(const std::string& familyName,
                   const QuantLib::Period& p,
                   QuantLib::Natural fixingDays,
