@@ -380,12 +380,12 @@
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
           </Parameter>
-          <Parameter name='Currency'  exampleValue='EUR'>
+          <Parameter name='Currency'>
             <type>QuantLib::Currency</type>
             <tensorRank>scalar</tensorRank>
             <description>Index Currency</description>
           </Parameter>
-          <Parameter name='calendar'  exampleValue='TARGET'>
+          <Parameter name='calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>

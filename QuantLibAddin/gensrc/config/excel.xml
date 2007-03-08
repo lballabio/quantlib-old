@@ -1,6 +1,5 @@
 <root>
 
-    <exportSymbols>false</exportSymbols>
+  <exportSymbols>false</exportSymbols>
 
 </root>
-

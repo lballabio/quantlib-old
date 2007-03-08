@@ -1,198 +1,197 @@
 <Addin name='C'>
-<platformId>C</platformId>
-<rootDirectory>../Addins/C/</rootDirectory>
+  <platformId>C</platformId>
+  <rootDirectory>../Addins/C/</rootDirectory>
 
-<copyright>
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
-</copyright>
+  <copyright>
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+  </copyright>
 
-<Buffers>
-<Buffer name='bufferFunction' fileName='stub.c.function'/>
-<Buffer name='bufferIncludes' fileName='stub.c.includes'/>
-<Buffer name='bufferHeader' fileName='stub.c.header'/>
-</Buffers>
+  <Buffers>
+    <Buffer name='bufferFunction' fileName='stub.c.function'/>
+    <Buffer name='bufferIncludes' fileName='stub.c.includes'/>
+    <Buffer name='bufferHeader' fileName='stub.c.header'/>
+  </Buffers>
 
-<Rules>
+  <Rules>
 
-<Rule name='functionDeclaration' indent='2' delimiter=',&#10;'>
-    <Wrap>&#10;%s</Wrap>
-    <SubRules>
+    <Rule name='functionDeclaration' indent='2' delimiter=',&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <SubRules>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>scalar</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <optional>%(indent)sVaries %(name)s</optional>
-                <bool>%(indent)sBoolean %(name)s</bool>
-                <string>%(indent)schar *%(name)s</string>
-                <any>%(indent)sVaries %(name)s</any>
-                <other>%(indent)s%(type)s %(name)s</other>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <optional>%(indent)sVaries %(name)s</optional>
+            <bool>%(indent)sBoolean %(name)s</bool>
+            <string>%(indent)schar *%(name)s</string>
+            <any>%(indent)sVaries %(name)s</any>
+            <other>%(indent)s%(type)s %(name)s</other>
+          </DataTypes>
         </SubRule>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>vector</tensorRank>
-                <tensorRank>matrix</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <other>%(indent)sVaries %(name)s</other>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>vector</tensorRank>
+            <tensorRank>matrix</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <other>%(indent)sVaries %(name)s</other>
+          </DataTypes>
         </SubRule>
-    </SubRules>
-</Rule>
+      </SubRules>
+    </Rule>
 
-<Rule name='functionReturnType'>
-    <Wrap>&#10;%s</Wrap>
-    <SubRules>
+    <Rule name='functionReturnType'>
+      <Wrap>&#10;%s</Wrap>
+      <SubRules>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>scalar</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <void>Boolean *</void>
-                <bool>Boolean *</bool>
-                <string>char *</string>
-                <any>Varies *</any>
-                <other>%(type)s *</other>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <void>Boolean *</void>
+            <bool>Boolean *</bool>
+            <string>char *</string>
+            <any>Varies *</any>
+            <other>%(type)s *</other>
+          </DataTypes>
         </SubRule>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>vector</tensorRank>
-                <tensorRank>matrix</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <other>Varies *</other>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>vector</tensorRank>
+            <tensorRank>matrix</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <other>Varies *</other>
+          </DataTypes>
         </SubRule>
-    </SubRules>
-</Rule>
+      </SubRules>
+    </Rule>
 
-<Rule name='returnConversion' indent='2'>
-    <Wrap codeID='wrap6'/>
-    <SubRules>
+    <Rule name='returnConversion' indent='2'>
+      <Wrap codeID='wrap6'/>
+      <SubRules>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>scalar</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <libraryType>%(indent)s*result = returnValue.serialNumber();</libraryType>
-                <any>%(indent)sreturn scalarToVaries(result, returnValue);</any>
-                <string>%(indent)sstrcpy(result, returnValue.c_str());</string>
-                <bool>%(indent)s*result = returnValue ? TRUE : FALSE;</bool>
-                <void>%(indent)s*result = TRUE;</void>
-                <other>%(indent)s*result = returnValue;</other>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <libraryType>%(indent)s*result = returnValue.serialNumber();</libraryType>
+            <any>%(indent)sreturn scalarToVaries(result, returnValue);</any>
+            <string>%(indent)sstrcpy(result, returnValue.c_str());</string>
+            <bool>%(indent)s*result = returnValue ? TRUE : FALSE;</bool>
+            <void>%(indent)s*result = TRUE;</void>
+            <other>%(indent)s*result = returnValue;</other>
+          </DataTypes>
         </SubRule>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>vector</tensorRank>
-                <tensorRank>matrix</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <other>%(indent)sreturn %(tensorRank)sToVaries(result, returnValue);</other>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>vector</tensorRank>
+            <tensorRank>matrix</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <other>%(indent)sreturn %(tensorRank)sToVaries(result, returnValue);</other>
+          </DataTypes>
         </SubRule>
-    </SubRules>
-</Rule>
+      </SubRules>
+    </Rule>
 
-<Rule name='libraryConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
-    <Wrap codeID='wrap2'/>
-    <SubRules>
+    <Rule name='libraryConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
+      <Wrap codeID='wrap2'/>
+      <SubRules>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>scalar</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <libraryType codeID='code66'/>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <libraryType codeID='code66'/>
+          </DataTypes>
         </SubRule>
-    </SubRules>
-</Rule>
+      </SubRules>
+    </Rule>
 
-<Rule name='libraryReturnType' delimiter='&#10;'>
-    <Wrap>&#10;%s</Wrap>
-    <SubRules>
+    <Rule name='libraryReturnType' delimiter='&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <SubRules>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>scalar</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <libraryType>%(libraryType)s returnValue = </libraryType>
-                <void/>
-                <string>std::string returnValue = </string>
-                <any>boost::any returnValue = </any>
-                <other>%(type)s returnValue = </other>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <libraryType>%(libraryType)s returnValue = </libraryType>
+            <void/>
+            <string>std::string returnValue = </string>
+            <any>boost::any returnValue = </any>
+            <other>%(type)s returnValue = </other>
+          </DataTypes>
         </SubRule>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>vector</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <string>std::vector&lt;std::string&gt; returnValue = </string>
-                <any>std::vector&lt;boost::any&gt; returnValue = </any>
-                <other>std::vector&lt;%(type)s&gt; returnValue = </other>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>vector</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <string>std::vector&lt;std::string&gt; returnValue = </string>
+            <any>std::vector&lt;boost::any&gt; returnValue = </any>
+            <other>std::vector&lt;%(type)s&gt; returnValue = </other>
+          </DataTypes>
         </SubRule>
-    </SubRules>
-</Rule>
+      </SubRules>
+    </Rule>
 
-<Rule name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='3' delimiter=',&#10;'>
-    <Wrap>&#10;%s</Wrap>
-    <SubRules>
+    <Rule name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='3' delimiter=',&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <SubRules>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>scalar</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <libraryType>%(indent)s%(name)sLib</libraryType>
-                <libraryClass>%(indent)s%(name)sLibObj</libraryClass>
-                <enumeration>%(indent)s%(name)sEnum</enumeration>
-                <other>%(indent)s%(name)s</other>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <libraryType>%(indent)s%(name)sLib</libraryType>
+            <libraryClass>%(indent)s%(name)sLibObj</libraryClass>
+            <enumeration>%(indent)s%(name)sEnum</enumeration>
+            <other>%(indent)s%(name)s</other>
+          </DataTypes>
         </SubRule>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>vector</tensorRank>
-                <tensorRank>matrix</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <other>%(indent)s%(name)s</other>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>vector</tensorRank>
+            <tensorRank>matrix</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <other>%(indent)s%(name)s</other>
+          </DataTypes>
         </SubRule>
-    </SubRules>
-</Rule>
+      </SubRules>
+    </Rule>
 
-<Rule name='referenceConversions' indent='2' delimiter='&#10;'>
-    <Wrap codeID='wrap5'/>
-    <SubRules>
+    <Rule name='referenceConversions' indent='2' delimiter='&#10;'>
+      <Wrap codeID='wrap5'/>
+      <SubRules>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>scalar</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <libraryClass codeID='code67'/>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <libraryClass codeID='code67'/>
+          </DataTypes>
         </SubRule>
-    </SubRules>
-</Rule>
+      </SubRules>
+    </Rule>
 
-<Rule name='enumConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
-    <Wrap codeID='wrap3'/>
-    <SubRules>
+    <Rule name='enumConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
+      <Wrap codeID='wrap3'/>
+      <SubRules>
         <SubRule>
-            <tensorRanks>
-                <tensorRank>scalar</tensorRank>
-            </tensorRanks>
-            <DataTypes>
-                <enumeration codeID='code68'/>
-            </DataTypes>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <enumeration codeID='code68'/>
+          </DataTypes>
         </SubRule>
-    </SubRules>
-</Rule>
+      </SubRules>
+    </Rule>
 
-</Rules>
+  </Rules>
 
 </Addin>
-

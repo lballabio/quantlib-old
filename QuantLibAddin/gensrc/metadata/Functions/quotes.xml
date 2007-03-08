@@ -250,7 +250,7 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-    
+
     <Member name='qlFuturesConvAdjustmentQuoteImmDate' type='QuantLib::FuturesConvAdjustmentQuote'>
       <description>Return the IMM date of futures</description>
       <libraryFunction>immDate</libraryFunction>
@@ -310,6 +310,6 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
-    
+
   </Functions>
 </Category>

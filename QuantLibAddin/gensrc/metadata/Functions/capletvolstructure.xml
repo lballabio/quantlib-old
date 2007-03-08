@@ -211,11 +211,11 @@
             <tensorRank>scalar</tensorRank>
             <description>implied Volatility max Evaluations.</description>
           </Parameter>
-         <Parameter name='decoupledInterpolation' const='false'>
-             <type>bool</type>
+          <Parameter name='decoupledInterpolation' const='false'>
+            <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Used decoupled interpolations</description>
-         </Parameter>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>

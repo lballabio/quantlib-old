@@ -1,12 +1,12 @@
 <Category name='ohfunctions'>
-<description>ObjectHandler functions</description>
-<displayName>ObjectHandler</displayName>
-<includes>
-  <include>oh/objecthandler.hpp</include>
-</includes>
-<copyright>
- Copyright (C) 2006, 2007 Eric Ehlers
-</copyright>
+  <description>ObjectHandler functions</description>
+  <displayName>ObjectHandler</displayName>
+  <includes>
+    <include>oh/objecthandler.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006, 2007 Eric Ehlers
+  </copyright>
 
   <Functions>
 
@@ -323,32 +323,32 @@
     </Procedure>
 
     <Procedure name='ohSetConsole'>
-    <description>fork output to stdout</description>
-    <alias>ObjHandler::setConsole</alias>
-    <SupportedPlatforms>
-      <C/>
-      <Guile/>
-    </SupportedPlatforms>
-    <ParameterList>
-    <Parameters>
-        <Parameter name='console'>
+      <description>fork output to stdout</description>
+      <alias>ObjHandler::setConsole</alias>
+      <SupportedPlatforms>
+        <C/>
+        <Guile/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='console'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>1 (enable) / 0 (disable)</description>
-        </Parameter>
-        <Parameter name='logLevel' default='4'>
+          </Parameter>
+          <Parameter name='logLevel' default='4'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>threshold for log messages</description>
-        </Parameter>
-    </Parameters>
-    </ParameterList>
-    <ReturnValue>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
         <type>void</type>
         <tensorRank>scalar</tensorRank>
-    </ReturnValue>
+      </ReturnValue>
     </Procedure>
 
-</Functions>
+  </Functions>
 </Category>
 

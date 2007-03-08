@@ -1,22 +1,21 @@
-
 <SuperTypeList>
 
-<SuperTypes>
+  <SuperTypes>
 
     <!--
     SuperType "native" - C++ datatypes and other datatypes directly recognized
     by the compiler.
     -->
     <SuperType name='native'>
-        <DataTypes>
-            <DataType nativeType='any'>any</DataType>
-            <DataType nativeType='bool'>bool</DataType>
-            <DataType nativeType='double'>double</DataType>
-            <DataType nativeType='long'>long</DataType>
-            <DataType nativeType='reference'>reference</DataType>
-            <DataType nativeType='string'>string</DataType>
-            <DataType nativeType='void'>void</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType nativeType='any'>any</DataType>
+        <DataType nativeType='bool'>bool</DataType>
+        <DataType nativeType='double'>double</DataType>
+        <DataType nativeType='long'>long</DataType>
+        <DataType nativeType='reference'>reference</DataType>
+        <DataType nativeType='string'>string</DataType>
+        <DataType nativeType='void'>void</DataType>
+      </DataTypes>
     </SuperType>
 
     <!--
@@ -24,28 +23,28 @@
     types or classes.
     -->
     <SuperType name='enumeration' nativeType='string'>
-        <DataTypes>
-            <DataType>QuantLib::Average::Type</DataType>
-            <DataType>QuantLib::Barrier::Type</DataType>
-            <DataType>QuantLib::BusinessDayConvention</DataType>
-            <DataType>QuantLib::Calendar</DataType>
-            <DataType>QuantLib::CapFloor::Type</DataType>
-            <DataType>QuantLib::Compounding</DataType>
-            <DataType>QuantLib::CubicSpline::BoundaryCondition</DataType>
-            <DataType>QuantLib::Currency</DataType>
-            <DataType>QuantLib::DayCounter</DataType>
-            <DataType>QuantLib::EndCriteria::Type</DataType>
-            <DataType>QuantLib::Frequency</DataType>
-            <DataType>QuantLib::GFunctionFactory::ModelOfYieldCurve</DataType>
-            <DataType>QuantLib::Month</DataType>
-            <DataType>QuantLib::Option::Type</DataType>
-            <DataType>QuantLib::Position::Type</DataType>
-            <DataType>QuantLib::SalvagingAlgorithm::Type</DataType>
-            <DataType>QuantLib::Settlement::Type</DataType>
-            <DataType>QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType</DataType>
-            <DataType>QuantLib::VanillaSwap::Type</DataType>
-            <DataType>QuantLib::Weekday</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType>QuantLib::Average::Type</DataType>
+        <DataType>QuantLib::Barrier::Type</DataType>
+        <DataType>QuantLib::BusinessDayConvention</DataType>
+        <DataType>QuantLib::Calendar</DataType>
+        <DataType>QuantLib::CapFloor::Type</DataType>
+        <DataType>QuantLib::Compounding</DataType>
+        <DataType>QuantLib::CubicSpline::BoundaryCondition</DataType>
+        <DataType>QuantLib::Currency</DataType>
+        <DataType>QuantLib::DayCounter</DataType>
+        <DataType>QuantLib::EndCriteria::Type</DataType>
+        <DataType>QuantLib::Frequency</DataType>
+        <DataType>QuantLib::GFunctionFactory::ModelOfYieldCurve</DataType>
+        <DataType>QuantLib::Month</DataType>
+        <DataType>QuantLib::Option::Type</DataType>
+        <DataType>QuantLib::Position::Type</DataType>
+        <DataType>QuantLib::SalvagingAlgorithm::Type</DataType>
+        <DataType>QuantLib::Settlement::Type</DataType>
+        <DataType>QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType</DataType>
+        <DataType>QuantLib::VanillaSwap::Type</DataType>
+        <DataType>QuantLib::Weekday</DataType>
+      </DataTypes>
     </SuperType>
 
     <!--
@@ -55,14 +54,14 @@
         boost::shared_ptr<QuantLib::xxx>
     -->
     <SuperType name='handleToLib' nativeType='string'>
-        <DataTypes>
-            <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
-            <DataType>QuantLib::Quote</DataType>
-            <DataType>QuantLib::SimpleQuote</DataType>
-            <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-            <DataType>QuantLib::TermStructure</DataType>
-            <DataType>QuantLib::YieldTermStructure</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
+        <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::SimpleQuote</DataType>
+        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
+        <DataType>QuantLib::TermStructure</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
+      </DataTypes>
     </SuperType>
 
     <!--
@@ -70,74 +69,74 @@
         boost::shared_ptr<QuantLib::xxx>
     -->
     <SuperType name='libraryClass' nativeType='string'>
-        <DataTypes>
-            <DataType>QuantLib::Abcd</DataType>
-            <DataType>QuantLib::AccountingEngine</DataType>
-            <DataType>QuantLib::AffineModel</DataType>
-            <DataType>QuantLib::AssetSwap</DataType>
-            <DataType>QuantLib::BlackCalculator</DataType>
-            <DataType>QuantLib::BlackScholesCalculator</DataType>
-            <DataType>QuantLib::BlackSwaptionEngine</DataType>
-            <DataType>QuantLib::BlackVolTermStructure</DataType>
-            <DataType>QuantLib::Bond</DataType>
-            <DataType>QuantLib::CapFloor</DataType>
-            <DataType>QuantLib::CapletVolatilityStructure</DataType>
-            <DataType>QuantLib::CapsStripper</DataType>
-            <DataType>QuantLib::CmsCouponPricer</DataType>
-            <DataType>QuantLib::CmsMarket</DataType>
-            <DataType>QuantLib::CMSwapCurveState</DataType>
-            <DataType>QuantLib::CoterminalSwapCurveState</DataType>
-            <DataType>QuantLib::CovarianceDecomposition</DataType>
-            <DataType>QuantLib::CurveState</DataType>
-            <DataType>QuantLib::EndCriteria</DataType>
-            <DataType>QuantLib::EuropeanExercise</DataType>
-            <DataType>QuantLib::EvolutionDescription</DataType>
-            <DataType>QuantLib::Exercise</DataType>
-            <DataType>QuantLib::Extrapolator</DataType>
-            <DataType>QuantLib::FloatingRateCouponPricer</DataType>
-            <DataType>QuantLib::ForwardRateAgreement</DataType>
-            <DataType>QuantLib::FuturesRateHelper</DataType>
-            <DataType>QuantLib::GeneralizedBlackScholesProcess</DataType>
-            <DataType>QuantLib::IborIndex</DataType>
-            <DataType>QuantLib::Index</DataType>
-            <DataType>QuantLib::Instrument</DataType>
-            <DataType>QuantLib::InterestRateIndex</DataType>
-            <DataType>QuantLib::Interpolation</DataType>
-            <DataType>QuantLib::Interpolation2D</DataType>
-            <DataType>QuantLib::LineSearch</DataType>
-            <DataType>QuantLib::LMMCurveState</DataType>
-            <DataType>QuantLib::MarketModel</DataType>
-            <DataType>QuantLib::MarketModelEvolver</DataType>
-            <DataType>QuantLib::MarketModelMultiProduct</DataType>
-            <DataType>QuantLib::OneAssetOption</DataType>
-            <DataType>QuantLib::OptimizationMethod</DataType>
-            <DataType>QuantLib::Payoff</DataType>
-            <DataType>QuantLib::PiecewiseConstantAbcdVariance</DataType>
-            <DataType>QuantLib::PiecewiseConstantVariance</DataType>
-            <DataType>QuantLib::PlainVanillaPayoff</DataType>
-            <DataType>QuantLib::PricingEngine</DataType>
-            <DataType>QuantLib::Quote</DataType>
-            <DataType>QuantLib::RateHelper</DataType>
-            <DataType>QuantLib::SabrInterpolatedSmileSection</DataType>
-            <DataType>QuantLib::SABRInterpolation</DataType>
-            <DataType>QuantLib::Schedule</DataType>
-            <DataType>QuantLib::SequenceStatistics</DataType>
-            <DataType>QuantLib::SmileAndCmsCalibrationBySabr</DataType>
-            <DataType>QuantLib::SmileSection</DataType>
-            <DataType>QuantLib::Statistics</DataType>
-            <DataType>QuantLib::StrikedTypePayoff</DataType>
-            <DataType>QuantLib::Swap</DataType>
-            <DataType>QuantLib::SwapFromFRACorrelationStructure</DataType>
-            <DataType>QuantLib::SwapIndex</DataType>
-            <DataType>QuantLib::Swaption</DataType>
-            <DataType>QuantLib::SwaptionVolatilityCube</DataType>
-            <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
-            <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-            <DataType>QuantLib::SymmetricSchurDecomposition</DataType>
-            <DataType>QuantLib::TypePayoff</DataType>
-            <DataType>QuantLib::VanillaSwap</DataType>
-            <DataType>QuantLib::YieldTermStructure</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType>QuantLib::Abcd</DataType>
+        <DataType>QuantLib::AccountingEngine</DataType>
+        <DataType>QuantLib::AffineModel</DataType>
+        <DataType>QuantLib::AssetSwap</DataType>
+        <DataType>QuantLib::BlackCalculator</DataType>
+        <DataType>QuantLib::BlackScholesCalculator</DataType>
+        <DataType>QuantLib::BlackSwaptionEngine</DataType>
+        <DataType>QuantLib::BlackVolTermStructure</DataType>
+        <DataType>QuantLib::Bond</DataType>
+        <DataType>QuantLib::CapFloor</DataType>
+        <DataType>QuantLib::CapletVolatilityStructure</DataType>
+        <DataType>QuantLib::CapsStripper</DataType>
+        <DataType>QuantLib::CmsCouponPricer</DataType>
+        <DataType>QuantLib::CmsMarket</DataType>
+        <DataType>QuantLib::CMSwapCurveState</DataType>
+        <DataType>QuantLib::CoterminalSwapCurveState</DataType>
+        <DataType>QuantLib::CovarianceDecomposition</DataType>
+        <DataType>QuantLib::CurveState</DataType>
+        <DataType>QuantLib::EndCriteria</DataType>
+        <DataType>QuantLib::EuropeanExercise</DataType>
+        <DataType>QuantLib::EvolutionDescription</DataType>
+        <DataType>QuantLib::Exercise</DataType>
+        <DataType>QuantLib::Extrapolator</DataType>
+        <DataType>QuantLib::FloatingRateCouponPricer</DataType>
+        <DataType>QuantLib::ForwardRateAgreement</DataType>
+        <DataType>QuantLib::FuturesRateHelper</DataType>
+        <DataType>QuantLib::GeneralizedBlackScholesProcess</DataType>
+        <DataType>QuantLib::IborIndex</DataType>
+        <DataType>QuantLib::Index</DataType>
+        <DataType>QuantLib::Instrument</DataType>
+        <DataType>QuantLib::InterestRateIndex</DataType>
+        <DataType>QuantLib::Interpolation</DataType>
+        <DataType>QuantLib::Interpolation2D</DataType>
+        <DataType>QuantLib::LineSearch</DataType>
+        <DataType>QuantLib::LMMCurveState</DataType>
+        <DataType>QuantLib::MarketModel</DataType>
+        <DataType>QuantLib::MarketModelEvolver</DataType>
+        <DataType>QuantLib::MarketModelMultiProduct</DataType>
+        <DataType>QuantLib::OneAssetOption</DataType>
+        <DataType>QuantLib::OptimizationMethod</DataType>
+        <DataType>QuantLib::Payoff</DataType>
+        <DataType>QuantLib::PiecewiseConstantAbcdVariance</DataType>
+        <DataType>QuantLib::PiecewiseConstantVariance</DataType>
+        <DataType>QuantLib::PlainVanillaPayoff</DataType>
+        <DataType>QuantLib::PricingEngine</DataType>
+        <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::RateHelper</DataType>
+        <DataType>QuantLib::SabrInterpolatedSmileSection</DataType>
+        <DataType>QuantLib::SABRInterpolation</DataType>
+        <DataType>QuantLib::Schedule</DataType>
+        <DataType>QuantLib::SequenceStatistics</DataType>
+        <DataType>QuantLib::SmileAndCmsCalibrationBySabr</DataType>
+        <DataType>QuantLib::SmileSection</DataType>
+        <DataType>QuantLib::Statistics</DataType>
+        <DataType>QuantLib::StrikedTypePayoff</DataType>
+        <DataType>QuantLib::Swap</DataType>
+        <DataType>QuantLib::SwapFromFRACorrelationStructure</DataType>
+        <DataType>QuantLib::SwapIndex</DataType>
+        <DataType>QuantLib::Swaption</DataType>
+        <DataType>QuantLib::SwaptionVolatilityCube</DataType>
+        <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
+        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
+        <DataType>QuantLib::SymmetricSchurDecomposition</DataType>
+        <DataType>QuantLib::TypePayoff</DataType>
+        <DataType>QuantLib::VanillaSwap</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
+      </DataTypes>
     </SuperType>
 
     <!--
@@ -145,15 +144,15 @@
         QuantLib::xxx
     -->
     <SuperType name='libraryType'>
-        <DataTypes>
-            <DataType nativeType='double'>QuantLib::Array</DataType>
-            <DataType nativeType='long'>QuantLib::Date</DataType>
-            <DataType nativeType='double'>QuantLib::InterestRate</DataType>
-            <DataType nativeType='double'>QuantLib::Matrix</DataType>
-          <DataType nativeType='long'>QuantLib::Natural</DataType>
-          <DataType nativeType='string'>QuantLib::Period</DataType>
-            <DataType nativeType='long'>QuantLib::Size</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType nativeType='double'>QuantLib::Array</DataType>
+        <DataType nativeType='long'>QuantLib::Date</DataType>
+        <DataType nativeType='double'>QuantLib::InterestRate</DataType>
+        <DataType nativeType='double'>QuantLib::Matrix</DataType>
+        <DataType nativeType='long'>QuantLib::Natural</DataType>
+        <DataType nativeType='string'>QuantLib::Period</DataType>
+        <DataType nativeType='long'>QuantLib::Size</DataType>
+      </DataTypes>
     </SuperType>
 
     <!--
@@ -161,14 +160,14 @@
     with native C++ datatypes.
     -->
     <SuperType name='implicitConversion' nativeType='double'>
-        <DataTypes>
-            <DataType>QuantLib::DiscountFactor</DataType>
-            <DataType>QuantLib::Rate</DataType>
-            <DataType>QuantLib::Real</DataType>
-            <DataType>QuantLib::Spread</DataType>
-            <DataType>QuantLib::Time</DataType>
-            <DataType>QuantLib::Volatility</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType>QuantLib::DiscountFactor</DataType>
+        <DataType>QuantLib::Rate</DataType>
+        <DataType>QuantLib::Real</DataType>
+        <DataType>QuantLib::Spread</DataType>
+        <DataType>QuantLib::Time</DataType>
+        <DataType>QuantLib::Volatility</DataType>
+      </DataTypes>
     </SuperType>
 
     <!--
@@ -178,12 +177,12 @@
         QuantLib::RelinkableHandle<QuantLib::xx>
     -->
     <SuperType name='libToHandle' nativeType='string'>
-        <DataTypes>
-            <DataType>QuantLib::CapletVolatilityStructure</DataType>
-            <DataType>QuantLib::Quote</DataType>
-            <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-            <DataType>QuantLib::YieldTermStructure</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType>QuantLib::CapletVolatilityStructure</DataType>
+        <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
+      </DataTypes>
     </SuperType>
 
     <!--
@@ -191,24 +190,24 @@
         boost::shared_ptr<QuantLibAddin::xxx>
     -->
     <SuperType name='objectClass' nativeType='string'>
-        <DataTypes>
-            <DataType>QuantLibAddin::AssetSwap</DataType>
-            <DataType>QuantLibAddin::Bond</DataType>
-            <DataType>QuantLibAddin::CapFloor</DataType>
-            <DataType>QuantLibAddin::CmsMarket</DataType>
-            <DataType>QuantLibAddin::CMSMMDriftCalculator</DataType>
-            <DataType>QuantLibAddin::Leg</DataType>
-            <DataType>QuantLibAddin::LMMDriftCalculator</DataType>
-            <DataType>QuantLibAddin::LMMNormalDriftCalculator</DataType>
-            <DataType>QuantLibAddin::Object</DataType>
-            <DataType>QuantLibAddin::RandomSequenceGenerator</DataType>
-            <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
-            <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
-            <DataType>QuantLibAddin::Swap</DataType>
-            <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
-            <DataType>QuantLibAddin::SwaptionVolCube1</DataType>
-            <DataType>QuantLibAddin::VanillaSwap</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType>QuantLibAddin::AssetSwap</DataType>
+        <DataType>QuantLibAddin::Bond</DataType>
+        <DataType>QuantLibAddin::CapFloor</DataType>
+        <DataType>QuantLibAddin::CmsMarket</DataType>
+        <DataType>QuantLibAddin::CMSMMDriftCalculator</DataType>
+        <DataType>QuantLibAddin::Leg</DataType>
+        <DataType>QuantLibAddin::LMMDriftCalculator</DataType>
+        <DataType>QuantLibAddin::LMMNormalDriftCalculator</DataType>
+        <DataType>QuantLibAddin::Object</DataType>
+        <DataType>QuantLibAddin::RandomSequenceGenerator</DataType>
+        <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
+        <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
+        <DataType>QuantLibAddin::Swap</DataType>
+        <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
+        <DataType>QuantLibAddin::SwaptionVolCube1</DataType>
+        <DataType>QuantLibAddin::VanillaSwap</DataType>
+      </DataTypes>
     </SuperType>
 
     <!--
@@ -216,12 +215,12 @@
         QuantLibAddin::Handle<QuantLib::xxx>
     -->
     <SuperType name='objectHandle' nativeType='string'>
-        <DataTypes>
-            <DataType>QuantLib::CapletVolatilityStructure</DataType>
-            <DataType>QuantLib::Quote</DataType>
-            <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-            <DataType>QuantLib::YieldTermStructure</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType>QuantLib::CapletVolatilityStructure</DataType>
+        <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
+      </DataTypes>
     </SuperType>
 
     <!--
@@ -230,20 +229,19 @@
         QuantLib::xxx
     -->
     <SuperType name='underlyingClass' nativeType='string'>
-        <DataTypes>
-            <DataType>QuantLib::BrownianGeneratorFactory</DataType>
-            <DataType>QuantLib::CMSwapCurveState</DataType>
-            <DataType>QuantLib::CoterminalSwapCurveState</DataType>
-            <DataType>QuantLib::CurveState</DataType>
-            <DataType>QuantLib::EvolutionDescription</DataType>
-            <DataType>QuantLib::LMMCurveState</DataType>
-            <DataType>QuantLib::MarketModelMultiProduct</DataType>
-            <DataType>QuantLib::SequenceStatistics</DataType>
-            <DataType>QuantLib::TimeDependantCorrelationStructure</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType>QuantLib::BrownianGeneratorFactory</DataType>
+        <DataType>QuantLib::CMSwapCurveState</DataType>
+        <DataType>QuantLib::CoterminalSwapCurveState</DataType>
+        <DataType>QuantLib::CurveState</DataType>
+        <DataType>QuantLib::EvolutionDescription</DataType>
+        <DataType>QuantLib::LMMCurveState</DataType>
+        <DataType>QuantLib::MarketModelMultiProduct</DataType>
+        <DataType>QuantLib::SequenceStatistics</DataType>
+        <DataType>QuantLib::TimeDependantCorrelationStructure</DataType>
+      </DataTypes>
     </SuperType>
 
-</SuperTypes>
+  </SuperTypes>
 
 </SuperTypeList>
-

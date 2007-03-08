@@ -53,7 +53,7 @@
       </ParameterList>
     </Constructor>
 
-	<!--
+    <!--
 	This function is commented out for the 0.3.14 release because
 	it breaks QuantLibXLDynamic.
     <Member name='qlSwaptionUnderlyingSwap' type='QuantLibAddin::Swaption'>
