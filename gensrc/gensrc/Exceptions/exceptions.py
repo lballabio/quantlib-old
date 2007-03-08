@@ -16,24 +16,28 @@
 """
 
 import traceback
+import re
 
 class GensrcException(Exception):
 
     def __str__(self):
-        #return repr(self.value)
-        return self.value
+        """Stringify this exception.  This application runs in a makefile
+        project under visual studio, which truncates empty lines, we prevent
+        this by prefixing a > to each line."""
+        return re.sub('(?m)^', '> ', self.value)
 
 ERROR_HEADER='''\
-
-gensrc has encountered a fatal error.
-
->>>>>>>>>> BEGIN STACK TRACE >>>>>>>>>> '''
+> 
+> gensrc has encountered a fatal error.
+>
+> >>>>>>>>>> BEGIN STACK TRACE >>>>>>>>>> '''
 
 ERROR_FOOTER='''\
-<<<<<<<<<< END STACK TRACE   <<<<<<<<<< 
-
-gensrc error:
+> <<<<<<<<<< END STACK TRACE   <<<<<<<<<< 
+>
+> gensrc error:
 %s
+>
 '''
 
 def gensrc_excepthook(type, value, tb):

@@ -19,10 +19,17 @@
 
 import sys
 from gensrc.Exceptions import exceptions
-# initialize the exception handler
+
+# initialize the exception handler before importing further modules
+# because some exceptions can be triggered by imports
 sys.excepthook = exceptions.gensrc_excepthook
+
 import getopt
 from gensrc.Addins import addinlist
+
+# We run in a makefile project under Visual Studio, which will mangle the
+# stderr/stdout output unless we do the following:
+sys.stderr = sys.stdout
 
 def usage():
     """Fail with a message documenting command line arguments."""
