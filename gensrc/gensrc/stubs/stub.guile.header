@@ -1,5 +1,5 @@
-#ifndef qla_%(categoryName)s_h
-#define qla_%(categoryName)s_h
+#ifndef %(prefix)s_%(categoryName)s_h
+#define %(prefix)s_%(categoryName)s_h
 
 #include <guile/gh.h>
 

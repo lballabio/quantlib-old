@@ -25,6 +25,7 @@ from gensrc.Utilities import outputfile
 from gensrc.Utilities import common
 from gensrc.Utilities import log
 from gensrc.Categories import category
+from gensrc.Configuration import environment
 
 class GuileAddin(addin.Addin):
     """Generate source code for Guile addin."""
@@ -62,7 +63,7 @@ class GuileAddin(addin.Addin):
             if i < len(self.categoryList_.categoryNames()):
                 registrations += '\n'
         buf = self.bufferInitFunc.text % (headers, registrations)
-        fileName = self.rootPath + 'qladdin.c'
+        fileName = self.rootPath + environment.config().prefix + 'addin.c'
         outputfile.OutputFile(self, fileName, self.copyright, buf, False)
 
     def generateFuncHeaders(self, cat):
@@ -72,6 +73,7 @@ class GuileAddin(addin.Addin):
             prototypes += GuileAddin.BUF_HEADER % (func.name, ';\n')
         buf = self.bufferHeader.text % {
             'categoryName' : cat.name,
+            'prefix' : environment.config().prefix,
             'prototypes' : prototypes }
         fileName =  self.rootPath + cat.name + '.h'
         outputfile.OutputFile(self, fileName, cat.copyright, buf, False)
@@ -98,6 +100,8 @@ class GuileAddin(addin.Addin):
             buf = self.bufferIncludes.text % {
                 'includes' : cat.includeList(),
                 'categoryName' : cat.name,
+                'libRoot' : environment.config().libRootDirectory,
+                'prefix' : environment.config().prefix,
                 'code' : code }
             fileName= self.rootPath + cat.name + '.cpp'
             outputfile.OutputFile(self, fileName, cat.copyright, buf, False)

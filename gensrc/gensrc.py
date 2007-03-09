@@ -25,12 +25,12 @@ from gensrc.Addins import addinlist
 USAGE_ERROR = """
 usage: %(scriptName)s -[flags]
     where [flags] are codes to generate source code for any of:
-        m - Main library of ObjectHandler-derived objects
-        e - Excel addin
+        x - Excel addin
         o - OpenOffice.org Calc addin
         g - Guile addin
         c - C addin
         v - ValueObjects code
+        e - enumerations
         l - Loop typedefs
         d - doxygen documentation files
     or
@@ -45,17 +45,15 @@ def usage():
 # parse command line arguments
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'meogcvldah', 'help' )
+    opts, args = getopt.getopt(sys.argv[1:], 'xogcveldah', 'help' )
 except getopt.GetoptError:
     usage()
 
 addinIds = []
 
 for o, a in opts:
-    if o == '-m':
-        addinIds.append('m')
-    elif o == '-e':
-        addinIds.append('e')
+    if o == '-x':
+        addinIds.append('x')
     elif o == '-o':
         addinIds.append('o')
     elif o == '-g':
@@ -64,13 +62,15 @@ for o, a in opts:
         addinIds.append('c')
     elif o == '-v':
         addinIds.append('v')
+    elif o == '-e':
+        addinIds.append('e')
     elif o == '-l':
         addinIds.append('l')
     elif o == '-d':
         addinIds.append('d')
     elif o == '-a':
         if len(opts) != 1: sys.exit('flag -a cannot be combined with other flags')
-        addinIds = [ 'm', 'e', 'o', 'g', 'c', 'v', 'l', 'd' ]
+        addinIds = [ 'e', 'o', 'g', 'c', 'v', 'x', 'l', 'd' ]
     elif o in ('-h', '--help'):
         usage()
     else:

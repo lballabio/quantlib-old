@@ -64,25 +64,28 @@
 			Name="Addins"
 			Filter="">
 			<File
+				RelativePath="gensrc\Addins\addinlist.py">
+			</File>
+			<File
 				RelativePath="gensrc\Addins\addin.py">
 			</File>
 			<File
-				RelativePath="gensrc\Addins\addinc.py">
+				RelativePath="gensrc\Addins\c.py">
 			</File>
 			<File
-				RelativePath="gensrc\Addins\addincalc.py">
+				RelativePath="gensrc\Addins\calc.py">
 			</File>
 			<File
-				RelativePath="gensrc\Addins\addindoxygen.py">
+				RelativePath="gensrc\Addins\doxygen.py">
 			</File>
 			<File
-				RelativePath="gensrc\Addins\addinexcel.py">
+				RelativePath="gensrc\Addins\excel.py">
 			</File>
 			<File
-				RelativePath="gensrc\Addins\addinguile.py">
+				RelativePath="gensrc\Addins\guile.py">
 			</File>
 			<File
-				RelativePath="gensrc\Addins\addinqla.py">
+				RelativePath="gensrc\Addins\enumerations.py">
 			</File>
 			<File
 				RelativePath="gensrc\Addins\excelexceptions.py">
@@ -277,12 +280,6 @@
 				RelativePath="gensrc\stubs\stub.doxygen.header">
 			</File>
 			<File
-				RelativePath="gensrc\stubs\stub.enum.classes">
-			</File>
-			<File
-				RelativePath="gensrc\stubs\stub.enum.types">
-			</File>
-			<File
 				RelativePath="gensrc\stubs\stub.excel.function">
 			</File>
 			<File
@@ -323,9 +320,6 @@
 			</File>
 			<File
 				RelativePath="gensrc\stubs\stub.loop.bind">
-			</File>
-			<File
-				RelativePath="gensrc\stubs\stub.qla.mainheader">
 			</File>
 			<File
 				RelativePath="gensrc\stubs\stub.vo.class.body">

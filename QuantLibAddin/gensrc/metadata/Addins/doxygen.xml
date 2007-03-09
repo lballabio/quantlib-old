@@ -7,7 +7,7 @@
   </copyright>
 
   <Buffers>
-    <Buffer name='bufferEnumerations' fileName='stub.doxygen.enums'/>
+    <Buffer name='bufferEnumerations' fileName='stub.doxygen.enums' local='true'/>
     <Buffer name='bufferCategories' fileName='stub.doxygen.categories'/>
     <Buffer name='bufferHeader' fileName='stub.doxygen.header'/>
     <Buffer name='bufferFile' fileName='stub.doxygen.file'/>

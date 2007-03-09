@@ -1,8 +1,8 @@
-#include <qlo/qladdindefines.hpp>
-#include <qlo/typefactory.hpp>
-#include <qlo/Conversions/all.hpp>
+#include <%(libRoot)s/%(perefix)saddindefines.hpp>
+#include <%(libRoot)s/typefactory.hpp>
+#include <%(libRoot)s/Conversions/all.hpp>
 %(categoryIncludes)s
-#include <Addins/Calc/qladdin.hpp>
+#include <Addins/Calc/%(prefix)saddin.hpp>
 #include <Addins/Calc/calcutils.hpp>
 #include <Addins/Calc/conversions.hpp>
 %(loopIncludes)s

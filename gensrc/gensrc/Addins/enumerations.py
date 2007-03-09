@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""generate source code for QuantLibAddin."""
+"""generate source code for enumerations."""
 
 from gensrc.Addins import addin
 from gensrc.Utilities import outputfile
@@ -26,8 +26,8 @@ from gensrc.Utilities import log
 from gensrc.Categories import category
 from gensrc.Configuration import environment
 
-class ObjectLibrary(addin.Addin):
-    """generate source code for QuantLibAddin."""
+class Enumerations(addin.Addin):
+    """generate source code for enumerations."""
 
     ENUM_END   =      '        );\n\n'
     ENUM_CURVE_LINE = '            MAP(KeyPair("%(key1)s", "%(key2)s"), %(value)s);\n'
@@ -36,20 +36,19 @@ class ObjectLibrary(addin.Addin):
     ENUM_UNREG =      '        UNREG_ENUM(%s)\n'
 
     def generate(self, categoryList, enumerationList):
-        """generate source code for QuantLibAddin."""
+        """generate source code for enumerations."""
 
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
 
-        log.Log.instance().logMessage(' begin generating QuantLibAddin ...')
+        log.Log.instance().logMessage(' begin generating enumerations ...')
         self.generateEnumTypes()
         self.generateEnumClasses()
-        self.generateMainHeader()
-        log.Log.instance().logMessage(' done generating QuantLibAddin.')
+        log.Log.instance().logMessage(' done generating enumerations.')
 
     def generateEnumeration(self, enumeration, buffer):
         """generate source code for given enumeration."""
-        ret = ObjectLibrary.ENUM_START % enumeration.type
+        ret = Enumerations.ENUM_START % enumeration.type
         for enumDef in enumeration.getEnumerationDefinitions():
             if enumeration.constructor:
                 enumVal = enumeration.type + '(' + enumDef.value + ')'
@@ -60,7 +59,7 @@ class ObjectLibrary(addin.Addin):
                     'key1' : enumDef.key1,
                     'key2' : enumDef.key2,
                     'value' : enumVal}
-        ret += ObjectLibrary.ENUM_END
+        ret += Enumerations.ENUM_END
         return ret
 
     def generateEnumTypes(self):
@@ -68,8 +67,8 @@ class ObjectLibrary(addin.Addin):
         buf1 = ''   # code to register the enumeration
         buf2 = ''   # code to unregister the enumeration
         for enumeration in self.enumerationList_.enumeratedTypes():
-            buf1 += self.generateEnumeration(enumeration, ObjectLibrary.ENUM_LINE)
-            buf2 += ObjectLibrary.ENUM_UNREG % enumeration.type
+            buf1 += self.generateEnumeration(enumeration, Enumerations.ENUM_LINE)
+            buf2 += Enumerations.ENUM_UNREG % enumeration.type
         buf = self.bufferEnumTypes.text % (buf1, buf2)
         fileName = environment.config().libFullPath + 'enumtyperegistry.cpp'
         outputfile.OutputFile(self, fileName, 
@@ -79,21 +78,12 @@ class ObjectLibrary(addin.Addin):
         """generate source file for enumerated classes."""
         curveBuffer = ''
         for enumeration in self.enumerationList_.enumeratedCurves():
-            curveBuffer += self.generateEnumeration(enumeration, ObjectLibrary.ENUM_CURVE_LINE)
+            curveBuffer += self.generateEnumeration(enumeration, Enumerations.ENUM_CURVE_LINE)
         classBuffer = ''
         for enumeration in self.enumerationList_.enumeratedClasses():
-            classBuffer += self.generateEnumeration(enumeration, ObjectLibrary.ENUM_LINE)
+            classBuffer += self.generateEnumeration(enumeration, Enumerations.ENUM_LINE)
         buf = self.bufferEnumClasses.text % (curveBuffer, classBuffer)
         fileName = environment.config().libFullPath + 'enumclassregistry.cpp'
         fileEnum = outputfile.OutputFile(self, fileName,
             self.enumerationList_.enumClassCopyright, buf)
-
-    def generateMainHeader(self):
-        """generate the main header for QuantLibAddin."""
-        headerList = ''
-        for cat in self.categoryList_.categories('*'):
-            headerList += cat.includeList() + '\n'
-        buf = self.bufferMainHeader.text % headerList
-        fileName = environment.config().libFullPath + 'qladdin.hpp'
-        fileHeader = outputfile.OutputFile(self, fileName, self.copyright, buf)
 

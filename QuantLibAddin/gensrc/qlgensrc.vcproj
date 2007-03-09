@@ -47,7 +47,7 @@
 				RelativePath="metadata\Addins\loop.xml">
 			</File>
 			<File
-				RelativePath="metadata\Addins\objectlibrary.xml">
+				RelativePath="metadata\Addins\enumerations.xml">
 			</File>
 			<File
 				RelativePath="metadata\Addins\valueobjects.xml">
@@ -244,6 +244,15 @@
 			</File>
 			<File
 				RelativePath="stubs\stub.excel.includes">
+			</File>
+			<File
+				RelativePath="stubs\stub.enum.types">
+			</File>
+			<File
+				RelativePath="stubs\stub.enum.classes">
+			</File>
+			<File
+				RelativePath="stubs\stub.doxygen.enums">
 			</File>
 		</Filter>
 		<File

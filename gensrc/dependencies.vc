@@ -8,7 +8,7 @@ CORE_IMPORT=$(GENSRC_DIR)\gensrc\Addins\addin.py \
             $(GENSRC_DIR)\gensrc\Addins\excel.py \
             $(GENSRC_DIR)\gensrc\Addins\guile.py \
             $(GENSRC_DIR)\gensrc\Addins\addinlist.py \
-            $(GENSRC_DIR)\gensrc\Addins\objectlibrary.py \
+            $(GENSRC_DIR)\gensrc\Addins\enumerations.py \
             $(GENSRC_DIR)\gensrc\Addins\excelexceptions.py \
             $(GENSRC_DIR)\gensrc\Addins\loop.py \
             $(GENSRC_DIR)\gensrc\Addins\valueobjects.py \
@@ -58,8 +58,6 @@ CORE_STUBS=$(GENSRC_DIR)\gensrc\stubs\stub.c.function \
            $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.file \
            $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.function \
            $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.header \
-           $(GENSRC_DIR)\gensrc\stubs\stub.enum.classes \
-           $(GENSRC_DIR)\gensrc\stubs\stub.enum.types \
            $(GENSRC_DIR)\gensrc\stubs\stub.excel.function \
            $(GENSRC_DIR)\gensrc\stubs\stub.excel.loop \
            $(GENSRC_DIR)\gensrc\stubs\stub.excel.numfunc \
@@ -75,7 +73,6 @@ CORE_STUBS=$(GENSRC_DIR)\gensrc\stubs\stub.c.function \
            $(GENSRC_DIR)\gensrc\stubs\stub.guile.includes \
            $(GENSRC_DIR)\gensrc\stubs\stub.guile.initfunc \
            $(GENSRC_DIR)\gensrc\stubs\stub.loop.bind \
-           $(GENSRC_DIR)\gensrc\stubs\stub.qla.mainheader \
            $(GENSRC_DIR)\gensrc\stubs\stub.vo.class.body \
            $(GENSRC_DIR)\gensrc\stubs\stub.vo.class.decl \
            $(GENSRC_DIR)\gensrc\stubs\stub.vo.includes.body \

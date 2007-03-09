@@ -67,7 +67,7 @@
 				>
 			</File>
 			<File
-				RelativePath="metadata\Addins\objectlibrary.xml"
+				RelativePath="metadata\Addins\enumerations.xml"
 				>
 			</File>
 			<File
@@ -320,6 +320,18 @@
 			</File>
 			<File
 				RelativePath="stubs\stub.excel.includes"
+				>
+			</File>
+			<File
+				RelativePath="stubs\stub.enum.classes"
+				>
+			</File>
+			<File
+				RelativePath="stubs\stub.enum.types"
+				>
+			</File>
+			<File
+				RelativePath="stub.doxygen.enums"
 				>
 			</File>
 		</Filter>

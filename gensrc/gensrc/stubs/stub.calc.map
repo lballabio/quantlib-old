@@ -4,9 +4,9 @@
 #pragma warning(disable: 4800)
 #endif
 
-#include <Addins/Calc/qladdin.hpp>
+#include <Addins/Calc/%(prefix)saddin.hpp>
 
-QLAddin::QLAddin() throw () : m_refcount( 0 ) {
+%(addinClassName)s::%(addinClassName)s() throw () : m_refcount( 0 ) {
 
 %(buffer)s}
 

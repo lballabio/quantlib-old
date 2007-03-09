@@ -1,5 +1,5 @@
-#ifndef qla_calc_%(categoryName)s_hpp
-#define qla_calc_%(categoryName)s_hpp
+#ifndef %(prefix)s_calc_%(categoryName)s_hpp
+#define %(prefix)s_calc_%(categoryName)s_hpp
 
 %(buffer)s
 

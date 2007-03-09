@@ -1,5 +1,5 @@
-#include <qlo/qladdindefines.hpp>
-#include <qlo/typefactory.hpp>
+#include <%(libRoot)s/%(prefix)saddindefines.hpp>
+#include <%(libRoot)s/typefactory.hpp>
 %(includes)s
 #include <Addins/Guile/guileutils.hpp>
 #include <Addins/Guile/conversions.hpp>

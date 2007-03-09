@@ -42,7 +42,6 @@ include_HEADERS = \
     pricingengines.hpp \
     processes.hpp \
     qladdindefines.hpp \
-    qladdin.hpp \
     quantoforwardvanillaoption.hpp \
     quantovanillaoption.hpp \
     quotes.hpp \

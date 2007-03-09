@@ -34,7 +34,6 @@ MAPFILE = 'funcdef.cpp'
 MAPLINE = """    %s[ STRFROMANSI( "%s" ) ]
         =  STRFROMANSI( "%s" );\n"""
 PARMLINE = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
-QLA_HEADER = 'qla_all.hpp'
 
 class CalcAddin(addin.Addin):
     """Generate source code for Calc addin."""
@@ -45,6 +44,11 @@ class CalcAddin(addin.Addin):
     convertPermanentFlag = '''
         bool permanentCpp;
         calcToScalar(permanentCpp, permanent, false);'''
+
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+        super(CalcAddin, self).serialize(serializer)
+        serializer.serializeBoolean(self, 'addinClassName')
 
     def generate(self, categoryList, enumerationList):
         """Generate source code for Calc addin."""
@@ -73,7 +77,10 @@ class CalcAddin(addin.Addin):
                     buf += PARMLINE % ('argName', func.name, param.name)
                     buf += PARMLINE % ('argDesc', func.name, param.description)
                 buf += '\n'
-        buf2 = self.bufferMap.text % { 'buffer' : buf }
+        buf2 = self.bufferMap.text % { 
+            'prefix' : environment.config().prefix,
+            'addinClassname' : self.addinClassName,
+            'buffer' : buf }
         fileName = self.rootPath + MAPFILE
         outputfile.OutputFile(self, fileName, None, buf2, False)
 
@@ -82,20 +89,22 @@ class CalcAddin(addin.Addin):
         bufHeader = ''
         for cat in self.categoryList_.categories(self.name, function.MANUAL):
             bufHeader += '#include <Addins/Calc/%s.hpp>\n' % cat.name
-        buf = self.bufferHeader.text % { 'buffer' : bufHeader }
-        fileName = self.rootPath + QLA_HEADER
+        buf = self.bufferHeader.text % { 
+            'prefix' : environment.config().prefix,
+            'buffer' : bufHeader }
+        fileName = self.rootPath + environment.config().libRootDirectory + '_all.hpp'
         outputfile.OutputFile(self, fileName, None, buf, False)
 
     def generateHeader(self, func, declaration = True):
         """Generate implementation for given function."""
         if declaration:
-            prototype = '    virtual %s SAL_CALL %s('
+            prototype = '    virtual %s SAL_CALL %s(' % (functionReturnType, func.name)
             suffix = ';\n\n'
         else:
-            prototype = '%s SAL_CALL QLAddin::%s(' 
+            prototype = '%s SAL_CALL %s::%s('  % (functionReturnType, self.addinClassName, func.name)
             suffix = ' {'
         functionReturnType = self.functionReturnType.apply(func.returnValue)
-        ret = prototype % (functionReturnType, func.name)
+        ret = prototype
         ret += func.ParameterList.generate(self.functionDeclaration)
         ret += ') THROWDEF_RTE_IAE%s' % suffix
         return ret
@@ -107,6 +116,7 @@ class CalcAddin(addin.Addin):
             for func in cat.functions(self.name, function.MANUAL): 
                 buf += self.generateHeader(func)
             buf2 = self.bufferCategory.text % {
+                'prefix' : environment.config().prefix,
                 'categoryName' : cat.name,
                 'buffer' : buf }
             fileName = self.rootPath + cat.name + '.hpp'
@@ -145,6 +155,8 @@ class CalcAddin(addin.Addin):
                 loopIncludes = ''
             buf2 = self.bufferIncludes.text % {
                 'categoryIncludes' : categoryIncludes,
+                'prefix' : environment.config().prefix,
+                'libRoot' : environment.config().libRootDirectory,
                 'loopIncludes' : loopIncludes,
                 'buffer' : buf }
             fileName = self.rootPath + cat.name + '.cpp'

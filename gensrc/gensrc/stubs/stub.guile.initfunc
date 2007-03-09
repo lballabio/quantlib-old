@@ -1,11 +1,9 @@
 %s#include <extra.h>
 #include <guile/gh.h>
 
-void init_qladdin() {
+void init_addin() {
 
 %s
-    /* Utilities extra */
-    gh_new_procedure("qlDate", qlDate, 1, 0, 0);
 
 }
 

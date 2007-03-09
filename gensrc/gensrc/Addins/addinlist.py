@@ -15,13 +15,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from gensrc.Addins import objectlibrary
 from gensrc.Addins import excel
 from gensrc.Addins import calc
 from gensrc.Addins import c
 from gensrc.Addins import guile
 from gensrc.Addins import doxygen
 from gensrc.Addins import valueobjects
+from gensrc.Addins import enumerations
 from gensrc.Addins import loop
 
 from gensrc.Categories import categorylist
@@ -43,12 +43,12 @@ addin           unchanged   updated     created     total'''
     LINE_FORMAT = '%-15s%12d%12d%12d%12d'
 
     creators = {
-        'm' : (objectlibrary.ObjectLibrary, 'objectlibrary'),
-        'e' : (excel.ExcelAddin, 'excel'),
+        'x' : (excel.ExcelAddin, 'excel'),
         'o' : (calc.CalcAddin, 'calc'),
         'g' : (guile.GuileAddin, 'guile'),
         'c' : (c.CAddin, 'c'),
         'v' : (valueobjects.ValueObjects, 'valueobjects'),
+        'e' : (enumerations.Enumerations, 'enumerations'),
         'l' : (loop.Loop, 'loop'),
         'd' : (doxygen.Doxygen, 'doxygen'),
     }

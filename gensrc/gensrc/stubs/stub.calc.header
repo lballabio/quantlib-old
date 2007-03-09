@@ -1,5 +1,5 @@
-#ifndef qla_calc_auto_hpp
-#define qla_calc_auto_hpp
+#ifndef %(prefix)s_calc_auto_hpp
+#define %(prefix)s_calc_auto_hpp
 
 %(buffer)s
 
