@@ -54,7 +54,6 @@ CORE_STUBS=$(GENSRC_DIR)\gensrc\stubs\stub.c.function \
            $(GENSRC_DIR)\gensrc\stubs\stub.calc.includes \
            $(GENSRC_DIR)\gensrc\stubs\stub.calc.map \
            $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.categories \
-           $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.enums \
            $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.file \
            $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.function \
            $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.header \
