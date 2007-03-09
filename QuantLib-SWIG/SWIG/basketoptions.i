@@ -99,4 +99,119 @@ class BasketOptionPtr : public MultiAssetOptionPtr {
     }
 };
 
+
+%{
+using QuantLib::MCBasketEngine;
+typedef boost::shared_ptr<PricingEngine> MCBasketEnginePtr;
+%}
+
+%rename(MCBasketEngine) MCBasketEnginePtr;
+class MCBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
+    %feature("kwargs") MCBasketEnginePtr;
+  public:
+    %extend {
+        MCBasketEnginePtr(const std::string& traits,
+                           Size timeStepsPerYear = Null<Size>(),
+                           bool brownianBridge = false,
+                           bool antitheticVariate = false,
+                           bool controlVariate = false,
+                           intOrNull requiredSamples = Null<Size>(),
+                           doubleOrNull requiredTolerance = Null<Real>(),
+                           intOrNull maxSamples = Null<Size>(),
+                           BigInteger seed = 0) {
+//            std::string s = QuantLib::lowercase(traits);
+        std::string s = traits;
+            if (s == "pseudorandom" || s == "pr")
+                return new MCBasketEnginePtr(
+                         new MCBasketEngine<PseudoRandom>(timeStepsPerYear,
+                                                           brownianBridge,
+                                                           antitheticVariate,
+                                                           controlVariate,
+                                                           requiredSamples,
+                                                           requiredTolerance,
+                                                           maxSamples,
+                                                           seed));
+            else if (s == "lowdiscrepancy" || s == "ld")
+                return new MCBasketEnginePtr(
+                       new MCBasketEngine<LowDiscrepancy>(timeStepsPerYear,
+                                                           brownianBridge,
+                                                           antitheticVariate,
+                                                           controlVariate,
+                                                           requiredSamples,
+                                                           requiredTolerance,
+                                                           maxSamples,
+                                                           seed));
+            else
+                QL_FAIL("unknown Monte Carlo engine type: "+s);
+        }
+    }
+};
+
+%{
+using QuantLib::MCAmericanBasketEngine;
+typedef boost::shared_ptr<PricingEngine> MCAmericanBasketEnginePtr;
+%}
+
+%rename(MCAmericanBasketEngine) MCAmericanBasketEnginePtr;
+class MCAmericanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
+    %feature("kwargs") MCAmericanBasketEnginePtr;
+  public:
+    %extend {
+        MCAmericanBasketEnginePtr(const std::string& traits,
+                           Size timeSteps = Null<Size>(),
+                           Size timeStepsPerYear = Null<Size>(),
+                           bool brownianBridge = false,
+                           bool antitheticVariate = false,
+                           bool controlVariate = false,
+                           intOrNull requiredSamples = Null<Size>(),
+                           doubleOrNull requiredTolerance = Null<Real>(),
+                           intOrNull maxSamples = Null<Size>(),
+                           BigInteger seed = 0) {
+//            std::string s = QuantLib::lowercase(traits);
+        std::string s = traits;
+            if (s == "pseudorandom" || s == "pr")
+                  return new MCAmericanBasketEnginePtr(
+                  new MCAmericanBasketEngine<PseudoRandom>(timeSteps,
+							   timeStepsPerYear,
+                                                           brownianBridge,
+                                                           antitheticVariate,
+                                                           controlVariate,
+                                                           requiredSamples,
+                                                           requiredTolerance,
+                                                           maxSamples,
+                                                           seed));
+            else if (s == "lowdiscrepancy" || s == "ld")
+                return new MCAmericanBasketEnginePtr(
+                new MCAmericanBasketEngine<LowDiscrepancy>(timeSteps,
+							   timeStepsPerYear,
+                                                           brownianBridge,
+                                                           antitheticVariate,
+                                                           controlVariate,
+                                                           requiredSamples,
+                                                           requiredTolerance,
+                                                           maxSamples,
+                                                           seed));
+            else
+                QL_FAIL("unknown Monte Carlo engine type: "+s);
+        }
+    }
+};
+
+
+%{
+using QuantLib::StulzEngine;
+typedef boost::shared_ptr<PricingEngine> StulzEnginePtr;
+%}
+
+%rename(StulzEngine) StulzEnginePtr;
+class StulzEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        StulzEnginePtr() {
+            return new StulzEnginePtr(new StulzEngine);
+        }
+    }
+};
+
 #endif

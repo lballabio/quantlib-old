@@ -28,9 +28,8 @@ using QuantLib::StochasticProcess;
 
 %ignore StochasticProcess;
 class StochasticProcess {};
-
 %template(StochasticProcess) boost::shared_ptr<StochasticProcess>;
-
+IsObservable(boost::shared_ptr<StochasticProcess>);
 
 %{
 using QuantLib::StochasticProcess1D;
@@ -171,14 +170,40 @@ class Merton76ProcessPtr : public StochasticProcess1DPtr {
     }
 };
 
+%{
+using QuantLib::StochasticProcessArray;
+typedef boost::shared_ptr<StochasticProcess> StochasticProcessArrayPtr;
+%}
+
+%rename(StochasticProcessArray) StochasticProcessArrayPtr;
+class StochasticProcessArrayPtr : public boost::shared_ptr<StochasticProcess> {
+  public:
+    %extend {
+      StochasticProcessArrayPtr(
+                        const
+			std::vector<boost::shared_ptr<StochasticProcess> >&array,
+			const Matrix &correlation
+                        ) {
+			std::vector<boost::shared_ptr<StochasticProcess1D> > in_array;
+			for (Size j=0; j < array.size(); j++) 
+	in_array.push_back(boost::dynamic_pointer_cast<StochasticProcess1D>(array.at(j)));
+            return new StochasticProcessArrayPtr(
+                              new
+			      StochasticProcessArray(in_array, correlation));
+      }    
+}
+};
+
 
 // allow use of diffusion process vectors
 #if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE( StochasticProcess1D, StochasticProcess1DPtr )
+SWIG_STD_VECTOR_SPECIALIZE( StochasticProcess, boost::shared_ptr<StochasticProcess> )
 #endif
-namespace std {
-    %template(StochasticProcess1DVector) vector<StochasticProcess1DPtr>;
-}
+%template(StochasticProcessVector)
+std::vector<boost::shared_ptr<StochasticProcess> >;
+
+typedef std::vector<boost::shared_ptr<StochasticProcess> > 
+StochasticProcessVector;
 
 
 #endif

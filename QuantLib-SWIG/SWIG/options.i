@@ -311,6 +311,28 @@ using QuantLib::MultiAssetOption;
 %}
 %rename(MultiAssetOption) MultiAssetOptionPtr;
 class MultiAssetOptionPtr : public boost::shared_ptr<Instrument> {
+      public:
+    %extend {	
+        Real delta() {
+            return boost::dynamic_pointer_cast<MultiAssetOption>(*self)->delta();
+        }
+        Real gamma() {
+            return boost::dynamic_pointer_cast<MultiAssetOption>(*self)->gamma();
+        }
+        Real theta() {
+            return boost::dynamic_pointer_cast<MultiAssetOption>(*self)->theta();
+        }
+        Real vega() {
+            return boost::dynamic_pointer_cast<MultiAssetOption>(*self)->vega();
+        }
+        Real rho() {
+            return boost::dynamic_pointer_cast<MultiAssetOption>(*self)->rho();
+        }
+        Real dividendRho() {
+            return boost::dynamic_pointer_cast<MultiAssetOption>(*self)
+                 ->dividendRho();
+        }
+	}
 };
 
 // European engines
