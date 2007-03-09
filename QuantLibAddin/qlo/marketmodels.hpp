@@ -39,6 +39,9 @@
 #include <ql/MarketModels/Models/piecewiseconstantabcdvariance.hpp>
 #include <ql/MarketModels/Models/swapfromfracorrelationstructure.hpp>
 #include <ql/MarketModels/Models/capletcoterminalcalibration.hpp>
+#include <ql/MarketModels/Products/multiproductcomposite.hpp>
+#include <ql/ShortRateModels/LiborMarketModels/lmextlinexpvolmodel.hpp>
+#include <ql/ShortRateModels/LiborMarketModels/lmlinexpcorrmodel.hpp>
 #include <ql/Volatilities/abcd.hpp>
 
 
@@ -89,6 +92,8 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Time>& evolutionTimes);
         EvolutionDescription(
             const QuantLib::EvolutionDescription& ev);
+        EvolutionDescription(
+            const QuantLib::MarketModelMultiProduct& product);
     };
 
     class Abcd : public ObjHandler::LibraryObject<QuantLib::Abcd> {
@@ -237,6 +242,15 @@ namespace QuantLibAddin {
           std::string evolution() const;
     };
 
+    class MarketModelComposite : public MarketModelMultiProduct {};
+
+    class MultiProductComposite : public MarketModelComposite {
+        public:
+            MultiProductComposite(){
+                libraryObject_ = boost::shared_ptr<QuantLib::MultiProductComposite>(
+                    new QuantLib::MultiProductComposite());};
+    };
+
     class OneStepForwards : public MarketModelMultiProduct {
     public:
         OneStepForwards(const std::vector<QuantLib::Time>& rateTimes,
@@ -288,8 +302,14 @@ namespace QuantLibAddin {
     };
 
     class ForwardRateIpcEvolver : public MarketModelEvolver {
-    public:
+     public:
         ForwardRateIpcEvolver(const boost::shared_ptr<QuantLib::MarketModel>&,
+                              const QuantLib::BrownianGeneratorFactory&,
+                              const std::vector<QuantLib::Size>& numeraires);
+    };
+    class ForwardRateNormalPcEvolver : public MarketModelEvolver {
+     public:
+    ForwardRateNormalPcEvolver(const boost::shared_ptr<QuantLib::MarketModel>&,
                               const QuantLib::BrownianGeneratorFactory&,
                               const std::vector<QuantLib::Size>& numeraires);
     };
@@ -314,6 +334,31 @@ namespace QuantLibAddin {
 
     };
 
+    // Volatility Model
+    class LmVolatilityModel : public ObjHandler::LibraryObject<
+        QuantLib::LmVolatilityModel> { };
+    class LmLinearExponentialVolatilityModel : public LmVolatilityModel { };
+    class LmExtLinearExponentialVolModel : public LmLinearExponentialVolatilityModel {
+    public:
+        LmExtLinearExponentialVolModel(const std::vector<QuantLib::Time>& fixingTimes,
+                                       QuantLib::Real a, 
+                                       QuantLib::Real b, 
+                                       QuantLib::Real c, 
+                                       QuantLib::Real d);
+
+    };
+    // Correlation Model
+    class LmCorrelationModel : public ObjHandler::LibraryObject<
+        QuantLib::LmCorrelationModel> { };
+    class LmLinearExponentialCorrelationModel : public LmCorrelationModel {
+     public:
+        LmLinearExponentialCorrelationModel(QuantLib::Size size, 
+                                            QuantLib::Real rho, 
+                                            QuantLib::Real beta,
+                                            QuantLib::Size factors);
+
+    };
+    /////
     std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
                             const QuantLib::Size firstValidIndex,
                             const std::vector<QuantLib::DiscountFactor>& ds,

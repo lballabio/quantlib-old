@@ -489,6 +489,25 @@
 
     <!-- constructor -->
 
+    <Constructor name='qlSequenceStatistics2'>
+      <description>
+        Statistics analysis .
+      </description>
+      <libraryFunction>SequenceStatistics</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='dimension' exampleValue='2'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Statistics dimensionality.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Constructor name='qlSequenceStatistics'>
       <description>
         Statistics analysis of N-dimensional (sequence) data.

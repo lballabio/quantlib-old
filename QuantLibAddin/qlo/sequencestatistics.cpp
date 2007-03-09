@@ -29,11 +29,11 @@ namespace QuantLibAddin {
             libraryObject_ = boost::shared_ptr<QuantLib::SequenceStatistics>(
                 new QuantLib::SequenceStatistics(dimension));
 
-            QL_REQUIRE(weights.empty() || values.rows()==weights.size(),
+            QL_REQUIRE(weights==std::vector<QuantLib::Real>() || values.rows()==weights.size(),
                 "Values and weights vectors must have the same number of elements.");
             
             if (values.rows()>0) {
-                if (!weights.empty()) {
+                if (weights!=std::vector<QuantLib::Real>()) {
                     for (QuantLib::Size i=0; i<values.rows(); ++i) {
                         libraryObject_->add(values.row_begin(i),
                                             values.row_end(i),
@@ -47,5 +47,11 @@ namespace QuantLibAddin {
                 }
             }
         }
+
+
+    SequenceStatistics::SequenceStatistics(QuantLib::Size dimension) {               
+            libraryObject_ = boost::shared_ptr<QuantLib::SequenceStatistics>(
+                new QuantLib::SequenceStatistics(dimension));
+         }
 
 }

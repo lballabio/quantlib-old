@@ -32,6 +32,7 @@ namespace QuantLibAddin {
         SequenceStatistics(QuantLib::Size dimension,
                            QuantLib::Matrix values, 
                            std::vector<QuantLib::Real> weights);
+        SequenceStatistics(QuantLib::Size dimension);
     };
 
 }

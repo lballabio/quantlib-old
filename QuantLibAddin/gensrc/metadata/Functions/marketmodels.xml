@@ -12,6 +12,7 @@
     <include>qlo/optimization.hpp</include>
     <include>qlo/marketmodels.hpp</include>
     <include>qlo/sequencestatistics.hpp</include>
+    <include>qlo/payoffs.hpp</include>
   </includes>
   <copyright>
 
@@ -23,8 +24,76 @@
   </copyright>
   <Functions>
 
+    <!-- MarketModelMultiProductComposite base class interface  -->
 
+    <Constructor name='qlMarketModelMultiProductComposite'>
+      <libraryFunction>MultiProductComposite</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlMarketModelMultiProductCompositeAdd' type='QuantLib::MultiProductComposite' superType='libraryClass'>
+      <description>Add new product to MarketModelComposite object</description>
+      <libraryFunction>MarketModelComposite::add</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='product' >
+            <type>QuantLib::MarketModelMultiProduct</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of product object</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelMultiProductCompositeFinalize' type='QuantLib::MultiProductComposite' superType='libraryClass'>
+      <description>finalize the MarketModelComposite object</description>
+      <libraryFunction>finalize</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
     <!-- MarketModelMultiProduct base class interface  -->
+    
+    <Member name='qlMarketModelMultiProductSuggestedNumeraires' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
+      <description>suggested Numeraires for the MarketModelMultiProduct object</description>
+      <libraryFunction>suggestedNumeraires</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
 
     <Member name='qlMarketModelMultiProductPossibleCashFlowTimes' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
       <description>possible cash flow times for the MarketModelMultiProduct object</description>
@@ -165,7 +234,7 @@
       </ParameterList>
     </Constructor>
 
-    <!--<Constructor name='qlMarketModelOneStepOptionlets'>
+    <Constructor name='qlMarketModelOneStepOptionlets'>
       <libraryFunction>OneStepOptionlets</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -195,7 +264,7 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor>-->
+    </Constructor>
 
     <!-- EvolutionDescription class costructor -->
     <Constructor name='qlEvolutionDescription'>
@@ -214,6 +283,23 @@
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>evolution times in the simulation</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEvolutionDescriptionFromProduct'>
+      <libraryFunction>EvolutionDescription</libraryFunction>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='product' >
+            <type>QuantLib::MarketModelMultiProduct</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of product object</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -324,8 +410,9 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
-
+    
     <!-- EvolutionDescription object procedures -->
+    
     <Procedure name='qlTerminalMeasure'>
       <description>Returns the terminal measure for the given EvolutionDescription object</description>
       <alias>QuantLib::terminalMeasure</alias>
@@ -482,7 +569,7 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
-
+    
     <!-- MarketModel base class interfaces -->
     <Member name='qlMarketModelInitialRates' type='QuantLib::MarketModel'>
       <description>initial rates for the MarketModel object</description>
@@ -621,7 +708,7 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
-
+    
     <!-- MarketModel derived class constructors -->
     <Constructor name='qlExpCorrFlatVol'>
       <libraryFunction>ExpCorrFlatVol</libraryFunction>
@@ -1354,7 +1441,7 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>-->
-
+    
     <!-- SwapFromFRACorrelationStructure class constructor -->
     <Constructor name='qlSwapFromFRACorrelationStructure'>
       <libraryFunction>SwapFromFRACorrelationStructure</libraryFunction>
@@ -2214,6 +2301,33 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlForwardRateNormalPcEvolver'>
+      <libraryFunction>ForwardRateNormalPcEvolver</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketModel'>
+            <type>QuantLib::MarketModel</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MarketModel object ID</description>
+          </Parameter>
+          <Parameter name='brownianGeneratorFactory'>
+            <type>QuantLib::BrownianGeneratorFactory</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Brownian generator factory</description>
+          </Parameter>
+          <Parameter name='numeraires' exampleValue ='5,5,5,5,5'>
+            <type>QuantLib::Size</type>
+            <tensorRank>vector</tensorRank>
+            <description>numeraire vector</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <!-- AccountingEngine class constructor -->
     <Constructor name='qlAccountingEngine'>
       <libraryFunction>AccountingEngine</libraryFunction>
@@ -2272,6 +2386,79 @@
       </ReturnValue>
     </Member>
 
+    <!-- LmExtLinearExponentialVolModel constructor  -->
+    
+    <Constructor name='qlMarketModelLmExtLinearExponentialVolModel'>
+      <libraryFunction>LmExtLinearExponentialVolModel</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fixingTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='a' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>a parameter</description>
+          </Parameter>
+          <Parameter name='b' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>b parameter</description>
+          </Parameter>
+          <Parameter name='c' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>c parameter</description>
+          </Parameter>
+          <Parameter name='d' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>d parameter</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- LmLinearExponentialCorrelationModel constructor  -->
+
+    <Constructor name='qlMarketModelLmLinearExponentialCorrelationModel'>
+      <libraryFunction>LmLinearExponentialCorrelationModel</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='size' exampleValue ='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>size</description>
+          </Parameter>
+          <Parameter name='rho' exampleValue ='0.5'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rho</description>
+          </Parameter>
+          <Parameter name='beta' exampleValue ='.6'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta</description>
+          </Parameter>
+          <Parameter name='factors' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>factors</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
     <!-- Discount bond ratios procedures -->
     <Procedure name='qlForwardsFromDiscountRatios'>
       <description>Returns the forward rates implied from discount bond ratios</description>
