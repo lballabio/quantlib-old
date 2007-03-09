@@ -1,28 +1,27 @@
-
 <SuperTypeList>
 
-<SuperTypes>
+  <SuperTypes>
 
     <SuperType name='native'>
-        <DataTypes>
-            <DataType nativeType='any'>any</DataType>
-            <DataType nativeType='bool'>bool</DataType>
-            <DataType nativeType='double'>double</DataType>
-            <DataType nativeType='long'>long</DataType>
-            <DataType nativeType='reference'>reference</DataType>
-            <DataType nativeType='string'>string</DataType>
-            <DataType nativeType='void'>void</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType nativeType='any'>any</DataType>
+        <DataType nativeType='bool'>bool</DataType>
+        <DataType nativeType='double'>double</DataType>
+        <DataType nativeType='long'>long</DataType>
+        <DataType nativeType='reference'>reference</DataType>
+        <DataType nativeType='string'>string</DataType>
+        <DataType nativeType='void'>void</DataType>
+      </DataTypes>
     </SuperType>
 
     <SuperType name='objectClass' nativeType='string'>
-        <DataTypes>
-            <DataType>ObjHandler::Object</DataType>
-            <DataType>ObjHandler::Thing</DataType>
-        </DataTypes>
+      <DataTypes>
+        <DataType>ObjHandler::Object</DataType>
+        <DataType>ObjHandler::Thing</DataType>
+      </DataTypes>
     </SuperType>
 
-</SuperTypes>
+  </SuperTypes>
 
 </SuperTypeList>
 

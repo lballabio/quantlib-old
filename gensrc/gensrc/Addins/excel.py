@@ -62,20 +62,17 @@ CELL_NAME_REGEX = re.compile(r'(?P<colLabel>[A-Z]+)(?P<rowLabel>\d+)', re.I)
 # we need the 1-based index of letters so prefix the alphabet with a dummy character
 COL_TO_NUM = "_" + string.lowercase
 
-class AddinExcel(addin.Addin):
+class ExcelAddin(addin.Addin):
     """Generate source code for Excel addin."""
     voSupported = True
     convertPermanentFlag = '''
         bool permanentCpp =
             ObjHandler::operToScalar<bool>(*permanent, false, "permanent");'''
 
-    def postSerialize(self):
-        """Perform post serialization initialization."""
-        super(AddinExcel, self).postSerialize()
-        xmlConfig = xmlreader.XmlReader('config/excel')
-        xmlConfig.serializeBoolean(self, 'exportSymbols')
-        if self.exportSymbols:
-            xmlConfig.serializeObject(self, buffer.Buffer)
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+        super(ExcelAddin, self).serialize(serializer)
+        serializer.serializeBoolean(self, 'exportSymbols')
 
     def generate(self, categoryList, enumerationList):
         """Generate source code for Excel addin."""
@@ -103,7 +100,7 @@ class AddinExcel(addin.Addin):
             for func in cat.functions(self.name): 
                 buf += self.generateFunction(func)
             fileName = '%sFunctions/%s.cpp' % (
-                environment.config().excelFullPath, cat.name)
+                self.rootPath, cat.name)
             outputfile.OutputFile(self, fileName, cat.copyright, buf)
 
     def indexOfCol(self, str):
@@ -207,7 +204,7 @@ class AddinExcel(addin.Addin):
             'registerCode' : registerCode,
             'unregisterCode' : unregisterCode }
         registerFile = "%sRegister/register_%s.cpp" % (
-            environment.config().excelFullPath, categoryName)
+            self.rootPath, categoryName)
         outputfile.OutputFile(self, registerFile, self.copyright, registerBuffer)
 
     def generateRegisterFunctions(self, cat):
@@ -242,7 +239,7 @@ class AddinExcel(addin.Addin):
             'unregisterCalls' : unregisterCalls,
             'registerDeclarations' : registerDeclarations,
             'unregisterDeclarations' : unregisterDeclarations }
-        registerCall = environment.config().excelFullPath + 'Register/register_all.cpp'
+        registerCall = self.rootPath + 'Register/register_all.cpp'
         outputfile.OutputFile(self, registerCall, self.copyright, registerCallBuffer)
 
     def generateExportSymbols(self):
@@ -253,13 +250,13 @@ class AddinExcel(addin.Addin):
             for func in cat.functions(self.name, function.MANUAL): 
                 exportSymbols += '#pragma comment (linker, "/export:_%s")\n' % func.name
         buf = self.exportStub.text % exportSymbols
-        fileName = environment.config().excelFullPath + 'Functions/export.hpp'
+        fileName = self.rootPath + 'Functions/export.hpp'
         outputfile.OutputFile(self, fileName, self.copyright, buf)
 
     def generateFunctionCount(self):
         """Generate a header indicating the number of functions in this addin."""
         buf = self.bufferNumFunc.text % self.functionCount
-        fileName = environment.config().excelFullPath + 'Functions/functioncount.hpp'
+        fileName = self.rootPath + 'Functions/functioncount.hpp'
         outputfile.OutputFile(self, fileName, self.copyright, buf)
 
     def printDebug(self):

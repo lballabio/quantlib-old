@@ -60,7 +60,7 @@ class ValueObjects(addin.Addin):
             'headers' : bufHeader,
             'libRoot' : environment.config().libRootDirectory,
             'namespaceObjects' : environment.config().namespaceObjects }
-        fileName = environment.config().voFullPath + 'vo_' + cat.name + '.hpp'
+        fileName = self.rootPath + 'vo_' + cat.name + '.hpp'
         fileHeader = outputfile.OutputFile(self, fileName, self.copyright, buf)
 
     def generateFunction(self, func):
@@ -86,6 +86,6 @@ class ValueObjects(addin.Addin):
             'libRoot' : environment.config().libRootDirectory,
             'namespaceObjects' : environment.config().namespaceObjects,
             'voDirectory' :  environment.config().voRootDirectory }
-        fileName = environment.config().voFullPath + 'vo_' + cat.name + '.cpp'
+        fileName = self.rootPath + 'vo_' + cat.name + '.cpp'
         outputfile.OutputFile(self, fileName, self.copyright, buf)
 

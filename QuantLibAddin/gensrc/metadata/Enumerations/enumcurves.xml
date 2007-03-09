@@ -1,4 +1,5 @@
 <root>
+
   <Enumerations>
 
     <Enumeration type='QuantLib::YieldTermStructure'>
@@ -55,4 +56,5 @@
     </Enumeration>
 
   </Enumerations>
+
 </root>

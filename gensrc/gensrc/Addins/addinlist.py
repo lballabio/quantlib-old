@@ -15,14 +15,15 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from gensrc.Addins import addinqla
-from gensrc.Addins import addinexcel
-from gensrc.Addins import addincalc
-from gensrc.Addins import addinc
-from gensrc.Addins import addinguile
-from gensrc.Addins import addindoxygen
+from gensrc.Addins import objectlibrary
+from gensrc.Addins import excel
+from gensrc.Addins import calc
+from gensrc.Addins import c
+from gensrc.Addins import guile
+from gensrc.Addins import doxygen
 from gensrc.Addins import valueobjects
 from gensrc.Addins import loop
+
 from gensrc.Categories import categorylist
 from gensrc.Enumerations import enumerationlist
 from gensrc.Utilities import utilities
@@ -42,14 +43,14 @@ addin           unchanged   updated     created     total'''
     LINE_FORMAT = '%-15s%12d%12d%12d%12d'
 
     creators = {
-        'q' : (addinqla.AddinQla, 'addinqla'),
-        'e' : (addinexcel.AddinExcel, 'addinexcel'),
-        'o' : (addincalc.AddinCalc, 'addincalc'),
-        'c' : (addinc.AddinC, 'addinc'),
-        'g' : (addinguile.AddinGuile, 'addinguile'),
-        'd' : (addindoxygen.AddinDoxygen, 'addindoxygen'),
+        'm' : (objectlibrary.ObjectLibrary, 'objectlibrary'),
+        'e' : (excel.ExcelAddin, 'excel'),
+        'o' : (calc.CalcAddin, 'calc'),
+        'g' : (guile.GuileAddin, 'guile'),
+        'c' : (c.CAddin, 'c'),
         'v' : (valueobjects.ValueObjects, 'valueobjects'),
         'l' : (loop.Loop, 'loop'),
+        'd' : (doxygen.Doxygen, 'doxygen'),
     }
 
     def __init__(self, addinIds):

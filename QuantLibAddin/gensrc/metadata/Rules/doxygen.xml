@@ -1,18 +1,4 @@
-<Addin name='Doxygen'>
-  <platformId>D</platformId>
-  <rootDirectory>../Docs/auto.pages/</rootDirectory>
-
-  <copyright>
-    Copyright (C) 2004, 2005, 2006 Eric Ehlers
-  </copyright>
-
-  <Buffers>
-    <Buffer name='bufferEnumerations' fileName='stub.doxygen.enums'/>
-    <Buffer name='bufferCategories' fileName='stub.doxygen.categories'/>
-    <Buffer name='bufferHeader' fileName='stub.doxygen.header'/>
-    <Buffer name='bufferFile' fileName='stub.doxygen.file'/>
-    <Buffer name='bufferFunction' fileName='stub.doxygen.function'/>
-  </Buffers>
+<root>
 
   <RuleGroups>
 
@@ -36,4 +22,4 @@
 
   </RuleGroups>
 
-</Addin>
+</root>

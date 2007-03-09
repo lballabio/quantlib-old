@@ -2,10 +2,6 @@
 
   <prefix>ql</prefix>
   <libRootDirectory>qlo</libRootDirectory>
-  <voRootDirectory>qlo/ValueObjects</voRootDirectory>
-  <loopRootDirectory>qlo/Loop</loopRootDirectory>
-  <excelRootDirectory>../QuantLibXL/qlxl</excelRootDirectory>
-
   <usingEnumerations>true</usingEnumerations>
   <namespaceLibrary>QuantLib</namespaceLibrary>
   <namespaceObjects>QuantLibAddin</namespaceObjects>

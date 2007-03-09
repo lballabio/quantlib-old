@@ -27,7 +27,7 @@ from gensrc.Utilities import log
 from gensrc.Categories import category
 from gensrc.Configuration import environment
 
-class AddinDoxygen(addin.Addin):
+class Doxygen(addin.Addin):
     """Generate doxygen documentation files."""
 
     # constants
@@ -57,7 +57,7 @@ class AddinDoxygen(addin.Addin):
         ret = line1 % (i, enumeration.type)
         ret += line2
         for enumDef in enumeration.getEnumerationDefinitions():
-            ret += AddinDoxygen.LINE_ENUM % (enumDef.string, enumDef.libraryClass)
+            ret += Doxygen.LINE_ENUM % (enumDef.string, enumDef.libraryClass)
         ret += '    </table>\n\n'
         return ret
 
@@ -65,28 +65,28 @@ class AddinDoxygen(addin.Addin):
         """Generate documentation for enumerations."""
         bufClassLinks = ''
         for i in xrange(len(self.enumerationList_.EnumClass)):
-            bufClassLinks += AddinDoxygen.LINE_REF_CLASS % i
+            bufClassLinks += Doxygen.LINE_REF_CLASS % i
         bufTypeLinks = ''
         for i in xrange(len(self.enumerationList_.EnumType)):
-            bufTypeLinks += AddinDoxygen.LINE_REF_TYPE % i
+            bufTypeLinks += Doxygen.LINE_REF_TYPE % i
         bufClassDocs = ''
         i = 0
         for enumeration in self.enumerationList_.enumeratedClasses():
             bufClassDocs += self.generateEnum(enumeration, i, 
-                AddinDoxygen.LINE_SECTION_CLASS, AddinDoxygen.LINE_TABLE % 'Class')
+                Doxygen.LINE_SECTION_CLASS, Doxygen.LINE_TABLE % 'Class')
             i += 1
         bufTypeDocs = ''
         i = 0
         for enumeration in self.enumerationList_.enumeratedTypes():
             bufTypeDocs += self.generateEnum(enumeration, i, 
-                AddinDoxygen.LINE_SECTION_TYPE, AddinDoxygen.LINE_TABLE % 'Type')
+                Doxygen.LINE_SECTION_TYPE, Doxygen.LINE_TABLE % 'Type')
             i += 1
         buf = self.bufferEnumerations.text % {
             'classLinks' : bufClassLinks,
             'typeLinks' : bufTypeLinks,
             'classDocs' : bufClassDocs,
             'typeDocs' : bufTypeDocs }
-        fileName = self.rootDirectory + 'enums.docs'
+        fileName = self.rootPath + 'enums.docs'
         outputfile.OutputFile(self, fileName, 
             self.enumerationList_.enumTypeCopyright, buf)
 
@@ -115,7 +115,7 @@ class AddinDoxygen(addin.Addin):
         for displayKey in displayNames:
             bufCat += '    \\ref %s\\n\n' % dispNmToCatNm[displayKey]
         buf = self.bufferCategories.text % { 'categories' : bufCat }
-        fileName = self.rootDirectory + 'categories.docs'
+        fileName = self.rootPath + 'categories.docs'
         outputfile.OutputFile(self, fileName, self.copyright, buf)
 
     def generateFunctionList(self, allFuncs):
@@ -127,7 +127,7 @@ class AddinDoxygen(addin.Addin):
         buf = self.bufferHeader.text % {
             'count' : len(allFuncs),
             'list' : bufList }
-        fileName = self.rootDirectory + 'all.docs'
+        fileName = self.rootPath + 'all.docs'
         outputfile.OutputFile(self, fileName, self.copyright, buf)
 
     def generateDocs(self):
@@ -146,7 +146,7 @@ class AddinDoxygen(addin.Addin):
                 'categoryName' : cat.name,
                 'documentation' : bufDoc,
                 'links' : bufLink }
-            fileName = self.rootDirectory + cat.name + '.docs'
+            fileName = self.rootPath + cat.name + '.docs'
             outputfile.OutputFile(self, fileName, cat.copyright, buf)
         self.generateFunctionList(allFuncs)
 

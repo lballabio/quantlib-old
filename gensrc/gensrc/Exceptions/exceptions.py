@@ -26,25 +26,3 @@ class GensrcException(Exception):
         this by prefixing a > to each line."""
         return re.sub('(?m)^', '> ', self.value)
 
-class GensrcUsageException(GensrcException):
-
-    USAGE_ERROR = """
-usage: %(scriptName)s -[targets]
-    where [targets] is any of:
-        q - generate source for QuantLibAddin
-        e - generate source for Excel addin
-        o - generate source for OpenOffice.org Calc addin
-        c - generate source for C addin
-        g - generate source for Guile addin
-        d - generate doxygen documentation files
-        v - generate ValueObjects
-        l - generate loop typedefs
-    or
-        a - all of the above
-    or
-        h - display this help message"""
-
-    def __init__(self):
-        self.value = GensrcUsageException.USAGE_ERROR % {
-            'scriptName' : sys.argv[0] }
-

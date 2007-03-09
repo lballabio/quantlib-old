@@ -63,6 +63,6 @@ namespace %(namespace)s {
         bufFile = Loop.BUF_FILE % {
             'buffer' : buf,
             'namespace' : environment.config().namespaceObjects }
-        fileName = environment.config().loopFullPath + 'loop_' + cat.name + '.hpp'
+        fileName = self.rootPath + 'loop_' + cat.name + '.hpp'
         outputfile.OutputFile(self, fileName, self.copyright, bufFile)
 

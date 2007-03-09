@@ -20,45 +20,64 @@
 import sys
 import getopt
 from gensrc.Exceptions import excepthook    # initializes error handler
-from gensrc.Exceptions import exceptions
 from gensrc.Addins import addinlist
+
+USAGE_ERROR = """
+usage: %(scriptName)s -[flags]
+    where [flags] are codes to generate source code for any of:
+        m - Main library of ObjectHandler-derived objects
+        e - Excel addin
+        o - OpenOffice.org Calc addin
+        g - Guile addin
+        c - C addin
+        v - ValueObjects code
+        l - Loop typedefs
+        d - doxygen documentation files
+    or
+        a - all of the above
+    or
+        h - display this help message"""
+
+def usage():
+    print USAGE_ERROR % { 'scriptName' : sys.argv[0] }
+    sys.exit(1)
 
 # parse command line arguments
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'qeocgdvlah', 'help' )
+    opts, args = getopt.getopt(sys.argv[1:], 'meogcvldah', 'help' )
 except getopt.GetoptError:
-    raise exceptions.GensrcUsageException()
+    usage()
 
 addinIds = []
 
 for o, a in opts:
-    if o == '-q':
-        addinIds.append('q')
+    if o == '-m':
+        addinIds.append('m')
     elif o == '-e':
         addinIds.append('e')
     elif o == '-o':
         addinIds.append('o')
-    elif o == '-c':
-        addinIds.append('c')
     elif o == '-g':
         addinIds.append('g')
-    elif o == '-d':
-        addinIds.append('d')
+    elif o == '-c':
+        addinIds.append('c')
     elif o == '-v':
         addinIds.append('v')
     elif o == '-l':
         addinIds.append('l')
+    elif o == '-d':
+        addinIds.append('d')
     elif o == '-a':
         if len(opts) != 1: sys.exit('flag -a cannot be combined with other flags')
-        addinIds = [ 'q', 'e', 'o', 'c', 'g', 'd', 'v', 'l' ]
+        addinIds = [ 'm', 'e', 'o', 'g', 'c', 'v', 'l', 'd' ]
     elif o in ('-h', '--help'):
-        raise exceptions.GensrcUsageException()
+        usage()
     else:
-        raise exceptions.GensrcUsageException()
+        usage()
 
 if not len(addinIds):
-    raise exceptions.GensrcUsageException()
+    usage()
 
 # generate source code for chosen target projects
 

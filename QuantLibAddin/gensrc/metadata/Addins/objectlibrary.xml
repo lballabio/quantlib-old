@@ -1,5 +1,7 @@
 <Addin name='QuantLibObjects'>
 
+  <loadRules>false</loadRules>
+  
   <copyright>
     Copyright (C) 2004, 2005, 2006 Eric Ehlers
   </copyright>
@@ -9,7 +11,5 @@
     <Buffer name='bufferEnumClasses' fileName='stub.enum.classes'/>
     <Buffer name='bufferMainHeader' fileName='stub.qla.mainheader'/>
   </Buffers>
-
-  <RuleGroups/>
 
 </Addin>

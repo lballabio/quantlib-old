@@ -29,14 +29,14 @@ from gensrc.Configuration import environment
 
 # constants
 
-IDLFILE = 'QuantLibAddinCalc.idl'
+IDLFILE = 'QuantLibCalcAddin.idl'
 MAPFILE = 'funcdef.cpp'
 MAPLINE = """    %s[ STRFROMANSI( "%s" ) ]
         =  STRFROMANSI( "%s" );\n"""
 PARMLINE = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
 QLA_HEADER = 'qla_all.hpp'
 
-class AddinCalc(addin.Addin):
+class CalcAddin(addin.Addin):
     """Generate source code for Calc addin."""
 
     stringConvert = 'ouStringToStlString(%s)'
@@ -74,7 +74,7 @@ class AddinCalc(addin.Addin):
                     buf += PARMLINE % ('argDesc', func.name, param.description)
                 buf += '\n'
         buf2 = self.bufferMap.text % { 'buffer' : buf }
-        fileName = self.rootDirectory + MAPFILE
+        fileName = self.rootPath + MAPFILE
         outputfile.OutputFile(self, fileName, None, buf2, False)
 
     def generateAutoHeader(self):
@@ -83,7 +83,7 @@ class AddinCalc(addin.Addin):
         for cat in self.categoryList_.categories(self.name, function.MANUAL):
             bufHeader += '#include <Addins/Calc/%s.hpp>\n' % cat.name
         buf = self.bufferHeader.text % { 'buffer' : bufHeader }
-        fileName = self.rootDirectory + QLA_HEADER
+        fileName = self.rootPath + QLA_HEADER
         outputfile.OutputFile(self, fileName, None, buf, False)
 
     def generateHeader(self, func, declaration = True):
@@ -109,7 +109,7 @@ class AddinCalc(addin.Addin):
             buf2 = self.bufferCategory.text % {
                 'categoryName' : cat.name,
                 'buffer' : buf }
-            fileName = self.rootDirectory + cat.name + '.hpp'
+            fileName = self.rootPath + cat.name + '.hpp'
             outputfile.OutputFile(self, fileName, None, buf2, False)
 
     def generateFunction(self, func):
@@ -147,7 +147,7 @@ class AddinCalc(addin.Addin):
                 'categoryIncludes' : categoryIncludes,
                 'loopIncludes' : loopIncludes,
                 'buffer' : buf }
-            fileName = self.rootDirectory + cat.name + '.cpp'
+            fileName = self.rootPath + cat.name + '.cpp'
             outputfile.OutputFile(self, fileName, None, buf2, False)
     
     def generateIDL(self):
@@ -161,6 +161,6 @@ class AddinCalc(addin.Addin):
                 buf += self.bufferIdlFunction.text % (returnTypeIDL, 
                     func.name, parameterList)
         buf2 = self.bufferIdlHeader.text % { 'buffer' : buf }
-        fileName = self.rootDirectory + IDLFILE
+        fileName = self.rootPath + IDLFILE
         outputfile.OutputFile(self, fileName, None, buf2, False)
 

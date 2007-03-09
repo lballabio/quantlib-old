@@ -1,4 +1,5 @@
 <root>
+
   <enumClassCopyright>
     Copyright (C) 2007 Cristina Duminuco
     Copyright (C) 2006 Ferdinando Ametrano
@@ -8,6 +9,7 @@
     Copyright (C) 2006 Katiuscia Manzoni
     Copyright (C) 2005 Plamen Neykov
   </enumClassCopyright>
+
   <Enumerations>
 
     <Enumeration type='QuantLib::Interpolation'>
@@ -36,15 +38,15 @@
     </Enumeration>
 
     <Enumeration type='QuantLib::IborCouponPricer'>
-      <EnumerationDefinitions>      
+      <EnumerationDefinitions>
         <EnumerationDefinition>
           <string>IborByBlack</string>
           <value>IBOR_BY_BLACK_Pricer</value>
           <libraryClass>QuantLib::BlackIborCouponPricer</libraryClass>
         </EnumerationDefinition>
-      </EnumerationDefinitions>        
-    </Enumeration> 
-    
+      </EnumerationDefinitions>
+    </Enumeration>
+
     <Enumeration type='QuantLib::CmsCouponPricer'>
       <EnumerationDefinitions>
         <EnumerationDefinition>
@@ -248,11 +250,11 @@
           <value>SUPERFUND_Payoff</value>
           <libraryClass>QuantLib::SuperFundPayoff</libraryClass>
         </EnumerationDefinition>
-          <EnumerationDefinition>
-              <string>SuperShare</string>
-              <value>SUPERSHARE_Payoff</value>
-              <libraryClass>QuantLib::SuperSharePayoff</libraryClass>
-          </EnumerationDefinition>
+        <EnumerationDefinition>
+          <string>SuperShare</string>
+          <value>SUPERSHARE_Payoff</value>
+          <libraryClass>QuantLib::SuperSharePayoff</libraryClass>
+        </EnumerationDefinition>
       </EnumerationDefinitions>
     </Enumeration>
 
@@ -1106,4 +1108,5 @@
     </Enumeration>
 
   </Enumerations>
+
 </root>

@@ -26,7 +26,7 @@ from gensrc.Utilities import log
 from gensrc.Categories import category
 from gensrc.Configuration import environment
 
-class AddinQla(addin.Addin):
+class ObjectLibrary(addin.Addin):
     """generate source code for QuantLibAddin."""
 
     ENUM_END   =      '        );\n\n'
@@ -49,7 +49,7 @@ class AddinQla(addin.Addin):
 
     def generateEnumeration(self, enumeration, buffer):
         """generate source code for given enumeration."""
-        ret = AddinQla.ENUM_START % enumeration.type
+        ret = ObjectLibrary.ENUM_START % enumeration.type
         for enumDef in enumeration.getEnumerationDefinitions():
             if enumeration.constructor:
                 enumVal = enumeration.type + '(' + enumDef.value + ')'
@@ -60,7 +60,7 @@ class AddinQla(addin.Addin):
                     'key1' : enumDef.key1,
                     'key2' : enumDef.key2,
                     'value' : enumVal}
-        ret += AddinQla.ENUM_END
+        ret += ObjectLibrary.ENUM_END
         return ret
 
     def generateEnumTypes(self):
@@ -68,8 +68,8 @@ class AddinQla(addin.Addin):
         buf1 = ''   # code to register the enumeration
         buf2 = ''   # code to unregister the enumeration
         for enumeration in self.enumerationList_.enumeratedTypes():
-            buf1 += self.generateEnumeration(enumeration, AddinQla.ENUM_LINE)
-            buf2 += AddinQla.ENUM_UNREG % enumeration.type
+            buf1 += self.generateEnumeration(enumeration, ObjectLibrary.ENUM_LINE)
+            buf2 += ObjectLibrary.ENUM_UNREG % enumeration.type
         buf = self.bufferEnumTypes.text % (buf1, buf2)
         fileName = environment.config().libFullPath + 'enumtyperegistry.cpp'
         outputfile.OutputFile(self, fileName, 
@@ -79,10 +79,10 @@ class AddinQla(addin.Addin):
         """generate source file for enumerated classes."""
         curveBuffer = ''
         for enumeration in self.enumerationList_.enumeratedCurves():
-            curveBuffer += self.generateEnumeration(enumeration, AddinQla.ENUM_CURVE_LINE)
+            curveBuffer += self.generateEnumeration(enumeration, ObjectLibrary.ENUM_CURVE_LINE)
         classBuffer = ''
         for enumeration in self.enumerationList_.enumeratedClasses():
-            classBuffer += self.generateEnumeration(enumeration, AddinQla.ENUM_LINE)
+            classBuffer += self.generateEnumeration(enumeration, ObjectLibrary.ENUM_LINE)
         buf = self.bufferEnumClasses.text % (curveBuffer, classBuffer)
         fileName = environment.config().libFullPath + 'enumclassregistry.cpp'
         fileEnum = outputfile.OutputFile(self, fileName,

@@ -26,6 +26,64 @@
 	</References>
 	<Files>
 		<Filter
+			Name="Addins"
+			Filter="">
+			<File
+				RelativePath="metadata\Addins\doxygen.xml">
+			</File>
+			<File
+				RelativePath="metadata\Addins\excel.xml">
+			</File>
+			<File
+				RelativePath="metadata\Addins\loop.xml">
+			</File>
+			<File
+				RelativePath="metadata\Addins\valueobjects.xml">
+			</File>
+		</Filter>
+		<Filter
+			Name="Functions"
+			Filter="">
+			<File
+				RelativePath="metadata\Functions\demo.xml">
+			</File>
+			<File
+				RelativePath="metadata\Functions\garbagecollection.xml">
+			</File>
+			<File
+				RelativePath="metadata\Functions\logging.xml">
+			</File>
+			<File
+				RelativePath="metadata\Functions\ohutils.xml">
+			</File>
+			<File
+				RelativePath="metadata\Functions\valueobjects.xml">
+			</File>
+		</Filter>
+		<Filter
+			Name="Rules"
+			Filter="">
+			<File
+				RelativePath="metadata\Rules\doxygen.xml">
+			</File>
+			<File
+				RelativePath="metadata\Rules\excel.xml">
+			</File>
+			<File
+				RelativePath="metadata\Rules\loop.xml">
+			</File>
+			<File
+				RelativePath="metadata\Rules\valueobjects.xml">
+			</File>
+		</Filter>
+		<Filter
+			Name="Types"
+			Filter="">
+			<File
+				RelativePath="metadata\Types\types.xml">
+			</File>
+		</Filter>
+		<Filter
 			Name="code"
 			Filter="">
 			<File
@@ -37,28 +95,6 @@
 			Filter="">
 			<File
 				RelativePath="config\config.xml">
-			</File>
-			<File
-				RelativePath="config\excel.xml">
-			</File>
-		</Filter>
-		<Filter
-			Name="metadata"
-			Filter="">
-			<File
-				RelativePath=".\metadata\demo.xml">
-			</File>
-			<File
-				RelativePath=".\metadata\garbagecollection.xml">
-			</File>
-			<File
-				RelativePath=".\metadata\logging.xml">
-			</File>
-			<File
-				RelativePath=".\metadata\ohutils.xml">
-			</File>
-			<File
-				RelativePath=".\metadata\valueobjects.xml">
 			</File>
 		</Filter>
 		<Filter

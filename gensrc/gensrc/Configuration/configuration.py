@@ -31,25 +31,18 @@ class Configuration(serializable.Serializable):
         fileBuffer.close()
 
     def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
 
         serializer.serializeList(self, 'categoryNames', 'categoryName')
         serializer.serializeProperty(self, 'libRootDirectory')
-        serializer.serializeProperty(self, 'voRootDirectory')
-        serializer.serializeProperty(self, 'loopRootDirectory')
-        serializer.serializeProperty(self, 'excelRootDirectory')
         serializer.serializeProperty(self, common.NAMESPACE_OBJ)
         serializer.serializeProperty(self, common.NAMESPACE_LIB)
         serializer.serializeProperty(self, 'prefix')
         serializer.serializeBoolean(self, 'usingEnumerations')
 
     def postSerialize(self):
-
-        # initialize paths
-        self.excelFullPath = '../' + self.excelRootDirectory + '/'
-        if self.libRootDirectory:
-            self.libFullPath = '../' + self.libRootDirectory + '/'
-        if self.voRootDirectory:
-            self.voFullPath = '../' + self.voRootDirectory + '/'
-        if self.loopRootDirectory:
-            self.loopFullPath = '../' + self.loopRootDirectory + '/'
+        """Perform post serialization initialization."""
+        self.voRootDirectory = self.libRootDirectory + '/ValueObjects'
+        self.loopRootDirectory = self.libRootDirectory + '/Loop'
+        self.libFullPath = '../' + self.libRootDirectory + '/'
 

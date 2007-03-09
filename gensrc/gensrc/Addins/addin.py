@@ -23,6 +23,7 @@ required to generate addin source code."""
 from gensrc.Utilities import common
 from gensrc.Rules import rule
 from gensrc.Serialization import serializable
+from gensrc.Serialization import xmlreader
 from gensrc.Utilities import buffer
 import os
 
@@ -38,15 +39,22 @@ class Addin(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeProperty(self, common.ROOT_DIRECTORY)
-        serializer.serializeObjectPropertyDict(self, rule.RuleGroup)
         serializer.serializeObjectPropertyDict(self, buffer.Buffer)
         serializer.serializeProperty(self, common.COPYRIGHT)
+        serializer.serializeBoolean(self, 'loadRules', True)
 
     def postSerialize(self):
         """Perform post serialization initialization."""
+
+        if self.loadRules:
+            serializer = xmlreader.XmlReader('metadata/Rules/' + self.name.lower())
+            serializer.serializeObjectPropertyDict(self, rule.RuleGroup)
+
         self.unchanged = 0
         self.updated = 0
         self.created = 0
-        if self.rootDirectory and not os.path.exists(self.rootDirectory): 
-            os.makedirs(self.rootDirectory)
+        if self.rootDirectory:
+            self.rootPath = "../%s/" % self.rootDirectory
+            if not os.path.exists(self.rootPath): 
+                os.makedirs(self.rootPath)
 

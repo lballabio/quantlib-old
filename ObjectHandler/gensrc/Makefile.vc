@@ -9,7 +9,10 @@ MAKEFILE=Makefile.vc
 
 CODE=code\*.py
 CONFIG=config\*.xml
-METADATA=metadata\Addins\*.xml metadata\Functions\*.xml metadata\Types\*.xml
+METADATA=   metadata\Addins\*.xml \
+            metadata\Functions\*.xml \
+            metadata\Rules\*.xml \
+            metadata\Types\*.xml
 STUBS=stubs\stub.*
 
 INPUTS = $(MAKEFILE) $(CORE_DEPENDENCIES) $(CODE) $(CONFIG) $(METADATA) $(STUBS)

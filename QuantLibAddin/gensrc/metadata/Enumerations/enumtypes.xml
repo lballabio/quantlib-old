@@ -1,4 +1,5 @@
 <root>
+
   <enumTypeCopyright>
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005, 2006 Eric Ehlers
@@ -1168,7 +1169,7 @@
         </EnumerationDefinition>
       </EnumerationDefinitions>
     </Enumeration>
-    
+
     <Enumeration type='QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType'>
       <constructor>true</constructor>
       <EnumerationDefinitions>

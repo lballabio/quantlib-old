@@ -26,7 +26,7 @@ from gensrc.Utilities import common
 from gensrc.Utilities import log
 from gensrc.Categories import category
 
-class AddinGuile(addin.Addin):
+class GuileAddin(addin.Addin):
     """Generate source code for Guile addin."""
 
     BUF_HEADER = '''SCM %s(SCM x)%s\n'''
@@ -62,18 +62,18 @@ class AddinGuile(addin.Addin):
             if i < len(self.categoryList_.categoryNames()):
                 registrations += '\n'
         buf = self.bufferInitFunc.text % (headers, registrations)
-        fileName = self.rootDirectory + 'qladdin.c'
+        fileName = self.rootPath + 'qladdin.c'
         outputfile.OutputFile(self, fileName, self.copyright, buf, False)
 
     def generateFuncHeaders(self, cat):
         """Generate source for function prototypes."""
         prototypes = ''
         for func in cat.functions(self.name): 
-            prototypes += AddinGuile.BUF_HEADER % (func.name, ';\n')
+            prototypes += GuileAddin.BUF_HEADER % (func.name, ';\n')
         buf = self.bufferHeader.text % {
             'categoryName' : cat.name,
             'prototypes' : prototypes }
-        fileName =  self.rootDirectory + cat.name + '.h'
+        fileName =  self.rootPath + cat.name + '.h'
         outputfile.OutputFile(self, fileName, cat.copyright, buf, False)
 
     def generateFunction(self, func):
@@ -93,12 +93,12 @@ class AddinGuile(addin.Addin):
             self.generateFuncHeaders(cat)
             code = ''
             for func in cat.functions(self.name): 
-                code += AddinGuile.BUF_HEADER % (func.name, ' {')
+                code += GuileAddin.BUF_HEADER % (func.name, ' {')
                 code += self.generateFunction(func)
             buf = self.bufferIncludes.text % {
                 'includes' : cat.includeList(),
                 'categoryName' : cat.name,
                 'code' : code }
-            fileName= self.rootDirectory + cat.name + '.cpp'
+            fileName= self.rootPath + cat.name + '.cpp'
             outputfile.OutputFile(self, fileName, cat.copyright, buf, False)
 

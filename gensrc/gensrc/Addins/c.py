@@ -26,7 +26,7 @@ from gensrc.Utilities import common
 from gensrc.Utilities import log
 from gensrc.Categories import category
 
-class AddinC(addin.Addin):
+class CAddin(addin.Addin):
     """Generate source code for C addin."""
 
     BUFFER_FUNCDEC = '''\
@@ -52,7 +52,7 @@ class AddinC(addin.Addin):
             self.generateFunctions(cat)
             summaryHeaders += '#include <Addins/C/%s.h>\n' % cat.name
         buf = self.bufferHeader.text % summaryHeaders
-        fileName = self.rootDirectory + 'qladdin.h'
+        fileName = self.rootPath + 'qladdin.h'
         outputfile.OutputFile(self, fileName, self.copyright, buf, False)
         log.Log.instance().logMessage(' done generating C.')
 
@@ -60,7 +60,7 @@ class AddinC(addin.Addin):
         """Generate source for prototype of given function."""
         functionDeclaration = func.ParameterList.generate(self.functionDeclaration)
         if functionDeclaration: functionDeclaration += ','
-        return AddinC.BUFFER_FUNCDEC % {
+        return CAddin.BUFFER_FUNCDEC % {
             'func_name' : func.name,
             'func_dec' : functionDeclaration,
             'func_ret' : self.functionReturnType.apply(func.returnValue),
@@ -71,10 +71,10 @@ class AddinC(addin.Addin):
         bufHeader = ''
         for func in cat.functions(self.name): 
             bufHeader += self.generateHeader(func, ';\n')
-        buf = AddinC.BUFFER_HEADER % {
+        buf = CAddin.BUFFER_HEADER % {
             'cat_name' : cat.name,
             'func_headers' : bufHeader }
-        fileName = self.rootDirectory + cat.name + '.h'
+        fileName = self.rootPath + cat.name + '.h'
         fileHeader = outputfile.OutputFile(self, fileName, None, buf, False)
 
     def generateFunction(self, func):
@@ -97,6 +97,6 @@ class AddinC(addin.Addin):
             'includes' : cat.includeList(),
             'name' : cat.name,
             'code' : codeBuffer }
-        fileName = self.rootDirectory + cat.name + '.cpp'
+        fileName = self.rootPath + cat.name + '.cpp'
         outputfile.OutputFile(self, fileName, None, buf, False)
 
