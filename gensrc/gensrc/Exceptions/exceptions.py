@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import traceback
+import sys
 import re
 
 class GensrcException(Exception):
@@ -26,22 +26,25 @@ class GensrcException(Exception):
         this by prefixing a > to each line."""
         return re.sub('(?m)^', '> ', self.value)
 
-ERROR_HEADER='''\
-> 
-> gensrc has encountered a fatal error.
->
-> >>>>>>>>>> BEGIN STACK TRACE >>>>>>>>>> '''
+class GensrcUsageException(GensrcException):
 
-ERROR_FOOTER='''\
-> <<<<<<<<<< END STACK TRACE   <<<<<<<<<< 
->
-> gensrc error:
-%s
->
-'''
+    USAGE_ERROR = """
+usage: %(scriptName)s -[targets]
+    where [targets] is any of:
+        q - generate source for QuantLibAddin
+        e - generate source for Excel addin
+        o - generate source for OpenOffice.org Calc addin
+        c - generate source for C addin
+        g - generate source for Guile addin
+        d - generate doxygen documentation files
+        v - generate ValueObjects
+        l - generate loop typedefs
+    or
+        a - all of the above
+    or
+        h - display this help message"""
 
-def gensrc_excepthook(type, value, tb):
-    print ERROR_HEADER 
-    traceback.print_exception(type, None, tb)
-    print ERROR_FOOTER % value
+    def __init__(self):
+        self.value = GensrcUsageException.USAGE_ERROR % {
+            'scriptName' : sys.argv[0] }
 
