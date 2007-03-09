@@ -134,6 +134,7 @@ namespace QuantLibAddin {
 
     class CmsCouponPricer : public FloatingRateCouponPricer {
       public:
+		CmsCouponPricer(){}; //fdv hack ...
         CmsCouponPricer(
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,
             const std::string& typeOfCmsCouponPricer,
@@ -141,6 +142,15 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::Quote>& meanReversion);
     };
 
+	class ConundrumPricerByNumericalIntegration: public CmsCouponPricer{
+	public:
+		ConundrumPricerByNumericalIntegration(
+			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
+			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
+            QuantLib::Rate lowerLimit = 0.0,
+            QuantLib::Rate upperLimit = 1.0,
+			QuantLib::Real precision = 1.0e-6);
+	};
 }
 
 #endif

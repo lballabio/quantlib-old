@@ -482,7 +482,46 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
+    
+    <Constructor name='qlConundrumPricerByNumericalIntegration'>
+      <libraryFunction>ConundrumPricerByNumericalIntegration</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <Excel calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='swaptionVol'>
+            <type>QuantLib::SwaptionVolatilityStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Volatility Cube by Sabr</description>
+          </Parameter>
+          <Parameter name='meanReversion'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>mean reversion</description>
+          </Parameter>
+          <Parameter name='lowerLimit'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>lower limit</description>
+          </Parameter>
+          <Parameter name='upperLimit'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>upper limit</description>
+          </Parameter>
+          <Parameter name='precision'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>precision</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
   </Functions>
 
 </Category>
