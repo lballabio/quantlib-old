@@ -2,6 +2,7 @@
 # Regenerate the files autoconf / automake
 
 cp README.txt README
+cp LICENSE.txt license.apl
 libtoolize --force --automake
 
 rm -f config.cache
