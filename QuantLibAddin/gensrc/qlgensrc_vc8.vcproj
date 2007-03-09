@@ -331,7 +331,7 @@
 				>
 			</File>
 			<File
-				RelativePath="stub.doxygen.enums"
+				RelativePath="stubs\stub.doxygen.enums"
 				>
 			</File>
 		</Filter>
