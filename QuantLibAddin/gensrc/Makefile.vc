@@ -26,7 +26,7 @@ $(BUILD_DIR) :
 $(BUILDFLAG) : $(INPUTS) $(BUILD_DIR)
     set PYTHONPATH=.\code
 #    $(GENSRC_DIR)\gensrc.py -a
-    $(GENSRC_DIR)\gensrc.py -mevld
+    $(GENSRC_DIR)\gensrc.py -xvlde
 	echo flagged > $@
 
 CLEAN :
