@@ -198,12 +198,13 @@ namespace QuantLibAddin {
 
 	ConundrumPricerByNumericalIntegration::ConundrumPricerByNumericalIntegration(
 			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
+            QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
 			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             QuantLib::Rate lowerLimit,
             QuantLib::Rate upperLimit,
 			QuantLib::Real precision){
-				QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve
-					= QuantLib::GFunctionFactory::ModelOfYieldCurve(2);
+				/*QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve
+					= QuantLib::GFunctionFactory::ModelOfYieldCurve(2);*/
 				libraryObject_ = 
 					boost::shared_ptr<QuantLib::ConundrumPricerByNumericalIntegration> (new
 					QuantLib::ConundrumPricerByNumericalIntegration(swaptionVol,
