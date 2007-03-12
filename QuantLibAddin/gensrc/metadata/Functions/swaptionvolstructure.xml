@@ -19,7 +19,7 @@
 
     <!-- SwaptionVolatilityStructure interface-->
 
-    <Member name='qlSwaptionVTSVolatility' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='optionDate'>
+    <Member name='qlSwaptionVTSVolatility' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='strike'>
       <description>Returns volatility from the given SwaptionVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -29,7 +29,7 @@
         <Parameters>
           <Parameter name='optionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
-            <tensorRank>vector</tensorRank>
+            <tensorRank>scalar</tensorRank>
             <description>swaption expiry date</description>
           </Parameter>
           <Parameter name='swapTenor' exampleValue ='2y'>
@@ -39,7 +39,7 @@
           </Parameter>
           <Parameter name='strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>swaption strike vector</description>
           </Parameter>
           <Parameter name='allowExtrapolation' const='False' default='false'>
