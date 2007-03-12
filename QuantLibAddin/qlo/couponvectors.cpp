@@ -207,7 +207,7 @@ namespace QuantLibAddin {
 				libraryObject_ = 
 					boost::shared_ptr<QuantLib::ConundrumPricerByNumericalIntegration> (new
 					QuantLib::ConundrumPricerByNumericalIntegration(swaptionVol,
-																	modelOfYieldCurve,
+                                                                    modelOfYieldCurve,
 																	meanReversion,
 																	lowerLimit,
 																	upperLimit,
