@@ -1,3 +1,23 @@
+
+
+class Fixing : public Event {
+  private:
+    boost::shared_ptr<FloatingRateCoupon> coupon_;
+  public:
+    ... // constructor
+    Date date() const { return coupon_->fixingDate(); }
+    boost::shared_ptr<FloatingRateCoupon> coupon() const;
+};
+
+
+class Instrument {
+  public:
+    ...
+    std::list<boost::shared_ptr<Event> > events(const Date&) const;
+};
+
+
+
 ==== RANDOM NOTES =============
 
 digital in call spread
@@ -70,7 +90,7 @@ Nando
 K
 - coveredWarrants.xls
 - prepare report for release in Production: 28 Feb 9:10
-- SA: test CmsPricer() observability 
+- SA: test CmsPricer() observability
 - SA: applied to cms book
 - create new .xls with NPVs of 4 cms books
 - foglio di clerici (interpolazione)
@@ -99,8 +119,8 @@ Pending:
 
 François
 - profile one of the time series workbook
-- profile CoveredWarrants.xls 
-- any way to improve stripping 3M caplet? 
+- profile CoveredWarrants.xls
+- any way to improve stripping 3M caplet?
 - profiling: bond, calibrations, interpolations
 - atm backbone for caplet
 - extrapolation bug (short expity, low strike)
@@ -128,12 +148,12 @@ TO BE DISCUSSED: Object Builder performance issue when the control panel is left
 
 
 Cristina
-- multiLegSwap.xls: finalise and move from Drafts to IRDerivatives 
+- multiLegSwap.xls: finalise and move from Drafts to IRDerivatives
 - testing that the manual procedure to set back/forward the evaluation date
-  returns the same results of the automantic procedure 
-- ottimizzare foglio di contribuzione delle vola su Mx: 
-  QuantLibXL\Workbooks\MarketMetaData\QL_MX_swaptions_EUR.xls 
-- move out from controlPanel.xls to a separate wkb all functions' checks 
+  returns the same results of the automantic procedure
+- ottimizzare foglio di contribuzione delle vola su Mx:
+  QuantLibXL\Workbooks\MarketMetaData\QL_MX_swaptions_EUR.xls
+- move out from controlPanel.xls to a separate wkb all functions' checks
 - DONE reorder Excel workbooks input parameters order
 - DONE coupon refactoring (shared among Cristina and Giorgio)
 - WIP expose to QXL new IborLeg (following coupon refactoring in QL)
@@ -150,10 +170,10 @@ Cristina
 
 
 Giorgio
-- prepare .doc for EOD procedure for De Nuccio's desk 
+- prepare .doc for EOD procedure for De Nuccio's desk
 - verify sensitivity of beta and mean best calibrated values. Compare  values
   using as guess the previous day values (global cms market) or using the current
-  day guesses as from the 5 cms market sections 
+  day guesses as from the 5 cms market sections
 D 1.check npv
 D 2.cms gearing negativo, floor a zero: non funziona
 D capped/floored-cms comparison (shared among Cristina and Giorgio)
