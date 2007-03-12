@@ -190,14 +190,15 @@ WIP profiling session with Francois on BondMonitor_EUR.xls
 
 
 Marco
-- verifica documento di McKinsey
+- verifica ottimizzatori
+- DONE verifica documento di McKinsey
 - DONE BGM payoffs review
 - DONE BGM book set up
 - DONE sticky/ratchet and double option instruments in C++ (shared among Marco, Giorgio)
-- sticky/ratchet and double option instruments export in Addin
-- sticky/ratchet and double option pricing
+- DONE sticky/ratchet and double option instruments export in Addin
+- DONE sticky/ratchet and double option pricing
 - WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
-- digital option in C++ (shared among Marco, Giorgio and Cristina)
+- WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
 - ??? foglio swaption per De Nuccio / Murex
 - (To BE REVIEWED) update Mx YC action
 - (To BE REVIEWED) improve interpolations
