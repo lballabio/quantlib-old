@@ -19,7 +19,7 @@
     <Constructor name='qlSwaption'>
       <libraryFunction>Swaption</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -60,7 +60,7 @@
       <description>returns the underlying swap for the given Swaption object</description>
       <libraryFunction>underlyingSwap</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -75,7 +75,7 @@
       <description>returns the type (Payer or Receiver) for the given Swaption object</description>
       <libraryFunction>type</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -90,7 +90,7 @@
       <description>returns the settlement type (Cash or Delivery) for the given Swaption object</description>
       <libraryFunction>settlementType</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -105,7 +105,7 @@
       <description>returns the implied volatility for the given Swaption object</description>
       <libraryFunction>impliedVolatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -126,7 +126,7 @@
       <description>returns the at-the-money rate for the given Swaption object</description>
       <libraryFunction>atmRate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />

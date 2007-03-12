@@ -24,5 +24,5 @@ class GensrcException(Exception):
         """Stringify this exception.  This application runs in a makefile
         project under visual studio, which truncates empty lines, we prevent
         this by prefixing a > to each line."""
-        return re.sub('(?m)^', '> ', self.value)
+        return re.sub('(?m)^', '> ', self.value_)
 

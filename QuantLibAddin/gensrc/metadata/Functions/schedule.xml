@@ -11,7 +11,7 @@
     <Constructor name='qlSchedule'>
       <libraryFunction>Schedule</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -73,7 +73,7 @@
       <description>returns the dates for the given Schedule object</description>
       <libraryFunction>dates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

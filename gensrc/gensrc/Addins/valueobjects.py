@@ -37,41 +37,41 @@ class ValueObjects(addin.Addin):
 
         log.Log.instance().logMessage(' begin generating ValueObjects ...')
         for cat in self.categoryList_.categories('*'):
-            if cat.generateVOs:
+            if cat.generateVOs():
                 self.generateHeaders(cat)
                 self.generateFunctions(cat)
         log.Log.instance().logMessage(' done generating ValueObjects.')
 
     def generateHeader(self, func):
         """Generate class definition source for prototype of given constructor function."""
-        if not func.generateVOs: return ''
-        return self.bufferClassDecl.text % {
-            'functionName' : func.name,
-            'constructorDeclaration' : func.ParameterList.generate(self.constructorDeclaration),
-            'memberDeclaration' : func.ParameterList.generate(self.memberDeclaration) }
+        if not func.generateVOs(): return ''
+        return self.bufferClassDecl_.text() % {
+            'functionName' : func.name(),
+            'constructorDeclaration' : func.parameterList().generate(self.constructorDeclaration_),
+            'memberDeclaration' : func.parameterList().generate(self.memberDeclaration_) }
 
     def generateHeaders(self, cat):
         """Generate class source for constructor function prototypes."""
         bufHeader = ''
         for func in cat.functions('*'):
             bufHeader += self.generateHeader(func)
-        buf = self.bufferIncludesDecl.text % {
-            'categoryName' : cat.name,
+        buf = self.bufferIncludesDecl_.text() % {
+            'categoryName' : cat.name(),
             'headers' : bufHeader,
-            'libRoot' : environment.config().libRootDirectory,
-            'namespaceObjects' : environment.config().namespaceObjects }
-        fileName = self.rootPath + 'vo_' + cat.name + '.hpp'
-        fileHeader = outputfile.OutputFile(self, fileName, self.copyright, buf)
+            'libRoot' : environment.config().libRootDirectory(),
+            'namespaceObjects' : environment.config().namespaceObjects() }
+        fileName = self.rootPath_ + 'vo_' + cat.name() + '.hpp'
+        fileHeader = outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
     def generateFunction(self, func):
         """Generate source code for function."""
-        if func.generateVOs:
-            return self.bufferClassBody.text % {
-                'constructorInit' : func.ParameterList.generate(self.constructorInit),
-                'constructorParList' : func.ParameterList.generate(self.constructorDeclaration),
-                'functionName' : func.name,
-                'propertyDeclaration' : func.ParameterList.generate(self.propertyDeclaration),
-                'propertyGet' : func.ParameterList.generate(self.propertyGet) }
+        if func.generateVOs():
+            return self.bufferClassBody_.text() % {
+                'constructorInit' : func.parameterList().generate(self.constructorInit_),
+                'constructorParList' : func.parameterList().generate(self.constructorDeclaration_),
+                'functionName' : func.name(),
+                'propertyDeclaration' : func.parameterList().generate(self.propertyDeclaration_),
+                'propertyGet' : func.parameterList().generate(self.propertyGet_) }
         else:
             return ''
 
@@ -80,12 +80,27 @@ class ValueObjects(addin.Addin):
         bufFunc = ''
         for func in cat.functions('*'): 
             bufFunc += self.generateFunction(func)
-        buf = self.bufferIncludes.text % {
-            'categoryName' : cat.name,
+        buf = self.bufferIncludes_.text() % {
+            'categoryName' : cat.name(),
             'functions' : bufFunc,
-            'libRoot' : environment.config().libRootDirectory,
-            'namespaceObjects' : environment.config().namespaceObjects,
-            'voDirectory' :  environment.config().voRootDirectory }
-        fileName = self.rootPath + 'vo_' + cat.name + '.cpp'
-        outputfile.OutputFile(self, fileName, self.copyright, buf)
+            'libRoot' : environment.config().libRootDirectory(),
+            'namespaceObjects' : environment.config().namespaceObjects(),
+            'voDirectory' :  environment.config().voRootDirectory() }
+        fileName = self.rootPath_ + 'vo_' + cat.name() + '.cpp'
+        outputfile.OutputFile(self, fileName, self.copyright_, buf)
+
+    def constructorDeclaration(self):
+        return self.constructorDeclaration_
+
+    def memberDeclaration(self):
+        return self.memberDeclaration_
+
+    def propertyDeclaration(self):
+        return self.propertyDeclaration_
+
+    def propertyGet(self):
+        return self.propertyGet_
+
+    def constructorInit(self):
+        return self.constructorInit_
 

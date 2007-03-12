@@ -19,7 +19,9 @@
 
 from gensrc.Serialization import exceptions
 from gensrc.Patterns import singleton
-from gensrc.Enumerations import enumeration
+from gensrc.Enumerations import enumeratedclasses
+from gensrc.Enumerations import enumeratedcurves
+from gensrc.Enumerations import enumeratedtypes
 from gensrc.Functions import function
 from gensrc.Rules import rule
 from gensrc.Types import supertypelist
@@ -27,22 +29,25 @@ from gensrc.Types import supertypelist
 class Factory(singleton.Singleton):
     """construct an object given its class name."""
 
-    creators = {
+    creators_ = {
         'Constructor' : function.Constructor,
-        'Enumeration' : enumeration.Enumeration,
-        'EnumerationDefinition' : enumeration.EnumerationDefinition,
+        'EnumeratedClass' : enumeratedclasses.EnumeratedClass,
+        'EnumeratedClassGroup' : enumeratedclasses.EnumeratedClassGroup,
+        'EnumeratedCurve' : enumeratedcurves.EnumeratedCurve,
+        'EnumeratedCurveGroup' : enumeratedcurves.EnumeratedCurveGroup,
+        'EnumeratedType' : enumeratedtypes.EnumeratedType,
+        'EnumeratedTypeGroup' : enumeratedtypes.EnumeratedTypeGroup,
         'EnumerationMember' : function.EnumerationMember,
         'Member' : function.Member,
         'Procedure' : function.Procedure,
         'SuperType' : supertypelist.SuperType,
         'SupportedPlatform' : function.SupportedPlatform,
-        'SupportedPlatforms' : function.SupportedPlatforms,
     }
 
     def makeObject(self, className):
         """construct an object given its class name."""
-        if self.creators.has_key(className):
-            return self.creators[className]()
+        if self.creators_.has_key(className):
+            return self.creators_[className]()
         else:
             raise exceptions.SerializationCreatorException(className)
 

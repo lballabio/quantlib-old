@@ -1,6 +1,6 @@
 <root>
 
-  <enumClassCopyright>
+  <enumeratedClassCopyright>
     Copyright (C) 2007 Cristina Duminuco
     Copyright (C) 2006 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
@@ -8,1105 +8,1105 @@
     Copyright (C) 2006 Chiara Fornarola
     Copyright (C) 2006 Katiuscia Manzoni
     Copyright (C) 2005 Plamen Neykov
-  </enumClassCopyright>
+  </enumeratedClassCopyright>
 
-  <Enumerations>
+  <EnumeratedClassGroups>
 
-    <Enumeration type='QuantLib::Interpolation'>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+    <EnumeratedClassGroup class='QuantLib::Interpolation'>
+      <EnumeratedClasses>
+        <EnumeratedClass>
           <string>Linear</string>
           <value>LINEAR_Interpolation</value>
           <libraryClass>QuantLib::LinearInterpolation</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>BackwardFlat</string>
           <value>BACKWARDFLAT_Interpolation</value>
           <libraryClass>QuantLib::BackwardFlatInterpolation</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>ForwardFlat</string>
           <value>FORWARDFLAT_Interpolation</value>
           <libraryClass>QuantLib::ForwardFlatInterpolation</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>LogLinear</string>
           <value>LOGLINEAR_Interpolation</value>
           <libraryClass>QuantLib::LogLinearInterpolation</libraryClass>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
 
-    <Enumeration type='QuantLib::IborCouponPricer'>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+    <EnumeratedClassGroup class='QuantLib::IborCouponPricer'>
+      <EnumeratedClasses>
+        <EnumeratedClass>
           <string>IborByBlack</string>
           <value>IBOR_BY_BLACK_Pricer</value>
           <libraryClass>QuantLib::BlackIborCouponPricer</libraryClass>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
 
-    <Enumeration type='QuantLib::CmsCouponPricer'>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+    <EnumeratedClassGroup class='QuantLib::CmsCouponPricer'>
+      <EnumeratedClasses>
+        <EnumeratedClass>
           <string>ConundrumByBlack</string>
           <value>CONUNDRUM_BY_BLACK_Pricer</value>
           <libraryClass>QuantLib::ConundrumPricerByBlack</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>ConundrumByNumericalIntegration</string>
           <value>CONUNDRUM_BY_NUMERICAL_INTEGRATION_Pricer</value>
           <libraryClass>QuantLib::ConundrumPricerByNumericalIntegration</libraryClass>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
 
-    <Enumeration type='QuantLib::Interpolation2D'>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+    <EnumeratedClassGroup class='QuantLib::Interpolation2D'>
+      <EnumeratedClasses>
+        <EnumeratedClass>
           <string>BiLinear</string>
           <value>BILINEAR_Interpolation</value>
           <libraryClass>QuantLib::BilinearInterpolation</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>BiCubic</string>
           <value>BICUBICSPLINE</value>
           <libraryClass>QuantLib::BicubicSpline</libraryClass>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
 
-    <Enumeration type='QuantLib::PricingEngine'>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+    <EnumeratedClassGroup class='QuantLib::PricingEngine'>
+      <EnumeratedClasses>
+        <EnumeratedClass>
           <string>AB</string>
           <value>AB_Engine</value>
           <libraryClass>QuantLib::AnalyticBarrierEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>AC</string>
           <value>AC_Engine</value>
           <libraryClass>QuantLib::AnalyticCliquetEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>ACGAPA</string>
           <value>ACGAPA_Engine</value>
           <libraryClass>QuantLib::AnalyticContinuousGeometricAveragePriceAsianEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>ADA</string>
           <value>ADA_Engine</value>
           <libraryClass>QuantLib::AnalyticDigitalAmericanEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>ADGAPA</string>
           <value>ADGAPA_Engine</value>
           <libraryClass>QuantLib::AnalyticDiscreteGeometricAveragePriceAsianEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>ADE</string>
           <value>ADE_Engine</value>
           <libraryClass>QuantLib::AnalyticDividendEuropeanEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>AE</string>
           <value>AE_Engine</value>
           <libraryClass>QuantLib::AnalyticEuropeanEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>AP</string>
           <value>AP_Engine</value>
           <libraryClass>QuantLib::AnalyticPerformanceEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>BAWA</string>
           <value>BAWA_Engine</value>
           <libraryClass>QuantLib::BaroneAdesiWhaleyApproximationEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>AEQPB</string>
           <value>AEQPB_Engine</value>
           <libraryClass>QuantLib::AdditiveEQPBinomialTree</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>CRR</string>
           <value>CRR_Engine</value>
           <libraryClass>QuantLib::CoxRossRubinstein</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>I</string>
           <value>I_Engine</value>
           <libraryClass>QuantLib::IntegralEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>FDA</string>
           <value>FDA_Engine</value>
           <libraryClass>QuantLib::FDAmericanEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>FDE</string>
           <value>FDE_Engine</value>
           <libraryClass>QuantLib::FDEuropeanEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>FDB</string>
           <value>FDB_Engine</value>
           <libraryClass>QuantLib::FDBermudanEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>JR</string>
           <value>JR_Engine</value>
           <libraryClass>QuantLib::JarrowRudd</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>LR</string>
           <value>LR_Engine</value>
           <libraryClass>QuantLib::LeisenReimer</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>TIAN</string>
           <value>TIAN_Engine</value>
           <libraryClass>QuantLib::Tian</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>TRI</string>
           <value>TRI_Engine</value>
           <libraryClass>QuantLib::Trigeorgis</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>BSA</string>
           <value>BSA_Engine</value>
           <libraryClass>QuantLib::BjerksundStenslandApproximationEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>PE</string>
           <value>PE_Engine</value>
           <libraryClass>QuantLib::PricingEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>SE</string>
           <value>SE_Engine</value>
           <libraryClass>QuantLib::StulzEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>FE</string>
           <value>FE_Engine</value>
           <libraryClass>QuantLib::ForwardEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>FPE</string>
           <value>FPE_Engine</value>
           <libraryClass>QuantLib::ForwardPerformanceEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>QE</string>
           <value>QE_Engine</value>
           <libraryClass>QuantLib::QuantoEngine</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>QFE</string>
           <value>QFE_Engine</value>
           <libraryClass>QuantLib::QuantoForwardEngine</libraryClass>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
 
-    <Enumeration type='QuantLib::Payoff'>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+    <EnumeratedClassGroup class='QuantLib::Payoff'>
+      <EnumeratedClasses>
+        <EnumeratedClass>
           <string>Vanilla</string>
           <value>VANILLA_Payoff</value>
           <libraryClass>QuantLib::PlainVanillaPayoff</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>PlainVanilla</string>
           <value>VANILLA_Payoff</value>
           <libraryClass>QuantLib::PlainVanillaPayoff</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>PercentageStrike</string>
           <value>PERCENTAGESTRIKE_Payoff</value>
           <libraryClass>QuantLib::PercentageStrikePayoff</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>AssetOrNothing</string>
           <value>ASSETORNOTHING_Payoff</value>
           <libraryClass>QuantLib::AssetOrNothingPayoff</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
 
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>CashOrNothing</string>
           <value>CASHORNOTHING_Payoff</value>
           <libraryClass>QuantLib::CashOrNothingPayoff</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Gap</string>
           <value>GAP_Payoff</value>
           <libraryClass>QuantLib::GapPayoff</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>SuperFund</string>
           <value>SUPERFUND_Payoff</value>
           <libraryClass>QuantLib::SuperFundPayoff</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>SuperShare</string>
           <value>SUPERSHARE_Payoff</value>
           <libraryClass>QuantLib::SuperSharePayoff</libraryClass>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
 
-    <Enumeration type='QuantLib::Index'>
-      <EnumerationDefinitions>
+    <EnumeratedClassGroup class='QuantLib::Index'>
+      <EnumeratedClasses>
         <!-- QuantLib::Euribor -->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EuriborSW</string>
           <value>EURIBOR_SW</value>
           <libraryClass>QuantLib::EuriborSW</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor1W</string>
           <value>EURIBOR_SW</value>
           <libraryClass>QuantLib::EuriborSW</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 1W</string>
           <value>EURIBOR_SW</value>
           <libraryClass>QuantLib::EuriborSW</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor2W</string>
           <value>EURIBOR_2W</value>
           <libraryClass>QuantLib::Euribor2W</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3W</string>
           <value>EURIBOR_3W</value>
           <libraryClass>QuantLib::Euribor3W</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor1M</string>
           <value>EURIBOR_1M</value>
           <libraryClass>QuantLib::Euribor1M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 1M</string>
           <value>EURIBOR_1M</value>
           <libraryClass>QuantLib::Euribor1M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor2M</string>
           <value>EURIBOR_2M</value>
           <libraryClass>QuantLib::Euribor2M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 2M</string>
           <value>EURIBOR_2M</value>
           <libraryClass>QuantLib::Euribor2M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3M</string>
           <value>EURIBOR_3M</value>
           <libraryClass>QuantLib::Euribor3M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 3M</string>
           <value>EURIBOR_3M</value>
           <libraryClass>QuantLib::Euribor3M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor4M</string>
           <value>EURIBOR_4M</value>
           <libraryClass>QuantLib::Euribor4M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 4M</string>
           <value>EURIBOR_4M</value>
           <libraryClass>QuantLib::Euribor4M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor5M</string>
           <value>EURIBOR_5M</value>
           <libraryClass>QuantLib::Euribor5M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 5M</string>
           <value>EURIBOR_5M</value>
           <libraryClass>QuantLib::Euribor5M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor6M</string>
           <value>EURIBOR_6M</value>
           <libraryClass>QuantLib::Euribor6M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 6M</string>
           <value>EURIBOR_6M</value>
           <libraryClass>QuantLib::Euribor6M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor7M</string>
           <value>EURIBOR_7M</value>
           <libraryClass>QuantLib::Euribor7M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 7M</string>
           <value>EURIBOR_7M</value>
           <libraryClass>QuantLib::Euribor7M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor8M</string>
           <value>EURIBOR_8M</value>
           <libraryClass>QuantLib::Euribor8M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 8M</string>
           <value>EURIBOR_8M</value>
           <libraryClass>QuantLib::Euribor8M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor9M</string>
           <value>EURIBOR_9M</value>
           <libraryClass>QuantLib::Euribor9M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 9M</string>
           <value>EURIBOR_9M</value>
           <libraryClass>QuantLib::Euribor9M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor10M</string>
           <value>EURIBOR_10M</value>
           <libraryClass>QuantLib::Euribor10M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 10M</string>
           <value>EURIBOR_10M</value>
           <libraryClass>QuantLib::Euribor10M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor11M</string>
           <value>EURIBOR_11M</value>
           <libraryClass>QuantLib::Euribor11M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 11M</string>
           <value>EURIBOR_11M</value>
           <libraryClass>QuantLib::Euribor11M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor1Y</string>
           <value>EURIBOR_1Y</value>
           <libraryClass>QuantLib::Euribor1Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIBOR 1Y</string>
           <value>EURIBOR_1Y</value>
           <libraryClass>QuantLib::Euribor1Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- QuantLib::Euribor365 -->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>Euribor365SW</string>
           <value>EURIBOR365_SW</value>
           <libraryClass>QuantLib::Euribor365_SW</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3651W</string>
           <value>EURIBOR365_SW</value>
           <libraryClass>QuantLib::Euribor365_SW</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 1W</string>
           <value>EURIBOR365_SW</value>
           <libraryClass>QuantLib::Euribor365_SW</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3652W</string>
           <value>EURIBOR365_2W</value>
           <libraryClass>QuantLib::Euribor365_2W</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3653W</string>
           <value>EURIBOR365_3W</value>
           <libraryClass>QuantLib::Euribor365_3W</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3651M</string>
           <value>EURIBOR365_1M</value>
           <libraryClass>QuantLib::Euribor365_1M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 1M</string>
           <value>EURIBOR365_1M</value>
           <libraryClass>QuantLib::Euribor365_1M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3652M</string>
           <value>EURIBOR365_2M</value>
           <libraryClass>QuantLib::Euribor365_2M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 2M</string>
           <value>EURIBOR365_2M</value>
           <libraryClass>QuantLib::Euribor365_2M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3653M</string>
           <value>EURIBOR365_3M</value>
           <libraryClass>QuantLib::Euribor365_3M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 3M</string>
           <value>EURIBOR365_3M</value>
           <libraryClass>QuantLib::Euribor365_3M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3654M</string>
           <value>EURIBOR365_4M</value>
           <libraryClass>QuantLib::Euribor365_4M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 4M</string>
           <value>EURIBOR365_4M</value>
           <libraryClass>QuantLib::Euribor365_4M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3655M</string>
           <value>EURIBOR365_5M</value>
           <libraryClass>QuantLib::Euribor365_5M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 5M</string>
           <value>EURIBOR365_5M</value>
           <libraryClass>QuantLib::Euribor365_5M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3656M</string>
           <value>EURIBOR365_6M</value>
           <libraryClass>QuantLib::Euribor365_6M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 6M</string>
           <value>EURIBOR365_6M</value>
           <libraryClass>QuantLib::Euribor365_6M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3657M</string>
           <value>EURIBOR365_7M</value>
           <libraryClass>QuantLib::Euribor365_7M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 7M</string>
           <value>EURIBOR365_7M</value>
           <libraryClass>QuantLib::Euribor365_7M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3658M</string>
           <value>EURIBOR365_8M</value>
           <libraryClass>QuantLib::Euribor365_8M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 8M</string>
           <value>EURIBOR365_8M</value>
           <libraryClass>QuantLib::Euribor365_8M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3659M</string>
           <value>EURIBOR365_9M</value>
           <libraryClass>QuantLib::Euribor365_9M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 9M</string>
           <value>EURIBOR365_9M</value>
           <libraryClass>QuantLib::Euribor365_9M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor36510M</string>
           <value>EURIBOR365_10M</value>
           <libraryClass>QuantLib::Euribor365_10M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 10M</string>
           <value>EURIBOR365_10M</value>
           <libraryClass>QuantLib::Euribor365_10M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor36511M</string>
           <value>EURIBOR365_11M</value>
           <libraryClass>QuantLib::Euribor365_11M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 11M</string>
           <value>EURIBOR365_11M</value>
           <libraryClass>QuantLib::Euribor365_11M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Euribor3651Y</string>
           <value>EURIBOR365_1Y</value>
           <libraryClass>QuantLib::Euribor365_1Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR EURIB365 1Y</string>
           <value>EURIBOR365_1Y</value>
           <libraryClass>QuantLib::Euribor365_1Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- QuantLib::EurLibor -->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EurliborSW</string>
           <value>EURLIBOR_SW</value>
           <libraryClass>QuantLib::EURLiborSW</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor1W</string>
           <value>EURLIBOR_SW</value>
           <libraryClass>QuantLib::EURLiborSW</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 1W</string>
           <value>EURLIBOR_SW</value>
           <libraryClass>QuantLib::EURLiborSW</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor2W</string>
           <value>EURLIBOR_2W</value>
           <libraryClass>QuantLib::EURLibor2W</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor1M</string>
           <value>EURLIBOR_1M</value>
           <libraryClass>QuantLib::EURLibor1M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 1M</string>
           <value>EURLIBOR_1M</value>
           <libraryClass>QuantLib::EURLibor1M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor2M</string>
           <value>EURLIBOR_2M</value>
           <libraryClass>QuantLib::EURLibor2M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 2M</string>
           <value>EURLIBOR_2M</value>
           <libraryClass>QuantLib::EURLibor2M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor3M</string>
           <value>EURLIBOR_3M</value>
           <libraryClass>QuantLib::EURLibor3M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 3M</string>
           <value>EURLIBOR_3M</value>
           <libraryClass>QuantLib::EURLibor3M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor4M</string>
           <value>EURLIBOR_4M</value>
           <libraryClass>QuantLib::EURLibor4M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 4M</string>
           <value>EURLIBOR_4M</value>
           <libraryClass>QuantLib::EURLibor4M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor5M</string>
           <value>EURLIBOR_5M</value>
           <libraryClass>QuantLib::EURLibor5M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 5M</string>
           <value>EURLIBOR_5M</value>
           <libraryClass>QuantLib::EURLibor5M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor6M</string>
           <value>EURLIBOR_6M</value>
           <libraryClass>QuantLib::EURLibor6M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 6M</string>
           <value>EURLIBOR_6M</value>
           <libraryClass>QuantLib::EURLibor6M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor7M</string>
           <value>EURLIBOR_7M</value>
           <libraryClass>QuantLib::EURLibor7M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 7M</string>
           <value>EURLIBOR_7M</value>
           <libraryClass>QuantLib::EURLibor7M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor8M</string>
           <value>EURLIBOR_8M</value>
           <libraryClass>QuantLib::EURLibor8M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 8M</string>
           <value>EURLIBOR_8M</value>
           <libraryClass>QuantLib::EURLibor8M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor9M</string>
           <value>EURLIBOR_9M</value>
           <libraryClass>QuantLib::EURLibor9M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 9M</string>
           <value>EURLIBOR_9M</value>
           <libraryClass>QuantLib::EURLibor9M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor10M</string>
           <value>EURLIBOR_10M</value>
           <libraryClass>QuantLib::EURLibor10M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 10M</string>
           <value>EURLIBOR_10M</value>
           <libraryClass>QuantLib::EURLibor10M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor11M</string>
           <value>EURLIBOR_11M</value>
           <libraryClass>QuantLib::EURLibor11M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 11M</string>
           <value>EURLIBOR_11M</value>
           <libraryClass>QuantLib::EURLibor11M</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>Eurlibor1Y</string>
           <value>EURLIBOR_1Y</value>
           <libraryClass>QuantLib::EURLibor1Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR 1Y</string>
           <value>EURLIBOR_1Y</value>
           <libraryClass>QuantLib::EURLibor1Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
 
         <!-- QuantLib::EuriborSwapFixA -->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EuriborSwapFixA1Y</string>
           <value>EURIBORSWAPFIXA_1Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA1Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA2Y</string>
           <value>EURIBORSWAPFIXA_2Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA2Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA3Y</string>
           <value>EURIBORSWAPFIXA_3Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA3Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA4Y</string>
           <value>EURIBORSWAPFIXA_4Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA4Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA5Y</string>
           <value>EURIBORSWAPFIXA_5Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA5Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA6Y</string>
           <value>EURIBORSWAPFIXA_6Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA6Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA7Y</string>
           <value>EURIBORSWAPFIXA_7Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA7Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA8Y</string>
           <value>EURIBORSWAPFIXA_8Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA8Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA9Y</string>
           <value>EURIBORSWAPFIXA_9Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA9Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA10Y</string>
           <value>EURIBORSWAPFIXA_10Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA10Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA12Y</string>
           <value>EURIBORSWAPFIXA_12Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA12Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA15Y</string>
           <value>EURIBORSWAPFIXA_15Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA15Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA20Y</string>
           <value>EURIBORSWAPFIXA_20Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA20Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA25Y</string>
           <value>EURIBORSWAPFIXA_25Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA25Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixA30Y</string>
           <value>EURIBORSWAPFIXA_30Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA30Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- Strings specific for receiving MGX data -->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EURIBSW2Y ISFX2</string>
           <value>EURIBORSWAPFIXA_2Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA2Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EURBSW5Y ISFX2</string>
           <value>EURIBORSWAPFIXA_5Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA5Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EURBSW10Y ISFX2</string>
           <value>EURIBORSWAPFIXA_10Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA10Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EURBSW15Y ISFX2</string>
           <value>EURIBORSWAPFIXA_15Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA15Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EURBSW20Y ISFX2</string>
           <value>EURIBORSWAPFIXA_20Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA20Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EURBSW30Y ISFX2</string>
           <value>EURIBORSWAPFIXA_30Y</value>
           <libraryClass>QuantLib::EuriborSwapFixA30Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- QuantLib::EuriborSwapFixB -->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EuriborSwapFixB1Y</string>
           <value>EURIBORSWAPFIXB_1Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB1Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB2Y</string>
           <value>EURIBORSWAPFIXB_2Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB2Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB3Y</string>
           <value>EURIBORSWAPFIXB_3Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB3Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB4Y</string>
           <value>EURIBORSWAPFIXB_4Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB4Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB5Y</string>
           <value>EURIBORSWAPFIXB_5Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB5Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB6Y</string>
           <value>EURIBORSWAPFIXB_6Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB6Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB7Y</string>
           <value>EURIBORSWAPFIXB_7Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB7Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB8Y</string>
           <value>EURIBORSWAPFIXB_8Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB8Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB9Y</string>
           <value>EURIBORSWAPFIXB_9Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB9Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB10Y</string>
           <value>EURIBORSWAPFIXB_10Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB10Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB12Y</string>
           <value>EURIBORSWAPFIXB_12Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB12Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB15Y</string>
           <value>EURIBORSWAPFIXB_15Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB15Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB20Y</string>
           <value>EURIBORSWAPFIXB_20Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB20Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB25Y</string>
           <value>EURIBORSWAPFIXB_25Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB25Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixB30Y</string>
           <value>EURIBORSWAPFIXB_30Y</value>
           <libraryClass>QuantLib::EuriborSwapFixB30Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- QuantLib::EurliborSwapFixA -->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EurliborSwapFixA1Y</string>
           <value>EURLIBORSWAPFIXA_1Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA1Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA2Y</string>
           <value>EURLIBORSWAPFIXA_2Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA2Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA3Y</string>
           <value>EURLIBORSWAPFIXA_3Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA3Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA4Y</string>
           <value>EURLIBORSWAPFIXA_4Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA4Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA5Y</string>
           <value>EURLIBORSWAPFIXA_5Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA5Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA6Y</string>
           <value>EURLIBORSWAPFIXA_6Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA6Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA7Y</string>
           <value>EURLIBORSWAPFIXA_7Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA7Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA8Y</string>
           <value>EURLIBORSWAPFIXA_8Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA8Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA9Y</string>
           <value>EURLIBORSWAPFIXA_9Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA9Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA10Y</string>
           <value>EURLIBORSWAPFIXA_10Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA10Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA12Y</string>
           <value>EURLIBORSWAPFIXA_12Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA12Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA15Y</string>
           <value>EURLIBORSWAPFIXA_15Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA15Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA20Y</string>
           <value>EURLIBORSWAPFIXA_20Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA20Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA25Y</string>
           <value>EURLIBORSWAPFIXA_25Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA25Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixA30Y</string>
           <value>EURLIBORSWAPFIXA_30Y</value>
           <libraryClass>QuantLib::EurliborSwapFixA30Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- QuantLib::EurliborSwapFixB -->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EurliborSwapFixB1Y</string>
           <value>EURLIBORSWAPFIXB_1Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB1Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB2Y</string>
           <value>EURLIBORSWAPFIXB_2Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB2Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB3Y</string>
           <value>EURLIBORSWAPFIXB_3Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB3Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB4Y</string>
           <value>EURLIBORSWAPFIXB_4Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB4Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB5Y</string>
           <value>EURLIBORSWAPFIXB_5Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB5Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB6Y</string>
           <value>EURLIBORSWAPFIXB_6Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB6Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB7Y</string>
           <value>EURLIBORSWAPFIXB_7Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB7Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB8Y</string>
           <value>EURLIBORSWAPFIXB_8Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB8Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB9Y</string>
           <value>EURLIBORSWAPFIXB_9Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB9Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB10Y</string>
           <value>EURLIBORSWAPFIXB_10Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB10Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB12Y</string>
           <value>EURLIBORSWAPFIXB_12Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB12Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB15Y</string>
           <value>EURLIBORSWAPFIXB_15Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB15Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB20Y</string>
           <value>EURLIBORSWAPFIXB_20Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB20Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB25Y</string>
           <value>EURLIBORSWAPFIXB_25Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB25Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixB30Y</string>
           <value>EURLIBORSWAPFIXB_30Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB30Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- EurliborSwapFixB strings only to receive Murex Input -->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EURLSW1Y ISFX2</string>
           <value>EURLIBORSWAPFIXB_1Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB1Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EURLSW10Y ISFX2</string>
           <value>EURLIBORSWAPFIXB_10Y</value>
           <libraryClass>QuantLib::EurliborSwapFixB10Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- QuantLib::EurliborSwapFixIFR only 10 and 30 years tenors are enumerated-->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EurliborSwapFixIFR10Y</string>
           <value>EURLIBORSWAPFIXIFR_10Y</value>
           <libraryClass>QuantLib::EurliborSwapFixIFR10Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EurliborSwapFixIFR30Y</string>
           <value>EURLIBORSWAPFIXIFR_30Y</value>
           <libraryClass>QuantLib::EurliborSwapFixIFR30Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- QuantLib::EurliborSwapFixIFR only 10 and 30 years tenors are enumerated strings only to receive Murex Input-->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EUR LIBOR SW10Y</string>
           <value>EURLIBORSWAPFIXIFR_10Y</value>
           <libraryClass>QuantLib::EurliborSwapFixIFR10Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EUR LIBOR SW30Y</string>
           <value>EURLIBORSWAPFIXIFR_30Y</value>
           <libraryClass>QuantLib::EurliborSwapFixIFR30Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- QuantLib::EuriborSwapFixIFR only 2, 5, 10 and 30 years tenors are enumerated because of missing historical data on other tenors-->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EuriborSwapFixIFR2Y</string>
           <value>EURIBORSWAPFIXIFR_2Y</value>
           <libraryClass>QuantLib::EuriborSwapFixIFR2Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixIFR5Y</string>
           <value>EURIBORSWAPFIXIFR_5Y</value>
           <libraryClass>QuantLib::EuriborSwapFixIFR5Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixIFR10Y</string>
           <value>EURIBORSWAPFIXIFR_10Y</value>
           <libraryClass>QuantLib::EuriborSwapFixIFR10Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EuriborSwapFixIFR30Y</string>
           <value>EURIBORSWAPFIXIFR_30Y</value>
           <libraryClass>QuantLib::EuriborSwapFixIFR30Y</libraryClass>
-        </EnumerationDefinition>
+        </EnumeratedClass>
         <!-- QuantLib::EuriborSwapFixIFR only 2, 5, 10 and 30 years tenors are enumerated because of missing historical data on other tenors string only for Murex export-->
-        <EnumerationDefinition>
+        <EnumeratedClass>
           <string>EURIBOR SW 2Y</string>
           <value>EURIBORSWAPFIXIFR_2Y</value>
           <libraryClass>QuantLib::EuriborSwapFixIFR2Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EURIBOR SW 5Y</string>
           <value>EURIBORSWAPFIXIFR_5Y</value>
           <libraryClass>QuantLib::EuriborSwapFixIFR5Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EURIBOR SW 10Y</string>
           <value>EURIBORSWAPFIXIFR_10Y</value>
           <libraryClass>QuantLib::EuriborSwapFixIFR10Y</libraryClass>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>EURIBOR SW 30Y</string>
           <value>EURIBORSWAPFIXIFR_30Y</value>
           <libraryClass>QuantLib::EuriborSwapFixIFR30Y</libraryClass>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
 
-  </Enumerations>
+  </EnumeratedClassGroups>
 
 </root>

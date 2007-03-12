@@ -28,34 +28,80 @@ import re
 
 class Value(serializable.Serializable):
     """Represent any value which may be passed to or received from a Function."""
-    const = True
-    description = ''
-    loop = ''
-    vectorIterator = ''
-    lastParameter = False
-    ignore = False
+
+    const_ = True
+    description_ = ''
+    loop_ = ''
+    vectorIterator_ = ''
+    lastParameter_ = False
+    ignore_ = False
+    default_ = ''
 
     def printValue(self, value):
         if value is None:
-            return ','
+            return ''
         else:
-            return str(value) + ','
+            return str(value) + ''
 
     def printDebug(self):
-        print self.printValue(self.name) + \
-            self.printValue(self.tensorRank) + \
-            self.printValue(self.type) + \
-            self.printValue(self.loop) + \
-            self.printValue(self.vectorIterator) + \
-            self.printValue(self.default) + \
-            self.printValue(self.ignore) + \
-            self.printValue(self.const)
+        print "type=" + str(type(self))
+        print "name=" + self.printValue(self.name_)
+        print "tensorRank=" + self.printValue(self.tensorRank_)
+        print "type=" + self.printValue(self.type_)
+        print "loop=" + self.printValue(self.loop_)
+        print "vecIter=" + self.printValue(self.vectorIterator_)
+        print "default=" + self.printValue(self.default_)
+        print "ignore=" + self.printValue(self.ignore_)
+        print "const=" + self.printValue(self.const_)
+
+    def tensorRank(self):
+        return self.tensorRank_
+
+    def type(self):
+        return self.type_
+
+    def loop(self):
+        return self.loop_
+
+    def vectorIterator(self):
+        return self.vectorIterator_
+
+    def default(self):
+        return self.default_
+
+    def ignore(self):
+        return self.ignore_
+
+    def const(self):
+        return self.const_
+
+    def dataType(self):
+        return self.dataType_
+
+    def nameCnv(self):
+        return self.nameCnv_
+
+    def description(self):
+        return self.description_
+
+    def lastParameter(self):
+        return self.lastParameter_
+
+    def setLastParameter(self, val):
+        self.lastParameter_ = val
+
+    def setLoop(self, val):
+        self.loop_ = val
+
+    def setDefault(self, val):
+        if val is None: print '******************'
+        self.default_ = val
 
 class Parameter(Value):
     """Encapsulate state necessary to generate source code 
     relating to a function parameter."""
 
-    groupName = 'Parameters'
+    groupName_ = 'Parameters'
 
     # strings which are not valid as parameter names.
     # TODO add C++ keywords etc.
@@ -75,16 +121,15 @@ class Parameter(Value):
 
     def postSerialize(self):
         """Perform post serialization initialization."""
-        if Parameter.ILLEGAL_NAMES.count(self.name):
-            raise exceptions.ParameterNameInvalidException(self.name)
-        self.dataType = environment.getType(self.type, self.superType)
+        if Parameter.ILLEGAL_NAMES.count(self.name_):
+            raise exceptions.ParameterNameInvalidException(self.name_)
+        self.dataType_ = environment.getType(self.type_, self.superType_)
 
 class ReturnValue(Value):
     """Encapsulate state necessary to generate source code 
     relating to a function return value."""
 
-    name = 'returnValue'
-    default = False
+    name_ = 'returnValue'
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
@@ -94,33 +139,32 @@ class ReturnValue(Value):
 
     def postSerialize(self):
         """Perform post serialization initialization."""
-        self.dataType = environment.getType(self.type, self.superType)
+        self.dataType_ = environment.getType(self.type_, self.superType_)
 
 class ConstructorReturnValue(Value):
     """Class to represent state shared by the return values
     of all constructors in QuantLibAddin."""
 
-    name = 'returnValue'
-    tensorRank = common.SCALAR
-    type = common.STRING
-    superType = 'native'
-    default = False
+    name_ = 'returnValue'
+    tensorRank_ = common.SCALAR
+    type_ = common.STRING
+    superType_ = 'native'
 
     def __init__(self):
-        self.dataType = environment.getType(self.type, self.superType)
+        self.dataType_ = environment.getType(self.type_, self.superType_)
 
 class PermanentFlag(Value):
     """All ctors have a final optional boolean parameter 'permanent'"""
 
-    name = 'permanent'
-    tensorRank = common.SCALAR
-    type = common.BOOL
-    default = 'false'
-    ignore = True
-    description = 'object permanent/nonpermanent'
+    name_ = 'permanent'
+    tensorRank_ = common.SCALAR
+    type_ = common.BOOL
+    ignore_ = True
+    description_ = 'object permanent/nonpermanent'
+    default_ = 'false'
 
     def __init__(self):
-        self.dataType = environment.getType(self.type)
+        self.dataType_ = environment.getType(self.type_)
 
 class ConstructorObjectID(Parameter):
     """ID of an object.
@@ -128,16 +172,15 @@ class ConstructorObjectID(Parameter):
     Implicitly used as the first input parameter for all 
     Constructors (where the ID is assigned to the new object)."""
 
-    name = 'objectID'
-    tensorRank = common.SCALAR
-    type = common.STRING
-    superType = 'native'
-    default = False
-    ignore = False
-    description = 'id of object to be created'
+    name_ = 'objectID'
+    tensorRank_ = common.SCALAR
+    type_ = common.STRING
+    superType_ = 'native'
+    ignore_ = False
+    description_ = 'id of object to be created'
 
     def __init__(self):
-        self.dataType = environment.getType(self.type, self.superType)
+        self.dataType_ = environment.getType(self.type_, self.superType_)
 
 class MemberObjectID(Parameter):
     """ID of an object.
@@ -146,41 +189,39 @@ class MemberObjectID(Parameter):
     Constructors (where the ID is assigned to the new object) and
     Members (where the ID indicates the object to be retrieved)."""
 
-    name = 'objectID'
-    tensorRank = common.SCALAR
-    default = False
-    ignore = False
+    name_ = 'objectID'
+    tensorRank_ = common.SCALAR
+    ignore_ = False
 
     def __init__(self, typeName, superTypeName):
         #self.failIfEmpty = True # Member function can't be invoked on null object
 
-        self.type = typeName
-        self.superType = superTypeName
-        self.dataType = environment.getType(typeName, superTypeName)
-        self.description = 'id of existing %s object' % self.dataType.value
+        self.type_ = typeName
+        self.superType_ = superTypeName
+        self.dataType_ = environment.getType(typeName, superTypeName)
+        self.description_ = 'id of existing %s object' % self.dataType_.value()
 
         # FIXME add this info to type metadata?
-        if self.dataType.superType == 'objectClass' or self.dataType.superType == 'objectHandle':
-            self.nameCnv = self.name + 'Obj'
-        elif self.dataType.superType == 'libraryClass' or self.dataType.superType == 'handleToLib':
-            self.nameCnv = self.name + 'LibObj'
+        if self.dataType_.superType() == 'objectClass' or self.dataType_.superType() == 'objectHandle':
+            self.nameCnv_ = self.name_ + 'Obj'
+        elif self.dataType_.superType() == 'libraryClass' or self.dataType_.superType() == 'handleToLib':
+            self.nameCnv_ = self.name_ + 'LibObj'
 
 class EnumerationId(Parameter):
     """ID of an enumeration.
 
     the ID of an Enumeration to be retrieved from the Registry."""
 
-    tensorRank = common.SCALAR
-    default = False
-    ignore = False
+    tensorRank_ = common.SCALAR
+    ignore_ = False
 
     def __init__(self, typeName, superTypeName):
-        self.type = typeName
-        self.superType = superTypeName
-        self.dataType = environment.getType(typeName, superTypeName)
-        self.description = 'ID of Enumeration of class %s' % self.dataType.value
-        self.name = re.match(r"\w*::(\w*)", self.dataType.value).group(1).lower()
-        self.nameCnv = self.name + 'Enum'
+        self.type_ = typeName
+        self.superType_ = superTypeName
+        self.dataType_ = environment.getType(typeName, superTypeName)
+        self.description_ = 'ID of Enumeration of class %s' % self.dataType_.value()
+        self.name_ = re.match(r"\w*::(\w*)", self.dataType_.value()).group(1).lower()
+        self.nameCnv_ = self.name_ + 'Enum'
 
 class DependencyTrigger(Parameter):
     """dependency tracking trigger.
@@ -188,14 +229,13 @@ class DependencyTrigger(Parameter):
     A dummy parameter used to force dependencies between cells
     in a worksheet."""
 
-    name = 'trigger'
-    type = common.ANY
-    superType = 'native'
-    tensorRank = common.SCALAR
-    default = False
-    ignore = True
-    description = 'dependency tracking trigger'
+    name_ = 'trigger'
+    type_ = common.ANY
+    superType_ = 'native'
+    tensorRank_ = common.SCALAR
+    ignore_ = True
+    description_ = 'dependency tracking trigger'
 
     def __init__(self):
-        self.dataType = environment.getType(self.type, self.superType)
+        self.dataType_ = environment.getType(self.type_, self.superType_)
 

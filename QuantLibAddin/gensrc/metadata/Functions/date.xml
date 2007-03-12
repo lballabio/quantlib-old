@@ -15,7 +15,7 @@
       <description>returns a Period from a given Frequency (e.g. 6M from SemiAnnual).</description>
       <alias>QuantLibAddin::periodFromFrequency</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -37,7 +37,7 @@
       <description>returns a Frequency from a given Period (e.g. SemiAnnual from 6M).</description>
       <alias>QuantLibAddin::frequencyFromPeriod</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -58,7 +58,7 @@
       <description>Returns is a period is less than another.</description>
       <alias>QuantLib::operator&lt;</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -84,7 +84,7 @@
       <description>returns the earliest date allowed in QuantLib.</description>
       <alias>QuantLib::Date::minDate</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -99,7 +99,7 @@
       <description>returns the latest date allowed in QuantLib.</description>
       <alias>QuantLib::Date::maxDate</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -114,7 +114,7 @@
       <description>returns TRUE if a year is leap.</description>
       <alias>QuantLib::Date::isLeap</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -135,7 +135,7 @@
       <description>returns the last day of the month to which the given date belongs.</description>
       <alias>QuantLib::Date::endOfMonth</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -156,7 +156,7 @@
       <description>returns TRUE if a date is the last day of its month.</description>
       <alias>QuantLib::Date::isEOM</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -177,7 +177,7 @@
       <description>Returns the next given weekday following or equal to the given date (e.g., the Friday following Tuesday, January 15th, 2002 was January 18th, 2002).</description>
       <alias>QuantLib::Date::nextWeekday</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -204,7 +204,7 @@
       <description>Returns the n-th given weekday in the given month and year (e.g., the 4th Thursday of March, 1998 was March 26th, 1998).</description>
       <alias>QuantLib::Date::nthWeekday</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -240,7 +240,7 @@
       <description>returns whether or not the given date is an IMM date.</description>
       <alias>QuantLib::Date::isIMMdate</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -266,7 +266,7 @@
       <description>returns whether or not the given code is an IMM code.</description>
       <alias>QuantLib::Date::isIMMcode</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -292,7 +292,7 @@
       <description>returns the future code corresponding to a given IMM date (e.g. H6 for March 15th, 2006). It fails if the input date is not an IMM date.</description>
       <alias>QuantLib::Date::IMMcode</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -313,7 +313,7 @@
       <description>returns the future code corresponding to a given IMM date (e.g. H6 for March 15th, 2006). It fails if the input date is not an IMM date.</description>
       <alias>QuantLib::Date::nextIMMcode</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -338,7 +338,7 @@
     <Procedure name='qlNextIMMcodes'>
       <description>returns the codes for next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -364,7 +364,7 @@
       <description>returns the IMM date corresponding to the given IMM code (e.g. March 15th, 2006 for H6).</description>
       <alias>QuantLib::Date::IMMdate</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -390,7 +390,7 @@
       <description>returns the 1st delivery date for next contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <alias>QuantLib::Date::nextIMMdate</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -415,7 +415,7 @@
     <Procedure name='qlNextIMMdates'>
       <description>returns the delivery dates for next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

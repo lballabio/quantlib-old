@@ -26,7 +26,7 @@ class CategoryList(object):
 
     def __init__(self):
 
-        self.categoryNames_ = environment.config().categoryNames
+        self.categoryNames_ = environment.config().categoryNames()
         self.categoryNames_.sort()
 
         self.categoryDict_ = {}

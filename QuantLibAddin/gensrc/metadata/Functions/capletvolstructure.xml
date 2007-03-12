@@ -20,7 +20,7 @@
       <description>Returns a vector of volatilities corresponding to a vector of strikes for a given exercise date.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -51,7 +51,7 @@
       <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -82,7 +82,7 @@
       <description>Returns the minimum strike for which the term structure can return vols.</description>
       <libraryFunction>minStrike</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -97,7 +97,7 @@
       <description>Returns the maximum strike for which the term structure can return vols.</description>
       <libraryFunction>maxStrike</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -112,7 +112,7 @@
     <Constructor name='qlCapletVTSConstant'>
       <libraryFunction>CapletConstantVolatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -136,7 +136,7 @@
       <description>Returns the vector of cap strikes underlying the given ObjectID.</description>
       <libraryFunction>strikes</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -151,7 +151,7 @@
       <description>Returns the vector of cap tenors underlying the given ObjectID.</description>
       <libraryFunction>tenors</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -165,7 +165,7 @@
     <Constructor name='qlCapsStripper'>
       <libraryFunction>CapsStripper</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -223,7 +223,7 @@
     <Constructor name='qlCapsStripper2'>
       <libraryFunction>CapsStripper</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -286,7 +286,7 @@
     <Constructor name='qlSmileSectionsVolStructure'>
       <libraryFunction>SmileSectionsVolStructure</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -313,7 +313,7 @@
     <Constructor name='qlHandleCapletVolatilityStructure'>
       <libraryFunction>Handle&lt;QuantLib::CapletVolatilityStructure&gt;</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -331,7 +331,7 @@
       <libraryFunction>linkTo</libraryFunction>
       <description>relink handle</description>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

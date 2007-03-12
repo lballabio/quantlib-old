@@ -19,7 +19,7 @@
       <description>returns the earliest date for the given RateHelper object</description>
       <libraryFunction>earliestDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -34,7 +34,7 @@
       <description>returns the latest date for the given RateHelper object</description>
       <libraryFunction>latestDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -49,7 +49,7 @@
       <description>returns the reference quote for the given RateHelper object</description>
       <libraryFunction>referenceQuote</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -63,8 +63,8 @@
     <Constructor name='qlDepositRateHelper'>
       <libraryFunction>DepositRateHelper</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -106,7 +106,7 @@
     <Constructor name='qlSwapRateHelper'>
       <libraryFunction>SwapRateHelper</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -159,7 +159,7 @@
       <description>returns the convexity adjustment for the given FuturesRateHelper object</description>
       <libraryFunction>convexityAdjustment</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -173,7 +173,7 @@
     <Constructor name='qlFuturesRateHelper'>
       <libraryFunction>FuturesRateHelper</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -221,7 +221,7 @@
     <Procedure name='qlRateHelperSelection'>
       <description>selects rate helpers for bootstrapping</description>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

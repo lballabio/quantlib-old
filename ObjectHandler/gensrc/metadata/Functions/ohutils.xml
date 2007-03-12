@@ -17,7 +17,7 @@
       <description>forces a dependency between two functions and returns the update counter</description>
       <alias>ObjHandler::dependsOn</alias>
       <SupportedPlatforms>
-        <Excel implementation='manual'/>
+        <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -83,7 +83,7 @@
       <description>returns the number of functions in this addin</description>
       <alias>ObjHandler::version</alias>
       <SupportedPlatforms>
-        <Excel implementation='manual'/>
+        <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -98,7 +98,7 @@
       <description>list the IDs of objects in repository matching regex</description>
       <alias>ObjHandler::ObjectHandlerXL::instance().listObjectIDs</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -119,7 +119,7 @@
       <description>#/objects in repository</description>
       <alias>ObjHandler::ObjectHandlerXL::instance().objectCount</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -134,7 +134,7 @@
       <description>trim error values from bottom/right of matrix/vector</description>
       <alias>ObjHandler::ObjectHandlerXL::instance().packMatrix</alias>
       <SupportedPlatforms>
-        <Excel implementation='manual'/>
+        <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -155,7 +155,7 @@
       <description>Splits a string using delimiters</description>
       <alias>ObjHandler::split</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -187,7 +187,7 @@
       <alias>ObjHandler::filter</alias>
       <xlWizardRecalc>true</xlWizardRecalc>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -213,7 +213,7 @@
       <description>retrieve error message associated with a given range</description>
       <alias>ObjHandler::ObjectHandlerXL::instance().retrieveError</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -234,7 +234,7 @@
       <description>returns the version number of ObjectHandler</description>
       <alias>ObjHandler::version</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>

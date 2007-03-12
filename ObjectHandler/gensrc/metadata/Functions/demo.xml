@@ -15,7 +15,7 @@
     <Constructor name='ohThing'>
       <libraryFunction>Thing</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -37,7 +37,7 @@
       <description>returns the string parameter for the given Thing object</description>
       <libraryFunction>stringParameter</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -52,7 +52,7 @@
       <description>sets the string parameter for the given Thing object</description>
       <libraryFunction>setStringParameter</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -73,7 +73,7 @@
       <description>returns the double parameter for the given Thing object</description>
       <libraryFunction>doubleParameter</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -88,7 +88,7 @@
       <description>sets the double parameter for the given Thing object</description>
       <libraryFunction>setDoubleParameter</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -109,7 +109,7 @@
       <description></description>
       <libraryFunction>ohThingFunc0</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -130,7 +130,7 @@
       <description></description>
       <libraryFunction>ohThingFunc1</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -151,7 +151,7 @@
       <description></description>
       <libraryFunction>ohThingFunc2</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -182,7 +182,7 @@
       <description></description>
       <libraryFunction>ohThingFunc3</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -208,7 +208,7 @@
       <description></description>
       <libraryFunction>ohThingFunc4</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -234,7 +234,7 @@
       <description></description>
       <libraryFunction>ohThingFunc5</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -260,7 +260,7 @@
       <description></description>
       <libraryFunction>ohThingFunc6</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

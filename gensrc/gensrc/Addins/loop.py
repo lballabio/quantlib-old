@@ -37,32 +37,44 @@ namespace %(namespace)s {
 
         log.Log.instance().logMessage(' begin generating Loops ...')
         for cat in categoryList.categories('*'):
-            if cat.containsLoopFunction:
+            if cat.containsLoopFunction():
                 self.generateLoops(cat)
         log.Log.instance().logMessage(' done generating Loops.')
 
     def generateLoop(self, func):
         """Generate loop typedefs for given function."""
-        returnType = self.loopDatatype.apply(func.returnValue)
-        return self.bufferBind.text % {
-            'bindList' : func.behavior.bindList(self.inputTypes2),
-            'bindPointer' : func.behavior.bindPointer(self.inputTypes1, returnType),
-            'const' : func.behavior.const,
-            'functionName' : func.name,
-            'functionScope2' : func.behavior.functionScope2,
-            'inputTypes3' : func.ParameterList.generate(self.inputTypes3),
-            'namespaceLibrary' : environment.config().namespaceLibrary,
+        returnType = self.loopDatatype_.apply(func.returnValue())
+        return self.bufferBind_.text() % {
+            'bindList' : func.behavior().bindList(self.inputTypes2_),
+            'bindPointer' : func.behavior().bindPointer(self.inputTypes1_, returnType),
+            'const' : func.behavior().const(),
+            'functionName' : func.name(),
+            'functionScope2' : func.behavior().functionScope2(),
+            'inputTypes3' : func.parameterList().generate(self.inputTypes3_),
+            'namespaceLibrary' : environment.config().namespaceLibrary(),
             'returnType' : returnType }
 
     def generateLoops(self, cat):
         """Generate type definitions required for source code for loop functions."""
         buf = ''
         for func in cat.functions('*'): 
-            if func.loopParameter:
+            if func.loopParameter():
                 buf += self.generateLoop(func)
         bufFile = Loop.BUF_FILE % {
             'buffer' : buf,
-            'namespace' : environment.config().namespaceObjects }
-        fileName = self.rootPath + 'loop_' + cat.name + '.hpp'
-        outputfile.OutputFile(self, fileName, self.copyright, bufFile)
+            'namespace' : environment.config().namespaceObjects() }
+        fileName = self.rootPath_ + 'loop_' + cat.name() + '.hpp'
+        outputfile.OutputFile(self, fileName, self.copyright_, bufFile)
+
+    def inputTypes1(self):
+        return self.inputTypes1_
+
+    def inputTypes2(self):
+        return self.inputTypes2_
+
+    def inputTypes3(self):
+        return self.inputTypes3_
+
+    def loopDatatype(self):
+        return self.loopDatatype_
 

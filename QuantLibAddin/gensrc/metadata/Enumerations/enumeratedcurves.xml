@@ -1,0 +1,60 @@
+<root>
+
+  <EnumeratedCurveGroups>
+
+    <EnumeratedCurveGroup class='QuantLib::YieldTermStructure'>
+      <EnumeratedCurves>
+        <!-- Discount based yield term structures -->
+        <EnumeratedCurve>
+          <traits>Discount</traits>
+          <interpolator>Linear</interpolator>
+          <value>DISCOUNT_LINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedCurve>
+        <EnumeratedCurve>
+          <traits>Discount</traits>
+          <interpolator>LogLinear</interpolator>
+          <value>DISCOUNT_LOGLINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedCurve>
+        <EnumeratedCurve>
+          <traits>Discount</traits>
+          <interpolator>Cubic</interpolator>
+          <value>DISCOUNT_CUBIC_PiecewiseYieldCurve</value>
+        </EnumeratedCurve>
+        <!-- ZeroYield based yield term structures -->
+        <EnumeratedCurve>
+          <traits>ZeroYield</traits>
+          <interpolator>Linear</interpolator>
+          <value>ZEROYIELD_LINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedCurve>
+        <EnumeratedCurve>
+          <traits>ZeroYield</traits>
+          <interpolator>LogLinear</interpolator>
+          <value>ZEROYIELD_LOGLINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedCurve>
+        <EnumeratedCurve>
+          <traits>ZeroYield</traits>
+          <interpolator>Cubic</interpolator>
+          <value>ZEROYIELD_CUBIC_PiecewiseYieldCurve</value>
+        </EnumeratedCurve>
+        <!--ForwardRate based yield term structures-->
+        <EnumeratedCurve>
+          <traits>ForwardRate</traits>
+          <interpolator>Linear</interpolator>
+          <value>FORWARDRATE_LINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedCurve>
+        <EnumeratedCurve>
+          <traits>ForwardRate</traits>
+          <interpolator>LogLinear</interpolator>
+          <value>FORWARDRATE_LOGLINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedCurve>
+        <EnumeratedCurve>
+          <traits>ForwardRate</traits>
+          <interpolator>Cubic</interpolator>
+          <value>FORWARDRATE_CUBIC_PiecewiseYieldCurve</value>
+        </EnumeratedCurve>
+      </EnumeratedCurves>
+    </EnumeratedCurveGroup>
+
+  </EnumeratedCurveGroups>
+
+</root>

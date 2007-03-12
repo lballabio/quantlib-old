@@ -20,7 +20,7 @@
       <description>Returns the name for the given Index object</description>
       <libraryFunction>name</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -35,7 +35,7 @@
       <description>Returns TRUE if the fixing date is a valid one for the given Index object</description>
       <libraryFunction>isValidFixingDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -56,7 +56,7 @@
       <description>Returns the fixing for the given Index object. The fixing is retrieved from the time series if available, otherways it is forecasted.</description>
       <libraryFunction>fixing</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -82,7 +82,7 @@
       <description>Adds a fixing for the given Index object</description>
       <libraryFunction>addFixing</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -109,7 +109,7 @@
       <description>Adds fixings for the given Index object</description>
       <libraryFunction>addFixings</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -139,7 +139,7 @@
       <description>Returns the family name (e.g. EURIBOR) for the given Index object</description>
       <libraryFunction>familyName</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -154,7 +154,7 @@
       <description>Returns the tenor (i.e. length, e.g. 6M, 10Y) for the given Index object</description>
       <libraryFunction>tenor</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -169,7 +169,7 @@
       <description>Returns the fixing days (e.g. 2) for the given Index object</description>
       <libraryFunction>fixingDays</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -184,7 +184,7 @@
       <description>Returns the currency (e.g. EUR) for the given Index object</description>
       <libraryFunction>currency</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -199,7 +199,7 @@
       <description>Returns the calendar (e.g. TARGET) for the given Index object</description>
       <libraryFunction>calendar</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -214,7 +214,7 @@
       <description>Returns the DayCounter (e.g. Actual/360) for the given Index object</description>
       <libraryFunction>dayCounter</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -229,7 +229,7 @@
       <description>Returns the forecasted fixing for the given Index object. Today's fixing is forecasted even if the actual one is available in the time series.</description>
       <libraryFunction>forecastFixing</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -250,7 +250,7 @@
       <description>Returns the value date for the given fixing date for the given Index object</description>
       <libraryFunction>valueDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -271,7 +271,7 @@
       <description>Returns the fixing date for the given value date for the given Index object</description>
       <libraryFunction>fixingDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -292,7 +292,7 @@
       <description>Returns the maturity date for the given value date for the given Index object</description>
       <libraryFunction>maturityDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -315,7 +315,7 @@
       <description>Returns the business day convention (e.g. Modified Following) for the given IborIndex object</description>
       <libraryFunction>businessDayConvention</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -330,7 +330,7 @@
       <description>Returns TRUE if the given IborIndex object follows the 'end of month' convention</description>
       <libraryFunction>endOfMonth</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -345,7 +345,7 @@
       <description>Returns the term structure for the given IborIndex (e.g. EURYC)</description>
       <libraryFunction>termStructure</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -361,7 +361,7 @@
     <Constructor name='qlIborIndex'>
       <libraryFunction>IborIndex</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -422,7 +422,7 @@
       <description>Sets the yield term structure which is linked to by the handle shared by all enumerated Euribor objects</description>
       <alias>QuantLibAddin::EuriborHandle::instance().linkEuriborHandle</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -446,7 +446,7 @@
       <description>Returns the fixed leg tenor (e.g. 1Y) for the given SwapIndex object</description>
       <libraryFunction>fixedLegTenor</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -461,7 +461,7 @@
       <description>Returns the business day convention (e.g. Modified Following) for the given SwapIndex object</description>
       <libraryFunction>fixedLegConvention</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -476,7 +476,7 @@
       <description>Returns the underlying IborIndex for the given SwapIndex object (e.g. EURIBOR6M)</description>
       <libraryFunction>iborIndex</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -496,7 +496,7 @@
     <Constructor name='qlSwapIndex'>
       <libraryFunction>SwapIndex</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

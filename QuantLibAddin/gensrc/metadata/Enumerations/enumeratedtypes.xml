@@ -1,1193 +1,1193 @@
 <root>
 
-  <enumTypeCopyright>
+  <enumeratedTypeCopyright>
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2006 Katiuscia Manzoni
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006 Chiara Fornarola
-  </enumTypeCopyright>
+  </enumeratedTypeCopyright>
 
-  <Enumerations>
+  <EnumeratedTypeGroups>
 
-    <Enumeration type='QuantLib::Frequency'>
+    <EnumeratedTypeGroup type='QuantLib::Frequency'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>NoFrequency</string>
           <value>QuantLib::NoFrequency</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>No-Frequency</string>
           <value>QuantLib::NoFrequency</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Once</string>
           <value>QuantLib::Once</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Annual</string>
           <value>QuantLib::Annual</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Semiannual</string>
           <value>QuantLib::Semiannual</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Every4Month</string>
           <value>QuantLib::EveryFourthMonth</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>EveryFourthMonth</string>
           <value>QuantLib::EveryFourthMonth</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Every-Fourth-Month</string>
           <value>QuantLib::EveryFourthMonth</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Quarterly</string>
           <value>QuantLib::Quarterly</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Bimonthly</string>
           <value>QuantLib::Bimonthly</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Monthly</string>
           <value>QuantLib::Monthly</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Biweekly</string>
           <value>QuantLib::Biweekly</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Weekly</string>
           <value>QuantLib::Weekly</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Daily</string>
           <value>QuantLib::Daily</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::TimeUnit'>
+    <EnumeratedTypeGroup type='QuantLib::TimeUnit'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Days</string>
           <value>QuantLib::Days</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Months</string>
           <value>QuantLib::Months</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Weeks</string>
           <value>QuantLib::Weeks</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Years</string>
           <value>QuantLib::Years</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::Month'>
+    <EnumeratedTypeGroup type='QuantLib::Month'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>January</string>
           <value>QuantLib::January</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>February</string>
           <value>QuantLib::February</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>March</string>
           <value>QuantLib::March</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>April</string>
           <value>QuantLib::April</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>May</string>
           <value>QuantLib::May</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>June</string>
           <value>QuantLib::June</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>July</string>
           <value>QuantLib::July</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>August</string>
           <value>QuantLib::August</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>September</string>
           <value>QuantLib::September</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>October</string>
           <value>QuantLib::October</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>November</string>
           <value>QuantLib::November</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>December</string>
           <value>QuantLib::December</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>Jan</string>
           <value>QuantLib::Jan</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Feb</string>
           <value>QuantLib::Feb</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Mar</string>
           <value>QuantLib::Mar</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Apr</string>
           <value>QuantLib::Apr</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>May</string>
           <value>QuantLib::May</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Jun</string>
           <value>QuantLib::Jun</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Jul</string>
           <value>QuantLib::Jul</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Aug</string>
           <value>QuantLib::Aug</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Sep</string>
           <value>QuantLib::Sep</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Oct</string>
           <value>QuantLib::Oct</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Nov</string>
           <value>QuantLib::Nov</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Dec</string>
           <value>QuantLib::Dec</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::Weekday'>
+    <EnumeratedTypeGroup type='QuantLib::Weekday'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Sunday</string>
           <value>QuantLib::Sunday</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Monday</string>
           <value>QuantLib::Monday</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Tuesday</string>
           <value>QuantLib::Tuesday</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Wednesday</string>
           <value>QuantLib::Wednesday</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Thursday</string>
           <value>QuantLib::Thursday</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Friday</string>
           <value>QuantLib::Friday</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Saturday</string>
           <value>QuantLib::Saturday</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>Sun</string>
           <value>QuantLib::Sun</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Mon</string>
           <value>QuantLib::Mon</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Tue</string>
           <value>QuantLib::Tue</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Wed</string>
           <value>QuantLib::Wed</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Thu</string>
           <value>QuantLib::Thu</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Fri</string>
           <value>QuantLib::Fri</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Sat</string>
           <value>QuantLib::Sat</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::EndCriteria::Type'>
+    <EnumeratedTypeGroup type='QuantLib::EndCriteria::Type'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>None</string>
           <value>QuantLib::EndCriteria::None</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>MaxIterations</string>
           <value>QuantLib::EndCriteria::MaxIterations</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>StationaryPoint</string>
           <value>QuantLib::EndCriteria::StationaryPoint</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>StationaryGradient</string>
           <value>QuantLib::EndCriteria::StationaryGradient</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Unknown</string>
           <value>QuantLib::EndCriteria::Unknown</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::SalvagingAlgorithm::Type'>
+    <EnumeratedTypeGroup type='QuantLib::SalvagingAlgorithm::Type'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>None</string>
           <value>QuantLib::SalvagingAlgorithm::None</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Spectral</string>
           <value>QuantLib::SalvagingAlgorithm::Spectral</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Hypersphere</string>
           <value>QuantLib::SalvagingAlgorithm::Hypersphere</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::PriceType'>
+    <EnumeratedTypeGroup type='QuantLib::PriceType'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Bid</string>
           <value>QuantLib::Bid</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Ask</string>
           <value>QuantLib::Ask</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Last</string>
           <value>QuantLib::Last</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Close</string>
           <value>QuantLib::Close</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Mid</string>
           <value>QuantLib::Mid</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Mid Equivalent</string>
           <value>QuantLib::MidEquivalent</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Mid Safe</string>
           <value>QuantLib::MidSafe</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::Position::Type'>
+    <EnumeratedTypeGroup type='QuantLib::Position::Type'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Long</string>
           <value>QuantLib::Position::Long</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Short</string>
           <value>QuantLib::Position::Short</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::Average::Type'>
+    <EnumeratedTypeGroup type='QuantLib::Average::Type'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Arithmetic</string>
           <value>QuantLib::Average::Arithmetic</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Geometric</string>
           <value>QuantLib::Average::Geometric</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::Barrier::Type'>
+    <EnumeratedTypeGroup type='QuantLib::Barrier::Type'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>DownIn</string>
           <value>QuantLib::Barrier::DownIn</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>DownOut</string>
           <value>QuantLib::Barrier::DownOut</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UpIn</string>
           <value>QuantLib::Barrier::UpIn</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UpOut</string>
           <value>QuantLib::Barrier::UpOut</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::BusinessDayConvention'>
+    <EnumeratedTypeGroup type='QuantLib::BusinessDayConvention'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Following</string>
           <value>QuantLib::Following</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>F</string>
           <value>QuantLib::Following</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Modified Following</string>
           <value>QuantLib::ModifiedFollowing</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>MF</string>
           <value>QuantLib::ModifiedFollowing</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Preceding</string>
           <value>QuantLib::Preceding</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>P</string>
           <value>QuantLib::Preceding</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Modified Preceding</string>
           <value>QuantLib::ModifiedPreceding</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>MP</string>
           <value>QuantLib::ModifiedPreceding</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Unadjusted</string>
           <value>QuantLib::Unadjusted</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
         <!-- For Mgx export only -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>Indifferent</string>
           <value>QuantLib::Unadjusted</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::Calendar'>
+    <EnumeratedTypeGroup type='QuantLib::Calendar'>
       <constructor>false</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Argentina::Merval</string>
           <value>QuantLib::Argentina(QuantLib::Argentina::Merval)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Australia</string>
           <value>QuantLib::Australia()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Brazil</string>
           <value>QuantLib::Brazil()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Canada</string>
           <value>QuantLib::Canada()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>China</string>
           <value>QuantLib::China()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>CzechRepublic::PSE</string>
           <value>QuantLib::CzechRepublic(QuantLib::CzechRepublic::PSE)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Denmark</string>
           <value>QuantLib::Denmark()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Finland</string>
           <value>QuantLib::Finland()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Germany::Eurex</string>
           <value>QuantLib::Germany(QuantLib::Germany::Eurex)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Germany::FrankfurtStockExchange</string>
           <value>QuantLib::Germany(QuantLib::Germany::FrankfurtStockExchange)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Germany::Settlement</string>
           <value>QuantLib::Germany(QuantLib::Germany::Settlement)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Germany::Xetra</string>
           <value>QuantLib::Germany(QuantLib::Germany::Xetra)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>HongKong::HKEx</string>
           <value>QuantLib::HongKong(QuantLib::HongKong::HKEx)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Hungary</string>
           <value>QuantLib::Hungary()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Iceland::ICEX</string>
           <value>QuantLib::Iceland(QuantLib::Iceland::ICEX)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>India::NSE</string>
           <value>QuantLib::India(QuantLib::India::NSE)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Indonesia::BEJ</string>
           <value>QuantLib::Indonesia(QuantLib::Indonesia::BEJ)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Italy::Exchange</string>
           <value>QuantLib::Italy(QuantLib::Italy::Exchange)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Italy::Settlement</string>
           <value>QuantLib::Italy(QuantLib::Italy::Settlement)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Japan</string>
           <value>QuantLib::Japan()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Mexico::BMV</string>
           <value>QuantLib::Mexico(QuantLib::Mexico::BMV)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NewZealand</string>
           <value>QuantLib::NewZealand()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Norway</string>
           <value>QuantLib::Norway()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NullCalendar</string>
           <value>QuantLib::NullCalendar()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Poland</string>
           <value>QuantLib::Poland()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SaudiArabia</string>
           <value>QuantLib::SaudiArabia()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Singapore::SGX</string>
           <value>QuantLib::Singapore(QuantLib::Singapore::SGX)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Slovakia::BSSE</string>
           <value>QuantLib::Slovakia(QuantLib::Slovakia::BSSE)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SouthAfrica</string>
           <value>QuantLib::SouthAfrica()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SouthKorea::KRX</string>
           <value>QuantLib::SouthKorea(QuantLib::SouthKorea::KRX)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Sweden</string>
           <value>QuantLib::Sweden()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Switzerland</string>
           <value>QuantLib::Switzerland()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Taiwan::TSEC</string>
           <value>QuantLib::Taiwan(QuantLib::Taiwan::TSEC)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>TARGET</string>
           <value>QuantLib::TARGET()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <!-- clone of TARGET -->
           <string>EUR</string>
           <value>QuantLib::TARGET()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Turkey</string>
           <value>QuantLib::Turkey()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Ukraine::USE</string>
           <value>QuantLib::Ukraine(QuantLib::Ukraine::USE)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedKingdom::Exchange</string>
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>LONDON</string>
           <!-- Clone for UnitedKingdom::Exchange -->
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>GBP</string>
           <!-- Clone for UnitedKingdom::Exchange -->
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedKingdom::Metals</string>
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Metals)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedKingdom::Settlement</string>
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Settlement)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedStates::GovernmentBond</string>
           <value>QuantLib::UnitedStates(QuantLib::UnitedStates::GovernmentBond)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedStates::NERC</string>
           <value>QuantLib::UnitedStates(QuantLib::UnitedStates::NERC)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedStates::NYSE</string>
           <value>QuantLib::UnitedStates(QuantLib::UnitedStates::NYSE)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedStates::Settlement</string>
           <value>QuantLib::UnitedStates(QuantLib::UnitedStates::Settlement)</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::CapFloor::Type'>
+    <EnumeratedTypeGroup type='QuantLib::CapFloor::Type'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Cap</string>
           <value>QuantLib::CapFloor::Cap</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Floor</string>
           <value>QuantLib::CapFloor::Floor</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Collar</string>
           <value>QuantLib::CapFloor::Collar</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::Settlement::Type'>
+    <EnumeratedTypeGroup type='QuantLib::Settlement::Type'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Cash</string>
           <value>QuantLib::Settlement::Cash</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Physical</string>
           <value>QuantLib::Settlement::Physical</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::Compounding'>
+    <EnumeratedTypeGroup type='QuantLib::Compounding'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Simple</string>
           <value>QuantLib::Simple</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Compounded</string>
           <value>QuantLib::Compounded</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Continuous</string>
           <value>QuantLib::Continuous</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SimpleThenCompounded</string>
           <value>QuantLib::SimpleThenCompounded</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::Currency'>
+    <EnumeratedTypeGroup type='QuantLib::Currency'>
       <constructor>false</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>ARS</string>
           <value>QuantLib::ARSCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>ATS</string>
           <value>QuantLib::ATSCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>AUD</string>
           <value>QuantLib::AUDCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>BDT</string>
           <value>QuantLib::BDTCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>BEF</string>
           <value>QuantLib::BEFCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>BGL</string>
           <value>QuantLib::BGLCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>BRL</string>
           <value>QuantLib::BRLCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>BYR</string>
           <value>QuantLib::BYRCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>CAD</string>
           <value>QuantLib::CADCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>CHF</string>
           <value>QuantLib::CHFCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>CLP</string>
           <value>QuantLib::CLPCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>CNY</string>
           <value>QuantLib::CNYCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>COP</string>
           <value>QuantLib::COPCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>CYP</string>
           <value>QuantLib::CYPCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>CZK</string>
           <value>QuantLib::CZKCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>DEM</string>
           <value>QuantLib::DEMCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>DKK</string>
           <value>QuantLib::DKKCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>EEK</string>
           <value>QuantLib::EEKCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>ESP</string>
           <value>QuantLib::ESPCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>EUR</string>
           <value>QuantLib::EURCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>FIM</string>
           <value>QuantLib::FIMCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>FRF</string>
           <value>QuantLib::FRFCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>GBP</string>
           <value>QuantLib::GBPCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>GRD</string>
           <value>QuantLib::GRDCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>HKD</string>
           <value>QuantLib::HKDCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>HUF</string>
           <value>QuantLib::HUFCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>IEP</string>
           <value>QuantLib::IEPCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>ILS</string>
           <value>QuantLib::ILSCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>INR</string>
           <value>QuantLib::INRCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>IQD</string>
           <value>QuantLib::IQDCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>IRR</string>
           <value>QuantLib::IRRCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>ISK</string>
           <value>QuantLib::ISKCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>ITL</string>
           <value>QuantLib::ITLCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>JPY</string>
           <value>QuantLib::JPYCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>KRW</string>
           <value>QuantLib::KRWCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>KWD</string>
           <value>QuantLib::KWDCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>LTL</string>
           <value>QuantLib::LTLCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>LUF</string>
           <value>QuantLib::LUFCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>LVL</string>
           <value>QuantLib::LVLCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>MTL</string>
           <value>QuantLib::MTLCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>MXN</string>
           <value>QuantLib::MXNCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NLG</string>
           <value>QuantLib::NLGCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NOK</string>
           <value>QuantLib::NOKCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NPR</string>
           <value>QuantLib::NPRCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NZD</string>
           <value>QuantLib::NZDCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>PKR</string>
           <value>QuantLib::PKRCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>PLN</string>
           <value>QuantLib::PLNCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>PTE</string>
           <value>QuantLib::PTECurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>ROL</string>
           <value>QuantLib::ROLCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SAR</string>
           <value>QuantLib::SARCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SEK</string>
           <value>QuantLib::SEKCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SGD</string>
           <value>QuantLib::SGDCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SIT</string>
           <value>QuantLib::SITCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SKK</string>
           <value>QuantLib::SKKCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>THB</string>
           <value>QuantLib::THBCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>TRL</string>
           <value>QuantLib::TRLCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>TTD</string>
           <value>QuantLib::TTDCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>TWD</string>
           <value>QuantLib::TWDCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>USD</string>
           <value>QuantLib::USDCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>VEB</string>
           <value>QuantLib::VEBCurrency()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>ZAR</string>
           <value>QuantLib::ZARCurrency()</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::DayCounter'>
+    <EnumeratedTypeGroup type='QuantLib::DayCounter'>
       <constructor>false</constructor>
-      <EnumerationDefinitions>
+      <EnumeratedTypes>
         <!-- ISDA 2000 Definition Annex Article 4 Section 4.16-->
 
         <!-- (a) -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>1/1</string>
           <value>QuantLib::OneDayCounter()</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
         <!-- (b) -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>Actual/Actual (ISDA)</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Actual/Actual</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Actual/365</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Act/365</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>A/365</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Act/Act</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
         <!-- (c) -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>Actual/365 (Fixed)</string>
           <value>QuantLib::Actual365Fixed()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Act/365 (Fixed)</string>
           <value>QuantLib::Actual365Fixed()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>A/365 (Fixed)</string>
           <value>QuantLib::Actual365Fixed()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>A/365F</string>
           <value>QuantLib::Actual365Fixed()</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
         <!-- (d) -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>Actual/360</string>
           <value>QuantLib::Actual360()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Act/360</string>
           <value>QuantLib::Actual360()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>A/360</string>
           <value>QuantLib::Actual360()</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
         <!-- (e) -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>30/360 (Bond Basis)</string>
           <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Bond Basis</string>
           <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>30/360</string>
           <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>360/360</string>
           <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
         <!-- (f) -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>30/360 (Eurobond Basis)</string>
           <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Eurobond Basis</string>
           <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>30E/360</string>
           <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>30E/360 (Eurobond Basis)</string>
           <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
         <!-- NON-ISDA  -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>Actual/Actual (ISMA)</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Actual/Actual (Bond)</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
         <!-- NON-ISDA -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>Actual/Actual (AFB)</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Actual/Actual (Euro)</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
         <!-- NON-ISDA -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>30/360 (Italian)</string>
           <value>QuantLib::Thirty360(QuantLib::Thirty360::Italian)</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
         <!-- NON-ISDA QuantLib specific -->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>Simple</string>
           <value>QuantLib::SimpleDayCounter()</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
         <!-- Strings specific for receiving Murex exports-->
-        <EnumerationDefinition>
+        <EnumeratedType>
           <string>LIN 30/360</string>
           <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>LIN ACT/360</string>
           <value>QuantLib::Actual360()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>LIN ACT/365</string>
           <value>QuantLib::Actual365Fixed()</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>LIN ACT/ACT</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>LIN ACTACT ISDA</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumerationDefinition>
+        </EnumeratedType>
 
-      </EnumerationDefinitions>
-    </Enumeration>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::Option::Type'>
+    <EnumeratedTypeGroup type='QuantLib::Option::Type'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Call</string>
           <value>QuantLib::Option::Call</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Put</string>
           <value>QuantLib::Option::Put</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::VanillaSwap::Type'>
+    <EnumeratedTypeGroup type='QuantLib::VanillaSwap::Type'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Payer</string>
           <value>QuantLib::VanillaSwap::Payer</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Receiver</string>
           <value>QuantLib::VanillaSwap::Receiver</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::CubicSpline::BoundaryCondition'>
+    <EnumeratedTypeGroup type='QuantLib::CubicSpline::BoundaryCondition'>
       <constructor>false</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>NotAKnot</string>
           <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::NotAKnot)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>FirstDerivative</string>
           <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::FirstDerivative)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SecondDerivative</string>
           <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::SecondDerivative)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Periodic</string>
           <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::Periodic)</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Lagrange</string>
           <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::Lagrange)</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::GFunctionFactory::ModelOfYieldCurve'>
+    <EnumeratedTypeGroup type='QuantLib::GFunctionFactory::ModelOfYieldCurve'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>Standard</string>
           <value>QuantLib::GFunctionFactory::Standard</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>ExactYield</string>
           <value>QuantLib::GFunctionFactory::ExactYield</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>ParallelShifts</string>
           <value>QuantLib::GFunctionFactory::ParallelShifts</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NonParallelShifts</string>
           <value>QuantLib::GFunctionFactory::NonParallelShifts</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-    <Enumeration type='QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType'>
+    <EnumeratedTypeGroup type='QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType'>
       <constructor>true</constructor>
-      <EnumerationDefinitions>
-        <EnumerationDefinition>
+      <EnumeratedTypes>
+        <EnumeratedType>
           <string>OnSpread</string>
           <value>QuantLib::SmileAndCmsCalibrationBySabr::OnSpread</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>OnPrice</string>
           <value>QuantLib::SmileAndCmsCalibrationBySabr::OnPrice</value>
-        </EnumerationDefinition>
-        <EnumerationDefinition>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>OnForwardPrice</string>
           <value>QuantLib::SmileAndCmsCalibrationBySabr::OnForwardCmsPrice</value>
-        </EnumerationDefinition>
-      </EnumerationDefinitions>
-    </Enumeration>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
 
-  </Enumerations>
+  </EnumeratedTypeGroups>
 
 </root>

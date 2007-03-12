@@ -34,6 +34,7 @@ MAPFILE = 'funcdef.cpp'
 MAPLINE = """    %s[ STRFROMANSI( "%s" ) ]
         =  STRFROMANSI( "%s" );\n"""
 PARMLINE = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
+QLA_HEADER = 'qla_all.hpp'
 
 class CalcAddin(addin.Addin):
     """Generate source code for Calc addin."""
@@ -67,9 +68,9 @@ class CalcAddin(addin.Addin):
     def generateFuncMap(self):
         """Generate help text for function wizard."""
         buf = ''
-        for cat in self.categoryList_.categories(self.name, function.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
             buf += '    // %s\n\n' % cat.displayName
-            for func in cat.functions(self.name, function.MANUAL): 
+            for func in cat.functions(self.name_, function.MANUAL): 
                 buf += '    // %s\n\n' % func.name
                 buf += MAPLINE % ('funcMap', func.name, func.name)
                 buf += MAPLINE % ('funcDesc', func.name, func.description)
@@ -87,7 +88,7 @@ class CalcAddin(addin.Addin):
     def generateAutoHeader(self):
         """Generate header file that lists all other headers."""
         bufHeader = ''
-        for cat in self.categoryList_.categories(self.name, function.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
             bufHeader += '#include <Addins/Calc/%s.hpp>\n' % cat.name
         buf = self.bufferHeader.text % { 
             'prefix' : environment.config().prefix,
@@ -111,7 +112,7 @@ class CalcAddin(addin.Addin):
 
     def generateHeaders(self):
         """Generate source for function prototypes."""
-        for cat in self.categoryList_.categories(self.name, function.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
             buf = ''
             for func in cat.functions(self.name, function.MANUAL): 
                 buf += self.generateHeader(func)
@@ -119,7 +120,7 @@ class CalcAddin(addin.Addin):
                 'prefix' : environment.config().prefix,
                 'categoryName' : cat.name,
                 'buffer' : buf }
-            fileName = self.rootPath + cat.name + '.hpp'
+            fileName = self.rootPath_ + cat.name() + '.hpp'
             outputfile.OutputFile(self, fileName, None, buf2, False)
 
     def generateFunction(self, func):
@@ -127,52 +128,52 @@ class CalcAddin(addin.Addin):
         if func.loopParameter:
             convertReturnType = 8 * ' ' + 'return returnValue;'
         else:
-            convertReturnType = self.convertReturnType.apply(func.returnValue)
-        return self.bufferFunction.text % {
+            convertReturnType = self.convertReturnType_.apply(func.returnValue)
+        return self.bufferFunction_.text() % {
             'convertReturnType' : convertReturnType,
-            'cppConversions' : func.ParameterList.generate(self.cppConversions),
-            'enumConversions' : func.ParameterList.generate(self.enumConversions),
+            'cppConversions' : func.ParameterList.generate(self.cppConversions_),
+            'enumConversions' : func.ParameterList.generate(self.enumConversions_),
             'functionBody' : func.generateBody(self),
             'functionName' : func.name,
             'functionValueObject' : func.generateVO(self),
             'header' : self.generateHeader(func, False),
-            'libraryConversions' : func.ParameterList.generate(self.libraryConversions),
-            'referenceConversions' : func.ParameterList.generate(self.referenceConversions) }
+            'libraryConversions' : func.ParameterList.generate(self.libraryConversions_),
+            'referenceConversions' : func.ParameterList.generate(self.referenceConversions_) }
 
     def generateFunctions(self):
         """Generate source for function implementations."""
-        for cat in self.categoryList_.categories(self.name):
+        for cat in self.categoryList_.categories(self.name_):
             buf = ''
-            for func in cat.functions(self.name): 
+            for func in cat.functions(self.name_): 
                 buf += self.generateFunction(func)
             categoryIncludes = cat.includeList()
             if cat.containsLoopFunction:
                 categoryIncludes += '#include <%s/loop_%s.hpp>' % (
                     environment.config().loopRootDirectory,
-                    cat.name)
+                    cat.name())
                 loopIncludes = '#include <Addins/Calc/loop.hpp>'
             else:
                 loopIncludes = ''
-            buf2 = self.bufferIncludes.text % {
+            buf2 = self.bufferIncludes_.text() % {
                 'categoryIncludes' : categoryIncludes,
                 'prefix' : environment.config().prefix,
                 'libRoot' : environment.config().libRootDirectory,
                 'loopIncludes' : loopIncludes,
                 'buffer' : buf }
-            fileName = self.rootPath + cat.name + '.cpp'
+            fileName = self.rootPath_ + cat.name() + '.cpp'
             outputfile.OutputFile(self, fileName, None, buf2, False)
     
     def generateIDL(self):
         """Generate the IDL file for the addin."""
         buf = ''
-        for cat in self.categoryList_.categories(self.name, function.MANUAL):
-            buf += '                // %s\n\n' % cat.name
-            for func in cat.functions(self.name, function.MANUAL): 
-                parameterList = func.ParameterList.generate(self.ruleIDL)
-                returnTypeIDL = self.returnTypeIDL.apply(func.returnValue)
-                buf += self.bufferIdlFunction.text % (returnTypeIDL, 
-                    func.name, parameterList)
-        buf2 = self.bufferIdlHeader.text % { 'buffer' : buf }
-        fileName = self.rootPath + IDLFILE
+        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
+            buf += '                // %s\n\n' % cat.name()
+            for func in cat.functions(self.name_, function.MANUAL): 
+                parameterList = func.ParameterList.generate(self.ruleIDL_)
+                returnTypeIDL = self.returnTypeIDL_.apply(func.returnValue)
+                buf += self.bufferIdlFunction_.text() % (returnTypeIDL, 
+                    func.name(), parameterList)
+        buf2 = self.bufferIdlHeader_.text() % { 'buffer' : buf }
+        fileName = self.rootPath_ + IDLFILE
         outputfile.OutputFile(self, fileName, None, buf2, False)
 

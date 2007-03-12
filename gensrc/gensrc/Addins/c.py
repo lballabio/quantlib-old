@@ -61,48 +61,47 @@ class CAddin(addin.Addin):
 
     def generateHeader(self, func, suffix):
         """Generate source for prototype of given function."""
-        functionDeclaration = func.ParameterList.generate(self.functionDeclaration)
+        functionDeclaration = func.ParameterList.generate(self.functionDeclaration_)
         if functionDeclaration: functionDeclaration += ','
         return CAddin.BUFFER_FUNCDEC % {
-            'func_name' : func.name,
+            'func_name' : func.name(),
             'func_dec' : functionDeclaration,
-            'func_ret' : self.functionReturnType.apply(func.returnValue),
+            'func_ret' : self.functionReturnType_.apply(func.returnValue),
             'suffix' : suffix }
 
     def generateHeaders(self, cat):
         """Generate source for function prototypes."""
         bufHeader = ''
-        for func in cat.functions(self.name): 
+        for func in cat.functions(self.name_): 
             bufHeader += self.generateHeader(func, ';\n')
         buf = CAddin.BUFFER_HEADER % {
-            'cat_name' : cat.name,
-            'lib_name' : environment.config().libRootDirectory,
+            'cat_name' : cat.name(),
             'func_headers' : bufHeader }
-        fileName = self.rootPath + cat.name + '.h'
+        fileName = self.rootPath + cat.name() + '.h'
         fileHeader = outputfile.OutputFile(self, fileName, None, buf, False)
 
     def generateFunction(self, func):
         """Generate source code for function."""
-        return self.bufferFunction.text % {
-            'libraryConversions' : func.ParameterList.generate(self.libraryConversions),
-            'referenceConversions' : func.ParameterList.generate(self.referenceConversions),
-            'enumConversions' : func.ParameterList.generate(self.enumConversions),
+        return self.bufferFunction_.text() % {
+            'libraryConversions' : func.ParameterList.generate(self.libraryConversions_),
+            'referenceConversions' : func.ParameterList.generate(self.referenceConversions_),
+            'enumConversions' : func.ParameterList.generate(self.enumConversions_),
             'body' : func.generateBody(self),
-            'returnCommand' : self.returnConversion.apply(func.returnValue),
-            'name' : func.name }
+            'returnCommand' : self.returnConversion_.apply(func.returnValue),
+            'name' : func.name() }
 
     def generateFunctions(self, cat):
         """Generate source for function implementations."""
         codeBuffer = ''
-        for func in cat.functions(self.name): 
+        for func in cat.functions(self.name_): 
             codeBuffer += self.generateHeader(func, ' {')
             codeBuffer += self.generateFunction(func)
-        buf = self.bufferIncludes.text % {
+        buf = self.bufferIncludes_.text() % {
             'includes' : cat.includeList(),
             'name' : cat.name,
             'prefix' : environment.config().prefix,
             'libRoot' : environment.config().libRootDirectory,
             'code' : codeBuffer }
-        fileName = self.rootPath + cat.name + '.cpp'
+        fileName = self.rootPath_ + cat.name() + '.cpp'
         outputfile.OutputFile(self, fileName, None, buf, False)
 

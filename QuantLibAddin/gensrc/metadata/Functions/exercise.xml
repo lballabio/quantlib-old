@@ -13,7 +13,7 @@
       <description>Returns all exercise dates</description>
       <libraryFunction>dates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -28,7 +28,7 @@
       <description>Returns last exercise date</description>
       <libraryFunction>lastDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -42,8 +42,8 @@
     <Constructor name='qlAmericanExercise'>
       <libraryFunction>AmericanExercise</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -69,10 +69,10 @@
     <Constructor name='qlEuropeanExercise'>
       <libraryFunction>EuropeanExercise</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
-        <Guile/>
-        <C/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='C'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -88,8 +88,8 @@
     <Constructor name='qlBermudanExercise'>
       <libraryFunction>BermudanExercise</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

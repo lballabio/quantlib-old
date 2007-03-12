@@ -36,6 +36,7 @@
     </RuleGroup>
 
     <RuleGroup name='xlRegisterParam'>
+      <Wrap/>
       <Rules>
         <Rule default='true'>P</Rule>
         <Rule loop='true'>P</Rule>
@@ -66,6 +67,7 @@
     </RuleGroup>
 
     <RuleGroup name='parameterList' delimiter=','>
+      <Wrap/>
       <Rules>
         <Rule>%(name)s</Rule>
       </Rules>
@@ -276,6 +278,7 @@
     </RuleGroup>
 
     <RuleGroup name='loopReturnType'>
+      <Wrap/>
       <Rules>
         <Rule superType='libraryType'>%(type)s</Rule>
         <Rule superType='enumeration'>%(type)s</Rule>

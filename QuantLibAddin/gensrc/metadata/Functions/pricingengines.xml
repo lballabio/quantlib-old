@@ -21,7 +21,7 @@
       <description>Black 1976 formula for option pricing</description>
       <alias>QuantLib::blackFormula</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -62,7 +62,7 @@
       <description>Black 1976 probability of being in the money (in the bond martingale measure), i.e. N(d2). It is a risk-neutral probability, not the real world one.</description>
       <alias>QuantLib::blackCashItmProbability</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -98,7 +98,7 @@
       <description>Approximation for the standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula</description>
       <alias>QuantLib::blackImpliedStdDevApproximation</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -139,7 +139,7 @@
       <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula</description>
       <alias>QuantLib::blackImpliedStdDev</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -190,7 +190,7 @@
       <description>Black 1976 formula for the derivative with respect to the standard deviation (annualized percentage volatility times the square root of time to option expiry).</description>
       <alias>QuantLib::blackStdDevDerivative</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -226,7 +226,7 @@
       <description>Black style formula when forward is normal rather than log-normal, i.e. essentially the model of Bachelier.</description>
       <alias>QuantLib::bachelierBlackFormula</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -267,7 +267,7 @@
       <description>Black 1976 formula for option pricing. It uses a PlainVanillaPayoff object as input</description>
       <alias>QuantLib::blackFormula</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -303,7 +303,7 @@
       <description>Black 1976 probability of being in the money (in the bond martingale measure), i.e. N(d2). It is a risk-neutral probability, not the real world one. It uses a PlainVanillaPayoff object as input</description>
       <alias>QuantLib::blackCashItmProbability</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -334,7 +334,7 @@
       <description>Approximation for the standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula. It uses a PlainVanillaPayoff object as input</description>
       <alias>QuantLib::blackImpliedStdDevApproximation</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -370,7 +370,7 @@
       <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula. It uses a PlainVanillaPayoff object as input</description>
       <alias>QuantLib::blackImpliedStdDev</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -416,7 +416,7 @@
       <description>Black 1976 formula for the derivative with respect to the standard deviation (annualized percentage volatility times the square root of time to option expiry). It uses a PlainVanillaPayoff object as input</description>
       <alias>QuantLib::blackStdDevDerivative</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -452,7 +452,7 @@
       <description>Black style formula when forward is normal rather than log-normal, i.e. essentially the model of Bachelier. It uses a PlainVanillaPayoff object as input</description>
       <alias>QuantLib::bachelierBlackFormula</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -490,7 +490,7 @@
       <description>returns the option value for the given BlackCalculator object.</description>
       <libraryFunction>value</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -505,7 +505,7 @@
       <description>returns the sensitivity to change in the underlying forward price for the given BlackCalculator object.</description>
       <libraryFunction>deltaForward</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -520,7 +520,7 @@
       <description>returns the sensitivity to change in the underlying spot price for the given BlackCalculator object.</description>
       <libraryFunction>delta</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -541,7 +541,7 @@
       <description>returns the sensitivity in percent to a percent change in the underlying forward price for the given BlackCalculator object.</description>
       <libraryFunction>elasticityForward</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -556,7 +556,7 @@
       <description>returns the sensitivity in percent to a percent change in the underlying spot price for the given BlackCalculator object.</description>
       <libraryFunction>elasticity</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -577,7 +577,7 @@
       <description>returns the second order derivative with respect to change in the underlying forward price for the given BlackCalculator object.</description>
       <libraryFunction>gammaForward</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -592,7 +592,7 @@
       <description>returns the second order derivative with respect to change in the underlying spot price for the given BlackCalculator object.</description>
       <libraryFunction>gamma</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -613,7 +613,7 @@
       <description>returns the sensitivity to time to maturity for the given BlackCalculator object.</description>
       <libraryFunction>theta</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -639,7 +639,7 @@
       <description>returns the sensitivity to time to maturity per day, assuming 365 days per year, for the given BlackCalculator object.</description>
       <libraryFunction>thetaPerDay</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -665,7 +665,7 @@
       <description>returns the sensitivity to volatility for the given BlackCalculator object.</description>
       <libraryFunction>vega</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -686,7 +686,7 @@
       <description>returns the sensitivity to discounting rate for the given BlackCalculator object.</description>
       <libraryFunction>rho</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -707,7 +707,7 @@
       <description>returns the sensitivity to dividend/growth rate for the given BlackCalculator object.</description>
       <libraryFunction>dividendRho</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -728,7 +728,7 @@
       <description>returns the probability of being in the money in the bond martingale measure for the given BlackCalculator object. It is a risk-neutral probability, not the real world probability.</description>
       <libraryFunction>itmCashProbability</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -743,7 +743,7 @@
       <description>returns the probability of being in the money in the asset martingale measure for the given BlackCalculator object. It is a risk-neutral probability, not the real world probability.</description>
       <libraryFunction>itmAssetProbability</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -758,7 +758,7 @@
       <description>returns the sensitivity to strike for the given BlackCalculator object.</description>
       <libraryFunction>strikeSensitivity</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -773,7 +773,7 @@
       <description>returns the alpha of the internal formulation of the given BlackCalculator object.</description>
       <libraryFunction>alpha</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -788,7 +788,7 @@
       <description>returns the beta of the internal formulation of the given BlackCalculator object.</description>
       <libraryFunction>beta</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -802,7 +802,7 @@
     <Constructor name='qlBlackCalculator'>
       <libraryFunction>BlackCalculator</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -835,7 +835,7 @@
       <description>returns the sensitivity to change in the underlying spot price for the given BlackScholesCalculator object.</description>
       <libraryFunction>delta</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -850,7 +850,7 @@
       <description>returns the sensitivity in percent to a percent change in the underlying spot price for the given BlackScholesCalculator object.</description>
       <libraryFunction>elasticity</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -865,7 +865,7 @@
       <description>returns the second order derivative with respect to change in the underlying spot price for the given BlackScholesCalculator object.</description>
       <libraryFunction>gamma</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -880,7 +880,7 @@
       <description>returns the sensitivity to time to maturity for the given BlackScholesCalculator object.</description>
       <libraryFunction>theta</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -901,7 +901,7 @@
       <description>returns the sensitivity to time to maturity per day, assuming 365 days per year, for the given BlackScholesCalculator object.</description>
       <libraryFunction>thetaPerDay</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -921,7 +921,7 @@
     <Constructor name='qlBlackScholesCalculator'>
       <libraryFunction>BlackScholesCalculator</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -958,10 +958,10 @@
     <Constructor name='qlPricingEngine'>
       <libraryFunction>PricingEngine</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -977,8 +977,8 @@
     <Constructor name='qlBinomialPricingEngine'>
       <libraryFunction>PricingEngine</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -999,7 +999,7 @@
     <Constructor name='qlBlackSwaptionEngine'>
       <libraryFunction>BlackSwaptionEngine</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1016,7 +1016,7 @@
     <Constructor name='qlBlackCapFloorEngine'>
       <libraryFunction>BlackCapFloorEngine</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1034,7 +1034,7 @@
     <Constructor name='qlBlackCapFloorEngine2'>
       <libraryFunction>BlackCapFloorEngine</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1050,7 +1050,7 @@
     <Constructor name='qlAnalyticCapFloorEngine'>
       <libraryFunction>AnalyticCapFloorEngine</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

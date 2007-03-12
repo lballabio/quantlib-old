@@ -27,7 +27,7 @@
       <description>Returns the bond cash flow analysis.</description>
       <libraryFunction>flowAnalysis</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -42,7 +42,7 @@
       <description>Returns the bond description string</description>
       <libraryFunction>description</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -57,7 +57,7 @@
       <description>Returns the bond currency</description>
       <libraryFunction>currency</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -72,7 +72,7 @@
       <description>Returns the settlement date of the bond.</description>
       <libraryFunction>settlementDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -93,7 +93,7 @@
       <description>Returns the initial interest accrual date of the bond.</description>
       <libraryFunction>interestAccrualDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -108,7 +108,7 @@
       <description>Returns the maturity date of the bond.</description>
       <libraryFunction>maturityDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -123,7 +123,7 @@
       <description>Returns the calendar of the bond, e.g. TARGET.</description>
       <libraryFunction>calendar</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -138,7 +138,7 @@
       <description>Returns the payment business day convention for the given Bond, e.g. Following.</description>
       <libraryFunction>paymentConvention</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -153,7 +153,7 @@
       <description>Returns the DayCounter convention for the given Bond, e.g. Actual/360.</description>
       <libraryFunction>dayCounter</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -168,7 +168,7 @@
       <description>Returns the frequency for the given Bond, e.g. Annual.</description>
       <libraryFunction>frequency</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -183,7 +183,7 @@
       <description>Returns the clean price for the given bond. The default bond settlement date is used for calculation.</description>
       <libraryFunction>cleanPrice</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -198,7 +198,7 @@
       <description>Returns the dirty price for the given bond. The default bond settlement date is used for calculation.</description>
       <libraryFunction>dirtyPrice</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -213,7 +213,7 @@
       <description>Returns the yield for the given bond. The default bond settlement date is used for calculation.</description>
       <libraryFunction>yield</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -234,7 +234,7 @@
       <description>Set the coupon pricer at the given Bond object</description>
       <libraryFunction>setPricer</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -255,7 +255,7 @@
       <description>Set the coupon pricer at the given Bond object</description>
       <libraryFunction>setPricers</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -277,7 +277,7 @@
       <description>Returns the clean price for the given bond corresponding to the given yield and settlement date. The default bond settlement is used if no date is given.</description>
       <libraryFunction>cleanPrice</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -308,7 +308,7 @@
       <description>Returns the dirty price for the given bond corresponding to the given yield and settlement date. The default bond settlement is used if no date is given.</description>
       <libraryFunction>dirtyPrice</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -340,7 +340,7 @@
       <description>Returns the yield for the given bond corresponding to the given clean price and settlement date. The default bond settlement is used if no date is given.</description>
       <libraryFunction>yield</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -371,7 +371,7 @@
       <description>Returns the accrued amount for the given bond. The default bond settlement is used if no date is given.</description>
       <libraryFunction>accruedAmount</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -391,7 +391,7 @@
     <Constructor name='qlZeroCouponBond'>
       <libraryFunction>ZeroCouponBond</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -458,7 +458,7 @@
     <Constructor name='qlFixedRateBond'>
       <libraryFunction>FixedRateBond</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -525,7 +525,7 @@
     <Constructor name='qlFloatingRateBond'>
       <libraryFunction>FloatingRateBond</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -622,7 +622,7 @@
     <Constructor name='qlCmsRateBond'>
       <libraryFunction>CmsRateBond</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

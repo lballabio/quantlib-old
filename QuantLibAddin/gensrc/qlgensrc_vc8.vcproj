@@ -79,15 +79,15 @@
 			Name="Enumerations"
 			>
 			<File
-				RelativePath="metadata\Enumerations\enumclasses.xml"
+				RelativePath="metadata\Enumerations\enumeratedclasses.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Enumerations\enumcurves.xml"
+				RelativePath="metadata\Enumerations\enumeratedcurves.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Enumerations\enumtypes.xml"
+				RelativePath="metadata\Enumerations\enumeratedtypes.xml"
 				>
 			</File>
 		</Filter>

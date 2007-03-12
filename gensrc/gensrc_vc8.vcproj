@@ -167,7 +167,7 @@
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\enumerations.py"
+				RelativePath="gensrc\Addins\addinqla.py"
 				>
 			</File>
 			<File
@@ -211,7 +211,15 @@
 			Name="Enumerations"
 			>
 			<File
-				RelativePath="gensrc\Enumerations\enumeration.py"
+				RelativePath="gensrc\Enumerations\enumeratedclasses.py"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\Enumerations\enumeratedcurves.py"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\Enumerations\enumeratedtypes.py"
 				>
 			</File>
 			<File
@@ -411,6 +419,14 @@
 				>
 			</File>
 			<File
+				RelativePath="gensrc\stubs\stub.enum.classes"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.enum.types"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\stubs\stub.excel.function"
 				>
 			</File>
@@ -464,6 +480,10 @@
 			</File>
 			<File
 				RelativePath="gensrc\stubs\stub.loop.bind"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.qla.mainheader"
 				>
 			</File>
 			<File

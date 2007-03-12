@@ -17,7 +17,7 @@
       <description>Returns the current value of the given Quote object</description>
       <libraryFunction>value</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -31,7 +31,7 @@
     <Constructor name='qlSimpleQuote'>
       <libraryFunction>SimpleQuote</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -48,7 +48,7 @@
       <description>Sets the value of the given SimpleQuote object</description>
       <libraryFunction>setValue</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -68,7 +68,7 @@
     <Constructor name='qlHandleQuote'>
       <libraryFunction>Handle&lt;QuantLib::Quote&gt;</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -86,7 +86,7 @@
       <libraryFunction>linkTo</libraryFunction>
       <description>relink handle</description>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -107,7 +107,7 @@
     <Constructor name='qlForwardValueQuote'>
       <libraryFunction>ForwardValueQuote</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -128,7 +128,7 @@
     <Constructor name='qlImpliedStdDevQuote'>
       <libraryFunction>ImpliedStdDevQuote</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -171,7 +171,7 @@
     <Constructor name='qlEurodollarFuturesImpliedStdDevQuote'>
       <libraryFunction>EurodollarFuturesImpliedStdDevQuote</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -215,7 +215,7 @@
     <Constructor name='qlFuturesConvAdjustmentQuote'>
       <libraryFunction>FuturesConvAdjustmentQuote</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -255,7 +255,7 @@
       <description>Return the IMM date of futures</description>
       <libraryFunction>immDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -270,7 +270,7 @@
       <description>Return the value of futures underlying</description>
       <libraryFunction>futuresValue</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -285,7 +285,7 @@
       <description>Return the value of HW volatility</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -300,7 +300,7 @@
       <description>Return the value of HW mean reversion</description>
       <libraryFunction>meanReversion</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>

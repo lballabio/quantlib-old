@@ -14,7 +14,7 @@
       <description>returns the mid price if available, or a suitable substitute otherwise</description>
       <alias>QuantLib::midEquivalent</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -50,7 +50,7 @@
       <description>returns the mid price only if both bid and ask are available.</description>
       <alias>QuantLib::midSafe</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

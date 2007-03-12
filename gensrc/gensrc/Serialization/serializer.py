@@ -18,6 +18,8 @@
 """An object which can write a Serializable object to, or read it from,
 a data stream."""
 
+from gensrc.Serialization import exceptions
+
 class Serializer(object):
     """An object which can write a Serializable object to, or read it from,
     a data stream.
@@ -34,5 +36,7 @@ class Serializer(object):
 
     Base class Serializer is presently empty and is included to clarify
     class relationships. """
-    pass
+
+    def __init__(self):
+        raise exceptions.SerializationOverrideException("Serializer", "__init__")
 

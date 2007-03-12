@@ -17,10 +17,10 @@
       <description>Returns the NPV for the given Instrument object</description>
       <libraryFunction>NPV</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
-        <Guile/>
-        <C/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='C'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -35,10 +35,10 @@
       <description>Returns the required result (if available) for the given Instrument object</description>
       <libraryFunction>result&lt;QuantLib::Real&gt;</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
-        <Guile/>
-        <C/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='C'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -59,7 +59,7 @@
       <description>Returns the NPV error estimation (for e.g. Monte Carlo simulation) for the given Instrument object</description>
       <libraryFunction>errorEstimate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -74,7 +74,7 @@
       <description>Returns TRUE if the given Instrument object is expired</description>
       <libraryFunction>isExpired</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -89,7 +89,7 @@
       <description>Sets a new pricing engine to the given Instrument pbject</description>
       <libraryFunction>setPricingEngine</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

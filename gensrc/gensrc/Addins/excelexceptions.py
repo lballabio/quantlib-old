@@ -34,7 +34,7 @@ allowed by the Excel function wizard.
 Please shorten the names of the parameters."""
 
     def __init__(self, functionName, parameterNames, max):
-        self.value = ExcelParameterLengthException.PARAM_ERROR % {
+        self.value_ = ExcelParameterLengthException.PARAM_ERROR % {
             'functionName' : functionName,
             'parameterNames' : parameterNames,
             'len' : len(parameterNames),
@@ -48,7 +48,7 @@ This function is defined with %(parameterCount)d arguments
 which exceeds the Excel maximum of %(parameterMax)d arguments.'''
 
     def __init__(self, functionName, parameterCount, parameterMax):
-        self.value = ExcelParameterCountException.MAXPARAMERR % {
+        self.value_ = ExcelParameterCountException.MAXPARAMERR % {
             'functionName' : functionName,
             'parameterCount' : parameterCount,
             'parameterMax' : parameterMax }
@@ -64,7 +64,7 @@ Excel 2007, cells are named from A1 to %(maxColumnId)s%(maxRowNumber)s
 and these identifiers may not be used as function names.'''
 
     def __init__(self, functionName, maxColumnId, maxRowNumber):
-        self.value = ExcelCellNameException.CELL_NAME_ERROR % {
+        self.value_ = ExcelCellNameException.CELL_NAME_ERROR % {
             'functionName' : functionName,
             'maxColumnId' : maxColumnId,
             'maxRowNumber' : maxRowNumber }
@@ -78,7 +78,7 @@ This string has a length of %(stringLength)d bytes
 which exceeds the Excel maximum string length of %(maxStringLength)d bytes.'''
 
     def __init__(self, stringValue, stringLength, maxStringLength):
-        self.value = ExcelStringLengthException.MAX_LEN_ERROR % {
+        self.value_ = ExcelStringLengthException.MAX_LEN_ERROR % {
             'stringValue' : stringValue,
             'stringLength' : stringLength,
             'maxStringLength' : maxStringLength }

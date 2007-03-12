@@ -31,9 +31,9 @@ class Addin(serializable.Serializable):
     """class to encapsulate data and behavior 
     required to generate addin source code."""
 
-    stringConvert = '%s'
-    voSupported = False
-    objectIdSuffix = ''
+    #stringConvert = '%s'
+    voSupported_ = False
+    objectIdSuffix_ = ''
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
@@ -46,15 +46,27 @@ class Addin(serializable.Serializable):
     def postSerialize(self):
         """Perform post serialization initialization."""
 
-        if self.loadRules:
-            serializer = xmlreader.XmlReader('metadata/Rules/' + self.name.lower())
+        if self.loadRules_:
+            serializer = xmlreader.XmlReader('metadata/Rules/' + self.name_.lower())
             serializer.serializeObjectPropertyDict(self, rule.RuleGroup)
 
         self.unchanged = 0
         self.updated = 0
         self.created = 0
-        if self.rootDirectory:
-            self.rootPath = "../%s/" % self.rootDirectory
-            if not os.path.exists(self.rootPath): 
-                os.makedirs(self.rootPath)
+        if self.rootDirectory_:
+            self.rootPath_ = "../%s/" % self.rootDirectory_
+            if not os.path.exists(self.rootPath_): 
+                os.makedirs(self.rootPath_)
+
+    def objectIdSuffix(self):
+        return self.objectIdSuffix_
+
+    def voSupported(self):
+        return self.voSupported_
+
+    def convertPermanentFlag(self):
+        return self.convertPermanentFlag_
+
+    def bufferLoop(self):
+        return self.bufferLoop_
 

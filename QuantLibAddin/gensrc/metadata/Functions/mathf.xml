@@ -20,7 +20,7 @@
       <description>returns the N-th prime number</description>
       <alias>QuantLib::PrimeNumbers::get</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -41,7 +41,7 @@
       <description>Returns the normal cumulative distribution for the specified mean and standard deviation.</description>
       <alias>QuantLibAddin::normDist</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -77,7 +77,7 @@
       <description>Returns the standard normal cumulative distribution (has a mean of zero and standard deviation of one).</description>
       <alias>QuantLibAddin::normSDist</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -98,7 +98,7 @@
       <description>Returns the inverse of the normal cumulative distribution for the specified mean and standard deviation.</description>
       <alias>QuantLibAddin::normInv</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -129,7 +129,7 @@
       <description>Returns the inverse of the standard normal cumulative distribution (has a mean of zero and standard deviation of one).</description>
       <alias>QuantLibAddin::normSInv</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -152,7 +152,7 @@
       <description>Returns the eigenvalues for the given SymmetricSchurDecomposition object</description>
       <libraryFunction>eigenvalues</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -167,7 +167,7 @@
       <description>Returns the eigenvectors  for the given SymmetricSchurDecomposition object. Eigenvectors are returned columnwise.</description>
       <libraryFunction>eigenvectors</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -183,7 +183,7 @@
     <Constructor name='qlSymmetricSchurDecomposition'>
       <libraryFunction>SymmetricSchurDecomposition</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -202,7 +202,7 @@
       <description>Returns the Cholesky decomposition of a real symmetric matrix.</description>
       <alias>QuantLib::CholeskyDecomposition</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -228,7 +228,7 @@
       <description>Returns the pseudo square root of a real symmetric matrix.</description>
       <alias>QuantLib::pseudoSqrt</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -254,7 +254,7 @@
       <description>Returns the rank reduced pseudo square root of a real symmetric matrix.</description>
       <alias>QuantLib::rankReducedSqrt</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -290,7 +290,7 @@
       <description>Returns the covariance matrix generated using the correlation matrix and the standard deviation (i.e. volatility times square root of time) array.</description>
       <alias>getCovariance</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -323,7 +323,7 @@
       <description>Returns the variance vector for the given CovarianceDecomposition object</description>
       <libraryFunction>variances</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -338,7 +338,7 @@
       <description>Returns the standard deviation (i.e. volatility times square root of time) vector for the given CovarianceDecomposition object</description>
       <libraryFunction>standardDeviations</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -353,7 +353,7 @@
       <description>Returns the correlation matrix for the given CovarianceDecomposition object</description>
       <libraryFunction>correlationMatrix</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -369,7 +369,7 @@
     <Constructor name='qlCovarianceDecomposition'>
       <libraryFunction>CovarianceDecomposition</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

@@ -17,7 +17,7 @@
       <description>returns the type (e.g. Vanilla, CashOrNothing, etc.) for the given Payoff object.</description>
       <libraryFunction>name</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -32,7 +32,7 @@
       <description>returns the description (e.g. CashOrNothing, strike 32.2, cash payoff 2.5) for the given Payoff object.</description>
       <libraryFunction>description</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -47,7 +47,7 @@
       <description>returns the payoff value given an underlying reference level for the given Payoff object.</description>
       <libraryFunction>operator()</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -68,7 +68,7 @@
       <description>returns the option-type (e.g. Call, Put) for the given Payoff object.</description>
       <libraryFunction>optionType</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -83,7 +83,7 @@
       <description>returns the strike for the given Payoff object.</description>
       <libraryFunction>strike</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -98,7 +98,7 @@
       <description>returns the cash payoff of the given CashOrNothingPayoff object.</description>
       <libraryFunction>cashPayoff</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -113,7 +113,7 @@
       <description>returns the strike payoff of the given GapPayoff object.</description>
       <libraryFunction>strikePayoff</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -128,7 +128,7 @@
       <description>returns the strike increment of the given SuperSharePayoff object.</description>
       <libraryFunction>strikeIncrement</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -143,7 +143,7 @@
       <description>returns the third parameter of a StrikedType payoff.</description>
       <libraryFunction>thirdParameter</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters />
@@ -157,10 +157,10 @@
     <Constructor name='qlStrikedTypePayoff'>
       <libraryFunction>StrikedTypePayoff</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -192,10 +192,10 @@
     <Constructor name='qlDoubleStickyRatchetPayoff'>
       <libraryFunction>DoubleStickyRatchetPayoff</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -261,10 +261,10 @@
     <Constructor name='qlRatchetPayoff'>
       <libraryFunction>RatchetPayoff</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -305,10 +305,10 @@
     <Constructor name='qlStickyPayoff'>
       <libraryFunction>StickyPayoff</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -349,10 +349,10 @@
     <Constructor name='qlRatchetMaxPayoff'>
       <libraryFunction>RatchetMaxPayoff</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -408,10 +408,10 @@
     <Constructor name='qlRatchetMinPayoff'>
       <libraryFunction>RatchetMinPayoff</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -467,10 +467,10 @@
     <Constructor name='qlStickyMaxPayoff'>
       <libraryFunction>StickyMaxPayoff</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -526,10 +526,10 @@
     <Constructor name='qlStickyMinPayoff'>
       <libraryFunction>StickyMinPayoff</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

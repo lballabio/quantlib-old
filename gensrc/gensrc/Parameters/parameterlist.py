@@ -23,8 +23,9 @@ from gensrc.Parameters import parameter
 from gensrc.Serialization import serializable
 
 class ParameterList(serializable.Serializable):
-    name = 'ParameterList'
-    skipFirst = False
+
+    name_ = 'ParameterList'
+    skipFirst_ = False
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -38,47 +39,56 @@ class ParameterList(serializable.Serializable):
         #   excluding 1) params with ignore = True 2) objectIDs etc
         # - lastParameter - required for rules with padLastParameter=True
 
-        self.underlyingCount = 0
+        self.underlyingCount_ = 0
         i = 1
-        for param in self.Parameters:
-            if not param.ignore:
-                self.underlyingCount += 1
-            if i == self.ParameterCount:
-                param.lastParameter = True
+        for param in self.parameters_:
+            if not param.ignore():
+                self.underlyingCount_ += 1
+            if i == self.parameterCount_:
+                param.setLastParameter(True)
             i += 1
 
     def generate(self, ruleGroup):
         """Generate source code relating to a list of function parameters."""
         code = ''
         i = 0
-        for param in self.Parameters:
+        for param in self.parameters_:
             i += 1
-            if ruleGroup.checkSkipFirst and i == 1 and self.skipFirst: continue
+            if ruleGroup.checkSkipFirst() and i == 1 and self.skipFirst_: continue
             paramConversion = ruleGroup.apply(param)
             if paramConversion: 
                 if code:
-                    code += ruleGroup.delimiter + paramConversion
+                    code += ruleGroup.delimiter() + paramConversion
                 else:
                     code = paramConversion
-        if code and ruleGroup.wrapText:
-            code = ruleGroup.wrapText % code
+        if code and ruleGroup.wrapText():
+            code = ruleGroup.wrapText() % code
         return code
 
     def prepend(self, param):
-        if self.ParameterCount == 0:
-            param.lastParameter = True
-        self.Parameters.insert(0, param)
-        self.ParameterCount += 1
-        self.skipFirst = True
+        if self.parameterCount_ == 0:
+            param.setLastParameter(True)
+        self.parameters_.insert(0, param)
+        self.parameterCount_ += 1
+        self.skipFirst_ = True
 
     def append(self, param):
-        if self.ParameterCount:
-            self.Parameters[self.ParameterCount - 1].lastParameter = False
-        self.Parameters.append(param)
-        param.lastParameter = True
-        self.ParameterCount += 1
+        if self.parameterCount_:
+            self.parameters_[self.parameterCount_ - 1].setLastParameter(False)
+        self.parameters_.append(param)
+        param.setLastParameter(True)
+        self.parameterCount_ += 1
+
+    def parameters(self):
+        return self.parameters_
+
+    def underlyingCount(self):
+        return self.underlyingCount_
+
+    def parameterCount(self):
+        return self.parameterCount_
 
     def printDebug(self):
-        for param in self.Parameters:
+        for param in self.parameters_:
             param.printDebug()
 

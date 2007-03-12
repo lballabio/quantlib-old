@@ -17,7 +17,7 @@
       <description>delete orphaned objects from repository</description>
       <alias>ObjHandler::ObjectHandlerXL::instance().collectGarbage</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -38,7 +38,7 @@
       <description>delete all objects from repository</description>
       <alias>ObjHandler::ObjectHandlerXL::instance().deleteAllObjects</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -59,7 +59,7 @@
       <description>delete object from repository</description>
       <alias>ObjHandler::ObjectHandlerXL::instance().deleteObject</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

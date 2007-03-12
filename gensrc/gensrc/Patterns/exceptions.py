@@ -23,10 +23,10 @@ class PatternException(exceptions.GensrcException):
 class SingletonOverrideNewException(PatternException):
 
     def __init__(self):
-        self.value = 'Cannot override __new__ in a Singleton'
+        self.value_ = 'Cannot override __new__ in a Singleton'
 
 class SingletonCallException(PatternException):
 
     def __init__(self):
-        self.value = 'Singletons may only be instantiated through instance()'
+        self.value_ = 'Singletons may only be instantiated through instance()'
 

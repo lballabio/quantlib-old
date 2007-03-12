@@ -48,58 +48,66 @@ class Doxygen(addin.Addin):
 
         log.Log.instance().logMessage(' begin generating Doxygen ...')
         self.generateDocs()
-        if environment.config().usingEnumerations:
+        if environment.config().usingEnumerations():
             self.generateEnums()
         self.generateCategoryDoc()
         log.Log.instance().logMessage(' done generating Doxygen.')
 
-    def generateEnum(self, enumeration, i, line1, line2):
-        ret = line1 % (i, enumeration.type)
+    def generateEnumeratedType(self, enumeratedTypeGroup, i, line1, line2):
+        ret = line1 % (i, enumeratedTypeGroup.type())
         ret += line2
-        for enumDef in enumeration.getEnumerationDefinitions():
-            ret += Doxygen.LINE_ENUM % (enumDef.string, enumDef.libraryClass)
+        for enumeratedType in enumeratedTypeGroup.enumeratedTypes():
+            ret += Doxygen.LINE_ENUM % (enumeratedType.string(), enumeratedType.value())
+        ret += '    </table>\n\n'
+        return ret
+
+    def generateEnumeratedClass(self, enumeratedClassGroup, i, line1, line2):
+        ret = line1 % (i, enumeratedClassGroup.className())
+        ret += line2
+        for enumeratedClass in enumeratedClassGroup.enumeratedClasses():
+            ret += Doxygen.LINE_ENUM % (enumeratedClass.string(), enumeratedClass.libraryClass())
         ret += '    </table>\n\n'
         return ret
 
     def generateEnums(self):
         """Generate documentation for enumerations."""
         bufClassLinks = ''
-        for i in xrange(len(self.enumerationList_.EnumClass)):
+        for i in xrange(self.enumerationList_.enumeratedClassGroupsCount()):
             bufClassLinks += Doxygen.LINE_REF_CLASS % i
         bufTypeLinks = ''
-        for i in xrange(len(self.enumerationList_.EnumType)):
+        for i in xrange(self.enumerationList_.enumeratedTypeGroupsCount()):
             bufTypeLinks += Doxygen.LINE_REF_TYPE % i
         bufClassDocs = ''
         i = 0
-        for enumeration in self.enumerationList_.enumeratedClasses():
-            bufClassDocs += self.generateEnum(enumeration, i, 
+        for enumeratedClassGroup in self.enumerationList_.enumeratedClassGroups():
+            bufClassDocs += self.generateEnumeratedClass(enumeratedClassGroup, i, 
                 Doxygen.LINE_SECTION_CLASS, Doxygen.LINE_TABLE % 'Class')
             i += 1
         bufTypeDocs = ''
         i = 0
-        for enumeration in self.enumerationList_.enumeratedTypes():
-            bufTypeDocs += self.generateEnum(enumeration, i, 
+        for enumeratedTypeGroup in self.enumerationList_.enumeratedTypeGroups():
+            bufTypeDocs += self.generateEnumeratedType(enumeratedTypeGroup, i, 
                 Doxygen.LINE_SECTION_TYPE, Doxygen.LINE_TABLE % 'Type')
             i += 1
-        buf = self.bufferEnumerations.text % {
+        buf = self.bufferEnumerations_.text() % {
             'classLinks' : bufClassLinks,
             'typeLinks' : bufTypeLinks,
             'classDocs' : bufClassDocs,
             'typeDocs' : bufTypeDocs }
-        fileName = self.rootPath + 'enums.docs'
+        fileName = self.rootPath_ + 'enums.docs'
         outputfile.OutputFile(self, fileName, 
-            self.enumerationList_.enumTypeCopyright, buf)
+            self.enumerationList_.enumeratedTypeCopyright(), buf)
 
     def generateFunctionDoc(self, func):
         """Generate documentation for given function."""
         bufParam = ''
-        for param in func.ParameterList.Parameters:
-            bufParam += '\\param %s %s\n' % (param.name, param.description)
-        return self.bufferFunction.text % {
-            'functionName' : func.name,
-            'retCode' : self.functionReturn.apply(func.returnValue),
-            'functionDoc' : func.ParameterList.generate(self.functionDocs),
-            'functionLongDesc' : func.longDescription,
+        for param in func.parameterList().parameters():
+            bufParam += '\\param %s %s\n' % (param.name(), param.description())
+        return self.bufferFunction_.text() % {
+            'functionName' : func.name(),
+            'retCode' : self.functionReturn_.apply(func.returnValue()),
+            'functionDoc' : func.parameterList().generate(self.functionDocs_),
+            'functionLongDesc' : func.longDescription(),
             'paramDoc' : bufParam }
 
     def generateCategoryDoc(self):
@@ -108,15 +116,15 @@ class Doxygen(addin.Addin):
         dispNmToCatNm = {}
         displayNames = []
         for cat in self.categoryList_.categories('*'):
-            dispNmToCatNm[cat.displayName] = cat.name
-            displayNames.append(cat.displayName)
+            dispNmToCatNm[cat.displayName()] = cat.name()
+            displayNames.append(cat.displayName())
         displayNames.sort()
         bufCat = ''
         for displayKey in displayNames:
             bufCat += '    \\ref %s\\n\n' % dispNmToCatNm[displayKey]
-        buf = self.bufferCategories.text % { 'categories' : bufCat }
-        fileName = self.rootPath + 'categories.docs'
-        outputfile.OutputFile(self, fileName, self.copyright, buf)
+        buf = self.bufferCategories_.text() % { 'categories' : bufCat }
+        fileName = self.rootPath_ + 'categories.docs'
+        outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
     def generateFunctionList(self, allFuncs):
         """Generate alphabetical list of links to all functions."""
@@ -124,11 +132,11 @@ class Doxygen(addin.Addin):
         bufList = ''
         for func in allFuncs:
             bufList += '\\ref %s ()\\n\n' % func
-        buf = self.bufferHeader.text % {
+        buf = self.bufferHeader_.text() % {
             'count' : len(allFuncs),
             'list' : bufList }
-        fileName = self.rootPath + 'all.docs'
-        outputfile.OutputFile(self, fileName, self.copyright, buf)
+        fileName = self.rootPath_ + 'all.docs'
+        outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
     def generateDocs(self):
         """Generate doxygen documentation files."""
@@ -137,16 +145,16 @@ class Doxygen(addin.Addin):
             bufLink = ''
             bufDoc = ''
             for func in cat.functions('*'): 
-                bufLink += '\\ref %s ()\\n\n' % func.name
+                bufLink += '\\ref %s ()\\n\n' % func.name()
                 bufDoc += self.generateFunctionDoc(func)
-                allFuncs.append(func.name)
-            buf = self.bufferFile.text % {
-                'categoryDescription' : cat.description,
-                'categoryDisplayName' : cat.displayName,
-                'categoryName' : cat.name,
+                allFuncs.append(func.name())
+            buf = self.bufferFile_.text() % {
+                'categoryDescription' : cat.description(),
+                'categoryDisplayName' : cat.displayName(),
+                'categoryName' : cat.name(),
                 'documentation' : bufDoc,
                 'links' : bufLink }
-            fileName = self.rootPath + cat.name + '.docs'
-            outputfile.OutputFile(self, fileName, cat.copyright, buf)
+            fileName = self.rootPath_ + cat.name() + '.docs'
+            outputfile.OutputFile(self, fileName, cat.copyright(), buf)
         self.generateFunctionList(allFuncs)
 

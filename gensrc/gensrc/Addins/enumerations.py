@@ -23,67 +23,80 @@ from gensrc.Addins import addin
 from gensrc.Utilities import outputfile
 from gensrc.Utilities import common
 from gensrc.Utilities import log
-from gensrc.Categories import category
 from gensrc.Configuration import environment
 
 class Enumerations(addin.Addin):
     """generate source code for enumerations."""
 
     ENUM_END   =      '        );\n\n'
-    ENUM_CURVE_LINE = '            MAP(KeyPair("%(key1)s", "%(key2)s"), %(value)s);\n'
     ENUM_LINE  =      '            MAP("%(string)s", %(value)s);\n'
+    ENUM_CURVE_LINE = '            MAP(KeyPair("%(traits)s", "%(interpolator)s"), %(value)s);\n'
     ENUM_START =      '        REG_ENUM(%s,\n'
     ENUM_UNREG =      '        UNREG_ENUM(%s)\n'
 
     def generate(self, categoryList, enumerationList):
         """generate source code for enumerations."""
 
-        self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
 
         log.Log.instance().logMessage(' begin generating enumerations ...')
-        self.generateEnumTypes()
-        self.generateEnumClasses()
+        self.generateEnumeratedTypes()
+        self.generateEnumeratedClasses()
         log.Log.instance().logMessage(' done generating enumerations.')
 
-    def generateEnumeration(self, enumeration, buffer):
-        """generate source code for given enumeration."""
-        ret = Enumerations.ENUM_START % enumeration.type
-        for enumDef in enumeration.getEnumerationDefinitions():
-            if enumeration.constructor:
-                enumVal = enumeration.type + '(' + enumDef.value + ')'
-            else:
-                enumVal = enumDef.value
-            ret += buffer % {
-                    'string' : enumDef.string,
-                    'key1' : enumDef.key1,
-                    'key2' : enumDef.key2,
-                    'value' : enumVal}
+    def generateEnumeratedType(self, enumeratedTypeGroup):
+        """generate source code for enumerated type group."""
+        ret = Enumerations.ENUM_START % enumeratedTypeGroup.type()
+        for enumeratedType in enumeratedTypeGroup.enumeratedTypes():
+            ret += Enumerations.ENUM_LINE % {
+                'string' : enumeratedType.string(),
+                'value' : enumeratedType.constructor() }
         ret += Enumerations.ENUM_END
         return ret
 
-    def generateEnumTypes(self):
+    def generateEnumeratedClass(self, enumeratedClassGroup):
+        """generate source code for enumerated class group."""
+        ret = Enumerations.ENUM_START % enumeratedClassGroup.className()
+        for enumeratedClass in enumeratedClassGroup.enumeratedClasses():
+            ret += Enumerations.ENUM_LINE % {
+                'string' : enumeratedClass.string(),
+                'value' : enumeratedClass.value() }
+        ret += Enumerations.ENUM_END
+        return ret
+
+    def generateEnumeratedCurve(self, enumeratedCurveGroup):
+        """generate source code for enumerated curve group."""
+        ret = Enumerations.ENUM_START % enumeratedCurveGroup.className()
+        for enumeratedCurve in enumeratedCurveGroup.enumeratedCurves():
+            ret += Enumerations.ENUM_CURVE_LINE % {
+                'traits' : enumeratedCurve.traits(),
+                'interpolator' : enumeratedCurve.interpolator(),
+                'value' : enumeratedCurve.value() }
+        ret += Enumerations.ENUM_END
+        return ret
+
+    def generateEnumeratedTypes(self):
         """generate source file for enumerated types."""
         buf1 = ''   # code to register the enumeration
         buf2 = ''   # code to unregister the enumeration
-        for enumeration in self.enumerationList_.enumeratedTypes():
-            buf1 += self.generateEnumeration(enumeration, Enumerations.ENUM_LINE)
-            buf2 += Enumerations.ENUM_UNREG % enumeration.type
-        buf = self.bufferEnumTypes.text % (buf1, buf2)
-        fileName = environment.config().libFullPath + 'enumtyperegistry.cpp'
+        for enumeratedTypeGroup in self.enumerationList_.enumeratedTypeGroups():
+            buf1 += self.generateEnumeratedType(enumeratedTypeGroup)
+            buf2 += Enumerations.ENUM_UNREG % enumeratedTypeGroup.type()
+        buf = self.bufferEnumTypes_.text() % (buf1, buf2)
+        fileName = environment.config().libFullPath() + 'enumtyperegistry.cpp'
         outputfile.OutputFile(self, fileName, 
-            self.enumerationList_.enumTypeCopyright, buf)
+            self.enumerationList_.enumeratedTypeCopyright(), buf)
 
-    def generateEnumClasses(self):
+    def generateEnumeratedClasses(self):
         """generate source file for enumerated classes."""
         curveBuffer = ''
-        for enumeration in self.enumerationList_.enumeratedCurves():
-            curveBuffer += self.generateEnumeration(enumeration, Enumerations.ENUM_CURVE_LINE)
+        for enumeratedCurveGroup in self.enumerationList_.enumeratedCurveGroups():
+            curveBuffer += self.generateEnumeratedCurve(enumeratedCurveGroup)
         classBuffer = ''
-        for enumeration in self.enumerationList_.enumeratedClasses():
-            classBuffer += self.generateEnumeration(enumeration, Enumerations.ENUM_LINE)
-        buf = self.bufferEnumClasses.text % (curveBuffer, classBuffer)
-        fileName = environment.config().libFullPath + 'enumclassregistry.cpp'
+        for enumeratedClassGroup in self.enumerationList_.enumeratedClassGroups():
+            classBuffer += self.generateEnumeratedClass(enumeratedClassGroup)
+        buf = self.bufferEnumClasses_.text() % (curveBuffer, classBuffer)
+        fileName = environment.config().libFullPath() + 'enumclassregistry.cpp'
         fileEnum = outputfile.OutputFile(self, fileName,
-            self.enumerationList_.enumClassCopyright, buf)
+            self.enumerationList_.enumeratedClassCopyright(), buf)
 

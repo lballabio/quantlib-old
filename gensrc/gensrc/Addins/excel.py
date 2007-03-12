@@ -64,8 +64,9 @@ COL_TO_NUM = "_" + string.lowercase
 
 class ExcelAddin(addin.Addin):
     """Generate source code for Excel addin."""
-    voSupported = True
-    convertPermanentFlag = '''
+
+    voSupported_ = True
+    convertPermanentFlag_ = '''
         bool permanentCpp =
             ObjHandler::operToScalar<bool>(*permanent, false, "permanent");'''
 
@@ -80,28 +81,28 @@ class ExcelAddin(addin.Addin):
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
 
-        log.Log.instance().logMessage(' begin generating %s...' % self.name)
+        log.Log.instance().logMessage(' begin generating %s...' % self.name_)
         self.generateAddin()
         self.generateFunctions()
         self.generateFunctionCount()
-        if self.exportSymbols: self.generateExportSymbols()
-        log.Log.instance().logMessage(' done generating %s.' % self.name)
+        if self.exportSymbols_: self.generateExportSymbols()
+        log.Log.instance().logMessage(' done generating %s.' % self.name_)
 
     def generateFunctions(self):
         """Generate source code for all functions in all categories."""
-        for cat in self.categoryList_.categories(self.name):
+        for cat in self.categoryList_.categories(self.name_):
             categoryIncludes = cat.includeList()
-            if cat.containsLoopFunction:
+            if cat.containsLoopFunction():
                 categoryIncludes += LOOP_INCLUDES % (
-                    environment.config().loopRootDirectory,
-                    cat.name)
-            buf = self.bufferIncludes.text % { 
+                    environment.config().loopRootDirectory(),
+                    cat.name())
+            buf = self.bufferIncludes_.text() % { 
                 'categoryIncludes' : categoryIncludes }
-            for func in cat.functions(self.name): 
+            for func in cat.functions(self.name_): 
                 buf += self.generateFunction(func)
             fileName = '%sFunctions/%s.cpp' % (
-                self.rootPath, cat.name)
-            outputfile.OutputFile(self, fileName, cat.copyright, buf)
+                self.rootPath_, cat.name())
+            outputfile.OutputFile(self, fileName, cat.copyright(), buf)
 
     def indexOfCol(self, str):
         """convert an Excel column ID to an int"""
@@ -115,27 +116,28 @@ class ExcelAddin(addin.Addin):
 
     def generateFunction(self, func):
         """Generate source code for a given function."""
-        if func.ParameterList.ParameterCount > MAXPARAM:
+        if func.parameterList().parameterCount() > MAXPARAM:
             raise excelexceptions.ExcelParameterCountException(
-                func.name, func.ParameterList.ParameterCount, MAXPARAM)
-        if self.cellNameConflict(func.name):
+                func.name(), func.parameterList().parameterCount(), MAXPARAM)
+        if self.cellNameConflict(func.name()):
             raise excelexceptions.ExcelCellNameException(
-                func.name, CELL_MAX_COL_ID, CELL_MAX_ROW_NUM)
-        return self.bufferFunction.text % {
-            'cppConversions' : func.ParameterList.generate(self.cppConversions),
-            'enumConversions' : func.ParameterList.generate(self.enumConversions),
+                func.name(), CELL_MAX_COL_ID, CELL_MAX_ROW_NUM)
+
+        return self.bufferFunction_.text() % {
+            'cppConversions' : func.parameterList().generate(self.cppConversions_),
+            'enumConversions' : func.parameterList().generate(self.enumConversions_),
             'functionBody' : func.generateBody(self),
-            'functionDeclaration' : func.ParameterList.generate(self.functionDeclaration),
-            'functionName' : func.name,
-            'functionReturnType' : self.functionReturnType.apply(func.returnValue),
-            'libConversions' : func.ParameterList.generate(self.libraryConversions),
-            'objectConversions' : func.ParameterList.generate(self.objectConversions),
-            'refConversions' : func.ParameterList.generate(self.referenceConversions),
-            'resetCaller' : func.resetCaller,
-            'returnConversion' : self.returnConversion.apply(func.returnValue),
-            'validatePermanent' : func.validatePermanent,
-            'xlTrigger' : func.xlTrigger,
-            'xlWizardRecalc' : func.xlWizardCheck }
+            'functionDeclaration' : func.parameterList().generate(self.functionDeclaration_),
+            'functionName' : func.name(),
+            'functionReturnType' : self.functionReturnType_.apply(func.returnValue()),
+            'libConversions' : func.parameterList().generate(self.libraryConversions_),
+            'objectConversions' : func.parameterList().generate(self.objectConversions_),
+            'refConversions' : func.parameterList().generate(self.referenceConversions_),
+            'resetCaller' : func.resetCaller(),
+            'returnConversion' : self.returnConversion_.apply(func.returnValue()),
+            'validatePermanent' : func.validatePermanent(),
+            'xlTrigger' : func.xlTrigger(),
+            'xlWizardRecalc' : func.xlWizardCheck() }
 
     def checkLen(self, str):
         """Calculate the length of the string, ensure that this value doesn't exceed
@@ -148,19 +150,19 @@ class ExcelAddin(addin.Addin):
     def generateRegisterFunction(self, func, categoryName, register = True):
         """Generate code to register/unregister given function."""
 
-        paramStr = self.xlRegisterReturn.apply(func.returnValue) \
-            + func.ParameterList.generate(self.xlRegisterParam)
+        paramStr = self.xlRegisterReturn_.apply(func.returnValue()) \
+            + func.parameterList().generate(self.xlRegisterParam_)
         if func.xlMacro():
             paramStr += '#'
-        paramNames = func.ParameterList.generate(self.parameterList)
+        paramNames = func.parameterList().generate(self.parameterList_)
         if len(paramNames) > MAX_LEN_PARAMLIST:
-            raise excelexceptions.ExcelParameterLengthException(func.name, paramNames, MAX_LEN_PARAMLIST)
+            raise excelexceptions.ExcelParameterLengthException(func.name(), paramNames, MAX_LEN_PARAMLIST)
 
         # Configure call to xlfRegister.  We will pass in NUMDESC params to
         # register the function, plus one additional param to describe each
         # param in the function being registered.  If we exceed the limit of
         # MAXPARAM values accepted by xlfRegister we omit descriptions as necessary.
-        numUserParams = min(func.ParameterList.ParameterCount, MAXUSERPARAM)
+        numUserParams = min(func.parameterList().parameterCount(), MAXUSERPARAM)
         numRegisterParams = numUserParams + NUMDESC
 
         # A bug in the Excel Function Wizard causes the last string to be corrupted.
@@ -170,28 +172,28 @@ class ExcelAddin(addin.Addin):
         # - If the function has no parameters then the function description will be the
         #   last parameter and we pad it here.
         if numUserParams:
-            funcDesc = func.description
+            funcDesc = func.description()
             delim = ','
         else:
-            funcDesc = func.description + '  '
+            funcDesc = func.description() + '  '
             delim = ''
 
         if register:
             unregister = ''
         else:
-            unregister = UNREGISTER % (len(func.name), func.name)
+            unregister = UNREGISTER % (len(func.name()), func.name())
 
-        return self.bufferRegisterFunction.text % {
+        return self.bufferRegisterFunction_.text() % {
             'category' : categoryName,
             'categoryLen' : self.checkLen(categoryName),
             'delim' : delim,
             'funcDesc' : funcDesc,
             'funcDescLen' : self.checkLen(funcDesc),
-            'functionName' : func.name,
-            'functionNameLen' : self.checkLen(func.name),
+            'functionName' : func.name(),
+            'functionNameLen' : self.checkLen(func.name()),
             'functionType' : register,
             'numParams' : numRegisterParams,
-            'parameterList' : func.ParameterList.generate(self.registerParameters),
+            'parameterList' : func.parameterList().generate(self.registerParameters_),
             'paramNames' : paramNames,
             'paramNamesLen' : self.checkLen(paramNames),
             'paramStr' : paramStr,
@@ -199,24 +201,24 @@ class ExcelAddin(addin.Addin):
             'unregister' : unregister }
 
     def outputRegisterFile(self, registerCode, unregisterCode, categoryName):
-        registerBuffer = self.bufferRegisterFile.text % {
+        registerBuffer = self.bufferRegisterFile_.text() % {
             'categoryName' : categoryName.capitalize(),
             'registerCode' : registerCode,
             'unregisterCode' : unregisterCode }
         registerFile = "%sRegister/register_%s.cpp" % (
-            self.rootPath, categoryName)
-        outputfile.OutputFile(self, registerFile, self.copyright, registerBuffer)
+            self.rootPath_, categoryName)
+        outputfile.OutputFile(self, registerFile, self.copyright_, registerBuffer)
 
     def generateRegisterFunctions(self, cat):
         registerCode = ''
         unregisterCode = ''
-        for func in cat.functions(self.name, function.MANUAL): 
-            self.functionCount += 1
+        for func in cat.functions(self.name_, function.MANUAL): 
+            self.functionCount_ += 1
             registerCode += self.generateRegisterFunction(func, 
-                cat.xlFunctionWizardCategory)
+                cat.xlFunctionWizardCategory())
             unregisterCode += self.generateRegisterFunction(func, 
-                cat.xlFunctionWizardCategory, False)
-        self.outputRegisterFile(registerCode, unregisterCode, cat.name)
+                cat.xlFunctionWizardCategory(), False)
+        self.outputRegisterFile(registerCode, unregisterCode, cat.name())
 
     def generateAddin(self):
         """Generate source code to register functions."""
@@ -224,41 +226,95 @@ class ExcelAddin(addin.Addin):
         unregisterCalls = ''
         registerDeclarations = ''
         unregisterDeclarations = ''
-        self.functionCount = 0
-        for cat in self.categoryList_.categories(self.name, function.MANUAL):
-            categoryName = cat.name.capitalize()
+        self.functionCount_ = 0
+        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
+            categoryName = cat.name().capitalize()
             registerCalls += 8 * ' ' + 'register' + categoryName + '(xDll);\n'
             unregisterCalls += 8 * ' ' + 'unregister' + categoryName + '(xDll);\n'
             registerDeclarations += 'extern void register' + categoryName + '(const XLOPER&);\n'
             unregisterDeclarations += 'extern void unregister' + categoryName + '(const XLOPER&);\n'
             self.generateRegisterFunctions(cat)
 
-        registerCallBuffer = self.bufferRegisterCall.text % {
-            'prefix' : environment.config().prefix.capitalize(),
+        registerCallBuffer = self.bufferRegisterCall_.text() % {
+            'prefix' : environment.config().prefix().capitalize(),
             'registerCalls' : registerCalls,
             'unregisterCalls' : unregisterCalls,
             'registerDeclarations' : registerDeclarations,
             'unregisterDeclarations' : unregisterDeclarations }
-        registerCall = self.rootPath + 'Register/register_all.cpp'
-        outputfile.OutputFile(self, registerCall, self.copyright, registerCallBuffer)
+        registerCall = self.rootPath_ + 'Register/register_all.cpp'
+        outputfile.OutputFile(self, registerCall, self.copyright_, registerCallBuffer)
 
     def generateExportSymbols(self):
         """Generate directives that cause exported symbols to be available to
         clients of this Addin."""
         exportSymbols = ''
-        for cat in self.categoryList_.categories(self.name, function.MANUAL):
-            for func in cat.functions(self.name, function.MANUAL): 
-                exportSymbols += '#pragma comment (linker, "/export:_%s")\n' % func.name
-        buf = self.exportStub.text % exportSymbols
-        fileName = self.rootPath + 'Functions/export.hpp'
-        outputfile.OutputFile(self, fileName, self.copyright, buf)
+        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
+            for func in cat.functions(self.name_, function.MANUAL): 
+                exportSymbols += '#pragma comment (linker, "/export:_%s")\n' % func.name()
+        buf = self.exportStub_.text() % exportSymbols
+        fileName = self.rootPath_ + 'Functions/export.hpp'
+        outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
     def generateFunctionCount(self):
         """Generate a header indicating the number of functions in this addin."""
-        buf = self.bufferNumFunc.text % self.functionCount
-        fileName = self.rootPath + 'Functions/functioncount.hpp'
-        outputfile.OutputFile(self, fileName, self.copyright, buf)
+        buf = self.bufferNumFunc_.text() % self.functionCount_
+        fileName = self.rootPath_ + 'Functions/functioncount.hpp'
+        outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
     def printDebug(self):
-        self.xlRegisterParam.printDebug()
+        self.xlRegisterParam_.printDebug()
+
+    def functionDeclaration(self):
+        return self.functionDeclaration_
+
+    def functionReturnType(self):
+        return self.functionReturnType_
+
+    def xlRegisterParam(self):
+        return self.xlRegisterParam_
+
+    def xlRegisterReturn(self):
+        return self.xlRegisterReturn_
+
+    def parameterList(self):
+        return self.parameterList_
+
+    def registerParameters(self):
+        return self.registerParameters_
+
+    def cppConversions(self):
+        return self.cppConversions_
+
+    def libraryConversions(self):
+        return self.libraryConversions_
+
+    def enumConversions(self):
+        return self.enumConversions_
+
+    def objectConversions(self):
+        return self.objectConversions_
+
+    def referenceConversions(self):
+        return self.referenceConversions_
+
+    def libraryReturnType(self):
+        return self.libraryReturnType_
+
+    def libraryCall(self):
+        return self.libraryCall_
+
+    def voCall(self):
+        return self.voCall_
+
+    def returnConversion(self):
+        return self.returnConversion_
+
+    def loopInputs(self):
+        return self.loopInputs_
+
+    def loopReturnType(self):
+        return self.loopReturnType_
+
+    def loopDatatype(self):
+        return self.loopDatatype_
 

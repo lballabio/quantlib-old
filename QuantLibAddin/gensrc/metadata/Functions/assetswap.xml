@@ -16,7 +16,7 @@
     <Constructor name='qlAssetSwap'>
       <libraryFunction>AssetSwap</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -74,7 +74,7 @@
       <description>The bond leg cash flow analysis</description>
       <libraryFunction>bondLeg</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -90,7 +90,7 @@
       <description>The floating leg cash flow analysis</description>
       <libraryFunction>floatingLeg</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -105,7 +105,7 @@
       <description>the fair rate of the asset swap, i.e. the asset swap spread</description>
       <libraryFunction>fairSpread</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -120,7 +120,7 @@
       <description>the BPS of the floating leg</description>
       <libraryFunction>floatingLegBPS</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -135,7 +135,7 @@
       <description>the fair price of the bond</description>
       <libraryFunction>fairPrice</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>

@@ -15,7 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from gensrc.Enumerations import enumeration
+from gensrc.Enumerations import enumeratedtypes
+from gensrc.Enumerations import enumeratedclasses
+from gensrc.Enumerations import enumeratedcurves
 from gensrc.Serialization import xmlreader
 from gensrc.Utilities import common
 
@@ -23,29 +25,41 @@ class EnumerationList(object):
 
     def __init__(self):
 
-        xmlEnumTypes = xmlreader.XmlReader('metadata/Enumerations/enumtypes')
-        xmlEnumTypes.serializeObjectDict(self, enumeration.Enumeration, 'EnumType')
+        xmlEnumTypes = xmlreader.XmlReader('metadata/Enumerations/enumeratedtypes')
+        xmlEnumTypes.serializeObjectDict(self, enumeratedtypes.EnumeratedTypeGroup)
         xmlEnumTypes.serializeProperty(self, common.ENUM_TYPE_COPYRIGHT)
 
-        xmlEnumClasses = xmlreader.XmlReader('metadata/Enumerations/enumclasses')
-        xmlEnumClasses.serializeObjectDict(self, enumeration.Enumeration, 'EnumClass')
+        xmlEnumClasses = xmlreader.XmlReader('metadata/Enumerations/enumeratedclasses')
+        xmlEnumClasses.serializeObjectDict(self, enumeratedclasses.EnumeratedClassGroup)
         xmlEnumClasses.serializeProperty(self, common.ENUM_CLASS_COPYRIGHT)
 
-        xmlEnumCurves = xmlreader.XmlReader('metadata/Enumerations/enumcurves')
-        xmlEnumCurves.serializeObjectDict(self, enumeration.Enumeration, 'EnumCurve')
+        xmlEnumCurves = xmlreader.XmlReader('metadata/Enumerations/enumeratedcurves')
+        xmlEnumCurves.serializeObjectDict(self, enumeratedcurves.EnumeratedCurveGroup)
 
-    def enumeratedTypes(self):
+    def enumeratedTypeCopyright(self):
+        return self.enumeratedTypeCopyright_
+
+    def enumeratedClassCopyright(self):
+        return self.enumeratedClassCopyright_
+
+    def enumeratedTypeGroups(self):
         """serve up enumerated type objects alphabetically by name."""
-        for enumTypeKey in self.EnumTypeKeys:
-            yield self.EnumType[enumTypeKey]
+        for key in self.enumeratedTypeGroupKeys_:
+            yield self.enumeratedTypeGroups_[key]
 
-    def enumeratedClasses(self):
+    def enumeratedTypeGroupsCount(self):
+        return len(self.enumeratedTypeGroups_)
+
+    def enumeratedClassGroupsCount(self):
+        return len(self.enumeratedClassGroups_)
+
+    def enumeratedClassGroups(self):
         """serve up enumerated class objects alphabetically by name."""
-        for enumClassKey in self.EnumClassKeys:
-            yield self.EnumClass[enumClassKey]
+        for key in self.enumeratedClassGroupKeys_:
+            yield self.enumeratedClassGroups_[key]
 
-    def enumeratedCurves(self):
+    def enumeratedCurveGroups(self):
         """serve up enumerated curve objects alphabetically by name."""
-        for enumCurveKey in self.EnumCurveKeys:
-            yield self.EnumCurve[enumCurveKey]
+        for key in self.enumeratedCurveGroupKeys_:
+            yield self.enumeratedCurveGroups_[key]
 

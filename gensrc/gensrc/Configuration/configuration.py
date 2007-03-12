@@ -42,7 +42,35 @@ class Configuration(serializable.Serializable):
 
     def postSerialize(self):
         """Perform post serialization initialization."""
-        self.voRootDirectory = self.libRootDirectory + '/ValueObjects'
-        self.loopRootDirectory = self.libRootDirectory + '/Loop'
-        self.libFullPath = '../' + self.libRootDirectory + '/'
+        self.voRootDirectory_ = self.libRootDirectory_ + '/ValueObjects'
+        self.loopRootDirectory_ = self.libRootDirectory_ + '/Loop'
+        self.libFullPath_ = '../' + self.libRootDirectory_ + '/'
+
+    def categoryNames(self):
+        return self.categoryNames_
+
+    def voRootDirectory(self):
+        return self.voRootDirectory_
+
+    def libRootDirectory(self):
+        return self.libRootDirectory_
+
+    def loopRootDirectory(self):
+        return self.loopRootDirectory_
+
+    def libFullPath(self):
+        return self.libFullPath_
+
+    def namespaceObjects(self):
+        return self.namespaceObjects_
+
+    def namespaceLibrary(self):
+        return self.namespaceLibrary_
+
+    def usingEnumerations(self):
+        return self.usingEnumerations_
+
+    def prefix(self):
+        return self.prefix_
+
 

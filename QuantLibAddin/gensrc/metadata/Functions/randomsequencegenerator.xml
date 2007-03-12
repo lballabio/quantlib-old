@@ -13,7 +13,7 @@
       <description>returns a random number between 0 and 1.</description>
       <alias>QuantLibAddin::rand</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -28,7 +28,7 @@
       <description>initialize with the given seed the random number generator used by qlRand().</description>
       <alias>QuantLibAddin::randomize</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -49,7 +49,7 @@
       <description>generate variates</description>
       <libraryFunction>variates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -69,7 +69,7 @@
     <Constructor name='qlMersenneTwisterRsg'>
       <libraryFunction>MersenneTwisterRsg</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -90,7 +90,7 @@
     <Constructor name='qlFaureRsg'>
       <libraryFunction>FaureRsg</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -106,7 +106,7 @@
     <Constructor name='qlHaltonRsg'>
       <libraryFunction>HaltonRsg</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -127,7 +127,7 @@
     <Constructor name='qlSobolRsg'>
       <libraryFunction>SobolRsg</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

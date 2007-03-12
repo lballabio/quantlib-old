@@ -15,8 +15,8 @@
     <Constructor name='qlBarrierOption'>
       <libraryFunction>BarrierOption</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -62,8 +62,8 @@
     <Constructor name='qlCaAsianOption'>
       <libraryFunction>ContinuousAveragingAsianOption</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -132,8 +132,8 @@
     <Constructor name='qlDaAsianOption'>
       <libraryFunction>DiscreteAveragingAsianOption</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -184,8 +184,8 @@
     <Constructor name='qlDividendVanillaOption'>
       <libraryFunction>DividendVanillaOption</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -226,8 +226,8 @@
     <Constructor name='qlForwardVanillaOption'>
       <libraryFunction>ForwardVanillaOption</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -268,10 +268,10 @@
     <Constructor name='qlVanillaOption'>
       <libraryFunction>VanillaOption</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
-        <C/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -302,8 +302,8 @@
     <Constructor name='qlEuropeanOption'>
       <libraryFunction>EuropeanOption</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -334,8 +334,8 @@
     <Constructor name='qlQuantoVanillaOption'>
       <libraryFunction>QuantoVanillaOption</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -382,8 +382,8 @@
     <Constructor name='qlQuantoForwardVanillaOption'>
       <libraryFunction>QuantoForwardVanillaOption</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -441,8 +441,8 @@
       <description>delta of an option</description>
       <libraryFunction>delta</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -457,8 +457,8 @@
       <description>delta forward of an option</description>
       <libraryFunction>deltaForward</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -473,8 +473,8 @@
       <description>elasticity of an option</description>
       <libraryFunction>elasticity</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -489,8 +489,8 @@
       <description>gamma of an option</description>
       <libraryFunction>gamma</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -505,8 +505,8 @@
       <description>theta of an option</description>
       <libraryFunction>theta</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -521,8 +521,8 @@
       <description>theta per day of an option</description>
       <libraryFunction>thetaPerDay</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -537,8 +537,8 @@
       <description>vega of an option</description>
       <libraryFunction>vega</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -553,8 +553,8 @@
       <description>rho of an option</description>
       <libraryFunction>rho</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -569,8 +569,8 @@
       <description>dividend rho of an option</description>
       <libraryFunction>dividendRho</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -585,8 +585,8 @@
       <description>itm cash probability of an option</description>
       <libraryFunction>itmCashProbability</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>

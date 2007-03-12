@@ -20,7 +20,7 @@
       <description>Returns the volatility at a given strike from the SmileSection object</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -41,7 +41,7 @@
       <description>Returns the variance at a given strike from the SmileSection object</description>
       <libraryFunction>variance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -62,7 +62,7 @@
       <description>Returns the exercise date of the SmileSection object</description>
       <libraryFunction>exerciseDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -77,7 +77,7 @@
       <description>Returns the DayCounter of the SmileSection object</description>
       <libraryFunction>dayCounter</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -93,7 +93,7 @@
       <libraryFunction>FlatSmileSection</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -126,7 +126,7 @@
       <libraryFunction>SabrInterpolatedSmileSection</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -220,7 +220,7 @@
       <description>Returns the alpha of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>alpha</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -235,7 +235,7 @@
       <description>Returns the beta of the SABR fit</description>
       <libraryFunction>beta</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -250,7 +250,7 @@
       <description>Returns the nu of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>nu</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -265,7 +265,7 @@
       <description>Returns the rho of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>rho</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -280,7 +280,7 @@
       <description>Returns the error of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>interpolationError</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -295,7 +295,7 @@
       <description>Returns the max error of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>interpolationMaxError</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -310,7 +310,7 @@
       <description>Returns the optimization end criteria of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>endCriteria</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -325,7 +325,7 @@
       <libraryFunction>SabrSmileSection</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -413,7 +413,7 @@
       <libraryFunction>InterpolatedSmileSection</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

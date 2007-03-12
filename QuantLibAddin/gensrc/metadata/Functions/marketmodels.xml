@@ -30,7 +30,7 @@
       <libraryFunction>MultiProductComposite</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -43,7 +43,7 @@
       <libraryFunction>MarketModelComposite::add</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -66,7 +66,7 @@
       <libraryFunction>finalize</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -84,7 +84,7 @@
       <libraryFunction>suggestedNumeraires</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -100,7 +100,7 @@
       <libraryFunction>possibleCashFlowTimes</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -116,7 +116,7 @@
       <libraryFunction>numberOfProducts</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -132,7 +132,7 @@
       <libraryFunction>maxNumberOfCashFlowsPerProductPerStep</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -149,7 +149,7 @@
       <libraryFunction>OneStepForwards</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -181,7 +181,7 @@
       <libraryFunction>MultiStepRatchet</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -238,7 +238,7 @@
       <libraryFunction>OneStepOptionlets</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -270,7 +270,7 @@
     <Constructor name='qlEvolutionDescription'>
       <libraryFunction>EvolutionDescription</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -291,7 +291,7 @@
     <Constructor name='qlEvolutionDescriptionFromProduct'>
       <libraryFunction>EvolutionDescription</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -310,7 +310,7 @@
       <description>rates fixing times for the EvolutionDescription object</description>
       <libraryFunction>rateTimes</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -325,7 +325,7 @@
       <description>rate taus for the EvolutionDescription object</description>
       <libraryFunction>rateTaus</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -340,7 +340,7 @@
       <description>evolution times for the EvolutionDescription object</description>
       <libraryFunction>evolutionTimes</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -355,7 +355,7 @@
       <description>for each step returns a row with the effective evolution stopping time for each rate</description>
       <libraryFunction>effectiveStopTime</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -370,7 +370,7 @@
       <description>first alive rate at each evolution time for the EvolutionDescription object</description>
       <libraryFunction>firstAliveRate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -385,7 +385,7 @@
       <description>number of rates for the EvolutionDescription object</description>
       <libraryFunction>numberOfRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -400,7 +400,7 @@
       <description>number of steps for the EvolutionDescription object</description>
       <libraryFunction>numberOfSteps</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -417,7 +417,7 @@
       <description>Returns the terminal measure for the given EvolutionDescription object</description>
       <alias>QuantLib::terminalMeasure</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -439,7 +439,7 @@
       <description>Returns the discretely compounded money market measure for the given EvolutionDescription object</description>
       <alias>QuantLib::moneyMarketMeasure</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -461,7 +461,7 @@
       <description>Returns the discretely compounded money market measure for the given EvolutionDescription object</description>
       <alias>QuantLib::moneyMarketPlusMeasure</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -488,7 +488,7 @@
       <description>Returns TRUE if the numeraire vector is Terminal measure for the given EvolutionDescription object</description>
       <alias>QuantLib::isInTerminalMeasure</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -515,7 +515,7 @@
       <description>Returns TRUE if the numeraire vector is money market measure for the given EvolutionDescription object</description>
       <alias>QuantLib::isInMoneyMarketMeasure</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -542,7 +542,7 @@
       <description>Returns TRUE if the numeraire vector is money market measure plus for the given EvolutionDescription object</description>
       <alias>QuantLib::isInMoneyMarketPlusMeasure</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -575,7 +575,7 @@
       <description>initial rates for the MarketModel object</description>
       <libraryFunction>initialRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -590,7 +590,7 @@
       <description>rates' displacemets for the MarketModel object</description>
       <libraryFunction>displacements</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -605,7 +605,7 @@
       <description>number of rates for the MarketModel object</description>
       <libraryFunction>numberOfRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -620,7 +620,7 @@
       <description>number of factors for the MarketModel object</description>
       <libraryFunction>numberOfFactors</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -635,7 +635,7 @@
       <description>number of steps for the MarketModel object</description>
       <libraryFunction>numberOfSteps</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -650,7 +650,7 @@
       <description>Returns the pseudo root for the i-th step.</description>
       <libraryFunction>pseudoRoot</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -671,7 +671,7 @@
       <description>Returns the covariance matrix for the i-th step.</description>
       <libraryFunction>covariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -692,7 +692,7 @@
       <description>Returns the covariance matrix from start up to the i-th step.</description>
       <libraryFunction>totalCovariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -713,7 +713,7 @@
     <Constructor name='qlExpCorrFlatVol'>
       <libraryFunction>ExpCorrFlatVol</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -760,7 +760,7 @@
     <Constructor name='qlExpCorrAbcdVol'>
       <libraryFunction>ExpCorrAbcdVol</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -828,7 +828,7 @@
     <Constructor name='qlAbcd'>
       <libraryFunction>Abcd</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -881,7 +881,7 @@
       <description>Returns the instantaneous volatility as function of residual time to maturity u=T-t: [a + b*u] * e^{-c*u} + d</description>
       <libraryFunction>operator()</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -902,7 +902,7 @@
       <description>Returns covariance at calendar time u between T and S rates fixing times.</description>
       <libraryFunction>instantaneousCovariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -933,7 +933,7 @@
       <description>Returns variance at calendar time(s) u of T-fixing rate.</description>
       <libraryFunction>instantaneousVariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -959,7 +959,7 @@
       <description>Returns volatility/ies at calendar time(s) u of T-fixing rate.</description>
       <libraryFunction>instantaneousVolatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -985,7 +985,7 @@
       <description>Returns covariance(s) in [tMin,tMax] between T and S rate fixing times.</description>
       <libraryFunction>covariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1021,7 +1021,7 @@
       <description>Returns variance(s) in [tMin,tMax] of T rate fixing time.</description>
       <libraryFunction>variance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1052,7 +1052,7 @@
       <description>Returns volatility/ies in [tMin,tMax] of T rate fixing time.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1083,7 +1083,7 @@
       <description>Returns the short term volatility implied by Abcd volatility.</description>
       <libraryFunction>shortTermVolatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1098,7 +1098,7 @@
       <description>Returns the long term volatility implied by Abcd volatility.</description>
       <libraryFunction>longTermVolatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1113,7 +1113,7 @@
       <description>Returns, if b is positive, the location of the Abcd volatility maximum.</description>
       <libraryFunction>maximumLocation</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1128,7 +1128,7 @@
       <description>Returns, if b is positive, the maximum of the Abcd volatility.</description>
       <libraryFunction>maximumVolatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1143,7 +1143,7 @@
       <description>Returns the a coefficient in the abcd vol parametrization</description>
       <libraryFunction>a</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1158,7 +1158,7 @@
       <description>Returns the a coefficient in the abcd vol parametrization</description>
       <libraryFunction>b</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1173,7 +1173,7 @@
       <description>Returns the a coefficient in the abcd vol parametrization</description>
       <libraryFunction>c</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1188,7 +1188,7 @@
       <description>Returns the a coefficient in the abcd vol parametrization</description>
       <libraryFunction>d</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1203,7 +1203,7 @@
       <description>Returns the 'k' adjustment factors needed to match Black vols</description>
       <libraryFunction>k</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1229,7 +1229,7 @@
       <description>Returs the error between the abdc implied Black vols and a given Black vol vector</description>
       <libraryFunction>error</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1255,7 +1255,7 @@
       <description>Returs the max error between the abdc implied Black vols and a given Black vol vector</description>
       <libraryFunction>maxError</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1281,7 +1281,7 @@
       <description>Calibrates the a, b, c, d parameters of the vol parametrization</description>
       <libraryFunction>capletCalibration</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1317,7 +1317,7 @@
     <Constructor name='qlPiecewiseConstantAbcdVariance'>
       <libraryFunction>PiecewiseConstantAbcdVariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1361,7 +1361,7 @@
       <description>Returns the piecewise constant abcd variances.</description>
       <libraryFunction>variances</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1376,7 +1376,7 @@
       <description>Returns the piecewise constant abcd instantaneous volatilities.</description>
       <libraryFunction>piecewiseConstantVolatilities</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1393,7 +1393,7 @@
     <!--<Constructor name='qlSwapCovarianceApproximator'>
       <libraryFunction>SwapCovarianceApproximator</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1431,7 +1431,7 @@
       <description>Given the forward covariance matrix, it returns the approximated swap covariance matrix corresponding to the (sub)set of coterminal swaps between expiry and maturity.</description>
       <libraryFunction>swapCovarianceMatrix</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1446,7 +1446,7 @@
     <Constructor name='qlSwapFromFRACorrelationStructure'>
       <libraryFunction>SwapFromFRACorrelationStructure</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1486,7 +1486,7 @@
       <description>Returns the pseudo-root of the equivalent covariance swap rates matrix</description>
       <libraryFunction>pseudoRoot</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1508,7 +1508,7 @@
       <alias>QuantLibAddin::capletCoterminalCalibration</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1561,7 +1561,7 @@
       <alias>QuantLib::SwapForwardMappings::coterminalSwapForwardJacobian</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1584,7 +1584,7 @@
       <alias>QuantLib::SwapForwardMappings::coterminalSwapZedMatrix</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1613,7 +1613,7 @@
       <libraryFunction>rateTimes</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1629,7 +1629,7 @@
       <libraryFunction>rateTaus</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1644,7 +1644,7 @@
       <description>Returns the current forward rates of the CurveState object</description>
       <libraryFunction>forwardRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1659,7 +1659,7 @@
       <description>Returns the current swap rates of the CurveState object</description>
       <libraryFunction>coterminalSwapRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -1674,7 +1674,7 @@
       <description>Returns the current swap rates of the CurveState object</description>
       <libraryFunction>cmSwapRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1694,7 +1694,7 @@
     <!--<Constructor name='qlCurveState'>
       <libraryFunction>CurveState</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1711,7 +1711,7 @@
     <Constructor name='qlCMSwapCurveState'>
       <libraryFunction>CMSwapCurveState</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1734,7 +1734,7 @@
       <description>set the CurveState object on given vector of coterminal swaps</description>
       <libraryFunction>setOnCMSwapRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1755,7 +1755,7 @@
     <Constructor name='qlCoterminalSwapCurveState'>
       <libraryFunction>CoterminalSwapCurveState</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1773,7 +1773,7 @@
       <description>set the CurveState object on given vector of coterminal swaps</description>
       <libraryFunction>setOnCoterminalSwapRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1794,7 +1794,7 @@
     <Constructor name='qlLMMCurveState'>
       <libraryFunction>LMMCurveState</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1812,7 +1812,7 @@
       <description>set the CurveState object on given vector of forward rates</description>
       <libraryFunction>setOnForwardRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1833,7 +1833,7 @@
       <description>set the CurveState object on given vector of discount ratios</description>
       <libraryFunction>setOnDiscountRatios</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1855,7 +1855,7 @@
     <Constructor name='qlLMMDriftCalculator'>
       <libraryFunction>LMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1893,7 +1893,7 @@
       <description>Full factor drift computation using the LMMDriftCalculator object</description>
       <libraryFunction>computePlain</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1915,7 +1915,7 @@
       <description>Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object</description>
       <libraryFunction>computeReduced</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1937,7 +1937,7 @@
       <description>Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1959,7 +1959,7 @@
     <Constructor name='qlLMMNormalDriftCalculator'>
       <libraryFunction>LMMNormalDriftCalculator</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -1992,7 +1992,7 @@
       <description>Full factor drift computation using the LMMNormalDriftCalculator object</description>
       <libraryFunction>computePlain</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2014,7 +2014,7 @@
       <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object</description>
       <libraryFunction>computeReduced</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2036,7 +2036,7 @@
       <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2058,7 +2058,7 @@
     <Constructor name='qlCMSMMDriftCalculator'>
       <libraryFunction>CMSMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2101,7 +2101,7 @@
       <description>Full factor drift computation using the CMSMMDriftCalculator object</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2123,7 +2123,7 @@
     <Constructor name='qlSMMDriftCalculator'>
       <libraryFunction>SMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2161,7 +2161,7 @@
       <description>Full factor drift computation using the SMMDriftCalculator object</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2184,7 +2184,7 @@
       <libraryFunction>MTBrownianGeneratorFactory</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2203,7 +2203,7 @@
       <libraryFunction>startNewPath</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -2219,7 +2219,7 @@
       <libraryFunction>advanceStep</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -2235,7 +2235,7 @@
       <libraryFunction>currentStep</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -2251,7 +2251,7 @@
       <libraryFunction>numeraires</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -2267,7 +2267,7 @@
       <libraryFunction>ForwardRatePcEvolver</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2294,7 +2294,7 @@
       <libraryFunction>ForwardRateIpcEvolver</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2321,7 +2321,7 @@
       <libraryFunction>ForwardRateNormalPcEvolver</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2349,7 +2349,7 @@
       <libraryFunction>AccountingEngine</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2379,7 +2379,7 @@
       <libraryFunction>multiplePathValues</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2408,7 +2408,7 @@
       <libraryFunction>LmExtLinearExponentialVolModel</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2447,7 +2447,7 @@
       <libraryFunction>LmLinearExponentialCorrelationModel</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2480,7 +2480,7 @@
       <description>Returns the forward rates implied from discount bond ratios</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2511,7 +2511,7 @@
       <description>Returns the coterminal swap rates implied from discount bond ratios</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2542,7 +2542,7 @@
       <description>Returns the coterminal swap annuities implied from discount bond ratios</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2573,7 +2573,7 @@
       <description>Returns constant maturity swap rates from discount ratios</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -2609,7 +2609,7 @@
       <description>Returns constant maturity swap annuities from discount ratios</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

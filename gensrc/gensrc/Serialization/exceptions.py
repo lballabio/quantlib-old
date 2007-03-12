@@ -21,6 +21,16 @@ import sys
 class SerializationException(exceptions.GensrcException):
     """Exceptions encountered when performing serialization."""
 
+class SerializationOverrideException(SerializationException):
+
+    OVERRIDE_ERROR = """
+Method %(method)s must be overridden in classes derived from %(parent)s."""
+
+    def __init__(self, parent, method):
+        self.value_ = OVERRIDE_ERROR % {
+            'parent' : parent,
+            'method' : method }
+
 class SerializationParseException(SerializationException):
 
     PARSE_ERROR = """
@@ -29,7 +39,7 @@ Error loading XML document %(xmlDocumentName)s :
 
     def __init__(self, xmlDocumentName):
         errorClass, errorObject, traceBack = sys.exc_info()
-        self.value = SerializationParseException.PARSE_ERROR % {
+        self.value_ = SerializationParseException.PARSE_ERROR % {
             'xmlDocumentName' : xmlDocumentName,
             'parseError' : str(errorObject) }
 
@@ -40,7 +50,7 @@ Error loading XML document %(xmlDocumentName)s :
 dict element "%(dictElementName)s" is empty."""
 
     def __init__(self, xmlDocumentName, dictElementName):
-        self.value = SerializationDictException.EMPTY_DICT_ERROR % {
+        self.value_ = SerializationDictException.EMPTY_DICT_ERROR % {
             'xmlDocumentName' : xmlDocumentName,
             'dictElementName' : dictElementName }
 
@@ -51,7 +61,7 @@ Error loading XML document %(xmlDocumentName)s :
 No element with name "%(elementName)s"'''
 
     def __init__(self, xmlDocumentName, elementName):
-        self.value = SerializationElementMissingException.ELEMENT_MISSING_ERROR % {
+        self.value_ = SerializationElementMissingException.ELEMENT_MISSING_ERROR % {
             'xmlDocumentName' : xmlDocumentName,
             'elementName' : elementName }
 
@@ -62,7 +72,7 @@ Error loading XML document %(xmlDocumentName)s :
 Unable to convert string "%(stringValue)s" to boolean.'''
 
     def __init__(self, xmlDocumentName, stringValue):
-        self.value = SerializationConvertBooleanException.CONVERT_BOOLEAN_ERROR % {
+        self.value_ = SerializationConvertBooleanException.CONVERT_BOOLEAN_ERROR % {
             'xmlDocumentName' : xmlDocumentName,
             'stringValue' : stringValue }
 
@@ -72,6 +82,6 @@ class SerializationCreatorException(SerializationException):
 no creator function found for class "%(className)s"'''
 
     def __init__(self, className):
-        self.value = SerializationCreatorException.UNDEFINED_CREATOR_ERROR % {
+        self.value_ = SerializationCreatorException.UNDEFINED_CREATOR_ERROR % {
             'className' : className }
 

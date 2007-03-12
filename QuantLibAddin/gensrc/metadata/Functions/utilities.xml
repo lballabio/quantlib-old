@@ -16,8 +16,8 @@
     <Procedure name='qlVersion'>
       <description>returns the version number of QuantLib</description>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
-        <Calc/>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -32,7 +32,7 @@
       <description>lists supported enumerated types</description>
       <alias>QuantLibAddin::EnumTypeRegistry::instance().getAllRegisteredTypes</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -47,7 +47,7 @@
       <description>returns the members of a given enumerated type</description>
       <alias>QuantLibAddin::EnumTypeRegistry::instance().getTypeElements</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -68,7 +68,7 @@
       <description>lists supported enumerated classes</description>
       <alias>QuantLibAddin::EnumClassRegistry::instance().getAllRegisteredTypes</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -83,7 +83,7 @@
       <description>returns the members of a given enumerated class</description>
       <alias>QuantLibAddin::EnumClassRegistry::instance().getTypeElements</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -103,7 +103,7 @@
     <Procedure name='qlFunctionCount'>
       <description>returns the number of functions in this Addin</description>
       <SupportedPlatforms>
-        <Excel implementation='manual'/>
+        <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -118,7 +118,7 @@
       <description>Looks for elements of a set in a subset. Returns a vector of present/not present booleans, one for each element of the set.</description>
       <alias>QuantLib::isInSubset</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

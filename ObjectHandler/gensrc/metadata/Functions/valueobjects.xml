@@ -17,7 +17,7 @@
       <description>retrieve the property names of a given object</description>
       <libraryFunction>propertyNames</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -32,7 +32,7 @@
       <description>retrieve the value of a named property</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

@@ -40,12 +40,14 @@
     </RuleGroup>
 
     <RuleGroup name='propertyGet' checkParameterIgnore='true'>
+      <Wrap/>
       <Rules>
         <Rule codeID='code66'/>
       </Rules>
     </RuleGroup>
 
     <RuleGroup name='constructorInit' indent='2' checkParameterIgnore='true' delimiter=',&#10;'>
+      <Wrap/>
       <Rules>
         <Rule>%(indent)s%(name)s_(%(name)s)</Rule>
       </Rules>

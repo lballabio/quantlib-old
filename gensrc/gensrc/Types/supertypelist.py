@@ -22,10 +22,12 @@ import re
 
 class DataType(serializable.Serializable):
 
-    groupName = 'DataTypes'
+    groupName_ = 'DataTypes'
+    #namespace_ = None
+    #classname_ = None
+    namespace_ = ''
+    classname_ = ''
     RE_NAMESPACE = re.compile('(.*)::(.*)')
-    namespace = None
-    classname = None
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
@@ -34,14 +36,33 @@ class DataType(serializable.Serializable):
 
     def postSerialize(self):
         """Perform post serialization initialization."""
-        m = DataType.RE_NAMESPACE.match(self.value)
+        m = DataType.RE_NAMESPACE.match(self.value_)
         if m:
-            self.namespace = m.group(1)
-            self.classname = m.group(2)
+            self.namespace_ = m.group(1)
+            self.classname_ = m.group(2)
+
+    def value(self):
+        return self.value_
+
+    def setSuperType(self, value):
+        self.superType_ = value
+
+    def overrideNativeType(self, value):
+        if self.nativeType_ == None:
+            self.nativeType_ = value
+
+    def nativeType(self):
+        return self.nativeType_
+
+    def superType(self):
+        return self.superType_
+
+    def classname(self):
+        return self.classname_
 
 class SuperType(serializable.Serializable):
 
-    groupName = 'SuperTypes'
+    groupName_ = 'SuperTypes'
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
@@ -51,10 +72,12 @@ class SuperType(serializable.Serializable):
 
     def postSerialize(self):
         """Perform post serialization initialization."""
-        for typeItem in self.DataTypes:
-            typeItem.superType = self.name
-            if typeItem.nativeType == None: 
-                typeItem.nativeType = self.nativeType
+        for typeItem in self.dataTypes_:
+            typeItem.setSuperType(self.name_)
+            typeItem.overrideNativeType(self.nativeType_)
+
+    def dataTypes(self):
+        return self.dataTypes_
 
 class SuperTypeList(serializable.Serializable):
 
@@ -67,21 +90,21 @@ class SuperTypeList(serializable.Serializable):
 
         self.typeNames_ = {}
 
-        for superType in self.SuperTypes.values():
-            for typeItem in superType.DataTypes:
-                if self.typeNames_.has_key(typeItem.value):
-                    self.typeNames_[typeItem.value].append(superType.name)
+        for superType in self.superTypes_.values():
+            for typeItem in superType.dataTypes():
+                if self.typeNames_.has_key(typeItem.value()):
+                    self.typeNames_[typeItem.value()].append(superType.name())
                 else:
-                    self.typeNames_[typeItem.value] = [superType.name]
+                    self.typeNames_[typeItem.value()] = [superType.name()]
 
     def getType(self, typeName, superTypeName = None):
         if not self.typeNames_.has_key(typeName):
             raise exceptions.TypeNameUndefinedException(typeName)
 
         if superTypeName:
-            if self.SuperTypes.has_key(superTypeName):
-                for typeItem in self.SuperTypes[superTypeName].DataTypes:
-                    if typeItem.value == typeName:
+            if self.superTypes_.has_key(superTypeName):
+                for typeItem in self.superTypes_[superTypeName].dataTypes():
+                    if typeItem.value() == typeName:
                         return typeItem
                 raise exceptions.TypeSuperUndefinedException(typeName, superTypeName)
             else:
@@ -89,7 +112,7 @@ class SuperTypeList(serializable.Serializable):
         else:
             if len(self.typeNames_[typeName]) > 1:
                 raise exceptions.TypeNameAmbiguousException(typeName, self.typeNames_[typeName])
-            for typeItem in self.SuperTypes[self.typeNames_[typeName][0]].DataTypes:
-                if typeItem.value == typeName:
+            for typeItem in self.superTypes_[self.typeNames_[typeName][0]].dataTypes():
+                if typeItem.value() == typeName:
                     return typeItem
 

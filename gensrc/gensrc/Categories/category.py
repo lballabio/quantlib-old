@@ -40,24 +40,24 @@ class Category(serializable.Serializable):
 
     def postSerialize(self):
         """Perform post serialization initialization."""
-        self.generateVOs = False
-        self.containsLoopFunction = False
-        for func in self.Functions.values():
-            if func.generateVOs:
-                self.generateVOs = True
-            if func.loopParameter:
-                self.containsLoopFunction = True
+        self.generateVOs_ = False
+        self.containsLoopFunction_ = False
+        for func in self.functions_.values():
+            if func.generateVOs():
+                self.generateVOs_ = True
+            if func.loopParameter():
+                self.containsLoopFunction_ = True
 
     def platformSupported(self, platformName, implementation):
         """Determine whether this category is supported for given platform."""
-        for func in self.Functions.values():
+        for func in self.functions_.values():
             if func.platformSupported(platformName, implementation):
                 return True
 
     def functions(self, platformName, implementation = function.AUTO):
         """Serve up functions alphabetically by name."""
-        for functionKey in self.FunctionKeys: 
-            func = self.Functions[functionKey]
+        for functionKey in self.functionKeys_: 
+            func = self.functions_[functionKey]
             if platformName == '*' \
             or func.platformSupported(platformName, implementation):
                 yield func
@@ -66,20 +66,38 @@ class Category(serializable.Serializable):
         """Generate list of #include directives necessary to compile code
         in this category."""
         ret = ''
-        if self.includes == None:
+        if self.includes_ == None:
             ret = '#include <%s/%s.hpp>\n' % (
-                environment.config().libRootDirectory,
-                self.name)
+                environment.config().libRootDirectory(),
+                self.name_)
         else:
-            for includeFile in self.includes:
+            for includeFile in self.includes_:
                 ret += '#include <%s>\n' % includeFile
-        if self.generateVOs:
+        if self.generateVOs_:
             ret += '#include <%s/vo_%s.hpp>\n' % (
-                environment.config().voRootDirectory,
-                self.name)
+                environment.config().voRootDirectory(),
+                self.name_)
         return ret
 
     def printDebug(self):
         for func in self.functions('*'):
             func.printDebug()
+
+    def xlFunctionWizardCategory(self):
+        return self.xlFunctionWizardCategory_
+
+    def containsLoopFunction(self):
+        return self.containsLoopFunction_
+
+    def copyright(self):
+        return self.copyright_
+
+    def displayName(self):
+        return self.displayName_
+
+    def description(self):
+        return self.description_
+
+    def generateVOs(self):
+        return self.generateVOs_
 

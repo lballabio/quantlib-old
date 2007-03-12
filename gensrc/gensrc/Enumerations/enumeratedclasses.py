@@ -22,48 +22,49 @@
 from gensrc.Serialization import serializable
 from gensrc.Utilities import common
 
-class EnumerationDefinition(serializable.Serializable):
-    """encapsulate a string->value mapping for a QuantLib enumeration.
-    
-    This class supports two different states -
-    1) string populated, key1/key2 null
-    2) key1/key2 populated, string null"""
+class EnumeratedClass(serializable.Serializable):
+    """encapsulate a string->value mapping for a QuantLib enumerated class."""
 
-    groupName = 'EnumerationDefinitions'
+    groupName_ = 'EnumeratedClasses'
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         serializer.serializeProperty(self, common.STRING)
         serializer.serializeProperty(self, common.VALUE)
-        serializer.serializeProperty(self, common.LIBRARY_CLASS, self.value)
-        serializer.serializeProperty(self, common.KEY1)
-        serializer.serializeProperty(self, common.KEY2)
+        serializer.serializeProperty(self, common.LIBRARY_CLASS)
 
     def key(self):
         """return unique identifier for this object."""
-        if self.key1:
-            return self.key1 + ':' + self.key2
-        else:
-            return self.string
+        return self.string_
 
-class Enumeration(serializable.Serializable):
+    def string(self):
+        return self.string_
+
+    def value(self):
+        return self.value_
+
+    def libraryClass(self):
+        return self.libraryClass_
+
+class EnumeratedClassGroup(serializable.Serializable):
     """encapsulate enumerations for a QuantLib datatype."""
 
-    groupName = 'Enumerations'
+    groupName_ = 'EnumeratedClassGroups'
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttributeBoolean(self, common.DOCUMENTATION_ONLY)
-        serializer.serializeAttribute(self, common.TYPE)
-        serializer.serializeBoolean(self, common.CONSTRUCTOR)
-        serializer.serializeObjectDict(self, EnumerationDefinition)
+        serializer.serializeAttribute(self, 'class')
+        serializer.serializeObjectDict(self, EnumeratedClass)
 
     def key(self):
         """return unique identifier for this object."""
-        return self.type
+        return self.class_
 
-    def getEnumerationDefinitions(self):
-        """serve up enumeration definition objects alphabetically by name."""
-        for enumDefKey in self.EnumerationDefinitionKeys:
-            yield self.EnumerationDefinitions[enumDefKey]
+    def className(self):
+        return self.class_
+
+    def enumeratedClasses(self):
+        """serve up enumerated classes alphabetically by name."""
+        for key in self.enumeratedClassKeys_:
+            yield self.enumeratedClasses_[key]
 

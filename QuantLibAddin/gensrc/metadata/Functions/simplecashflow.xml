@@ -14,7 +14,7 @@
     <Constructor name='qlSimpleCashFlowVector'>
       <libraryFunction>SimpleCashFlowVector</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

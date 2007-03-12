@@ -26,6 +26,6 @@ class RuleCodeInvalidException(RuleException):
 The code ID "%(codeID)s" is not defined in file "code.py"'''
 
     def __init__(self, codeID):
-        self.value = RuleCodeInvalidException.INVALID_CODE_ERROR % {
+        self.value_ = RuleCodeInvalidException.INVALID_CODE_ERROR % {
             'codeID' : codeID }
 

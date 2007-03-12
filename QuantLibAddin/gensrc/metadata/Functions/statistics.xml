@@ -15,7 +15,7 @@
       <description>Returns the number of samples collected for the given Statistics object</description>
       <libraryFunction>samples</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -30,7 +30,7 @@
       <description>Returns the sum of data weights for the given Statistics object</description>
       <libraryFunction>weightSum</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -45,7 +45,7 @@
       <description>Returns the mean for the given Statistics object</description>
       <libraryFunction>mean</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -60,7 +60,7 @@
       <description>Returns the variance for the given Statistics object</description>
       <libraryFunction>variance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -75,7 +75,7 @@
       <description>Returns the the standard deviation for the given Statistics object</description>
       <libraryFunction>standardDeviation</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -90,7 +90,7 @@
       <description>Returns the error estimate on the mean value for the given Statistics object</description>
       <libraryFunction>errorEstimate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -105,7 +105,7 @@
       <description>Returns the skewness for the given Statistics object</description>
       <libraryFunction>skewness</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -120,7 +120,7 @@
       <description>Returns the excess kurtosis for the given Statistics object</description>
       <libraryFunction>kurtosis</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -135,7 +135,7 @@
       <description>Returns the minimum sample value for the given Statistics object</description>
       <libraryFunction>min</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -150,7 +150,7 @@
       <description>Returns the maximum sample value for the given Statistics object</description>
       <libraryFunction>max</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -165,7 +165,7 @@
       <description>Returns the x-th percentile for the given Statistics object</description>
       <libraryFunction>percentile</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -186,7 +186,7 @@
       <description>Returns the x-th top percentile for the given Statistics object.</description>
       <libraryFunction>topPercentile</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -209,7 +209,7 @@
       <description>Returns the variance of observations below zero for the given Statistics object.</description>
       <libraryFunction>gaussianDownsideVariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -224,7 +224,7 @@
       <description>Returns the square root of the downside variance for the given Statistics object.</description>
       <libraryFunction>gaussianDownsideDeviation</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -239,7 +239,7 @@
       <description>Returns the variance of observations below the target for the given Statistics object.</description>
       <libraryFunction>gaussianRegret</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -260,7 +260,7 @@
       <description>Returns the x-th percentile for the given Statistics object.</description>
       <libraryFunction>gaussianPercentile</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -281,7 +281,7 @@
       <description>Returns the x-th top percentile for the given Statistics object.</description>
       <libraryFunction>gaussianTopPercentile</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -302,7 +302,7 @@
       <description>Returns the reciprocal of VAR at a given percentile for the given Statistics object.</description>
       <libraryFunction>gaussianPotentialUpside</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -323,7 +323,7 @@
       <description>Returns the value-at-risk at a given percentile for the given Statistics object.</description>
       <libraryFunction>gaussianValueAtRisk</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -344,7 +344,7 @@
       <description>Returns the expected loss in case that the loss exceeded a VaR threshold for the given Statistics object.</description>
       <libraryFunction>gaussianExpectedShortfall</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -365,7 +365,7 @@
       <description>Returns the probability of missing the given target for the given Statistics object.</description>
       <libraryFunction>gaussianShortfall</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -386,7 +386,7 @@
       <description>Returns the averaged shortfallness for the given Statistics object.</description>
       <libraryFunction>gaussianAverageShortfall</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -409,7 +409,7 @@
       <description>Returns the variance of observations below the mean for the given Statistics object.</description>
       <libraryFunction>semiVariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -424,7 +424,7 @@
       <description>Returns the square root of the semivariance for the given Statistics object.</description>
       <libraryFunction>semiDeviation</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -439,7 +439,7 @@
       <description>Returns the variance of observations below zero for the given Statistics object.</description>
       <libraryFunction>downsideVariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -454,7 +454,7 @@
       <description>Returns the square root of the downside variance for the given Statistics object.</description>
       <libraryFunction>downsideDeviation</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -469,7 +469,7 @@
       <description>Returns the variance of observations below target for the given Statistics object.</description>
       <libraryFunction>regret</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -490,7 +490,7 @@
       <description>Returns the reciprocal of VAR at a given percentile for the given Statistics object.</description>
       <libraryFunction>potentialUpside</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -511,7 +511,7 @@
       <description>Returns the value-at-risk at a given percentile for the given Statistics object.</description>
       <libraryFunction>valueAtRisk</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -532,7 +532,7 @@
       <description>Returns the expected loss in case that the loss exceeded a VaR threshold for the given Statistics object.</description>
       <libraryFunction>expectedShortfall</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -553,7 +553,7 @@
       <description>Returns the probability of missing the given target for the given Statistics object.</description>
       <libraryFunction>shortfall</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -574,7 +574,7 @@
       <description>Returns the averaged shortfallness for the given Statistics object.</description>
       <libraryFunction>averageShortfall</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -599,7 +599,7 @@
       </description>
       <libraryFunction>Statistics</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -624,7 +624,7 @@
       <description>Returns the variance of observations below zero.</description>
       <alias>QuantLibAddin::gaussianDownsideVariance</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -650,7 +650,7 @@
       <description>Returns the square root of the downside variance.</description>
       <alias>QuantLibAddin::gaussianDownsideDeviation</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -676,7 +676,7 @@
       <description>Returns the variance of observations below target</description>
       <alias>QuantLibAddin::gaussianRegret</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -707,7 +707,7 @@
       <description>Returns the x-th percentile</description>
       <alias>QuantLibAddin::gaussianPercentile</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -738,7 +738,7 @@
       <description>Returns the x-th top percentile</description>
       <alias>QuantLibAddin::gaussianTopPercentile</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -769,7 +769,7 @@
       <description>Returns the reciprocal of VAR at a given percentile.</description>
       <alias>QuantLibAddin::gaussianPotentialUpside</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -800,7 +800,7 @@
       <description>Returns the value-at-risk at a given percentile.</description>
       <alias>QuantLibAddin::gaussianValueAtRisk</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -831,7 +831,7 @@
       <description>Returns the expected loss in case that the loss exceeded a VaR threshold.</description>
       <alias>QuantLibAddin::gaussianExpectedShortfall</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -862,7 +862,7 @@
       <description>Returns the probability of missing the given target.</description>
       <alias>QuantLibAddin::gaussianShortfall</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -893,7 +893,7 @@
       <description>Returns the averaged shortfallness.</description>
       <alias>QuantLibAddin::gaussianAverageShortfall</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

@@ -19,6 +19,8 @@ from gensrc.Addins import excel
 from gensrc.Addins import calc
 from gensrc.Addins import c
 from gensrc.Addins import guile
+#FIXNME delete this line?
+from gensrc.Addins import enumerations
 from gensrc.Addins import doxygen
 from gensrc.Addins import valueobjects
 from gensrc.Addins import enumerations
@@ -63,15 +65,15 @@ addin           unchanged   updated     created     total'''
         environment.Environment.instance().setTypes(superTypeList)
 
         self.categoryList_ = categorylist.CategoryList()
-        if config.usingEnumerations:
+        if config.usingEnumerations():
             self.enumerationList_ = enumerationlist.EnumerationList()
         else:
             self.enumerationList_ = None
 
-        self.addins = []
+        self.addins_ = []
         for addinId in addinIds:
             creator, fileName = AddinList.creators[addinId]
-            self.addins.append(utilities.serializeObject(creator, 'metadata/Addins/' + fileName))
+            self.addins_.append(utilities.serializeObject(creator, 'metadata/Addins/' + fileName))
 
     def generate(self):
 
@@ -82,7 +84,7 @@ addin           unchanged   updated     created     total'''
 
         log.Log.instance().logMessage('begin ...')
 
-        for addin in self.addins:
+        for addin in self.addins_:
             addin.generate(self.categoryList_, self.enumerationList_)
 
         log.Log.instance().logMessage('end')
@@ -98,17 +100,17 @@ addin           unchanged   updated     created     total'''
         totalUpdated = 0
         totalCreated = 0
 
-        for addin in self.addins:
+        for addin in self.addins_:
             totalLine = addin.unchanged + addin.updated + addin.created
             totalUnchanged += addin.unchanged
             totalUpdated += addin.updated
             totalCreated += addin.created
             totalAll += totalLine
-            msg = AddinList.LINE_FORMAT % (addin.name, addin.unchanged, 
+            msg = AddinList.LINE_FORMAT % (addin.name(), addin.unchanged, 
                 addin.updated, addin.created, totalLine)
             log.Log.instance().logMessage(msg)
 
-        if len(self.addins) > 1:
+        if len(self.addins_) > 1:
             msg = AddinList.LINE_FORMAT % ('total', totalUnchanged, 
                 totalUpdated, totalCreated, totalAll)
             log.Log.instance().logMessage(AddinList.LINE_HEADER2)
@@ -119,6 +121,6 @@ addin           unchanged   updated     created     total'''
         for cat in self.categoryList_.categories('*'):
             cat.printDebug()
 
-        for addin in self.addins:
+        for addin in self.addins_:
             addin.printDebug()
 

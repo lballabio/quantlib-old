@@ -31,7 +31,7 @@ def loadBuffer(bufferName):
 class Buffer(serializable.Serializable):
     """class to encapsulate state and behavior for a named file buffer."""
 
-    groupName = 'Buffers'
+    groupName_ = 'Buffers'
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
@@ -41,10 +41,13 @@ class Buffer(serializable.Serializable):
 
     def postSerialize(self):
         """load the named buffer."""
-        if self.local:
-            fileBuffer = open('stubs/' + self.fileName)
+        if self.local_:
+            fileBuffer = open('stubs/' + self.fileName_)
         else:
-            fileBuffer = open(environment.Environment.instance().rootDirectory() + '/stubs/' + self.fileName)
-        self.text = fileBuffer.read()
+            fileBuffer = open(environment.Environment.instance().rootDirectory() + '/stubs/' + self.fileName_)
+        self.text_ = fileBuffer.read()
         fileBuffer.close()
+
+    def text(self):
+        return self.text_
 

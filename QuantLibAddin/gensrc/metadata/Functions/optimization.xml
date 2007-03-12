@@ -17,7 +17,7 @@
       <description>Returns the number of max interation for the given EndCriteria object</description>
       <libraryFunction>maxIterations</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -32,7 +32,7 @@
       <description>Returns the number of max interation in a stationary state for the given EndCriteria object</description>
       <libraryFunction>maxStationaryStateIterations</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -47,7 +47,7 @@
       <description>Returns the function epsilon for the given EndCriteria object</description>
       <libraryFunction>functionEpsilon</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -62,7 +62,7 @@
       <description>Returns the gradient epsilon for the given EndCriteria object</description>
       <libraryFunction>gradientEpsilon</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -76,7 +76,7 @@
     <Constructor name='qlEndCriteria'>
       <libraryFunction>EndCriteria</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -109,7 +109,7 @@
     <Constructor name='qlSimplex'>
       <libraryFunction>Simplex</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -125,7 +125,7 @@
     <Constructor name='qlLevenbergMarquardt'>
       <libraryFunction>LevenbergMarquardt</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -151,7 +151,7 @@
     <Constructor name='qlConjugateGradient'>
       <libraryFunction>ConjugateGradient</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -167,7 +167,7 @@
     <Constructor name='qlSteepestDescent'>
       <libraryFunction>SteepestDescent</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -185,7 +185,7 @@
     <Constructor name='qlArmijoLineSearch'>
       <libraryFunction>ArmijoLineSearch</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

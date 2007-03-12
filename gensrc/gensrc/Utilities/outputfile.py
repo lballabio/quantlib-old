@@ -34,44 +34,44 @@ UPDATE_MSG = '  file %-65s - %10s'
 class OutputFile(object):
     """represent a file which gets overwritten only when its contents change."""
     
-    trimWhitespace = re.compile(r'^ *', re.M)
+    trimWhitespace_ = re.compile(r'^ *', re.M)
 
     def __init__(self, addin, fileName, copyright, buffer, printHeader = True):
         """open file and write header."""
-        self.addin = addin
-        self.fileName = fileName
-        self.fileNameTemp = fileName + '.temp'
-        self.outFile = file(self.fileNameTemp, 'w')
+        self.addin_ = addin
+        self.fileName_ = fileName
+        self.fileNameTemp_ = self.fileName_ + '.temp'
+        self.outFile_ = file(self.fileNameTemp_, 'w')
         if copyright:
             self.printCopyright(copyright)
         if printHeader:
             self.printHeader()
-        self.outFile.write(buffer)
+        self.outFile_.write(buffer)
         self.close()
 
     def printCopyright(self, copyright):
-        copyright = OutputFile.trimWhitespace.sub(' ', copyright)
-        self.outFile.write(environment.config().copyrightBuffer % 
-            { 'copyright' : copyright } )
+        copyrightTrim = OutputFile.trimWhitespace_.sub(' ', copyright)
+        self.outFile_.write(environment.config().copyrightBuffer % 
+            { 'copyright' : copyrightTrim } )
 
     def printHeader(self):
-        self.outFile.write(HEADER % os.path.basename(sys.argv[0]))
+        self.outFile_.write(HEADER % os.path.basename(sys.argv[0]))
 
     def close(self):
         """close temp file and overwrite original if they are different."""
-        self.outFile.close()
-        if os.path.exists(self.fileName):
-            if filecmp.cmp(self.fileName, self.fileNameTemp):
-                os.unlink(self.fileNameTemp)
-                log.Log.instance().logMessage(UPDATE_MSG % (self.fileName, 'unchanged'))
-                self.addin.unchanged += 1
+        self.outFile_.close()
+        if os.path.exists(self.fileName_):
+            if filecmp.cmp(self.fileName_, self.fileNameTemp_):
+                os.unlink(self.fileNameTemp_)
+                log.Log.instance().logMessage(UPDATE_MSG % (self.fileName_, 'unchanged'))
+                self.addin_.unchanged += 1
             else:
-                os.unlink(self.fileName)
-                os.rename(self.fileNameTemp, self.fileName)
-                log.Log.instance().logMessage(UPDATE_MSG % (self.fileName, 'updated'))
-                self.addin.updated += 1
+                os.unlink(self.fileName_)
+                os.rename(self.fileNameTemp_, self.fileName_)
+                log.Log.instance().logMessage(UPDATE_MSG % (self.fileName_, 'updated'))
+                self.addin_.updated += 1
         else:
-            os.rename(self.fileNameTemp, self.fileName)
-            log.Log.instance().logMessage(UPDATE_MSG % (self.fileName, 'created'))
-            self.addin.created += 1
+            os.rename(self.fileNameTemp_, self.fileName_)
+            log.Log.instance().logMessage(UPDATE_MSG % (self.fileName_, 'created'))
+            self.addin_.created += 1
 

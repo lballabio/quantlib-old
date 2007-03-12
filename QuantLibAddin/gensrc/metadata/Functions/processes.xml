@@ -10,10 +10,10 @@
     <Constructor name='qlGeneralizedBlackScholesProcess'>
       <libraryFunction>GeneralizedBlackScholesProcess</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
-        <C/>
-        <Calc/>
-        <Guile/>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

@@ -12,7 +12,7 @@
       <description>returns the name of the given DayCounter</description>
       <libraryFunction>name</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -27,7 +27,7 @@
       <description>calculate the number of days in a period according to a given day count convention</description>
       <libraryFunction>dayCount</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -53,7 +53,7 @@
       <description>calculate a year fraction</description>
       <libraryFunction>yearFraction</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

@@ -18,7 +18,7 @@
       <description>Returns the number of samples collected for the given SequenceStatistics object</description>
       <libraryFunction>samples</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -33,7 +33,7 @@
       <description>Returns the sum of data weights for the given SequenceStatistics object</description>
       <libraryFunction>weightSum</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -50,7 +50,7 @@
       <description>Returns the mean for the given SequenceStatistics object</description>
       <libraryFunction>mean</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -65,7 +65,7 @@
       <description>Returns the variance for the given SequenceStatistics object</description>
       <libraryFunction>variance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -80,7 +80,7 @@
       <description>Returns the the standard deviation for the given SequenceStatistics object</description>
       <libraryFunction>standardDeviation</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -95,7 +95,7 @@
       <description>Returns the variance of observations below zero for the given SequenceStatistics object.</description>
       <libraryFunction>downsideVariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -110,7 +110,7 @@
       <description>Returns the square root of the downside variance for the given SequenceStatistics object.</description>
       <libraryFunction>downsideDeviation</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -125,7 +125,7 @@
       <description>Returns the variance of observations below the mean for the given SequenceStatistics object.</description>
       <libraryFunction>semiVariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -140,7 +140,7 @@
       <description>Returns the square root of the semivariance for the given SequenceStatistics object.</description>
       <libraryFunction>semiDeviation</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -155,7 +155,7 @@
       <description>Returns the error estimate on the mean value for the given SequenceStatistics object</description>
       <libraryFunction>errorEstimate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -170,7 +170,7 @@
       <description>Returns the skewness for the given SequenceStatistics object</description>
       <libraryFunction>skewness</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -185,7 +185,7 @@
       <description>Returns the excess kurtosis for the given SequenceStatistics object</description>
       <libraryFunction>kurtosis</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -200,7 +200,7 @@
       <description>Returns the minimum sample value for the given SequenceStatistics object</description>
       <libraryFunction>min</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -215,7 +215,7 @@
       <description>Returns the maximum sample value for the given SequenceStatistics object</description>
       <libraryFunction>max</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -230,7 +230,7 @@
       <description>Returns the x-th percentile for the given SequenceStatistics object.</description>
       <libraryFunction>gaussianPercentile</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -251,7 +251,7 @@
       <description>Returns the x-th percentile for the given SequenceStatistics object</description>
       <libraryFunction>percentile</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -272,7 +272,7 @@
       <description>Returns the reciprocal of VAR at a given percentile for the given SequenceStatistics object.</description>
       <libraryFunction>gaussianPotentialUpside</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -293,7 +293,7 @@
       <description>Returns the reciprocal of VAR at a given percentile for the given SequenceStatistics object.</description>
       <libraryFunction>potentialUpside</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -314,7 +314,7 @@
       <description>Returns the value-at-risk at a given percentile for the given SequenceStatistics object.</description>
       <libraryFunction>gaussianValueAtRisk</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -335,7 +335,7 @@
       <description>Returns the value-at-risk at a given percentile for the given SequenceStatistics object.</description>
       <libraryFunction>valueAtRisk</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -356,7 +356,7 @@
       <description>Returns the variance of observations below target for the given SequenceStatistics object.</description>
       <libraryFunction>regret</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -377,7 +377,7 @@
       <description>Returns the probability of missing the given target for the given SequenceStatistics object.</description>
       <libraryFunction>gaussianShortfall</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -398,7 +398,7 @@
       <description>Returns the probability of missing the given target for the given SequenceStatistics object.</description>
       <libraryFunction>shortfall</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -419,7 +419,7 @@
       <description>Returns the averaged shortfallness for the given SequenceStatistics object.</description>
       <libraryFunction>gaussianAverageShortfall</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -440,7 +440,7 @@
       <description>Returns the averaged shortfallness for the given SequenceStatistics object.</description>
       <libraryFunction>averageShortfall</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -461,7 +461,7 @@
       <description>Returns the covariance Matrix for the given SequenceStatistics object</description>
       <libraryFunction>covariance</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -476,7 +476,7 @@
       <description>Returns the correlation Matrix for the given SequenceStatistics object</description>
       <libraryFunction>correlation</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -495,7 +495,7 @@
       </description>
       <libraryFunction>SequenceStatistics</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -514,7 +514,7 @@
       </description>
       <libraryFunction>SequenceStatistics</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

@@ -17,7 +17,7 @@
       <description>Returns the type (e.g. Cap, Floor) for the given CapFloor object</description>
       <libraryFunction>type</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -32,7 +32,7 @@
       <description>Returns the cap rates for the given CapFloor object</description>
       <libraryFunction>capRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -47,7 +47,7 @@
       <description>Returns the floor rates for the given CapFloor object</description>
       <libraryFunction>floorRates</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -62,7 +62,7 @@
       <description>Returns the at-the-money rate for the given CapFloor object</description>
       <libraryFunction>atmRate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -77,7 +77,7 @@
       <description>Returns the start (i.e. first accrual) date for the given CapFloor object</description>
       <libraryFunction>startDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -92,7 +92,7 @@
       <description>Returns the maturity (i.e. last payment) date for the given CapFloor object</description>
       <libraryFunction>maturityDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -107,7 +107,7 @@
       <description>Returns the last fixing date for the given CapFloor object</description>
       <libraryFunction>lastFixingDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -122,7 +122,7 @@
       <description>Returns the volatility implied in a given price for the given CapFloor object</description>
       <libraryFunction>impliedVolatility</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -143,7 +143,7 @@
       <description>Returns the cash flow analysis for the given CapFloor object</description>
       <libraryFunction>legAnalysis</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -157,7 +157,7 @@
     <Constructor name='qlCapFloor'>
       <libraryFunction>CapFloor</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -194,7 +194,7 @@
     <Constructor name='qlMakeCapFloor'>
       <libraryFunction>CapFloor</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

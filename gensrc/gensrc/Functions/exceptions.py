@@ -28,7 +28,7 @@ Function has been configured to loop on parameter "%(loopParameterName)s"
 but there is no input parameter with that name."""
 
     def __init__(self, functionName, loopParameterName):
-        self.value = BehaviorLoopParameterException.BEHAVIOR_LOOP_ERROR % {
+        self.value_ = BehaviorLoopParameterException.BEHAVIOR_LOOP_ERROR % {
             'functionName' : functionName,
             'loopParameterName' : loopParameterName }
 
@@ -40,7 +40,7 @@ Function has been configured to loop on parameter "%(loopParameterName)s"
 but that parameter is not a vector."""
 
     def __init__(self, functionName, loopParameterName):
-        self.value = BehaviorLoopNonVectorException.BEHAVIOR_LOOP_ERROR % {
+        self.value_ = BehaviorLoopNonVectorException.BEHAVIOR_LOOP_ERROR % {
             'functionName' : functionName,
             'loopParameterName' : loopParameterName }
 
@@ -52,6 +52,6 @@ Function has been configured to loop,
 but the return value is not a vector."""
 
     def __init__(self, functionName, loopParameterName):
-        self.value = BehaviorReturnNonVectorException.BEHAVIOR_LOOP_ERROR % {
+        self.value_ = BehaviorReturnNonVectorException.BEHAVIOR_LOOP_ERROR % {
             'functionName' : functionName }
 

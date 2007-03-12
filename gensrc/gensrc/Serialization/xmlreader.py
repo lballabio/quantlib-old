@@ -25,6 +25,7 @@ from gensrc.Serialization import factory
 from gensrc.Serialization import exceptions
 import xml.dom.minidom
 from gensrc.Utilities import common
+import re
 
 class XmlReader(serializer.Serializer):
     """A class which implements the (De)Serializer interface to deserialize
@@ -36,117 +37,123 @@ class XmlReader(serializer.Serializer):
 
     def __init__(self, fileName):
         """Load indicated file into dom document."""
-        self.documentName = fileName + '.xml'
+        # FIXME documentName_ retained as member variable to be passed to other exceptions -
+        # no need to do this?
+        self.documentName_ = fileName + '.xml'
         try:
-            dom = xml.dom.minidom.parse(self.documentName)
+            dom = xml.dom.minidom.parse(self.documentName_)
         except:
-            raise exceptions.SerializationParseException(self.documentName)
-        self.node = dom.documentElement
+            raise exceptions.SerializationParseException(self.documentName_)
+        self.node_ = dom.documentElement
 
     ################################################
     # public interface
     ################################################
 
-    def serializeValue(self, caller):
+    def serializeValue(self, caller, valueName = 'value'):
         """Read a named attribute."""
-        setattr(caller, 'value', self.getNodeValue(self.node))
-
-    #def serializeName(self, caller):
-        #"""Read a named attribute."""
-        #setattr(caller, 'name', self.node.nodeName)
+        identifierName = self.formatIdentifier(valueName)
+        setattr(caller, identifierName, self.getNodeValue(self.node_))
 
     def serializeAttribute(self, caller, attributeName, defaultValue = None):
         """Read a named attribute."""
-        attributeValue = self.node.getAttribute(attributeName)
+        attributeValue = self.node_.getAttribute(attributeName)
+        identifierName = self.formatIdentifier(attributeName)
         if attributeValue:
-            setattr(caller, attributeName, attributeValue)
+            setattr(caller, identifierName, attributeValue)
         else:
-            setattr(caller, attributeName, defaultValue)
+            setattr(caller, identifierName, defaultValue)
 
     def serializeAttributeInteger(self, caller, attributeName, defaultValue = None):
         """Read a named integral attribute."""
-        attributeValue = self.node.getAttribute(attributeName)
+        attributeValue = self.node_.getAttribute(attributeName)
+        identifierName = self.formatIdentifier(attributeName)
         if attributeValue:
-            setattr(caller, attributeName, int(attributeValue))
+            setattr(caller, identifierName, int(attributeValue))
         else:
-            setattr(caller, attributeName, defaultValue)
+            setattr(caller, identifierName, defaultValue)
 
-    # FIXME for class Rule it would be better if defaultValue = None, would that
-    # break anything else?
+    # FIXME for class Rule it would be better if defaultValue = None,
+    # would that break anything else?
     def serializeAttributeBoolean(self, caller, attributeName, defaultValue = False):
         """Read a named boolean attribute."""
-        attributeValue = self.node.getAttribute(attributeName)
+        attributeValue = self.node_.getAttribute(attributeName)
+        identifierName = self.formatIdentifier(attributeName)
         if attributeValue:
-            setattr(caller, attributeName, self.stringToBoolean(attributeValue))
+            setattr(caller, identifierName, self.stringToBoolean(attributeValue))
         else:
-            setattr(caller, attributeName, defaultValue)
+            setattr(caller, identifierName, defaultValue)
 
     def serializeProperty(self, caller, propertyName, defaultValue = None):
         """Read a named property."""
         element = self.getChild(propertyName, True)
+        identifierName = self.formatIdentifier(propertyName)
         if element:
-            setattr(caller, propertyName, self.getNodeValue(element))
+            setattr(caller, identifierName, self.getNodeValue(element))
         else:
-            setattr(caller, propertyName, defaultValue)
+            setattr(caller, identifierName, defaultValue)
 
     def serializeBoolean(self, caller, propertyName, defaultValue = False):
         """Read a named boolean property."""
         element = self.getChild(propertyName, True)
+        identifierName = self.formatIdentifier(propertyName)
         if element:
-            setattr(caller, propertyName, self.stringToBoolean(self.getNodeValue(element)))
+            setattr(caller, identifierName, self.stringToBoolean(self.getNodeValue(element)))
         else:
-            setattr(caller, propertyName, defaultValue)
+            setattr(caller, identifierName, defaultValue)
 
     def serializeList(self, caller, vectorName, itemName, allowNone = False):
         """Read a list of elements."""
+        identifierName = self.formatIdentifier(vectorName)
         vectorElement = self.getChild(vectorName, allowNone)
         if not vectorElement:
-            setattr(caller, vectorName, None)
+            setattr(caller, identifierName, None)
             return
         itemElements = vectorElement.getElementsByTagName(itemName)
         ret = []
         for itemElement in itemElements:
             ret.append(self.getNodeValue(itemElement))
-        setattr(caller, vectorName, ret)
+        setattr(caller, identifierName, ret)
 
     def serializeDict(self, caller, dictName):
         """Read a named element in the document and set its values as
         attributes of the caller."""
+        identifierName = self.formatIdentifier(dictName)
         dictElement = self.getChild(dictName)
         ret = {}
         for childNode in self.iterateChildren(dictElement):
             ret[childNode.nodeName] = self.getNodeValue(childNode)
-        setattr(caller, dictName, ret)
+        setattr(caller, identifierName, ret)
 
-    def serializeObject(self, caller, objectClass, allowNone = False):
+    def serializeObject(self, caller, objectClass):
         """Load a Serializable object."""
-        objectElement = self.getChild(objectClass.__name__, allowNone)
-        if not objectElement:
-            setattr(caller, objectClass.__name__, None)
-            return
+        objectElement = self.getChild(objectClass.__name__)
         objectInstance = objectClass()
-        self.node = objectElement
+        self.node_ = objectElement
         objectInstance.serialize(self)
         objectInstance.postSerialize()
-        self.node = self.node.parentNode
-        setattr(caller, objectInstance.key(), objectInstance)
+        self.node_ = self.node_.parentNode
+        identifierName = self.formatIdentifier(objectInstance.key())
+        setattr(caller, identifierName, objectInstance)
 
     def serializeObjectList(self, caller, objectClass):
         """Load a list of Serializable objects."""
-        listElement = self.getChild(objectClass.groupName)
+        listElement = self.getChild(objectClass.groupName_)
         itemElements = listElement.getElementsByTagName(objectClass.__name__)
         ret = []
         for itemElement in itemElements:
             objectInstance = objectClass()
-            self.node = itemElement
+            self.node_ = itemElement
             objectInstance.serialize(self)
             objectInstance.postSerialize()
-            self.node = self.node.parentNode.parentNode
+            self.node_ = self.node_.parentNode.parentNode
             ret.append(objectInstance)
-        setattr(caller, objectClass.groupName, ret)
-        setattr(caller, objectClass.__name__ + 'Count', len(ret))
+        identifierName = self.formatIdentifier(objectClass.groupName_)
+        identifierCount = self.formatIdentifier(objectClass.__name__ + 'Count')
+        setattr(caller, identifierName, ret)
+        setattr(caller, identifierCount, len(ret))
 
-    def serializeObjectDict(self, caller, objectClass, name='', allowNone = False):
+    def serializeObjectDict(self, caller, objectClass):
         """Load a named element and write its data as a property of the caller.
 
         A client invokes this function as follows:
@@ -155,82 +162,26 @@ class XmlReader(serializer.Serializer):
         And after the call returns, the caller's dict is populated as follows:
             self.Foo - a dict of objects, keyed by object identifier
             self.FooKeys - a sorted list of the object identifiers
-            self.FooCount - #/objects loaded
 
         These structures allow the caller to iterate through the objects
         in order by identifier."""
 
-        dictElement = self.getChild(objectClass.groupName, allowNone)
-        if not dictElement:
-            setattr(caller, objectClass.groupName, None)
-            return
+        dictElement = self.getChild(objectClass.groupName_)
         dict = {}
         keys = []
         for childNode in self.iterateChildren(dictElement):
             objectInstance = factory.Factory.instance().makeObject(childNode.nodeName)
-            self.node = childNode
+            self.node_ = childNode
             objectInstance.serialize(self)
             objectInstance.postSerialize()
-            self.node = self.node.parentNode.parentNode
+            self.node_ = self.node_.parentNode.parentNode
             dict[objectInstance.key()] = objectInstance
             keys.append(objectInstance.key())
         keys.sort()
-        if name:
-            groupName = name
-            keyName = name + 'Keys'
-            countName = name + 'Count'
-        else:
-            groupName = objectClass.groupName
-            keyName = objectClass.__name__ + 'Keys'
-            countName = objectClass.__name__ + 'Count'
-        setattr(caller, groupName, dict)
-        setattr(caller, keyName, keys)
-        setattr(caller, countName, len(keys))
-
-    def serializeObjectContainer(self, caller, objectClass, allowNone = False):
-        """Load a named element as an object, stored as a property of the caller.
-
-        For XML formatted as follows:
-
-            <FooContainer>
-                <foo1>xxx</foo1>
-                <foo2>xxx</foo2>
-                ...
-            <FooContainer>
-
-        This function is called a follows:
-
-            serializer.serializeObjectContainer(self, Foo)
-        
-        Where 
-        - foo1, foo2, etc. are instances of class Foo
-        - Foo.groupName = 'FooContainer'
-        - FooContainer is a container class designed to hold items of class Foo
-
-        After this function returns, the calling object is populated as follows:
-
-            self.FooContainer
-
-        Where FooContainer identifies an object of class FooContainer containing a
-        dictionary of Foo objects."""
-
-        dictElement = self.getChild(objectClass.groupName, allowNone)
-        if not dictElement:
-            setattr(caller, objectClass.groupName, None)
-            return
-        dict = {}
-        for childNode in self.iterateChildren(dictElement):
-            objectInstance = factory.Factory.instance().makeObject(objectClass.__name__)
-            self.node = childNode
-            objectInstance.serialize(self)
-            objectInstance.postSerialize()
-            self.node = self.node.parentNode.parentNode
-            dict[childNode.nodeName] = objectInstance
-        if not len(dict): 
-            raise exceptions.SerializationDictException(self.documentName, objectClass.groupName)
-        dictInstance = factory.Factory.instance().makeObject(objectClass.groupName)
-        setattr(dictInstance, objectClass.groupName, dict)
-        setattr(caller, objectClass.groupName, dictInstance)
+        identifierName = self.formatIdentifier(objectClass.groupName_)
+        identifierKeys = self.formatIdentifier(objectClass.__name__ + 'Keys')
+        setattr(caller, identifierName, dict)
+        setattr(caller, identifierKeys, keys)
 
     def serializeObjectPropertyDict(self, caller, objectClass):
         """Load a named element and write its children directly as
@@ -256,15 +207,16 @@ class XmlReader(serializer.Serializer):
         This is appropriate when the caller knows at compile time the names
         of the objects to be loaded."""
 
-        dictElement = self.getChild(objectClass.groupName)
+        dictElement = self.getChild(objectClass.groupName_)
         itemElements = dictElement.getElementsByTagName(objectClass.__name__)
         for itemElement in itemElements:
             objectInstance = objectClass()
-            self.node = itemElement
+            self.node_ = itemElement
             objectInstance.serialize(self)
             objectInstance.postSerialize()
-            self.node = self.node.parentNode.parentNode
-            setattr(caller, objectInstance.key(), objectInstance)
+            self.node_ = self.node_.parentNode.parentNode
+            identifierName = self.formatIdentifier(objectInstance.key())
+            setattr(caller, identifierName, objectInstance)
 
     ################################################
     # private interface
@@ -272,11 +224,11 @@ class XmlReader(serializer.Serializer):
 
     def getChild(self, tagName, allowNone = False):
         """Get single named child of current node."""
-        for childNode in self.node.childNodes:
+        for childNode in self.node_.childNodes:
             if childNode.nodeName == tagName:
                 return childNode
         if not allowNone:
-            raise exceptions.SerializationElementMissingException(self.documentName, tagName)
+            raise exceptions.SerializationElementMissingException(self.documentName_, tagName)
 
     def iterateChildren(self, node):
         """Iterate through children of given node, skipping child nodes which
@@ -306,5 +258,21 @@ class XmlReader(serializer.Serializer):
         elif str.lower() == common.FALSE:
             return False
         else:
-            raise exceptions.SerializationConvertBooleanException(self.documentName, str)
+            raise exceptions.SerializationConvertBooleanException(self.documentName_, str)
+
+    def sub1(self, m):
+        return m.group(1).lower() + m.group(2) + '_'
+
+    REGEX_FORMAT_ID = re.compile(r'^(\w)(\w.*)$')
+
+    def formatIdentifier(self, identifier):
+        """Convert a general identifier to an identifier that complies
+        to standards for a private variable name.
+
+        This function accepts an identifier, converts the first character
+        to lowercase, and suffixes an underscore.  For example the input
+            VariableName
+        yields the output
+            variableName_"""
+        return XmlReader.REGEX_FORMAT_ID.sub(self.sub1, identifier)
 

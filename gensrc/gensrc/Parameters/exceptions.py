@@ -26,6 +26,6 @@ class ParameterNameInvalidException(ParameterException):
 The string "%(parameterName)s" is not a valid parameter name."""
 
     def __init__(self, parameterName):
-        self.value = ParameterNameInvalidException.INVALID_NAME_ERROR % {
+        self.value_ = ParameterNameInvalidException.INVALID_NAME_ERROR % {
             'parameterName' : parameterName }
 

@@ -18,6 +18,8 @@
 """Class to represent an object which is capable of being serialized by a
 Serializer, or deserialized by a Deserializer."""
 
+from gensrc.Serialization import exceptions
+
 class Serializable(object):
     """Class to represent an object which is capable of being serialized by a
     Serializer, or deserialized by a Deserializer.  The interface is the same
@@ -26,7 +28,7 @@ class Serializable(object):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        pass
+        raise exceptions.SerializationOverrideException("Serializable", "serialize")
 
     def postSerialize(self):
         """invoke any post serialization behavior that may be required."""
@@ -34,5 +36,13 @@ class Serializable(object):
 
     def key(self):
         """return unique identifier for this object."""
-        return self.name
+        return self.name_
+
+    def name(self):
+        """return unique identifier for this object."""
+        return self.name_
+
+#    def groupName(self):
+#        """return unique identifier for this object."""
+#        return self.groupName_
 

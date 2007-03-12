@@ -47,8 +47,8 @@ class GuileAddin(addin.Addin):
         """Generate code to register function."""
         ret = '    /* ' + cat.displayName + ' */\n'
         stub = '    gh_new_procedure("%s", %s, 1, 0, 0);\n'
-        for func in cat.functions(self.name): 
-            ret += stub % (func.name, func.name)
+        for func in cat.functions(self.name_): 
+            ret += stub % (func.name(), func.name())
         return ret
 
     def generateInitFunc(self):
@@ -56,9 +56,9 @@ class GuileAddin(addin.Addin):
         headers = ''
         registrations = ''
         i = 0
-        for cat in self.categoryList_.categories(self.name):
+        for cat in self.categoryList_.categories(self.name_):
             i += 1
-            headers += '#include <' + cat.name + '.h>\n'
+            headers += '#include <' + cat.name() + '.h>\n'
             registrations += self.generateRegistrations(cat)
             if i < len(self.categoryList_.categoryNames()):
                 registrations += '\n'
@@ -75,34 +75,34 @@ class GuileAddin(addin.Addin):
             'categoryName' : cat.name,
             'prefix' : environment.config().prefix,
             'prototypes' : prototypes }
-        fileName =  self.rootPath + cat.name + '.h'
+        fileName =  self.rootPath_ + cat.name() + '.h'
         outputfile.OutputFile(self, fileName, cat.copyright, buf, False)
 
     def generateFunction(self, func):
         """Generate source code for body of function."""
-        return self.bufferFunction.text % {
-            'cppConversions' : func.ParameterList.generate(self.cppConversions),
-            'libraryConversions' : func.ParameterList.generate(self.libraryConversions),
-            'referenceConversions' : func.ParameterList.generate(self.referenceConversions),
-            'enumConversions' : func.ParameterList.generate(self.enumConversions),
+        return self.bufferFunction_.text() % {
+            'cppConversions' : func.ParameterList.generate(self.cppConversions()),
+            'libraryConversions' : func.ParameterList.generate(self.libraryConversions()),
+            'referenceConversions' : func.ParameterList.generate(self.referenceConversions()),
+            'enumConversions' : func.ParameterList.generate(self.enumConversions()),
             'body' : func.generateBody(self),
-            'returnConversion' : self.returnConversion.apply(func.returnValue),
-            'name' : func.name }
+            'returnConversion' : self.returnConversion_.apply(func.returnValue),
+            'name' : func.name() }
 
     def generateFunctions(self):
         """Generate source for function implementations."""
-        for cat in self.categoryList_.categories(self.name):
+        for cat in self.categoryList_.categories(self.name_):
             self.generateFuncHeaders(cat)
             code = ''
-            for func in cat.functions(self.name): 
-                code += GuileAddin.BUF_HEADER % (func.name, ' {')
+            for func in cat.functions(self.name_): 
+                code += GuileAddin.BUF_HEADER % (func.name(), ' {')
                 code += self.generateFunction(func)
-            buf = self.bufferIncludes.text % {
+            buf = self.bufferIncludes_.text() % {
                 'includes' : cat.includeList(),
                 'categoryName' : cat.name,
                 'libRoot' : environment.config().libRootDirectory,
                 'prefix' : environment.config().prefix,
                 'code' : code }
-            fileName= self.rootPath + cat.name + '.cpp'
+            fileName= self.rootPath_ + cat.name() + '.cpp'
             outputfile.OutputFile(self, fileName, cat.copyright, buf, False)
 

@@ -14,7 +14,7 @@
       <description>delete all objects from repository</description>
       <alias>ObjHandler::ObjectHandler::instance().deleteAllObjects</alias>
       <SupportedPlatforms>
-        <Calc/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -35,7 +35,7 @@
       <description>delete object from repository</description>
       <alias>ObjHandler::ObjectHandler::instance().deleteObject</alias>
       <SupportedPlatforms>
-        <Calc/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -56,7 +56,7 @@
       <description>forces a dependency between two functions and returns the update counter</description>
       <alias>ObjHandler::dependsOn</alias>
       <SupportedPlatforms>
-        <Calc implementation='manual'/>
+        <SupportedPlatform name='Calc' implementation='manual'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -122,7 +122,7 @@
       <description>list the IDs of objects in repository matching regex</description>
       <alias>ObjHandler::ObjectHandler::instance().listObjectIDs</alias>
       <SupportedPlatforms>
-        <Calc/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -143,7 +143,7 @@
       <description>write all object descriptions to log file</description>
       <alias>ObjHandler::logAllObjects</alias>
       <SupportedPlatforms>
-        <Calc/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -158,9 +158,9 @@
       <description>log a message</description>
       <alias>ObjHandler::logMessage</alias>
       <SupportedPlatforms>
-        <Calc/>
-        <C/>
-        <Guile/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -186,9 +186,9 @@
       <description>write object description to log file</description>
       <alias>ObjHandler::logObject</alias>
       <SupportedPlatforms>
-        <Calc/>
-        <C/>
-        <Guile/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -209,7 +209,7 @@
       <description>#/objects in repository</description>
       <alias>ObjHandler::ObjectHandler::instance().objectCount</alias>
       <SupportedPlatforms>
-        <Calc/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -224,7 +224,7 @@
       <description>retrieve the property names of a given object</description>
       <libraryFunction>propertyNames</libraryFunction>
       <SupportedPlatforms>
-        <Calc implementation='manual'/>
+        <SupportedPlatform name='Calc' implementation='manual'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -239,7 +239,7 @@
       <description>retrieve the value of a named property</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
-        <Calc implementation='manual'/>
+        <SupportedPlatform name='Calc' implementation='manual'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -260,9 +260,9 @@
       <description>begin logging to named file</description>
       <alias>ObjHandler::setLogFile</alias>
       <SupportedPlatforms>
-        <Calc/>
-        <C/>
-        <Guile/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -288,7 +288,7 @@
       <description>set threshold for log messages</description>
       <alias>ObjHandler::setLogLevel</alias>
       <SupportedPlatforms>
-        <Calc/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -310,8 +310,8 @@
       <description>returns the version number of ObjectHandler</description>
       <alias>ObjHandler::version</alias>
       <SupportedPlatforms>
-        <Excel implementation='documentationOnly'/>
-        <Calc/>
+        <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -326,8 +326,8 @@
       <description>fork output to stdout</description>
       <alias>ObjHandler::setConsole</alias>
       <SupportedPlatforms>
-        <C/>
-        <Guile/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

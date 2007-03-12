@@ -19,7 +19,7 @@
     <Constructor name='qlSwap'>
       <libraryFunction>Swap</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -46,7 +46,7 @@
     <Constructor name='qlMakeCms'>
       <libraryFunction>Swap</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -89,7 +89,7 @@
       <description>returns the BPS of the i-th leg for the given Swap object.</description>
       <libraryFunction>legBPS</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -110,7 +110,7 @@
       <description>returns the NPV of the i-th leg for the given Swap object.</description>
       <libraryFunction>legNPV</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -131,7 +131,7 @@
       <description>Returns the start (i.e. first accrual) date for the given Swap object</description>
       <libraryFunction>startDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -146,7 +146,7 @@
       <description>Returns the maturity (i.e. last payment) date for the given Swap object</description>
       <libraryFunction>maturityDate</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -161,7 +161,7 @@
       <description>Returns the cash flow analysis of the i-th leg for the given Swap object.</description>
       <libraryFunction>legAnalysis</libraryFunction>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

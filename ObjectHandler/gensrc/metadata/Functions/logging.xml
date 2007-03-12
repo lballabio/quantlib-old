@@ -17,7 +17,7 @@
       <description>write all object descriptions to log file</description>
       <alias>ObjHandler::logAllObjects</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -32,7 +32,7 @@
       <description>log a message</description>
       <alias>ObjHandler::logMessage</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -58,7 +58,7 @@
       <description>write object description to log file</description>
       <alias>ObjHandler::logObject</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -79,7 +79,7 @@
       <description>begin logging to named file</description>
       <alias>ObjHandler::setLogFile</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -105,7 +105,7 @@
       <description>set threshold for log messages</description>
       <alias>ObjHandler::setLogLevel</alias>
       <SupportedPlatforms>
-        <Excel calcInWizard='false' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
