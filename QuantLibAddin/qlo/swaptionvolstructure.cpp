@@ -189,7 +189,7 @@ namespace QuantLibAddin {
 
         std::vector<boost::any> headings(numberOfColumn);
         headings[0]=std::string("Swap Length");
-        headings[1]=std::string("Expiriy");
+        headings[1]=std::string("Expiry");
 
         headings[2]=std::string("Alpha");
         headings[3]=std::string("Beta");
@@ -244,17 +244,17 @@ namespace QuantLibAddin {
 
         std::vector<boost::any> headings(numberOfColumn);
         headings[0]=std::string("Swap Length");
-        headings[1]=std::string("Expiriy");
+        headings[1]=std::string("Expiry");
 
-        headings[2]=std::string("-200 bps");
-        headings[3]=std::string("-100 bps");
-        headings[4]=std::string("-50 bps");
-        headings[5]=std::string("-25 bps");
-        headings[6]=std::string("0 bps");
-        headings[7]=std::string("25 bps");
-        headings[8]=std::string("50 bps");
-        headings[9]=std::string("100 bps");
-        headings[10]=std::string("200 bps");
+        headings[ 2] = -200*1e-4;
+        headings[ 3] = -100*1e-4;
+        headings[ 4] = - 50*1e-4;
+        headings[ 5] = - 25*1e-4;
+        headings[ 6] =    0*1e-4;
+        headings[ 7] = + 25*1e-4;
+        headings[ 8] = + 50*1e-4;
+        headings[ 9] = +100*1e-4;
+        headings[10] = +200*1e-4;
 
         volatilityCube.push_back(headings);
 
