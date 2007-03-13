@@ -33,7 +33,7 @@ class EnumeratedCurve(serializable.Serializable):
         serializer.serializeProperty(self, 'interpolator')
         serializer.serializeProperty(self, common.VALUE)
 
-    def key(self):
+    def name(self):
         """return unique identifier for this object."""
         return self.traits_ + ':' + self.interpolator_
 
@@ -56,7 +56,7 @@ class EnumeratedCurveGroup(serializable.Serializable):
         serializer.serializeAttribute(self, 'class')
         serializer.serializeObjectDict(self, EnumeratedCurve)
 
-    def key(self):
+    def name(self):
         """return unique identifier for this object."""
         return self.class_
 

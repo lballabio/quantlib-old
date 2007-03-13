@@ -34,10 +34,6 @@ class Serializable(object):
         """invoke any post serialization behavior that may be required."""
         pass
 
-    def key(self):
-        """return unique identifier for this object."""
-        return self.name_
-
     def name(self):
         """return unique identifier for this object."""
         return self.name_

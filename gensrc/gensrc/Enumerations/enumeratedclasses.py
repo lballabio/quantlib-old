@@ -33,7 +33,7 @@ class EnumeratedClass(serializable.Serializable):
         serializer.serializeProperty(self, common.VALUE)
         serializer.serializeProperty(self, common.LIBRARY_CLASS)
 
-    def key(self):
+    def name(self):
         """return unique identifier for this object."""
         return self.string_
 
@@ -56,7 +56,7 @@ class EnumeratedClassGroup(serializable.Serializable):
         serializer.serializeAttribute(self, 'class')
         serializer.serializeObjectDict(self, EnumeratedClass)
 
-    def key(self):
+    def name(self):
         """return unique identifier for this object."""
         return self.class_
 

@@ -131,7 +131,7 @@ class XmlReader(serializer.Serializer):
         objectInstance.serialize(self)
         objectInstance.postSerialize()
         self.node_ = self.node_.parentNode
-        identifierName = self.formatIdentifier(objectInstance.key())
+        identifierName = self.formatIdentifier(objectInstance.name())
         setattr(caller, identifierName, objectInstance)
 
     def serializeObjectList(self, caller, objectClass):
@@ -173,8 +173,8 @@ class XmlReader(serializer.Serializer):
             objectInstance.serialize(self)
             objectInstance.postSerialize()
             self.node_ = self.node_.parentNode.parentNode
-            dict[objectInstance.key()] = objectInstance
-            keys.append(objectInstance.key())
+            dict[objectInstance.name()] = objectInstance
+            keys.append(objectInstance.name())
         keys.sort()
         identifierName = self.formatIdentifier(objectClass.groupName_)
         identifierKeys = self.formatIdentifier(objectClass.__name__ + 'Keys')
@@ -213,7 +213,7 @@ class XmlReader(serializer.Serializer):
             objectInstance.serialize(self)
             objectInstance.postSerialize()
             self.node_ = self.node_.parentNode.parentNode
-            identifierName = self.formatIdentifier(objectInstance.key())
+            identifierName = self.formatIdentifier(objectInstance.name())
             setattr(caller, identifierName, objectInstance)
 
     ################################################

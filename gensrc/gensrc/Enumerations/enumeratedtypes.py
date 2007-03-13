@@ -32,7 +32,7 @@ class EnumeratedType(serializable.Serializable):
         serializer.serializeProperty(self, common.STRING)
         serializer.serializeProperty(self, common.VALUE)
 
-    def key(self):
+    def name(self):
         """return unique identifier for this object."""
         return self.string_
 
@@ -71,7 +71,7 @@ class EnumeratedTypeGroup(serializable.Serializable):
             enumeratedType.setType(self.type_)
             enumeratedType.setConstructor(self.constructor_)
 
-    def key(self):
+    def name(self):
         """return unique identifier for this object."""
         return self.type_
 
