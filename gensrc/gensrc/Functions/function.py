@@ -176,7 +176,7 @@ class Constructor(Function):
 
     resetCaller_ = 'true'
     generateVOs_ = True
-    funcCtorBuffer_ = None
+    funcCtorBuffer_ = buffer.loadBuffer('stub.func.constructor')
     validatePermanent_ = '''
         ObjHandler::validateRange(permanent, "permanent");'''
     SET_PERMANENT = '''
@@ -190,9 +190,6 @@ class Constructor(Function):
 
     def __init__(self):
         self.returnValue_ = parameter.ConstructorReturnValue()
-        # FIXME put this back into class vars
-        if not Constructor.funcCtorBuffer_:
-            Constructor.funcCtorBuffer_ = buffer.loadBuffer('stub.func.constructor')
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -245,7 +242,7 @@ class Member(Function):
         super(Member, self).serialize(serializer)
         serializer.serializeProperty(self, common.LIBRARY_FUNCTION)
         serializer.serializeAttribute(self, common.TYPE)
-        serializer.serializeAttribute(self, 'superType')
+        serializer.serializeAttribute(self, common.SUPER_TYPE)
         serializer.serializeAttribute(self, common.LOOP_PARAMETER)
         serializer.serializeObject(self, parameter.ReturnValue)
 
