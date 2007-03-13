@@ -30,6 +30,10 @@ from gensrc.Configuration import environment
 class CAddin(addin.Addin):
     """Generate source code for C addin."""
 
+    #############################################
+    # class variables
+    #############################################
+
     BUFFER_FUNCDEC = '''\
     int %(func_name)s(%(func_dec)s
         %(func_ret)sresult)%(suffix)s'''
@@ -39,6 +43,10 @@ class CAddin(addin.Addin):
 
 %(func_headers)s
 #endif\n\n'''
+
+    #############################################
+    # public interface
+    #############################################
 
     def generate(self, categoryList, enumerationList):
         """Generate source code for C addin."""

@@ -38,7 +38,3 @@ def gensrc_excepthook(type, value, tb):
     traceback.print_tb(tb, None, sys.stderr)
     sys.stderr.write(ERROR_FOOTER % value)
 
-# set the error handler
-
-sys.excepthook = gensrc_excepthook
-

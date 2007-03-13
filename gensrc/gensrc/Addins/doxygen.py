@@ -30,7 +30,9 @@ from gensrc.Configuration import environment
 class Doxygen(addin.Addin):
     """Generate doxygen documentation files."""
 
-    # constants
+    #############################################
+    # class variables
+    #############################################
 
     LINE_ENUM = '    <tr><td>%s</td><td>%s</td></tr>\n'
     LINE_REF_CLASS =     '        \\ref enum_class_%d\\n\n'
@@ -39,6 +41,10 @@ class Doxygen(addin.Addin):
     LINE_SECTION_TYPE =  '    \\section enum_type_%d %s\n'
     LINE_TABLE = """    <table>\n
     <tr><td><b>String</b></td><td><b>%s</b></td></tr>\n"""
+
+    #############################################
+    # public interface
+    #############################################
 
     def generate(self, categoryList, enumerationList):
         """Generate doxygen documentation files."""

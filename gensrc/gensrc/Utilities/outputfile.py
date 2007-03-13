@@ -33,21 +33,16 @@ UPDATE_MSG = '  file %-65s - %10s'
 
 class OutputFile(object):
     """represent a file which gets overwritten only when its contents change."""
+
+    #############################################
+    # class variables
+    #############################################
     
     trimWhitespace_ = re.compile(r'^ *', re.M)
 
-    def __init__(self, addin, fileName, copyright, buffer, printHeader = True):
-        """open file and write header."""
-        self.addin_ = addin
-        self.fileName_ = fileName
-        self.fileNameTemp_ = self.fileName_ + '.temp'
-        self.outFile_ = file(self.fileNameTemp_, 'w')
-        if copyright:
-            self.printCopyright(copyright)
-        if printHeader:
-            self.printHeader()
-        self.outFile_.write(buffer)
-        self.close()
+    #############################################
+    # public interface
+    #############################################
 
     def printCopyright(self, copyright):
         copyrightTrim = OutputFile.trimWhitespace_.sub(' ', copyright)
@@ -74,4 +69,21 @@ class OutputFile(object):
             os.rename(self.fileNameTemp_, self.fileName_)
             log.Log.instance().logMessage(UPDATE_MSG % (self.fileName_, 'created'))
             self.addin_.incrementCreated()
+
+    #############################################
+    # private member functions
+    #############################################
+
+    def __init__(self, addin, fileName, copyright, buffer, printHeader = True):
+        """open file and write header."""
+        self.addin_ = addin
+        self.fileName_ = fileName
+        self.fileNameTemp_ = self.fileName_ + '.temp'
+        self.outFile_ = file(self.fileNameTemp_, 'w')
+        if copyright:
+            self.printCopyright(copyright)
+        if printHeader:
+            self.printHeader()
+        self.outFile_.write(buffer)
+        self.close()
 

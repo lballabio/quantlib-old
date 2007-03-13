@@ -22,7 +22,11 @@ from gensrc.Patterns import singleton
 from gensrc.Enumerations import enumeratedclasses
 from gensrc.Enumerations import enumeratedcurves
 from gensrc.Enumerations import enumeratedtypes
-from gensrc.Functions import function
+from gensrc.Functions import constructor
+from gensrc.Functions import member
+from gensrc.Functions import procedure
+from gensrc.Functions import enumerationmember
+from gensrc.Functions import supportedplatform
 from gensrc.Rules import rule
 from gensrc.Types import supertypelist
 
@@ -30,18 +34,18 @@ class Factory(singleton.Singleton):
     """construct an object given its class name."""
 
     creators_ = {
-        'Constructor' : function.Constructor,
+        'Constructor' : constructor.Constructor,
         'EnumeratedClass' : enumeratedclasses.EnumeratedClass,
         'EnumeratedClassGroup' : enumeratedclasses.EnumeratedClassGroup,
         'EnumeratedCurve' : enumeratedcurves.EnumeratedCurve,
         'EnumeratedCurveGroup' : enumeratedcurves.EnumeratedCurveGroup,
         'EnumeratedType' : enumeratedtypes.EnumeratedType,
         'EnumeratedTypeGroup' : enumeratedtypes.EnumeratedTypeGroup,
-        'EnumerationMember' : function.EnumerationMember,
-        'Member' : function.Member,
-        'Procedure' : function.Procedure,
+        'EnumerationMember' : enumerationmember.EnumerationMember,
+        'Member' : member.Member,
+        'Procedure' : procedure.Procedure,
         'SuperType' : supertypelist.SuperType,
-        'SupportedPlatform' : function.SupportedPlatform,
+        'SupportedPlatform' : supportedplatform.SupportedPlatform,
     }
 
     def makeObject(self, className):

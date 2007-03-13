@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,34 +15,44 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""class to encapsulate state and behavior for a named file buffer."""
-
+from gensrc.Types import exceptions
 from gensrc.Utilities import common
-from gensrc.Configuration import environment
 from gensrc.Serialization import serializable
+import re
 
-def loadBuffer(bufferName):
-    fileName = environment.Environment.instance().rootDirectory() + '/stubs/' + bufferName
-    fileBuffer = open(fileName)
-    ret = fileBuffer.read()
-    fileBuffer.close()
-    return ret
-
-class Buffer(serializable.Serializable):
-    """class to encapsulate state and behavior for a named file buffer."""
+class DataType(serializable.Serializable):
 
     #############################################
     # class variables
     #############################################
 
-    groupName_ = 'Buffers'
+    groupName_ = 'DataTypes'
+    namespace_ = None
+    classname_ = None
+    RE_NAMESPACE = re.compile('(.*)::(.*)')
 
     #############################################
     # public interface
     #############################################
 
-    def text(self):
-        return self.text_
+    def value(self):
+        return self.value_
+
+    def setSuperType(self, value):
+        self.superType_ = value
+
+    def overrideNativeType(self, value):
+        if self.nativeType_ == None:
+            self.nativeType_ = value
+
+    def nativeType(self):
+        return self.nativeType_
+
+    def superType(self):
+        return self.superType_
+
+    def classname(self):
+        return self.classname_
 
     #############################################
     # serializer interface
@@ -50,16 +60,13 @@ class Buffer(serializable.Serializable):
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self, common.NAME)
-        serializer.serializeAttribute(self, common.FILE_NAME)
-        serializer.serializeAttributeBoolean(self, common.LOCAL)
+        serializer.serializeAttribute(self, common.NATIVE_TYPE)
+        serializer.serializeValue(self)
 
     def postSerialize(self):
-        """load the named buffer."""
-        if self.local_:
-            fileBuffer = open('stubs/' + self.fileName_)
-        else:
-            fileBuffer = open(environment.Environment.instance().rootDirectory() + '/stubs/' + self.fileName_)
-        self.text_ = fileBuffer.read()
-        fileBuffer.close()
+        """Perform post serialization initialization."""
+        m = DataType.RE_NAMESPACE.match(self.value_)
+        if m:
+            self.namespace_ = m.group(1)
+            self.classname_ = m.group(2)
 

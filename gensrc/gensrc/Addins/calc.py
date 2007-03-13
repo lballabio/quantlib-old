@@ -37,6 +37,10 @@ PARMLINE = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
 class CalcAddin(addin.Addin):
     """Generate source code for Calc addin."""
 
+    #############################################
+    # class variables
+    #############################################
+
     stringConvert = 'ouStringToStlString(%s)'
     objectIdSuffix = 'Cpp'
     voSupported = True
@@ -44,10 +48,9 @@ class CalcAddin(addin.Addin):
         bool permanentCpp;
         calcToScalar(permanentCpp, permanent, false);'''
 
-    def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
-        super(CalcAddin, self).serialize(serializer)
-        serializer.serializeBoolean(self, 'addinClassName')
+    #############################################
+    # public interface
+    #############################################
 
     def generate(self, categoryList, enumerationList):
         """Generate source code for Calc addin."""
@@ -175,4 +178,13 @@ class CalcAddin(addin.Addin):
         idlFile = common.ALIAS, environment.config().namespaceLibrary() + 'CalcAddin.idl'
         fileName = self.rootPath_ + idlFile
         outputfile.OutputFile(self, fileName, None, buf2, False)
+
+    #############################################
+    # serializer interface
+    #############################################
+
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+        super(CalcAddin, self).serialize(serializer)
+        serializer.serializeBoolean(self, 'addinClassName')
 

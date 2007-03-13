@@ -247,11 +247,35 @@
 				>
 			</File>
 			<File
+				RelativePath="gensrc\Functions\behaviorloop.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\Functions\exceptions.py"
 				>
 			</File>
 			<File
 				RelativePath="gensrc\Functions\function.py"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\Functions\constructor.py"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\Functions\member.py"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\Functions\procedure.py"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\Functions\enumerationmember.py"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\Functions\supportedplatform.py"
 				>
 			</File>
 		</Filter>
@@ -323,11 +347,15 @@
 			Name="Types"
 			>
 			<File
+				RelativePath="gensrc\Types\datatype.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\Types\exceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Types\supertypelist.py"
+				RelativePath="gensrc\Types\supertype.py"
 				>
 			</File>
 		</Filter>

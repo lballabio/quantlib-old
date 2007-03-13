@@ -23,8 +23,14 @@ CORE_IMPORT=$(GENSRC_DIR)\gensrc\Addins\addin.py \
             $(GENSRC_DIR)\gensrc\Exceptions\excepthook.py \
             $(GENSRC_DIR)\gensrc\Exceptions\exceptions.py \
             $(GENSRC_DIR)\gensrc\Functions\behavior.py \
+            $(GENSRC_DIR)\gensrc\Functions\behaviorloop.py \
             $(GENSRC_DIR)\gensrc\Functions\exceptions.py \
             $(GENSRC_DIR)\gensrc\Functions\function.py \
+            $(GENSRC_DIR)\gensrc\Functions\supportedplatform.py \
+            $(GENSRC_DIR)\gensrc\Functions\constructor.py \
+            $(GENSRC_DIR)\gensrc\Functions\member.py \
+            $(GENSRC_DIR)\gensrc\Functions\procedure.py \
+            $(GENSRC_DIR)\gensrc\Functions\enumerationmember.py \
             $(GENSRC_DIR)\gensrc\Parameters\exceptions.py \
             $(GENSRC_DIR)\gensrc\Parameters\parameter.py \
             $(GENSRC_DIR)\gensrc\Parameters\parameterlist.py \
@@ -37,8 +43,9 @@ CORE_IMPORT=$(GENSRC_DIR)\gensrc\Addins\addin.py \
             $(GENSRC_DIR)\gensrc\Serialization\serializable.py \
             $(GENSRC_DIR)\gensrc\Serialization\serializer.py \
             $(GENSRC_DIR)\gensrc\Serialization\xmlreader.py \
+            $(GENSRC_DIR)\gensrc\Types\datatype.py \
             $(GENSRC_DIR)\gensrc\Types\exceptions.py \
-            $(GENSRC_DIR)\gensrc\Types\supertypelist.py \
+            $(GENSRC_DIR)\gensrc\Types\supertype.py \
             $(GENSRC_DIR)\gensrc\Utilities\buffer.py \
             $(GENSRC_DIR)\gensrc\Utilities\common.py \
             $(GENSRC_DIR)\gensrc\Utilities\log.py \

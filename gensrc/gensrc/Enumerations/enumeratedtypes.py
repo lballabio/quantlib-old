@@ -25,16 +25,15 @@ from gensrc.Utilities import common
 class EnumeratedType(serializable.Serializable):
     """encapsulate a string->value mapping for a library enumerated type."""
 
+    #############################################
+    # class variables
+    #############################################
+
     groupName_ = 'EnumeratedTypes'
 
-    def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
-        serializer.serializeProperty(self, common.STRING)
-        serializer.serializeProperty(self, common.VALUE)
-
-    def name(self):
-        """return unique identifier for this object."""
-        return self.string_
+    #############################################
+    # public interface
+    #############################################
 
     def setType(self, val):
         self.type_ = val
@@ -54,10 +53,47 @@ class EnumeratedType(serializable.Serializable):
         else:
             return self.value_
 
+    #############################################
+    # serializer interface
+    #############################################
+
+    def name(self):
+        """return unique identifier for this object."""
+        return self.string_
+
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+        serializer.serializeProperty(self, common.STRING)
+        serializer.serializeProperty(self, common.VALUE)
+
 class EnumeratedTypeGroup(serializable.Serializable):
     """encapsulate enumerations for a library datatype."""
 
+    #############################################
+    # class variables
+    #############################################
+
     groupName_ = 'EnumeratedTypeGroups'
+
+    #############################################
+    # public interface
+    #############################################
+
+    def enumeratedTypes(self):
+        """serve up enumeration definition objects alphabetically by name."""
+        for key in self.enumeratedTypeKeys_:
+            yield self.enumeratedTypes_[key]
+
+    def type(self):
+        return self.type_
+
+    #############################################
+    # serializer interface
+    #############################################
+
+    def name(self):
+        """return unique identifier for this object."""
+        return self.type_
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
@@ -70,16 +106,4 @@ class EnumeratedTypeGroup(serializable.Serializable):
         for enumeratedType in self.enumeratedTypes_.values():
             enumeratedType.setType(self.type_)
             enumeratedType.setConstructor(self.constructor_)
-
-    def name(self):
-        """return unique identifier for this object."""
-        return self.type_
-
-    def enumeratedTypes(self):
-        """serve up enumeration definition objects alphabetically by name."""
-        for key in self.enumeratedTypeKeys_:
-            yield self.enumeratedTypes_[key]
-
-    def type(self):
-        return self.type_
 

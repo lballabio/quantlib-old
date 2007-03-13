@@ -38,6 +38,10 @@ class AddinList(object):
     """class to encapsulate data and behavior 
     required to generate addin source code."""
 
+    #############################################
+    # class variables
+    #############################################
+
     LINE_HEADER1 = '''\
 addin           unchanged   updated     created     total'''
     LINE_HEADER2 = '''\
@@ -55,25 +59,9 @@ addin           unchanged   updated     created     total'''
         'd' : (doxygen.Doxygen, 'doxygen'),
     }
 
-    def __init__(self, addinIds):
-        """initialize"""
-
-        config = utilities.serializeObject(configuration.Configuration, 'config/config')
-        environment.Environment.instance().setConfiguration(config)
-
-        superTypeList = utilities.serializeObject(supertypelist.SuperTypeList, 'metadata/Types/types')
-        environment.Environment.instance().setTypes(superTypeList)
-
-        self.categoryList_ = categorylist.CategoryList()
-        if config.usingEnumerations():
-            self.enumerationList_ = enumerationlist.EnumerationList()
-        else:
-            self.enumerationList_ = None
-
-        self.addins_ = []
-        for addinId in addinIds:
-            creator, fileName = AddinList.creators[addinId]
-            self.addins_.append(utilities.serializeObject(creator, 'metadata/Addins/' + fileName))
+    #############################################
+    # public interface
+    #############################################
 
     def generate(self):
 
@@ -123,4 +111,28 @@ addin           unchanged   updated     created     total'''
 
         for addin in self.addins_:
             addin.printDebug()
+
+    #############################################
+    # private member functions
+    #############################################
+
+    def __init__(self, addinIds):
+        """initialize"""
+
+        config = utilities.serializeObject(configuration.Configuration, 'config/config')
+        environment.Environment.instance().setConfiguration(config)
+
+        superTypeList = utilities.serializeObject(supertypelist.SuperTypeList, 'metadata/Types/types')
+        environment.Environment.instance().setTypes(superTypeList)
+
+        self.categoryList_ = categorylist.CategoryList()
+        if config.usingEnumerations():
+            self.enumerationList_ = enumerationlist.EnumerationList()
+        else:
+            self.enumerationList_ = None
+
+        self.addins_ = []
+        for addinId in addinIds:
+            creator, fileName = AddinList.creators[addinId]
+            self.addins_.append(utilities.serializeObject(creator, 'metadata/Addins/' + fileName))
 

@@ -29,6 +29,10 @@ from gensrc.Configuration import environment
 class ValueObjects(addin.Addin):
     """Generate source code for ValueObjects."""
 
+    #############################################
+    # public interface
+    #############################################
+
     def generate(self, categoryList, enumerationList):
         """Generate source code for ValueObjects."""
 

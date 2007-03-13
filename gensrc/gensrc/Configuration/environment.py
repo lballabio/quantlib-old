@@ -29,6 +29,10 @@ def getType(typeName, superTypeName = None):
 class Environment(singleton.Singleton):
     """global configuration state for gensrc application."""
 
+    #############################################
+    # public interface
+    #############################################
+
     def rootDirectory(self):
         return gensrc.__path__[0]
 

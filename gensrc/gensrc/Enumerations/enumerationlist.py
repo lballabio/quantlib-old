@@ -23,18 +23,9 @@ from gensrc.Utilities import common
 
 class EnumerationList(object):
 
-    def __init__(self):
-
-        xmlEnumTypes = xmlreader.XmlReader('metadata/Enumerations/enumeratedtypes')
-        xmlEnumTypes.serializeObjectDict(self, enumeratedtypes.EnumeratedTypeGroup)
-        xmlEnumTypes.serializeProperty(self, common.ENUM_TYPE_COPYRIGHT)
-
-        xmlEnumClasses = xmlreader.XmlReader('metadata/Enumerations/enumeratedclasses')
-        xmlEnumClasses.serializeObjectDict(self, enumeratedclasses.EnumeratedClassGroup)
-        xmlEnumClasses.serializeProperty(self, common.ENUM_CLASS_COPYRIGHT)
-
-        xmlEnumCurves = xmlreader.XmlReader('metadata/Enumerations/enumeratedcurves')
-        xmlEnumCurves.serializeObjectDict(self, enumeratedcurves.EnumeratedCurveGroup)
+    #############################################
+    # public interface
+    #############################################
 
     def enumeratedTypeCopyright(self):
         return self.enumeratedTypeCopyright_
@@ -62,4 +53,21 @@ class EnumerationList(object):
         """serve up enumerated curve objects alphabetically by name."""
         for key in self.enumeratedCurveGroupKeys_:
             yield self.enumeratedCurveGroups_[key]
+
+    #############################################
+    # serializer interface
+    #############################################
+
+    def __init__(self):
+
+        xmlEnumTypes = xmlreader.XmlReader('metadata/Enumerations/enumeratedtypes')
+        xmlEnumTypes.serializeObjectDict(self, enumeratedtypes.EnumeratedTypeGroup)
+        xmlEnumTypes.serializeProperty(self, common.ENUM_TYPE_COPYRIGHT)
+
+        xmlEnumClasses = xmlreader.XmlReader('metadata/Enumerations/enumeratedclasses')
+        xmlEnumClasses.serializeObjectDict(self, enumeratedclasses.EnumeratedClassGroup)
+        xmlEnumClasses.serializeProperty(self, common.ENUM_CLASS_COPYRIGHT)
+
+        xmlEnumCurves = xmlreader.XmlReader('metadata/Enumerations/enumeratedcurves')
+        xmlEnumCurves.serializeObjectDict(self, enumeratedcurves.EnumeratedCurveGroup)
 

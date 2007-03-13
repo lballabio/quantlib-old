@@ -22,29 +22,9 @@ from gensrc.Serialization import serializable
 
 class Configuration(serializable.Serializable):
 
-    def __init__(self):
-        """initialize"""
-
-        # load copyright buffer
-        fileBuffer = open('stubs/stub.copyright')
-        self.copyrightBuffer = fileBuffer.read()
-        fileBuffer.close()
-
-    def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
-
-        serializer.serializeList(self, 'categoryNames', 'categoryName')
-        serializer.serializeProperty(self, 'libRootDirectory')
-        serializer.serializeProperty(self, common.NAMESPACE_OBJ)
-        serializer.serializeProperty(self, common.NAMESPACE_LIB)
-        serializer.serializeProperty(self, 'prefix')
-        serializer.serializeBoolean(self, 'usingEnumerations')
-
-    def postSerialize(self):
-        """Perform post serialization initialization."""
-        self.voRootDirectory_ = self.libRootDirectory_ + '/ValueObjects'
-        self.loopRootDirectory_ = self.libRootDirectory_ + '/Loop'
-        self.libFullPath_ = '../' + self.libRootDirectory_ + '/'
+    #############################################
+    # public interface
+    #############################################
 
     def categoryNames(self):
         return self.categoryNames_
@@ -73,4 +53,35 @@ class Configuration(serializable.Serializable):
     def prefix(self):
         return self.prefix_
 
+    #############################################
+    # serializer interface
+    #############################################
+
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+
+        serializer.serializeList(self, 'categoryNames', 'categoryName')
+        serializer.serializeProperty(self, 'libRootDirectory')
+        serializer.serializeProperty(self, common.NAMESPACE_OBJ)
+        serializer.serializeProperty(self, common.NAMESPACE_LIB)
+        serializer.serializeProperty(self, 'prefix')
+        serializer.serializeBoolean(self, 'usingEnumerations')
+
+    def postSerialize(self):
+        """Perform post serialization initialization."""
+        self.voRootDirectory_ = self.libRootDirectory_ + '/ValueObjects'
+        self.loopRootDirectory_ = self.libRootDirectory_ + '/Loop'
+        self.libFullPath_ = '../' + self.libRootDirectory_ + '/'
+
+    #############################################
+    # private member functions
+    #############################################
+
+    def __init__(self):
+        """initialize"""
+
+        # load copyright buffer
+        fileBuffer = open('stubs/stub.copyright')
+        self.copyrightBuffer = fileBuffer.read()
+        fileBuffer.close()
 

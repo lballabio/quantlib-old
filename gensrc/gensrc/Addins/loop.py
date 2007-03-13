@@ -25,12 +25,21 @@ from gensrc.Configuration import environment
 
 class Loop(addin.Addin):
     """Generate source code for loop functions."""
+
+    #############################################
+    # class variables
+    #############################################
+
     BUF_FILE = '''\
 #include <boost/bind.hpp>
 
 namespace %(namespace)s {
 %(buffer)s
 }\n'''
+
+    #############################################
+    # public interface
+    #############################################
 
     def generate(self, categoryList, enumerationList):
         """Generate source code for Loops."""

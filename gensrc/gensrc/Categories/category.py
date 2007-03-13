@@ -22,31 +22,16 @@
 from gensrc.Utilities import common
 from gensrc.Utilities import utilities
 from gensrc.Functions import function
+from gensrc.Functions import supportedplatform
 from gensrc.Serialization import serializable
 from gensrc.Configuration import environment
 
 class Category(serializable.Serializable):
     """class to represent a group of functions."""
 
-    def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self, common.NAME)
-        serializer.serializeProperty(self, common.DISPLAY_NAME)
-        serializer.serializeProperty(self, common.DESCRIPTION)
-        serializer.serializeProperty(self, common.FUNCTION_CATEGORY)
-        serializer.serializeObjectDict(self, function.Function)
-        serializer.serializeList(self, 'includes', 'include', True)
-        serializer.serializeProperty(self, common.COPYRIGHT)
-
-    def postSerialize(self):
-        """Perform post serialization initialization."""
-        self.generateVOs_ = False
-        self.containsLoopFunction_ = False
-        for func in self.functions_.values():
-            if func.generateVOs():
-                self.generateVOs_ = True
-            if func.loopParameter():
-                self.containsLoopFunction_ = True
+    #############################################
+    # public interface
+    #############################################
 
     def platformSupported(self, platformName, implementation):
         """Determine whether this category is supported for given platform."""
@@ -54,7 +39,7 @@ class Category(serializable.Serializable):
             if func.platformSupported(platformName, implementation):
                 return True
 
-    def functions(self, platformName, implementation = function.AUTO):
+    def functions(self, platformName, implementation = supportedplatform.AUTO):
         """Serve up functions alphabetically by name."""
         for functionKey in self.functionKeys_: 
             func = self.functions_[functionKey]
@@ -100,4 +85,28 @@ class Category(serializable.Serializable):
 
     def generateVOs(self):
         return self.generateVOs_
+
+    #############################################
+    # serializer interface
+    #############################################
+
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+        serializer.serializeAttribute(self, common.NAME)
+        serializer.serializeProperty(self, common.DISPLAY_NAME)
+        serializer.serializeProperty(self, common.DESCRIPTION)
+        serializer.serializeProperty(self, common.FUNCTION_CATEGORY)
+        serializer.serializeObjectDict(self, function.Function)
+        serializer.serializeList(self, 'includes', 'include', True)
+        serializer.serializeProperty(self, common.COPYRIGHT)
+
+    def postSerialize(self):
+        """Perform post serialization initialization."""
+        self.generateVOs_ = False
+        self.containsLoopFunction_ = False
+        for func in self.functions_.values():
+            if func.generateVOs():
+                self.generateVOs_ = True
+            if func.loopParameter():
+                self.containsLoopFunction_ = True
 

@@ -29,6 +29,10 @@ import re
 class Value(serializable.Serializable):
     """Represent any value which may be passed to or received from a Function."""
 
+    #############################################
+    # class variables
+    #############################################
+
     const_ = True
     description_ = ''
     loop_ = ''
@@ -36,6 +40,10 @@ class Value(serializable.Serializable):
     lastParameter_ = False
     ignore_ = False
     default_ = ''
+
+    #############################################
+    # public interface
+    #############################################
 
     def printValue(self, value):
         if value is None:

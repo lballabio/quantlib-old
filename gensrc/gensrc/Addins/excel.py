@@ -23,7 +23,7 @@ from gensrc.Addins import addin
 from gensrc.Addins import excelexceptions
 from gensrc.Serialization import serializable
 from gensrc.Utilities import outputfile
-from gensrc.Functions import function
+from gensrc.Functions import supportedplatform
 from gensrc.Serialization import xmlreader
 from gensrc.Utilities import buffer
 from gensrc.Utilities import common
@@ -65,15 +65,18 @@ COL_TO_NUM = "_" + string.lowercase
 class ExcelAddin(addin.Addin):
     """Generate source code for Excel addin."""
 
+    #############################################
+    # class variables
+    #############################################
+
     voSupported_ = True
     convertPermanentFlag_ = '''
         bool permanentCpp =
             ObjHandler::operToScalar<bool>(*permanent, false, "permanent");'''
 
-    def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
-        super(ExcelAddin, self).serialize(serializer)
-        serializer.serializeBoolean(self, 'exportSymbols')
+    #############################################
+    # public interface
+    #############################################
 
     def generate(self, categoryList, enumerationList):
         """Generate source code for Excel addin."""
@@ -212,7 +215,7 @@ class ExcelAddin(addin.Addin):
     def generateRegisterFunctions(self, cat):
         registerCode = ''
         unregisterCode = ''
-        for func in cat.functions(self.name_, function.MANUAL): 
+        for func in cat.functions(self.name_, supportedplatform.MANUAL): 
             self.functionCount_ += 1
             registerCode += self.generateRegisterFunction(func, 
                 cat.xlFunctionWizardCategory())
@@ -227,7 +230,7 @@ class ExcelAddin(addin.Addin):
         registerDeclarations = ''
         unregisterDeclarations = ''
         self.functionCount_ = 0
-        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
             categoryName = cat.name().capitalize()
             registerCalls += 8 * ' ' + 'register' + categoryName + '(xDll);\n'
             unregisterCalls += 8 * ' ' + 'unregister' + categoryName + '(xDll);\n'
@@ -248,8 +251,8 @@ class ExcelAddin(addin.Addin):
         """Generate directives that cause exported symbols to be available to
         clients of this Addin."""
         exportSymbols = ''
-        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
-            for func in cat.functions(self.name_, function.MANUAL): 
+        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
+            for func in cat.functions(self.name_, supportedplatform.MANUAL): 
                 exportSymbols += '#pragma comment (linker, "/export:_%s")\n' % func.name()
         buf = self.exportStub_.text() % exportSymbols
         fileName = self.rootPath_ + 'Functions/export.hpp'
@@ -317,4 +320,13 @@ class ExcelAddin(addin.Addin):
 
     def loopDatatype(self):
         return self.loopDatatype_
+
+    #############################################
+    # serializer interface
+    #############################################
+
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+        super(ExcelAddin, self).serialize(serializer)
+        serializer.serializeBoolean(self, 'exportSymbols')
 

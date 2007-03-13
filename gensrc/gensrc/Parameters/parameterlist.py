@@ -24,29 +24,16 @@ from gensrc.Serialization import serializable
 
 class ParameterList(serializable.Serializable):
 
+    #############################################
+    # class variables
+    #############################################
+
     name_ = 'ParameterList'
     skipFirst_ = False
 
-    def serialize(self, serializer):
-        """Load/unload class state to/from serializer object."""
-        serializer.serializeObjectList(self, parameter.Parameter)
-
-    def postSerialize(self):
-        """Perform post serialization initialization."""
-
-        # set some values:
-        # - underlyingCount - #/params passed to underlying function i.e. 
-        #   excluding 1) params with ignore = True 2) objectIDs etc
-        # - lastParameter - required for rules with padLastParameter=True
-
-        self.underlyingCount_ = 0
-        i = 1
-        for param in self.parameters_:
-            if not param.ignore():
-                self.underlyingCount_ += 1
-            if i == self.parameterCount_:
-                param.setLastParameter(True)
-            i += 1
+    #############################################
+    # public interface
+    #############################################
 
     def generate(self, ruleGroup):
         """Generate source code relating to a list of function parameters."""
@@ -91,4 +78,29 @@ class ParameterList(serializable.Serializable):
     def printDebug(self):
         for param in self.parameters_:
             param.printDebug()
+
+    #############################################
+    # serializer interface
+    #############################################
+
+    def serialize(self, serializer):
+        """Load/unload class state to/from serializer object."""
+        serializer.serializeObjectList(self, parameter.Parameter)
+
+    def postSerialize(self):
+        """Perform post serialization initialization."""
+
+        # set some values:
+        # - underlyingCount - #/params passed to underlying function i.e. 
+        #   excluding 1) params with ignore = True 2) objectIDs etc
+        # - lastParameter - required for rules with padLastParameter=True
+
+        self.underlyingCount_ = 0
+        i = 1
+        for param in self.parameters_:
+            if not param.ignore():
+                self.underlyingCount_ += 1
+            if i == self.parameterCount_:
+                param.setLastParameter(True)
+            i += 1
 

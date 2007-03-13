@@ -32,19 +32,6 @@ class XmlReader(serializer.Serializer):
     a (De)Serializable object from an XML stream."""
 
     ################################################
-    # initialization
-    ################################################
-
-    def __init__(self, fileName):
-        """Load indicated file into dom document."""
-        self.documentName_ = fileName + '.xml'
-        try:
-            dom = xml.dom.minidom.parse(self.documentName_)
-        except:
-            raise exceptions.SerializationParseException(self.documentName_)
-        self.node_ = dom.documentElement
-
-    ################################################
     # public interface
     ################################################
 
@@ -217,8 +204,21 @@ class XmlReader(serializer.Serializer):
             setattr(caller, identifierName, objectInstance)
 
     ################################################
-    # private interface
+    # initialization
     ################################################
+
+    def __init__(self, fileName):
+        """Load indicated file into dom document."""
+        self.documentName_ = fileName + '.xml'
+        try:
+            dom = xml.dom.minidom.parse(self.documentName_)
+        except:
+            raise exceptions.SerializationParseException(self.documentName_)
+        self.node_ = dom.documentElement
+
+    #############################################
+    # private member functions
+    #############################################
 
     def getChild(self, tagName, allowNone = False):
         """Get single named child of current node."""

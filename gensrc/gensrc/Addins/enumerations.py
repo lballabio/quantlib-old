@@ -28,11 +28,19 @@ from gensrc.Configuration import environment
 class Enumerations(addin.Addin):
     """generate source code for enumerations."""
 
+    #############################################
+    # class variables
+    #############################################
+
     ENUM_END   =      '        );\n\n'
     ENUM_LINE  =      '            MAP("%(string)s", %(value)s);\n'
     ENUM_CURVE_LINE = '            MAP(KeyPair("%(traits)s", "%(interpolator)s"), %(value)s);\n'
     ENUM_START =      '        REG_ENUM(%s,\n'
     ENUM_UNREG =      '        UNREG_ENUM(%s)\n'
+
+    #############################################
+    # public interface
+    #############################################
 
     def generate(self, categoryList, enumerationList):
         """generate source code for enumerations."""

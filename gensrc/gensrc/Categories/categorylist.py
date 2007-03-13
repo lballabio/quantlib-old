@@ -19,10 +19,28 @@
 
 from gensrc.Utilities import utilities
 from gensrc.Categories import category
-from gensrc.Functions import function
+from gensrc.Functions import supportedplatform
 from gensrc.Configuration import environment
 
 class CategoryList(object):
+
+    #############################################
+    # public interface
+    #############################################
+
+    def categoryNames(self):
+        return self.categoryNames_
+
+    def categories(self, platformName, implementation = supportedplatform.AUTO):
+        """serve up function category objects alphabetically by name."""
+        for categoryName in self.categoryNames_:
+            cat = self.categoryDict_[categoryName]
+            if platformName == '*' or cat.platformSupported(platformName, implementation):
+                yield cat
+
+    #############################################
+    # private member functions
+    #############################################
 
     def __init__(self):
 
@@ -33,14 +51,4 @@ class CategoryList(object):
         for categoryName in self.categoryNames_:
             self.categoryDict_[categoryName] = \
                 utilities.serializeObject(category.Category, 'metadata/Functions/' + categoryName)
-
-    def categoryNames(self):
-        return self.categoryNames_
-
-    def categories(self, platformName, implementation = function.AUTO):
-        """serve up function category objects alphabetically by name."""
-        for categoryName in self.categoryNames_:
-            cat = self.categoryDict_[categoryName]
-            if platformName == '*' or cat.platformSupported(platformName, implementation):
-                yield cat
 

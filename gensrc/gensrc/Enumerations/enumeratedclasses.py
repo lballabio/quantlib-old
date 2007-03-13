@@ -25,17 +25,15 @@ from gensrc.Utilities import common
 class EnumeratedClass(serializable.Serializable):
     """encapsulate a string->value mapping for a library enumerated class."""
 
+    #############################################
+    # class variables
+    #############################################
+
     groupName_ = 'EnumeratedClasses'
 
-    def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
-        serializer.serializeProperty(self, common.STRING)
-        serializer.serializeProperty(self, common.VALUE)
-        serializer.serializeProperty(self, common.LIBRARY_CLASS)
-
-    def name(self):
-        """return unique identifier for this object."""
-        return self.string_
+    #############################################
+    # public interface
+    #############################################
 
     def string(self):
         return self.string_
@@ -46,19 +44,32 @@ class EnumeratedClass(serializable.Serializable):
     def libraryClass(self):
         return self.libraryClass_
 
-class EnumeratedClassGroup(serializable.Serializable):
-    """encapsulate enumerations for a library datatype."""
-
-    groupName_ = 'EnumeratedClassGroups'
-
-    def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self, 'class')
-        serializer.serializeObjectDict(self, EnumeratedClass)
+    #############################################
+    # serializer interface
+    #############################################
 
     def name(self):
         """return unique identifier for this object."""
-        return self.class_
+        return self.string_
+
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+        serializer.serializeProperty(self, common.STRING)
+        serializer.serializeProperty(self, common.VALUE)
+        serializer.serializeProperty(self, common.LIBRARY_CLASS)
+
+class EnumeratedClassGroup(serializable.Serializable):
+    """encapsulate enumerations for a library datatype."""
+
+    #############################################
+    # class variables
+    #############################################
+
+    groupName_ = 'EnumeratedClassGroups'
+
+    #############################################
+    # public interface
+    #############################################
 
     def className(self):
         return self.class_
@@ -67,4 +78,17 @@ class EnumeratedClassGroup(serializable.Serializable):
         """serve up enumerated classes alphabetically by name."""
         for key in self.enumeratedClassKeys_:
             yield self.enumeratedClasses_[key]
+
+    #############################################
+    # serializer interface
+    #############################################
+
+    def name(self):
+        """return unique identifier for this object."""
+        return self.class_
+
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+        serializer.serializeAttribute(self, 'class')
+        serializer.serializeObjectDict(self, EnumeratedClass)
 

@@ -30,7 +30,15 @@ from gensrc.Configuration import environment
 class GuileAddin(addin.Addin):
     """Generate source code for Guile addin."""
 
+    #############################################
+    # class variables
+    #############################################
+
     BUF_HEADER = '''SCM %s(SCM x)%s\n'''
+
+    #############################################
+    # public interface
+    #############################################
 
     def generate(self, categoryList, enumerationList):
         """Generate source code for Guile addin."""

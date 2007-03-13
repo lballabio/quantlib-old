@@ -19,8 +19,8 @@
 
 import sys
 import getopt
-from gensrc.Exceptions import excepthook    # initializes error handler
 from gensrc.Addins import addinlist
+from gensrc.Exceptions import excepthook
 
 USAGE_ERROR = """
 usage: %(scriptName)s -[flags]
@@ -41,6 +41,10 @@ usage: %(scriptName)s -[flags]
 def usage():
     print USAGE_ERROR % { 'scriptName' : sys.argv[0] }
     sys.exit(1)
+
+# set the error handler
+
+sys.excepthook = excepthook.gensrc_excepthook
 
 # parse command line arguments
 

@@ -25,13 +25,15 @@ from gensrc.Utilities import common
 class EnumeratedCurve(serializable.Serializable):
     """encapsulate a string->value mapping for a library enumerated type."""
 
+    #############################################
+    # class variables
+    #############################################
+
     groupName_ = 'EnumeratedCurves'
 
-    def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
-        serializer.serializeProperty(self, 'traits')
-        serializer.serializeProperty(self, 'interpolator')
-        serializer.serializeProperty(self, common.VALUE)
+    #############################################
+    # class variables
+    #############################################
 
     def name(self):
         """return unique identifier for this object."""
@@ -46,19 +48,28 @@ class EnumeratedCurve(serializable.Serializable):
     def value(self):
         return self.value_
 
-class EnumeratedCurveGroup(serializable.Serializable):
-    """encapsulate enumerations for a library datatype."""
-
-    groupName_ = 'EnumeratedCurveGroups'
+    #############################################
+    # public interface
+    #############################################
 
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self, 'class')
-        serializer.serializeObjectDict(self, EnumeratedCurve)
+        serializer.serializeProperty(self, 'traits')
+        serializer.serializeProperty(self, 'interpolator')
+        serializer.serializeProperty(self, common.VALUE)
 
-    def name(self):
-        """return unique identifier for this object."""
-        return self.class_
+class EnumeratedCurveGroup(serializable.Serializable):
+    """encapsulate enumerations for a library datatype."""
+
+    #############################################
+    # class variables
+    #############################################
+
+    groupName_ = 'EnumeratedCurveGroups'
+
+    #############################################
+    # public interface
+    #############################################
 
     def className(self):
         return self.class_
@@ -67,4 +78,17 @@ class EnumeratedCurveGroup(serializable.Serializable):
         """serve up enumeration definition objects alphabetically by name."""
         for key in self.enumeratedCurveKeys_:
             yield self.enumeratedCurves_[key]
+
+    #############################################
+    # serializer interface
+    #############################################
+
+    def name(self):
+        """return unique identifier for this object."""
+        return self.class_
+
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+        serializer.serializeAttribute(self, 'class')
+        serializer.serializeObjectDict(self, EnumeratedCurve)
 
