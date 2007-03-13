@@ -17,13 +17,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""encapsulate enumerations for a QuantLib datatype."""
+"""encapsulate enumerations for a library datatype."""
 
 from gensrc.Serialization import serializable
 from gensrc.Utilities import common
 
 class EnumeratedType(serializable.Serializable):
-    """encapsulate a string->value mapping for a QuantLib enumerated type."""
+    """encapsulate a string->value mapping for a library enumerated type."""
 
     groupName_ = 'EnumeratedTypes'
 
@@ -55,7 +55,7 @@ class EnumeratedType(serializable.Serializable):
             return self.value_
 
 class EnumeratedTypeGroup(serializable.Serializable):
-    """encapsulate enumerations for a QuantLib datatype."""
+    """encapsulate enumerations for a library datatype."""
 
     groupName_ = 'EnumeratedTypeGroups'
 

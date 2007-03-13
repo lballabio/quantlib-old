@@ -87,8 +87,7 @@ class Function(serializable.Serializable):
         serializer.serializeProperty(self, common.DESCRIPTION)
         serializer.serializeProperty(self, common.LONG_DESC, self.description_)
         serializer.serializeObjectDict(self, SupportedPlatform)
-        # FIXME get rid of reference to QLA
-        serializer.serializeProperty(self, common.ALIAS, 'QuantLibAddin::' + self.name_)
+        serializer.serializeProperty(self, common.ALIAS, environment.config().namespaceObjects() + '::' + self.name_)
         serializer.serializeObject(self, parameterlist.ParameterList)
         serializer.serializeBoolean(self, common.DOCUMENTATION_ONLY)
         serializer.serializeAttributeBoolean(self, common.TRIGGER, True)
@@ -173,7 +172,7 @@ class Function(serializable.Serializable):
         self.parameterList_.printDebug()
 
 class Constructor(Function):
-    """Function which constructs a QuantLib object."""
+    """Function which constructs a library object."""
 
     resetCaller_ = 'true'
     generateVOs_ = True
@@ -237,7 +236,7 @@ class Constructor(Function):
         return self.libraryFunction_
 
 class Member(Function):
-    """Function which invokes member function of existing QuantLib object."""
+    """Function which invokes member function of existing library object."""
 
     deref_ = '->'
 
@@ -301,7 +300,7 @@ class EnumerationMember(Member):
             self.behavior_ = behavior.BehaviorMemberNormal(self)
 
 class Procedure(Function):
-    """Procedural function not associated with any QuantLib object."""
+    """Procedural function not associated with any library object."""
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""

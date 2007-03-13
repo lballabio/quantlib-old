@@ -29,12 +29,10 @@ from gensrc.Configuration import environment
 
 # constants
 
-IDLFILE = 'QuantLibCalcAddin.idl'
 MAPFILE = 'funcdef.cpp'
 MAPLINE = """    %s[ STRFROMANSI( "%s" ) ]
         =  STRFROMANSI( "%s" );\n"""
 PARMLINE = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
-QLA_HEADER = 'qla_all.hpp'
 
 class CalcAddin(addin.Addin):
     """Generate source code for Calc addin."""
@@ -174,6 +172,7 @@ class CalcAddin(addin.Addin):
                 buf += self.bufferIdlFunction_.text() % (returnTypeIDL, 
                     func.name(), parameterList)
         buf2 = self.bufferIdlHeader_.text() % { 'buffer' : buf }
-        fileName = self.rootPath_ + IDLFILE
+        idlFile = common.ALIAS, environment.config().namespaceLibrary() + 'CalcAddin.idl'
+        fileName = self.rootPath_ + idlFile
         outputfile.OutputFile(self, fileName, None, buf2, False)
 

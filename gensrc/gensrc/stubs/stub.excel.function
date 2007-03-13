@@ -14,7 +14,7 @@ XLL_DEC %(functionReturnType)s%(functionName)s(%(functionDeclaration)s) {
 %(xlWizardRecalc)s
 %(xlTrigger)s%(validatePermanent)s
 
-        // initialize the QuantLib session ID (if enabled)
+        // initialize the session ID (if enabled)
 
         SET_SESSION_ID
 
