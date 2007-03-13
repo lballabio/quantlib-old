@@ -19,8 +19,6 @@ from gensrc.Addins import excel
 from gensrc.Addins import calc
 from gensrc.Addins import c
 from gensrc.Addins import guile
-#FIXNME delete this line?
-from gensrc.Addins import enumerations
 from gensrc.Addins import doxygen
 from gensrc.Addins import valueobjects
 from gensrc.Addins import enumerations
