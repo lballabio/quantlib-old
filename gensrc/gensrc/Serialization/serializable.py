@@ -38,7 +38,8 @@ class Serializable(object):
         """return unique identifier for this object."""
         return self.name_
 
-#    def groupName(self):
-#        """return unique identifier for this object."""
-#        return self.groupName_
+    def groupName(self):
+        """return unique identifier for this object."""
+        return self.groupName_
+    groupName = classmethod(groupName)
 

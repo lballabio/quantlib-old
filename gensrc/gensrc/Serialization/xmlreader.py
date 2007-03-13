@@ -123,7 +123,7 @@ class XmlReader(serializer.Serializer):
 
     def serializeObjectList(self, caller, objectClass):
         """Load a list of Serializable objects."""
-        listElement = self.getChild(objectClass.groupName_)
+        listElement = self.getChild(objectClass.groupName())
         itemElements = listElement.getElementsByTagName(objectClass.__name__)
         ret = []
         for itemElement in itemElements:
@@ -133,7 +133,7 @@ class XmlReader(serializer.Serializer):
             objectInstance.postSerialize()
             self.node_ = self.node_.parentNode.parentNode
             ret.append(objectInstance)
-        identifierName = self.formatIdentifier(objectClass.groupName_)
+        identifierName = self.formatIdentifier(objectClass.groupName())
         identifierCount = self.formatIdentifier(objectClass.__name__ + 'Count')
         setattr(caller, identifierName, ret)
         setattr(caller, identifierCount, len(ret))
@@ -151,7 +151,7 @@ class XmlReader(serializer.Serializer):
         These structures allow the caller to iterate through the objects
         in order by identifier."""
 
-        dictElement = self.getChild(objectClass.groupName_)
+        dictElement = self.getChild(objectClass.groupName())
         dict = {}
         keys = []
         for childNode in self.iterateChildren(dictElement):
@@ -163,7 +163,7 @@ class XmlReader(serializer.Serializer):
             dict[objectInstance.name()] = objectInstance
             keys.append(objectInstance.name())
         keys.sort()
-        identifierName = self.formatIdentifier(objectClass.groupName_)
+        identifierName = self.formatIdentifier(objectClass.groupName())
         identifierKeys = self.formatIdentifier(objectClass.__name__ + 'Keys')
         setattr(caller, identifierName, dict)
         setattr(caller, identifierKeys, keys)
@@ -192,7 +192,7 @@ class XmlReader(serializer.Serializer):
         This is appropriate when the caller knows at compile time the names
         of the objects to be loaded."""
 
-        dictElement = self.getChild(objectClass.groupName_)
+        dictElement = self.getChild(objectClass.groupName())
         itemElements = dictElement.getElementsByTagName(objectClass.__name__)
         for itemElement in itemElements:
             objectInstance = objectClass()
