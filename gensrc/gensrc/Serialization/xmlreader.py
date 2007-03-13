@@ -23,8 +23,8 @@ a (De)Serializable object from an XML stream."""
 from gensrc.Serialization import serializer
 from gensrc.Serialization import factory
 from gensrc.Serialization import exceptions
-import xml.dom.minidom
 from gensrc.Utilities import common
+import xml.dom.minidom
 import re
 
 class XmlReader(serializer.Serializer):
@@ -37,8 +37,6 @@ class XmlReader(serializer.Serializer):
 
     def __init__(self, fileName):
         """Load indicated file into dom document."""
-        # FIXME documentName_ retained as member variable to be passed to other exceptions -
-        # no need to do this?
         self.documentName_ = fileName + '.xml'
         try:
             dom = xml.dom.minidom.parse(self.documentName_)
