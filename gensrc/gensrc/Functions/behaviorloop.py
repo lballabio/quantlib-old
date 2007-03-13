@@ -107,8 +107,6 @@ class BehaviorMemberLoop(BehaviorLoop):
 
     def setScope(self):
         """Set a few properties that will be required to generate source code."""
-        #self.functionScope = '%s::%s' % (
-        #    environment.config().namespaceLibrary, self.func_.type)
         self.functionScope_ = '%s::%s' % (
             environment.config().namespaceLibrary(), self.func_.parameterObjectID().dataType().classname())
         self.functionReference_ = 'boost::shared_ptr<%s>' % self.functionScope_

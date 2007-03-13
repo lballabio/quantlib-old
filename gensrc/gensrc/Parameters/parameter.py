@@ -45,23 +45,6 @@ class Value(serializable.Serializable):
     # public interface
     #############################################
 
-    def printValue(self, value):
-        if value is None:
-            return ''
-        else:
-            return str(value) + ''
-
-    def printDebug(self):
-        print "type=" + str(type(self))
-        print "name=" + self.printValue(self.name_)
-        print "tensorRank=" + self.printValue(self.tensorRank_)
-        print "type=" + self.printValue(self.type_)
-        print "loop=" + self.printValue(self.loop_)
-        print "vecIter=" + self.printValue(self.vectorIterator_)
-        print "default=" + self.printValue(self.default_)
-        print "ignore=" + self.printValue(self.ignore_)
-        print "const=" + self.printValue(self.const_)
-
     def tensorRank(self):
         return self.tensorRank_
 
@@ -102,8 +85,24 @@ class Value(serializable.Serializable):
         self.loop_ = val
 
     def setDefault(self, val):
-        if val is None: print '******************'
         self.default_ = val
+
+    def printValue(self, value):
+        if value is None:
+            return ''
+        else:
+            return str(value) + ''
+
+    def printDebug(self):
+        print "type=" + str(type(self))
+        print "name=" + self.printValue(self.name_)
+        print "tensorRank=" + self.printValue(self.tensorRank_)
+        print "type=" + self.printValue(self.type_)
+        print "loop=" + self.printValue(self.loop_)
+        print "vecIter=" + self.printValue(self.vectorIterator_)
+        print "default=" + self.printValue(self.default_)
+        print "ignore=" + self.printValue(self.ignore_)
+        print "const=" + self.printValue(self.const_)
 
 class Parameter(Value):
     """Encapsulate state necessary to generate source code 

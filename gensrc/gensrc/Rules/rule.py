@@ -206,7 +206,6 @@ class RuleGroup(serializable.Serializable):
             print "print rule item: *****"
             ruleItem.printDebug()
 
-
     #############################################
     # serializer interface
     #############################################

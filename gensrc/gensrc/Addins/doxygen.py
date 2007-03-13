@@ -34,7 +34,7 @@ class Doxygen(addin.Addin):
     # class variables
     #############################################
 
-    LINE_ENUM = '    <tr><td>%s</td><td>%s</td></tr>\n'
+    LINE_ENUM =          '    <tr><td>%s</td><td>%s</td></tr>\n'
     LINE_REF_CLASS =     '        \\ref enum_class_%d\\n\n'
     LINE_REF_TYPE =      '        \\ref enum_type_%d\\n\n'
     LINE_SECTION_CLASS = '    \\section enum_class_%d %s\n'

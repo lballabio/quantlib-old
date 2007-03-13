@@ -55,7 +55,7 @@ class EnumerationList(object):
             yield self.enumeratedCurveGroups_[key]
 
     #############################################
-    # serializer interface
+    # private member functions
     #############################################
 
     def __init__(self):
