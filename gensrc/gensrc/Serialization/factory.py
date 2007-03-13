@@ -28,7 +28,7 @@ from gensrc.Functions import procedure
 from gensrc.Functions import enumerationmember
 from gensrc.Functions import supportedplatform
 from gensrc.Rules import rule
-from gensrc.Types import supertypelist
+from gensrc.Types import supertype
 
 class Factory(singleton.Singleton):
     """construct an object given its class name."""
@@ -44,7 +44,7 @@ class Factory(singleton.Singleton):
         'EnumerationMember' : enumerationmember.EnumerationMember,
         'Member' : member.Member,
         'Procedure' : procedure.Procedure,
-        'SuperType' : supertypelist.SuperType,
+        'SuperType' : supertype.SuperType,
         'SupportedPlatform' : supportedplatform.SupportedPlatform,
     }
 

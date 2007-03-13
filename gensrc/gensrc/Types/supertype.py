@@ -15,6 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+from gensrc.Types import datatype
 from gensrc.Types import exceptions
 from gensrc.Utilities import common
 from gensrc.Serialization import serializable
@@ -43,7 +44,7 @@ class SuperType(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeAttribute(self, common.NATIVE_TYPE)
-        serializer.serializeObjectList(self, DataType)
+        serializer.serializeObjectList(self, datatype.DataType)
 
     def postSerialize(self):
         """Perform post serialization initialization."""

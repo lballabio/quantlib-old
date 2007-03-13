@@ -30,7 +30,7 @@ from gensrc.Utilities import utilities
 from gensrc.Utilities import log
 from gensrc.Configuration import configuration
 from gensrc.Configuration import environment
-from gensrc.Types import supertypelist
+from gensrc.Types import supertype
 
 class AddinList(object):
     """class to encapsulate data and behavior 
@@ -120,7 +120,7 @@ addin           unchanged   updated     created     total'''
         config = utilities.serializeObject(configuration.Configuration, 'config/config')
         environment.Environment.instance().setConfiguration(config)
 
-        superTypeList = utilities.serializeObject(supertypelist.SuperTypeList, 'metadata/Types/types')
+        superTypeList = utilities.serializeObject(supertype.SuperTypeList, 'metadata/Types/types')
         environment.Environment.instance().setTypes(superTypeList)
 
         self.categoryList_ = categorylist.CategoryList()
