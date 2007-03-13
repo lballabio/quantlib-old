@@ -101,13 +101,13 @@ addin           unchanged   updated     created     total'''
         totalCreated = 0
 
         for addin in self.addins_:
-            totalLine = addin.unchanged + addin.updated + addin.created
-            totalUnchanged += addin.unchanged
-            totalUpdated += addin.updated
-            totalCreated += addin.created
+            totalLine = addin.unchanged() + addin.updated() + addin.created()
+            totalUnchanged += addin.unchanged()
+            totalUpdated += addin.updated()
+            totalCreated += addin.created()
             totalAll += totalLine
-            msg = AddinList.LINE_FORMAT % (addin.name(), addin.unchanged, 
-                addin.updated, addin.created, totalLine)
+            msg = AddinList.LINE_FORMAT % (addin.name(), addin.unchanged(), 
+                addin.updated(), addin.created(), totalLine)
             log.Log.instance().logMessage(msg)
 
         if len(self.addins_) > 1:
