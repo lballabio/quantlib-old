@@ -137,7 +137,7 @@ class BehaviorMemberLoop(BehaviorLoop):
         BehaviorLoop.__init__(self)
         self.setScope()
         self.functionCodeName_ = self.functionScope_ + '::' + self.func_.libraryFunction()
-        self.objectName_ = '\n' + 16 * ' ' + self.func_.parameterObjectID().nameCnv() + ','
+        self.objectName_ = '\n' + 16 * ' ' + self.func_.parameterObjectID().nameConverted() + ','
 
 class BehaviorEnumerationLoop(BehaviorMemberLoop):
     """Customize the BehaviorMemberLoop class with some strings specific to 

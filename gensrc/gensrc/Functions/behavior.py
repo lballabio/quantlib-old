@@ -49,7 +49,7 @@ class BehaviorMember(object):
             'dereference' : self.func_.deref(),
             'libraryFunction' : self.func_.libraryFunction(),
             'libraryReturnType' : addin.libraryReturnType().apply(self.func_.returnValue()),
-            'objectID' : self.func_.parameterObjectID().nameCnv(),
+            'objectID' : self.func_.parameterObjectID().nameConverted(),
             'parameterList' : self.func_.parameterList().generate(addin.libraryCall()) }
 
     #############################################

@@ -38,8 +38,20 @@ class DataType(serializable.Serializable):
     def value(self):
         return self.value_
 
+    def classname(self):
+        return self.classname_
+
     def setSuperType(self, value):
         self.superType_ = value
+
+    def superType(self):
+        return self.superType_
+
+    def setConversionSuffix(self, value):
+        self.conversionSuffix_ = value
+
+    def conversionSuffix(self):
+        return self.conversionSuffix_
 
     def overrideNativeType(self, value):
         if self.nativeType_ == None:
@@ -47,12 +59,6 @@ class DataType(serializable.Serializable):
 
     def nativeType(self):
         return self.nativeType_
-
-    def superType(self):
-        return self.superType_
-
-    def classname(self):
-        return self.classname_
 
     #############################################
     # serializer interface

@@ -69,8 +69,8 @@ class Value(serializable.Serializable):
     def dataType(self):
         return self.dataType_
 
-    def nameCnv(self):
-        return self.nameCnv_
+    def nameConverted(self):
+        return self.name_ + self.dataType_.conversionSuffix()
 
     def description(self):
         return self.description_
@@ -208,12 +208,6 @@ class MemberObjectID(Parameter):
         self.dataType_ = environment.getType(typeName, superTypeName)
         self.description_ = 'id of existing %s object' % self.dataType_.value()
 
-        # FIXME add this info to type metadata?
-        if self.dataType_.superType() == 'objectClass' or self.dataType_.superType() == 'objectHandle':
-            self.nameCnv_ = self.name_ + 'Obj'
-        elif self.dataType_.superType() == 'libraryClass' or self.dataType_.superType() == 'handleToLib':
-            self.nameCnv_ = self.name_ + 'LibObj'
-
 class EnumerationId(Parameter):
     """ID of an enumeration.
 
@@ -228,7 +222,6 @@ class EnumerationId(Parameter):
         self.dataType_ = environment.getType(typeName, superTypeName)
         self.description_ = 'ID of Enumeration of class %s' % self.dataType_.value()
         self.name_ = re.match(r"\w*::(\w*)", self.dataType_.value()).group(1).lower()
-        self.nameCnv_ = self.name_ + 'Enum'
 
 class DependencyTrigger(Parameter):
     """dependency tracking trigger.

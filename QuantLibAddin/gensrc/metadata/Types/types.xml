@@ -22,7 +22,7 @@
     SuperType "enumerations" - strings identifying enumerated
     types or classes.
     -->
-    <SuperType name='enumeration' nativeType='string'>
+    <SuperType name='enumeration' nativeType='string' conversionSuffix='Enum'>
       <DataTypes>
         <DataType>QuantLib::Average::Type</DataType>
         <DataType>QuantLib::Barrier::Type</DataType>
@@ -53,7 +53,7 @@
     to the required form
         boost::shared_ptr<QuantLib::xxx>
     -->
-    <SuperType name='handleToLib' nativeType='string'>
+    <SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
         <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
         <DataType>QuantLib::Quote</DataType>
@@ -68,7 +68,7 @@
     SuperType "libraryClass" - values stored in the form
         boost::shared_ptr<QuantLib::xxx>
     -->
-    <SuperType name='libraryClass' nativeType='string'>
+    <SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObj'>
         <DataTypes>
             <DataType>QuantLib::Abcd</DataType>
             <DataType>QuantLib::AccountingEngine</DataType>
@@ -192,7 +192,7 @@
     SuperType "objectClass" - values stored in the form
         boost::shared_ptr<QuantLibAddin::xxx>
     -->
-    <SuperType name='objectClass' nativeType='string'>
+    <SuperType name='objectClass' nativeType='string' conversionSuffix='Obj'>
       <DataTypes>
         <DataType>QuantLibAddin::AssetSwap</DataType>
         <DataType>QuantLibAddin::Bond</DataType>
@@ -217,7 +217,7 @@
     SuperType "objectHandle" - values stored in the form
         QuantLibAddin::Handle<QuantLib::xxx>
     -->
-    <SuperType name='objectHandle' nativeType='string'>
+    <SuperType name='objectHandle' nativeType='string' conversionSuffix='Obj'>
       <DataTypes>
         <DataType>QuantLib::CapletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>

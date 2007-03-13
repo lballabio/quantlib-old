@@ -44,12 +44,14 @@ class SuperType(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeAttribute(self, common.NATIVE_TYPE)
+        serializer.serializeAttribute(self, common.CONVERSION_SUFFIX)
         serializer.serializeObjectList(self, datatype.DataType)
 
     def postSerialize(self):
         """Perform post serialization initialization."""
         for typeItem in self.dataTypes_:
             typeItem.setSuperType(self.name_)
+            typeItem.setConversionSuffix(self.conversionSuffix_)
             typeItem.overrideNativeType(self.nativeType_)
 
 class SuperTypeList(serializable.Serializable):
