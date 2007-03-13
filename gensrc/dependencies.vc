@@ -2,22 +2,22 @@
 # local gensrc makefiles can include this one to enforce make dependencies
 
 CORE_IMPORT=$(GENSRC_DIR)\gensrc\Addins\addin.py \
+            $(GENSRC_DIR)\gensrc\Addins\addinlist.py \
             $(GENSRC_DIR)\gensrc\Addins\c.py \
             $(GENSRC_DIR)\gensrc\Addins\calc.py \
             $(GENSRC_DIR)\gensrc\Addins\doxygen.py \
-            $(GENSRC_DIR)\gensrc\Addins\excel.py \
-            $(GENSRC_DIR)\gensrc\Addins\guile.py \
-            $(GENSRC_DIR)\gensrc\Addins\addinlist.py \
             $(GENSRC_DIR)\gensrc\Addins\enumerations.py \
+            $(GENSRC_DIR)\gensrc\Addins\excel.py \
             $(GENSRC_DIR)\gensrc\Addins\excelexceptions.py \
+            $(GENSRC_DIR)\gensrc\Addins\guile.py \
             $(GENSRC_DIR)\gensrc\Addins\loop.py \
             $(GENSRC_DIR)\gensrc\Addins\valueobjects.py \
             $(GENSRC_DIR)\gensrc\Categories\category.py \
             $(GENSRC_DIR)\gensrc\Categories\categorylist.py \
             $(GENSRC_DIR)\gensrc\Configuration\configuration.py \
             $(GENSRC_DIR)\gensrc\Configuration\environment.py \
-            $(GENSRC_DIR)\gensrc\Enumerations\enumeratedcurves.py \
             $(GENSRC_DIR)\gensrc\Enumerations\enumeratedclasses.py \
+            $(GENSRC_DIR)\gensrc\Enumerations\enumeratedcurves.py \
             $(GENSRC_DIR)\gensrc\Enumerations\enumeratedtypes.py \
             $(GENSRC_DIR)\gensrc\Enumerations\enumerationlist.py \
             $(GENSRC_DIR)\gensrc\Exceptions\excepthook.py \
@@ -54,6 +54,7 @@ CORE_STUBS=$(GENSRC_DIR)\gensrc\stubs\stub.c.function \
            $(GENSRC_DIR)\gensrc\stubs\stub.calc.idlfunc \
            $(GENSRC_DIR)\gensrc\stubs\stub.calc.idlhead \
            $(GENSRC_DIR)\gensrc\stubs\stub.calc.includes \
+           $(GENSRC_DIR)\gensrc\stubs\stub.calc.loop \
            $(GENSRC_DIR)\gensrc\stubs\stub.calc.map \
            $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.categories \
            $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.file \
@@ -69,7 +70,6 @@ CORE_STUBS=$(GENSRC_DIR)\gensrc\stubs\stub.c.function \
            $(GENSRC_DIR)\gensrc\stubs\stub.func.member \
            $(GENSRC_DIR)\gensrc\stubs\stub.func.procedure \
            $(GENSRC_DIR)\gensrc\stubs\stub.guile.function \
-           $(GENSRC_DIR)\gensrc\stubs\stub.guile.includes \
            $(GENSRC_DIR)\gensrc\stubs\stub.guile.header \
            $(GENSRC_DIR)\gensrc\stubs\stub.guile.includes \
            $(GENSRC_DIR)\gensrc\stubs\stub.guile.initfunc \
