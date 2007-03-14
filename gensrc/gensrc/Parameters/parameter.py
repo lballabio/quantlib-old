@@ -112,7 +112,7 @@ class Parameter(Value):
 
     # strings which are not valid as parameter names.
     # TODO add C++ keywords etc.
-    ILLEGAL_NAMES = [ 'type', 'None' ]
+    ILLEGAL_NAMES = ( 'type', 'None' )
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
@@ -128,7 +128,7 @@ class Parameter(Value):
 
     def postSerialize(self):
         """Perform post serialization initialization."""
-        if Parameter.ILLEGAL_NAMES.count(self.name_):
+        if self.name_ in Parameter.ILLEGAL_NAMES:
             raise exceptions.ParameterNameInvalidException(self.name_)
         self.dataType_ = environment.getType(self.type_, self.superType_)
 
