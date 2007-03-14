@@ -19,27 +19,29 @@ Namespace QuantLibXL
     Public Class Factory
 
         Public Shared Function make(ByVal className As String) As Object
-            If className = "Configuration" Then
-                make = New Configuration()
-            ElseIf className = "Domain" Then
-                make = New Domain()
-            ElseIf className = "Domains" Then
-                make = New DomainList()
-            ElseIf className = "Environment" Then
-                make = New Environment()
-            ElseIf className = "Environments" Then
-                make = New EnvironmentList()
-            ElseIf className = "StartupActions" Then
-                make = New StartupActions()
-            ElseIf className = "StartupActionsList" Then
-                make = New StartupActionsList()
-            ElseIf className = "User" Then
-                make = New User()
-            ElseIf className = "Users" Then
-                make = New UserList()
-            Else
-                Throw New Exception("invalid class name: " & className)
-            End If
+
+            Select Case className
+                Case "Configuration"
+                    make = New Configuration()
+                Case "Domain"
+                    make = New Domain()
+                Case "Domains"
+                    make = New DomainList()
+                Case "Environment"
+                    make = New Environment()
+                Case "Environments"
+                    make = New EnvironmentList()
+                Case "StartupActions"
+                    make = New StartupActions()
+                Case "StartupActionsList"
+                    make = New StartupActionsList()
+                Case "User"
+                    make = New User()
+                Case "Users"
+                    make = New UserList()
+                Case Else
+                    Throw New Exception("invalid class name: " & className)
+            End Select
 
         End Function
 
