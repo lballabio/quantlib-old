@@ -362,6 +362,9 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath="gensrc.py">
+		</File>
+		<File
 			RelativePath="readme_vc.txt">
 		</File>
 	</Files>

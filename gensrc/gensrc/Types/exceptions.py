@@ -55,14 +55,11 @@ class TypeNameAmbiguousException(TypeException):
 The datatype name "%(typeName)s" is ambiguous.
 This type is defined in the "types.xml" datatype metadata file
 under the following supertypes:
-    %(superTypeNameList)s
+    %(superTypeNames)s
 Please specify which of these supertypes is required."""
 
     def __init__(self, typeName, superTypeNames):
-        superTypeNameList = ""
-        for superTypeName in superTypeNames:
-            superTypeNameList = superTypeNameList + superTypeName + " "
         self.value_ = TypeNameAmbiguousException.AMBIGUOUS_NAME_ERROR % {
             'typeName' : typeName,
-            'superTypeNameList' : superTypeNameList }
+            'superTypeNames' : ', '.join(superTypeNames) }
 
