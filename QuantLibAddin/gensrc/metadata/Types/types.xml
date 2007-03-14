@@ -49,7 +49,7 @@
 
     <!--
     SuperType "handleToLib" - values which, if necessary, are automatically coerced from the form
-        boost::shared_ptr<QuantLibAddin::Handle<QuantLib::xxx> >
+        boost::shared_ptr<QuantLibAddin::RelinkableHandle<QuantLib::xxx> >
     to the required form
         boost::shared_ptr<QuantLib::xxx>
     -->
@@ -215,7 +215,7 @@
 
     <!--
     SuperType "objectHandle" - values stored in the form
-        QuantLibAddin::Handle<QuantLib::xxx>
+        QuantLibAddin::RelinkableHandle<QuantLib::xxx>
     -->
     <SuperType name='objectHandle' nativeType='string' conversionSuffix='Obj'>
       <DataTypes>

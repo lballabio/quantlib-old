@@ -35,9 +35,9 @@ namespace ObjHandler {
             const boost::shared_ptr<ObjHandler::Object> &in,
             boost::shared_ptr<QuantLib::TermStructure> &out) {
 
-        boost::shared_ptr<QuantLibAddin::Handle<CurveHandle> > 
+        boost::shared_ptr<QuantLibAddin::RelinkableHandle<CurveHandle> > 
             handleCurve = boost::dynamic_pointer_cast<
-                QuantLibAddin::Handle<CurveHandle> >(in);
+                QuantLibAddin::RelinkableHandle<CurveHandle> >(in);
 
         if (!handleCurve)
             return false;

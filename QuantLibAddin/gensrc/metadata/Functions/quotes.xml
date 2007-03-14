@@ -66,7 +66,7 @@
     </Member>
 
     <Constructor name='qlHandleQuote'>
-      <libraryFunction>Handle&lt;QuantLib::Quote&gt;</libraryFunction>
+      <libraryFunction>RelinkableHandle&lt;QuantLib::Quote&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>

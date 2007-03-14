@@ -116,7 +116,7 @@ code36a = '''\
         OH_GET_OBJECT(%(name)sObj, %(name)s, %(type)s)\n'''
 
 code36b = '''\
-        OH_GET_OBJECT(%(name)sObj, %(name)s, QuantLibAddin::Handle<%(type)s>)\n'''
+        OH_GET_OBJECT(%(name)sObj, %(name)s, QuantLibAddin::RelinkableHandle<%(type)s>)\n'''
 
 code37 = '''\
         std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(name)sObj =

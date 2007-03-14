@@ -271,9 +271,9 @@
       </ReturnValue>
     </Member>
 
-    <!-- HandleYieldTermStructure -->
+    <!-- RelinkableHandle<HandleYieldTermStructure> -->
     <Constructor name='qlHandleYieldTermStructure'>
-      <libraryFunction>Handle&lt;QuantLib::YieldTermStructure&gt;</libraryFunction>
+      <libraryFunction>RelinkableHandle&lt;QuantLib::YieldTermStructure&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>

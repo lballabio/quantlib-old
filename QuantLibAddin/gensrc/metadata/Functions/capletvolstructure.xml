@@ -309,9 +309,9 @@
       </ParameterList>
     </Constructor>
 
-    <!-- Handle<CapletVolatilityStructure> -->
+    <!-- RelinkableHandle<CapletVolatilityStructure> -->
     <Constructor name='qlHandleCapletVolatilityStructure'>
-      <libraryFunction>Handle&lt;QuantLib::CapletVolatilityStructure&gt;</libraryFunction>
+      <libraryFunction>RelinkableHandle&lt;QuantLib::CapletVolatilityStructure&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>

@@ -245,9 +245,9 @@
       </ReturnValue>
     </Member>
 
-    <!-- Handle<SwaptionVolatilityStructure> -->
+    <!-- RelinkableHandle<SwaptionVolatilityStructure> -->
     <Constructor name='qlHandleSwaptionVolatilityStructure'>
-      <libraryFunction>Handle&lt;QuantLib::SwaptionVolatilityStructure&gt;</libraryFunction>
+      <libraryFunction>RelinkableHandle&lt;QuantLib::SwaptionVolatilityStructure&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>

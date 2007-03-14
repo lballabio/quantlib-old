@@ -32,7 +32,7 @@
 namespace ObjHandler {
 
     // Accept an id of an Object in the Repository and return a boost::shared_ptr<qlClass>.
-    // 1) If the Object is of class QuantLibAddin::Handle then return the contained boost::shared_ptr<qlClass>
+    // 1) If the Object is of class QuantLibAddin::RelinkableHandle then return the contained boost::shared_ptr<qlClass>
     // 2) If the Object is of class QuantLibAddin::qloClass then return the contained boost::shared_ptr<qlClass>
     // 3) Otherwise the Object is of an unexpected class so raise an exception
 
@@ -52,8 +52,8 @@ namespace ObjHandler {
     template <class qlClass>
     bool handleToReference(const boost::shared_ptr<ObjHandler::Object> &in,
                            boost::shared_ptr<qlClass> &out) {
-        boost::shared_ptr<QuantLibAddin::Handle<qlClass> > handlePointer =
-            boost::dynamic_pointer_cast<QuantLibAddin::Handle<qlClass> >(in);
+        boost::shared_ptr<QuantLibAddin::RelinkableHandle<qlClass> > handlePointer =
+            boost::dynamic_pointer_cast<QuantLibAddin::RelinkableHandle<qlClass> >(in);
 
         if (!handlePointer)
             return false;
