@@ -25,53 +25,54 @@
 %include payoffs.i
 %{
 using QuantLib::BasketOption;
-using QuantLib::BasketOptionType;
-using QuantLib::MinBasketOptionType;
-using QuantLib::MaxBasketOptionType;
-using QuantLib::AverageBasketOptionType;
+using QuantLib::BasketPayoff;
+using QuantLib::MinBasketPayoff;
+using QuantLib::MaxBasketPayoff;
+using QuantLib::AverageBasketPayoff;
 typedef boost::shared_ptr<Instrument> BasketOptionPtr;
-typedef boost::shared_ptr<BasketOptionType> BasketOptionTypePtr;
-typedef boost::shared_ptr<BasketOptionType> MinBasketOptionTypePtr;
-typedef boost::shared_ptr<BasketOptionType> MaxBasketOptionTypePtr;
-typedef boost::shared_ptr<BasketOptionType> AverageBasketOptionTypePtr;
+typedef boost::shared_ptr<Payoff> BasketPayoffPtr;
+typedef boost::shared_ptr<Payoff> MinBasketPayoffPtr;
+typedef boost::shared_ptr<Payoff> MaxBasketPayoffPtr;
+typedef boost::shared_ptr<Payoff> AverageBasketPayoffPtr;
 %}
 
-%template(BasketOptionType) boost::shared_ptr<BasketOptionType>;
+%rename(BasketPayoff) BasketPayoffPtr;
+class BasketPayoffPtr : public boost::shared_ptr<Payoff> {};
 
-%rename(MinBasketOptionType) MinBasketOptionTypePtr;
-class MinBasketOptionTypePtr : 
-      public boost::shared_ptr<BasketOptionType>  {
+%rename(MinBasketPayoff) MinBasketPayoffPtr;
+class MinBasketPayoffPtr : public BasketPayoffPtr  {
   public:
     %extend {
-        MinBasketOptionTypePtr() {
-            return new MinBasketOptionTypePtr(new MinBasketOptionType);
+        MinBasketPayoffPtr(const boost::shared_ptr<Payoff> p) {
+            return new MinBasketPayoffPtr(new MinBasketPayoff(p));
         }
     }
 };
 
-%rename(MaxBasketOptionType) MaxBasketOptionTypePtr;
-class MaxBasketOptionTypePtr : 
-      public boost::shared_ptr<BasketOptionType>  {
+%rename(MaxBasketPayoff) MaxBasketPayoffPtr;
+class MaxBasketPayoffPtr : public BasketPayoffPtr  {
   public:
     %extend {
-        MaxBasketOptionTypePtr() {
-            return new MaxBasketOptionTypePtr(new MaxBasketOptionType);
+        MaxBasketPayoffPtr(const boost::shared_ptr<Payoff> p) {
+            return new MaxBasketPayoffPtr(new MaxBasketPayoff(p));
         }
     }
 };
 
-%rename(AverageBasketOptionType) AverageBasketOptionTypePtr;
-class AverageBasketOptionTypePtr : 
-      public boost::shared_ptr<BasketOptionType>  {
+%rename(AverageBasketPayoff) AverageBasketPayoffPtr;
+class AverageBasketPayoffPtr : 
+      public BasketPayoffPtr  {
   public:
     %extend {
-        AverageBasketOptionTypePtr(const Array &a) {
-            return new AverageBasketOptionTypePtr(new 
-	    AverageBasketOptionType(a));
+        AverageBasketPayoffPtr(const boost::shared_ptr<Payoff> p,
+			       const Array &a) {				 
+            return new AverageBasketPayoffPtr(new 
+	    AverageBasketPayoff(p, a));
         }
-        AverageBasketOptionTypePtr(Size n) {
-            return new AverageBasketOptionTypePtr(new 
-	    AverageBasketOptionType(n));
+        AverageBasketPayoffPtr(const boost::shared_ptr<Payoff> p,
+			       Size n) {
+            return new AverageBasketPayoffPtr(new 
+	    AverageBasketPayoff(p, n));
         }
     }
 };
@@ -82,18 +83,16 @@ class BasketOptionPtr : public MultiAssetOptionPtr {
   public:
     %extend {
         BasketOptionPtr(
-	        const boost::shared_ptr<BasketOptionType>& btype,
                 const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const boost::shared_ptr<PricingEngine>& engine
                    = boost::shared_ptr<PricingEngine>()) {
-            boost::shared_ptr<PlainVanillaPayoff> stPayoff =
-                 boost::dynamic_pointer_cast<PlainVanillaPayoff>(payoff);
+            boost::shared_ptr<BasketPayoff> stPayoff =
+                 boost::dynamic_pointer_cast<BasketPayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
             return new BasketOptionPtr(
-                        new BasketOption(btype,
-			process,stPayoff,exercise,
+                        new BasketOption(process,stPayoff,exercise,
 			engine));
         }
     }
