@@ -26,7 +26,7 @@ class TypeNameUndefinedException(TypeException):
 The type name "%(typeName)s" is not defined in the "types.xml" datatype metadata file."""
 
     def __init__(self, typeName):
-        self.value = TypeNameUndefinedException.INVALID_NAME_ERROR % {
+        self.value_ = TypeNameUndefinedException.INVALID_NAME_ERROR % {
             'typeName' : typeName }
 
 class TypeSuperUndefinedException(TypeException):
@@ -36,7 +36,7 @@ Datatype "%(typeName)s" doesn't appear in the definition
 of supertype "%(superTypeName)s" in the "types.xml" datatype metadata file."""
 
     def __init__(self, typeName, superTypeName):
-        self.value = TypeSuperUndefinedException.SUPERTYPE_UNDEFINED_ERROR % {
+        self.value_ = TypeSuperUndefinedException.SUPERTYPE_UNDEFINED_ERROR % {
             'typeName' : typeName,
             'superTypeName' : superTypeName }
 
@@ -46,7 +46,7 @@ class SupertypeNameUndefinedException(TypeException):
 The supertype name "%(superTypeName)s" is not defined in the "types.xml" datatype metadata file."""
 
     def __init__(self, superTypeName):
-        self.value = SupertypeNameUndefinedException.INVALID_SUPERTYPE_NAME_ERROR % {
+        self.value_ = SupertypeNameUndefinedException.INVALID_SUPERTYPE_NAME_ERROR % {
             'superTypeName' : superTypeName }
 
 class TypeNameAmbiguousException(TypeException):
@@ -62,7 +62,7 @@ Please specify which of these supertypes is required."""
         superTypeNameList = ""
         for superTypeName in superTypeNames:
             superTypeNameList = superTypeNameList + superTypeName + " "
-        self.value = TypeNameAmbiguousException.AMBIGUOUS_NAME_ERROR % {
+        self.value_ = TypeNameAmbiguousException.AMBIGUOUS_NAME_ERROR % {
             'typeName' : typeName,
             'superTypeNameList' : superTypeNameList }
 
