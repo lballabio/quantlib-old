@@ -160,6 +160,8 @@
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code45a'/>
         <Rule tensorRank='scalar' superType='libToHandle' codeID='code44'/>
         <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::TermStructure' codeID='code46'/>
+        <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::SwaptionVolatilityDiscrete' codeID='code46b'/>
+        <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::SwaptionVolatilityCube' codeID='code46b'/>
         <Rule tensorRank='scalar' superType='handleToLib' codeID='code45b'/>
         <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='code49'/>
         <Rule tensorRank='scalar' superType='underlyingClass' codeID='code48'/>

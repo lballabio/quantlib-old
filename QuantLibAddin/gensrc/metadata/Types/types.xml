@@ -58,6 +58,8 @@
         <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SimpleQuote</DataType>
+        <DataType>QuantLib::SwaptionVolatilityCube</DataType>
+        <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::TermStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
@@ -132,8 +134,6 @@
             <DataType>QuantLib::SwapFromFRACorrelationStructure</DataType>
             <DataType>QuantLib::SwapIndex</DataType>
             <DataType>QuantLib::Swaption</DataType>
-            <DataType>QuantLib::SwaptionVolatilityCube</DataType>
-            <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
             <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
             <DataType>QuantLib::SymmetricSchurDecomposition</DataType>
             <DataType>QuantLib::TypePayoff</DataType>

@@ -39,7 +39,7 @@ namespace ObjHandler {
             std::string id;
             operToScalar(in, id);
             OH_GET_OBJECT(temp, id, ObjHandler::Object)
-            out = CoerceToObject<QuantLibAddin::Quote, QuantLib::Quote>()(temp);
+            out = CoerceObject<QuantLibAddin::Quote, QuantLib::Quote>()(temp);
             return true;
         } else {
             return false;

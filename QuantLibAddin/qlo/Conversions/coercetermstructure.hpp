@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,22 +15,27 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qlo_conversions_coercecurve_hpp
-#define qlo_conversions_coercecurve_hpp
+#ifndef qlo_conversions_coercetermstructure_hpp
+#define qlo_conversions_coercetermstructure_hpp
 
 #include <oh/Conversions/coerce.hpp>
 #include <oh/exception.hpp>
 #include <qlo/handle.hpp>
 #include <qlo/Conversions/coerceobject.hpp>
+#include <qlo/termstructures.hpp>
 #include <ql/yieldtermstructure.hpp>
 #include <ql/swaptionvolstructure.hpp>
 
 namespace ObjHandler {
 
-    template <class HandleClass, class LibraryClass>
+    bool curveFromObject(
+            const boost::shared_ptr<ObjHandler::Object> &in,
+            boost::shared_ptr<QuantLib::TermStructure> &out);
+
+    template <class HandleClass>
     bool curveFromHandle(
             const boost::shared_ptr<ObjHandler::Object> &in,
-            boost::shared_ptr<LibraryClass> &out) {
+            boost::shared_ptr<QuantLib::TermStructure> &out) {
 
         boost::shared_ptr<QuantLibAddin::RelinkableHandle<HandleClass> > 
             handleCurve = boost::dynamic_pointer_cast<
@@ -44,23 +49,23 @@ namespace ObjHandler {
         OH_REQUIRE(pointerCurve, "unable to retrieve reference"
                 << " contained in handle");
 
-        out = boost::dynamic_pointer_cast<LibraryClass>(pointerCurve);
+        out = boost::dynamic_pointer_cast<QuantLib::TermStructure>(pointerCurve);
         OH_REQUIRE(out, "unable to convert reference from " 
-            << typeid(HandleClass).name()<< " to "
-            << typeid(LibraryClass).name());
+            << typeid(HandleClass).name()
+            << " to QuantLib::TermStructure");
 
         return true;
     }
 
-    template <class ObjectClass, class LibraryClass, class HandleClass>
-    class CoerceCurve : public ObjHandler::Coerce<
+    class CoerceTermStructure : public ObjHandler::Coerce<
             boost::shared_ptr<ObjHandler::Object>, 
-            boost::shared_ptr<LibraryClass> > {
+            boost::shared_ptr<QuantLib::TermStructure> > {
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                objectToReference<ObjectClass, LibraryClass>,
-                curveFromHandle<HandleClass, LibraryClass>, 
+                objectToReference<QuantLibAddin::TermStructure, QuantLib::TermStructure>,
+                curveFromHandle<QuantLib::YieldTermStructure>, 
+                curveFromHandle<QuantLib::SwaptionVolatilityStructure>, 
                 0
             };
             return conversions; 

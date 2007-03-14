@@ -168,7 +168,7 @@ code45a = '''\
 code45b = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            ObjHandler::CoerceToObject<
+            ObjHandler::CoerceObject<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);\n'''
@@ -176,7 +176,16 @@ code45b = '''\
 code46 = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            ObjHandler::CoerceCurve()(%(name)sTemp);\n'''
+            ObjHandler::CoerceTermStructure()(%(name)sTemp);\n'''
+
+code46b = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjHandler::Object)
+        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+            ObjHandler::CoerceCurve<
+                %(namespaceObjects)s::%(classname)s,
+                %(namespaceLibrary)s::%(classname)s,
+                QuantLib::SwaptionVolatilityStructure>()(
+                    %(name)sTemp);\n'''
 
 code47 = '''\
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =

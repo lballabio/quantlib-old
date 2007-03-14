@@ -31,16 +31,16 @@
 
 namespace ObjHandler {
 
-    // Accept an id of an Object in the Repository and return a boost::shared_ptr<qlClass>.
-    // 1) If the Object is of class QuantLibAddin::RelinkableHandle then return the contained boost::shared_ptr<qlClass>
-    // 2) If the Object is of class QuantLibAddin::qloClass then return the contained boost::shared_ptr<qlClass>
+    // Accept an id of an Object in the Repository and return a boost::shared_ptr<LibraryClass>.
+    // 1) If the Object is of class QuantLibAddin::RelinkableHandle then return the contained boost::shared_ptr<LibraryClass>
+    // 2) If the Object is of class QuantLibAddin::ObjectClass then return the contained boost::shared_ptr<LibraryClass>
     // 3) Otherwise the Object is of an unexpected class so raise an exception
 
-    template <class qloClass, class qlClass>
+    template <class ObjectClass, class LibraryClass>
     bool objectToReference(const boost::shared_ptr<ObjHandler::Object> &in,
-                           boost::shared_ptr<qlClass> &out) {
-        boost::shared_ptr<qloClass> qloPointer = 
-            boost::dynamic_pointer_cast<qloClass>(in);
+                           boost::shared_ptr<LibraryClass> &out) {
+        boost::shared_ptr<ObjectClass> qloPointer = 
+            boost::dynamic_pointer_cast<ObjectClass>(in);
         if (qloPointer) {
             qloPointer->getLibraryObject(out);
             return true;
@@ -49,19 +49,14 @@ namespace ObjHandler {
         }
     }
 
-    template <class qlClass>
+    template <class LibraryClass>
     bool handleToReference(const boost::shared_ptr<ObjHandler::Object> &in,
-                           boost::shared_ptr<qlClass> &out) {
-        boost::shared_ptr<QuantLibAddin::RelinkableHandle<qlClass> > handlePointer =
-            boost::dynamic_pointer_cast<QuantLibAddin::RelinkableHandle<qlClass> >(in);
+                           boost::shared_ptr<LibraryClass> &out) {
+        boost::shared_ptr<QuantLibAddin::RelinkableHandle<LibraryClass> > handlePointer =
+            boost::dynamic_pointer_cast<QuantLibAddin::RelinkableHandle<LibraryClass> >(in);
 
         if (!handlePointer)
             return false;
-
-        // this check should be now redundant, since it is performed
-        // in QuantLib::Handle.currentLink()
-        //OH_REQUIRE(!handlePointer->getHandle().empty(),
-        //           "handle contains null reference");
 
         out = handlePointer->getHandle().currentLink();
         OH_REQUIRE(out, "unable to retrieve reference contained in handle");
@@ -69,17 +64,17 @@ namespace ObjHandler {
         return true;
     }
 
-    template <class qloClass, class qlClass>
-    class CoerceToObject : public ObjHandler::Coerce<
+    template <class ObjectClass, class LibraryClass>
+    class CoerceObject : public ObjHandler::Coerce<
             boost::shared_ptr<ObjHandler::Object>, 
-            boost::shared_ptr<qlClass> > {
+            boost::shared_ptr<LibraryClass> > {
         typedef typename ObjHandler::Coerce<
             boost::shared_ptr<ObjHandler::Object>,
-            boost::shared_ptr<qlClass> >::Conversion Conversion; 
+            boost::shared_ptr<LibraryClass> >::Conversion Conversion; 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                objectToReference<qloClass, qlClass>,
-                handleToReference<qlClass>,
+                objectToReference<ObjectClass, LibraryClass>,
+                handleToReference<LibraryClass>,
                 0
             };
             return conversions; 

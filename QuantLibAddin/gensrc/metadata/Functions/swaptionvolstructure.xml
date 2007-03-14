@@ -305,7 +305,6 @@
             <description>vol quotes</description>
           </Parameter>
           <Parameter name='dayCounter' exampleValue='Actual/365 (Fixed)'>
-            '
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -404,7 +403,7 @@
 
     <!-- SwaptionVolatilityMatrix interface -->
     <Member name='qlSwaptionVTSMatrixLocate' type='QuantLibAddin::SwaptionVolatilityMatrix'>
-      <description>Returns the lower indexes of sourrounding volatility matrix corners for the given SwaptionVolatilityDiscrete object.</description>
+      <description>Returns the lower indexes of surrounding volatility matrix corners for the given SwaptionVolatilityMatrix object.</description>
       <libraryFunction>locate</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>

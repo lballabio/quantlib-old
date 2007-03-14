@@ -862,7 +862,7 @@
 				RelativePath=".\qlo\Conversions\all.hpp">
 			</File>
 			<File
-				RelativePath=".\qlo\Conversions\coercecurve.cpp">
+				RelativePath=".\qlo\Conversions\coercetermstructure.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\Conversions\coercecurve.hpp">

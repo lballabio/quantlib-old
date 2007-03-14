@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,5 +24,6 @@
 #include <qlo/Conversions/coercehandle.hpp>
 #include <qlo/Conversions/coerceindex.hpp>
 #include <qlo/Conversions/coercecurve.hpp>
+#include <qlo/Conversions/coercetermstructure.hpp>
 
 #endif

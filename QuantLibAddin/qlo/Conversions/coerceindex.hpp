@@ -28,54 +28,54 @@ namespace ObjHandler {
     // an Enumerated Class or an object in the repository, 
     // and return the appropriate index object
 
-    template <class enumClass, class qlClass>
+    template <class EnumerationClass, class LibraryClass>
     bool indexFromRegistry(
             const std::string &in,
-            boost::shared_ptr<qlClass> &out) {
+            boost::shared_ptr<LibraryClass> &out) {
         if (!QuantLibAddin::Create<boost::shared_ptr<QuantLib::Index> >().checkType(in))
             return false;
         boost::shared_ptr<QuantLib::Index> indexPointer = 
             QuantLibAddin::Create<boost::shared_ptr<QuantLib::Index> >()(in);
-        out = boost::dynamic_pointer_cast<qlClass>(indexPointer);
+        out = boost::dynamic_pointer_cast<LibraryClass>(indexPointer);
         OH_REQUIRE(out, "Unable to convert enumerated class with ID " << in <<
-            " to class " << typeid(qlClass).name());
+            " to class " << typeid(LibraryClass).name());
         return true;
     }
 
-    template <class qloClass, class qlClass>
+    template <class ObjectClass, class LibraryClass>
     bool indexFromRepository(
             const std::string &in,
-            boost::shared_ptr<qlClass> &out) {
-        OH_GET_REFERENCE(ret, in, qloClass, qlClass)
+            boost::shared_ptr<LibraryClass> &out) {
+        OH_GET_REFERENCE(ret, in, ObjectClass, LibraryClass)
         out = ret;
         return true;
     }
 
-    template <class qloClass, class qlClass>
+    template <class ObjectClass, class LibraryClass>
     class CoerceIndex : public ObjHandler::Coerce<
             std::string,
-            boost::shared_ptr<qlClass> > {
+            boost::shared_ptr<LibraryClass> > {
         typedef typename ObjHandler::Coerce<
             std::string, 
-            boost::shared_ptr<qlClass> >::Conversion Conversion; 
+            boost::shared_ptr<LibraryClass> >::Conversion Conversion; 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                indexFromRegistry<qlClass>, 
-                indexFromRepository<qloClass, qlClass>, 
+                indexFromRegistry<LibraryClass>, 
+                indexFromRepository<ObjectClass, LibraryClass>, 
                 0
             };
             return conversions; 
         };
     };
 
-    template <class qloClass, class qlClass>
-    inline std::vector<boost::shared_ptr<qlClass> > CoerceIndexVector(
+    template <class ObjectClass, class LibraryClass>
+    inline std::vector<boost::shared_ptr<LibraryClass> > CoerceIndexVector(
         const std::vector<std::string> &ids) {
-        std::vector<boost::shared_ptr<qlClass> > ret;
+        std::vector<boost::shared_ptr<LibraryClass> > ret;
         ret.reserve(ids.size());
         std::vector<std::string>::const_iterator i;
         for (i = ids.begin(); i != ids.end(); ++i)
-            ret.push_back(CoerceIndex<qloClass, qlClass>()(*i));
+            ret.push_back(CoerceIndex<ObjectClass, LibraryClass>()(*i));
         return ret;
     }
 
