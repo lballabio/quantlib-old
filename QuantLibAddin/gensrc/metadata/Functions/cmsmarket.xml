@@ -171,6 +171,51 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
+    
+    <Member name='qlSimultaneousCalibrationSparseSabrParameters' type='QuantLibAddin::SmileAndCmsCalibrationBySabr'>
+      <description>returns results of Sabr calibration</description>
+      <libraryFunction>getSparseSabrParameters</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimultaneousCalibrationDenseSabrParameters' type='QuantLibAddin::SmileAndCmsCalibrationBySabr'>
+      <description>returns results of Sabr calibration</description>
+      <libraryFunction>getDenseSabrParameters</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlSimultaneousCalibrationBrowseCmsMarket' type='QuantLibAddin::SmileAndCmsCalibrationBySabr'>
+      <description>return the market and implied spreads matrix</description>
+      <libraryFunction>getCmsMarket</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
 
   </Functions>
 </Category>

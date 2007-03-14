@@ -20,10 +20,10 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/swaptionvolstructure.hpp>
-//#include <ql/Volatilities/swaptionvolcubebysabr.hpp>
 #include <ql/Volatilities/cmsmarket.hpp>
 #include <ql/termstructure.hpp>
 #include <ql/CashFlows/conundrumpricer.hpp>
+#include <qlo/swaptionvolstructure.hpp>
 
 
 namespace QuantLibAddin {
@@ -54,6 +54,11 @@ namespace QuantLibAddin {
             boost::shared_ptr<QuantLib::CmsMarket>& cmsMarket,
             const QuantLib::Matrix& weights,
             QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType calibrationType);
+        
+        std::vector<std::vector<boost::any> > getSparseSabrParameters();
+        std::vector<std::vector<boost::any> > getDenseSabrParameters();
+        std::vector<std::vector<boost::any> > getCmsMarket();
+
         
     }; 
 }

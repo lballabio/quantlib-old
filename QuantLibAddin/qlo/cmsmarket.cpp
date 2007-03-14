@@ -107,4 +107,19 @@ namespace QuantLibAddin {
                         weights,
                         calibrationType));         
      }
+        
+    std::vector<std::vector<boost::any> >
+    SmileAndCmsCalibrationBySabr::getSparseSabrParameters() {
+        return getSabrParameters(libraryObject_->sparseSabrParameters_);
+    }
+
+    std::vector<std::vector<boost::any> >
+    SmileAndCmsCalibrationBySabr::getDenseSabrParameters() {
+        return getSabrParameters(libraryObject_->denseSabrParameters_);
+    }
+
+    std::vector<std::vector<boost::any> >
+    SmileAndCmsCalibrationBySabr::getCmsMarket() {
+       return browseCmsMarket(libraryObject_->browseCmsMarket_);
+    }
 }
