@@ -198,6 +198,7 @@
         <DataType>QuantLibAddin::Bond</DataType>
         <DataType>QuantLibAddin::CapFloor</DataType>
         <DataType>QuantLibAddin::CmsMarket</DataType>
+        <DataType>QuantLibAddin::SmileAndCmsCalibrationBySabr</DataType>
         <DataType>QuantLibAddin::CMSMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::Leg</DataType>
         <DataType>QuantLibAddin::LMMDriftCalculator</DataType>
