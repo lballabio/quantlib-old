@@ -37,17 +37,16 @@ class ParameterList(serializable.Serializable):
 
     def generate(self, ruleGroup):
         """Generate source code relating to a list of function parameters."""
-        code = ''
-        i = 0
+        codeItems = []
+        firstItem = True
         for param in self.parameters_:
-            i += 1
-            if ruleGroup.checkSkipFirst() and i == 1 and self.skipFirst_: continue
-            paramConversion = ruleGroup.apply(param)
-            if paramConversion: 
-                if code:
-                    code += ruleGroup.delimiter() + paramConversion
-                else:
-                    code = paramConversion
+            if firstItem:
+                firstItem = False
+                if ruleGroup.checkSkipFirst() and self.skipFirst_: continue
+            ruleResult = ruleGroup.apply(param)
+            if ruleResult:
+                codeItems.append(ruleResult)
+        code = ruleGroup.delimiter().join(codeItems)
         if code and ruleGroup.wrapText():
             code = ruleGroup.wrapText() % code
         return code
