@@ -80,25 +80,25 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='maxIter' default='1000'>
+          <Parameter name='maxIter' exampleValue='1000'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>max number of iterations. Default is 1000</description>
+            <description>max number of iterations.</description>
           </Parameter>
-          <Parameter name='functionEpsilon' default='1e-8'>
+          <Parameter name='functionEpsilon' exampleValue='1e-8'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance on the function value. Default is 1e-8</description>
+            <description>tolerance on the function value.</description>
           </Parameter>
-          <Parameter name='gradientEpsilon' default='1e-8'>
+          <Parameter name='gradientEpsilon' exampleValue='1e-8'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance on the function gradient. Default is 1e-8</description>
+            <description>tolerance on the function gradient.</description>
           </Parameter>
-          <Parameter name='maxStatStateIter' default='100'>
+          <Parameter name='maxStatStateIter' exampleValue='100'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>max number of iterations in a stationary state. Default is 100</description>
+            <description>max number of iterations in a stationary state.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
