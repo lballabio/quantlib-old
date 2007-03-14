@@ -279,9 +279,9 @@ Partial Class FormMain
         Me.cbFitCMS.AutoSize = True
         Me.cbFitCMS.Location = New System.Drawing.Point(10, 118)
         Me.cbFitCMS.Name = "cbFitCMS"
-        Me.cbFitCMS.Size = New System.Drawing.Size(105, 17)
+        Me.cbFitCMS.Size = New System.Drawing.Size(111, 17)
         Me.cbFitCMS.TabIndex = 7
-        Me.cbFitCMS.Text = "Fit CMS Spreads"
+        Me.cbFitCMS.Text = "View CMS Market"
         Me.cbFitCMS.UseVisualStyleBackColor = True
         '
         'cbLoadBonds
