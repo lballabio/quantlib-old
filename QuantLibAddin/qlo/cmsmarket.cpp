@@ -56,28 +56,28 @@ namespace QuantLibAddin {
 
         std::vector<boost::any> headings(numberOfColumn);
         headings[0]=std::string("CM Swap Index");
-        headings[1]=std::string("Expiry");
+        headings[1]=std::string("Exp");
 
-        headings[2]=std::string("Bid (bps)");
-        headings[3]=std::string("Ask (bps)");
-        headings[4]=std::string("Mid (bps)");
-        headings[5]=std::string("Implied (bps)");
+        headings[2]=std::string("Mkt Bid (bps)");
+        headings[3]=std::string("Mkt Ask (bps)");
+        headings[4]=std::string("Mkt Mid (bps)");
+        headings[5]=std::string("Model Mid (bps)");
         headings[6]=std::string("Error (bps)");
-        headings[7]=std::string("Overreach bid/ask");
+        headings[7]=std::string("Outside bid/ask");
         
-        headings[8]=std::string("Market bid Price Cms Leg");
-        headings[9]=std::string("Market ask Price Cms Leg");
-        headings[10]=std::string("Market mid Price Cms Leg");
-        headings[11]=std::string("Model Price Cms Leg");
-        headings[12]=std::string("Price Error");  
+        headings[8]=std::string("Mkt bid - spot price");
+        headings[9]=std::string("Mkt ask - spot price");
+        headings[10]=std::string("Mkt mid - spot price");
+        headings[11]=std::string("Model mid - spot price");
+        headings[12]=std::string("Spot price error");  
         
-        headings[13]=std::string("Market bid Price Forward Cms Leg");
-        headings[14]=std::string("Market ask Price Forward Cms Leg");
-        headings[15]=std::string("Market mid Price Forward Cms Leg");
-        headings[16]=std::string("Model Price Forward Cms Leg");
-        headings[17]=std::string("Forward Price Error"); 
+        headings[13]=std::string("Mkt bid - fwd price");
+        headings[14]=std::string("Mkt ask - fwd price");
+        headings[15]=std::string("Mkt mid - fwd price");
+        headings[16]=std::string("Model mid - fwd price");
+        headings[17]=std::string("Fwd price error"); 
         
-        headings[18]=std::string("Mean reversion");
+        headings[18]=std::string("Mean rev.");
 
         result.push_back(headings);
 
