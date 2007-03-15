@@ -116,7 +116,7 @@
           <Parameter name="lambda" exampleValue="0.01">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>lambda</description>
+            <description>lambda (typical scale length of the problem)</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -132,17 +132,17 @@
           <Parameter name="epsfcn" libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>epsfcn</description>
+            <description>epsfcn. If omitted, default = 1.0e-8 is used.</description>
           </Parameter>
           <Parameter name="xtol" libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>xtol</description>
+            <description>xtol. If omitted, default = 1.0e-8 is used.</description>
           </Parameter>
           <Parameter name="gtol" libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>gtol</description>
+            <description>gtol. If omitted, default = 1.0e-8 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -192,17 +192,17 @@
           <Parameter name="epsilon" default="1e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>epsilon</description>
+            <description>epsilon. If omitted, default = 1e-8 is used.</description>
           </Parameter>
           <Parameter name="alpha" default="0.05">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>alpha</description>
+            <description>alpha. If omitted, default = 0.05 is used.</description>
           </Parameter>
           <Parameter name="beta" default="0.65">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>beta</description>
+            <description>beta. If omitted, default = 0.65 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
