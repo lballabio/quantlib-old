@@ -1,0 +1,26 @@
+How to tag a folder in cvs:
+--------------------------
+*** note that this procedure wworks correctly only with Tortoise-CVS version equal 
+or later than 1.8.30
+
+SET TAG NAME
+1. right-click on C:\Projects\Trunks\QuantLibXL\Workbooks\MarketData
+2. select "cvs" and then "tag" with default parameters. Give a sensible tag name. click OK
+
+RECOVER A TAGGED VERSION
+1. set curson on area C:\Projects\Trunks\QuantLibXL\Workbooks
+2. right-click, select "cvs", "select "checkout"
+3. select QuantLibXL module and edit the module name as follows: QuantLibXL/Workbooks/MarketData
+4. Under Revision "Choose branch or tag" using the desired tag name you want to recover
+5. Under Options Select "Enter your own folder name" and edit MarketData
+6. Click OK
+
+RESTORE LATEST CVS VERSION
+1. set curson on area C:\Projects\Trunks\QuantLibXL\Workbooks
+2. right-click, select "cvs", "select "checkout"
+3. select QuantLibXL module and edit the module name as follows: QuantLibXL/Workbooks/MarketData
+4. Under Revision "Use Head branch"
+5. Under Options Select "Enter your own folder name" and edit MarketData
+6. Click OK
+
+
