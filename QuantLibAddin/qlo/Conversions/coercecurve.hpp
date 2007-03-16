@@ -28,7 +28,7 @@
 namespace ObjHandler {
 
     template <class HandleClass, class LibraryClass>
-    bool curveFromHandle(
+    bool curveFromHandle2(
             const boost::shared_ptr<ObjHandler::Object> &in,
             boost::shared_ptr<LibraryClass> &out) {
 
@@ -60,7 +60,7 @@ namespace ObjHandler {
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToReference<ObjectClass, LibraryClass>,
-                curveFromHandle<HandleClass, LibraryClass>, 
+                curveFromHandle2<HandleClass, LibraryClass>, 
                 0
             };
             return conversions; 
