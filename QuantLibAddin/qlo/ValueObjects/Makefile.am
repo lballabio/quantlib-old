@@ -5,6 +5,7 @@ includedir = $(prefix)/include/qlo/ValueObjects
 noinst_LTLIBRARIES = libValueObjects.la
 
 include_HEADERS = \
+    vo_all.hpp \
     vo_assetswap.hpp \
     vo_bonds.hpp \
     vo_capfloor.hpp \

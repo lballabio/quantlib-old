@@ -10,9 +10,9 @@ include_HEADERS = \
     coercehandle.hpp \
     coerceindex.hpp \
     coerceobject.hpp \
+    coercetermstructure.hpp \
     conversions.hpp
 
 libConversions_la_SOURCES = \
-    coercecurve.cpp \
     conversions.cpp
 

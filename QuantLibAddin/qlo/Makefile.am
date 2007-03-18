@@ -41,6 +41,7 @@ include_HEADERS = \
     payoffs.hpp \
     pricingengines.hpp \
     processes.hpp \
+    qladdin.hpp \
     qladdindefines.hpp \
     quantoforwardvanillaoption.hpp \
     quantovanillaoption.hpp \
@@ -54,6 +55,7 @@ include_HEADERS = \
     simplecashflow.hpp \
     smilesection.hpp \
     statistics.hpp \
+    stickyratchet.hpp \
     swap.hpp \
     swaption.hpp \
     swaptionvolstructure.hpp \
@@ -107,6 +109,7 @@ libQuantLibAddin_la_SOURCES = \
     shortratemodels.cpp \
     smilesection.cpp \
     statistics.cpp \
+    stickyratchet.cpp \
     swap.cpp \
     swaption.cpp \
     swaptionvolstructure.cpp \
