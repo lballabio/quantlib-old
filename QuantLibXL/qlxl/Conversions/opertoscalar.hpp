@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,23 +21,26 @@
 #include <oh/objhandlerdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/date.hpp>
+#include <ql/Quotes/simplequote.hpp>
 
 namespace ObjHandler {
 
-    void operToScalar(const OPER &xScalar, QuantLib::Date   &ret);
+    void operToScalar(const OPER &xScalar, QuantLib::Date &ret);
     void operToScalar(const OPER &xScalar, QuantLib::Period &ret);
-    void operToScalar(const OPER &xScalar, QuantLib::Size   &ret);
+    void operToScalar(const OPER &xScalar, QuantLib::Size &ret);
+    void operToScalar(const OPER &xScalar, QuantLib::RelinkableHandle<QuantLib::Quote> &ret);
+    void operToScalar(const OPER &xScalar, boost::shared_ptr<QuantLib::Quote> &ret);
 
-    //void cppToLibrary(const long        &in, QuantLib::Date   &ret);
+    //void cppToLibrary(const long &in, QuantLib::Date &ret);
     void cppToLibrary(const std::string &in, QuantLib::Period &ret);
-    void cppToLibrary(const long        &in, QuantLib::Size   &ret);
+    void cppToLibrary(const long &in, QuantLib::Size &ret);
 
     template <class T, class EnumRegistry>
     T operToScalarEnum(const OPER &xScalar,
-                       const std::string &defaultValue,
-                       const std::string &paramName) {
+                       const std::string &paramName,
+                       const std::string &defaultValue) {
         std::string id =
-            operToScalar<std::string>(xScalar, defaultValue, paramName);
+            callOperToScalar<std::string>(xScalar, paramName, defaultValue);
         return EnumRegistry()(id);
     }
 

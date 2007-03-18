@@ -5,31 +5,31 @@
 
 code11 = '''\
         std::string %(name)sCpp =
-            ObjHandler::operToScalar<std::string>(*%(name)s, %(defaultValue)s, "%(name)s");\n'''
+            ObjHandler::callOperToScalar<std::string>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code12 = '''\
         %(nativeType)s %(name)sCpp =
-            ObjHandler::operToScalar<%(nativeType)s>(*%(name)s, %(defaultValue)s, "%(name)s");\n'''
+            ObjHandler::callOperToScalar<%(nativeType)s>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code13 = '''\
         std::vector<%(nativeType)s> %(name)sCpp =
-            ObjHandler::operToVector<%(nativeType)s>(*%(name)s);\n'''
+            ObjHandler::operToVector<%(nativeType)s>(*%(name)s, "%(name)s");\n'''
 
 code14 = '''\
         std::vector<long> %(name)sCpp =
-            ObjHandler::operToVector<long>(*%(name)s);\n'''
+            ObjHandler::operToVector<long>(*%(name)s, "%(name)s");\n'''
 
 code15 = '''\
         std::vector<double> %(name)sCpp =
-            ObjHandler::operToVector<double>(*%(name)s);\n'''
+            ObjHandler::operToVector<double>(*%(name)s, "%(name)s");\n'''
 
 code16 = '''\
         std::vector<std::string> %(name)sCpp =
-            ObjHandler::operToVector<std::string>(*%(name)s);\n'''
+            ObjHandler::operToVector<std::string>(*%(name)s, "%(name)s");\n'''
 
 code17 = '''\
         std::vector<boost::any> %(name)sCpp =
-            ObjHandler::operToVector<boost::any>(*%(name)s);\n'''
+            ObjHandler::operToVector<boost::any>(*%(name)s, "%(name)s");\n'''
 
 code18 = '''\
         std::vector<std::vector<%(type)s> > %(name)sCpp =
@@ -65,11 +65,11 @@ code24 = '''\
 
 code25 = '''\
         %(type)s %(name)sLib =
-            ObjHandler::operToScalar<%(type)s>(%(name)s, %(defaultValue)s, "%(name)s");\n'''
+            ObjHandler::callOperToScalar<%(type)s>(%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code26 = '''\
         %(type)s %(name)sLib =
-            ObjHandler::operToScalar<%(type)s>(*%(name)s, %(defaultValue)s, "%(name)s");\n'''
+            ObjHandler::callOperToScalar<%(type)s>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code27 = '''\
         QuantLib::Date %(name)sLib =
@@ -77,7 +77,7 @@ code27 = '''\
 
 code28 = '''\
         %(type)s %(name)sLib =
-            ObjHandler::operToVector(*%(name)s);\n'''
+            ObjHandler::operToVector(*%(name)s, "%(name)s");\n'''
 
 code29 = '''\
         %(type)s %(name)sLib =
@@ -95,7 +95,7 @@ code31 = '''\
 code32 = '''\
         std::vector<%(type)s> %(name)sLib =
             ObjHandler::operToVector<%(type)s>(
-            *%(name)s);\n'''
+            *%(name)s, "%(name)s");\n'''
 
 code33 = '''\
         %(type)s %(name)sEnum =

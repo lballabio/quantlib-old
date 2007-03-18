@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,14 +25,15 @@
 namespace ObjHandler {
 
     template <class T>
-    std::vector<T> operToVector(const OPER &xVector) {
+    std::vector<T> operToVector(const OPER &xVector, 
+                   const std::string paramName) {
 
         if ((xVector.xltype & xltypeNil)
         ||  (xVector.xltype & xltypeMissing)
         || ((xVector.xltype & xltypeErr) && (xVector.val.err == xlerrNA)))
             return std::vector<T>();
         OH_REQUIRE(!(xVector.xltype & xltypeErr), 
-            "input value has type=error");
+            "input value '" << paramName << "' has type=error");
 
         OPER xTemp;
         bool excelToFree = false;
@@ -73,7 +74,7 @@ namespace ObjHandler {
             } else if (xllToFree) {
                 freeOper(&xTemp);
             }
-            OH_FAIL("operToVector: " << e.what());
+            OH_FAIL("operToVector: error converting parameter '" << paramName << "' : " << e.what());
         }
     }
 

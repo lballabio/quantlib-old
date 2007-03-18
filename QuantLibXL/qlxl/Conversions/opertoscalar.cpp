@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,9 +16,14 @@
 */
 
 #include <qlxl/Conversions/opertoscalar.hpp>
+#include <qlo/Conversions/coercehandle.hpp>
+#include <qlo/Conversions/coerceobject.hpp>
+#include <qlo/quotes.hpp>
 #include <ql/Utilities/dataparsers.hpp>
 #include <ql/period.hpp>
 #include <ohxl/Conversions/opertoscalar.hpp>
+#include <oh/object.hpp>
+#include <oh/objecthandler.hpp>
 
 namespace ObjHandler {
 
@@ -38,6 +43,32 @@ namespace ObjHandler {
         long sizeNum;
         operToScalar(xScalar, sizeNum);
         cppToLibrary(sizeNum, ret);
+    }
+
+    void operToScalar(const OPER &xScalar, QuantLib::RelinkableHandle<QuantLib::Quote> &ret) {    
+        if (xScalar.xltype & xltypeNum) {
+            ret.linkTo(boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(xScalar.val.num)));
+        } else if (xScalar.xltype & xltypeStr) {
+            std::string id;
+            operToScalar(xScalar, id);
+            OH_GET_OBJECT(temp, id, ObjHandler::Object)
+            ret = CoerceHandle<QuantLibAddin::Quote, QuantLib::Quote>()(temp);
+        } else {
+            OH_FAIL("unable to convert input value to QuantLib::RelinkableHandle<QuantLib::Quote>");
+        }
+    }
+
+    void operToScalar(const OPER &xScalar, boost::shared_ptr<QuantLib::Quote> &ret) {
+        if (xScalar.xltype & xltypeNum) {
+            ret = boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(xScalar.val.num));
+        } else if (xScalar.xltype & xltypeStr) {
+            std::string id;
+            operToScalar(xScalar, id);
+            OH_GET_OBJECT(temp, id, ObjHandler::Object)
+            ret = CoerceObject<QuantLibAddin::Quote, QuantLib::Quote>()(temp);
+        } else {
+            OH_FAIL("unable to convert input value to QuantLib::Quote");
+        }
     }
 
     //void cppToLibrary(const long &in, QuantLib::Date &ret) {

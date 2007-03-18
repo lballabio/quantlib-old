@@ -26,9 +26,5 @@
 #include <qlxl/Conversions/scalartooper.hpp>
 #include <qlxl/Conversions/vectortooper.hpp>
 #include <qlxl/Conversions/matrixtooper.hpp>
-#include <qlxl/Conversions/coercedate.hpp>
-#include <qlxl/Conversions/coercequote.hpp>
-#include <qlxl/Conversions/coercequotehandle.hpp>
-#include <qlxl/Conversions/coercevector.hpp>
 
 #endif

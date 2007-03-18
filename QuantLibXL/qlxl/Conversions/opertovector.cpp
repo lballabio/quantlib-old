@@ -27,13 +27,14 @@ namespace ObjHandler {
     //    return a;
     //}
 
-    QuantLib::Array operToVector(const OPER &xVector) {
+    QuantLib::Array operToVector(const OPER &xVector, 
+            const std::string paramName) {
         OPER xTemp;
         bool excelToFree = false;
         bool xllToFree = false;
         try {
-            if (xVector.xltype & xltypeErr)
-                throw Exception("input value has type=error");
+            OH_REQUIRE(!(xVector.xltype & xltypeErr), 
+                "input value '" << paramName << "' has type=error");
             if (xVector.xltype & (xltypeMissing | xltypeNil))
                 return QuantLib::Array();
 
@@ -70,7 +71,7 @@ namespace ObjHandler {
             } else if (xllToFree) {
                 freeOper(&xTemp);
             }
-            OH_FAIL("operToVector: " << e.what());
+            OH_FAIL("operToVector: error converting parameter '" << paramName << "' : " << e.what());
         }
     }
 }

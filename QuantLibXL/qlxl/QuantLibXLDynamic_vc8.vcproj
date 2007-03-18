@@ -561,34 +561,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Conversions\coercedate.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Conversions\coercedate.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Conversions\coercequote.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Conversions\coercequote.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Conversions\coercequotehandle.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Conversions\coercequotehandle.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Conversions\coercevector.hpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Conversions\matrixtooper.cpp"
 				>
 			</File>

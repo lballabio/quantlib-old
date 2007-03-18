@@ -25,7 +25,8 @@
 namespace ObjHandler {
 
     //QuantLib::Array operToVector(const FP &fpVector);
-    QuantLib::Array operToVector(const OPER &operVector);
+    QuantLib::Array operToVector(const OPER &operVector, 
+                   const std::string paramName);
 
     //template <class T>
     //std::vector<T> fpToVectorLibrary(const FP &fpVector) {
