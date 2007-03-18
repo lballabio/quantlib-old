@@ -11,9 +11,17 @@ code12 = '''\
         %(nativeType)s %(name)sCpp =
             ObjHandler::operToScalar<%(nativeType)s>(*%(name)s, %(defaultValue)s, "%(name)s");\n'''
 
+code12b = '''\
+        boost::any %(name)sCpp =
+            ObjHandler::operToScalar<boost::any>(*%(name)s, boost::any(), "%(name)s");\n'''
+
 code13 = '''\
         std::vector<%(nativeType)s> %(name)sCpp =
             ObjHandler::operToVector<%(nativeType)s>(*%(name)s);\n'''
+
+code13b = '''\
+        std::vector<boost::any> %(name)sCpp =
+            ObjHandler::operToVector<boost::any>(*%(name)s);\n'''
 
 code14 = '''\
         std::vector<long> %(name)sCpp =

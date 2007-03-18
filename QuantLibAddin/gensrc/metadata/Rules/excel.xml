@@ -85,13 +85,15 @@
       <Wrap codeID='wrap1'/>
       <Rules>
         <Rule loop='true'/>
-        <Rule tensorRank='scalar' default='true' superType='enumeration'/>
-        <Rule tensorRank='scalar' default='true' superType='libraryType'/>
+        <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code12b'/>
+        <Rule tensorRank='scalar' superType='objectHandle' type='QuantLib::Quote'/>
+        <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::Quote'/>
+        <Rule tensorRank='scalar' type='QuantLib::Quote' codeID='code12b'/>
         <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code11'/>
         <Rule tensorRank='scalar' default='true' codeID='code12'/>
         <Rule tensorRank='scalar'/>
         <Rule tensorRank='vector' default='true' codeID='code13'/>
-        <Rule tensorRank='vector' type='QuantLib::Date' codeID='code13'/>
+        <Rule tensorRank='vector' type='QuantLib::Date' codeID='code13b'/>
         <Rule tensorRank='vector' nativeType='long' codeID='code14'/>
         <Rule tensorRank='vector' nativeType='double' codeID='code15'/>
         <Rule tensorRank='vector' nativeType='string' codeID='code16'/>
@@ -237,10 +239,8 @@
     <RuleGroup name='voCall' checkParameterIgnore='true' indent='3' delimiter=',&#10;'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
-        <Rule tensorRank='scalar' default='true' nativeType='string'>%(indent)s""</Rule>
-        <Rule tensorRank='scalar' default='true'>%(indent)s0</Rule>
-        <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)s""</Rule>
-        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)s0</Rule>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)s*%(name)s</Rule>
         <Rule>%(indent)s%(name)sCpp</Rule>
