@@ -90,12 +90,12 @@ Nando
 K
 - coveredWarrants.xls
 - prepare report for release in Production: 28 Feb 9:10
-- SA: test CmsPricer() observability
 - SA: applied to cms book
 - create new .xls with NPVs of 4 cms books
 - foglio di clerici (interpolazione)
 - remove action atmVolatility from Launcher
 Pending:
+- DONE SA: test CmsPricer() observability
 - DONE new calibrations QuantLibXL actions
 - DONE review of .xls used in Eods
 - DONE standardizzare il nome delle quotes dei param di calibrazione
