@@ -148,11 +148,10 @@ namespace QuantLibAddin {
 			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
 			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
-            QuantLib::Rate lowerLimit = 0.0,
-            QuantLib::Rate upperLimit = 1.0,
-			QuantLib::Real precision = 1.0e-6,
-			QuantLib::Real numberOfStdDeviationsForUpperLimit = 
-                                QuantLib::Null<QuantLib::Real>());
+            QuantLib::Rate lowerLimit,
+            QuantLib::Rate upperLimit,
+			QuantLib::Real precision,
+			QuantLib::Real numberOfStdDeviationsForUpperLimit);
 	};
 }
 
