@@ -210,6 +210,8 @@ Marco
 - WIP: verifica ottimizzatori:
 	- DONE: Levenberg-Marquardt
 	- TBD: conjugate gradient
+	- WIP: reingineering of EndCriteria
+	- TBD: export everything to excel and build the spreadsheet to test optimizers
 - DONE: verifica documentazione di McKinsey
 - DONE: BGM payoffs review
 - DONE: BGM book set up
