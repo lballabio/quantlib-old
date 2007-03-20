@@ -148,15 +148,12 @@ TO BE DISCUSSED: Object Builder performance issue when the control panel is left
 
 
 Cristina
-- multiLegSwap.xls: finalise and move from Drafts to IRDerivatives
+- DONE multiLegSwap.xls: finalise and move from Drafts to IRDerivatives
 - testing that the manual procedure to set back/forward the evaluation date
   returns the same results of the automantic procedure
-- ottimizzare foglio di contribuzione delle vola su Mx:
-  QuantLibXL\Workbooks\MarketMetaData\QL_MX_swaptions_EUR.xls
-- move out from controlPanel.xls to a separate wkb all functions' checks
 - DONE reorder Excel workbooks input parameters order
 - DONE coupon refactoring (shared among Cristina and Giorgio)
-- WIP expose to QXL new IborLeg (following coupon refactoring in QL)
+- DONE expose to QXL new IborLeg (following coupon refactoring in QL)
 - DONE cap/floor rates output in cashflow analysis
 - DONE added exampleValue to assigned files
 - DONE adaption of pricers workbooks to new Ibor and CmsCoupon constructors
