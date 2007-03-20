@@ -212,6 +212,7 @@
         <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
         <DataType>QuantLibAddin::SwaptionVolCube1</DataType>
         <DataType>QuantLibAddin::VanillaSwap</DataType>
+        <DataType>QuantLibAddin::ConundrumPricerByNumericalIntegration</DataType>
       </DataTypes>
     </SuperType>
 
