@@ -9,9 +9,10 @@
         <include>qlo/capletvolstructure.hpp</include>
     </includes>
     <copyright>
-        Copyright (C) 2006, 2007 Ferdinando Ametrano
-        Copyright (C) 2006, 2007 Cristina Duminuco
-        Copyright (C) 2005 Aurelien Chanudet
+      Copyright (C) 2006, 2007 Ferdinando Ametrano
+      Copyright (C) 2006, 2007 Cristina Duminuco
+      Copyright (C) 2006, 2007 Giorgio Facchinetti
+      Copyright (C) 2005 Aurelien Chanudet
     </copyright>
 
     <Functions>
@@ -508,24 +509,59 @@
                         <tensorRank>scalar</tensorRank>
                         <description>mean reversion</description>
                     </Parameter>
-                    <Parameter name='lowerLimit'>
-                        <type>QuantLib::Real</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>lower limit</description>
+                    <Parameter name='lowerLimit' default='0.0'>
+                      <type>QuantLib::Real</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>lower limit. If omitted, default = 0.0 is used.</description>
                     </Parameter>
-                    <Parameter name='upperLimit'>
+                    <Parameter name='upperLimit' default='1.0'>
                         <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>upper limit</description>
+                        <description>upper limit If omitted, default = 1.0 is used.</description>
                     </Parameter>
-                    <Parameter name='precision'>
+                    <Parameter name='precision' default='1.0e-6'>
                         <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>precision</description>
+                        <description>precision If omitted, default = 1.0e-6 is used.</description>
+                    </Parameter>
+                    <Parameter name='numberOfStdDeviationsForUpperLimit' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+                        <type>QuantLib::Real</type>
+                        <tensorRank>scalar</tensorRank>
+                        <description>number of stdDeviations for upperLimit. If omitted, upperLimit is used.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
         </Constructor>
+      
+      <Member name='qlConundrumPricerByNumericalIntegrationPerformance' type='QuantLib::ConundrumPricerByNumericalIntegration'>
+        <description>Returns the performance of the simultaneous calibration</description>
+        <libraryFunction>performance</libraryFunction>
+        <SupportedPlatforms>
+          <SupportedPlatform name='Excel' calcInWizard='true' />
+        </SupportedPlatforms>
+        <ParameterList>
+          <Parameters/>
+        </ParameterList>
+        <ReturnValue>
+          <type>double</type>
+          <tensorRank>scalar</tensorRank>
+        </ReturnValue>
+      </Member>
+
+      <Member name='qlConundrumPricerByNumericalIntegrationUpperLimit' type='QuantLib::ConundrumPricerByNumericalIntegration'>
+        <description>Returns the performance of the simultaneous calibration</description>
+        <libraryFunction>upperLimit</libraryFunction>
+        <SupportedPlatforms>
+          <SupportedPlatform name='Excel' calcInWizard='true' />
+        </SupportedPlatforms>
+        <ParameterList>
+          <Parameters/>
+        </ParameterList>
+        <ReturnValue>
+          <type>double</type>
+          <tensorRank>scalar</tensorRank>
+        </ReturnValue>
+      </Member>
 
     </Functions>
 

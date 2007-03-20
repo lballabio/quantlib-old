@@ -87,6 +87,7 @@
             <DataType>QuantLib::CmsCouponPricer</DataType>
             <DataType>QuantLib::CmsMarket</DataType>
             <DataType>QuantLib::CMSwapCurveState</DataType>
+            <DataType>QuantLib::ConundrumPricerByNumericalIntegration</DataType>
             <DataType>QuantLib::CoterminalSwapCurveState</DataType>
             <DataType>QuantLib::CovarianceDecomposition</DataType>
             <DataType>QuantLib::CurveState</DataType>
@@ -207,7 +208,7 @@
         <DataType>QuantLibAddin::RandomSequenceGenerator</DataType>
         <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
-        <DataType>QuantLibAddin::Swap</DataType>
+        <DataType>QuantLibAddin::Swap</DataType> 
         <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
         <DataType>QuantLibAddin::SwaptionVolCube1</DataType>
         <DataType>QuantLibAddin::VanillaSwap</DataType>
