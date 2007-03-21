@@ -172,9 +172,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSimultaneousCalibrationPerformance' type='QuantLib::SmileAndCmsCalibrationBySabr'>
-      <description>Returns the performance of the simultaneous calibration</description>
-      <libraryFunction>performance</libraryFunction>
+    <Member name='qlSimultaneousCalibrationElapsed' type='QuantLib::SmileAndCmsCalibrationBySabr'>
+      <description>Returns the elapsed time of the simultaneous calibration</description>
+      <libraryFunction>elapsed</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
@@ -183,7 +183,7 @@
       </ParameterList>
       <ReturnValue>
         <type>double</type>
-        <tensorRank>vector</tensorRank>
+        <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
     

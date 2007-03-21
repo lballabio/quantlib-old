@@ -13,6 +13,27 @@
 
     <!-- EndCriteria class and interface -->
 
+    <Procedure name='qlSecondsToString'>
+      <description>returns a hh:mm:ss string from the number of seconds provided as input.</description>
+      <alias>QuantLib::secondsToString</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='seconds' exampleValue='3661'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of seconds</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
     <Member name='qlEndCriteriaMaxIterations' type='QuantLib::EndCriteria'>
       <description>Returns the number of max interation for the given EndCriteria object</description>
       <libraryFunction>maxIterations</libraryFunction>

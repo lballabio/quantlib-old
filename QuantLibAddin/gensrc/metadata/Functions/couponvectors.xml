@@ -533,9 +533,9 @@
             </ParameterList>
         </Constructor>
       
-      <Member name='qlConundrumPricerByNumericalIntegrationPerformance' type='QuantLib::ConundrumPricerByNumericalIntegration'>
-        <description>Returns the performance of the simultaneous calibration</description>
-        <libraryFunction>performance</libraryFunction>
+      <Member name='qlConundrumPricerByNumericalIntegrationElapsed' type='QuantLib::ConundrumPricerByNumericalIntegration'>
+        <description>Returns the elapsed time of the simultaneous calibration</description>
+        <libraryFunction>elapsed</libraryFunction>
         <SupportedPlatforms>
           <SupportedPlatform name='Excel' calcInWizard='true' />
         </SupportedPlatforms>
@@ -549,7 +549,7 @@
       </Member>
 
       <Member name='qlConundrumPricerByNumericalIntegrationUpperLimit' type='QuantLib::ConundrumPricerByNumericalIntegration'>
-        <description>Returns the performance of the simultaneous calibration</description>
+        <description>Returns the upper limit of the integral</description>
         <libraryFunction>upperLimit</libraryFunction>
         <SupportedPlatforms>
           <SupportedPlatform name='Excel' calcInWizard='true' />
