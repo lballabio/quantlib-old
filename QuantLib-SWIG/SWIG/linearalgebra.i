@@ -1179,5 +1179,5 @@ class SVD {
     const Array& singularValues() const;
 };
 
-
+%template(DisposableArray) Disposable<Array>;
 #endif

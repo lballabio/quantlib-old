@@ -34,6 +34,7 @@ using QuantLib::Spread;
 using QuantLib::DiscountFactor;
 using QuantLib::Volatility;
 using QuantLib::Size;
+using QuantLib::Disposable;
 %}
 
 typedef int Integer;
@@ -71,6 +72,8 @@ typedef Real Volatility;
 #endif
 
 typedef std::size_t Size;
+
+
 
 
 #endif

@@ -174,10 +174,10 @@ class EndCriteria {
 	      StationaryPoint,
 	      StationaryGradient,
 	      Unknown };
-    EndCriteria(Size maxIteration = 1000,
-		Real functionEpsilon = 1-e8,
-		Real gradientEpsilon = Null<Real>(),
-		Size maxStationaryStateIterations = Null<Size>());
+    EndCriteria(Size maxIteration,
+		Real functionEpsilon,
+		Real gradientEpsilon,
+		Size maxStationaryStateIterations);
     bool operator()(Size iteration,
 		    Size &statState,
 		    const bool positiveOptimization,

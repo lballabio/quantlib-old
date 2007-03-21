@@ -129,6 +129,11 @@ class PyCostFunction : public CostFunction {
 		Py_XDECREF(pyResult);
 		return result;
 	}
+        Disposable<Array> values(const Array& x) const {
+	    QL_FAIL("Not implemented");
+	    // Should be straight forward to copy from a python list
+	    // to an array
+	}
   private:
 	PyObject* function_;
 };
