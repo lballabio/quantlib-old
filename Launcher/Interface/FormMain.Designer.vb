@@ -281,7 +281,7 @@ Partial Class FormMain
         Me.cbFitCMS.Name = "cbFitCMS"
         Me.cbFitCMS.Size = New System.Drawing.Size(111, 17)
         Me.cbFitCMS.TabIndex = 7
-        Me.cbFitCMS.Text = "View CMS Market"
+        Me.cbFitCMS.Text = "View CMS Current Fit"
         Me.cbFitCMS.UseVisualStyleBackColor = True
         '
         'cbLoadBonds
