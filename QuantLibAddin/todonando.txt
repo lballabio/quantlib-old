@@ -186,13 +186,14 @@ WIP ratchet Instrument C++ (shared among Marco, Giorgio)
 
 
 Chiara
-- insert new bond objects needed by the trader
-- create a new spreadsheet where bond's pricer should be set
+
 - With Nando add tests for asset swap in the test suite
 - with Nando review bond euivalent fo Reverse FRN
 - Digital Bond contructor
 - Multicallable bond constructor
 - Z-spread function
+DONE insert new bond objects needed by the trader
+DONE create a new spreadsheet where bond's pricer should be set
 DONE Add QuantLib currency to bond static data
 DONE with Nando review all the signatures of bond functions in excel
 DONE capped/floored coupon bond
