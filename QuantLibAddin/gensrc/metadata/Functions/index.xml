@@ -78,32 +78,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlIndexAddFixing' type='QuantLib::Index'>
-      <description>Adds a fixing for the given Index object</description>
-      <libraryFunction>addFixing</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='fixingDate'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>fixing date</description>
-          </Parameter>
-          <Parameter name='fixingValue'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>fixing value</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlIndexAddFixings' type='QuantLib::Index'>
       <!--<Member name='qlIndexAddFixings' type='QuantLibAddin::Index'>-->
       <description>Adds fixings for the given Index object</description>
