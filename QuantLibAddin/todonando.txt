@@ -188,10 +188,10 @@ WIP ratchet Instrument C++ (shared among Marco, Giorgio)
 Chiara
 
 - With Nando add tests for asset swap in the test suite
-- with Nando review bond euivalent fo Reverse FRN
+- Z-spread function
 - Digital Bond contructor
 - Multicallable bond constructor
-- Z-spread function
+- with Nando review bond equivalent fo Reverse FRN
 DONE insert new bond objects needed by the trader
 DONE create a new spreadsheet where bond's pricer should be set
 DONE Add QuantLib currency to bond static data
