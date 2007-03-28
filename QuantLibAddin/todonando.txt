@@ -94,6 +94,8 @@ K
 - create new .xls with NPVs of 4 cms books
 - foglio di clerici (interpolazione)
 - remove action atmVolatility from Launcher
+- manual feeds: update to live/overwrite logic 
+
 Pending:
 - DONE SA: test CmsPricer() observability
 - DONE new calibrations QuantLibXL actions
