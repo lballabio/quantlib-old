@@ -1,16 +1,11 @@
 XLL_DEC %(functionReturnType)s%(functionName)s(%(functionDeclaration)s) {
 
-    // test fix - create FunctionCall objects on stack not heap
-    //boost::shared_ptr<ObjHandler::FunctionCall> functionCall;
+    // initialize Function Call object
+
     ObjHandler::FunctionCall functionCall("%(functionName)s");
 
     try {
 
-        // initialize Function Call object
-
-        // test fix - create FunctionCall objects on stack not heap
-        //functionCall = boost::shared_ptr<ObjHandler::FunctionCall> 
-        //    ( new ObjHandler::FunctionCall("%(functionName)s") );
 %(xlWizardRecalc)s
 %(xlTrigger)s%(validatePermanent)s
 
