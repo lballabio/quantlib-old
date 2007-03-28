@@ -10,7 +10,7 @@ QuantLibAddin shares the QuantLib project structure with regard to distribution,
 licensing, etc., all of which is documented on the main QuantLib website:
 http://quantlib.org
 
-Version 0.9.0 has been released and is available for download at
+Version 0.8.0 has been released and is available for download at
 http://sourceforge.net/project/showfiles.php?group_id=12740
 
 QuantLibAddin depends on the Boost library (www.boost.org). You will need a
@@ -23,7 +23,7 @@ your friend (or Debian, or Fink...)
 Please log any problems you have with this release in the SourceForge
 bug tracker at
 <http://sourceforge.net/tracker/?group_id=12740&atid=112740>
-specifying that you're using QuantLibAddin 0.9.0
+specifying that you're using QuantLibAddin 0.8.0
 
         The QuantLib group
 

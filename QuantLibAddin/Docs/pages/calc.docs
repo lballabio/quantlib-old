@@ -32,7 +32,7 @@ Before compiling an Addin for OOo Calc you'll need to install:
 Unfortunately the OOo SDK requires the J2SE, even on platforms (such as Fedora) where Java dependency has been removed from OOo, and for Addins (such as %QuantLibAddin) with no dependency on Java.
 
 When installing the OOo SDK:
-\li make sure you get the version of the OOo SDK that corresponds to the version of OOo which you have installed.  QuantLibAddin 0.9.0 has been tested against OOo/OOo SDK versions 2.0.1 and 2.0.2.
+\li make sure you get the version of the OOo SDK that corresponds to the version of OOo which you have installed.  QuantLibAddin 0.8.0 has been tested against OOo/OOo SDK versions 2.0.1 and 2.0.2.
 \li the OOo SDK must be installed to a path which contains no spaces, because of a bug in OOo SDK utility \c idlc which prevents it from processing pathnames containing spaces.
 
 \subsection calc_env Environment Variables
@@ -71,7 +71,7 @@ Below are the steps required to compile and install an Addin for OpenOffice.org 
 \li \b idlc - Run OOo utility \b idlc to compile the idl (interface definition language) file QuantLibAddinCalc.idl into urd (UNO reflection data) file QuantLibAddinCalc.urd.  The urd file comprises binary descriptions of the types in the Addin.
 \li \b regmerge - Run OOo utility \b regmerge to merge the urd file into rdb (registry database) file QuantLibAddinCalc.rdb.  The rdb is used by OOo at runtime to infer the functionality available in the Addin.
 \li \b cppumaker - Run OOo utility \b cppumaker to generate the source code corresponding to the definitions in the rdb.
-\li \b compile - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLibAddinCalc-vc71-mt-0_9_0.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.9.0.so</b> (Linux).
+\li \b compile - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLibAddinCalc-vc71-mt-0_8_0.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.8.0.so</b> (Linux).
 \li \b install - Copy the Addin's shared library and registry database to the OOo program directory.
 
 One further step is required, the name of the registry database must be added to an OOo ini file in order to inform OOo of the location of the Addin.  This step is not automated by the build process and must be performed manually:
@@ -91,9 +91,9 @@ PKG_SharedUnoFile=$UNO_SHARED_PACKAGES_CACHE/registry/com.sun.star.comp.deployme
 PKG_UserUnoFile=$UNO_USER_PACKAGES_CACHE/registry/com.sun.star.comp.deployment.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;component.PackageRegistryBackend/unorc<br>
 UNO_TYPES=$ORIGIN/types.rdb ${\$PKG_SharedUnoFile:UNO_TYPES} ${\$PKG_UserUnoFile:UNO_TYPES}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<b>$ORIGIN/QuantLibAddinCalc-vc71-mt-0_9_0.rdb</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>$ORIGIN/QuantLibAddinCalc-vc71-mt-0_8_0.rdb</b><br>
 UNO_SERVICES=${\$PKG_UserUnoFile:UNO_SERVICES} ${\$PKG_SharedUnoFile:UNO_SERVICES}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$ORIGIN/services.rdb <b>$ORIGIN/QuantLibAddinCalc-vc71-mt-0_9_0.rdb</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;$ORIGIN/services.rdb <b>$ORIGIN/QuantLibAddinCalc-vc71-mt-0_8_0.rdb</b><br>
 UNO_JAVA_COMPONENT_PATH=$ORIGIN/classes<br>
 URE_INTERNAL_JAVA_DIR=$ORIGIN/classes<br>
 </tt>
