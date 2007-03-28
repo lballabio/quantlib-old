@@ -153,15 +153,16 @@ IGNORE_FILES = (
 
 IGNORE_DIRS = (
     re.compile(r'^\.'),
+    re.compile(r'^autom4te\.cache$'),
+    re.compile(r'^bak.*$'),
+    re.compile(r'^build$'),
     re.compile(r'^configure$'),
     re.compile(r'^CVS$'),
-    re.compile(r'^html$'),
-    re.compile(r'^autom4te\.cache$'),
-    re.compile(r'^build$'),
-    re.compile(r'^lib$'),
-    re.compile(r'^bak.*$'),
-    re.compile(r'^Workbooks$'),
+    re.compile(r'^dev_tools$'),
     re.compile(r'^framework$'),
+    re.compile(r'^html$'),
+    re.compile(r'^lib$'),
+    re.compile(r'^Workbooks$'),
 )
 
 def prompt_exit(msg='', status=0):
