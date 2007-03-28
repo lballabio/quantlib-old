@@ -61,6 +61,9 @@ namespace ObjHandler {
         } else if (value.type() == typeid(OPER*)) {
             OPER *xTemp = boost::any_cast<OPER*>(value);
             Excel(xlCoerce, &xAny, 1, xTemp);
+        } else if (value.type() == typeid(unsigned int)) {
+            xAny.xltype = xltypeNum;
+            xAny.val.num = boost::any_cast<unsigned int>(value); 
         } else if (value.type() == typeid(int)) {
             xAny.xltype = xltypeNum;
             xAny.val.num = boost::any_cast<int>(value);
