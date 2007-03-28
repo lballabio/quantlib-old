@@ -19,16 +19,18 @@
 
 Name "QuantLibXL Network Distribution"
 OutFile "..\QuantLibXL-${VER_NUMBER}-${NOW}-network.exe"
+InstallDir "X:\Offices1\CabotoXL"
 
 ; Interface Settings
 
 !define MUI_ICON "Docs\images\favicon.ico"
+!define MUI_UNICON "Docs\images\favicon.ico"
 !define MUI_ABORTWARNING
 
 !define MUI_DIRECTORYPAGE_TEXT_TOP \
-"Specify the root folder for the QuantLibXL network installation. \
-The various QuantLibXL components will be installed to subdirectories \
-of this root folder as follows:$\n\
+"Specify the root folder for the QuantLibXL network installation. The various \
+QuantLibXL components will be installed to subdirectories of this root folder \
+as follows:$\n\
 ROOT_FOLDER\xll - the XLL addin$\n\
 ROOT_FOLDER\framework - the VBA addin$\n\
 ROOT_FOLDER\Workbooks - the workbooks$\n\
@@ -42,6 +44,7 @@ ROOT_FOLDER\Docs - the chm documentation file"
 !insertmacro MUI_PAGE_LICENSE "LICENSE.TXT"
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_UNPAGE_INSTFILES
 
 ; Languages
 
@@ -49,7 +52,7 @@ ROOT_FOLDER\Docs - the chm documentation file"
 
 ; Installer Sections
 
-Section "-QuantLibXL Network Distribution"
+Section
 
     SetOutPath "$INSTDIR"
     File "Authors.txt"
@@ -85,6 +88,57 @@ Section "-QuantLibXL Network Distribution"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r /x Drafts "Workbooks\*.xls"
+
+    WriteUninstaller "QuantLibXL-${VER_NUMBER}-network-uninstall.exe"
+
+SectionEnd
+
+Section "Uninstall"
+
+    ; Uninstall the QLXL network installation
+
+    MessageBox MB_YESNO \
+'You are about to permanently delete the installation of QuantLibXL version ${VER_NUMBER}$\n\
+from network directory$\n\
+$INSTDIR$\n\
+Are you certain that this is what you want to do?' IDYES +2
+    Quit
+
+    ; For most directories we just do a recursive delete:
+    RMDir /r "$INSTDIR\xll"
+    RMDir /r "$INSTDIR\framework"
+    RMDir /r "$INSTDIR\metadata"
+    RMDir /r "$INSTDIR\Docs"
+
+    ; For the Workbooks directory, we explicitly delete the contents of each subdirectory
+    ; without deleting the directories themselves.  This is to preserve directory permissions
+    ; for the installation of the next version of QLXL.
+    Delete "$INSTDIR\Workbooks\*"
+    Delete "$INSTDIR\Workbooks\Bonds\*"
+    Delete "$INSTDIR\Workbooks\Calibrations\*"
+    Delete "$INSTDIR\Workbooks\CoveredWarrants\*"
+    Delete "$INSTDIR\Workbooks\DateCalendarsDayCounters\*"
+    Delete "$INSTDIR\Workbooks\FrozenMarketData\*"
+    Delete "$INSTDIR\Workbooks\FrozenMarketData\ManualFeed\*"
+    Delete "$INSTDIR\Workbooks\FrozenMarketData\ReutersFeed\*"
+    Delete "$INSTDIR\Workbooks\InterestRateDerivatives\*"
+    Delete "$INSTDIR\Workbooks\MarketData\*"
+    Delete "$INSTDIR\Workbooks\MarketData\BloombergFeed\*"
+    Delete "$INSTDIR\Workbooks\MarketData\ManualFeed\*"
+    Delete "$INSTDIR\Workbooks\MarketData\ReutersFeed\*"
+    Delete "$INSTDIR\Workbooks\MarketMetaData\*"
+    Delete "$INSTDIR\Workbooks\MarketModels\*"
+    Delete "$INSTDIR\Workbooks\Math\*"
+    Delete "$INSTDIR\Workbooks\ohTests\*"
+    Delete "$INSTDIR\Workbooks\OriginalExamples\*"
+    Delete "$INSTDIR\Workbooks\Tests\*"
+    Delete "$INSTDIR\Workbooks\TimeSeries\*"
+    Delete "$INSTDIR\Workbooks\TimeSeries\BloombergFeed\*"
+    Delete "$INSTDIR\Workbooks\TimeSeries\ReutersFeed\*"
+    Delete "$INSTDIR\Workbooks\Utilities\*"
+
+    ; Delete the contents of the root installation directory:
+    Delete "$INSTDIR\*"
 
 SectionEnd
 
