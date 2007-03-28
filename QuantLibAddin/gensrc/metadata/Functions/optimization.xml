@@ -79,7 +79,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlEndCriteriaGradientEpsilon' type='QuantLib::EndCriteria'>
+    <Member name='qlEndCriteriaGradientNormEpsilon' type='QuantLib::EndCriteria'>
       <description>Returns the gradient norm epsilon for the given EndCriteria object</description>
       <libraryFunction>gradientNormEpsilon</libraryFunction>
       <SupportedPlatforms>
