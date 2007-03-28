@@ -276,8 +276,16 @@
           <value>QuantLib::EndCriteria::StationaryPoint</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>StationaryGradient</string>
-          <value>QuantLib::EndCriteria::StationaryGradient</value>
+          <string>StationaryFunctionValue</string>
+          <value>QuantLib::EndCriteria::StationaryFunctionValue</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>StationaryFunctionAccuracy</string>
+          <value>QuantLib::EndCriteria::StationaryFunctionAccuracy</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ZeroGradientNorm</string>
+          <value>QuantLib::EndCriteria::ZeroGradientNorm</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Unknown</string>

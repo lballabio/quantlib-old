@@ -73,7 +73,7 @@ namespace QuantLibAddin {
 
         boost::shared_ptr<QuantLib::EndCriteria> endCriteria_ = endCriteria;
         if (!endCriteria)
-            QuantLib::EndCriteria endCriteria(60000, 1e-8, 1e-8, 100);
+            QuantLib::EndCriteria endCriteria(60000, 100, 1e-8, 1e-8, 1e-8);
 
         QuantLib::SABR sabrInterpolationFactory(expiry, forward, alpha, beta,
             nu, rho, isAlphaFixed, isBetaFixed, isNuFixed, 

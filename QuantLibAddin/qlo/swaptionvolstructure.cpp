@@ -210,27 +210,10 @@ namespace QuantLibAddin {
             {
                par[j] = sabrParameters[i][j]; 
             }
-            // FIXME with ostream
-            switch (int(sabrParameters[i][numberOfColumn-1])) {
-                case QuantLib::EndCriteria::None:
-                    par[numberOfColumn-1] = std::string("None");
-                    break;
-                case QuantLib::EndCriteria::MaxIterations:
-                    par[numberOfColumn-1] = std::string("MaxIterations");
-                    break;
-                case QuantLib::EndCriteria::StationaryPoint:
-                    par[numberOfColumn-1] = std::string("StationaryPoint");
-                    break;
-                case QuantLib::EndCriteria::StationaryGradient:
-                    par[numberOfColumn-1] = std::string("StationaryGradient");
-                    break;
-                case QuantLib::EndCriteria::Unknown:
-                    par[numberOfColumn-1] = std::string("Unknown");
-                    break;
-                default:
-                    par[numberOfColumn-1] = std::string("unknown EndCriteria::Type ");
-                    break;
-                }
+            std::ostringstream endCriteria;
+            endCriteria << sabrParameters[i][numberOfColumn-1];
+            par[numberOfColumn-1] = endCriteria.str();
+
             sparseSabrParameters.push_back(par);
         }
         return sparseSabrParameters;

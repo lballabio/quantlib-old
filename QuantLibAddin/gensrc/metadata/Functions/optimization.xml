@@ -80,8 +80,8 @@
     </Member>
 
     <Member name='qlEndCriteriaGradientEpsilon' type='QuantLib::EndCriteria'>
-      <description>Returns the gradient epsilon for the given EndCriteria object</description>
-      <libraryFunction>gradientEpsilon</libraryFunction>
+      <description>Returns the gradient norm epsilon for the given EndCriteria object</description>
+      <libraryFunction>gradientNormEpsilon</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
@@ -101,25 +101,30 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='maxIter' exampleValue='1000'>
+          <Parameter name='maxIterations' exampleValue='1000'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>max number of iterations.</description>
+          </Parameter>
+          <Parameter name='maxStationaryStateIterations' exampleValue='100'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max number of iterations in a stationary state.</description>
+          </Parameter>
+          <Parameter name='rootEpsilon' exampleValue='1e-8'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance on the root value.</description>
           </Parameter>
           <Parameter name='functionEpsilon' exampleValue='1e-8'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>tolerance on the function value.</description>
           </Parameter>
-          <Parameter name='gradientEpsilon' exampleValue='1e-8'>
+          <Parameter name='gradientNormEpsilon' exampleValue='1e-8'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance on the function gradient.</description>
-          </Parameter>
-          <Parameter name='maxStatStateIter' exampleValue='100'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>max number of iterations in a stationary state.</description>
+            <description>tolerance on the function gradient norm value.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

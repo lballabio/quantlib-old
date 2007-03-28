@@ -28,16 +28,17 @@
 namespace QuantLibAddin {
 
     EndCriteria::EndCriteria(QuantLib::Size maxIterations,
+                             QuantLib::Size maxStationaryStateIterations,
+                             QuantLib::Real rootEpsilon,
                              QuantLib::Real functionEpsilon,
-                             QuantLib::Real gradientEpsilon,
-                             QuantLib::Size maxStationaryStateIterations) {
+                             QuantLib::Real gradientNormEpsilon) {
         libraryObject_ = boost::shared_ptr<QuantLib::EndCriteria>(new
             QuantLib::EndCriteria(maxIterations,
+                                  maxStationaryStateIterations,
+                                  rootEpsilon,
                                   functionEpsilon,
-                                  gradientEpsilon,
-                                  maxStationaryStateIterations));
+                                  gradientNormEpsilon));
     }
-
 
     Simplex::Simplex(QuantLib::Real lambda) {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
