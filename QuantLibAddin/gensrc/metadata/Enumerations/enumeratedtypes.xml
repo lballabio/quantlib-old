@@ -539,6 +539,10 @@
           <value>QuantLib::Norway()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>Null</string>
+          <value>QuantLib::NullCalendar()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NullCalendar</string>
           <value>QuantLib::NullCalendar()</value>
         </EnumeratedType>
