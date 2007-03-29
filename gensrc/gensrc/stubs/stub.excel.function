@@ -2,7 +2,9 @@ XLL_DEC %(functionReturnType)s%(functionName)s(%(functionDeclaration)s) {
 
     // initialize Function Call object
 
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
     ObjHandler::FunctionCall functionCall("%(functionName)s");
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 
     try {
 
@@ -15,7 +17,9 @@ XLL_DEC %(functionReturnType)s%(functionName)s(%(functionDeclaration)s) {
 
         // reset the calling cell
 
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
         ObjHandler::ObjectHandlerXL::instance().resetCaller(%(resetCaller)s);
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 %(cppConversions)s%(libConversions)s%(enumConversions)s%(objectConversions)s%(refConversions)s%(functionBody)s%(returnConversion)s
 
     } catch (const std::exception &e) {

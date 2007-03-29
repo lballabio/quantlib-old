@@ -1,6 +1,6 @@
 
 /* 
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -77,21 +77,19 @@ XLL_DEC long *ohTrigger(
         OPER *dummy8,
         OPER *dummy9) {
 
-    //boost::shared_ptr<ObjHandler::FunctionCall> functionCall;
+        // initialize Function Call object
+
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
     ObjHandler::FunctionCall functionCall("ohTrigger");
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 
     try {
 
-        // initialize Function Call object
-
-        //functionCall = boost::shared_ptr<ObjHandler::FunctionCall> 
-        //    ( new ObjHandler::FunctionCall("ohTrigger") );
-        //if (functionCall->IsCalledByFuncWiz())
-        //    return 0;
-
         // reset the calling cell
 
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
         ObjHandler::ObjectHandlerXL::instance().resetCaller();
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 
         validateReference(dummy0, "dummy0");
         validateReference(dummy1, "dummy1");
@@ -104,9 +102,13 @@ XLL_DEC long *ohTrigger(
         validateReference(dummy8, "dummy8");
         validateReference(dummy9, "dummy9");
 
-        static std::map<std::string, long> iterators;
         static long returnValue;
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
+        static std::map<std::string, long> iterators;
         returnValue = iterators[ObjHandler::FunctionCall::instance().getAddressString()]++;
+#else
+        returnValue = 0;
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
         return &returnValue;
 
     } catch (const std::exception &e) {
@@ -144,15 +146,17 @@ int countValidCols(const OPER &xMulti) {
 
 XLL_DEC OPER *ohPack(OPER *xInputRange) {
 
+        // initialize Function Call object
+
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
     ObjHandler::FunctionCall functionCall("ohPack");
-    //boost::shared_ptr < ObjHandler::FunctionCall > functionCall;
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+
     OPER xMulti;
     static OPER xRet;
     xRet.val.array.lparray = 0;
 
     try {
-        //functionCall = boost::shared_ptr < ObjHandler::FunctionCall > 
-        //    ( new ObjHandler::FunctionCall("ohPack") );
 
         Excel(xlCoerce, &xMulti, 2, xInputRange, TempInt(xltypeMulti));
 

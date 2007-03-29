@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2007 Ferdinando Ametrano
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,6 +19,7 @@
 #ifndef ohxl_conversions_vectortooper_hpp
 #define ohxl_conversions_vectortooper_hpp
 
+#include <ohxl/objhandlerxldefines.hpp>
 #include <ohxl/Conversions/scalartooper.hpp>
 #include <ohxl/functioncall.hpp>
 #include <vector>
@@ -45,6 +46,7 @@ namespace ObjHandler {
             return;
         }
 
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
         if (FunctionCall::instance().getCallerDimensions() == Row) {
             xVector.val.array.columns = size;
             xVector.val.array.rows    = 1;
@@ -52,6 +54,11 @@ namespace ObjHandler {
             xVector.val.array.rows    = size;
             xVector.val.array.columns = 1;
         }
+#else
+        xVector.val.array.rows    = size;
+        xVector.val.array.columns = 1;
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+
         xVector.val.array.lparray = new OPER[size]; 
         if (!xVector.val.array.lparray)
             throw Exception("vectorToOper: error on call to new");

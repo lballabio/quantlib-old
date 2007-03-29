@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,6 +23,9 @@
 #define ohxl_functioncall_hpp
 
 #include <xlsdk/xlsdkdefines.hpp>
+#include <ohxl/objhandlerxldefines.hpp>
+
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
 
 //! ObjHandler
 /*! name space for the Object Handler
@@ -70,5 +73,7 @@ namespace ObjHandler {
     };
 
 }
+
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 
 #endif

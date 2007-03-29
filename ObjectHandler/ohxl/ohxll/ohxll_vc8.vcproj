@@ -359,6 +359,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\objhandlerxldefines.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\rangereference.cpp"
 					>
 				</File>

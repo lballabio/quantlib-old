@@ -45,8 +45,10 @@ class Function(serializable.Serializable):
     generateVOs_ = False
     validatePermanent_ = ''
     XL_WIZ_CHECK = '''
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
         if (functionCall.IsCalledByFuncWiz())
-            return 0;'''
+            return 0;
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION'''
     VALIDATE_TRIGGER = '''
         ObjHandler::validateRange(trigger, "trigger");'''
 

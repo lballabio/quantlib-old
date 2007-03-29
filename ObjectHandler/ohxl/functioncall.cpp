@@ -15,12 +15,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ohxl/objecthandlerxl.hpp>
 #include <oh/exception.hpp>
+#include <ohxl/objecthandlerxl.hpp>
 #include <ohxl/functioncall.hpp>
 #include <ohxl/Conversions/opertoscalar.hpp>
 #include <sstream>
 #include <string>
+
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
 
 namespace ObjHandler {
 
@@ -221,3 +223,6 @@ namespace ObjHandler {
     }
 
 }
+
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+

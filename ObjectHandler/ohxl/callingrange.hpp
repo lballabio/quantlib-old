@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,10 +22,13 @@
 #ifndef ohxl_callingrange_hpp
 #define ohxl_callingrange_hpp
 
+#include <ohxl/objhandlerxldefines.hpp>
 #include <oh/object.hpp>
 #include <oh/iless.hpp>
 #include <ohxl/rangereference.hpp>
 #include <map>
+
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
 
 namespace ObjHandler {
 
@@ -72,4 +75,7 @@ namespace ObjHandler {
 
 }
 
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+
 #endif
+

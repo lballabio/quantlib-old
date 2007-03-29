@@ -35,7 +35,10 @@ namespace ObjHandler {
     }
 
     template<class LoopFunction, class InputType, class OutputType>
-    void loop(FunctionCall &functionCall,
+    void loop(
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
+              FunctionCall &functionCall,
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
               LoopFunction &loopFunction, 
               OPER *xIn, 
               XLOPER &xOut) {
@@ -88,6 +91,7 @@ namespace ObjHandler {
                     xOut.val.array.lparray[i]);
             } catch(const std::exception &e) {
                 std::ostringstream err;
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
                 if (!errorInitialized) {
                     ObjectHandlerXL::instance().clearError();
                     err << functionCall.getFunctionName() << " - " 
@@ -95,6 +99,7 @@ namespace ObjHandler {
                         << std::endl << std::endl;
                     errorInitialized = true;
                 }
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
                 err << "iteration #" << i << " - " << e.what();
                 ObjectHandlerXL::instance().logError(err.str(), true);
                 xOut.val.array.lparray[i].xltype = xltypeErr;

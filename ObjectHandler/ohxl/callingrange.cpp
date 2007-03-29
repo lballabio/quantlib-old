@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2007 Ferdinando Ametrano
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,6 +25,8 @@
 #include <iomanip>
 #include <sstream>
 #include <cmath>
+
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
 
 using std::string;
 
@@ -264,3 +266,6 @@ namespace ObjHandler {
     }
 
 }
+
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,7 +19,10 @@
     \brief Object class
 */
 
+#include <ohxl/objhandlerxldefines.hpp>
 #include <string>
+
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
 
 namespace ObjHandler {
     //! A utility class for parsing range references in string format.
@@ -76,4 +79,6 @@ namespace ObjHandler {
 std::ostream &operator<<(std::ostream&, const RangeReference&);
 
 }
+
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 

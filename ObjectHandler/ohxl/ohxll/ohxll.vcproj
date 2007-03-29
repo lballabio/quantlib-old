@@ -267,6 +267,9 @@
 					RelativePath="..\objhandlerxl.hpp">
 				</File>
 				<File
+					RelativePath="..\objhandlerxldefines.hpp">
+				</File>
+				<File
 					RelativePath="..\rangereference.cpp">
 				</File>
 				<File

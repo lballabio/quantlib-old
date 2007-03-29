@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,13 +24,16 @@
 
 #include <oh/objecthandler.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
+#include <ohxl/objhandlerxldefines.hpp>
 
 //! ObjHandler
 /*! name space for the Object Handler
 */
 namespace ObjHandler {
 
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
     class CallingRange;
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 
     //! Global Object repository.
     /*! Maintains a repository of Objects.
@@ -58,11 +61,21 @@ namespace ObjHandler {
                                         const boost::shared_ptr<Object> &object);
         virtual boost::shared_ptr<Object> retrieveObjectImpl(
                                         const std::string &objectID) const {
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
             return ObjectHandler::retrieveObjectImpl(getStub(objectID));
+#else
+            return ObjectHandler::retrieveObjectImpl(objectID);
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
         }
-        virtual void collectGarbage(const bool &deletePermanent = false);
+
         virtual void deleteObject(const std::string &objectID);
         virtual void deleteAllObjects(const bool &deletePermanent = false);
+
+        void logError(const std::string &message, const bool &append = false);
+        std::string retrieveError(const XLOPER *range);
+        virtual void collectGarbage(const bool &deletePermanent = false);
+
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
 
         //! Reset the calling cell.
         /*! This function resets the status of the calling cell to "not busy" and
@@ -71,17 +84,24 @@ namespace ObjHandler {
         */
         virtual void resetCaller(const bool &createIfNone = false);
 
+        void clearError();
         virtual void dump(std::ostream&);
 
-        void logError(const std::string &message, const bool &append = false);
-        std::string retrieveError(const XLOPER *range);
-        void clearError();
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+
     private:
-        boost::shared_ptr<CallingRange> getCallingRange(bool createIfNone = false);
+
         virtual std::string generateObjectID();
-        void clearCallingRange(boost::shared_ptr<CallingRange> callingRange);
         static unsigned long objectIDCount_;
+
+#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
+
         std::string getStub(const std::string &objectID) const;
+        boost::shared_ptr<CallingRange> getCallingRange(bool createIfNone = false);
+        //void clearCallingRange(boost::shared_ptr<CallingRange> callingRange);
+
+#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+
     };
 
 }
