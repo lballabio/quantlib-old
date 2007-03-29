@@ -1,5 +1,4 @@
 #include <qlo/qladdindefines.hpp>
-#include <qlo/typefactory.hpp>
 #include <qlo/handle.hpp>
 %(categoryIncludes)s
 #include <ohxl/objhandlerxl.hpp>

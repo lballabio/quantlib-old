@@ -4,6 +4,7 @@
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
   <includes>
     <include>qlo/date.hpp</include>
+    <include>ql/date.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano

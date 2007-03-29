@@ -2,8 +2,11 @@
   <description>Daycounter related functions</description>
   <displayName>Daycounter</displayName>
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
-  <includes/>
-  <copyright>
+  <includes>
+    <include>ql/date.hpp</include>
+    <include>ql/daycounter.hpp</include>
+  </includes>
+    <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
   </copyright>
   <Functions>
