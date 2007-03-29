@@ -400,7 +400,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='termStructureID'   exampleValue='EURYC'>
+          <Parameter name='termStructureID' exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>handleToLib</superType>
             <tensorRank>scalar</tensorRank>
