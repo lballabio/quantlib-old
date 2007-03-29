@@ -24,6 +24,7 @@
 
 #include <qlo/baseinstruments.hpp>
 #include <qlo/couponvectors.hpp>
+#include <qlo/couponvectors.hpp>
 
 namespace QuantLibAddin {
     
@@ -32,7 +33,7 @@ namespace QuantLibAddin {
         Swap(const std::vector<boost::shared_ptr<Leg> >& legWrappers,
              const std::vector<bool>& payer,
              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
-        // QuantLib::MakeCms
+ 
         Swap(const QuantLib::Period& swapTenor,
              const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
              const QuantLib::Spread iborSpread,

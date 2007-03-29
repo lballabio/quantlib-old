@@ -21,7 +21,7 @@
 #endif
 
 #include <qlo/payoffs.hpp>
-#include <qlo/typefactory.hpp>
+#include <qlo/Factories/payoffsfactory.hpp>
 
 namespace QuantLibAddin {
 

@@ -15,8 +15,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+
 #include <qlo/pricingengines.hpp>
-#include <qlo/typefactory.hpp>
+#include <qlo/Factories/pricingenginesfactory.hpp>
 #include <ql/PricingEngines/blackscholescalculator.hpp>
 
 namespace QuantLibAddin {

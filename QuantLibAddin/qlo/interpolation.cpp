@@ -19,7 +19,7 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/interpolation.hpp>
-#include <qlo/typefactory.hpp>
+#include <qlo/Factories/interpolationsfactory.hpp>
 
 #include <ql/Math/backwardflatinterpolation.hpp>
 #include <ql/Math/forwardflatinterpolation.hpp>

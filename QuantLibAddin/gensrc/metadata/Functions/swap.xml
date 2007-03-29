@@ -6,6 +6,7 @@
     <include>qlo/swap.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/conundrumpricer.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2005 Eric Ehlers

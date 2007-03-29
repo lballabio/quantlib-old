@@ -4,6 +4,7 @@
     <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
     <includes>
         <include>qlo/couponvectors.hpp</include>
+        <include>qlo/conundrumpricer.hpp</include>
         <include>qlo/termstructures.hpp</include>
         <include>qlo/swaptionvolstructure.hpp</include>
         <include>qlo/capletvolstructure.hpp</include>

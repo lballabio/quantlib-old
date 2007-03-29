@@ -26,8 +26,6 @@
 #include <qlo/schedule.hpp>
 #include <qlo/index.hpp>
 #include <qlo/analysis.hpp>
-
-#include <ql/CashFlows/conundrumpricer.hpp>
 #include <ql/Volatilities/all.hpp>
 
 namespace QuantLibAddin {
@@ -131,28 +129,6 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& vol,
             const std::string& typeOfIborCouponPricer);
     };
-
-    class CmsCouponPricer : public FloatingRateCouponPricer {
-      public:
-		CmsCouponPricer(){}; //fdv hack ...
-        CmsCouponPricer(
-            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,
-            const std::string& typeOfCmsCouponPricer,
-            QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-            const QuantLib::Handle<QuantLib::Quote>& meanReversion);
-    };
-
-	class ConundrumPricerByNumericalIntegration: public CmsCouponPricer{
-	public:
-		ConundrumPricerByNumericalIntegration(
-			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
-            QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
-            QuantLib::Rate lowerLimit,
-            QuantLib::Rate upperLimit,
-			QuantLib::Real precision,
-			QuantLib::Real numberOfStdDeviationsForUpperLimit);
-	};
 }
 
 #endif

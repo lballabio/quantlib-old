@@ -9,6 +9,7 @@
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/optimization.hpp</include>
+    <include>qlo/conundrumpricer.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006 Giorgio Facchinetti

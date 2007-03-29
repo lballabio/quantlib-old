@@ -330,10 +330,6 @@
 			Name="Enumerations"
 			>
 			<File
-				RelativePath="qlo\calendarfactory.cpp"
-				>
-			</File>
-			<File
 				RelativePath="qlo\enumclassctors.cpp"
 				>
 			</File>
@@ -357,6 +353,50 @@
 				RelativePath="qlo\typeregistry.hpp"
 				>
 			</File>
+			<Filter
+				Name="Factories"
+				>
+				<File
+					RelativePath=".\qlo\Factories\calendarfactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Factories\calendarfactory.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Factories\conundrumpricerfactory.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Factories\euriborhandlefactory.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Factories\iborcouponpricersfactory.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Factories\indexfactory.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Factories\interpolationsfactory.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Factories\payoffsfactory.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Factories\pricingenginesfactory.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Factories\termstructuresfactory.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="ValueObjects"
@@ -886,6 +926,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\conundrumpricer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\conundrumpricer.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\couponvectors.cpp"
 				>
 			</File>
@@ -1018,10 +1066,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\qlo\Conversions\coercetermstructure.hpp"
-				>
-			</File>
-			<File
 				RelativePath=".\qlo\Conversions\coercecurve.hpp"
 				>
 			</File>
@@ -1035,6 +1079,10 @@
 			</File>
 			<File
 				RelativePath=".\qlo\Conversions\coerceobject.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Conversions\coercetermstructure.hpp"
 				>
 			</File>
 			<File

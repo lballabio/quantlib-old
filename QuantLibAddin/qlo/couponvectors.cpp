@@ -25,7 +25,7 @@
 
 #include <qlo/couponvectors.hpp>
 #include <qlo/termstructures.hpp>
-#include <qlo/typefactory.hpp>
+#include <qlo/Factories/iborcouponpricersfactory.hpp>
 
 #include <ql/cashflow.hpp>
 #include <ql/CashFlows/cashflowvectors.hpp>
@@ -185,35 +185,4 @@ namespace QuantLibAddin {
                                     gearings, spreads,
                                     caps, floors);
     }
-
-    CmsCouponPricer::CmsCouponPricer(
-            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& v,
-            const std::string& typeOfCmsCouponPricer,
-            QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-            const QuantLib::Handle<QuantLib::Quote>& meanReversion) {
-        libraryObject_ = Create<boost::shared_ptr<QuantLib::CmsCouponPricer> >()
-            (typeOfCmsCouponPricer, v, modelOfYieldCurve, meanReversion);
-    }
-
-
-	ConundrumPricerByNumericalIntegration::ConundrumPricerByNumericalIntegration(
-			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
-            QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
-            QuantLib::Rate lowerLimit,
-            QuantLib::Rate upperLimit,
-			QuantLib::Real precision,
-			QuantLib::Real numberOfStdDeviationsForUpperLimit){
-				/*QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve
-					= QuantLib::GFunctionFactory::ModelOfYieldCurve(2);*/
-				libraryObject_ = 
-					boost::shared_ptr<QuantLib::ConundrumPricerByNumericalIntegration> (new
-					QuantLib::ConundrumPricerByNumericalIntegration(swaptionVol,
-                                                                    modelOfYieldCurve,
-																	meanReversion,
-																	lowerLimit,
-																	upperLimit,
-																	precision,
-                                                                    numberOfStdDeviationsForUpperLimit));
-	};
 }

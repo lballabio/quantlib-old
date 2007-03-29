@@ -23,6 +23,18 @@
 #include <qlo/Conversions/conversions.hpp>
 #include <qlo/termstructures.hpp>
 
+#include <qlo/Factories/euriborhandlefactory.hpp>
+
+#include <ql/Indexes/euribor.hpp>
+#include <ql/Indexes/euriborswapfixa.hpp>
+#include <ql/Indexes/euriborswapfixb.hpp>
+#include <ql/Indexes/eurlibor.hpp>
+#include <ql/Indexes/eurliborswapfixa.hpp>
+#include <ql/Indexes/eurliborswapfixb.hpp>
+#include <ql/Indexes/eurliborswapfixifr.hpp>
+#include <ql/Indexes/euriborswapfixifr.hpp>
+
+
 namespace QuantLibAddin {
 
     /* *** StrikedTypePayoff - Option::Type + 1 parameter *** */

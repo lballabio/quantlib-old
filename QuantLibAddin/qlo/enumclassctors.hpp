@@ -23,7 +23,10 @@
 #ifndef qla_enumclassctors_hpp
 #define qla_enumclassctors_hpp
 
-#include <qlo/typefactory.hpp>
+#include <qlo/qladdindefines.hpp>
+#include <qlo/Factories/conundrumpricerfactory.hpp>
+#include <qlo/Factories/interpolationsfactory.hpp>
+#include <qlo/Factories/termstructuresfactory.hpp>
 #include <ql/option.hpp>
 #include <ql/Instruments/payoffs.hpp>
 #include <ql/Instruments/quantoforwardvanillaoption.hpp>

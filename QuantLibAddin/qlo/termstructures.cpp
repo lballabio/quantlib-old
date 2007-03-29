@@ -24,7 +24,7 @@
 #include <oh/objhandlerdefines.hpp>
 #include <qlo/termstructures.hpp>
 #include <qlo/ratehelpers.hpp>
-#include <qlo/typefactory.hpp>
+#include <qlo/Factories/termstructuresfactory.hpp>
 
 #include <ql/date.hpp>
 #include <ql/Math/cubicspline.hpp>
