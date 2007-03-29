@@ -71,9 +71,10 @@ Section
     SetOutPath "$INSTDIR\Docs"
     File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
 
+    SetOutPath "$INSTDIR\Docs\images"
+    File "Docs\images\favicon.bmp"
     ;eric 28-mar-2007 - i doubt whether these files are required?
-    ;SetOutPath "$INSTDIR\Docs\images"
-    ;File "Docs\images\favicon.bmp"
+    ;nando 29-mar-2007 - favicon.bmp is needed. not sure about the following 2
     ;File "Docs\images\favicon.ico"
     ;File "Docs\images\logo_ql.jpg"
 
