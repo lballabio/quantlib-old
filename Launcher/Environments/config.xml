@@ -58,7 +58,7 @@
       <UserConfigurationFile>X:\Offices1\CabotoXL\Users\03 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Offices1\CabotoXL\03 Testing\metadata</FunctionMetadata>
       <AddinList>
-        <Addin>QuantLibXL-vc80-mt-s-0_9_0.xll</Addin>
+        <Addin>QuantLibXL-vc80-mt-s-0_8_0.xll</Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
