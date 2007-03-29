@@ -260,3 +260,22 @@
    to formalize and document the proposed design, perhaps as a <a
    href="http://quantlib.org/quep.shtml">QuEP</a>.
 
+<c>Building QuantLib
+<q>I'm having trouble building QuantLib with the Visual C++ 7.1
+   compiler (a.k.a Visual C++ .NET.)
+
+<a>If such error is
+<pre>
+c:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\include\vector(1112) : error C2065: '_Myoff' : undeclared identifier
+</pre>
+it is caused by the latest VC++7.1 implementation of
+<tt>std::vector&lt;bool&gt;</tt>, which compiles fine when Microsoft
+extensions are enabled, but fails to compile in ANSI-compliance mode
+(used when building QuantLib.)
+
+<br>
+In order to fix it, you'll have to edit line 1112 of vector (and
+possibly other lines in the method being defined) and replace all
+occurrences of "<tt>_Myoff</tt>" with "<tt>this-&gt;_Myoff</tt>"
+(without quotes, of course.)
+
