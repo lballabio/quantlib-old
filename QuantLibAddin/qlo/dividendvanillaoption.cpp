@@ -19,7 +19,6 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/dividendvanillaoption.hpp>
-#include <qlo/typefactory.hpp>
 #include <qlo/exercise.hpp>
 
 namespace QuantLibAddin {

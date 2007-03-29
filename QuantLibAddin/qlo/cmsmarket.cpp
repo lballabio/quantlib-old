@@ -22,7 +22,7 @@
 #include <qlo/cmsmarket.hpp>
 #include <qlo/couponvectors.hpp>
 #include <qlo/termstructures.hpp>
-#include <qlo/typefactory.hpp>
+
 
 namespace QuantLibAddin {
 

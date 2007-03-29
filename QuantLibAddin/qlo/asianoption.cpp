@@ -20,7 +20,6 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/asianoption.hpp>
-#include <qlo/typefactory.hpp>
 #include <qlo/exercise.hpp>
 
 namespace QuantLibAddin {

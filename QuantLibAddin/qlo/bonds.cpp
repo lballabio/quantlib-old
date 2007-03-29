@@ -26,7 +26,6 @@
 #include <qlo/bonds.hpp>
 #include <qlo/couponvectors.hpp>
 #include <qlo/termstructures.hpp>
-#include <qlo/typefactory.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 #include <qlo/capletvolstructure.hpp>
 #include <ql/Instruments/fixedratebond.hpp>

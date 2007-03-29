@@ -20,7 +20,7 @@
 #endif
 
 #include <qlo/stickyratchet.hpp>
-#include <qlo/typefactory.hpp>
+
 
 namespace QuantLibAddin {
 

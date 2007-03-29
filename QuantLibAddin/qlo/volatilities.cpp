@@ -20,7 +20,7 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/volatilities.hpp>
-#include <qlo/typefactory.hpp>
+
 
 namespace QuantLibAddin {
 

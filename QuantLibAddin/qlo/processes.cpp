@@ -20,7 +20,6 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/processes.hpp>
-#include <qlo/typefactory.hpp>
 #include <ql/quote.hpp>
 #include <ql/TermStructures/flatforward.hpp>
 #include <ql/voltermstructure.hpp>

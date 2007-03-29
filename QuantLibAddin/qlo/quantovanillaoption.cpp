@@ -19,7 +19,6 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/quantovanillaoption.hpp>
-#include <qlo/typefactory.hpp>
 #include <qlo/exercise.hpp>
 #include <qlo/termstructures.hpp>
 #include <qlo/volatilities.hpp>
