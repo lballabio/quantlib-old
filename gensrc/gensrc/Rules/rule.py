@@ -21,14 +21,14 @@ from gensrc.Rules import exceptions
 from gensrc.Configuration import environment
 from gensrc.Serialization import serializable
 from gensrc.Utilities import common
-import code
+import codedict
 
 """Algorithms required to generate the source code for a given function 
 parameter in a given context."""
 
 def getCode(codeID):
-    if code.__dict__.has_key(codeID):
-        return code.__dict__[codeID]
+    if codedict.__dict__.has_key(codeID):
+        return codedict.__dict__[codeID]
     else:
         raise exceptions.RuleCodeInvalidException(codeID)
 
