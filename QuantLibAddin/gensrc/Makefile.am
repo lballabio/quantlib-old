@@ -67,7 +67,7 @@ GENSRC_STUBS :=     stubs/stub.copyright \
                     stubs/stub.enum.types \
                     stubs/stub.excel.includes
 
-GENSRC_CODE :=      code/code.py
+GENSRC_CODE :=      code/codedict.py
 
 GENSRC_CONF :=      config/config.xml
 

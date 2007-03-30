@@ -226,7 +226,7 @@
 			Name="code"
 			Filter="">
 			<File
-				RelativePath="code\code.py">
+				RelativePath="code\codedict.py">
 			</File>
 		</Filter>
 		<Filter
