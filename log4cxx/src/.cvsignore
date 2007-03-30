@@ -1,7 +1,0 @@
-*.lo
-.deps
-.libs
-Makefile
-Makefile.in
-liblog4cxx.la
-simplesocketserver

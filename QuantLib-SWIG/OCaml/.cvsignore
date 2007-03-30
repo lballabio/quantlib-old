@@ -1,8 +1,0 @@
-Makefile
-Makefile.in
-.build-stamp
-*.mli
-*.ml
-*.c
-*.cmi
-*.cmo

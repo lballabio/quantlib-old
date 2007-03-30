@@ -1,7 +1,0 @@
-quantlib_wrap.*
-*.so
-*.dll
-Makefile
-Makefile.in
-QuantLib.ncb
-QuantLib.suo

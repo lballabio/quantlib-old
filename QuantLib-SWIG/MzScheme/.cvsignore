@@ -1,5 +1,0 @@
-quantlib_wrap.cpp
-quantlib_wrap.o
-Makefile
-Makefile.in
-.build-stamp

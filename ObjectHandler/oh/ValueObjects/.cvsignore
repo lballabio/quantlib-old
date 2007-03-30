@@ -1,8 +1,0 @@
-vo_*.*pp
-*.la
-Makefile
-Makefile.in
-*.lo
-*.o
-.deps
-.libs

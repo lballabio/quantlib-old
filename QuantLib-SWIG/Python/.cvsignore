@@ -1,9 +1,0 @@
-build
-dist
-Makefile
-Makefile.in
-QuantLib-Python.spec
-.build-stamp
-*.dep
-*.plg
-*.idb

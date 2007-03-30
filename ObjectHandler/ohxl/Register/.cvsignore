@@ -1,6 +1,0 @@
-register_all.cpp
-register_demo.cpp
-register_garbagecollection.cpp
-register_logging.cpp
-register_ohutils.cpp
-register_valueobjects.cpp
