@@ -21,6 +21,7 @@
 #include <oh/Conversions/coerce.hpp>
 #include <oh/exception.hpp>
 #include <qlo/typefactory.hpp>
+#include <qlo/Factories/indexfactory.hpp>
 
 namespace ObjHandler {
 
