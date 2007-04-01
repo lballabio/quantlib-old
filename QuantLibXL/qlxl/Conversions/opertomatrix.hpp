@@ -22,7 +22,7 @@
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/handle.hpp>
 #include <ql/quote.hpp>
-#include <ql/Math/matrix.hpp>
+#include <ql/math/matrix.hpp>
 #include <vector>
 
 namespace ObjHandler {

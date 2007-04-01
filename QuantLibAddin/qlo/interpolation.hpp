@@ -19,10 +19,10 @@
 #define qla_interpolation_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/Optimization/method.hpp>
-#include <ql/Math/linearinterpolation.hpp>
-#include <ql/Math/cubicspline.hpp>
-#include <ql/Math/matrix.hpp>
+#include <ql/optimization/method.hpp>
+#include <ql/math/linearinterpolation.hpp>
+#include <ql/math/cubicspline.hpp>
+#include <ql/math/matrix.hpp>
 
 namespace QuantLibAddin {
 

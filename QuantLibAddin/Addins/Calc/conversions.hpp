@@ -20,7 +20,7 @@
 
 #include <ql/date.hpp>
 #include <ql/calendar.hpp>
-#include <ql/Math/matrix.hpp>
+#include <ql/math/matrix.hpp>
 #include <Addins/Calc/qldefs.hpp>
 #include <sal/types.h>
 #include <vector>

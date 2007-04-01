@@ -19,7 +19,7 @@
 #define qla_mathf_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/Math/normaldistribution.hpp>
+#include <ql/math/normaldistribution.hpp>
 
 namespace QuantLibAddin {
 

@@ -22,7 +22,7 @@
 #include <oh/objhandlerdefines.hpp>
 #include <ohxl/Conversions/vectortooper.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
-#include <ql/Math/array.hpp>
+#include <ql/math/array.hpp>
 
 namespace ObjHandler {
 

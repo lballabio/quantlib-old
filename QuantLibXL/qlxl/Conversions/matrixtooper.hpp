@@ -20,7 +20,7 @@
 
 #include <oh/objhandlerdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
-#include <ql/Math/matrix.hpp>
+#include <ql/math/matrix.hpp>
 
 namespace ObjHandler {
 

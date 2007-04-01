@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/Utilities/dataparsers.hpp>
+#include <ql/utilities/dataparsers.hpp>
 #include <Addins/Calc/conversions.hpp>
 #include <Addins/Calc/calcutils.hpp>
 //#include <qlo/calendar.hpp>

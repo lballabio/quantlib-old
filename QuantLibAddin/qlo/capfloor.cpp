@@ -22,7 +22,7 @@
 #endif
 
 #include <qlo/capfloor.hpp>
-#include <ql/Instruments/makecapfloor.hpp>
+#include <ql/instruments/makecapfloor.hpp>
 
 namespace QuantLibAddin {
 

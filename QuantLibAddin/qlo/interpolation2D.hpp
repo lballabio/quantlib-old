@@ -20,7 +20,7 @@
 
 #include <oh/objhandler.hpp>
 #include <qlo/interpolation.hpp>
-#include <ql/Math/matrix.hpp>
+#include <ql/math/matrix.hpp>
 
 namespace QuantLibAddin {
 

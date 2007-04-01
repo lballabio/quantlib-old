@@ -21,7 +21,7 @@
 #include <oh/objhandlerdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/date.hpp>
-#include <ql/Quotes/simplequote.hpp>
+#include <ql/quotes/simplequote.hpp>
 
 namespace ObjHandler {
 

@@ -27,8 +27,8 @@
 #include <qlo/index.hpp>
 #include <qlo/analysis.hpp>
 #include <qlo/couponvectors.hpp>
-#include <ql/CashFlows/conundrumpricer.hpp>
-#include <ql/Volatilities/all.hpp>
+#include <ql/cashflows/conundrumpricer.hpp>
+#include <ql/volatilities/all.hpp>
 
 
 namespace QuantLibAddin {

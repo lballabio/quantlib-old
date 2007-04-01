@@ -20,7 +20,7 @@
 
 #include <oh/objhandler.hpp>
 #include <qlo/volatilities.hpp>
-#include <ql/Processes/blackscholesprocess.hpp>
+#include <ql/processes/blackscholesprocess.hpp>
 
 namespace QuantLibAddin {
 

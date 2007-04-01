@@ -20,7 +20,7 @@
 
 #include <qlo/baseinstruments.hpp>
 #include <qlo/processes.hpp>
-#include <ql/Instruments/cliquetoption.hpp>
+#include <ql/instruments/cliquetoption.hpp>
 
 namespace QuantLibAddin {
 

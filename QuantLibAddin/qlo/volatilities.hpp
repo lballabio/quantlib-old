@@ -19,8 +19,8 @@
 #define qla_volatilities_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/Volatilities/blackconstantvol.hpp>
-#include <ql/Volatilities/blackvariancesurface.hpp>
+#include <ql/volatilities/blackconstantvol.hpp>
+#include <ql/volatilities/blackvariancesurface.hpp>
 
 namespace QuantLibAddin {
 

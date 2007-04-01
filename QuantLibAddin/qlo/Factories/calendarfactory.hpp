@@ -20,7 +20,7 @@
 #define qla_calendarfactory_hpp
 
 #include <qlo/typefactory.hpp>
-#include <ql/Calendars/jointcalendar.hpp>
+#include <ql/calendars/jointcalendar.hpp>
 
 
 namespace QuantLibAddin {

@@ -22,10 +22,10 @@
 #define qla_termstructures_hpp
 
 #include <ql/termstructure.hpp>
-#include <ql/TermStructures/forwardspreadedtermstructure.hpp>
-#include <ql/TermStructures/ratehelpers.hpp>
+#include <ql/termstructures/forwardspreadedtermstructure.hpp>
+#include <ql/termstructures/ratehelpers.hpp>
 #ifdef QL_DISABLE_DEPRECATED
-#include <ql/Quotes/simplequote.hpp>
+#include <ql/quotes/simplequote.hpp>
 #else
 #include <ql/quote.hpp>
 #endif

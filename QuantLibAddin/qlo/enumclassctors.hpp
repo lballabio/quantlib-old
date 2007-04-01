@@ -28,17 +28,17 @@
 #include <qlo/Factories/interpolationsfactory.hpp>
 #include <qlo/Factories/termstructuresfactory.hpp>
 #include <ql/option.hpp>
-#include <ql/Instruments/payoffs.hpp>
-#include <ql/Instruments/quantoforwardvanillaoption.hpp>
-#include <ql/PricingEngines/all.hpp>
-#include <ql/Math/backwardflatinterpolation.hpp>
-#include <ql/Math/forwardflatinterpolation.hpp>
-#include <ql/Math/linearinterpolation.hpp>
-#include <ql/Math/bilinearinterpolation.hpp>
-#include <ql/Math/bicubicsplineinterpolation.hpp>
-#include <ql/Math/sabrinterpolation.hpp>
-#include <ql/CashFlows/cmscoupon.hpp>
-#include <ql/CashFlows/couponpricer.hpp>
+#include <ql/instruments/payoffs.hpp>
+#include <ql/instruments/quantoforwardvanillaoption.hpp>
+#include <ql/pricingengines/all.hpp>
+#include <ql/math/backwardflatinterpolation.hpp>
+#include <ql/math/forwardflatinterpolation.hpp>
+#include <ql/math/linearinterpolation.hpp>
+#include <ql/math/bilinearinterpolation.hpp>
+#include <ql/math/bicubicsplineinterpolation.hpp>
+#include <ql/math/sabrinterpolation.hpp>
+#include <ql/cashflows/cmscoupon.hpp>
+#include <ql/cashflows/couponpricer.hpp>
 
 namespace QuantLibAddin {
 

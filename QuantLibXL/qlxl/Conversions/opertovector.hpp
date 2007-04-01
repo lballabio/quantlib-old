@@ -19,7 +19,7 @@
 #define qlxl_conversions_opertovector_hpp
 
 #include <ohxl/Conversions/all.hpp>
-#include <ql/Math/array.hpp>
+#include <ql/math/array.hpp>
 #include <qlxl/Conversions/opertoscalar.hpp>
 
 namespace ObjHandler {

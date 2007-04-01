@@ -20,8 +20,8 @@
 #define qla_swaption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <ql/PricingEngines/Swaption/blackswaptionengine.hpp>
-#include <ql/Instruments/swaption.hpp>
+#include <ql/pricingengines/swaption/blackswaptionengine.hpp>
+#include <ql/instruments/swaption.hpp>
 
 namespace QuantLibAddin {
     

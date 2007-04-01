@@ -20,7 +20,7 @@
 
 #include <qlo/baseinstruments.hpp>
 #include <qlo/processes.hpp>
-#include <ql/Instruments/asianoption.hpp>
+#include <ql/instruments/asianoption.hpp>
 
 namespace QuantLibAddin {
 

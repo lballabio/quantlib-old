@@ -21,8 +21,8 @@
 
 #include <oh/objhandler.hpp>
 #include <qlo/termstructures.hpp>
-#include <ql/ShortRateModels/OneFactorModels/vasicek.hpp>
-#include <ql/ShortRateModels/OneFactorModels/hullwhite.hpp>
+#include <ql/shortratemodels/onefactormodels/vasicek.hpp>
+#include <ql/shortratemodels/onefactormodels/hullwhite.hpp>
 
 namespace QuantLibAddin {
 

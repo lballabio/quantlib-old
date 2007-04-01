@@ -24,8 +24,8 @@
 #endif
 
 #include <qlo/vanillaswap.hpp>
-#include <ql/Instruments/vanillaswap.hpp>
-#include <ql/Instruments/makevanillaswap.hpp>
+#include <ql/instruments/vanillaswap.hpp>
+#include <ql/instruments/makevanillaswap.hpp>
 
 namespace QuantLibAddin {
 

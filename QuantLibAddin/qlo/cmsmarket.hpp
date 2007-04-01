@@ -20,9 +20,9 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/swaptionvolstructure.hpp>
-#include <ql/Volatilities/cmsmarket.hpp>
+#include <ql/volatilities/cmsmarket.hpp>
 #include <ql/termstructure.hpp>
-#include <ql/CashFlows/conundrumpricer.hpp>
+#include <ql/cashflows/conundrumpricer.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 
 

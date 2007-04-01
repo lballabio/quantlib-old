@@ -21,7 +21,7 @@
 #include <qlo/baseinstruments.hpp>
 #include <qlo/processes.hpp>
 #include <qlo/termstructures.hpp>
-#include <ql/Instruments/quantoforwardvanillaoption.hpp>
+#include <ql/instruments/quantoforwardvanillaoption.hpp>
 
 namespace QuantLibAddin {
 

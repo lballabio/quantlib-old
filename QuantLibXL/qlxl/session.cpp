@@ -19,7 +19,7 @@
 
 #ifdef QL_ENABLE_SESSIONS
 
-#include <ql/Patterns/singleton.hpp>
+#include <ql/patterns/singleton.hpp>
 #include <oh/exception.hpp>
 #include <ohxl/conversions.hpp>
 #include <ohxl/functioncall.hpp>

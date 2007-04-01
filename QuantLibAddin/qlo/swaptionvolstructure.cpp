@@ -23,10 +23,10 @@
 #endif
 
 #include <qlo/swaptionvolstructure.hpp>
-#include <ql/Volatilities/swaptionconstantvol.hpp>
-#include <ql/Volatilities/swaptionvolcube2.hpp>
-#include <ql/Volatilities/swaptionvolcube1.hpp>
-#include <ql/Volatilities/swaptionvolmatrix.hpp>
+#include <ql/volatilities/swaptionconstantvol.hpp>
+#include <ql/volatilities/swaptionvolcube2.hpp>
+#include <ql/volatilities/swaptionvolcube1.hpp>
+#include <ql/volatilities/swaptionvolmatrix.hpp>
 
 namespace QuantLibAddin {
 

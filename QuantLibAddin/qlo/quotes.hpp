@@ -22,9 +22,9 @@
 #include <qlo/index.hpp>
 #include <oh/object.hpp>
 #include <qlo/termstructures.hpp>
-#include <ql/Quotes/simplequote.hpp>
-#include <ql/Quotes/derivedquote.hpp>
-#include <ql/Quotes/futuresconvadjustmentquote.hpp>
+#include <ql/quotes/simplequote.hpp>
+#include <ql/quotes/derivedquote.hpp>
+#include <ql/quotes/futuresconvadjustmentquote.hpp>
 
 
 namespace QuantLibAddin {

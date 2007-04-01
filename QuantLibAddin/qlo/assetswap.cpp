@@ -20,7 +20,7 @@
 #endif
 
 #include <qlo/assetswap.hpp>
-#include <ql/Instruments/assetswap.hpp>
+#include <ql/instruments/assetswap.hpp>
 
 namespace QuantLibAddin {
 

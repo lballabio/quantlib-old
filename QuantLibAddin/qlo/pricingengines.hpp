@@ -21,10 +21,10 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/pricingengine.hpp>
-#include <ql/PricingEngines/blackcalculator.hpp>
-#include <ql/PricingEngines/Swaption/blackswaptionengine.hpp>
-#include <ql/PricingEngines/CapFloor/blackcapfloorengine.hpp>
-#include <ql/PricingEngines/CapFloor/analyticcapfloorengine.hpp>
+#include <ql/pricingengines/blackcalculator.hpp>
+#include <ql/pricingengines/swaption/blackswaptionengine.hpp>
+#include <ql/pricingengines/capfloor/blackcapfloorengine.hpp>
+#include <ql/pricingengines/capfloor/analyticcapfloorengine.hpp>
 
 namespace QuantLibAddin {
 

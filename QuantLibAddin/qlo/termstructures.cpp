@@ -27,11 +27,11 @@
 #include <qlo/Factories/termstructuresfactory.hpp>
 
 #include <ql/date.hpp>
-#include <ql/Math/cubicspline.hpp>
-#include <ql/TermStructures/discountcurve.hpp>
-#include <ql/TermStructures/forwardcurve.hpp>
-#include <ql/TermStructures/impliedtermstructure.hpp>
-#include <ql/TermStructures/flatforward.hpp>
+#include <ql/math/cubicspline.hpp>
+#include <ql/termstructures/discountcurve.hpp>
+#include <ql/termstructures/forwardcurve.hpp>
+#include <ql/termstructures/impliedtermstructure.hpp>
+#include <ql/termstructures/flatforward.hpp>
 
 namespace QuantLibAddin {
 

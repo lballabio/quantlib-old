@@ -19,7 +19,7 @@ extern "C" {
 }
 #include <Addins/C/varies.hpp>
 #include <oh/objhandler.hpp> 
-#include <ql/Patterns/singleton.hpp>
+#include <ql/patterns/singleton.hpp>
 
 void initialize() {
 // instantiate the objecthandler singleton

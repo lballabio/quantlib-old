@@ -18,7 +18,7 @@
 
 #include <qlo/pricingengines.hpp>
 #include <qlo/Factories/pricingenginesfactory.hpp>
-#include <ql/PricingEngines/blackscholescalculator.hpp>
+#include <ql/pricingengines/blackscholescalculator.hpp>
 
 namespace QuantLibAddin {
 

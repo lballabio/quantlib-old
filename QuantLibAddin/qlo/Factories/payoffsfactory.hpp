@@ -20,7 +20,7 @@
 #define qla_payoffsfactory_hpp
 
 #include <qlo/typefactory.hpp>
-#include <ql/Instruments/payoffs.hpp>
+#include <ql/instruments/payoffs.hpp>
 
 
 namespace QuantLibAddin {

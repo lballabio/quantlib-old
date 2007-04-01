@@ -20,7 +20,7 @@
 #define qla_iborcouponpricerfactory_hpp
 
 #include <qlo/typefactory.hpp>
-#include <ql/CashFlows/couponpricer.hpp> 
+#include <ql/cashflows/couponpricer.hpp> 
 
 namespace QuantLibAddin {
 

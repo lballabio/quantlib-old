@@ -20,14 +20,14 @@
 #define qla_indexfactory_hpp
 
 #include <qlo/typefactory.hpp>
-#include <ql/Indexes/euribor.hpp>
-#include <ql/Indexes/euriborswapfixa.hpp>
-#include <ql/Indexes/euriborswapfixb.hpp>
-#include <ql/Indexes/eurlibor.hpp>
-#include <ql/Indexes/eurliborswapfixa.hpp>
-#include <ql/Indexes/eurliborswapfixb.hpp>
-#include <ql/Indexes/eurliborswapfixifr.hpp>
-#include <ql/Indexes/euriborswapfixifr.hpp>
+#include <ql/indexes/euribor.hpp>
+#include <ql/indexes/euriborswapfixa.hpp>
+#include <ql/indexes/euriborswapfixb.hpp>
+#include <ql/indexes/eurlibor.hpp>
+#include <ql/indexes/eurliborswapfixa.hpp>
+#include <ql/indexes/eurliborswapfixb.hpp>
+#include <ql/indexes/eurliborswapfixifr.hpp>
+#include <ql/indexes/euriborswapfixifr.hpp>
 
 namespace QuantLibAddin {
 

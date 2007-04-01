@@ -19,7 +19,7 @@
 #ifndef qla_forwardrateagreement_hpp
 #define qla_forwardrateagreement_hpp
 
-#include <ql/Instruments/forwardrateagreement.hpp>
+#include <ql/instruments/forwardrateagreement.hpp>
 #include <qlo/baseinstruments.hpp>
 #include <qlo/termstructures.hpp>
 #include <qlo/index.hpp>

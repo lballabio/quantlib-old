@@ -17,7 +17,7 @@
 */
 
 #include <ql/date.hpp>
-#include <ql/Utilities/strings.hpp>
+#include <ql/utilities/strings.hpp>
 #include <qlo/qladdin.hpp>
 #include <Addins/Guile/guileutils.hpp>
 extern "C" {

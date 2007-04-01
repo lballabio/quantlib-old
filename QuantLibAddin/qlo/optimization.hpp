@@ -19,8 +19,8 @@
 #define qla_optimization_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/Optimization/method.hpp>
-#include <ql/Optimization/linesearch.hpp>
+#include <ql/optimization/method.hpp>
+#include <ql/optimization/linesearch.hpp>
 
 namespace QuantLibAddin {
 

@@ -20,7 +20,7 @@
 #define qla_conundrumpricerfactory_hpp
 
 #include <qlo/typefactory.hpp>
-#include <ql/CashFlows/conundrumpricer.hpp>
+#include <ql/cashflows/conundrumpricer.hpp>
 
 
 namespace QuantLibAddin {

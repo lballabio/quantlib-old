@@ -24,9 +24,9 @@
 #endif
 
 #include <qlo/swap.hpp>
-#include <ql/Instruments/swap.hpp>
-#include <ql/Instruments/makecms.hpp>
-#include <ql/CashFlows/analysis.hpp>
+#include <ql/instruments/swap.hpp>
+#include <ql/instruments/makecms.hpp>
+#include <ql/cashflows/analysis.hpp>
 
 namespace QuantLibAddin {
 

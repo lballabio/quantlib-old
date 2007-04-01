@@ -21,7 +21,7 @@
 #include <qlo/baseinstruments.hpp>
 #include <qlo/processes.hpp>
 #include <qlo/exercise.hpp>
-#include <ql/Instruments/barrieroption.hpp>
+#include <ql/instruments/barrieroption.hpp>
 
 namespace QuantLibAddin {
 

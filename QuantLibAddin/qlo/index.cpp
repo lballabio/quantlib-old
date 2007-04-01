@@ -23,7 +23,7 @@
 #endif
 
 #include <qlo/index.hpp>
-#include <ql/Indexes/swapindex.hpp>
+#include <ql/indexes/swapindex.hpp>
 
 namespace QuantLibAddin {
 

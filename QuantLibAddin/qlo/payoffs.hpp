@@ -20,7 +20,7 @@
 #define qla_payoffs_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/Instruments/payoffs.hpp>
+#include <ql/instruments/payoffs.hpp>
 
 namespace QuantLibAddin {
 

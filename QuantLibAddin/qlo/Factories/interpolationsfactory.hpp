@@ -20,7 +20,7 @@
 #define qla_interpolationsfactory_hpp
 
 #include <qlo/typefactory.hpp>
-#include <ql/Math/interpolation2d.hpp>
+#include <ql/math/interpolation2D.hpp>
 
 namespace QuantLibAddin {
 

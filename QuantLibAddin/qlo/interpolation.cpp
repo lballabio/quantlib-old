@@ -21,10 +21,10 @@
 #include <qlo/interpolation.hpp>
 #include <qlo/Factories/interpolationsfactory.hpp>
 
-#include <ql/Math/backwardflatinterpolation.hpp>
-#include <ql/Math/forwardflatinterpolation.hpp>
-#include <ql/Math/linearinterpolation.hpp>
-#include <ql/Math/sabrinterpolation.hpp>
+#include <ql/math/backwardflatinterpolation.hpp>
+#include <ql/math/forwardflatinterpolation.hpp>
+#include <ql/math/linearinterpolation.hpp>
+#include <ql/math/sabrinterpolation.hpp>
 
 namespace QuantLibAddin {
 

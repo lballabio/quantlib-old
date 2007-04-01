@@ -19,8 +19,8 @@
 #endif
 
 #include <qlo/smilesection.hpp>
-#include <ql/Math/sabrinterpolation.hpp>
-#include <ql/Volatilities/smilesection.hpp>
+#include <ql/math/sabrinterpolation.hpp>
+#include <ql/volatilities/smilesection.hpp>
 
 
 namespace QuantLibAddin {

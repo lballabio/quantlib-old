@@ -19,10 +19,10 @@
 #define qla_capletvolstructure_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/Volatilities/capletvolatilitiesstructures.hpp>
+#include <ql/volatilities/capletvolatilitiesstructures.hpp>
 #include <ql/capvolstructures.hpp>
 #include <qlo/termstructures.hpp>
-#include <ql/Volatilities/smilesection.hpp>
+#include <ql/volatilities/smilesection.hpp>
 
 namespace QuantLibAddin {
     

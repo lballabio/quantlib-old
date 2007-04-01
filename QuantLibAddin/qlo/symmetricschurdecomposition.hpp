@@ -19,7 +19,7 @@
 #define qla_symmetricschurdecomposition_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/Math/symmetricschurdecomposition.hpp>
+#include <ql/math/symmetricschurdecomposition.hpp>
 
 namespace QuantLibAddin {
 

@@ -19,7 +19,7 @@
 #define qla_stickyratchet_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/Instruments/stickyratchet.hpp>
+#include <ql/instruments/stickyratchet.hpp>
 #include <qlo/payoffs.hpp>
 
 namespace QuantLibAddin {

@@ -20,7 +20,7 @@
 
 #include <qlo/baseinstruments.hpp>
 #include <qlo/processes.hpp>
-#include <ql/Instruments/europeanoption.hpp>
+#include <ql/instruments/europeanoption.hpp>
 
 namespace QuantLibAddin {
 

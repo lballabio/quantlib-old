@@ -28,10 +28,10 @@
 #include <qlo/Factories/iborcouponpricersfactory.hpp>
 
 #include <ql/cashflow.hpp>
-#include <ql/CashFlows/cashflowvectors.hpp>
-#include <ql/CashFlows/simplecashflow.hpp>
-#include <ql/CashFlows/cmscoupon.hpp>
-#include <ql/CashFlows/analysis.hpp>
+#include <ql/cashflows/cashflowvectors.hpp>
+#include <ql/cashflows/simplecashflow.hpp>
+#include <ql/cashflows/cmscoupon.hpp>
+#include <ql/cashflows/analysis.hpp>
 
 using QuantLib::earlier_than;
 using QuantLib::CashFlow;

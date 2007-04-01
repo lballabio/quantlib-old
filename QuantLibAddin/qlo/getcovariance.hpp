@@ -19,7 +19,7 @@
 #define qla_getcovariance_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/MonteCarlo/getcovariance.hpp>
+#include <ql/montecarlo/getcovariance.hpp>
 
 namespace QuantLibAddin {
 

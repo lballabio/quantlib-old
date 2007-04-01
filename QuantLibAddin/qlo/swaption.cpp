@@ -21,7 +21,7 @@
 #endif
 
 #include <qlo/swaption.hpp>
-#include <ql/Instruments/swaption.hpp>
+#include <ql/instruments/swaption.hpp>
 
 namespace QuantLibAddin {
 

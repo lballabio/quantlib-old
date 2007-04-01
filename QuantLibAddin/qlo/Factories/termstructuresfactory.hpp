@@ -20,7 +20,7 @@
 #define qla_termstructuresfactory_hpp
 
 #include <qlo/typefactory.hpp>
-#include <ql/TermStructures/ratehelpers.hpp>
+#include <ql/termstructures/ratehelpers.hpp>
 
 
 namespace QuantLibAddin {

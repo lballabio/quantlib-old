@@ -20,9 +20,9 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/instrument.hpp>
-#include <ql/Instruments/bond.hpp>
-#include <ql/Instruments/forward.hpp>
-#include <ql/Instruments/oneassetoption.hpp>
+#include <ql/instruments/bond.hpp>
+#include <ql/instruments/forward.hpp>
+#include <ql/instruments/oneassetoption.hpp>
 
 namespace QuantLibAddin {
 

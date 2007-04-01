@@ -19,7 +19,7 @@
 #define qla_vanillaoption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <ql/Instruments/vanillaoption.hpp>
+#include <ql/instruments/vanillaoption.hpp>
 #include <qlo/processes.hpp>
 
 namespace QuantLibAddin {

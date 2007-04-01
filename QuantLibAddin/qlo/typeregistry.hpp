@@ -20,7 +20,7 @@
 #define qla_typeregistry_hpp
 
 #include <oh/objhandlerdefines.hpp>
-#include <ql/Patterns/singleton.hpp>
+#include <ql/patterns/singleton.hpp>
 #include <map>
 #include <vector>
 #include <string>

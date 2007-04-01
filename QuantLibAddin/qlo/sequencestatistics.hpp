@@ -20,9 +20,9 @@
 #define qla_sequencestatistics_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/Math/sequencestatistics.hpp>
-#include <ql/Math/riskstatistics.hpp>
-#include <ql/Math/matrix.hpp>
+#include <ql/math/sequencestatistics.hpp>
+#include <ql/math/riskstatistics.hpp>
+#include <ql/math/matrix.hpp>
 
 namespace QuantLibAddin {
 

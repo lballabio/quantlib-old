@@ -20,8 +20,8 @@
 #ifndef qla_ratehelpers_hpp
 #define qla_ratehelpers_hpp
 
-#include <ql/Indexes/iborindex.hpp>
-#include <ql/TermStructures/ratehelpers.hpp>
+#include <ql/indexes/iborindex.hpp>
+#include <ql/termstructures/ratehelpers.hpp>
 #include <oh/objhandler.hpp>
 
 namespace QuantLibAddin {

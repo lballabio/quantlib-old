@@ -30,10 +30,10 @@
 #include <qlo/couponvectors.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 
-#include <ql/CashFlows/conundrumpricer.hpp>
-#include <ql/Volatilities/all.hpp>
-#include <ql/Indexes/iborindex.hpp>
-#include <ql/Indexes/swapindex.hpp>
+#include <ql/cashflows/conundrumpricer.hpp>
+#include <ql/volatilities/all.hpp>
+#include <ql/indexes/iborindex.hpp>
+#include <ql/indexes/swapindex.hpp>
 //#include <ql/currency.hpp>
 #include <string>
 

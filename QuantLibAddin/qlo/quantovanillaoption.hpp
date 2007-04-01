@@ -20,7 +20,7 @@
 
 #include <qlo/baseinstruments.hpp>
 #include <qlo/processes.hpp>
-#include <ql/Instruments/quantovanillaoption.hpp>
+#include <ql/instruments/quantovanillaoption.hpp>
 
 namespace QuantLibAddin {
 

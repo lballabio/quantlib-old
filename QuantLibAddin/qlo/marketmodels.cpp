@@ -20,16 +20,16 @@
 #endif
 #include <qlo/marketmodels.hpp>
 #include <qlo/ValueObjects/vo_marketmodels.hpp>
-#include <ql/MarketModels/curvestate.hpp>
-#include <ql/MarketModels/Models/expcorrflatvol.hpp>
-#include <ql/MarketModels/Models/expcorrabcdvol.hpp>
-#include <ql/MarketModels/BrownianGenerators/mtbrowniangenerator.hpp>
-#include <ql/MarketModels/Evolvers/forwardratepcevolver.hpp>
-#include <ql/MarketModels/Evolvers/forwardrateipcevolver.hpp>
-#include <ql/MarketModels/Evolvers/forwardratenormalpcevolver.hpp>
-#include <ql/MarketModels/Products/OneStep/onestepforwards.hpp>
-#include <ql/MarketModels/Products/OneStep/onestepoptionlets.hpp>
-#include <ql/MarketModels/Products/MultiStep/multistepratchet.hpp>
+#include <ql/marketmodels/curvestate.hpp>
+#include <ql/marketmodels/models/expcorrflatvol.hpp>
+#include <ql/marketmodels/models/expcorrabcdvol.hpp>
+#include <ql/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
+#include <ql/marketmodels/evolvers/forwardratepcevolver.hpp>
+#include <ql/marketmodels/evolvers/forwardrateipcevolver.hpp>
+#include <ql/marketmodels/evolvers/forwardratenormalpcevolver.hpp>
+#include <ql/marketmodels/products/onestep/onestepforwards.hpp>
+#include <ql/marketmodels/products/onestep/onestepoptionlets.hpp>
+#include <ql/marketmodels/products/multistep/multistepratchet.hpp>
 
 
 namespace QuantLibAddin {
