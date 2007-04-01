@@ -59,14 +59,15 @@ to <a href=
 <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-jobs">Subscribe/Unsubscribe/Preferences</a>)</li>
 <li><strong>QuantLib-cvs</strong>:<br> High-traffic list for automated
-QuantLib <a href= "cvs.shtml">CVS</a> check-in messages. Every time
-the QuantLib CVS code changes, an email documenting the change is
-automatically generated.<br> Suggested for developers only. Please do
-not post to this list.<br> (go to <a href=
+QuantLib <a href= "svn.shtml">Subversion</a> check-in messages. Every
+time a change is submitted to the QuantLib code repository, an email
+documenting the change is automatically generated.<br>  Suggested for
+developers only. Please do not post to this list.<br> (go to <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-cvs">Subscribe/Unsubscribe/Preferences</a>)<br>
 For those more comfortable with RSS, a feed for the check-in messages
-is also available from the <a
-href="http://cia.navi.cx/stats/project/quantlib">QuantLib page</a> at
+is also available from
+the <a href="http://cia.navi.cx/stats/project/quantlib">QuantLib
+page</a> at
 <a href="http://cia.navi.cx">cia.navi.cx</a>. The feed carries the
 commit messages only; no difference between revisions is
 provided.</li> </ol>

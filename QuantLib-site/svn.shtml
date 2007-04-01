@@ -1,0 +1,132 @@
+<!--
+ $Id: cvs.shtml 6934 2006-05-23 12:18:52Z lballabio $
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="qlmeta.inc"-->
+<meta name="author" content="Luigi Ballabio">
+<meta name="copyright" content=
+"StatPro Italia srl (C) 2007">
+<meta name="description" content="QuantLib SVN">
+<title>QuantLib SVN Repository</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="header.inc"-->
+<div id="menu">
+<!--#include virtual="devmenu.inc"-->
+</div>
+<div id="content">
+
+<h1 class="center">QuantLib SVN Repository</h1>
+
+<h3>Using Subversion</h3>
+<p>If you're new to Subversion, please read the
+free <a href="http://svnbook.red-bean.com/en/1.2/index.html">SVN
+book</a>; you might want to start from
+the <a href="http://svnbook.red-bean.com/en/1.2/svn.tour.html">guided
+tour</a>, which contains most of the information you need to get
+started.</p>
+
+<p>Besides the technicalities of accessing the repository (covered in
+the SVN book) a few words of advice are needed regarding the policy
+for committing changes.</p>
+
+<p>The main difference between Subversion and CVS is that in
+Subversion, commits are a single entity, even when committing files
+from different directories. Files no longer have revision numbers;
+instead, the whole repository is versioned and a revision number is
+assigned to each commit as a whole. In order to take advantage of this
+scheme, developers should take care of a few things, namely:</p>
+<ul>
+<li>Do not commit changes across files, directories, or even modules,
+in separate commits; always commit from the root of the module you're
+working on. Moreover, developers working on several modules are
+advised to check out the entire trunk (or branch.) When you make
+related changes in different modules (such as an interface change in a
+module which requires a code change in another) commit from the trunk
+folder so that all changes are committed together.</li>
+<li>If possible, do not commit intermediate steps. Even if you're
+working on a change that might take a few days, it is preferable to
+commit the whole change as a whole. Subversion is a version control
+system, not a backup facility; if you're worried that you might lose
+your work, please take the necessary steps to avoid this on your
+computer. If for some reason you need to checkpoint your changes or to
+show them to another developer, you can use shelves:
+see <a
+href="http://markphip.blogspot.com/2007/01/shelves-in-subversion.html">this
+blog post</a> for information.</li>
+<li>Conversely, do not commit unrelated changes in a single
+commit. For each change, take the time to identify the related files
+so that the set of modified files for each change can be committed
+separately.</li>
+<li>Use informative commit messages. Enough said.</li>
+</ul>
+
+
+<h3>Repository access</h3>
+
+<p>The procedure for checking out the repository (or any module therein)
+is the same for developers and users. If you're using command-line
+tools, you can issue the command</p>
+<pre>
+svn checkout https://quantlib.svn.sourceforge.net/svnroot/quantlib/trunk
+</pre>
+<p>If you're using some other tool, the actual steps might vary;
+however, the same URL can be used. Passing such URL causes Subversion
+to check out a copy of all modules (recommended for developers;) users
+wanting to check out a single module (e.g., QuantLib for the core
+library) can do so by appending the module name to the repository URL,
+e.g.,</p>
+<pre>
+svn checkout https://quantlib.svn.sourceforge.net/svnroot/quantlib/trunk/QuantLib
+</pre>
+
+<p>Also, it is possible to <a href=
+"http://quantlib.svn.sourceforge.net/viewvc/quantlib/">browse the
+Subversion repository</a>: this gives you a view into the current
+status of the project's code. You may also view the complete histories
+of any file in the repository.</p>
+
+<h3>Developer Access</h3>
+
+<p>The steps for checking out the repository are the same as for
+users. In addition, developers have the possibility to commit changes
+to the repository; authentication is performed upon commit by using
+the <em>username</em> option, as in:</p>
+<pre>
+svn commit --username=USER -m "A description of the changes being written"
+</pre>
+<p>where you'll have to replace USER by your Sourceforge username.</p>
+
+<p><strong>Note for C++ Unix users</strong>: if you use Subversion, you
+will need some GNU tools that usually only developers use, and
+which are not required to build QuantLib from tarballs. These are
+automake, autoconf, libtool, GNU m4, GNU make, and others which
+might escape me now. They all come with recent GNU/Linux
+distributions.</p>
+<p>To begin the build process from a Subversion working copy, start
+with:</p>
+<pre>
+sh ./autogen.sh
+</pre>
+<p>which will prepare the package for compilation. You can then use
+<em>./configure</em> and <em>make</em> in the usual way.</p>
+
+<br>
+<h3>SVN commit messages</h3>
+If you want to stay abreast of the latest changes in the repository,
+means are available to be notified each time a commit is made; see the
+<a href= "mailinglists.shtml">mailing-lists page</a> for details.
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>

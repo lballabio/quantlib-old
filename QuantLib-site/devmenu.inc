@@ -9,7 +9,7 @@
 
 <li class="navlink"><a href="/quep.shtml">Enhancement Proposals</a></li>
 
-<li class="navlink"><a href="/cvs.shtml">CVS</a></li>
+<li class="navlink"><a href="/svn.shtml">Subversion</a></li>
 
 <li class="navlink"><a href=
 "http://wiki.quantlib.org">QuantLib Wiki</a></li>
@@ -23,8 +23,6 @@
 
 <li class="navlink"><a href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests</a></li>
-
-<li class="navlink"><a href="/developerFAQ.shtml">Developer&nbsp;FAQ</a></li>
 
 <li class="navlink"><a href="/style.shtml">Style Guidelines</a></li>
 </ul>
