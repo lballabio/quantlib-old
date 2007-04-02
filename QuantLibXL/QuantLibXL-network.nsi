@@ -1,3 +1,4 @@
+
 ; QuantLibXL Network Distribution
 
 ; Use this script to create an installer suited for writing to a network drive
@@ -44,63 +45,20 @@ ROOT_FOLDER\Docs - the chm documentation file"
 !insertmacro MUI_PAGE_LICENSE "LICENSE.TXT"
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
-!insertmacro MUI_UNPAGE_INSTFILES
 
 ; Languages
 
 !insertmacro MUI_LANGUAGE "English"
 
-; Installer Sections
+; Functions
 
-Section
+Function deletePrevious
 
-    SetOutPath "$INSTDIR"
-    File "Authors.txt"
-    File "Contributors.txt"
-    File "LICENSE.TXT"
-    File "NEWS.txt"
-    File "README.txt"
-
-    SetOutPath "$INSTDIR\framework"
-    File "framework\QuantLibXL.xla"
-    File "framework\QuantLibXLDeveloperTeam.cer"
-
-    SetOutPath "$INSTDIR\metadata"
-    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
-
-    SetOutPath "$INSTDIR\Docs"
-    File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
-
-    SetOutPath "$INSTDIR\Docs\images"
-    File "Docs\images\favicon.bmp"
-    ;eric 28-mar-2007 - i doubt whether these files are required?
-    ;nando 29-mar-2007 - favicon.bmp is needed. not sure about the following 2
-    ;File "Docs\images\favicon.ico"
-    ;File "Docs\images\logo_ql.jpg"
-
-    ;eric 28-mar-2007 - i doubt whether these files are required?
-    ;SetOutPath "$INSTDIR"
-    ;File "QuantLibXL-bin.nsi"
-    ;File "QuantLibXL-network.nsi"
-    ;File "QuantLibXL.nsi"
-
-    SetOutPath "$INSTDIR\xll"
-    File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
-
-    SetOutPath "$INSTDIR\Workbooks"
-    File /r /x Drafts "Workbooks\*.xls"
-
-    WriteUninstaller "QuantLibXL-${VER_NUMBER}-network-uninstall.exe"
-
-SectionEnd
-
-Section "Uninstall"
-
-    ; Uninstall the QLXL network installation
+    ; Uninstall the previous network installation of QLXL
 
     MessageBox MB_YESNO \
-'You are about to permanently delete the installation of QuantLibXL version ${VER_NUMBER}$\n\
-from network directory$\n\
+'You are about to overwrite the installation of QuantLibXL$\n\
+(if any) which currently resides at$\n\
 $INSTDIR$\n\
 Are you certain that this is what you want to do?' IDYES +2
     Quit
@@ -140,6 +98,50 @@ Are you certain that this is what you want to do?' IDYES +2
 
     ; Delete the contents of the root installation directory:
     Delete "$INSTDIR\*"
+
+FunctionEnd
+
+; Installer Sections
+
+Section
+
+    Call deletePrevious
+
+    SetOutPath "$INSTDIR"
+    File "Authors.txt"
+    File "Contributors.txt"
+    File "LICENSE.TXT"
+    File "NEWS.txt"
+    File "README.txt"
+
+    SetOutPath "$INSTDIR\framework"
+    File "framework\QuantLibXL.xla"
+    File "framework\QuantLibXLDeveloperTeam.cer"
+
+    SetOutPath "$INSTDIR\metadata"
+    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
+
+    SetOutPath "$INSTDIR\Docs"
+    File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
+
+    SetOutPath "$INSTDIR\Docs\images"
+    File "Docs\images\favicon.bmp"
+    ;eric 28-mar-2007 - i doubt whether these files are required?
+    ;nando 29-mar-2007 - favicon.bmp is needed. not sure about the following 2
+    ;File "Docs\images\favicon.ico"
+    ;File "Docs\images\logo_ql.jpg"
+
+    ;eric 28-mar-2007 - i doubt whether these files are required?
+    ;SetOutPath "$INSTDIR"
+    ;File "QuantLibXL-bin.nsi"
+    ;File "QuantLibXL-network.nsi"
+    ;File "QuantLibXL.nsi"
+
+    SetOutPath "$INSTDIR\xll"
+    File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+
+    SetOutPath "$INSTDIR\Workbooks"
+    File /r /x Drafts "Workbooks\*.xls"
 
 SectionEnd
 
