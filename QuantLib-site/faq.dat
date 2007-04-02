@@ -72,27 +72,10 @@
 <q>I'm interested in getting involved with the project. What should
    I do?
 
-<a>Contact the QuantLib group by posting to the developers' mailing
-   list (<quantlib-dev@lists.sourceforge.net>) and describe your
-   experience and interests. Before doing this, please read:
-   <ul>
-   <li>the <a href="http://quantlib.org/newdeveloper.shtml">introduction</a>
-       for new developers;<li>
-   <li>the <a href="http://quantlib.org/reference/overview.html">project
-       overview</a> with its to-do suggestions;</li>
-   <li>the <a href="http://quantlib.org/developerFAQ.shtml">developer
-       FAQ</a>;</li>
-   <li>the <a href="http://quantlib.org/style.shtml">programming style
-       guidelines</a>;</li>
-   <li>the detailed low-level
-       <a href="http://quantlib.org/reference/todo.html">to-do list</a>.</li>
-   </ul>
-   Also, you might want to specify an area of the library you are
-   particularly interested to, or which would be most useful to you.
-   Asking the administrators to choose a task for you is ok, but it
-   might take time to get an answer and it increases the odds that the
-   chosen task will bore you or otherwise discourage you from
-   completing it.
+<a> There are many ways in which you can help the project. You can
+    read our <a
+    href="http://quantlib.org/newdeveloper.shtml">developer
+    introduction</a> for more information.
 
 <c>Contributing to the project
 <q>How do I contribute code to the project?
