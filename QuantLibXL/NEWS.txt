@@ -1,2 +1,2 @@
 For a rundown of changes per QuantLibXL release please visit
-http://www.quantlibxl.org/history.html 
+http://www.quantlibxl.org/history.html
