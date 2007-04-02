@@ -1,5 +1,4 @@
 
-
 class Fixing : public Event {
   private:
     boost::shared_ptr<FloatingRateCoupon> coupon_;
@@ -94,7 +93,7 @@ K
 - create new .xls with NPVs of 4 cms books
 - foglio di clerici (interpolazione)
 - remove action atmVolatility from Launcher
-- manual feeds: update to live/overwrite logic 
+- manual feeds: update to live/overwrite logic
 
 Pending:
 - DONE SA: test CmsPricer() observability
