@@ -4,7 +4,6 @@ AM_LDFLAGS = -release $(PACKAGE_VERSION)
 includedir = $(prefix)/include/qlo
 
 lib_LTLIBRARIES = libQuantLibAddin.la
-#libQuantLibAddin_la_LDFLAGS = -release $(PACKAGE_VERSION)
 
 EXTRA_DIST = \
     auto_link.hpp
@@ -20,6 +19,7 @@ include_HEADERS = \
     capletvolstructure.hpp \
     cliquetoption.hpp \
     cmsmarket.hpp \
+    conundrumpricer.hpp \
     config.hpp \
     couponvectors.hpp \
     date.hpp \
@@ -75,11 +75,11 @@ libQuantLibAddin_la_SOURCES = \
     assetswap.cpp \
     barrieroption.cpp \
     bonds.cpp \
-    calendarfactory.cpp \
     capfloor.cpp \
     capletvolstructure.cpp \
     cliquetoption.cpp \
     cmsmarket.cpp \
+    conundrumpricer.cpp \
     couponvectors.cpp \
     date.cpp \
     dividendvanillaoption.cpp \
@@ -122,5 +122,6 @@ libQuantLibAddin_la_SOURCES = \
 
 libQuantLibAddin_la_LIBADD = \
     Conversions/libConversions.la \
+    Factories/libFactories.la \
     ValueObjects/libValueObjects.la
 
