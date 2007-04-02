@@ -334,7 +334,13 @@
 			Name="Enumerations"
 			Filter="">
 			<File
-				RelativePath="qlo\calendarfactory.cpp">
+				RelativePath=".\qlo\Factories\calendarfactory.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Factories\calendarfactory.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Factories\conundrumpricerfactory.hpp">
 			</File>
 			<File
 				RelativePath="qlo\enumclassctors.cpp">
@@ -347,6 +353,27 @@
 			</File>
 			<File
 				RelativePath="qlo\enumtyperegistry.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Factories\euriborhandlefactory.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Factories\iborcouponpricersfactory.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Factories\indexfactory.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Factories\interpolationsfactory.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Factories\payoffsfactory.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Factories\pricingenginesfactory.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Factories\termstructuresfactory.hpp">
 			</File>
 			<File
 				RelativePath="qlo\typefactory.hpp">
@@ -862,9 +889,6 @@
 				RelativePath=".\qlo\Conversions\all.hpp">
 			</File>
 			<File
-				RelativePath=".\qlo\Conversions\coercetermstructure.hpp">
-			</File>
-			<File
 				RelativePath=".\qlo\Conversions\coercecurve.hpp">
 			</File>
 			<File
@@ -875,6 +899,9 @@
 			</File>
 			<File
 				RelativePath=".\qlo\Conversions\coerceobject.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Conversions\coercetermstructure.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\Conversions\conversions.cpp">
