@@ -20,7 +20,7 @@
 #define qla_interpolationsfactory_hpp
 
 #include <qlo/typefactory.hpp>
-#include <ql/math/interpolation2D.hpp>
+#include <ql/math/interpolation2d.hpp>
 
 namespace QuantLibAddin {
 
@@ -34,9 +34,9 @@ namespace QuantLibAddin {
         private RegistryManager<QuantLib::Interpolation, EnumClassRegistry> {
     public:
         boost::shared_ptr<QuantLib::Interpolation> operator() (
-                const std::string& interpolationID, 
+                const std::string& interpolationID,
                 dbl_itr& xBegin, dbl_itr& xEnd, dbl_itr& yBegin) {
-            InterpolationConstructor interpolationConstructor = 
+            InterpolationConstructor interpolationConstructor =
                 (InterpolationConstructor)(getType(interpolationID));
             return interpolationConstructor(xBegin, xEnd, yBegin);
         }
@@ -51,10 +51,10 @@ namespace QuantLibAddin {
         private RegistryManager<QuantLib::Interpolation2D, EnumClassRegistry> {
     public:
         boost::shared_ptr<QuantLib::Interpolation2D> operator() (
-                const std::string& interpolationID, 
+                const std::string& interpolationID,
                 dbl_itr& xBegin, dbl_itr& xEnd, dbl_itr& yBegin, dbl_itr& yEnd,
                 const QuantLib::Matrix& zData) {
-            Interpolation2DConstructor interpolation2DConstructor = 
+            Interpolation2DConstructor interpolation2DConstructor =
                 (Interpolation2DConstructor)(getType(interpolationID));
             return interpolation2DConstructor(xBegin, xEnd, yBegin, yEnd, zData);
         }
