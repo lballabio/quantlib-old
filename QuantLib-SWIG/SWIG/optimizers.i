@@ -169,15 +169,18 @@ class EndCriteria {
     #endif
   public:
   enum Type { 
-  None,
+	      None,
 	      MaxIterations,
 	      StationaryPoint,
-	      StationaryGradient,
+	      StationaryFunctionValue,
+	      StationaryFunctionAccuracy,
+	      ZeroGradientNorm,
 	      Unknown };
     EndCriteria(Size maxIteration,
+		Size maxStationaryStateIterations,
+		Real rootEpsilon,
 		Real functionEpsilon,
-		Real gradientEpsilon,
-		Size maxStationaryStateIterations);
+		Real gradientNormEpsilon);
     bool operator()(Size iteration,
 		    Size &statState,
 		    const bool positiveOptimization,
