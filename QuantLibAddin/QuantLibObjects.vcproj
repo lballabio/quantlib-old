@@ -769,6 +769,12 @@
 				RelativePath=".\qlo\analysis.hpp">
 			</File>
 			<File
+				RelativePath=".\qlo\conundrumpricer.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\conundrumpricer.hpp">
+			</File>
+			<File
 				RelativePath="qlo\couponvectors.cpp">
 			</File>
 			<File
