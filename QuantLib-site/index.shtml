@@ -111,7 +111,7 @@ the most recent updates on the project.</li>
 <li>The released files (source code, binaries, documentation, etc.)
 are available at the <a href="download.shtml">download
 page</a>.</li>
-<li>The <a href="cvs.shtml">QuantLib CVS repository</a>, providing all
+<li>The <a href="svn.shtml">QuantLib SVN repository</a>, providing all
 the snapshots of the development, can be accessed directly or through
 a web interface.</li>
 <li>To submit a bug report, please use the <a href=
