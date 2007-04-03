@@ -32,7 +32,8 @@ class TermStructureTest(unittest.TestCase):
             DepositRateHelper(
                 QuoteHandle(SimpleQuote(rate/100)),
                 Period(n, units), self.settlementDays,
-                self.calendar, ModifiedFollowing, Actual360())
+                self.calendar, ModifiedFollowing,
+                False, self.settlementDays, Actual360())
             for (n,units,rate) in [ (1, Months, 4.581),
                                     (2, Months, 4.573),
                                     (3, Months, 4.557),

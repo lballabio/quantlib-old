@@ -45,7 +45,8 @@ class TermStructureTest < Test::Unit::TestCase
     deposits = depositData.map { |n,units,rate|
       DepositRateHelper.new(QuoteHandle.new(SimpleQuote.new(rate/100)),
                             Period.new(n, units), @settlementDays, @calendar,
-                            ModifiedFollowing, Actual360.new)
+                            ModifiedFollowing, false, @settlementDays,
+                            Actual360.new)
     }
     swapData = [
         [ 1, 4.54],

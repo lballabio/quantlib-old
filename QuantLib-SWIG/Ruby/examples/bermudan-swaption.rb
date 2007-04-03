@@ -46,7 +46,7 @@ def calibrate(model, helpers, l, name)
   puts rule
 
   method = Simplex.new(l);
-  model.calibrate!(helpers, method, EndCriteria.new(1000, 1.0e-7))
+  model.calibrate!(helpers, method, EndCriteria.new(1000,250,1e-7,1e-7,1e-7))
 
   puts "Parameters: #{model.params}"
   puts rule

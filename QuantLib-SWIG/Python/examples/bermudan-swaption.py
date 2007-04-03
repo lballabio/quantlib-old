@@ -43,7 +43,7 @@ def calibrate(model, helpers, l, name):
     print rule
 
     method = Simplex(l);
-    model.calibrate(helpers, method, EndCriteria(1000, 1.0e-7));
+    model.calibrate(helpers, method, EndCriteria(1000, 250, 1e-7, 1e-7, 1e-7))
 
     print 'Parameters: %s' % model.params()
     print rule

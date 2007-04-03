@@ -70,7 +70,7 @@
 
     (let ((method (new-Simplex l)))
       (ShortRateModel-calibrate! model helpers method
-                                 (new-EndCriteria 1000 1.0e-7))
+                                 (new-EndCriteria 1000 250 1e-7 1e-7 1e-7))
 
       (display (format #f "Parameters: ~a" (Array->string
                                             (ShortRateModel-params model))))
