@@ -165,6 +165,7 @@ Cristina
 - WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
 - bond pricing engine
 - TO BE DISCUSSED error in cashflowvectors if a single cash flow exists
+- WIP new management of additional cashflows in Cms book
 
 
 Giorgio
