@@ -42,6 +42,8 @@ namespace QuantLibAddin {
     : Interpolation(x,y) {
         libraryObject_ = Create<boost::shared_ptr<QuantLib::Interpolation> >()
             (linearInterpolationType, x_.begin(), x_.end(), y_.begin());
+        boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_)->update();
     }
 
     CubicSplineInterpolation::CubicSplineInterpolation(
@@ -58,6 +60,8 @@ namespace QuantLibAddin {
                                   leftCondition, leftConditionValue,
                                   rightCondition, rightConditionValue,
                                   monotonicityConstraint));
+        boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_)->update();
     }
 
     SABRInterpolation::SABRInterpolation(
@@ -84,6 +88,8 @@ namespace QuantLibAddin {
                                         isAlphaFixed, isBetaFixed,
                                         isNuFixed, isRhoFixed, vegaWeighted,
                                         ec, om));
+        boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_)->update();
     }
    
 }
