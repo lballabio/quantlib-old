@@ -169,8 +169,7 @@ Cristina
 
 
 Giorgio
-- prepare .doc for EOD procedure for De Nuccio's desk
-- verify sensitivity of beta and mean best calibrated values. Compare  values
+D verify sensitivity of beta and mean best calibrated values. Compare  values
   using as guess the previous day values (global cms market) or using the current
   day guesses as from the 5 cms market sections
 D 1.check npv
@@ -182,7 +181,7 @@ D coupon refactoring and extension (shared among Cristina and Giorgio)
 WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
 D think about how to simplify mean reversion usage, cms swaption calibration
 WIP ratchet Instrument C++ (shared among Marco, Giorgio)
-- range accrual coupon
+WIP range accrual coupon
 - spreaded swaption vol structure
 - spreaded caplet vol structure
 
