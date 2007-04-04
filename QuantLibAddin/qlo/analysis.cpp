@@ -21,8 +21,8 @@
 #endif
 
 #include <qlo/analysis.hpp>
-#include <ql/cashflows/cmscoupon.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
+#include <ql/Indexes/interestrateindex.hpp>
 
 namespace QuantLibAddin {
 

@@ -27,6 +27,7 @@
 #include <ql/instruments/swap.hpp>
 #include <ql/instruments/makecms.hpp>
 #include <ql/cashflows/analysis.hpp>
+#include <ql/cashflows/couponpricer.hpp>
 
 namespace QuantLibAddin {
 
