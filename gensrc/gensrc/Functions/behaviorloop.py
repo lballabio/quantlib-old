@@ -41,12 +41,12 @@ class BehaviorLoop(object):
     def generateBody(self, addin):
         """Generate source code for the body of the function."""
         return addin.bufferLoop().text() % {
-            'functionDisplayName' : self.func_.name(),
             'inputList' : self.func_.parameterList().generate(addin.loopInputs()),
             'inputParam' : self.loopParamRef_.name(),
             'functionCodeName' : self.functionCodeName_,
+            'functionName' : self.functionName_,
+            'functionSignature' : self.functionSignature_,
             'inputType' : addin.loopReturnType().apply(self.loopParamRef_),
-            'namespaceObjects' : environment.config().namespaceObjects(),
             'objectName' : self.objectName_,
             'returnType' : addin.loopReturnType().apply(self.func_.returnValue()) }
 
@@ -82,6 +82,8 @@ class BehaviorLoop(object):
         # Configure the function to loop on the given parameter.
         self.loopParamRef_.setLoop(True)
         self.func_.returnValue().setLoop(True)
+        self.functionName_ = environment.config().namespaceObjects() + '::' + self.func_.name()
+        self.functionSignature_ = ''
         # Set the default value of the loop parameter to None, overwriting any default value that
         # may have been configured.  FIXME should raise an exception instead.
         #self.loopParamRef_.setDefault(None)
@@ -137,6 +139,7 @@ class BehaviorMemberLoop(BehaviorLoop):
         BehaviorLoop.__init__(self)
         self.setScope()
         self.functionCodeName_ = self.functionScope_ + '::' + self.func_.libraryFunction()
+        self.functionSignature_ = '(' + self.functionName_ + 'Signature)'
         self.objectName_ = '\n' + 16 * ' ' + self.func_.parameterObjectID().nameConverted() + ','
 
 class BehaviorEnumerationLoop(BehaviorMemberLoop):

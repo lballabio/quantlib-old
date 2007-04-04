@@ -3,12 +3,11 @@
 
         static XLOPER returnValue;
 
-        %(namespaceObjects)s::%(functionDisplayName)sBind bindObject = 
-            boost::bind(
-                (%(namespaceObjects)s::%(functionDisplayName)sSignature)
-                    &%(functionCodeName)s,%(objectName)s%(inputList)s);
+        %(functionName)sBind bindObject = 
+            boost::bind(%(functionSignature)s
+                &%(functionCodeName)s,%(objectName)s%(inputList)s);
         ObjHandler::loop
-            <%(namespaceObjects)s::%(functionDisplayName)sBind, %(inputType)s, %(returnType)s>
+            <%(functionName)sBind, %(inputType)s, %(returnType)s>
 #ifdef OHXL_ENABLE_GARBAGE_COLLECTION
             (functionCall, bindObject, %(inputParam)s, returnValue);
 #else
