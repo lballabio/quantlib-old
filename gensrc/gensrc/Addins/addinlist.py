@@ -1,7 +1,6 @@
 
 """
  Copyright (C) 2007 Eric Ehlers
- Copyright (C) 2007 Marco Marchioro
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
