@@ -56,26 +56,26 @@ namespace QuantLibAddin {
 
         std::vector<boost::any> headings(numberOfColumn);
         headings[0]=std::string("CM Swap Index");
-        headings[1]=std::string("Exp");
+        headings[1]=std::string("Maturity");
 
-        headings[2]=std::string("Mkt Bid (bps)");
-        headings[3]=std::string("Mkt Ask (bps)");
-        headings[4]=std::string("Mkt Mid (bps)");
-        headings[5]=std::string("Model Mid (bps)");
-        headings[6]=std::string("Error (bps)");
-        headings[7]=std::string("Outside bid/ask");
+        headings[2]=std::string("Mkt Bid - Spread (bps)");
+        headings[3]=std::string("Mkt Ask - Spread (bps)");
+        headings[4]=std::string("Mkt Mid - Spread (bps)");
+        headings[5]=std::string("Model Mid - Spread (bps)");
+        headings[6]=std::string("Error - Spread (bps)");
+        headings[7]=std::string("Outside bid/ask (bps)");
         
-        headings[8]=std::string("Mkt bid - spot price");
-        headings[9]=std::string("Mkt ask - spot price");
-        headings[10]=std::string("Mkt mid - spot price");
-        headings[11]=std::string("Model mid - spot price");
-        headings[12]=std::string("Spot price error");  
+        headings[8]=std::string("Mkt bid - Spot price");
+        headings[9]=std::string("Mkt ask - Spot price");
+        headings[10]=std::string("Mkt mid - Spot price");
+        headings[11]=std::string("Model mid - Spot price");
+        headings[12]=std::string("Error - Spot price");  
         
-        headings[13]=std::string("Mkt bid - fwd price");
-        headings[14]=std::string("Mkt ask - fwd price");
-        headings[15]=std::string("Mkt mid - fwd price");
-        headings[16]=std::string("Model mid - fwd price");
-        headings[17]=std::string("Fwd price error"); 
+        headings[13]=std::string("Mkt bid - Fwd price");
+        headings[14]=std::string("Mkt ask - Fwd price");
+        headings[15]=std::string("Mkt mid - Fwd price");
+        headings[16]=std::string("Model mid - Fwd price");
+        headings[17]=std::string("Error - Fwd price"); 
         
         headings[18]=std::string("Mean rev.");
 
