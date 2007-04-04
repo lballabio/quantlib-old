@@ -485,55 +485,50 @@
             </ParameterList>
         </Constructor>
 
-        <Constructor name='qlConundrumPricerByNumericalIntegration'>
-            <libraryFunction>ConundrumPricerByNumericalIntegration</libraryFunction>
-            <functionCategory>QuantLib</functionCategory>
-            <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters>
-                    <Parameter name='swaptionVol'>
-                        <type>QuantLib::SwaptionVolatilityStructure</type>
-                        <superType>libToHandle</superType>
-                        <tensorRank>scalar</tensorRank>
-                        <description>Volatility Cube by Sabr</description>
-                    </Parameter>
-                    <Parameter name='ModelOfYieldCurve'>
-                        <type>QuantLib::GFunctionFactory::ModelOfYieldCurve</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
-                    </Parameter>
-                    <Parameter name='meanReversion'>
-                        <type>QuantLib::Quote</type>
-                        <superType>libToHandle</superType>
-                        <tensorRank>scalar</tensorRank>
-                        <description>mean reversion</description>
-                    </Parameter>
-                    <Parameter name='lowerLimit' default='0.0'>
-                      <type>QuantLib::Real</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>lower limit. If omitted, default = 0.0 is used.</description>
-                    </Parameter>
-                    <Parameter name='upperLimit' default='1.0'>
-                        <type>QuantLib::Real</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>upper limit If omitted, default = 1.0 is used.</description>
-                    </Parameter>
-                    <Parameter name='precision' default='1.0e-6'>
-                        <type>QuantLib::Real</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>precision If omitted, default = 1.0e-6 is used.</description>
-                    </Parameter>
-                    <Parameter name='numberOfStdDeviationsForUpperLimit' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>QuantLib::Real</type>
-                        <tensorRank>scalar</tensorRank>
-                        <description>number of stdDeviations for upperLimit. If omitted, upperLimit is used.</description>
-                    </Parameter>
-                </Parameters>
-            </ParameterList>
-        </Constructor>
-      
+      <Constructor name='qlConundrumPricerByNumericalIntegration'>
+        <libraryFunction>ConundrumPricerByNumericalIntegration</libraryFunction>
+        <functionCategory>QuantLib</functionCategory>
+        <SupportedPlatforms>
+          <SupportedPlatform name='Excel' calcInWizard='false' />
+        </SupportedPlatforms>
+        <ParameterList>
+          <Parameters>
+            <Parameter name='swaptionVol'>
+              <type>QuantLib::SwaptionVolatilityStructure</type>
+              <superType>libToHandle</superType>
+              <tensorRank>scalar</tensorRank>
+              <description>Volatility Cube by Sabr</description>
+            </Parameter>
+            <Parameter name='ModelOfYieldCurve'>
+              <type>QuantLib::GFunctionFactory::ModelOfYieldCurve</type>
+              <tensorRank>scalar</tensorRank>
+              <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
+            </Parameter>
+            <Parameter name='meanReversion'>
+              <type>QuantLib::Quote</type>
+              <superType>libToHandle</superType>
+              <tensorRank>scalar</tensorRank>
+              <description>mean reversion</description>
+            </Parameter>
+            <Parameter name='lowerLimit' default='0.0'>
+              <type>QuantLib::Real</type>
+              <tensorRank>scalar</tensorRank>
+              <description>lower limit. If omitted, default = 0.0 is used.</description>
+            </Parameter>
+            <Parameter name='upperLimit' default='1.0'>
+              <type>QuantLib::Real</type>
+              <tensorRank>scalar</tensorRank>
+              <description>upper limit If omitted, default = 1.0 is used.</description>
+            </Parameter>
+            <Parameter name='precision' default='1.0e-6'>
+              <type>QuantLib::Real</type>
+              <tensorRank>scalar</tensorRank>
+              <description>precision If omitted, default = 1.0e-6 is used.</description>
+            </Parameter>
+          </Parameters>
+        </ParameterList>
+      </Constructor>
+
       <Member name='qlConundrumPricerByNumericalIntegrationElapsed' type='QuantLib::ConundrumPricerByNumericalIntegration'>
         <description>Returns the elapsed time of the simultaneous calibration</description>
         <libraryFunction>elapsed</libraryFunction>

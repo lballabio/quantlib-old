@@ -46,8 +46,7 @@ namespace QuantLibAddin {
 			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             QuantLib::Rate lowerLimit,
             QuantLib::Rate upperLimit,
-			QuantLib::Real precision,
-			QuantLib::Real numberOfStdDeviationsForUpperLimit){
+			QuantLib::Real precision){
 				/*QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve
 					= QuantLib::GFunctionFactory::ModelOfYieldCurve(2);*/
 				libraryObject_ = 
@@ -57,7 +56,6 @@ namespace QuantLibAddin {
 																	meanReversion,
 																	lowerLimit,
 																	upperLimit,
-																	precision,
-                                                                    numberOfStdDeviationsForUpperLimit));
+																	precision));
 	};
 }

@@ -211,7 +211,7 @@ namespace QuantLibAddin {
                par[j] = sabrParameters[i][j]; 
             }
             std::ostringstream endCriteria;
-            endCriteria << sabrParameters[i][numberOfColumn-1];
+            endCriteria << QuantLib::EndCriteria::Type(static_cast<QuantLib::Integer>(sabrParameters[i][numberOfColumn-1]));
             par[numberOfColumn-1] = endCriteria.str();
 
             sparseSabrParameters.push_back(par);

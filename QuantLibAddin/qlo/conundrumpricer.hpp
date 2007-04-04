@@ -45,14 +45,13 @@ namespace QuantLibAddin {
 
 	class ConundrumPricerByNumericalIntegration: public CmsCouponPricer{
 	public:
-		ConundrumPricerByNumericalIntegration(
+	  ConundrumPricerByNumericalIntegration(
 			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
 			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             QuantLib::Rate lowerLimit,
             QuantLib::Rate upperLimit,
-			QuantLib::Real precision,
-			QuantLib::Real numberOfStdDeviationsForUpperLimit);
+			QuantLib::Real precision);
 	};
 }
 
