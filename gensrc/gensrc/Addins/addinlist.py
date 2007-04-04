@@ -110,10 +110,6 @@ addin           unchanged   updated     created     total'''
         for addin in self.addins_:
             addin.printDebug()
 
-    #############################################
-    # private member functions
-    #############################################
-
     def __init__(self, addinIds):
         """initialize"""
 
