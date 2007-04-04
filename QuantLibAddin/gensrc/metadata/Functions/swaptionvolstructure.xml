@@ -18,7 +18,6 @@
   <Functions>
 
     <!-- SwaptionVolatilityStructure interface-->
-
     <Member name='qlSwaptionVTSVolatility' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='strike'>
       <description>Returns volatility from the given SwaptionVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
@@ -40,12 +39,12 @@
           <Parameter name='strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>swaption strike vector</description>
+            <description>swaption strike</description>
           </Parameter>
           <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -76,7 +75,7 @@
           <Parameter name='strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>swaption strike vector</description>
+            <description>swaption strike</description>
           </Parameter>
           <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>

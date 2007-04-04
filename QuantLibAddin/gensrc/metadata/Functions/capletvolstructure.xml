@@ -16,25 +16,25 @@
   <Functions>
 
     <!-- CapletVolatilityStructure interface-->
-    <Member name='qlCapletVTSVolatility' type='QuantLib::CapletVolatilityStructure' superType='libraryClass' loopParameter='strikes'>
-      <description>Returns a vector of volatilities corresponding to a vector of strikes for a given exercise date.</description>
+    <Member name='qlCapletVTSVolatility' type='QuantLib::CapletVolatilityStructure' superType='libraryClass' loopParameter='strike'>
+      <description>Returns volatility from the given CapletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='expiry'>
+          <Parameter name='optionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cap/floor expiry date</description>
+            <description>caplet/floorlet expiry date</description>
           </Parameter>
-          <Parameter name='strikes' const='False'>
+          <Parameter name='strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>cap/floor strike vector</description>
+            <description>caplet/floorlet strike</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False'>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Extrapolation Flag (TRUE allows extrapolation)</description>
@@ -47,6 +47,37 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlCapletVTSVolatility2' type='QuantLib::CapletVolatilityStructure' superType='libraryClass' loopParameter='strike'>
+      <description>Returns volatility from the given CapletVolatilityStructure object.</description>
+      <libraryFunction>volatility</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionTenor' exampleValue ='5y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>caplet/floorlet option tenor</description>
+          </Parameter>
+          <Parameter name='strike' exampleValue ='0.04' const='False'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>caplet/floorlet strike</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
     <Member name='qlCapletVTSBlackVariance' type='QuantLib::CapletVolatilityStructure' superType='libraryClass' loopParameter='strikes'>
       <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
