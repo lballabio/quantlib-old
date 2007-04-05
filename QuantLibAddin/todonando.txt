@@ -87,15 +87,37 @@ Nando
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 
 K
-- coveredWarrants.xls
-- prepare report for release in Production: 28 Feb 9:10
+- macro "Close/Save" deve settare il focus sul foglio "Settings"
+- sabr interpolation: allow fixing pparam nu
+- capVolStructure.xml rendilo uguale SwaptionVolStructure.xml
+- CapStripper6MTestSmoothness.xls: testa la smoothness della dorsale ATM con l'interpolazione lineare
+- CapStripper6MTestRepricing.xls: aggiungi
+- cap stripper: decidere se usare le interpolated vols da usare nel cap stripper
+- macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
+- migliora la macro "Copy Values" in SingleMeanReversion.xls
+- smile sections:
+	- rimuovi calibrazione dal costruttore
+	- usa ottimizzatore Levenberg
+	- sposta le vols fuori dal costruttore
+- controlPanel.xls: utilizza relinkable handle
+- rimuovere Singleton a set YTS agli Euribor
+- EOD valuation: completare analisi dei nuovi deal 
+- 3M cap stripper: sensitivity to market data
+- bug in function SetRealTime() -> Rt seems not to switch settings
+- manage auto-open macro problem
+- coveredWarrants.xls: 
+	- gestione del primo periodo corto
+	- qlMakeCapFloor() ok tranne che per seasoned deals
+	- punta a decorated objects
 - SA: applied to cms book
 - create new .xls with NPVs of 4 cms books
 - foglio di clerici (interpolazione)
 - remove action atmVolatility from Launcher
-- manual feeds: update to live/overwrite logic
+- manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
 
 Pending:
+- DONE ManualCapFeed updated to live/overwrite logic
+- DONE prepare report for release in Production: 5 Apr
 - DONE SA: test CmsPricer() observability
 - DONE new calibrations QuantLibXL actions
 - DONE review of .xls used in Eods
@@ -169,6 +191,7 @@ Cristina
 
 
 Giorgio
+does not allow extrapolation in vol cube for option tenors less than 2Y
 D verify sensitivity of beta and mean best calibrated values. Compare  values
   using as guess the previous day values (global cms market) or using the current
   day guesses as from the 5 cms market sections
