@@ -20,7 +20,7 @@
 
 Name "QuantLibXL Network Distribution"
 OutFile "..\QuantLibXL-${VER_NUMBER}-${NOW}-network.exe"
-InstallDir "X:\Offices1\CabotoXL"
+InstallDir "X:\Offices1\CabotoXL\03 Testing"
 
 ; Interface Settings
 
@@ -119,6 +119,7 @@ Section
     File "framework\QuantLibXLDeveloperTeam.cer"
 
     SetOutPath "$INSTDIR\metadata"
+    ;File /r "metadata\*.xml"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
 
     SetOutPath "$INSTDIR\Docs"

@@ -6,7 +6,7 @@
 
     <Environment name="01 Production">
       <Framework>X:\Offices1\CabotoXL\01 Production\framework\QuantLibXL.xla</Framework>
-      <FrameworkVersion>5</FrameworkVersion>
+      <FrameworkVersion>6</FrameworkVersion>
       <Workbooks>X:\Offices1\CabotoXL\01 Production\Workbooks</Workbooks>
       <HelpFile>X:\Offices1\CabotoXL\01 Production\Docs</HelpFile>
       <UserConfigurationFile>X:\Offices1\CabotoXL\Users\01 users.xml</UserConfigurationFile>
@@ -35,7 +35,7 @@
       <UserConfigurationFile>X:\Offices1\CabotoXL\Users\02 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Offices1\CabotoXL\02 Pre-Production\metadata</FunctionMetadata>
       <AddinList>
-        <Addin>QuantLibXL-vc80-mt-s-0_9_0.xll</Addin>
+        <Addin>QuantLibXL-vc80-mt-s-0_8_0.xll</Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>

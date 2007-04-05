@@ -28,7 +28,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>0.32.6.0</ApplicationVersion>
+    <ApplicationVersion>0.34.0.0</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -138,9 +138,6 @@
     <Content Include="Environments\config.xml" />
     <Content Include="images\down.bmp" />
     <Content Include="images\favicon.ico" />
-    <Content Include="Addins\02 Pre-Production\QuantLibXL-vc80-mt-s-0_9_0.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="images\up.bmp" />
     <Content Include="updateLauncherXlls.py" />
     <Content Include="Users\users.xml" />
@@ -148,6 +145,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Addins\03 Testing\QuantLibXL-vc80-mt-s-0_8_0.xll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Addins\02 Pre-Production\QuantLibXL-vc80-mt-s-0_8_0.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="images\rename.bmp" />
@@ -177,7 +177,7 @@
       </TargetPath>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\QuantLibXL-vc80-mt-s-0_9_0.xll">
+    <PublishFile Include="Addins\02 Pre-Production\QuantLibXL-vc80-mt-s-0_8_0.xll">
       <Visible>False</Visible>
       <PublishState>DataFile</PublishState>
       <Group>
