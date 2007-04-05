@@ -74,7 +74,7 @@ Are you certain that this is what you want to do?' IDYES +2
     ; for the installation of the next version of QLXL.
     Delete "$INSTDIR\Workbooks\*"
     Delete "$INSTDIR\Workbooks\Bonds\*"
-    Delete "$INSTDIR\Workbooks\Calibrations\*"
+    Delete "$INSTDIR\Workbooks\CmsCalibrations\*"
     Delete "$INSTDIR\Workbooks\CoveredWarrants\*"
     Delete "$INSTDIR\Workbooks\DateCalendarsDayCounters\*"
     Delete "$INSTDIR\Workbooks\FrozenMarketData\*"
@@ -131,11 +131,10 @@ Section
     ;File "Docs\images\favicon.ico"
     ;File "Docs\images\logo_ql.jpg"
 
-    ;eric 28-mar-2007 - i doubt whether these files are required?
-    ;SetOutPath "$INSTDIR"
-    ;File "QuantLibXL-bin.nsi"
-    ;File "QuantLibXL-network.nsi"
-    ;File "QuantLibXL.nsi"
+    SetOutPath "$INSTDIR"
+    File "QuantLibXL-bin.nsi"
+    File "QuantLibXL-network.nsi"
+    File "QuantLibXL.nsi"
 
     SetOutPath "$INSTDIR\xll"
     File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
@@ -144,4 +143,3 @@ Section
     File /r /x Drafts "Workbooks\*.xls"
 
 SectionEnd
-
