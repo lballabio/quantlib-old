@@ -87,6 +87,7 @@ Nando
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 
 K
+- rename correctly of qlSimultaneousCalibration()
 - macro "Close/Save" deve settare il focus sul foglio "Settings"
 - sabr interpolation: allow fixing pparam nu
 - capVolStructure.xml rendilo uguale SwaptionVolStructure.xml
