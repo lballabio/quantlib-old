@@ -31,12 +31,12 @@
 #include <ql/instruments/payoffs.hpp>
 #include <ql/instruments/quantoforwardvanillaoption.hpp>
 #include <ql/pricingengines/all.hpp>
-#include <ql/math/backwardflatinterpolation.hpp>
-#include <ql/math/forwardflatinterpolation.hpp>
-#include <ql/math/linearinterpolation.hpp>
-#include <ql/math/bilinearinterpolation.hpp>
-#include <ql/math/bicubicsplineinterpolation.hpp>
-#include <ql/math/sabrinterpolation.hpp>
+#include <ql/math/interpolations/backwardflatinterpolation.hpp>
+#include <ql/math/interpolations/forwardflatinterpolation.hpp>
+#include <ql/math/interpolations/linearinterpolation.hpp>
+#include <ql/math/interpolations/bilinearinterpolation.hpp>
+#include <ql/math/interpolations/bicubicsplineinterpolation.hpp>
+#include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
 #include <ql/cashflows/couponpricer.hpp>
 

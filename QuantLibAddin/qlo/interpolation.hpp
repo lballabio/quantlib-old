@@ -20,8 +20,8 @@
 
 #include <oh/objhandler.hpp>
 #include <ql/optimization/method.hpp>
-#include <ql/math/linearinterpolation.hpp>
-#include <ql/math/cubicspline.hpp>
+#include <ql/math/interpolations/linearinterpolation.hpp>
+#include <ql/math/interpolations/cubicspline.hpp>
 #include <ql/math/matrix.hpp>
 
 namespace QuantLibAddin {

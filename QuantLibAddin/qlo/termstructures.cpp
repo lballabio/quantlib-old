@@ -27,7 +27,7 @@
 #include <qlo/Factories/termstructuresfactory.hpp>
 
 #include <ql/date.hpp>
-#include <ql/math/cubicspline.hpp>
+#include <ql/math/interpolations/cubicspline.hpp>
 #include <ql/termstructures/discountcurve.hpp>
 #include <ql/termstructures/forwardcurve.hpp>
 #include <ql/termstructures/impliedtermstructure.hpp>

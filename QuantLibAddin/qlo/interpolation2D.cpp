@@ -19,8 +19,8 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/interpolation2D.hpp>
-#include <ql/math/bilinearinterpolation.hpp>
-#include <ql/math/bicubicsplineinterpolation.hpp>
+#include <ql/math/interpolations/bilinearinterpolation.hpp>
+#include <ql/math/interpolations/bicubicsplineinterpolation.hpp>
 #include <qlo/Factories/interpolationsfactory.hpp>
 
 namespace QuantLibAddin {

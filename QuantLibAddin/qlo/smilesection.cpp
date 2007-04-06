@@ -19,7 +19,7 @@
 #endif
 
 #include <qlo/smilesection.hpp>
-#include <ql/math/sabrinterpolation.hpp>
+#include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/volatilities/smilesection.hpp>
 
 
