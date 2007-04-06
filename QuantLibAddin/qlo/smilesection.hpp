@@ -18,10 +18,10 @@
 #define qla_smilesection_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/volatilities/smilesection.hpp>
-#include <ql/volatilities/interpolatedsmilesection.hpp>
-#include <ql/optimization/method.hpp>
-#include <ql/volatilities/sabrinterpolatedsmilesection.hpp>
+#include <ql/termstructures/volatilities/smilesection.hpp>
+#include <ql/termstructures/volatilities/interpolatedsmilesection.hpp>
+#include <ql/math/optimization/method.hpp>
+#include <ql/termstructures/volatilities/sabrinterpolatedsmilesection.hpp>
 
 namespace QuantLibAddin {
     

@@ -22,7 +22,7 @@
 #define qla_termstructures_hpp
 
 #include <ql/termstructure.hpp>
-#include <ql/termstructures/forwardspreadedtermstructure.hpp>
+#include <ql/termstructures/yieldcurves/forwardspreadedtermstructure.hpp>
 #include <ql/termstructures/ratehelpers.hpp>
 #ifdef QL_DISABLE_DEPRECATED
 #include <ql/quotes/simplequote.hpp>

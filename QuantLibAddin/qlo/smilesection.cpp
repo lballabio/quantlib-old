@@ -20,7 +20,7 @@
 
 #include <qlo/smilesection.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
-#include <ql/volatilities/smilesection.hpp>
+#include <ql/termstructures/volatilities/smilesection.hpp>
 
 
 namespace QuantLibAddin {

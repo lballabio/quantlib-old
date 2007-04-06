@@ -19,11 +19,11 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/optimization.hpp>
-#include <ql/optimization/armijo.hpp>
-#include <ql/optimization/conjugategradient.hpp>
-#include <ql/optimization/levenbergmarquardt.hpp>
-#include <ql/optimization/simplex.hpp>
-#include <ql/optimization/steepestdescent.hpp>
+#include <ql/math/optimization/armijo.hpp>
+#include <ql/math/optimization/conjugategradient.hpp>
+#include <ql/math/optimization/levenbergmarquardt.hpp>
+#include <ql/math/optimization/simplex.hpp>
+#include <ql/math/optimization/steepestdescent.hpp>
 
 namespace QuantLibAddin {
 

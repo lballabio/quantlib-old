@@ -20,11 +20,11 @@
 #define qla_randomsequencegenerator_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/randomnumbers/core.hpp>
-#include <ql/randomnumbers/faurersg.hpp>
-#include <ql/randomnumbers/mt19937uniformrng.hpp>
-#include <ql/randomnumbers/sobolrsg.hpp>
-#include <ql/randomnumbers/haltonrsg.hpp>
+#include <ql/math/randomnumbers/core.hpp>
+#include <ql/math/randomnumbers/faurersg.hpp>
+#include <ql/math/randomnumbers/mt19937uniformrng.hpp>
+#include <ql/math/randomnumbers/sobolrsg.hpp>
+#include <ql/math/randomnumbers/haltonrsg.hpp>
 #include <vector>
 
 namespace QuantLibAddin {

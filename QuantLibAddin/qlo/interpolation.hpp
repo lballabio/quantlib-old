@@ -19,7 +19,7 @@
 #define qla_interpolation_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/optimization/method.hpp>
+#include <ql/math/optimization/method.hpp>
 #include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/cubicspline.hpp>
 #include <ql/math/matrix.hpp>

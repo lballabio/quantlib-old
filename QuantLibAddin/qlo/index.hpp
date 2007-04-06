@@ -22,7 +22,7 @@
 #define qla_xibor_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/businessdayconvention.hpp>
+#include <ql/time/businessdayconvention.hpp>
 #include <ql/handle.hpp>
 #include <ql/types.hpp>
 #include <string>

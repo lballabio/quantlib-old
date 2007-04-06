@@ -3,8 +3,8 @@
     <displayName>Calendar</displayName>
     <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
     <includes>
-        <include>ql/date.hpp</include>
-        <include>ql/calendar.hpp</include>
+        <include>ql/time/date.hpp</include>
+        <include>ql/time/calendar.hpp</include>
     </includes>
     <copyright>
         Copyright (C) 2006 Eric Ehlers

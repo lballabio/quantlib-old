@@ -42,7 +42,7 @@
 #include <ql/marketmodels/products/multiproductcomposite.hpp>
 #include <ql/shortratemodels/libormarketmodels/lmextlinexpvolmodel.hpp>
 #include <ql/shortratemodels/libormarketmodels/lmlinexpcorrmodel.hpp>
-#include <ql/volatilities/abcd.hpp>
+#include <ql/termstructures/volatilities/abcd.hpp>
 
 
 namespace QuantLibAddin {

@@ -20,7 +20,7 @@
 #include <qlo/Conversions/coerceobject.hpp>
 #include <qlo/quotes.hpp>
 #include <ql/utilities/dataparsers.hpp>
-#include <ql/period.hpp>
+#include <ql/time/period.hpp>
 #include <ohxl/Conversions/opertoscalar.hpp>
 #include <oh/object.hpp>
 #include <oh/objecthandler.hpp>

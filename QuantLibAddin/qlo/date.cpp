@@ -17,7 +17,7 @@
 
 
 #include <qlo/date.hpp>
-#include <ql/date.hpp>
+#include <ql/time/date.hpp>
 #include <ql/settings.hpp>
 
 using QuantLib::Date;

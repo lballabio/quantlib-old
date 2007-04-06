@@ -23,7 +23,7 @@
 
 #ifndef qla_settings_hpp
 #define qla_settings_hpp
-#include <ql/date.hpp>
+#include <ql/time/date.hpp>
 #include <ql/settings.hpp>
 
 namespace QuantLibAddin {

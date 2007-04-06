@@ -20,8 +20,8 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/Conversions/conversions.hpp>
-#include <ql/date.hpp>
-#include <ql/period.hpp>
+#include <ql/time/date.hpp>
+#include <ql/time/period.hpp>
 #include <ql/interestrate.hpp>
 
 using std::vector;

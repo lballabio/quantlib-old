@@ -26,12 +26,12 @@
 #include <qlo/ratehelpers.hpp>
 #include <qlo/Factories/termstructuresfactory.hpp>
 
-#include <ql/date.hpp>
+#include <ql/time/date.hpp>
 #include <ql/math/interpolations/cubicspline.hpp>
-#include <ql/termstructures/discountcurve.hpp>
-#include <ql/termstructures/forwardcurve.hpp>
-#include <ql/termstructures/impliedtermstructure.hpp>
-#include <ql/termstructures/flatforward.hpp>
+#include <ql/termstructures/yieldcurves/discountcurve.hpp>
+#include <ql/termstructures/yieldcurves/forwardcurve.hpp>
+#include <ql/termstructures/yieldcurves/impliedtermstructure.hpp>
+#include <ql/termstructures/yieldcurves/flatforward.hpp>
 
 namespace QuantLibAddin {
 

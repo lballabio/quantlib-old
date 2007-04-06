@@ -25,7 +25,7 @@
 #include <oh/objhandlerdefines.hpp>
 #include <qlo/ratehelpers.hpp>
 
-#include <ql/date.hpp>
+#include <ql/time/date.hpp>
 
 namespace QuantLibAddin {
 

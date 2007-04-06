@@ -3,7 +3,7 @@
   <displayName>Daycounter</displayName>
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
   <includes>
-    <include>ql/date.hpp</include>
+    <include>ql/time/date.hpp</include>
     <include>ql/daycounter.hpp</include>
   </includes>
     <copyright>

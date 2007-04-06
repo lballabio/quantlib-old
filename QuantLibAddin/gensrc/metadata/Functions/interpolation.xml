@@ -6,10 +6,10 @@
     <include>qlo/interpolation.hpp</include>
     <include>qlo/interpolation2D.hpp</include>
     <include>qlo/optimization.hpp</include>
-    <include>ql/Optimization/method.hpp</include>
-    <include>ql/Math/sabrinterpolation.hpp</include>
-    <include>ql/Math/bilinearinterpolation.hpp</include>
-    <include>ql/Math/bicubicsplineinterpolation.hpp</include>
+    <include>ql/math/Optimization/method.hpp</include>
+    <include>ql/math/interpolations/sabrinterpolation.hpp</include>
+    <include>ql/math/interpolations/bilinearinterpolation.hpp</include>
+    <include>ql/math/interpolations/bicubicsplineinterpolation.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano

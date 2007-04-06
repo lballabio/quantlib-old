@@ -26,7 +26,7 @@
 #include <qlo/schedule.hpp>
 #include <qlo/index.hpp>
 #include <qlo/analysis.hpp>
-#include <ql/volatilities/all.hpp>
+#include <ql/termstructures/volatilities/all.hpp>
 
 namespace QuantLibAddin {
     

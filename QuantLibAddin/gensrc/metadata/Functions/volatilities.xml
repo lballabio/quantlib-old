@@ -4,7 +4,7 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
     <include>qlo/volatilities.hpp</include>
-    <include>ql/Math/sabrinterpolation.hpp</include>
+    <include>ql/math/interpolations/sabrinterpolation.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers

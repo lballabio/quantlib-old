@@ -18,7 +18,7 @@
 #ifndef qla_date_hpp
 #define qla_date_hpp
 
-#include <ql/frequency.hpp>
+#include <ql/time/frequency.hpp>
 #include <vector>
 
 namespace QuantLib {

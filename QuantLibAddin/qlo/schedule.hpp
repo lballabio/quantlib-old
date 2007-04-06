@@ -19,7 +19,7 @@
 #define qla_schedule_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/schedule.hpp>
+#include <ql/time/schedule.hpp>
 
 namespace QuantLibAddin {
 

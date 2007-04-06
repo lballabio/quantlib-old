@@ -20,7 +20,7 @@
 
 #include <oh/objhandlerdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
-#include <ql/date.hpp>
+#include <ql/time/date.hpp>
 #include <ql/interestrate.hpp>
 
 namespace ObjHandler {

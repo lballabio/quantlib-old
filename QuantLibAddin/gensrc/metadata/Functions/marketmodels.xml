@@ -3,7 +3,7 @@
   <displayName>MarketModels</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
-    <include>ql/Optimization/method.hpp</include>
+    <include>ql/math/Optimization/method.hpp</include>
     <include>ql/MarketModels/swapforwardconversionmatrix.hpp</include>
     <include>ql/MarketModels/swapforwardmappings.hpp</include>
     <include>ql/MarketModels/CurveStates/cmswapcurvestate.hpp</include>
