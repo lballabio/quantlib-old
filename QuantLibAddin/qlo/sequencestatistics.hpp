@@ -20,7 +20,7 @@
 #define qla_sequencestatistics_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/math/sequencestatistics.hpp>
+#include <ql/math/distributions/sequencestatistics.hpp>
 #include <ql/math/riskstatistics.hpp>
 #include <ql/math/matrix.hpp>
 
