@@ -189,6 +189,15 @@
    configure --disable-shared
    </pre>
 
+<c>Testing QuantLib
+<q>The QuantLib test-suite fails with the error message <tt>"error in CapsStripperTest"</tt>.
+<a>There's a flaw in the logic of the CapsStripper test which causes it to fail
+   if run on a non-working day.  This is logged as <a
+   href="https://sourceforge.net/tracker/?func=detail&atid=112740&aid=1687805&group_id=12740">
+   bug #1687805 - CapsStripperTest fails on non-working days</a>.  A workaround is
+   to edit file <tt>QuantLib/test-suite/quantlibtestsuite.cpp</tt> and comment out
+   the call to <tt>CapsStripperTest</tt>.
+
 <c>Using QuantLib
 <q>I cannot link QuantLib to my project under Visual C++
 <a>If you're encountering the linking error
