@@ -34,9 +34,8 @@ EXTRA_DIST = .time-stamp \
 
 all-local: .time-stamp
 
-PYTHONPATH=./code
 .time-stamp: $(GENSRC_INPUTS)
-	python ../../gensrc/gensrc.py -xvld
+	python $(GENSRC_DIR)/gensrc.py -xvld
 	touch .time-stamp
 
 dist-hook:

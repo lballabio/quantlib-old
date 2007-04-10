@@ -109,9 +109,8 @@ endif
 
 all-local: .time-stamp
 
-PYTHONPATH=./code
 .time-stamp: $(GENSRC_INPUTS)
-	python ../../gensrc/gensrc.py $(GENSRC_ARGS)
+	python $(GENSRC_DIR)/gensrc.py $(GENSRC_ARGS)
 	touch .time-stamp
 	
 dist-hook:

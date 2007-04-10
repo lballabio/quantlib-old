@@ -18,6 +18,12 @@
 """
 
 import sys
+import os
+
+# Append sys.path with subdirectory 'code' of current directory,
+# this is required for rule.py
+sys.path.append(os.getcwd() + '/code')
+
 import getopt
 from gensrc.Addins import addinlist
 from gensrc.Exceptions import excepthook
