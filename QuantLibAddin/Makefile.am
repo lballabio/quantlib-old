@@ -6,13 +6,8 @@ SUBDIRS = \
     qlo/Loop \
     qlo/ValueObjects \
     qlo \
-    Addins/C \
-    Addins/Calc \
-    Addins/Guile \
-    Clients/C \
     Clients/C++ \
     Clients/Calc \
-    Clients/Guile \
     Docs
 
 EXTRA_DIST = \

@@ -97,15 +97,15 @@ GENSRC_ARGS = -vled
 if BUILD_EXCEL
     GENSRC_ARGS += -x
 endif
-if BUILD_CALC
-    GENSRC_ARGS += -o
-endif
-if BUILD_GUILE
-    GENSRC_ARGS += -g
-endif
-if BUILD_C
-    GENSRC_ARGS += -c
-endif
+#if BUILD_CALC
+#    GENSRC_ARGS += -o
+#endif
+#if BUILD_GUILE
+#    GENSRC_ARGS += -g
+#endif
+#if BUILD_C
+#    GENSRC_ARGS += -c
+#endif
 
 all-local: .time-stamp
 
