@@ -40,8 +40,8 @@
 #include <ql/marketmodels/models/swapfromfracorrelationstructure.hpp>
 #include <ql/marketmodels/models/capletcoterminalcalibration.hpp>
 #include <ql/marketmodels/products/multiproductcomposite.hpp>
-#include <ql/shortratemodels/libormarketmodels/lmextlinexpvolmodel.hpp>
-#include <ql/shortratemodels/libormarketmodels/lmlinexpcorrmodel.hpp>
+#include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
+#include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
 #include <ql/termstructures/volatilities/abcd.hpp>
 
 
@@ -61,7 +61,7 @@ namespace QuantLibAddin {
             for (QuantLib::Size i = 0; i < nbRates; ++i)
                 pseudoRoots[i] = QuantLib::Matrix(nbRates, nbRates);
 
-            bool result = QuantLib::capletCoterminalCalibration(corr, 
+            bool result = QuantLib::capletCoterminalCalibration(corr,
                         swapVariances, capletVols, cs, displacement, alpha, pseudoRoots);
             if (result)
                 return pseudoRoots[timeIndex];
@@ -69,7 +69,7 @@ namespace QuantLibAddin {
                 QL_FAIL("caplets coterminal calibration has failed");
     };
 
-    class TimeDependantCorrelationStructure : 
+    class TimeDependantCorrelationStructure :
         public ObjHandler::LibraryObject<QuantLib::TimeDependantCorrelationStructure>{};
 
     class SwapFromFRACorrelationStructure : public TimeDependantCorrelationStructure {
@@ -141,25 +141,25 @@ namespace QuantLibAddin {
 
     class CurveState : public ObjHandler::LibraryObject<QuantLib::CurveState> {};
 
-	class CMSwapCurveState : public CurveState {
+    class CMSwapCurveState : public CurveState {
       public:
-		CMSwapCurveState(std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards) {
+        CMSwapCurveState(std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards) {
             libraryObject_ = boost::shared_ptr<QuantLib::CMSwapCurveState>(new
                 QuantLib::CMSwapCurveState(rateTimes, spanningForwards));
         }
     };
 
-	class CoterminalSwapCurveState : public CurveState {
+    class CoterminalSwapCurveState : public CurveState {
       public:
-		CoterminalSwapCurveState(std::vector<QuantLib::Time>& rateTimes) {
+        CoterminalSwapCurveState(std::vector<QuantLib::Time>& rateTimes) {
             libraryObject_ = boost::shared_ptr<QuantLib::CoterminalSwapCurveState>(new
                 QuantLib::CoterminalSwapCurveState(rateTimes));
         }
     };
 
-	class LMMCurveState : public CurveState {
+    class LMMCurveState : public CurveState {
       public:
-		LMMCurveState(std::vector<QuantLib::Time>& rateTimes) {
+        LMMCurveState(std::vector<QuantLib::Time>& rateTimes) {
             libraryObject_ = boost::shared_ptr<QuantLib::LMMCurveState>(new
                 QuantLib::LMMCurveState(rateTimes));
         }
@@ -201,11 +201,11 @@ namespace QuantLibAddin {
     class CMSMMDriftCalculator : public ObjHandler::LibraryObject<QuantLib::CMSMMDriftCalculator> {
       public:
         CMSMMDriftCalculator(const QuantLib::Matrix& pseudo,
-							 const std::vector<QuantLib::Rate>& displacements,
-							 const std::vector<QuantLib::Time>& taus,
-							 QuantLib::Size numeraire,
-							 QuantLib::Size alive,
-							 QuantLib::Size spanningFwds);
+                             const std::vector<QuantLib::Rate>& displacements,
+                             const std::vector<QuantLib::Time>& taus,
+                             QuantLib::Size numeraire,
+                             QuantLib::Size alive,
+                             QuantLib::Size spanningFwds);
         std::vector<QuantLib::Real> compute(
             const QuantLib::CMSwapCurveState& cs) const;
       private:
@@ -215,10 +215,10 @@ namespace QuantLibAddin {
     class SMMDriftCalculator : public ObjHandler::LibraryObject<QuantLib::SMMDriftCalculator> {
       public:
         SMMDriftCalculator(const QuantLib::Matrix& pseudo,
-						   const std::vector<QuantLib::Rate>& displacements,
-						   const std::vector<QuantLib::Time>& taus,
-						   QuantLib::Size numeraire,
-						   QuantLib::Size alive);
+                           const std::vector<QuantLib::Rate>& displacements,
+                           const std::vector<QuantLib::Time>& taus,
+                           QuantLib::Size numeraire,
+                           QuantLib::Size alive);
         std::vector<QuantLib::Real> compute(
             const QuantLib::CoterminalSwapCurveState& cs) const;
       private:
@@ -327,7 +327,7 @@ namespace QuantLibAddin {
     class PiecewiseConstantAbcdVariance : public ObjHandler::LibraryObject<
         QuantLib::PiecewiseConstantAbcdVariance> {
     public:
-        PiecewiseConstantAbcdVariance(QuantLib::Real a, QuantLib::Real b, 
+        PiecewiseConstantAbcdVariance(QuantLib::Real a, QuantLib::Real b,
                                       QuantLib::Real c, QuantLib::Real d,
                                       const QuantLib::Size resetIndex,
                                       const QuantLib::EvolutionDescription& evolution);
@@ -341,9 +341,9 @@ namespace QuantLibAddin {
     class LmExtLinearExponentialVolModel : public LmLinearExponentialVolatilityModel {
     public:
         LmExtLinearExponentialVolModel(const std::vector<QuantLib::Time>& fixingTimes,
-                                       QuantLib::Real a, 
-                                       QuantLib::Real b, 
-                                       QuantLib::Real c, 
+                                       QuantLib::Real a,
+                                       QuantLib::Real b,
+                                       QuantLib::Real c,
                                        QuantLib::Real d);
 
     };
@@ -352,8 +352,8 @@ namespace QuantLibAddin {
         QuantLib::LmCorrelationModel> { };
     class LmLinearExponentialCorrelationModel : public LmCorrelationModel {
      public:
-        LmLinearExponentialCorrelationModel(QuantLib::Size size, 
-                                            QuantLib::Real rho, 
+        LmLinearExponentialCorrelationModel(QuantLib::Size size,
+                                            QuantLib::Real rho,
                                             QuantLib::Real beta,
                                             QuantLib::Size factors);
 
