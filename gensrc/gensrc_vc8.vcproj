@@ -499,10 +499,6 @@
 				>
 			</File>
 			<File
-				RelativePath="gensrc\stubs\stub.loop.bind"
-				>
-			</File>
-			<File
 				RelativePath="gensrc\stubs\stub.vo.class.body"
 				>
 			</File>
