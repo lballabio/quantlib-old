@@ -1226,7 +1226,7 @@
     </Member>
 
     <Member name='qlAbcdError' type='QuantLib::Abcd'>
-      <description>Returs the error between the abdc implied Black vols and a given Black vol vector</description>
+      <description>Returns the root mean squared error between the abdc implied Black vols and a given Black vol vector</description>
       <libraryFunction>error</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -1303,7 +1303,7 @@
           <Parameter name='optimizationMethod' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
-            <description>OptimizationMethod object ID. If omitted, default = "" is used.</description>
+            <description>OptimizationMethod object ID. If omitted, default = "Simplex" is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
