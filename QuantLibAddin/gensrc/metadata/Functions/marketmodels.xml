@@ -1279,7 +1279,7 @@
 
     <Member name='qlAbcdCapletCalibration' type='QuantLib::Abcd'>
       <description>Calibrates the a, b, c, d parameters of the vol parametrization</description>
-      <libraryFunction>capletCalibration</libraryFunction>
+      <libraryFunction>calibration</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -1303,7 +1303,7 @@
           <Parameter name='optimizationMethod' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
-            <description>OptimizationMethod object ID. If omitted, default = "Simplex" is used.</description>
+            <description>OptimizationMethod object ID. If omitted, Simplex is used as default.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
