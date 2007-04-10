@@ -788,22 +788,17 @@
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>K_i adjustment factors in the abcd vol parametrization</description>
-          </Parameter>
-          <Parameter name='LongTermCorr' exampleValue ='0.5'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
-          </Parameter>
-          <Parameter name='beta' exampleValue ='0.2'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
-          </Parameter>
-          <Parameter name='evolutionDescription' >
-            <type>QuantLib::EvolutionDescription</type>
-            <superType>underlyingClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>EvolutionDescription object</description>
+           </Parameter>
+           <Parameter name='correlations'>
+             <type>QuantLib::Matrix</type>
+             <tensorRank>matrix</tensorRank>
+             <description>correlations between forwards rates</description>
+            </Parameter>
+            <Parameter name='evolutionDescription' >
+                <type>QuantLib::EvolutionDescription</type>
+                <superType>underlyingClass</superType>
+                <tensorRank>scalar</tensorRank>
+                <description>EvolutionDescription object</description>
           </Parameter>
           <Parameter name='Factors' exampleValue ='5'>
             <type>long</type>

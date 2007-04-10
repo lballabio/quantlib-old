@@ -95,8 +95,7 @@ namespace QuantLibAddin {
             double c,
             double d,
             const std::vector<double>& ks,
-            double longTermCorr,
-            double beta,
+            const QuantLib::Matrix& correlations, 
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
@@ -104,8 +103,7 @@ namespace QuantLibAddin {
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(
             new QuantLib::ExpCorrAbcdVol(a, b, c, d, ks,
-                                         longTermCorr,
-                                         beta,
+                                         correlations,
                                          evolution,
                                          numberOfFactors,
                                          initialRates,
