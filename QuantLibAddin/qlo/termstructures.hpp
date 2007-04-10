@@ -23,7 +23,7 @@
 
 #include <ql/termstructure.hpp>
 #include <ql/termstructures/yieldcurves/forwardspreadedtermstructure.hpp>
-#include <ql/termstructures/ratehelpers.hpp>
+#include <ql/termstructures/yieldcurves/ratehelpers.hpp>
 #ifdef QL_DISABLE_DEPRECATED
 #include <ql/quotes/simplequote.hpp>
 #else
@@ -42,14 +42,14 @@ namespace QuantLibAddin {
     class PiecewiseYieldCurve : public YieldTermStructure {
       public:
         PiecewiseYieldCurve(
-            const long &nDays, 
+            const long &nDays,
             const QuantLib::Calendar &calendar,
             const std::vector<std::string> &handlesRateHelper,
             const QuantLib::DayCounter &dayCounter,
-            const std::string& traitsID, 
+            const std::string& traitsID,
             const std::string& interpolatorID);
     };
-    
+
     class DiscountCurve : public YieldTermStructure {
       public:
         DiscountCurve(
@@ -76,7 +76,7 @@ namespace QuantLibAddin {
 
     class FlatForward : public YieldTermStructure {
       public:
-        FlatForward(const long &nDays, 
+        FlatForward(const long &nDays,
                     const QuantLib::Calendar &calendar,
                     QuantLib::Rate forward,
                     const QuantLib::DayCounter &dayCounter,

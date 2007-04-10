@@ -21,7 +21,7 @@
 #define qla_ratehelpers_hpp
 
 #include <ql/indexes/iborindex.hpp>
-#include <ql/termstructures/ratehelpers.hpp>
+#include <ql/termstructures/yieldcurves/ratehelpers.hpp>
 #include <oh/objhandler.hpp>
 
 namespace QuantLibAddin {
@@ -30,7 +30,7 @@ namespace QuantLibAddin {
       protected:
         QuantLib::Handle<QuantLib::Quote> quoteHandle_;
     };
-    
+
     class DepositRateHelper : public RateHelper {
       public:
         DepositRateHelper(

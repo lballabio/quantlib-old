@@ -20,12 +20,12 @@
 #define qla_termstructuresfactory_hpp
 
 #include <qlo/typefactory.hpp>
-#include <ql/termstructures/ratehelpers.hpp>
+#include <ql/termstructures/yieldcurves/ratehelpers.hpp>
 
 
 namespace QuantLibAddin {
 
-   
+
     /* *** YieldTermStructure *** */
     typedef boost::shared_ptr<QuantLib::YieldTermStructure>(*YieldTermStructureConstructor)(
             const long &nDays,
@@ -38,14 +38,14 @@ namespace QuantLibAddin {
         private RegistryManager<QuantLib::YieldTermStructure, EnumCurveRegistry> {
     public:
         boost::shared_ptr<QuantLib::YieldTermStructure> operator() (
-                const std::string& traitsID, 
-                const std::string& interpolatorID, 
+                const std::string& traitsID,
+                const std::string& interpolatorID,
                 const long &nDays,
                 const QuantLib::Calendar &calendar,
                 const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
                 const QuantLib::DayCounter &dayCounter) {
             KeyPair key(traitsID, interpolatorID);
-            YieldTermStructureConstructor yieldTermStructureConstructor = 
+            YieldTermStructureConstructor yieldTermStructureConstructor =
                 (YieldTermStructureConstructor)(getType(key));
             return yieldTermStructureConstructor(nDays, calendar, rateHelpers, dayCounter);
         }
