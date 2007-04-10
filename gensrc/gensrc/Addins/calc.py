@@ -21,6 +21,7 @@
 
 from gensrc.Addins import addin
 from gensrc.Functions import function
+from gensrc.Functions import supportedplatform
 from gensrc.Utilities import outputfile
 from gensrc.Utilities import common
 from gensrc.Utilities import log
@@ -42,9 +43,9 @@ class CalcAddin(addin.Addin):
     #############################################
 
     stringConvert = 'ouStringToStlString(%s)'
-    objectIdSuffix = 'Cpp'
-    voSupported = True
-    convertPermanentFlag = '''
+    objectIdSuffix_ = 'Cpp'
+    voSupported_ = True
+    convertPermanentFlag_ = '''
         bool permanentCpp;
         calcToScalar(permanentCpp, permanent, false);'''
 
@@ -69,55 +70,55 @@ class CalcAddin(addin.Addin):
     def generateFuncMap(self):
         """Generate help text for function wizard."""
         buf = ''
-        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
             buf += '    // %s\n\n' % cat.displayName
-            for func in cat.functions(self.name_, function.MANUAL): 
+            for func in cat.functions(self.name_, supportedplatform.MANUAL): 
                 buf += '    // %s\n\n' % func.name
                 buf += MAPLINE % ('funcMap', func.name, func.name)
                 buf += MAPLINE % ('funcDesc', func.name, func.description)
-                for param in func.ParameterList.Parameters:
+                for param in func.parameterList().parameters():
                     buf += PARMLINE % ('argName', func.name, param.name)
                     buf += PARMLINE % ('argDesc', func.name, param.description)
                 buf += '\n'
-        buf2 = self.bufferMap.text % { 
+        buf2 = self.bufferMap_.text() % { 
             'prefix' : environment.config().prefix,
-            'addinClassname' : self.addinClassName,
+            'addinClassName' : self.addinClassName_,
             'buffer' : buf }
-        fileName = self.rootPath + MAPFILE
+        fileName = self.rootPath_ + MAPFILE
         outputfile.OutputFile(self, fileName, None, buf2, False)
 
     def generateAutoHeader(self):
         """Generate header file that lists all other headers."""
         bufHeader = ''
-        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
             bufHeader += '#include <Addins/Calc/%s.hpp>\n' % cat.name
-        buf = self.bufferHeader.text % { 
+        buf = self.bufferHeader_.text() % { 
             'prefix' : environment.config().prefix,
             'buffer' : bufHeader }
-        fileName = self.rootPath + environment.config().libRootDirectory + '_all.hpp'
+        fileName = self.rootPath_ + environment.config().libRootDirectory() + '_all.hpp'
         outputfile.OutputFile(self, fileName, None, buf, False)
 
     def generateHeader(self, func, declaration = True):
         """Generate implementation for given function."""
+        functionReturnType = self.functionReturnType_.apply(func.returnValue())
         if declaration:
             prototype = '    virtual %s SAL_CALL %s(' % (functionReturnType, func.name)
             suffix = ';\n\n'
         else:
-            prototype = '%s SAL_CALL %s::%s('  % (functionReturnType, self.addinClassName, func.name)
+            prototype = '%s SAL_CALL %s::%s('  % (functionReturnType, self.addinClassName_, func.name)
             suffix = ' {'
-        functionReturnType = self.functionReturnType.apply(func.returnValue)
         ret = prototype
-        ret += func.ParameterList.generate(self.functionDeclaration)
+        ret += func.parameterList().generate(self.functionDeclaration_)
         ret += ') THROWDEF_RTE_IAE%s' % suffix
         return ret
 
     def generateHeaders(self):
         """Generate source for function prototypes."""
-        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
             buf = ''
-            for func in cat.functions(self.name, function.MANUAL): 
+            for func in cat.functions(self.name, supportedplatform.MANUAL): 
                 buf += self.generateHeader(func)
-            buf2 = self.bufferCategory.text % {
+            buf2 = self.bufferCategory_.text() % {
                 'prefix' : environment.config().prefix,
                 'categoryName' : cat.name,
                 'buffer' : buf }
@@ -129,17 +130,18 @@ class CalcAddin(addin.Addin):
         if func.loopParameter:
             convertReturnType = 8 * ' ' + 'return returnValue;'
         else:
-            convertReturnType = self.convertReturnType_.apply(func.returnValue)
+            convertReturnType = self.convertReturnType_.apply(func.returnValue())
         return self.bufferFunction_.text() % {
             'convertReturnType' : convertReturnType,
-            'cppConversions' : func.ParameterList.generate(self.cppConversions_),
-            'enumConversions' : func.ParameterList.generate(self.enumConversions_),
+            'cppConversions' : func.parameterList().generate(self.cppConversions_),
+            'enumConversions' : func.parameterList().generate(self.enumConversions_),
             'functionBody' : func.generateBody(self),
             'functionName' : func.name,
-            'functionValueObject' : func.generateVO(self),
+            #'functionValueObject' : func.generateVO(self),
+            'functionValueObject' : '',
             'header' : self.generateHeader(func, False),
-            'libraryConversions' : func.ParameterList.generate(self.libraryConversions_),
-            'referenceConversions' : func.ParameterList.generate(self.referenceConversions_) }
+            'libraryConversions' : func.parameterList().generate(self.libraryConversions_),
+            'referenceConversions' : func.parameterList().generate(self.referenceConversions_) }
 
     def generateFunctions(self):
         """Generate source for function implementations."""
@@ -157,8 +159,8 @@ class CalcAddin(addin.Addin):
                 loopIncludes = ''
             buf2 = self.bufferIncludes_.text() % {
                 'categoryIncludes' : categoryIncludes,
-                'prefix' : environment.config().prefix,
-                'libRoot' : environment.config().libRootDirectory,
+                'prefix' : environment.config().prefix(),
+                'libRoot' : environment.config().libRootDirectory(),
                 'loopIncludes' : loopIncludes,
                 'buffer' : buf }
             fileName = self.rootPath_ + cat.name() + '.cpp'
@@ -167,15 +169,15 @@ class CalcAddin(addin.Addin):
     def generateIDL(self):
         """Generate the IDL file for the addin."""
         buf = ''
-        for cat in self.categoryList_.categories(self.name_, function.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
             buf += '                // %s\n\n' % cat.name()
-            for func in cat.functions(self.name_, function.MANUAL): 
-                parameterList = func.ParameterList.generate(self.ruleIDL_)
-                returnTypeIDL = self.returnTypeIDL_.apply(func.returnValue)
+            for func in cat.functions(self.name_, supportedplatform.MANUAL): 
+                parameterList = func.parameterList().generate(self.ruleIDL_)
+                returnTypeIDL = self.returnTypeIDL_.apply(func.returnValue())
                 buf += self.bufferIdlFunction_.text() % (returnTypeIDL, 
                     func.name(), parameterList)
         buf2 = self.bufferIdlHeader_.text() % { 'buffer' : buf }
-        idlFile = common.ALIAS, environment.config().namespaceLibrary() + 'CalcAddin.idl'
+        idlFile = environment.config().namespaceLibrary() + 'AddinCalc.idl'
         fileName = self.rootPath_ + idlFile
         outputfile.OutputFile(self, fileName, None, buf2, False)
 
@@ -186,5 +188,5 @@ class CalcAddin(addin.Addin):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         super(CalcAddin, self).serialize(serializer)
-        serializer.serializeBoolean(self, 'addinClassName')
+        serializer.serializeAttribute(self, 'addinClassName')
 

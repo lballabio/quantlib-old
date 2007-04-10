@@ -3,11 +3,11 @@
 
         SEQSEQ(ANY) returnValue;
 
-        %(namespaceObjects)s::%(functionDisplayName)sBind bindObject = 
+        %(functionName)sBind bindObject = 
             boost::bind(
-                (%(namespaceObjects)s::%(functionDisplayName)sSignature)
+                (%(functionSignature)s)
                     &%(functionCodeName)s,%(objectName)s%(inputList)s);
-        %(namespaceObjects)s::loop
-            <%(namespaceObjects)s::%(functionDisplayName)sBind, %(inputType)s, %(returnType)s>
+        ObjHandler::loop
+            <%(functionName)sBind, %(inputType)s, %(returnType)s>
             (bindObject, %(inputParam)s, returnValue);
 

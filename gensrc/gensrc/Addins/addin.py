@@ -72,6 +72,21 @@ class Addin(serializable.Serializable):
     def incrementCreated(self):
         self.created_ += 1
 
+    def voCall(self):
+        return self.voCall_
+
+    def libraryCall(self):
+        return self.libraryCall_
+
+    def libraryReturnType(self):
+        return self.libraryReturnType_
+
+    def loopInputs(self):
+        return self.loopInputs_
+
+    def loopReturnType(self):
+        return self.loopReturnType_
+
     #############################################
     # serializer interface
     #############################################

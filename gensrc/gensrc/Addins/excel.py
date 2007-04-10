@@ -300,23 +300,8 @@ class ExcelAddin(addin.Addin):
     def referenceConversions(self):
         return self.referenceConversions_
 
-    def libraryReturnType(self):
-        return self.libraryReturnType_
-
-    def libraryCall(self):
-        return self.libraryCall_
-
-    def voCall(self):
-        return self.voCall_
-
     def returnConversion(self):
         return self.returnConversion_
-
-    def loopInputs(self):
-        return self.loopInputs_
-
-    def loopReturnType(self):
-        return self.loopReturnType_
 
     #############################################
     # serializer interface

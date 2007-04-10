@@ -1,6 +1,7 @@
 <Addin name='Calc'>
   
   <rootDirectory>Addins/Calc</rootDirectory>
+  <addinClassName>QLAddin::QLAddin</addinClassName>
 
   <Buffers>
     <Buffer name='bufferFunction' fileName='stub.calc.function'/>

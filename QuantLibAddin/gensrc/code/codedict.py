@@ -287,6 +287,129 @@ code65 = '''\
         return &xRet;'''
 
 ##########################################################################
+# code for Calc
+##########################################################################
+
+code70 = '''\
+        std::string %(name)sCpp = ouStringToStlString(%(name)s);\n'''
+
+code71 = '''\
+        std::string %(name)sCpp;
+        calcToScalar(%(name)sCpp, %(name)s);\n'''
+
+code72 = '''\
+        %(type)s %(name)sCpp;
+        calcToScalar(%(name)sCpp, %(name)s);\n'''
+
+code73 = '''\
+        std::vector<std::string> %(name)sCpp;
+        calcToVector(%(name)sCpp, %(name)s);\n'''
+
+code74 = '''\
+        std::vector<%(type)s> %(name)sCpp;
+        calcToVector(%(name)sCpp, %(name)s);\n'''
+
+code75 = '''\
+        std::vector<std::vector<%(type)s> > %(name)sCpp;
+        calcToMatrix(%(name)sCpp, %(name)s);\n'''
+
+code76 = '''\
+        std::vector<%(superType)s> %(name)sLib;
+        calcToVector(%(name)sLib, %(name)s);\n'''
+
+code77 = '''\
+        %(superType)s %(name)sLib;
+        calcToVector(%(name)sLib, %(name)s);\n'''
+
+code78 = '''\
+        std::vector<std::string> %(name)sLib;
+        calcToVector(%(name)sLib, %(name)s);\n'''
+
+code79 = '''\
+        std::vector<%(type)s> %(name)sLib;
+        calcToVector(%(name)sLib, %(name)s);\n'''
+
+code80 = '''\
+        OH_GET_REFERENCE(%(name)sLibObj, %(name)sCpp,
+            %(namespaceObjects)s::%(superType)s, %(namespaceLibrary)s::%(superType)s)\n'''
+
+code81 = '''\
+        OH_GET_REFERENCE(%(name)sLibObj, %(name)sCpp,
+            %(namespaceObjects)s::%(superType)s, %(namespaceLibrary)s::%(superType)s)\n'''
+
+code82 = '''\
+        %(superType)s %(name)sEnum =
+            %(namespaceObjects)s::Create<%(superType)s>()(%(name)sCpp);\n'''
+
+code83 = '''\
+        sal_Int32 returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code84 = '''\
+        STRING returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code85 = '''\
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code86 = '''\
+        %(type)s returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code87 = '''\
+        %(type)s returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code88 = '''\
+        SEQSEQ(sal_Int32) returnValueCalc;
+        %(tensorRank)sToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code89 = '''\
+        SEQSEQ(STRING) returnValueCalc;
+        %(tensorRank)sToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code90 = '''\
+        SEQSEQ(ANY) returnValueCalc;
+        %(tensorRank)sToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code91 = '''\
+        SEQSEQ(%(type)s) returnValueCalc;
+        %(tensorRank)sToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code92 = '''\
+        SEQSEQ(%(type)s) returnValueCalc;
+        %(tensorRank)sToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code93 = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjHandler::Object)
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(superType)s> %(name)sLibObj =
+            ObjHandler::CoerceHandle<
+                %(namespaceObjects)s::%(superType)s,
+                %(namespaceLibrary)s::%(superType)s>()(
+                    %(name)sTemp);\n'''
+
+code94 = '''\
+        %(superType)s %(name)sLib = calcToQlMatrix(%(name)s);\n'''
+
+code95 = '''\
+        OH_GET_OBJECT(%(name)sObj, %(name)sCpp, %(namespaceObjects)s::%(object)s)\n'''
+
+code96 = '''\
+        %(superType)s %(name)sLib;
+        calcToScalar(%(name)sLib, %(name)s);\n'''
+
+##########################################################################
 # code for ValueObjects
 ##########################################################################
 

@@ -1,4 +1,4 @@
-#include <%(libRoot)s/%(perefix)saddindefines.hpp>
+#include <%(libRoot)s/%(prefix)saddindefines.hpp>
 #include <%(libRoot)s/typefactory.hpp>
 #include <%(libRoot)s/Conversions/all.hpp>
 %(categoryIncludes)s

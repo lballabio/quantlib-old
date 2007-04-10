@@ -1,479 +1,222 @@
-<Rules>
+<root>
 
-  <Rule name='functionDeclaration' indent='2' delimiter=',&#10;'>
+  <RuleGroups>
+
+  <RuleGroup name='functionDeclaration' indent='2' delimiter=',&#10;'>
     <Wrap>&#10;%s</Wrap>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <long>%(indent)ssal_Int32 %(name)s</long>
-          <bool>%(indent)ssal_Int32 %(name)s</bool>
-          <string>%(indent)sconst STRING &amp;%(name)s</string>
-          <any>%(indent)sconst ANY &amp;%(name)s</any>
-          <default>%(indent)sconst ANY &amp;%(name)s</default>
-          <other>%(indent)s%(type)s %(name)s</other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <default>%(indent)sconst ANY &amp;%(name)s</default>
-          <long>%(indent)sconst SEQSEQ(sal_Int32) &amp;%(name)s</long>
-          <bool>%(indent)sconst SEQSEQ(sal_Int32) &amp;%(name)s</bool>
-          <string>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</string>
-          <any>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</any>
-          <loop>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</loop>
-          <other>%(indent)sconst SEQSEQ(%(type)s) &amp;%(name)s</other>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule default='true'>%(indent)sconst ANY &amp;%(name)s</Rule>
+        <Rule loop='true'>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='long'>%(indent)ssal_Int32 %(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>%(indent)ssal_Int32 %(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst STRING &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst ANY &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar'>%(indent)s%(type)s %(name)s</Rule>
+        <Rule nativeType='long'>%(indent)sconst SEQSEQ(sal_Int32) &amp;%(name)s</Rule>
+        <Rule nativeType='bool'>%(indent)sconst SEQSEQ(sal_Int32) &amp;%(name)s</Rule>
+        <Rule nativeType='string'>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</Rule>
+        <Rule nativeType='any'>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</Rule>
+        <Rule>%(indent)sconst SEQSEQ(%(type)s) &amp;%(name)s</Rule>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='returnTypeIDL'>
+  <RuleGroup name='returnTypeIDL'>
     <Wrap>&#10;%s</Wrap>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <void>long</void>
-          <bool>long</bool>
-          <other>%(type)s</other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <void>sequence&lt;sequence&lt;long&gt; &gt;</void>
-          <bool>sequence&lt;sequence&lt;long&gt; &gt;</bool>
-          <loop>sequence&lt;sequence&lt;any&gt; &gt;</loop>
-          <other>sequence&lt;sequence&lt;%(type)s&gt; &gt;</other>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' nativeType='void'>long</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>long</Rule>
+        <Rule tensorRank='scalar'>%(type)s</Rule>
+        <Rule nativeType='void'>sequence&lt;sequence&lt;long&gt; &gt;</Rule>
+        <Rule nativeType='bool'>sequence&lt;sequence&lt;long&gt; &gt;</Rule>
+        <Rule loop='true'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
+        <Rule>sequence&lt;sequence&lt;%(type)s&gt; &gt;</Rule>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='ruleIDL' indent='6' delimiter=',&#10;'>
+  <RuleGroup name='ruleIDL' indent='6' delimiter=',&#10;'>
     <Wrap>&#10;%s</Wrap>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <default>%(indent)s[in] any %(name)s</default>
-          <bool>%(indent)s[in] long %(name)s</bool>
-          <other>%(indent)s[in] %(type)s %(name)s</other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <default>%(indent)s[in] any %(name)s</default>
-          <bool>%(indent)s[in] sequence&lt;sequence&lt;long&gt; &gt; %(name)s</bool>
-          <string>%(indent)s[in] sequence&lt;sequence&lt;any&gt; &gt; %(name)s</string>
-          <loop>%(indent)s[in] sequence&lt;sequence&lt;any&gt; &gt; %(name)s</loop>
-          <other>%(indent)s[in] sequence&lt;sequence&lt;%(type)s&gt; &gt; %(name)s</other>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule default='true'>%(indent)s[in] any %(name)s</Rule>
+        <Rule loop='true'>%(indent)s[in] sequence&lt;sequence&lt;any&gt; &gt; %(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>%(indent)s[in] long %(name)s</Rule>
+        <Rule tensorRank='scalar'>%(indent)s[in] %(type)s %(name)s</Rule>
+        <Rule nativeType='bool'>%(indent)s[in] sequence&lt;sequence&lt;long&gt; &gt; %(name)s</Rule>
+        <Rule nativeType='string'>%(indent)s[in] sequence&lt;sequence&lt;any&gt; &gt; %(name)s</Rule>
+        <Rule>%(indent)s[in] sequence&lt;sequence&lt;%(type)s&gt; &gt; %(name)s</Rule>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='cppConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
+  <RuleGroup name='cppConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
     <Wrap codeID='wrap1'/>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <string codeID='code43'/>
-          <bool>%(indent)sbool %(name)sCpp = static_cast&lt;bool&gt;(%(name)s);&#10;</bool>
-          <default>
-            <DataTypes>
-              <string codeID='code44'/>
-              <other codeID='code45'/>
-            </DataTypes>
-          </default>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <double codeID='code47'/>
-          <long codeID='code47'/>
-          <string codeID='code46'/>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <double codeID='code48'/>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code71'/>
+        <Rule tensorRank='scalar' default='true' codeID='code72'/>
+        <Rule tensorRank='scalar' nativeType='string' codeID='code70'/>
+        <Rule tensorRank='scalar' nativeType='bool'>%(indent)sbool %(name)sCpp = static_cast&lt;bool&gt;(%(name)s);&#10;</Rule>
+        <Rule tensorRank='vector' nativeType='double' codeID='code74'/>
+        <Rule tensorRank='vector' nativeType='long' codeID='code74'/>
+        <Rule tensorRank='vector' nativeType='string' codeID='code73'/>
+        <Rule tensorRank='matrix' nativeType='double' codeID='code75'/>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='libraryConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
+  <RuleGroup name='libraryConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
     <Wrap codeID='wrap2'/>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <libraryType codeID='code65'/>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <libraryType>
-            <DataValues>
-              <DataValue name='QuantLib::Array' codeID='code50_2'/>
-              <DataValue name='QuantLib::Matrix' codeID='code50_2'/>
-              <DataValue name='other' codeID='code50_1'/>
-            </DataValues>
-            <DataTypes>
-              <string codeID='code50_3'/>
-              <long codeID='code50_4'/>
-              <bool codeID='code50_4'/>
-              <loop/>
-            </DataTypes>
-          </libraryType>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <libraryType codeID='code63'/>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' superType='libraryType' codeID='code96'/>
+        <Rule tensorRank='vector' type='QuantLib::Array' superType='libraryType' codeID='code77'/>
+        <Rule tensorRank='vector' type='QuantLib::Matrix' superType='libraryType' codeID='code77'/>
+        <Rule tensorRank='vector' superType='libraryType' codeID='code76'/>
+        <Rule tensorRank='vector' nativeType='string' codeID='code78'/>
+        <Rule tensorRank='vector' nativeType='long' codeID='code79'/>
+        <Rule tensorRank='vector' nativeType='bool' codeID='code79'/>
+        <Rule tensorRank='vector' loop='true'/>
+        <Rule tensorRank='matrix' superType='libraryType' codeID='code94'/>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='3' delimiter=',&#10;'>
+  <RuleGroup name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='3' delimiter=',&#10;'>
     <Wrap>&#10;%s</Wrap>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <bool>%(indent)s%(name)sCpp</bool>
-          <string>%(indent)s%(name)sCpp</string>
-          <object>%(indent)s%(name)sObj</object>
-          <libraryType>%(indent)s%(name)sLib</libraryType>
-          <libraryClass>%(indent)s%(name)sLibObj</libraryClass>
-          <libToHandle>%(indent)s%(name)sLibObj</libToHandle>
-          <enumeration>%(indent)s%(name)sEnum</enumeration>
-          <default>%(indent)s%(name)sCpp</default>
-          <other>%(indent)s%(name)s</other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <libraryType>
-            <DataValues>
-              <DataValue name='QuantLib::Array'>%(indent)s%(name)sLib</DataValue>
-              <DataValue name='QuantLib::Matrix'>%(indent)s%(name)sLib</DataValue>
-              <DataValue name='other'>%(indent)s%(name)sLib</DataValue>
-            </DataValues>
-          </libraryType>
-          <other>%(indent)s%(name)sCpp</other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <libraryType>%(indent)s%(name)sLib</libraryType>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(name)sLib</Rule>
+        <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sLibObj</Rule>
+        <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(name)sLibObj</Rule>
+        <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(name)sEnum</Rule>
+        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sObj</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='vector' superType='libraryType'>%(indent)s%(name)sLib</Rule>
+        <Rule tensorRank='vector'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='matrix'>%(indent)s%(name)sLib</Rule>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='functionReturnType'>
+  <RuleGroup name='functionReturnType'>
     <Wrap>&#10;%s</Wrap>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <void>sal_Int32</void>
-          <long>sal_Int32</long>
-          <bool>sal_Int32</bool>
-          <string>STRING</string>
-          <any>ANY</any>
-          <other>%(type)s</other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <void>SEQSEQ(sal_Int32)</void>
-          <long>SEQSEQ(sal_Int32)</long>
-          <bool>SEQSEQ(sal_Int32)</bool>
-          <string>SEQSEQ(STRING)</string>
-          <any>SEQSEQ(ANY)</any>
-          <loop>SEQSEQ(ANY)</loop>
-          <other>SEQSEQ(%(type)s)</other>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' nativeType='void'>sal_Int32</Rule>
+        <Rule tensorRank='scalar' nativeType='long'>sal_Int32</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>sal_Int32</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>STRING</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>ANY</Rule>
+        <Rule tensorRank='scalar'>%(type)s</Rule>
+        <Rule loop='true'>SEQSEQ(ANY)</Rule>
+        <Rule nativeType='void'>SEQSEQ(sal_Int32)</Rule>
+        <Rule nativeType='long'>SEQSEQ(sal_Int32)</Rule>
+        <Rule nativeType='bool'>SEQSEQ(sal_Int32)</Rule>
+        <Rule nativeType='string'>SEQSEQ(STRING)</Rule>
+        <Rule nativeType='any'>SEQSEQ(ANY)</Rule>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='convertReturnType' indent='2'>
+  <RuleGroup name='convertReturnType' indent='2'>
     <Wrap codeID='wrap6'/>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <void>%(indent)sreturn 1;&#10;</void>
-          <long>%(indent)sreturn returnValue;&#10;</long>
-          <double>%(indent)sreturn returnValue;&#10;</double>
-          <bool codeID='code53'/>
-          <string codeID='code54'/>
-          <any codeID='code55'/>
-          <libraryType codeID='code55b'/>
-          <other codeID='code56'/>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <void codeID='code57'/>
-          <long codeID='code57'/>
-          <bool codeID='code57'/>
-          <string codeID='code58'/>
-          <any codeID='code59'/>
-          <libraryType codeID='code60'/>
-          <other codeID='code61'/>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' superType='libraryType' codeID='code86'/>
+        <Rule tensorRank='scalar' nativeType='void'>%(indent)sreturn 1;&#10;</Rule>
+        <Rule tensorRank='scalar' nativeType='long'>%(indent)sreturn returnValue;&#10;</Rule>
+        <Rule tensorRank='scalar' nativeType='double'>%(indent)sreturn returnValue;&#10;</Rule>
+        <Rule tensorRank='scalar' nativeType='bool' codeID='code83'/>
+        <Rule tensorRank='scalar' nativeType='string' codeID='code84'/>
+        <Rule tensorRank='scalar' nativeType='any' codeID='code85'/>
+        <Rule tensorRank='scalar' codeID='code87'/>
+        <Rule superType='libraryType' codeID='code91'/>
+        <Rule nativeType='void' codeID='code88'/>
+        <Rule nativeType='long' codeID='code88'/>
+        <Rule nativeType='bool' codeID='code88'/>
+        <Rule nativeType='string' codeID='code89'/>
+        <Rule nativeType='any' codeID='code90'/>
+        <Rule codeID='code92'/>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='libraryReturnType' delimiter='&#10;'>
+  <RuleGroup name='libraryReturnType' delimiter='&#10;'>
     <Wrap>&#10;%s</Wrap>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <void/>
-          <string>std::string returnValue = </string>
-          <any>boost::any returnValue = </any>
-          <libraryType>%(libraryType)s returnValue = </libraryType>
-          <other>%(type)s returnValue = </other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <string>std::vector&lt;std::string&gt; returnValue = </string>
-          <any>std::vector&lt;boost::any&gt; returnValue = </any>
-          <libraryType>
-            <DataValues>
-              <DataValue name='QuantLib::Array'>%(libraryType)s returnValue = </DataValue>
-              <DataValue name='QuantLib::Matrix'>%(libraryType)s returnValue = </DataValue>
-              <DataValue name='other'>std::vector&lt;%(libraryType)s&gt; returnValue = </DataValue>
-            </DataValues>
-          </libraryType>
-          <other>std::vector&lt;%(type)s&gt; returnValue = </other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <libraryType>
-            <DataValues>
-              <DataValue name='QuantLib::Array'>%(libraryType)s returnValue = </DataValue>
-              <DataValue name='QuantLib::Matrix'>%(libraryType)s returnValue = </DataValue>
-              <DataValue name='other'>std::vector&lt;std::vector&lt;%(type)s&gt; &gt; returnValue = </DataValue>
-            </DataValues>
-          </libraryType>
-          <other>std::vector&lt;std::vector&lt;%(type)s&gt; &gt; returnValue = </other>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' superType='libraryType'>%(superType)s returnValue = </Rule>
+        <Rule tensorRank='scalar' nativeType='void'/>
+        <Rule tensorRank='scalar' nativeType='string'>std::string returnValue = </Rule>
+        <Rule tensorRank='scalar' nativeType='any'>boost::any returnValue = </Rule>
+        <Rule tensorRank='scalar'>%(type)s returnValue = </Rule>
+        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Array'>%(superType)s returnValue = </Rule>
+        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Matrix'>%(superType)s returnValue = </Rule>
+        <Rule tensorRank='vector' superType='libraryType'>std::vector&lt;%(superType)s&gt; returnValue = </Rule>
+        <Rule tensorRank='vector' nativeType='string'>std::vector&lt;std::string&gt; returnValue = </Rule>
+        <Rule tensorRank='vector' nativeType='any'>std::vector&lt;boost::any&gt; returnValue = </Rule>
+        <Rule tensorRank='vector'>std::vector&lt;%(type)s&gt; returnValue = </Rule>
+        <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Array'>%(superType)s returnValue = </Rule>
+        <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Matrix'>%(superType)s returnValue = </Rule>
+        <Rule tensorRank='matrix' superType='libraryType'>std::vector&lt;std::vector&lt;%(type)s&gt; &gt; returnValue = </Rule>
+        <Rule tensorRank='matrix'>std::vector&lt;std::vector&lt;%(type)s&gt; &gt; returnValue = </Rule>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='referenceConversions' indent='2' delimiter='&#10;'>
+  <RuleGroup name='referenceConversions' indent='2' delimiter='&#10;'>
     <Wrap codeID='wrap5'/>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <object codeID='code64'/>
-          <!--libToHandle codeID='code62'/-->
-          <!--libToHandle>
-                    <DataValues>
-                        <DataValue name='Quote' codeID='code62b'/>
-                        <DataValue name='other' codeID='code62a'/>
-                    </DataValues>
-                </libToHandle-->
-          <libToHandle codeID='code62a'/>
-          <libraryClass codeID='code51'/>
-          <handleToLib codeID='code51b'/>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' superType='objectClass' codeID='code95'/>
+        <Rule tensorRank='scalar' superType='libToHandle' codeID='code93'/>
+        <Rule tensorRank='scalar' superType='libraryClass' codeID='code80'/>
+        <Rule tensorRank='scalar' superType='handleToLib' codeID='code81'/>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='enumConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
+  <RuleGroup name='enumConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
     <Wrap codeID='wrap3'/>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <enumeration codeID='code52'/>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' superType='enumeration' codeID='code82'/>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='voCall' checkParameterIgnore='true' indent='3' delimiter=',&#10;'>
+  <RuleGroup name='voCall' checkParameterIgnore='true' indent='3' delimiter=',&#10;'>
     <Wrap>&#10;%s</Wrap>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <default>%(indent)s%(name)sCpp</default>
-          <long>%(indent)s%(name)s</long>
-          <double>%(indent)s%(name)s</double>
-          <bool>%(indent)s%(name)sCpp</bool>
-          <any>%(indent)s%(name)sCpp</any>
-          <string>%(indent)s%(name)sCpp</string>
-          <other>%(indent)s%(name)s</other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <other>%(indent)s%(name)sCpp</other>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' nativeType='long'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='double'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
+        <Rule>%(indent)s%(name)sCpp</Rule>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='loopInputs' indent='4' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
+  <RuleGroup name='loopInputs' indent='4' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
     <Wrap>&#10;%s</Wrap>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <libraryType>%(indent)s%(name)sLib</libraryType>
-          <enumeration>%(indent)s%(name)sEnum</enumeration>
-          <default>%(indent)s%(name)sCpp</default>
-          <bool>%(indent)s%(name)sCpp</bool>
-          <other>%(indent)s%(name)s</other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>vector</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <loop>%(indent)s_1</loop>
-          <other>%(indent)s%(name)s</other>
-        </DataTypes>
-      </SubRule>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <other>%(indent)s%(name)s</other>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(name)sLib</Rule>
+        <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(name)sEnum</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='vector' loop='true'>%(indent)s_1</Rule>
+        <Rule tensorRank='vector'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='matrix'>%(indent)s%(name)s</Rule>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='loopDatatype' delimiter='&#10;'>
+  <RuleGroup name='loopDatatype' delimiter='&#10;'>
     <Wrap>&#10;%s</Wrap>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-          <tensorRank>vector</tensorRank>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <libraryType>%(libraryType)s</libraryType>
-          <other>%(type)s</other>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+    <Rules>
+        <Rule superType='libraryType'>%(superType)s</Rule>
+        <Rule>%(type)s</Rule>
+    </Rules>
+  </RuleGroup>
 
-  <Rule name='loopReturnType'>
-    <SubRules>
-      <SubRule>
-        <tensorRanks>
-          <tensorRank>scalar</tensorRank>
-          <tensorRank>vector</tensorRank>
-          <tensorRank>matrix</tensorRank>
-        </tensorRanks>
-        <DataTypes>
-          <libraryType>%(libraryType)s</libraryType>
-          <enumeration>%(enumeration)s</enumeration>
-          <string>STRING</string>
-          <other>%(type)s</other>
-        </DataTypes>
-      </SubRule>
-    </SubRules>
-  </Rule>
+  <RuleGroup name='loopReturnType'>
+    <Wrap/>
+    <Rules>
+        <Rule superType='libraryType'>%(superType)s</Rule>
+        <Rule superType='enumeration'>%(superType)s</Rule>
+        <Rule nativeType='string'>STRING</Rule>
+        <Rule>%(type)s</Rule>
+    </Rules>
+  </RuleGroup>
 
-</Rules>
+  </RuleGroups>
 
+</root>
 
