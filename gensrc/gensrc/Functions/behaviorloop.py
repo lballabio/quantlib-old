@@ -40,18 +40,19 @@ class BehaviorLoop(object):
 
     def generateBody(self, addin):
         """Generate source code for the body of the function."""
+        if self.functionSignature_:
+            functionSignature = '(' + environment.config().namespaceObjects() + '::' + self.functionSignature_ + ')'
+        else:
+            functionSignature = ''
         return addin.bufferLoop().text() % {
             'inputList' : self.func_.parameterList().generate(addin.loopInputs()),
             'inputParam' : self.loopParamRef_.name(),
             'functionCodeName' : self.functionCodeName_,
             'functionName' : self.functionName_,
-            'functionSignature' : self.functionSignature_,
+            'functionSignature' : functionSignature,
             'inputType' : addin.loopReturnType().apply(self.loopParamRef_),
             'objectName' : self.objectName_,
             'returnType' : addin.loopReturnType().apply(self.func_.returnValue()) }
-
-    def functionScope2(self):
-        return self.functionScope2_
 
     def const(self):
         return self.const_
@@ -98,7 +99,7 @@ class BehaviorMemberLoop(BehaviorLoop):
 
     BIND_POINTER = """boost::_mfi::cmf%(cmfCount)d<
                     %(returnType)s,
-                    %(functionScope)s,%(inputTypes)s>"""
+                    %(functionType)s,%(inputTypes)s>"""
     BIND_LIST = """boost::_bi::list%(listCount)d<
                     boost::_bi::value<%(functionReference)s >,%(inputTypes)s > >"""
     const_ = ' const'
@@ -107,19 +108,12 @@ class BehaviorMemberLoop(BehaviorLoop):
     # public interface
     #############################################
 
-    def setScope(self):
-        """Set a few properties that will be required to generate source code."""
-        self.functionScope_ = '%s::%s' % (
-            environment.config().namespaceLibrary(), self.func_.parameterObjectID().dataType().classname())
-        self.functionReference_ = 'boost::shared_ptr<%s>' % self.functionScope_
-        self.functionScope2_ = self.functionScope_ + '::* '
-
     def bindPointer(self, inputTypes, returnType):
         """Return source code for a boost::bind declaration."""
         return BehaviorMemberLoop.BIND_POINTER % {
             'cmfCount' : self.func_.parameterList().underlyingCount(),
             'inputTypes' : self.func_.parameterList().generate(inputTypes),
-            'functionScope' : self.functionScope_,
+            'functionType' : self.func_.type(),
             'returnType' : returnType }
 
     def bindList(self, inputTypes):
@@ -127,7 +121,7 @@ class BehaviorMemberLoop(BehaviorLoop):
         return BehaviorMemberLoop.BIND_LIST % {
             'inputTypes' : self.func_.parameterList().generate(inputTypes),
             'listCount' : self.func_.parameterList().underlyingCount() + 1,
-            'functionReference' : self.functionReference_ }
+            'functionReference' : self.functionReference() }
 
     #############################################
     # private member functions
@@ -137,24 +131,23 @@ class BehaviorMemberLoop(BehaviorLoop):
         """Save a reference to the function, and configure the function to loop."""
         self.func_ = func
         BehaviorLoop.__init__(self)
-        self.setScope()
-        self.functionCodeName_ = self.functionScope_ + '::' + self.func_.libraryFunction()
-        self.functionSignature_ = '(' + self.functionName_ + 'Signature)'
+        self.functionCodeName_ = self.func_.type() + '::' + self.func_.libraryFunction()
+        self.functionSignature_ = self.func_.name() + 'Signature'
         self.objectName_ = '\n' + 16 * ' ' + self.func_.parameterObjectID().nameConverted() + ','
+
+    def functionReference(self):
+        return 'boost::shared_ptr<%s>' % self.func_.type()
 
 class BehaviorEnumerationLoop(BehaviorMemberLoop):
     """Customize the BehaviorMemberLoop class with some strings specific to 
     EnumerationMember functions."""
 
     #############################################
-    # public interface
+    # private member functions
     #############################################
 
-    def setScope(self):
-        """Set a few properties that will be required to generate source code."""
-        self.functionScope_ = self.func_.type()
-        self.functionReference_ = self.func_.type()
-        self.functionScope2_ = self.functionScope_ + '::* '
+    def functionReference(self):
+        return self.func_.type()
 
 class BehaviorProcedureLoop(BehaviorLoop):
     """Customize the BehaviorLoop class with some strings specific to Procedure functions."""
@@ -165,7 +158,6 @@ class BehaviorProcedureLoop(BehaviorLoop):
 
     BIND_POINTER = '%(returnType)s (__cdecl*)(%(inputTypes)s)'
     BIND_LIST = 'boost::_bi::list%(listCount)d<%(inputTypes)s > >'
-    functionScope2_ = '*'
     objectName_ = ''
     const_ = ''
 

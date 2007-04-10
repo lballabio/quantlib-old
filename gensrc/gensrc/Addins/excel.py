@@ -318,9 +318,6 @@ class ExcelAddin(addin.Addin):
     def loopReturnType(self):
         return self.loopReturnType_
 
-    def loopDatatype(self):
-        return self.loopDatatype_
-
     #############################################
     # serializer interface
     #############################################

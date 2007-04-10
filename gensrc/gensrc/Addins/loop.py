@@ -37,6 +37,25 @@ namespace %(namespace)s {
 %(buffer)s
 }\n'''
 
+    FUNC_BIND = '''\
+    typedef     boost::_bi::bind_t<
+                %(returnType)s,
+                %(bindPointer)s,
+                %(bindList)s
+                %(functionName)sBind;'''
+
+    FUNC_SIG = '''\
+    typedef     %(returnType)s 
+                (%(functionType)s::* %(functionSignature)s)(%(inputTypes3)s)%(const)s;'''
+
+    BUF_LOOP = '''
+    // %(functionName)s
+
+%(functionBind)s
+
+%(functionSignature)s
+'''
+
     #############################################
     # public interface
     #############################################
@@ -53,15 +72,24 @@ namespace %(namespace)s {
     def generateLoop(self, func):
         """Generate loop typedefs for given function."""
         returnType = self.loopDatatype_.apply(func.returnValue())
-        return self.bufferBind_.text() % {
+        functionBind = Loop.FUNC_BIND % {
             'bindList' : func.behavior().bindList(self.inputTypes2_),
             'bindPointer' : func.behavior().bindPointer(self.inputTypes1_, returnType),
-            'const' : func.behavior().const(),
             'functionName' : func.name(),
-            'functionScope2' : func.behavior().functionScope2(),
-            'inputTypes3' : func.parameterList().generate(self.inputTypes3_),
-            'namespaceLibrary' : environment.config().namespaceLibrary(),
             'returnType' : returnType }
+        if func.behavior().functionSignature_:
+            functionSignature = Loop.FUNC_SIG % {
+                'const' : func.behavior().const(),
+                'functionSignature' : func.behavior().functionSignature_,
+                'functionType' : func.type(),
+                'inputTypes3' : func.parameterList().generate(self.inputTypes3_),
+                'returnType' : returnType }
+        else:
+            functionSignature = ''
+        return Loop.BUF_LOOP % {
+            'functionBind' : functionBind,
+            'functionName' : func.name(),
+            'functionSignature' : functionSignature }
 
     def generateLoops(self, cat):
         """Generate type definitions required for source code for loop functions."""
@@ -74,16 +102,4 @@ namespace %(namespace)s {
             'namespace' : environment.config().namespaceObjects() }
         fileName = self.rootPath_ + 'loop_' + cat.name() + '.hpp'
         outputfile.OutputFile(self, fileName, self.copyright_, bufFile)
-
-    def inputTypes1(self):
-        return self.inputTypes1_
-
-    def inputTypes2(self):
-        return self.inputTypes2_
-
-    def inputTypes3(self):
-        return self.inputTypes3_
-
-    def loopDatatype(self):
-        return self.loopDatatype_
 

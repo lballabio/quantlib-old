@@ -71,8 +71,6 @@ class Function(serializable.Serializable):
         return self.supportedPlatforms_.has_key('Excel') \
             and self.supportedPlatforms_['Excel'].calcInWizard()
 
-    def generateVO(self, addin): return "/* no VO - not a constructor*/"
-
     def parameterList(self):
         return self.parameterList_
 
