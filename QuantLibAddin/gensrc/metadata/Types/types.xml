@@ -234,7 +234,7 @@
     and converted to bare QuantLib references in the form
         QuantLib::xxx
     -->
-    <SuperType name='underlyingClass' nativeType='string'>
+    <SuperType name='underlyingClass' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
         <DataType>QuantLib::BrownianGeneratorFactory</DataType>
         <DataType>QuantLib::CMSwapCurveState</DataType>

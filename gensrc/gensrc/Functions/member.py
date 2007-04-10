@@ -79,3 +79,7 @@ class Member(function.Function):
         else:
             self.behavior_ = behavior.BehaviorMember(self)
 
+        # temporary hack            
+        if self.parameterObjectID_.dataType().superType() == 'underlyingClass':
+			self.deref_ = '.'
+

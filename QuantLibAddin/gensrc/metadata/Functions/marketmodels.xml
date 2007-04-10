@@ -1411,7 +1411,7 @@
       </ParameterList>
     </Constructor>
 
-    <!--<Member name='qlTimeDependantCorrelationStructurePseudoRoot' type='QuantLib::TimeDependantCorrelationStructure'>
+    <Member name='qlTimeDependantCorrelationStructurePseudoRoot' type='QuantLib::TimeDependantCorrelationStructure'>
       <description>Returns the pseudo-root of the equivalent covariance swap rates matrix</description>
       <libraryFunction>pseudoRoot</libraryFunction>
       <SupportedPlatforms>
@@ -1445,7 +1445,7 @@
         <type>long</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>-->
+    </Member>
 
     <Constructor name='qlSwapFromFRACorrelationStructure'>
       <libraryFunction>SwapFromFRACorrelationStructure</libraryFunction>
