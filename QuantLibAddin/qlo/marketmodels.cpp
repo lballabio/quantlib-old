@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -35,16 +35,16 @@
 namespace QuantLibAddin {
 
     SwapFromFRACorrelationStructure::SwapFromFRACorrelationStructure(
-            const QuantLib::Real longTermCorr,
-            const QuantLib::Real beta,
+            const QuantLib::Matrix& correlations,
             const QuantLib::CurveState& curveState,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors){
         libraryObject_ = 
-            boost::shared_ptr<QuantLib::SwapFromFRACorrelationStructure>(
-                new QuantLib::SwapFromFRACorrelationStructure(longTermCorr, 
-                                                    beta, curveState, 
-                                                    evolution,numberOfFactors));    
+            boost::shared_ptr<QuantLib::SwapFromFRACorrelationStructure>(new
+                QuantLib::SwapFromFRACorrelationStructure(correlations, 
+                                                          curveState, 
+                                                          evolution,
+                                                          numberOfFactors));    
     }
 
     EvolutionDescription::EvolutionDescription(
@@ -71,18 +71,16 @@ namespace QuantLibAddin {
     }
 
     ExpCorrFlatVol::ExpCorrFlatVol(
-            double longTermCorr,
-            double beta,
             const std::vector<double>& volatilities,
+            const QuantLib::Matrix& correlations, 
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
             const std::vector<QuantLib::Rate>& displacements)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(
-            new QuantLib::ExpCorrFlatVol(longTermCorr,
-                                         beta,
-                                         volatilities,
+            new QuantLib::ExpCorrFlatVol(volatilities,
+                                         correlations,
                                          evolution,
                                          numberOfFactors,
                                          initialRates,
@@ -353,7 +351,7 @@ namespace QuantLibAddin {
         const QuantLib::Size resetIndex,
         const QuantLib::EvolutionDescription& evolution) {
 
-         libraryObject_ = boost::shared_ptr<QuantLib::PiecewiseConstantAbcdVariance>(
+         libraryObject_ = boost::shared_ptr<QuantLib::PiecewiseConstantVariance>(
             new QuantLib::PiecewiseConstantAbcdVariance(a,b,c,d,resetIndex,evolution));
     
     }

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -47,42 +47,51 @@
 
 namespace QuantLibAddin {
 
-    class PiecewiseConstantVariance: public ObjHandler::LibraryObject<QuantLib::PiecewiseConstantVariance>{};
-
-    inline QuantLib::Matrix capletCoterminalCalibration(const QuantLib::TimeDependantCorrelationStructure& corr,
-            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
-            const std::vector<QuantLib::Volatility>& capletVols,
-            const QuantLib::CurveState& cs,
-            const QuantLib::Spread displacement,
-            const std::vector<QuantLib::Real>& alpha,
-            QuantLib::Size timeIndex){
-                QuantLib::Size nbRates = cs.rateTimes().size();
-                std::vector<QuantLib::Matrix> pseudoRoots(nbRates);
-            for (QuantLib::Size i = 0; i < nbRates; ++i)
-                pseudoRoots[i] = QuantLib::Matrix(nbRates, nbRates);
-
-            bool result = QuantLib::capletCoterminalCalibration(corr,
-                        swapVariances, capletVols, cs, displacement, alpha, pseudoRoots);
-            if (result)
-                return pseudoRoots[timeIndex];
-            else
-                QL_FAIL("caplets coterminal calibration has failed");
-    };
-
     class TimeDependantCorrelationStructure :
         public ObjHandler::LibraryObject<QuantLib::TimeDependantCorrelationStructure>{};
 
     class SwapFromFRACorrelationStructure : public TimeDependantCorrelationStructure {
         public:
             SwapFromFRACorrelationStructure(
-            const QuantLib::Real longTermCorr,
-            const QuantLib::Real beta,
+            const QuantLib::Matrix& correlations,
             const QuantLib::CurveState& curveState,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors);
-        const QuantLib::EvolutionDescription& evolution() const;
-        QuantLib::Size numberOfFactors() const;
-        const QuantLib::Matrix& pseudoRoot(QuantLib::Size i) const;
+    };
+
+    class PiecewiseConstantVariance: public ObjHandler::LibraryObject<QuantLib::PiecewiseConstantVariance>{};
+
+    class PiecewiseConstantAbcdVariance : public PiecewiseConstantVariance {
+    public:
+        PiecewiseConstantAbcdVariance(QuantLib::Real a, QuantLib::Real b,
+                                      QuantLib::Real c, QuantLib::Real d,
+                                      const QuantLib::Size resetIndex,
+                                      const QuantLib::EvolutionDescription& evolution);
+
+    };
+
+    inline QuantLib::Matrix capletCoterminalCalibration(
+            const QuantLib::TimeDependantCorrelationStructure& corr,
+            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
+            const std::vector<QuantLib::Volatility>& capletVols,
+            const QuantLib::CurveState& cs,
+            const QuantLib::Spread displacement,
+            const std::vector<QuantLib::Real>& alpha,
+            QuantLib::Size timeIndex)
+    {
+
+        QuantLib::Size nbRates = cs.rateTimes().size();
+        QL_REQUIRE(timeIndex<nbRates,
+                   "timeIndex (" << timeIndex <<
+                   ") must be less than nbRates (" << nbRates << ")");
+        QuantLib::Matrix pseudoRoot = QuantLib::Matrix(nbRates, nbRates);
+        std::vector<QuantLib::Matrix> pseudoRoots(nbRates,pseudoRoot);
+
+        bool result = QuantLib::capletCoterminalCalibration(corr,
+            swapVariances, capletVols, cs, displacement, alpha, pseudoRoots);
+
+        if (result) return pseudoRoots[timeIndex];
+        else        QL_FAIL("caplets coterminal calibration has failed");
     };
 
     class EvolutionDescription : public ObjHandler::LibraryObject<QuantLib::EvolutionDescription> {
@@ -114,9 +123,8 @@ namespace QuantLibAddin {
     class ExpCorrFlatVol : public MarketModel {
     public:
         ExpCorrFlatVol(
-            double longTermCorr,
-            double beta,
             const std::vector<double>& volatilities,
+            const QuantLib::Matrix& correlations,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
@@ -320,17 +328,6 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::MarketModelEvolver>& evolver,
             const QuantLib::Clone<QuantLib::MarketModelMultiProduct>& product,
             double initialNumeraireValue);
-    };
-
-
-    class PiecewiseConstantAbcdVariance : public ObjHandler::LibraryObject<
-        QuantLib::PiecewiseConstantAbcdVariance> {
-    public:
-        PiecewiseConstantAbcdVariance(QuantLib::Real a, QuantLib::Real b,
-                                      QuantLib::Real c, QuantLib::Real d,
-                                      const QuantLib::Size resetIndex,
-                                      const QuantLib::EvolutionDescription& evolution);
-
     };
 
     // Volatility Model

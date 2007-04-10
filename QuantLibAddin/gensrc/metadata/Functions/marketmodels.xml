@@ -3,12 +3,13 @@
   <displayName>MarketModels</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
-    <include>ql/math/Optimization/method.hpp</include>
-    <include>ql/MarketModels/swapforwardconversionmatrix.hpp</include>
-    <include>ql/MarketModels/swapforwardmappings.hpp</include>
-    <include>ql/MarketModels/CurveStates/cmswapcurvestate.hpp</include>
-    <include>ql/MarketModels/CurveStates/coterminalswapcurvestate.hpp</include>
-    <include>ql/MarketModels/CurveStates/lmmcurvestate.hpp</include>
+    <include>ql/math/optimization/method.hpp</include>
+    <include>ql/marketmodels/models/correlations.hpp</include>
+    <include>ql/marketmodels/swapforwardconversionmatrix.hpp</include>
+    <include>ql/marketmodels/swapforwardmappings.hpp</include>
+    <include>ql/marketmodels/curvestates/cmswapcurvestate.hpp</include>
+    <include>ql/marketmodels/curvestates/coterminalswapcurvestate.hpp</include>
+    <include>ql/marketmodels/curvestates/lmmcurvestate.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>qlo/marketmodels.hpp</include>
     <include>qlo/sequencestatistics.hpp</include>
@@ -23,6 +24,41 @@
     Copyright (C) 2006, 2007 Giorgio Facchinetti
   </copyright>
   <Functions>
+
+
+
+    <Procedure name="qlExponentialCorrelations">
+      <description>Returns the exponential correlation matrix.</description>
+      <alias>QuantLib::exponentialCorrelations</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='longTermCorr' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation</description>
+          </Parameter>
+          <Parameter name='beta' exampleValue ='0.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponential decay factor</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+
 
     <!-- MarketModelMultiProductComposite base class interface  -->
 
@@ -78,7 +114,7 @@
       </ReturnValue>
     </Member>
     <!-- MarketModelMultiProduct base class interface  -->
-    
+
     <Member name='qlMarketModelMultiProductSuggestedNumeraires' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
       <description>suggested Numeraires for the MarketModelMultiProduct object</description>
       <libraryFunction>suggestedNumeraires</libraryFunction>
@@ -153,7 +189,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -185,7 +221,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -242,7 +278,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes'>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -274,12 +310,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='evolutionTimes' exampleValue ='1.0,2.0,3.0,4.0,5.0'>
+          <Parameter name='evolutionTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>evolution times in the simulation</description>
@@ -410,9 +446,9 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
-    
+
     <!-- EvolutionDescription object procedures -->
-    
+
     <Procedure name='qlTerminalMeasure'>
       <description>Returns the terminal measure for the given EvolutionDescription object</description>
       <alias>QuantLib::terminalMeasure</alias>
@@ -569,7 +605,7 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
-    
+
     <!-- MarketModel base class interfaces -->
     <Member name='qlMarketModelInitialRates' type='QuantLib::MarketModel'>
       <description>initial rates for the MarketModel object</description>
@@ -708,7 +744,7 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
-    
+
     <!-- MarketModel derived class constructors -->
     <Constructor name='qlExpCorrFlatVol'>
       <libraryFunction>ExpCorrFlatVol</libraryFunction>
@@ -717,20 +753,15 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='LongTermCorr' exampleValue ='0.5'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
-          </Parameter>
-          <Parameter name='beta' exampleValue ='0.2'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
-          </Parameter>
           <Parameter name='volatilities' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
             <description>volatilities</description>
+          </Parameter>
+          <Parameter name='correlationMatrix'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>correlation matrix</description>
           </Parameter>
           <Parameter name='evolutionDescription' >
             <type>QuantLib::EvolutionDescription</type>
@@ -788,17 +819,17 @@
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>K_i adjustment factors in the abcd vol parametrization</description>
-           </Parameter>
-           <Parameter name='correlations'>
-             <type>QuantLib::Matrix</type>
-             <tensorRank>matrix</tensorRank>
-             <description>correlations between forwards rates</description>
-            </Parameter>
-            <Parameter name='evolutionDescription' >
-                <type>QuantLib::EvolutionDescription</type>
-                <superType>underlyingClass</superType>
-                <tensorRank>scalar</tensorRank>
-                <description>EvolutionDescription object</description>
+          </Parameter>
+          <Parameter name='correlationMatrix'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>correlation matrix</description>
+          </Parameter>
+          <Parameter name='evolutionDescription' >
+            <type>QuantLib::EvolutionDescription</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>EvolutionDescription object</description>
           </Parameter>
           <Parameter name='Factors' exampleValue ='5'>
             <type>long</type>
@@ -1308,7 +1339,36 @@
       </ReturnValue>
     </Member>
 
-    <!-- PiecewiseConstantAbcdVariance class constructor -->
+    <Member name='qlPiecewiseConstantVarianceVariances' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the piecewise constant variances.</description>
+      <libraryFunction>variances</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantVarianceVolatilities' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the piecewise constant volatilities.</description>
+      <libraryFunction>volatilities</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Constructor name='qlPiecewiseConstantAbcdVariance'>
       <libraryFunction>PiecewiseConstantAbcdVariance</libraryFunction>
       <SupportedPlatforms>
@@ -1336,12 +1396,12 @@
             <tensorRank>scalar</tensorRank>
             <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
           </Parameter>
-          <Parameter name='ResetIndex'>
+          <Parameter name='ResetIndex' exampleValue='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Index that defines the reset time of rate.</description>
           </Parameter>
-          <Parameter name='evolutionDescription' >
+          <Parameter name='evolutionDescription' exampleValue='EvolutionDescriptionID'>
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -1351,133 +1411,7 @@
       </ParameterList>
     </Constructor>
 
-    <!-- PiecewiseConstantAbcdVariance class interfaces -->
-    <Member name='qlPiecewiseConstantAbcdVariances' type='QuantLib::PiecewiseConstantAbcdVariance'>
-      <description>Returns the piecewise constant abcd variances.</description>
-      <libraryFunction>variances</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlpiecewiseConstantVolatilities' type='QuantLib::PiecewiseConstantAbcdVariance'>
-      <description>Returns the piecewise constant abcd instantaneous volatilities.</description>
-      <libraryFunction>piecewiseConstantVolatilities</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-
-    <!-- SwapForwardConversionMatrix class constructor and interfaces -->
-
-    <!--<Constructor name='qlSwapCovarianceApproximator'>
-      <libraryFunction>SwapCovarianceApproximator</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='initial_Curve_State' >
-            <type>QuantLib::CurveState</type>
-            <superType>underlyingClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>ID of CurveState object</description>
-          </Parameter>
-          <Parameter name='expiry'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Index of first expiry date</description>
-          </Parameter>
-          <Parameter name='maturity'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Index of last maturity date</description>
-          </Parameter>
-          <Parameter name='displacement'>
-            <type>QuantLib::Spread</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Swap rate displacement (one single value)</description>
-          </Parameter>
-          <Parameter name='forwardCovarianceMatrix'>
-            <type>QuantLib::Matrix</type>
-            <tensorRank>matrix</tensorRank>
-            <description>Forward covariance matrix</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Member name='qlSwapCovarianceApproximatorSwapCovarianceMatrix' type='QuantLibAddin::SwapCovarianceApproximator'>
-      <description>Given the forward covariance matrix, it returns the approximated swap covariance matrix corresponding to the (sub)set of coterminal swaps between expiry and maturity.</description>
-      <libraryFunction>swapCovarianceMatrix</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Matrix</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>-->
-    
-    <!-- SwapFromFRACorrelationStructure class constructor -->
-    <Constructor name='qlSwapFromFRACorrelationStructure'>
-      <libraryFunction>SwapFromFRACorrelationStructure</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='longTermCorr' exampleValue ='0.5'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Long term correlation</description>
-          </Parameter>
-          <Parameter name='beta' exampleValue ='0.2'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>decay factor</description>
-          </Parameter>
-          <Parameter name='curveState' >
-            <type>QuantLib::CurveState</type>
-            <superType>underlyingClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>curveState</description>
-          </Parameter>
-          <Parameter name='evolution'  >
-            <type>QuantLib::EvolutionDescription</type>
-            <superType>underlyingClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>Evolution Description</description>
-          </Parameter>
-          <Parameter name='numberOfFactors' exampleValue ='5'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>number of factors</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <!-- SwapFromFRACorrelationStructure class interfaces -->
-    <Member name='qlSwapFromFRACorrelationStructurePseudoRoot' type='QuantLib::SwapFromFRACorrelationStructure'>
+    <!--<Member name='qlTimeDependantCorrelationStructurePseudoRoot' type='QuantLib::TimeDependantCorrelationStructure'>
       <description>Returns the pseudo-root of the equivalent covariance swap rates matrix</description>
       <libraryFunction>pseudoRoot</libraryFunction>
       <SupportedPlatforms>
@@ -1498,6 +1432,54 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlTimeDependantCorrelationStructureNumberOfFactors' type='QuantLib::TimeDependantCorrelationStructure'>
+      <description>Returns the number of factors</description>
+      <libraryFunction>numberOfFactors</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>-->
+
+    <Constructor name='qlSwapFromFRACorrelationStructure'>
+      <libraryFunction>SwapFromFRACorrelationStructure</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='correlationMatrix'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>FRA correlation matrix</description>
+          </Parameter>
+          <Parameter name='curveState' exampleValue ='CurveStateID'>
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>curveState</description>
+          </Parameter>
+          <Parameter name='evolution' exampleValue ='EvolutionDescriptionID'>
+            <type>QuantLib::EvolutionDescription</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Evolution Description</description>
+          </Parameter>
+          <Parameter name='numberOfFactors' exampleValue ='4'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of factors</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Procedure name='qlCapletCoterminalCalibration'>
       <description>Calibrate ...</description>
       <alias>QuantLibAddin::capletCoterminalCalibration</alias>
@@ -1512,31 +1494,31 @@
             <tensorRank>scalar</tensorRank>
             <description>correlations ID</description>
           </Parameter>
-          <Parameter name='swapVariances'>
+          <Parameter name='swapPiecewiseConstantVariances'>
             <type>QuantLib::PiecewiseConstantVariance</type>
             <tensorRank>vector</tensorRank>
-            <description>PiecewiseConstantVariances ID</description>
+            <description>PiecewiseConstantVariance IDs</description>
           </Parameter>
-          <Parameter name='capletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1'>
+          <Parameter name='capletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
             <description>caplet volatilities</description>
           </Parameter>
-          <Parameter name='curveState' >
+          <Parameter name='curveState' exampleValue ='CurveStateID'>
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>CurveState object ID</description>
           </Parameter>
-          <Parameter name='displacement' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+          <Parameter name='displacement' exampleValue ='0.0'>
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
           </Parameter>
-          <Parameter name='alpha' exampleValue ='0.01'>
+          <Parameter name='alphas' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
-            <description>alpha</description>
+            <description>alphas</description>
           </Parameter>
           <Parameter name='timeIndex' exampleValue ='0'>
             <type>QuantLib::Size</type>
@@ -1686,22 +1668,6 @@
       </ReturnValue>
     </Member>
 
-    <!--<Constructor name='qlCurveState'>
-      <libraryFunction>CurveState</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='rateTimes' vectorIterator='beginAndEnd'>
-            <type>QuantLib::Time</type>
-            <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>-->
-
     <!-- CMSwapCurveState derived class constructor -->
     <Constructor name='qlCMSwapCurveState'>
       <libraryFunction>CMSwapCurveState</libraryFunction>
@@ -1710,7 +1676,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -1754,7 +1720,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -1793,7 +1759,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -2398,7 +2364,7 @@
     </Member>
 
     <!-- LmExtLinearExponentialVolModel constructor  -->
-    
+
     <Constructor name='qlMarketModelLmExtLinearExponentialVolModel'>
       <libraryFunction>LmExtLinearExponentialVolModel</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
@@ -2469,7 +2435,7 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-    
+
     <!-- Discount bond ratios procedures -->
     <Procedure name='qlForwardsFromDiscountRatios'>
       <description>Returns the forward rates implied from discount bond ratios</description>
