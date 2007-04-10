@@ -84,17 +84,17 @@ class Calendar {
                 BusinessDayConvention convention = QuantLib::Following);
     Date advance(const Date& d, Integer n, TimeUnit unit,
                  BusinessDayConvention convention =
-		 QuantLib::Following,
-		 bool endOfMonth = false);
+         QuantLib::Following,
+         bool endOfMonth = false);
     Date advance(const Date& d, const Period& period,
                  BusinessDayConvention convention =
-		 QuantLib::Following,
-		 bool endOfMonth = false);
+         QuantLib::Following,
+         bool endOfMonth = false);
     BigInteger businessDaysBetween(const Date& from,
                  const Date& to,
                  bool includeFirst = true,
                  bool includeLast = false);
-		 
+
     %extend {
         std::string __str__() {
             return self->name()+" calendar";
@@ -130,6 +130,13 @@ namespace QuantLib {
     };
 
     class Australia : public Calendar {};
+
+    class Brazil : public Calendar {
+      public:
+        enum Market { Settlement };
+        Brazil(Market m = Settlement);
+    };
+
     class Canada : public Calendar {};
     class China : public Calendar {};
 
