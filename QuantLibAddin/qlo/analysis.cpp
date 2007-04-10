@@ -22,7 +22,7 @@
 
 #include <qlo/analysis.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
-#include <ql/Indexes/interestrateindex.hpp>
+#include <ql/indexes/interestrateindex.hpp>
 
 namespace QuantLibAddin {
 
@@ -170,3 +170,4 @@ namespace QuantLibAddin {
         return generator.analysis();
     }
 }
+
