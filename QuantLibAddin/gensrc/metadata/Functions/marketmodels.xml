@@ -1272,7 +1272,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdCapletCalibration' type='QuantLib::Abcd'>
+    <Member name='qlAbcdCalibration' type='QuantLib::Abcd'>
       <description>Calibrates the a, b, c, d parameters of the vol parametrization</description>
       <libraryFunction>calibration</libraryFunction>
       <SupportedPlatforms>
