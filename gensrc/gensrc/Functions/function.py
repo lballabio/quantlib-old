@@ -86,9 +86,6 @@ class Function(serializable.Serializable):
     def alias(self):
         return self.alias_
 
-    def deref(self):
-        return self.deref_
-
     def type(self):
         return self.type_
 

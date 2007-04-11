@@ -46,7 +46,7 @@ class BehaviorMember(object):
     def generateBody(self, addin):
         """Generate source code for the body of the function."""
         return BehaviorMember.funcMemberBuffer % {
-            'dereference' : self.func_.deref(),
+            'memberAccess' : self.func_.memberAccess(),
             'libraryFunction' : self.func_.libraryFunction(),
             'libraryReturnType' : addin.libraryReturnType().apply(self.func_.returnValue()),
             'objectID' : self.func_.parameterObjectID().nameConverted(),

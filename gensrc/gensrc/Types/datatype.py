@@ -60,6 +60,12 @@ class DataType(serializable.Serializable):
     def nativeType(self):
         return self.nativeType_
 
+    def setMemberAccess(self, value):
+        self.memberAccess_ = value
+        
+    def memberAccess(self):
+        return self.memberAccess_
+
     #############################################
     # serializer interface
     #############################################

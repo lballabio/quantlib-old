@@ -45,6 +45,7 @@ class SuperType(serializable.Serializable):
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeAttribute(self, common.NATIVE_TYPE)
         serializer.serializeAttribute(self, common.CONVERSION_SUFFIX)
+        serializer.serializeAttribute(self, common.MEMBER_ACCESS, '->')
         serializer.serializeObjectList(self, datatype.DataType)
 
     def postSerialize(self):
@@ -53,6 +54,7 @@ class SuperType(serializable.Serializable):
             typeItem.setSuperType(self.name_)
             typeItem.setConversionSuffix(self.conversionSuffix_)
             typeItem.overrideNativeType(self.nativeType_)
+            typeItem.setMemberAccess(self.memberAccess_)
 
 class SuperTypeList(serializable.Serializable):
 

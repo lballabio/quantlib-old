@@ -35,13 +35,7 @@ class EnumerationMember(member.Member):
     """Function which invokes member function of Enumeration from the Registry."""
 
     #############################################
-    # class variables
-    #############################################
-
-    deref_ = '.'
-
-    #############################################
-    # public interface
+    # serializer interface
     #############################################
 
     def serialize(self, serializer):

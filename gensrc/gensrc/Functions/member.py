@@ -34,18 +34,15 @@ class Member(function.Function):
     """Function which invokes member function of existing library object."""
 
     #############################################
-    # class variables
-    #############################################
-
-    deref_ = '->'
-
-    #############################################
     # public interface
     #############################################
 
     def generateBody(self, addin):
         """Generate source code for the body of the function."""
         return self.behavior_.generateBody(addin)
+
+    def memberAccess(self):
+        return self.parameterObjectID_.dataType().memberAccess()
 
     #############################################
     # serializer interface
@@ -78,8 +75,3 @@ class Member(function.Function):
             self.behavior_ = behaviorloop.BehaviorMemberLoop(self)
         else:
             self.behavior_ = behavior.BehaviorMember(self)
-
-        # temporary hack            
-        if self.parameterObjectID_.dataType().superType() == 'underlyingClass':
-			self.deref_ = '.'
-
