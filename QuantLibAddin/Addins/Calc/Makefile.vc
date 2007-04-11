@@ -3,8 +3,8 @@
 # VC7 (Visual Studio 2003), configuration "Release CRTDLL"
 # for further info: http://www.quantlibaddin.org/calc.html
 
-OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org 2.0\program
-OFFICE_SDK_PATH=C:\OpenOffice.org_2.0_SDK
+OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org 2.2\program
+OFFICE_SDK_PATH=C:\Program Files\OpenOffice.org_2.2_SDK
 
 COMPONENT_NAME=QuantLibAddinCalc
 DLL_NAME=$(COMPONENT_NAME)-vc71-mt-0_8_0

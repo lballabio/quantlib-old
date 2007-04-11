@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -76,6 +76,9 @@ void calcToVector(std::vector<bool> &ret, const SEQSEQ(sal_Int32) &in) {
 }
 
 void calcToVector(std::vector<QuantLib::Period> &ret, const SEQSEQ(ANY) &in) {
+}
+
+void calcToVector(std::vector<boost::any> &, const SEQSEQ(ANY) &) {
 }
 
 QuantLib::Matrix calcToQlMatrix(const SEQSEQ(double) &in) {

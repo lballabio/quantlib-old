@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -82,7 +82,7 @@ public:
     QLAddin() throw ();
     virtual ~QLAddin() {};
 
-#include <Addins/Calc/qla_all.hpp>
+#include <Addins/Calc/qlo_all.hpp>
 
 };
 

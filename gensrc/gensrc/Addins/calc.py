@@ -71,18 +71,18 @@ class CalcAddin(addin.Addin):
         """Generate help text for function wizard."""
         buf = ''
         for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
-            buf += '    // %s\n\n' % cat.displayName
+            buf += '    // %s\n\n' % cat.displayName()
             for func in cat.functions(self.name_, supportedplatform.MANUAL): 
-                buf += '    // %s\n\n' % func.name
-                buf += MAPLINE % ('funcMap', func.name, func.name)
-                buf += MAPLINE % ('funcDesc', func.name, func.description)
+                buf += '    // %s\n\n' % func.name()
+                buf += MAPLINE % ('funcMap', func.name(), func.name())
+                buf += MAPLINE % ('funcDesc', func.name(), func.description())
                 for param in func.parameterList().parameters():
-                    buf += PARMLINE % ('argName', func.name, param.name)
-                    buf += PARMLINE % ('argDesc', func.name, param.description)
+                    buf += PARMLINE % ('argName', func.name(), param.name())
+                    buf += PARMLINE % ('argDesc', func.name(), param.description())
                 buf += '\n'
         buf2 = self.bufferMap_.text() % { 
-            'prefix' : environment.config().prefix,
-            'addinClassName' : self.addinClassName_,
+            'prefix' : environment.config().prefix(),
+            'addinClassName' : 'QLAddin',
             'buffer' : buf }
         fileName = self.rootPath_ + MAPFILE
         outputfile.OutputFile(self, fileName, None, buf2, False)
@@ -91,9 +91,9 @@ class CalcAddin(addin.Addin):
         """Generate header file that lists all other headers."""
         bufHeader = ''
         for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
-            bufHeader += '#include <Addins/Calc/%s.hpp>\n' % cat.name
+            bufHeader += '#include <Addins/Calc/%s.hpp>\n' % cat.name()
         buf = self.bufferHeader_.text() % { 
-            'prefix' : environment.config().prefix,
+            'prefix' : environment.config().prefix(),
             'buffer' : bufHeader }
         fileName = self.rootPath_ + environment.config().libRootDirectory() + '_all.hpp'
         outputfile.OutputFile(self, fileName, None, buf, False)
@@ -102,10 +102,10 @@ class CalcAddin(addin.Addin):
         """Generate implementation for given function."""
         functionReturnType = self.functionReturnType_.apply(func.returnValue())
         if declaration:
-            prototype = '    virtual %s SAL_CALL %s(' % (functionReturnType, func.name)
+            prototype = '    virtual %s SAL_CALL %s(' % (functionReturnType, func.name())
             suffix = ';\n\n'
         else:
-            prototype = '%s SAL_CALL %s::%s('  % (functionReturnType, self.addinClassName_, func.name)
+            prototype = '%s SAL_CALL %s::%s('  % (functionReturnType, 'QLAddin', func.name())
             suffix = ' {'
         ret = prototype
         ret += func.parameterList().generate(self.functionDeclaration_)
@@ -116,18 +116,18 @@ class CalcAddin(addin.Addin):
         """Generate source for function prototypes."""
         for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
             buf = ''
-            for func in cat.functions(self.name, supportedplatform.MANUAL): 
+            for func in cat.functions(self.name_, supportedplatform.MANUAL): 
                 buf += self.generateHeader(func)
             buf2 = self.bufferCategory_.text() % {
-                'prefix' : environment.config().prefix,
-                'categoryName' : cat.name,
+                'prefix' : environment.config().prefix(),
+                'categoryName' : cat.name(),
                 'buffer' : buf }
             fileName = self.rootPath_ + cat.name() + '.hpp'
             outputfile.OutputFile(self, fileName, None, buf2, False)
 
     def generateFunction(self, func):
         """Generate source code for a given function"""
-        if func.loopParameter:
+        if func.loopParameter():
             convertReturnType = 8 * ' ' + 'return returnValue;'
         else:
             convertReturnType = self.convertReturnType_.apply(func.returnValue())
@@ -136,7 +136,7 @@ class CalcAddin(addin.Addin):
             'cppConversions' : func.parameterList().generate(self.cppConversions_),
             'enumConversions' : func.parameterList().generate(self.enumConversions_),
             'functionBody' : func.generateBody(self),
-            'functionName' : func.name,
+            'functionName' : func.name(),
             #'functionValueObject' : func.generateVO(self),
             'functionValueObject' : '',
             'header' : self.generateHeader(func, False),
@@ -150,9 +150,9 @@ class CalcAddin(addin.Addin):
             for func in cat.functions(self.name_): 
                 buf += self.generateFunction(func)
             categoryIncludes = cat.includeList()
-            if cat.containsLoopFunction:
+            if cat.containsLoopFunction():
                 categoryIncludes += '#include <%s/loop_%s.hpp>' % (
-                    environment.config().loopRootDirectory,
+                    environment.config().loopRootDirectory(),
                     cat.name())
                 loopIncludes = '#include <Addins/Calc/loop.hpp>'
             else:

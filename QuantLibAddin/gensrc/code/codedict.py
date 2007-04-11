@@ -297,28 +297,36 @@ code71 = '''\
         std::string %(name)sCpp;
         calcToScalar(%(name)sCpp, %(name)s);\n'''
 
+code71b = '''\
+        boost::any %(name)sCpp;
+        calcToScalar(%(name)sCpp, %(name)s);\n'''
+
 code72 = '''\
-        %(type)s %(name)sCpp;
+        %(nativeType)s %(name)sCpp;
         calcToScalar(%(name)sCpp, %(name)s);\n'''
 
 code73 = '''\
         std::vector<std::string> %(name)sCpp;
         calcToVector(%(name)sCpp, %(name)s);\n'''
 
+code73b = '''\
+        std::vector<boost::any> %(name)sCpp;
+        calcToVector(%(name)sCpp, %(name)s);\n'''
+
 code74 = '''\
-        std::vector<%(type)s> %(name)sCpp;
+        std::vector<%(nativeType)s> %(name)sCpp;
         calcToVector(%(name)sCpp, %(name)s);\n'''
 
 code75 = '''\
-        std::vector<std::vector<%(type)s> > %(name)sCpp;
+        std::vector<std::vector<%(nativeType)s> > %(name)sCpp;
         calcToMatrix(%(name)sCpp, %(name)s);\n'''
 
 code76 = '''\
-        std::vector<%(superType)s> %(name)sLib;
+        std::vector<%(type)s> %(name)sLib;
         calcToVector(%(name)sLib, %(name)s);\n'''
 
 code77 = '''\
-        %(superType)s %(name)sLib;
+        %(type)s %(name)sLib;
         calcToVector(%(name)sLib, %(name)s);\n'''
 
 code78 = '''\
@@ -331,15 +339,15 @@ code79 = '''\
 
 code80 = '''\
         OH_GET_REFERENCE(%(name)sLibObj, %(name)sCpp,
-            %(namespaceObjects)s::%(superType)s, %(namespaceLibrary)s::%(superType)s)\n'''
+            %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code81 = '''\
         OH_GET_REFERENCE(%(name)sLibObj, %(name)sCpp,
-            %(namespaceObjects)s::%(superType)s, %(namespaceLibrary)s::%(superType)s)\n'''
+            %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code82 = '''\
-        %(superType)s %(name)sEnum =
-            %(namespaceObjects)s::Create<%(superType)s>()(%(name)sCpp);\n'''
+        %(type)s %(name)sEnum =
+            %(namespaceObjects)s::Create<%(type)s>()(%(name)sCpp);\n'''
 
 code83 = '''\
         sal_Int32 returnValueCalc;
@@ -357,12 +365,12 @@ code85 = '''\
         return returnValueCalc;\n'''
 
 code86 = '''\
-        %(type)s returnValueCalc;
+        %(nativeType)s returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
         return returnValueCalc;\n'''
 
 code87 = '''\
-        %(type)s returnValueCalc;
+        %(nativeType)s returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
         return returnValueCalc;\n'''
 
@@ -382,31 +390,31 @@ code90 = '''\
         return returnValueCalc;\n'''
 
 code91 = '''\
-        SEQSEQ(%(type)s) returnValueCalc;
+        SEQSEQ(%(nativeType)s) returnValueCalc;
         %(tensorRank)sToCalc(returnValueCalc, returnValue);
         return returnValueCalc;\n'''
 
 code92 = '''\
-        SEQSEQ(%(type)s) returnValueCalc;
+        SEQSEQ(%(nativeType)s) returnValueCalc;
         %(tensorRank)sToCalc(returnValueCalc, returnValue);
         return returnValueCalc;\n'''
 
 code93 = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjHandler::Object)
-        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(superType)s> %(name)sLibObj =
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
             ObjHandler::CoerceHandle<
-                %(namespaceObjects)s::%(superType)s,
-                %(namespaceLibrary)s::%(superType)s>()(
+                %(namespaceObjects)s::%(classname)s,
+                %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);\n'''
 
 code94 = '''\
-        %(superType)s %(name)sLib = calcToQlMatrix(%(name)s);\n'''
+        %(type)s %(name)sLib = calcToQlMatrix(%(name)s);\n'''
 
 code95 = '''\
         OH_GET_OBJECT(%(name)sObj, %(name)sCpp, %(namespaceObjects)s::%(object)s)\n'''
 
 code96 = '''\
-        %(superType)s %(name)sLib;
+        %(type)s %(name)sLib;
         calcToScalar(%(name)sLib, %(name)s);\n'''
 
 ##########################################################################
