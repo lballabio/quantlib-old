@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,8 +26,8 @@ This document summarizes special considerations for compiling %QuantLibAddin for
 \subsection Prerequisites
 
 Before compiling an Addin for OOo Calc you'll need to install:
-\li <a href="http://java.sun.com/j2se/1.5.0/download-netbeans.html">J2SE Development Kit</a>
-\li <a href="http://download.openoffice.org/2.0.2/sdk.html">OpenOffice.org Software Development Kit ("OOo SDK")</a>
+\li <a href="http://java.sun.com/javase/downloads/index.jsp">J2SE Development Kit</a>
+\li <a href="http://download.openoffice.org/2.2.0/sdk.html">OpenOffice.org Software Development Kit ("OOo SDK")</a>
 
 Unfortunately the OOo SDK requires the J2SE, even on platforms (such as Fedora) where Java dependency has been removed from OOo, and for Addins (such as %QuantLibAddin) with no dependency on Java.
 
@@ -102,7 +102,12 @@ Once everything is in place, launch OOo Calc and hit \c Ctrl-F2 to bring up the 
 
 \section calc_windows Compiling Under Windows
 
-Please note that to compile QuantLibAddin for Calc under Windows, you need VC7 (Microsoft Visual Studio 2003).  Use configuration "Release CRTDLL".
+Please note that to compile QuantLibAddin for Calc under Windows, you need VC7 (Microsoft Visual Studio 2003).  Use configuration "Release CRTDLL".  You will need to configure VC7 so that the paths it searches for executables include
+
+<tt>
+C:\Program Files\OpenOffice.org_2.2_SDK\windows\bin<br>
+C:\Program Files\OpenOffice.org 2.2\program<br>
+</tt>
 
 \section calc_linux Additional Considerations for Linux Builds
 
