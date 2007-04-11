@@ -309,6 +309,14 @@
           <string>Hypersphere</string>
           <value>QuantLib::SalvagingAlgorithm::Hypersphere</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>LowerDiagonal</string>
+          <value>QuantLib::SalvagingAlgorithm::LowerDiagonal</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Higham</string>
+          <value>QuantLib::SalvagingAlgorithm::Higham</value>
+        </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
