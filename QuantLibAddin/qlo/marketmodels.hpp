@@ -66,7 +66,7 @@ namespace QuantLibAddin {
         PiecewiseConstantAbcdVariance(QuantLib::Real a, QuantLib::Real b,
                                       QuantLib::Real c, QuantLib::Real d,
                                       const QuantLib::Size resetIndex,
-                                      const QuantLib::EvolutionDescription& evolution);
+                                      const std::vector<QuantLib::Time>& rateTimes);
 
     };
 

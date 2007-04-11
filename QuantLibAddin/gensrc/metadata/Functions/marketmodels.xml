@@ -1369,6 +1369,20 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlPiecewiseConstantVarianceRateTimes' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the rate time of the PiecewiseConstantVariance object.</description>
+      <libraryFunction>rateTimes</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
 
     <Member name='qlPiecewiseConstantVarianceVariance' type='QuantLib::PiecewiseConstantVariance'>
       <description>Returns the piecewise constant variance at a given time index.</description>
@@ -1413,6 +1427,47 @@
     </Member>
 
 
+    <Member name='qlPiecewiseConstantVarianceTotalVariance' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the total variance at a given time index of the PiecewiseConstantVariance object.</description>
+      <libraryFunction>totalVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='timeIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantVarianceTotalVolatility' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the total variance at a given time index of the PiecewiseConstantVariance object.</description>
+      <libraryFunction>totalVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='timeIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
 
     <Constructor name='qlPiecewiseConstantAbcdVariance'>
@@ -1447,11 +1502,10 @@
             <tensorRank>scalar</tensorRank>
             <description>Index that defines the reset time of rate.</description>
           </Parameter>
-          <Parameter name='evolutionDescription' exampleValue='EvolutionDescriptionID'>
-            <type>QuantLib::EvolutionDescription</type>
-            <superType>underlyingClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>EvolutionDescription object</description>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
           </Parameter>
         </Parameters>
       </ParameterList>
