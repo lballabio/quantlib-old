@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -27,6 +27,13 @@ This document summarizes updates specific to QuantLibXL, the Excel
 implementation of QuantLibAddin.  For a summary of updates to the core
 QuantLibAddin project, please refer to
 <a href="http://www.quantlibaddin.org/history.html">http://www.quantlibaddin.org/history.html</a>
+
+<strong>Release 0.8.0 - April 2007</strong>
+
+- Release of the Framework, an Excel VBA application providing a layer of business logic
+  around the QuantLibXL XLL
+- Many new workbooks in support of the Framework
+- Release of the Launcher, a utility to automate the startup of the Framework
 
 <strong>Release 0.4.0 - February 2007</strong>
 
