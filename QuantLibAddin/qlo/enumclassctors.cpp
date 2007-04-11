@@ -1,9 +1,11 @@
 
 /*
+ Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2006 Marco Bianchetti
- Copyright (C) 2006 Giorgio Facchinetti
  Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006 Giorgio Facchinetti
  Copyright (C) 2006 Chiara Fornarola
+ Copyright (C) 2007 Katiuscia Manzoni
  Copyright (C) 2005 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
@@ -202,6 +204,10 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::PricingEngine> LR_Engine(const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
             new QuantLib::BinomialVanillaEngine<QuantLib::LeisenReimer>(timeSteps));
+    }
+    boost::shared_ptr<QuantLib::PricingEngine> JOSHI_Engine(const long& timeSteps) {
+        return boost::shared_ptr<QuantLib::PricingEngine> (
+            new QuantLib::BinomialVanillaEngine<QuantLib::Joshi4>(timeSteps));
     }
     boost::shared_ptr<QuantLib::PricingEngine> TIAN_Engine(const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
