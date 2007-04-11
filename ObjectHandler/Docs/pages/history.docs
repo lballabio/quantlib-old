@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,16 +23,34 @@
 
 /*! \page history Version History
 
+<strong>Release 0.8.0 - April 2007</strong>
+
+DESIGN
+
+- Implemented a prototype build with certain performance enhancements,
+  this build was found to provide a several fold increase in performance.
+  The changes are presently disabled by default, the switch to enable
+  the changes is defined in file objhandlerxldefines.hpp.  The changes
+  will be formalized in the next release.
+- For function expecting a scalar, allow user to pass in a vector
+  containing one element and convert it automatically.
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7.c
+- gensrc version 0.8.0
+
 <strong>Release 0.2.0 - February 2007</strong>
 
 DESIGN
 
-- multiple minor enhancements to design
+- Multiple minor enhancements to design
 
 LOG4CXX
 
-- a couple of minor fixes to makefiles
-- repackaged as version 0.9.7c (see below for explanation of
+- A couple of minor fixes to makefiles
+- Repackaged as version 0.9.7c (see below for explanation of
   log4cxx version numbers)
 
 REQUIRED PACKAGES
@@ -45,13 +63,13 @@ REQUIRED PACKAGES
 
 EXCEL
 
-- new function "ohRetrieveError()" returns whatever error message
+- New function "ohRetrieveError()" returns whatever error message
   is associated with the active range
 
 LOG4CXX
 
-- a couple of minor fixes to makefiles
-- repackaged as version 0.9.7b (see below for explanation of
+- A couple of minor fixes to makefiles
+- Repackaged as version 0.9.7b (see below for explanation of
   log4cxx version numbers)
 
 REQUIRED PACKAGES
@@ -64,8 +82,8 @@ REQUIRED PACKAGES
 
 EXCEL
 
-- support for permanent objects not deleted by garbage collection
-- use gensrc where possible to generate source code for ObjectHandler
+- Support for permanent objects not deleted by garbage collection
+- Use gensrc where possible to generate source code for ObjectHandler
 
 LOG4CXX
 
@@ -88,7 +106,7 @@ CORE
 
 EXCEL
 
-- unregister functions when XLL unloaded (Lars Schouw)
+- Unregister functions when XLL unloaded (Lars Schouw)
 - Consolidated export of Excel functions
 - Increased granularity and clarity of runtime exceptions
 - Improved memory management (automatic deletion of temp variables)
@@ -114,14 +132,14 @@ and enhanced:
 - ObjectHandler core functionality and the Excel binding can be
   linked statically into a single client XLL, or built as a standalone
   XLL comprising a global repository shared by multiple client XLLs
-- garbage collection of objects orphaned by the deletion of the
+- Garbage collection of objects orphaned by the deletion of the
   calling cell
-- conversion to/from all Excel types and native C++ types
-- greater granularity of datatypes - XLOPER replaced by OPER, FP
+- Conversion to/from all Excel types and native C++ types
+- Greater granularity of datatypes - XLOPER replaced by OPER, FP
 
 LOG4CXX
 
-- link to log4cxx dynamically rather than statically
+- Link to log4cxx dynamically rather than statically
 
 <strong>Release 0.1.1 - July 2005</strong>
 
@@ -130,11 +148,11 @@ REQUIRED PACKAGES
 - log4cxx version 0.9.7
 
 CHANGES SINCE RELEASE 0.1.0
-- interface layer replaced with factory function (thanks to Walter Penschke)
-- logging implemented with log4cxx framework from Apache project
-- additional functions deleteObject, deleteAllObjects
-- output manipulators for Object and ObjectHandler classes
-- utility functions consolidated
+- Interface layer replaced with factory function (thanks to Walter Penschke)
+- Logging implemented with log4cxx framework from Apache project
+- Additional functions deleteObject, deleteAllObjects
+- Output manipulators for Object and ObjectHandler classes
+- Utility functions consolidated
 
 <strong>Release 0.1.0 - February 2005</strong>
 
