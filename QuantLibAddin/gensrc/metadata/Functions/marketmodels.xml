@@ -1369,6 +1369,52 @@
       </ReturnValue>
     </Member>
 
+
+    <Member name='qlPiecewiseConstantVarianceVariance' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the piecewise constant variance at a given time index.</description>
+      <libraryFunction>variance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='timeIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantVarianceVolatility' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the piecewise constant volatility at a given time index.</description>
+      <libraryFunction>volatility</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='timeIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+
+
+
     <Constructor name='qlPiecewiseConstantAbcdVariance'>
       <libraryFunction>PiecewiseConstantAbcdVariance</libraryFunction>
       <SupportedPlatforms>
