@@ -23,6 +23,22 @@
 
 /*! \page history Version History
 
+<strong>Release 0.8.0 - April 2007</strong>
+
+REQUIRED PACKAGES
+
+- QuantLib version 0.8.0
+- ObjectHandler version 0.8.0
+- gensrc version 0.8.0
+
+FUNCTIONALITY
+
+- 32 new functions / 594 in total
+
+PLATFORMS
+
+- The C and Guile platforms have not been updated for this release.
+
 <strong>Release 0.4.0 - February 2007</strong>
 
 REQUIRED PACKAGES
@@ -34,7 +50,7 @@ REQUIRED PACKAGES
 FUNCTIONALITY
 
 - 117 new functions / 562 in total
-- new categories: Simple Cash Flow,  Smile Section Structures
+- New categories: Simple Cash Flow,  Smile Section Structures
 
 <strong>Release 0.3.14 - December 2006</strong>
 
@@ -47,14 +63,14 @@ REQUIRED PACKAGES
 FUNCTIONALITY
 
 - 218 new functions / 445 in total
-- new categories: assetswap, capletvolstructure, cmsmarket, marketmodels,
+- New categories: assetswap, capletvolstructure, cmsmarket, marketmodels,
   sequencestatistics, statistics
 
 DESIGN
 
-- implementation of loop functions re-implemented as a template using
+- Implementation of loop functions re-implemented as a template using
   boost::bind; performance optimized
-- enumeration registry enhanced to generate Calendars/JointCalendars
+- Enumeration registry enhanced to generate Calendars/JointCalendars
   depending on format of requested ID
 
 <strong>Release 0.3.13 - August 2006</strong>
@@ -106,7 +122,7 @@ REQUIRED PACKAGES
 FUNCTIONALITY
 
 - 146 new functions / 227 in total
-- all functionality revised and enhanced, new functionality in following 
+- All functionality revised and enhanced, new functionality in following 
   categories:
     calendar, capletvolstructure, date, daycounter, exercise,
     forwardrateagreement, generalstatistics, incrementalstatistics, 
@@ -114,13 +130,13 @@ FUNCTIONALITY
     pricingengines, processes, randomsequencegenerator, ratehelpers, 
     schedule, shortratemodels, simpleswap, swap, swaption, 
     swaptionvolstructure
-- support for Value Objects (Plamen Neykov) (see ObjectHandler
+- Support for Value Objects (Plamen Neykov) (see ObjectHandler
   documentation for details)
-- numerous refinements and enhancements to the design including:
-  - lower-level access to QuantLib functionality such as Handles
-  - support for "permanent objects" which aren't deleted by garbage
+- Numerous refinements and enhancements to the design including:
+  - Lower-level access to QuantLib functionality such as Handles
+  - Support for "permanent objects" which aren't deleted by garbage
     collection
-  - richer function interface including better support for enumerated
+  - Richer function interface including better support for enumerated
     datatypes, object references, datatype conversions
 
 <strong>Release 0.3.12 - March 2006</strong>
@@ -133,16 +149,16 @@ REQUIRED PACKAGES
 FUNCTIONALITY
 
 - 11 new functions / 81 in total
-- backward & forward flat interpolators (Aur&eacute;lien Chanudet)
-- enhancements to xibor / rate helper / term structures /
+- Backward & forward flat interpolators (Aur&eacute;lien Chanudet)
+- Enhancements to xibor / rate helper / term structures /
   utilities (Marco Marchioro)
-- support for new QuantLib functionality for sessions,
+- Support for new QuantLib functionality for sessions,
   allowing multiple instances of the global evaluation date  
-- documentation revised and extended
+- Documentation revised and extended
 
 EXCEL
 
-- unregister functions when XLL unloaded (Lars Schouw)
+- Unregister functions when XLL unloaded (Lars Schouw)
 
 <strong>Release 0.3.11 - October 2005</strong>
 
@@ -157,18 +173,18 @@ FUNCTIONALITY
 - Coupon Vectors, Interpolation, Schedules, Swaps (Aur&eacute;lien Chanudet)
 - Polymorphic behavior in exported %QuantLibAddin functions (Plamen Neykov)
 - support for direct calls to underlying QuantLib functions (Plamen Neykov)
-- optional function parameters (Plamen Neykov), default values
-- source code generation refactored for improved OO/maintainability
+- Optional function parameters (Plamen Neykov), default values
+- Source code generation refactored for improved OO/maintainability
 
 <strong>Release 0.3.10 - July 2005</strong>
 
 OVERVIEW
 
 Initial release consisting of prototype framework:
-- core library of supported classes
-- function metadata
-- script to autogenerate source for target platforms
-- sample client applications and spreadsheets
+- Core library of supported classes
+- Function metadata
+- Script to autogenerate source for target platforms
+- Sample client applications and spreadsheets
 
 REQUIRED PACKAGES
 
@@ -178,11 +194,11 @@ REQUIRED PACKAGES
 
 FUNCTIONALITY
 
-- bonds & zero curves (Walter Penschke)
-- caps & floors, term structures (Aur&eacute;lien Chanudet)
-- swaps, xibor, enumeration type factory (Plamen Neykov)
-- options, volatilities, processes
-- diagnostic and utility functions
+- Bonds & zero curves (Walter Penschke)
+- Caps & floors, term structures (Aur&eacute;lien Chanudet)
+- Swaps, xibor, enumeration type factory (Plamen Neykov)
+- Options, volatilities, processes
+- Diagnostic and utility functions
 
 PLATFORMS
 
