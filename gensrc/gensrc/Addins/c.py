@@ -60,11 +60,11 @@ class CAddin(addin.Addin):
             self.generateHeaders(cat)
             self.generateFunctions(cat)
             summaryHeaders += '#include <Addins/C/%s.h>\n' % cat.name
-        buf = self.bufferHeader.text % {
+        buf = self.bufferHeader_.text() % {
             'prefix' : environment.config().prefix,
             'headers' : summaryHeaders }
-        fileName = self.rootPath + environment.config().prefix + 'addin.h'
-        outputfile.OutputFile(self, fileName, self.copyright, buf, False)
+        fileName = self.rootPath_ + environment.config().libRootDirectory() + 'addin.h'
+        outputfile.OutputFile(self, fileName, self.copyright_, buf, False)
         log.Log.instance().logMessage(' done generating C.')
 
     def generateHeader(self, func, suffix):
