@@ -1565,6 +1565,11 @@
             <tensorRank>scalar</tensorRank>
             <description>curveState</description>
           </Parameter>
+          <Parameter name='displacement' exampleValue ='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacements</description>
+          </Parameter>
           <Parameter name='evolution' exampleValue ='EvolutionDescriptionID'>
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
@@ -1619,6 +1624,11 @@
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>alphas</description>
+          </Parameter>
+          <Parameter name='lowestRoot' default='TRUE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for lowest root, FALSE for the root nearest to 1.0</description>
           </Parameter>
           <Parameter name='timeIndex' exampleValue ='0'>
             <type>QuantLib::Size</type>

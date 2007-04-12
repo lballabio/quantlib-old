@@ -37,12 +37,14 @@ namespace QuantLibAddin {
     SwapFromFRACorrelationStructure::SwapFromFRACorrelationStructure(
             const QuantLib::Matrix& correlations,
             const QuantLib::CurveState& curveState,
+            QuantLib::Real displacement,
             const QuantLib::EvolutionDescription& evolution,
-            const QuantLib::Size numberOfFactors){
+            QuantLib::Size numberOfFactors){
         libraryObject_ = 
             boost::shared_ptr<QuantLib::SwapFromFRACorrelationStructure>(new
                 QuantLib::SwapFromFRACorrelationStructure(correlations, 
-                                                          curveState, 
+                                                          curveState,
+                                                          displacement,
                                                           evolution,
                                                           numberOfFactors));    
     }

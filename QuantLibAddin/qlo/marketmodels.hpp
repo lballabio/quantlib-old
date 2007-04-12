@@ -55,8 +55,9 @@ namespace QuantLibAddin {
             SwapFromFRACorrelationStructure(
             const QuantLib::Matrix& correlations,
             const QuantLib::CurveState& curveState,
+            QuantLib::Real displacement,
             const QuantLib::EvolutionDescription& evolution,
-            const QuantLib::Size numberOfFactors);
+            QuantLib::Size numberOfFactors);
     };
 
     class PiecewiseConstantVariance: public ObjHandler::LibraryObject<QuantLib::PiecewiseConstantVariance>{};
@@ -77,6 +78,7 @@ namespace QuantLibAddin {
             const QuantLib::CurveState& cs,
             const QuantLib::Spread displacement,
             const std::vector<QuantLib::Real>& alpha,
+            bool lowestRoot,
             QuantLib::Size timeIndex)
     {
 
@@ -88,7 +90,8 @@ namespace QuantLibAddin {
         std::vector<QuantLib::Matrix> pseudoRoots(nbRates,pseudoRoot);
 
         bool result = QuantLib::capletCoterminalCalibration(corr,
-            swapVariances, capletVols, cs, displacement, alpha, pseudoRoots);
+            swapVariances, capletVols, cs, displacement, alpha, lowestRoot,
+            pseudoRoots);
 
         if (result) return pseudoRoots[timeIndex];
         else        QL_FAIL("caplets coterminal calibration has failed");
