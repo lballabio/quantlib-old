@@ -111,7 +111,9 @@
         <DataType>QuantLib::LmExtLinearExponentialVolModel</DataType>
         <DataType>QuantLib::LMMCurveState</DataType>
         <DataType>QuantLib::MarketModel</DataType>
+        <DataType>QuantLib::MarketModelCapFloorEngine</DataType>
         <DataType>QuantLib::MarketModelEvolver</DataType>
+        <DataType>QuantLib::MarketModelFactory</DataType>
         <DataType>QuantLib::MarketModelMultiProduct</DataType>
         <DataType>QuantLib::MultiProductComposite</DataType>
         <DataType>QuantLib::OneAssetOption</DataType>

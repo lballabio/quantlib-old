@@ -850,6 +850,49 @@
       </ParameterList>
     </Constructor>
 
+    <!-- MarketModelFactory derived class constructors -->
+    <Constructor name='qlExpCorrFlatVolFactory'>
+      <libraryFunction>ExpCorrFlatVolFactory</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LongTermCorr' exampleValue ='0.5'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
+          </Parameter>
+          <Parameter name='beta' exampleValue ='0.2'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
+          </Parameter>
+          <Parameter name='times' exampleValue ='0.1,0.2,0.3,0.4,0.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>times</description>
+          </Parameter>
+          <Parameter name='volatilities' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>vector</tensorRank>
+            <description>volatilities</description>
+          </Parameter>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+          <Parameter name='displacements' exampleValue ='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacements</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+          
     <!-- Abcd (volatility) class costructor -->
     <Constructor name='qlAbcd'>
       <libraryFunction>Abcd</libraryFunction>

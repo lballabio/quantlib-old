@@ -9,6 +9,7 @@
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/shortratemodels.hpp</include>
     <include>qlo/payoffs.hpp</include>
+    <include>qlo/marketmodels.hpp</include>
     <include>ql/PricingEngines/blackformula.hpp</include>
     <include>ql/PricingEngines/blackscholescalculator.hpp</include>
   </includes>
@@ -1058,6 +1059,22 @@
             <type>QuantLib::AffineModel</type>
             <tensorRank>scalar</tensorRank>
             <description>affine model (providing a discount bond option pricing formula) object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlMarketModelCapFloorEngine'>
+      <libraryFunction>MarketModelCapFloorEngine</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketModelFactory'>
+            <type>QuantLib::MarketModelFactory</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Market Model Factory object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

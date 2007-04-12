@@ -30,6 +30,7 @@
 #include <ql/marketmodels/products/onestep/onestepforwards.hpp>
 #include <ql/marketmodels/products/onestep/onestepoptionlets.hpp>
 #include <ql/marketmodels/products/multistep/multistepratchet.hpp>
+#include <ql/marketmodels/models/correlations.hpp>
 
 
 namespace QuantLibAddin {
@@ -108,6 +109,23 @@ namespace QuantLibAddin {
                                          numberOfFactors,
                                          initialRates,
                                          displacements));
+    }
+
+    ExpCorrFlatVolFactory::ExpCorrFlatVolFactory(
+        QuantLib::Real longTermCorr,
+        QuantLib::Real beta,
+        const std::vector<QuantLib::Time>& times,
+        const std::vector<QuantLib::Volatility>& vols,
+        const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldCurve,
+        QuantLib::Spread displacement)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::MarketModelFactory>(
+            new QuantLib::ExpCorrFlatVolFactory(longTermCorr,
+                                         beta,
+                                         times,
+                                         vols,
+                                         yieldCurve,
+                                         displacement));
     }
 
     Abcd::Abcd(QuantLib::Real a, QuantLib::Real b,

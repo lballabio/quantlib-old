@@ -25,6 +25,7 @@
 #include <ql/pricingengines/swaption/blackswaptionengine.hpp>
 #include <ql/pricingengines/capfloor/blackcapfloorengine.hpp>
 #include <ql/pricingengines/capfloor/analyticcapfloorengine.hpp>
+#include <ql/pricingengines/capfloor/marketmodelcapfloorengine.hpp>
 
 namespace QuantLibAddin {
 
@@ -57,7 +58,10 @@ namespace QuantLibAddin {
         AnalyticCapFloorEngine(
             const boost::shared_ptr<QuantLib::AffineModel>& model);
     };
-
+    class MarketModelCapFloorEngine : public PricingEngine  {
+      public:
+        MarketModelCapFloorEngine(const boost::shared_ptr<QuantLib::MarketModelFactory>&);
+    }; 
     class BlackCalculator : public ObjHandler::LibraryObject<QuantLib::BlackCalculator> {
       public:
         BlackCalculator(
@@ -78,6 +82,7 @@ namespace QuantLibAddin {
             QuantLib::Real variance,
             QuantLib::DiscountFactor discount);
     };
+
 }
 
 #endif

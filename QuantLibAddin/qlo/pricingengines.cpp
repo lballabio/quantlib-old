@@ -70,6 +70,13 @@ namespace QuantLibAddin {
         libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(
             new QuantLib::AnalyticCapFloorEngine(model));
     }
+    
+    MarketModelCapFloorEngine::MarketModelCapFloorEngine(
+            const boost::shared_ptr<QuantLib::MarketModelFactory>& factory) {
+
+        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(
+            new QuantLib::MarketModelCapFloorEngine(factory));
+    }
 
     BlackCalculator::BlackCalculator(
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,

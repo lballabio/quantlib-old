@@ -120,6 +120,7 @@ namespace QuantLibAddin {
              bool dIsFixed);
     };
 
+    // MarketModels
     class MarketModel : public ObjHandler::LibraryObject<QuantLib::MarketModel> {
     };
 
@@ -148,7 +149,21 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Rate>& initialRates,
             const std::vector<QuantLib::Rate>& displacements);
     };
+    // MarketModelFactories
+    class MarketModelFactory : public ObjHandler::LibraryObject<QuantLib::MarketModelFactory> {
+    };
+    
+    class ExpCorrFlatVolFactory : public MarketModelFactory {
+    public:
+        ExpCorrFlatVolFactory(QuantLib::Real longTermCorr,
+                              QuantLib::Real beta,
+                              const std::vector<QuantLib::Time>& times,
+                              const std::vector<QuantLib::Volatility>& vols,
+                              const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldCurve,
+                              QuantLib::Spread displacement);
+    };
 
+    // CurveStates
     class CurveState : public ObjHandler::LibraryObject<QuantLib::CurveState> {};
 
     class CMSwapCurveState : public CurveState {
