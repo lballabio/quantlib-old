@@ -142,6 +142,7 @@
         <DataType>QuantLib::TypePayoff</DataType>
         <DataType>QuantLib::VanillaSwap</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
+        <DataType>QuantLib::TimeHomogeneousForwardCorrelation</DataType>
       </DataTypes>
     </SuperType>
 

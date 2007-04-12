@@ -43,12 +43,22 @@
 #include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
 #include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
 #include <ql/termstructures/volatilities/abcd.hpp>
-
+#include <ql/marketmodels/models/timehomogeneousforwardcorrelation.hpp>
 
 namespace QuantLibAddin {
 
     class TimeDependantCorrelationStructure :
         public ObjHandler::LibraryObject<QuantLib::TimeDependantCorrelationStructure>{};
+
+
+    class TimeHomogeneousForwardCorrelation : public TimeDependantCorrelationStructure {
+        public: 
+            TimeHomogeneousForwardCorrelation(
+                const QuantLib::Matrix& fwdCorrelation,
+                const std::vector<QuantLib::Time>& rateTimes,
+                QuantLib::Size numberOfFactors);
+            const QuantLib::Matrix& pseudoRoot(QuantLib::Size i) const;
+    };
 
     class SwapFromFRACorrelationStructure : public TimeDependantCorrelationStructure {
         public:

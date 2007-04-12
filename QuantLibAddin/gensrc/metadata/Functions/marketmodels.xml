@@ -58,9 +58,57 @@
       </ReturnValue>
     </Procedure>
 
+      <Constructor name='qlTimeHomogeneousForwardCorrelation'>
+          <libraryFunction>TimeHomogeneousForwardCorrelation</libraryFunction>
+          <functionCategory>QuantLib</functionCategory>
+          <SupportedPlatforms>
+              <SupportedPlatform name='Excel' calcInWizard='false' />
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters>
+                  <Parameter name='fwdCorrelation' >
+                      <type>QuantLib::Matrix</type>
+                      <tensorRank>matrix</tensorRank>
+                      <description>forward correlations</description>
+                  </Parameter>
+                  <Parameter name='rateTimes' >
+                      <type>QuantLib::Time</type>
+                      <tensorRank>vector</tensorRank>
+                      <description>rate times</description>
+                  </Parameter>
+                  <Parameter name='numberOfFactors' >
+                      <type>QuantLib::Size</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>number of factors</description>
+                  </Parameter>
+              </Parameters>
+          </ParameterList>
+      </Constructor>
 
-
-    <!-- MarketModelMultiProductComposite base class interface  -->
+      <Member name='qlTimeHomogeneousForwardCorrelationPseudoRoot' type ='QuantLib::TimeHomogeneousForwardCorrelation' superType='libraryClass'>
+          <description>return a pseudoroot for a given evolution time index</description>
+          <libraryFunction>TimeHomogeneousForwardCorrelation::pseudoRoot</libraryFunction>
+          <functionCategory>QuantLib</functionCategory>
+          <SupportedPlatforms>
+              <SupportedPlatform name='Excel' calcInWizard='false' />
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters>
+                  <Parameter name='index' >
+                      <type>QuantLib::Size</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>time index</description>
+                  </Parameter>
+              </Parameters>
+          </ParameterList>
+          <ReturnValue>
+              <type>QuantLib::Matrix</type>
+              <tensorRank>matrix</tensorRank>
+          </ReturnValue>
+      </Member>
+      
+      
+      <!-- MarketModelMultiProductComposite base class interface  -->
 
     <Constructor name='qlMarketModelMultiProductComposite'>
       <libraryFunction>MultiProductComposite</libraryFunction>

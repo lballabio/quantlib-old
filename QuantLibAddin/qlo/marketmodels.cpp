@@ -31,9 +31,27 @@
 #include <ql/marketmodels/products/onestep/onestepoptionlets.hpp>
 #include <ql/marketmodels/products/multistep/multistepratchet.hpp>
 #include <ql/marketmodels/models/correlations.hpp>
+#include <ql/math/matrix.hpp>
 
 
 namespace QuantLibAddin {
+
+    TimeHomogeneousForwardCorrelation::TimeHomogeneousForwardCorrelation(
+           const QuantLib::Matrix& fwdCorrelation,
+           const std::vector<QuantLib::Time>& rateTimes,
+           QuantLib::Size numberOfFactors){
+               QL_REQUIRE(!rateTimes.empty(), "rate times vector is empty!")
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::TimeHomogeneousForwardCorrelation>
+                (new QuantLib::TimeHomogeneousForwardCorrelation(
+                    fwdCorrelation, rateTimes, numberOfFactors));
+    }
+    
+    const QuantLib::Matrix& 
+        TimeHomogeneousForwardCorrelation::pseudoRoot(QuantLib::Size i) const{
+            return boost::dynamic_pointer_cast<QuantLib::TimeHomogeneousForwardCorrelation>(
+            libraryObject_)->pseudoRoot(i);
+    }
 
     SwapFromFRACorrelationStructure::SwapFromFRACorrelationStructure(
             const QuantLib::Matrix& correlations,
