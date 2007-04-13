@@ -28,10 +28,6 @@
 
 namespace ObjHandler {
 
-    bool curveFromObject(
-            const boost::shared_ptr<ObjHandler::Object> &in,
-            boost::shared_ptr<QuantLib::TermStructure> &out);
-
     template <class HandleClass>
     bool curveFromHandle(
             const boost::shared_ptr<ObjHandler::Object> &in,
