@@ -59,9 +59,9 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackCashItmProbability'>
+    <Procedure name='qlBlackFormulaCashItmProbability'>
       <description>Black 1976 probability of being in the money (in the bond martingale measure), i.e. N(d2). It is a risk-neutral probability, not the real world one.</description>
-      <alias>QuantLib::blackCashItmProbability</alias>
+      <alias>QuantLib::blackFormulaCashItmProbability</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -95,9 +95,9 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackImpliedStdDevApproximation'>
+    <Procedure name='qlBlackFormulaImpliedStdDevApproximation'>
       <description>Approximation for the standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula</description>
-      <alias>QuantLib::blackImpliedStdDevApproximation</alias>
+      <alias>QuantLib::blackFormulaImpliedStdDevApproximation</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -136,9 +136,9 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackImpliedStdDev'>
+    <Procedure name='qlBlackFormulaImpliedStdDev'>
       <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula</description>
-      <alias>QuantLib::blackImpliedStdDev</alias>
+      <alias>QuantLib::blackFormulaImpliedStdDev</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -187,9 +187,9 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackStdDevDerivative'>
+    <Procedure name='qlBlackFormulaStdDevDerivative'>
       <description>Black 1976 formula for the derivative with respect to the standard deviation (annualized percentage volatility times the square root of time to option expiry).</description>
-      <alias>QuantLib::blackStdDevDerivative</alias>
+      <alias>QuantLib::blackFormulaStdDevDerivative</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -300,9 +300,9 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackCashItmProbability2'>
+    <Procedure name='qlBlackFormulaCashItmProbability2'>
       <description>Black 1976 probability of being in the money (in the bond martingale measure), i.e. N(d2). It is a risk-neutral probability, not the real world one. It uses a PlainVanillaPayoff object as input</description>
-      <alias>QuantLib::blackCashItmProbability</alias>
+      <alias>QuantLib::blackFormulaCashItmProbability</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -331,9 +331,9 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackImpliedStdDevApproximation2'>
+    <Procedure name='qlBlackFormulaImpliedStdDevApproximation2'>
       <description>Approximation for the standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula. It uses a PlainVanillaPayoff object as input</description>
-      <alias>QuantLib::blackImpliedStdDevApproximation</alias>
+      <alias>QuantLib::blackFormulaImpliedStdDevApproximation</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -367,9 +367,9 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackImpliedStdDev2'>
+    <Procedure name='qlBlackFormulaImpliedStdDev2'>
       <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula. It uses a PlainVanillaPayoff object as input</description>
-      <alias>QuantLib::blackImpliedStdDev</alias>
+      <alias>QuantLib::blackFormulaImpliedStdDev</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -413,9 +413,9 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackStdDevDerivative2'>
+    <Procedure name='qlBlackFormulaStdDevDerivative2'>
       <description>Black 1976 formula for the derivative with respect to the standard deviation (annualized percentage volatility times the square root of time to option expiry). It uses a PlainVanillaPayoff object as input</description>
-      <alias>QuantLib::blackStdDevDerivative</alias>
+      <alias>QuantLib::blackFormulaStdDevDerivative</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
