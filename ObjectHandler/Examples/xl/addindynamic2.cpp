@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -36,7 +36,7 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x10""addin2GetBalance"),// function code name
-            TempStrNoSize("\x03""NCP"),             // parameter codes
+            TempStrNoSize("\x04""NCP#"),            // parameter codes
             TempStrNoSize("\x10""addin2GetBalance"),// function display name
             TempStrNoSize("\x10""objectID,trigger"),  // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)

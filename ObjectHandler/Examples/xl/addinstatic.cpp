@@ -51,7 +51,7 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x0A""setBalance"),      // function code name
-            TempStrNoSize("\x03""LCN"),             // parameter codes
+            TempStrNoSize("\x04""LCN#"),            // parameter codes
             TempStrNoSize("\x0A""setBalance"),      // function display name
             TempStrNoSize("\x10""objectID,balance"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
@@ -59,7 +59,7 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x0A""getBalance"),      // function code name
-            TempStrNoSize("\x03""NCP"),             // parameter codes
+            TempStrNoSize("\x04""NCP#"),            // parameter codes
             TempStrNoSize("\x0A""getBalance"),      // function display name
             TempStrNoSize("\x10""objectID,trigger"),  // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
