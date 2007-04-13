@@ -13,7 +13,7 @@ code12 = '''\
 
 code12b = '''\
         boost::any %(name)sCpp =
-            ObjHandler::callOperToScalar<boost::any>(*%(name)s, "%(name)s", boost::any());\n'''c
+            ObjHandler::callOperToScalar<boost::any>(*%(name)s, "%(name)s", boost::any());\n'''
 
 code13 = '''\
         std::vector<%(nativeType)s> %(name)sCpp =
