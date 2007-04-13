@@ -24,10 +24,10 @@
 
 //NANDO: why in the ObjectHandler namespace?
 
-// It should not be.  The correct approach would be to divide the Conversion/Coercion
-// functions across the ObjectHandler, QuantLibAddin, and (not yet created) QuantLibXL
-// namespaces, but for the sake of expediency all of this was put in the ObjectHandler
-// namespace initially.
+// Some of these conversion functions need to be in namespace ObjHandler because
+// they override ObjectHandler functions in that namespace.
+// Others need not be in namespace ObjHandler and could be moved into a more appropriate
+// namespace e.g. QuantLibAddin but for the sake of expediency this has not yet been done.
 
 namespace ObjHandler {
 
