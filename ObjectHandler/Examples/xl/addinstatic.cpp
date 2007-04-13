@@ -92,8 +92,7 @@ DLLEXPORT char *createAccount(
     try {
         ObjHandler::ObjectHandlerXL::instance().resetCaller(true);
 
-        bool permanentCpp;
-        ObjHandler::operToScalar(*permanent, permanentCpp, false);
+        bool permanentCpp = ObjHandler::callOperToScalar(*permanent, "permanent", false);
 
         boost::shared_ptr<ObjHandler::Object> objectPointer(new AccountObject(
             *accountNumber, accountType));
