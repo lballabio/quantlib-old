@@ -61,7 +61,7 @@ class CAddin(addin.Addin):
             self.generateFunctions(cat)
             summaryHeaders += '#include <Addins/C/%s.h>\n' % cat.name
         buf = self.bufferHeader_.text() % {
-            'prefix' : environment.config().prefix,
+            'prefix' : environment.config().prefix(),
             'headers' : summaryHeaders }
         fileName = self.rootPath_ + environment.config().libRootDirectory() + 'addin.h'
         outputfile.OutputFile(self, fileName, self.copyright_, buf, False)
@@ -107,8 +107,8 @@ class CAddin(addin.Addin):
         buf = self.bufferIncludes_.text() % {
             'includes' : cat.includeList(),
             'name' : cat.name,
-            'prefix' : environment.config().prefix,
-            'libRoot' : environment.config().libRootDirectory,
+            'prefix' : environment.config().prefix(),
+            'libRoot' : environment.config().libRootDirectory(),
             'code' : codeBuffer }
         fileName = self.rootPath_ + cat.name() + '.cpp'
         outputfile.OutputFile(self, fileName, None, buf, False)

@@ -13,7 +13,7 @@ code12 = '''\
 
 code12b = '''\
         boost::any %(name)sCpp =
-            ObjHandler::callOperToScalar<boost::any>(*%(name)s, "%(name)s", boost::any());\n'''
+            ObjHandler::callOperToScalar<boost::any>(*%(name)s, "%(name)s", boost::any());\n'''c
 
 code13 = '''\
         std::vector<%(nativeType)s> %(name)sCpp =
@@ -424,6 +424,22 @@ code96 = '''\
 code66 = '''\
 if(name == "%(name)s") return %(name)s_;
         else '''
+
+##########################################################################
+# code for C
+##########################################################################
+
+code101 = '''\
+/* some C code. Formerly code66 in 0.4.0 */
+'''
+
+code102 = '''\
+/* some C code. Formerly code67 in 0.4.0 */
+'''
+
+code103 = '''\
+/* some C code. Formerly code68 in 0.4.0 */
+'''
 
 ##########################################################################
 # code common to mutiple addins
