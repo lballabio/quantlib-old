@@ -99,11 +99,17 @@ namespace QuantLibAddin {
                    ") must be less than nbRates (" << nbRates << ")");
         QuantLib::Matrix pseudoRoot = QuantLib::Matrix(nbRates, nbRates);
         std::vector<QuantLib::Matrix> pseudoRoots(nbRates,pseudoRoot);
+        QuantLib::Size negDisc;
 
         bool result = QuantLib::capletCoterminalCalibration(evolution,
-            corr,
-            swapVariances, capletVols, cs, displacement, alpha, lowestRoot,
-            pseudoRoots);
+                                                            corr,
+                                                            swapVariances,
+                                                            capletVols, cs,
+                                                            displacement,
+                                                            alpha,
+                                                            lowestRoot,
+                                                            pseudoRoots,
+                                                            negDisc);
 
         if (result) return pseudoRoots[timeIndex];
         else        QL_FAIL("caplets coterminal calibration has failed");
