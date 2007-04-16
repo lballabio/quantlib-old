@@ -932,10 +932,10 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='displacements' exampleValue ='0.0'>
+          <Parameter name='displacement' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacements</description>
+            <description>displacement</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1602,7 +1602,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlTimeDependantCorrelationStructurePseudoRoot' type='QuantLib::TimeDependantCorrelationStructure'>
+    <Member name='qlTimeDependantCorrelationStructurePseudoRoot' type='QuantLib::TimeDependantCorrelationStructure' superType='libraryClass'>
       <description>Returns the pseudo-root of the equivalent covariance swap rates matrix</description>
       <libraryFunction>pseudoRoot</libraryFunction>
       <SupportedPlatforms>
@@ -1623,7 +1623,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTimeDependantCorrelationStructureNumberOfFactors' type='QuantLib::TimeDependantCorrelationStructure'>
+    <Member name='qlTimeDependantCorrelationStructureNumberOfFactors' type='QuantLib::TimeDependantCorrelationStructure' superType='libraryClass'>
       <description>Returns the number of factors</description>
       <libraryFunction>numberOfFactors</libraryFunction>
       <SupportedPlatforms>
@@ -1656,10 +1656,10 @@
             <tensorRank>scalar</tensorRank>
             <description>curveState</description>
           </Parameter>
-          <Parameter name='displacement' exampleValue ='0.0'>
+          <Parameter name='displacement' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacements</description>
+            <description>displacement</description>
           </Parameter>
           <Parameter name='evolution' exampleValue ='EvolutionDescriptionID'>
             <type>QuantLib::EvolutionDescription</type>
@@ -1676,10 +1676,8 @@
       </ParameterList>
     </Constructor>
 
-    <Procedure name='qlCapletCoterminalCalibration'>
-      <description>Calibrate ...</description>
-      <alias>QuantLibAddin::capletCoterminalSwaptionCalibration</alias>
-      <functionCategory>QuantLib</functionCategory>
+    <Constructor name='qlCapletCoterminalSwaptionCalibration'>
+      <libraryFunction>CapletCoterminalSwaptionCalibration</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -1693,6 +1691,7 @@
           </Parameter>
           <Parameter name='correlations'>
             <type>QuantLib::TimeDependantCorrelationStructure</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>correlations ID</description>
           </Parameter>
@@ -1708,16 +1707,16 @@
           </Parameter>
           <Parameter name='curveState' exampleValue ='CurveStateID'>
             <type>QuantLib::CurveState</type>
-            <superType>underlyingClass</superType>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>CurveState object ID</description>
           </Parameter>
-          <Parameter name='displacement' exampleValue ='0.0'>
+          <Parameter name='displacement' default='0.0'>
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
           </Parameter>
-          <Parameter name='alphas' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
+          <!--<Parameter name='alphas' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>alphas</description>
@@ -1731,6 +1730,93 @@
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>timeIndex</description>
+          </Parameter>-->
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlCapletCoterminalSwaptionCalibrationCalibrate' type='QuantLib::CapletCoterminalSwaptionCalibration' superType='libraryClass'>
+      <description>calibrate</description>
+      <libraryFunction>calibrate</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='alphas' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>alphas</description>
+          </Parameter>
+          <Parameter name='lowestRoot' default='TRUE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for lowest root, FALSE for the root nearest to 1.0</description>
+          </Parameter>
+          <Parameter name='maxIterations' default='2'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>maxIterations</description>
+          </Parameter>
+          <Parameter name='tolerance' default='0.001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapletCoterminalSwaptionNegativeDiscriminants' type='QuantLib::CapletCoterminalSwaptionCalibration' superType='libraryClass'>
+      <description>negativeDiscriminants</description>
+      <libraryFunction>negativeDiscriminants</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapletCoterminalSwaptionRmsError' type='QuantLib::CapletCoterminalSwaptionCalibration' superType='libraryClass'>
+      <description>rmsError</description>
+      <libraryFunction>rmsError</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapletCoterminalSwaptionSwapPseudoRoot' type='QuantLib::CapletCoterminalSwaptionCalibration' superType='libraryClass'>
+      <description>swapPseudoRoot</description>
+      <libraryFunction>swapPseudoRoot</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='index' exampleValue='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1738,7 +1824,7 @@
         <type>QuantLib::Matrix</type>
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
-    </Procedure>
+    </Member>
 
     <Procedure name='qlCoterminalSwapForwardJacobian'>
       <description>Returns the jacobian between coterminal swap rates and forward rates</description>
@@ -1778,10 +1864,10 @@
             <tensorRank>scalar</tensorRank>
             <description>CurveState object ID</description>
           </Parameter>
-          <Parameter name='displacement' exampleValue ='0.0'>
+          <Parameter name='displacement' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement spread</description>
+            <description>displacement</description>
           </Parameter>
         </Parameters>
       </ParameterList>

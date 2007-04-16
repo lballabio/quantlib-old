@@ -36,14 +36,67 @@
 
 namespace QuantLibAddin {
 
+    QuantLib::Matrix capletCoterminalSwaptionCalibrationFunction(
+            const QuantLib::EvolutionDescription& evolution,
+            const QuantLib::TimeDependantCorrelationStructure& corr,
+            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
+            const std::vector<QuantLib::Volatility>& capletVols,
+            const QuantLib::CurveState& cs,
+            const QuantLib::Spread displacement,
+            const std::vector<QuantLib::Real>& alpha,
+            bool lowestRoot,
+            QuantLib::Size timeIndex)
+    {
+
+        QuantLib::Size nbRates = cs.rateTimes().size();
+        QL_REQUIRE(timeIndex<nbRates,
+                   "timeIndex (" << timeIndex <<
+                   ") must be less than nbRates (" << nbRates << ")");
+        QuantLib::Matrix pseudoRoot = QuantLib::Matrix(nbRates, nbRates);
+        std::vector<QuantLib::Matrix> pseudoRoots(nbRates,pseudoRoot);
+        QuantLib::Size negDisc;
+
+        bool result =
+            QuantLib::CapletCoterminalSwaptionCalibration::calibrationFunction(
+                                                            evolution,
+                                                            corr,
+                                                            swapVariances,
+                                                            capletVols, cs,
+                                                            displacement,
+                                                            alpha,
+                                                            lowestRoot,
+                                                            pseudoRoots,
+                                                            negDisc);
+
+        if (result) return pseudoRoots[timeIndex];
+        else        QL_FAIL("caplets coterminal calibration has failed");
+    }
+
+
+    CapletCoterminalSwaptionCalibration::CapletCoterminalSwaptionCalibration(
+            const QuantLib::EvolutionDescription& evolution,
+            const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
+            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
+            const std::vector<QuantLib::Volatility>& capletVols,
+            const boost::shared_ptr<QuantLib::CurveState>& cs,
+            QuantLib::Spread displacement)
+    {
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::CapletCoterminalSwaptionCalibration>(
+                new QuantLib::CapletCoterminalSwaptionCalibration(
+                    evolution, corr, swapVariances, capletVols, cs,
+                    displacement));
+    }
+
     TimeHomogeneousForwardCorrelation::TimeHomogeneousForwardCorrelation(
            const QuantLib::Matrix& fwdCorrelation,
            const std::vector<QuantLib::Time>& rateTimes,
-           QuantLib::Size numberOfFactors){
-               QL_REQUIRE(!rateTimes.empty(), "rate times vector is empty!")
+           QuantLib::Size numberOfFactors)
+    {
+        QL_REQUIRE(!rateTimes.empty(), "rate times vector is empty!");
         libraryObject_ =
-            boost::shared_ptr<QuantLib::TimeHomogeneousForwardCorrelation>
-                (new QuantLib::TimeHomogeneousForwardCorrelation(
+            boost::shared_ptr<QuantLib::TimeHomogeneousForwardCorrelation>(
+                new QuantLib::TimeHomogeneousForwardCorrelation(
                     fwdCorrelation, rateTimes, numberOfFactors));
     }
     

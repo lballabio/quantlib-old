@@ -73,7 +73,7 @@ namespace QuantLibAddin {
     class PiecewiseConstantVariance: public ObjHandler::LibraryObject<QuantLib::PiecewiseConstantVariance>{};
 
     class PiecewiseConstantAbcdVariance : public PiecewiseConstantVariance {
-    public:
+      public:
         PiecewiseConstantAbcdVariance(QuantLib::Real a, QuantLib::Real b,
                                       QuantLib::Real c, QuantLib::Real d,
                                       const QuantLib::Size resetIndex,
@@ -81,38 +81,27 @@ namespace QuantLibAddin {
 
     };
 
-    inline QuantLib::Matrix capletCoterminalSwaptionCalibration(
+    //QuantLib::Matrix capletCoterminalSwaptionCalibrationFunction(
+    //        const QuantLib::EvolutionDescription& evolution,
+    //        const QuantLib::TimeDependantCorrelationStructure& corr,
+    //        const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
+    //        const std::vector<QuantLib::Volatility>& capletVols,
+    //        const QuantLib::CurveState& cs,
+    //        const QuantLib::Spread displacement,
+    //        const std::vector<QuantLib::Real>& alpha,
+    //        bool lowestRoot,
+    //        QuantLib::Size timeIndex);
+
+    class CapletCoterminalSwaptionCalibration : public
+        ObjHandler::LibraryObject<QuantLib::CapletCoterminalSwaptionCalibration> {
+      public:
+        CapletCoterminalSwaptionCalibration(
             const QuantLib::EvolutionDescription& evolution,
-            const QuantLib::TimeDependantCorrelationStructure& corr,
+            const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
             const std::vector<QuantLib::Volatility>& capletVols,
-            const QuantLib::CurveState& cs,
-            const QuantLib::Spread displacement,
-            const std::vector<QuantLib::Real>& alpha,
-            bool lowestRoot,
-            QuantLib::Size timeIndex)
-    {
-
-        QuantLib::Size nbRates = cs.rateTimes().size();
-        QL_REQUIRE(timeIndex<nbRates,
-                   "timeIndex (" << timeIndex <<
-                   ") must be less than nbRates (" << nbRates << ")");
-        QuantLib::Matrix pseudoRoot = QuantLib::Matrix(nbRates, nbRates);
-        std::vector<QuantLib::Matrix> pseudoRoots(nbRates,pseudoRoot);
-        QuantLib::Size negDisc;
-
-        bool result = QuantLib::capletCoterminalSwaptionCalibration(evolution,
-                                                            corr,
-                                                            swapVariances,
-                                                            capletVols, cs,
-                                                            displacement,
-                                                            alpha,
-                                                            lowestRoot,
-                                                            pseudoRoots,
-                                                            negDisc);
-
-        if (result) return pseudoRoots[timeIndex];
-        else        QL_FAIL("caplets coterminal calibration has failed");
+            const boost::shared_ptr<QuantLib::CurveState>& cs,
+            QuantLib::Spread displacement);
     };
 
     class EvolutionDescription : public ObjHandler::LibraryObject<QuantLib::EvolutionDescription> {
