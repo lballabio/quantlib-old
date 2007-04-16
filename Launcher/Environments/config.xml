@@ -5,12 +5,12 @@
   <Environments>
 
     <Environment name="01 Production">
-      <Framework>X:\Offices1\CabotoXL\01 Production\framework\QuantLibXL.xla</Framework>
+      <Framework>X:\Apps\Appsscript\CabotoXL\01 Production\framework\QuantLibXL.xla</Framework>
       <FrameworkVersion>6</FrameworkVersion>
-      <Workbooks>X:\Offices1\CabotoXL\01 Production\Workbooks</Workbooks>
-      <HelpFile>X:\Offices1\CabotoXL\01 Production\Docs</HelpFile>
-      <UserConfigurationFile>X:\Offices1\CabotoXL\Users\01 users.xml</UserConfigurationFile>
-      <FunctionMetadata>X:\Offices1\CabotoXL\01 Production\metadata</FunctionMetadata>
+      <Workbooks>X:\Apps\Appsscript\CabotoXL\01 Production\Workbooks</Workbooks>
+      <HelpFile>X:\Apps\Appsscript\CabotoXL\01 Production\Docs</HelpFile>
+      <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\01 users.xml</UserConfigurationFile>
+      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\01 Production\metadata</FunctionMetadata>
       <AddinList>
         <Addin>QuantLibXL-vc80-mt-s-0_9_0.xll</Addin>
       </AddinList>
@@ -18,7 +18,7 @@
         <YieldCurveBootstrap>true</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
-        <SwapVolBootstrap>false</SwapVolBootstrap>
+        <!--<SwapVolBootstrap>false</SwapVolBootstrap>-->
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
         <FitCMS>false</FitCMS>
         <IndexesTimeSeries>false</IndexesTimeSeries>
@@ -28,12 +28,12 @@
     </Environment>
 
     <Environment name="02 Pre-Production">
-      <Framework>X:\Offices1\CabotoXL\02 Pre-Production\framework\QuantLibXL.xla</Framework>
+      <Framework>X:\Apps\Appsscript\CabotoXL\02 Pre-Production\framework\QuantLibXL.xla</Framework>
       <FrameworkVersion>6</FrameworkVersion>
-      <Workbooks>X:\Offices1\CabotoXL\02 Pre-Production\Workbooks</Workbooks>
-      <HelpFile>X:\Offices1\CabotoXL\02 Pre-Production\Docs</HelpFile>
-      <UserConfigurationFile>X:\Offices1\CabotoXL\Users\02 users.xml</UserConfigurationFile>
-      <FunctionMetadata>X:\Offices1\CabotoXL\02 Pre-Production\metadata</FunctionMetadata>
+      <Workbooks>X:\Apps\Appsscript\CabotoXL\02 Pre-Production\Workbooks</Workbooks>
+      <HelpFile>X:\Apps\Appsscript\CabotoXL\02 Pre-Production\Docs</HelpFile>
+      <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\02 users.xml</UserConfigurationFile>
+      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\02 Pre-Production\metadata</FunctionMetadata>
       <AddinList>
         <Addin>QuantLibXL-vc80-mt-s-0_8_0.xll</Addin>
       </AddinList>
@@ -41,7 +41,7 @@
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
-        <SwapVolBootstrap>false</SwapVolBootstrap>
+        <!--<SwapVolBootstrap>false</SwapVolBootstrap>-->
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
         <FitCMS>false</FitCMS>
         <IndexesTimeSeries>false</IndexesTimeSeries>
@@ -51,12 +51,12 @@
     </Environment>
 
     <Environment name="03 Testing">
-      <Framework>X:\Offices1\CabotoXL\03 Testing\framework\QuantLibXL.xla</Framework>
+      <Framework>X:\Apps\Appsscript\CabotoXL\03 Testing\framework\QuantLibXL.xla</Framework>
       <FrameworkVersion>6</FrameworkVersion>
-      <Workbooks>X:\Offices1\CabotoXL\03 Testing\Workbooks</Workbooks>
-      <HelpFile>X:\Offices1\CabotoXL\03 Testing\Docs</HelpFile>
-      <UserConfigurationFile>X:\Offices1\CabotoXL\Users\03 users.xml</UserConfigurationFile>
-      <FunctionMetadata>X:\Offices1\CabotoXL\03 Testing\metadata</FunctionMetadata>
+      <Workbooks>X:\Apps\Appsscript\CabotoXL\03 Testing\Workbooks</Workbooks>
+      <HelpFile>X:\Apps\Appsscript\CabotoXL\03 Testing\Docs</HelpFile>
+      <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\03 users.xml</UserConfigurationFile>
+      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\03 Testing\metadata</FunctionMetadata>
       <AddinList>
         <Addin>QuantLibXL-vc80-mt-s-0_8_0.xll</Addin>
       </AddinList>
@@ -64,7 +64,7 @@
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
-        <SwapVolBootstrap>false</SwapVolBootstrap>
+        <!--<SwapVolBootstrap>false</SwapVolBootstrap>-->
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
         <FitCMS>false</FitCMS>
         <IndexesTimeSeries>false</IndexesTimeSeries>

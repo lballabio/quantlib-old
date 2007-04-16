@@ -195,7 +195,7 @@ Module Upgrade
             r_.moveValue(envKeyName, envKeyName & "\StartupActions", "LoadMurexYieldCurve")
             r_.moveValue(envKeyName, envKeyName & "\StartupActions", "StaticData")
             r_.moveValue(envKeyName, envKeyName & "\StartupActions", "SwapSmileBootstrap")
-            r_.moveValue(envKeyName, envKeyName & "\StartupActions", "SwapVolBootstrap")
+            'r_.moveValue(envKeyName, envKeyName & "\StartupActions", "SwapVolBootstrap")
             r_.moveValue(envKeyName, envKeyName & "\StartupActions", "YieldCurveBootstrap")
 
         Next
@@ -248,7 +248,7 @@ Module Upgrade
             r_.renameValue(envKeyName, "Bootstrap", "YieldCurveBootstrap")
             r_.setValue(envKeyName, "LoadMurexYieldCurve", False)
             r_.setValue(envKeyName, "CapVolBootstrap", False)
-            r_.setValue(envKeyName, "SwapVolBootstrap", False)
+            'r_.setValue(envKeyName, "SwapVolBootstrap", False)
             r_.setValue(envKeyName, "IndexesTimeSeries", False)
         Next
         r_.setValue("QuantLibXL\Configuration", "Version", 2)

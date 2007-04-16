@@ -29,7 +29,7 @@ Namespace QuantLibXL
         Private ycBootstrap_ As Boolean
         Private loadMurexYC_ As Boolean
         Private capVolBootstrap_ As Boolean
-        Private swapVolBootstrap_ As Boolean
+        'Private swapVolBootstrap_ As Boolean
         Private swapSmileBootstrap_ As Boolean
         Private fitCMS_ As Boolean
         Private indexesTimeSeries_ As Boolean
