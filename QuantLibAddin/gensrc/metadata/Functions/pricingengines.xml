@@ -19,7 +19,7 @@
   <Functions>
 
     <Procedure name='qlBlackFormula'>
-      <description>Black 1976 formula for option pricing</description>
+      <description>Black 1976 formula for option pricing, using displacement</description>
       <alias>QuantLib::blackFormula</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -50,6 +50,11 @@
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
+          </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -86,6 +91,11 @@
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
+          </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -128,6 +138,11 @@
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
           </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -137,7 +152,7 @@
     </Procedure>
 
     <Procedure name='qlBlackFormulaImpliedStdDev'>
-      <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula</description>
+      <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula with displacement</description>
       <alias>QuantLib::blackFormulaImpliedStdDev</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -179,6 +194,11 @@
             <tensorRank>scalar</tensorRank>
             <description>standard deviation accuracy</description>
           </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -188,7 +208,7 @@
     </Procedure>
 
     <Procedure name='qlBlackFormulaStdDevDerivative'>
-      <description>Black 1976 formula for the derivative with respect to the standard deviation (annualized percentage volatility times the square root of time to option expiry).</description>
+      <description>Black 1976 formula for the derivative with respect to the standard deviation (annualized percentage volatility times the square root of time to option expiry), with displacement.</description>
       <alias>QuantLib::blackFormulaStdDevDerivative</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -215,13 +235,18 @@
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
           </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Procedure>
+    </Procedure>    
 
     <Procedure name='qlBachelierBlackFormula'>
       <description>Black style formula when forward is normal rather than log-normal, i.e. essentially the model of Bachelier.</description>
@@ -265,7 +290,7 @@
     </Procedure>
 
     <Procedure name='qlBlackFormula2'>
-      <description>Black 1976 formula for option pricing. It uses a PlainVanillaPayoff object as input</description>
+      <description>Black 1976 formula for option pricing with displacement. It uses a PlainVanillaPayoff object as input</description>
       <alias>QuantLib::blackFormula</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -291,6 +316,11 @@
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
+          </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -322,6 +352,11 @@
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
+          </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -358,6 +393,11 @@
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
+          </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -405,6 +445,11 @@
             <tensorRank>scalar</tensorRank>
             <description>standard deviation accuracy</description>
           </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -412,6 +457,7 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
+
 
     <Procedure name='qlBlackFormulaStdDevDerivative2'>
       <description>Black 1976 formula for the derivative with respect to the standard deviation (annualized percentage volatility times the square root of time to option expiry). It uses a PlainVanillaPayoff object as input</description>
@@ -440,6 +486,11 @@
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
+          </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
           </Parameter>
         </Parameters>
       </ParameterList>
