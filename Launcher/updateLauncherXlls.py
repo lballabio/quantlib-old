@@ -3,9 +3,9 @@ import shutil
 import glob
 
 SOURCE_TARGET_DIRS = (
-    ( "X:/Offices1/CabotoXL/01 Production/xll", "Addins/01 Production" ),
-    ( "X:/Offices1/CabotoXL/02 Pre-Production/xll", "Addins/02 Pre-Production" ),
-    ( "X:/Offices1/CabotoXL/03 Testing/xll", "Addins/03 Testing" ),
+    ( "X:/Apps/Appsscript/CabotoXL/01 Production/xll", "Addins/01 Production" ),
+    ( "X:/Apps/Appsscript/CabotoXL/02 Pre-Production/xll", "Addins/02 Pre-Production" ),
+    ( "X:/Apps/Appsscript/CabotoXL/03 Testing/xll", "Addins/03 Testing" ),
 )
 
 #SOURCE_TARGET_DIRS = (
