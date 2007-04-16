@@ -1678,7 +1678,7 @@
 
     <Procedure name='qlCapletCoterminalCalibration'>
       <description>Calibrate ...</description>
-      <alias>QuantLibAddin::capletCoterminalCalibration</alias>
+      <alias>QuantLibAddin::capletCoterminalSwaptionCalibration</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />

@@ -81,7 +81,7 @@ namespace QuantLibAddin {
 
     };
 
-    inline QuantLib::Matrix capletCoterminalCalibration(
+    inline QuantLib::Matrix capletCoterminalSwaptionCalibration(
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::TimeDependantCorrelationStructure& corr,
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
@@ -101,7 +101,7 @@ namespace QuantLibAddin {
         std::vector<QuantLib::Matrix> pseudoRoots(nbRates,pseudoRoot);
         QuantLib::Size negDisc;
 
-        bool result = QuantLib::capletCoterminalCalibration(evolution,
+        bool result = QuantLib::capletCoterminalSwaptionCalibration(evolution,
                                                             corr,
                                                             swapVariances,
                                                             capletVols, cs,
