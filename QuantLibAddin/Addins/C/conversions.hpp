@@ -18,7 +18,7 @@
 #ifndef qla_c_conversions_hpp
 #define qla_c_conversions_hpp
 
-#include <ql/date.hpp>
+#include <ql/time/date.hpp>
 
 void cToLib(QuantLib::Date &, const long &);
 

@@ -27,7 +27,6 @@
 #include <qlo/capletvolstructure.hpp>
 #include <qlo/cliquetoption.hpp>
 #include <qlo/cmsmarket.hpp>
-#include <qlo/config.hpp>
 #include <qlo/couponvectors.hpp>
 #include <qlo/date.hpp>
 #include <qlo/dividendvanillaoption.hpp>

@@ -25,7 +25,7 @@ $(BUILD_DIR) :
 
 $(BUILDFLAG) : $(INPUTS) $(BUILD_DIR)
 #    $(GENSRC_DIR)\gensrc.py -a
-    $(GENSRC_DIR)\gensrc.py -xvlde
+    $(GENSRC_DIR)\gensrc.py -xvldec
 	echo flagged > $@
 
 CLEAN :
