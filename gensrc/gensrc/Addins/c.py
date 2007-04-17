@@ -56,25 +56,25 @@ class CAddin(addin.Addin):
 
         log.Log.instance().logMessage(' begin generating C ...')
         summaryHeaders = ''
-        for cat in self.categoryList_.categories(self.name):
+        for cat in self.categoryList_.categories(self.name_):
             self.generateHeaders(cat)
             self.generateFunctions(cat)
-            summaryHeaders += '#include <Addins/C/%s.h>\n' % cat.name
+            summaryHeaders += '#include <Addins/C/%s.h>\n' % cat.name()
         buf = self.bufferHeader_.text() % {
             'prefix' : environment.config().prefix(),
             'headers' : summaryHeaders }
-        fileName = self.rootPath_ + environment.config().libRootDirectory() + 'addin.h'
+        fileName = self.rootPath_ + environment.config().prefix() + 'addin.h'
         outputfile.OutputFile(self, fileName, self.copyright_, buf, False)
         log.Log.instance().logMessage(' done generating C.')
 
     def generateHeader(self, func, suffix):
         """Generate source for prototype of given function."""
-        functionDeclaration = func.ParameterList.generate(self.functionDeclaration_)
+        functionDeclaration = func.parameterList().generate(self.functionDeclaration_)
         if functionDeclaration: functionDeclaration += ','
         return CAddin.BUFFER_FUNCDEC % {
             'func_name' : func.name(),
             'func_dec' : functionDeclaration,
-            'func_ret' : self.functionReturnType_.apply(func.returnValue),
+            'func_ret' : self.functionReturnType_.apply(func.returnValue()),
             'suffix' : suffix }
 
     def generateHeaders(self, cat):
@@ -84,18 +84,19 @@ class CAddin(addin.Addin):
             bufHeader += self.generateHeader(func, ';\n')
         buf = CAddin.BUFFER_HEADER % {
             'cat_name' : cat.name(),
-            'func_headers' : bufHeader }
-        fileName = self.rootPath + cat.name() + '.h'
+            'func_headers' : bufHeader,
+            'lib_name' : environment.config().prefix() }
+        fileName = self.rootPath_ + cat.name() + '.h'
         fileHeader = outputfile.OutputFile(self, fileName, None, buf, False)
 
     def generateFunction(self, func):
         """Generate source code for function."""
         return self.bufferFunction_.text() % {
-            'libraryConversions' : func.ParameterList.generate(self.libraryConversions_),
-            'referenceConversions' : func.ParameterList.generate(self.referenceConversions_),
-            'enumConversions' : func.ParameterList.generate(self.enumConversions_),
+            'libraryConversions' : func.parameterList().generate(self.libraryConversions_),
+            'referenceConversions' : func.parameterList().generate(self.referenceConversions_),
+            'enumConversions' : func.parameterList().generate(self.enumConversions_),
             'body' : func.generateBody(self),
-            'returnCommand' : self.returnConversion_.apply(func.returnValue),
+            'returnCommand' : self.returnConversion_.apply(func.returnValue()),
             'name' : func.name() }
 
     def generateFunctions(self, cat):
@@ -106,7 +107,7 @@ class CAddin(addin.Addin):
             codeBuffer += self.generateFunction(func)
         buf = self.bufferIncludes_.text() % {
             'includes' : cat.includeList(),
-            'name' : cat.name,
+            'name' : cat.name(),
             'prefix' : environment.config().prefix(),
             'libRoot' : environment.config().libRootDirectory(),
             'code' : codeBuffer }

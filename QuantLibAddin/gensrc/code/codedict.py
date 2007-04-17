@@ -430,16 +430,16 @@ if(name == "%(name)s") return %(name)s_;
 ##########################################################################
 
 code101 = '''\
-/* some C code. Formerly code66 in 0.4.0 */
-'''
+        %(type)s %(name)sLib;
+        cToLib(%(name)sLib, %(name)s);\n'''
 
 code102 = '''\
-/* some C code. Formerly code67 in 0.4.0 */
-'''
+        OH_GET_REFERENCE(%(name)sLibObj, %(name)s,
+            %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code103 = '''\
-/* some C code. Formerly code68 in 0.4.0 */
-'''
+        %(type)s %(name)sEnum =
+            %(namespaceObjects)s::Create<%(type)s>()(%(name)s);\n'''
 
 ##########################################################################
 # code common to mutiple addins

@@ -193,9 +193,6 @@
       <libraryFunction>DoubleStickyRatchetPayoff</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='C'/>
-        <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -262,9 +259,6 @@
       <libraryFunction>RatchetPayoff</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='C'/>
-        <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -306,9 +300,6 @@
       <libraryFunction>StickyPayoff</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='C'/>
-        <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -350,9 +341,6 @@
       <libraryFunction>RatchetMaxPayoff</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='C'/>
-        <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -409,9 +397,6 @@
       <libraryFunction>RatchetMinPayoff</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='C'/>
-        <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -468,9 +453,6 @@
       <libraryFunction>StickyMaxPayoff</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='C'/>
-        <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -527,9 +509,6 @@
       <libraryFunction>StickyMinPayoff</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='C'/>
-        <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Guile'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

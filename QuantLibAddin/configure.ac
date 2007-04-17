@@ -55,16 +55,16 @@ AC_PATH_PROG([DOXYGEN], [doxygen])
 AC_PATH_PROG([SED], [sed])
 
 # possibly enable features
-#AC_ARG_ENABLE([addin-c],
-#              AC_HELP_STRING([--enable-addin-c],
-#                             [build C addin and clients [[default=no]]]),
-#              [qla_build_c=$enableval],
-#              [qla_build_c=omitted])
-#AC_ARG_ENABLE([addin-calc],
-#              AC_HELP_STRING([--enable-addin-calc],
-#                             [build Calc addin [[default=no]]]),
-#              [qla_build_calc=$enableval],
-#              [qla_build_calc=omitted])
+AC_ARG_ENABLE([addin-c],
+              AC_HELP_STRING([--enable-addin-c],
+                             [build C addin and clients [[default=no]]]),
+              [qla_build_c=$enableval],
+              [qla_build_c=omitted])
+AC_ARG_ENABLE([addin-calc],
+              AC_HELP_STRING([--enable-addin-calc],
+                             [build Calc addin [[default=no]]]),
+              [qla_build_calc=$enableval],
+              [qla_build_calc=omitted])
 AC_ARG_ENABLE([addin-excel],
               AC_HELP_STRING([--enable-addin-excel],
                              [generate source for Excel addin [[default=no]]]),
@@ -79,10 +79,10 @@ AC_ARG_ENABLE([addin-all],
               AC_HELP_STRING([--enable-addin-all],
                              [build all addins and clients [[default=no]]]),
               [qla_build_all=$enableval])
-#AM_CONDITIONAL(BUILD_C, [test "$qla_build_c" = "omitted" \
-#    && test "$qla_build_all" = "yes" || test "$qla_build_c" = "yes"])
-#AM_CONDITIONAL(BUILD_CALC, [test "$qla_build_calc" = "omitted" \
-#    && test "$qla_build_all" = "yes" || test "$qla_build_calc" = "yes"])
+AM_CONDITIONAL(BUILD_C, [test "$qla_build_c" = "omitted" \
+    && test "$qla_build_all" = "yes" || test "$qla_build_c" = "yes"])
+AM_CONDITIONAL(BUILD_CALC, [test "$qla_build_calc" = "omitted" \
+    && test "$qla_build_all" = "yes" || test "$qla_build_calc" = "yes"])
 AM_CONDITIONAL(BUILD_EXCEL, [test "$qla_build_excel" = "omitted" \
     && test "$qla_build_all" = "yes" || test "$qla_build_excel" = "yes"])
 #AM_CONDITIONAL(BUILD_GUILE, [test "$qla_build_guile" = "omitted" \
@@ -90,7 +90,10 @@ AM_CONDITIONAL(BUILD_EXCEL, [test "$qla_build_excel" = "omitted" \
 
 # done, output the configured files
 AC_CONFIG_FILES([
+    Addins/Calc/Makefile
+    Addins/C/Makefile
     Clients/C++/Makefile
+    Clients/C/Makefile
     Docs/Makefile
     gensrc/Makefile
     Makefile
