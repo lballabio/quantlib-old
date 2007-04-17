@@ -20,17 +20,17 @@
 #endif
 #include <qlo/marketmodels.hpp>
 #include <qlo/ValueObjects/vo_marketmodels.hpp>
-#include <ql/marketmodels/curvestate.hpp>
-#include <ql/marketmodels/models/expcorrflatvol.hpp>
-#include <ql/marketmodels/models/expcorrabcdvol.hpp>
-#include <ql/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
-#include <ql/marketmodels/evolvers/forwardratepcevolver.hpp>
-#include <ql/marketmodels/evolvers/forwardrateipcevolver.hpp>
-#include <ql/marketmodels/evolvers/forwardratenormalpcevolver.hpp>
-#include <ql/marketmodels/products/onestep/onestepforwards.hpp>
-#include <ql/marketmodels/products/onestep/onestepoptionlets.hpp>
-#include <ql/marketmodels/products/multistep/multistepratchet.hpp>
-#include <ql/marketmodels/models/correlations.hpp>
+#include <ql/models/marketmodels/curvestate.hpp>
+#include <ql/models/marketmodels/models/expcorrflatvol.hpp>
+#include <ql/models/marketmodels/models/expcorrabcdvol.hpp>
+#include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
+#include <ql/models/marketmodels/evolvers/forwardratepcevolver.hpp>
+#include <ql/models/marketmodels/evolvers/forwardrateipcevolver.hpp>
+#include <ql/models/marketmodels/evolvers/forwardratenormalpcevolver.hpp>
+#include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
+#include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
+#include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
+#include <ql/models/marketmodels/models/correlations.hpp>
 #include <ql/math/matrix.hpp>
 
 
@@ -99,8 +99,8 @@ namespace QuantLibAddin {
                 new QuantLib::TimeHomogeneousForwardCorrelation(
                     fwdCorrelation, rateTimes, numberOfFactors));
     }
-    
-    const QuantLib::Matrix& 
+
+    const QuantLib::Matrix&
         TimeHomogeneousForwardCorrelation::pseudoRoot(QuantLib::Size i) const{
             return boost::dynamic_pointer_cast<QuantLib::TimeHomogeneousForwardCorrelation>(
             libraryObject_)->pseudoRoot(i);
@@ -112,13 +112,13 @@ namespace QuantLibAddin {
             QuantLib::Real displacement,
             const QuantLib::EvolutionDescription& evolution,
             QuantLib::Size numberOfFactors){
-        libraryObject_ = 
+        libraryObject_ =
             boost::shared_ptr<QuantLib::SwapFromFRACorrelationStructure>(new
-                QuantLib::SwapFromFRACorrelationStructure(correlations, 
+                QuantLib::SwapFromFRACorrelationStructure(correlations,
                                                           curveState,
                                                           displacement,
                                                           evolution,
-                                                          numberOfFactors));    
+                                                          numberOfFactors));
     }
 
     EvolutionDescription::EvolutionDescription(
@@ -140,13 +140,13 @@ namespace QuantLibAddin {
             const QuantLib::MarketModelMultiProduct& product)
     {
         const QuantLib::EvolutionDescription& ev = product.evolution();
-        libraryObject_ = 
+        libraryObject_ =
            boost::shared_ptr< QuantLib::EvolutionDescription>(new QuantLib::EvolutionDescription(ev));
     }
 
     ExpCorrFlatVol::ExpCorrFlatVol(
             const std::vector<double>& volatilities,
-            const QuantLib::Matrix& correlations, 
+            const QuantLib::Matrix& correlations,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
@@ -167,7 +167,7 @@ namespace QuantLibAddin {
             double c,
             double d,
             const std::vector<double>& ks,
-            const QuantLib::Matrix& correlations, 
+            const QuantLib::Matrix& correlations,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
@@ -204,7 +204,7 @@ namespace QuantLibAddin {
                bool aIsFixed, bool bIsFixed,
                bool cIsFixed, bool dIsFixed) {
         libraryObject_ = boost::shared_ptr<QuantLib::Abcd>(
-            new QuantLib::Abcd(a, b, c, d, 
+            new QuantLib::Abcd(a, b, c, d,
                                aIsFixed, bIsFixed, cIsFixed, dIsFixed));
     }
 
@@ -314,7 +314,7 @@ namespace QuantLibAddin {
     //{
     //    libraryObject_ = boost::shared_ptr<QuantLib::SwapCovarianceApproximator>(
     //        new QuantLib::SwapCovarianceApproximator(
-    //                        initialCurveState, expiry,maturity, displacement, 
+    //                        initialCurveState, expiry,maturity, displacement,
     //                        forwardCovarianceMatrix));
     //}
 
@@ -331,7 +331,7 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Time>& paymentTimes,
         const std::vector<QuantLib::Rate>& strikes)
     {
-		QL_REQUIRE(rateTimes.size()>1, "rate times vector must contain at least two values");
+        QL_REQUIRE(rateTimes.size()>1, "rate times vector must contain at least two values");
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelMultiProduct>(
             new QuantLib::OneStepForwards(rateTimes, accruals,
                                           paymentTimes, strikes));
@@ -350,7 +350,7 @@ namespace QuantLibAddin {
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelMultiProduct>(
             new QuantLib::MultiStepRatchet(rateTimes, accruals,
-                                          paymentTimes, 
+                                          paymentTimes,
                                           gearingOfFloor, gearingOfFixing,
                                           spreadOfFloor, spreadOfFixing,
                                           initialFloor, payer));
@@ -437,7 +437,7 @@ namespace QuantLibAddin {
 
 
     PiecewiseConstantAbcdVariance::PiecewiseConstantAbcdVariance(
-                            QuantLib::Real a, QuantLib::Real b, 
+                            QuantLib::Real a, QuantLib::Real b,
                             QuantLib::Real c, QuantLib::Real d,
                             const QuantLib::Size resetIndex,
                             const std::vector<QuantLib::Time>& rateTimes) {
@@ -447,30 +447,30 @@ namespace QuantLibAddin {
                 QuantLib::PiecewiseConstantAbcdVariance(a, b, c, d,
                                                         resetIndex,
                                                         rateTimes));
-    
+
     }
 
     //Volatility model
     LmExtLinearExponentialVolModel::LmExtLinearExponentialVolModel(
         const std::vector<QuantLib::Time>& fixingTimes,
-        QuantLib::Real a, 
-        QuantLib::Real b, 
-        QuantLib::Real c, 
+        QuantLib::Real a,
+        QuantLib::Real b,
+        QuantLib::Real c,
         QuantLib::Real d) {
-         
+
             libraryObject_ = boost::shared_ptr<QuantLib::LmExtLinearExponentialVolModel>(
-            new QuantLib::LmExtLinearExponentialVolModel(fixingTimes,a,b,c,d));    
+            new QuantLib::LmExtLinearExponentialVolModel(fixingTimes,a,b,c,d));
     }
     //Correlation model
     LmLinearExponentialCorrelationModel::LmLinearExponentialCorrelationModel(
-        QuantLib::Size size, 
-        QuantLib::Real rho, 
+        QuantLib::Size size,
+        QuantLib::Real rho,
         QuantLib::Real beta,
         QuantLib::Size factors) {
-           
+
             libraryObject_ = boost::shared_ptr<QuantLib::LmLinearExponentialCorrelationModel>(
                 new QuantLib::LmLinearExponentialCorrelationModel(size,rho,beta,factors));
-    
+
     }
     std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
                             const QuantLib::Size firstValidIndex,

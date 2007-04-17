@@ -21,29 +21,29 @@
 #include <oh/objhandler.hpp>
 
 #include <ql/instruments/payoffs.hpp>
-#include <ql/marketmodels/accountingengine.hpp>
-#include <ql/marketmodels/marketmodel.hpp>
-#include <ql/marketmodels/evolutiondescription.hpp>
-#include <ql/marketmodels/curvestate.hpp>
-#include <ql/marketmodels/driftcomputation/lmmdriftcalculator.hpp>
-#include <ql/marketmodels/driftcomputation/cmsmmdriftcalculator.hpp>
-#include <ql/marketmodels/driftcomputation/lmmnormaldriftcalculator.hpp>
-#include <ql/marketmodels/driftcomputation/smmdriftcalculator.hpp>
-#include <ql/marketmodels/swapforwardconversionmatrix.hpp>
-#include <ql/marketmodels/browniangenerator.hpp>
-#include <ql/marketmodels/marketmodelevolver.hpp>
-#include <ql/marketmodels/models/expcorrabcdvol.hpp>
-#include <ql/marketmodels/curvestates/cmswapcurvestate.hpp>
-#include <ql/marketmodels/curvestates/coterminalswapcurvestate.hpp>
-#include <ql/marketmodels/curvestates/lmmcurvestate.hpp>
-#include <ql/marketmodels/models/piecewiseconstantabcdvariance.hpp>
-#include <ql/marketmodels/models/swapfromfracorrelationstructure.hpp>
-#include <ql/marketmodels/models/capletcoterminalcalibration.hpp>
-#include <ql/marketmodels/products/multiproductcomposite.hpp>
+#include <ql/models/marketmodels/accountingengine.hpp>
+#include <ql/models/marketmodels/marketmodel.hpp>
+#include <ql/models/marketmodels/evolutiondescription.hpp>
+#include <ql/models/marketmodels/curvestate.hpp>
+#include <ql/models/marketmodels/driftcomputation/lmmdriftcalculator.hpp>
+#include <ql/models/marketmodels/driftcomputation/cmsmmdriftcalculator.hpp>
+#include <ql/models/marketmodels/driftcomputation/lmmnormaldriftcalculator.hpp>
+#include <ql/models/marketmodels/driftcomputation/smmdriftcalculator.hpp>
+#include <ql/models/marketmodels/swapforwardconversionmatrix.hpp>
+#include <ql/models/marketmodels/browniangenerator.hpp>
+#include <ql/models/marketmodels/marketmodelevolver.hpp>
+#include <ql/models/marketmodels/models/expcorrabcdvol.hpp>
+#include <ql/models/marketmodels/curvestates/cmswapcurvestate.hpp>
+#include <ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp>
+#include <ql/models/marketmodels/curvestates/lmmcurvestate.hpp>
+#include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
+#include <ql/models/marketmodels/models/swapfromfracorrelationstructure.hpp>
+#include <ql/models/marketmodels/models/capletcoterminalcalibration.hpp>
+#include <ql/models/marketmodels/products/multiproductcomposite.hpp>
 #include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
 #include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
 #include <ql/termstructures/volatilities/abcd.hpp>
-#include <ql/marketmodels/models/timehomogeneousforwardcorrelation.hpp>
+#include <ql/models/marketmodels/models/timehomogeneousforwardcorrelation.hpp>
 
 namespace QuantLibAddin {
 
@@ -52,7 +52,7 @@ namespace QuantLibAddin {
 
 
     class TimeHomogeneousForwardCorrelation : public TimeDependantCorrelationStructure {
-        public: 
+        public:
             TimeHomogeneousForwardCorrelation(
                 const QuantLib::Matrix& fwdCorrelation,
                 const std::vector<QuantLib::Time>& rateTimes,
@@ -159,7 +159,7 @@ namespace QuantLibAddin {
     // MarketModelFactories
     class MarketModelFactory : public ObjHandler::LibraryObject<QuantLib::MarketModelFactory> {
     };
-    
+
     class ExpCorrFlatVolFactory : public MarketModelFactory {
     public:
         ExpCorrFlatVolFactory(QuantLib::Real longTermCorr,
