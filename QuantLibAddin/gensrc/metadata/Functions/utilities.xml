@@ -4,7 +4,7 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
     <include>qlo/utilities.hpp</include>
-    <include>ql/marketmodels/utilities.hpp</include>
+    <include>ql/models/marketmodels/utilities.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
