@@ -4,12 +4,12 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
     <include>ql/math/optimization/method.hpp</include>
-    <include>ql/marketmodels/models/correlations.hpp</include>
-    <include>ql/marketmodels/swapforwardconversionmatrix.hpp</include>
-    <include>ql/marketmodels/swapforwardmappings.hpp</include>
-    <include>ql/marketmodels/curvestates/cmswapcurvestate.hpp</include>
-    <include>ql/marketmodels/curvestates/coterminalswapcurvestate.hpp</include>
-    <include>ql/marketmodels/curvestates/lmmcurvestate.hpp</include>
+    <include>ql/models/marketmodels/models/correlations.hpp</include>
+    <include>ql/models/marketmodels/swapforwardconversionmatrix.hpp</include>
+    <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
+    <include>ql/models/marketmodels/curvestates/cmswapcurvestate.hpp</include>
+    <include>ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp</include>
+    <include>ql/models/marketmodels/curvestates/lmmcurvestate.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>qlo/marketmodels.hpp</include>
     <include>qlo/sequencestatistics.hpp</include>
@@ -25,7 +25,7 @@
   </copyright>
   <Functions>
 
-
+      
 
     <Procedure name="qlExponentialCorrelations">
       <description>Returns the exponential correlation matrix.</description>
