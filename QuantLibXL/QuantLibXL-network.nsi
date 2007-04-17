@@ -20,7 +20,7 @@
 
 Name "QuantLibXL Network Distribution"
 OutFile "..\QuantLibXL-${VER_NUMBER}-${NOW}-network.exe"
-InstallDir "X:\Offices1\CabotoXL\03 Testing"
+InstallDir "X:\Apps\Appsscript\CabotoXL\03 Testing"
 
 ; Interface Settings
 
