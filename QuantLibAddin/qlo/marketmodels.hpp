@@ -29,21 +29,20 @@
 #include <ql/models/marketmodels/driftcomputation/cmsmmdriftcalculator.hpp>
 #include <ql/models/marketmodels/driftcomputation/lmmnormaldriftcalculator.hpp>
 #include <ql/models/marketmodels/driftcomputation/smmdriftcalculator.hpp>
-#include <ql/models/marketmodels/swapforwardconversionmatrix.hpp>
 #include <ql/models/marketmodels/browniangenerator.hpp>
 #include <ql/models/marketmodels/marketmodelevolver.hpp>
-#include <ql/models/marketmodels/models/expcorrabcdvol.hpp>
+#include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/curvestates/cmswapcurvestate.hpp>
 #include <ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp>
 #include <ql/models/marketmodels/curvestates/lmmcurvestate.hpp>
 #include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
-#include <ql/models/marketmodels/models/swapfromfracorrelationstructure.hpp>
-#include <ql/models/marketmodels/models/capletcoterminalcalibration.hpp>
+#include <ql/models/marketmodels/models/timedependantcorrelationstructures/cotswapfromfwdcorrelation.hpp>
+#include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
 #include <ql/models/marketmodels/products/multiproductcomposite.hpp>
 #include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
 #include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
 #include <ql/termstructures/volatilities/abcd.hpp>
-#include <ql/models/marketmodels/models/timehomogeneousforwardcorrelation.hpp>
+#include <ql/models/marketmodels/models/timedependantcorrelationstructures/timehomogeneousforwardcorrelation.hpp>
 
 namespace QuantLibAddin {
 
@@ -60,9 +59,9 @@ namespace QuantLibAddin {
             const QuantLib::Matrix& pseudoRoot(QuantLib::Size i) const;
     };
 
-    class SwapFromFRACorrelationStructure : public TimeDependantCorrelationStructure {
+    class CotSwapFromFwdCorrelation : public TimeDependantCorrelationStructure {
         public:
-            SwapFromFRACorrelationStructure(
+            CotSwapFromFwdCorrelation(
             const QuantLib::Matrix& correlations,
             const QuantLib::CurveState& curveState,
             QuantLib::Real displacement,
@@ -131,26 +130,26 @@ namespace QuantLibAddin {
     class MarketModel : public ObjHandler::LibraryObject<QuantLib::MarketModel> {
     };
 
-    class ExpCorrFlatVol : public MarketModel {
+    class FlatVol : public MarketModel {
     public:
-        ExpCorrFlatVol(
-            const std::vector<double>& volatilities,
-            const QuantLib::Matrix& correlations,
+        FlatVol(
+            const std::vector<QuantLib::Volatility>& volatilities,
+            const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
             const std::vector<QuantLib::Rate>& displacements);
     };
 
-    class ExpCorrAbcdVol : public MarketModel {
+    class AbcdVol : public MarketModel {
     public:
-        ExpCorrAbcdVol(
-            double a,
-            double b,
-            double c,
-            double d,
-            const std::vector<double>& ks,
-            const QuantLib::Matrix& correlations,
+        AbcdVol(
+            QuantLib::Real a,
+            QuantLib::Real b,
+            QuantLib::Real c,
+            QuantLib::Real d,
+            const std::vector<QuantLib::Real>& ks,
+            const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
@@ -160,9 +159,9 @@ namespace QuantLibAddin {
     class MarketModelFactory : public ObjHandler::LibraryObject<QuantLib::MarketModelFactory> {
     };
 
-    class ExpCorrFlatVolFactory : public MarketModelFactory {
+    class FlatVolFactory : public MarketModelFactory {
     public:
-        ExpCorrFlatVolFactory(QuantLib::Real longTermCorr,
+        FlatVolFactory(QuantLib::Real longTermCorr,
                               QuantLib::Real beta,
                               const std::vector<QuantLib::Time>& times,
                               const std::vector<QuantLib::Volatility>& vols,

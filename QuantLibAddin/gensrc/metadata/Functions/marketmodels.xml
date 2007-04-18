@@ -25,7 +25,7 @@
   </copyright>
   <Functions>
 
-      
+
 
     <Procedure name="qlExponentialCorrelations">
       <description>Returns the exponential correlation matrix.</description>
@@ -58,57 +58,57 @@
       </ReturnValue>
     </Procedure>
 
-      <Constructor name='qlTimeHomogeneousForwardCorrelation'>
-          <libraryFunction>TimeHomogeneousForwardCorrelation</libraryFunction>
-          <functionCategory>QuantLib</functionCategory>
-          <SupportedPlatforms>
-              <SupportedPlatform name='Excel' calcInWizard='false' />
-          </SupportedPlatforms>
-          <ParameterList>
-              <Parameters>
-                  <Parameter name='fwdCorrelation' >
-                      <type>QuantLib::Matrix</type>
-                      <tensorRank>matrix</tensorRank>
-                      <description>forward correlations</description>
-                  </Parameter>
-                  <Parameter name='rateTimes' >
-                      <type>QuantLib::Time</type>
-                      <tensorRank>vector</tensorRank>
-                      <description>rate times</description>
-                  </Parameter>
-                  <Parameter name='numberOfFactors' >
-                      <type>QuantLib::Size</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>number of factors</description>
-                  </Parameter>
-              </Parameters>
-          </ParameterList>
-      </Constructor>
+    <Constructor name='qlTimeHomogeneousForwardCorrelation'>
+      <libraryFunction>TimeHomogeneousForwardCorrelation</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fwdCorrelation' >
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>forward correlations</description>
+          </Parameter>
+          <Parameter name='rateTimes' >
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate times</description>
+          </Parameter>
+          <Parameter name='numberOfFactors' >
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of factors</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
-      <Member name='qlTimeHomogeneousForwardCorrelationPseudoRoot' type ='QuantLib::TimeHomogeneousForwardCorrelation' superType='libraryClass'>
-          <description>return a pseudoroot for a given evolution time index</description>
-          <libraryFunction>TimeHomogeneousForwardCorrelation::pseudoRoot</libraryFunction>
-          <functionCategory>QuantLib</functionCategory>
-          <SupportedPlatforms>
-              <SupportedPlatform name='Excel' calcInWizard='false' />
-          </SupportedPlatforms>
-          <ParameterList>
-              <Parameters>
-                  <Parameter name='index' >
-                      <type>QuantLib::Size</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>time index</description>
-                  </Parameter>
-              </Parameters>
-          </ParameterList>
-          <ReturnValue>
-              <type>QuantLib::Matrix</type>
-              <tensorRank>matrix</tensorRank>
-          </ReturnValue>
-      </Member>
-      
-      
-      <!-- MarketModelMultiProductComposite base class interface  -->
+    <Member name='qlTimeHomogeneousForwardCorrelationPseudoRoot' type ='QuantLib::TimeHomogeneousForwardCorrelation' superType='libraryClass'>
+      <description>return a pseudoroot for a given evolution time index</description>
+      <libraryFunction>TimeHomogeneousForwardCorrelation::pseudoRoot</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='index' >
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+
+    <!-- MarketModelMultiProductComposite base class interface  -->
 
     <Constructor name='qlMarketModelMultiProductComposite'>
       <libraryFunction>MultiProductComposite</libraryFunction>
@@ -794,8 +794,8 @@
     </Member>
 
     <!-- MarketModel derived class constructors -->
-    <Constructor name='qlExpCorrFlatVol'>
-      <libraryFunction>ExpCorrFlatVol</libraryFunction>
+    <Constructor name='qlFlatVol'>
+      <libraryFunction>FlatVol</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -806,10 +806,11 @@
             <tensorRank>vector</tensorRank>
             <description>volatilities</description>
           </Parameter>
-          <Parameter name='correlationMatrix'>
-            <type>QuantLib::Matrix</type>
-            <tensorRank>matrix</tensorRank>
-            <description>correlation matrix</description>
+          <Parameter name='correlations'>
+            <type>QuantLib::TimeDependantCorrelationStructure</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>TimeDependantCorrelationStructure object ID</description>
           </Parameter>
           <Parameter name='evolutionDescription' >
             <type>QuantLib::EvolutionDescription</type>
@@ -836,8 +837,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlExpCorrAbcdVol'>
-      <libraryFunction>ExpCorrAbcdVol</libraryFunction>
+    <Constructor name='qlAbcdVol'>
+      <libraryFunction>AbcdVol</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -868,10 +869,11 @@
             <tensorRank>vector</tensorRank>
             <description>K_i adjustment factors in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='correlationMatrix'>
-            <type>QuantLib::Matrix</type>
-            <tensorRank>matrix</tensorRank>
-            <description>correlation matrix</description>
+          <Parameter name='correlations'>
+            <type>QuantLib::TimeDependantCorrelationStructure</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>TimeDependantCorrelationStructure object ID</description>
           </Parameter>
           <Parameter name='evolutionDescription' >
             <type>QuantLib::EvolutionDescription</type>
@@ -899,8 +901,8 @@
     </Constructor>
 
     <!-- MarketModelFactory derived class constructors -->
-    <Constructor name='qlExpCorrFlatVolFactory'>
-      <libraryFunction>ExpCorrFlatVolFactory</libraryFunction>
+    <Constructor name='qlFlatVolFactory'>
+      <libraryFunction>FlatVolFactory</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -940,7 +942,7 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-          
+
     <!-- Abcd (volatility) class costructor -->
     <Constructor name='qlAbcd'>
       <libraryFunction>Abcd</libraryFunction>
@@ -1638,8 +1640,8 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlSwapFromFRACorrelationStructure'>
-      <libraryFunction>SwapFromFRACorrelationStructure</libraryFunction>
+    <Constructor name='qlCotSwapFromFwdCorrelation'>
+      <libraryFunction>CotSwapFromFwdCorrelation</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -1693,7 +1695,7 @@
             <type>QuantLib::TimeDependantCorrelationStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>correlations ID</description>
+            <description>TimeDependantCorrelationStructure object ID</description>
           </Parameter>
           <Parameter name='swapPiecewiseConstantVariances'>
             <type>QuantLib::PiecewiseConstantVariance</type>
