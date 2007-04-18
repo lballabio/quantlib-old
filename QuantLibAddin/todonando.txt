@@ -17,131 +17,64 @@ class Instrument {
 
 
 
-==== RANDOM NOTES =============
+======= TODO ===============
 
-digital in call spread
-- abcd for displacement
-- add abcd interpolation
-
-coerce from Frequency to Period
-coerce from Period->Date to double/int
-coerce from IMMcode to date
-cvs command line
-imm functions (dates.xml) problems
-
-vol term structure refactoring
-null strike -> atm strike
-
-pure future option term structures
-fixed sabr parameters
-
-3M caplet test wbk:
-- atm curve
-- abcd fit
-
+General
+- restore floating exception
+- introduce type QuantLib::Money
 - wiki
 - build system
 - adopt boost::date
 - boost property map
 - VBA code in text files
 
-- GREEKS
-- from LMM -> QL::INSTRUMENT -> EXCEL
-- LMM calibrations
-- FRA-based MM swaption pricing
-- drift for SWAP-based MM
-
-
-
-======= TODO ===============
-
-General
-- introduce type QuantLib::Money
-
 Nando
-- Clerici for covered warrants (Ferdinando)
-- Pellegatta for access to Citrix (Ferdinando)
-- MM clean up tests
-- MM make caplet/swaption calibration do work
-- MM check increasing times
-- MM restore floating exception
-- MM equality for evolution description
-- MM drift test
-- MM coterminal products
-- MM add ipc algorythms
-- MM linear combination of bonds as numeraire
-- new release
-- calibrations
-- SA
-- CW Clerici
-- redesign fogli chiusure
+- vol term structure refactoring
+- null strike -> atm strike
 - joint calendar
 - mkt convention struct
 - YCDemo crash
 - alternative calibrations with null rho
 - make BlackCalculator observer/observable, make it lazy
-- contratti
-- trimestrale
 - Risk, Wilmott papers
 - period algebra
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 
 K
-- rename correctly of qlSimultaneousCalibration()
-- macro "Close/Save" deve settare il focus sul foglio "Settings"
-- sabr interpolation: allow fixing pparam nu
+- test LevembergMarkard in sabr interpolation
+- MM: different correlation structures (longTermCorr+beta+gamma)
+- trimestrale
+- Citrix access
+- 3M caplet test wbk:
+- atm curve
+- abcd fit
+- abcd for displacement
+- add abcd interpolation
 - capVolStructure.xml rendilo uguale SwaptionVolStructure.xml
 - CapStripper6MTestSmoothness.xls: testa la smoothness della dorsale ATM con l'interpolazione lineare
 - CapStripper6MTestRepricing.xls: aggiungi
 - cap stripper: decidere se usare le interpolated vols da usare nel cap stripper
 - macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
-- smile sections:
-	- rimuovi calibrazione dal costruttore
-	- usa ottimizzatore Levenberg
-	- sposta le vols fuori dal costruttore
-- controlPanel.xls: utilizza relinkable handle
-- rimuovere Singleton a set YTS agli Euribor
-- EOD valuation: completare analisi dei nuovi deal 
+- rimuovere Singleton and set YTS to Euribor
 - 3M cap stripper: sensitivity to market data
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - manage auto-open macro problem
-- coveredWarrants.xls: 
+- coveredWarrants.xls:
 	- gestione del primo periodo corto
 	- qlMakeCapFloor() ok tranne che per seasoned deals
 	- punta a decorated objects
 - SA: applied to cms book
 - create new .xls with NPVs of 4 cms books
 - foglio di clerici (interpolazione)
-- remove action atmVolatility from Launcher
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
 
-Pending:
-- DONE ManualCapFeed updated to live/overwrite logic
-- DONE prepare report for release in Production: 5 Apr
-- DONE SA: test CmsPricer() observability
-- DONE new calibrations QuantLibXL actions
-- DONE review of .xls used in Eods
-- DONE standardizzare il nome delle quotes dei param di calibrazione
-- DONE demo per HelpDesk e ChangeMan
-- DONE EurliborSwapFixA problem with missing fixings for some maturities
-- DONE test abcd (swap tenor) with new optimization code
-- DONE test sensitivity of IRS_CMS_MxBook_30Y.xls to atm and smile vols
-- DONE murex yield curve
-- DONE added exampleValue to assigned files
-- DONE send Eric updated cms book file: book1.xls desktop
-- DONE scrivere manuale applicativo Launcher
-- DONE rilascio di 02 a 01
-- DONE trimestrale
-- DONE update end of day procedures: calibarionParametersQuotesFeed.xls added
-- DONE waiting for atmCalibrated=True. review SwaptionVolCubeChecks.xls
-- DONE triggers added in bondMonitor.xls (performance problems)
-- DONE euriborswapfixB
-- DONE move calibration params out from CP.xls
-- DONE remove action atmVolatility from menu
-- DONE test abcd (swap tenor) with new optimization code
-
 François
+- MM: different correlation structures (Schoenmakers and Coffey, Rapisarda)
+- smile sections:
+	- remove calibration from constructor
+	- use Levenberg optimizator
+	- move vol quotes from constructor
 - profile one of the time series workbook
 - profile CoveredWarrants.xls
 - any way to improve stripping 3M caplet?
@@ -172,18 +105,9 @@ TO BE DISCUSSED: Object Builder performance issue when the control panel is left
 
 
 Cristina
-- DONE multiLegSwap.xls: finalise and move from Drafts to IRDerivatives
+- EOD valuation: completare analisi dei nuovi deal
 - testing that the manual procedure to set back/forward the evaluation date
   returns the same results of the automantic procedure
-- DONE reorder Excel workbooks input parameters order
-- DONE coupon refactoring (shared among Cristina and Giorgio)
-- DONE expose to QXL new IborLeg (following coupon refactoring in QL)
-- DONE cap/floor rates output in cashflow analysis
-- DONE added exampleValue to assigned files
-- DONE adaption of pricers workbooks to new Ibor and CmsCoupon constructors
-- DONE added automated evaluation of deals having IborLeg with embedded option in Cms book
-- DONE adaption of Cms book to new Ibor and CmsCoupon constructors / setPricer methods
-- DONE review of CmsMarket.xls and SingleMeanRevCalibration.xls used in Sabr calibration
 - WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
 - WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
 - bond pricing engine
@@ -192,18 +116,12 @@ Cristina
 
 
 Giorgio
+- test LevembergMarkard in sabr interpolation
+- rename correctly of qlSimultaneousCalibration()
+fixed sabr parameters
+digital coupon in call spread
 does not allow extrapolation in vol cube for option tenors less than 2Y
-D verify sensitivity of beta and mean best calibrated values. Compare  values
-  using as guess the previous day values (global cms market) or using the current
-  day guesses as from the 5 cms market sections
-D 1.check npv
-D 2.cms gearing negativo, floor a zero: non funziona
-D capped/floored-cms comparison (shared among Cristina and Giorgio)
-D observability: cmspricer, cmsmarket
-D Handle<Quote> for mean reversion value (osservabile del pricer)
-D coupon refactoring and extension (shared among Cristina and Giorgio)
 WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
-D think about how to simplify mean reversion usage, cms swaption calibration
 WIP ratchet Instrument C++ (shared among Marco, Giorgio)
 WIP range accrual coupon
 - spreaded swaption vol structure
@@ -217,14 +135,6 @@ Chiara
 - Digital Bond contructor
 - Multicallable bond constructor
 - with Nando review bond equivalent fo Reverse FRN
-DONE insert new bond objects needed by the trader
-DONE create a new spreadsheet where bond's pricer should be set
-DONE Add QuantLib currency to bond static data
-DONE with Nando review all the signatures of bond functions in excel
-DONE capped/floored coupon bond
-DONE fix-to-float bond
-DONE with giorgio set mean rev quote in cmscouponbond contructor
-DONE fix assetswap bug when date is in the range of bond's settlement date
 WIP profiling session with Francois on BondMonitor_EUR.xls
 - implement alternative version of bond instrument which should accept a leg object
 - bond pricing engine
@@ -233,17 +143,12 @@ WIP profiling session with Francois on BondMonitor_EUR.xls
 
 
 Marco
+- MM: corr hist extimation
 - WIP: verifica ottimizzatori:
 	- DONE: Levenberg-Marquardt
 	- TBD: conjugate gradient
 	- WIP: reingineering of EndCriteria
 	- TBD: export everything to excel and build the spreadsheet to test optimizers
-- DONE: verifica documentazione di McKinsey
-- DONE: BGM payoffs review
-- DONE: BGM book set up
-- DONE: sticky/ratchet and double option instruments in C++ (shared among Marco, Giorgio)
-- DONE: sticky/ratchet and double option instruments export in Addin
-- DONE: sticky/ratchet and double option pricing
 - WIP: valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
 - WIP: digital option in C++ (shared among Marco, Giorgio and Cristina)
 - ??? foglio swaption per De Nuccio / Murex
@@ -252,6 +157,10 @@ Marco
 
 
 Eric
+- coerce from Frequency to Period
+- coerce from Period->Date to double/int
+- coerce from IMMcode to date
+- imm functions (dates.xml) problems
 - launcher addin dir ?
 - remove quantlibxl-bin.nsi
 - merge quantlibxl.nsi and quantlib-network.nsi
