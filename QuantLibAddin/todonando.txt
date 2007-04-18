@@ -84,7 +84,6 @@ François
 - add SABR interpolation to the capstripper
 - refactor the method class (move Endcriteria as argument of the minimize)
 TO BE DISCUSSED: Object Builder performance issue when the control panel is left opened
-
 - OH function wizard
 - To BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a single test
@@ -119,7 +118,7 @@ Giorgio
 - test LevembergMarkard in sabr interpolation
 - rename correctly of qlSimultaneousCalibration()
 fixed sabr parameters
-digital coupon in call spread
+- digital coupon in call spread
 does not allow extrapolation in vol cube for option tenors less than 2Y
 WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
 WIP ratchet Instrument C++ (shared among Marco, Giorgio)
@@ -129,7 +128,6 @@ WIP range accrual coupon
 
 
 Chiara
-
 - With Nando add tests for asset swap in the test suite
 - Z-spread function
 - Digital Bond contructor
@@ -151,9 +149,7 @@ Marco
 	- TBD: export everything to excel and build the spreadsheet to test optimizers
 - WIP: valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
 - WIP: digital option in C++ (shared among Marco, Giorgio and Cristina)
-- ??? foglio swaption per De Nuccio / Murex
-- (To BE REVIEWED) update Mx YC action
-- (To BE REVIEWED) improve interpolations
+
 
 
 Eric
