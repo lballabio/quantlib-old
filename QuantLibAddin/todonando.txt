@@ -41,31 +41,38 @@ Nando
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 
 K
-- test LevembergMarkard in sabr interpolation
-- MM: different correlation structures (longTermCorr+beta+gamma)
 - trimestrale
-- Citrix access
-- 3M caplet test wbk:
-- atm curve
-- abcd fit
-- abcd for displacement
-- add abcd interpolation
+- LMM: 
+	different correlation structures (longTermCorr+beta+gamma)
+	abcd for displacement
+	add abcd interpolation
+- 3M cap stripper: 
+	sensitivity to market data
+	gestione manuale ordinaria (con Clerici)
+	reintroduzione in 6M cap stripper
+	test wbk: atm curve
+	test wbk: abcd fit
+- 6M cap stripper: 
+	CapStripper6MTestSmoothness.xls: testa la smoothness della dorsale ATM con l'interpolazione lineare
+	CapStripper6MTestRepricing.xls: aggiungi
+	decidere se usare le interpolated vols da usare nel cap stripper
+- coveredWarrants.xls
+	Citrix access
+	gestione del primo periodo corto
+	DONE qlMakeCapFloor() ok tranne che per seasoned deals
+	DONE punta a decorated objects
+- Sensitivity Analysis: 
+	applied to cms book
+	create new .xls with NPVs of 4 cms books
+	test newly released version
+
+- test LevembergMarkard in sabr interpolation
+- bug in function SetRealTime() -> Rt seems not to switch settings
+- manage auto-open macro problem
 - capVolStructure.xml rendilo uguale SwaptionVolStructure.xml
-- CapStripper6MTestSmoothness.xls: testa la smoothness della dorsale ATM con l'interpolazione lineare
-- CapStripper6MTestRepricing.xls: aggiungi
-- cap stripper: decidere se usare le interpolated vols da usare nel cap stripper
 - macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
-- 3M cap stripper: sensitivity to market data
-- bug in function SetRealTime() -> Rt seems not to switch settings
-- manage auto-open macro problem
-- coveredWarrants.xls:
-	- gestione del primo periodo corto
-	- qlMakeCapFloor() ok tranne che per seasoned deals
-	- punta a decorated objects
-- SA: applied to cms book
-- create new .xls with NPVs of 4 cms books
 - foglio di clerici (interpolazione)
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
 
