@@ -147,7 +147,6 @@ namespace QuantLibAddin {
     {
         // Checks
         QL_REQUIRE(!instrumentIDs.empty(), "no instrument given");
-
         QuantLib::Size nInstruments = instrumentIDs.size();
         QL_REQUIRE(includeFlag.size()==nInstruments,
                    "includeFlag / instruments mismatch");
@@ -190,7 +189,7 @@ namespace QuantLibAddin {
         QuantLib::Date evalDate = QuantLib::Settings::instance().evaluationDate();
         std::vector<detail::RateHelperItem> rhs, rhsDepo;
         long actualFrontFuturesRollingDays = 2+frontFuturesRollingDays;
-        // Look for the front Futures
+        // Look for the front Futures, if any
         QuantLib::Date frontFuturesEarliestDate;
         bool thereAreFutures = false;
         QuantLib::Size j=0;

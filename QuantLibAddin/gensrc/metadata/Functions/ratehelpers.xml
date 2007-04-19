@@ -253,7 +253,7 @@
           <Parameter name='depoExcludeFlag'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>boolean to exclude the Deposits after front Futures expiry</description>
+            <description>boolean to exclude the Deposits after front Futures expiry (if there are not Futures, force boolean at FALSE</description>
           </Parameter>
         </Parameters>
       </ParameterList>
