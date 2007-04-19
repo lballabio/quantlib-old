@@ -44,6 +44,9 @@ Nando
 
 K
 - trimestrale
+- prendere possesso foglio Clerici
+- CMS calibration tests (Cristina and K)
+- make capVolStructure.xml equivalent to SwaptionVolStructure.xml
 - MM implement longTermCorr+beta+gamma correlation structure
 - MM abcd for displaced vols (Chiara, Cristina, K)
 - calibration robustness (Cristina, Katiuscia)
@@ -79,17 +82,17 @@ K
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
 
 Cristina
+- CMS calibration tests (Cristina and K)
 - EOD valuation: completare analisi dei nuovi deal
 - testing that the manual procedure to set back/forward the evaluation date
   returns the same results of the automantic procedure
 - WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
 - WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
-- TO BE DISCUSSED error in cashflowvectors if a single cash flow exists
 - WIP new management of additional cashflows in Cms book
 
 Chiara
 - add tests for CMS asset swap in the test suite
-- Z-spread function
+- Z-spread function, for zero coupon bond valuation
 - Digital Bond contructor
 - Multicallable bond constructor
 - review bond equivalent fo Reverse FRN
@@ -98,6 +101,8 @@ Chiara
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
 
 François
+- Higham covariance bug + review rank rduction
+- OH Wizard review: vector input, change in XML file structure to implement default values (to be precised)
 - MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(2D-5D)
 - smile sections:
 	- remove calibration from constructor(1H)
@@ -109,24 +114,24 @@ François
 - To BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a single test
 - TO BE REVIEWED MultiStepSwaption
-- Object builder: vector input, change in XML file structure to implement default values (to be precised)
 - check sabr fit stability/accuracy for smilesections (.5D)
 - add atmRate to SmileSection base class (to be discussed)
 - review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls. (to be precised)
 
 Giorgio
 - test LevembergMarkard in sabr interpolation
+- test LevembergMarkard in abcd vol
 - rename correctly Excel names of class qlSimultaneousCalibration()
 - fixed sabr parameters
-- digital coupon in call spread
+- digital coupon in call spread, add unit test (Marco, Giorgio and Cristina)
 - flat extrapolation of a,b,n,r parameters in vol cube
-WIP digital option in C++ (shared with Marco, Giorgio and Cristina)
 WIP ratchet Instrument C++ (shared with Marco, Giorgio)
 WIP range accrual coupon
 - spreaded swaption vol structure
 - spreaded caplet vol structure
 
 Marco
+- new Mx curve
 - MM: corr hist extimation
 - WIP: verifica ottimizzatori:
 	- DONE: Levenberg-Marquardt
