@@ -3,9 +3,8 @@
   <displayName>MarketModels</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
+    <include>ql/models/marketmodels/models/timedependantcorrelationstructures/correlations.hpp</include>
     <include>ql/math/optimization/method.hpp</include>
-    <include>ql/models/marketmodels/models/correlations.hpp</include>
-    <include>ql/models/marketmodels/swapforwardconversionmatrix.hpp</include>
     <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
     <include>ql/models/marketmodels/curvestates/cmswapcurvestate.hpp</include>
     <include>ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp</include>
