@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "static", "static\static.vcproj", "{495708AC-96C6-41E5-AD66-4AFD16C27A21}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "static", "static\static_vc7.vcproj", "{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -7,6 +7,7 @@ Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
 		Debug CRDLL = Debug CRDLL
+		Debug CRTDLL = Debug CRTDLL
 		Debug Single Thread = Debug Single Thread
 		Release = Release
 		Release CRTDLL = Release CRTDLL
@@ -15,22 +16,24 @@ Global
 		Unicode Release = Unicode Release
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Debug.ActiveCfg = Debug|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Debug.Build.0 = Debug|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Debug CRDLL.ActiveCfg = Debug CRTDLL|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Debug CRDLL.Build.0 = Debug CRTDLL|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Debug Single Thread.ActiveCfg = Debug Single Thread|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Debug Single Thread.Build.0 = Debug Single Thread|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Release.ActiveCfg = Release|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Release.Build.0 = Release|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Release Single Thread.ActiveCfg = Release Single Thread|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Release Single Thread.Build.0 = Release Single Thread|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Unicode Debug.ActiveCfg = Unicode Debug|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Unicode Debug.Build.0 = Unicode Debug|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Unicode Release.ActiveCfg = Unicode Release|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Unicode Release.Build.0 = Unicode Release|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug.ActiveCfg = Debug|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug.Build.0 = Debug|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug CRDLL.ActiveCfg = Debug CRTDLL|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug CRDLL.Build.0 = Debug CRTDLL|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug Single Thread.ActiveCfg = Debug Single Thread|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug Single Thread.Build.0 = Debug Single Thread|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release.ActiveCfg = Release|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release.Build.0 = Release|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release Single Thread.ActiveCfg = Release Single Thread|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release Single Thread.Build.0 = Release Single Thread|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Unicode Debug.ActiveCfg = Unicode Debug|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Unicode Debug.Build.0 = Unicode Debug|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Unicode Release.ActiveCfg = Unicode Release|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Unicode Release.Build.0 = Unicode Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
