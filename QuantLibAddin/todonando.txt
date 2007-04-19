@@ -44,21 +44,22 @@ Nando
 
 K
 - trimestrale
-- make capVolStructure.xml equivalent to SwaptionVolStructure.xml
 - MM implement longTermCorr+beta+gamma correlation structure
 - MM abcd for displaced vols (Chiara, Cristina, K)
+- calibration robustness (Cristina, Katiuscia)
 - 3M cap stripper:
 	sensitivity to market data
 	gestione manuale ordinaria (con Clerici)
 	reintroduzione in 6M cap stripper
 	test wbk: atm curve
 	test wbk: abcd fit
-    atm backbone in test workbook
+    	atm backbone in test workbook
+	make capVolStructure.xml equivalent to SwaptionVolStructure.xml
 - 6M cap stripper:
 	CapStripper6MTestSmoothness.xls: testa la smoothness della dorsale ATM con l'interpolazione lineare
 	CapStripper6MTestRepricing.xls: aggiungi
 	decidere se usare le interpolated vols da usare nel cap stripper
-    atm backbone in test workbook
+    	atm backbone in test workbook
 - coveredWarrants.xls
 	Citrix access
 	gestione del primo periodo corto
@@ -68,7 +69,7 @@ K
 	applied to cms book
 	create new .xls with NPVs of 4 cms books
 	test newly released version
-- test LevembergMarkard in sabr interpolation
+- test LevenbergMarkard in sabr interpolation
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - manage auto-open macro problem
 - macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
