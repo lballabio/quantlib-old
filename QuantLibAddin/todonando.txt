@@ -20,17 +20,17 @@ class Instrument {
 ======= TODO ===============
 
 General
-- restore floating exception
+- restore floating exception in test-suite
 - introduce type QuantLib::Money
-- wiki
-- build system
+- wiki documentation
+- automated build system
 - adopt boost::date
-- boost property map
-- VBA code in text files
+- use boost property map in OH
+- have VBA code in text files
 
 Nando
-- vol term structure refactoring
 - null strike -> atm strike
+- vol term structure refactoring
 - joint calendar
 - mkt convention struct
 - YCDemo crash
@@ -39,76 +39,43 @@ Nando
 - Risk, Wilmott papers
 - period algebra
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
+- refactor abcd vol file, adding more unary_functions for blackVol and covariance
+- implement abcdinterpolation
 
 K
 - trimestrale
-- LMM: 
-	different correlation structures (longTermCorr+beta+gamma)
-	abcd for displacement
-	add abcd interpolation
-- 3M cap stripper: 
+- make capVolStructure.xml equivalent to SwaptionVolStructure.xml
+- MM implement longTermCorr+beta+gamma correlation structure
+- MM abcd for displaced vols (Chiara, Cristina, K)
+- 3M cap stripper:
 	sensitivity to market data
 	gestione manuale ordinaria (con Clerici)
 	reintroduzione in 6M cap stripper
 	test wbk: atm curve
 	test wbk: abcd fit
-- 6M cap stripper: 
+    atm backbone in test workbook
+- 6M cap stripper:
 	CapStripper6MTestSmoothness.xls: testa la smoothness della dorsale ATM con l'interpolazione lineare
 	CapStripper6MTestRepricing.xls: aggiungi
 	decidere se usare le interpolated vols da usare nel cap stripper
+    atm backbone in test workbook
 - coveredWarrants.xls
 	Citrix access
 	gestione del primo periodo corto
 	DONE qlMakeCapFloor() ok tranne che per seasoned deals
 	DONE punta a decorated objects
-- Sensitivity Analysis: 
+- Sensitivity Analysis:
 	applied to cms book
 	create new .xls with NPVs of 4 cms books
 	test newly released version
-
 - test LevembergMarkard in sabr interpolation
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - manage auto-open macro problem
-- capVolStructure.xml rendilo uguale SwaptionVolStructure.xml
 - macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
 - foglio di clerici (interpolazione)
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
-
-François
-- MM: different correlation structures (Schoenmakers and Coffey, Rapisarda)
-- smile sections:
-	- remove calibration from constructor
-	- use Levenberg optimizator
-	- move vol quotes from constructor
-- profile one of the time series workbook
-- profile CoveredWarrants.xls
-- any way to improve stripping 3M caplet?
-- profiling: bond, calibrations, interpolations
-- atm backbone for caplet
-- extrapolation bug (short expity, low strike)
-- add SABR interpolation to the capstripper
-- refactor the method class (move Endcriteria as argument of the minimize)
-TO BE DISCUSSED: Object Builder performance issue when the control panel is left opened
-- OH function wizard
-- To BE REVIEWED test abcd calibration
-- TO BE REVIEWED consolidate all multisteps in a single test
-- TO BE REVIEWED MultiStepSwaption
-- DONE merge Object builder improvements into QuantLib.xla
-	->TO BE DISCUSSED: vector input, change in XML file structure to implement default values
--> TO BE REVIEWED check sabr fit stability/accuracy for smilesections
-- add atmRate to SmileSection base class
-- add an atmRate to our capVol structure
-- review the class design together
-- refactor abcd vol file, adding more unary_functions for blackVol and covariance
-- expose to Excel all these new abcd-related vol functions
-- implement abcdinterpolation
-- get ready for the second set of main cycle future options
-- review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls.
-- move the xml folder from Workbooks\ to Framework\. Change both the NSIS files and the path in the .xla
-- profiling of the workbooks under the folder Bonds\
-
 
 Cristina
 - EOD valuation: completare analisi dei nuovi deal
@@ -116,48 +83,58 @@ Cristina
   returns the same results of the automantic procedure
 - WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
 - WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
-- bond pricing engine
 - TO BE DISCUSSED error in cashflowvectors if a single cash flow exists
 - WIP new management of additional cashflows in Cms book
 
-
-Giorgio
-- test LevembergMarkard in sabr interpolation
-- rename correctly of qlSimultaneousCalibration()
-fixed sabr parameters
-- digital coupon in call spread
-does not allow extrapolation in vol cube for option tenors less than 2Y
-WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
-WIP ratchet Instrument C++ (shared among Marco, Giorgio)
-WIP range accrual coupon
-- spreaded swaption vol structure
-- spreaded caplet vol structure
-
-
 Chiara
-- With Nando add tests for asset swap in the test suite
+- add tests for CMS asset swap in the test suite
 - Z-spread function
 - Digital Bond contructor
 - Multicallable bond constructor
-- with Nando review bond equivalent fo Reverse FRN
-WIP profiling session with Francois on BondMonitor_EUR.xls
+- review bond equivalent fo Reverse FRN
 - implement alternative version of bond instrument which should accept a leg object
-- bond pricing engine
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
 
+François
+- MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)
+- smile sections:
+	- remove calibration from constructor
+	- use Levenberg optimizator
+	- move vol quotes from constructor
+- add SABR interpolation to the capstripper
+- refactor the method class (move Endcriteria as argument of the minimize)
+- OH Wizard performance issue when the control panel is left opened
+- To BE REVIEWED test abcd calibration
+- TO BE REVIEWED consolidate all multisteps in a single test
+- TO BE REVIEWED MultiStepSwaption
+- Object builder: vector input, change in XML file structure to implement default values
+- check sabr fit stability/accuracy for smilesections
+- add atmRate to SmileSection base class
+- review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls.
+
+Giorgio
+- test LevembergMarkard in sabr interpolation
+- rename correctly Excel names of class qlSimultaneousCalibration()
+- fixed sabr parameters
+- digital coupon in call spread
+- flat extrapolation of a,b,n,r parameters in vol cube
+WIP digital option in C++ (shared with Marco, Giorgio and Cristina)
+WIP ratchet Instrument C++ (shared with Marco, Giorgio)
+WIP range accrual coupon
+- spreaded swaption vol structure
+- spreaded caplet vol structure
 
 Marco
 - MM: corr hist extimation
 - WIP: verifica ottimizzatori:
 	- DONE: Levenberg-Marquardt
-	- TBD: conjugate gradient
-	- WIP: reingineering of EndCriteria
+	- TBD: conjugate gradient, steepest descent
 	- TBD: export everything to excel and build the spreadsheet to test optimizers
-- WIP: valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
-- WIP: digital option in C++ (shared among Marco, Giorgio and Cristina)
+- WIP: valuation of plain vanilla leg of BGM book (shared with Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
+- WIP: digital option in C++ (shared with Marco, Giorgio and Cristina)
 
-
+========================
 
 Eric
 - coerce from Frequency to Period
@@ -195,9 +172,7 @@ QuantLib
 - deprecate swaptionvol time interface
 - corregere OneAssetOption impliedVol
 - SWAP implement fair rate for floating/fixed rate vector
-- add SABR factory
 - use boost random number generators
-- COUPON refactoring: floating coupon as cms, use new engines
 - Volatility assume a daycounter in the same way as rate (see InterestRate)
 - ForwardSpreadedCurve con spread term structure
 - throw first what in notifyobservers
@@ -206,17 +181,8 @@ QuantLib
 - use strategy pattern for simulation termination criteria
 - se possibile rispettare la misura ProductSuggested nel Composite
 
-QuantLib testsuite
-- verificare il pricing degli swap in LMM contro CurveState
-- verificare convergenza assoluta del test onestep e di quello multistep
-
-QuantLib BOND
-- use vector<Cashflow>??
-
 QuantLib RATEHELPERS
 - earliest days dovrebbe tener conto dei fixing days
-
-QuantLib YIELDCURVEBOOTSTRAP
 
 QuantLib PIECEWISEYIELDCURVE
 - FRARateHelper deve avere dentro in FRA Instrument
@@ -235,9 +201,6 @@ LUIGI
 - generic ForwardSpreadedYieldCurve (spread term structure)
 - bootstrap ForwardSpreadedYieldCurve using its own ratehelpers and a base curve
 
-MODULES
-- reorganize file/folder/projectfolder
-
 QUANTLIBADDIN
 - RSG factory
 - export ImpliedCurve
@@ -247,10 +210,8 @@ QUANTLIBADDIN
 - export discount, loglinear selection
 - use QL folder structure
 - port old QuantLibXL functionalities
-- esportare MultiStepOptionlets
 
 QUANTLIBXL WORKBOOKS
-- close live data workbook must pause reuters, close, there restore Reuters original state
 - nel ControlPanel dare evidenza dei feed: CMS
 - Property example?
 - SWAPTION spreadsheet with multiple prices
@@ -259,10 +220,5 @@ QUANTLIBXL WORKBOOKS
 - more calendar drop down cell menu
 - YYYYDDMM_HHMM timestamp in log file name doesn't work the second time
 - file name cannot be changed without time
-- INSTALLER: Excel must be closed
-- INSTALLER: what about rebooting?
-- INSTALLER: uninstall before
-- INTERPOLATION: spostare vecchi spreadsheets
-- signed spreadsheet and macro
 
 QUANTLIBXL VBA
