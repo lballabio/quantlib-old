@@ -98,21 +98,21 @@ Chiara
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
 
 François
-- MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)
+- MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(2D-5D)
 - smile sections:
-	- remove calibration from constructor
-	- use Levenberg optimizator
-	- move vol quotes from constructor
-- add SABR interpolation to the capstripper
-- refactor the method class (move Endcriteria as argument of the minimize)
-- OH Wizard performance issue when the control panel is left opened
+	- remove calibration from constructor(1H)
+	- use Levenberg optimizator(to be precised)
+	- move vol quotes from constructor(to be precised)
+- add SABR interpolation to the capstripper(to be precised)
+- refactor the method class (move Endcriteria as argument of the minimize) (done)
+- OH Wizard performance issue when the control panel is left opened(to be precised)
 - To BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a single test
 - TO BE REVIEWED MultiStepSwaption
-- Object builder: vector input, change in XML file structure to implement default values
-- check sabr fit stability/accuracy for smilesections
-- add atmRate to SmileSection base class
-- review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls.
+- Object builder: vector input, change in XML file structure to implement default values (to be precised)
+- check sabr fit stability/accuracy for smilesections (.5D)
+- add atmRate to SmileSection base class (to be discussed)
+- review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls. (to be precised)
 
 Giorgio
 - test LevembergMarkard in sabr interpolation
