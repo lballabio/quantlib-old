@@ -24,9 +24,9 @@
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
-#include <ql/models/marketmodels/evolvers/fwdrates/lognormal/lognormalfwdratepcevolver.hpp>
-#include <ql/models/marketmodels/evolvers/fwdrates/lognormal/lognormalfwdrateipcevolver.hpp>
-#include <ql/models/marketmodels/evolvers/fwdrates/normal/normalfwdratepcevolver.hpp>
+#include <ql/models/marketmodels/evolvers/lognormalfwdratepcevolver.hpp>
+#include <ql/models/marketmodels/evolvers/lognormalfwdrateipcevolver.hpp>
+#include <ql/models/marketmodels/evolvers/normalfwdratepcevolver.hpp>
 #include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
 #include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
