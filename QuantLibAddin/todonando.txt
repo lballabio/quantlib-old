@@ -84,10 +84,7 @@ K
 Cristina
 - CMS calibration tests (Cristina and K)
 - EOD valuation: completare analisi dei nuovi deal
-- testing that the manual procedure to set back/forward the evaluation date
-  returns the same results of the automantic procedure
-- WIP valuation of plain vanilla leg of BGM book (shared among Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
-- WIP digital option in C++ (shared among Marco, Giorgio and Cristina)
+- testing that the manual procedure to set back/forward the evaluation date returns the same results of the automantic procedure
 - WIP new management of additional cashflows in Cms book
 
 Chiara
@@ -119,26 +116,26 @@ François
 - review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls. (to be precised)
 
 Giorgio
-- test LevembergMarkard in sabr interpolation
-- test LevembergMarkard in abcd vol
+- test Levenberg-Marquardt in sabr interpolation
+- test Levenberg-Marquardt in abcd vol
 - rename correctly Excel names of class qlSimultaneousCalibration()
 - fixed sabr parameters
-- digital coupon in call spread, add unit test (Marco, Giorgio and Cristina)
-- flat extrapolation of a,b,n,r parameters in vol cube
-WIP ratchet Instrument C++ (shared with Marco, Giorgio)
-WIP range accrual coupon
+- WIP: digital coupon in call spread, add unit test (Marco, Giorgio and Cristina)
+- flat extrapolation of SABR parameters in vol cube
+- WIP ratchet Instrument C++ (shared with Marco)
+- WIP range accrual coupon
 - spreaded swaption vol structure
 - spreaded caplet vol structure
 
 Marco
-- new Mx curve
-- MM: corr hist extimation
-- WIP: verifica ottimizzatori:
+- new Mx curve (before 24/4/2007)
+- WIP: verifica ottimizzatori: (before 26/4/2007)
+	- WIP: test in test suite (shared with Giorgio)
 	- DONE: Levenberg-Marquardt
 	- TBD: conjugate gradient, steepest descent
 	- TBD: export everything to excel and build the spreadsheet to test optimizers
+- MM: corr hist extimation (after 2/5/2007)
 - WIP: valuation of plain vanilla leg of BGM book (shared with Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
-- WIP: digital option in C++ (shared with Marco, Giorgio and Cristina)
 
 ========================
 
