@@ -2504,7 +2504,7 @@
 
     <!-- MarketModelEvolver derived classes constructors  -->
     <Constructor name='qlForwardRatePcEvolver'>
-      <libraryFunction>ForwardRatePcEvolver</libraryFunction>
+      <libraryFunction>LogNormalFwdRatePcEvolver</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -2531,7 +2531,7 @@
     </Constructor>
 
     <Constructor name='qlForwardRateIpcEvolver'>
-      <libraryFunction>ForwardRateIpcEvolver</libraryFunction>
+      <libraryFunction>LogNormalFwdRateIpcEvolver</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -2558,7 +2558,7 @@
     </Constructor>
 
     <Constructor name='qlForwardRateNormalPcEvolver'>
-      <libraryFunction>ForwardRateNormalPcEvolver</libraryFunction>
+      <libraryFunction>NormalFwdRatePcEvolver</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />

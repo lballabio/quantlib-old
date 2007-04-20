@@ -24,9 +24,9 @@
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
-#include <ql/models/marketmodels/evolvers/fwdrates/lognormal/forwardratepcevolver.hpp>
-#include <ql/models/marketmodels/evolvers/fwdrates/lognormal/forwardrateipcevolver.hpp>
-#include <ql/models/marketmodels/evolvers/fwdrates/normal/forwardratenormalpcevolver.hpp>
+#include <ql/models/marketmodels/evolvers/fwdrates/lognormal/lognormalfwdratepcevolver.hpp>
+#include <ql/models/marketmodels/evolvers/fwdrates/lognormal/lognormalfwdrateipcevolver.hpp>
+#include <ql/models/marketmodels/evolvers/fwdrates/normal/normalfwdratepcevolver.hpp>
 #include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
 #include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
@@ -342,35 +342,35 @@ namespace QuantLibAddin {
             new QuantLib::MTBrownianGeneratorFactory(seed));
     }
 
-    ForwardRatePcEvolver::ForwardRatePcEvolver(
+    LogNormalFwdRatePcEvolver::LogNormalFwdRatePcEvolver(
         const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
         const QuantLib::BrownianGeneratorFactory& generatorFactory,
         const std::vector<QuantLib::Size>& numeraires)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
-            new QuantLib::ForwardRatePcEvolver(pseudoRoot,
+            new QuantLib::LogNormalFwdRatePcEvolver(pseudoRoot,
                                                generatorFactory,
                                                numeraires));
     }
 
-    ForwardRateIpcEvolver::ForwardRateIpcEvolver(
+    LogNormalFwdRateIpcEvolver::LogNormalFwdRateIpcEvolver(
         const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
         const QuantLib::BrownianGeneratorFactory& generatorFactory,
         const std::vector<QuantLib::Size>& numeraires)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
-            new QuantLib::ForwardRateIpcEvolver(pseudoRoot,
+            new QuantLib::LogNormalFwdRateIpcEvolver(pseudoRoot,
                                                 generatorFactory,
                                                 numeraires));
     }
 
-    ForwardRateNormalPcEvolver::ForwardRateNormalPcEvolver(
+    NormalFwdRatePcEvolver::NormalFwdRatePcEvolver(
         const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
         const QuantLib::BrownianGeneratorFactory& generatorFactory,
         const std::vector<QuantLib::Size>& numeraires)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
-            new QuantLib::ForwardRateNormalPcEvolver(pseudoRoot,
+            new QuantLib::NormalFwdRatePcEvolver(pseudoRoot,
                                                 generatorFactory,
                                                 numeraires));
     }
