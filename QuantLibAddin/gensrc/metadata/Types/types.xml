@@ -41,7 +41,7 @@
         <DataType>QuantLib::Position::Type</DataType>
         <DataType>QuantLib::SalvagingAlgorithm::Type</DataType>
         <DataType>QuantLib::Settlement::Type</DataType>
-        <DataType>QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType</DataType>
+        <DataType>QuantLib::CmsMarketCalibration::CalibrationType</DataType>
         <DataType>QuantLib::VanillaSwap::Type</DataType>
         <DataType>QuantLib::Weekday</DataType>
       </DataTypes>
@@ -86,6 +86,7 @@
         <DataType>QuantLib::CapsStripper</DataType>
         <DataType>QuantLib::CmsCouponPricer</DataType>
         <DataType>QuantLib::CmsMarket</DataType>
+        <DataType>QuantLib::CmsMarketCalibration</DataType>
         <DataType>QuantLib::CMSwapCurveState</DataType>
         <DataType>QuantLib::ConundrumPricerByNumericalIntegration</DataType>
         <DataType>QuantLib::CoterminalSwapCurveState</DataType>
@@ -126,12 +127,12 @@
         <DataType>QuantLib::PlainVanillaPayoff</DataType>
         <DataType>QuantLib::PricingEngine</DataType>
         <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::RangeAccrualPricer</DataType>
         <DataType>QuantLib::RateHelper</DataType>
         <DataType>QuantLib::SabrInterpolatedSmileSection</DataType>
         <DataType>QuantLib::SABRInterpolation</DataType>
         <DataType>QuantLib::Schedule</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>
-        <DataType>QuantLib::SmileAndCmsCalibrationBySabr</DataType>
         <DataType>QuantLib::SmileSection</DataType>
         <DataType>QuantLib::Statistics</DataType>
         <DataType>QuantLib::StrikedTypePayoff</DataType>
@@ -205,7 +206,7 @@
         <DataType>QuantLibAddin::Bond</DataType>
         <DataType>QuantLibAddin::CapFloor</DataType>
         <DataType>QuantLibAddin::CmsMarket</DataType>
-        <DataType>QuantLibAddin::SmileAndCmsCalibrationBySabr</DataType>
+        <DataType>QuantLibAddin::CmsMarketCalibration</DataType>
         <DataType>QuantLibAddin::CMSMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::Leg</DataType>
         <DataType>QuantLibAddin::LMMDriftCalculator</DataType>

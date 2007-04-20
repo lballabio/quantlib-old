@@ -94,14 +94,14 @@ namespace QuantLibAddin {
     }
 
     
-    SmileAndCmsCalibrationBySabr::SmileAndCmsCalibrationBySabr(
+    CmsMarketCalibration::CmsMarketCalibration(
         QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& volCube,
         boost::shared_ptr<QuantLib::CmsMarket>& cmsMarket,
         const QuantLib::Matrix& weights,
-        QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType calibrationType){
+        QuantLib::CmsMarketCalibration::CalibrationType calibrationType){
         
-        libraryObject_ = boost::shared_ptr<QuantLib::SmileAndCmsCalibrationBySabr>(
-        new QuantLib::SmileAndCmsCalibrationBySabr(
+        libraryObject_ = boost::shared_ptr<QuantLib::CmsMarketCalibration>(
+        new QuantLib::CmsMarketCalibration(
                         volCube,
                         cmsMarket,
                         weights,
@@ -109,17 +109,17 @@ namespace QuantLibAddin {
      }
         
     std::vector<std::vector<boost::any> >
-    SmileAndCmsCalibrationBySabr::getSparseSabrParameters() {
+    CmsMarketCalibration::getSparseSabrParameters() {
         return getSabrParameters(libraryObject_->sparseSabrParameters_);
     }
 
     std::vector<std::vector<boost::any> >
-    SmileAndCmsCalibrationBySabr::getDenseSabrParameters() {
+    CmsMarketCalibration::getDenseSabrParameters() {
         return getSabrParameters(libraryObject_->denseSabrParameters_);
     }
 
     std::vector<std::vector<boost::any> >
-    SmileAndCmsCalibrationBySabr::getCmsMarket() {
+    CmsMarketCalibration::getCmsMarket() {
        return browseCmsMarket(libraryObject_->browseCmsMarket_);
     }
 }

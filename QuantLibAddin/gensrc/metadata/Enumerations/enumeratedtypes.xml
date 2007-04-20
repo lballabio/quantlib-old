@@ -1190,20 +1190,20 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType'>
+    <EnumeratedTypeGroup type='QuantLib::CmsMarketCalibration::CalibrationType'>
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
           <string>OnSpread</string>
-          <value>QuantLib::SmileAndCmsCalibrationBySabr::OnSpread</value>
+          <value>QuantLib::CmsMarketCalibration::OnSpread</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>OnPrice</string>
-          <value>QuantLib::SmileAndCmsCalibrationBySabr::OnPrice</value>
+          <value>QuantLib::CmsMarketCalibration::OnPrice</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>OnForwardPrice</string>
-          <value>QuantLib::SmileAndCmsCalibrationBySabr::OnForwardCmsPrice</value>
+          <value>QuantLib::CmsMarketCalibration::OnForwardCmsPrice</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>

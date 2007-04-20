@@ -72,10 +72,10 @@
       </ReturnValue>
     </Member>
 
-    <!-- SmileAndCmsCalibrationBySabr constructors -->
+    <!-- CmsMarketCalibration constructors -->
 
-    <Constructor name='qlSmileAndCmsCalibrationBySabr'>
-      <libraryFunction>SmileAndCmsCalibrationBySabr</libraryFunction>
+    <Constructor name='qlCmsMarketCalibration'>
+      <libraryFunction>CmsMarketCalibration</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -99,7 +99,7 @@
             <description>weights for cms market calibration.</description>
           </Parameter>
           <Parameter name='calibrationType'>
-            <type>QuantLib::SmileAndCmsCalibrationBySabr::CalibrationType</type>
+            <type>QuantLib::CmsMarketCalibration::CalibrationType</type>
             <tensorRank>scalar</tensorRank>
             <description>calibration type (e.g. OnSpread, OnPrice, OnForwardPrice)</description>
           </Parameter>
@@ -107,9 +107,9 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlSimultaneousCalibration' type='QuantLib::SmileAndCmsCalibrationBySabr'>
+    <Member name='qlCmsMarketCalibrationCompute' type='QuantLib::CmsMarketCalibration'>
       <description>Return the best beta and mean reversion</description>
-      <libraryFunction>calibration</libraryFunction>
+      <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -143,7 +143,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSimultaneousCalibrationError' type='QuantLib::SmileAndCmsCalibrationBySabr'>
+    <Member name='qlCmsMarketCalibrationError' type='QuantLib::CmsMarketCalibration'>
       <description>Returns the error of the simultaneous calibration</description>
       <libraryFunction>error</libraryFunction>
       <SupportedPlatforms>
@@ -158,7 +158,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSimultaneousCalibrationEndCriteria' type='QuantLib::SmileAndCmsCalibrationBySabr'>
+    <Member name='qlCmsMarketCalibrationEndCriteria' type='QuantLib::CmsMarketCalibration'>
       <description>Returns the optimization end criteria of the simultaneous calibration</description>
       <libraryFunction>endCriteria</libraryFunction>
       <SupportedPlatforms>
@@ -173,7 +173,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSimultaneousCalibrationElapsed' type='QuantLib::SmileAndCmsCalibrationBySabr'>
+    <Member name='qlCmsMarketCalibrationElapsed' type='QuantLib::CmsMarketCalibration'>
       <description>Returns the elapsed time of the simultaneous calibration</description>
       <libraryFunction>elapsed</libraryFunction>
       <SupportedPlatforms>
@@ -188,7 +188,7 @@
       </ReturnValue>
     </Member>
     
-    <Member name='qlSimultaneousCalibrationSparseSabrParameters' type='QuantLibAddin::SmileAndCmsCalibrationBySabr'>
+    <Member name='qlCmsMarketCalibrationSparseSabrParameters' type='QuantLibAddin::CmsMarketCalibration'>
       <description>returns results of Sabr calibration</description>
       <libraryFunction>getSparseSabrParameters</libraryFunction>
       <SupportedPlatforms>
@@ -203,7 +203,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSimultaneousCalibrationDenseSabrParameters' type='QuantLibAddin::SmileAndCmsCalibrationBySabr'>
+    <Member name='qlCmsMarketCalibrationDenseSabrParameters' type='QuantLibAddin::CmsMarketCalibration'>
       <description>returns results of Sabr calibration</description>
       <libraryFunction>getDenseSabrParameters</libraryFunction>
       <SupportedPlatforms>
@@ -218,7 +218,7 @@
       </ReturnValue>
     </Member>
     
-    <Member name='qlSimultaneousCalibrationBrowseCmsMarket' type='QuantLibAddin::SmileAndCmsCalibrationBySabr'>
+    <Member name='qlSimultaneousCalibrationBrowseCmsMarket' type='QuantLibAddin::CmsMarketCalibration'>
       <description>return the market and implied spreads matrix</description>
       <libraryFunction>getCmsMarket</libraryFunction>
       <SupportedPlatforms>
