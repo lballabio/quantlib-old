@@ -404,7 +404,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlEvolutionDescriptionEffectiveStopTimes' type='QuantLib::EvolutionDescription' superType='libraryClass'>
+    <!--<Member name='qlEvolutionDescriptionEffectiveStopTimes' type='QuantLib::EvolutionDescription' superType='libraryClass'>
       <description>for each step returns a row with the effective evolution stopping time for each rate</description>
       <libraryFunction>effectiveStopTimes</libraryFunction>
       <SupportedPlatforms>
@@ -417,7 +417,7 @@
         <type>QuantLib::Matrix</type>
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
-    </Member>
+    </Member>-->
 
     <Member name='qlEvolutionDescriptionFirstAliveRate' type='QuantLib::EvolutionDescription' superType='libraryClass'>
       <description>first alive rate at each evolution time for the EvolutionDescription object</description>
