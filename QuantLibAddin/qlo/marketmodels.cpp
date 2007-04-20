@@ -30,7 +30,7 @@
 #include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
 #include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
-#include <ql/models/marketmodels/timedependantcorrelationstructures/correlations.hpp>
+#include <ql/models/marketmodels/piecewiseconstantcorrelations/correlations.hpp>
 #include <ql/math/matrix.hpp>
 
 
