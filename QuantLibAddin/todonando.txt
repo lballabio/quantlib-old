@@ -116,16 +116,16 @@ François
 - review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls. (to be precised)
 
 Giorgio
-- test Levenberg-Marquardt in sabr interpolation
-- test Levenberg-Marquardt in abcd vol
-- rename correctly Excel names of class qlSimultaneousCalibration()
-- fixed sabr parameters
-- WIP: digital coupon in call spread, add unit test (Marco, Giorgio and Cristina)
-- flat extrapolation of SABR parameters in vol cube
-- WIP ratchet Instrument C++ (shared with Marco)
-- WIP range accrual coupon
-- spreaded swaption vol structure
-- spreaded caplet vol structure
+- test Levenberg-Marquardt in sabr interpolation					(10d - ratio: 0.0)
+- test Levenberg-Marquardt in abcd vol							(10d - ratio: 0.0)
+- rename correctly Excel names of class qlSimultaneousCalibration() 			(1d  - ratio: 0.0)
+D fixed sabr parameters 								(1d  - ratio: 1.0)
+- WIP: digital coupon in call spread, add unit test (Marco, Giorgio and Cristina)	(7d  - ratio: 0.7)
+- flat extrapolation of SABR parameters in vol cube					(2d  - ratio: 0.0)
+- WIP ratchet Instrument C++ (shared with Marco)					(7d  - ratio: 0.5)
+- WIP range accrual coupon (con relativi test)						(30d - ratio: 0.6)
+- spreaded swaption vol structure							(5d  - ratio: 0.0)
+- spreaded caplet vol structure								(5d  - ratio: 0.0)
 
 Marco
 - new Mx curve (before 24/4/2007)
