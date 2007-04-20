@@ -36,7 +36,7 @@ Nando
 - YCDemo crash
 - alternative calibrations with null rho
 - make BlackCalculator observer/observable, make it lazy
-- Risk, Wilmott papers
+- Risk, Wilmott papers (REMIND: VERIFICARE COPIE DISPERSE)
 - period algebra
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 - refactor abcd vol file, adding more unary_functions for blackVol and covariance
@@ -136,6 +136,7 @@ Marco
 	- TBD: export everything to excel and build the spreadsheet to test optimizers
 - MM: corr hist extimation (after 2/5/2007)
 - WIP: valuation of plain vanilla leg of BGM book (shared with Marco, Giorgio and Cristina) (WAIT FOR DIGITAL OPTIONS)
+- - Risk, Wilmott papers
 
 ========================
 
