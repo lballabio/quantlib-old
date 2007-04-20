@@ -3,9 +3,9 @@
   <displayName>Math</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
   <includes>
-    <include>ql/Math/primenumbers.hpp</include>
-    <include>ql/Math/pseudosqrt.hpp</include>
-    <include>ql/Math/choleskydecomposition.hpp</include>
+    <include>ql/math/primenumbers.hpp</include>
+    <include>ql/math/matrixutilities/pseudosqrt.hpp</include>
+    <include>ql/math/matrixutilities/choleskydecomposition.hpp</include>
     <include>qlo/symmetricschurdecomposition.hpp</include>
     <include>qlo/getcovariance.hpp</include>
     <include>qlo/mathf.hpp</include>

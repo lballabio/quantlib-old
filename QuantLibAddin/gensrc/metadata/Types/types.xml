@@ -92,7 +92,7 @@
         <DataType>QuantLib::CoterminalSwapCurveState</DataType>
         <DataType>QuantLib::CovarianceDecomposition</DataType>
         <DataType>QuantLib::CurveState</DataType>
-        <DataType>QuantLib::TimeDependantCorrelationStructure</DataType>
+        <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
         <DataType>QuantLib::CapletCoterminalSwaptionCalibration</DataType>
         <DataType>QuantLib::EndCriteria</DataType>
         <DataType>QuantLib::EuropeanExercise</DataType>
@@ -251,7 +251,7 @@
         <DataType>QuantLib::LMMCurveState</DataType>
         <DataType>QuantLib::MarketModelMultiProduct</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>
-        <DataType>QuantLib::TimeDependantCorrelationStructure</DataType>
+        <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
       </DataTypes>
     </SuperType>
 

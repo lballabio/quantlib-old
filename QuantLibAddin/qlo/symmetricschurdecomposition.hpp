@@ -19,16 +19,14 @@
 #define qla_symmetricschurdecomposition_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/math/symmetricschurdecomposition.hpp>
+#include <ql/math/matrixutilities/symmetricschurdecomposition.hpp>
 
 namespace QuantLibAddin {
 
     class SymmetricSchurDecomposition : public ObjHandler::LibraryObject<
-        QuantLib::SymmetricSchurDecomposition>
-    {
+        QuantLib::SymmetricSchurDecomposition> {
       public:
-        SymmetricSchurDecomposition(
-            const QuantLib::Matrix & s);
+        SymmetricSchurDecomposition(const QuantLib::Matrix & s);
     };
     
 }

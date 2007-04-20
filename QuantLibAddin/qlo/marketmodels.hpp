@@ -36,28 +36,28 @@
 #include <ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp>
 #include <ql/models/marketmodels/curvestates/lmmcurvestate.hpp>
 #include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
-#include <ql/models/marketmodels/models/timedependantcorrelationstructures/cotswapfromfwdcorrelation.hpp>
+#include <ql/models/marketmodels/timedependantcorrelationstructures/cotswapfromfwdcorrelation.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
 #include <ql/models/marketmodels/products/multiproductcomposite.hpp>
 #include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
 #include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
 #include <ql/termstructures/volatilities/abcd.hpp>
-#include <ql/models/marketmodels/models/timedependantcorrelationstructures/timehomogeneousforwardcorrelation.hpp>
+#include <ql/models/marketmodels/timedependantcorrelationstructures/timehomogeneousforwardcorrelation.hpp>
 
 namespace QuantLibAddin {
 
-    class TimeDependantCorrelationStructure :
-        public ObjHandler::LibraryObject<QuantLib::TimeDependantCorrelationStructure>{};
+    class PiecewiseConstantCorrelation :
+        public ObjHandler::LibraryObject<QuantLib::PiecewiseConstantCorrelation>{};
 
 
-    class TimeHomogeneousForwardCorrelation : public TimeDependantCorrelationStructure {
+    class TimeHomogeneousForwardCorrelation : public PiecewiseConstantCorrelation {
         public:
             TimeHomogeneousForwardCorrelation(
                 const QuantLib::Matrix& fwdCorrelation,
                 const std::vector<QuantLib::Time>& rateTimes);
     };
 
-    class CotSwapFromFwdCorrelation : public TimeDependantCorrelationStructure {
+    class CotSwapFromFwdCorrelation : public PiecewiseConstantCorrelation {
         public:
             CotSwapFromFwdCorrelation(
             const QuantLib::Matrix& correlations,
@@ -82,7 +82,7 @@ namespace QuantLibAddin {
       public:
         CapletCoterminalSwaptionCalibration(
             const QuantLib::EvolutionDescription& evolution,
-            const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
+            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
             const std::vector<QuantLib::Volatility>& capletVols,
             const boost::shared_ptr<QuantLib::CurveState>& cs,
@@ -120,7 +120,7 @@ namespace QuantLibAddin {
     public:
         FlatVol(
             const std::vector<QuantLib::Volatility>& volatilities,
-            const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
+            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
@@ -135,7 +135,7 @@ namespace QuantLibAddin {
             QuantLib::Real c,
             QuantLib::Real d,
             const std::vector<QuantLib::Real>& ks,
-            const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
+            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,

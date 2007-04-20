@@ -30,7 +30,7 @@
 #include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
 #include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
-#include <ql/models/marketmodels/models/timedependantcorrelationstructures/correlations.hpp>
+#include <ql/models/marketmodels/timedependantcorrelationstructures/correlations.hpp>
 #include <ql/math/matrix.hpp>
 
 
@@ -38,7 +38,7 @@ namespace QuantLibAddin {
 
     CapletCoterminalSwaptionCalibration::CapletCoterminalSwaptionCalibration(
             const QuantLib::EvolutionDescription& evolution,
-            const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
+            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
             const std::vector<QuantLib::Volatility>& capletVols,
             const boost::shared_ptr<QuantLib::CurveState>& cs,
@@ -100,7 +100,7 @@ namespace QuantLibAddin {
 
     FlatVol::FlatVol(
             const std::vector<QuantLib::Volatility>& volatilities,
-            const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
+            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
@@ -120,7 +120,7 @@ namespace QuantLibAddin {
             QuantLib::Real c,
             QuantLib::Real d,
             const std::vector<QuantLib::Real>& ks,
-            const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
+            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
