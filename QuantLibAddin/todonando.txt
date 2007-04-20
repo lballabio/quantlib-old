@@ -43,36 +43,34 @@ Nando
 - implement abcdinterpolation
 
 K
-- trimestrale
-- prendere possesso foglio Clerici
-- CMS calibration tests (Cristina and K)
-- make capVolStructure.xml equivalent to SwaptionVolStructure.xml
-- MM implement longTermCorr+beta+gamma correlation structure
-- MM abcd for displaced vols (Chiara, Cristina, K)
-- calibration robustness (Cristina, Katiuscia)
-- 3M cap stripper:
+- trimestrale 								(0.5d - ratio: 0.0)
+- Done CMS calibration tests (Cristina and K) (exp:1d, realized:1d) 	(1d   - ratio: 1.0)
+- market models:							
+	implement longTermCorr+beta+gamma correlation structure 	(?    - ratio: 0.0)
+	abcd for displaced vols (Chiara, Cristina, K)   		(?    - ratio: 0.0)
+- 3M cap stripper: 							(3w   - ratio: 0.0)
 	sensitivity to market data
 	gestione manuale ordinaria (con Clerici)
+	prendere possesso foglio Clerici
 	reintroduzione in 6M cap stripper
 	test wbk: atm curve
 	test wbk: abcd fit
     	atm backbone in test workbook
 	make capVolStructure.xml equivalent to SwaptionVolStructure.xml
-- 6M cap stripper:
+- 6M cap stripper: 							(3w   - ratio: 0.0)
 	CapStripper6MTestSmoothness.xls: testa la smoothness della dorsale ATM con l'interpolazione lineare
 	CapStripper6MTestRepricing.xls: aggiungi
 	decidere se usare le interpolated vols da usare nel cap stripper
     	atm backbone in test workbook
-- coveredWarrants.xls
+- coveredWarrants.xls 							(1w   - ratio: 0.0)
 	Citrix access
 	gestione del primo periodo corto
 	DONE qlMakeCapFloor() ok tranne che per seasoned deals
 	DONE punta a decorated objects
-- Sensitivity Analysis:
+- Sensitivity Analysis: 						(5w   - ratio: 0.0)
 	applied to cms book
 	create new .xls with NPVs of 4 cms books
 	test newly released version
-- test LevenbergMarkard in sabr interpolation
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - manage auto-open macro problem
 - macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
