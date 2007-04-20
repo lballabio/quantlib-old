@@ -118,7 +118,7 @@ François
 Giorgio
 - test Levenberg-Marquardt in sabr interpolation					(10d - ratio: 0.0)
 - test Levenberg-Marquardt in abcd vol							(10d - ratio: 0.0)
-- rename correctly Excel names of class qlSimultaneousCalibration() 			(1d  - ratio: 0.0)
+D rename correctly Excel names of class qlSimultaneousCalibration() 			(1d  - ratio: 1.0)
 D fixed sabr parameters 								(1d  - ratio: 1.0)
 - WIP: digital coupon in call spread, add unit test (Marco, Giorgio and Cristina)	(7d  - ratio: 0.7)
 - flat extrapolation of SABR parameters in vol cube					(2d  - ratio: 0.0)
