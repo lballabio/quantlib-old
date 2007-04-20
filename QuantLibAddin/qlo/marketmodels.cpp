@@ -24,9 +24,9 @@
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
-#include <ql/models/marketmodels/evolvers/lognormalfwdratepcevolver.hpp>
-#include <ql/models/marketmodels/evolvers/lognormalfwdrateipcevolver.hpp>
-#include <ql/models/marketmodels/evolvers/normalfwdratepcevolver.hpp>
+#include <ql/models/marketmodels/evolvers/lognormalfwdratepc.hpp>
+#include <ql/models/marketmodels/evolvers/lognormalfwdrateipc.hpp>
+#include <ql/models/marketmodels/evolvers/normalfwdratepc.hpp>
 #include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
 #include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
@@ -342,35 +342,35 @@ namespace QuantLibAddin {
             new QuantLib::MTBrownianGeneratorFactory(seed));
     }
 
-    LogNormalFwdRatePcEvolver::LogNormalFwdRatePcEvolver(
+    LogNormalFwdRatePc::LogNormalFwdRatePc(
         const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
         const QuantLib::BrownianGeneratorFactory& generatorFactory,
         const std::vector<QuantLib::Size>& numeraires)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
-            new QuantLib::LogNormalFwdRatePcEvolver(pseudoRoot,
+            new QuantLib::LogNormalFwdRatePc(pseudoRoot,
                                                generatorFactory,
                                                numeraires));
     }
 
-    LogNormalFwdRateIpcEvolver::LogNormalFwdRateIpcEvolver(
+    LogNormalFwdRateIpc::LogNormalFwdRateIpc(
         const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
         const QuantLib::BrownianGeneratorFactory& generatorFactory,
         const std::vector<QuantLib::Size>& numeraires)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
-            new QuantLib::LogNormalFwdRateIpcEvolver(pseudoRoot,
+            new QuantLib::LogNormalFwdRateIpc(pseudoRoot,
                                                 generatorFactory,
                                                 numeraires));
     }
 
-    NormalFwdRatePcEvolver::NormalFwdRatePcEvolver(
+    NormalFwdRatePc::NormalFwdRatePc(
         const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
         const QuantLib::BrownianGeneratorFactory& generatorFactory,
         const std::vector<QuantLib::Size>& numeraires)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
-            new QuantLib::NormalFwdRatePcEvolver(pseudoRoot,
+            new QuantLib::NormalFwdRatePc(pseudoRoot,
                                                 generatorFactory,
                                                 numeraires));
     }

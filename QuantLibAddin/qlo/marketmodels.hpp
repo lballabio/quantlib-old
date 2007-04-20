@@ -311,22 +311,22 @@ namespace QuantLibAddin {
         QuantLib::MarketModelEvolver> {
     };
 
-    class LogNormalFwdRatePcEvolver : public MarketModelEvolver {
+    class LogNormalFwdRatePc : public MarketModelEvolver {
     public:
-        LogNormalFwdRatePcEvolver(const boost::shared_ptr<QuantLib::MarketModel>&,
+        LogNormalFwdRatePc(const boost::shared_ptr<QuantLib::MarketModel>&,
                              const QuantLib::BrownianGeneratorFactory&,
                              const std::vector<QuantLib::Size>& numeraires);
     };
 
-    class LogNormalFwdRateIpcEvolver : public MarketModelEvolver {
+    class LogNormalFwdRateIpc : public MarketModelEvolver {
      public:
-        LogNormalFwdRateIpcEvolver(const boost::shared_ptr<QuantLib::MarketModel>&,
+        LogNormalFwdRateIpc(const boost::shared_ptr<QuantLib::MarketModel>&,
                               const QuantLib::BrownianGeneratorFactory&,
                               const std::vector<QuantLib::Size>& numeraires);
     };
-    class NormalFwdRatePcEvolver : public MarketModelEvolver {
+    class NormalFwdRatePc : public MarketModelEvolver {
      public:
-    NormalFwdRatePcEvolver(const boost::shared_ptr<QuantLib::MarketModel>&,
+    NormalFwdRatePc(const boost::shared_ptr<QuantLib::MarketModel>&,
                               const QuantLib::BrownianGeneratorFactory&,
                               const std::vector<QuantLib::Size>& numeraires);
     };

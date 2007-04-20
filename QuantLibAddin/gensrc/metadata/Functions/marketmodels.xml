@@ -2503,8 +2503,8 @@
     </Member>
 
     <!-- MarketModelEvolver derived classes constructors  -->
-    <Constructor name='qlForwardRatePcEvolver'>
-      <libraryFunction>LogNormalFwdRatePcEvolver</libraryFunction>
+    <Constructor name='qlForwardRatePc'>
+      <libraryFunction>LogNormalFwdRatePc</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -2530,8 +2530,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlForwardRateIpcEvolver'>
-      <libraryFunction>LogNormalFwdRateIpcEvolver</libraryFunction>
+    <Constructor name='qlForwardRateIpc'>
+      <libraryFunction>LogNormalFwdRateIpc</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -2557,8 +2557,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlForwardRateNormalPcEvolver'>
-      <libraryFunction>NormalFwdRatePcEvolver</libraryFunction>
+    <Constructor name='qlForwardRateNormalPc'>
+      <libraryFunction>NormalFwdRatePc</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
