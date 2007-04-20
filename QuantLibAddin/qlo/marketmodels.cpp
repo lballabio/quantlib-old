@@ -36,43 +36,6 @@
 
 namespace QuantLibAddin {
 
-    QuantLib::Matrix capletCoterminalSwaptionCalibrationFunction(
-            const QuantLib::EvolutionDescription& evolution,
-            const QuantLib::TimeDependantCorrelationStructure& corr,
-            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
-            const std::vector<QuantLib::Volatility>& capletVols,
-            const QuantLib::CurveState& cs,
-            const QuantLib::Spread displacement,
-            const std::vector<QuantLib::Real>& alpha,
-            bool lowestRoot,
-            QuantLib::Size timeIndex)
-    {
-
-        QuantLib::Size nbRates = cs.rateTimes().size();
-        QL_REQUIRE(timeIndex<nbRates,
-                   "timeIndex (" << timeIndex <<
-                   ") must be less than nbRates (" << nbRates << ")");
-        QuantLib::Matrix pseudoRoot = QuantLib::Matrix(nbRates, nbRates);
-        std::vector<QuantLib::Matrix> pseudoRoots(nbRates,pseudoRoot);
-        QuantLib::Size negDisc;
-
-        bool result =
-            QuantLib::CapletCoterminalSwaptionCalibration::calibrationFunction(
-                                                            evolution,
-                                                            corr,
-                                                            swapVariances,
-                                                            capletVols, cs,
-                                                            displacement,
-                                                            alpha,
-                                                            lowestRoot,
-                                                            pseudoRoots,
-                                                            negDisc);
-
-        if (result) return pseudoRoots[timeIndex];
-        else        QL_FAIL("caplets coterminal calibration has failed");
-    }
-
-
     CapletCoterminalSwaptionCalibration::CapletCoterminalSwaptionCalibration(
             const QuantLib::EvolutionDescription& evolution,
             const boost::shared_ptr<QuantLib::TimeDependantCorrelationStructure>& corr,
@@ -90,35 +53,26 @@ namespace QuantLibAddin {
 
     TimeHomogeneousForwardCorrelation::TimeHomogeneousForwardCorrelation(
            const QuantLib::Matrix& fwdCorrelation,
-           const std::vector<QuantLib::Time>& rateTimes,
-           QuantLib::Size numberOfFactors)
+           const std::vector<QuantLib::Time>& rateTimes)
     {
         QL_REQUIRE(!rateTimes.empty(), "rate times vector is empty!");
         libraryObject_ =
             boost::shared_ptr<QuantLib::TimeHomogeneousForwardCorrelation>(
                 new QuantLib::TimeHomogeneousForwardCorrelation(
-                    fwdCorrelation, rateTimes, numberOfFactors));
-    }
-
-    const QuantLib::Matrix&
-        TimeHomogeneousForwardCorrelation::pseudoRoot(QuantLib::Size i) const{
-            return boost::dynamic_pointer_cast<QuantLib::TimeHomogeneousForwardCorrelation>(
-            libraryObject_)->pseudoRoot(i);
+                    fwdCorrelation, rateTimes));
     }
 
     CotSwapFromFwdCorrelation::CotSwapFromFwdCorrelation(
             const QuantLib::Matrix& correlations,
             const QuantLib::CurveState& curveState,
             QuantLib::Real displacement,
-            const QuantLib::EvolutionDescription& evolution,
-            QuantLib::Size numberOfFactors){
+            const QuantLib::EvolutionDescription& evolution) {
         libraryObject_ =
             boost::shared_ptr<QuantLib::CotSwapFromFwdCorrelation>(new
                 QuantLib::CotSwapFromFwdCorrelation(correlations,
                                                           curveState,
                                                           displacement,
-                                                          evolution,
-                                                          numberOfFactors));
+                                                          evolution));
     }
 
     EvolutionDescription::EvolutionDescription(
