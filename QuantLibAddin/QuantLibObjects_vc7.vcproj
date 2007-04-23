@@ -386,6 +386,9 @@
 			Name="ValueObjects"
 			Filter="">
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_all.hpp">
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_assetswap.cpp">
 			</File>
 			<File
@@ -498,6 +501,12 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_randomsequencegenerator.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_rangeaccrual.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_rangeaccrual.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_ratehelpers.cpp">
@@ -779,6 +788,12 @@
 			</File>
 			<File
 				RelativePath="qlo\couponvectors.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\rangeaccrual.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\rangeaccrual.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\simplecashflow.hpp">
