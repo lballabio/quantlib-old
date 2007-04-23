@@ -502,6 +502,9 @@
 				RelativePath=".\Register\register_randomsequencegenerator.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_rangeaccrual.cpp">
+			</File>
+			<File
 				RelativePath=".\Register\register_ratehelpers.cpp">
 			</File>
 			<File
@@ -627,6 +630,9 @@
 			</File>
 			<File
 				RelativePath=".\Functions\randomsequencegenerator.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\rangeaccrual.cpp">
 			</File>
 			<File
 				RelativePath=".\Functions\ratehelpers.cpp">
