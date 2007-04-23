@@ -43,8 +43,13 @@ Nando
 - implement abcdinterpolation
 
 K
+STAND-BY 
+- Citrix access -> richiesta licenza non è per installazione
+	ma per connessioniconcorrenti --> Eugenia in ferie
+- Citrix performance: verifica tempi di ricalcolo del foglio cw.xls in real time su Citrix
+
+- DONE CMS calibration tests (Cristina and K) (exp:1d, realized:1d) 	(1d   - ratio: 1.0)
 - trimestrale 								(0.5d - ratio: 0.0)
-- Done CMS calibration tests (Cristina and K) (exp:1d, realized:1d) 	(1d   - ratio: 1.0)
 - market models:							
 	implement longTermCorr+beta+gamma correlation structure 	(?    - ratio: 0.0)
 	abcd for displaced vols (Chiara, Cristina, K)   		(?    - ratio: 0.0)
@@ -62,17 +67,20 @@ K
 	CapStripper6MTestRepricing.xls: aggiungi
 	decidere se usare le interpolated vols da usare nel cap stripper
     	atm backbone in test workbook
-- coveredWarrants.xls 							(1w   - ratio: 0.0)
-	Citrix access
-	gestione del primo periodo corto
-	DONE qlMakeCapFloor() ok tranne che per seasoned deals
-	DONE punta a decorated objects
+- coveredWarrants.xls 							(1w   - ratio: 0.2)
+	- DONE check real time is OK -> 7 secs per recalc 
+	- DONE gestione del primo periodo corto
+	- DONE qlMakeCapFloor() -> funziona solo per forward-start
+	- DONE punta a decorated objects
+	- testing on Citrix
 - Sensitivity Analysis: 						(5w   - ratio: 0.0)
 	applied to cms book
 	create new .xls with NPVs of 4 cms books
 	test newly released version
 - bug in function SetRealTime() -> Rt seems not to switch settings
-- manage auto-open macro problem
+- manage auto-open macro problem -> propose:
+	add Workbook_Open() in ThisWorkbook
+	add auto_open() in Module
 - macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
