@@ -127,6 +127,7 @@
         <DataType>QuantLib::PlainVanillaPayoff</DataType>
         <DataType>QuantLib::PricingEngine</DataType>
         <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::RangeAccrualFloatersCoupon</DataType>
         <DataType>QuantLib::RangeAccrualPricer</DataType>
         <DataType>QuantLib::RateHelper</DataType>
         <DataType>QuantLib::SabrInterpolatedSmileSection</DataType>

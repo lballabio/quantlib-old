@@ -55,6 +55,10 @@
 				>
 			</File>
 			<File
+				RelativePath="metadata\Addins\enumerations.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Addins\excel.xml"
 				>
 			</File>
@@ -64,10 +68,6 @@
 			</File>
 			<File
 				RelativePath="metadata\Addins\loop.xml"
-				>
-			</File>
-			<File
-				RelativePath="metadata\Addins\enumerations.xml"
 				>
 			</File>
 			<File
@@ -195,6 +195,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\rangeaccrual.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\ratehelpers.xml"
 				>
 			</File>
@@ -299,7 +303,7 @@
 			Name="code"
 			>
 			<File
-				RelativePath="code\codedict.py"
+				RelativePath="code\code.py"
 				>
 			</File>
 		</Filter>
@@ -319,7 +323,7 @@
 				>
 			</File>
 			<File
-				RelativePath="stubs\stub.excel.includes"
+				RelativePath="stubs\stub.doxygen.enums"
 				>
 			</File>
 			<File
@@ -331,7 +335,7 @@
 				>
 			</File>
 			<File
-				RelativePath="stubs\stub.doxygen.enums"
+				RelativePath="stubs\stub.excel.includes"
 				>
 			</File>
 		</Filter>

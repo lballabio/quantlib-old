@@ -1,0 +1,195 @@
+<Category name='rangeaccrual'>
+  <description>functions to construct and use Range Accrual objects</description>
+  <displayName>Range Accrual</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>ql/CashFlows/rangeaccrual.hpp</include>
+    <include>qlo/rangeaccrual.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+  
+   <!-- RangeAccrualFloatersCoupon constructors -->
+
+	<Constructor name='qlRangeAccrualFloatersCoupon'>
+		<libraryFunction>RangeAccrualFloatersCoupon</libraryFunction>
+    <functionCategory>QuantLib</functionCategory>
+    <SupportedPlatforms>
+      <SupportedPlatform name='Excel' calcInWizard='false' />
+    </SupportedPlatforms>
+		<ParameterList>
+			<Parameters>
+				<Parameter name='nominal'>
+					<type>double</type>
+					<tensorRank>scalar</tensorRank>
+					<description>coupon nominal</description>
+				</Parameter>
+        <Parameter name='paymentDate'>
+					<type>QuantLib::Date</type>
+					<tensorRank>scalar</tensorRank>
+					<description>payment Date</description>
+				</Parameter>
+				<Parameter name='indexID'>
+					<type>QuantLib::InterestRateIndex</type>
+					<tensorRank>scalar</tensorRank>
+					<description>underlying xibor index</description>
+				</Parameter>
+				<Parameter name='startDate'>
+					<type>QuantLib::Date</type>
+					<tensorRank>scalar</tensorRank>
+					<description>start Date</description>
+				</Parameter>
+				<Parameter name='endDate'>
+					<type>QuantLib::Date</type>
+					<tensorRank>scalar</tensorRank>
+					<description>end Date</description>
+				</Parameter>
+				<Parameter name='fixingDays'>
+					<type>long</type>
+					<tensorRank>scalar</tensorRank>
+					<description>fixingDays</description>
+				</Parameter>
+				<Parameter name='dayCountID'>
+					<type>QuantLib::DayCounter</type>
+					<tensorRank>scalar</tensorRank>
+					<description>day counter</description>
+				</Parameter>
+				<Parameter name='gearings'>
+					<type>double</type>
+					<tensorRank>scalar</tensorRank>
+					<description>gearings</description>
+				</Parameter>
+				<Parameter name='spreads'> 
+					<type>double</type>
+					<tensorRank>scalar</tensorRank>
+					<description>spreads</description>
+				</Parameter>
+				<Parameter name='refPeriodStart'>
+					<type>QuantLib::Date</type>
+					<tensorRank>scalar</tensorRank>
+					<description>refPeriodStart</description>
+				</Parameter>
+				<Parameter name='refPeriodEnd'>
+					<type>QuantLib::Date</type>
+					<tensorRank>scalar</tensorRank>
+					<description>refPeriodEnd</description>
+				</Parameter>
+				<Parameter name='obserSchedID'>
+					<type>QuantLib::Schedule</type>
+					<tensorRank>scalar</tensorRank>
+					<description>observations schedule</description>
+				</Parameter>
+				<Parameter name='lowerTrigger'> 
+					<type>double</type>
+					<tensorRank>scalar</tensorRank>
+					<description>lowerTrigger</description>
+				</Parameter>
+				<Parameter name='upperTrigger'>
+					<type>double</type>
+					<tensorRank>scalar</tensorRank>
+					<description>upperTrigger</description>
+				</Parameter>
+				<Parameter name='pricerID'>
+					<type>QuantLib::RangeAccrualPricer</type>
+					<tensorRank>scalar</tensorRank>
+					<description>Range Accrual Pricer</description>
+				</Parameter>
+			</Parameters>
+		</ParameterList>
+	</Constructor>
+
+    <Member name='qlRangeAccrualFloatersPrice' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>return the price of Range Accrual Floater Coupon</description>
+      <libraryFunction>price</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>            
+            <tensorRank>scalar</tensorRank>
+            <description>yield curve</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimpleFloaterPrice' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>return the price of Simple Floater Coupon</description>
+      <libraryFunction>priceWithoutOptionality</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>yield curve</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <!-- RangeAccrualPricerByBgm constructors -->
+
+   <Constructor name='qlRangeAccrualPricerByBgm'> 
+      <libraryFunction>RangeAccrualPricerByBgm</libraryFunction>
+     <functionCategory>QuantLib</functionCategory>
+     <SupportedPlatforms>
+       <SupportedPlatform name='Excel' calcInWizard='false' />
+     </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='correlation' > 
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>correlation.</description>
+          </Parameter>
+          <Parameter name='smileOnStartDateID'>
+            <type>QuantLib::SmileSection</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of the smile on start date object</description>
+          </Parameter>
+          <Parameter name='smileOnEndDateID'>
+            <type>QuantLib::SmileSection</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of the smile on end date object</description>
+          </Parameter>
+          <Parameter name='withSmile' > 
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>with Smile?</description>
+          </Parameter>
+          <Parameter name='byCallSpread' > 
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>replicated by Call spread?</description>
+          </Parameter>
+         </Parameters>
+      </ParameterList>
+    </Constructor>   
+
+
+  </Functions>
+</Category>
+
