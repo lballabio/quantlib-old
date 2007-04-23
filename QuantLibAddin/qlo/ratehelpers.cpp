@@ -102,19 +102,17 @@ namespace QuantLibAddin {
             bool isFutures;
             bool isDepo;
             std::string objectID;
-            bool includeFlag;
             long priority;
             QuantLib::Date earliestDate;
             QuantLib::Date latestDate;
             RateHelperItem(bool isFutures,
                            bool isDepo,
                            const std::string& objectID,
-                           const bool includeFlag,
                            const long& priority,
                            const QuantLib::Date& earliestDate, 
                            const QuantLib::Date& latestDate)
             : isFutures(isFutures), isDepo(isDepo), objectID(objectID),
-              includeFlag(includeFlag), priority(priority),
+              priority(priority),
               earliestDate(earliestDate), latestDate(latestDate) {}
         };
 
@@ -139,17 +137,14 @@ namespace QuantLibAddin {
 
     std::vector<std::string> qlRateHelperSelection(
         const std::vector<std::string>& instrumentIDs,
-        const std::vector<bool>& includeFlag,
         const std::vector<QuantLib::Size>& priority,
         const QuantLib::Natural nFutures,
         const QuantLib::Natural frontFuturesRollingDays,
-        bool depoExcludeFlag)
+        RateHelper::DepoInclusionCriteria depoInclusionCriteria)
     {
         // Checks
         QL_REQUIRE(!instrumentIDs.empty(), "no instrument given");
         QuantLib::Size nInstruments = instrumentIDs.size();
-        QL_REQUIRE(includeFlag.size()==nInstruments,
-                   "includeFlag / instruments mismatch");
         QL_REQUIRE(priority.size()==nInstruments,
                    "priority / instruments mismatch");
 
@@ -172,7 +167,6 @@ namespace QuantLibAddin {
             rhsAll.push_back(detail::RateHelperItem(isFutures,
                                                     isDepo,
                                                     instrumentIDs[i],
-                                                    includeFlag[i],
                                                     priority[i],
                                                     qlrh->earliestDate(),
                                                     qlrh->latestDate()));
@@ -183,43 +177,81 @@ namespace QuantLibAddin {
         std::sort(rhsAll.begin(), rhsAll.end(),
             detail::RateHelperPrioritySorter());
 
-        // Select input rate helpers according to their includeFlag,
-        // their expiration, maximum number of allowed Futures and depoExcludeFlag
+        // Select input rate helpers according to:
+        // expiration, maximum number of allowed Futures, Depo/Futures priorities
         QuantLib::Natural futuresCounter = 0;
         QuantLib::Date evalDate = QuantLib::Settings::instance().evaluationDate();
         std::vector<detail::RateHelperItem> rhs, rhsDepo;
         long actualFrontFuturesRollingDays = 2+frontFuturesRollingDays;
         // Look for the front Futures, if any
-        QuantLib::Date frontFuturesEarliestDate;
+        QuantLib::Date frontFuturesEarliestDate, frontFuturesLatestDate;
         bool thereAreFutures = false;
         QuantLib::Size j=0;
         while (j<nInstruments) {
-            if (rhsAll[j].isFutures && rhsAll[j].includeFlag &&
+            if (rhsAll[j].isFutures &&
                     (rhsAll[j].earliestDate-actualFrontFuturesRollingDays >= evalDate)) {
                 thereAreFutures = true;
                 frontFuturesEarliestDate = rhsAll[j].earliestDate;
+                frontFuturesLatestDate = rhsAll[j].latestDate;
                 break;
             }
             ++j;
         }
-        // If there are NOT Futures, force Depo exclude flag at false
-        if (!thereAreFutures) depoExcludeFlag = false;
+        // If there are NOT Futures, include all Depos
+        if (!thereAreFutures)
+            depoInclusionCriteria = RateHelper::AllDepos;
         // Start selection
         bool depoAfterFrontFuturesAlreadyIncluded = false;
         for (QuantLib::Size i=0; i<nInstruments; ++i) {
-            if (rhsAll[i].includeFlag && rhsAll[i].earliestDate >= evalDate) {
+            if (rhsAll[i].earliestDate >= evalDate) {
                 if (rhsAll[i].isDepo) {                 // Check Depo conditions
-                    if (!depoExcludeFlag) { 
-                        rhs.push_back(rhsAll[i]);       // Include all depos
-                    } else {
-                        if (rhsAll[i].latestDate < frontFuturesEarliestDate) {
-                            rhs.push_back(rhsAll[i]);   // Stop depos just after the front Futures
-                        } else {
-                            if (depoAfterFrontFuturesAlreadyIncluded == false) {
+                    //if (!depoAfterFrontFuturesStartDateExcludeFlag && 
+                    //    !depoAfterFrontFuturesExpiryDateExcludeFlag) { 
+                    //    rhs.push_back(rhsAll[i]);       // Include all depos
+                    //} else if (depoAfterFrontFuturesStartDateExcludeFlag) {
+                    //    // Include only depos with maturity date before the front Futures start date, +1
+                    //    if (rhsAll[i].latestDate < frontFuturesEarliestDate) {
+                    //        rhs.push_back(rhsAll[i]);   
+                    //    } else {
+                    //        if (depoAfterFrontFuturesAlreadyIncluded == false) {
+                    //            rhs.push_back(rhsAll[i]);
+                    //            depoAfterFrontFuturesAlreadyIncluded = true;
+                    //        }
+                    //    }
+                    //} else if (depoAfterFrontFuturesExpiryDateExcludeFlag) {
+                    //    // Include only depos with maturity date before the front Futures expiry date
+                    //    if (rhsAll[i].latestDate < frontFuturesLatestDate) {
+                    //        rhs.push_back(rhsAll[i]);
+                    //    }
+                    //}
+                    switch (depoInclusionCriteria) {
+                        case RateHelper::AllDepos:
+                       // Include all depos
+                            rhs.push_back(rhsAll[i]);
+                            break;
+                        case RateHelper::DeposBeforeFirstFuturesStartDate:
+                        // Include only depos with maturity date before the front Futures start date
+                            if (rhsAll[i].latestDate < frontFuturesEarliestDate) 
                                 rhs.push_back(rhsAll[i]);
-                                depoAfterFrontFuturesAlreadyIncluded = true;
+                            break;
+                        case RateHelper::DeposBeforeFirstFuturesStartDatePlusOne:
+                        // Include only depos with maturity date before the front Futures start date, +1
+                            if (rhsAll[i].latestDate < frontFuturesEarliestDate) {
+                                rhs.push_back(rhsAll[i]);   
+                            } else {
+                                if (depoAfterFrontFuturesAlreadyIncluded == false) {
+                                    rhs.push_back(rhsAll[i]);
+                                    depoAfterFrontFuturesAlreadyIncluded = true;
+                                }
                             }
-                        }
+                            break;
+                        case RateHelper::DeposBeforeFirstFuturesExpiryDate:
+                        // Include only depos with maturity date before the front Futures expiry date
+                            if (rhsAll[i].latestDate < frontFuturesLatestDate)
+                                rhs.push_back(rhsAll[i]);
+                            break;
+                        default:
+                            QL_FAIL("unknown/illegal DepoInclusionCriteria");
                     }
                 } else if (rhsAll[i].isFutures) {       // Check Futures conditions
                     if (futuresCounter<nFutures &&

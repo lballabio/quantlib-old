@@ -27,6 +27,13 @@
 namespace QuantLibAddin {
 
     class RateHelper : public ObjHandler::LibraryObject<QuantLib::RateHelper> {
+      public:
+         enum DepoInclusionCriteria {
+                        AllDepos,
+                        DeposBeforeFirstFuturesStartDate,
+                        DeposBeforeFirstFuturesStartDatePlusOne,
+                        DeposBeforeFirstFuturesExpiryDate
+         };
       protected:
         QuantLib::Handle<QuantLib::Quote> quoteHandle_;
     };
@@ -70,15 +77,14 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::IborIndex>& index);
     };
 
-    // Process the set of curve bootstrapping instruments
+    // Processes the set of curve bootstrapping instruments
     // and selects a subset according to the given rules and parameters
     std::vector<std::string> qlRateHelperSelection(
         const std::vector<std::string>& instrumentIDs,
-        const std::vector<bool>& includeFlag,
         const std::vector<QuantLib::Size>& priority,
         const QuantLib::Natural nFutures,
         const QuantLib::Natural frontFuturesRollingDays,
-        bool depoExcludeFlag);
+        RateHelper::DepoInclusionCriteria depoInclusionCriteria);
 
 }
 

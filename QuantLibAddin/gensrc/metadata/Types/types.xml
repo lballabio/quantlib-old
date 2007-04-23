@@ -29,6 +29,7 @@
         <DataType>QuantLib::BusinessDayConvention</DataType>
         <DataType>QuantLib::Calendar</DataType>
         <DataType>QuantLib::CapFloor::Type</DataType>
+        <DataType>QuantLib::CmsMarketCalibration::CalibrationType</DataType>
         <DataType>QuantLib::Compounding</DataType>
         <DataType>QuantLib::CubicSpline::BoundaryCondition</DataType>
         <DataType>QuantLib::Currency</DataType>
@@ -41,9 +42,9 @@
         <DataType>QuantLib::Position::Type</DataType>
         <DataType>QuantLib::SalvagingAlgorithm::Type</DataType>
         <DataType>QuantLib::Settlement::Type</DataType>
-        <DataType>QuantLib::CmsMarketCalibration::CalibrationType</DataType>
         <DataType>QuantLib::VanillaSwap::Type</DataType>
         <DataType>QuantLib::Weekday</DataType>
+        <DataType>QuantLibAddin::RateHelper::DepoInclusionCriteria</DataType>
       </DataTypes>
     </SuperType>
 

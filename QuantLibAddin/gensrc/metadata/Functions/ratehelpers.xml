@@ -230,11 +230,6 @@
             <tensorRank>vector</tensorRank>
             <description>vector of rate-helpers</description>
           </Parameter>
-          <Parameter name='includeFlag'>
-            <type>bool</type>
-            <tensorRank>vector</tensorRank>
-            <description>vector of instrument inclusion boolean</description>
-          </Parameter>
           <Parameter name='priority'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
@@ -250,10 +245,10 @@
             <tensorRank>scalar</tensorRank>
             <description>discard the front Futures the given number of days before its expiry (e.g zero implies the use of the front Futures during its expiry day)</description>
           </Parameter>
-          <Parameter name='depoExcludeFlag'>
-            <type>bool</type>
+          <Parameter name='depoFuturesPriority' default='"AllDepos"'>
+            <type>QuantLibAddin::RateHelper::DepoInclusionCriteria</type>
             <tensorRank>scalar</tensorRank>
-            <description>boolean to exclude the Deposits after front Futures expiry (if there are not Futures, force boolean at FALSE</description>
+            <description>Depo inclusion criteria. If missing, default=AllDepos is used</description>
           </Parameter>
         </Parameters>
       </ParameterList>
