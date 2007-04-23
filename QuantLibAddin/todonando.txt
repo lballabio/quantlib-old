@@ -80,10 +80,11 @@ K
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
 
 Cristina
-- CMS calibration tests (Cristina and K)
-- EOD valuation: completare analisi dei nuovi deal
-- testing that the manual procedure to set back/forward the evaluation date returns the same results of the automantic procedure
-- WIP new management of additional cashflows in Cms book
+D CMS calibration tests (Cristina and K)				(1d - ratio: 1.0)
+- EOD valuation: completare analisi dei nuovi deal			(0.5d - ratio: 0.0)
+- testing that the manual procedure to set back/forward the evaluation 
+  date returns the same results of the automantic procedure		(1d - ratio: 0.0)
+- WIP new management of additional cashflows in Cms book		(1d - ratio: 0.0)
 
 Chiara
 - add tests for CMS asset swap in the test suite
