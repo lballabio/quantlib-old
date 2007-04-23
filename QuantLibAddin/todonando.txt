@@ -81,11 +81,13 @@ K
 
 Cristina
 D CMS calibration tests (Cristina and K)				(1d - ratio: 1.0)
-- WIP EOD valuation: completare analisi dei nuovi deal			(0.5d - ratio: 0.0)
-  (DONE except the digital option)
+D EOD valuation: completare analisi dei nuovi deal			(0.5d - ratio: 1.0)
+  (except the digital option: qlCmsZeroLeg doesn't work)
+- debug qlCmsZeroLeg 							(0.5d - ratio: 1.0)
 - testing that the manual procedure to set back/forward the evaluation 
   date returns the same results of the automantic procedure		(1d - ratio: 0.0)
 - WIP new management of additional cashflows in Cms book		(1d - ratio: 0.0)
+- install VS in new pc
 
 Chiara
 D add tests for CMS asset swap in the test suite
@@ -126,6 +128,7 @@ D fixed sabr parameters 								(1d  - ratio: 1.0)
 - WIP range accrual coupon (con relativi test)						(30d - ratio: 0.6)
 - spreaded swaption vol structure							(5d  - ratio: 0.0)
 - spreaded caplet vol structure								(5d  - ratio: 0.0)
+- install VS in new pc
 
 Marco
 - new Mx curve (before 24/4/2007)
