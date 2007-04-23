@@ -96,10 +96,12 @@ D CMS calibration tests (Cristina and K)				(1d - ratio: 1.0)
 D EOD valuation: completare analisi dei nuovi deal			(0.5d - ratio: 1.0)
   (except the digital option: qlCmsZeroLeg doesn't work)
 - debug qlCmsZeroLeg 							(0.5d - ratio: 1.0)
-- testing that the manual procedure to set back/forward the evaluation 
+- testing that the manual procedure to set back/forward the evaluation 	(1d - ratio: 0.0)
   date returns the same results of the automantic procedure		(1d - ratio: 0.0)
-D new management of additional cashflows in Cms book		        (1d - ratio: 1.0)
+D new management of additional cashflows in Irs Cms book	        (1d - ratio: 1.0)
+- new management of additional cashflows in Cap Cms book (low priority) (1d - ratio: 0.0)
 - install VS in new pc
+- sensitivity analysis
 
 ---
 CHIARA
