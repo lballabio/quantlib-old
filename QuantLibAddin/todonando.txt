@@ -81,7 +81,8 @@ K
 
 Cristina
 D CMS calibration tests (Cristina and K)				(1d - ratio: 1.0)
-- EOD valuation: completare analisi dei nuovi deal			(0.5d - ratio: 0.0)
+- WIP EOD valuation: completare analisi dei nuovi deal			(0.5d - ratio: 0.0)
+  (DONE except the digital option)
 - testing that the manual procedure to set back/forward the evaluation 
   date returns the same results of the automantic procedure		(1d - ratio: 0.0)
 - WIP new management of additional cashflows in Cms book		(1d - ratio: 0.0)
