@@ -87,7 +87,7 @@ D CMS calibration tests (Cristina and K)				(1d - ratio: 1.0)
 - WIP new management of additional cashflows in Cms book		(1d - ratio: 0.0)
 
 Chiara
-- add tests for CMS asset swap in the test suite
+D add tests for CMS asset swap in the test suite
 - Z-spread function, for zero coupon bond valuation
 - Digital Bond contructor
 - Multicallable bond constructor
