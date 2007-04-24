@@ -31,6 +31,12 @@ GENERAL
 
 ---
 NANDO
+- testMultiStepCoterminalSwapsAndSwaptions failure
+- Higham covariance bug + review rank rduction
+- use Handle in SwaptionVolCubeChecks
+- create relinkableHandle, then in ControlPanel only use linkTo
+- Instruments subfolder
+- termstructures/volatilities subfolders
 - null strike -> atm strike
 - vol term structure refactoring
 - joint calendar
@@ -47,15 +53,15 @@ NANDO
 
 ---
 K
-STAND-BY 
+STAND-BY
 - Citrix access -> richiesta licenza non è per installazione
 	ma per connessioniconcorrenti --> Eugenia in ferie    (Marco and K)
 - Citrix performance: verifica tempi di ricalcolo del foglio cw.xls in real time su Citrix
 
 - CMS calibration tests (Cristina and K) (1d/1d DONE)
 - make capVolStructure.xml equivalent to SwaptionVolStructure.xml (0.5d/0.5d DONE)
-- trimestrale (0/0.5d)								
-- market models:							
+- trimestrale (0/0.5d)
+- market models:
 	implement longTermCorr+beta+gamma correlation structure (?)
 	abcd for displaced vols (Chiara, Cristina, K) (?)
 - 3M cap stripper: 	(0/3w)
@@ -72,7 +78,7 @@ STAND-BY
 	CapStripper6MTestRepricing.xls: aggiungi
 	decidere se usare le interpolated vols da usare nel cap stripper
 - coveredWarrants.xls (1D/1w)
-	- DONE check real time is OK -> 7 secs per recalc 
+	- DONE check real time is OK -> 7 secs per recalc
 	- DONE gestione del primo periodo corto
 	- DONE qlMakeCapFloor() -> funziona solo per forward-start
 	- DONE punta a decorated objects
@@ -105,9 +111,10 @@ CRISTINA
   - new management of additional cashflows in Cap Cms book              (0D/1D - STAND-BY)
 - digital coupon in call spread, add unit test
   (Marco, Giorgio and Cristina)                                         (0D/2D)
-- install VS in new pc                                                  (0D/1D) 
+- install VS in new pc                                                  (0D/1D)
 - sensitivity analysis                                                  (STAND-BY)
 - market models: abcd for displaced vols (Chiara, Cristina, K)
+
 ---
 CHIARA
 D add tests for CMS asset swap in the test suite (1d|1d|Done)
@@ -124,7 +131,7 @@ D add tests for CMS asset swap in the test suite (1d|1d|Done)
 
 ---
 FRANCOIS
-- investigate "root not bracketed" error message in cms calibration as in 
+- investigate "root not bracketed" error message in cms calibration as in
   X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\CMS\MarketDataHistory\WorkbooksQl_FailRootBracketedNewtonSolver.zip
 - OH Wizard review: vector input, change in XML file structure to implement default values (to be precised)
 - MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(2D-5D)
@@ -167,7 +174,7 @@ MARCO
 - Citrix:  (0.0/0.5d)
   - verifica licenze accesso
   - verifica accesso a $+
-- verifica ottimizzatori: 							
+- verifica ottimizzatori:
   - complete test suite with Giorgio) (0.0/2d)
   - fix conjugate gradient and steepest descent (with FR) (0.0/2d)
   - check with GSL (with FR) (0.0/2d)
@@ -178,13 +185,14 @@ MARCO
 - update bootstrapping algorithm to catch up changes in Mx curve (67%,/3d/DONE)
   - introduce enumeration for Depos inclusion
   - move selection of instruments from RateHelperSelection into spreadsheets with Nando)
-- Inflation project: 
+- Inflation project:
   - Attività UAT (0.5/4w)
   - Programmazione prossime attività (0.0/2w?)
 
 ========================
 
 Eric
+- 2 DOF projects
 - coerce from Frequency to Period
 - coerce from Period->Date to double/int
 - coerce from IMMcode to date
