@@ -51,32 +51,32 @@ STAND-BY
 	ma per connessioniconcorrenti --> Eugenia in ferie
 - Citrix performance: verifica tempi di ricalcolo del foglio cw.xls in real time su Citrix
 
-- DONE CMS calibration tests (Cristina and K) (exp:1d, realized:1d) 	(1d   - ratio: 1.0)
-- trimestrale 								(0.5d - ratio: 0.0)
+- CMS calibration tests (Cristina and K) (1d/1d DONE)
+- make capVolStructure.xml equivalent to SwaptionVolStructure.xml (0.5d/0.5d DONE)
+- trimestrale (0/0.5d)								
 - market models:							
-	implement longTermCorr+beta+gamma correlation structure 	(?    - ratio: 0.0)
-	abcd for displaced vols (Chiara, Cristina, K)   		(?    - ratio: 0.0)
-- 3M cap stripper: 							(3w   - ratio: 0.0)
+	implement longTermCorr+beta+gamma correlation structure (?)
+	abcd for displaced vols (Chiara, Cristina, K) (?)
+- 3M cap stripper: 	(0/3w)
 	sensitivity to market data
 	gestione manuale ordinaria (con Clerici)
 	prendere possesso foglio Clerici
 	reintroduzione in 6M cap stripper
 	test wbk: atm curve
 	test wbk: abcd fit
-    	atm backbone in test workbook
-	make capVolStructure.xml equivalent to SwaptionVolStructure.xml
-- 6M cap stripper: 							(3w   - ratio: 0.0)
-	CapStripper6MTestSmoothness.xls: testa la smoothness della dorsale ATM con l'interpolazione lineare
+    	atm backbone: CapStripper3MTestSmoothness.xls
+- 6M cap stripper: (0.5D/1w)
+	atm backbone: CapStripper6MTestSmoothness.xls (0.5D/0.5D)
+	testa la smoothness della dorsale ATM con l'interpolazione lineare
 	CapStripper6MTestRepricing.xls: aggiungi
 	decidere se usare le interpolated vols da usare nel cap stripper
-    	atm backbone in test workbook
-- coveredWarrants.xls 							(1w   - ratio: 0.2)
+- coveredWarrants.xls (1D/1w)
 	- DONE check real time is OK -> 7 secs per recalc 
 	- DONE gestione del primo periodo corto
 	- DONE qlMakeCapFloor() -> funziona solo per forward-start
 	- DONE punta a decorated objects
 	- testing on Citrix
-- Sensitivity Analysis: 						(5w   - ratio: 0.0)
+- Sensitivity Analysis: (0/5w)
 	applied to cms book
 	create new .xls with NPVs of 4 cms books
 	test newly released version
@@ -118,6 +118,8 @@ D add tests for CMS asset swap in the test suite
 
 ---
 FRANCOIS
+- investigate "root not bracketed" error message in cms calibration as in 
+  X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\CMS\MarketDataHistory\WorkbooksQl_FailRootBracketedNewtonSolver.zip
 - Higham covariance bug + review rank rduction
 - OH Wizard review: vector input, change in XML file structure to implement default values (to be precised)
 - MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(2D-5D)
