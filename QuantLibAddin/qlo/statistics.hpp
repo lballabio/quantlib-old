@@ -20,7 +20,7 @@
 #define qla_riskstatistics_hpp
 
 #include <oh/objhandler.hpp>
-#include <ql/math/statistics.hpp>
+#include <ql/math/statistics/statistics.hpp>
 
 namespace QuantLibAddin {
 

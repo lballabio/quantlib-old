@@ -3,10 +3,10 @@
   <displayName>Bonds</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
-    <include>ql/Instruments/fixedratebond.hpp</include>
-    <include>ql/Instruments/zerocouponbond.hpp</include>
-    <include>ql/Instruments/cmsratebond.hpp</include>
-    <include>ql/Instruments/floatingratebond.hpp</include>
+    <include>ql/instruments/fixedratebond.hpp</include>
+    <include>ql/instruments/zerocouponbond.hpp</include>
+    <include>ql/instruments/cmsratebond.hpp</include>
+    <include>ql/instruments/floatingratebond.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/bonds.hpp</include>

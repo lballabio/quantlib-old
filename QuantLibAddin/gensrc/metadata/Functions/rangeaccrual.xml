@@ -3,7 +3,7 @@
   <displayName>Range Accrual</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
-    <include>ql/CashFlows/rangeaccrual.hpp</include>
+    <include>ql/cashflows/rangeaccrual.hpp</include>
     <include>qlo/rangeaccrual.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>

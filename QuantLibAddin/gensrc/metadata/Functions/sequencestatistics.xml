@@ -3,7 +3,7 @@
   <displayName>SequenceStatistics</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
   <includes>
-    <include>ql/Math/riskstatistics.hpp</include>
+    <include>ql/math/statistics/riskstatistics.hpp</include>
     <include>qlo/sequencestatistics.hpp</include>
   </includes>
   <copyright>

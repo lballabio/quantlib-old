@@ -3,10 +3,10 @@
   <displayName>Indices</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
+    <include>ql/indexes/swapindex.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/Factories/euriborhandlefactory.hpp</include>
-    <include>ql/Indexes/swapindex.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
