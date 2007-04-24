@@ -153,20 +153,23 @@ D fixed sabr parameters 								(1d  - ratio: 1.0)
 
 ---
 MARCO
-- WIP: verifica ottimizzatori: 								(duration: 3d  - end: 27/4/2007 - ratio: 0.0; status: WIP)
-	- WIP: test in test suite (shared with Giorgio)
-	- DONE: Levenberg-Marquardt
-	- TBD: conjugate gradient, steepest descent
-	- TBD: export to excel and build the wkbto test optimizers
-- MM: corr hist extimation (after 2/5/2007)						(duration: 2w? - end: ??? - ratio: 0.0 - status: not started)
-- WIP: pricing plain vanilla legs in BGM book (shared among Marco/Giorgio/Cristina)	(duration: 2d  - end: ??? - ratio:  0.0 - status: WAITING FOR DIGITAL OPTIONS)
-- Risk, Wilmott papers									(duration: 1w  - end: ??? - ratio: 0.0 - status: WAITING for Ferdinando)
-- update bootstrapping algorithm to catch up changes in Mx curve 			(duration: 3d  - end: 24/4/07 - ratio: 2/3 - status: DONE 23/4/07)
-	- introduce enumeration for Depos inclusion
-	- move selection of instruments from RateHelperSelection into spreadsheets (shared between Marco & Nando)
+- Citrix:  (0.0/0.5d)
+  - verifica licenze accesso
+  - verifica accesso a $+
+- verifica ottimizzatori: 							
+  - complete test suite with Giorgio) (0.0/2d)
+  - fix conjugate gradient and steepest descent (with FR) (0.0/2d)
+  - check with GSL (with FR) (0.0/2d)
+  - TBD: export to excel and build testing wkb (to be planned)
+- MM: corr hist extimation (after 4/5/2007)						(duration: 2w? - end: ??? - ratio: 0.0 - status: not started)
+- pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)	(0.0/2d/WAITING FOR DIGITAL OPTIONS)
+- Risk, Wilmott papers(0.0/1d/WAITING for Ferdinando)
+- update bootstrapping algorithm to catch up changes in Mx curve (67%,/3d/DONE)
+  - introduce enumeration for Depos inclusion
+  - move selection of instruments from RateHelperSelection into spreadsheets with Nando)
 - Inflation project: 
-	- Attività UAT									(duration: 4w  - end: 7/5/07 - ratio: 0.5 - status: WIP)
-	- Programmazione prossime attività (digital + range accrual, TFR+MC, ibridi)	(duration: 2w? - end: 18/5/07 - ratio: 0.0 - status: to be started on 2/5/07)	- 		- Ibridi: studiare								(duration: infinite - end: never - ratio: 0.0 - status:: WIP)
+  - Attività UAT (0.5/4w)
+  - Programmazione prossime attività (0.0/2w?)
 
 ========================
 
