@@ -43,12 +43,13 @@ NANDO
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 - refactor abcd vol file, adding more unary_functions for blackVol and covariance
 - implement abcdinterpolation
+- Higham covariance bug + review rank reduction
 
 ---
 K
 STAND-BY 
 - Citrix access -> richiesta licenza non è per installazione
-	ma per connessioniconcorrenti --> Eugenia in ferie
+	ma per connessioniconcorrenti --> Eugenia in ferie    (Marco and K)
 - Citrix performance: verifica tempi di ricalcolo del foglio cw.xls in real time su Citrix
 
 - CMS calibration tests (Cristina and K) (1d/1d DONE)
@@ -106,23 +107,25 @@ CRISTINA
   (Marco, Giorgio and Cristina)                                         (0D/2D)
 - install VS in new pc                                                  (0D/1D) 
 - sensitivity analysis                                                  (STAND-BY)
-
+- market models: abcd for displaced vols (Chiara, Cristina, K)
 ---
 CHIARA
-D add tests for CMS asset swap in the test suite
-- Z-spread function, for zero coupon bond valuation
+D add tests for CMS asset swap in the test suite (1d|1d|Done)
+- Z-spread function, for zero coupon bond valuation (1d|10dd|WIP)
+- last cpn date and next cpn date as a method of schedule
+- bonds' workbooks integration with K+/Gatemate
 - Digital Bond contructor
 - Multicallable bond constructor
 - review bond equivalent fo Reverse FRN
 - implement alternative version of bond instrument which should accept a leg object
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
+- market models: abcd for displaced vols (Chiara, Cristina, K)
 
 ---
 FRANCOIS
 - investigate "root not bracketed" error message in cms calibration as in 
   X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\CMS\MarketDataHistory\WorkbooksQl_FailRootBracketedNewtonSolver.zip
-- Higham covariance bug + review rank rduction
 - OH Wizard review: vector input, change in XML file structure to implement default values (to be precised)
 - MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(2D-5D)
 - integration framework refactoring (1D/2D)
@@ -152,6 +155,9 @@ D fixed sabr parameters 								(1d  - ratio: 1.0)
 - flat extrapolation of SABR parameters in vol cube					(2d  - ratio: 0.0)
 - WIP ratchet Instrument C++ (shared with Marco)					(7d  - ratio: 0.5)
 - WIP range accrual coupon (con relativi test)						(30d - ratio: 0.6)
+  - create a workbook for range accrual under Workbooks\InterestRateDerivatives designing the workbook as done for CMS.xls
+  - add unit test for range accrual (lowerB=0 and upperB=100->Floater, decreasing upperB, increasing lowerB)
+  - refactorize range accrual pricer after having completed unit tests
 - spreaded swaption vol structure							(5d  - ratio: 0.0)
 - spreaded caplet vol structure								(5d  - ratio: 0.0)
 - install VS in new pc
