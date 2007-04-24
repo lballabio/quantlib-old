@@ -92,16 +92,18 @@ STAND-BY
 
 ---
 CRISTINA
-D CMS calibration tests (Cristina and K)				(1d - ratio: 1.0)
-D EOD valuation: completare analisi dei nuovi deal			(0.5d - ratio: 1.0)
+- CMS calibration tests (Cristina and K)                                (1D/1D DONE)
+- EOD valuation: completare analisi dei nuovi deal                      (0.5D/0.5D - DONE)
   (except the digital option: qlCmsZeroLeg doesn't work)
-- debug qlCmsZeroLeg 							(0.5d - ratio: 1.0)
-- testing that the manual procedure to set back/forward the evaluation 	(1d - ratio: 0.0)
-  date returns the same results of the automantic procedure		(1d - ratio: 0.0)
-D new management of additional cashflows in Irs Cms book	        (1d - ratio: 1.0)
-- new management of additional cashflows in Cap Cms book (low priority) (1d - ratio: 0.0)
-- install VS in new pc
-- sensitivity analysis
+- debug qlCmsZeroLeg                                                    (0.5D/0.5D - DONE)
+- testing that the manual procedure to set back/forward the evaluation
+  date returns the same results of the automatic procedure              (0D/1D)
+- new management of additional cashflows in Irs Cms book                (1D/1D - DONE)
+- new management of additional cashflows in Cap Cms book (low priority) (0D/1D)
+- digital coupon in call spread, add unit test
+  (Marco, Giorgio and Cristina)                                         (0D/2D)
+- install VS in new pc                                                  (0D/1D) 
+- sensitivity analysis (STAND-BY)
 
 ---
 CHIARA
