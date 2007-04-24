@@ -99,11 +99,13 @@ CRISTINA
 - testing that the manual procedure to set back/forward the evaluation
   date returns the same results of the automatic procedure              (0D/1D)
 - new management of additional cashflows in Irs Cms book                (1D/1D - DONE)
-- new management of additional cashflows in Cap Cms book (low priority) (0D/1D)
+- Cap Cms Book:
+  - pricing of Cms Cap without decomposition in Excel                   (To be discussed)
+  - new management of additional cashflows in Cap Cms book              (0D/1D - STAND-BY)
 - digital coupon in call spread, add unit test
   (Marco, Giorgio and Cristina)                                         (0D/2D)
 - install VS in new pc                                                  (0D/1D) 
-- sensitivity analysis (STAND-BY)
+- sensitivity analysis                                                  (STAND-BY)
 
 ---
 CHIARA
