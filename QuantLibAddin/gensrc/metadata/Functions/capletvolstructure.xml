@@ -16,7 +16,7 @@
   <Functions>
 
     <!-- CapletVolatilityStructure interface-->
-    <Member name='qlCapletVTSVolatility' type='QuantLib::CapletVolatilityStructure' superType='libraryClass' loopParameter='strike'>
+    <Member name='qlCapletVTSVolatility' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='strike'>
       <description>Returns volatility from the given CapletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -47,7 +47,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletVTSVolatility2' type='QuantLib::CapletVolatilityStructure' superType='libraryClass' loopParameter='strike'>
+    <Member name='qlCapletVTSVolatility2' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='strike'>
       <description>Returns volatility from the given CapletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -78,7 +78,7 @@
       </ReturnValue>
     </Member>
     
-    <Member name='qlCapletVTSBlackVariance' type='QuantLib::CapletVolatilityStructure' superType='libraryClass' loopParameter='strikes'>
+    <Member name='qlCapletVTSBlackVariance' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='optionDate'>
       <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
@@ -86,14 +86,14 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='expiry'>
+          <Parameter name='optionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>cap/floor expiry date</description>
           </Parameter>
-          <Parameter name='strikes' const='False'>
+          <Parameter name='strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
-            <tensorRank>vector</tensorRank>
+            <tensorRank>scalar</tensorRank>
             <description>cap/floor strike vector</description>
           </Parameter>
           <Parameter name='allowExtrapolation' const='False'>
@@ -109,8 +109,39 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletVTSMinStrike' type='QuantLib::CapletVolatilityStructure' superType='libraryClass'>
-      <description>Returns the minimum strike for which the term structure can return vols.</description>
+    <Member name='qlCapletVTSBlackVariance2' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='optionTenor'>
+      <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
+      <libraryFunction>blackVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='optionTenor' exampleValue ='5y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>cap/floor expiry date</description>
+          </Parameter>
+          <Parameter name='strike' exampleValue ='0.04' const='False'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cap/floor strike vector</description>
+          </Parameter>
+          <Parameter name='allowExtrapolation' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapletVTSMinStrike' type='QuantLib::CapletVolatilityStructure' superType='handleToLib'>
+      <description>Returns the minimum strike for which the given CapletVolatilityStructure can return vols.</description>
       <libraryFunction>minStrike</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
@@ -125,7 +156,7 @@
     </Member>
 
     <Member name='qlCapletVTSMaxStrike' type='QuantLib::CapletVolatilityStructure' superType='libraryClass'>
-      <description>Returns the maximum strike for which the term structure can return vols.</description>
+      <description>Returns the maximum strike for which the given CapletVolatilityStructure can return vols.</description>
       <libraryFunction>maxStrike</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
@@ -139,9 +170,50 @@
       </ReturnValue>
     </Member>
 
+    <!-- RelinkableHandle<CapletVolatilityStructure> -->
+    <Constructor name='qlRelinkableHandleCapletVolatilityStructure'>
+      <libraryFunction>RelinkableHandle&lt;QuantLib::CapletVolatilityStructure&gt;</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='capletVol' default='""'>
+            <type>QuantLib::CapletVolatilityStructure</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CapletVolatilityStructure object ID. If omitted, no YieldTermStructure is linked by the RelinkableHandle.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlRelinkableHandleCapletVolatilityStructureLinkTo' type='QuantLib::CapletVolatilityStructure' superType='objectHandle'>
+      <libraryFunction>linkTo</libraryFunction>
+      <description>relink handle</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='capletVol' >
+            <type>QuantLib::CapletVolatilityStructure</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CapletVolatilityStructure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+    
     <!-- CapletVolatilityStructure constructors -->
     <Constructor name='qlCapletVTSConstant'>
       <libraryFunction>CapletConstantVolatility</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -195,6 +267,7 @@
 
     <Constructor name='qlCapsStripper'>
       <libraryFunction>CapsStripper</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -253,6 +326,7 @@
 
     <Constructor name='qlCapsStripper2'>
       <libraryFunction>CapsStripper</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -316,6 +390,7 @@
 
     <Constructor name='qlSmileSectionsVolStructure'>
       <libraryFunction>SmileSectionsVolStructure</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -339,46 +414,6 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
-    <!-- RelinkableHandle<CapletVolatilityStructure> -->
-    <Constructor name='qlHandleCapletVolatilityStructure'>
-      <libraryFunction>RelinkableHandle&lt;QuantLib::CapletVolatilityStructure&gt;</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='capletVol' >
-            <type>QuantLib::CapletVolatilityStructure</type>
-            <superType>libraryClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>CapletVolatilityStructure object ID</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Member name='qlHandleCapletVolatilityStructureLinkTo' type='QuantLib::CapletVolatilityStructure' superType='objectHandle'>
-      <libraryFunction>linkTo</libraryFunction>
-      <description>relink handle</description>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='capletVol' >
-            <type>QuantLib::CapletVolatilityStructure</type>
-            <superType>libraryClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>CapletVolatilityStructure object ID</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
+    
   </Functions>
 </Category>

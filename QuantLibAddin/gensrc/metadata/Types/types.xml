@@ -62,6 +62,7 @@
         <DataType>QuantLib::SwaptionVolatilityCube</DataType>
         <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
+        <DataType>QuantLib::CapletVolatilityStructure</DataType>
         <DataType>QuantLib::TermStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
