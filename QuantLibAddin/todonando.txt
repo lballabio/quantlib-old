@@ -156,6 +156,7 @@ GIORGIO
 - test Levenberg-Marquardt in abcd vol (0d/5d)
 D rename correctly Excel names of class qlSimultaneousCalibration() (1d/1d DONE)
 D fixed sabr parameters (1d/1d DONE)
+D adeguare RangeAccrual coupon alla gerarchia di Floating Rate coupon (1d/1d DONE)
 - WIP: digital coupon in call spread, add unit test (Marco, Giorgio and Cristina)	(7d  - ratio: 0.7)
 D flat extrapolation of SABR parameters in vol cube (2d/2d DONE)
 - WIP ratchet Instrument C++ (shared with Marco)					(7d  - ratio: 0.5)
