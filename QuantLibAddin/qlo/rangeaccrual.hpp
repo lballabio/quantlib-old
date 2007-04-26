@@ -42,8 +42,7 @@ namespace QuantLibAddin {
                 const QuantLib::Date& refPeriodEnd,    
                 const boost::shared_ptr<QuantLib::Schedule>&  observationsSchedule,
                 const QuantLib::Real lowerTrigger,                                    
-                const QuantLib::Real upperTrigger,                                  
-                const boost::shared_ptr<QuantLib::RangeAccrualPricer>& pricer
+                const QuantLib::Real upperTrigger
         );
     };  
     class RangeAccrualPricer: public ObjHandler::LibraryObject<QuantLib::RangeAccrualPricer>{ }; 

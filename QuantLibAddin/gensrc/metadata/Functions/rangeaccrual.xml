@@ -93,15 +93,31 @@
 					<tensorRank>scalar</tensorRank>
 					<description>upperTrigger</description>
 				</Parameter>
-				<Parameter name='pricerID'>
-					<type>QuantLib::RangeAccrualPricer</type>
-					<tensorRank>scalar</tensorRank>
-					<description>Range Accrual Pricer</description>
-				</Parameter>
 			</Parameters>
 		</ParameterList>
 	</Constructor>
-
+    
+    <Member name='qlRangeAccrualFloatersCouponSetPricer' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>Set the coupon pricer at the given coupon object</description>
+      <libraryFunction>setPricer</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RangeAccrualPricer'>
+            <type>QuantLib::RangeAccrualPricer</type>
+            <tensorRank>scalar</tensorRank>
+            <description>RangeAccrual coupon pricer object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+    
     <Member name='qlRangeAccrualFloatersPrice' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
       <description>return the price of Range Accrual Floater Coupon</description>
       <libraryFunction>price</libraryFunction>

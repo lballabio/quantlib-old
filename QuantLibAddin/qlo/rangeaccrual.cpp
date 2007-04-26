@@ -39,8 +39,7 @@ namespace QuantLibAddin {
                 const QuantLib::Date& refPeriodEnd,    
                 const boost::shared_ptr<QuantLib::Schedule>&  observationsSchedule,
                 const QuantLib::Real lowerTrigger,                                    
-                const QuantLib::Real upperTrigger,                                  
-                const boost::shared_ptr<QuantLib::RangeAccrualPricer>& pricer) {
+                const QuantLib::Real upperTrigger) {
     
       libraryObject_ = boost::shared_ptr<QuantLib::RangeAccrualFloatersCoupon>(
             new QuantLib::RangeAccrualFloatersCoupon(
@@ -57,8 +56,7 @@ namespace QuantLibAddin {
                 refPeriodEnd,    
                 observationsSchedule,
                 lowerTrigger,                                    
-                upperTrigger,                                  
-                pricer));   
+                upperTrigger));   
     }
 
     RangeAccrualPricerByBgm::RangeAccrualPricerByBgm(
