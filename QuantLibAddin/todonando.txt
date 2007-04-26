@@ -58,7 +58,6 @@ STAND-BY
 	ma per connessioniconcorrenti --> Eugenia in ferie    (Marco and K)
 - Citrix performance: verifica tempi di ricalcolo del foglio cw.xls in real time su Citrix
 
-- CMS calibration tests (Cristina and K) (1d/1d DONE)
 - make capVolStructure.xml equivalent to SwaptionVolStructure.xml (0.5d/0.5d DONE)
 - trimestrale (0/0.5d)
 - market models:
@@ -69,13 +68,12 @@ STAND-BY
 	gestione manuale ordinaria (con Clerici)
 	prendere possesso foglio Clerici
 	reintroduzione in 6M cap stripper
-	test wbk: atm curve
 	test wbk: abcd fit
     	atm backbone: CapStripper3MTestSmoothness.xls
-- 6M cap stripper: (0.5D/1w)
-	atm backbone: CapStripper6MTestSmoothness.xls (0.5D/0.5D)
-	testa la smoothness della dorsale ATM con l'interpolazione lineare
-	CapStripper6MTestRepricing.xls: aggiungi
+- 6M cap stripper: (1.5D/1w)
+	atm backbone: CapStripper6MTestSmoothness.xls (0.5D/0.5D done)
+	testa la smoothness della dorsale ATM con l'interpolazione lineare (0.5D/0.5D done)
+	CapStripper6MTestRepricing.xls: aggiungi (0.5D/0.5D done)
 	decidere se usare le interpolated vols da usare nel cap stripper
 - coveredWarrants.xls (1D/1w)
 	- DONE check real time is OK -> 7 secs per recalc
