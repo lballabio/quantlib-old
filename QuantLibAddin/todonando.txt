@@ -108,11 +108,11 @@ CRISTINA
   - pricing of Cms Cap without decomposition in Excel                   (To be discussed)
   - new management of additional cashflows in Cap Cms book              (0D/1D - STAND-BY)
 - digital coupon in call spread, add unit test
-  (Marco, Giorgio and Cristina)                                         (0D/2D)
+  (Marco, Giorgio and Cristina)                                         (1D/2D)
 - install VS in new pc                                                  (0D/1D)
 - sensitivity analysis                                                  (STAND-BY)
 - market models: abcd for displaced vols (Chiara, Cristina, K)
-
+- fixing days in cashflow analisys					(0D/0.5D)
 ---
 CHIARA
 D add tests for CMS asset swap in the test suite (1d|1d|Done)
