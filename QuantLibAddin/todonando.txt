@@ -136,8 +136,8 @@ FRANCOIS
 - investigate "root not bracketed" error message in cms calibration as in
   X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\CMS\MarketDataHistory\WorkbooksQl_FailRootBracketedNewtonSolver.zip
 - OH Wizard review: vector input, change in XML file structure to implement default values (to be precised)
-- MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(2D-5D)
-- integration framework refactoring (1D/2D)
+- MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(2.5D/2D-5D)
+- integration framework refactoring (1.5D/2D)
 - conundrum pricer optimization (1D/2D)
 - notification chains pb (1D/3D)
 - smile sections:
