@@ -29,7 +29,7 @@ class IntegralTest(unittest.TestCase):
                  ["f(x) = sin(x)",   math.sin,       0.0, math.pi, 2.0],
                  ["f(x) = cos(x)",   math.cos,       0.0, math.pi, 0.0],
                  ["f(x) = Gauss(x)", self.Gauss,   -10.0,    10.0, 1.0]]
-        
+
         for tag,f,a,b,expected in cases:
             calculated = I(f,a,b)
             if not (abs(calculated-expected) <= tolerance):
@@ -50,8 +50,8 @@ integrating %(tag)s
         self.singleTest(QuantLib.SimpsonIntegral(1.0e-4))
     def testKronrod(self):
         "Testing Gauss-Kronrod integration"
-        self.singleTest(QuantLib.KronrodIntegral(1.0e-4))
-    
+        self.singleTest(QuantLib.GaussKronrodAdaptive(1.0e-4))
+
 
 
 if __name__ == '__main__':

@@ -26,7 +26,8 @@
 using QuantLib::SegmentIntegral;
 using QuantLib::TrapezoidIntegral;
 using QuantLib::SimpsonIntegral;
-using QuantLib::KronrodIntegral;
+using QuantLib::GaussKronrodAdaptive;
+using QuantLib::GaussKronrodNonAdaptive;
 %}
 
 %define INTEGRATION_METHODS
@@ -76,9 +77,18 @@ class SimpsonIntegral {
 };
 
 
-class KronrodIntegral {
+class GaussKronrodAdaptive {
   public:
-    KronrodIntegral(Real accuracy);
+    GaussKronrodAdaptive(Real tolerance,
+                         Size maxFunctionEvaluations = Null<Size>());
+    INTEGRATION_METHODS;
+};
+
+class GaussKronrodNonAdaptive {
+  public:
+    GaussKronrodNonAdaptive(Real absoluteAccuracy,
+                            Size maxEvaluations,
+                            Real relativeAccuracy);
     INTEGRATION_METHODS;
 };
 
