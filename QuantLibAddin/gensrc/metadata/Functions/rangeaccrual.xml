@@ -9,13 +9,13 @@
     <include>qlo/swaptionvolstructure.hpp</include>
   </includes>
   <copyright>
-    Copyright (C) 2006 Giorgio Facchinetti
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
   </copyright>
   <Functions>
   
    <!-- RangeAccrualFloatersCoupon constructors -->
 
-	<Constructor name='qlRangeAccrualFloatersCoupon'>
+	  <Constructor name='qlRangeAccrualFloatersCoupon'>
 		<libraryFunction>RangeAccrualFloatersCoupon</libraryFunction>
     <functionCategory>QuantLib</functionCategory>
     <SupportedPlatforms>
@@ -97,6 +97,29 @@
 		</ParameterList>
 	</Constructor>
     
+    <Constructor name='qlRangeAccrualFloatersCouponFromLeg'>
+      <libraryFunction>RangeAccrualFloatersCoupon</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RangeAccrualLeg'>
+            <type>QuantLibAddin::Leg</type>
+            <superType>objectClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>range accrual leg object ID</description>
+          </Parameter>
+          <Parameter name='position'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>position</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
     <Member name='qlRangeAccrualFloatersCouponSetPricer' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
       <description>Set the coupon pricer at the given coupon object</description>
       <libraryFunction>setPricer</libraryFunction>
@@ -117,7 +140,71 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
-    
+   
+    <Member name='qlRangeAccrualFloatersCouponObservationDates' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>Return the observation Dates</description>
+      <libraryFunction>observationDates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRangeAccrualFloatersCouponStarDate' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>Return the accrual start Date</description>
+      <libraryFunction>accrualStartDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRangeAccrualFloatersCouponEndDate' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>Return the accrual end Date</description>
+      <libraryFunction>accrualEndDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRangeAccrualFloatersCouponObservationsNo' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>Return the observations number</description>
+      <libraryFunction>observationsNo</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlRangeAccrualFloatersPrice' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
       <description>return the price of Range Accrual Floater Coupon</description>
       <libraryFunction>price</libraryFunction>

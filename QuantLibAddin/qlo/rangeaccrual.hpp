@@ -45,6 +45,9 @@ namespace QuantLibAddin {
                 const QuantLib::Real lowerTrigger,                                    
                 const QuantLib::Real upperTrigger
         );
+        RangeAccrualFloatersCoupon(
+                const boost::shared_ptr<Leg>& rangeAccrualLeg,
+                QuantLib::Size i);
     };  
     class RangeAccrualPricer: public FloatingRateCouponPricer{ }; 
 

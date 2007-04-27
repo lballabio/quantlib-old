@@ -59,6 +59,14 @@ namespace QuantLibAddin {
                 upperTrigger));   
     }
 
+    RangeAccrualFloatersCoupon::RangeAccrualFloatersCoupon(
+                const boost::shared_ptr<Leg>& rangeAccrualLeg,
+                QuantLib::Size i) {
+      const QuantLib::Leg& leg = rangeAccrualLeg->getQuantLibLeg();
+      QL_REQUIRE(i<leg.size(),"i>=leg.size()");
+      libraryObject_ = boost::dynamic_pointer_cast<QuantLib::RangeAccrualFloatersCoupon>(leg[i]);
+    }
+
     RangeAccrualPricerByBgm::RangeAccrualPricerByBgm(
             const QuantLib::Real correlation,
             const  boost::shared_ptr<QuantLib::SmileSection>& smilesOnExpiry,
