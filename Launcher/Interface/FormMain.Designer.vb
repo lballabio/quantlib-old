@@ -271,7 +271,7 @@ Partial Class FormMain
         Me.cbStaticData.Name = "cbStaticData"
         Me.cbStaticData.Size = New System.Drawing.Size(159, 17)
         Me.cbStaticData.TabIndex = 8
-        Me.cbStaticData.Text = "Default to static market data"
+        Me.cbStaticData.Text = "Switch to static market data"
         Me.cbStaticData.UseVisualStyleBackColor = True
         '
         'cbFitCMS
