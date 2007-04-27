@@ -276,7 +276,7 @@
             </ParameterList>
         </Constructor>
 
-        <Constructor name='qlCmsLeg'>
+      <Constructor name='qlCmsLeg'>
             <libraryFunction>CmsLeg</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -341,7 +341,78 @@
                 </Parameters>
             </ParameterList>
         </Constructor>
-
+      
+      <Constructor name='qlRangeAccrualLeg'>
+        <libraryFunction>RangeAccrualLeg</libraryFunction>
+        <SupportedPlatforms>
+          <SupportedPlatform name='Excel' calcInWizard='false' />
+        </SupportedPlatforms>
+        <ParameterList>
+          <Parameters>
+            <Parameter name='paymentBDC' default='"Following"'>
+              <type>QuantLib::BusinessDayConvention</type>
+              <tensorRank>scalar</tensorRank>
+              <description>payment business day convention. If omitted, default = Following.</description>
+            </Parameter>
+            <Parameter name='Nominals' exampleValue='1000000'>
+              <type>double</type>
+              <tensorRank>vector</tensorRank>
+              <description>Nominal amount vector. If omitted, default = 1000000</description>
+            </Parameter>
+            <Parameter name='ScheduleID'>
+              <type>QuantLib::Schedule</type>
+              <tensorRank>scalar</tensorRank>
+              <description>Schedule object ID</description>
+            </Parameter>
+            <Parameter name='fixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
+              <type>QuantLib::Natural</type>
+              <tensorRank>scalar</tensorRank>
+              <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
+            </Parameter>
+            <Parameter name='dayCounter' exampleValue='Actual/360'>
+              <type>QuantLib::DayCounter</type>
+              <tensorRank>scalar</tensorRank>
+              <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            </Parameter>
+            <Parameter name='lowerStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
+              <type>QuantLib::Rate</type>
+              <tensorRank>vector</tensorRank>
+              <description>lower strikes. If omitted, default = lower strikes</description>
+            </Parameter>
+            <Parameter name='gearings' default='1.0'>
+              <type>double</type>
+              <tensorRank>vector</tensorRank>
+              <description>floating rate gearings. If omitted, default = 1.0</description>
+            </Parameter>
+            <Parameter name='IborIndex'>
+              <type>QuantLib::IborIndex</type>
+              <tensorRank>scalar</tensorRank>
+              <description>underlying IborIndex object ID</description>
+            </Parameter>
+            <Parameter name='spreads' default='0.0'>
+              <type>QuantLib::Spread</type>
+              <tensorRank>vector</tensorRank>
+              <description>floating rate spreads. If omitted, default = 0%</description>
+            </Parameter>
+            <Parameter name='upperStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
+              <type>QuantLib::Rate</type>
+              <tensorRank>vector</tensorRank>
+              <description>upper strikes. If omitted, default = no upper strikes</description>
+            </Parameter>
+            <Parameter name='observationsTenor' exampleValue='1d'>
+              <type>QuantLib::Period</type>
+              <tensorRank>scalar</tensorRank>
+              <description>observations tenor period</description>
+            </Parameter>
+            <Parameter name='observationsBDC' default='"Modified Following"'>
+              <type>QuantLib::BusinessDayConvention</type>
+              <tensorRank>scalar</tensorRank>
+              <description>observations business day convention. If omitted, default = Modified Following.</description>
+            </Parameter>
+          </Parameters>
+        </ParameterList>
+      </Constructor>
+      
         <Constructor name='qlCmsZeroLeg'>
             <libraryFunction>CmsZeroLeg</libraryFunction>
             <SupportedPlatforms>

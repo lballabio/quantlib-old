@@ -21,6 +21,7 @@
 #include <oh/objhandler.hpp>
 #include <qlo/schedule.hpp>
 #include <qlo/index.hpp>
+#include <qlo/couponvectors.hpp>
 
 #include <ql/CashFlows/rangeaccrual.hpp>
 
@@ -45,7 +46,7 @@ namespace QuantLibAddin {
                 const QuantLib::Real upperTrigger
         );
     };  
-    class RangeAccrualPricer: public ObjHandler::LibraryObject<QuantLib::RangeAccrualPricer>{ }; 
+    class RangeAccrualPricer: public FloatingRateCouponPricer{ }; 
 
     class RangeAccrualPricerByBgm: public RangeAccrualPricer{
 	 public:

@@ -163,6 +163,33 @@ namespace QuantLibAddin {
                                 caps, floors,
                                 isInArrears);
     }
+    
+    RangeAccrualLeg::RangeAccrualLeg(
+           QuantLib::BusinessDayConvention paymentConvention,
+           const std::vector<QuantLib::Real>& nominals,
+           const boost::shared_ptr<QuantLib::Schedule>& schedule,
+           QuantLib::Natural fixingDays,
+           const QuantLib::DayCounter& paymentDayCounter,
+           const std::vector<QuantLib::Rate>& lowerTriggers,
+           const std::vector<QuantLib::Real>& gearings,
+           const boost::shared_ptr<QuantLib::IborIndex>& index,
+           const std::vector<QuantLib::Spread>& spreads,
+           const std::vector<QuantLib::Rate>& upperTriggers,
+           const QuantLib::Period& observationTenor,
+           QuantLib::BusinessDayConvention observationConvention) {
+        leg_ = QuantLib::RangeAccrualLeg(nominals,
+                                *schedule,
+                                index,
+                                paymentDayCounter,
+                                paymentConvention,
+                                fixingDays,
+                                gearings,
+                                spreads,
+                                lowerTriggers,
+                                upperTriggers, 
+                                observationTenor,
+                                observationConvention);
+    }
 
     CmsZeroLeg::CmsZeroLeg(
                     QuantLib::BusinessDayConvention paymentConvention,
