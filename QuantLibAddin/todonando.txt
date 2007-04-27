@@ -116,8 +116,12 @@ CRISTINA
 ---
 CHIARA
 D add tests for CMS asset swap in the test suite (1d|1d|Done)
-- Z-spread function, for zero coupon bond valuation (1d|10dd|WIP)
+D create new type for Quantlib Eur obsolete currencies (0.5d|0.5d|Done)
+- Z-spread function, for zero coupon bond valuation (2d|10dd|WIP)
+ *lehman's documentation
+ *created new workbook to replicate market practice (YAF, YAS on BBG) use of z-spread
 - last cpn date and next cpn date as a method of schedule
+- fix bug concerning the esposition to excel of fixing days in cashflows analysis (with nando)
 - bonds' workbooks integration with K+/Gatemate
 - Digital Bond contructor
 - Multicallable bond constructor
