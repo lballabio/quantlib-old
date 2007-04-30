@@ -158,6 +158,7 @@ FRANCOIS
 
 ---
 GIORGIO
+- restore timing in calibration and optimization
 - test Levenberg-Marquardt in sabr interpolation  (0d/5d)
 - test Levenberg-Marquardt in abcd vol (0d/5d)
 D rename correctly Excel names of class qlSimultaneousCalibration() (1d/1d DONE)
