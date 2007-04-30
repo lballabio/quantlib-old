@@ -5,6 +5,7 @@
   <includes>
     <include>qlo/date.hpp</include>
     <include>ql/time/date.hpp</include>
+    <include>ql/time/imm.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
@@ -237,9 +238,9 @@
       </ReturnValue>
     </Procedure>
 
-    <!--Procedure name='qlIsIMMdate' loopParameter='date'>
+    <Procedure name='qlIsIMMdate' loopParameter='date'>
       <description>returns whether or not the given date is an IMM date.</description>
-      <alias>QuantLib::Date::isIMMdate</alias>
+      <alias>QuantLib::IMM::isIMMdate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -265,7 +266,7 @@
 
     <Procedure name='qlIsIMMcode' loopParameter='code'>
       <description>returns whether or not the given code is an IMM code.</description>
-      <alias>QuantLib::Date::isIMMcode</alias>
+      <alias>QuantLib::IMM::isIMMcode</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -291,7 +292,7 @@
 
     <Procedure name='qlIMMcode' loopParameter='IMMdate'>
       <description>returns the future code corresponding to a given IMM date (e.g. H6 for March 15th, 2006). It fails if the input date is not an IMM date.</description>
-      <alias>QuantLib::Date::IMMcode</alias>
+      <alias>QuantLib::IMM::code</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -312,7 +313,7 @@
 
     <Procedure name='qlNextIMMcode'>
       <description>returns the future code corresponding to a given IMM date (e.g. H6 for March 15th, 2006). It fails if the input date is not an IMM date.</description>
-      <alias>QuantLib::Date::nextIMMcode</alias>
+      <alias>QuantLib::IMM::nextCode</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -363,7 +364,7 @@
 
     <Procedure name='qlIMMdate' loopParameter='IMMcode'>
       <description>returns the IMM date corresponding to the given IMM code (e.g. March 15th, 2006 for H6).</description>
-      <alias>QuantLib::Date::IMMdate</alias>
+      <alias>QuantLib::IMM::date</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -389,7 +390,7 @@
 
     <Procedure name='qlNextIMMdate'>
       <description>returns the 1st delivery date for next contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
-      <alias>QuantLib::Date::nextIMMdate</alias>
+      <alias>QuantLib::IMM::nextDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -436,7 +437,7 @@
         <type>QuantLib::Date</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
-    </Procedure-->
+    </Procedure>
 
   </Functions>
 </Category>
