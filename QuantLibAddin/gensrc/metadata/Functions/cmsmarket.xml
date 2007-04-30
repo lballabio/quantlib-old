@@ -173,7 +173,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCmsMarketCalibrationElapsed' type='QuantLib::CmsMarketCalibration'>
+    <!--Member name='qlCmsMarketCalibrationElapsed' type='QuantLib::CmsMarketCalibration'>
       <description>Returns the elapsed time of the simultaneous calibration</description>
       <libraryFunction>elapsed</libraryFunction>
       <SupportedPlatforms>
@@ -186,8 +186,8 @@
         <type>double</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
-    
+    </Member-->
+
     <Member name='qlCmsMarketCalibrationSparseSabrParameters' type='QuantLibAddin::CmsMarketCalibration'>
       <description>returns results of Sabr calibration</description>
       <libraryFunction>getSparseSabrParameters</libraryFunction>
@@ -217,7 +217,7 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
-    
+
     <Member name='qlSimultaneousCalibrationBrowseCmsMarket' type='QuantLibAddin::CmsMarketCalibration'>
       <description>return the market and implied spreads matrix</description>
       <libraryFunction>getCmsMarket</libraryFunction>
