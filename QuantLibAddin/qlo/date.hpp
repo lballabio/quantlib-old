@@ -32,10 +32,10 @@ namespace QuantLibAddin {
     QuantLib::Period periodFromFrequency(QuantLib::Frequency f);
     QuantLib::Frequency frequencyFromPeriod(const QuantLib::Period& p);
 
-    std::vector<QuantLib::Date> qlNextIMMdates(const QuantLib::Date& d,
+    std::vector<QuantLib::Date> qlIMMNextDates(const QuantLib::Date& d,
                                                const std::vector<bool>& mainCycle);
 
-    std::vector<std::string> qlNextIMMcodes(const QuantLib::Date& d,
+    std::vector<std::string> qlIMMNextCodes(const QuantLib::Date& d,
                                             const std::vector<bool>& mainCycle);
 
 }

@@ -82,7 +82,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlMinDate'>
+    <Procedure name='qlDateMinDate'>
       <description>returns the earliest date allowed in QuantLib.</description>
       <alias>QuantLib::Date::minDate</alias>
       <SupportedPlatforms>
@@ -97,7 +97,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlMaxDate'>
+    <Procedure name='qlDateMaxDate'>
       <description>returns the latest date allowed in QuantLib.</description>
       <alias>QuantLib::Date::maxDate</alias>
       <SupportedPlatforms>
@@ -112,7 +112,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlIsLeap' loopParameter='year'>
+    <Procedure name='qlDateIsLeap' loopParameter='year'>
       <description>returns TRUE if a year is leap.</description>
       <alias>QuantLib::Date::isLeap</alias>
       <SupportedPlatforms>
@@ -133,7 +133,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlEndOfMonth' loopParameter='date'>
+    <Procedure name='qlDateEndOfMonth' loopParameter='date'>
       <description>returns the last day of the month to which the given date belongs.</description>
       <alias>QuantLib::Date::endOfMonth</alias>
       <SupportedPlatforms>
@@ -154,9 +154,9 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlIsEndOfMonth' loopParameter='date'>
+    <Procedure name='qlDateIsEndOfMonth' loopParameter='date'>
       <description>returns TRUE if a date is the last day of its month.</description>
-      <alias>QuantLib::Date::isEOM</alias>
+      <alias>QuantLib::Date::isEndOfMonth</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -175,7 +175,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlNextWeekday' loopParameter='date'>
+    <Procedure name='qlDateNextWeekday' loopParameter='date'>
       <description>Returns the next given weekday following or equal to the given date (e.g., the Friday following Tuesday, January 15th, 2002 was January 18th, 2002).</description>
       <alias>QuantLib::Date::nextWeekday</alias>
       <SupportedPlatforms>
@@ -202,7 +202,7 @@
     </Procedure>
 
     <!-- doesn't work in the wizard -->
-    <Procedure name='qlNthWeekday'>
+    <Procedure name='qlDateNthWeekday'>
       <description>Returns the n-th given weekday in the given month and year (e.g., the 4th Thursday of March, 1998 was March 26th, 1998).</description>
       <alias>QuantLib::Date::nthWeekday</alias>
       <SupportedPlatforms>
@@ -238,7 +238,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlIsIMMdate' loopParameter='date'>
+    <Procedure name='qlIMMIsIMMdate' loopParameter='date'>
       <description>returns whether or not the given date is an IMM date.</description>
       <alias>QuantLib::IMM::isIMMdate</alias>
       <SupportedPlatforms>
@@ -264,7 +264,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlIsIMMcode' loopParameter='code'>
+    <Procedure name='qlIMMIsIMMcode' loopParameter='code'>
       <description>returns whether or not the given code is an IMM code.</description>
       <alias>QuantLib::IMM::isIMMcode</alias>
       <SupportedPlatforms>
@@ -311,7 +311,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlNextIMMcode'>
+    <Procedure name='qlIMMNextCode'>
       <description>returns the future code corresponding to a given IMM date (e.g. H6 for March 15th, 2006). It fails if the input date is not an IMM date.</description>
       <alias>QuantLib::IMM::nextCode</alias>
       <SupportedPlatforms>
@@ -337,7 +337,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlNextIMMcodes'>
+    <Procedure name='qlIMMNextCodes'>
       <description>returns the codes for next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -388,7 +388,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlNextIMMdate'>
+    <Procedure name='qlIMMNextDate'>
       <description>returns the 1st delivery date for next contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <alias>QuantLib::IMM::nextDate</alias>
       <SupportedPlatforms>
@@ -414,7 +414,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlNextIMMdates'>
+    <Procedure name='qlIMMNextDates'>
       <description>returns the delivery dates for next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />

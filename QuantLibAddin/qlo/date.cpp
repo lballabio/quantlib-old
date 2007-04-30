@@ -35,7 +35,7 @@ namespace QuantLibAddin {
         return p.frequency();
     }
 
-    vector<Date> qlNextIMMdates(const Date& date,
+    vector<Date> qlIMMNextDates(const Date& date,
                                 const vector<bool>& mainCycle) {
         QL_REQUIRE(!mainCycle.empty(), "Main cycle flags vector is empty.");
         Date d = (date == Date() ?
@@ -50,9 +50,9 @@ namespace QuantLibAddin {
         return out;
     }
 
-    vector<string> qlNextIMMcodes(const Date& date,
+    vector<string> qlIMMNextCodes(const Date& date,
                                   const vector<bool>& mainCycle) {
-        vector<Date> immDates = qlNextIMMdates(date, mainCycle);
+        vector<Date> immDates = qlIMMNextDates(date, mainCycle);
         vector<string> out;
         QuantLib::Size n = mainCycle.size();
         out.reserve(n);
