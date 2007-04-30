@@ -24,7 +24,10 @@
 #include <qlo/termstructures.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <ql/quotes/derivedquote.hpp>
+#include <ql/quotes/eurodollarfuturesquote.hpp>
+#include <ql/quotes/forwardvaluequote.hpp>
 #include <ql/quotes/futuresconvadjustmentquote.hpp>
+#include <ql/quotes/impliedstddevquote.hpp>
 
 
 namespace QuantLibAddin {
@@ -67,7 +70,7 @@ namespace QuantLibAddin {
       public:
         FuturesConvAdjustmentQuote(
                     const boost::shared_ptr<QuantLib::IborIndex>& index,
-                    const std::string& immCode, 
+                    const std::string& immCode,
                     const QuantLib::Handle<QuantLib::Quote>& futuresQuote,
                     const QuantLib::Handle<QuantLib::Quote>& volatility,
                     const QuantLib::Handle<QuantLib::Quote>& meanReversion);
