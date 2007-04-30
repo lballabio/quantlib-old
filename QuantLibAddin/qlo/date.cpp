@@ -41,12 +41,12 @@ namespace QuantLibAddin {
         Date d = (date == Date() ?
                   Date(QuantLib::Settings::instance().evaluationDate()) :
                   date);
-        vector<Date> out(1, IMM::nextDate(d, mainCycle[0]));
+                  vector<Date> out(1, QuantLib::IMM::nextDate(d, mainCycle[0]));
 
         QuantLib::Size n = mainCycle.size();
         out.reserve(n);
         for (QuantLib::Size i=1; i<n; ++i)
-            out.push_back(IMM::nextDate(out[i-1]+1*Days, mainCycle[i]));
+            out.push_back(QuantLib::IMM::nextDate(out[i-1]+1*Days, mainCycle[i]));
         return out;
     }
 
@@ -57,7 +57,7 @@ namespace QuantLibAddin {
         QuantLib::Size n = mainCycle.size();
         out.reserve(n);
         for (QuantLib::Size i=0; i<n; ++i)
-            out.push_back(IMM::code(immDates[i]));
+            out.push_back(QuantLib::IMM::code(immDates[i]));
         return out;
     }
 
