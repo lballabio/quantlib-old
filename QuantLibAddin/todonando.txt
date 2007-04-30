@@ -64,6 +64,8 @@ STAND-BY
 	implement longTermCorr+beta+gamma correlation structure (?)
 	abcd for displaced vols (Chiara, Cristina, K) (?)
 - 3M cap stripper: 	(0/3w)
+	review triggers in wkbs (0.5D/0.5D done)
+	overview: focus on smile sections
 	sensitivity to market data
 	gestione manuale ordinaria (con Clerici)
 	prendere possesso foglio Clerici
@@ -89,7 +91,7 @@ STAND-BY
 - manage auto-open macro problem -> propose:
 	add Workbook_Open() in ThisWorkbook
 	add auto_open() in Module
-- macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
+- DONE macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
 - foglio di clerici (interpolazione)
