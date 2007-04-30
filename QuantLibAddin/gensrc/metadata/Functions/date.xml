@@ -237,7 +237,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlIsIMMdate' loopParameter='date'>
+    <!--Procedure name='qlIsIMMdate' loopParameter='date'>
       <description>returns whether or not the given date is an IMM date.</description>
       <alias>QuantLib::Date::isIMMdate</alias>
       <SupportedPlatforms>
@@ -436,7 +436,7 @@
         <type>QuantLib::Date</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
-    </Procedure>
+    </Procedure-->
 
   </Functions>
 </Category>
