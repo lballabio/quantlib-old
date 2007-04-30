@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Conversion function scalarToOper - convert an Excel OPER to a scalar value.
+*/
+
 #ifndef ohxl_conversions_scalartooper_hpp
 #define ohxl_conversions_scalartooper_hpp
 
@@ -40,3 +44,4 @@ namespace ObjectHandler {
 }
 
 #endif
+

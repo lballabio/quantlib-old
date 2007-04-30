@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Conversion function matrixToOper - Convert matrix to Excel OPER.
+*/
+
 #ifndef ohxl_conversions_matrixtooper_hpp
 #define ohxl_conversions_matrixtooper_hpp
 
@@ -23,6 +27,7 @@
 
 namespace ObjectHandler {
 
+    //! Convert type std::vector<std::vector<T> > to an Excel OPER.
     template <class T>
     void matrixToOper(const std::vector<std::vector<T> > &vv, OPER &xMatrix) {
         if (vv.empty() || vv[0].empty()) {

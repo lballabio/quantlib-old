@@ -16,7 +16,7 @@
 */
 
 /*! \file
-    \brief Base class in support of datatype coercion.
+    \brief Class Coerce - Support for automatic conversion of datatypes.
 */
 
 #ifndef oh_conversions_coerce_hpp
@@ -27,8 +27,7 @@
 
 namespace ObjectHandler {
 
-
-    //! Class Coerce - Base class in support of datatype coercion.
+    //! Base class in support of datatype coercion.
     /*! ObjectHandler supports the concept of coercion - a function expects an 
         argument of a given datatype, the user inputs a value of some other type and
         if possible the value is converted automatically.

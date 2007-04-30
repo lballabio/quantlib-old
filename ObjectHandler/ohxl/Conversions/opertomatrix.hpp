@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Conversion function operToMatrix - convert an OPER to a matrix.
+*/
+
 #ifndef ohxl_conversions_opertomatrix_hpp
 #define ohxl_conversions_opertomatrix_hpp
 
@@ -23,6 +27,7 @@
 
 namespace ObjectHandler {
 
+    //! Convert an Excel OPER to type std::vector<std::vector<T> >.
     template <class T>
     std::vector<std::vector<T> > operToMatrix(const OPER &xMatrix) {
 
@@ -76,3 +81,4 @@ namespace ObjectHandler {
 }
 
 #endif
+

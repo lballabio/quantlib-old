@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Base class to represent an Object to be stored in the Repository.
+    \brief Class Object - Define interface for Objects to be stored in the Repository.
 */
 
 #ifndef oh_object_hpp
@@ -34,7 +34,6 @@
 #include <sstream>
 #include <iomanip>
 
-
 /*! \def OBJECT_LOG_COLUMN_WIDTH
     The width of a column of data written to the log file.
 */
@@ -48,8 +47,8 @@ namespace ObjectHandler {
 
         All member functions of this class are implemented inline.  This is not
         for performance reasons; the entire implementation of the class must appear
-        in the header file in order to allow derived classes across DLL boundaries
-        on the Windows platform.
+        in the header file in order to allow derived classes to inherit from Object
+        across DLL boundaries on the Windows platform.
     */
     class Object {        
     public:
@@ -106,6 +105,7 @@ namespace ObjectHandler {
     private:
         //! The ValueObject associated with this Object.
         boost::shared_ptr<ValueObject> mProps;
+        //! Flag to indicate whether this Object is permanent.
         bool permanent_;
         //! Operator = declared but not implemented - assignment is not supported.
         Object& operator= (const Object&);

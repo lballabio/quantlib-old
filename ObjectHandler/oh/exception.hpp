@@ -16,7 +16,7 @@
 */
 
 /*! \file
-    \brief A simple Exception class for ObjectHandler.
+    \brief Class Exception - A simple Exception class for ObjectHandler.
 */
 
 #ifndef oh_exception_hpp

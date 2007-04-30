@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Class Xloper - Perform RAII for Excel's XLOPER datatype.
+*/
+
 #ifndef oh_xloper_hpp
 #define oh_xloper_hpp
 
@@ -22,28 +26,39 @@
 
 namespace ObjectHandler {
 
+    //! Perform RAII for Excel's XLOPER datatype.
+    /*! This class implements a thin wrapper for an Excel XLOPER value.
+        The class is intended specifically to manage XLOPERs which are declared
+        on the stack and passed to Excel in order to receive the return value.
+
+        The class calls xlFree on the underlying XLOPER, relieving the client code
+        from the need to manage this e.g. in the event of the stack unwinding after
+        an exception.
+    */
     class DLL_API Xloper {        
     public:
 
-        Xloper() {
-            xloper_.xltype = 0;
-        }
+        //! \name Structors
+        //@{
+        //! Constructor - initializes the type of the underling XLOPER to zero.
+        /*! Client code may consult this value to determine whether or not
+            any memory has subsequently been allocated to the XLOPER by Excel.
+        */
+        Xloper() { xloper_.xltype = 0; }
 
-        ~Xloper() {
-            Excel(xlFree, 0, 1, &xloper_);
-        }
+        //! Destructor - calls xlFree on the XLOPER.
+        ~Xloper() { Excel(xlFree, 0, 1, &xloper_); }
+        //@}
 
-        XLOPER *operator&() {
-            return &xloper_;
-        }
-
-        const XLOPER *operator->() const {
-            return &xloper_;
-        }
-
-        const XLOPER &operator()() const {
-            return xloper_;
-        }
+        //! \name Inspectors
+        //@{
+        //! Operator & returns the address of the underlying XLOPER.
+        XLOPER *operator&() { return &xloper_; }
+        //! Operator -> returns the address of the underlying XLOPER.
+        const XLOPER *operator->() const { return &xloper_; }
+        //! Operator () returns a const reference to the underlying XLOPER.
+        const XLOPER &operator()() const { return xloper_; }
+        //@}
 
     private:
 
@@ -54,3 +69,4 @@ namespace ObjectHandler {
 }
 
 #endif
+

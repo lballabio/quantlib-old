@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Miscellaneous validation routines.
+*/
+
 #ifndef ohxl_conversions_validations_hpp
 #define ohxl_conversions_validations_hpp
 
@@ -24,7 +28,11 @@
 
 namespace ObjectHandler {
 
+    //! Determine whether the given range contains an error value.
     DLL_API void validateRange(const OPER *xRange, const std::string &name);
+    //! Convert the std::string to the char*.  
+    /*! Assumes that the caller has allocated XL_MAX_STR_LEN bytes for the char *.
+    */
     DLL_API void stringToChar(const std::string &s, char *c);
 
 }

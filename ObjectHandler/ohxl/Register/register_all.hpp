@@ -16,6 +16,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Register/Unregister the Addin functions with Excel.
+*/
+
 void registerOhFunctions(const XLOPER&);
 void unregisterOhFunctions(const XLOPER&);
 

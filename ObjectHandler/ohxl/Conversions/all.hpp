@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief #includes for all Excel conversion functions.
+*/
+
 #ifndef ohxl_conversions_all_hpp
 #define ohxl_conversions_all_hpp
 
@@ -28,3 +32,4 @@
 #include <ohxl/Conversions/validations.hpp>
 
 #endif
+

@@ -16,6 +16,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Conversion function vectorToOper - Convert STL vector to Excel OPER.
+*/
+
 #ifndef ohxl_conversions_vectortooper_hpp
 #define ohxl_conversions_vectortooper_hpp
 
@@ -32,6 +36,7 @@ namespace ObjectHandler {
     // This is accomplished with input variable dllToFree which defaults
     // to true to preserve the old behavior.
 
+    //! Convert type std::vector<T> to an Excel OPER.
     template <class T>
     void vectorToOper(const std::vector<T> &v, OPER &xVector, bool dllToFree = true) {
         vectorToOper(v.begin(), v.end(), xVector, dllToFree);
@@ -68,3 +73,4 @@ namespace ObjectHandler {
 }
 
 #endif
+

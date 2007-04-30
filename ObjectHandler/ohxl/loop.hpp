@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Support for Excel functions which loop on an input value.
+*/
+
 #ifndef ohxl_loop_hpp
 #define ohxl_loop_hpp
 
@@ -107,3 +111,4 @@ namespace ObjectHandler {
 }
 
 #endif
+

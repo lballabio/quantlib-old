@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Conversion function operToScalar - convert an Excel OPER to a scalar value.
+*/
+
 #ifndef ohxl_conversions_opertoscalar_hpp
 #define ohxl_conversions_opertoscalar_hpp
 
@@ -31,6 +35,10 @@ namespace ObjectHandler {
     DLL_API void operToScalar(const OPER &xScalar, std::string &ret);
     DLL_API void operToScalar(const OPER &xScalar, boost::any &ret);
 
+    //! Template function callOperToScalar - wrapper for operToScalar.
+    /*! This template implements error handling common to all overrides
+        of the operToScalar function.
+    */
     template <class T>
     T callOperToScalar(const OPER &xIn, 
             const std::string paramName) {
@@ -61,6 +69,9 @@ namespace ObjectHandler {
 
     }
 
+    //! Template function callOperToScalar - wrapper for operToScalar.
+    /*! Sepcial processing for the case where a defaul value is supplied.
+    */
     template <class T>
     T callOperToScalar(const OPER &xScalar, 
             const std::string paramName,

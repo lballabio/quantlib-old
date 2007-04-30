@@ -72,7 +72,8 @@ WARN_LOGFILE           = doxywarnings.txt
 ##---------------------------------------------------------------------------
 INPUT                  = ./auto.pages \
                          ./pages \
-                         ../oh
+                         ../oh \
+                         ../ohxl
 FILE_PATTERNS          = *.docs \
                          *.hpp
 RECURSIVE              = YES

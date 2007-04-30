@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Conversion function operToVector - convert an OPER to a std::vector.
+*/
+
 #ifndef ohxl_conversions_opertovector_hpp
 #define ohxl_conversions_opertovector_hpp
 
@@ -24,6 +28,7 @@
 
 namespace ObjectHandler {
 
+    //! Convert an Excel OPER to a std::vector of type T.
     template <class T>
     std::vector<T> operToVector(const OPER &xVector, 
                    const std::string paramName) {
@@ -91,3 +96,4 @@ namespace ObjectHandler {
 }
 
 #endif
+

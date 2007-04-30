@@ -16,7 +16,7 @@
 */
 
 /*! \file
-    \brief Class Repository - Maintains a store of Objects.
+    \brief Class Repository - Maintain a store of Objects.
 */
 
 #ifndef oh_repository_hpp
@@ -32,21 +32,21 @@
 */
 namespace ObjectHandler {
 
-    //! Class Repository - Maintains a store of Objects.
-    /*! Maintains a store of Objects.  The client application may
-        store, retrieve, and delete Objects in the Repository.
+    //! Maintain a store of Objects.
+    /*! The client application may store, retrieve, and delete Objects in 
+        the Repository.
 
         This class is implemented using a Singleton design pattern.  Rather
-        than the Meyers singleton used elsewhere in this library, Repository
-        uses a specialized singleton supporting inheritance so that the
-        Repository can be customized for specific platforms.
+        than the Meyers Singleton used elsewhere, Repository uses a specialized
+        Singleton supporting inheritance so that the Repository can be customized
+        for specific platforms.
 
         This class is designed so that it can be exported across DLL
         boundaries on the Windows platform.
     */
     class DLL_API Repository {
     public:
-        //! \name Structors and static members.
+        //! \name Structors and static members
         //@{
         //! Constructor - initialize the singleton.
         Repository();
@@ -56,7 +56,7 @@ namespace ObjectHandler {
         static Repository &instance();
         //@}
 
-        //! \name Storing / retrieving / deleting Objects.
+        //! \name Storing / retrieving / deleting Objects
         //@{
         //! Store an Object with the given ID.
         /*! Any existing Object with that ID is deleted.

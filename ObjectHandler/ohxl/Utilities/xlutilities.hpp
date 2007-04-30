@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief General utility functions for the Excel platform.
+*/
+
 #ifndef ohxl_utilities_hpp
 #define ohxl_utilities_hpp
 
@@ -25,3 +29,4 @@ DLL_API void freeOper(XLOPER *px);
 DLL_API void splitOper(const OPER *xFrom, OPER *xTo);
 
 #endif
+

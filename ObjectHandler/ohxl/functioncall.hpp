@@ -16,7 +16,7 @@
 */
 
 /*! \file
-    \brief FunctionCall class
+    \brief Class FunctionCall - Handle state related to the function in progress.
 */
 
 #ifndef ohxl_functioncall_hpp
@@ -28,9 +28,6 @@
 #include <ohxl/xloper.hpp>
 #include <boost/shared_ptr.hpp>
 
-//! ObjectHandler
-/*! name space for the Object Handler
-*/
 namespace ObjectHandler {
 
     struct CallerDimensions {
@@ -49,17 +46,47 @@ namespace ObjectHandler {
     */
     class DLL_API FunctionCall {
     public:
+        //! \name Structors and static members
+        //@{
+        //! Constructor - Store the name of the function in progress.
         FunctionCall(const std::string functionName);
+        //! Destructor - Clean up any resources that may have been acquired.
         ~FunctionCall();
+        //! A reference to the global FunctionCall Singleton.
+        /*! Clients of this class access it with a call to
+                FunctionCall::instance()
+        */
         static FunctionCall &instance();
+        //@}
+
+        //! Reference to the caller as returned by Excel function xlfCaller.
         const XLOPER *callerReference();
+        //! Address of the caller as returned by Excel function xlfReftext.
         const XLOPER *callerAddress();
+        //! Calling range, coerced to type xltypeMulti.
+        /*! If the caller is not an Excel range then this function returns
+            an XLOPER with xltype initialized to zero.
+        */
         const XLOPER *callerArray();
+        //! Address of the caller as returned by Excel function xlfGetCell.
         const std::string &addressString();
+        //! The function name that was passed to the constructor.
         const std::string &functionName() { return functionName_; }
+        //! Text reference of the caller as returned by  xlfReftext, converted to a std::string
         const std::string &refStr() { return refStr_; }
+        //! The dimensions of the calling range.
+        /*! Presently this function only differentiates between Row and Column,
+            this could be extended to distinguish Scalar (currently treated as Column)
+            and Matrix.
+        */
         CallerDimensions::Type callerDimensions();
+        //! The type of the caller.
+        /*! Presently this function only differentiates between Cell and Other,
+            this could be extended to distinguish calls from Excel VBA, and from Excel
+            menu items.
+        */
         CallerType::Type callerType();
+        //! Called to indicate that an error occurred during execution of the function.
         void setError() { error_ = true; }
     private:
         static FunctionCall *instance_;
@@ -77,3 +104,4 @@ namespace ObjectHandler {
 }
 
 #endif
+

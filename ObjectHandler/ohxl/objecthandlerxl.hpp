@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief #includes for all functionality in ObjectHandler.
+*/
+
 #ifndef oh_objecthandlerxl_hpp
 #define oh_objecthandlerxl_hpp
 

@@ -16,7 +16,7 @@
 */
 
 /*! \file
-    \brief Object class
+    \brief Class RangeReference - Parse range references in string format.
 */
 
 #include <ohxl/ohxldefines.hpp>
@@ -24,6 +24,7 @@
 #include <string>
 
 namespace ObjectHandler {
+
     //! A utility class for parsing range references in string format.
     /*! The constructor to this class accepts strings returned from
         Excel functions such as xlfGetName and xlfReftext.  Strings are
@@ -34,36 +35,66 @@ namespace ObjectHandler {
         The following formats are supported:
 
         Normal:
+        \verbatim
             "[Book1.xls]Sheet1!R1C1"
+        \endverbatim
         Some excel functions prepend an '=' sign:
+        \verbatim
             "=[Book1.xls]Sheet1!R1C1"
+        \endverbatim
         If book or sheet name contains spaces then Excel encloses the text
         in single quotes:
+        \verbatim
             "'[Bo ok1.xls]Sheet1'!R1C1"
+        \endverbatim
         For a new book that hasn't yet been saved, excel omits the .xls suffix:
+        \verbatim
             "[Book1]Sheet1!R1C1"
+        \endverbatim
         Sometimes the string includes the filesystem path:
+        \verbatim
             "='C:\\path\\to\\[Book1.xls]Sheet1'!R1C1"
+        \endverbatim
         If the book contains a single sheet with the same name as the book,
         then the sheet name is omitted altogether and the book name is not
         enclosed in []s:
+        \verbatim
             "same_name.xls!R1C1"
             "'same name.xls'!R1C1"
+        \endverbatim
 
         In all cases, the cell reference, represented above as R1C1, may also
         be given as R1C1:R9C9 i.e. a range consisting of multiple cells, in 
         which case the RangeReference constructor sets multicell_ to true.
     */
-
     class RangeReference {
-    public:
-        RangeReference(const std::string &address);
-        bool operator==(const RangeReference&) const;
-        bool contains(const RangeReference&) const;
         friend std::ostream &operator<<(std::ostream&, const RangeReference&);
+    public:
+        //! Constructor - initialize the RangeReference object.
+        RangeReference(const std::string &address);
+        //! Test two RangeReference objects for equality.
+        /*! The two objects may in fact represent the same range even if they
+            were initialized with different strings and this operator handles
+            that case.
+        */
+        bool operator==(const RangeReference&) const;
+        //! Determine whether this range contains the given one.
+        /*! This functionality is presently used for processing error messages -
+            An error message may be associated with a multi-cell range and the
+            user can query any subset of that range and still get the relevant
+            error message.
+        */
+        bool contains(const RangeReference&) const;
+
+        //! \name Manage error messages
+        //@{
+        //! Assign an error message to this range.
         void setErrorMessage(const std::string &errorMessage, const bool &append);
+        //! Retrieve the error message associated with this range.
         const std::string errorMessage() const { return errorMessage_; }
+        //! Clear the error message associated with this range.
         void clearError() { errorMessage_ = ""; }
+        //@}
     private:
         std::string address_;
         std::string bookName_;

@@ -15,6 +15,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief Class Configuration - Global configuration information.
+*/
+
 #ifndef ohxl_configuration_hpp
 #define ohxl_configuration_hpp
 
@@ -22,12 +26,30 @@
 
 namespace ObjectHandler {
 
+    //! Global configuration information specific to the Excel session.
     class Configuration : public Singleton<Configuration> {
         friend class Singleton<Configuration>;
     public:
+        //! \name Initialization
+        //@{
+        //! Constructor - sets initialized flag to false.
         Configuration() : initialized_(false) {}
+        //! Initialize the global Configuration Singleton object.
+        /*! The app must call this function at startup e.g. 
+                Configuration::instance().init()
+            Failure to do so will lead to runtime errors later as ObjectHandler
+            functions attempt to access the configuration information.
+        */
         void init();
+        //! Get the row character for this installation of Excel.
+        /*! This is "R" for English versions of Excel but may be a different
+            letter in other languages.
+        */
         const char &rowCharacter();
+        //! Get the column character for this installation of Excel.
+        /*! This is "C" for English versions of Excel but may be a different
+            letter in other languages.
+        */
         const char &colCharacter();
     private:
         bool initialized_;
