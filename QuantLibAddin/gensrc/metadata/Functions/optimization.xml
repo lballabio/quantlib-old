@@ -13,7 +13,7 @@
 
     <!-- EndCriteria class and interface -->
 
-    <Procedure name='qlSecondsToString'>
+    <!--<Procedure name='qlSecondsToString'>
       <description>returns a hh:mm:ss string from the number of seconds provided as input.</description>
       <alias>QuantLib::secondsToString</alias>
       <SupportedPlatforms>
@@ -32,7 +32,7 @@
         <type>string</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Procedure>
+    </Procedure>-->
 
     <Member name='qlEndCriteriaMaxIterations' type='QuantLib::EndCriteria'>
       <description>Returns the number of max interation for the given EndCriteria object</description>
