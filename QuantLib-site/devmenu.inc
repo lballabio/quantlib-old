@@ -12,7 +12,7 @@
 <li class="navlink"><a href="/svn.shtml">Subversion</a></li>
 
 <li class="navlink"><a href=
-"http://wiki.quantlib.org">QuantLib Wiki</a></li>
+"http://sourceforge.net/pm/?group_id=12740">Open tasks</a></li>
 
 <li class="navlink"><a href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs</a></li>
@@ -25,6 +25,9 @@
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">Feature&nbsp;Requests</a></li>
 
 <li class="navlink"><a href="/style.shtml">Style Guidelines</a></li>
+
+<li class="navlink"><a href=
+"http://wiki.quantlib.org">QuantLib Wiki</a></li>
 </ul>
 
 <hr>
