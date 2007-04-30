@@ -18,13 +18,13 @@
 #ifndef qla_processes_hpp
 #define qla_processes_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <qlo/volatilities.hpp>
 #include <ql/processes/blackscholesprocess.hpp>
 
 namespace QuantLibAddin {
 
-    class GeneralizedBlackScholesProcess : public ObjHandler::LibraryObject<QuantLib::GeneralizedBlackScholesProcess> {
+    class GeneralizedBlackScholesProcess : public ObjectHandler::LibraryObject<QuantLib::GeneralizedBlackScholesProcess> {
     public:
         GeneralizedBlackScholesProcess(
             const boost::shared_ptr < QuantLib::BlackVolTermStructure > &blackVolTermStructureP,

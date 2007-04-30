@@ -19,14 +19,14 @@
 #ifndef qla_shortratemodels_hpp
 #define qla_shortratemodels_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <qlo/termstructures.hpp>
 #include <ql/models/shortrate/onefactormodels/vasicek.hpp>
 #include <ql/models/shortrate/onefactormodels/hullwhite.hpp>
 
 namespace QuantLibAddin {
 
-    class AffineModel : public ObjHandler::LibraryObject<QuantLib::AffineModel> {
+    class AffineModel : public ObjectHandler::LibraryObject<QuantLib::AffineModel> {
     };
 
     class Vasicek : public AffineModel {

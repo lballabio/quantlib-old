@@ -303,7 +303,7 @@
 			Name="code"
 			>
 			<File
-				RelativePath="code\code.py"
+				RelativePath="code\codedict.py"
 				>
 			</File>
 		</Filter>

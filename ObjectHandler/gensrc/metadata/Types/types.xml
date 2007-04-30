@@ -16,8 +16,7 @@
 
     <SuperType name='objectClass' nativeType='string' conversionSuffix='Obj'>
       <DataTypes>
-        <DataType>ObjHandler::Object</DataType>
-        <DataType>ObjHandler::Thing</DataType>
+        <DataType>ObjectHandler::Object</DataType>
       </DataTypes>
     </SuperType>
 

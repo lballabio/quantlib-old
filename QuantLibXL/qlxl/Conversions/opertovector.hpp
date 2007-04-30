@@ -22,7 +22,7 @@
 #include <ql/math/array.hpp>
 #include <qlxl/Conversions/opertoscalar.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     //QuantLib::Array operToVector(const FP &fpVector);
     QuantLib::Array operToVector(const OPER &operVector, 

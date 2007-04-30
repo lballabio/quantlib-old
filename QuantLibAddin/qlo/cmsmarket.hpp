@@ -18,7 +18,7 @@
 #ifndef qla_cmsmarket_hpp
 #define qla_cmsmarket_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/swaptionvolstructure.hpp>
 #include <ql/termstructures/volatilities/cmsmarket.hpp>
 #include <ql/termstructure.hpp>
@@ -30,7 +30,7 @@ namespace QuantLibAddin {
     
     std::vector<std::vector<boost::any> > browseCmsMarket(QuantLib::Matrix & cmsMarket);
     
-    class CmsMarket: public ObjHandler::LibraryObject<QuantLib::CmsMarket>{
+    class CmsMarket: public ObjectHandler::LibraryObject<QuantLib::CmsMarket>{
       public:
         CmsMarket(
             const std::vector<QuantLib::Period>& expiries,
@@ -47,7 +47,7 @@ namespace QuantLibAddin {
 
     };  
 
-    class CmsMarketCalibration: public ObjHandler::LibraryObject<QuantLib::CmsMarketCalibration>{
+    class CmsMarketCalibration: public ObjectHandler::LibraryObject<QuantLib::CmsMarketCalibration>{
      public:
         CmsMarketCalibration(
             QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& volCube,

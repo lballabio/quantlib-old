@@ -2,8 +2,6 @@
 SUBDIRS = \
     gensrc \
     oh/Conversions \
-    oh/Loop \
-    oh/ValueObjects \
     oh \
     ohxl \
     xlsdk \
@@ -19,9 +17,9 @@ EXTRA_DIST = \
     LICENSE.TXT \
     NEWS.txt \
     ObjectHandler.nsi \
-    ObjectHandler.sln \
+    ObjectHandler_vc7.sln \
     ObjectHandler_vc8.sln \
-    ohlib.vcproj \
+    ohlib_vc7.vcproj \
     ohlib_vc8.vcproj \
     README.txt \
     TODO.txt

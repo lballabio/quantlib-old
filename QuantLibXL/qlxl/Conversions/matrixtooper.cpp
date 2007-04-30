@@ -19,7 +19,7 @@
 #include <ohxl/Conversions/scalartooper.hpp>
 #include <oh/exception.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     void matrixToOper(const QuantLib::Matrix &m, OPER &xMatrix) {
         if (m.empty()) {

@@ -18,11 +18,11 @@
 #ifndef ohxl_conversions_validations_hpp
 #define ohxl_conversions_validations_hpp
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <string>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     DLL_API void validateRange(const OPER *xRange, const std::string &name);
     DLL_API void stringToChar(const std::string &s, char *c);

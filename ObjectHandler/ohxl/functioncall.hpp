@@ -23,20 +23,26 @@
 #define ohxl_functioncall_hpp
 
 #include <xlsdk/xlsdkdefines.hpp>
-#include <ohxl/objhandlerxldefines.hpp>
+#include <ohxl/ohxldefines.hpp>
+#include <ohxl/callingrange.hpp>
+#include <ohxl/xloper.hpp>
+#include <boost/shared_ptr.hpp>
 
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
-
-//! ObjHandler
+//! ObjectHandler
 /*! name space for the Object Handler
 */
-namespace ObjHandler {
+namespace ObjectHandler {
 
-    enum CallerDimensions { Uninitialized, Row, Column, /* Matrix, Scalar */ };
-    enum CallerType { Uninitialized2, Cell, /* Menu, VBA, */ Unknown };
+    struct CallerDimensions {
+        enum Type { Uninitialized, Row, Column /*, Matrix, Scalar */ };
+    };
+
+    struct CallerType {
+        enum Type { Uninitialized, Cell, /* Menu, VBA, */ Unknown };
+    };
 
     //! Singleton encapsulating state relating to Excel function call.
-    /*! An instance of this object is instantiated on the heap when the
+    /*! An instance of this object is instantiated on the stack when the
         function is invoked such that the object goes out of scope when
         the function exits.  This class allows global access to
         function-specific state e.g. the return value of xlfGetCaller.
@@ -46,34 +52,28 @@ namespace ObjHandler {
         FunctionCall(const std::string functionName);
         ~FunctionCall();
         static FunctionCall &instance();
-        const XLOPER *getCallerReference();
-        const XLOPER *getCallerAddress();
-        const XLOPER *getCallerArray();
-        const std::string &getAddressString();
-        const std::string &getFunctionName();
-        const std::string &getFormula();
-        //bool outerFunction();
-        CallerDimensions getCallerDimensions();
-        CallerType getCallerType();
-        bool IsCalledByFuncWiz();
-        void setError() {
-            error_ = true;
-        }
+        const XLOPER *callerReference();
+        const XLOPER *callerAddress();
+        const XLOPER *callerArray();
+        const std::string &addressString();
+        const std::string &functionName() { return functionName_; }
+        const std::string &refStr() { return refStr_; }
+        CallerDimensions::Type callerDimensions();
+        CallerType::Type callerType();
+        void setError() { error_ = true; }
     private:
         static FunctionCall *instance_;
-        XLOPER xCaller_;
-        XLOPER xReftext_;
-        XLOPER xMulti_;
-        std::string address_;
-        std::string formula_;
         std::string functionName_;
-        CallerDimensions callerDimensions_;
-        CallerType callerType_;
+        std::string address_;
+        std::string refStr_;
+        Xloper xCaller_;
+        Xloper xReftext_;
+        Xloper xMulti_;
+        CallerDimensions::Type callerDimensions_;
+        CallerType::Type callerType_;
         bool error_;
     };
 
 }
-
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 
 #endif

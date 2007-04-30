@@ -20,7 +20,7 @@
 #define qla_quotes_hpp
 
 #include <qlo/index.hpp>
-#include <oh/object.hpp>
+#include <oh/libraryobject.hpp>
 #include <qlo/termstructures.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <ql/quotes/derivedquote.hpp>
@@ -32,7 +32,7 @@
 
 namespace QuantLibAddin {
 
-    class Quote : public ObjHandler::LibraryObject<QuantLib::Quote> {};
+    class Quote : public ObjectHandler::LibraryObject<QuantLib::Quote> {};
 
     class SimpleQuote : public Quote {
       public:

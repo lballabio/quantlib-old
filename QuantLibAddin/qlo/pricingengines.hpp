@@ -19,7 +19,7 @@
 #ifndef qla_pricingengine_hpp
 #define qla_pricingengine_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/pricingengine.hpp>
 #include <ql/pricingengines/blackcalculator.hpp>
 #include <ql/pricingengines/swaption/blackswaptionengine.hpp>
@@ -29,7 +29,7 @@
 
 namespace QuantLibAddin {
 
-    class PricingEngine : public ObjHandler::LibraryObject<QuantLib::PricingEngine> {
+    class PricingEngine : public ObjectHandler::LibraryObject<QuantLib::PricingEngine> {
       public:
           PricingEngine(const std::string &engineID);
           PricingEngine(const std::string &engineID, const long& timeSteps);
@@ -62,7 +62,7 @@ namespace QuantLibAddin {
       public:
         MarketModelCapFloorEngine(const boost::shared_ptr<QuantLib::MarketModelFactory>&);
     }; 
-    class BlackCalculator : public ObjHandler::LibraryObject<QuantLib::BlackCalculator> {
+    class BlackCalculator : public ObjectHandler::LibraryObject<QuantLib::BlackCalculator> {
       public:
         BlackCalculator(
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,

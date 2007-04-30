@@ -19,7 +19,7 @@
 #ifndef qla_sequencestatistics_hpp
 #define qla_sequencestatistics_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/math/statistics/sequencestatistics.hpp>
 #include <ql/math/statistics/riskstatistics.hpp>
 #include <ql/math/matrix.hpp>
@@ -27,7 +27,7 @@
 namespace QuantLibAddin {
 
     class SequenceStatistics : 
-        public ObjHandler::LibraryObject<QuantLib::SequenceStatistics> {
+        public ObjectHandler::LibraryObject<QuantLib::SequenceStatistics> {
     public:
         SequenceStatistics(QuantLib::Size dimension,
                            QuantLib::Matrix values, 

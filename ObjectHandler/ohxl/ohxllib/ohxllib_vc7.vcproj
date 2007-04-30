@@ -343,9 +343,6 @@
 					RelativePath="..\..\oh\exception.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\object.cpp">
-				</File>
-				<File
 					RelativePath="..\..\oh\object.hpp">
 				</File>
 				<File
@@ -376,6 +373,9 @@
 			<Filter
 				Name="Conversions"
 				Filter="">
+				<File
+					RelativePath="..\..\oh\Conversions\anytostream.hpp">
+				</File>
 				<File
 					RelativePath="..\..\oh\Conversions\coerce.hpp">
 				</File>

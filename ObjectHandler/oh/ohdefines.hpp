@@ -44,13 +44,12 @@
 
 #ifdef XLL_EXPORTS
     #define DLL_API __declspec(dllexport)
-    #define COMPILING_XLL
+    #define COMPILING_XLL_DYNAMIC
 #elif XLL_IMPORTS
     #define DLL_API __declspec(dllimport)
-    #define COMPILING_XLL
+    #define COMPILING_XLL_DYNAMIC
 #elif XLL_STATIC
     #define DLL_API
-    #define COMPILING_XLL
 #else
     #define DLL_API
 #endif
@@ -59,5 +58,34 @@
 #pragma warning(disable : 4996)
 #pragma warning(disable : 4244)
 #endif
+
+// get a boost shared pointer to a class derived from Object
+#define OH_GET_OBJECT( NAME, ID, OBJECT_CLASS ) \
+    boost::shared_ptr< OBJECT_CLASS > NAME; \
+    ObjectHandler::Repository::instance().retrieveObject(NAME, ID);
+
+// get a boost shared pointer to the client library object referenced by an ObjectHandler::Object
+#define OH_GET_REFERENCE( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
+    OH_GET_OBJECT(NAME ## temp, ID, OBJECT_CLASS ) \
+    boost::shared_ptr<LIBRARY_CLASS> NAME; \
+    NAME ## temp->getLibraryObject(NAME);
+
+// OH_GET_REFERENCE_DEFAULT - like OH_GET_REFERENCE but only attempt retrieval if id supplied
+#define OH_GET_REFERENCE_DEFAULT( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
+    boost::shared_ptr<LIBRARY_CLASS> NAME; \
+    if (!ID.empty()) { \
+        OH_GET_OBJECT(NAME ## temp, ID, OBJECT_CLASS ) \
+        NAME ## temp->getLibraryObject(NAME); \
+    }
+
+// get a direct reference to the underlying object wrapped by the ObjectHandler::Object
+#define OH_GET_UNDERLYING( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
+    OH_GET_REFERENCE(NAME ## temp, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
+    const LIBRARY_CLASS &NAME = *(NAME ## temp.get());
+
+// like OH_GET_UNDERLYING but without const qualifier
+#define OH_GET_UNDERLYING_NONCONST( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
+    OH_GET_REFERENCE(NAME ## temp, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
+    LIBRARY_CLASS &NAME = *(NAME ## temp.get());
 
 #endif

@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,7 +20,7 @@
 #include <oh/exception.hpp>
 #include <sstream>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     bool validateMulti(const OPER *xMulti) {
         for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; ++i)
@@ -30,17 +30,9 @@ namespace ObjHandler {
     }
 
     DLL_API void validateRange(const OPER *xRange, const std::string &name) {
-        if (xRange->xltype == xltypeErr) {
-            std::ostringstream msg;
-            msg << "parameter '" << name << "' has error value";
-            throw Exception(msg.str());
-        } else if (xRange->xltype == xltypeMulti) {
-            if (!validateMulti(xRange)) {
-                std::ostringstream msg;
-                msg << "parameter '" << name << "' has error value";
-                throw Exception(msg.str());
-            }
-        }
+        OH_REQUIRE(xRange->xltype != xltypeErr, "parameter '" << name << "' has error value");
+        OH_REQUIRE(xRange->xltype != xltypeMulti || validateMulti(xRange), 
+            "parameter '" << name << "' has error value");
     }
 
     DLL_API void stringToChar(const std::string &value, char *c) {

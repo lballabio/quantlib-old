@@ -18,7 +18,7 @@
 #ifndef qla_stickyratchet_hpp
 #define qla_stickyratchet_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/instruments/stickyratchet.hpp>
 #include <qlo/payoffs.hpp>
 

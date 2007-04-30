@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,7 +17,7 @@
 */
 
 /*! \file
-    \brief ValueObject class
+    \brief class ValueObject - captures the inputs to an Object.
 */
 
 #ifndef oh_valueobject_hpp
@@ -26,18 +27,23 @@
 #include <vector>
 #include <boost/any.hpp>
 
-/* Use BOOST_MSVC instead of _MSC_VER since some other vendors 
-   (Metrowerks, for example) also #define _MSC_VER
-*/
-#if defined BOOST_MSVC       // Microsoft Visual C++
-#pragma warning(disable:4231)
-#endif
+namespace ObjectHandler {
 
-namespace ObjHandler {
+    //! Class ValueObject - captures the inputs to an Object.
+    /*! For each class derived from Object there is a corresponding ValueObject
+        class.  The source code of classes derived from ValueObject is generated
+        automatically by gensrc.  Each Object holds a reference to its
+        ValueObject.
 
+        The ValueObject captures a snapshot of the input arguments that were
+        passed to the Object's constructor.  These values can be used later
+        for serialization or run-time interrogation of the Object.
+    */
 	class ValueObject {
 	public:
+        //! Retrieve the names of the properties stored in the ValueObject.
 		virtual std::vector<std::string> getPropertyNames() const = 0;
+        //! Retrieve the value of a property given its name.
 		virtual boost::any getProperty(const std::string& name) const = 0;
         virtual ~ValueObject() {}
 	};

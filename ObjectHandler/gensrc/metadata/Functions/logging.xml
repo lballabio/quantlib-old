@@ -15,9 +15,9 @@
 
     <Procedure name='ohLogAllObjects'>
       <description>write all object descriptions to log file</description>
-      <alias>ObjHandler::logAllObjects</alias>
+      <alias>ObjectHandler::logAllObjects</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -30,9 +30,9 @@
 
     <Procedure name='ohLogMessage'>
       <description>log a message</description>
-      <alias>ObjHandler::logMessage</alias>
+      <alias>ObjectHandler::logMessage</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -56,9 +56,9 @@
 
     <Procedure name='ohLogObject'>
       <description>write object description to log file</description>
-      <alias>ObjHandler::logObject</alias>
+      <alias>ObjectHandler::logObject</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -77,9 +77,9 @@
 
     <Procedure name='ohSetLogFile'>
       <description>begin logging to named file</description>
-      <alias>ObjHandler::setLogFile</alias>
+      <alias>ObjectHandler::setLogFile</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -103,9 +103,9 @@
 
     <Procedure name='ohSetLogLevel'>
       <description>set threshold for log messages</description>
-      <alias>ObjHandler::setLogLevel</alias>
+      <alias>ObjectHandler::setLogLevel</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

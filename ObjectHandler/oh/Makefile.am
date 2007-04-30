@@ -3,15 +3,14 @@ includedir = $(prefix)/include/oh
 
 include_HEADERS = \
     config.hpp \
-    demo.hpp \
     exception.hpp \
     iless.hpp \
+    libraryobject.hpp \
     logger.hpp \
     objecthandler.hpp \
     object.hpp \
-    objhandlerdefines.hpp \
-    objhandler.hpp \
-    ohthing.hpp \
+    ohdefines.hpp \
+    repository.hpp \
     singleton.hpp \
     utilities.hpp \
     valueobject.hpp
@@ -23,13 +22,7 @@ lib_LTLIBRARIES = libObjectHandler.la
 LDFLAGS = -llog4cxx -lboost_regex -release $(PACKAGE_VERSION)
 
 libObjectHandler_la_SOURCES = \
-    exception.cpp  \
     logger.cpp  \
-    object.cpp  \
-    objecthandler.cpp  \
-    ohthing.cpp  \
+    repository.cpp  \
     utilities.cpp
-
-libObjectHandler_la_LIBADD = \
-    ValueObjects/libValueObjects.la
 

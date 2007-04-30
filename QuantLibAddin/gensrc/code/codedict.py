@@ -5,109 +5,109 @@
 
 code11 = '''\
         std::string %(name)sCpp =
-            ObjHandler::callOperToScalar<std::string>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+            ObjectHandler::callOperToScalar<std::string>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code12 = '''\
         %(nativeType)s %(name)sCpp =
-            ObjHandler::callOperToScalar<%(nativeType)s>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+            ObjectHandler::callOperToScalar<%(nativeType)s>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code12b = '''\
         boost::any %(name)sCpp =
-            ObjHandler::callOperToScalar<boost::any>(*%(name)s, "%(name)s", boost::any());\n'''
+            ObjectHandler::callOperToScalar<boost::any>(*%(name)s, "%(name)s", boost::any());\n'''
 
 code13 = '''\
         std::vector<%(nativeType)s> %(name)sCpp =
-            ObjHandler::operToVector<%(nativeType)s>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<%(nativeType)s>(*%(name)s, "%(name)s");\n'''
 
 code13b = '''\
         std::vector<boost::any> %(name)sCpp =
-            ObjHandler::operToVector<boost::any>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<boost::any>(*%(name)s, "%(name)s");\n'''
 
 code14 = '''\
         std::vector<long> %(name)sCpp =
-            ObjHandler::operToVector<long>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<long>(*%(name)s, "%(name)s");\n'''
 
 code15 = '''\
         std::vector<double> %(name)sCpp =
-            ObjHandler::operToVector<double>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<double>(*%(name)s, "%(name)s");\n'''
 
 code16 = '''\
         std::vector<std::string> %(name)sCpp =
-            ObjHandler::operToVector<std::string>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<std::string>(*%(name)s, "%(name)s");\n'''
 
 code17 = '''\
         std::vector<boost::any> %(name)sCpp =
-            ObjHandler::operToVector<boost::any>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<boost::any>(*%(name)s, "%(name)s");\n'''
 
 code18 = '''\
         std::vector<std::vector<%(type)s> > %(name)sCpp =
-            ObjHandler::operToMatrix<%(type)s>(*%(name)s);\n'''
+            ObjectHandler::operToMatrix<%(type)s>(*%(name)s);\n'''
 
 code19 = '''\
         std::vector<std::vector<long> > %(name)sCpp =
-            ObjHandler::fpToMatrix<long>(*%(name)s);\n'''
+            ObjectHandler::fpToMatrix<long>(*%(name)s);\n'''
 
 code20 = '''\
         std::vector<std::vector<double> > %(name)sCpp =
-            ObjHandler::fpToMatrix<double>(*%(name)s);\n'''
+            ObjectHandler::fpToMatrix<double>(*%(name)s);\n'''
 
 code21a = '''\
         std::vector<std::vector<std::string> > %(name)sCpp =
-            ObjHandler::operToMatrix<std::string>(*%(name)s);\n'''
+            ObjectHandler::operToMatrix<std::string>(*%(name)s);\n'''
 
 code21b = '''\
         std::vector<std::vector<boost::any> > %(name)sCpp =
-            ObjHandler::operToMatrix<boost::any>(*%(name)s);\n'''
+            ObjectHandler::operToMatrix<boost::any>(*%(name)s);\n'''
 
 code22 = '''\
         %(type)s %(name)sLib;
-        ObjHandler::cppToLibrary(%(name)s, %(name)sLib);\n'''
+        ObjectHandler::cppToLibrary(%(name)s, %(name)sLib);\n'''
 
 code23 = '''\
         %(type)s %(name)sLib;
-        ObjHandler::cppToLibrary(*%(name)s, %(name)sLib);\n'''
+        ObjectHandler::cppToLibrary(*%(name)s, %(name)sLib);\n'''
 
 code24 = '''\
         QuantLib::Date %(name)sLib =
-            ObjHandler::callOperToScalar<QuantLib::Date>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::callOperToScalar<QuantLib::Date>(*%(name)s, "%(name)s");\n'''
 
 code25 = '''\
         %(type)s %(name)sLib =
-            ObjHandler::callOperToScalar<%(type)s>(%(name)s, "%(name)s", %(defaultValue)s);\n'''
+            ObjectHandler::callOperToScalar<%(type)s>(%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code26 = '''\
         %(type)s %(name)sLib =
-            ObjHandler::callOperToScalar<%(type)s>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+            ObjectHandler::callOperToScalar<%(type)s>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code27 = '''\
         QuantLib::Date %(name)sLib =
-            ObjHandler::callOperToScalar<QuantLib::Date>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+            ObjectHandler::callOperToScalar<QuantLib::Date>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code28 = '''\
         %(type)s %(name)sLib =
-            ObjHandler::operToVector(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector(*%(name)s, "%(name)s");\n'''
 
 code29 = '''\
         %(type)s %(name)sLib =
-            ObjHandler::operToMatrix(*%(name)s);\n'''
+            ObjectHandler::operToMatrix(*%(name)s);\n'''
 
 code30 = '''\
         std::vector<QuantLib::Date> %(name)sLib =
-            ObjHandler::operToVector<QuantLib::Date>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<QuantLib::Date>(*%(name)s, "%(name)s");\n'''
 
 code31 = '''\
         std::vector<%(type)s> %(name)sLib =
-            ObjHandler::operToVectorLibrary<%(type)s>(
+            ObjectHandler::operToVectorLibrary<%(type)s>(
             *%(name)s);\n'''
 
 code32 = '''\
         std::vector<%(type)s> %(name)sLib =
-            ObjHandler::operToVector<%(type)s>(
+            ObjectHandler::operToVector<%(type)s>(
             *%(name)s, "%(name)s");\n'''
 
 code33 = '''\
         %(type)s %(name)sEnum =
-            ObjHandler::operToScalarEnum<%(type)s,
+            ObjectHandler::operToScalarEnum<%(type)s,
                 %(namespaceObjects)s::Create<%(type)s> >(
                     *%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
@@ -117,7 +117,7 @@ code34 = '''\
 
 code35 = '''\
         std::vector<%(type)s> %(name)sEnum =
-            ObjHandler::operToVectorEnum<%(type)s,
+            ObjectHandler::operToVectorEnum<%(type)s,
             %(namespaceObjects)s::Create<%(type)s> >(*%(name)s);\n'''
 
 code36a = '''\
@@ -140,56 +140,56 @@ code39 = '''\
 
 code40 = '''\
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            ObjHandler::CoerceIndex<
+            ObjectHandler::CoerceIndex<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)s);\n'''
 
 code41 = '''\
         std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
-            ObjHandler::CoerceIndexVector<
+            ObjectHandler::CoerceIndexVector<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>(
                     %(name)sCpp);\n'''
 
 code42 = '''\
         std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
-            ObjHandler::operToObjectVector<%(namespaceLibrary)s::%(classname)s, %(namespaceObjects)s::%(classname)s>(
+            ObjectHandler::operToObjectVector<%(namespaceLibrary)s::%(classname)s, %(namespaceObjects)s::%(classname)s>(
             *%(name)s);\n'''
 
 code43 = '''\
         std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > %(name)sLibObj =
-            ObjHandler::operToVector<QuantLib::RelinkableHandle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<QuantLib::RelinkableHandle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
 
 code44 = '''\
-        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjHandler::Object)
+        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
         %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            ObjHandler::CoerceHandle<
+            ObjectHandler::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);\n'''
 
 code45a = '''\
         QuantLib::RelinkableHandle<QuantLib::Quote> %(name)sLibObj =
-            ObjHandler::callOperToScalar<QuantLib::RelinkableHandle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::callOperToScalar<QuantLib::RelinkableHandle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
 
 code45b = '''\
-        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjHandler::Object)
+        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            ObjHandler::CoerceObject<
+            ObjectHandler::CoerceObject<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);\n'''
 
 code46 = '''\
-        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjHandler::Object)
+        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            ObjHandler::CoerceTermStructure()(%(name)sTemp);\n'''
+            ObjectHandler::CoerceTermStructure()(%(name)sTemp);\n'''
 
 code46b = '''\
-        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjHandler::Object)
+        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            ObjHandler::CoerceCurve<
+            ObjectHandler::CoerceCurve<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s,
                 QuantLib::SwaptionVolatilityStructure>()(
@@ -197,7 +197,7 @@ code46b = '''\
 
 code47 = '''\
         boost::shared_ptr<QuantLib::Quote> %(name)sLibObj =
-            ObjHandler::callOperToScalar<boost::shared_ptr<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::callOperToScalar<boost::shared_ptr<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
 
 code48 = '''\
         OH_GET_UNDERLYING(%(name)sLibObj, %(name)s,
@@ -209,7 +209,7 @@ code49 = '''\
 
 code50 = '''\
         std::vector<std::vector<%(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s> > > %(name)sLibObj =
-            ObjHandler::operToMatrixHandle<%(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s>(*%(name)s);\n'''
+            ObjectHandler::operToMatrixHandle<%(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s>(*%(name)s);\n'''
 
 code51 = '''\
 std::vector<std::vector<std::string> > returnValue = '''
@@ -229,31 +229,31 @@ code55 = '''\
             %(name)sCpp.end()'''
 
 code56a = '''\
-        std::string str = ObjHandler::libraryToScalar(returnValue);
+        std::string str = ObjectHandler::libraryToScalar(returnValue);
         static char ret[XL_MAX_STR_LEN];
-        ObjHandler::stringToChar(str, ret);
+        ObjectHandler::stringToChar(str, ret);
         return ret;'''
  
 code56b = '''\
         static %(nativeType)s returnValueXL;
-        returnValueXL = ObjHandler::libraryToScalar(returnValue);
+        returnValueXL = ObjectHandler::libraryToScalar(returnValue);
         return &returnValueXL;'''
 
 code57 = '''\
         std::ostringstream os;
         os << returnValue;
         static char ret[XL_MAX_STR_LEN];
-        ObjHandler::stringToChar(os.str(), ret);
+        ObjectHandler::stringToChar(os.str(), ret);
         return ret;'''
 
 code58 = '''\
         static char ret[XL_MAX_STR_LEN];
-        ObjHandler::stringToChar(returnValue, ret);
+        ObjectHandler::stringToChar(returnValue, ret);
         return ret;'''
 
 code59 = '''\
         static OPER xRet;
-        ObjHandler::%(tensorRank)sToOper(returnValue, xRet);
+        ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
         return &xRet;'''
 
 code60 = '''\
@@ -261,29 +261,29 @@ code60 = '''\
 
 code61 = '''\
         static OPER xRet;
-        ObjHandler::%(tensorRank)sToOper(returnValue, xRet);
+        ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
         return &xRet;'''
 
 code62 = '''\
-        std::vector<%(nativeType)s> returnValVec = ObjHandler::libraryToVector(returnValue);
+        std::vector<%(nativeType)s> returnValVec = ObjectHandler::libraryToVector(returnValue);
         static OPER xRet;
-        ObjHandler::vectorToOper(returnValVec, xRet);
+        ObjectHandler::vectorToOper(returnValVec, xRet);
         return &xRet;'''
 
 code63 = '''\
-        std::vector<std::string> returnValVec = ObjHandler::libraryToVector(returnValue);
+        std::vector<std::string> returnValVec = ObjectHandler::libraryToVector(returnValue);
         static OPER xRet;
-        ObjHandler::vectorToOper(returnValVec, xRet);
+        ObjectHandler::vectorToOper(returnValVec, xRet);
         return &xRet;'''
 
 code64 = '''\
         static OPER xRet;
-        ObjHandler::%(tensorRank)sToOper(returnValue, xRet);
+        ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
         return &xRet;'''
 
 code65 = '''\
         static OPER xRet;
-        ObjHandler::%(tensorRank)sToOper(returnValue, xRet);
+        ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
         return &xRet;'''
 
 ##########################################################################
@@ -400,9 +400,9 @@ code92 = '''\
         return returnValueCalc;\n'''
 
 code93 = '''\
-        OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjHandler::Object)
+        OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjectHandler::Object)
         %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            ObjHandler::CoerceHandle<
+            ObjectHandler::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);\n'''

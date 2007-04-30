@@ -22,10 +22,10 @@
 #ifndef oh_singleton_hpp
 #define oh_singleton_hpp
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <boost/shared_ptr.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     //! Basic support for the singleton pattern.
     /*! The typical use of this class is:

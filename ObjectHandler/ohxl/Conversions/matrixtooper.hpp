@@ -21,7 +21,7 @@
 #include <ohxl/Conversions/scalartooper.hpp>
 #include <vector>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     template <class T>
     void matrixToOper(const std::vector<std::vector<T> > &vv, OPER &xMatrix) {
@@ -33,8 +33,6 @@ namespace ObjHandler {
         xMatrix.val.array.rows    = vv.size();
         xMatrix.val.array.columns = vv[0].size();
         xMatrix.val.array.lparray = new OPER[xMatrix.val.array.rows * xMatrix.val.array.columns]; 
-        if (!xMatrix.val.array.lparray)
-            throw Exception("matrixToOper: error on call to new");
         xMatrix.xltype = xltypeMulti | xlbitDLLFree;
         for (unsigned int i=0; i<vv.size(); ++i) {
             std::vector<T> v = vv[i];

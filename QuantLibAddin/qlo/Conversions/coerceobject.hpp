@@ -24,12 +24,12 @@
 
 //NANDO: why in the ObjectHandler namespace?
 
-// Some of these conversion functions need to be in namespace ObjHandler because
+// Some of these conversion functions need to be in namespace ObjectHandler because
 // they override ObjectHandler functions in that namespace.
-// Others need not be in namespace ObjHandler and could be moved into a more appropriate
+// Others need not be in namespace ObjectHandler and could be moved into a more appropriate
 // namespace e.g. QuantLibAddin but for the sake of expediency this has not yet been done.
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     // Accept an id of an Object in the Repository and return a boost::shared_ptr<LibraryClass>.
     // 1) If the Object is of class QuantLibAddin::RelinkableHandle then return the contained boost::shared_ptr<LibraryClass>
@@ -37,7 +37,7 @@ namespace ObjHandler {
     // 3) Otherwise the Object is of an unexpected class so raise an exception
 
     template <class ObjectClass, class LibraryClass>
-    bool objectToReference(const boost::shared_ptr<ObjHandler::Object> &in,
+    bool objectToReference(const boost::shared_ptr<ObjectHandler::Object> &in,
                            boost::shared_ptr<LibraryClass> &out) {
         boost::shared_ptr<ObjectClass> qloPointer = 
             boost::dynamic_pointer_cast<ObjectClass>(in);
@@ -50,7 +50,7 @@ namespace ObjHandler {
     }
 
     template <class LibraryClass>
-    bool handleToReference(const boost::shared_ptr<ObjHandler::Object> &in,
+    bool handleToReference(const boost::shared_ptr<ObjectHandler::Object> &in,
                            boost::shared_ptr<LibraryClass> &out) {
         boost::shared_ptr<QuantLibAddin::RelinkableHandle<LibraryClass> > handlePointer =
             boost::dynamic_pointer_cast<QuantLibAddin::RelinkableHandle<LibraryClass> >(in);
@@ -65,11 +65,11 @@ namespace ObjHandler {
     }
 
     template <class ObjectClass, class LibraryClass>
-    class CoerceObject : public ObjHandler::Coerce<
-            boost::shared_ptr<ObjHandler::Object>, 
+    class CoerceObject : public ObjectHandler::Coerce<
+            boost::shared_ptr<ObjectHandler::Object>, 
             boost::shared_ptr<LibraryClass> > {
-        typedef typename ObjHandler::Coerce<
-            boost::shared_ptr<ObjHandler::Object>,
+        typedef typename ObjectHandler::Coerce<
+            boost::shared_ptr<ObjectHandler::Object>,
             boost::shared_ptr<LibraryClass> >::Conversion Conversion; 
         Conversion *getConversions() {
             static Conversion conversions[] = {

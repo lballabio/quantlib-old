@@ -13,7 +13,7 @@
 
   <Functions>
 
-    <Member name='ohPropertyNames' type='ObjHandler::Object'>
+    <Member name='ohPropertyNames' type='ObjectHandler::Object'>
       <description>retrieve the property names of a given object</description>
       <libraryFunction>propertyNames</libraryFunction>
       <SupportedPlatforms>
@@ -28,11 +28,11 @@
       </ReturnValue>
     </Member>
 
-    <Member name='ohPropertyValue' type='ObjHandler::Object' dependencyTrigger='true'>
+    <Member name='ohPropertyValue' type='ObjectHandler::Object' dependencyTrigger='true'>
       <description>retrieve the value of a named property</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

@@ -21,7 +21,7 @@
 #ifndef qla_conundrumpricer_hpp
 #define qla_conundrumpricer_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 
 #include <qlo/schedule.hpp>
 #include <qlo/index.hpp>

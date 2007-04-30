@@ -18,14 +18,14 @@
 #ifndef qlxl_conversions_opertomatrix_hpp
 #define qlxl_conversions_opertomatrix_hpp
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/handle.hpp>
 #include <ql/quote.hpp>
 #include <ql/math/matrix.hpp>
 #include <vector>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     QuantLib::Matrix operToMatrix(const FP &fpVector);
 
@@ -64,9 +64,9 @@ namespace ObjHandler {
                 for (int j=0; j<xMulti->val.array.columns; ++j) {
                     std::string id;
                     operToScalar(xMulti->val.array.lparray[i * xMulti->val.array.columns + j], id);
-                    OH_GET_OBJECT(obj, id, ObjHandler::Object)
+                    OH_GET_OBJECT(obj, id, ObjectHandler::Object)
                     QuantLib::RelinkableHandle<qlClass> handle =
-                        ObjHandler::CoerceHandle<qloClass, qlClass>()(obj);
+                        ObjectHandler::CoerceHandle<qloClass, qlClass>()(obj);
                     row.push_back(handle);
                 }
                 ret.push_back(row);

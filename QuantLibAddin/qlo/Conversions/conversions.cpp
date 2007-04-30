@@ -30,7 +30,7 @@ using QuantLib::Period;
 using QuantLib::Size;
 using QuantLib::InterestRate;
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     double libraryToScalar(const InterestRate &i) {
         return i.rate();

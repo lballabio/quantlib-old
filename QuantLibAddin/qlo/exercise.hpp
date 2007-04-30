@@ -18,7 +18,7 @@
 #ifndef qla_exercise_hpp
 #define qla_exercise_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 
 namespace QuantLib {
     class Exercise;
@@ -27,7 +27,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class Exercise : public ObjHandler::LibraryObject<QuantLib::Exercise> {
+    class Exercise : public ObjectHandler::LibraryObject<QuantLib::Exercise> {
     };
 
     class AmericanExercise : public Exercise {

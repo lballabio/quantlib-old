@@ -22,11 +22,11 @@
 
 #include <ql/indexes/iborindex.hpp>
 #include <ql/termstructures/yieldcurves/ratehelpers.hpp>
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 
 namespace QuantLibAddin {
 
-    class RateHelper : public ObjHandler::LibraryObject<QuantLib::RateHelper> {
+    class RateHelper : public ObjectHandler::LibraryObject<QuantLib::RateHelper> {
       public:
          enum DepoInclusionCriteria {
                         AllDepos,

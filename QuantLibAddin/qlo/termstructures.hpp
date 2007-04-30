@@ -31,7 +31,7 @@
 #endif
 #include <qlo/interpolation.hpp>
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 
 namespace QuantLibAddin {
 

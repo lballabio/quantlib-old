@@ -1,7 +1,7 @@
 #include <qlo/qladdindefines.hpp>
 #include <qlo/handle.hpp>
 %(categoryIncludes)s
-#include <ohxl/objhandlerxl.hpp>
+#include <ohxl/objecthandlerxl.hpp>
 #include <qlxl/session.hpp>
 #include <qlxl/Conversions/all.hpp>
 

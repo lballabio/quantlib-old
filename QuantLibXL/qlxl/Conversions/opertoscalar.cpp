@@ -25,7 +25,7 @@
 #include <oh/object.hpp>
 #include <oh/objecthandler.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     void operToScalar(const OPER &xScalar, QuantLib::Date &ret) {
         long dateNum;
@@ -51,7 +51,7 @@ namespace ObjHandler {
         } else if (xScalar.xltype & xltypeStr) {
             std::string id;
             operToScalar(xScalar, id);
-            OH_GET_OBJECT(temp, id, ObjHandler::Object)
+            OH_GET_OBJECT(temp, id, ObjectHandler::Object)
             ret = CoerceHandle<QuantLibAddin::Quote, QuantLib::Quote>()(temp);
         } else {
             OH_FAIL("unable to convert input value to QuantLib::RelinkableHandle<QuantLib::Quote>");
@@ -64,7 +64,7 @@ namespace ObjHandler {
         } else if (xScalar.xltype & xltypeStr) {
             std::string id;
             operToScalar(xScalar, id);
-            OH_GET_OBJECT(temp, id, ObjHandler::Object)
+            OH_GET_OBJECT(temp, id, ObjectHandler::Object)
             ret = CoerceObject<QuantLibAddin::Quote, QuantLib::Quote>()(temp);
         } else {
             OH_FAIL("unable to convert input value to QuantLib::Quote");

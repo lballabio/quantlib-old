@@ -15,10 +15,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef ohxl_defines_hpp
-#define ohxl_defines_hpp
+#ifndef ohxl_utilities_hpp
+#define ohxl_utilities_hpp
 
-// Comment out the line below to disable garbage collection.
-#define OHXL_ENABLE_GARBAGE_COLLECTION
+#include <oh/ohdefines.hpp>
+#include <xlsdk/xlsdkdefines.hpp>
+
+DLL_API void freeOper(XLOPER *px);
+DLL_API void splitOper(const OPER *xFrom, OPER *xTo);
 
 #endif

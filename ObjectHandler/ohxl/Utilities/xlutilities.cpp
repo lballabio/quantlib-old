@@ -16,7 +16,7 @@
 */
 
 #include <oh/utilities.hpp>
-#include <ohxl/Utilities/utilities.hpp>
+#include <ohxl/Utilities/xlutilities.hpp>
 #include <ohxl/Conversions/opertoscalar.hpp>
 #include <ohxl/Conversions/vectortooper.hpp>
 
@@ -35,7 +35,7 @@ DLL_API void freeOper(XLOPER *px) {
 
 DLL_API void splitOper(const OPER *xFrom, OPER *xTo) {
     std::string text;
-    ObjHandler::operToScalar(*xFrom, text);
-    std::vector<std::string> vec = ObjHandler::split(text, ",;", false);
-    ObjHandler::vectorToOper(vec, *xTo, false);
+    ObjectHandler::operToScalar(*xFrom, text);
+    std::vector<std::string> vec = ObjectHandler::split(text, ",;", false);
+    ObjectHandler::vectorToOper(vec, *xTo, false);
 }

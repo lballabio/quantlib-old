@@ -18,14 +18,14 @@
 #ifndef qla_optimization_hpp
 #define qla_optimization_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/math/optimization/method.hpp>
 #include <ql/math/optimization/linesearch.hpp>
 
 namespace QuantLibAddin {
 
     class EndCriteria :
-        public ObjHandler::LibraryObject<QuantLib::EndCriteria> {
+        public ObjectHandler::LibraryObject<QuantLib::EndCriteria> {
       public:
         EndCriteria(QuantLib::Size maxIterations,
                     QuantLib::Size maxStationaryStateIterations,
@@ -35,7 +35,7 @@ namespace QuantLibAddin {
     };
 
     class OptimizationMethod :
-        public ObjHandler::LibraryObject<QuantLib::OptimizationMethod> {};
+        public ObjectHandler::LibraryObject<QuantLib::OptimizationMethod> {};
 
     class Simplex : public OptimizationMethod {
       public:
@@ -50,7 +50,7 @@ namespace QuantLibAddin {
     };
    
     class LineSearch :
-        public ObjHandler::LibraryObject<QuantLib::LineSearch> {};
+        public ObjectHandler::LibraryObject<QuantLib::LineSearch> {};
 
     class ArmijoLineSearch : public LineSearch {
       public:

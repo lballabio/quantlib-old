@@ -21,7 +21,7 @@
 #ifdef HAVE_CONFIG_H
 #include <qlo/config.hpp>
 #endif
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <qlo/termstructures.hpp>
 #include <qlo/ratehelpers.hpp>
 #include <qlo/Factories/termstructuresfactory.hpp>

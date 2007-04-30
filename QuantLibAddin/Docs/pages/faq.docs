@@ -181,7 +181,7 @@ subroutine to price an option:
 \verbatim
 Sub priceEuropeanOption()
 
-    On Error GoTo Catch
+On Error GoTo Catch
 
     Dim blackVolHandle As String
     Dim blackScholesHandle As String
@@ -190,24 +190,24 @@ Sub priceEuropeanOption()
     Dim engineHandle As String
     Dim optionHandle As String
     Dim npv As Double
-    Call Application.Run("qlSetEvaluationDate", 35930)
-    blackVolHandle = Application.Run("qlBlackConstantVol", 
+    Call Application.Run("qlSettingsSetEvaluationDate", 35930)
+    blackVolHandle = Application.Run("qlBlackConstantVol", _
         "volatility", 35932, 0.2, "Actual/365 (Fixed)")
-    blackScholesHandle = Application.Run(
-        "qlGeneralizedBlackScholesProcess", "process", 
-        blackVolHandle, 36, "Actual/365 (Fixed)", 35932, 
+    blackScholesHandle = Application.Run( _
+        "qlGeneralizedBlackScholesProcess", "process", _
+        blackVolHandle, 36, "Actual/365 (Fixed)", 35932, _
         0.06, 0)
-    exerciseHandle = Application.Run("qlEuropeanExercise", 
+    exerciseHandle = Application.Run("qlEuropeanExercise", _
         "exercise", 36297)
-    payoffHandle = Application.Run("qlStrikedTypePayoff", 
+    payoffHandle = Application.Run("qlStrikedTypePayoff", _
         "payoff", "Vanilla", "Put", 40)
-    engineHandle = Application.Run("qlPricingEngine", 
+    engineHandle = Application.Run("qlPricingEngine", _
         "engine", "AE")
-    optionHandle = Application.Run("qlVanillaOption", 
-        "option", blackScholesHandle, payoffHandle, 
+    optionHandle = Application.Run("qlVanillaOption", _
+        "option", blackScholesHandle, payoffHandle, _
         exerciseHandle, engineHandle)
-    npv = Application.Run("qlNPV", optionHandle)
-    Debug.Print npv
+    npv = Application.Run("qlInstrumentNPV", optionHandle)
+    Debug.Print "NPV = " & npv
 
     Exit Sub
 

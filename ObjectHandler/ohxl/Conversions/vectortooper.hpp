@@ -19,12 +19,12 @@
 #ifndef ohxl_conversions_vectortooper_hpp
 #define ohxl_conversions_vectortooper_hpp
 
-#include <ohxl/objhandlerxldefines.hpp>
+#include <ohxl/ohxldefines.hpp>
 #include <ohxl/Conversions/scalartooper.hpp>
 #include <ohxl/functioncall.hpp>
 #include <vector>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     // FIXME emergency hack to support automatic coercion of input strings 
     // to vectors thru a call to ohSplit().  Normally the functions below 
@@ -46,22 +46,15 @@ namespace ObjHandler {
             return;
         }
 
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
-        if (FunctionCall::instance().getCallerDimensions() == Row) {
+        if (FunctionCall::instance().callerDimensions() == CallerDimensions::Row) {
             xVector.val.array.columns = size;
             xVector.val.array.rows    = 1;
         } else {
             xVector.val.array.rows    = size;
             xVector.val.array.columns = 1;
         }
-#else
-        xVector.val.array.rows    = size;
-        xVector.val.array.columns = 1;
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 
         xVector.val.array.lparray = new OPER[size]; 
-        if (!xVector.val.array.lparray)
-            throw Exception("vectorToOper: error on call to new");
         xVector.xltype = xltypeMulti;
         if (dllToFree)
             xVector.xltype = (xltypeMulti | xlbitDLLFree);

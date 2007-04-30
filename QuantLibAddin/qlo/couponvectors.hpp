@@ -21,7 +21,7 @@
 #ifndef qla_couponvectors_hpp
 #define qla_couponvectors_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 
 #include <qlo/schedule.hpp>
 #include <qlo/index.hpp>
@@ -30,7 +30,7 @@
 
 namespace QuantLibAddin {
     
-    class Leg : public ObjHandler::Object {
+    class Leg : public ObjectHandler::Object {
       public:
         QuantLib::Date startDate() const;
         QuantLib::Date maturityDate() const;
@@ -135,7 +135,7 @@ namespace QuantLibAddin {
     };
 
     class FloatingRateCouponPricer : 
-        public ObjHandler::LibraryObject<QuantLib::FloatingRateCouponPricer> {
+        public ObjectHandler::LibraryObject<QuantLib::FloatingRateCouponPricer> {
       public:
           FloatingRateCouponPricer(){};
     };

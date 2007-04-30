@@ -18,12 +18,12 @@
 #ifndef qlxl_conversions_opertoscalar_hpp
 #define qlxl_conversions_opertoscalar_hpp
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/time/date.hpp>
 #include <ql/quotes/simplequote.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     void operToScalar(const OPER &xScalar, QuantLib::Date &ret);
     void operToScalar(const OPER &xScalar, QuantLib::Period &ret);

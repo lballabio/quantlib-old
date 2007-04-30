@@ -62,10 +62,6 @@
 			Name="Functions"
 			>
 			<File
-				RelativePath="metadata\Functions\demo.xml"
-				>
-			</File>
-			<File
 				RelativePath="metadata\Functions\garbagecollection.xml"
 				>
 			</File>

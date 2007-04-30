@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,7 +19,7 @@
     #include <oh/config.hpp>
 #endif
 #include <oh/logger.hpp>
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <oh/exception.hpp>
 #include <log4cxx/helpers/exception.h>
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
@@ -33,9 +33,8 @@
 #include <ostream>
 
 using namespace log4cxx;
-using namespace std;
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     Logger::Logger() {
         try {
@@ -43,22 +42,21 @@ namespace ObjHandler {
             _logger->setLevel(Level::OFF);
             _layout = LayoutPtr(new SimpleLayout());
         } catch (helpers::Exception &e) {
-            throw Exception("Logger::Logger: error initializing: " + e.getMessage());
+            OH_FAIL("Logger::Logger: error initializing: " + e.getMessage());
         }
     }
 
     void Logger::setLogFile(
             const std::string &logFileName,
             const int &logLevel) {
-        if (logFileName.empty())
-            throw Exception("Logger::setLogFile: log file name is null");
+        OH_REQUIRE(!logFileName.empty(), "Logger::setLogFile: log file name is null");
         try {
             _logger->removeAppender(_fileAppender);
             _fileAppender = AppenderPtr(new FileAppender(_layout, logFileName));
             _logger->addAppender(_fileAppender);
             setLogLevel(logLevel);
         } catch (helpers::Exception &e) {
-            throw Exception("Logger::setLogFile: unable to set logfile: " + e.getMessage());
+            OH_FAIL("Logger::setLogFile: unable to set logfile: " + e.getMessage());
         }
     }
 
@@ -73,7 +71,7 @@ namespace ObjHandler {
             }
             setLogLevel(logLevel);
         } catch (helpers::Exception &e) {
-            throw Exception("Logger::setLogFile: unable to set logfile: " + e.getMessage());
+            OH_FAIL("Logger::setLogFile: unable to set logfile: " + e.getMessage());
         }
     }
 
@@ -99,12 +97,10 @@ namespace ObjHandler {
                     _logger->setLevel(Level::DEBUG);
                     break;
                 default:
-                    ostringstream err;
-                    err << "Logger::setLogLevel: invalid logLevel: " << logLevel;
-                    throw Exception(err.str());
+                    OH_FAIL("Logger::setLogLevel: invalid logLevel: " << logLevel);
             }
         } catch (helpers::Exception &e) {
-            throw Exception("Logger::Logger: error initializing: " + e.getMessage());
+            OH_FAIL("Logger::Logger: error initializing: " + e.getMessage());
         }
     }
 

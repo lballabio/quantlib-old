@@ -18,7 +18,7 @@
 #include <qlxl/Conversions/scalartooper.hpp>
 #include <ohxl/Conversions/scalartooper.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     void scalarToOper(const QuantLib::InterestRate &value, OPER &xScalar) {
         scalarToOper(value.rate(), xScalar);

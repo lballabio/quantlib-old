@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2007 Ferdinando Ametrano
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
@@ -22,31 +22,28 @@
 #endif
 #include <oh/utilities.hpp>
 #include <oh/logger.hpp>
-#include <oh/objecthandler.hpp>
-#include <oh/exception.hpp>
+#include <oh/repository.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <sstream>
 
-using std::string;
 using boost::algorithm::token_compress_off;
 using boost::algorithm::token_compress_on;
 using boost::algorithm::is_any_of;
 
+namespace ObjectHandler {
 
-namespace ObjHandler {
-
-    string version() {
+    std::string version() {
         return OBJHANDLER_VERSION;
     }
 
-    string setLogFile(const string &logFileName,
+    std::string setLogFile(const std::string &logFileName,
                       const int &logLevel) {
         Logger::instance().setLogFile(logFileName, logLevel);
         return logFileName;
     }
 
-    DLL_API void logMessage(const string &message,
+    DLL_API void logMessage(const std::string &message,
                             const int &level) {
         Logger::instance().logMessage(message, level);
     }
@@ -60,31 +57,24 @@ namespace ObjHandler {
         Logger::instance().setConsole(console, logLevel);
     }
 
-    void logObject(const string &objectID) {
+    void logObject(const std::string &objectID) {
         std::ostringstream msg;
-        boost::shared_ptr<Object> object = 
-            ObjectHandler::instance().retrieveObjectImpl(objectID);
-        if (object) {
-            msg << "log dump of object with ID = " << objectID << std::endl;
-            msg << *object.get();
-        } else {
-            msg << "no object in repository with ID = " << objectID << std::endl;
-        }
+        Repository::instance().dumpObject(objectID, msg);
         Logger::instance().logMessage(msg.str());
     }
 
     void logAllObjects() {
         std::ostringstream msg;
-        ObjectHandler::instance().dump(msg);
+        Repository::instance().dump(msg);
         Logger::instance().logMessage(msg.str());
     }
 
     // parse a whitespace-delimited list of symbols 
     // into a vector of strings
-    std::vector<string> split(const string &line,
-                              const string &delim,
+    std::vector<std::string> split(const std::string &line,
+                              const std::string &delim,
                               bool token_compress) {
-        std::vector<string> ret;
+        std::vector<std::string> ret;
         return boost::algorithm::split(ret, line, is_any_of(delim),
                     token_compress ? token_compress_on : token_compress_off);
     }

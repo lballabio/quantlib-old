@@ -18,12 +18,12 @@
 #ifndef ohxl_conversions_scalartooper_hpp
 #define ohxl_conversions_scalartooper_hpp
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <string>
 #include <boost/any.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     // FIXME emergency hack to support automatic coercion of input strings 
     // to vectors thru a call to ohSplit().  Normally the functions below 

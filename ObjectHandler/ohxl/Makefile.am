@@ -2,19 +2,27 @@
 EXTRA_DIST = \
     callingrange.cpp \
     callingrange.hpp \
+    configuration.cpp \
+    configuration.hpp \
     functioncall.cpp \
     functioncall.hpp \
     loop.hpp \
-    objecthandlerxl.cpp \
     objecthandlerxl.hpp \
-    objhandlerxl.hpp \
+    objectxl.cpp \
+    objectxl.hpp \
+    ohxldefines.hpp \
     rangereference.cpp \
-    rangereference.hpp
+    rangereference.hpp \
+    repositoryxl.cpp \
+    repositoryxl.hpp \
+    xloper.hpp
  
 dist-hook:
-	mkdir -p $(distdir)/Functions $(distdir)/Register $(distdir)/ohxll $(distdir)/ohxllib
+	mkdir -p $(distdir)/Conversions  $(distdir)/Functions $(distdir)/ohxll $(distdir)/ohxllib $(distdir)/Register $(distdir)/Utilities
+	cp -p $(srcdir)/Conversions/*.?pp $(distdir)/Conversions
 	cp -p $(srcdir)/Functions/*.?pp $(distdir)/Functions
-	cp -p $(srcdir)/Register/*.?pp $(distdir)/Register
 	cp -p $(srcdir)/ohxll/*.vcproj $(distdir)/ohxll
 	cp -p $(srcdir)/ohxllib/*.vcproj $(distdir)/ohxllib
+	cp -p $(srcdir)/Register/*.?pp $(distdir)/Register
+	cp -p $(srcdir)/Utilities/*.?pp $(distdir)/Utilities
 

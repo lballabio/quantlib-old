@@ -20,10 +20,11 @@
 
 #include <oh/utilities.hpp>
 #include <oh/exception.hpp>
-#include <ohxl/objecthandlerxl.hpp>
+#include <ohxl/repositoryxl.hpp>
 #include <ohxl/Conversions/all.hpp>
 #include <ohxl/functioncall.hpp>
 #include <ohxl/Functions/functioncount.hpp>
+#include <ohxl/xloper.hpp>
 #include <map>
 
 #define XLL_DEC extern "C"
@@ -36,8 +37,6 @@ void operToOper(OPER *xTarget, const OPER *xSource) {
     } else if (xSource->xltype == xltypeStr) {
         int len = xSource->val.str[0];
         xTarget->val.str = new char[ len + 1 ];
-        if (!xTarget->val.str) 
-            throw ObjHandler::Exception("operToOper: error calling new");
         xTarget->xltype = xltypeStr | xlbitDLLFree;
         xTarget->val.str[0] = len;
         if (len)
@@ -51,18 +50,13 @@ void operToOper(OPER *xTarget, const OPER *xSource) {
         xTarget->xltype = xltypeNil;
         return;
     } else {
-        std::ostringstream msg;
-        msg << "operToOper: unexpected OPER type: " << xSource->xltype;
-        throw ObjHandler::Exception(msg.str());
+        OH_FAIL("operToOper: unexpected OPER type: " << xSource->xltype);
     }
 }
 
 void validateReference(const XLOPER *xReference, const std::string &name) {
-    if (xReference->xltype == xltypeErr && xReference->val.err == xlerrRef) {
-        std::ostringstream msg;
-        msg << "parameter '" << name << "' is not a valid range reference";
-        throw ObjHandler::Exception(msg.str());
-    }
+    OH_REQUIRE(xReference->xltype != xltypeErr && xReference->val.err != xlerrRef,
+        "parameter '" << name << "' is not a valid range reference");
 }
 
 XLL_DEC long *ohTrigger(
@@ -79,17 +73,9 @@ XLL_DEC long *ohTrigger(
 
         // initialize Function Call object
 
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
-    ObjHandler::FunctionCall functionCall("ohTrigger");
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+    ObjectHandler::FunctionCall functionCall("ohTrigger");
 
     try {
-
-        // reset the calling cell
-
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
-        ObjHandler::ObjectHandlerXL::instance().resetCaller();
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 
         validateReference(dummy0, "dummy0");
         validateReference(dummy1, "dummy1");
@@ -103,16 +89,12 @@ XLL_DEC long *ohTrigger(
         validateReference(dummy9, "dummy9");
 
         static long returnValue;
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
         static std::map<std::string, long> iterators;
-        returnValue = iterators[ObjHandler::FunctionCall::instance().getAddressString()]++;
-#else
-        returnValue = 0;
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+        returnValue = iterators[ObjectHandler::FunctionCall::instance().addressString()]++;
         return &returnValue;
 
     } catch (const std::exception &e) {
-        ObjHandler::ObjectHandlerXL::instance().logError(e.what());
+        ObjectHandler::RepositoryXL::instance().logError(e.what());
         return 0;
     }
 }
@@ -146,13 +128,11 @@ int countValidCols(const OPER &xMulti) {
 
 XLL_DEC OPER *ohPack(OPER *xInputRange) {
 
-        // initialize Function Call object
+    // initialize Function Call object
 
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
-    ObjHandler::FunctionCall functionCall("ohPack");
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+    ObjectHandler::FunctionCall functionCall("ohPack");
 
-    OPER xMulti;
+    ObjectHandler::Xloper xMulti;
     static OPER xRet;
     xRet.val.array.lparray = 0;
 
@@ -160,32 +140,27 @@ XLL_DEC OPER *ohPack(OPER *xInputRange) {
 
         Excel(xlCoerce, &xMulti, 2, xInputRange, TempInt(xltypeMulti));
 
-        int numValidRows = countValidRows(xMulti);
-        int numValidCols = countValidCols(xMulti);
+        int numValidRows = countValidRows(xMulti());
+        int numValidCols = countValidCols(xMulti());
 
         xRet.val.array.rows = numValidRows;
         xRet.val.array.columns = numValidCols;
         xRet.val.array.lparray = new OPER[numValidRows * numValidCols]; 
-        if (!xRet.val.array.lparray)
-            throw ObjHandler::Exception("ohPack: error on call to new");
         xRet.xltype = xltypeMulti | xlbitDLLFree;
 
         for (int i=0; i<numValidRows; ++i) {
             for (int j=0; j<numValidCols; ++j) {
-                int indexSource = i * xMulti.val.array.columns + j;
+                int indexSource = i * xMulti->val.array.columns + j;
                 int indexTarget = i * numValidCols + j;
                 operToOper(&xRet.val.array.lparray[indexTarget], 
-                    &xMulti.val.array.lparray[indexSource]);
+                    &xMulti->val.array.lparray[indexSource]);
             }
         }
 
-        Excel(xlFree, 0, 1, &xMulti);
         return &xRet;
     } catch (const std::exception &e) {
 
         // free any memory that may have been allocated
-
-        Excel(xlFree, 0, 1, &xMulti);
 
         if (xRet.xltype & xltypeMulti && xRet.val.array.lparray) {
             for (int i=0; i<xRet.val.array.columns * xRet.val.array.rows; ++i) {
@@ -197,7 +172,7 @@ XLL_DEC OPER *ohPack(OPER *xInputRange) {
 
         // log the exception and return a null pointer (#NUM!) to Excel
 
-        ObjHandler::ObjectHandlerXL::instance().logError(e.what());
+        ObjectHandler::RepositoryXL::instance().logError(e.what());
         return 0;
     }
 }

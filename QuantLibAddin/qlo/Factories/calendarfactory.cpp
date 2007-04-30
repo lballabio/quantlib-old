@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <boost/regex.hpp>
 #include <qlo/Factories/calendarfactory.hpp>
 #include <set>

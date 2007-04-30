@@ -29,8 +29,8 @@
 
     namespace QuantLibAddin {
 
-        class Session : public ObjHandler::Singleton<Session> {
-            friend class ObjHandler::Singleton<Session>;
+        class Session : public ObjectHandler::Singleton<Session> {
+            friend class ObjectHandler::Singleton<Session>;
         public:
             Session() : sessionIdFountain_(0) {}
             void setSessionId();

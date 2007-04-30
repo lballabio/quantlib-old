@@ -20,7 +20,7 @@
     #include <qlo/config.hpp>
 #endif
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <qlo/termstructures.hpp>
 #include <qlo/forwardrateagreement.hpp>
 

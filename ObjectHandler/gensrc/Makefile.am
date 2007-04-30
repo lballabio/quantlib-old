@@ -28,7 +28,7 @@ GENSRC_INPUTS = $(GENSRC_METADATA) $(GENSRC_STUBS) $(GENSRC_CODE) $(GENSRC_CONF)
 # this should prevent running from a distributed tarball
 EXTRA_DIST = .time-stamp \
              ohgensrc_vc8.vcproj \
-             ohgensrc.vcproj \
+             ohgensrc_vc7.vcproj \
              Makefile.vc \
              $(GENSRC_INPUTS)
 

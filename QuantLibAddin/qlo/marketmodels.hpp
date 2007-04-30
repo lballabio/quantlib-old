@@ -18,7 +18,7 @@
 #ifndef qla_market_models_hpp
 #define qla_market_models_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 
 #include <ql/instruments/payoffs.hpp>
 #include <ql/models/marketmodels/accountingengine.hpp>
@@ -47,7 +47,7 @@
 namespace QuantLibAddin {
 
     class PiecewiseConstantCorrelation :
-        public ObjHandler::LibraryObject<QuantLib::PiecewiseConstantCorrelation>{};
+        public ObjectHandler::LibraryObject<QuantLib::PiecewiseConstantCorrelation>{};
 
 
     class TimeHomogeneousForwardCorrelation : public PiecewiseConstantCorrelation {
@@ -66,7 +66,7 @@ namespace QuantLibAddin {
             const QuantLib::EvolutionDescription& evolution);
     };
 
-    class PiecewiseConstantVariance: public ObjHandler::LibraryObject<QuantLib::PiecewiseConstantVariance>{};
+    class PiecewiseConstantVariance: public ObjectHandler::LibraryObject<QuantLib::PiecewiseConstantVariance>{};
 
     class PiecewiseConstantAbcdVariance : public PiecewiseConstantVariance {
       public:
@@ -78,7 +78,7 @@ namespace QuantLibAddin {
     };
 
     class CapletCoterminalSwaptionCalibration : public
-        ObjHandler::LibraryObject<QuantLib::CapletCoterminalSwaptionCalibration> {
+        ObjectHandler::LibraryObject<QuantLib::CapletCoterminalSwaptionCalibration> {
       public:
         CapletCoterminalSwaptionCalibration(
             const QuantLib::EvolutionDescription& evolution,
@@ -89,7 +89,7 @@ namespace QuantLibAddin {
             QuantLib::Spread displacement);
     };
 
-    class EvolutionDescription : public ObjHandler::LibraryObject<QuantLib::EvolutionDescription> {
+    class EvolutionDescription : public ObjectHandler::LibraryObject<QuantLib::EvolutionDescription> {
     public:
         EvolutionDescription(
             const std::vector<QuantLib::Time>& rateTimes,
@@ -100,7 +100,7 @@ namespace QuantLibAddin {
             const QuantLib::MarketModelMultiProduct& product);
     };
 
-    class Abcd : public ObjHandler::LibraryObject<QuantLib::Abcd> {
+    class Abcd : public ObjectHandler::LibraryObject<QuantLib::Abcd> {
     public:
         Abcd(QuantLib::Real a,
              QuantLib::Real b,
@@ -113,7 +113,7 @@ namespace QuantLibAddin {
     };
 
     // MarketModels
-    class MarketModel : public ObjHandler::LibraryObject<QuantLib::MarketModel> {
+    class MarketModel : public ObjectHandler::LibraryObject<QuantLib::MarketModel> {
     };
 
     class FlatVol : public MarketModel {
@@ -142,7 +142,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Rate>& displacements);
     };
     // MarketModelFactories
-    class MarketModelFactory : public ObjHandler::LibraryObject<QuantLib::MarketModelFactory> {
+    class MarketModelFactory : public ObjectHandler::LibraryObject<QuantLib::MarketModelFactory> {
     };
 
     class FlatVolFactory : public MarketModelFactory {
@@ -156,7 +156,7 @@ namespace QuantLibAddin {
     };
 
     // CurveStates
-    class CurveState : public ObjHandler::LibraryObject<QuantLib::CurveState> {};
+    class CurveState : public ObjectHandler::LibraryObject<QuantLib::CurveState> {};
 
     class CMSwapCurveState : public CurveState {
       public:
@@ -182,7 +182,7 @@ namespace QuantLibAddin {
         }
     };
 
-    class LMMDriftCalculator : public ObjHandler::LibraryObject<QuantLib::LMMDriftCalculator> {
+    class LMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::LMMDriftCalculator> {
       public:
         LMMDriftCalculator(const QuantLib::Matrix& pseudo,
                            const std::vector<QuantLib::Rate>& displacements,
@@ -199,7 +199,7 @@ namespace QuantLibAddin {
         mutable std::vector<QuantLib::Real> drifts_;
     };
 
-    class LMMNormalDriftCalculator : public ObjHandler::LibraryObject<QuantLib::LMMNormalDriftCalculator> {
+    class LMMNormalDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::LMMNormalDriftCalculator> {
       public:
         LMMNormalDriftCalculator(const QuantLib::Matrix& pseudo,
                         const std::vector<QuantLib::Time>& taus,
@@ -215,7 +215,7 @@ namespace QuantLibAddin {
         mutable std::vector<QuantLib::Real> drifts_;
     };
 
-    class CMSMMDriftCalculator : public ObjHandler::LibraryObject<QuantLib::CMSMMDriftCalculator> {
+    class CMSMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::CMSMMDriftCalculator> {
       public:
         CMSMMDriftCalculator(const QuantLib::Matrix& pseudo,
                              const std::vector<QuantLib::Rate>& displacements,
@@ -229,7 +229,7 @@ namespace QuantLibAddin {
         mutable std::vector<QuantLib::Real> drifts_;
     };
 
-    class SMMDriftCalculator : public ObjHandler::LibraryObject<QuantLib::SMMDriftCalculator> {
+    class SMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::SMMDriftCalculator> {
       public:
         SMMDriftCalculator(const QuantLib::Matrix& pseudo,
                            const std::vector<QuantLib::Rate>& displacements,
@@ -242,7 +242,7 @@ namespace QuantLibAddin {
         mutable std::vector<QuantLib::Real> drifts_;
     };
 
-    //class SwapCovarianceApproximator : public ObjHandler::LibraryObject<
+    //class SwapCovarianceApproximator : public ObjectHandler::LibraryObject<
     //    QuantLib::SwapCovarianceApproximator> {
     //  public:
     //    SwapCovarianceApproximator(const QuantLib::CurveState& initialCurveState,
@@ -253,7 +253,7 @@ namespace QuantLibAddin {
     //    QuantLib::Disposable<QuantLib::Matrix> swapCovarianceMatrix();
     //};
 
-    class MarketModelMultiProduct : public ObjHandler::LibraryObject<
+    class MarketModelMultiProduct : public ObjectHandler::LibraryObject<
         QuantLib::MarketModelMultiProduct> {
       public:
           std::string evolution() const;
@@ -298,7 +298,7 @@ namespace QuantLibAddin {
                          bool payer);
     };
 
-    class BrownianGeneratorFactory : public ObjHandler::LibraryObject<
+    class BrownianGeneratorFactory : public ObjectHandler::LibraryObject<
         QuantLib::BrownianGeneratorFactory> {
     };
 
@@ -307,7 +307,7 @@ namespace QuantLibAddin {
         MTBrownianGeneratorFactory(unsigned long seed);
     };
 
-    class MarketModelEvolver : public ObjHandler::LibraryObject<
+    class MarketModelEvolver : public ObjectHandler::LibraryObject<
         QuantLib::MarketModelEvolver> {
     };
 
@@ -331,7 +331,7 @@ namespace QuantLibAddin {
                               const std::vector<QuantLib::Size>& numeraires);
     };
 
-    class AccountingEngine : public ObjHandler::LibraryObject<
+    class AccountingEngine : public ObjectHandler::LibraryObject<
         QuantLib::AccountingEngine> {
     public:
         AccountingEngine(
@@ -341,7 +341,7 @@ namespace QuantLibAddin {
     };
 
     // Volatility Model
-    class LmVolatilityModel : public ObjHandler::LibraryObject<
+    class LmVolatilityModel : public ObjectHandler::LibraryObject<
         QuantLib::LmVolatilityModel> { };
     class LmLinearExponentialVolatilityModel : public LmVolatilityModel { };
     class LmExtLinearExponentialVolModel : public LmLinearExponentialVolatilityModel {
@@ -354,7 +354,7 @@ namespace QuantLibAddin {
 
     };
     // Correlation Model
-    class LmCorrelationModel : public ObjHandler::LibraryObject<
+    class LmCorrelationModel : public ObjectHandler::LibraryObject<
         QuantLib::LmCorrelationModel> { };
     class LmLinearExponentialCorrelationModel : public LmCorrelationModel {
      public:

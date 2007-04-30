@@ -28,15 +28,15 @@
 #include <iostream>
 #include <exception>
 
-ObjHandler::ObjectHandler oh;
+ObjectHandler::Repository oh;
 
 int main() {
     try {
         // specify log file
-        ObjHandler::setLogFile("example.log");
+        ObjectHandler::setLogFile("example.log");
         // also direct log messages to stdout
-        ObjHandler::setConsole(1);
-        ObjHandler::logMessage("begin example program");
+        ObjectHandler::setConsole(1);
+        ObjectHandler::logMessage("begin example program");
     } catch (const std::exception &e) {
         std::cout << "Unable to initialize logging: " << e.what() << std::endl;
         return 1;
@@ -47,51 +47,51 @@ int main() {
 
     try {
         // construct some objects and store them in the object handler
-        boost::shared_ptr < ObjHandler::Object > accountObject1(new AccountObject(
+        boost::shared_ptr < ObjectHandler::Object > accountObject1(new AccountObject(
             123456789,
             "savings"));
         accountObject1->setProperties(
-            boost::shared_ptr<ObjHandler::ValueObject>(new AccountValueObject(
+            boost::shared_ptr<ObjectHandler::ValueObject>(new AccountValueObject(
             "account1", 123456789, "savings")));
-        ObjHandler::ObjectHandler::instance().storeObject("account1", accountObject1);
+        ObjectHandler::Repository::instance().storeObject("account1", accountObject1);
 
-        boost::shared_ptr < ObjHandler::Object > accountObject2(new AccountObject(
+        boost::shared_ptr < ObjectHandler::Object > accountObject2(new AccountObject(
             987654321,
             "current"));
         accountObject2->setProperties(
-            boost::shared_ptr<ObjHandler::ValueObject>(new AccountValueObject(
+            boost::shared_ptr<ObjectHandler::ValueObject>(new AccountValueObject(
             "account2", 987654321, "current")));
-        ObjHandler::ObjectHandler::instance().storeObject("account2", accountObject2);
+        ObjectHandler::Repository::instance().storeObject("account2", accountObject2);
 
         // high level interrogation
-        ObjHandler::logMessage("high level interrogation - after constructor");
-        ObjHandler::logObject("account2");
+        ObjectHandler::logMessage("high level interrogation - after constructor");
+        ObjectHandler::logObject("account2");
 
         // retrieve an object and update it
         OH_GET_OBJECT( accountObject2_retrieve, "account2", AccountObject )
         accountObject2_retrieve->setBalance(100);
 
         // low-level interrogation
-        ObjHandler::logMessage("low-level interrogation - after update");
+        ObjectHandler::logMessage("low-level interrogation - after update");
         OH_GET_REFERENCE( accountObjectUnderlying, "account2", AccountObject, Account ) \
         std::ostringstream msg;
         msg << "result of getBalance on underlying = " << accountObjectUnderlying->getBalance();
-        ObjHandler::logMessage(msg.str());
+        ObjectHandler::logMessage(msg.str());
 
-        ObjHandler::ObjectHandler::instance().deleteObject("account2");
-        ObjHandler::logMessage("log all objects after deleting account2:");
-        ObjHandler::logAllObjects();
+        ObjectHandler::Repository::instance().deleteObject("account2");
+        ObjectHandler::logMessage("log all objects after deleting account2:");
+        ObjectHandler::logAllObjects();
 
-        ObjHandler::logMessage("end example program");
+        ObjectHandler::logMessage("end example program");
 
         return 0;
     } catch (const std::exception &e) {
         std::ostringstream s;
         s << "Error: " << e.what();
-        ObjHandler::logMessage(s.str(), 1);
+        ObjectHandler::logMessage(s.str(), 1);
         return 1;
     } catch (...) {
-        ObjHandler::logMessage("Error", 1);
+        ObjectHandler::logMessage("Error", 1);
         return 1;
     }
 }

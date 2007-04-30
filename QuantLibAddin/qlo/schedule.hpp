@@ -18,12 +18,12 @@
 #ifndef qla_schedule_hpp
 #define qla_schedule_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/time/schedule.hpp>
 
 namespace QuantLibAddin {
 
-    class Schedule : public ObjHandler::LibraryObject<QuantLib::Schedule> {
+    class Schedule : public ObjectHandler::LibraryObject<QuantLib::Schedule> {
       public:
         Schedule(const QuantLib::Date& effectiveDate,
                  const QuantLib::Date& terminationDate,

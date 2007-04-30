@@ -19,12 +19,12 @@
 #ifndef qla_payoffs_hpp
 #define qla_payoffs_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/instruments/payoffs.hpp>
 
 namespace QuantLibAddin {
 
-    class Payoff : public ObjHandler::LibraryObject<QuantLib::Payoff> {};
+    class Payoff : public ObjectHandler::LibraryObject<QuantLib::Payoff> {};
 
     class TypePayoff : public Payoff {};
 

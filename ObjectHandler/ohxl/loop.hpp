@@ -18,10 +18,10 @@
 #ifndef ohxl_loop_hpp
 #define ohxl_loop_hpp
 
-#include <ohxl/objhandlerxl.hpp>
-#include <ohxl/Utilities/utilities.hpp>
+#include <ohxl/objecthandlerxl.hpp>
+#include <ohxl/Utilities/xlutilities.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     template<class LoopFunction, class InputType, class OutputType>
     void loopIteration(
@@ -36,9 +36,7 @@ namespace ObjHandler {
 
     template<class LoopFunction, class InputType, class OutputType>
     void loop(
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
               FunctionCall &functionCall,
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
               LoopFunction &loopFunction, 
               OPER *xIn, 
               XLOPER &xOut) {
@@ -73,14 +71,6 @@ namespace ObjHandler {
         xOut.val.array.columns = xMulti->val.array.columns;
         int numCells = xMulti->val.array.rows * xMulti->val.array.columns;
         xOut.val.array.lparray = new XLOPER[numCells]; 
-        if (!xOut.val.array.lparray) {
-            if (excelToFree) {
-                Excel(xlFree, 0, 1, &xTemp);
-            } else if (xllToFree) {
-                freeOper(&xTemp);
-            }
-            OH_FAIL("error on call to new");
-        }
         xOut.xltype = xltypeMulti | xlbitDLLFree;
 
         for (int i=0; i<numCells; ++i) {
@@ -91,17 +81,15 @@ namespace ObjHandler {
                     xOut.val.array.lparray[i]);
             } catch(const std::exception &e) {
                 std::ostringstream err;
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
                 if (!errorInitialized) {
-                    ObjectHandlerXL::instance().clearError();
-                    err << functionCall.getFunctionName() << " - " 
-                        << functionCall.getAddressString() 
+                    RepositoryXL::instance().clearError();
+                    err << functionCall.functionName() << " - " 
+                        << functionCall.addressString() 
                         << std::endl << std::endl;
                     errorInitialized = true;
                 }
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
                 err << "iteration #" << i << " - " << e.what();
-                ObjectHandlerXL::instance().logError(err.str(), true);
+                RepositoryXL::instance().logError(err.str(), true);
                 xOut.val.array.lparray[i].xltype = xltypeErr;
                 xOut.val.array.lparray[i].val.err = xlerrNum;
             }

@@ -23,7 +23,7 @@
 #include <qlo/typefactory.hpp>
 #include <qlo/Factories/indexfactory.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     // CoerceIndex - accept a string which is the ID of either
     // an Enumerated Class or an object in the repository, 
@@ -53,10 +53,10 @@ namespace ObjHandler {
     }
 
     template <class ObjectClass, class LibraryClass>
-    class CoerceIndex : public ObjHandler::Coerce<
+    class CoerceIndex : public ObjectHandler::Coerce<
             std::string,
             boost::shared_ptr<LibraryClass> > {
-        typedef typename ObjHandler::Coerce<
+        typedef typename ObjectHandler::Coerce<
             std::string, 
             boost::shared_ptr<LibraryClass> >::Conversion Conversion; 
         Conversion *getConversions() {

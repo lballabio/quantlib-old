@@ -18,7 +18,7 @@
 #ifndef qla_rangeaccrual_hpp
 #define qla_rangeaccrual_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <qlo/schedule.hpp>
 #include <qlo/index.hpp>
 #include <qlo/couponvectors.hpp>
@@ -27,7 +27,7 @@
 
 namespace QuantLibAddin {
      
-    class RangeAccrualFloatersCoupon: public ObjHandler::LibraryObject<QuantLib::RangeAccrualFloatersCoupon>{
+    class RangeAccrualFloatersCoupon: public ObjectHandler::LibraryObject<QuantLib::RangeAccrualFloatersCoupon>{
 	 public:
         RangeAccrualFloatersCoupon(
                 const QuantLib::Real nominal,

@@ -19,12 +19,11 @@
     \brief Object class
 */
 
-#include <ohxl/objhandlerxldefines.hpp>
+#include <ohxl/ohxldefines.hpp>
+#include <boost/regex.hpp>
 #include <string>
 
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
-
-namespace ObjHandler {
+namespace ObjectHandler {
     //! A utility class for parsing range references in string format.
     /*! The constructor to this class accepts strings returned from
         Excel functions such as xlfGetName and xlfReftext.  Strings are
@@ -62,9 +61,11 @@ namespace ObjHandler {
         bool operator==(const RangeReference&) const;
         bool contains(const RangeReference&) const;
         friend std::ostream &operator<<(std::ostream&, const RangeReference&);
+        void setErrorMessage(const std::string &errorMessage, const bool &append);
+        const std::string errorMessage() const { return errorMessage_; }
+        void clearError() { errorMessage_ = ""; }
     private:
-        std::string addressOriginal_;
-        std::string addressUpper_;
+        std::string address_;
         std::string bookName_;
         std::string sheetName_;
         bool multicell_;
@@ -72,13 +73,16 @@ namespace ObjHandler {
         int colStartNum_;
         int rowEndNum_;
         int colEndNum_;
-        bool init1();
-        bool init2();
+        bool initStandard();
+        bool initSpecial();
+        std::string errorMessage_;
+        static boost::regex regexStandard_;
+        static boost::regex regexSpecial_;
+        static void initializeRegexes();
+        static bool regexesInitialized_;
     };
 
-std::ostream &operator<<(std::ostream&, const RangeReference&);
+    std::ostream &operator<<(std::ostream&, const RangeReference&);
 
 }
-
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 

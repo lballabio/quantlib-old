@@ -41,16 +41,10 @@ class Function(serializable.Serializable):
     groupName_ = 'Functions'
     loopParameter_ = None
     enumeration_ = None
-    resetCaller_ = ''
     generateVOs_ = False
     validatePermanent_ = ''
-    XL_WIZ_CHECK = '''
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
-        if (functionCall.IsCalledByFuncWiz())
-            return 0;
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION'''
     VALIDATE_TRIGGER = '''
-        ObjHandler::validateRange(trigger, "trigger");'''
+        ObjectHandler::validateRange(trigger, "trigger");'''
 
     #############################################
     # public interface
@@ -65,11 +59,6 @@ class Function(serializable.Serializable):
         """Determine whether this function requires macro on excel platform."""
         return self.supportedPlatforms_.has_key('Excel') \
             and self.supportedPlatforms_['Excel'].xlMacro()
-
-    def xlCalcInWizard(self):
-        """Determine whether this function should be enabled under excel wizard."""
-        return self.supportedPlatforms_.has_key('Excel') \
-            and self.supportedPlatforms_['Excel'].calcInWizard()
 
     def parameterList(self):
         return self.parameterList_
@@ -104,14 +93,8 @@ class Function(serializable.Serializable):
     def xlTrigger(self):
         return self.xlTrigger_
 
-    def xlWizardCheck(self):
-        return self.xlWizardCheck_
-
     def validatePermanent(self):
         return self.validatePermanent_
-
-    def resetCaller(self):
-        return self.resetCaller_
 
     def behavior(self):
         return self.behavior_
@@ -136,10 +119,6 @@ class Function(serializable.Serializable):
 
     def postSerialize(self):
         # some fields required for the Excel addin
-        if self.xlCalcInWizard():
-            self.xlWizardCheck_ = ''
-        else:
-            self.xlWizardCheck_ = Function.XL_WIZ_CHECK
         if self.dependencyTrigger_:
             self.xlTrigger_ = Function.VALIDATE_TRIGGER
         else:

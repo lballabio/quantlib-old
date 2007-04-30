@@ -7,7 +7,7 @@
 
     boost::any %(functionName)s::getProperty(const std::string& name) const {
         %(propertyGet)s
-            throw ObjHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
+            throw ObjectHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
 
         return boost::any(); /* Dummy return - just to avoid stupid compiler warnings/errors */
     }

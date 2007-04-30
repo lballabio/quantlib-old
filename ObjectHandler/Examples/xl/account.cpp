@@ -1,6 +1,6 @@
 
 /*!
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -48,7 +48,7 @@ boost::any AccountValueObject::getProperty(const std::string& name) const {
     else if(name == "accountNumber") return accountNumber_;
     else if(name == "accountType") return accountType_;
     else 
-        throw ObjHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
+        throw ObjectHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
     return boost::any(); /* Dummy return - just to avoid stupid compiler warnings/errors */
 }
 

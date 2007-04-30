@@ -325,10 +325,6 @@
 			Name="Classes"
 			>
 			<File
-				RelativePath="oh\exception.cpp"
-				>
-			</File>
-			<File
 				RelativePath="oh\exception.hpp"
 				>
 			</File>
@@ -337,7 +333,7 @@
 				>
 			</File>
 			<File
-				RelativePath="oh\object.cpp"
+				RelativePath="oh\libraryobject.hpp"
 				>
 			</File>
 			<File
@@ -345,27 +341,19 @@
 				>
 			</File>
 			<File
-				RelativePath="oh\objecthandler.cpp"
-				>
-			</File>
-			<File
 				RelativePath="oh\objecthandler.hpp"
 				>
 			</File>
 			<File
-				RelativePath="oh\objhandler.hpp"
+				RelativePath="oh\ohdefines.hpp"
 				>
 			</File>
 			<File
-				RelativePath="oh\objhandlerdefines.hpp"
+				RelativePath="oh\repository.cpp"
 				>
 			</File>
 			<File
-				RelativePath="oh\ohthing.cpp"
-				>
-			</File>
-			<File
-				RelativePath="oh\ohthing.hpp"
+				RelativePath="oh\repository.hpp"
 				>
 			</File>
 			<File
@@ -381,7 +369,11 @@
 			Name="Conversions"
 			>
 			<File
-				RelativePath=".\oh\Conversions\coerce.hpp"
+				RelativePath="oh\Conversions\anytostream.hpp"
+				>
+			</File>
+			<File
+				RelativePath="oh\Conversions\coerce.hpp"
 				>
 			</File>
 		</Filter>
@@ -406,26 +398,6 @@
 			</File>
 			<File
 				RelativePath="oh\utilities.hpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Loop"
-			>
-			<File
-				RelativePath=".\oh\Loop\loop_demo.hpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="ValueObjects"
-			>
-			<File
-				RelativePath=".\oh\ValueObjects\vo_demo.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\oh\ValueObjects\vo_demo.hpp"
 				>
 			</File>
 		</Filter>

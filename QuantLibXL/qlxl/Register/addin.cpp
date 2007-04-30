@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ohxl/objhandlerxl.hpp>
+#include <ohxl/objecthandlerxl.hpp>
 #include <qlo/qladdindefines.hpp>
 #include <qlxl/Register/register_all.hpp>
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors
@@ -36,15 +36,15 @@
 #  undef BOOST_LIB_DIAGNOSTIC
 #endif
 
-#if defined COMPILING_XLL
-#   pragma message("COMPILING_XLL is defined")
+#if defined COMPILING_XLL_DYNAMIC
+#   pragma message("COMPILING_XLL_DYNAMIC is defined")
 #else
-#   pragma message("COMPILING_XLL is NOT defined")
+#   pragma message("COMPILING_XLL_DYNAMIC is NOT defined")
 #endif
 
 #ifdef XLL_STATIC
     // instantiate the objecthandler singleton
-    ObjHandler::ObjectHandlerXL oh;
+    ObjectHandler::RepositoryXL oh;
 #endif
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
@@ -62,7 +62,7 @@ DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
     // long name for the XLL. Any other value should result in the
     // return of a #VALUE! error.
     if (1 == xlReturn.val.w) {
-        ObjHandler::scalarToOper(std::string("QuantLibAddin " QLADDIN_VERSION),
+        ObjectHandler::scalarToOper(std::string("QuantLibAddin " QLADDIN_VERSION),
                                  xlLongName);
     } else {
         xlLongName.xltype = xltypeErr;
@@ -78,6 +78,8 @@ DLLEXPORT int xlAutoOpen() {
         Excel(xlGetName, &xDll, 0);
 
 #ifdef XLL_STATIC
+        // initialize configuration info
+        ObjectHandler::Configuration::instance().init();
         registerOhFunctions(xDll);
 #endif
 

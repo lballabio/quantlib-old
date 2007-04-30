@@ -16,8 +16,8 @@
 */
 
 #include <account.hpp>
-#include <ohxl/objhandlerxl.hpp>
-#include <ohxl/Utilities/utilities.hpp>
+#include <ohxl/objecthandlerxl.hpp>
+#include <ohxl/Utilities/xlutilities.hpp>
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
 */
@@ -72,39 +72,33 @@ DLLEXPORT char* addin1CreateAccount(
         char *objectID,
         long *accountNumber,
         char *accountType) {
-    boost::shared_ptr < ObjHandler::FunctionCall > functionCall;
+    boost::shared_ptr < ObjectHandler::FunctionCall > functionCall;
     try {
-        functionCall = boost::shared_ptr < ObjHandler::FunctionCall > 
-            ( new ObjHandler::FunctionCall("addin1CreateAccount") );
-        ObjHandler::ObjectHandlerXL::instance().resetCaller(true);
-        boost::shared_ptr < ObjHandler::Object > objectPointer(new AccountObject(
-            *accountNumber,
-            accountType));
-        objectPointer->setProperties(
-            boost::shared_ptr<ObjHandler::ValueObject>(
-            new AccountValueObject(objectID, *accountNumber, accountType)));
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>(
+            new ObjectHandler::FunctionCall("addin1CreateAccount"));
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new AccountObject(*accountNumber, accountType));
+        object->setProperties(
+            boost::shared_ptr<ObjectHandler::ValueObject>(
+                new AccountValueObject(objectID, *accountNumber, accountType)));
 
         const std::string returnValue = 
-            ObjHandler::ObjectHandler::instance().storeObject(objectID, objectPointer);
+            ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);
 
         static char ret[XL_MAX_STR_LEN];
-        ObjHandler::stringToChar(returnValue, ret);
+        ObjectHandler::stringToChar(returnValue, ret);
         return ret;
     } catch (const std::exception &e) {
-        std::ostringstream err;
-        err << "Error: addin1CreateAccount - ";
-        if (functionCall) err << functionCall->getAddressString() << " - ";
-        err << e.what();
-        ObjHandler::logMessage(err.str(), 2);
+        ObjectHandler::RepositoryXL::instance().logError(e.what());
         return 0;
     }
 }
 
 DLLEXPORT short int *addin1SetBalance(char *objectID, long *balance) {
-    boost::shared_ptr < ObjHandler::FunctionCall > functionCall;
+    boost::shared_ptr < ObjectHandler::FunctionCall > functionCall;
     try {
-        functionCall = boost::shared_ptr < ObjHandler::FunctionCall > 
-            ( new ObjHandler::FunctionCall("addin1SetBalance") );
+        functionCall = boost::shared_ptr < ObjectHandler::FunctionCall > 
+            ( new ObjectHandler::FunctionCall("addin1SetBalance") );
 
         OH_GET_OBJECT(accountObject, objectID, AccountObject)
 
@@ -112,11 +106,7 @@ DLLEXPORT short int *addin1SetBalance(char *objectID, long *balance) {
         static short int ret = TRUE;
         return &ret;
     } catch (const std::exception &e) {
-        std::ostringstream err;
-        err << "Error: addin1SetBalance - ";
-        if (functionCall) err << functionCall->getAddressString() << " - ";
-        err << e.what();
-        ObjHandler::logMessage(err.str(), 2);
+        ObjectHandler::RepositoryXL::instance().logError(e.what());
         return 0;
     }
 }

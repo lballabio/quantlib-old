@@ -19,7 +19,7 @@
 #ifndef qla_analysis_hpp
 #define qla_analysis_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/types.hpp>
 #include <ql/cashflow.hpp>
 

@@ -36,17 +36,13 @@ class Constructor(function.Function):
     # class variables
     #############################################
 
-    resetCaller_ = 'true'
     generateVOs_ = True
     funcCtorBuffer_ = buffer.loadBuffer('stub.func.constructor')
     validatePermanent_ = '''
-        ObjHandler::validateRange(permanent, "permanent");'''
-    SET_PERMANENT = '''
-        if (permanentCpp)
-            objectPointer->setPermanent();'''
+        //ObjectHandler::validateRange(permanent, "permanent");'''
     VO_CALL = '''
         objectPointer->setProperties(
-            boost::shared_ptr<ObjHandler::ValueObject>(
+            boost::shared_ptr<ObjectHandler::ValueObject>(
             new %(namespaceObjects)s::ValueObjects::%(functionName)s(%(parameterList)s)));'''
     DESCRIPTION = 'Construct an object of class %s and return its id'
 
@@ -57,7 +53,7 @@ class Constructor(function.Function):
     def generateBody(self, addin):
         """Generate source code for function body."""
         if addin.voSupported():
-            setPermanent = addin.convertPermanentFlag() + Constructor.SET_PERMANENT
+            setPermanent = addin.convertPermanentFlag()
             voCall = Constructor.VO_CALL % {
                 'functionName' : self.name_,
                 'namespaceObjects' : environment.config().namespaceObjects(),

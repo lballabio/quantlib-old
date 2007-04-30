@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,11 +24,6 @@
 
 #include <oh/singleton.hpp>
 
-#if defined BOOST_MSVC       // Microsoft Visual C++
-#pragma warning( push )
-#pragma warning(disable : 4996)
-#endif
-
 // if the include below fails, it means you're using the wrong
 // version of log4cxx.
 #include <log4cxx/log4cxxdefines.h>
@@ -41,11 +36,7 @@
 #include <log4cxx/fileappender.h>
 #include <log4cxx/consoleappender.h>
 
-#if defined BOOST_MSVC       // Microsoft Visual C++
-#pragma warning( pop )
-#endif
-
-namespace ObjHandler {
+namespace ObjectHandler {
 
     //! Wrapper for the logging framework.
     /*! Native exceptions generated within the logging framework

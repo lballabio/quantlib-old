@@ -19,12 +19,12 @@
 #ifndef qlxl_conversions_vectortooper_hpp
 #define qlxl_conversions_vectortooper_hpp
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <ohxl/Conversions/vectortooper.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/math/array.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     inline void vectorToOper(const QuantLib::Array &a, OPER &xVector) {
         vectorToOper(a.begin(), a.end(), xVector);

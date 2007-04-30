@@ -71,8 +71,10 @@ class ExcelAddin(addin.Addin):
 
     voSupported_ = True
     convertPermanentFlag_ = '''
-        bool permanentCpp =
-            ObjHandler::callOperToScalar<bool>(*permanent, "permanent", false);'''
+        //bool permanentCpp =
+        //    ObjHandler::callOperToScalar<bool>(*permanent, "permanent", false);
+        //if (permanentCpp)
+        //    objectPointer->setPermanent();'''
 
     #############################################
     # public interface
@@ -136,11 +138,9 @@ class ExcelAddin(addin.Addin):
             'libConversions' : func.parameterList().generate(self.libraryConversions_),
             'objectConversions' : func.parameterList().generate(self.objectConversions_),
             'refConversions' : func.parameterList().generate(self.referenceConversions_),
-            'resetCaller' : func.resetCaller(),
             'returnConversion' : self.returnConversion_.apply(func.returnValue()),
             'validatePermanent' : func.validatePermanent(),
-            'xlTrigger' : func.xlTrigger(),
-            'xlWizardRecalc' : func.xlWizardCheck() }
+            'xlTrigger' : func.xlTrigger() }
 
     def checkLen(self, str):
         """Calculate the length of the string, ensure that this value doesn't exceed

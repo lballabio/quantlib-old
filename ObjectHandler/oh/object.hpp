@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Object class
+    \brief Base class to represent an Object to be stored in the Repository.
 */
 
 #ifndef oh_object_hpp
@@ -25,144 +25,128 @@
 
 #include <boost/shared_ptr.hpp>
 #include <boost/any.hpp>
+#include <oh/ohdefines.hpp>
 #include <oh/valueobject.hpp>
-#include <oh/objhandlerdefines.hpp>
 #include <oh/exception.hpp>
+#include <oh/Conversions/anytostream.hpp>
 #include <vector>
 #include <string>
 #include <sstream>
-#include <iostream>
+#include <iomanip>
 
-// get a boost shared pointer to a class derived from Object
-#define OH_GET_OBJECT( NAME, ID, OBJECT_CLASS ) \
-    boost::shared_ptr< OBJECT_CLASS > NAME; \
-    ObjHandler::ObjectHandler::instance().retrieveObject(NAME, ID);
 
-// get a boost shared pointer to the client library object referenced by an ObjHandler::Object
-#define OH_GET_REFERENCE( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
-    OH_GET_OBJECT(NAME ## temp, ID, OBJECT_CLASS ) \
-    boost::shared_ptr<LIBRARY_CLASS> NAME; \
-    NAME ## temp->getLibraryObject(NAME);
+/*! \def OBJECT_LOG_COLUMN_WIDTH
+    The width of a column of data written to the log file.
+*/
+#define OBJECT_LOG_COLUMN_WIDTH 20
 
-// OH_GET_REFERENCE_DEFAULT - like OH_GET_REFERENCE but only attempt retrieval if id supplied
-#define OH_GET_REFERENCE_DEFAULT( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
-    boost::shared_ptr<LIBRARY_CLASS> NAME; \
-    if (!ID.empty()) { \
-        OH_GET_OBJECT(NAME ## temp, ID, OBJECT_CLASS ) \
-        NAME ## temp->getLibraryObject(NAME); \
-    }
+namespace ObjectHandler {
 
-// get a direct reference to the underlying object wrapped by the ObjHandler::Object
-#define OH_GET_UNDERLYING( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
-    OH_GET_REFERENCE(NAME ## temp, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
-    const LIBRARY_CLASS &NAME = *(NAME ## temp.get());
-
-// like OH_GET_UNDERLYING but without const qualifier
-#define OH_GET_UNDERLYING_NONCONST( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
-    OH_GET_REFERENCE(NAME ## temp, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
-    LIBRARY_CLASS &NAME = *(NAME ## temp.get());
-
-namespace ObjHandler {
-    //! Interface for Objects to be stored in the ObjectHandler.
+    //! Interface for Objects to be stored in the ObjectHandler Repository.
     /*! Objects are constructed by the client and passed to
-        ObjHandler::storeObject() for storage in the repository.
+        Repository::storeObject() for storage in the Repository.
+
+        All member functions of this class are implemented inline.  This is not
+        for performance reasons; the entire implementation of the class must appear
+        in the header file in order to allow derived classes across DLL boundaries
+        on the Windows platform.
     */
     class Object {        
     public:
-        //! \name Constructors & Destructors
+        //! \name Structors
         //@{
 
         //! Default constructor.
         /*! Construct an Object.
             To store the resulting Object in the ObjectHandler, call
-                ObjectHandler::instance().storeObject(objectID, object);
+                Repository::instance().storeObject(objectID, object);
         */
-        Object() : anonymous_(false), permanent_(false) {};
+        Object() {}
 
-        //! Default destructor.
-        virtual ~Object() {};
-
+        //! Empty virtual destructor.
+        virtual ~Object() {}
         //@}
 
-        //! \name Object interrogation
+        //! \name Object Interrogation
         //@{
 
-        //! Retrieve vector of property names.
-        /*! Returns empty vector if Object has no properties.
+        //! Retrieve a vector of property names.
+        /*! Returns an empty vector if the Object has no properties.
         */
-        std::vector < std::string > propertyNames() const;
+        std::vector<std::string> propertyNames() const;
 
-        //! Retrieve value of given property.
-        /*! Throws exception if Object has no property by that name.
+        //! Retrieve the value of a given property.
+        /*! Throws an exception if the Object has no property by that name.
         */
         boost::any propertyValue(const std::string &propertyName) const;
-
-        friend std::ostream &operator<<(std::ostream&, const Object &object);
         //@}
 
+        //! Set the ValueObject associated with this Object.
         void setProperties(const boost::shared_ptr<ValueObject>& p) {
             mProps = p;
         }
 
-        const bool &anonymous() const {
-            return anonymous_;
-        }
-        void setAnonymous() {
-            anonymous_ = true;
-        }
+        //! Set the "permanent" flag to True for this Object.
+        /*! Permanent Objects remain in the Repository after a call to
+            Repository::deleteAllObjects() or Repository::collectGarbage().
 
-        const bool &permanent() const {
-            return permanent_;
-        }
-        void setPermanent() {
-            permanent_ = true;
-        }
+            This feature allows a finer level of granularity in maintaining
+            the contents of the Repository.
+        */
+        void setPermanent() { permanent_ = true; }
+        //! Query the value of the "permanent" flag.
+        const bool &permanent() const { return permanent_; }
+
+        //! "dump" - Write this Object's properties (from the ValueObject) to the given stream.
+        /*! This function is called by the logging framework.  Derived classes may
+            override this function if additional information is available.
+        */
+        virtual void dump(std::ostream &out);
+
     private:
+        //! The ValueObject associated with this Object.
         boost::shared_ptr<ValueObject> mProps;
-        Object& operator= (const Object&);
-        Object(const Object&);
-        bool anonymous_;
         bool permanent_;
+        //! Operator = declared but not implemented - assignment is not supported.
+        Object& operator= (const Object&);
+        //! Copy ctor declared but not implemented - copy construction is not supported.
+        Object(const Object&);
     };
 
-    template < typename T >
-    std::ostream& operator<<(std::ostream& out, std::vector < T > &v) {
-        out << std::endl;
-        for (typename std::vector< T >::const_iterator i = v.begin(); i != v.end(); ++i)
-            out << *i << std::endl;
-        return out;
+    inline std::vector<std::string> Object::propertyNames() const {
+        std::vector<std::string> ret;
+		if (mProps)
+			ret = mProps->getPropertyNames();
+			
+        return ret;
     }
 
-    /*
-    Helper template Object subclass implementing behavior required by
-    the majority of classes derived from Object for managing
-    the reference to the contained library object.
+    inline boost::any Object::propertyValue(const std::string &propertyName) const {
+		if (mProps)
+			return mProps->getProperty(propertyName);
+        OH_FAIL("ObjectHandler error: attempt to retrieve property "
+            << "with unknown name '" << propertyName << "'");
+    }
 
-    Object subclasses requiring customized processing of the reference to
-    the contained library object should bypass LibraryObject and inherit
-    directly from Object.
-    */
-    template <class LibraryClass>
-    class LibraryObject : public Object {
-    public:
-        template <class LibraryDerivedClass>
-        void getLibraryObject(boost::shared_ptr<LibraryDerivedClass> &ret) const {
-            ret = boost::dynamic_pointer_cast<LibraryDerivedClass>(libraryObject_);
-            if (!ret) {
-                std::ostringstream msg;
-                msg << "Error retrieving library object - unable to convert reference"
-                    << " from type " << std::endl << "    " << typeid(LibraryClass).name()
-                    << " to type "   << std::endl << "    " << typeid(LibraryDerivedClass).name();
-                throw Exception(msg.str());
-            }
+    inline void Object::dump(std::ostream &out) {
+        out << std::endl;
+        std::vector<std::string> propertyNames = this->propertyNames();
+        for (std::vector<std::string>::const_iterator i = propertyNames.begin(); 
+                i != propertyNames.end(); ++i) {
+	        std::string propertyName = *i;
+	        boost::any propertyValue = this->propertyValue(propertyName);
+            out << "property = " << std::left << std::setw(OBJECT_LOG_COLUMN_WIDTH) << propertyName;
+            out << " value = " << std::left << std::setw(OBJECT_LOG_COLUMN_WIDTH) << propertyValue << std::endl;
         }
-        void getLibraryObject(boost::shared_ptr<LibraryClass> &ret) const {
-            ret = libraryObject_;
-        }
-    protected:
-        boost::shared_ptr<LibraryClass> libraryObject_;
-    };
+        out << std::endl;
+    }
+
+    inline std::ostream &operator<<(std::ostream &out, const boost::shared_ptr<Object> &object) {
+        object->dump(out);
+        return out;
+    }
 
 }
 
 #endif
+

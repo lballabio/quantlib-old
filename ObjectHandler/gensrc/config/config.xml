@@ -1,12 +1,11 @@
 <Config>
 
   <prefix>oh</prefix>
-  <namespaceObjects>ObjHandler</namespaceObjects>
-  <namespaceLibrary>ObjHandler</namespaceLibrary>
+  <namespaceObjects>ObjectHandler</namespaceObjects>
+  <namespaceLibrary>ObjectHandler</namespaceLibrary>
   <libRootDirectory>oh</libRootDirectory>
 
   <categoryNames>
-    <categoryName>demo</categoryName>
     <categoryName>garbagecollection</categoryName>
     <categoryName>logging</categoryName>
     <categoryName>ohutils</categoryName>

@@ -19,10 +19,10 @@
 #define ohxl_conversions_opertovector_hpp
 
 #include <ohxl/Conversions/opertoscalar.hpp>
-#include <ohxl/Utilities/utilities.hpp>
+#include <ohxl/Utilities/xlutilities.hpp>
 #include <vector>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     template <class T>
     std::vector<T> operToVector(const OPER &xVector, 
@@ -32,7 +32,8 @@ namespace ObjHandler {
         ||  (xVector.xltype & xltypeMissing)
         || ((xVector.xltype & xltypeErr) && (xVector.val.err == xlerrNA)))
             return std::vector<T>();
-        OH_REQUIRE(!(xVector.xltype & xltypeErr), 
+
+        OH_REQUIRE(!(xVector.xltype & xltypeErr),
             "input value '" << paramName << "' has type=error");
 
         OPER xTemp;

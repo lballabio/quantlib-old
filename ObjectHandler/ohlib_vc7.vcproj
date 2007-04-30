@@ -343,9 +343,6 @@
 				RelativePath=".\oh\iless.hpp">
 			</File>
 			<File
-				RelativePath="oh\object.cpp">
-			</File>
-			<File
 				RelativePath="oh\object.hpp">
 			</File>
 			<File
@@ -377,14 +374,10 @@
 			Name="Conversions"
 			Filter="">
 			<File
-				RelativePath=".\oh\Conversions\coerce.hpp">
+				RelativePath=".\oh\Conversions\anytostream.hpp">
 			</File>
-		</Filter>
-		<Filter
-			Name="Loop"
-			Filter="">
 			<File
-				RelativePath=".\oh\Loop\loop_demo.hpp">
+				RelativePath=".\oh\Conversions\coerce.hpp">
 			</File>
 		</Filter>
 		<Filter
@@ -404,16 +397,6 @@
 			</File>
 			<File
 				RelativePath="oh\utilities.hpp">
-			</File>
-		</Filter>
-		<Filter
-			Name="ValueObjects"
-			Filter="">
-			<File
-				RelativePath=".\oh\ValueObjects\vo_demo.cpp">
-			</File>
-			<File
-				RelativePath=".\oh\ValueObjects\vo_demo.hpp">
 			</File>
 		</Filter>
 	</Files>

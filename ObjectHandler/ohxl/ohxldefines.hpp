@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,13 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef oh_objhandler_hpp
-#define oh_objhandler_hpp
-
-#include <oh/objhandlerdefines.hpp>
-#include <oh/objecthandler.hpp>
-#include <oh/utilities.hpp>
-#include <oh/exception.hpp>
+#ifndef ohxl_defines_hpp
+#define ohxl_defines_hpp
 
 #endif
-

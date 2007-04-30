@@ -1,6 +1,6 @@
 
 /*!
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,7 +18,7 @@
 #ifndef account_hpp
 #define account_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 
 class Account {
 public:
@@ -38,7 +38,7 @@ private:
     int balance_;
 };
 
-class AccountObject : public ObjHandler::LibraryObject<Account> {
+class AccountObject : public ObjectHandler::LibraryObject<Account> {
 public:
     AccountObject(
         const int &accountNumber,
@@ -49,7 +49,7 @@ public:
 
 typedef boost::shared_ptr<AccountObject> AccountObjectPtr;
 
-class AccountValueObject : public ObjHandler::ValueObject {
+class AccountValueObject : public ObjectHandler::ValueObject {
 public:
     AccountValueObject(
         const std::string &objectID,

@@ -48,7 +48,7 @@ boost::any AccountValueObject::getProperty(const std::string& name) const {
     else if(name == "accountNumber") return accountNumber_;
     else if(name == "accountType") return accountType_;
     else 
-        throw ObjHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
+        throw ObjectHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
     return boost::any(); /* Dummy return - just to avoid stupid compiler warnings/errors */
 }
 

@@ -328,10 +328,6 @@
 				Name="Classes"
 				>
 				<File
-					RelativePath="..\..\oh\exception.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\oh\exception.hpp"
 					>
 				</File>
@@ -340,7 +336,7 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\object.cpp"
+					RelativePath="..\..\oh\libraryobject.hpp"
 					>
 				</File>
 				<File
@@ -348,27 +344,19 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\objecthandler.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\oh\objecthandler.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\objhandler.hpp"
+					RelativePath="..\..\oh\ohdefines.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\objhandlerdefines.hpp"
+					RelativePath="..\..\oh\repository.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\ohthing.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\oh\ohthing.hpp"
+					RelativePath="..\..\oh\repository.hpp"
 					>
 				</File>
 				<File
@@ -408,27 +396,11 @@
 				Name="Conversions"
 				>
 				<File
+					RelativePath="..\..\oh\Conversions\anytostream.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\oh\Conversions\coerce.hpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="ValueObjects"
-				>
-				<File
-					RelativePath="..\..\oh\ValueObjects\vo_demo.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\oh\ValueObjects\vo_demo.hpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Loop"
-				>
-				<File
-					RelativePath="..\..\oh\Loop\loop_demo.hpp"
 					>
 				</File>
 			</Filter>
@@ -496,10 +468,6 @@
 				Name="Functions"
 				>
 				<File
-					RelativePath="..\Functions\demo.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\Functions\export.hpp"
 					>
 				</File>
@@ -540,10 +508,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\Register\register_demo.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\Register\register_garbagecollection.cpp"
 					>
 				</File>
@@ -572,6 +536,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\configuration.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\configuration.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\functioncall.cpp"
 					>
 				</File>
@@ -580,19 +552,19 @@
 					>
 				</File>
 				<File
-					RelativePath="..\objecthandlerxl.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\objecthandlerxl.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\objhandlerxl.hpp"
+					RelativePath="..\objectxl.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\objhandlerxldefines.hpp"
+					RelativePath="..\objectxl.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\ohxldefines.hpp"
 					>
 				</File>
 				<File
@@ -601,6 +573,18 @@
 				</File>
 				<File
 					RelativePath="..\rangereference.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\repositoryxl.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\repositoryxl.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\xloper.hpp"
 					>
 				</File>
 			</Filter>
@@ -616,47 +600,11 @@
 				Name="Utilities"
 				>
 				<File
-					RelativePath="..\Utilities\utilities.cpp"
+					RelativePath="..\Utilities\xlutilities.cpp"
 					>
-					<FileConfiguration
-						Name="Debug CRTDLL|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(InputName)1.obj"
-							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(InputName)1.obj"
-							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release CRTDLL|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(InputName)1.obj"
-							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(InputName)1.obj"
-							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\Utilities\utilities.hpp"
+					RelativePath="..\Utilities\xlutilities.hpp"
 					>
 				</File>
 			</Filter>

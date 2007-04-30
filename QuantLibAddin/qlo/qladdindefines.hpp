@@ -25,7 +25,7 @@
     #error using an old version of Boost, please update.
 #endif
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #if OBJHANDLER_HEX_VERSION < 0x000800f0
     #error using an old version of ObjectHandler, please update.
 #endif

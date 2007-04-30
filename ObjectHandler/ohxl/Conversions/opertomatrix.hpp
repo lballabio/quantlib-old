@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,7 +21,7 @@
 #include <ohxl/Conversions/opertoscalar.hpp>
 #include <vector>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     template <class T>
     std::vector<std::vector<T> > operToMatrix(const OPER &xMatrix) {
@@ -30,44 +30,33 @@ namespace ObjHandler {
         ||  (xMatrix.xltype & xltypeMissing)
         || ((xMatrix.xltype & xltypeErr) && (xMatrix.val.err == xlerrNA)))
             return std::vector<std::vector<T> >();
-        OH_REQUIRE(!(xMatrix.xltype & xltypeErr), 
-            "input value has type=error");
 
-        OPER xTemp;
-        bool needToFree = false;
-        try {
-            const OPER *xMulti;
+        OH_REQUIRE(!(xMatrix.xltype & xltypeErr), "input value has type=error");
 
-            if (xMatrix.xltype == xltypeMulti)
-                xMulti = &xMatrix;
-            else {
-                Excel(xlCoerce, &xTemp, 2, &xMatrix, TempInt(xltypeMulti));
-                xMulti = &xTemp;
-                needToFree = true;
-            }
+        Xloper xTemp;
+        const OPER *xMulti;
 
-            std::vector<std::vector<T> > ret;
-            ret.reserve(xMulti->val.array.rows);
-            for (int i=0; i<xMulti->val.array.rows; ++i) {
-                std::vector<T> row;
-                row.reserve(xMulti->val.array.columns);
-                for (int j=0; j<xMulti->val.array.columns; ++j) {
-                    T value;
-                    operToScalar(xMulti->val.array.lparray[i * xMulti->val.array.columns + j], value);
-                    row.push_back(value);
-                }
-                ret.push_back(row);
-            }
-
-            if (needToFree)
-                Excel(xlFree, 0, 1, &xTemp);
-
-            return ret;
-        } catch (const std::exception &e) {
-            if (needToFree)
-                Excel(xlFree, 0, 1, &xTemp);
-            OH_FAIL("operToMatrix: " << e.what());
+        if (xMatrix.xltype == xltypeMulti)
+            xMulti = &xMatrix;
+        else {
+            Excel(xlCoerce, &xTemp, 2, &xMatrix, TempInt(xltypeMulti));
+            xMulti = &xTemp;
         }
+
+        std::vector<std::vector<T> > ret;
+        ret.reserve(xMulti->val.array.rows);
+        for (int i=0; i<xMulti->val.array.rows; ++i) {
+            std::vector<T> row;
+            row.reserve(xMulti->val.array.columns);
+            for (int j=0; j<xMulti->val.array.columns; ++j) {
+                T value;
+                operToScalar(xMulti->val.array.lparray[i * xMulti->val.array.columns + j], value);
+                row.push_back(value);
+            }
+            ret.push_back(row);
+        }
+
+        return ret;
     }
 
     template <class T>

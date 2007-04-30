@@ -18,7 +18,7 @@
 #ifndef qla_baseinstruments_hpp
 #define qla_baseinstruments_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/instrument.hpp>
 #include <ql/instruments/bond.hpp>
 #include <ql/instruments/forward.hpp>
@@ -26,7 +26,7 @@
 
 namespace QuantLibAddin {
 
-    class Instrument : public ObjHandler::LibraryObject<QuantLib::Instrument> {
+    class Instrument : public ObjectHandler::LibraryObject<QuantLib::Instrument> {
     };
 
     class OneAssetOption : public Instrument {

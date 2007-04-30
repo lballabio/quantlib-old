@@ -17,7 +17,7 @@
 
 #include <qlxl/Conversions/opertomatrix.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     QuantLib::Matrix operToMatrix(const FP &fpVector) {
         QuantLib::Matrix m(fpVector.rows, fpVector.columns);

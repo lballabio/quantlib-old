@@ -6,11 +6,7 @@
         %(functionName)sBind bindObject = 
             boost::bind(%(functionSignature)s
                 &%(functionCodeName)s,%(objectName)s%(inputList)s);
-        ObjHandler::loop
+        ObjectHandler::loop
             <%(functionName)sBind, %(inputType)s, %(returnType)s>
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
             (functionCall, bindObject, %(inputParam)s, returnValue);
-#else
-            (bindObject, %(inputParam)s, returnValue);
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 

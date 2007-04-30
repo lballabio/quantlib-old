@@ -18,7 +18,7 @@
 #ifndef qla_interpolation_hpp
 #define qla_interpolation_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/math/optimization/method.hpp>
 #include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/cubicspline.hpp>
@@ -27,7 +27,7 @@
 namespace QuantLibAddin {
 
     class Extrapolator :
-        public ObjHandler::LibraryObject<QuantLib::Extrapolator> {
+        public ObjectHandler::LibraryObject<QuantLib::Extrapolator> {
     };
 
     class Interpolation : public Extrapolator {

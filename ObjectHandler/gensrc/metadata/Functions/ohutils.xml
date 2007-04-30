@@ -15,7 +15,7 @@
 
     <Procedure name='ohTrigger' dependencyTrigger='false'>
       <description>forces a dependency between two functions and returns the update counter</description>
-      <alias>ObjHandler::dependsOn</alias>
+      <alias>ObjectHandler::dependsOn</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>
@@ -81,7 +81,7 @@
 
     <Procedure name='ohFunctionCount'>
       <description>returns the number of functions in this addin</description>
-      <alias>ObjHandler::version</alias>
+      <alias>ObjectHandler::version</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>
@@ -96,9 +96,9 @@
 
     <Procedure name='ohListObjectIDs'>
       <description>list the IDs of objects in repository matching regex</description>
-      <alias>ObjHandler::ObjectHandlerXL::instance().listObjectIDs</alias>
+      <alias>ObjectHandler::RepositoryXL::instance().listObjectIDs</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -117,7 +117,7 @@
 
     <Procedure name='ohObjectCount'>
       <description>#/objects in repository</description>
-      <alias>ObjHandler::ObjectHandlerXL::instance().objectCount</alias>
+      <alias>ObjectHandler::RepositoryXL::instance().objectCount</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
@@ -132,7 +132,7 @@
 
     <Procedure name='ohPack'>
       <description>trim error values from bottom/right of matrix/vector</description>
-      <alias>ObjHandler::ObjectHandlerXL::instance().packMatrix</alias>
+      <alias>ObjectHandler::RepositoryXL::instance().packMatrix</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>
@@ -153,9 +153,9 @@
 
     <Procedure name='ohSplit' dependencyTrigger='False'>
       <description>Splits a string using delimiters</description>
-      <alias>ObjHandler::split</alias>
+      <alias>ObjectHandler::split</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -184,10 +184,10 @@
 
     <Procedure name='ohFilter' dependencyTrigger='False'>
       <description>Filters the first vector using the second one as boolean inclusion flags</description>
-      <alias>ObjHandler::filter</alias>
+      <alias>ObjectHandler::filter</alias>
       <xlWizardRecalc>true</xlWizardRecalc>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -211,9 +211,9 @@
 
     <Procedure name='ohRetrieveError'>
       <description>retrieve error message associated with a given range</description>
-      <alias>ObjHandler::ObjectHandlerXL::instance().retrieveError</alias>
+      <alias>ObjectHandler::RepositoryXL::instance().retrieveError</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -232,7 +232,7 @@
 
     <Procedure name='ohVersion'>
       <description>returns the version number of ObjectHandler</description>
-      <alias>ObjHandler::version</alias>
+      <alias>ObjectHandler::version</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>

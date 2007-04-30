@@ -16,10 +16,10 @@
 */
 
 #include <account.hpp>
-#include <ohxl/objhandlerxl.hpp>
+#include <ohxl/objecthandlerxl.hpp>
 #include <ohxl/Register/register_all.hpp>
 #include <ohxl/Functions/export.hpp>
-#include <ohxl/Utilities/utilities.hpp>
+#include <ohxl/Utilities/xlutilities.hpp>
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
@@ -32,13 +32,15 @@
 #include <sstream>
 
 // instantiate objecthandler repository
-ObjHandler::ObjectHandlerXL oh;
+ObjectHandler::RepositoryXL oh;
 
 DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;
     try {
+
         Excel(xlGetName, &xDll, 0);
 
+        ObjectHandler::Configuration::instance().init();
         registerOhFunctions(xDll);
 
         Excel(xlfRegister, 0, 7, &xDll,
@@ -67,15 +69,20 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlFree, 0, 1, &xDll);
         return 1;
+
     } catch (const std::exception &e) {
+
         std::ostringstream err;
         err << "Error loading ExampleXllStatic: " << e.what();
         Excel(xlcAlert, 0, 1, TempStrStl(err.str()));
         Excel(xlFree, 0, 1, &xDll);
         return 0;
+
     } catch (...) {
+
         Excel(xlFree, 0, 1, &xDll);
         return 0;
+
     }
 }
 
@@ -86,67 +93,53 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 DLLEXPORT char *createAccount(
         char *objectID,
         long *accountNumber,
-        char *accountType,
-        OPER *permanent) {
-    ObjHandler::FunctionCall functionCall("createAccount");
+        char *accountType) {
+
+    ObjectHandler::FunctionCall functionCall("createAccount");
+
     try {
-        ObjHandler::ObjectHandlerXL::instance().resetCaller(true);
 
-        bool permanentCpp = ObjHandler::callOperToScalar(*permanent, "permanent", false);
-
-        boost::shared_ptr<ObjHandler::Object> objectPointer(new AccountObject(
-            *accountNumber, accountType));
-        objectPointer->setProperties(
-            boost::shared_ptr<ObjHandler::ValueObject>(
-            new AccountValueObject(objectID, *accountNumber, accountType)));
-        objectPointer->setPermanent();
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new AccountObject(*accountNumber, accountType));
+        object->setProperties(
+            boost::shared_ptr<ObjectHandler::ValueObject>(
+                new AccountValueObject(objectID, *accountNumber, accountType)));
 
         const std::string returnValue = 
-            ObjHandler::ObjectHandler::instance().storeObject(objectID, objectPointer);
+            ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);
 
         static char ret[XL_MAX_STR_LEN];
-        ObjHandler::stringToChar(returnValue, ret);
+        ObjectHandler::stringToChar(returnValue, ret);
         return ret;
+
     } catch (const std::exception &e) {
-        std::ostringstream err;
-        err << "Error: createAccount - "  
-            << functionCall.getAddressString() 
-            << " - " << e.what();
-        ObjHandler::logMessage(err.str(), 2);
+        ObjectHandler::RepositoryXL::instance().logError(e.what());
         return 0;
     }
 }
 
 DLLEXPORT short int *setBalance(char *objectID, long *balance) {
-    ObjHandler::FunctionCall functionCall("createAccount");
+    ObjectHandler::FunctionCall functionCall("createAccount");
     try {
         OH_GET_OBJECT(accountObject, objectID, AccountObject)
         accountObject->setBalance(*balance);
         static short int ret = TRUE;
         return &ret;
     } catch (const std::exception &e) {
-        std::ostringstream err;
-        err << "Error: setBalance - "
-            << functionCall.getAddressString() 
-            << " - " << e.what();
-        ObjHandler::logMessage(err.str(), 2);
+        ObjectHandler::RepositoryXL::instance().logError(e.what());
         return 0;
     }
 }
 
 DLLEXPORT long *getBalance(char *objectID, OPER *trigger) {
-    ObjHandler::FunctionCall functionCall("createAccount");
+    ObjectHandler::FunctionCall functionCall("createAccount");
     try {
         OH_GET_OBJECT(accountObject, objectID, AccountObject)
         static long ret;
         ret = accountObject->getBalance();
         return &ret;
     } catch (const std::exception &e) {
-        std::ostringstream err;
-        err << "Error: getBalance - "
-            << functionCall.getAddressString() 
-            << " - " << e.what();
-        ObjHandler::logMessage(err.str(), 2);
+        ObjectHandler::RepositoryXL::instance().logError(e.what());
         return 0;
     }
 }

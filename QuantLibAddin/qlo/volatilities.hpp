@@ -18,13 +18,13 @@
 #ifndef qla_volatilities_hpp
 #define qla_volatilities_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/termstructures/volatilities/blackconstantvol.hpp>
 #include <ql/termstructures/volatilities/blackvariancesurface.hpp>
 
 namespace QuantLibAddin {
 
-    class BlackVolTermStructure : public ObjHandler::LibraryObject<QuantLib::BlackVolTermStructure> {
+    class BlackVolTermStructure : public ObjectHandler::LibraryObject<QuantLib::BlackVolTermStructure> {
     };
 
     class BlackConstantVol : public BlackVolTermStructure {

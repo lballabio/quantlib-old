@@ -33,9 +33,9 @@ namespace QuantLibAddin {
 
         // get the name of the current book
 
-        const XLOPER *xReftext = ObjHandler::FunctionCall::instance().getCallerAddress();
+        const XLOPER *xReftext = ObjectHandler::FunctionCall::instance().getCallerAddress();
         std::string callerAddress;
-        ObjHandler::operToScalar(callerAddress, *xReftext);
+        ObjectHandler::operToScalar(callerAddress, *xReftext);
         std::string callerBook = bookFromAddress(callerAddress);
 
         // get session id from map, adding new entry if necessary
@@ -78,7 +78,7 @@ namespace QuantLibAddin {
                 "1) [BOOK.XLS]SHEET!R1C1 "
                 "2) '[BOOK.XLS]SHEET'!R1C1 "
                 "3) BOOK.XLS!R1C1";
-            throw ObjHandler::Exception(err.str());
+            throw ObjectHandler::Exception(err.str());
         }
     }
 

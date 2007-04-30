@@ -16,9 +16,9 @@
 */
 
 #include <qlxl/Conversions/opertovector.hpp>
-#include <ohxl/Utilities/utilities.hpp>
+#include <ohxl/Utilities/xlutilities.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     //QuantLib::Array operToVector(const FP &fpVector) {
     //    QuantLib::Array a(fpVector.rows * fpVector.columns);

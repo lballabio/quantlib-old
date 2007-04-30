@@ -1,4 +1,4 @@
-    class %(functionName)s : public ObjHandler::ValueObject {
+    class %(functionName)s : public ObjectHandler::ValueObject {
     public:
         %(functionName)s(%(constructorDeclaration)s);
 

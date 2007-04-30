@@ -19,13 +19,13 @@
 #ifndef qla_riskstatistics_hpp
 #define qla_riskstatistics_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/math/statistics/statistics.hpp>
 
 namespace QuantLibAddin {
 
     class Statistics : 
-        public ObjHandler::LibraryObject<QuantLib::Statistics> {
+        public ObjectHandler::LibraryObject<QuantLib::Statistics> {
     public:
         Statistics(std::vector<QuantLib::Real> values, 
                    std::vector<QuantLib::Real> weights);

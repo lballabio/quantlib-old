@@ -311,12 +311,15 @@ namespace QuantLibAddin {
     std::string MarketModelMultiProduct::evolution() const
     {
         const QuantLib::EvolutionDescription& ev = libraryObject_->evolution();
-        boost::shared_ptr<ObjHandler::Object> objectPointer(
+        boost::shared_ptr<ObjectHandler::Object> objectPointer(
             new QuantLibAddin::EvolutionDescription(ev));
+        // Eric 27-Apr-07 - A limitation of OH redesign is that there can only be one anonymous
+        // object per cell.  The line below may cause problems if creation of a second anonymous
+        // object is attempted elsewhere within the same overall operation.
         std::string anonymousID =
-            ObjHandler::ObjectHandler::instance().storeObject("", objectPointer);
+            ObjectHandler::Repository::instance().storeObject("", objectPointer);
         objectPointer->setProperties(
-            boost::shared_ptr<ObjHandler::ValueObject>(
+            boost::shared_ptr<ObjectHandler::ValueObject>(
             new ValueObjects::qlEvolutionDescription(
                 anonymousID,
                 ev.rateTimes(),

@@ -21,7 +21,7 @@
 #ifndef qla_swaptionvolstructure_hpp
 #define qla_swaptionvolstructure_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <qlo/termstructures.hpp>
 #include <qlo/smilesection.hpp>
 

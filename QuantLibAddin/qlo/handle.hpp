@@ -24,7 +24,7 @@
 namespace QuantLibAddin {
 
     template <class T>
-    class RelinkableHandle : public ObjHandler::Object {
+    class RelinkableHandle : public ObjectHandler::Object {
     public:
         RelinkableHandle(const boost::shared_ptr<T> &observable) {
             if (observable)

@@ -4,7 +4,7 @@
 %(returnCommand)s
         return SUCCESS;
     } catch (const std::exception &e) {
-        ObjHandler::logMessage("%(name)s Error: " + std::string(e.what()));
+        ObjectHandler::logMessage("%(name)s Error: " + std::string(e.what()));
         result = 0;
         return FAIL;
     }

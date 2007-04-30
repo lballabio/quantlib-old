@@ -25,11 +25,11 @@
 #include <ql/yieldtermstructure.hpp>
 #include <ql/swaptionvolstructure.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     template <class HandleClass, class LibraryClass>
     bool curveFromHandle2(
-            const boost::shared_ptr<ObjHandler::Object> &in,
+            const boost::shared_ptr<ObjectHandler::Object> &in,
             boost::shared_ptr<LibraryClass> &out) {
 
         boost::shared_ptr<QuantLibAddin::RelinkableHandle<HandleClass> > 
@@ -53,8 +53,8 @@ namespace ObjHandler {
     }
 
     template <class ObjectClass, class LibraryClass, class HandleClass>
-    class CoerceCurve : public ObjHandler::Coerce<
-            boost::shared_ptr<ObjHandler::Object>, 
+    class CoerceCurve : public ObjectHandler::Coerce<
+            boost::shared_ptr<ObjectHandler::Object>, 
             boost::shared_ptr<LibraryClass> > {
 
         Conversion *getConversions() {

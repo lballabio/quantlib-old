@@ -17,7 +17,7 @@
 #ifndef qla_smilesection_hpp
 #define qla_smilesection_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/termstructures/volatilities/smilesection.hpp>
 #include <ql/termstructures/volatilities/interpolatedsmilesection.hpp>
 #include <ql/math/optimization/method.hpp>
@@ -26,7 +26,7 @@
 namespace QuantLibAddin {
     
     class SmileSection : 
-                public ObjHandler::LibraryObject<QuantLib::SmileSection> {};
+                public ObjectHandler::LibraryObject<QuantLib::SmileSection> {};
 
     class FlatSmileSection : public SmileSection {
       public:

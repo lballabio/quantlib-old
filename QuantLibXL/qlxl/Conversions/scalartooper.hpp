@@ -18,12 +18,12 @@
 #ifndef qlxl_conversions_scalartooper_hpp
 #define qlxl_conversions_scalartooper_hpp
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/time/date.hpp>
 #include <ql/interestrate.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     void scalarToOper(const QuantLib::InterestRate &value, OPER &xScalar);
     void scalarToOper(const QuantLib::Date         &value, OPER &xScalar);

@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,8 +18,9 @@
 
 #include <ohxl/Conversions/opertoscalar.hpp>
 #include <oh/exception.hpp>
+#include <ohxl/xloper.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     DLL_API void operToScalar(const OPER &xScalar, long &ret) {
         if (xScalar.xltype == xltypeNum)
@@ -52,37 +53,25 @@ namespace ObjHandler {
     }
 
     DLL_API void operToScalar(const OPER &xScalar, std::string &ret) {
-        OPER xTemp;
-        bool needToFree = false;
-        try {
-            const OPER *xString;
 
-            if (xScalar.xltype == xltypeStr) {
-                xString = &xScalar;
-            } else {
-                Excel(xlCoerce, &xTemp, 2, &xScalar, TempInt(xltypeStr));
-                xString = &xTemp;
-                needToFree = true;
-            }
+        Xloper xTemp;
+        const OPER *xString;
 
-            //if (xString->val.str[0])
-            //    ret.assign(xString->val.str + 1, xString->val.str[0]);
-            // expirimental workaround for apparent bug in Excel API
-            // where the value for the string length wraps around the byte
-            int stringLength = xString->val.str[0];
-            if (stringLength < 0) stringLength += 256;
-            if (stringLength)
-                ret.assign(xString->val.str + 1, stringLength);
-
-            if (needToFree) {
-                Excel(xlFree, 0, 1, &xTemp);
-            }
-
-        } catch (...) {
-            if (needToFree)
-                Excel(xlFree, 0, 1, &xTemp);
-            throw;
+        if (xScalar.xltype == xltypeStr) {
+            xString = &xScalar;
+        } else {
+            Excel(xlCoerce, &xTemp, 2, &xScalar, TempInt(xltypeStr));
+            xString = &xTemp;
         }
+
+        //if (xString->val.str[0])
+        //    ret.assign(xString->val.str + 1, xString->val.str[0]);
+        // experimental workaround for apparent bug in Excel API
+        // where the value for the string length wraps around the byte
+        int stringLength = xString->val.str[0];
+        if (stringLength < 0) stringLength += 256;
+        if (stringLength)
+            ret.assign(xString->val.str + 1, stringLength);
     }
 
     DLL_API void operToScalar(const OPER &xScalar, boost::any &ret) {
@@ -94,8 +83,7 @@ namespace ObjHandler {
             return;
         }
 
-        OH_REQUIRE(!(xScalar.xltype & xltypeErr), 
-            "input value has type=error");
+        OH_REQUIRE(!(xScalar.xltype & xltypeErr), "input value has type=error");
 
         if (xScalar.xltype == xltypeNum)
             ret = xScalar.val.num;
@@ -109,4 +97,5 @@ namespace ObjHandler {
             OH_FAIL("operToScalar: unexpected datatype: " << xScalar.xltype);
         }
     }
+
 }

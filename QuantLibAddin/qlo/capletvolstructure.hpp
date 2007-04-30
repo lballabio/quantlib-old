@@ -18,7 +18,7 @@
 #ifndef qla_capletvolstructure_hpp
 #define qla_capletvolstructure_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/termstructures/volatilities/capletvolatilitiesstructures.hpp>
 #include <ql/capvolstructures.hpp>
 #include <qlo/termstructures.hpp>

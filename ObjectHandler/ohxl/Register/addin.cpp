@@ -20,17 +20,18 @@
 #include <ohxl/Register/register_all.hpp>
 #include <ohxl/Functions/export.hpp>
 #include <ohxl/Conversions/all.hpp>
-#include <ohxl/Utilities/utilities.hpp>
+#include <ohxl/Utilities/xlutilities.hpp>
 #include <sstream>
 
 // instantiate the object handler singleton
-ObjHandler::ObjectHandlerXL objectHandler;
+ObjectHandler::RepositoryXL objectHandler;
 
 DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;
     try {
         Excel(xlGetName, &xDll, 0);
 
+        ObjectHandler::Configuration::instance().init();
         registerOhFunctions(xDll);
 
         Excel(xlFree, 0, 1, &xDll);
@@ -84,7 +85,7 @@ DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
     // long name for the XLL. Any other value should result in the
     // return of a #VALUE! error.
     if (1 == xlReturn.val.w) {
-        ObjHandler::scalarToOper(std::string("ObjectHandler 0.8.0"), xlLongName);
+        ObjectHandler::scalarToOper(std::string("ObjectHandler 0.8.0"), xlLongName);
     } else {
         xlLongName.xltype = xltypeErr;
         xlLongName.val.err = xlerrValue;

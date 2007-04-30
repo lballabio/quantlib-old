@@ -15,67 +15,42 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file
-    \brief CallingRange class
-*/
-
 #ifndef ohxl_callingrange_hpp
 #define ohxl_callingrange_hpp
 
-#include <ohxl/objhandlerxldefines.hpp>
-#include <oh/object.hpp>
 #include <oh/iless.hpp>
-#include <ohxl/rangereference.hpp>
+#include <ohxl/objectxl.hpp>
+#include <string>
 #include <map>
 
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
-
-namespace ObjHandler {
+namespace ObjectHandler {
 
     class CallingRange {
+        friend std::ostream &operator<<(std::ostream&, const boost::shared_ptr<CallingRange>&);
     public:
         CallingRange();
         ~CallingRange();
-        bool isValid() const;
-        const std::string &getKey() const {
-            return key_;
-        }
-        void deleteObject(const std::string &objectID, 
-                          boost::shared_ptr<Object> object);
-        void registerObject(const std::string &objectID, 
-                            boost::shared_ptr<Object> object);
-        void clearResidentObjects(bool deletePermanent);
-        void update();
+        bool valid() const;
+        const std::string &key() const { return key_; }
         std::string updateCount();
-        friend std::ostream &operator<<(std::ostream&, const CallingRange&);
-        bool empty() {
-            return (residentObjects_.empty());
-        }
-        void setErrorMessage(const std::string &errorMessage, const bool &append);
-        const std::string errorMessage() const {
-            return errorMessage_;
-        }
-        void clearError() {
-            errorMessage_ = "";
-        }
-        std::string getAddressString() const;
-        bool contains(const RangeReference&);
+        static int keyWidth() { return KEY_WIDTH; }
+        void registerObject(boost::shared_ptr<ObjectXL> objectXL);
+        void clearResidentObjects(bool deletePermanent);
+        bool empty() { return residentObjects_.empty(); }
+        std::string addressString() const;
     private:
         static int keyCount_;
         static std::string getKeyCount();
+        static const int KEY_WIDTH;
         std::string key_;
-        std::string errorMessage_;
-        bool busy_;
         int updateCount_;
-        void setInvocationCount();
-        int invocationCount_;
-        std::map<std::string, boost::shared_ptr<Object>, my_iless > residentObjects_;
-        boost::shared_ptr<RangeReference> rangeReference_;
+        typedef std::map<std::string, boost::shared_ptr<ObjectXL>, my_iless > ObjectXLMap;
+        ObjectXLMap residentObjects_;
     };
 
+    std::ostream &operator<<(std::ostream&, const boost::shared_ptr<CallingRange>&);
 }
 
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 
 #endif
 

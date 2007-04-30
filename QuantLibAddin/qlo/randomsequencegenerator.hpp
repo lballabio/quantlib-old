@@ -19,7 +19,7 @@
 #ifndef qla_randomsequencegenerator_hpp
 #define qla_randomsequencegenerator_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/math/randomnumbers/rngtraits.hpp>
 #include <ql/math/randomnumbers/faurersg.hpp>
 #include <ql/math/randomnumbers/mt19937uniformrng.hpp>
@@ -33,7 +33,7 @@ namespace QuantLibAddin {
     QuantLib::Real rand();
     void randomize(QuantLib::BigNatural seed);
 
-    class RandomSequenceGenerator : public ObjHandler::Object {
+    class RandomSequenceGenerator : public ObjectHandler::Object {
       public:
         std::vector<std::vector<double> > variates(long samples);
 

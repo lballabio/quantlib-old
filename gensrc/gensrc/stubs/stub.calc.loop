@@ -7,7 +7,7 @@
             boost::bind(
                 (%(functionSignature)s)
                     &%(functionCodeName)s,%(objectName)s%(inputList)s);
-        ObjHandler::loop
+        ObjectHandler::loop
             <%(functionName)sBind, %(inputType)s, %(returnType)s>
             (bindObject, %(inputParam)s, returnValue);
 

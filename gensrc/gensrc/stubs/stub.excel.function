@@ -2,28 +2,19 @@ XLL_DEC %(functionReturnType)s%(functionName)s(%(functionDeclaration)s) {
 
     // initialize Function Call object
 
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
-    ObjHandler::FunctionCall functionCall("%(functionName)s");
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
+    ObjectHandler::FunctionCall functionCall("%(functionName)s");
 
     try {
 
-%(xlWizardRecalc)s
-%(xlTrigger)s%(validatePermanent)s
+%(xlTrigger)s
 
         // initialize the session ID (if enabled)
 
         SET_SESSION_ID
-
-        // reset the calling cell
-
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
-        ObjHandler::ObjectHandlerXL::instance().resetCaller(%(resetCaller)s);
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 %(cppConversions)s%(libConversions)s%(enumConversions)s%(objectConversions)s%(refConversions)s%(functionBody)s%(returnConversion)s
 
     } catch (const std::exception &e) {
-        ObjHandler::ObjectHandlerXL::instance().logError(e.what());
+        ObjectHandler::RepositoryXL::instance().logError(e.what());
         return 0;
     }
 }

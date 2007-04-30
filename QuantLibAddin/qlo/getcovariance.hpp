@@ -18,7 +18,7 @@
 #ifndef qla_getcovariance_hpp
 #define qla_getcovariance_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/math/matrixutilities/getcovariance.hpp>
 
 namespace QuantLibAddin {
@@ -30,7 +30,7 @@ namespace QuantLibAddin {
         return QuantLib::getCovariance(vols.begin(), vols.end(), corr, tol);
     }
 
-    class CovarianceDecomposition : public ObjHandler::LibraryObject<
+    class CovarianceDecomposition : public ObjectHandler::LibraryObject<
         QuantLib::CovarianceDecomposition>
     {
       public:

@@ -16,34 +16,51 @@
 */
 
 #include <ohxl/rangereference.hpp>
+#include <ohxl/configuration.hpp>
 #include <oh/exception.hpp>
 #include <oh/utilities.hpp>
-#include <boost/algorithm/string.hpp>
-#include <boost/regex.hpp>
 #include <boost/lexical_cast.hpp>
 
-#ifdef OHXL_ENABLE_GARBAGE_COLLECTION
+namespace ObjectHandler {
 
-namespace ObjHandler {
+    boost::regex RangeReference::regexStandard_;
+    boost::regex RangeReference::regexSpecial_;
+    bool RangeReference::regexesInitialized_ = false;
 
     RangeReference::RangeReference(const std::string &address)
-    : addressOriginal_(address) {
+        : address_(address) {
 
-        addressUpper_ = boost::algorithm::to_upper_copy(address);
+        if (!regexesInitialized_) initializeRegexes();
 
-        if (!init1() && !init2()) {
-            std::ostringstream err;
-            err << "the string '" << address << "' is not a valid range reference";
-            throw Exception(err.str().c_str());
-        }
+        OH_REQUIRE(initStandard() || initSpecial(),
+            "The string '" << address << "' is not a valid range reference");
     }
 
-    bool RangeReference::init1() {
-        // try to handle case where book name != sheet name
-        static boost::regex r(
-          "=?'?.*\\[([\\w\\s-]+)(?:\\.XLS)?\\]([\\w\\s]+)'?!R(\\d*)C(\\d*)(?::R(\\d*)C(\\d*))?");
+    void RangeReference::initializeRegexes() {
+
+        std::ostringstream strStandard, strSpecial;
+        strStandard << "=?'?.*\\[([\\w\\s-]+)(?:\\.XLS)?\\]([\\w\\s]+)'?!" 
+            << Configuration::instance().rowCharacter() << "(\\d*)" 
+            << Configuration::instance().colCharacter() << "(\\d*)(?::" 
+            << Configuration::instance().rowCharacter() << "(\\d*)" 
+            << Configuration::instance().colCharacter() << "(\\d*))?";
+        strSpecial << "=?'?([\\w\\s]+)(?:\\.XLS)'?!" 
+            << Configuration::instance().rowCharacter() << "(\\d*)" 
+            << Configuration::instance().colCharacter() << "(\\d*)(?::" 
+            << Configuration::instance().rowCharacter() << "(\\d*)" 
+            << Configuration::instance().colCharacter() << "(\\d*))?";
+
+        regexStandard_ = strStandard.str();
+        regexSpecial_ = strSpecial.str();
+
+        regexesInitialized_ = true;
+    }
+
+    bool RangeReference::initStandard() {
+        // try to handle the usual case where book name != sheet name
+
         boost::smatch m; 
-        if (!boost::regex_match(addressUpper_, m, r))
+        if (!boost::regex_match(address_, m, regexStandard_))
             return false;
 
         bookName_ = m[1];
@@ -62,12 +79,11 @@ namespace ObjHandler {
         return true;
     }
 
-    bool RangeReference::init2() {
-        // try to handle case of book containing single sheet w/same name
-        static boost::regex r(
-          "=?'?([\\w\\s]+)(?:\\.XLS)'?!R(\\d*)C(\\d*)(?::R(\\d*)C(\\d*))?");
+    bool RangeReference::initSpecial() {
+        // try to handle special case of book containing single sheet w/same name
+
         boost::smatch m; 
-        if (!boost::regex_match(addressUpper_, m, r))
+        if (!boost::regex_match(address_, m, regexSpecial_))
             return false;
 
         bookName_ = m[1];
@@ -114,8 +130,18 @@ namespace ObjHandler {
         }
     }
 
+    void RangeReference::setErrorMessage(const std::string &errorMessage, const bool &append) {
+        if (append) {
+            std::ostringstream err;
+            err << errorMessage_ << std::endl << std::endl << errorMessage;
+            errorMessage_ = err.str();
+        } else {
+            errorMessage_ = errorMessage;
+        }
+    }
+
     bool RangeReference::operator==(const RangeReference &r) const {
-        if (this->addressOriginal_ == r.addressOriginal_)
+        if (this->address_ == r.address_)
             return true;
         return this->bookName_ == r.bookName_
             && this->sheetName_ == r.sheetName_
@@ -127,18 +153,16 @@ namespace ObjHandler {
     }
 
     std::ostream &operator<<(std::ostream &out, const RangeReference &r) {
-        out << "originalAddress = " << r.addressOriginal_ << std::endl;
-        out << "bookName =        " << r.bookName_ << std::endl;
-        out << "sheetName =       " << r.sheetName_ << std::endl;
-        out << "multicell =       " << r.multicell_ << std::endl;
-        out << "rowStartNum =     " << r.rowStartNum_ << std::endl;
-        out << "colStartNum =     " << r.colStartNum_ << std::endl;
-        out << "rowEndNum =       " << r.rowEndNum_ << std::endl;
-        out << "colEndNum =       " << r.colEndNum_ << std::endl;
+        out << "address =     " << r.address_ << std::endl;
+        out << "bookName =    " << r.bookName_ << std::endl;
+        out << "sheetName =   " << r.sheetName_ << std::endl;
+        out << "multicell =   " << r.multicell_ << std::endl;
+        out << "rowStartNum = " << r.rowStartNum_ << std::endl;
+        out << "colStartNum = " << r.colStartNum_ << std::endl;
+        out << "rowEndNum =   " << r.rowEndNum_ << std::endl;
+        out << "colEndNum =   " << r.colEndNum_ << std::endl;
         return out;
     }
 
 }
-
-#endif // OHXL_ENABLE_GARBAGE_COLLECTION
 

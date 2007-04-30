@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,11 +19,8 @@
 #include <ohxl/Conversions/scalartooper.hpp>
 #include <ohxl/Conversions/vectortooper.hpp>
 #include <ohxl/Conversions/matrixtooper.hpp>
-#include <oh/exception.hpp>
-#include <oh/utilities.hpp>
-#include <sstream>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     DLL_API void scalarToOper(const long &value, OPER &xLong, bool dllToFree) {
         xLong.xltype = xltypeNum;
@@ -43,8 +40,6 @@ namespace ObjHandler {
     DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree) {
         int len = __min(XL_MAX_STR_LEN, value.length());
         xString.val.str = new char[ len + 1 ];
-        if (!xString.val.str) 
-            throw Exception("stringToOper: error calling new");
         if (dllToFree)
             xString.xltype = (xltypeStr | xlbitDLLFree);
         else

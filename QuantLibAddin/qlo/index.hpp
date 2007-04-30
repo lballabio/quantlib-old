@@ -21,7 +21,7 @@
 #ifndef qla_xibor_hpp
 #define qla_xibor_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/time/businessdayconvention.hpp>
 #include <ql/handle.hpp>
 #include <ql/types.hpp>
@@ -40,7 +40,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class Index : public ObjHandler::LibraryObject<QuantLib::Index> {
+    class Index : public ObjectHandler::LibraryObject<QuantLib::Index> {
       public:
           void addFixings(const std::vector<QuantLib::Date>& dates,
 			              const std::vector<QuantLib::Real>& values);

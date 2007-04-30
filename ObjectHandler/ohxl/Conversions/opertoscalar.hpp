@@ -18,12 +18,12 @@
 #ifndef ohxl_conversions_opertoscalar_hpp
 #define ohxl_conversions_opertoscalar_hpp
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <string>
 #include <boost/any.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     DLL_API void operToScalar(const OPER &xScalar, long &ret);
     DLL_API void operToScalar(const OPER &xScalar, double &ret);

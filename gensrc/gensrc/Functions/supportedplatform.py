@@ -60,9 +60,6 @@ class SupportedPlatform(serializable.Serializable):
     def xlMacro(self):
         return self.xlMacro_
 
-    def calcInWizard(self):
-        return self.calcInWizard_
-
     #############################################
     # serializer interface
     #############################################
@@ -71,7 +68,6 @@ class SupportedPlatform(serializable.Serializable):
         """Load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, 'implementation', 'auto')
         serializer.serializeAttributeBoolean(self, 'xlMacro', True)
-        serializer.serializeAttributeBoolean(self, common.CALC_IN_WIZ, False)
         serializer.serializeAttribute(self, common.NAME)
 
     def postSerialize(self):

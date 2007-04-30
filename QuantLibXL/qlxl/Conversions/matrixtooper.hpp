@@ -18,11 +18,11 @@
 #ifndef qlxl_conversions_matrixtooper_hpp
 #define qlxl_conversions_matrixtooper_hpp
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/math/matrix.hpp>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
     void matrixToOper(const QuantLib::Matrix &m, OPER &xMatrix);
 

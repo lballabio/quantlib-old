@@ -165,9 +165,6 @@
 					RelativePath="..\..\oh\iless.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\object.cpp">
-				</File>
-				<File
 					RelativePath="..\..\oh\object.hpp">
 				</File>
 				<File
@@ -198,6 +195,9 @@
 			<Filter
 				Name="Conversions"
 				Filter="">
+				<File
+					RelativePath="..\..\oh\Conversions\anytostream.hpp">
+				</File>
 				<File
 					RelativePath="..\..\oh\Conversions\coerce.hpp">
 				</File>
@@ -329,6 +329,9 @@
 					RelativePath="..\Functions\garbagecollection.cpp">
 				</File>
 				<File
+					RelativePath="..\Functions\garbagecollection.cpp">
+				</File>
+				<File
 					RelativePath="..\Functions\logging.cpp">
 				</File>
 				<File
@@ -359,6 +362,9 @@
 				</File>
 				<File
 					RelativePath="..\Register\register_demo.cpp">
+				</File>
+				<File
+					RelativePath="..\Register\register_garbagecollection.cpp">
 				</File>
 				<File
 					RelativePath="..\Register\register_garbagecollection.cpp">

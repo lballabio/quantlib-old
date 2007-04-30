@@ -16,8 +16,8 @@
 */
 
 #include <account.hpp>
-#include <ohxl/objhandlerxl.hpp>
-#include <ohxl/Utilities/utilities.hpp>
+#include <ohxl/objecthandlerxl.hpp>
+#include <ohxl/Utilities/xlutilities.hpp>
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
 */
@@ -61,10 +61,10 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 }
 
 DLLEXPORT long *addin2GetBalance(char *objectID, OPER *trigger) {
-    boost::shared_ptr < ObjHandler::FunctionCall > functionCall;
+    boost::shared_ptr < ObjectHandler::FunctionCall > functionCall;
     try {
-        functionCall = boost::shared_ptr < ObjHandler::FunctionCall > 
-            ( new ObjHandler::FunctionCall("addin2GetBalance") );
+        functionCall = boost::shared_ptr < ObjectHandler::FunctionCall > 
+            ( new ObjectHandler::FunctionCall("addin2GetBalance") );
 
         OH_GET_OBJECT(accountObject, objectID, AccountObject)
 
@@ -72,11 +72,7 @@ DLLEXPORT long *addin2GetBalance(char *objectID, OPER *trigger) {
         ret = accountObject->getBalance();
         return &ret;
     } catch (const std::exception &e) {
-        std::ostringstream err;
-        err << "Error: addin2GetBalance - ";
-        if (functionCall) err << functionCall->getAddressString() << " - ";
-        err << e.what();
-        ObjHandler::logMessage(err.str(), 2);
+        ObjectHandler::RepositoryXL::instance().logError(e.what());
         return 0;
     }
 }

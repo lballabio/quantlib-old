@@ -18,7 +18,7 @@
 #ifndef qla_interpolation2D_hpp
 #define qla_interpolation2D_hpp
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <qlo/interpolation.hpp>
 #include <ql/math/matrix.hpp>
 

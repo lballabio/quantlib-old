@@ -24,7 +24,7 @@
 
 #include <qlo/baseinstruments.hpp>
 #include <qlo/index.hpp>
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <qlo/schedule.hpp>
 #include <qlo/analysis.hpp>
 #include <qlo/couponvectors.hpp>

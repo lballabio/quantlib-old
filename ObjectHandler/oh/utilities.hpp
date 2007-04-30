@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
@@ -23,15 +23,15 @@
 #ifndef oh_utilities_hpp
 #define oh_utilities_hpp
 
-#include <oh/objhandlerdefines.hpp>
+#include <oh/ohdefines.hpp>
 #include <oh/exception.hpp>
 #include <boost/any.hpp>
 #include <string>
 #include <vector>
 
-namespace ObjHandler {
+namespace ObjectHandler {
 
-    //! Returns ObjectHandler version string
+    //! Returns ObjectHandler version string.
     std::string version();
 
     /** \name Logging framework
@@ -42,56 +42,70 @@ namespace ObjHandler {
     */
     //@{
 
-    //! Wrapper for function Logger::instance().setLogFile().
-    /*! Specify name of log file.
+    //! Start logging to file of given name.
+    /*! Wraps function Logger::instance().setLogFile().
     */
     std::string setLogFile(
         const std::string &logFileName,
         const int &logLevel = 4);
 
-    //! Wrapper for function Logger::instance().logMessage()
-    /*! Write a message to the log file.
+    //! Write a message to the log file.
+    /*! Wraps function Logger::instance().logMessage().
     */
     DLL_API void logMessage(
         const std::string &message,
         const int &level = 4);
 
-    //! Wrapper for function Logger::instance().setLogLevel().
-    /*! Set logging threshold.
+    //! Set the logging threshold.
+    /*! Wraps function Logger::instance().setLogLevel().
+
+        It is seldom necessary to call this function as the default
+        logging level is suitable for most purposes.
     */
     void setLogLevel(const int &logLevel);
 
-    //! Wrapper for function Logger::instance().setConsole().
-    /*! Fork log messages to stdout.
+    //! Fork log messages to stdout.
+    /*! Wraps function Logger::instance().setConsole().
+
+        This function is used in command-line environments and causes
+        messages to appear both on the terminal and in the log file.
     */
     void setConsole(const int &console = 0,
                     const int &logLevel = 4);
 
     //! Write Object with given ID to log file.
-    /*! Writes a warning message to log file
-        if no object is found with given ID.
+    /*! Writes a warning message to the log file
+        if no Object is found with the given ID.
     */
     void logObject(const std::string &objectID);
 
-    //! Write all Objects to log file.
-    /*! Takes no action if ObjectHandler
+    //! Write all Objects to the log file.
+    /*! Takes no action if the ObjectHandler
         repository is empty.
     */
     void logAllObjects();
+    //@}
 
-    // some basic utilities
-
+    //! Split a string into substrings using the given delimiter.
     std::vector<std::string> split(const std::string &line,
                                    const std::string &delim,
                                    bool token_compress);
+    /** \name General Utilities
+     *  Miscellaneous utility functions.
+    */
+    //@{
 
+    //! Filter a list of data given a list of flags.
+    /*! Accept a list of values and a list of boolean flags.  Return
+        the list of values for which the corresponding flag is true.
+    */
     template< typename T>
     std::vector<T> filter(const std::vector<T> &in,
                           const std::vector<bool> &flags) {
         std::size_t size = in.size();
         OH_REQUIRE(size==flags.size(),
-                   "size mismatch between value vector (" << size << 
-                   ") and flag vector (" << flags.size() << ")");
+            "size mismatch between value vector (" << size << 
+            ") and flag vector (" << flags.size() << ")");
 
         std::vector<T> out;
         out.reserve(size); //excess capacity
@@ -101,8 +115,9 @@ namespace ObjHandler {
 
         return out;
     }
-
     //@}
+
 }
 
 #endif
+
