@@ -25,7 +25,7 @@
 #include <oh/objhandlerdefines.hpp>
 #include <qlo/ratehelpers.hpp>
 
-#include <ql/time/date.hpp>
+#include <ql/time/imm.hpp>
 
 namespace QuantLibAddin {
 
@@ -60,7 +60,7 @@ namespace QuantLibAddin {
     {
         quoteHandle_ = price;
         convAdjHandle_= convAdj;
-        QuantLib::Date expiry = QuantLib::Date::IMMdate(immDateID);
+        QuantLib::Date expiry = QuantLib::IMM::date(immDateID);
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FuturesRateHelper(quoteHandle_,
                                         expiry,
@@ -70,7 +70,7 @@ namespace QuantLibAddin {
                                         dayCounter,
                                         convAdjHandle_));
     }
-    
+
 
     SwapRateHelper::SwapRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& quote,
@@ -109,7 +109,7 @@ namespace QuantLibAddin {
                            bool isDepo,
                            const std::string& objectID,
                            const long& priority,
-                           const QuantLib::Date& earliestDate, 
+                           const QuantLib::Date& earliestDate,
                            const QuantLib::Date& latestDate)
             : isFutures(isFutures), isDepo(isDepo), objectID(objectID),
               priority(priority),
@@ -205,13 +205,13 @@ namespace QuantLibAddin {
         for (QuantLib::Size i=0; i<nInstruments; ++i) {
             if (rhsAll[i].earliestDate >= evalDate) {
                 if (rhsAll[i].isDepo) {                 // Check Depo conditions
-                    //if (!depoAfterFrontFuturesStartDateExcludeFlag && 
-                    //    !depoAfterFrontFuturesExpiryDateExcludeFlag) { 
+                    //if (!depoAfterFrontFuturesStartDateExcludeFlag &&
+                    //    !depoAfterFrontFuturesExpiryDateExcludeFlag) {
                     //    rhs.push_back(rhsAll[i]);       // Include all depos
                     //} else if (depoAfterFrontFuturesStartDateExcludeFlag) {
                     //    // Include only depos with maturity date before the front Futures start date, +1
                     //    if (rhsAll[i].latestDate < frontFuturesEarliestDate) {
-                    //        rhs.push_back(rhsAll[i]);   
+                    //        rhs.push_back(rhsAll[i]);
                     //    } else {
                     //        if (depoAfterFrontFuturesAlreadyIncluded == false) {
                     //            rhs.push_back(rhsAll[i]);
@@ -231,13 +231,13 @@ namespace QuantLibAddin {
                             break;
                         case RateHelper::DeposBeforeFirstFuturesStartDate:
                         // Include only depos with maturity date before the front Futures start date
-                            if (rhsAll[i].latestDate < frontFuturesEarliestDate) 
+                            if (rhsAll[i].latestDate < frontFuturesEarliestDate)
                                 rhs.push_back(rhsAll[i]);
                             break;
                         case RateHelper::DeposBeforeFirstFuturesStartDatePlusOne:
                         // Include only depos with maturity date before the front Futures start date, +1
                             if (rhsAll[i].latestDate < frontFuturesEarliestDate) {
-                                rhs.push_back(rhsAll[i]);   
+                                rhs.push_back(rhsAll[i]);
                             } else {
                                 if (depoAfterFrontFuturesAlreadyIncluded == false) {
                                     rhs.push_back(rhsAll[i]);
@@ -279,7 +279,7 @@ namespace QuantLibAddin {
 
         // remove RateHelpers with duplicate latestDate
         for (QuantLib::Size i=0; i<rhs.size()-1; ++i) {
-            if (rhs[i].latestDate < rhs[i+1].latestDate) 
+            if (rhs[i].latestDate < rhs[i+1].latestDate)
                 result.push_back(rhs[i].objectID);
         }
         // Add the last one in any case
