@@ -23,17 +23,17 @@
 
 /*!
 \example addindynamic1.cpp
-XLL which links dynamically to ObjectHandler
+XLL which links dynamically to %ObjectHandler
 */
 
 /*!
 \example addindynamic2.cpp
-XLL which links dynamically to ObjectHandler
+XLL which links dynamically to %ObjectHandler
 */
 
 /*!
 \example addinstatic.cpp
-XLL which links statically to ObjectHandler
+XLL which links statically to %ObjectHandler
 */
 
 /*!
@@ -42,17 +42,8 @@ Standalone C++ client application
 */
 
 /*!
-\example foo.hpp
+\example account.hpp
 An object to be stored in the repository
 */
 
-/*!
-\example objectfoo.cpp
-Class descended from Object and wrapping Foo
-*/
-
-/*!
-\example objectfoo.hpp
-Class descended from Object and wrapping Foo
-*/
 

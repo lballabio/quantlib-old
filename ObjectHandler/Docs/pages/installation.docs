@@ -28,17 +28,17 @@
 \section inst_overview Overview
 
 This section of the documentation describes how to install and
-use ObjectHandler on Windows and on systems which use Autoconf
+use %ObjectHandler on Windows and on systems which use Autoconf
 e.g. Linux.  Please see also the Example application shipped with
-ObjectHandler.
+%ObjectHandler.
 
-ObjectHandler logging is performed by
+%ObjectHandler logging is performed by
 <a href="http://logging.apache.org/log4cxx/index.html">log4cxx</a>,
-the logging framework for the Apache project.  ObjectHandler uses a customized
+the logging framework for the Apache project.  %ObjectHandler uses a customized
 copy of log4cxx version 0.9.7, called "log4cxx 0.9.7c", amended to provide a
 boost compliant build process and other minor enhancements.
 
-ObjectHandler and log4cxx 0.9.7c are available for download from the
+%ObjectHandler and log4cxx 0.9.7c are available for download from the
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">QuantLib downloads page on sourceforge</a>
 
 <dl>
@@ -62,8 +62,8 @@ ObjectHandler and log4cxx 0.9.7c are available for download from the
 
 \section inst_binary Binary Installation
 
-No binary installer is provided for the standalone ObjectHandler library.
-However ObjectHandler functionality is compiled into the binary
+No binary installer is provided for the standalone %ObjectHandler library.
+However %ObjectHandler functionality is compiled into the binary
 installation of <a href="http://www.quantlibxl.org">QuantLibXL</a>.
 
 \section inst_source Source Installation
@@ -74,7 +74,7 @@ These instructions assume a release build.
 
 \subsection inst_win_prerequisites Prerequisites
 
-Before building ObjectHandler you need to build log4cxx 0.9.7c.
+Before building %ObjectHandler you need to build log4cxx 0.9.7c.
 
 <ul>
 <li>download the log4cxx 0.9.7c zip from the QuantLib downloads page</li>
@@ -91,7 +91,7 @@ variable.</li>
 
 \subsection inst_win_installation Installation
 
-Determine which ObjectHandler project you need -
+Determine which %ObjectHandler project you need -
 
 <table border="1" cellspacing="3" cellpadding="3">
 <tr><td><b>Project</b></td><td><b>Description</b></td></tr>
@@ -105,13 +105,13 @@ session</td></tr> </table>
 
 Build the desired workspace, configuration <b>Win32 Release</b>.
 
-NB: The ohxll build of ObjectHandler requires a DLL version of the
+NB: The ohxll build of %ObjectHandler requires a DLL version of the
 VC runtime library (i.e. <b>Debug CRTDLL</b> or <b>Release
 CRTDLL</b>).
 
 \subsection inst_win_usage Usage
 
-In order to link ObjectHandler into your own project, use the
+In order to link %ObjectHandler into your own project, use the
 configuration that corresponds to your chosen build as summarized in
 the tables below.  Please refer to the example application indicated.
 
@@ -124,7 +124,7 @@ the tables below.  Please refer to the example application indicated.
 </tr>
 <tr>
 <td><b>Description</b></td>
-<td>Core ObjectHandler C++ static library</td>
+<td>Core %ObjectHandler C++ static library</td>
 </tr>
 <tr>
 <td><b>Example Client Application</b></td>
@@ -224,7 +224,7 @@ source file:
 
 \subsection inst_win_link Link
 
-Your project's link to the ObjectHandler library is established
+Your project's link to the %ObjectHandler library is established
 automatically by the directive
 \verbatim
 #pragma comment(lib, OBJHANDLER_LIB_NAME)
@@ -245,7 +245,7 @@ The location of the library depends on which project you're using
 
 \subsection inst_auto_prerequisites Prerequisites
 
-Before building ObjectHandler you need to build log4cxx.  Download the log4cxx
+Before building %ObjectHandler you need to build log4cxx.  Download the log4cxx
 tar file from the QuantLib downloads page and install as follows:
 \verbatim
 tar zxfv log4cxx-0.9.7c.tar.gz
@@ -260,7 +260,7 @@ For more details refer to the file \c INSTALL.
 
 \subsection inst_auto_installation Installation
 
-ObjectHandler is built in the standard way:
+%ObjectHandler is built in the standard way:
 
 \verbatim
 tar zxfv ObjectHandler-0.8.0.tar.gz
@@ -285,18 +285,18 @@ The header you need is
 #include <oh/objhandler.hpp>
 \endverbatim
 
-To compile your program, ensure that the path containing the ObjectHandler
+To compile your program, ensure that the path containing the %ObjectHandler
 header is among those searched by your compiler.  If you've installed
-ObjectHandler to a nonstandard location you might need to use the -I flag e.g.
+%ObjectHandler to a nonstandard location you might need to use the -I flag e.g.
 
 \verbatim
 g++ -I$HOME/ObjectHandler -c -o example.o example.cpp
 \endverbatim
 
 When linking your program use the -l option to tell gcc to link to the
-log4cxx and ObjectHandler libraries.
+log4cxx and %ObjectHandler libraries.
 
-If the directories containing the ObjectHandler and log4cxx libraries
+If the directories containing the %ObjectHandler and log4cxx libraries
 are not among the standard list of directories searched by gcc then you
 need to use the -L option to specify the path e.g.
 
@@ -306,7 +306,7 @@ g++ -o example example.o -L$HOME/ObjectHandler/lib
 \endverbatim
 
 Finally having compiled your executable you need to ensure that your
-loader knows where to find the log4cxx and ObjectHandler libraries.
+loader knows where to find the log4cxx and %ObjectHandler libraries.
 If the paths containing these libraries are not among those searched by your
 loader then you need to specify them e.g.
 

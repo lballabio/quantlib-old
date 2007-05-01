@@ -26,22 +26,22 @@
     \section overview Overview
     Integration of a generic C++ library such as Quantlib
     into spreadsheets and other end user tools 
-    requires a standalone <strong>ObjectHandler</strong> component, 
+    requires a standalone <strong>%ObjectHandler</strong> component, 
     a repository allowing objects to be stored, shared, updated, 
     interrogated, and destroyed.
 
     \section quantlib QuantLib
-    ObjectHandler shares the QuantLib project structure with regard
+    %ObjectHandler shares the QuantLib project structure with regard
     to distribution, licensing, etc., all of which is documented
     on the main QuantLib website:<br>
     http://quantlib.org
 
     \section log4cxx log4cxx
-    ObjectHandler logging is performed by 
+    %ObjectHandler logging is performed by 
     <a href="http://logging.apache.org/log4cxx/index.html">log4cxx</a>, 
     the logging framework for the Apache project.  The document
     \ref installation gives instructions for installing log4cxx and
-    ObjectHandler.
+    %ObjectHandler.
 
 */
 
