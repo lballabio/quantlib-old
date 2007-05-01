@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief class ValueObject - captures the inputs to an Object.
+    \brief Class ValueObject - Captures the inputs to an Object.
 */
 
 #ifndef oh_valueobject_hpp
@@ -29,7 +29,7 @@
 
 namespace ObjectHandler {
 
-    //! Class ValueObject - captures the inputs to an Object.
+    //! Capture the values of the arguments passed to the Object constructor.
     /*! For each class derived from Object there is a corresponding ValueObject
         class.  The source code of classes derived from ValueObject is generated
         automatically by gensrc.  Each Object holds a reference to its
