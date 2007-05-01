@@ -1,53 +1,53 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinC", "Addins\C\AddinC.vcproj", "{FE5EE378-AD4E-4B32-8030-C089D7067336}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinC", "Addins\C\AddinC_vc7.vcproj", "{FE5EE378-AD4E-4B32-8030-C089D7067336}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinCalc", "Addins\Calc\AddinCalc.vcproj", "{D8B630DB-69ED-455C-AC79-22903E750175}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinCalc", "Addins\Calc\AddinCalc_vc7.vcproj", "{D8B630DB-69ED-455C-AC79-22903E750175}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCDemo", "Clients\C\ClientCDemo.vcproj", "{5719B9B4-8566-4CD9-8F74-A3E98BCC55BD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCDemo", "Clients\C\ClientCDemo_vc7.vcproj", "{5719B9B4-8566-4CD9-8F74-A3E98BCC55BD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{FE5EE378-AD4E-4B32-8030-C089D7067336} = {FE5EE378-AD4E-4B32-8030-C089D7067336}
 		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCppDemo", "Clients\C++\ClientCppDemo.vcproj", "{88B70320-57E9-47B5-9298-881B79789139}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCppDemo", "Clients\C++\ClientCppDemo_vc7.vcproj", "{88B70320-57E9-47B5-9298-881B79789139}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibObjects", "QuantLibObjects.vcproj", "{6A4CC8C6-BE43-4571-B261-037E56A7A38D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibObjects", "QuantLibObjects_vc7.vcproj", "{6A4CC8C6-BE43-4571-B261-037E56A7A38D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{19C36A53-51F2-4951-9A38-CCF6A250814F} = {19C36A53-51F2-4951-9A38-CCF6A250814F}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibXL", "..\QuantLibXL\qlxl\QuantLibXL.vcproj", "{AA73F007-F040-4A6F-A47A-3099DA0DECA4}"
-	ProjectSection(ProjectDependencies) = postProject
-		{19C36A53-51F2-4951-9A38-CCF6A250814F} = {19C36A53-51F2-4951-9A38-CCF6A250814F}
-		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibXLDynamic", "..\QuantLibXL\qlxl\QuantLibXLDynamic.vcproj", "{9E0570ED-D487-4550-B8BC-5A26EA49A6FD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibXL", "..\QuantLibXL\qlxl\QuantLibXL_vc7.vcproj", "{AA73F007-F040-4A6F-A47A-3099DA0DECA4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{19C36A53-51F2-4951-9A38-CCF6A250814F} = {19C36A53-51F2-4951-9A38-CCF6A250814F}
 		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs-QuantLibAddin", "Docs\docs-QuantLibAddin.vcproj", "{60E2EF10-4F8A-4745-81B2-363115E9A31A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibXLDynamic", "..\QuantLibXL\qlxl\QuantLibXLDynamic_vc7.vcproj", "{9E0570ED-D487-4550-B8BC-5A26EA49A6FD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19C36A53-51F2-4951-9A38-CCF6A250814F} = {19C36A53-51F2-4951-9A38-CCF6A250814F}
+		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs-QuantLibAddin", "Docs\docs-QuantLibAddin_vc7.vcproj", "{60E2EF10-4F8A-4745-81B2-363115E9A31A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{19C36A53-51F2-4951-9A38-CCF6A250814F} = {19C36A53-51F2-4951-9A38-CCF6A250814F}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs-QuantLibXL", "..\QuantLibXL\Docs\docs-QuantLibXL.vcproj", "{9B662676-2C96-42DC-88E2-15F3E79D66B4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs-QuantLibXL", "..\QuantLibXL\Docs\docs-QuantLibXL_vc7.vcproj", "{9B662676-2C96-42DC-88E2-15F3E79D66B4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{19C36A53-51F2-4951-9A38-CCF6A250814F} = {19C36A53-51F2-4951-9A38-CCF6A250814F}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qlgensrc", "gensrc\qlgensrc.vcproj", "{19C36A53-51F2-4951-9A38-CCF6A250814F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qlgensrc", "gensrc\qlgensrc_vc7.vcproj", "{19C36A53-51F2-4951-9A38-CCF6A250814F}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject

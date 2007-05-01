@@ -3,6 +3,8 @@
 # VC7 (Visual Studio 2003), configuration "Release CRTDLL"
 # for further info: http://www.quantlibaddin.org/calc.html
 
+QL_DIR=..\..\..\QuantLib
+OBJECT_HANDLER_DIR=..\..\..\ObjectHandler
 OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org 2.2\program
 OFFICE_SDK_PATH=C:\Program Files\OpenOffice.org_2.2_SDK
 
