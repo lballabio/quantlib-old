@@ -23,17 +23,39 @@
 
 /*! \page history Version History
 
-<strong>Release 0.8.0 - April 2007</strong>
+<strong>Release 0.8.0 - May 2007</strong>
+
+%ObjectHandler has been rewritten for release 0.8.0.  The chief benefit
+is an orders-of-magnitude increase in performance.  See below for a summary
+of other changes.
 
 DESIGN
 
-- Implemented a prototype build with certain performance enhancements,
-  this build was found to provide a several fold increase in performance.
-  The changes are presently disabled by default, the switch to enable
-  the changes is defined in file objhandlerxldefines.hpp.  The changes
-  will be formalized in the next release.
+- Every line of code reworked, many algorithms improved
+- Renamed class %ObjectHandler to Repository
+- Renamed namespace ObjHandler to %ObjectHandler
+- New class ObjectXL customizes the base Object class for the Excel platform
+- New class Xloper performs RAII for Excel's XLOPER datatype
+
+EXCEL
+
+- Fixed problem of error handling malfunctioning for non-English versions
+  of Excel.  Error handling is based on range references in R1C1 format,
+  %ObjectHandler now caters for versions of Excel which abbreviate "R"ow
+  and "C"olumn differently.
+- Removed restriction that %ObjectHandler functions could not be nested
+  inside non-%ObjectHandler functions.
+- Fixed bug whereby %ObjectHandler functions could malfunction if
+  the text length of the cell formula exceeded a certain length.  This problem
+  was traced to a glitch in the Excel C API and a workaround was identified.
 - For function expecting a scalar, allow user to pass in a vector
   containing one element and convert it automatically.
+
+DOCUMENTATION
+
+- The comments in the code have been brought completely up to date.  As a 
+  result the  doxygen-generated documentation of classes and code is also up to date.
+  Much of the other hand-written documentation still requires an update.
 
 REQUIRED PACKAGES
 
@@ -83,13 +105,13 @@ REQUIRED PACKAGES
 EXCEL
 
 - Support for permanent objects not deleted by garbage collection
-- Use gensrc where possible to generate source code for ObjectHandler
+- Use gensrc where possible to generate source code for %ObjectHandler
 
 LOG4CXX
 
 Created package "log4cxx 0.9.7a" which is a customization of log4cxx0.9.7,
 providing better support for VC, boost-format version numbers for lib files,
-etc.  log4cxx 0.9.7a is available from the ObjectHandler section of the
+etc.  log4cxx 0.9.7a is available from the %ObjectHandler section of the
 QuantLib downloads page.
 
 REQUIRED PACKAGES
@@ -115,8 +137,8 @@ EXCEL
 LOG4CXX
 
 - Link to log4cxx statically rather than dynamically.  The use of log4cxx.dll,
-  introduced in ObjectHandler version 0.1.2, was found to destabilize
-  ObjectHandler and so the static link to log4cxx, used in ObjectHandler
+  introduced in %ObjectHandler version 0.1.2, was found to destabilize
+  %ObjectHandler and so the static link to log4cxx, used in %ObjectHandler
   version 0.1.1, has been reintroduced.
 - We now provide a zip file for log4cxx, comprising a complete copy of log4cxx
   plus some customizations to clarify the build process and other minor bug
@@ -126,10 +148,10 @@ LOG4CXX
 
 EXCEL
 
-Excel binding ported from QuantLibAddin to ObjectHandler
+Excel binding ported from QuantLibAddin to %ObjectHandler
 and enhanced:
 
-- ObjectHandler core functionality and the Excel binding can be
+- %ObjectHandler core functionality and the Excel binding can be
   linked statically into a single client XLL, or built as a standalone
   XLL comprising a global repository shared by multiple client XLLs
 - Garbage collection of objects orphaned by the deletion of the
@@ -151,7 +173,7 @@ CHANGES SINCE RELEASE 0.1.0
 - Interface layer replaced with factory function (thanks to Walter Penschke)
 - Logging implemented with log4cxx framework from Apache project
 - Additional functions deleteObject, deleteAllObjects
-- Output manipulators for Object and ObjectHandler classes
+- Output manipulators for Object and %ObjectHandler classes
 - Utility functions consolidated
 
 <strong>Release 0.1.0 - February 2005</strong>
@@ -163,7 +185,7 @@ OVERVIEW
 
 Initial release consisting of prototype framework:
 
-- Instantiate an Object in the ObjectHandler, from where it
+- Instantiate an Object in the %ObjectHandler, from where it
   can be interrogated, altered, and destroyed.
 
 */
