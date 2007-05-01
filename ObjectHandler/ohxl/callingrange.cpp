@@ -100,6 +100,9 @@ namespace ObjectHandler {
         Excel(xlfGetName, &xDef, 1, TempStrStl(key_));
         std::string address;
         operToScalar(xDef(), address);
+        // Strip off the '=' sign which xlfGetName prepends to the address
+        if (address.length() > 1 && address[0] == '=')
+            address = address.substr(1);
         return address;
     }
 
