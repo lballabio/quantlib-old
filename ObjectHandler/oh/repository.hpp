@@ -56,15 +56,17 @@ namespace ObjectHandler {
         static Repository &instance();
         //@}
 
-        //! \name Storing / retrieving / deleting Objects
+        //! \name Object Management
         //@{
         //! Store an Object with the given ID.
         /*! Any existing Object with that ID is deleted.
 
             Storage of objects uses "case-preserving" behavior:
+            \code
                 storeObject("MyObject")         // store "MyObject"
                 retrieveObject("MyObJeCt")      // retrieve "MyObject"
                 storeObject("MYOBJECT")         // overwrite "MyObject"
+            \endcode
         */
         virtual std::string storeObject(const std::string &objectID, 
                                         const boost::shared_ptr<Object> &object);
@@ -113,7 +115,7 @@ namespace ObjectHandler {
         virtual void deleteAllObjects(const bool &deletePermanent = false);
         //@}
 
-        //! \name utilities
+        //! \name Logging
         //@{
         //! Log the indicated Object to the given stream.
         /*! If no Object exists with that ID then an appropriate message is written
@@ -124,7 +126,10 @@ namespace ObjectHandler {
         /*! Write all of the Objects in the Repository to the given output stream.
         */
         virtual void dump(std::ostream&);
+        //@}
 
+        //! \name Utilities
+        //@{
         //! Count of all the Objects in the Repository.
         virtual const int objectCount();
 

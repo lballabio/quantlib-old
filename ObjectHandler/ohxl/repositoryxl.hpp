@@ -37,7 +37,7 @@ namespace ObjectHandler {
     public:
     static RepositoryXL &instance();
 
-        //! \name Management of objects
+        //! \name Object Management
         //@{
         //! Wrapper for the storeObject function in the base class.
         /*! Initialize the CallingRange object associated with the new ObjectXL object.
@@ -60,7 +60,7 @@ namespace ObjectHandler {
         virtual void deleteObject(const std::string &objectID);
         //@}
 
-        //! \name Management of error messages
+        //! \name Error Messages
         //@{
         //! Log an error message.
         void logError(const std::string &message, const bool &append = false);
@@ -73,7 +73,7 @@ namespace ObjectHandler {
         //! \name Logging
         //@{
         //! Write the entire contents of the RepositoryXL object to the given stream.
-        /*! Call the corresponding function in the base class, then output additiona info
+        /*! Call the corresponding function in the base class, then output additional info
             specific to the Excel platform, e.g. information on CallingRange objects.
         */
         virtual void dump(std::ostream&);

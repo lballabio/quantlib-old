@@ -35,33 +35,38 @@ namespace ObjectHandler {
         The following formats are supported:
 
         Normal:
-        \verbatim
+        \code
             "[Book1.xls]Sheet1!R1C1"
-        \endverbatim
+        \endcode
+
         Some excel functions prepend an '=' sign:
-        \verbatim
+        \code
             "=[Book1.xls]Sheet1!R1C1"
-        \endverbatim
+        \endcode
+
         If book or sheet name contains spaces then Excel encloses the text
         in single quotes:
-        \verbatim
+        \code
             "'[Bo ok1.xls]Sheet1'!R1C1"
-        \endverbatim
+        \endcode
+
         For a new book that hasn't yet been saved, excel omits the .xls suffix:
-        \verbatim
+        \code
             "[Book1]Sheet1!R1C1"
-        \endverbatim
+        \endcode
+
         Sometimes the string includes the filesystem path:
-        \verbatim
+        \code
             "='C:\\path\\to\\[Book1.xls]Sheet1'!R1C1"
-        \endverbatim
+        \endcode
+
         If the book contains a single sheet with the same name as the book,
         then the sheet name is omitted altogether and the book name is not
         enclosed in []s:
-        \verbatim
+        \code
             "same_name.xls!R1C1"
             "'same name.xls'!R1C1"
-        \endverbatim
+        \endcode
 
         In all cases, the cell reference, represented above as R1C1, may also
         be given as R1C1:R9C9 i.e. a range consisting of multiple cells, in 
@@ -70,14 +75,25 @@ namespace ObjectHandler {
     class RangeReference {
         friend std::ostream &operator<<(std::ostream&, const RangeReference&);
     public:
+
+        //! \name Structors and static members
+        //@{
         //! Constructor - initialize the RangeReference object.
+        /*! Parse the input string and store its component tokens in separate
+            variables e.g. bookName_, sheetName_, etc.
+        */
         RangeReference(const std::string &address);
+        //@}
+
+        //! \name Operators and Comparisons
+        //@{
         //! Test two RangeReference objects for equality.
         /*! The two objects may in fact represent the same range even if they
             were initialized with different strings and this operator handles
             that case.
         */
         bool operator==(const RangeReference&) const;
+
         //! Determine whether this range contains the given one.
         /*! This functionality is presently used for processing error messages -
             An error message may be associated with a multi-cell range and the
@@ -85,17 +101,31 @@ namespace ObjectHandler {
             error message.
         */
         bool contains(const RangeReference&) const;
+        //@}
 
-        //! \name Manage error messages
+        //! \name Error Messages
         //@{
         //! Assign an error message to this range.
+        /*! Setting append to true causes the error message to be appended
+            to any message that may already be associated with the range.
+        */
         void setErrorMessage(const std::string &errorMessage, const bool &append);
         //! Retrieve the error message associated with this range.
+        /*! This function is wrapped by end user function ohRetrieveError().
+        */
         const std::string errorMessage() const { return errorMessage_; }
         //! Clear the error message associated with this range.
+        /*! To be called on successful completion of a function, to clean up
+            any error messages left be previous failures.
+        */
         void clearError() { errorMessage_ = ""; }
         //@}
+
     private:
+        static void initializeRegexes();
+        bool initStandard();
+        bool initSpecial();
+
         std::string address_;
         std::string bookName_;
         std::string sheetName_;
@@ -104,12 +134,9 @@ namespace ObjectHandler {
         int colStartNum_;
         int rowEndNum_;
         int colEndNum_;
-        bool initStandard();
-        bool initSpecial();
         std::string errorMessage_;
         static boost::regex regexStandard_;
         static boost::regex regexSpecial_;
-        static void initializeRegexes();
         static bool regexesInitialized_;
     };
 

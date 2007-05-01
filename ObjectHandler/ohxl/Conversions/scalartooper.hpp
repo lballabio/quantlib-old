@@ -29,17 +29,16 @@
 
 namespace ObjectHandler {
 
-    // FIXME emergency hack to support automatic coercion of input strings 
-    // to vectors thru a call to ohSplit().  Normally the functions below 
-    // set xlbitDLLFree but this needs to be disabled in the above case.
-    // This is accomplished with input variable dllToFree which defaults
-    // to true to preserve the old behavior.
-
+    //@{
+    //! Convert a scalar value to an OPER.
+    /*! If dllToFree is true then the function calls xlbitDLLFree on the return value.
+    */
     DLL_API void scalarToOper(const long &value, OPER &xLong, bool dllToFree = true);
     DLL_API void scalarToOper(const double &value, OPER &xDouble, bool dllToFree = true);
     DLL_API void scalarToOper(const bool &value, OPER &xBoolean, bool dllToFree = true);
     DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree = true);
     DLL_API void scalarToOper(const boost::any &value, OPER &xAny, bool dllToFree = true);
+    //@}
 
 }
 

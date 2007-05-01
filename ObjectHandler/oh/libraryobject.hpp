@@ -26,7 +26,7 @@
 
 namespace ObjectHandler {
 
-    //! Class LibraryObject - customizes the Object class for most typical uses.
+    //! Customizes the Object class for most typical uses.
     /*! LibraryObject is a template class, the template argument specifying the
         class of the underlying object to which the LibraryObject holds a reference.
 

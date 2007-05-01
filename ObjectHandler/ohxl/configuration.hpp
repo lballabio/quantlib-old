@@ -41,6 +41,10 @@ namespace ObjectHandler {
             functions attempt to access the configuration information.
         */
         void init();
+        //@}
+
+        //! \name Inspectors
+        //@{
         //! Get the row character for this installation of Excel.
         /*! This is "R" for English versions of Excel but may be a different
             letter in other languages.
@@ -51,6 +55,7 @@ namespace ObjectHandler {
             letter in other languages.
         */
         const char &colCharacter();
+        //@}
     private:
         bool initialized_;
         char rowCharacter_;

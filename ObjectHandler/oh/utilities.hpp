@@ -34,7 +34,7 @@ namespace ObjectHandler {
     //! Returns ObjectHandler version string.
     std::string version();
 
-    /** \name Logging framework
+    /** \name Logging
      *  These functions wrap calls to the Logger class
         simplifying the syntax for the client application
         and alleviating the need for the client application
@@ -86,14 +86,14 @@ namespace ObjectHandler {
     void logAllObjects();
     //@}
 
+    /** \name Utilities
+     *  Miscellaneous utility functions.
+    */
+    //@{
     //! Split a string into substrings using the given delimiter.
     std::vector<std::string> split(const std::string &line,
                                    const std::string &delim,
                                    bool token_compress);
-    /** \name General Utilities
-     *  Miscellaneous utility functions.
-    */
-    //@{
 
     //! Filter a list of data given a list of flags.
     /*! Accept a list of values and a list of boolean flags.  Return

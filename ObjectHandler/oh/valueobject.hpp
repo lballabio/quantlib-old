@@ -45,6 +45,7 @@ namespace ObjectHandler {
 		virtual std::vector<std::string> getPropertyNames() const = 0;
         //! Retrieve the value of a property given its name.
 		virtual boost::any getProperty(const std::string& name) const = 0;
+        //! Empty virtual destructor.
         virtual ~ValueObject() {}
 	};
 

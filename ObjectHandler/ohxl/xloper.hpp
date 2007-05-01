@@ -31,7 +31,7 @@ namespace ObjectHandler {
         The class is intended specifically to manage XLOPERs which are declared
         on the stack and passed to Excel in order to receive the return value.
 
-        The class calls xlFree on the underlying XLOPER, relieving the client code
+        ~Xloper calls xlFree on the underlying XLOPER, relieving the client code
         from the need to manage this e.g. in the event of the stack unwinding after
         an exception.
     */

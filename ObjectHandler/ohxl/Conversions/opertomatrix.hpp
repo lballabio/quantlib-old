@@ -64,6 +64,7 @@ namespace ObjectHandler {
         return ret;
     }
 
+    //! Convert an Excel FP to type std::vector<std::vector<T> >.
     template <class T>
     std::vector<std::vector<T> > fpToMatrix(const FP &fpMatrix) {
         std::vector<std::vector<T> > ret;

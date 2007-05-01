@@ -52,7 +52,7 @@ namespace ObjectHandler {
         static int keyWidth() { return KEY_WIDTH; }
         //@}
 
-        //! \name Management of resident objects
+        //! \name Object Management
         //@{
         //! Indicate that the given object is resident in this range.
         void registerObject(boost::shared_ptr<ObjectXL> objectXL);

@@ -49,8 +49,14 @@ namespace ObjectHandler {
         //! \name Structors and static members
         //@{
         //! Constructor - Store the name of the function in progress.
+        /*! The constructor calls xlfCaller and xlfReftext as the results of
+            these functions are always required in the destructor.
+        */
         FunctionCall(const std::string functionName);
-        //! Destructor - Clean up any resources that may have been acquired.
+        //! Destructor - Clean up whatever resources were acquired.
+        /*! If the function has completed successfully then any error message
+            that may be associated with the calling cell is cleared.
+        */
         ~FunctionCall();
         //! A reference to the global FunctionCall Singleton.
         /*! Clients of this class access it with a call to
@@ -59,6 +65,8 @@ namespace ObjectHandler {
         static FunctionCall &instance();
         //@}
 
+        //! \name Excel API Wrappers
+        //@{
         //! Reference to the caller as returned by Excel function xlfCaller.
         const XLOPER *callerReference();
         //! Address of the caller as returned by Excel function xlfReftext.
@@ -68,12 +76,20 @@ namespace ObjectHandler {
             an XLOPER with xltype initialized to zero.
         */
         const XLOPER *callerArray();
-        //! Address of the caller as returned by Excel function xlfGetCell.
+        //@}
+
+        //! \name Conversions
+        //@{
+        //! Address of the caller from xlfGetCell, converted to a string.
         const std::string &addressString();
+        //! Text reference of the caller as returned by  xlfReftext, converted to a string
+        const std::string &refStr() { return refStr_; }
+        //@}
+
+        //! \name Inspectors
+        //@{
         //! The function name that was passed to the constructor.
         const std::string &functionName() { return functionName_; }
-        //! Text reference of the caller as returned by  xlfReftext, converted to a std::string
-        const std::string &refStr() { return refStr_; }
         //! The dimensions of the calling range.
         /*! Presently this function only differentiates between Row and Column,
             this could be extended to distinguish Scalar (currently treated as Column)
@@ -86,8 +102,14 @@ namespace ObjectHandler {
             menu items.
         */
         CallerType::Type callerType();
+        //@}
+
+        //! \name Error Messages
+        //@{
         //! Called to indicate that an error occurred during execution of the function.
         void setError() { error_ = true; }
+        //@}
+
     private:
         static FunctionCall *instance_;
         std::string functionName_;

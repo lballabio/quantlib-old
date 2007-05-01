@@ -66,25 +66,28 @@ namespace ObjectHandler {
         virtual ~Object() {}
         //@}
 
-        //! \name Object Interrogation
+        //! \name Value Objects
         //@{
-
-        //! Retrieve a vector of property names.
-        /*! Returns an empty vector if the Object has no properties.
-        */
-        std::vector<std::string> propertyNames() const;
-
-        //! Retrieve the value of a given property.
-        /*! Throws an exception if the Object has no property by that name.
-        */
-        boost::any propertyValue(const std::string &propertyName) const;
-        //@}
-
         //! Set the ValueObject associated with this Object.
         void setProperties(const boost::shared_ptr<ValueObject>& p) {
             mProps = p;
         }
 
+        //! Retrieve a vector of property names.
+        /*! Retrieve property names from associated ValueObject.
+            Return an empty vector if the Object has no properties.
+        */
+        std::vector<std::string> propertyNames() const;
+
+        //! Retrieve the value of a given property.
+        /*! Forward the request to the associated ValueObject.
+            Throw an exception if the Object has no property by that name.
+        */
+        boost::any propertyValue(const std::string &propertyName) const;
+        //@}
+
+        //! \name Permanent Objects
+        //@{
         //! Set the "permanent" flag to True for this Object.
         /*! Permanent Objects remain in the Repository after a call to
             Repository::deleteAllObjects() or Repository::collectGarbage().
@@ -95,21 +98,25 @@ namespace ObjectHandler {
         void setPermanent() { permanent_ = true; }
         //! Query the value of the "permanent" flag.
         const bool &permanent() const { return permanent_; }
+        //@}
 
+        //! \name Logging
+        //@{
         //! "dump" - Write this Object's properties (from the ValueObject) to the given stream.
         /*! This function is called by the logging framework.  Derived classes may
             override this function if additional information is available.
         */
         virtual void dump(std::ostream &out);
+        //@}
 
     private:
-        //! The ValueObject associated with this Object.
+        // The ValueObject associated with this Object.
         boost::shared_ptr<ValueObject> mProps;
-        //! Flag to indicate whether this Object is permanent.
+        // Flag to indicate whether this Object is permanent.
         bool permanent_;
-        //! Operator = declared but not implemented - assignment is not supported.
+        // Operator = declared but not implemented - assignment is not supported.
         Object& operator= (const Object&);
-        //! Copy ctor declared but not implemented - copy construction is not supported.
+        // Copy ctor declared but not implemented - copy construction is not supported.
         Object(const Object&);
     };
 

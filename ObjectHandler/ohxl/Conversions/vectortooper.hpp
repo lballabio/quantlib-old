@@ -30,13 +30,10 @@
 
 namespace ObjectHandler {
 
-    // FIXME emergency hack to support automatic coercion of input strings 
-    // to vectors thru a call to ohSplit().  Normally the functions below 
-    // set xlbitDLLFree but this needs to be disabled in the above case.
-    // This is accomplished with input variable dllToFree which defaults
-    // to true to preserve the old behavior.
-
+    //@{
     //! Convert type std::vector<T> to an Excel OPER.
+    /*! If dllToFree is true then the function calls xlbitDLLFree on the return value.
+    */
     template <class T>
     void vectorToOper(const std::vector<T> &v, OPER &xVector, bool dllToFree = true) {
         vectorToOper(v.begin(), v.end(), xVector, dllToFree);
@@ -68,7 +65,7 @@ namespace ObjectHandler {
         for (unsigned int i=0; i<size; ++i, ++begin)
             scalarToOper(*begin, xVector.val.array.lparray[i], dllToFree);
     }
-
+    //@}
 
 }
 

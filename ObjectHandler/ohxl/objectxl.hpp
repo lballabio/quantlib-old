@@ -85,7 +85,7 @@ namespace ObjectHandler {
         boost::shared_ptr<Object> object() const { return object_; }
         //@}
 
-        //! \name Management of calling cell
+        //! \name CallingRange Management
         //@{
         //! Set a reference to the calling cell.
         /*! If this object is constructed with a call from Excel VBA (rather than a cell
@@ -103,22 +103,24 @@ namespace ObjectHandler {
         std::string callerAddress() const;
         //@}
 
+        //! \name Logging
+        //@{
         //! Write this object to the given output stream.
         /*! Called by the logging framework.  Enhanced from the base class function
             to provide additional information specific to the Excel platform.
         */
         virtual void dump(std::ostream &out);
+        //@}
 
     private:
-        //! Reference to the Object contained by ObjectXL.
+        // Reference to the Object contained by ObjectXL.
         boost::shared_ptr<Object> object_;
-        //! Reference to the worksheet cell in which this object resides.
+        // Reference to the worksheet cell in which this object resides.
         boost::shared_ptr<CallingRange> callingRange_;
-        //! This object's ID, in the same format used for the base Object class.
+        // This object's ID, in the same format used for the base Object class.
         std::string id_;
-        //! This object's ID, reformatted for Excel with the update count e.g. my_object#00123.
-        /*! For objects created from VBA, the full ID is the same as the normal one.
-        */
+        // This object's ID, reformatted for Excel with the update count e.g. my_object#00123.
+        // For objects created from VBA, the full ID is the same as the normal one.
         std::string idFull_;
     };
 

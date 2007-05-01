@@ -29,11 +29,16 @@
 
 namespace ObjectHandler {
 
+    //@{
+    //! Convert an OPER to a scalar value.
+    /*! These functions are usually wrapped in the callOperToScalar template.
+    */
     DLL_API void operToScalar(const OPER &xScalar, long &ret);
     DLL_API void operToScalar(const OPER &xScalar, double &ret);
     DLL_API void operToScalar(const OPER &xScalar, bool &ret);
     DLL_API void operToScalar(const OPER &xScalar, std::string &ret);
     DLL_API void operToScalar(const OPER &xScalar, boost::any &ret);
+    //@}
 
     //! Template function callOperToScalar - wrapper for operToScalar.
     /*! This template implements error handling common to all overrides
@@ -70,7 +75,7 @@ namespace ObjectHandler {
     }
 
     //! Template function callOperToScalar - wrapper for operToScalar.
-    /*! Sepcial processing for the case where a defaul value is supplied.
+    /*! Special processing for the case where a defaul value is supplied.
     */
     template <class T>
     T callOperToScalar(const OPER &xScalar, 
@@ -89,3 +94,4 @@ namespace ObjectHandler {
 }
 
 #endif
+

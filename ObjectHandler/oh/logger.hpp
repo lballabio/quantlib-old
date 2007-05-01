@@ -46,7 +46,7 @@ namespace ObjectHandler {
     class Logger : public Singleton<Logger> {
         friend class Singleton<Logger>;
     public:
-        //! \name logging framework
+        //! \name Logging Framework
         //@{
         //! Specify file to which messages should be logged.
         /*! Redirect logging to named file.  Logging to any

@@ -84,6 +84,7 @@ namespace ObjectHandler {
         }
     }
 
+    //! Convert an Excel FP to a std::vector of type T.
     template <class T>
     std::vector<T> fpToVector(const FP &fpVector) {
         std::vector<T> ret;
