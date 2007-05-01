@@ -156,34 +156,28 @@
 				Name="Classes"
 				Filter="">
 				<File
-					RelativePath="..\..\oh\exception.cpp">
-				</File>
-				<File
 					RelativePath="..\..\oh\exception.hpp">
 				</File>
 				<File
 					RelativePath="..\..\oh\iless.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\object.hpp">
+					RelativePath="..\..\oh\libraryobject.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\objecthandler.cpp">
+					RelativePath="..\..\oh\object.hpp">
 				</File>
 				<File
 					RelativePath="..\..\oh\objecthandler.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\objhandler.hpp">
+					RelativePath="..\..\oh\ohdefines.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\objhandlerdefines.hpp">
+					RelativePath="..\..\oh\repository.cpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\ohthing.cpp">
-				</File>
-				<File
-					RelativePath="..\..\oh\ohthing.hpp">
+					RelativePath="..\..\oh\repository.hpp">
 				</File>
 				<File
 					RelativePath="..\..\oh\singleton.hpp">
@@ -200,13 +194,6 @@
 				</File>
 				<File
 					RelativePath="..\..\oh\Conversions\coerce.hpp">
-				</File>
-			</Filter>
-			<Filter
-				Name="Loop"
-				Filter="">
-				<File
-					RelativePath="..\..\oh\Loop\loop_demo.hpp">
 				</File>
 			</Filter>
 			<Filter
@@ -228,16 +215,6 @@
 					RelativePath="..\..\oh\utilities.hpp">
 				</File>
 			</Filter>
-			<Filter
-				Name="ValueObjects"
-				Filter="">
-				<File
-					RelativePath="..\..\oh\ValueObjects\vo_demo.cpp">
-				</File>
-				<File
-					RelativePath="..\..\oh\ValueObjects\vo_demo.hpp">
-				</File>
-			</Filter>
 		</Filter>
 		<Filter
 			Name="xl"
@@ -252,28 +229,43 @@
 					RelativePath="..\callingrange.hpp">
 				</File>
 				<File
+					RelativePath="..\configuration.cpp">
+				</File>
+				<File
+					RelativePath="..\configuration.hpp">
+				</File>
+				<File
 					RelativePath="..\functioncall.cpp">
 				</File>
 				<File
 					RelativePath="..\functioncall.hpp">
 				</File>
 				<File
-					RelativePath="..\objecthandlerxl.cpp">
-				</File>
-				<File
 					RelativePath="..\objecthandlerxl.hpp">
 				</File>
 				<File
-					RelativePath="..\objhandlerxl.hpp">
+					RelativePath="..\objectxl.cpp">
 				</File>
 				<File
-					RelativePath="..\objhandlerxldefines.hpp">
+					RelativePath="..\objectxl.hpp">
+				</File>
+				<File
+					RelativePath="..\ohxldefines.hpp">
 				</File>
 				<File
 					RelativePath="..\rangereference.cpp">
 				</File>
 				<File
 					RelativePath="..\rangereference.hpp">
+				</File>
+				<File
+					RelativePath="..\repositoryxl.cpp">
+				</File>
+				<File
+					RelativePath="..\repositoryxl.hpp">
+				</File>
+				<File
+					RelativePath="..\xloper.hpp">
 				</File>
 			</Filter>
 			<Filter
@@ -317,9 +309,6 @@
 				Name="Functions"
 				Filter="">
 				<File
-					RelativePath="..\Functions\demo.cpp">
-				</File>
-				<File
 					RelativePath="..\Functions\export.hpp">
 				</File>
 				<File
@@ -345,13 +334,6 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Loop"
-				Filter="">
-				<File
-					RelativePath="..\loop.hpp">
-				</File>
-			</Filter>
-			<Filter
 				Name="Register"
 				Filter="">
 				<File
@@ -359,9 +341,6 @@
 				</File>
 				<File
 					RelativePath="..\Register\register_all.hpp">
-				</File>
-				<File
-					RelativePath="..\Register\register_demo.cpp">
 				</File>
 				<File
 					RelativePath="..\Register\register_garbagecollection.cpp">
@@ -383,22 +362,10 @@
 				Name="Utilities"
 				Filter="">
 				<File
-					RelativePath="..\Utilities\utilities.cpp">
-					<FileConfiguration
-						Name="Debug CRTDLL|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release CRTDLL|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
-					</FileConfiguration>
+					RelativePath="..\Utilities\xlutilities.cpp">
 				</File>
 				<File
-					RelativePath="..\Utilities\utilities.hpp">
+					RelativePath="..\Utilities\xlutilities.hpp">
 				</File>
 			</Filter>
 		</Filter>

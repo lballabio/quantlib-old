@@ -423,46 +423,38 @@
 					RelativePath="..\Conversions\validations.hpp"
 					>
 				</File>
-				<Filter
-					Name="ToOper"
+				<File
+					RelativePath="..\Conversions\matrixtooper.hpp"
 					>
-					<File
-						RelativePath="..\Conversions\matrixtooper.hpp"
-						>
-					</File>
-					<File
-						RelativePath="..\Conversions\scalartooper.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\Conversions\scalartooper.hpp"
-						>
-					</File>
-					<File
-						RelativePath="..\Conversions\vectortooper.hpp"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="FromOper"
+				</File>
+				<File
+					RelativePath="..\Conversions\scalartooper.cpp"
 					>
-					<File
-						RelativePath="..\Conversions\opertomatrix.hpp"
-						>
-					</File>
-					<File
-						RelativePath="..\Conversions\opertoscalar.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\Conversions\opertoscalar.hpp"
-						>
-					</File>
-					<File
-						RelativePath="..\Conversions\opertovector.hpp"
-						>
-					</File>
-				</Filter>
+				</File>
+				<File
+					RelativePath="..\Conversions\scalartooper.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Conversions\vectortooper.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Conversions\opertomatrix.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Conversions\opertoscalar.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Conversions\opertoscalar.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Conversions\opertovector.hpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Functions"

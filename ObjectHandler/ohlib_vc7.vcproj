@@ -334,34 +334,28 @@
 			Name="Classes"
 			Filter="">
 			<File
-				RelativePath="oh\exception.cpp">
-			</File>
-			<File
 				RelativePath="oh\exception.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\iless.hpp">
+				RelativePath="oh\iless.hpp">
+			</File>
+			<File
+				RelativePath="oh\libraryobject.hpp">
 			</File>
 			<File
 				RelativePath="oh\object.hpp">
 			</File>
 			<File
-				RelativePath="oh\objecthandler.cpp">
-			</File>
-			<File
 				RelativePath="oh\objecthandler.hpp">
 			</File>
 			<File
-				RelativePath="oh\objhandler.hpp">
+				RelativePath="oh\ohdefines.hpp">
 			</File>
 			<File
-				RelativePath="oh\objhandlerdefines.hpp">
+				RelativePath="oh\repository.cpp">
 			</File>
 			<File
-				RelativePath="oh\ohthing.cpp">
-			</File>
-			<File
-				RelativePath="oh\ohthing.hpp">
+				RelativePath="oh\repository.hpp">
 			</File>
 			<File
 				RelativePath="oh\singleton.hpp">
@@ -374,10 +368,10 @@
 			Name="Conversions"
 			Filter="">
 			<File
-				RelativePath=".\oh\Conversions\anytostream.hpp">
+				RelativePath="oh\Conversions\anytostream.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\Conversions\coerce.hpp">
+				RelativePath="oh\Conversions\coerce.hpp">
 			</File>
 		</Filter>
 		<Filter
