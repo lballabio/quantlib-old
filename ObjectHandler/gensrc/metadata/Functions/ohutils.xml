@@ -245,6 +245,48 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='ohObjectCallerAddress'>
+      <description>retrieve address of cell in which object resides</description>
+      <alias>ObjectHandler::RepositoryXL::instance().callerAddress</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of object to be queried</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+      </Procedure>
+
+    <Procedure name='ohObjectCallerKey'>
+      <description>retrieve unique ID of the CallingRange object associated with the cell in which object resides</description>
+      <alias>ObjectHandler::RepositoryXL::instance().callerKey</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of object to be queried</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
   </Functions>
 
 </Category>

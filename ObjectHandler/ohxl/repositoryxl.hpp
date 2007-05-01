@@ -91,6 +91,14 @@ namespace ObjectHandler {
         void collectGarbage(const bool &deletePermanent = false);
         //@}
 
+        //! \name Calling Ranges
+        //@{
+        //! Retrieve the address of the cell in which the given object resides.
+        std::string callerAddress(const std::string &objectID);
+        //! Retrieve key of CallingRange object associated with the given object.
+        std::string callerKey(const std::string &objectID);
+        //@}
+
     private:
         boost::shared_ptr<CallingRange> getCallingRange();
 

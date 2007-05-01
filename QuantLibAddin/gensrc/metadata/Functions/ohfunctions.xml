@@ -10,48 +10,6 @@
 
   <Functions>
 
-    <Procedure name='ohDeleteAllObjects'>
-      <description>delete all objects from repository</description>
-      <alias>ObjectHandler::Repository::instance().deleteAllObjects</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Calc'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='deletePermanent' default='false'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>also delete permanent objects</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='ohDeleteObject'>
-      <description>delete object from repository</description>
-      <alias>ObjectHandler::Repository::instance().deleteObject</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Calc'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='ObjectID' exampleValue='DummyObject'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>ID of object to be deleted</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
     <Procedure name='ohTrigger'>
       <description>forces a dependency between two functions and returns the update counter</description>
       <alias>ObjectHandler::dependsOn</alias>
@@ -118,6 +76,21 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='ohFunctionCount'>
+      <description>returns the number of functions in this addin</description>
+      <alias>ObjectHandler::version</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
     <Procedure name='ohListObjectIDs'>
       <description>list the IDs of objects in repository matching regex</description>
       <alias>ObjectHandler::Repository::instance().listObjectIDs</alias>
@@ -136,6 +109,221 @@
       <ReturnValue>
         <type>string</type>
         <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectCount'>
+      <description>#/objects in repository</description>
+      <alias>ObjectHandler::Repository::instance().objectCount</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohPack'>
+      <description>trim error values from bottom/right of matrix/vector</description>
+      <alias>ObjectHandler::RepositoryXL::instance().packMatrix</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='inputRange'>
+            <type>any</type>
+            <tensorRank>matrix</tensorRank>
+            <description>scalar/vector/matrix of values to be packed</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohSplit' dependencyTrigger='False'>
+      <description>Splits a string using delimiters</description>
+      <alias>ObjectHandler::split</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='text'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>string to be parsed</description>
+          </Parameter>
+          <Parameter name='delimiters' default='",;"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>characters used as delimiters: each single character is used as delimiter (default = \";,\")</description>
+          </Parameter>
+          <Parameter name='concatenateDelim' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>specifies if multiple adjacent delimiters are to be considered as one (TRUE) or not (FALSE). Default value is FALSE.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohFilter' dependencyTrigger='False'>
+      <description>Filters the first vector using the second one as boolean inclusion flags</description>
+      <alias>ObjectHandler::filter</alias>
+      <xlWizardRecalc>true</xlWizardRecalc>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='input'>
+            <type>any</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector to be filtered</description>
+          </Parameter>
+          <Parameter name='flags'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector to inclusion flags</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRetrieveError'>
+      <description>retrieve error message associated with a given range</description>
+      <alias>ObjectHandler::RepositoryXL::instance().retrieveError</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='range'>
+            <type>reference</type>
+            <tensorRank>scalar</tensorRank>
+            <description>range to query</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohVersion'>
+      <description>returns the version number of ObjectHandler</description>
+      <alias>ObjectHandler::version</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectCallerAddress'>
+      <description>retrieve address of cell in which object resides</description>
+      <alias>ObjectHandler::RepositoryXL::instance().callerAddress</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of object to be queried</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+      </Procedure>
+
+    <Procedure name='ohObjectCallerKey'>
+      <description>retrieve unique ID of the CallingRange object associated with the cell in which object resides</description>
+      <alias>ObjectHandler::RepositoryXL::instance().callerKey</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of object to be queried</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohDeleteAllObjects'>
+      <description>delete all objects from repository</description>
+      <alias>ObjectHandler::Repository::instance().deleteAllObjects</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='deletePermanent' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>also delete permanent objects</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohDeleteObject'>
+      <description>delete object from repository</description>
+      <alias>ObjectHandler::Repository::instance().deleteObject</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectID' exampleValue='DummyObject'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of object to be deleted</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
 
@@ -201,21 +389,6 @@
       </ParameterList>
       <ReturnValue>
         <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='ohObjectCount'>
-      <description>#/objects in repository</description>
-      <alias>ObjectHandler::Repository::instance().objectCount</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Calc'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>long</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -303,22 +476,6 @@
         <type>void</type>
         <tensorRank>scalar</tensorRank>
         <description>returns new logging threshold</description>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='ohVersion'>
-      <description>returns the version number of ObjectHandler</description>
-      <alias>ObjectHandler::version</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' implementation='documentationOnly'/>
-        <SupportedPlatform name='Calc'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
 

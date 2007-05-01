@@ -70,7 +70,7 @@ namespace ObjectHandler {
         if (result != objectMap_.end()) {
             boost::shared_ptr<Object> oldObject = result->second;
             boost::shared_ptr<ObjectXL> oldObjectXL =
-                boost::dynamic_pointer_cast<ObjectXL>(oldObject);
+                boost::static_pointer_cast<ObjectXL>(oldObject);
             OH_REQUIRE(objectXL->callerKey() == oldObjectXL->callerKey(),
                 "Cannot create object with ID '" << objectXL->id() << "' in cell " <<
                 objectXL->callerAddress() <<
@@ -85,10 +85,10 @@ namespace ObjectHandler {
     boost::shared_ptr<Object> RepositoryXL::retrieveObjectImpl(
         const std::string &objectID) const {
 
-            std::string idStrip = ObjectXL::getStub(objectID);
-            boost::shared_ptr<Object> object = Repository::retrieveObjectImpl(idStrip);
-            boost::shared_ptr<ObjectXL> objectXL = boost::dynamic_pointer_cast<ObjectXL>(object);
-            return objectXL->object();
+        std::string idStrip = ObjectXL::getStub(objectID);
+        boost::shared_ptr<Object> object = Repository::retrieveObjectImpl(idStrip);
+        boost::shared_ptr<ObjectXL> objectXL = boost::static_pointer_cast<ObjectXL>(object);
+        return objectXL->object();
 
     }
 
@@ -214,6 +214,24 @@ namespace ObjectHandler {
                 out << i->second;
             }
         }
+    }
+
+    std::string RepositoryXL::callerAddress(const std::string &objectID) {
+
+        std::string idStrip = ObjectXL::getStub(objectID);
+        boost::shared_ptr<Object> object = Repository::retrieveObjectImpl(idStrip);
+        boost::shared_ptr<ObjectXL> objectXL = boost::static_pointer_cast<ObjectXL>(object);
+        return objectXL->callerAddress();
+
+    }
+
+    std::string RepositoryXL::callerKey(const std::string &objectID) {
+
+        std::string idStrip = ObjectXL::getStub(objectID);
+        boost::shared_ptr<Object> object = Repository::retrieveObjectImpl(idStrip);
+        boost::shared_ptr<ObjectXL> objectXL = boost::static_pointer_cast<ObjectXL>(object);
+        return objectXL->callerKey();
+
     }
 
 }
