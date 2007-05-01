@@ -29,47 +29,69 @@
 			Name="pages"
 			Filter="">
 			<File
-				RelativePath=".\pages\design.docs">
+				RelativePath="pages\design.docs">
 			</File>
 			<File
-				RelativePath=".\pages\examples.docs">
+				RelativePath="pages\examples.docs">
 			</File>
 			<File
-				RelativePath=".\pages\excelbinding.docs">
+				RelativePath="pages\excelbinding.docs">
 			</File>
 			<File
-				RelativePath=".\pages\history.docs">
+				RelativePath="pages\history.docs">
 			</File>
 			<File
-				RelativePath=".\pages\index.docs">
+				RelativePath="pages\index.docs">
 			</File>
 			<File
-				RelativePath=".\pages\installation.docs">
+				RelativePath="pages\installation.docs">
 			</File>
 			<File
-				RelativePath=".\pages\license.docs">
+				RelativePath="pages\license.docs">
 			</File>
 			<File
-				RelativePath=".\pages\people.docs">
+				RelativePath="pages\people.docs">
+			</File>
+		</Filter>
+		<Filter
+			Name="auto.pages"
+			Filter="">
+			<File
+				RelativePath="auto.pages\all_functions.docs">
+			</File>
+			<File
+				RelativePath="auto.pages\categories.docs">
+			</File>
+			<File
+				RelativePath="auto.pages\garbagecollection.docs">
+			</File>
+			<File
+				RelativePath="auto.pages\logging.docs">
+			</File>
+			<File
+				RelativePath="auto.pages\ohutils.docs">
+			</File>
+			<File
+				RelativePath="auto.pages\valueobjects.docs">
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\Makefile.vc">
+			RelativePath="Makefile.vc">
 		</File>
 		<File
-			RelativePath=".\objecthandler.doxy">
+			RelativePath="objecthandler.doxy">
 		</File>
 		<File
-			RelativePath=".\oh_footer.html">
+			RelativePath="oh_footer.html">
 		</File>
 		<File
-			RelativePath=".\oh_header.html">
+			RelativePath="oh_header.html">
 		</File>
 		<File
-			RelativePath=".\oh_headeronline.html">
+			RelativePath="oh_headeronline.html">
 		</File>
 		<File
-			RelativePath=".\style.css">
+			RelativePath="style.css">
 		</File>
 	</Files>
 	<Globals>

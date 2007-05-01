@@ -141,7 +141,7 @@ class Doxygen(addin.Addin):
         buf = self.bufferHeader_.text() % {
             'count' : len(allFuncs),
             'list' : bufList }
-        fileName = self.rootPath_ + 'all.docs'
+        fileName = self.rootPath_ + 'all_functions.docs'
         outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
     def generateDocs(self):

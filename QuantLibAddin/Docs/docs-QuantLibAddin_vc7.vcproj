@@ -29,7 +29,7 @@
 			Name="auto.pages"
 			Filter="">
 			<File
-				RelativePath=".\auto.pages\all.docs">
+				RelativePath=".\auto.pages\all_functions.docs">
 			</File>
 			<File
 				RelativePath=".\auto.pages\assetswap.docs">

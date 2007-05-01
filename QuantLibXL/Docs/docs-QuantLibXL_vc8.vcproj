@@ -42,7 +42,7 @@
 			Name="auto.pages"
 			>
 			<File
-				RelativePath="..\..\quantlibaddin\docs\auto.pages\all.docs"
+				RelativePath="..\..\quantlibaddin\docs\auto.pages\all_functions.docs"
 				>
 			</File>
 			<File

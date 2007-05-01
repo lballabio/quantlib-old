@@ -29,7 +29,7 @@
 			Name="auto.pages"
 			Filter="">
 			<File
-				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\all.docs">
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\all_functions.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\assetswap.docs">

@@ -103,7 +103,7 @@
 			Name="auto.pages"
 			>
 			<File
-				RelativePath=".\auto.pages\all.docs"
+				RelativePath=".\auto.pages\all_functions.docs"
 				>
 			</File>
 			<File
