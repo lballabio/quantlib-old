@@ -55,7 +55,7 @@ namespace ObjectHandler {
         out << "full object ID = " << std::left << std::setw(OBJECT_LOG_COLUMN_WIDTH) 
             << idFull_ << std::endl;
         out << "calling range  = " << std::left << std::setw(OBJECT_LOG_COLUMN_WIDTH) 
-            << callerAddress() << std::endl;
+            << callerAddress() << std::endl << std::endl;
     }
 
     std::string ObjectXL::callerKey() const {
