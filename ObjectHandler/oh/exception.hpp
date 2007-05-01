@@ -55,7 +55,7 @@ namespace ObjectHandler {
     /*! Descended from std::exception,
         supports an error message string.
     */
-    class DLL_API Exception : public std::exception {
+    class /*DLL_API*/ Exception : public std::exception {
         public:
             Exception(const std::string& message): message_(message) {}
             ~Exception() throw() {}

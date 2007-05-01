@@ -28,7 +28,7 @@
 #include <osl/mutex.hxx>
 #include <rtl/uuid.h>
  
-#include <oh/objhandler.hpp> 
+#include <oh/objecthandler.hpp> 
 
 #ifdef BOOST_MSVC
 #  define BOOST_LIB_DIAGNOSTIC
@@ -48,7 +48,7 @@ using namespace ::rtl;
 using namespace ::com::sun::star;
 
 // instantiate the objecthandler singleton
-ObjHandler::ObjectHandler oh;
+ObjectHandler::Repository oh;
 
 REF( uno::XInterface ) SAL_CALL QL_CreateInstance(
     REF( uno::XComponentContext ) const & xContext ) SAL_THROW( () ) {

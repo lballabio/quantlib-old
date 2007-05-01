@@ -51,7 +51,7 @@ SEQSEQ(STRING) SAL_CALL QLAddin::ohPropertyNames(
 
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(objectIDObj, objectIDCpp, ObjHandler::Object)
+        OH_GET_OBJECT(objectIDObj, objectIDCpp, ObjectHandler::Object)
 
         // invoke the member function
 
@@ -66,7 +66,7 @@ SEQSEQ(STRING) SAL_CALL QLAddin::ohPropertyNames(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("ERROR: ohPropertyNames: ") + e.what(), 2);
+        ObjectHandler::logMessage(std::string("ERROR: ohPropertyNames: ") + e.what(), 2);
         THROW_RTE;
     }
 }
@@ -85,7 +85,7 @@ ANY SAL_CALL QLAddin::ohPropertyValue(
 
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(objectIDObj, objectIDCpp, ObjHandler::Object)
+        OH_GET_OBJECT(objectIDObj, objectIDCpp, ObjectHandler::Object)
 
         // invoke the member function
 
@@ -101,7 +101,7 @@ ANY SAL_CALL QLAddin::ohPropertyValue(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        ObjHandler::logMessage(std::string("ERROR: ohPropertyValue: ") + e.what(), 2);
+        ObjectHandler::logMessage(std::string("ERROR: ohPropertyValue: ") + e.what(), 2);
         THROW_RTE;
     }
 }

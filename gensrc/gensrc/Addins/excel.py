@@ -72,7 +72,7 @@ class ExcelAddin(addin.Addin):
     voSupported_ = True
     convertPermanentFlag_ = '''
         //bool permanentCpp =
-        //    ObjHandler::callOperToScalar<bool>(*permanent, "permanent", false);
+        //    ObjectHandler::callOperToScalar<bool>(*permanent, "permanent", false);
         //if (permanentCpp)
         //    objectPointer->setPermanent();'''
 

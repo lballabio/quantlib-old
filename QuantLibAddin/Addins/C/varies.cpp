@@ -18,12 +18,12 @@ extern "C" {
 #include <Addins/C/varies.h>
 }
 #include <Addins/C/varies.hpp>
-#include <oh/objhandler.hpp> 
+#include <oh/objecthandler.hpp> 
 #include <ql/patterns/singleton.hpp>
 
 void initialize() {
 // instantiate the objecthandler singleton
-static ObjHandler::ObjectHandler oh;
+static ObjectHandler::Repository oh;
 }
 
 // code stub for unsupported sessions functionality

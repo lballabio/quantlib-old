@@ -80,7 +80,8 @@ for o, a in opts:
         addinIds.append('d')
     elif o == '-a':
         if len(opts) != 1: sys.exit('flag -a cannot be combined with other flags')
-        addinIds = [ 'e', 'o', 'g', 'c', 'v', 'x', 'l', 'd' ]
+#        addinIds = [ 'e', 'o', 'g', 'c', 'v', 'x', 'l', 'd' ]
+        addinIds = [ 'e', 'o', 'c', 'v', 'x', 'l', 'd' ]
     elif o in ('-h', '--help'):
         usage()
     else:

@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <ql/quantlib.hpp>
 #include <qlo/qladdin.hpp>
 #include <sstream>
@@ -31,7 +31,7 @@
 
 using namespace std;
 using namespace QuantLib;
-using namespace ObjHandler;
+using namespace ObjectHandler;
 using namespace QuantLibAddin;
 
 int main() {
@@ -49,7 +49,7 @@ int main() {
 
     try {
         // instantiate the objecthandler singleton
-        ObjHandler::ObjectHandler oh;
+        ObjectHandler::Repository oh;
 
         logMessage(qlVersion());
         logMessage(OBJHANDLER_VERSION);
@@ -70,7 +70,7 @@ int main() {
                 settlementDate,                 // settlement date as long
                 volatility,                     // volatility
                 Actual365Fixed()));             // daycount convention
-        ObjHandler::ObjectHandler::instance().storeObject(
+        ObjectHandler::Repository::instance().storeObject(
             "my_blackconstantvol", blackConstantVol);
 
         OH_GET_REFERENCE(blackvolRef, "my_blackconstantvol",
@@ -84,28 +84,28 @@ int main() {
                 settlementDate,                 // settlement date as long
                 riskFreeRate,                   // risk free rate
                 dividendYield));                // dividend yield
-        ObjHandler::ObjectHandler::instance().storeObject(
+        ObjectHandler::Repository::instance().storeObject(
             "my_blackscholes", blackScholesProcess);
 
         boost::shared_ptr<Object> exercise(
             new QuantLibAddin::EuropeanExercise(
                 exerciseDate));                 // exercise date
-        ObjHandler::ObjectHandler::instance().storeObject(
+        ObjectHandler::Repository::instance().storeObject(
             "my_exercise", exercise);
 
-        boost::shared_ptr<ObjHandler::Object> payoff(
+        boost::shared_ptr<ObjectHandler::Object> payoff(
             new QuantLibAddin::StrikedTypePayoff(
                 "vanilla",
                 Option::Put,
                 strike, // "thirdParameter" ?
                 strike));
-        ObjHandler::ObjectHandler::instance().storeObject(
+        ObjectHandler::Repository::instance().storeObject(
             "my_payoff", payoff);
 
         boost::shared_ptr<Object> engine(
             new QuantLibAddin::PricingEngine(
                 "AE"));                         // engine ID (Analytic European)
-        ObjHandler::ObjectHandler::instance().storeObject(
+        ObjectHandler::Repository::instance().storeObject(
             "my_engine", engine);
 
         OH_GET_REFERENCE(blackscholesRef, "my_blackscholes",
@@ -126,9 +126,9 @@ int main() {
             payoffRef,                          // payoff object
             exerciseRef,                        // exercise object
             engineRef));                        // engine object
-        ObjHandler::ObjectHandler::instance().storeObject("my_option", vanillaOption);
+        ObjectHandler::Repository::instance().storeObject("my_option", vanillaOption);
 
-        vanillaOption->setProperties(boost::shared_ptr<ObjHandler::ValueObject>(new QuantLibAddin::ValueObjects::qlVanillaOption(
+        vanillaOption->setProperties(boost::shared_ptr<ObjectHandler::ValueObject>(new QuantLibAddin::ValueObjects::qlVanillaOption(
             "my_option",                        // object ID
             "my_blackscholes",                  // stochastic process object ID
             "my_payoff",                        // option type

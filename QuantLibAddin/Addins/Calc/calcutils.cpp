@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <oh/objhandler.hpp>
+#include <oh/objecthandler.hpp>
 #include <Addins/Calc/qldefs.hpp>
 #include <Addins/Calc/calcutils.hpp>
 #include <sstream>
@@ -26,7 +26,7 @@ std::string ouStringToStlString(const STRING& s1) {
         OUSTRING_TO_OSTRING_CVTFLAGS))
         return s2.getStr();
     else
-        throw ObjHandler::Exception("ouStringToStlString: unable to convert string");
+        throw ObjectHandler::Exception("ouStringToStlString: unable to convert string");
 }
 
 ANY stlStringToCalcAny(const std::string &s) {
@@ -35,7 +35,7 @@ ANY stlStringToCalcAny(const std::string &s) {
 }
 
 /*
-SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
+SEQSEQ(ANY) boostAnyToSeqSeq(const ObjectHandler::any_ptr &a) {
     if (a->type() == typeid(long)) {
         long l = boost::any_cast< long >(*a);
         sal_Int32 l2 = static_cast< sal_Int32 >(l);
@@ -177,7 +177,7 @@ SEQSEQ(ANY) boostAnyToSeqSeq(const ObjHandler::any_ptr &a) {
         }
         return ss;
     } else
-        throw ObjHandler::Exception("boostAnyToSeqSeq: unable to interpret value");
+        throw ObjectHandler::Exception("boostAnyToSeqSeq: unable to interpret value");
 }
 */
 
@@ -213,7 +213,7 @@ void scalarToCalc(ANY &ret, const boost::any &value) {
 //        boost::any a2 = boost::any_cast< boost::any >(value);
 //        return boostAnyToCalcAny(a2);
 //        ret = CSS::uno::makeAny(STRFROMASCII("unknown type"));
-        throw ObjHandler::Exception("scalarToCalc: unable to interpret value");
+        throw ObjectHandler::Exception("scalarToCalc: unable to interpret value");
     } else if (value.type() == typeid(std::vector< int >)
            ||  value.type() == typeid(std::vector< long >)
            ||  value.type() == typeid(std::vector< double >)
@@ -230,7 +230,7 @@ void scalarToCalc(ANY &ret, const boost::any &value) {
         ret = CSS::uno::makeAny(STRFROMASCII("<MATRIX>"));
     } else
 //        ret = CSS::uno::makeAny(STRFROMASCII("unknown type"));
-        throw ObjHandler::Exception("scalarToCalc: unable to interpret value");
+        throw ObjectHandler::Exception("scalarToCalc: unable to interpret value");
 }
 
 // conversions from Calc datatypes to native C++ datatypes

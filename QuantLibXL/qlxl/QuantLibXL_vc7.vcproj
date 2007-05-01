@@ -421,310 +421,310 @@
 			Name="Register"
 			Filter="">
 			<File
-				RelativePath=".\Register\addin.cpp">
+				RelativePath="Register\addin.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_all.cpp">
+				RelativePath="Register\register_all.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_all.hpp">
+				RelativePath="Register\register_all.hpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_assetswap.cpp">
+				RelativePath="Register\register_assetswap.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_bonds.cpp">
+				RelativePath="Register\register_bonds.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_calendar.cpp">
+				RelativePath="Register\register_calendar.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_capfloor.cpp">
+				RelativePath="Register\register_capfloor.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_capletvolstructure.cpp">
+				RelativePath="Register\register_capletvolstructure.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_cmsmarket.cpp">
+				RelativePath="Register\register_cmsmarket.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_couponvectors.cpp">
+				RelativePath="Register\register_couponvectors.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_date.cpp">
+				RelativePath="Register\register_date.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_daycounter.cpp">
+				RelativePath="Register\register_daycounter.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_exercise.cpp">
+				RelativePath="Register\register_exercise.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_forwardrateagreement.cpp">
+				RelativePath="Register\register_forwardrateagreement.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_index.cpp">
+				RelativePath="Register\register_index.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_instruments.cpp">
+				RelativePath="Register\register_instruments.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_interpolation.cpp">
+				RelativePath="Register\register_interpolation.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_marketmodels.cpp">
+				RelativePath="Register\register_marketmodels.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_mathf.cpp">
+				RelativePath="Register\register_mathf.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_optimization.cpp">
+				RelativePath="Register\register_optimization.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_options.cpp">
+				RelativePath="Register\register_options.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_payoffs.cpp">
+				RelativePath="Register\register_payoffs.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_prices.cpp">
+				RelativePath="Register\register_prices.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_pricingengines.cpp">
+				RelativePath="Register\register_pricingengines.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_processes.cpp">
+				RelativePath="Register\register_processes.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_quotes.cpp">
+				RelativePath="Register\register_quotes.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_randomsequencegenerator.cpp">
+				RelativePath="Register\register_randomsequencegenerator.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_rangeaccrual.cpp">
+				RelativePath="Register\register_rangeaccrual.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_ratehelpers.cpp">
+				RelativePath="Register\register_ratehelpers.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_schedule.cpp">
+				RelativePath="Register\register_schedule.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_sequencestatistics.cpp">
+				RelativePath="Register\register_sequencestatistics.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_settings.cpp">
+				RelativePath="Register\register_settings.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_shortratemodels.cpp">
+				RelativePath="Register\register_shortratemodels.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_simplecashflow.cpp">
+				RelativePath="Register\register_simplecashflow.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_smilesection.cpp">
+				RelativePath="Register\register_smilesection.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_statistics.cpp">
+				RelativePath="Register\register_statistics.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_swap.cpp">
+				RelativePath="Register\register_swap.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_swaption.cpp">
+				RelativePath="Register\register_swaption.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_swaptionvolstructure.cpp">
+				RelativePath="Register\register_swaptionvolstructure.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_termstructures.cpp">
+				RelativePath="Register\register_termstructures.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_utilities.cpp">
+				RelativePath="Register\register_utilities.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_vanillaswap.cpp">
+				RelativePath="Register\register_vanillaswap.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_volatilities.cpp">
+				RelativePath="Register\register_volatilities.cpp">
 			</File>
 		</Filter>
 		<Filter
 			Name="Functions"
 			Filter="">
 			<File
-				RelativePath=".\Functions\assetswap.cpp">
+				RelativePath="Functions\assetswap.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\bonds.cpp">
+				RelativePath="Functions\bonds.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\calendar.cpp">
+				RelativePath="Functions\calendar.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\capfloor.cpp">
+				RelativePath="Functions\capfloor.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\capletvolstructure.cpp">
+				RelativePath="Functions\capletvolstructure.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\cmsmarket.cpp">
+				RelativePath="Functions\cmsmarket.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\couponvectors.cpp">
+				RelativePath="Functions\couponvectors.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\date.cpp">
+				RelativePath="Functions\date.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\daycounter.cpp">
+				RelativePath="Functions\daycounter.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\exercise.cpp">
+				RelativePath="Functions\exercise.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\forwardrateagreement.cpp">
+				RelativePath="Functions\forwardrateagreement.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\functioncount.hpp">
+				RelativePath="Functions\functioncount.hpp">
 			</File>
 			<File
-				RelativePath=".\Functions\index.cpp">
+				RelativePath="Functions\index.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\instruments.cpp">
+				RelativePath="Functions\instruments.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\interpolation.cpp">
+				RelativePath="Functions\interpolation.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\manual.cpp">
+				RelativePath="Functions\manual.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\marketmodels.cpp">
+				RelativePath="Functions\marketmodels.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\mathf.cpp">
+				RelativePath="Functions\mathf.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\optimization.cpp">
+				RelativePath="Functions\optimization.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\options.cpp">
+				RelativePath="Functions\options.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\payoffs.cpp">
+				RelativePath="Functions\payoffs.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\prices.cpp">
+				RelativePath="Functions\prices.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\pricingengines.cpp">
+				RelativePath="Functions\pricingengines.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\processes.cpp">
+				RelativePath="Functions\processes.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\quotes.cpp">
+				RelativePath="Functions\quotes.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\randomsequencegenerator.cpp">
+				RelativePath="Functions\randomsequencegenerator.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\rangeaccrual.cpp">
+				RelativePath="Functions\rangeaccrual.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\ratehelpers.cpp">
+				RelativePath="Functions\ratehelpers.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\schedule.cpp">
+				RelativePath="Functions\schedule.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\sequencestatistics.cpp">
+				RelativePath="Functions\sequencestatistics.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\settings.cpp">
+				RelativePath="Functions\settings.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\shortratemodels.cpp">
+				RelativePath="Functions\shortratemodels.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\simplecashflow.cpp">
+				RelativePath="Functions\simplecashflow.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\smilesection.cpp">
+				RelativePath="Functions\smilesection.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\statistics.cpp">
+				RelativePath="Functions\statistics.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\swap.cpp">
+				RelativePath="Functions\swap.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\swaption.cpp">
+				RelativePath="Functions\swaption.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\swaptionvolstructure.cpp">
+				RelativePath="Functions\swaptionvolstructure.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\termstructures.cpp">
+				RelativePath="Functions\termstructures.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\utilities.cpp">
+				RelativePath="Functions\utilities.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\vanillaswap.cpp">
+				RelativePath="Functions\vanillaswap.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\volatilities.cpp">
+				RelativePath="Functions\volatilities.cpp">
 			</File>
 		</Filter>
 		<Filter
 			Name="Conversions"
 			Filter="">
 			<File
-				RelativePath=".\Conversions\all.hpp">
+				RelativePath="Conversions\all.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\matrixtooper.cpp">
+				RelativePath="Conversions\matrixtooper.cpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\matrixtooper.hpp">
+				RelativePath="Conversions\matrixtooper.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\opertomatrix.cpp">
+				RelativePath="Conversions\opertomatrix.cpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\opertomatrix.hpp">
+				RelativePath="Conversions\opertomatrix.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\opertoscalar.cpp">
+				RelativePath="Conversions\opertoscalar.cpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\opertoscalar.hpp">
+				RelativePath="Conversions\opertoscalar.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\opertovector.cpp">
+				RelativePath="Conversions\opertovector.cpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\opertovector.hpp">
+				RelativePath="Conversions\opertovector.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\scalartooper.cpp">
+				RelativePath="Conversions\scalartooper.cpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\scalartooper.hpp">
+				RelativePath="Conversions\scalartooper.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\vectortooper.hpp">
+				RelativePath="Conversions\vectortooper.hpp">
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\session.cpp">
+			RelativePath="session.cpp">
 		</File>
 		<File
-			RelativePath=".\session.hpp">
+			RelativePath="session.hpp">
 		</File>
 	</Files>
 	<Globals>
