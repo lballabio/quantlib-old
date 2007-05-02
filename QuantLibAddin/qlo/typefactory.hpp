@@ -23,6 +23,8 @@
 #include <qlo/typeregistry.hpp>
 #include <oh/exception.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
+// temp? fix - move calendar factory into this file
+#include <ql/time/calendars/jointcalendar.hpp>
 
 namespace QuantLibAddin {
 
@@ -102,7 +104,26 @@ namespace QuantLibAddin {
         }
         using RegistryManager<T, EnumTypeRegistry>::checkType;
     };
-  
+
+    /* *** Calendar *** */
+    template<>
+    class Create<QuantLib::Calendar> : 
+        private RegistryManager<QuantLib::Calendar, EnumTypeRegistry> {
+    public:
+        QuantLib::Calendar operator()(const std::string& id);
+        using RegistryManager<QuantLib::Calendar, EnumTypeRegistry>::checkType;
+    private:
+        std::vector<std::string> calendarIDs;
+        QuantLib::JointCalendarRule jointCalendarRule;
+        std::string idOriginal, idUpper, idFull;
+        bool testID();
+        void parseID();
+        QuantLib::Calendar *makeJointCalendar(const unsigned int&);
+        QuantLib::Calendar *makeJointCalendar2();
+        QuantLib::Calendar *makeJointCalendar3();
+        QuantLib::Calendar *makeJointCalendar4();
+    };
+
  }
 
 #endif

@@ -16,35 +16,39 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_calendarfactory_hpp
-#define qla_calendarfactory_hpp
+// This class declaration must appear in typefactory.hpp to ensure that,
+// wherever a calendar is referenced, class template specialization
+// Create<QuantLib::Calendar> overrides the base Create class template.
 
-#include <qlo/typefactory.hpp>
-#include <ql/time/calendars/jointcalendar.hpp>
-
-
-namespace QuantLibAddin {
-     /* *** Calendar *** */
-
-    template<>
-    class Create<QuantLib::Calendar> : 
-        private RegistryManager<QuantLib::Calendar, EnumTypeRegistry> {
-    public:
-        QuantLib::Calendar operator()(const std::string& id);
-        using RegistryManager<QuantLib::Calendar, EnumTypeRegistry>::checkType;
-    private:
-        std::vector<std::string> calendarIDs;
-        QuantLib::JointCalendarRule jointCalendarRule;
-        std::string idOriginal, idUpper, idFull;
-        bool testID();
-        void parseID();
-        QuantLib::Calendar *makeJointCalendar(const unsigned int&);
-        QuantLib::Calendar *makeJointCalendar2();
-        QuantLib::Calendar *makeJointCalendar3();
-        QuantLib::Calendar *makeJointCalendar4();
-    };
- 
- }
-
-#endif
+//#ifndef qla_calendarfactory_hpp
+//#define qla_calendarfactory_hpp
+//
+//#include <qlo/typefactory.hpp>
+//#include <ql/time/calendars/jointcalendar.hpp>
+//
+//
+//namespace QuantLibAddin {
+//     /* *** Calendar *** */
+//
+//    template<>
+//    class Create<QuantLib::Calendar> : 
+//        private RegistryManager<QuantLib::Calendar, EnumTypeRegistry> {
+//    public:
+//        QuantLib::Calendar operator()(const std::string& id);
+//        using RegistryManager<QuantLib::Calendar, EnumTypeRegistry>::checkType;
+//    private:
+//        std::vector<std::string> calendarIDs;
+//        QuantLib::JointCalendarRule jointCalendarRule;
+//        std::string idOriginal, idUpper, idFull;
+//        bool testID();
+//        void parseID();
+//        QuantLib::Calendar *makeJointCalendar(const unsigned int&);
+//        QuantLib::Calendar *makeJointCalendar2();
+//        QuantLib::Calendar *makeJointCalendar3();
+//        QuantLib::Calendar *makeJointCalendar4();
+//    };
+// 
+// }
+//
+//#endif
 

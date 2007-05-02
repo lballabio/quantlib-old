@@ -17,7 +17,9 @@
 
 #include <oh/ohdefines.hpp>
 #include <boost/regex.hpp>
-#include <qlo/Factories/calendarfactory.hpp>
+// temp? fix - #include typefactory.hp instead of calendarfactory.hpp
+//#include <qlo/Factories/calendarfactory.hpp>
+#include <qlo/typefactory.hpp>
 #include <set>
 
 namespace QuantLibAddin {
