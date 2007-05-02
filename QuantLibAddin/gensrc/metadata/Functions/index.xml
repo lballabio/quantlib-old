@@ -109,10 +109,25 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlIndexFixingCalendar' type='QuantLib::Index'>
+      <description>Returns the calendar (e.g. TARGET) for the given Index object</description>
+      <libraryFunction>fixingCalendar</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Calendar</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <!-- InterestRateIndex interface -->
 
     <Member name='qlInterestRateIndexFamilyName' type='QuantLib::InterestRateIndex'>
-      <description>Returns the family name (e.g. EURIBOR) for the given Index object</description>
+      <description>Returns the family name (e.g. EURIBOR) for the given InterestRateIndex object</description>
       <libraryFunction>familyName</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
@@ -127,7 +142,7 @@
     </Member>
 
     <Member name='qlInterestRateIndexTenor' type='QuantLib::InterestRateIndex'>
-      <description>Returns the tenor (i.e. length, e.g. 6M, 10Y) for the given Index object</description>
+      <description>Returns the tenor (i.e. length, e.g. 6M, 10Y) for the given InterestRateIndex object</description>
       <libraryFunction>tenor</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
@@ -142,7 +157,7 @@
     </Member>
 
     <Member name='qlInterestRateIndexFixingDays' type='QuantLib::InterestRateIndex'>
-      <description>Returns the fixing days (e.g. 2) for the given Index object</description>
+      <description>Returns the fixing days (e.g. 2) for the given InterestRateIndex object</description>
       <libraryFunction>fixingDays</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
@@ -157,7 +172,7 @@
     </Member>
 
     <Member name='qlInterestRateIndexCurrency' type='QuantLib::InterestRateIndex'>
-      <description>Returns the currency (e.g. EUR) for the given Index object</description>
+      <description>Returns the currency (e.g. EUR) for the given InterestRateIndex object</description>
       <libraryFunction>currency</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
@@ -171,23 +186,8 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterestRateIndexCalendar' type='QuantLib::InterestRateIndex'>
-      <description>Returns the calendar (e.g. TARGET) for the given Index object</description>
-      <libraryFunction>calendar</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Calendar</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlInterestRateIndexDayCounter' type='QuantLib::InterestRateIndex'>
-      <description>Returns the DayCounter (e.g. Actual/360) for the given Index object</description>
+      <description>Returns the DayCounter (e.g. Actual/360) for the given InterestRateIndex object</description>
       <libraryFunction>dayCounter</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
@@ -202,7 +202,7 @@
     </Member>
 
     <Member name='qlInterestRateIndexForecastFixing' type='QuantLib::InterestRateIndex' loopParameter='fixingDate'>
-      <description>Returns the forecasted fixing for the given Index object. Today's fixing is forecasted even if the actual one is available in the time series.</description>
+      <description>Returns the forecasted fixing for the given InterestRateIndex object. Today's fixing is forecasted even if the actual one is available in the time series.</description>
       <libraryFunction>forecastFixing</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -223,7 +223,7 @@
     </Member>
 
     <Member name='qlInterestRateIndexValueDate' type='QuantLib::InterestRateIndex' loopParameter='fixingDate'>
-      <description>Returns the value date for the given fixing date for the given Index object</description>
+      <description>Returns the value date for the given fixing date for the given InterestRateIndex object</description>
       <libraryFunction>valueDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -244,7 +244,7 @@
     </Member>
 
     <Member name='qlInterestRateIndexFixingDate' type='QuantLib::InterestRateIndex' loopParameter='valueDate'>
-      <description>Returns the fixing date for the given value date for the given Index object</description>
+      <description>Returns the fixing date for the given value date for the given InterestRateIndex object</description>
       <libraryFunction>fixingDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -265,7 +265,7 @@
     </Member>
 
     <Member name='qlInterestRateIndexMaturity' type='QuantLib::InterestRateIndex' loopParameter='valueDate'>
-      <description>Returns the maturity date for the given value date for the given Index object</description>
+      <description>Returns the maturity date for the given value date for the given InterestRateIndex object</description>
       <libraryFunction>maturityDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />

@@ -27,14 +27,14 @@
 
 #include <qlo/Factories/euriborhandlefactory.hpp>
 
-#include <ql/indexes/euribor.hpp>
-#include <ql/indexes/euriborswapfixa.hpp>
-#include <ql/indexes/euriborswapfixb.hpp>
-#include <ql/indexes/eurlibor.hpp>
-#include <ql/indexes/eurliborswapfixa.hpp>
-#include <ql/indexes/eurliborswapfixb.hpp>
-#include <ql/indexes/eurliborswapfixifr.hpp>
-#include <ql/indexes/euriborswapfixifr.hpp>
+#include <ql/indexes/ibor/euribor.hpp>
+#include <ql/indexes/ibor/eurlibor.hpp>
+#include <ql/indexes/swap/euriborswapfixa.hpp>
+#include <ql/indexes/swap/euriborswapfixb.hpp>
+#include <ql/indexes/swap/eurliborswapfixa.hpp>
+#include <ql/indexes/swap/eurliborswapfixb.hpp>
+#include <ql/indexes/swap/eurliborswapfixifr.hpp>
+#include <ql/indexes/swap/euriborswapfixifr.hpp>
 
 
 namespace QuantLibAddin {
