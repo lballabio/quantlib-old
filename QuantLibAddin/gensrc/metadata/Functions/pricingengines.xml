@@ -10,8 +10,8 @@
     <include>qlo/shortratemodels.hpp</include>
     <include>qlo/payoffs.hpp</include>
     <include>qlo/marketmodels.hpp</include>
-    <include>ql/PricingEngines/blackformula.hpp</include>
-    <include>ql/PricingEngines/blackscholescalculator.hpp</include>
+    <include>ql/pricingengines/blackformula.hpp</include>
+    <include>ql/pricingengines/blackscholescalculator.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
