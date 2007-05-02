@@ -1595,7 +1595,7 @@
     </Member>
 
     <Member name='qlPiecewiseConstantCorrelationTimes' type='QuantLib::PiecewiseConstantCorrelation' superType='libraryClass'>
-      <description></description>
+      <description>Piecewise Constant Correlation Times</description>
       <libraryFunction>times</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -1610,7 +1610,7 @@
     </Member>
 
     <Member name='qlPiecewiseConstantCorrelationNumberOfRates' type='QuantLib::PiecewiseConstantCorrelation' superType='libraryClass'>
-      <description></description>
+      <description>Piecewise Constant Correlation Number of Rates</description>
       <libraryFunction>numberOfRates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
