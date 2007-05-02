@@ -22,7 +22,7 @@
 #include <qlo/cmsmarket.hpp>
 #include <qlo/couponvectors.hpp>
 #include <qlo/termstructures.hpp>
-
+#include <boost/timer.hpp>
 
 namespace QuantLibAddin {
 
@@ -122,4 +122,20 @@ namespace QuantLibAddin {
     CmsMarketCalibration::getCmsMarket() {
        return browseCmsMarket(libraryObject_->browseCmsMarket_);
     }
+
+   QuantLib::Array
+   CmsMarketCalibration::compute(const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
+                                 const boost::shared_ptr<QuantLib::OptimizationMethod>& method,
+                                 const QuantLib::Array& guess,
+                                 bool isMeanReversionFixed) {
+        boost::timer t;
+        t.restart();
+        QuantLib::Array result = libraryObject_->compute(endCriteria,
+                                method,
+                                guess,
+                                isMeanReversionFixed);
+        elapsed_ = t.elapsed();
+        return result;
+   }
+
 }

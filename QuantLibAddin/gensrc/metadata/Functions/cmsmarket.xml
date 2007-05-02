@@ -107,7 +107,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlCmsMarketCalibrationCompute' type='QuantLib::CmsMarketCalibration'>
+    <Member name='qlCmsMarketCalibrationCompute' type='QuantLibAddin::CmsMarketCalibration'>
       <description>Return the best beta and mean reversion</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
@@ -133,7 +133,7 @@
           <Parameter name='isMeanRevFixed' exampleValue = 'FALSE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>if TRUE parameter guess is not calibrated.</description>
+            <description>if TRUE mean reversion parameter is not calibrated, the guess is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -173,7 +173,7 @@
       </ReturnValue>
     </Member>
 
-    <!--Member name='qlCmsMarketCalibrationElapsed' type='QuantLib::CmsMarketCalibration'>
+    <Member name='qlCmsMarketCalibrationElapsed' type='QuantLibAddin::CmsMarketCalibration'>
       <description>Returns the elapsed time of the simultaneous calibration</description>
       <libraryFunction>elapsed</libraryFunction>
       <SupportedPlatforms>
@@ -186,7 +186,7 @@
         <type>double</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member-->
+    </Member>
 
     <Member name='qlCmsMarketCalibrationSparseSabrParameters' type='QuantLibAddin::CmsMarketCalibration'>
       <description>returns results of Sabr calibration</description>

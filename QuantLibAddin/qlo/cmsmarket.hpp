@@ -48,7 +48,7 @@ namespace QuantLibAddin {
     };  
 
     class CmsMarketCalibration: public ObjectHandler::LibraryObject<QuantLib::CmsMarketCalibration>{
-     public:
+      public:
         CmsMarketCalibration(
             QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& volCube,
             boost::shared_ptr<QuantLib::CmsMarket>& cmsMarket,
@@ -58,8 +58,13 @@ namespace QuantLibAddin {
         std::vector<std::vector<boost::any> > getSparseSabrParameters();
         std::vector<std::vector<boost::any> > getDenseSabrParameters();
         std::vector<std::vector<boost::any> > getCmsMarket();
-
-        
+        QuantLib::Real elapsed() {return elapsed_ ; }
+        QuantLib::Array compute(const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
+                                const boost::shared_ptr<QuantLib::OptimizationMethod>& method,
+                                const QuantLib::Array& guess,
+                                bool isMeanReversionFixed);
+      private:
+        QuantLib::Real elapsed_;
     }; 
 }
 
