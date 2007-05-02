@@ -1740,6 +1740,11 @@
             <tensorRank>scalar</tensorRank>
             <description>TRUE for lowest root, FALSE for the root nearest to 1.0</description>
           </Parameter>
+          <Parameter name='useFullApprox' exampleValue='TRUE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for using Full Approximation</description>
+          </Parameter>
           <Parameter name='maxIterations' default='2'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
