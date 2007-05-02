@@ -133,6 +133,8 @@ td {
     font-weight: bold;
 }
 
+/* Doxygen-generated CSS included below */
+
 BODY,H1,H2,H3,H4,H5,H6,P,CENTER,TD,TH,UL,DL,DIV {
 	font-family: Geneva, Arial, Helvetica, sans-serif;
 }
@@ -491,3 +493,4 @@ HR { height: 1px;
 .directory p { margin: 0px; white-space: nowrap; }
 .directory div { display: none; margin: 0px; }
 .directory img { vertical-align: -30%; }
+
