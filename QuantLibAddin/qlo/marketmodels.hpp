@@ -36,13 +36,13 @@
 #include <ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp>
 #include <ql/models/marketmodels/curvestates/lmmcurvestate.hpp>
 #include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
-#include <ql/models/marketmodels/piecewiseconstantcorrelations/cotswapfromfwdcorrelation.hpp>
+#include <ql/models/marketmodels/correlations/cotswapfromfwdcorrelation.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
 #include <ql/models/marketmodels/products/multiproductcomposite.hpp>
 #include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
 #include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
 #include <ql/termstructures/volatilities/abcd.hpp>
-#include <ql/models/marketmodels/piecewiseconstantcorrelations/timehomogeneousforwardcorrelation.hpp>
+#include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
 
 namespace QuantLibAddin {
 
