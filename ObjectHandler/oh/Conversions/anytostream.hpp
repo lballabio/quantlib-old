@@ -24,6 +24,24 @@
 
 namespace ObjectHandler {
 
+    //! Output a vector of values to the stream.
+    template<typename T>
+    std::ostream& operator<<(std::ostream& out, const std::vector<T> &v) {
+        for (std::vector<T>::const_iterator i = v.begin(); i!=v.end(); i++) {
+            out << *i << " ";
+        }
+        return out;
+    }
+
+    //! Output a matrix of values to the stream.
+    template<typename T>
+    std::ostream& operator<<(std::ostream& out, const std::vector<std::vector<T> > &vv) {
+        for (std::vector<std::vector<T> >::const_iterator i = vv.begin(); i!=vv.end(); i++) {
+            out << *i << std::endl;
+        }
+        return out;
+    }
+
     //! Inspect the type of the boost::any value and output it to the stream.
     inline std::ostream& operator<<(std::ostream& out, const boost::any& any) {
         if (any.empty())
@@ -74,7 +92,7 @@ namespace ObjectHandler {
                 boost::any_cast< std::vector<std::vector<boost::any> > >(any);
             return out << vv;
         } else {
-            OH_FAIL("any_ptr << operator: unrecognized type");
+            return out << "unrecognized type";
         }
     }
 
