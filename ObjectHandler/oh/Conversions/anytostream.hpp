@@ -25,18 +25,20 @@
 namespace ObjectHandler {
 
     //! Output a vector of values to the stream.
-    template<typename T>
-    std::ostream& operator<<(std::ostream& out, const std::vector<T> &v) {
-        for (std::vector<T>::const_iterator i = v.begin(); i!=v.end(); i++) {
+    template <typename T>
+    std::ostream& operator<<(std::ostream &out, const std::vector<T> &v) {
+        typename std::vector<T>::const_iterator i;
+        for (i = v.begin(); i != v.end(); i++) {
             out << *i << " ";
         }
         return out;
     }
 
     //! Output a matrix of values to the stream.
-    template<typename T>
-    std::ostream& operator<<(std::ostream& out, const std::vector<std::vector<T> > &vv) {
-        for (std::vector<std::vector<T> >::const_iterator i = vv.begin(); i!=vv.end(); i++) {
+    template <typename T>
+    std::ostream& operator<<(std::ostream &out, const std::vector<std::vector<T> > &vv) {
+        typename std::vector<std::vector<T> >::const_iterator i;
+        for (i = vv.begin(); i != vv.end(); i++) {
             out << *i << std::endl;
         }
         return out;
