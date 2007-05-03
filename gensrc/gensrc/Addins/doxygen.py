@@ -139,6 +139,7 @@ class Doxygen(addin.Addin):
         for func in allFuncs:
             bufList += '\\ref %s ()\\n\n' % func
         buf = self.bufferHeader_.text() % {
+            'application' : environment.config().namespaceObjects(),
             'count' : len(allFuncs),
             'list' : bufList }
         fileName = self.rootPath_ + 'all_functions.docs'
