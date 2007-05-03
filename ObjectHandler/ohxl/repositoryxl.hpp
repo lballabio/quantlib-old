@@ -48,14 +48,14 @@ namespace ObjectHandler {
         virtual std::string storeObject(const std::string &objectID, 
                                         const boost::shared_ptr<Object> &object);
         //! Implementation of the retrieveObject function.
-        /*! Convert Excel-format Object IDs into the format reconized by the base
+        /*! Convert Excel-format Object IDs into the format recognized by the base
             Repository class.  Recast references from Object to ObjectXL.
         */
         virtual boost::shared_ptr<Object> retrieveObjectImpl(
             const std::string &objectID) const;
 
         //! Wrapper for the deleteObject function in the base class.
-        /*! Convert Excel-format Object IDs into the format reconized by the base
+        /*! Convert Excel-format Object IDs into the format recognized by the base
             Repository class.
         */
         virtual void deleteObject(const std::string &objectID);
@@ -76,7 +76,7 @@ namespace ObjectHandler {
             const bool &append = false);
         //! Retrieve the error associated with the given range.
         std::string retrieveError(const XLOPER *range);
-        //! Clear any error associated with the given range.
+        //! Clear any error associated with the current range.
         void clearError();
         //@}
 
