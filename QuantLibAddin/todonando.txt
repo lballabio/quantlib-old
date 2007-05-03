@@ -58,7 +58,8 @@ STAND-BY
 	ma per connessioniconcorrenti --> Eugenia in ferie    (Marco and K)
 - Citrix performance: verifica tempi di ricalcolo del foglio cw.xls in real time su Citrix
 
-- make capVolStructure.xml equivalent to SwaptionVolStructure.xml (0.5d/0.5d DONE)
+- report degli sviluppi dal 5 aprile al 30 aprile (10568 rilascio in Pre-Prod) (0/2d)
+- report degli sviluppi dal 30 aprile al 5 maggio (rilascio in Testing) (0/1d)
 - trimestrale (0/0.5d)
 - market models:
 	implement longTermCorr+beta+gamma correlation structure (?)
@@ -91,11 +92,12 @@ STAND-BY
 - manage auto-open macro problem -> propose:
 	add Workbook_Open() in ThisWorkbook
 	add auto_open() in Module
-- DONE macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
 - foglio di clerici (interpolazione)
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
+- make capVolStructure.xml equivalent to SwaptionVolStructure.xml (0.5d/0.5d DONE)
+- DONE macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
 
 ---
 CRISTINA
