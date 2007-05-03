@@ -9,7 +9,7 @@
     <include>qlo/Factories/euriborhandlefactory.hpp</include>
   </includes>
   <copyright>
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006 Katiuscia Manzoni
     Copyright (C) 2005 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
@@ -29,6 +29,21 @@
       </ParameterList>
       <ReturnValue>
         <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexFixingCalendar' type='QuantLib::Index'>
+      <description>Returns the calendar (e.g. TARGET) for the given Index object</description>
+      <libraryFunction>fixingCalendar</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Calendar</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -109,17 +124,17 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlIndexFixingCalendar' type='QuantLib::Index'>
-      <description>Returns the calendar (e.g. TARGET) for the given Index object</description>
-      <libraryFunction>fixingCalendar</libraryFunction>
+    <Member name='qlIndexClearFixings' type='QuantLib::Index'>
+      <description>Clear all fixings for the given Index object</description>
+      <libraryFunction>clearFixings</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>QuantLib::Calendar</type>
+        <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
