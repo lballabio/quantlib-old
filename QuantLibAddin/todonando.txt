@@ -53,6 +53,8 @@ NANDO
 
 ---
 K
+** Reuters destination cell rather than range
+** Rt Update 
 STAND-BY
 - Citrix access -> richiesta licenza non è per installazione
 	ma per connessioniconcorrenti --> Eugenia in ferie    (Marco and K)
