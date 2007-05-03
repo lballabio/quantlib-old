@@ -23,10 +23,10 @@
 
 /*! \page history Version History
 
-<strong>Release 0.8.0 - April 2008</strong>
+<strong>Release 0.8.0 - May 2007</strong>
 
-- Removed datatype metadata from function metadata into separate file
 - Implemented gensrc as a Python package
+- Removed datatype metadata from function metadata into separate file
 - Refined the Rule algorithm which generates source code for a given
   function argument
 
