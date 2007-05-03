@@ -95,9 +95,11 @@ DLLEXPORT char *createAccount(
         long *accountNumber,
         char *accountType) {
 
-    ObjectHandler::FunctionCall functionCall("createAccount");
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
     try {
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("createAccount"));
 
         boost::shared_ptr<ObjectHandler::Object> object(
             new AccountObject(*accountNumber, accountType));
@@ -113,33 +115,41 @@ DLLEXPORT char *createAccount(
         return ret;
 
     } catch (const std::exception &e) {
-        ObjectHandler::RepositoryXL::instance().logError(e.what());
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
     }
 }
 
 DLLEXPORT short int *setBalance(char *objectID, long *balance) {
-    ObjectHandler::FunctionCall functionCall("createAccount");
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
     try {
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("setBalance"));
+
         OH_GET_OBJECT(accountObject, objectID, AccountObject)
         accountObject->setBalance(*balance);
+
         static short int ret = TRUE;
         return &ret;
     } catch (const std::exception &e) {
-        ObjectHandler::RepositoryXL::instance().logError(e.what());
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
     }
 }
 
 DLLEXPORT long *getBalance(char *objectID, OPER *trigger) {
-    ObjectHandler::FunctionCall functionCall("createAccount");
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
     try {
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("getBalance"));
+
         OH_GET_OBJECT(accountObject, objectID, AccountObject)
+
         static long ret;
         ret = accountObject->getBalance();
         return &ret;
     } catch (const std::exception &e) {
-        ObjectHandler::RepositoryXL::instance().logError(e.what());
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
     }
 }

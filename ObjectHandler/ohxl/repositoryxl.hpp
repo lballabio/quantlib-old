@@ -26,6 +26,7 @@
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ohxl/ohxldefines.hpp>
 #include <ohxl/objectxl.hpp>
+#include <ohxl/functioncall.hpp>
 
 namespace ObjectHandler {
 
@@ -63,7 +64,16 @@ namespace ObjectHandler {
         //! \name Error Messages
         //@{
         //! Log an error message.
-        void logError(const std::string &message, const bool &append = false);
+        /*! Normally the global FunctionCall object is accessed by its Singleton interface
+            e.g. FunctionCall.instance().xxx().  In this specific case function logError()
+            accepts instead a direct reference to the FunctionCall object as instantiated
+            by the client.  This is required to ensure exception safety in the event that
+            the FunctionCall constructor itself has thrown an exception.
+        */
+        void logError(
+            const std::string &message, 
+            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
+            const bool &append = false);
         //! Retrieve the error associated with the given range.
         std::string retrieveError(const XLOPER *range);
         //! Clear any error associated with the given range.
@@ -100,6 +110,12 @@ namespace ObjectHandler {
         //@}
 
     private:
+        // Associate the given error message to the active cell.
+        void setError(
+            const std::string &message, 
+            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
+            const bool &append);
+        // Retrieve a reference to the CallingRange object associated to the active cell.
         boost::shared_ptr<CallingRange> getCallingRange();
 
     };

@@ -89,7 +89,7 @@ DLLEXPORT char* addin1CreateAccount(
         ObjectHandler::stringToChar(returnValue, ret);
         return ret;
     } catch (const std::exception &e) {
-        ObjectHandler::RepositoryXL::instance().logError(e.what());
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
     }
 }
@@ -106,7 +106,7 @@ DLLEXPORT short int *addin1SetBalance(char *objectID, long *balance) {
         static short int ret = TRUE;
         return &ret;
     } catch (const std::exception &e) {
-        ObjectHandler::RepositoryXL::instance().logError(e.what());
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
     }
 }

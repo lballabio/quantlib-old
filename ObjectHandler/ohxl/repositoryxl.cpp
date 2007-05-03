@@ -96,29 +96,42 @@ namespace ObjectHandler {
         Repository::deleteObject(ObjectXL::getStub(objectID));
     }
 
-    void RepositoryXL::logError(const std::string& message, const bool &append) {
-        
-        std::ostringstream msgLog;
-        if (FunctionCall::instance().callerType() == CallerType::Cell) {
-            FunctionCall::instance().setError();
-            std::ostringstream msgCell;
-            msgCell << FunctionCall::instance().functionName() << " - " << message;
+    void RepositoryXL::setError(
+            const std::string &message, 
+            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
+            const bool &append) {
+        functionCall->setError();
 
-            std::string refStr = FunctionCall::instance().refStr();
-            std::string refStrUpper = boost::algorithm::to_upper_copy(refStr);
-            ErrorMessageMap::const_iterator i = errorMessageMap_.find(refStrUpper);
-            if (i == errorMessageMap_.end()) {
-                boost::shared_ptr<RangeReference> rangeReference(new RangeReference(refStrUpper));
-                rangeReference->setErrorMessage(msgCell.str(), false);
-                errorMessageMap_[refStrUpper] = rangeReference;
-            } else {
-                i->second->setErrorMessage(msgCell.str(), append);
-            }
+        std::ostringstream logMessage, cellMessage;
+        cellMessage << functionCall->functionName() << " - " << message;
 
-            msgLog << FunctionCall::instance().addressString() << " - ";
+        std::string refStr = functionCall->refStr();
+        std::string refStrUpper = boost::algorithm::to_upper_copy(refStr);
+        ErrorMessageMap::const_iterator i = errorMessageMap_.find(refStrUpper);
+        if (i == errorMessageMap_.end()) {
+            boost::shared_ptr<RangeReference> rangeReference(new RangeReference(refStrUpper));
+            rangeReference->setErrorMessage(cellMessage.str(), false);
+            errorMessageMap_[refStrUpper] = rangeReference;
+        } else {
+            i->second->setErrorMessage(cellMessage.str(), append);
         }
-        msgLog << FunctionCall::instance().functionName() << " - " << message;
-        logMessage(msgLog.str(), 2);
+    }
+
+    void RepositoryXL::logError(
+            const std::string &message, 
+            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall, 
+            const bool &append) {        
+        if (functionCall) {
+            if (functionCall->callerType() == CallerType::Cell)
+                setError(message, functionCall, append);
+
+            std::ostringstream fullMessage;
+            fullMessage << functionCall->addressString() << " - " 
+                << functionCall->functionName() << " - " << message;
+            logMessage(fullMessage.str(), 2);
+        } else {
+            logMessage(message, 2);
+        }
     }
 
     std::string RepositoryXL::retrieveError(const XLOPER *xRangeRef) {

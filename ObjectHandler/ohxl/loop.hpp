@@ -40,7 +40,7 @@ namespace ObjectHandler {
 
     template<class LoopFunction, class InputType, class OutputType>
     void loop(
-              FunctionCall &functionCall,
+              const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
               LoopFunction &loopFunction, 
               OPER *xIn, 
               XLOPER &xOut) {
@@ -87,13 +87,13 @@ namespace ObjectHandler {
                 std::ostringstream err;
                 if (!errorInitialized) {
                     RepositoryXL::instance().clearError();
-                    err << functionCall.functionName() << " - " 
-                        << functionCall.addressString() 
+                    err << functionCall->functionName() << " - " 
+                        << functionCall->addressString() 
                         << std::endl << std::endl;
                     errorInitialized = true;
                 }
                 err << "iteration #" << i << " - " << e.what();
-                RepositoryXL::instance().logError(err.str(), true);
+                RepositoryXL::instance().logError(err.str(), functionCall, true);
                 xOut.val.array.lparray[i].xltype = xltypeErr;
                 xOut.val.array.lparray[i].val.err = xlerrNum;
             }

@@ -71,11 +71,11 @@ XLL_DEC long *ohTrigger(
         OPER *dummy8,
         OPER *dummy9) {
 
-        // initialize Function Call object
-
-    ObjectHandler::FunctionCall functionCall("ohTrigger");
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
     try {
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("ohTrigger"));
 
         validateReference(dummy0, "dummy0");
         validateReference(dummy1, "dummy1");
@@ -94,7 +94,7 @@ XLL_DEC long *ohTrigger(
         return &returnValue;
 
     } catch (const std::exception &e) {
-        ObjectHandler::RepositoryXL::instance().logError(e.what());
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
     }
 }
@@ -130,13 +130,15 @@ XLL_DEC OPER *ohPack(OPER *xInputRange) {
 
     // initialize Function Call object
 
-    ObjectHandler::FunctionCall functionCall("ohPack");
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
     ObjectHandler::Xloper xMulti;
     static OPER xRet;
     xRet.val.array.lparray = 0;
 
     try {
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("ohPack"));
 
         Excel(xlCoerce, &xMulti, 2, xInputRange, TempInt(xltypeMulti));
 
@@ -172,7 +174,7 @@ XLL_DEC OPER *ohPack(OPER *xInputRange) {
 
         // log the exception and return a null pointer (#NUM!) to Excel
 
-        ObjectHandler::RepositoryXL::instance().logError(e.what());
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
     }
 }
