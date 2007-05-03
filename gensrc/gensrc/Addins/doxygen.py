@@ -128,7 +128,9 @@ class Doxygen(addin.Addin):
         bufCat = ''
         for displayKey in displayNames:
             bufCat += '    \\ref %s\\n\n' % dispNmToCatNm[displayKey]
-        buf = self.bufferCategories_.text() % { 'categories' : bufCat }
+        buf = self.bufferCategories_.text() % {
+            'application' : environment.config().namespaceObjects(),
+            'categories' : bufCat }
         fileName = self.rootPath_ + 'categories.docs'
         outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
