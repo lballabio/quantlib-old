@@ -22,6 +22,7 @@
 
 #include <qlo/analysis.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
+#include <ql/cashflows/digitalcoupon.hpp>
 #include <ql/indexes/interestrateindex.hpp>
 
 namespace QuantLibAddin {
@@ -30,7 +31,8 @@ namespace QuantLibAddin {
                               public QuantLib::Visitor<QuantLib::CashFlow>,
                               public QuantLib::Visitor<QuantLib::Coupon>,
                               public QuantLib::Visitor<QuantLib::FloatingRateCoupon>,
-                              public QuantLib::Visitor<QuantLib::CappedFlooredCoupon> {
+                              public QuantLib::Visitor<QuantLib::CappedFlooredCoupon>,
+                              public QuantLib::Visitor<QuantLib::DigitalCoupon> {
       private:
         std::vector<std::vector<boost::any> > flowAnalysis_;
         static const QuantLib::Size numberOfColumns_ = 20;
@@ -41,6 +43,7 @@ namespace QuantLibAddin {
         void visit(QuantLib::Coupon& c);
         void visit(QuantLib::FloatingRateCoupon& c);
         void visit(QuantLib::CappedFlooredCoupon& c);
+        void visit(QuantLib::DigitalCoupon& c);
         const std::vector<std::vector<boost::any> >& analysis() const;
     };
 
@@ -62,7 +65,7 @@ namespace QuantLibAddin {
 #define CONV_ADJ 15
 #define SPREAD 16
 #define CAP 17
-#define FUTUREUSE1 18
+#define DIGITALRATE 18
 #define FUTUREUSE2 19
 
     AnalysisGenerator::AnalysisGenerator() { reset(); }
@@ -91,7 +94,7 @@ namespace QuantLibAddin {
         headings[CONV_ADJ]=std::string("Conv. Adj.");
         headings[SPREAD]=std::string("Spread");
         headings[CAP]=std::string("Cap");
-        headings[FUTUREUSE1]=std::string("---");
+        headings[DIGITALRATE]=std::string("Digital Rate");
         headings[FUTUREUSE2]=std::string("---");
 
         flowAnalysis_.push_back(headings);
@@ -157,6 +160,38 @@ namespace QuantLibAddin {
             flowAnalysis_.back()[CAP]=c.cap();
         else
             flowAnalysis_.back()[CAP]=std::string("#N/A");
+    }
+
+    void AnalysisGenerator::visit(QuantLib::DigitalCoupon& c) {
+        visit(static_cast<QuantLib::Coupon&>(c));
+        flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
+        flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
+        flowAnalysis_.back()[INDEX]=c.index()->name();
+        if (c.hasCollar())
+            flowAnalysis_.back()[FLOOR]=c.callStrike();
+        else if (c.hasCall() && !c.isCallAdded())
+            flowAnalysis_.back()[FLOOR]=c.callStrike();
+        else if (c.hasPut() && !c.isPutAdded())
+            flowAnalysis_.back()[FLOOR]=c.putStrike();
+        else
+            flowAnalysis_.back()[FLOOR]=std::string("#N/A");
+        flowAnalysis_.back()[GEARING]=c.gearing();
+        try {
+            flowAnalysis_.back()[INDEX_FIXING]=c.indexFixing();
+        } catch(...) {}
+        try {
+            flowAnalysis_.back()[CONV_ADJ]=c.underlying()->convexityAdjustment();
+        } catch(...) {}
+        flowAnalysis_.back()[SPREAD]=c.spread();
+        if (c.hasCollar())
+            flowAnalysis_.back()[CAP]=c.putStrike();
+        else if (c.hasCall() && c.isCallAdded())
+            flowAnalysis_.back()[CAP]=c.callStrike();
+        else if (c.hasPut() && c.isPutAdded())
+            flowAnalysis_.back()[CAP]=c.putStrike();
+        else
+            flowAnalysis_.back()[CAP]=std::string("#N/A");
+        flowAnalysis_.back()[DIGITALRATE]=c.cashRate();
     }
 
     const std::vector<std::vector<boost::any> >& AnalysisGenerator::analysis() const {

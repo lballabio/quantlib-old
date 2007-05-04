@@ -123,7 +123,7 @@ namespace QuantLibAddin {
                     const std::vector<QuantLib::Spread>& spreads,
                     const std::vector<QuantLib::Rate>& caps) {
 
-        leg_ = QuantLib::IborLeg(nominals,
+            leg_ = QuantLib::IborLeg(nominals,
                                  *schedule,
                                  index,
                                  paymentDayCounter,
@@ -134,6 +134,41 @@ namespace QuantLibAddin {
                                  isInArrears);
     }
 
+    DigitalIborLeg::DigitalIborLeg(
+                    QuantLib::BusinessDayConvention paymentConvention,
+                    const std::vector<QuantLib::Real>& nominals,
+                    const boost::shared_ptr<QuantLib::Schedule>& schedule,
+                    QuantLib::Natural fixingDays,
+                    bool isInArrears,
+                    const QuantLib::DayCounter& paymentDayCounter,
+                    const std::vector<QuantLib::Real>& gearings,
+                    const boost::shared_ptr<QuantLib::IborIndex>& index,
+                    const std::vector<QuantLib::Spread>& spreads,
+                    const std::vector<QuantLib::Rate>& callRates,
+                    const std::vector<QuantLib::Rate>& putRates,
+                    const std::vector<QuantLib::Rate>& cashRates,
+                    bool isCallOptionAdded,
+                    bool isPutOptionAdded,
+                    QuantLib::Real eps) {
+
+                        leg_ = QuantLib::DigitalIborLeg(nominals,
+                                                        *schedule,
+                                                        index,
+                                                        paymentDayCounter,
+                                                        paymentConvention,
+                                                        fixingDays,
+                                                        gearings,
+                                                        spreads,
+                                                        isInArrears,
+                                                        callRates,
+                                                        putRates,
+                                                        cashRates,
+                                                        isCallOptionAdded,
+                                                        isPutOptionAdded,
+                                                        eps);
+    }
+
+    
     IborCouponPricer::IborCouponPricer(
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& v,
             const std::string& typeOfIborCouponPricer) {
@@ -163,7 +198,42 @@ namespace QuantLibAddin {
                                 caps, floors,
                                 isInArrears);
     }
-    
+
+    DigitalCmsLeg::DigitalCmsLeg(
+                    QuantLib::BusinessDayConvention paymentConvention,
+                    const std::vector<QuantLib::Real>& nominals,
+                    const boost::shared_ptr<QuantLib::Schedule>& schedule,
+                    QuantLib::Natural fixingDays,
+                    bool isInArrears,
+                    const QuantLib::DayCounter& paymentDayCounter,
+                    const std::vector<QuantLib::Real>& gearings,
+                    const boost::shared_ptr<QuantLib::SwapIndex>& index,
+                    const std::vector<QuantLib::Spread>& spreads,
+                    const std::vector<QuantLib::Rate>& callRates,
+                    const std::vector<QuantLib::Rate>& putRates,
+                    const std::vector<QuantLib::Rate>& cashRates,
+                    bool isCallOptionAdded,
+                    bool isPutOptionAdded,
+                    QuantLib::Real eps) {
+
+                        leg_ = QuantLib::DigitalCmsLeg(nominals,
+                                                        *schedule,
+                                                        index,
+                                                        paymentDayCounter,
+                                                        paymentConvention,
+                                                        fixingDays,
+                                                        gearings,
+                                                        spreads,
+                                                        isInArrears,
+                                                        callRates,
+                                                        putRates,
+                                                        cashRates,
+                                                        isCallOptionAdded,
+                                                        isPutOptionAdded,
+                                                        eps);
+    }
+
+
     RangeAccrualLeg::RangeAccrualLeg(
            QuantLib::BusinessDayConvention paymentConvention,
            const std::vector<QuantLib::Real>& nominals,

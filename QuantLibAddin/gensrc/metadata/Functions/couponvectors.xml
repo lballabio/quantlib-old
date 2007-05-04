@@ -276,6 +276,92 @@
             </ParameterList>
         </Constructor>
 
+      <Constructor name='qlDigitalIborLeg'>
+        <libraryFunction>DigitalIborLeg</libraryFunction>
+        <SupportedPlatforms>
+          <SupportedPlatform name='Excel' calcInWizard='false' />
+        </SupportedPlatforms>
+        <ParameterList>
+          <Parameters>
+            <Parameter name='paymentBDC' default='"Following"'>
+              <type>QuantLib::BusinessDayConvention</type>
+              <tensorRank>scalar</tensorRank>
+              <description>payment business day convention. If omitted, default = Following.</description>
+            </Parameter>
+            <Parameter name='Nominals' exampleValue='1000000'>
+              <type>double</type>
+              <tensorRank>vector</tensorRank>
+              <description>Nominal amount vector. If omitted, default = 1000000</description>
+            </Parameter>
+            <Parameter name='ScheduleID'>
+              <type>QuantLib::Schedule</type>
+              <tensorRank>scalar</tensorRank>
+              <description>Schedule object ID</description>
+            </Parameter>
+            <Parameter name='fixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
+              <type>QuantLib::Natural</type>
+              <tensorRank>scalar</tensorRank>
+              <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
+            </Parameter>
+            <Parameter name='isInArrears' default='false'>
+              <type>bool</type>
+              <tensorRank>scalar</tensorRank>
+              <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
+            </Parameter>
+            <Parameter name='dayCounter' exampleValue='Actual/360'>
+              <type>QuantLib::DayCounter</type>
+              <tensorRank>scalar</tensorRank>
+              <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            </Parameter>
+            <Parameter name='gearings' default='1.0'>
+              <type>double</type>
+              <tensorRank>vector</tensorRank>
+              <description>floating rate gearings. If omitted, default = 1.0</description>
+            </Parameter>
+            <Parameter name='iborIndex'>
+              <type>QuantLib::IborIndex</type>
+              <tensorRank>scalar</tensorRank>
+              <description>floating rate index</description>
+            </Parameter>
+            <Parameter name='spreads' default='0.0'>
+              <type>QuantLib::Spread</type>
+              <tensorRank>vector</tensorRank>
+              <description>floating rate spreads. If omitted, default = 0%</description>
+            </Parameter>
+            <Parameter name='callStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
+              <type>QuantLib::Rate</type>
+              <tensorRank>vector</tensorRank>
+              <description>digital call option strikes. If omitted, no call option is assumed</description>
+            </Parameter>
+            <Parameter name='putStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
+              <type>QuantLib::Rate</type>
+              <tensorRank>vector</tensorRank>
+              <description>digital put option strikes. If omitted, no put option is assumed</description>
+            </Parameter>
+            <Parameter name='cashRates' default='std::vector&lt;QuantLib::Rate&gt;()'>
+              <type>QuantLib::Rate</type>
+              <tensorRank>vector</tensorRank>
+              <description>rates paid-received if the digital option ends in-the-money. If omitted, asset-or-nothing digital option is assumed</description>
+            </Parameter>
+            <Parameter name='isCallPaid' default='true'>
+              <type>bool</type>
+              <tensorRank>scalar</tensorRank>
+              <description>If true, the digital call option is paid. If omitted, default = TRUE</description>
+            </Parameter>
+            <Parameter name='isPutPaid' default='true'>
+              <type>bool</type>
+              <tensorRank>scalar</tensorRank>
+              <description>If true, the digital put option is paid. If omitted, default = TRUE</description>
+            </Parameter>
+            <Parameter name='gap' default='0.0001'>
+              <type>QuantLib::Real</type>
+              <tensorRank>scalar</tensorRank>
+              <description>difference in strikes used in call-put spread pricing. If omitted, default is 1bp</description>
+            </Parameter>
+          </Parameters>
+        </ParameterList>
+      </Constructor>      
+
       <Constructor name='qlCmsLeg'>
             <libraryFunction>CmsLeg</libraryFunction>
             <SupportedPlatforms>
@@ -341,6 +427,92 @@
                 </Parameters>
             </ParameterList>
         </Constructor>
+
+      <Constructor name='qlDigitalCmsLeg'>
+        <libraryFunction>DigitalCmsLeg</libraryFunction>
+        <SupportedPlatforms>
+          <SupportedPlatform name='Excel' calcInWizard='false' />
+        </SupportedPlatforms>
+        <ParameterList>
+          <Parameters>
+            <Parameter name='paymentBDC' default='"Following"'>
+              <type>QuantLib::BusinessDayConvention</type>
+              <tensorRank>scalar</tensorRank>
+              <description>payment business day convention. If omitted, default = Following.</description>
+            </Parameter>
+            <Parameter name='Nominals' exampleValue='1000000'>
+              <type>double</type>
+              <tensorRank>vector</tensorRank>
+              <description>Nominal amount vector. If omitted, default = 1000000</description>
+            </Parameter>
+            <Parameter name='ScheduleID'>
+              <type>QuantLib::Schedule</type>
+              <tensorRank>scalar</tensorRank>
+              <description>Schedule object ID</description>
+            </Parameter>
+            <Parameter name='fixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
+              <type>QuantLib::Natural</type>
+              <tensorRank>scalar</tensorRank>
+              <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
+            </Parameter>
+            <Parameter name='isInArrears' default='false'>
+              <type>bool</type>
+              <tensorRank>scalar</tensorRank>
+              <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
+            </Parameter>
+            <Parameter name='dayCounter' exampleValue='Actual/360'>
+              <type>QuantLib::DayCounter</type>
+              <tensorRank>scalar</tensorRank>
+              <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            </Parameter>
+            <Parameter name='gearings' default='1.0'>
+              <type>double</type>
+              <tensorRank>vector</tensorRank>
+              <description>floating rate gearings. If omitted, default = 1.0</description>
+            </Parameter>
+            <Parameter name='SwapIndex'>
+              <type>QuantLib::SwapIndex</type>
+              <tensorRank>scalar</tensorRank>
+              <description>underlying SwapIndex object ID</description>
+            </Parameter>
+            <Parameter name='spreads' default='0.0'>
+              <type>QuantLib::Spread</type>
+              <tensorRank>vector</tensorRank>
+              <description>floating rate spreads. If omitted, default = 0%</description>
+            </Parameter>
+            <Parameter name='callStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
+              <type>QuantLib::Rate</type>
+              <tensorRank>vector</tensorRank>
+              <description>digital call option strikes. If omitted, no call option is assumed</description>
+            </Parameter>
+            <Parameter name='putStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
+              <type>QuantLib::Rate</type>
+              <tensorRank>vector</tensorRank>
+              <description>digital put option strikes. If omitted, no put option is assumed</description>
+            </Parameter>
+            <Parameter name='cashRates' default='std::vector&lt;QuantLib::Rate&gt;()'>
+              <type>QuantLib::Rate</type>
+              <tensorRank>vector</tensorRank>
+              <description>rates paid-received if the digital option ends in-the-money. If omitted, asset-or-nothing digital option is assumed</description>
+            </Parameter>
+            <Parameter name='isCallPaid' default='true'>
+              <type>bool</type>
+              <tensorRank>scalar</tensorRank>
+              <description>If true, the digital call option is paid. If omitted, default = true</description>
+            </Parameter>
+            <Parameter name='isPutPaid' default='true'>
+              <type>bool</type>
+              <tensorRank>scalar</tensorRank>
+              <description>If true, the digital put option is paid. If omitted, default = true</description>
+            </Parameter>
+            <Parameter name='gap' default='0.0001'>
+              <type>QuantLib::Real</type>
+              <tensorRank>scalar</tensorRank>
+              <description>difference in strikes used in call-put spread pricing. If omitted, default is 1bp</description>
+            </Parameter>
+          </Parameters>
+        </ParameterList>
+      </Constructor>      
       
       <Constructor name='qlRangeAccrualLeg'>
         <libraryFunction>RangeAccrualLeg</libraryFunction>

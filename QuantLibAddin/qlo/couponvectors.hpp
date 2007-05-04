@@ -85,6 +85,26 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Rate>& caps);
     };
 
+    class DigitalIborLeg : public Leg {
+      public:
+        DigitalIborLeg(
+            QuantLib::BusinessDayConvention paymentConvention,
+            const std::vector<QuantLib::Real>& nominals,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::Natural fixingDays,
+            bool isInArrears,
+            const QuantLib::DayCounter& paymentDayCounter,
+            const std::vector<QuantLib::Real>& gearings,
+            const boost::shared_ptr<QuantLib::IborIndex>& index,
+            const std::vector<QuantLib::Spread>& spreads,
+            const std::vector<QuantLib::Rate>& callRates,
+            const std::vector<QuantLib::Rate>& putRates,
+            const std::vector<QuantLib::Rate>& cashRates,
+            bool isCallOptionAdded,
+            bool isPutOptionAdded,
+            QuantLib::Real eps);
+    };
+
     class CmsLeg : public Leg {
       public:
         CmsLeg(
@@ -99,6 +119,26 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::SwapIndex>& index,
             const std::vector<QuantLib::Spread>& spreads,
             const std::vector<QuantLib::Rate>& caps);
+    };
+
+    class DigitalCmsLeg : public Leg {
+      public:
+        DigitalCmsLeg(
+            QuantLib::BusinessDayConvention paymentConvention,
+            const std::vector<QuantLib::Real>& nominals,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::Natural fixingDays,
+            bool isInArrears,
+            const QuantLib::DayCounter& paymentDayCounter,
+            const std::vector<QuantLib::Real>& gearings,
+            const boost::shared_ptr<QuantLib::SwapIndex>& index,
+            const std::vector<QuantLib::Spread>& spreads,
+            const std::vector<QuantLib::Rate>& callRates,
+            const std::vector<QuantLib::Rate>& putRates,
+            const std::vector<QuantLib::Rate>& cashRates,
+            bool isCallOptionAdded,
+            bool isPutOptionAdded,
+            QuantLib::Real eps);
     };
 
     class RangeAccrualLeg : public Leg {
