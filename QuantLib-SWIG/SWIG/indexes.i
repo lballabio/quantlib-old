@@ -108,22 +108,34 @@ class InterestRateIndexPtr : public boost::shared_ptr<Index> {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->tenor();
         }
-        Integer fixingDays() {
+        Natural fixingDays() {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->fixingDays();
         }
+	Date fixingDate(const Date& valueDate) {
+            return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
+                ->fixingDate(valueDate);
+	}
         Currency currency() {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->currency();
-        }
-        Calendar calendar() {
-            return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
-                ->calendar();
         }
         DayCounter dayCounter() {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->dayCounter();
         }
+	Rate forecastFixing(const Date& fixingDate) {
+            return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
+                ->forecastFixing(fixingDate);
+	}
+	Handle<YieldTermStructure> termStructure() {
+            return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
+                ->termStructure();
+	}
+	Date maturityDate(const Date& valueDate) {
+            return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
+                ->maturityDate(valueDate);
+	}
     }
 };
 

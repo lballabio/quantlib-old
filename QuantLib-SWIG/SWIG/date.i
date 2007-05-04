@@ -229,8 +229,7 @@ function(from) {Period(from)})
 class Date {
     #if defined(SWIGRUBY)
     %rename("isLeap?")        isLeap;
-    %rename("isEOM?")         isEOM;
-    %rename("isIMMdate?")     isIMMdate;
+    %rename("isEndOfMonth?")         isEndOfMonth;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("day-of-month")   dayOfMonth;
     %rename("day-of-year")    dayOfYear;
@@ -241,11 +240,9 @@ class Date {
     %rename("max-date")       maxDate;
     %rename("todays-date")    todaysDate;
     %rename("end-of-month")   endOfMonth;
-    %rename("is-eom?")        isEOM;
+    %rename("is-eom?")        isEndOfMonth;
     %rename("next-weekday")   nextWeekday;
     %rename("nth-weekday")    nthWeekday;
-    %rename("is-imm-date?")   isIMMdate;
-    %rename("next-imm-date")  nextIMMdate;
     #endif
   public:
     Date();
@@ -264,11 +261,9 @@ class Date {
     static Date maxDate();
     static Date todaysDate();
     static Date endOfMonth(const Date&);
-    static bool isEOM(const Date&);
+    static bool isEndOfMonth(const Date&);
     static Date nextWeekday(const Date&, Weekday);
     static Date nthWeekday(Size n, Weekday, Month m, Year y);
-    static bool isIMMdate(const Date&);
-    static Date nextIMMdate(const Date&);
     #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA) || defined(SWIGR)
     Date operator+(BigInteger days) const;
     Date operator-(BigInteger days) const;
