@@ -26,6 +26,7 @@
 #include <ohxl/objectxl.hpp>
 #include <string>
 #include <map>
+#include <boost/weak_ptr.hpp>
 
 namespace ObjectHandler {
 
@@ -55,7 +56,9 @@ namespace ObjectHandler {
         //! \name Object Management
         //@{
         //! Indicate that the given object is resident in this range.
-        void registerObject(boost::shared_ptr<ObjectXL> objectXL);
+        void registerObject(const std::string &objectID, boost::weak_ptr<ObjectXL> objectXL);
+        //! Remove the given object from the list of resident objects.
+        void unregisterObject(const std::string &objectID);
         //! Delete all objects associated with this range, e.g. if the range has been deleted.
         void clearResidentObjects(bool deletePermanent);
         //! Indicate whether any objects presently reside in this range.
@@ -85,7 +88,7 @@ namespace ObjectHandler {
         static const int KEY_WIDTH;
         std::string key_;
         int updateCount_;
-        typedef std::map<std::string, boost::shared_ptr<ObjectXL>, my_iless > ObjectXLMap;
+        typedef std::map<std::string, boost::weak_ptr<ObjectXL>, my_iless > ObjectXLMap;
         ObjectXLMap residentObjects_;
     };
 

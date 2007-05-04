@@ -59,14 +59,22 @@ namespace ObjectHandler {
 
     void CallingRange::clearResidentObjects(bool deletePermanent) {
         if (deletePermanent) {
-            for (ObjectXLMap::iterator i = residentObjects_.begin();
-                    i != residentObjects_.end(); ++i)
-                Repository::instance().deleteObject(i->first);
+            // Iterate through the list of resident objects and delete them.
+            // Each object's dtor calls CallingRange::unregisterObject() which
+            // removes an entry from the map over which we're iterating, so we must
+            // increment the iterator before calling deleteObject().
+            ObjectXLMap::iterator i = residentObjects_.begin();
+            while (i != residentObjects_.end()) {
+                std::string objectId = i->first;
+                ++i;
+                Repository::instance().deleteObject(objectId);
+            }
             residentObjects_.clear();
         } else {
             ObjectXLMap::iterator i = residentObjects_.begin();
             while (i != residentObjects_.end()) {
-                if (i->second->permanent()) {
+                boost::shared_ptr<ObjectXL> objectXL = i->second.lock();
+                if (objectXL && objectXL->permanent()) {
                     ++i;
                 } else {
                     Repository::instance().deleteObject(i->first);
@@ -76,8 +84,12 @@ namespace ObjectHandler {
         }
     }
 
-    void CallingRange::registerObject(boost::shared_ptr<ObjectXL> objectXL) {
-        residentObjects_[objectXL->id()] = objectXL;
+    void CallingRange::registerObject(const std::string &objectID, boost::weak_ptr<ObjectXL> objectXL) {
+        residentObjects_[objectID] = objectXL;
+    }
+
+    void CallingRange::unregisterObject(const std::string &objectID) {
+        residentObjects_.erase(objectID);
     }
 
     bool CallingRange::valid() const {

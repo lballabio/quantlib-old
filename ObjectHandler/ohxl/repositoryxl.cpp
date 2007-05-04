@@ -60,10 +60,10 @@ namespace ObjectHandler {
         boost::shared_ptr<ObjectHandler::ObjectXL> objectXL(
             new ObjectHandler::ObjectXL(objectID, object));
 
+        boost::shared_ptr<CallingRange> callingRange;
         if (FunctionCall::instance().callerType() == CallerType::Cell) {
-            boost::shared_ptr<CallingRange> callingRange = getCallingRange();
+            callingRange = getCallingRange();
             objectXL->setCallingRange(callingRange);
-            callingRange->registerObject(objectXL);
         }
 
         ObjectMap::const_iterator result = objectMap_.find(objectXL->id());
@@ -78,7 +78,13 @@ namespace ObjectHandler {
                 oldObjectXL->callerAddress());
         }
 
+        // Repository::storeObject() results in the old Object (if any) being
+        // de-registered with the CallingRange object, the new Object is then 
+        // registered with the CallingRange object under the same ID.
         Repository::storeObject(objectXL->id(), objectXL);
+        if (FunctionCall::instance().callerType() == CallerType::Cell) {
+            callingRange->registerObject(objectXL->id(), objectXL);
+        }
         return objectXL->idFull();
     }
 
@@ -210,7 +216,7 @@ namespace ObjectHandler {
             return i->second;
         } else {
             // no name - create new CallingRange object
-             boost::shared_ptr<CallingRange> callingRange(new CallingRange);
+            boost::shared_ptr<CallingRange> callingRange(new CallingRange);
             callingRanges_[callingRange->key()] = callingRange;
             return callingRange;
         }

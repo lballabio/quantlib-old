@@ -51,8 +51,8 @@ namespace ObjectHandler {
         */
         ObjectXL(const std::string &id, const boost::shared_ptr<Object> &object);
 
-        //! Empty virtual destructor.
-        virtual ~ObjectXL() {}
+        //! Destructor - de-register this object with its CallingRange object.
+        virtual ~ObjectXL();
 
         //! Convert a full ID to a normal one.
         /*! Instances of class Object are identified by their ID.

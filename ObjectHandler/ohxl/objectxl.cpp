@@ -25,6 +25,12 @@ namespace ObjectHandler {
         : id_(id), idFull_(id), object_(object) {
     };
 
+    ObjectXL::~ObjectXL() {
+        if (callingRange_) {
+            callingRange_->unregisterObject(id_);
+        }
+    }
+
 #ifdef COMPILING_XLL_DYNAMIC
     boost::shared_ptr<ObjectXL> ObjectXL::create(const std::string &id, const boost::shared_ptr<Object> &object) {
         return boost::shared_ptr<ObjectXL>(new ObjectXL(id, object));
