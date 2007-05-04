@@ -187,6 +187,7 @@ MARCO
 - verifica ottimizzatori:
   D complete test suite (with Giorgio) (1d/2d/done)
   D test Simplex (1.5d/1d)
+  - test workbooks using simplex (0.5d/1d)
   - fix conjugate gradient and steepest descent (with FR) (0.0/2d)
   - check with GSL (with Francois) (0.0/2d)
   - TBD: export to excel and build testing wkb (to be planned)
