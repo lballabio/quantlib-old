@@ -165,18 +165,18 @@ FRANCOIS
 
 ---
 GIORGIO
-- restore timing in calibration and optimization
-- test Levenberg-Marquardt in sabr interpolation  (0d/5d)
-- test Levenberg-Marquardt in abcd vol (0d/5d)
+- test Levenberg-Marquardt in sabr interpolation  (0d/2d)
+- test Levenberg-Marquardt in abcd vol (0d/2d)
 D rename correctly Excel names of class qlSimultaneousCalibration() (1d/1d DONE)
 D fixed sabr parameters (1d/1d DONE)
+D arrichhita la test suite di sabrinterpolation (tutte le combinazioni di fixed/free guess, per diversi ottimizzatori) (0.5d/0.5d DONE)
 D adeguare RangeAccrual coupon alla gerarchia di Floating Rate coupon (1d/1d DONE)
 - WIP: digital coupon in call spread, add unit test (Marco, Giorgio and Cristina) (5d/7d)
 D flat extrapolation of SABR parameters in vol cube (2d/2d DONE)
 - WIP ratchet Instrument C++ (shared with Marco) (3d/7d)
 - WIP range accrual coupon (con relativi test) (18d/30d)
   - WIP create a workbook for range accrual under Workbooks\InterestRateDerivatives designing the workbook as done for CMS.xls
-  - add unit test for range accrual (lowerB=0 and upperB=100->Floater, decreasing upperB, increasing lowerB)
+  - WIP add unit test for range accrual (lowerB=0 and upperB=100->Floater, decreasing upperB, increasing lowerB)
 D - refactorize range accrual pricer (1d/1d DONE)
 - spreaded swaption vol structure (0d/5d)
 - spreaded caplet vol structure (0d/5d)
