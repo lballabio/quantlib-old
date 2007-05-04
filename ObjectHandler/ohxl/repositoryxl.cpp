@@ -121,17 +121,20 @@ namespace ObjectHandler {
             const std::string &message, 
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall, 
             const bool &append) {        
-        if (functionCall) {
-            if (functionCall->callerType() == CallerType::Cell)
-                setError(message, functionCall, append);
+        // This function is called during error handling and must not throw.
+        try {
+            if (functionCall) {
+                if (functionCall->callerType() == CallerType::Cell)
+                    setError(message, functionCall, append);
 
-            std::ostringstream fullMessage;
-            fullMessage << functionCall->addressString() << " - " 
-                << functionCall->functionName() << " - " << message;
-            logMessage(fullMessage.str(), 2);
-        } else {
-            logMessage(message, 2);
-        }
+                std::ostringstream fullMessage;
+                fullMessage << functionCall->addressString() << " - " 
+                    << functionCall->functionName() << " - " << message;
+                logMessage(fullMessage.str(), 2);
+            } else {
+                logMessage(message, 2);
+            }
+        } catch(...) {}
     }
 
     std::string RepositoryXL::retrieveError(const XLOPER *xRangeRef) {
@@ -248,3 +251,4 @@ namespace ObjectHandler {
     }
 
 }
+

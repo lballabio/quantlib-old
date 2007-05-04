@@ -69,6 +69,8 @@ namespace ObjectHandler {
             accepts instead a direct reference to the FunctionCall object as instantiated
             by the client.  This is required to ensure exception safety in the event that
             the FunctionCall constructor itself has thrown an exception.
+
+            This function never throws.
         */
         void logError(
             const std::string &message, 

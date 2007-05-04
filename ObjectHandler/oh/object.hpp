@@ -60,7 +60,7 @@ namespace ObjectHandler {
             To store the resulting Object in the ObjectHandler, call
                 Repository::instance().storeObject(objectID, object);
         */
-        Object() {}
+        Object() : permanent_(false) {}
 
         //! Empty virtual destructor.
         virtual ~Object() {}
@@ -97,7 +97,7 @@ namespace ObjectHandler {
         */
         void setPermanent() { permanent_ = true; }
         //! Query the value of the "permanent" flag.
-        const bool &permanent() const { return permanent_; }
+        const virtual bool &permanent() const { return permanent_; }
         //@}
 
         //! \name Logging

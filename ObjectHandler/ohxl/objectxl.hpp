@@ -35,7 +35,7 @@ namespace ObjectHandler {
         design pattern: ObjectXL both inherits from Object, and holds a reference to
         an instance of an Object.  Clients of ObjectXL can access ObjectXL via the
         standard Object interface, ObjectXL forwards the calls to the contained Object,
-        where necessary adding additional support for the Excel platform:
+        where necessary adding additional support for the Excel platform e.g.:
         - Retain a reference to the cell which constructed the Object
         - Suffix the Object's ID with an update count e.g. my_object#00123
     */
@@ -110,6 +110,14 @@ namespace ObjectHandler {
             to provide additional information specific to the Excel platform.
         */
         virtual void dump(std::ostream &out);
+        //@}
+
+        //! \name Permanent Objects
+        //@{
+        //! Query the value of the "permanent" flag.
+        /*! The request is forwarded to the Object contained by this ObjectXL.
+        */
+        const virtual bool &permanent() const { return object_->permanent(); }
         //@}
 
     private:
