@@ -18,7 +18,6 @@
 #include <ohxl/objectxl.hpp>
 #include <ohxl/functioncall.hpp>
 #include <ohxl/callingrange.hpp>
-#include <iomanip>
 
 namespace ObjectHandler {
 
