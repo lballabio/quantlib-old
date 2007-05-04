@@ -116,7 +116,7 @@ CRISTINA
 - complete class digital coupon						(0.5D/1D)
 - digital coupon in call spread, add unit test
   (Marco, Giorgio and Cristina)                                         (2D/2D)
-- create the digital leg and export it to QLXL				(0D/0.5D)
+- create the digital leg and export it to QLXL				(1D/0.5D)
 - create worksheets to price digital legs				(0D/0.5D)
 - install VS in new pc                                                  (0D/1D)
 - sensitivity analysis                                                  (STAND-BY)
