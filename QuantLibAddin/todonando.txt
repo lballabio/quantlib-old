@@ -184,20 +184,21 @@ D - refactorize range accrual pricer (1d/1d DONE)
 
 ---
 MARCO
-- Citrix:  (0.0/0.5d)
-  - verifica licenze accesso
-  - verifica accesso a $+
 - verifica ottimizzatori:
-  - complete test suite with Giorgio) (0.0/2d)
+  D complete test suite (with Giorgio) (1d/2d/done)
+  D test Simplex (1.5d/1d)
   - fix conjugate gradient and steepest descent (with FR) (0.0/2d)
-  - check with GSL (with FR) (0.0/2d)
+  - check with GSL (with Francois) (0.0/2d)
   - TBD: export to excel and build testing wkb (to be planned)
-- MM: corr hist extimation (after 4/5/2007)						(duration: 2w? - end: ??? - ratio: 0.0 - status: not started)
+- MM: corr hist extimation (after 14/5/2007)
 - pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)	(0.0/2d/WAITING FOR DIGITAL OPTIONS)
 - Risk, Wilmott papers(0.0/1d/WAITING for Ferdinando)
-- update bootstrapping algorithm to catch up changes in Mx curve (67%,/3d/DONE)
-  - introduce enumeration for Depos inclusion
-  - move selection of instruments from RateHelperSelection into spreadsheets with Nando)
+D Citrix:  (0.5d/0.5d/DONE)
+  D verifica licenze accesso (individuato referente, verifica Katiuscia)
+  D verifica accesso a $+ (ok)
+D Update bootstrapping algorithm to catch up changes in Mx curve (2d/3d/DONE)
+  D introduce enumeration for Depos inclusion
+  D move selection of instruments from RateHelperSelection into spreadsheets (with Nando)
 - Inflation project:
   - Attività UAT (0.5/4w)
   - Programmazione prossime attività (0.0/2w?)
