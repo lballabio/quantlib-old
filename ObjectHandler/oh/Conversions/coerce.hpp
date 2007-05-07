@@ -48,7 +48,7 @@ namespace ObjectHandler {
         */
         TypeOut operator()(const TypeIn &in) {
 
-            OH_REQUIRE(!inputMissing(in), "invalid input");
+            //OH_REQUIRE(!inputMissing(in), "invalid input");
 
             TypeOut out;
             for (Conversion *conversion = getConversions();
@@ -67,13 +67,13 @@ namespace ObjectHandler {
             If inputMissing() returns true then use the default value provided, otherwise
             execute the normal implementation of operator ().
         */
-        TypeOut operator()(const TypeIn &in, const TypeOut &defaultValue) {
-            if (inputMissing(in)) {
-                return defaultValue;
-            } else {
-                return this->operator()(in);
-            }
-        }
+        //TypeOut operator()(const TypeIn &in, const TypeOut &defaultValue) {
+        //    if (inputMissing(in)) {
+        //        return defaultValue;
+        //    } else {
+        //        return this->operator()(in);
+        //    }
+        //}
 
         virtual ~Coerce() {}
 
@@ -93,7 +93,7 @@ namespace ObjectHandler {
             and determine whether it represents some kind of null value to indicate
             that no input was provided.
         */
-        virtual bool inputMissing(const TypeIn&) { return false; }
+        //virtual bool inputMissing(const TypeIn&) { return false; }
     };
 
 }
