@@ -130,12 +130,13 @@ namespace ObjectHandler {
         // This function is called during error handling and must not throw.
         try {
             if (functionCall) {
-                if (functionCall->callerType() == CallerType::Cell)
-                    setError(message, functionCall, append);
-
                 std::ostringstream fullMessage;
-                fullMessage << functionCall->addressString() << " - " 
-                    << functionCall->functionName() << " - " << message;
+                if (functionCall->callerType() == CallerType::Cell) {
+                    setError(message, functionCall, append);
+                    fullMessage << functionCall->addressString() << " - ";
+                }
+
+                fullMessage << functionCall->functionName() << " - " << message;
                 logMessage(fullMessage.str(), 2);
             } else {
                 logMessage(message, 2);
