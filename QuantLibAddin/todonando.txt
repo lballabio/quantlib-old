@@ -115,7 +115,6 @@ STAND-BY
 CRISTINA
 - CMS calibration tests (Cristina and K)                                (1D/1D - DONE)
 - EOD valuation: completare analisi dei nuovi deal                      (0.5D/0.5D - DONE)
-  (except the digital option: qlCmsZeroLeg doesn't work)
 - debug qlCmsZeroLeg                                                    (0.5D/0.5D - DONE)
 - testing that the manual procedure to set back/forward the evaluation
   date returns the same results of the automatic procedure              (0D/1D)
@@ -124,11 +123,13 @@ CRISTINA
   - pricing of Cms Cap without decomposition in Excel                   (To be discussed)
   - new management of additional cashflows in Cap Cms book              (0D/1D - STAND-BY)
 - complete class digital coupon                                         (3D/1D)
-- digital coupon in call spread, add unit test
-  (Marco, Giorgio and Cristina)                                         (2D/2D - DONE)
+  - todo: management of payoff with equal sign included
+- digital coupon in call spread, add unit test                          (2D/2D)
+  - todo: replicate tests for Cms Digital Coupon
 - create the digital leg and export it to QLXL                          (2D/0.5D - DONE)
+- better digital leg construction?                                      (To be discussed)
 - create a draft worksheet to price digital legs                        (0.5D/0.5D - DONE)
-- install VS in new pc                                                  (0D/1D)
+- install VS in new pc                                                  (0D/1D - STAND-BY)
 - sensitivity analysis                                                  (STAND-BY)
 - market models: abcd for displaced vols (Chiara, Cristina, K)
 - fixing days in cashflow analisys                                      (FIXED)
