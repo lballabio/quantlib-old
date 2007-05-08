@@ -88,6 +88,9 @@ namespace QuantLibAddin {
                                         isAlphaFixed, isBetaFixed,
                                         isNuFixed, isRhoFixed, vegaWeighted,
                                         ec, om));
+        boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_)->update();
     }
+   
 }
 
