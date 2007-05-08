@@ -22,7 +22,7 @@
 #include <oh/exception.hpp>
 #include <qlo/handle.hpp>
 
-namespace ObjectHandler {
+namespace QuantLibAddin {
 
     // Accept an id of an Object in the Repository and return a QuantLib::RelinkableHandle<LibraryClass>.
     // 1) If the id is an empty string then return an empty handle
@@ -34,6 +34,7 @@ namespace ObjectHandler {
     bool objectToHandle(
             const boost::shared_ptr<ObjectHandler::Object> &in,
             QuantLib::RelinkableHandle<LibraryClass> &out) {
+
         boost::shared_ptr<QuantLibAddin::RelinkableHandle<LibraryClass> > handlePointer =
             boost::dynamic_pointer_cast<QuantLibAddin::RelinkableHandle<LibraryClass> >(in);
         if (handlePointer) {
@@ -48,6 +49,7 @@ namespace ObjectHandler {
     bool wrapObject(
             const boost::shared_ptr<ObjectHandler::Object> &in,
             QuantLib::RelinkableHandle<LibraryClass> &out) {
+
         boost::shared_ptr<ObjectClass> qloPointer =
             boost::dynamic_pointer_cast<ObjectClass>(in);
         if (qloPointer) {
@@ -64,9 +66,11 @@ namespace ObjectHandler {
     class CoerceHandle : public ObjectHandler::Coerce<
             boost::shared_ptr<ObjectHandler::Object>, 
             QuantLib::RelinkableHandle<LibraryClass> > {
+
         typedef typename ObjectHandler::Coerce<
             boost::shared_ptr<ObjectHandler::Object>,
-            QuantLib::RelinkableHandle<LibraryClass> >::Conversion Conversion; 
+            QuantLib::RelinkableHandle<LibraryClass> >::Conversion Conversion;
+
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToHandle<LibraryClass>, 
@@ -75,6 +79,7 @@ namespace ObjectHandler {
             };
             return conversions; 
         };
+
     };
 }
 

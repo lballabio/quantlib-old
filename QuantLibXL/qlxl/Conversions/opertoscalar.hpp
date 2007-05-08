@@ -23,6 +23,7 @@
 #include <ql/time/date.hpp>
 #include <ql/quotes/simplequote.hpp>
 
+// Override functions in ObjectHandler namespace
 namespace ObjectHandler {
 
     void operToScalar(const OPER &xScalar, QuantLib::Date &ret);

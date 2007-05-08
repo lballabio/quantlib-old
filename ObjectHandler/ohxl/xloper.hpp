@@ -40,23 +40,26 @@ namespace ObjectHandler {
 
         //! \name Structors
         //@{
-        //! Constructor - initializes the type of the underling XLOPER to zero.
+        //! Constructor - initialize the type of the underling XLOPER to zero.
         /*! Client code may consult this value to determine whether or not
             any memory has subsequently been allocated to the XLOPER by Excel.
         */
         Xloper() { xloper_.xltype = 0; }
 
-        //! Destructor - calls xlFree on the XLOPER.
-        ~Xloper() { Excel(xlFree, 0, 1, &xloper_); }
+        //! Destructor - call xlFree on the XLOPER, if memory has been allocated.
+        ~Xloper() {
+            if (xloper_.xltype)
+                Excel(xlFree, 0, 1, &xloper_);
+        }
         //@}
 
         //! \name Inspectors
         //@{
-        //! Operator & returns the address of the underlying XLOPER.
+        //! operator& - return the address of the underlying XLOPER.
         XLOPER *operator&() { return &xloper_; }
-        //! Operator -> returns the address of the underlying XLOPER.
+        //! operator-> - return the address of the underlying XLOPER.
         const XLOPER *operator->() const { return &xloper_; }
-        //! Operator () returns a const reference to the underlying XLOPER.
+        //! operator() - return a const reference to the underlying XLOPER.
         const XLOPER &operator()() const { return xloper_; }
         //@}
 

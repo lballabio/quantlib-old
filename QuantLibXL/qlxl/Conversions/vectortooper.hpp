@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2007 Ferdinando Ametrano
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,6 +24,7 @@
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/math/array.hpp>
 
+// Override functions in ObjectHandler namespace
 namespace ObjectHandler {
 
     inline void vectorToOper(const QuantLib::Array &a, OPER &xVector) {

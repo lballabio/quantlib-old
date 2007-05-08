@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,11 +23,12 @@
 #include <ql/time/date.hpp>
 #include <ql/interestrate.hpp>
 
+// Override functions in ObjectHandler namespace
 namespace ObjectHandler {
 
     void scalarToOper(const QuantLib::InterestRate &value, OPER &xScalar);
-    void scalarToOper(const QuantLib::Date         &value, OPER &xScalar);
-    void scalarToOper(const QuantLib::Frequency    &value, OPER &xScalar);
+    void scalarToOper(const QuantLib::Date &value, OPER &xScalar);
+    void scalarToOper(const QuantLib::Frequency &value, OPER &xScalar);
 }
 
 #endif

@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,15 +24,9 @@
 #include <ql/time/period.hpp>
 #include <ql/interestrate.hpp>
 
-using std::vector;
-using QuantLib::Date;
-using QuantLib::Period;
-using QuantLib::Size;
-using QuantLib::InterestRate;
+namespace QuantLibAddin {
 
-namespace ObjectHandler {
-
-    double libraryToScalar(const InterestRate &i) {
+    double libraryToScalar(const QuantLib::InterestRate &i) {
         return i.rate();
     }
 
@@ -40,33 +34,33 @@ namespace ObjectHandler {
         return r;
     }
 
-    long libraryToScalar(const Date &d) {
+    long libraryToScalar(const QuantLib::Date &d) {
         return d.serialNumber();
     }
 
-    std::string libraryToScalar(const Period &period) {
+    std::string libraryToScalar(const QuantLib::Period &period) {
         std::ostringstream s;
         s << period;
         return s.str();
     }
 
-    vector<std::string> libraryToVector(const vector<Period> &v) {
-        vector<std::string> ret;
+    std::vector<std::string> libraryToVector(const std::vector<QuantLib::Period> &v) {
+        std::vector<std::string> ret;
         ret.reserve(v.size());
-        for (vector<Period>::const_iterator i = v.begin(); i != v.end(); ++i)
+        for (std::vector<QuantLib::Period>::const_iterator i = v.begin(); i != v.end(); ++i)
             ret.push_back(libraryToScalar(*i));
         return ret;
     }
 
-    vector<long> libraryToVector(const vector<Date> &v) {
-        vector<long> ret;
+    std::vector<long> libraryToVector(const std::vector<QuantLib::Date> &v) {
+        std::vector<long> ret;
         ret.reserve(v.size());
-        for (vector<Date>::const_iterator i = v.begin(); i != v.end(); ++i)
+        for (std::vector<QuantLib::Date>::const_iterator i = v.begin(); i != v.end(); ++i)
             ret.push_back(i->serialNumber());
         return ret;
     }
 
-    vector<long> libraryToVector(const vector<Size>& v) {
-        return vector<long>(v.begin(), v.end());
+    std::vector<long> libraryToVector(const std::vector<QuantLib::Size>& v) {
+        return std::vector<long>(v.begin(), v.end());
     }
 }

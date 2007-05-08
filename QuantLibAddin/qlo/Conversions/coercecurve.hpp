@@ -25,7 +25,7 @@
 #include <ql/yieldtermstructure.hpp>
 #include <ql/swaptionvolstructure.hpp>
 
-namespace ObjectHandler {
+namespace QuantLibAddin {
 
     template <class HandleClass, class LibraryClass>
     bool curveFromHandle2(

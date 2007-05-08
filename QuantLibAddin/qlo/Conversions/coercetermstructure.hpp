@@ -26,24 +26,23 @@
 #include <ql/yieldtermstructure.hpp>
 #include <ql/swaptionvolstructure.hpp>
 
-namespace ObjectHandler {
+namespace QuantLibAddin {
 
     template <class HandleClass>
     bool curveFromHandle(
             const boost::shared_ptr<ObjectHandler::Object> &in,
             boost::shared_ptr<QuantLib::TermStructure> &out) {
 
-        boost::shared_ptr<QuantLibAddin::RelinkableHandle<HandleClass> > 
+        boost::shared_ptr<RelinkableHandle<HandleClass> > 
             handleCurve = boost::dynamic_pointer_cast<
-                QuantLibAddin::RelinkableHandle<HandleClass> >(in);
+                RelinkableHandle<HandleClass> >(in);
 
         if (!handleCurve)
             return false;
 
         boost::shared_ptr<HandleClass> pointerCurve = 
             handleCurve->getHandle().currentLink();
-        OH_REQUIRE(pointerCurve, "unable to retrieve reference"
-                << " contained in handle");
+        OH_REQUIRE(pointerCurve, "unable to retrieve reference contained in handle");
 
         out = boost::dynamic_pointer_cast<QuantLib::TermStructure>(pointerCurve);
         OH_REQUIRE(out, "unable to convert reference from " 
@@ -59,7 +58,7 @@ namespace ObjectHandler {
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                objectToReference<QuantLibAddin::TermStructure, QuantLib::TermStructure>,
+                objectToReference<TermStructure, QuantLib::TermStructure>,
                 curveFromHandle<QuantLib::YieldTermStructure>, 
                 curveFromHandle<QuantLib::SwaptionVolatilityStructure>, 
                 0

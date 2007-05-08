@@ -23,7 +23,7 @@
 #include <qlo/typefactory.hpp>
 #include <qlo/Factories/indexfactory.hpp>
 
-namespace ObjectHandler {
+namespace QuantLibAddin {
 
     // CoerceIndex - accept a string which is the ID of either
     // an Enumerated Class or an object in the repository, 
@@ -33,10 +33,12 @@ namespace ObjectHandler {
     bool indexFromRegistry(
             const std::string &in,
             boost::shared_ptr<LibraryClass> &out) {
+
         if (!QuantLibAddin::Create<boost::shared_ptr<QuantLib::Index> >().checkType(in))
             return false;
         boost::shared_ptr<QuantLib::Index> indexPointer = 
             QuantLibAddin::Create<boost::shared_ptr<QuantLib::Index> >()(in);
+
         out = boost::dynamic_pointer_cast<LibraryClass>(indexPointer);
         OH_REQUIRE(out, "Unable to convert enumerated class with ID " << in <<
             " to class " << typeid(LibraryClass).name());
@@ -47,6 +49,7 @@ namespace ObjectHandler {
     bool indexFromRepository(
             const std::string &in,
             boost::shared_ptr<LibraryClass> &out) {
+
         OH_GET_REFERENCE(ret, in, ObjectClass, LibraryClass)
         out = ret;
         return true;
@@ -56,9 +59,11 @@ namespace ObjectHandler {
     class CoerceIndex : public ObjectHandler::Coerce<
             std::string,
             boost::shared_ptr<LibraryClass> > {
+
         typedef typename ObjectHandler::Coerce<
             std::string, 
-            boost::shared_ptr<LibraryClass> >::Conversion Conversion; 
+            boost::shared_ptr<LibraryClass> >::Conversion Conversion;
+
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 indexFromRegistry<LibraryClass>, 
@@ -67,17 +72,21 @@ namespace ObjectHandler {
             };
             return conversions; 
         };
+
     };
 
     template <class ObjectClass, class LibraryClass>
     inline std::vector<boost::shared_ptr<LibraryClass> > CoerceIndexVector(
-        const std::vector<std::string> &ids) {
+            const std::vector<std::string> &ids) {
+
         std::vector<boost::shared_ptr<LibraryClass> > ret;
         ret.reserve(ids.size());
-        std::vector<std::string>::const_iterator i;
-        for (i = ids.begin(); i != ids.end(); ++i)
+
+        for (std::vector<std::string>::const_iterator i = ids.begin(); 
+                i != ids.end(); ++i)
             ret.push_back(CoerceIndex<ObjectClass, LibraryClass>()(*i));
         return ret;
+
     }
 
 }

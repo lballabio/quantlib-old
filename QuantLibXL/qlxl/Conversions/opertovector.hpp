@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,11 +22,12 @@
 #include <ql/math/array.hpp>
 #include <qlxl/Conversions/opertoscalar.hpp>
 
+// Override functions in ObjectHandler namespace
 namespace ObjectHandler {
 
     //QuantLib::Array operToVector(const FP &fpVector);
     QuantLib::Array operToVector(const OPER &operVector, 
-                   const std::string paramName);
+        const std::string paramName);
 
     //template <class T>
     //std::vector<T> fpToVectorLibrary(const FP &fpVector) {
@@ -43,9 +44,9 @@ namespace ObjectHandler {
     template <class T>
     std::vector<T> operToVectorLibrary(const OPER &xVector) {
 
-        if ((xVector.xltype & xltypeNil)
-        ||  (xVector.xltype & xltypeMissing)
-        || ((xVector.xltype & xltypeErr) && (xVector.val.err == xlerrNA)))
+        if (xVector.xltype & xltypeNil
+        ||  xVector.xltype & xltypeMissing
+        ||  xVector.xltype & xltypeErr && xVector.val.err == xlerrNA)
             return std::vector<T>();
         OH_REQUIRE(!(xVector.xltype & xltypeErr), 
             "input value has type=error");
@@ -100,45 +101,33 @@ namespace ObjectHandler {
     std::vector<boost::shared_ptr<qlClass> >
     operToObjectVector(const OPER &xVector) {
 
-        if ((xVector.xltype & xltypeNil)
-        ||  (xVector.xltype & xltypeMissing)
-        || ((xVector.xltype & xltypeErr) && (xVector.val.err == xlerrNA)))
+        if (xVector.xltype & xltypeNil
+        ||  xVector.xltype & xltypeMissing
+        ||  xVector.xltype & xltypeErr && xVector.val.err == xlerrNA)
             return std::vector<boost::shared_ptr<qlClass> >();
-        OH_REQUIRE(!(xVector.xltype & xltypeErr), 
-            "input value has type=error");
+        OH_REQUIRE(!(xVector.xltype & xltypeErr), "input value has type=error");
 
-        OPER xTemp;
-        bool needToFree = false;
-        try {
+        Xloper xTemp;
+        const OPER *xMulti;
 
-            const OPER *xMulti;
-
-            if (xVector.xltype == xltypeMulti)
-                xMulti = &xVector;
-            else {
-                Excel(xlCoerce, &xTemp, 2, &xVector, TempInt(xltypeMulti));
-                xMulti = &xTemp;
-                needToFree = true;
-            }
-
-            std::vector<boost::shared_ptr<qlClass> > ret;
-            ret.reserve(xMulti->val.array.rows * xMulti->val.array.columns);
-            for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; ++i) {
-                std::string id;
-                operToScalar(xMulti->val.array.lparray[i], id);
-                OH_GET_REFERENCE(obj, id, qloClass, qlClass)
-                ret.push_back(obj);
-            }
-
-            if (needToFree)
-                Excel(xlFree, 0, 1, &xTemp);
-
-            return ret;
-        } catch (const std::exception &e) {
-            if (needToFree)
-                Excel(xlFree, 0, 1, &xTemp);
-            OH_FAIL("operToObjectVector: " << e.what());
+        if (xVector.xltype == xltypeMulti) {
+            xMulti = &xVector;
+        } else {
+            Excel(xlCoerce, &xTemp, 2, &xVector, TempInt(xltypeMulti));
+            xMulti = &xTemp;
         }
+
+        std::vector<boost::shared_ptr<qlClass> > ret;
+        ret.reserve(xMulti->val.array.rows * xMulti->val.array.columns);
+        for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; ++i) {
+            std::string id;
+            operToScalar(xMulti->val.array.lparray[i], id);
+            OH_GET_REFERENCE(obj, id, qloClass, qlClass)
+            ret.push_back(obj);
+        }
+
+        return ret;
+
     }
 
 }

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,6 +22,7 @@
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/math/matrix.hpp>
 
+// Override functions in ObjectHandler namespace
 namespace ObjectHandler {
 
     void matrixToOper(const QuantLib::Matrix &m, OPER &xMatrix);

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -30,8 +30,6 @@ namespace ObjectHandler {
         xMatrix.val.array.rows = m.rows();
         xMatrix.val.array.columns = m.columns();
         xMatrix.val.array.lparray = new OPER[xMatrix.val.array.rows * xMatrix.val.array.columns]; 
-        if (!xMatrix.val.array.lparray)
-            throw Exception("matrixToOper: error on call to new");
         xMatrix.xltype = xltypeMulti | xlbitDLLFree;
         for (unsigned int i=0; i<m.rows(); ++i)
             for (unsigned int j=0; j<m.columns(); ++j)

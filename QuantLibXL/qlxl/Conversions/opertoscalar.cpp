@@ -52,7 +52,7 @@ namespace ObjectHandler {
             std::string id;
             operToScalar(xScalar, id);
             OH_GET_OBJECT(temp, id, ObjectHandler::Object)
-            ret = CoerceHandle<QuantLibAddin::Quote, QuantLib::Quote>()(temp);
+            ret = QuantLibAddin::CoerceHandle<QuantLibAddin::Quote, QuantLib::Quote>()(temp);
         } else {
             OH_FAIL("unable to convert input value to QuantLib::RelinkableHandle<QuantLib::Quote>");
         }
@@ -65,7 +65,7 @@ namespace ObjectHandler {
             std::string id;
             operToScalar(xScalar, id);
             OH_GET_OBJECT(temp, id, ObjectHandler::Object)
-            ret = CoerceObject<QuantLibAddin::Quote, QuantLib::Quote>()(temp);
+            ret = QuantLibAddin::CoerceObject<QuantLibAddin::Quote, QuantLib::Quote>()(temp);
         } else {
             OH_FAIL("unable to convert input value to QuantLib::Quote");
         }

@@ -29,7 +29,7 @@ namespace QuantLib {
     class Period;
 }
 
-namespace ObjectHandler {
+namespace QuantLibAddin {
 
     double libraryToScalar(const QuantLib::InterestRate&);
     double libraryToScalar(const QuantLib::Rate&);
