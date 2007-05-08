@@ -191,7 +191,10 @@ namespace QuantLibAddin {
             flowAnalysis_.back()[CAP]=c.putStrike();
         else
             flowAnalysis_.back()[CAP]=std::string("#N/A");
-        flowAnalysis_.back()[DIGITALRATE]=c.cashRate();
+        if (c.cashRate() != QuantLib::Null<QuantLib::Rate>())
+            flowAnalysis_.back()[DIGITALRATE]=c.cashRate();
+        else
+            flowAnalysis_.back()[DIGITALRATE]=std::string("#N/A");
     }
 
     const std::vector<std::vector<boost::any> >& AnalysisGenerator::analysis() const {
