@@ -85,5 +85,5 @@ CORE_STUBS=$(GENSRC_DIR)\gensrc\stubs\stub.c.function \
            $(GENSRC_DIR)\gensrc\stubs\stub.vo.includes.body \
            $(GENSRC_DIR)\gensrc\stubs\stub.vo.includes.decl
 
-CORE_DEPENDENCIES = $(CORE_IMPORT) $(CORE_METADATA) $(CORE_STUBS)
+CORE_DEPENDENCIES = $(CORE_IMPORT) $(CORE_STUBS)
 
