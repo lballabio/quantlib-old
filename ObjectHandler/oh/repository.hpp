@@ -28,7 +28,7 @@
 #include <map>
 
 //! ObjectHandler
-/*! namespace for ObjectHandler functionality
+/*! Namespace for ObjectHandler functionality.
 */
 namespace ObjectHandler {
 
@@ -153,23 +153,23 @@ namespace ObjectHandler {
         static Repository *instance_;
     };
 
-}
-
-    // TODO move into the ObjectHandler namespace
-    // convert a vector of strings to a vector of objects
+    //! Convert a vector of strings to a vector of objects.
     template <class ObjectClass>
     std::vector<boost::shared_ptr<ObjectClass> > getObjectVector(
-	    const std::vector<std::string> &objectIDs) {
+	        const std::vector<std::string> &objectIDs) {
+
 	    std::vector<boost::shared_ptr<ObjectClass> > ret;
         ret.reserve(objectIDs.size());
+
 	    for (std::vector<std::string>::const_iterator i = objectIDs.begin();
-		     i != objectIDs.end();
-             ++i) {
+		        i != objectIDs.end(); ++i) {
 		    OH_GET_OBJECT(objectPointer, *i, ObjectClass);
 		    ret.push_back(objectPointer);
 	    }
 	    return ret;
     }
+
+}
 
 #endif
 
