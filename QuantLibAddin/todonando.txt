@@ -60,12 +60,23 @@ STAND-BY
 	ma per connessioniconcorrenti --> Eugenia in ferie    (Marco and K)
 - Citrix performance: verifica tempi di ricalcolo del foglio cw.xls in real time su Citrix
 
-- report degli sviluppi dal 5 aprile al 30 aprile (10568 rilascio in Pre-Prod) (0/2d)
-- report degli sviluppi dal 30 aprile al 5 maggio (rilascio in Testing) (0/1d)
+- report degli sviluppi dal 5 aprile al 30 aprile (10568 rilascio in Pre-Prod) (1d/1.5d)
+- report degli sviluppi dal 30 aprile al 5 maggio (rilascio in Testing) (0.5d/0.5d DONE)
 - trimestrale (0/0.5d)
 - market models:
 	implement longTermCorr+beta+gamma correlation structure (?)
 	abcd for displaced vols (Chiara, Cristina, K) (?)
+- foglio di Clerici per contribuire le cap forw/forw vol su Mx
+	sostituzione di tutte le funzioni vba con ql()
+	scarico del campo hist_close da Reuters -> usato solo per controllo/supporto
+	opzione uso AllQuotes vs OTM Only
+	parallel shift from straddle prices +
+	linear interp sulle expiry times calcolate sull'eval date
+		-> aggiustamento dei param di calibr 
+	opzione per interp vol vs interp params
+	pricing degli straddle su futures options
+	modello di correlazione per costruire le 6m vol dalle 3m vol
+	cubic spline interp per ogni strike sulla matrice estesa delle 6M
 - 3M cap stripper: 	(0/3w)
 	review triggers in wkbs (0.5D/0.5D done)
 	overview: focus on smile sections
@@ -96,7 +107,6 @@ STAND-BY
 	add auto_open() in Module
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
-- foglio di clerici (interpolazione)
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
 - make capVolStructure.xml equivalent to SwaptionVolStructure.xml (0.5d/0.5d DONE)
 - DONE macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
