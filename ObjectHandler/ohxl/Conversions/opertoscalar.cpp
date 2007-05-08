@@ -54,12 +54,12 @@ namespace ObjectHandler {
 
     DLL_API void operToScalar(const OPER &xScalar, std::string &ret) {
 
-        Xloper xTemp;
         const OPER *xString;
 
         if (xScalar.xltype == xltypeStr) {
             xString = &xScalar;
         } else {
+            Xloper xTemp;
             Excel(xlCoerce, &xTemp, 2, &xScalar, TempInt(xltypeStr));
             xString = &xTemp;
         }
@@ -76,9 +76,9 @@ namespace ObjectHandler {
 
     DLL_API void operToScalar(const OPER &xScalar, boost::any &ret) {
 
-        if ((xScalar.xltype & xltypeNil)
-        ||  (xScalar.xltype & xltypeMissing)
-        || ((xScalar.xltype & xltypeErr) && (xScalar.val.err == xlerrNA))) {
+        if (xScalar.xltype & xltypeNil
+        ||  xScalar.xltype & xltypeMissing
+        ||  xScalar.xltype & xltypeErr && xScalar.val.err == xlerrNA) {
             ret = boost::any();
             return;
         }
@@ -99,3 +99,4 @@ namespace ObjectHandler {
     }
 
 }
+

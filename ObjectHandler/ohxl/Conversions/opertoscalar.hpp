@@ -46,17 +46,17 @@ namespace ObjectHandler {
     */
     template <class T>
     T callOperToScalar(const OPER &xIn, 
-            const std::string paramName) {
+            const std::string &parameterName) {
 
         OH_REQUIRE(!(xIn.xltype & xltypeErr), 
-            "input value '" << paramName << "' has type=error");
+            "input value '" << parameterName << "' has type=error");
 
         const OPER *xScalar;
         if (xIn.xltype & xltypeMulti) {
             if (xIn.val.array.rows == 1 && xIn.val.array.rows == 1) {
                 xScalar = &xIn.val.array.lparray[0];
             } else {
-                OH_FAIL("input value '" << paramName << "' is vector or matrix, expected scalar");
+                OH_FAIL("input value '" << parameterName << "' is vector or matrix, expected scalar");
             }
         } else {
             xScalar = &xIn;
@@ -67,7 +67,7 @@ namespace ObjectHandler {
             operToScalar(*xScalar, returnValue);
             return returnValue;
         } catch(const std::exception &e) {
-            OH_FAIL("unable to convert parameter '" << paramName 
+            OH_FAIL("unable to convert parameter '" << parameterName 
                 << "' to type " << typeid(T).name()
                 << " - " << e.what());
         }
@@ -75,19 +75,19 @@ namespace ObjectHandler {
     }
 
     //! Template function callOperToScalar - wrapper for operToScalar.
-    /*! Special processing for the case where a defaul value is supplied.
+    /*! Special processing for the case where a default value is supplied.
     */
     template <class T>
     T callOperToScalar(const OPER &xScalar, 
-            const std::string paramName,
+            const std::string &parameterName,
             const T &defaultValue) {
 
-        if ((xScalar.xltype & xltypeNil)
-        ||  (xScalar.xltype & xltypeMissing)
-        || ((xScalar.xltype & xltypeErr) && (xScalar.val.err == xlerrNA)))
+        if (xScalar.xltype & xltypeNil
+        ||  xScalar.xltype & xltypeMissing
+        ||  xScalar.xltype & xltypeErr && xScalar.val.err == xlerrNA)
             return defaultValue;
 
-        return callOperToScalar<T>(xScalar, paramName);
+        return callOperToScalar<T>(xScalar, parameterName);
 
     }
 

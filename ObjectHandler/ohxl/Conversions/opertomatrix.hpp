@@ -31,9 +31,9 @@ namespace ObjectHandler {
     template <class T>
     std::vector<std::vector<T> > operToMatrix(const OPER &xMatrix) {
 
-        if ((xMatrix.xltype & xltypeNil)
-        ||  (xMatrix.xltype & xltypeMissing)
-        || ((xMatrix.xltype & xltypeErr) && (xMatrix.val.err == xlerrNA)))
+        if (xMatrix.xltype & xltypeNil
+        ||  xMatrix.xltype & xltypeMissing
+        ||  xMatrix.xltype & xltypeErr && xMatrix.val.err == xlerrNA)
             return std::vector<std::vector<T> >();
 
         OH_REQUIRE(!(xMatrix.xltype & xltypeErr), "input value has type=error");

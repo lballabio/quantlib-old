@@ -40,10 +40,9 @@ namespace ObjectHandler {
     DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree) {
         int len = __min(XL_MAX_STR_LEN, value.length());
         xString.val.str = new char[ len + 1 ];
+        xString.xltype = xltypeStr;
         if (dllToFree)
-            xString.xltype = (xltypeStr | xlbitDLLFree);
-        else
-            xString.xltype = xltypeStr;
+            xString.xltype |= xlbitDLLFree;
         xString.val.str[0] = len;
         if (len)
             strncpy(xString.val.str + 1, value.c_str(), len);
@@ -95,11 +94,9 @@ namespace ObjectHandler {
         } else if (value.type() == typeid(std::vector<std::vector<double> >)) {
             std::vector<std::vector<double> > vv = boost::any_cast<std::vector<std::vector<double> > >(value);
             matrixToOper(vv, xAny);
-        //} else if (value.type() == typeid(std::vector<std::vector<bool> >)) {
-        //    std::vector<std::vector<bool> > vv = boost::any_cast<std::vector<std::vector<bool > > >(value);
-        //    FIXME VC8 compilation fails on this line
-        //    support for matrix of bools not presently required
-        //    matrixToOper(xAny, vv);
+        } else if (value.type() == typeid(std::vector<std::vector<bool> >)) {
+            std::vector<std::vector<bool> > vv = boost::any_cast<std::vector<std::vector<bool > > >(value);
+            matrixToOper<bool>(vv, xAny);
         } else if (value.type() == typeid(std::vector<std::vector<std::string> >)) {
             std::vector<std::vector<std::string> > vv = boost::any_cast<std::vector<std::vector<std::string> > >(value);
             matrixToOper(vv, xAny);
@@ -113,3 +110,4 @@ namespace ObjectHandler {
     }
 
 }
+

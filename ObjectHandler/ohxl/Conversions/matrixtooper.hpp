@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -30,20 +30,30 @@ namespace ObjectHandler {
     //! Convert type std::vector<std::vector<T> > to an Excel OPER.
     template <class T>
     void matrixToOper(const std::vector<std::vector<T> > &vv, OPER &xMatrix) {
+
         if (vv.empty() || vv[0].empty()) {
             xMatrix.xltype = xltypeErr;
             xMatrix.val.err = xlerrNA;
             return;
         }
-        xMatrix.val.array.rows    = vv.size();
+
+        xMatrix.val.array.rows = vv.size();
         xMatrix.val.array.columns = vv[0].size();
         xMatrix.val.array.lparray = new OPER[xMatrix.val.array.rows * xMatrix.val.array.columns]; 
         xMatrix.xltype = xltypeMulti | xlbitDLLFree;
+
         for (unsigned int i=0; i<vv.size(); ++i) {
             std::vector<T> v = vv[i];
-            for (unsigned int j=0; j<v.size(); ++j)
-                scalarToOper(v[j], xMatrix.val.array.lparray[i * v.size() + j]);
+            for (unsigned int j=0; j<v.size(); ++j) {
+                // For some instantiations of this template, VC8 refuses to compile the line below:
+                //scalarToOper(v[j], xMatrix.val.array.lparray[i * v.size() + j]);
+                // Instead we have to declare an explicit variable to store the array element.
+                // This forces VC8 to disambiguate native C++ datatypes from boost::any.
+                T t = v[j];
+                scalarToOper(t, xMatrix.val.array.lparray[i * v.size() + j]);
+            }
         }
+
     }
 
 }

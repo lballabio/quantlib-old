@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -31,7 +31,7 @@ namespace ObjectHandler {
 
     //@{
     //! Convert a scalar value to an OPER.
-    /*! If dllToFree is true then the function calls xlbitDLLFree on the return value.
+    /*! If dllToFree is true then the function sets the xlbitDLLFree bit if necessary.
     */
     DLL_API void scalarToOper(const long &value, OPER &xLong, bool dllToFree = true);
     DLL_API void scalarToOper(const double &value, OPER &xDouble, bool dllToFree = true);

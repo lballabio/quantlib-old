@@ -32,7 +32,7 @@ namespace ObjectHandler {
 
     //@{
     //! Convert type std::vector<T> to an Excel OPER.
-    /*! If dllToFree is true then the function calls xlbitDLLFree on the return value.
+    /*! If dllToFree is true then the function sets the xlbitDLLFree bit if necessary.
     */
     template <class T>
     void vectorToOper(const std::vector<T> &v, OPER &xVector, bool dllToFree = true) {
@@ -40,9 +40,9 @@ namespace ObjectHandler {
     }
 
     template <class T>
-    inline void vectorToOper(T begin, T end, OPER &xVector, bool dllToFree = true) {
-        std::size_t size = end-begin;
-        if (size==0) {
+    void vectorToOper(T begin, T end, OPER &xVector, bool dllToFree = true) {
+        std::size_t size = end - begin;
+        if (size == 0) {
             xVector.xltype = xltypeErr;
             xVector.val.err = xlerrNA;
             return;
@@ -50,18 +50,16 @@ namespace ObjectHandler {
 
         if (FunctionCall::instance().callerDimensions() == CallerDimensions::Row) {
             xVector.val.array.columns = size;
-            xVector.val.array.rows    = 1;
+            xVector.val.array.rows = 1;
         } else {
-            xVector.val.array.rows    = size;
+            xVector.val.array.rows = size;
             xVector.val.array.columns = 1;
         }
 
         xVector.val.array.lparray = new OPER[size]; 
         xVector.xltype = xltypeMulti;
         if (dllToFree)
-            xVector.xltype = (xltypeMulti | xlbitDLLFree);
-        else
-            xVector.xltype = xltypeMulti;
+            xVector.xltype |= xlbitDLLFree;
         for (unsigned int i=0; i<size; ++i, ++begin)
             scalarToOper(*begin, xVector.val.array.lparray[i], dllToFree);
     }

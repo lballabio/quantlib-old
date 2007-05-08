@@ -31,11 +31,11 @@ namespace ObjectHandler {
     //! Convert an Excel OPER to a std::vector of type T.
     template <class T>
     std::vector<T> operToVector(const OPER &xVector, 
-                   const std::string paramName) {
+                   const std::string &paramName) {
 
-        if ((xVector.xltype & xltypeNil)
-        ||  (xVector.xltype & xltypeMissing)
-        || ((xVector.xltype & xltypeErr) && (xVector.val.err == xlerrNA)))
+        if (xVector.xltype & xltypeNil
+        ||  xVector.xltype & xltypeMissing
+        ||  xVector.xltype & xltypeErr && xVector.val.err == xlerrNA)
             return std::vector<T>();
 
         OH_REQUIRE(!(xVector.xltype & xltypeErr),

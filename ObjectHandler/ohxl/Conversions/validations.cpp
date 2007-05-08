@@ -24,15 +24,15 @@ namespace ObjectHandler {
 
     bool validateMulti(const OPER *xMulti) {
         for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; ++i)
-            if (xMulti->val.array.lparray[i].xltype == xltypeErr)
+            if (xMulti->val.array.lparray[i].xltype & xltypeErr)
                 return false;
         return true;
     }
 
-    DLL_API void validateRange(const OPER *xRange, const std::string &name) {
-        OH_REQUIRE(xRange->xltype != xltypeErr, "parameter '" << name << "' has error value");
-        OH_REQUIRE(xRange->xltype != xltypeMulti || validateMulti(xRange), 
-            "parameter '" << name << "' has error value");
+    DLL_API void validateRange(const OPER *xRange, const std::string &parameterName) {
+        OH_REQUIRE(!(xRange->xltype & xltypeErr), "Parameter '" << parameterName << "' has error value");
+        OH_REQUIRE(!(xRange->xltype & xltypeMulti) || validateMulti(xRange), 
+            "Parameter '" << parameterName << "' has error value");
     }
 
     DLL_API void stringToChar(const std::string &value, char *c) {
@@ -42,3 +42,4 @@ namespace ObjectHandler {
     }
 
 }
+
