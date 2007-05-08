@@ -38,11 +38,18 @@
 
 namespace ObjectHandler {
 
+    // Below are three structures which must be declared as static variables rather than
+    // class members because std::map cannot be exported across DLL boundaries.
+
+    // The object map declared in the cpp file for the base Repository class.
     extern Repository::ObjectMap objectMap_;
 
+    // A map to associate error messages with Excel range addresses.
     typedef std::map<std::string, boost::shared_ptr<RangeReference> > ErrorMessageMap;
     ErrorMessageMap errorMessageMap_;
 
+    // Excel cell ranges in which objects have been constructed,
+    // keyed by a unique ID which is assigned to each range.
     typedef std::map<std::string, boost::shared_ptr<CallingRange> > RangeMap;
     RangeMap callingRanges_;
 
@@ -89,7 +96,7 @@ namespace ObjectHandler {
     }
 
     boost::shared_ptr<Object> RepositoryXL::retrieveObjectImpl(
-        const std::string &objectID) const {
+            const std::string &objectID) const {
 
         std::string idStrip = ObjectXL::getStub(objectID);
         boost::shared_ptr<Object> object = Repository::retrieveObjectImpl(idStrip);
@@ -106,6 +113,7 @@ namespace ObjectHandler {
             const std::string &message, 
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
             const bool &append) {
+
         functionCall->setError();
 
         std::ostringstream logMessage, cellMessage;
