@@ -123,11 +123,11 @@ CRISTINA
 - Cap Cms Book:
   - pricing of Cms Cap without decomposition in Excel                   (To be discussed)
   - new management of additional cashflows in Cap Cms book              (0D/1D - STAND-BY)
-- complete class digital coupon                                         (1D/1D)
+- complete class digital coupon                                         (3D/1D)
 - digital coupon in call spread, add unit test
-  (Marco, Giorgio and Cristina)                                         (2D/2D)
-- create the digital leg and export it to QLXL                          (1D/0.5D - DONE)
-- create worksheet to price digital legs				(0.5D/0.5D)
+  (Marco, Giorgio and Cristina)                                         (2D/2D - DONE)
+- create the digital leg and export it to QLXL                          (2D/0.5D - DONE)
+- create a draft worksheet to price digital legs                        (0.5D/0.5D - DONE)
 - install VS in new pc                                                  (0D/1D)
 - sensitivity analysis                                                  (STAND-BY)
 - market models: abcd for displaced vols (Chiara, Cristina, K)
