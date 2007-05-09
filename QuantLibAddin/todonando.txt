@@ -200,13 +200,18 @@ D - refactorize range accrual pricer (1d/1d DONE)
 
 ---
 MARCO
-- verifica ottimizzatori:
-  D complete test suite (with Giorgio) (1d/2d/done)
+- check optimizers:
+  D complete test in test suite (with Giorgio) (1d/2d/done)
   D test Simplex (1.5d/1d)
-  - test workbooks using simplex (0.5d/1d)
-  - fix conjugate gradient and steepest descent (with FR) (0.0/2d)
-  - check with GSL (with Francois) (0.0/2d)
-  - TBD: export to excel and build testing wkb (to be planned)
+  D check Simplex with GSL and refine termination criteria (with Francois) (1d/1d/done) 
+  D test all code using Simplex (1d/1d/done)
+  D fix failing test in shortratemodels.cpp (1d/1d/done)
+  QD test wkbs using simplex (1d/1d/ quasidone):
+    - abcd.xls
+    - interpolation.xls
+    - cms calibration wkbs (TBD)
+  D fix conjugate gradient and steepest descent (with FR) (1d/2d/done)  
+  - TBD: check export to excel and testing wkb (to be planned)
 - MM: corr hist extimation (after 14/5/2007)
 - pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)	(0.0/2d/WAITING FOR DIGITAL OPTIONS)
 - Risk, Wilmott papers(0.0/1d/WAITING for Ferdinando)
