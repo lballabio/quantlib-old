@@ -159,16 +159,16 @@ D test daily pre-production and testing environment (from 4th to 10th may)
 
 ---
 FRANCOIS
-- investigate "root not bracketed" error message in cms calibration as in
+D investigate "root not bracketed" error message in cms calibration as in (0.5D/0.5D)
   X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\CMS\MarketDataHistory\WorkbooksQl_FailRootBracketedNewtonSolver.zip
-- OH Wizard review: vector input, change in XML file structure to implement default values (to be precised)
-- MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(2.5D/2D-5D)
+D OH Wizard review: vector input, change in XML file structure to implement default values (0.5D/0.5D)
+D MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(4.5D/2D-5D) (To be reviewed)
 - integration framework refactoring (1.5D/2D)
 - conundrum pricer optimization (1D/2D)
 - notification chains pb (1D/3D)
 - smile sections:
-	- remove calibration from constructor(1H)
-	- use Levenberg optimizator(to be precised)
+	D remove calibration from constructor(1H)
+	- use Levenberg optimizator
 	- move vol quotes from constructor(to be precised)
 - add SABR interpolation to the capstripper(to be precised)
 - refactor the method class (move Endcriteria as argument of the minimize) (done)
