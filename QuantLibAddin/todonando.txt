@@ -56,8 +56,7 @@ K
 ** Reuters destination cell rather than range
 ** Rt Update 
 STAND-BY
-- Citrix access -> richiesta licenza non è per installazione
-	ma per connessioniconcorrenti --> Eugenia in ferie    (Marco and K)
+- Citrix access -> ok seconda licenza per accedere a testing
 - Citrix performance: verifica tempi di ricalcolo del foglio cw.xls in real time su Citrix
 
 - report degli sviluppi dal 5 aprile al 30 aprile (10568 rilascio in Pre-Prod) (1d/1.5d)
@@ -66,7 +65,7 @@ STAND-BY
 - market models:
 	implement longTermCorr+beta+gamma correlation structure (?)
 	abcd for displaced vols (Chiara, Cristina, K) (?)
-- foglio di Clerici per contribuire le cap forw/forw vol su Mx
+- foglio di Clerici per contribuire le cap forw/forw vol su Mx (1d/5d)
 	sostituzione di tutte le funzioni vba con ql()
 	scarico del campo hist_close da Reuters -> usato solo per controllo/supporto
 	opzione uso AllQuotes vs OTM Only
@@ -77,6 +76,8 @@ STAND-BY
 	pricing degli straddle su futures options
 	modello di correlazione per costruire le 6m vol dalle 3m vol
 	cubic spline interp per ogni strike sulla matrice estesa delle 6M
+	abcd adjustment della matrice delle forw/forw vol 
+	contribuzione su Mx delle 1m, 3m, 6m, 1y
 - 3M cap stripper: 	(0/3w)
 	review triggers in wkbs (0.5D/0.5D done)
 	overview: focus on smile sections
