@@ -58,11 +58,8 @@ K
 ** Reuters destination cell rather than range
 ** Rt Update
 STAND-BY
-- Citrix access -> ok seconda licenza per accedere a testing
-- Citrix performance: verifica tempi di ricalcolo del foglio cw.xls in real time su Citrix
-
-- report degli sviluppi dal 5 aprile al 30 aprile (10568 rilascio in Pre-Prod) (1d/1.5d)
-- report degli sviluppi dal 30 aprile al 5 maggio (rilascio in Testing) (0.5d/0.5d DONE)
+- Citrix access -> ok seconda licenza per accedere a testing.
+		   In attesa di conferma che non ci sono costi (Di Cillo) 
 - trimestrale (0/0.5d)
 - market models:
 	implement longTermCorr+beta+gamma correlation structure (?)
@@ -94,25 +91,22 @@ STAND-BY
 	testa la smoothness della dorsale ATM con l'interpolazione lineare (0.5D/0.5D done)
 	CapStripper6MTestRepricing.xls: aggiungi (0.5D/0.5D done)
 	decidere se usare le interpolated vols da usare nel cap stripper
-- coveredWarrants.xls (1D/1w)
+- coveredWarrants.xls (1.5D/1w)
 	- DONE check real time is OK -> 7 secs per recalc
 	- DONE gestione del primo periodo corto
 	- DONE qlMakeCapFloor() -> funziona solo per forward-start
 	- DONE punta a decorated objects
-	- testing on Citrix
+	- DONE testing on Citrix
 - Sensitivity Analysis: (0/5w)
 	applied to cms book
 	create new .xls with NPVs of 4 cms books
 	test newly released version
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - manage auto-open macro problem -> propose:
-	add Workbook_Open() in ThisWorkbook
-	add auto_open() in Module
+	Application.EnableEvents=True in qlxl.xla/ThisWorkbook
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
-- make capVolStructure.xml equivalent to SwaptionVolStructure.xml (0.5d/0.5d DONE)
-- DONE macro "GlobalMktCalibration" -> non deve aprire il ManualCalibrationFeed.xls
 
 ---
 CRISTINA
