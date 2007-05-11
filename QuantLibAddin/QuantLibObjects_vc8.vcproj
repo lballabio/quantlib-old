@@ -1183,6 +1183,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\qlo\serialization.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\serialization.hpp"
+			>
+		</File>
+		<File
 			RelativePath=".\qlo\settings.hpp"
 			>
 		</File>

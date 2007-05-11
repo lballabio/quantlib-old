@@ -35,6 +35,7 @@
     <categoryName>ratehelpers</categoryName>
     <categoryName>schedule</categoryName>
     <categoryName>sequencestatistics</categoryName>
+    <categoryName>serialization</categoryName>
     <categoryName>settings</categoryName>
     <categoryName>shortratemodels</categoryName>
     <categoryName>simplecashflow</categoryName>

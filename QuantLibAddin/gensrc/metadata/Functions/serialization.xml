@@ -1,0 +1,108 @@
+<Category name='serialization'>
+    <description>Serialization related functions</description>
+    <displayName>Serialization Utilities</displayName>
+    <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+    <includes>
+        <include>qlo/serialization.hpp</include>
+    </includes>
+    <copyright>
+        Copyright (C) 2007 Francois du Vignaud
+    </copyright>
+    
+    <Functions>
+        <Procedure name='qlserializeNumericVector'>
+            <description>Serialize a vector of Real</description>
+            <alias>QuantLibAddin::serializeNumericVector</alias>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel' calcInWizard='false' />
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters>
+                    <Parameter name='vector' exampleValue ='1.0,10.1,3'>
+                        <type>QuantLib::Real</type>
+                        <tensorRank>vector</tensorRank>
+                        <description>data to be serizalized</description>
+                    </Parameter>
+                    <Parameter name='path' exampleValue ='C:\Temp\test.xml'>
+                        <type>string</type>
+                        <tensorRank>scalar</tensorRank>
+                        <description>path to the xml file</description>
+                    </Parameter>
+                </Parameters>
+            </ParameterList>
+            <ReturnValue>
+                <type>bool</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Procedure>
+
+        <Procedure name='qlserializeNumericMatrix'>
+            <description>Serialize a matrix of Real</description>
+            <alias>QuantLibAddin::serializeNumericMatrix</alias>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel' calcInWizard='false' />
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters>
+                    <Parameter name='matrix'>
+                        <type>QuantLib::Real</type>
+                        <tensorRank>matrix</tensorRank>
+                        <description>data to be serizalized</description>
+                    </Parameter>
+                    <Parameter name='path' exampleValue ='C:\Temp\test.xml'>
+                        <type>string</type>
+                        <tensorRank>scalar</tensorRank>
+                        <description>path to the xml file</description>
+                    </Parameter>
+                </Parameters>
+            </ParameterList>
+            <ReturnValue>
+                <type>bool</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Procedure>
+        
+        <Procedure name='qlrestoreNumericVector'>
+            <description>Restore a vector of Real</description>
+            <alias>QuantLibAddin::restoreNumericVector</alias>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel' calcInWizard='false' />
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters>
+                    <Parameter name='path' exampleValue ='C:\Temp\test.xml'>
+                        <type>string</type>
+                        <tensorRank>scalar</tensorRank>
+                        <description>path to the xml file</description>
+                    </Parameter>
+                </Parameters>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>vector</tensorRank>
+            </ReturnValue>
+        </Procedure>
+
+        <Procedure name='qlrestoreNumericMatrix'>
+            <description>Restore a matrix of Real</description>
+            <alias>QuantLibAddin::restoreNumericMatrix</alias>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel' calcInWizard='false' />
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters>
+                    <Parameter name='path' exampleValue ='C:\Temp\test.xml'>
+                        <type>string</type>
+                        <tensorRank>scalar</tensorRank>
+                        <description>path to the xml file</description>
+                    </Parameter>
+                </Parameters>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>matrix</tensorRank>
+            </ReturnValue>
+        </Procedure>
+        
+    </Functions>
+</Category>

@@ -211,6 +211,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\serialization.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\settings.xml"
 				>
 			</File>
