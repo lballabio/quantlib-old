@@ -31,8 +31,11 @@ GENERAL
 
 ---
 NANDO
+- aggiungere alla leg nextPaymentDate(), lastPaymentDate()
+- last cpn date and next cpn date as a method of schedule
 - testMultiStepCoterminalSwapsAndSwaptions failure
-- Higham covariance bug + review rank rduction
+- Higham covariance bug + review rank reduction
+- Higham covariance bug + review rank reduction
 - use Handle in SwaptionVolCubeChecks
 - create relinkableHandle, then in ControlPanel only use linkTo
 - Instruments subfolder
@@ -49,12 +52,11 @@ NANDO
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 - refactor abcd vol file, adding more unary_functions for blackVol and covariance
 - implement abcdinterpolation
-- Higham covariance bug + review rank reduction
 
 ---
 K
 ** Reuters destination cell rather than range
-** Rt Update 
+** Rt Update
 STAND-BY
 - Citrix access -> ok seconda licenza per accedere a testing
 - Citrix performance: verifica tempi di ricalcolo del foglio cw.xls in real time su Citrix
@@ -71,12 +73,12 @@ STAND-BY
 	opzione uso AllQuotes vs OTM Only
 	parallel shift from straddle prices +
 	linear interp sulle expiry times calcolate sull'eval date
-		-> aggiustamento dei param di calibr 
+		-> aggiustamento dei param di calibr
 	opzione per interp vol vs interp params
 	pricing degli straddle su futures options
 	modello di correlazione per costruire le 6m vol dalle 3m vol
 	cubic spline interp per ogni strike sulla matrice estesa delle 6M
-	abcd adjustment della matrice delle forw/forw vol 
+	abcd adjustment della matrice delle forw/forw vol
 	contribuzione su Mx delle 1m, 3m, 6m, 1y
 - 3M cap stripper: 	(0/3w)
 	review triggers in wkbs (0.5D/0.5D done)
@@ -114,6 +116,8 @@ STAND-BY
 
 ---
 CRISTINA
+- sensitivity analysis
+- calibrazioni quotidiane sul tronco
 - CMS calibration tests (Cristina and K)                                (1D/1D - DONE)
 - EOD valuation: completare analisi dei nuovi deal                      (0.5D/0.5D - DONE)
 - debug qlCmsZeroLeg                                                    (0.5D/0.5D - DONE)
@@ -131,11 +135,13 @@ CRISTINA
 - better digital leg construction?                                      (To be discussed)
 - create a draft worksheet to price digital legs                        (0.5D/0.5D - DONE)
 - install VS in new pc                                                  (0D/1D - STAND-BY)
-- sensitivity analysis                                                  (STAND-BY)
 - market models: abcd for displaced vols (Chiara, Cristina, K)
 - fixing days in cashflow analisys                                      (FIXED)
 ---
 CHIARA
+- verify bond in Testing and trunk
+- cds options
+- digital bond
 D add tests for CMS asset swap in the test suite (1d|1d|Done)
 D create new type for Quantlib Eur obsolete currencies (0.5d|0.5d|Done)
 - Z-spread function, for zero coupon bond valuation (2.5d|10dd|WIP)
@@ -145,7 +151,6 @@ D create new type for Quantlib Eur obsolete currencies (0.5d|0.5d|Done)
  *reviewed all the worksheets regarding market data feed and timeseries with Maurizio (0.5d|0.5d|Done)
  *waiting for BBG worksheets from Maurizion (time to start 2/3 weeks- time to complete 1/2 weeks)
 D test daily pre-production and testing environment (from 4th to 10th may)
-- last cpn date and next cpn date as a method of schedule
 - current cpn as a method of bond (a trader's request)
 - fix bug concerning the esposition to excel of fixing days in cashflows analysis (with nando)
 - bonds' workbooks integration with K+/Gatemate
@@ -159,6 +164,7 @@ D test daily pre-production and testing environment (from 4th to 10th may)
 
 ---
 FRANCOIS
+- launcher cms calibration check-box
 D investigate "root not bracketed" error message in cms calibration as in (0.5D/0.5D)
   X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\CMS\MarketDataHistory\WorkbooksQl_FailRootBracketedNewtonSolver.zip
 D OH Wizard review: vector input, change in XML file structure to implement default values (0.5D/0.5D)
@@ -182,6 +188,8 @@ D MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(4.5D
 
 ---
 GIORGIO
+- cds options
+- illustrate projectedCostFunction to ferdinando
 - test Levenberg-Marquardt in sabr interpolation  (0d/2d)
 - test Levenberg-Marquardt in abcd vol (0d/2d)
 D rename correctly Excel names of class qlSimultaneousCalibration() (1d/1d DONE)
@@ -204,14 +212,14 @@ MARCO (last update 10/5/2007)
 - check optimizers:
   D: complete test in test suite (with Giorgio&Francois) (1d/2d/done)
   D: test Simplex (with Francois) (1.5d/1d)
-  D: check Simplex with GSL and refine termination criteria (with Francois) (1d/1d/done) 
+  D: check Simplex with GSL and refine termination criteria (with Francois) (1d/1d/done)
   D: test all code using Simplex (1d/1d/done)
   D: fix failing test in shortratemodels.cpp (1d/1d/done)
   QD: test wkbs using simplex (1d/1d/ quasi-done):
     D: abcd.xls
     D: interpolation.xls
     QD: cms calibration wkbs (TBD)
-  D: fix conjugate gradient and steepest descent (with Francois) (1d/2d/done)  
+  D: fix conjugate gradient and steepest descent (with Francois) (1d/2d/done)
   TBD: check export to excel and testing wkb (to be planned)
   TBD add more tests (multidimensional)
 - MM: corr hist extimation (after 14/5/2007)

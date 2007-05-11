@@ -19,7 +19,14 @@
 #define qla_schedule_hpp
 
 #include <oh/objecthandler.hpp>
-#include <ql/time/schedule.hpp>
+#include <ql/time/businessdayconvention.hpp>
+
+namespace QuantLib {
+    class Schedule;
+    class Date;
+    class Period;
+    class Calendar;
+}
 
 namespace QuantLibAddin {
 
@@ -40,4 +47,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

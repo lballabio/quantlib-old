@@ -19,6 +19,7 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+#include <ql/time/schedule.hpp>
 #include <qlo/schedule.hpp>
 
 namespace QuantLibAddin {

@@ -24,6 +24,7 @@
 
 #include <qlo/index.hpp>
 #include <ql/indexes/swapindex.hpp>
+#include <ql/indexes/iborindex.hpp>
 
 namespace QuantLibAddin {
 
