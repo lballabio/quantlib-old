@@ -28,10 +28,10 @@
 #include <qlo/termstructures.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 #include <qlo/capletvolstructure.hpp>
-#include <ql/instruments/fixedratebond.hpp>
-#include <ql/instruments/zerocouponbond.hpp>
-#include <ql/instruments/cmsratebond.hpp>
-#include <ql/instruments/floatingratebond.hpp>
+#include <ql/instruments/bonds/fixedratebond.hpp>
+#include <ql/instruments/bonds/zerocouponbond.hpp>
+#include <ql/instruments/bonds/cmsratebond.hpp>
+#include <ql/instruments/bonds/floatingratebond.hpp>
 #include <ql/cashflows/analysis.hpp>
 
 namespace QuantLibAddin {
