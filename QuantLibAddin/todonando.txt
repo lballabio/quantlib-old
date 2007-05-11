@@ -165,6 +165,7 @@ D test daily pre-production and testing environment (from 4th to 10th may)
 
 ---
 FRANCOIS
+- XML/ serialization presentation
 - launcher cms calibration check-box
 D investigate "root not bracketed" error message in cms calibration as in (0.5D/0.5D)
   X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\CMS\MarketDataHistory\WorkbooksQl_FailRootBracketedNewtonSolver.zip
