@@ -122,9 +122,16 @@ CRISTINA
   - pricing of Cms Cap without decomposition in Excel                   (To be discussed)
   - new management of additional cashflows in Cap Cms book              (0D/1D - STAND-BY)
 - complete class digital coupon                                         (3D/1D)
-  - todo: management of payoff with equal sign included
+  - management of payoff with equal sign included (low priority)
+  - add the possibility of sub/over replication                         (0D/1D)
+  - split optionRate() method in callOptionRate() and
+    putOptionRate()                                                     (0D/0.5D)
+  - change signatures in DigitalCoupon constructor and in 
+    DigitalLeg methods (from QL to QLXL)                                (0D/0.5D)
+- change class CappedFlooredIborCoupon in order to add the
+  possibility of adding/subracting call and put
 - digital coupon in call spread, add unit test                          (2D/2D)
-  - todo: replicate tests for Cms Digital Coupon
+  - check call-put parity												(0D/0.5D)
 - create the digital leg and export it to QLXL                          (2D/0.5D - DONE)
 - better digital leg construction?                                      (To be discussed)
 - create a draft worksheet to price digital legs                        (0.5D/0.5D - DONE)
