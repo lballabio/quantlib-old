@@ -367,6 +367,88 @@
       </ReturnValue>
     </Member>-->
 
+    <Member name='qlBondCleanPriceFromZSpread' type='QuantLib::Bond'>
+      <description>Returns the clean price for the bond given Z-Spread and settlement date. The default bond settlement is used if no date is given.</description>
+      <libraryFunction>cleanPriceFromZSpread</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='spread' const='False' exampleValue='0.30%'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the Z-spread</description>
+          </Parameter>
+          <Parameter name='compounding' const='False'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>interest rate coumpounding rule (i.e. Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+          </Parameter>
+          <Parameter name='frequency' default='"Semiannual"' const='False'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='dayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+          </Parameter>
+          <Parameter name='settlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlBondDirtyPriceFromZSpread' type='QuantLib::Bond'>
+      <description>Returns the dirty price for the bond given Z-Spread and settlement date. The default bond settlement is used if no date is given.</description>
+      <libraryFunction>dirtyPriceFromZSpread</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='spread' const='False' exampleValue='0.30%'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the Z-spread</description>
+          </Parameter>
+          <Parameter name='compounding' const='False'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>interest rate coumpounding rule (i.e. Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+          </Parameter>
+          <Parameter name='frequency' default='"Semiannual"' const='False'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='dayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+          </Parameter>
+          <Parameter name='settlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlBondAccruedAmount' type='QuantLib::Bond' >
       <description>Returns the accrued amount for the given bond. The default bond settlement is used if no date is given.</description>
       <libraryFunction>accruedAmount</libraryFunction>
