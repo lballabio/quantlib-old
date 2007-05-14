@@ -46,10 +46,10 @@ namespace ObjectHandler {
     */
     template <class T>
     T callOperToScalar(const OPER &xIn, 
-            const std::string &parameterName) {
+                       const std::string &parameterName) {
 
         OH_REQUIRE(!(xIn.xltype & xltypeErr), 
-            "input value '" << parameterName << "' has type=error");
+                   "input value '" << parameterName << "' has type=error");
 
         const OPER *xScalar;
         if (xIn.xltype & xltypeMulti) {
