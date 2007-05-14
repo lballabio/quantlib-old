@@ -110,7 +110,7 @@ STAND-BY
 
 ---
 CRISTINA
-- sensitivity analysis
+- sensitivity analysis                                                  (0D/1W)
 - calibrazioni quotidiane sul tronco
 - CMS calibration tests (Cristina and K)                                (1D/1D - DONE)
 - EOD valuation: completare analisi dei nuovi deal                      (0.5D/0.5D - DONE)
@@ -131,7 +131,7 @@ CRISTINA
 - change class CappedFlooredIborCoupon in order to add the
   possibility of adding/subracting call and put
 - digital coupon in call spread, add unit test                          (2D/2D)
-  - check call-put parity												(0D/0.5D)
+  - check call-put parity                                               (0D/0.5D)
 - create the digital leg and export it to QLXL                          (2D/0.5D - DONE)
 - better digital leg construction?                                      (To be discussed)
 - create a draft worksheet to price digital legs                        (0.5D/0.5D - DONE)
