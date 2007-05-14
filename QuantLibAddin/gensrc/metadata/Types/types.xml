@@ -40,6 +40,7 @@
         <DataType>QuantLib::Month</DataType>
         <DataType>QuantLib::Option::Type</DataType>
         <DataType>QuantLib::Position::Type</DataType>
+        <DataType>QuantLib::Replication::Type</DataType>
         <DataType>QuantLib::SalvagingAlgorithm::Type</DataType>
         <DataType>QuantLib::Settlement::Type</DataType>
         <DataType>QuantLib::VanillaSwap::Type</DataType>

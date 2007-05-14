@@ -370,6 +370,24 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
+    <EnumeratedTypeGroup type='QuantLib::Replication::Type'>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Sub</string>
+          <value>QuantLib::Replication::Sub</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Central</string>
+          <value>QuantLib::Replication::Central</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Super</string>
+          <value>QuantLib::Replication::Super</value>
+        </EnumeratedType>        
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
     <EnumeratedTypeGroup type='QuantLib::Average::Type'>
       <constructor>true</constructor>
       <EnumeratedTypes>

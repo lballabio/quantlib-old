@@ -94,7 +94,7 @@ namespace QuantLibAddin {
         headings[CONV_ADJ]=std::string("Conv. Adj.");
         headings[SPREAD]=std::string("Spread");
         headings[CAP]=std::string("Cap");
-        headings[DIGITALRATE]=std::string("Digital Rate");
+        headings[DIGITALRATE]=std::string("Digital Payoff Rate");
         headings[FUTUREUSE2]=std::string("---");
 
         flowAnalysis_.push_back(headings);
@@ -167,11 +167,7 @@ namespace QuantLibAddin {
         flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
         flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
         flowAnalysis_.back()[INDEX]=c.index()->name();
-        if (c.hasCollar())
-            flowAnalysis_.back()[FLOOR]=c.callStrike();
-        else if (c.hasCall() && !c.isCallAdded())
-            flowAnalysis_.back()[FLOOR]=c.callStrike();
-        else if (c.hasPut() && !c.isPutAdded())
+        if (c.hasPut())
             flowAnalysis_.back()[FLOOR]=c.putStrike();
         else
             flowAnalysis_.back()[FLOOR]=std::string("#N/A");
@@ -183,16 +179,12 @@ namespace QuantLibAddin {
             flowAnalysis_.back()[CONV_ADJ]=c.underlying()->convexityAdjustment();
         } catch(...) {}
         flowAnalysis_.back()[SPREAD]=c.spread();
-        if (c.hasCollar())
-            flowAnalysis_.back()[CAP]=c.putStrike();
-        else if (c.hasCall() && c.isCallAdded())
+        if (c.hasCall())
             flowAnalysis_.back()[CAP]=c.callStrike();
-        else if (c.hasPut() && c.isPutAdded())
-            flowAnalysis_.back()[CAP]=c.putStrike();
         else
             flowAnalysis_.back()[CAP]=std::string("#N/A");
-        if (c.cashRate() != QuantLib::Null<QuantLib::Rate>())
-            flowAnalysis_.back()[DIGITALRATE]=c.cashRate();
+        if (c.digitalPayoff() != QuantLib::Null<QuantLib::Rate>())
+            flowAnalysis_.back()[DIGITALRATE]=c.digitalPayoff();
         else
             flowAnalysis_.back()[DIGITALRATE]=std::string("#N/A");
     }

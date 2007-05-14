@@ -333,25 +333,30 @@
               <tensorRank>vector</tensorRank>
               <description>digital call option strikes. If omitted, no call option is assumed</description>
             </Parameter>
+            <Parameter name='longCallOption' default='true'>
+              <type>bool</type>
+              <tensorRank>scalar</tensorRank>
+              <description>If true, the digital call option is paid. If omitted, default = TRUE</description>
+            </Parameter>            
             <Parameter name='putStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
               <type>QuantLib::Rate</type>
               <tensorRank>vector</tensorRank>
               <description>digital put option strikes. If omitted, no put option is assumed</description>
             </Parameter>
-            <Parameter name='cashRates' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <Parameter name='longPutOption' default='true'>
+              <type>bool</type>
+              <tensorRank>scalar</tensorRank>
+              <description>If true, the digital put option is paid. If omitted, default = TRUE</description>
+            </Parameter>           
+            <Parameter name='digitalPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
               <type>QuantLib::Rate</type>
               <tensorRank>vector</tensorRank>
               <description>rates paid-received if the digital option ends in-the-money. If omitted, asset-or-nothing digital option is assumed</description>
             </Parameter>
-            <Parameter name='isCallPaid' default='true'>
-              <type>bool</type>
+            <Parameter name='replicationType'>
+              <type>QuantLib::Replication::Type</type>
               <tensorRank>scalar</tensorRank>
-              <description>If true, the digital call option is paid. If omitted, default = TRUE</description>
-            </Parameter>
-            <Parameter name='isPutPaid' default='true'>
-              <type>bool</type>
-              <tensorRank>scalar</tensorRank>
-              <description>If true, the digital put option is paid. If omitted, default = TRUE</description>
+              <description>Replication type (Sub, Central, Super)</description>
             </Parameter>
             <Parameter name='gap' default='0.0001'>
               <type>QuantLib::Real</type>
@@ -470,10 +475,10 @@
               <tensorRank>vector</tensorRank>
               <description>floating rate gearings. If omitted, default = 1.0</description>
             </Parameter>
-            <Parameter name='SwapIndex'>
+            <Parameter name='swapIndex'>
               <type>QuantLib::SwapIndex</type>
               <tensorRank>scalar</tensorRank>
-              <description>underlying SwapIndex object ID</description>
+              <description>swap rate index</description>
             </Parameter>
             <Parameter name='spreads' default='0.0'>
               <type>QuantLib::Spread</type>
@@ -485,25 +490,30 @@
               <tensorRank>vector</tensorRank>
               <description>digital call option strikes. If omitted, no call option is assumed</description>
             </Parameter>
+            <Parameter name='longCallOption' default='true'>
+              <type>bool</type>
+              <tensorRank>scalar</tensorRank>
+              <description>If true, the digital call option is paid. If omitted, default = TRUE</description>
+            </Parameter>
             <Parameter name='putStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
               <type>QuantLib::Rate</type>
               <tensorRank>vector</tensorRank>
               <description>digital put option strikes. If omitted, no put option is assumed</description>
             </Parameter>
-            <Parameter name='cashRates' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <Parameter name='longPutOption' default='true'>
+              <type>bool</type>
+              <tensorRank>scalar</tensorRank>
+              <description>If true, the digital put option is paid. If omitted, default = TRUE</description>
+            </Parameter>
+            <Parameter name='digitalPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
               <type>QuantLib::Rate</type>
               <tensorRank>vector</tensorRank>
               <description>rates paid-received if the digital option ends in-the-money. If omitted, asset-or-nothing digital option is assumed</description>
             </Parameter>
-            <Parameter name='isCallPaid' default='true'>
-              <type>bool</type>
+            <Parameter name='replicationType'>
+              <type>QuantLib::Replication::Type</type>
               <tensorRank>scalar</tensorRank>
-              <description>If true, the digital call option is paid. If omitted, default = true</description>
-            </Parameter>
-            <Parameter name='isPutPaid' default='true'>
-              <type>bool</type>
-              <tensorRank>scalar</tensorRank>
-              <description>If true, the digital put option is paid. If omitted, default = true</description>
+              <description>Replication type (Sub, Central, Super)</description>
             </Parameter>
             <Parameter name='gap' default='0.0001'>
               <type>QuantLib::Real</type>
@@ -512,8 +522,8 @@
             </Parameter>
           </Parameters>
         </ParameterList>
-      </Constructor>      
-      
+      </Constructor>
+
       <Constructor name='qlRangeAccrualLeg'>
         <libraryFunction>RangeAccrualLeg</libraryFunction>
         <SupportedPlatforms>

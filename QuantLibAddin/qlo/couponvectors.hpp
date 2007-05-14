@@ -28,6 +28,8 @@
 #include <qlo/analysis.hpp>
 #include <ql/termstructures/volatilities/all.hpp>
 
+#include <ql/cashflows/digitalcoupon.hpp>
+
 namespace QuantLibAddin {
     
     class Leg : public ObjectHandler::Object {
@@ -98,10 +100,11 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::IborIndex>& index,
             const std::vector<QuantLib::Spread>& spreads,
             const std::vector<QuantLib::Rate>& callRates,
-            const std::vector<QuantLib::Rate>& putRates,
-            const std::vector<QuantLib::Rate>& cashRates,
             bool isCallOptionAdded,
+            const std::vector<QuantLib::Rate>& putRates,
             bool isPutOptionAdded,
+            const std::vector<QuantLib::Rate>& digitalPayoffs,
+            QuantLib::Replication::Type replicationType,
             QuantLib::Real eps);
     };
 
@@ -134,10 +137,11 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::SwapIndex>& index,
             const std::vector<QuantLib::Spread>& spreads,
             const std::vector<QuantLib::Rate>& callRates,
-            const std::vector<QuantLib::Rate>& putRates,
-            const std::vector<QuantLib::Rate>& cashRates,
             bool isCallOptionAdded,
+            const std::vector<QuantLib::Rate>& putRates,
             bool isPutOptionAdded,
+            const std::vector<QuantLib::Rate>& digitalPayoffs,
+            QuantLib::Replication::Type replicationType,
             QuantLib::Real eps);
     };
 

@@ -145,10 +145,11 @@ namespace QuantLibAddin {
                     const boost::shared_ptr<QuantLib::IborIndex>& index,
                     const std::vector<QuantLib::Spread>& spreads,
                     const std::vector<QuantLib::Rate>& callRates,
-                    const std::vector<QuantLib::Rate>& putRates,
-                    const std::vector<QuantLib::Rate>& cashRates,
                     bool isCallOptionAdded,
+                    const std::vector<QuantLib::Rate>& putRates,
                     bool isPutOptionAdded,
+                    const std::vector<QuantLib::Rate>& digitalPayoffs,
+                    QuantLib::Replication::Type replicationType,
                     QuantLib::Real eps) {
 
                         leg_ = QuantLib::DigitalIborLeg(nominals,
@@ -161,10 +162,11 @@ namespace QuantLibAddin {
                                                         spreads,
                                                         isInArrears,
                                                         callRates,
-                                                        putRates,
-                                                        cashRates,
                                                         isCallOptionAdded,
+                                                        putRates,
                                                         isPutOptionAdded,
+                                                        digitalPayoffs,
+                                                        replicationType,
                                                         eps);
     }
 
@@ -210,10 +212,11 @@ namespace QuantLibAddin {
                     const boost::shared_ptr<QuantLib::SwapIndex>& index,
                     const std::vector<QuantLib::Spread>& spreads,
                     const std::vector<QuantLib::Rate>& callRates,
-                    const std::vector<QuantLib::Rate>& putRates,
-                    const std::vector<QuantLib::Rate>& cashRates,
                     bool isCallOptionAdded,
+                    const std::vector<QuantLib::Rate>& putRates,
                     bool isPutOptionAdded,
+                    const std::vector<QuantLib::Rate>& digitalPayoffs,
+                    QuantLib::Replication::Type replicationType,
                     QuantLib::Real eps) {
 
                         leg_ = QuantLib::DigitalCmsLeg(nominals,
@@ -226,13 +229,14 @@ namespace QuantLibAddin {
                                                         spreads,
                                                         isInArrears,
                                                         callRates,
-                                                        putRates,
-                                                        cashRates,
                                                         isCallOptionAdded,
+                                                        putRates,
                                                         isPutOptionAdded,
+                                                        digitalPayoffs,
+                                                        replicationType,
                                                         eps);
+ 
     }
-
 
     RangeAccrualLeg::RangeAccrualLeg(
            QuantLib::BusinessDayConvention paymentConvention,
