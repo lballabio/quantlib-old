@@ -123,15 +123,15 @@ CRISTINA
   - new management of additional cashflows in Cap Cms book              (0D/1D - STAND-BY)
 - complete class digital coupon                                         (3D/1D)
   - management of payoff with equal sign included (low priority)
-  - add the possibility of sub/over replication                         (0D/1D)
+  - add the possibility of sub/over replication                         (0.5D/1D)
   - split optionRate() method in callOptionRate() and
-    putOptionRate()                                                     (0D/0.5D)
+    putOptionRate()                                                     (0.5D/0.5D - DONE)
   - change signatures in DigitalCoupon constructor and in 
-    DigitalLeg methods (from QL to QLXL)                                (0D/0.5D)
+    DigitalLeg methods (from QL to QLXL)                                (0.5D/0.5D)
 - change class CappedFlooredIborCoupon in order to add the
   possibility of adding/subracting call and put
 - digital coupon in call spread, add unit test                          (2D/2D)
-  - check call-put parity                                               (0D/0.5D)
+  - check call-put parity / check replication type                      (0.5D/0.5D - DONE)
 - create the digital leg and export it to QLXL                          (2D/0.5D - DONE)
 - better digital leg construction?                                      (To be discussed)
 - create a draft worksheet to price digital legs                        (0.5D/0.5D - DONE)
