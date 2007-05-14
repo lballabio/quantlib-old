@@ -540,10 +540,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Register\register_serialization.cpp"
-				>
-			</File>
-			<File
 				RelativePath="Register\register_settings.cpp"
 				>
 			</File>
@@ -713,10 +709,6 @@
 			</File>
 			<File
 				RelativePath="Functions\sequencestatistics.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Functions\serialization.cpp"
 				>
 			</File>
 			<File
