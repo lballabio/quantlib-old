@@ -189,10 +189,13 @@ D MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(4.5D
 - review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls. (to be precised)
 
 ---
-GIORGIO
-- cds options
-- illustrate projectedCostFunction to ferdinando
-- test Levenberg-Marquardt in sabr interpolation  (0d/2d)
+GIORGIO (last update 15/5/2007)
+- CDS options
+- illustrate projectedCostFunction to Ferdinando
+- test Levenberg-Marquardt in sabr interpolation  (shared with Marco, 0d/2d)
+  - QL: estend signature di SABRInterpolations and Swaptionvol1 with optimization method and default value
+  - QLXL: export new signature
+  - QLXL: update wkbs: swaptionvol1.xls and folder CmsCalibration
 - test Levenberg-Marquardt in abcd vol (0d/2d)
 D rename correctly Excel names of class qlSimultaneousCalibration() (1d/1d DONE)
 D fixed sabr parameters (1d/1d DONE)
@@ -210,7 +213,7 @@ D - refactorize range accrual pricer (1d/1d DONE)
 - install VS in new pc (0d/1d)
 
 ---
-MARCO (last update 10/5/2007)
+MARCO (last update 15/5/2007)
 - check optimizers:
   D: complete test in test suite (with Giorgio&Francois) (1d/2d/done)
   D: test Simplex (with Francois) (1.5d/1d)
