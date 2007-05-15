@@ -12,7 +12,7 @@
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\01 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\01 Production\metadata</FunctionMetadata>
       <AddinList>
-        <Addin>QuantLibXL-vc80-mt-s-0_9_0.xll</Addin>
+        <Addin>QuantLibXL-vc80-mt-s-0_8_0.xll</Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>true</YieldCurveBootstrap>
