@@ -64,14 +64,17 @@ namespace ObjectHandler {
             xString = &xTemp;
         }
 
-        //if (xString->val.str[0])
+        //if (xString->val.str && xString->val.str[0])
         //    ret.assign(xString->val.str + 1, xString->val.str[0]);
-        // experimental workaround for apparent bug in Excel API
-        // where the value for the string length wraps around the byte
-        int stringLength = xString->val.str[0];
-        if (stringLength < 0) stringLength += 256;
-        if (stringLength)
-            ret.assign(xString->val.str + 1, stringLength);
+
+        if (xString->val.str) {
+            int stringLength = xString->val.str[0];
+            // experimental workaround for apparent bug in Excel API
+            // where the value for the string length wraps around the byte
+            if (stringLength < 0) stringLength += 256;
+            if (stringLength)
+                ret.assign(xString->val.str + 1, stringLength);
+        }
     }
 
     DLL_API void operToScalar(const OPER &xScalar, boost::any &ret) {
