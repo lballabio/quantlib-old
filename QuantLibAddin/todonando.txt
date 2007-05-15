@@ -217,11 +217,12 @@ MARCO (last update 10/5/2007)
   D: check Simplex with GSL and refine termination criteria (with Francois) (1d/1d/done)
   D: test all code using Simplex (1d/1d/done)
   D: fix failing test in shortratemodels.cpp (1d/1d/done)
-  QD: test wkbs using simplex (1d/1d/ quasi-done):
+  D: test wkbs using simplex (1d/1d/ quasi-done):
     D: abcd.xls
     D: interpolation.xls
-    QD: cms calibration wkbs (TBD)
-  D: fix conjugate gradient and steepest descent (with Francois) (1d/2d/done)
+    D: cms calibration wkb MultiIndexSingleMeanRevCalibration.xls
+  D: fix conjugate gradient (with Francois) (1d/2d/done)  
+  TBD: fix steepest descent (with Francois) (1d/2d/WIP)
   TBD: check export to excel and testing wkb (to be planned)
   TBD add more tests (multidimensional)
 - MM: corr hist extimation (after 14/5/2007)
