@@ -20,7 +20,7 @@
 
 #include <oh/objecthandler.hpp>
 #include <ql/termstructures/volatilities/capletvolatilitiesstructures.hpp>
-#include <ql/capvolstructures.hpp>
+#include <ql/termstructures/capvolstructures.hpp>
 #include <qlo/termstructures.hpp>
 #include <ql/termstructures/volatilities/smilesection.hpp>
 

@@ -22,7 +22,7 @@
 #include <qlo/processes.hpp>
 #include <ql/quote.hpp>
 #include <ql/termstructures/yieldcurves/flatforward.hpp>
-#include <ql/voltermstructure.hpp>
+#include <ql/termstructures/voltermstructure.hpp>
 
 namespace QuantLibAddin {
 
