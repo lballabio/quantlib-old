@@ -3,7 +3,7 @@
  Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2006 Silvia Frasson
  Copyright (C) 2006 Mario Pucci
- Copyright (C) 2006 Giorgio Facchinetti
+ Copyright (C) 2006,2007 Giorgio Facchinetti
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -115,7 +115,8 @@ namespace QuantLibAddin {
         const std::vector<bool>& isParameterFixed,
         bool isAtmCalibrated,
         const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
-        QuantLib::Real maxErrorTolerance)
+        QuantLib::Real maxErrorTolerance,
+        const boost::shared_ptr<QuantLib::OptimizationMethod>& optMethod)
     {   
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp1(volSpreads.size());
         QuantLib::Size nbColumns  = volSpreads.front().size();
@@ -135,17 +136,18 @@ namespace QuantLibAddin {
         QL_REQUIRE(!atmVol.empty(), "atm vol handle not linked to anything");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SwaptionVolCube1(atmVol,
-                                                   optionTenors,
-                                                   swapTenors,
-                                                   strikeSpreads,
-                                                   temp1,
-                                                   swapIndexBase,
-                                                   vegaWeightedSmileFit, 
-                                                   temp,
-                                                   isParameterFixed,
-                                                   isAtmCalibrated,
-                                                   endCriteria,
-                                                   maxErrorTolerance ));
+                                       optionTenors,
+                                       swapTenors,
+                                       strikeSpreads,
+                                       temp1,
+                                       swapIndexBase,
+                                       vegaWeightedSmileFit, 
+                                       temp,
+                                       isParameterFixed,
+                                       isAtmCalibrated,
+                                       endCriteria,
+                                       maxErrorTolerance,
+                                       optMethod ));
     }
 
     std::vector<std::vector<boost::any> >

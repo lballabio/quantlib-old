@@ -3,7 +3,7 @@
  Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2006 Silvia Frasson
  Copyright (C) 2006 Mario Pucci
- Copyright (C) 2006 Giorgio Facchinetti
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -95,7 +95,8 @@ namespace QuantLibAddin {
             const std::vector<bool>& isParameterFixed,
             bool isAtmCalibrated,
             const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
-            QuantLib::Real maxErrorTolerance);
+            QuantLib::Real maxErrorTolerance,
+            const boost::shared_ptr<QuantLib::OptimizationMethod>& optMethod);
         std::vector<std::vector<boost::any> > getSparseSabrParameters();
         std::vector<std::vector<boost::any> > getDenseSabrParameters();
         std::vector<std::vector<boost::any> > getMarketVolCube();
