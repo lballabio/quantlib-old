@@ -31,6 +31,8 @@ GENERAL
 
 ---
 NANDO
+- TS time interface
+- recreating object quotes...
 - aggiungere alla leg nextPaymentDate(), lastPaymentDate()
 - last cpn date and next cpn date as a method of schedule
 - testMultiStepCoterminalSwapsAndSwaptions failure
@@ -59,7 +61,7 @@ K
 ** Rt Update
 STAND-BY
 - Citrix access -> ok seconda licenza per accedere a testing.
-		   In attesa di conferma che non ci sono costi (Di Cillo) 
+		   In attesa di conferma che non ci sono costi (Di Cillo)
 
 - Sensitivity Analysis: (0.5d/5w)
 	applied to cms book
@@ -129,7 +131,7 @@ CRISTINA
   - add the possibility of sub/over replication                         (0.5D/1D)
   - split optionRate() method in callOptionRate() and
     putOptionRate()                                                     (0.5D/0.5D - DONE)
-  - change signatures in DigitalCoupon constructor and in 
+  - change signatures in DigitalCoupon constructor and in
     DigitalLeg methods (from QL to QLXL)                                (0.5D/0.5D)
 - change class CappedFlooredIborCoupon in order to add the
   possibility of adding/subracting call and put
@@ -195,6 +197,7 @@ D integration framework refactoring (2D/2D)
 
 ---
 GIORGIO (last update 16/5/2007)
+- verify single index calibration wbk and remove obsolete calibration wbks
 - CDS options
 - illustrate projectedCostFunction to Ferdinando
 - WIP: test Levenberg-Marquardt in sabr interpolation  (shared with Marco, 2d/2d/WIP)
@@ -202,7 +205,7 @@ GIORGIO (last update 16/5/2007)
   D check testsuite (done)
   D QLXL: export new signature (done)
   D QLXL: update and test wkbs: swaptionvol1.xls and MultiIndexSingleMeanRevCalibration.xls (done)
-  WIP bug fixing for nested optimizations (shared also with Francois)  
+  WIP bug fixing for nested optimizations (shared also with Francois)
 - test Levenberg-Marquardt in abcd vol (0d/2d)
 D rename correctly Excel names of class qlSimultaneousCalibration() (1d/1d DONE)
 D fixed sabr parameters (1d/1d DONE)
@@ -231,7 +234,7 @@ MARCO (last update 16/5/2007)
     D: abcd.xls
     D: interpolation.xls
     D: cms calibration wkb MultiIndexSingleMeanRevCalibration.xls
-  D: fix conjugate gradient (with Francois) (1d/2d/done)  
+  D: fix conjugate gradient (with Francois) (1d/2d/done)
   WIP: fix steepest descent (with Francois) (1d/2d/WIP)
   TBD: check export to excel and testing wkb (to be planned)
   TBD add more tests (multidimensional)
