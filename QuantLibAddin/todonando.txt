@@ -60,11 +60,13 @@ K
 STAND-BY
 - Citrix access -> ok seconda licenza per accedere a testing.
 		   In attesa di conferma che non ci sono costi (Di Cillo) 
-- trimestrale (0/0.5d)
-- market models:
-	implement longTermCorr+beta+gamma correlation structure (?)
-	abcd for displaced vols (Chiara, Cristina, K) (?)
-- foglio di Clerici per contribuire le cap forw/forw vol su Mx (1d/5d)
+
+- Sensitivity Analysis: (0.5d/5w)
+	applied to cms book
+	create new .xls with NPVs of 4 cms books
+	test newly released version
+- foglio di Clerici per contribuire le cap forw/forw vol su Mx (1.5d/5d)
+	confronto forw/forw vols foglio clerici vs nostro cap stripper (0/1.5d)
 	sostituzione di tutte le funzioni vba con ql()
 	scarico del campo hist_close da Reuters -> usato solo per controllo/supporto
 	opzione uso AllQuotes vs OTM Only
@@ -77,6 +79,10 @@ STAND-BY
 	cubic spline interp per ogni strike sulla matrice estesa delle 6M
 	abcd adjustment della matrice delle forw/forw vol
 	contribuzione su Mx delle 1m, 3m, 6m, 1y
+- market models:
+	implement longTermCorr+beta+gamma correlation structure (?)
+	abcd for displaced vols (Chiara, Cristina, K) (?)
+
 - 3M cap stripper: 	(0/3w)
 	review triggers in wkbs (0.5D/0.5D done)
 	overview: focus on smile sections
@@ -91,16 +97,13 @@ STAND-BY
 	testa la smoothness della dorsale ATM con l'interpolazione lineare (0.5D/0.5D done)
 	CapStripper6MTestRepricing.xls: aggiungi (0.5D/0.5D done)
 	decidere se usare le interpolated vols da usare nel cap stripper
-- coveredWarrants.xls (1.5D/1w)
+- coveredWarrants.xls (2D/1w done)
 	- DONE check real time is OK -> 7 secs per recalc
 	- DONE gestione del primo periodo corto
 	- DONE qlMakeCapFloor() -> funziona solo per forward-start
 	- DONE punta a decorated objects
 	- DONE testing on Citrix
-- Sensitivity Analysis: (0/5w)
-	applied to cms book
-	create new .xls with NPVs of 4 cms books
-	test newly released version
+- trimestrale (0.5d/0.5d done)
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - manage auto-open macro problem -> propose:
 	Application.EnableEvents=True in qlxl.xla/ThisWorkbook
