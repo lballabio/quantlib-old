@@ -28,6 +28,21 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlQuoteValue' type='QuantLib::Quote' superType='handleToLib'>
+      <description>Returns TRUE if the given Quote object has a valid value</description>
+      <libraryFunction>isValid</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Constructor name='qlSimpleQuote'>
       <libraryFunction>SimpleQuote</libraryFunction>
       <SupportedPlatforms>
