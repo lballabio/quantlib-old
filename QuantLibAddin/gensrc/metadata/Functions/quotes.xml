@@ -28,7 +28,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlQuoteValue' type='QuantLib::Quote' superType='handleToLib'>
+    <Member name='qlQuoteIsValid' type='QuantLib::Quote' superType='handleToLib'>
       <description>Returns TRUE if the given Quote object has a valid value</description>
       <libraryFunction>isValid</libraryFunction>
       <SupportedPlatforms>
