@@ -7,10 +7,191 @@
     <include>qlo/schedule.hpp</include>
   </includes>
   <copyright>
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet
   </copyright>
   <Functions>
+
+    <Member name='qlScheduleSize' type='QuantLib::Schedule'>
+      <description>returns the number of dates in the given Schedule object</description>
+      <libraryFunction>size</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSchedulePreviousDate' type='QuantLib::Schedule'>
+      <description>returns the highest date in the Schedule object preceding the input reference date</description>
+      <libraryFunction>previousDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='refDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reference date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlScheduleNextDate' type='QuantLib::Schedule'>
+      <description>returns the lowest date in the Schedule object succeding the input reference date</description>
+      <libraryFunction>nextDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='refDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reference date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlScheduleDates' type='QuantLib::Schedule'>
+      <description>returns the dates for the given Schedule object</description>
+      <libraryFunction>dates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlScheduleIsRegular' type='QuantLib::Schedule'>
+      <description>returns TRUE if the given Schedule object is empty</description>
+      <libraryFunction>empty</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlScheduleEmpty' type='QuantLib::Schedule'>
+      <description>returns TRUE if the given Schedule object is empty</description>
+      <libraryFunction>empty</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlScheduleCalendar' type='QuantLib::Schedule'>
+      <description>return the Calendar used to calculate the given Schedule object</description>
+      <libraryFunction>calendar</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Calendar</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlScheduleStartDate' type='QuantLib::Schedule'>
+      <description>return the start date of the given Schedule object</description>
+      <libraryFunction>startDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlScheduleEndDate' type='QuantLib::Schedule'>
+      <description>return the end date of the given Schedule object</description>
+      <libraryFunction>endDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlScheduleBDC' type='QuantLib::Schedule'>
+      <description>returns the business day convention used to calculate the given Schedule object</description>
+      <libraryFunction>businessDayConvention</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::BusinessDayConvention</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlScheduleTenor' type='QuantLib::Schedule'>
+      <description>returns the tenor used to calculate the given Schedule object</description>
+      <libraryFunction>tenor</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
     <Constructor name='qlSchedule'>
       <libraryFunction>Schedule</libraryFunction>
@@ -72,22 +253,6 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
-    <Member name='qlScheduleDates' type='QuantLib::Schedule'>
-      <description>returns the dates for the given Schedule object</description>
-      <libraryFunction>dates</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
 
   </Functions>
 </Category>
