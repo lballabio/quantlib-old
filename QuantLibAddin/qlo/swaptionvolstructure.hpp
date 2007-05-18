@@ -27,6 +27,7 @@
 
 #include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/volatilities/swaptionvolcube.hpp>
+#include <ql/termstructures/volatilities/spreadedswaptionvolstructure.hpp>
 
 namespace QuantLib {
     class QuantLib::EndCriteria;
@@ -114,6 +115,15 @@ namespace QuantLibAddin {
             const QuantLib::Date& optionDate,
             const QuantLib::Period& swapTenors);
     };
+    
+    class SpreadedSwaptionVolatilityStructure : public SwaptionVolatilityStructure {
+      public:
+        SpreadedSwaptionVolatilityStructure(
+            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
+            QuantLib::Spread spread);
+
+    };
+        
 }
 
 #endif

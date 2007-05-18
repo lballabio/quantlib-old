@@ -269,4 +269,12 @@ namespace QuantLibAddin {
              libraryObject_ = cube->smileSection(optionDate,swapTenors);
     }
 
+    SpreadedSwaptionVolatilityStructure::SpreadedSwaptionVolatilityStructure(
+            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
+            QuantLib::Spread spread){
+        libraryObject_ = boost::shared_ptr<QuantLib::SpreadedSwaptionVolatilityStructure>(new
+            QuantLib::SpreadedSwaptionVolatilityStructure(underlyingVolStructure,
+                                                          spread));
+    }
+
 }
