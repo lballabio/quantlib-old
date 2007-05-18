@@ -35,7 +35,6 @@ NANDO
 - recreating object quotes...
 - aggiungere alla leg nextPaymentDate(), lastPaymentDate()
 - last cpn date and next cpn date as a method of schedule
-- testMultiStepCoterminalSwapsAndSwaptions failure
 - Higham covariance bug + review rank reduction
 - Higham covariance bug + review rank reduction
 - use Handle in SwaptionVolCubeChecks
@@ -172,6 +171,7 @@ D test daily pre-production and testing environment (from 4th to 10th may)
 FRANCOIS
 - XML/ serialization presentation
 - launcher cms calibration check-box
+D testMultiStepCoterminalSwapsAndSwaptions failure (.5D/.5D)
 D serialization of market data (.5D/.5D)
 D Levenberg Marquardt bug (0.5D/0.5D)
 D investigate "root not bracketed" error message in cms calibration as in (0.5D/0.5D)
