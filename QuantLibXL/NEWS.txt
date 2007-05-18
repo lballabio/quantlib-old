@@ -21,6 +21,13 @@ FUNCTIONS
   qlScheduleTerminationDateBDC() returns the business day convention used to calculate the termination date of the given Schedule object
   qlScheduleBackward() returns TRUE if backward calculation has been used to calculate the given Schedule object
   qlScheduleEndOfMonth() returns TRUE if end-of-month convention has been used to calculate the given Schedule object
+- new methods added to Leg object:
+  qlLegLastCouponRate returns the last coupon rate (if any) for the given Leg object
+  qlLegCurrentCouponRate returns the current coupon rate (if any) for the given Leg object
+- new method added to Bond object:
+  qlBondLastCoupon returns the last coupon for the given bond. The default bond settlement is used if no date is given.
+- Quote stuff
+  ...
 
 WORKBOOKS
 - Workbooks\DateCalendarsDayCounters\ScheduleGenerator.xls shows the usage of the Schedule class

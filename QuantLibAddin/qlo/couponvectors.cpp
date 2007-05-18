@@ -1,10 +1,10 @@
 
 /*
- Copyright (C) 2007 Cristina Duminuco
  Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2007 Cristina Duminuco
  Copyright (C) 2006 Eric Ehlers
  Copyright (C) 2006 Giorgio Facchinetti
- Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -37,6 +37,14 @@ using QuantLib::earlier_than;
 using QuantLib::CashFlow;
 
 namespace QuantLibAddin {
+
+    QuantLib::Rate Leg::lastCouponRate(const QuantLib::Date& refDate) const {
+        return QuantLib::CashFlows::lastCouponRate(leg_, refDate);
+    }
+
+    QuantLib::Rate Leg::currentCouponRate(const QuantLib::Date& refDate) const {
+        return QuantLib::CashFlows::currentCouponRate(leg_, refDate);
+    }
 
     QuantLib::Date Leg::startDate() const {
         return QuantLib::CashFlows::startDate(leg_);

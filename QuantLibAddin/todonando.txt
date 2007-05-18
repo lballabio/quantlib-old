@@ -31,10 +31,19 @@ GENERAL
 
 ---
 NANDO
+- move termstructures in subfolders
+- handle incomplete Reuters menu
+- check beta2Y sensitivity
+- handle already loaded addin
+- special handling of reuters/bloomberg addins
+- move leg in its own file:
+  rename ql/analisys.*pp
+  create qlo/leg
+  create leg.xml
+- manage auto-open macro problem -> propose:
+	Application.EnableEvents=True in qlxl.xla/ThisWorkbook
 - TS time interface
 - recreating object quotes...
-- aggiungere alla leg nextPaymentDate(), lastPaymentDate()
-- last cpn date and next cpn date as a method of schedule
 - Higham covariance bug + review rank reduction
 - Higham covariance bug + review rank reduction
 - use Handle in SwaptionVolCubeChecks
@@ -61,7 +70,7 @@ K
 ** Investigare problema calibrazione Beta 2Y (chiedere Giorgio)
 ** pricing cap/floor
 STAND-BY
-- Citrix access 
+- Citrix access
     -> ok seconda licenza per accedere a testing.
        In attesa di conferma che non ci sono costi (Di Cillo)
     -> $+ ok
@@ -89,7 +98,6 @@ STAND-BY
 - market models:
 	implement longTermCorr+beta+gamma correlation structure (?)
 	abcd for displaced vols (Chiara, Cristina, K) (?)
-
 - 3M cap stripper: 	(0/3w)
 	review triggers in wkbs (0.5D/0.5D done)
 	overview: focus on smile sections
@@ -98,7 +106,7 @@ STAND-BY
 	prendere possesso foglio Clerici
 	reintroduzione in 6M cap stripper
 	test wbk: abcd fit
-    	atm backbone: CapStripper3MTestSmoothness.xls
+  	atm backbone: CapStripper3MTestSmoothness.xls
 - 6M cap stripper: (1.5D/1w)
 	atm backbone: CapStripper6MTestSmoothness.xls (0.5D/0.5D done)
 	testa la smoothness della dorsale ATM con l'interpolazione lineare (0.5D/0.5D done)
@@ -111,8 +119,6 @@ STAND-BY
 	- DONE punta a decorated objects
 	- DONE testing on Citrix
 - bug in function SetRealTime() -> Rt seems not to switch settings
-- manage auto-open macro problem -> propose:
-	Application.EnableEvents=True in qlxl.xla/ThisWorkbook
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
@@ -147,22 +153,22 @@ CRISTINA
 - install VS in new pc                                                  (0D/1D - STAND-BY)
 - market models: abcd for displaced vols (Chiara, Cristina, K)
 - fixing days in cashflow analisys                                      (FIXED)
+
 ---
 CHIARA
+- zspread/yield inversion
+- zerospreadedtermstructure: daycounter bug
+- IFR fixing calendar problem
 - verify bond in Testing and trunk (with Cristina)
 - cds options (with Giorgio)
-- session with giorgio on Bonds' Workbooks
-D add tests for CMS asset swap in the test suite (1d|1d|Done)
-D create new type for Quantlib Eur obsolete currencies (0.5d|0.5d|Done)
+- with Giorgio: training on Bonds' Workbooks
 - Z-spread function, for zero coupon bond valuation (2.5d|10dd|WIP)
  *lehman's documentation
  *created new workbook to replicate market practice (YAF, YAS on BBG) use of z-spread
 - markedata\BloombergFeed (Maurizio Pietrini)
  *reviewed all the worksheets regarding market data feed and timeseries with Maurizio (0.5d|0.5d|Done)
  *waiting for BBG worksheets from Maurizion (time to start 2/3 weeks- time to complete 1/2 weeks)
-D test daily pre-production and testing environment (from 4th to 10th may)
 - current cpn as a method of bond (a trader's request)
-- fix bug concerning the esposition to excel of fixing days in cashflows analysis (with nando)
 - bonds' workbooks integration with K+/Gatemate
 - Digital Bond contructor
 - Multicallable bond constructor
@@ -203,7 +209,7 @@ D integration framework refactoring (2D/2D)
 ---
 GIORGIO (last update 16/5/2007)
 - verify single index calibration wbk and remove obsolete calibration wbks
-- CDS options
+- CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando
 - WIP: test Levenberg-Marquardt in sabr interpolation  (shared with Marco, 2d/2d/WIP)
   D QL: estend signature di SABRInterpolations and Swaptionvol1 (done)
@@ -229,6 +235,7 @@ WIP spreaded swaption vol structure (2d/5d/WIP)
 
 ---
 MARCO (last update 16/5/2007)
+- Citrix showdown
 - check optimizers:
   D: complete test in test suite (with Giorgio&Francois) (1d/2d/done)
   D: test Simplex (with Francois) (1.5d/1d)
@@ -259,7 +266,10 @@ D Update bootstrapping algorithm to catch up changes in Mx curve (2d/3d/DONE)
 ========================
 
 Eric
+- SA
+- serialization
 - 2 DOF projects
+- JRisk
 - coerce from Frequency to Period
 - coerce from Period->Date to double/int
 - coerce from IMMcode to date

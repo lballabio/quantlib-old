@@ -1,9 +1,9 @@
 
 /*
  Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2006, 2007 Cristina Duminuco
  Copyright (C) 2006 Giorgio Facchinetti
- Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -34,6 +34,8 @@ namespace QuantLibAddin {
     
     class Leg : public ObjectHandler::Object {
       public:
+        QuantLib::Rate lastCouponRate(const QuantLib::Date& refDate) const;
+        QuantLib::Rate currentCouponRate(const QuantLib::Date& refDate) const;
         QuantLib::Date startDate() const;
         QuantLib::Date maturityDate() const;
         QuantLib::Real npv(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
