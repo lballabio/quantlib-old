@@ -58,16 +58,22 @@ NANDO
 K
 ** Reuters destination cell rather than range
 ** Rt Update
+** Investigare problema calibrazione Beta 2Y (chiedere Giorgio)
+** pricing cap/floor
 STAND-BY
-- Citrix access -> ok seconda licenza per accedere a testing.
-		   In attesa di conferma che non ci sono costi (Di Cillo)
-
+- Citrix access 
+    -> ok seconda licenza per accedere a testing.
+       In attesa di conferma che non ci sono costi (Di Cillo)
+    -> $+ ok
+    -> INFL ok
+    -> BGM manca (2a) utenza di accesso
+    -> CW richiesto link
 - Sensitivity Analysis: (0.5d/5w)
 	applied to cms book
 	create new .xls with NPVs of 4 cms books
 	test newly released version
 - foglio di Clerici per contribuire le cap forw/forw vol su Mx (1.5d/5d)
-	confronto forw/forw vols foglio clerici vs nostro cap stripper (0/1.5d)
+	confronto forw/forw vols foglio clerici vs nostro cap stripper (0.5d/1.5d)
 	sostituzione di tutte le funzioni vba con ql()
 	scarico del campo hist_close da Reuters -> usato solo per controllo/supporto
 	opzione uso AllQuotes vs OTM Only
@@ -104,7 +110,6 @@ STAND-BY
 	- DONE qlMakeCapFloor() -> funziona solo per forward-start
 	- DONE punta a decorated objects
 	- DONE testing on Citrix
-- trimestrale (0.5d/0.5d done)
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - manage auto-open macro problem -> propose:
 	Application.EnableEvents=True in qlxl.xla/ThisWorkbook
