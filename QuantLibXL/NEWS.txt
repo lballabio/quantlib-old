@@ -1,6 +1,26 @@
 For a rundown of changes per QuantLibXL release please visit
 http://www.quantlibxl.org/history.html
 
-- added SpreadedSwaptionVolatilityStructure class in QuantLib
-- added SpreadedSmileSection class in QuantLib
-- exported qlSpreadedSwaptionVolatilityStructure 
+new or updated in this release:
+
+FUNCTIONS
+- exported qlSpreadedSwaptionVolatilityStructure:
+  ...
+- exported Schedule class full interface:
+  qlScheduleSize() returns the number of dates in the given Schedule object
+  qlSchedulePreviousDate(refDate) returns the highest date in the given Schedule object preceding the input reference date
+  qlScheduleNextDate(refDate) returns the lowest date in the given Schedule object following the input reference date
+  qlScheduleDates() returns the dates for the given Schedule object
+  qlScheduleIsRegular(i) returns TRUE if the selected period in the given Schedule object is regular
+  qlScheduleEmpty() returns TRUE if the given Schedule object is empty
+  qlScheduleCalendar() returns the Calendar used to calculate the given Schedule object
+  qlScheduleStartDate() returns the start date of the given Schedule object
+  qlScheduleEndDate() returns the end date of the given Schedule object
+  qlScheduleTenor() returns the tenor used to calculate the given Schedule object
+  qlScheduleBDC() returns the business day convention used to calculate the given Schedule object
+  qlScheduleTerminationDateBDC() returns the business day convention used to calculate the termination date of the given Schedule object
+  qlScheduleBackward() returns TRUE if backward calculation has been used to calculate the given Schedule object
+  qlScheduleEndOfMonth() returns TRUE if end-of-month convention has been used to calculate the given Schedule object
+
+WORKBOOKS
+- Workbooks\DateCalendarsDayCounters\ScheduleGenerator.xls shows the usage of the Schedule class
