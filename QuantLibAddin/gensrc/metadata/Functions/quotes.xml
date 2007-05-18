@@ -60,7 +60,7 @@
     </Constructor>
 
     <Member name='qlSimpleQuoteSetValue' type='QuantLib::SimpleQuote'>
-      <description>Sets the value of the given SimpleQuote object</description>
+      <description>sets the value of the given SimpleQuote object</description>
       <libraryFunction>setValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
@@ -76,6 +76,21 @@
       </ParameterList>
       <ReturnValue>
         <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimpleQuoteReset' type='QuantLib::SimpleQuote'>
+      <description>resets the given SimpleQuote object to the uninitialized state</description>
+      <libraryFunction>reset</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
