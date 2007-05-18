@@ -108,17 +108,17 @@ code32 = '''\
 code33 = '''\
         %(type)s %(name)sEnum =
             ObjectHandler::operToScalarEnum<%(type)s,
-                %(namespaceObjects)s::Create<%(type)s> >(
+                ObjectHandler::Create<%(type)s> >(
                     *%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code34 = '''\
         %(type)s %(name)sEnum =
-            %(namespaceObjects)s::Create<%(type)s>()(%(name)s);\n'''
+            ObjectHandler::Create<%(type)s>()(%(name)s);\n'''
 
 code35 = '''\
         std::vector<%(type)s> %(name)sEnum =
             ObjectHandler::operToVectorEnum<%(type)s,
-            %(namespaceObjects)s::Create<%(type)s> >(*%(name)s);\n'''
+            ObjectHandler::Create<%(type)s> >(*%(name)s);\n'''
 
 code36a = '''\
         OH_GET_OBJECT(%(name)sObj, %(name)s, %(type)s)\n'''
@@ -347,7 +347,7 @@ code81 = '''\
 
 code82 = '''\
         %(type)s %(name)sEnum =
-            %(namespaceObjects)s::Create<%(type)s>()(%(name)sCpp);\n'''
+            ObjectHandler::Create<%(type)s>()(%(name)sCpp);\n'''
 
 code83 = '''\
         sal_Int32 returnValueCalc;
@@ -439,7 +439,7 @@ code102 = '''\
 
 code103 = '''\
         %(type)s %(name)sEnum =
-            %(namespaceObjects)s::Create<%(type)s>()(%(name)s);\n'''
+            ObjectHandler::Create<%(type)s>()(%(name)s);\n'''
 
 ##########################################################################
 # code common to mutiple addins

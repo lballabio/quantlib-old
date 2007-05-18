@@ -19,9 +19,19 @@
 #include <iostream>
 #include <sstream>
 
+// Account
+
+std::string Account::type() {
+    std::ostringstream s;
+    s << type_;
+    return s.str();
+}
+
+// AccountObject
+
 AccountObject::AccountObject(
     const int &accountNumber,
-    const std::string &accountType) {
+    const Account::Type &accountType) {
     libraryObject_ = boost::shared_ptr<Account>(new Account(accountNumber, accountType));
 }
 
@@ -29,14 +39,20 @@ void AccountObject::setBalance(const int &balance) {
     libraryObject_->setBalance(balance);
 }
 
-const int &AccountObject::getBalance() {
-    return libraryObject_->getBalance();
+const int &AccountObject::balance() {
+    return libraryObject_->balance();
 }
+
+std::string AccountObject::type() {
+    return libraryObject_->type();
+}
+
+// AccountValueObject
 
 const char* AccountValueObject::mPropertyNames[] = {
     "objectID",
-    "accountNumber",
-    "accountType"};
+    "number",
+    "type"};
 
 std::vector<std::string> AccountValueObject::getPropertyNames() const {
     return std::vector<std::string>(
@@ -45,10 +61,10 @@ std::vector<std::string> AccountValueObject::getPropertyNames() const {
 
 boost::any AccountValueObject::getProperty(const std::string& name) const {
     if(name == "objectID") return objectID_;
-    else if(name == "accountNumber") return accountNumber_;
-    else if(name == "accountType") return accountType_;
+    else if(name == "number") return number_;
+    else if(name == "type") return type_;
     else 
-        throw ObjectHandler::Exception("Error: attempt to retrieve non-existent Property: '" + name + "'");
+        OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     return boost::any(); /* Dummy return - just to avoid stupid compiler warnings/errors */
 }
 

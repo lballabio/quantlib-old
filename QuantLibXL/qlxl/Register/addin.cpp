@@ -1,6 +1,6 @@
 
 /* 
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,6 +17,7 @@
 
 #include <ohxl/objecthandlerxl.hpp>
 #include <qlo/qladdindefines.hpp>
+#include <qlo/Enumerations/Register/register_all.hpp>
 #include <qlxl/Register/register_all.hpp>
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors
    (Metrowerks, for example) also #define _MSC_VER
@@ -43,7 +44,7 @@
 #endif
 
 #ifdef XLL_STATIC
-    // instantiate the objecthandler singleton
+    // Instantiate the ObjectHandler Repository
     ObjectHandler::RepositoryXL oh;
 #endif
 
@@ -62,8 +63,7 @@ DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
     // long name for the XLL. Any other value should result in the
     // return of a #VALUE! error.
     if (1 == xlReturn.val.w) {
-        ObjectHandler::scalarToOper(std::string("QuantLibAddin " QLADDIN_VERSION),
-                                 xlLongName);
+        ObjectHandler::scalarToOper(std::string("QuantLibAddin " QLADDIN_VERSION), xlLongName);
     } else {
         xlLongName.xltype = xltypeErr;
         xlLongName.val.err = xlerrValue;
@@ -78,12 +78,17 @@ DLLEXPORT int xlAutoOpen() {
         Excel(xlGetName, &xDll, 0);
 
 #ifdef XLL_STATIC
-        // initialize configuration info
+        // Initialize configuration info
         ObjectHandler::Configuration::instance().init();
+
+        // Initialize ObjectHandler functions
         registerOhFunctions(xDll);
 #endif
-
+        // Initialize QuantLib functions
         registerQlFunctions(xDll);
+
+        // Initialize the Enumeration Registry
+        QuantLibAddin::registerEnumerations();
 
         Excel(xlFree, 0, 1, &xDll);
 
@@ -106,10 +111,15 @@ DLLEXPORT int xlAutoClose() {
         Excel(xlGetName, &xDll, 0);
 
 #ifdef XLL_STATIC
+        // Unregister ObjectHandler functions
         unregisterOhFunctions(xDll);
 #endif
 
+        // Unregister QuantLib functions
         unregisterQlFunctions(xDll);
+
+        // Deallocate the Enumeration Registry
+        QuantLibAddin::unregisterEnumerations();
 
         Excel(xlFree, 0, 1, &xDll);
 

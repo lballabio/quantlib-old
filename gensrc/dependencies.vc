@@ -17,7 +17,7 @@ CORE_IMPORT=$(GENSRC_DIR)\gensrc\Addins\addin.py \
             $(GENSRC_DIR)\gensrc\Configuration\configuration.py \
             $(GENSRC_DIR)\gensrc\Configuration\environment.py \
             $(GENSRC_DIR)\gensrc\Enumerations\enumeratedclasses.py \
-            $(GENSRC_DIR)\gensrc\Enumerations\enumeratedcurves.py \
+            $(GENSRC_DIR)\gensrc\Enumerations\enumeratedpairs.py \
             $(GENSRC_DIR)\gensrc\Enumerations\enumeratedtypes.py \
             $(GENSRC_DIR)\gensrc\Enumerations\enumerationlist.py \
             $(GENSRC_DIR)\gensrc\Exceptions\excepthook.py \

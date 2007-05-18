@@ -16,6 +16,7 @@
 */
 
 #include <account.hpp>
+#include <oh/Enumerations/typefactory.hpp>
 #include <ohxl/objecthandlerxl.hpp>
 #include <ohxl/Register/register_all.hpp>
 #include <ohxl/Functions/export.hpp>
@@ -43,29 +44,48 @@ DLLEXPORT int xlAutoOpen() {
         ObjectHandler::Configuration::instance().init();
         registerOhFunctions(xDll);
 
-        Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x0D""createAccount"),   // function code name
-            TempStrNoSize("\x06""CCNCP#"),          // parameter codes
-            TempStrNoSize("\x0D""createAccount"),   // function display name
-            TempStrNoSize("\x22""objectID,accountNumber,accountType"), // comma-delimited list of parameters
-            TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-            TempStrNoSize("\x07""Example"));        // function category
+        ObjectHandler::Create<Account::Type>().registerType("Current", new Account::Type(Account::Current));
+        ObjectHandler::Create<Account::Type>().registerType("Savings", new Account::Type(Account::Savings));
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x0A""setBalance"),      // function code name
-            TempStrNoSize("\x04""LCN#"),            // parameter codes
-            TempStrNoSize("\x0A""setBalance"),      // function display name
-            TempStrNoSize("\x10""objectID,balance"), // comma-delimited list of parameters
-            TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-            TempStrNoSize("\x07""Example"));        // function category
+            TempStrNoSize("\x09""ohAccount"),           // function code name
+            TempStrNoSize("\x06""CCNCP#"),              // parameter codes
+            TempStrNoSize("\x09""ohAccount"),           // function display name
+            TempStrNoSize("\x14""objectID,number,type"), // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));            // function category
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x0A""getBalance"),      // function code name
-            TempStrNoSize("\x04""NCP#"),            // parameter codes
-            TempStrNoSize("\x0A""getBalance"),      // function display name
-            TempStrNoSize("\x10""objectID,trigger"),  // comma-delimited list of parameters
-            TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
-            TempStrNoSize("\x07""Example"));        // function category
+            TempStrNoSize("\x13""ohAccountSetBalance"), // function code name
+            TempStrNoSize("\x04""LCN#"),                // parameter codes
+            TempStrNoSize("\x13""ohAccountSetBalance"), // function display name
+            TempStrNoSize("\x10""objectID,balance"),    // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));            // function category
+
+        Excel(xlfRegister, 0, 7, &xDll,
+            TempStrNoSize("\x10""ohAccountBalance"),    // function code name
+            TempStrNoSize("\x04""NCP#"),                // parameter codes
+            TempStrNoSize("\x10""ohAccountBalance"),    // function display name
+            TempStrNoSize("\x10""objectID,trigger"),    // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));            // function category
+
+        Excel(xlfRegister, 0, 7, &xDll,
+            TempStrNoSize("\x0D""ohAccountType"),       // function code name
+            TempStrNoSize("\x04""CCP#"),                // parameter codes
+            TempStrNoSize("\x0D""ohAccountType"),       // function code name
+            TempStrNoSize("\x10""objectID,trigger"),    // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));            // function category
+
+        Excel(xlfRegister, 0, 7, &xDll,
+            TempStrNoSize("\x05""func1"),               // function code name
+            TempStrNoSize("\x04""CCP#"),                // parameter codes
+            TempStrNoSize("\x05""func1"),               // function code name
+            TempStrNoSize("\x10""objectID,trigger"),    // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));            // function category
 
         Excel(xlFree, 0, 1, &xDll);
         return 1;
@@ -90,24 +110,27 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
     freeOper(px);
 }
 
-DLLEXPORT char *createAccount(
+DLLEXPORT char *ohAccount(
         char *objectID,
-        long *accountNumber,
-        char *accountType) {
+        long *number,
+        char *type) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
     try {
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
-            (new ObjectHandler::FunctionCall("createAccount"));
+            (new ObjectHandler::FunctionCall("ohAccount"));
+
+        Account::Type typeEnum =
+            ObjectHandler::Create<Account::Type>()(type);
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountObject(*accountNumber, accountType));
+            new AccountObject(*number, typeEnum));
         object->setProperties(
             boost::shared_ptr<ObjectHandler::ValueObject>(
-                new AccountValueObject(objectID, *accountNumber, accountType)));
+                new AccountValueObject(objectID, *number, type)));
 
-        const std::string returnValue = 
+        std::string returnValue = 
             ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);
 
         static char ret[XL_MAX_STR_LEN];
@@ -120,11 +143,11 @@ DLLEXPORT char *createAccount(
     }
 }
 
-DLLEXPORT short int *setBalance(char *objectID, long *balance) {
+DLLEXPORT short int *ohAccountSetBalance(char *objectID, long *balance) {
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
     try {
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
-            (new ObjectHandler::FunctionCall("setBalance"));
+            (new ObjectHandler::FunctionCall("ohAccountSetBalance"));
 
         OH_GET_OBJECT(accountObject, objectID, AccountObject)
         accountObject->setBalance(*balance);
@@ -137,20 +160,58 @@ DLLEXPORT short int *setBalance(char *objectID, long *balance) {
     }
 }
 
-DLLEXPORT long *getBalance(char *objectID, OPER *trigger) {
+DLLEXPORT long *ohAccountBalance(char *objectID, OPER *trigger) {
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
     try {
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
-            (new ObjectHandler::FunctionCall("getBalance"));
+            (new ObjectHandler::FunctionCall("ohAccountBalance"));
 
         OH_GET_OBJECT(accountObject, objectID, AccountObject)
 
         static long ret;
-        ret = accountObject->getBalance();
+        ret = accountObject->balance();
         return &ret;
     } catch (const std::exception &e) {
         ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
     }
 }
+
+DLLEXPORT char *ohAccountType(char *objectID, OPER *trigger) {
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+    try {
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("ohAccountType"));
+
+        OH_GET_OBJECT(accountObject, objectID, AccountObject)
+
+        static char ret[XL_MAX_STR_LEN];
+        ObjectHandler::stringToChar(accountObject->type(), ret);
+        return ret;
+    } catch (const std::exception &e) {
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
+        return 0;
+    }
+}
+
+DLLEXPORT char *func1(char *objectID, OPER *trigger) {
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+    try {
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("func1"));
+
+        Account::Type typeEnum =
+            ObjectHandler::Create<Account::Type>()(objectID);
+
+        std::ostringstream s;
+        s << typeEnum;
+        static char ret[XL_MAX_STR_LEN];
+        ObjectHandler::stringToChar(s.str(), ret);
+        return ret;
+    } catch (const std::exception &e) {
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
+        return 0;
+    }
+}
+
 

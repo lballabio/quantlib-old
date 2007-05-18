@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,14 +19,11 @@
 #ifndef qla_termstructuresfactory_hpp
 #define qla_termstructuresfactory_hpp
 
-#include <qlo/typefactory.hpp>
+#include <oh/Enumerations/typefactory.hpp>
 #include <ql/termstructures/yieldcurves/ratehelpers.hpp>
 
+namespace ObjectHandler {
 
-namespace QuantLibAddin {
-
-
-    /* *** YieldTermStructure *** */
     typedef boost::shared_ptr<QuantLib::YieldTermStructure>(*YieldTermStructureConstructor)(
             const long &nDays,
             const QuantLib::Calendar &calendar,
@@ -35,7 +32,7 @@ namespace QuantLibAddin {
 
     template<>
     class Create<boost::shared_ptr<QuantLib::YieldTermStructure> > :
-        private RegistryManager<QuantLib::YieldTermStructure, EnumCurveRegistry> {
+        private RegistryManager<QuantLib::YieldTermStructure, EnumPairRegistry> {
     public:
         boost::shared_ptr<QuantLib::YieldTermStructure> operator() (
                 const std::string& traitsID,
@@ -46,9 +43,10 @@ namespace QuantLibAddin {
                 const QuantLib::DayCounter &dayCounter) {
             KeyPair key(traitsID, interpolatorID);
             YieldTermStructureConstructor yieldTermStructureConstructor =
-                (YieldTermStructureConstructor)(getType(key));
+                reinterpret_cast<YieldTermStructureConstructor>(getType(key));
             return yieldTermStructureConstructor(nDays, calendar, rateHelpers, dayCounter);
         }
+        using RegistryManager<QuantLib::YieldTermStructure, EnumPairRegistry>::registerType;
     };
 
  }

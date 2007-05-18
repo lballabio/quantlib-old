@@ -26,3 +26,6 @@ libObjectHandler_la_SOURCES = \
     repository.cpp  \
     utilities.cpp
 
+libObjectHandler_la_LIBADD = \
+    Enumerations/libEnumerations.la
+

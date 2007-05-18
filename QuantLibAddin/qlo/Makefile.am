@@ -21,10 +21,10 @@ include_HEADERS = \
     cmsmarket.hpp \
     conundrumpricer.hpp \
     config.hpp \
+    conundrumpricer.hpp \
     couponvectors.hpp \
     date.hpp \
     dividendvanillaoption.hpp \
-    enumclassctors.hpp \
     europeanoption.hpp \
     exercise.hpp \
     forwardrateagreement.hpp \
@@ -61,8 +61,6 @@ include_HEADERS = \
     swaptionvolstructure.hpp \
     symmetricschurdecomposition.hpp \
     termstructures.hpp \
-    typefactory.hpp \
-    typeregistry.hpp \
     utilities.hpp \
     vanillaoption.hpp \
     vanillaswap.hpp \
@@ -83,9 +81,6 @@ libQuantLibAddin_la_SOURCES = \
     couponvectors.cpp \
     date.cpp \
     dividendvanillaoption.cpp \
-    enumclassctors.cpp \
-    enumclassregistry.cpp \
-    enumtyperegistry.cpp \
     europeanoption.cpp \
     exercise.cpp \
     forwardrateagreement.cpp \
@@ -103,6 +98,7 @@ libQuantLibAddin_la_SOURCES = \
     quantovanillaoption.cpp \
     quotes.cpp \
     randomsequencegenerator.cpp \
+    rangeaccrual.cpp \
     ratehelpers.cpp \
     schedule.cpp \
     sequencestatistics.cpp \
@@ -122,6 +118,8 @@ libQuantLibAddin_la_SOURCES = \
 
 libQuantLibAddin_la_LIBADD = \
     Conversions/libConversions.la \
-    Factories/libFactories.la \
+    Enumerations/Constructors/libConstructors.la \
+    Enumerations/Factories/libFactories.la \
+    Enumerations/Register/libRegister.la \
     ValueObjects/libValueObjects.la
 

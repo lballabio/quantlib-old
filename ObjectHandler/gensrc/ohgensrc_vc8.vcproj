@@ -62,6 +62,10 @@
 			Name="Functions"
 			>
 			<File
+				RelativePath=".\metadata\Functions\enumerations.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\garbagecollection.xml"
 				>
 			</File>

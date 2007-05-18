@@ -20,7 +20,7 @@
 from gensrc.Serialization import exceptions
 from gensrc.Patterns import singleton
 from gensrc.Enumerations import enumeratedclasses
-from gensrc.Enumerations import enumeratedcurves
+from gensrc.Enumerations import enumeratedpairs
 from gensrc.Enumerations import enumeratedtypes
 from gensrc.Functions import constructor
 from gensrc.Functions import member
@@ -37,8 +37,8 @@ class Factory(singleton.Singleton):
         'Constructor' : constructor.Constructor,
         'EnumeratedClass' : enumeratedclasses.EnumeratedClass,
         'EnumeratedClassGroup' : enumeratedclasses.EnumeratedClassGroup,
-        'EnumeratedCurve' : enumeratedcurves.EnumeratedCurve,
-        'EnumeratedCurveGroup' : enumeratedcurves.EnumeratedCurveGroup,
+        'EnumeratedPair' : enumeratedpairs.EnumeratedPair,
+        'EnumeratedPairGroup' : enumeratedpairs.EnumeratedPairGroup,
         'EnumeratedType' : enumeratedtypes.EnumeratedType,
         'EnumeratedTypeGroup' : enumeratedtypes.EnumeratedTypeGroup,
         'EnumerationMember' : enumerationmember.EnumerationMember,

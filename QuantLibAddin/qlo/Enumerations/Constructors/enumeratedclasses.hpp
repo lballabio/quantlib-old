@@ -2,7 +2,7 @@
 /*
  Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2006 Marco Bianchetti
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Giorgio Facchinetti
  Copyright (C) 2006 Chiara Fornarola
  Copyright (C) 2007 Katiuscia Manzoni
@@ -25,25 +25,19 @@
 #define qla_enumclassctors_hpp
 
 #include <qlo/qladdindefines.hpp>
-#include <qlo/Factories/conundrumpricerfactory.hpp>
-#include <qlo/Factories/interpolationsfactory.hpp>
-#include <qlo/Factories/termstructuresfactory.hpp>
+#include <qlo/Enumerations/Factories/conundrumpricerfactory.hpp>
+#include <qlo/Enumerations/Factories/interpolationsfactory.hpp>
 #include <ql/option.hpp>
 #include <ql/instruments/payoffs.hpp>
 #include <ql/instruments/quantoforwardvanillaoption.hpp>
 #include <ql/pricingengines/all.hpp>
-#include <ql/math/interpolations/backwardflatinterpolation.hpp>
-#include <ql/math/interpolations/forwardflatinterpolation.hpp>
-#include <ql/math/interpolations/linearinterpolation.hpp>
-#include <ql/math/interpolations/bilinearinterpolation.hpp>
-#include <ql/math/interpolations/bicubicsplineinterpolation.hpp>
-#include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
 #include <ql/cashflows/couponpricer.hpp>
 
 namespace QuantLibAddin {
 
-    /* *** StrikedTypePayoff - Option::Type + 1 parameter *** */
+    /* *** StrikedTypePayoff *** */
+    /* *** Option::Type + 1 parameter *** */
     boost::shared_ptr<QuantLib::Payoff> VANILLA_Payoff(
             const QuantLib::Option::Type& optionType,
             const double strike);
@@ -53,8 +47,7 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::Payoff> PERCENTAGESTRIKE_Payoff(
             const QuantLib::Option::Type& optionType,
             const double moneyness);
-
-    /* *** StrikedTypePayoff - Option::Type + 2 parameters *** */
+    /* *** Option::Type + 2 parameters *** */
     boost::shared_ptr<QuantLib::Payoff> CASHORNOTHING_Payoff(
             const QuantLib::Option::Type& optionType,
             const double strike,
@@ -63,20 +56,20 @@ namespace QuantLibAddin {
             const QuantLib::Option::Type& optionType,
             const double strike,
             const double secondStrike);
-
-    /* *** StrikedTypePayoff - 2 parameters *** */
+    /* *** 2 parameters *** */
     boost::shared_ptr<QuantLib::Payoff> SUPERFUND_Payoff(
             const QuantLib::Option::Type&,
             const double strike,
             const double secondStrike);
-   /* *** StrikedTypePayoff - 3 parameters *** */
+   /* *** 3 parameters *** */
    boost::shared_ptr<QuantLib::Payoff> SUPERSHARE_Payoff(
             const QuantLib::Option::Type&,
             const double strike,
             const double secondStrike,
             const double cashPayoff);
 
-    /* *** PricingEngine - timesteps ignored *** */
+    /* *** PricingEngines *** */
+    /* *** Timesteps ignored *** */
     boost::shared_ptr<QuantLib::PricingEngine> AB_Engine(const long& timeSteps);
     boost::shared_ptr<QuantLib::PricingEngine> AC_Engine(const long& timeSteps);
     boost::shared_ptr<QuantLib::PricingEngine> ACGAPA_Engine(const long& timeSteps);
@@ -94,8 +87,7 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::PricingEngine> FPE_Engine(const long& timeSteps);
     boost::shared_ptr<QuantLib::PricingEngine> QE_Engine(const long& timeSteps);
     boost::shared_ptr<QuantLib::PricingEngine> QFE_Engine(const long& timeSteps);
-
-    /* *** PricingEngine - timesteps required *** */
+    /* *** Timesteps required *** */
     boost::shared_ptr<QuantLib::PricingEngine> AEQPB_Engine(const long& timeSteps);
     boost::shared_ptr<QuantLib::PricingEngine> CRR_Engine(const long& timeSteps);
     boost::shared_ptr<QuantLib::PricingEngine> FDA_Engine(const long& timeSteps);
@@ -109,101 +101,21 @@ namespace QuantLibAddin {
 
     /* *** Linear 1D Interpolation *** */
     boost::shared_ptr<QuantLib::Interpolation> LINEAR_Interpolation(
-            dbl_itr& xBegin, dbl_itr& xEnd, dbl_itr& yBegin);
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> BACKWARDFLAT_Interpolation(
-            dbl_itr& xBegin, dbl_itr& xEnd, dbl_itr& yBegin);
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> FORWARDFLAT_Interpolation(
-            dbl_itr& xBegin, dbl_itr& xEnd, dbl_itr& yBegin);
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> LOGLINEAR_Interpolation(
-            dbl_itr& xBegin, dbl_itr& xEnd, dbl_itr& yBegin);
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
 
     /* *** Interpolation2D *** */
     boost::shared_ptr<QuantLib::Interpolation2D> BILINEAR_Interpolation(
-            dbl_itr& xBegin, dbl_itr& xEnd, dbl_itr& yBegin, dbl_itr& yEnd,
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin, ObjectHandler::dbl_itr& yEnd,
             const QuantLib::Matrix& zData);
     boost::shared_ptr<QuantLib::Interpolation2D> BICUBICSPLINE(
-            dbl_itr& xBegin, dbl_itr& xEnd, dbl_itr& yBegin, dbl_itr& yEnd,
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin, ObjectHandler::dbl_itr& yEnd,
             const QuantLib::Matrix& zData);
-
-    /* *** YieldTermStructure *** */
-    //Discount based yield term structures
-    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_BACKWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_FORWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LOGLINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_CUBIC_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    //ZeroYield based yield term structures
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_BACKWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_FORWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LOGLINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_CUBIC_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    //ForwardRate based yield term structures
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_BACKWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_FORWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LOGLINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_CUBIC_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
 
     /* *** Pricers *** */
     /* *** IborCouponPricer *** */
@@ -222,7 +134,7 @@ namespace QuantLibAddin {
             const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
             const QuantLib::Handle<QuantLib::Quote>& meanReversion);
 
-    /* *** Index *** */
+    /* *** Indexes *** */
     /* *** Euribor *** */
     boost::shared_ptr<QuantLib::Index> EURIBOR_SW();
     boost::shared_ptr<QuantLib::Index> EURIBOR_2W();
@@ -318,7 +230,7 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXA_20Y();
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXA_25Y();
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXA_30Y();
-       /* *** EurliborSwapFixB *** */
+    /* *** EurliborSwapFixB *** */
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXB_1Y();
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXB_2Y();
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXB_3Y();
@@ -334,7 +246,7 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXB_20Y();
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXB_25Y();
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXB_30Y();
-       /* *** EurliborSwapFixIFR *** */
+    /* *** EurliborSwapFixIFR *** */
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXIFR_10Y();
     boost::shared_ptr<QuantLib::Index> EURLIBORSWAPFIXIFR_30Y();
     /* *** EuriborSwapFixIFR *** */
@@ -342,6 +254,7 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXIFR_5Y();
     boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXIFR_10Y();
     boost::shared_ptr<QuantLib::Index> EURIBORSWAPFIXIFR_30Y();
+
 }
 
 #endif

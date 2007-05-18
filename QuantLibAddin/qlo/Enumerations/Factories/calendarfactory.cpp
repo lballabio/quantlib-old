@@ -17,12 +17,10 @@
 
 #include <oh/ohdefines.hpp>
 #include <boost/regex.hpp>
-// temp? fix - #include typefactory.hp instead of calendarfactory.hpp
-//#include <qlo/Factories/calendarfactory.hpp>
-#include <qlo/typefactory.hpp>
+#include <qlo/Enumerations/Factories/calendarfactory.hpp>
 #include <set>
 
-namespace QuantLibAddin {
+namespace ObjectHandler {
 
     /* 
     Calendar factory - accept a string, and return either a
@@ -80,7 +78,7 @@ namespace QuantLibAddin {
         static boost::regex jointCalendarID(
             "((?:JOINHOLIDAYS)|(?:JOINBUSINESSDAYS))\\((.+?),(.+?)(?:,(.+?))?(?:,(.+))?\\)");
         boost::smatch m; 
-        QL_REQUIRE(boost::regex_match(idStrip, m, jointCalendarID), 
+        OH_REQUIRE(boost::regex_match(idStrip, m, jointCalendarID), 
             "the string '" << idOriginal << "' is not a valid joint calendar identifier");
 
         // Derive the inputs to the JointCalendar constructor.  
@@ -109,7 +107,7 @@ namespace QuantLibAddin {
 
         // if the list of calendars contained duplicates, 
         // we may end up with just one value, which is invalid
-        QL_REQUIRE(calendarIdSet.size() > 1, "the string '" << idOriginal << 
+        OH_REQUIRE(calendarIdSet.size() > 1, "the string '" << idOriginal << 
             "' is not a valid joint calendar identifier");
 
         /*
@@ -152,7 +150,7 @@ namespace QuantLibAddin {
             // would have been detected earlier in parseID(), and the case
             // below is just a sanity check.
             default:
-                QL_FAIL("JointCalendar constructor expects 2, 3, or 4 "
+                OH_FAIL("JointCalendar constructor expects 2, 3, or 4 "
                     "calendars - " << numCals << " were provided");
         }
     }

@@ -24,7 +24,7 @@
 #endif
 
 #include <qlo/qladdindefines.hpp>
-#include <qlo/Factories/conundrumpricerfactory.hpp>
+#include <qlo/Enumerations/Factories/conundrumpricerfactory.hpp>
 #include <qlo/conundrumpricer.hpp>
 
 
@@ -35,7 +35,7 @@ namespace QuantLibAddin {
             const std::string& typeOfCmsCouponPricer,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
             const QuantLib::Handle<QuantLib::Quote>& meanReversion) {
-        libraryObject_ = Create<boost::shared_ptr<QuantLib::CmsCouponPricer> >()
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::CmsCouponPricer> >()
             (typeOfCmsCouponPricer, v, modelOfYieldCurve, meanReversion);
     }
 

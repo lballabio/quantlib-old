@@ -57,6 +57,7 @@ AC_CONFIG_FILES([
     gensrc/Makefile
     Makefile
     oh/Conversions/Makefile
+    oh/Enumerations/Makefile
     oh/Makefile
     ohxl/Makefile
     xlsdk/Makefile ])

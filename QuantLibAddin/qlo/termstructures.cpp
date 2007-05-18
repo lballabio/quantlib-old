@@ -24,7 +24,7 @@
 #include <oh/ohdefines.hpp>
 #include <qlo/termstructures.hpp>
 #include <qlo/ratehelpers.hpp>
-#include <qlo/Factories/termstructuresfactory.hpp>
+#include <qlo/Enumerations/Factories/termstructuresfactory.hpp>
 
 #include <ql/time/date.hpp>
 #include <ql/math/interpolations/cubicspline.hpp>
@@ -74,7 +74,7 @@ namespace QuantLibAddin {
         //        dayCounter,
         //        1.0e-6));
 
-        libraryObject_ = Create<boost::shared_ptr<QuantLib::YieldTermStructure> >()
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::YieldTermStructure> >()
             (traitsID, interpolatorID, nDays, calendar, rateHelpersQL, dayCounter);
 
         /*

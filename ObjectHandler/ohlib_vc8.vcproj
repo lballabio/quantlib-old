@@ -401,6 +401,26 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Enumerations"
+			>
+			<File
+				RelativePath=".\oh\Enumerations\enumregistry.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\oh\Enumerations\enumregistry.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\oh\Enumerations\registry.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\oh\Enumerations\typefactory.hpp"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

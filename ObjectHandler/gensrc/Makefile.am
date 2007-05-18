@@ -4,7 +4,7 @@ GENSRC_METADATA :=  metadata/Addins/doxygen.xml \
                     metadata/Addins/excel.xml \
                     metadata/Addins/loop.xml \
                     metadata/Addins/valueobjects.xml \
-                    metadata/Functions/demo.xml \
+                    metadata/Functions/enumerations.xml \
                     metadata/Functions/garbagecollection.xml \
                     metadata/Functions/logging.xml \
                     metadata/Functions/ohutils.xml \

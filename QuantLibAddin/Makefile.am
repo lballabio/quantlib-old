@@ -2,7 +2,9 @@
 SUBDIRS = \
     gensrc \
     qlo/Conversions \
-    qlo/Factories \
+    qlo/Enumerations/Constructors \
+    qlo/Enumerations/Factories \
+    qlo/Enumerations/Register \
     qlo/Loop \
     qlo/ValueObjects \
     qlo \

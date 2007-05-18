@@ -384,6 +384,22 @@
 				</File>
 			</Filter>
 			<Filter
+				Name="Enumerations"
+				Filter="">
+				<File
+					RelativePath="..\..\oh\Enumerations\enumregistry.cpp">
+				</File>
+				<File
+					RelativePath="..\..\oh\Enumerations\enumregistry.hpp">
+				</File>
+				<File
+					RelativePath="..\..\oh\Enumerations\registry.hpp">
+				</File>
+				<File
+					RelativePath="..\..\oh\Enumerations\typefactory.hpp">
+				</File>
+			</Filter>
+			<Filter
 				Name="Utilities"
 				Filter="">
 				<File
@@ -446,6 +462,9 @@
 			<Filter
 				Name="Functions"
 				Filter="">
+				<File
+					RelativePath="..\Functions\enumerations.cpp">
+				</File>
 				<File
 					RelativePath="..\Functions\export.hpp">
 				</File>
@@ -531,6 +550,9 @@
 				</File>
 				<File
 					RelativePath="..\Register\register_all.hpp">
+				</File>
+				<File
+					RelativePath="..\Register\register_enumerations.cpp">
 				</File>
 				<File
 					RelativePath="..\Register\register_garbagecollection.cpp">

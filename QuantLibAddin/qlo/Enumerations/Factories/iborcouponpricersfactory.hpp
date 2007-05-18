@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,12 +19,11 @@
 #ifndef qla_iborcouponpricerfactory_hpp
 #define qla_iborcouponpricerfactory_hpp
 
-#include <qlo/typefactory.hpp>
+#include <oh/Enumerations/typefactory.hpp>
 #include <ql/cashflows/couponpricer.hpp> 
 
-namespace QuantLibAddin {
+namespace ObjectHandler {
 
-     /* *** IborCouponPricer *** */
     typedef boost::shared_ptr<QuantLib::IborCouponPricer>(*IborCouponPricerConstructor)( 
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& capletVol);
 
@@ -36,9 +35,10 @@ namespace QuantLibAddin {
                 const std::string& IborCouponPricerID,
                 const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& capletVol) {
             IborCouponPricerConstructor iborCouponPricerConstructor =
-                (IborCouponPricerConstructor)(getType(IborCouponPricerID));
+                reinterpret_cast<IborCouponPricerConstructor>(getType(IborCouponPricerID));
             return iborCouponPricerConstructor(capletVol);
         }
+        using RegistryManager<QuantLib::IborCouponPricer, EnumClassRegistry>::registerType;
     };
 
  }

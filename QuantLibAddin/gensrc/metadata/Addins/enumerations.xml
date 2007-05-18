@@ -1,14 +1,11 @@
-<Addin name='enumerations'>
+<Addin name='Enumerations'>
 
   <loadRules>false</loadRules>
-  
-  <copyright>
-    Copyright (C) 2004, 2005, 2006 Eric Ehlers
-  </copyright>
 
   <Buffers>
     <Buffer name='bufferEnumTypes' fileName='stub.enum.types' local='true'/>
     <Buffer name='bufferEnumClasses' fileName='stub.enum.classes' local='true'/>
+    <Buffer name='bufferEnumPairs' fileName='stub.enum.pairs' local='true'/>
   </Buffers>
 
 </Addin>

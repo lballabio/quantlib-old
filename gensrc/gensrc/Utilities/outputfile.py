@@ -27,8 +27,8 @@ import re
 # constants
 
 HEADER = """\
-// this file generated automatically by %s
-// editing this file manually is not recommended\n\n"""
+// This file was generated automatically by %s.
+// Editing this file manually is not recommended.\n\n"""
 UPDATE_MSG = '  file %-65s - %10s'
 
 class OutputFile(object):

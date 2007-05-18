@@ -19,7 +19,7 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/interpolation.hpp>
-#include <qlo/Factories/interpolationsfactory.hpp>
+#include <qlo/Enumerations/Factories/interpolationsfactory.hpp>
 
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
@@ -40,7 +40,7 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Real>& x,
         const std::vector<QuantLib::Real>& y)
     : Interpolation(x,y) {
-        libraryObject_ = Create<boost::shared_ptr<QuantLib::Interpolation> >()
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::Interpolation> >()
             (linearInterpolationType, x_.begin(), x_.end(), y_.begin());
         boost::dynamic_pointer_cast<QuantLib::Interpolation>(
             libraryObject_)->update();

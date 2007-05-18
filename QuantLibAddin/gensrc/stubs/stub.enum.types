@@ -3,6 +3,7 @@
 #endif
 
 #include <qlo/qladdindefines.hpp>
+#include <oh/Enumerations/typefactory.hpp>
 #include <ql/prices.hpp>
 #include <ql/time/calendars/all.hpp>
 #include <ql/cashflows/conundrumpricer.hpp>
@@ -21,61 +22,17 @@
 #include <qlo/interpolation.hpp>
 #include <qlo/interpolation2D.hpp>
 #include <qlo/ratehelpers.hpp>
-#include <qlo/typeregistry.hpp>
-
-#define REG_ENUM(Type, Body) \
-    { \
-        TypeMapPtr typeMap(new TypeMap); \
-        Body \
-        allTypesMap[typeid(Type).name()] = typeMap; \
-    }
-
-#define MAP(str_id, constructor) \
-    (*typeMap)[str_id] = new constructor
-
-#define UNREG_ENUM(Type) \
-    { \
-        TypeMapPtr typeMap = allTypesMap[typeid(Type).name()]; \
-        TypeMap::const_iterator iter_current, iter_previous; \
-        iter_current = typeMap->begin(); \
-        while (iter_current != typeMap->end()) { \
-            iter_previous = iter_current; \
-            iter_current++; \
-            std::string key = iter_previous->first; \
-            Type *type = static_cast<Type*>(iter_previous->second); \
-            delete type; \
-            typeMap->erase(key); \
-        } \
-    }
 
 namespace QuantLibAddin {
 
-    template <>
-    std::vector<std::string> Registry<std::string>::getAllRegisteredTypes() const {
-        std::vector<std::string> ret;
-        for(std::map<std::string, TypeMapPtr>::const_iterator i = allTypesMap.begin(); i != allTypesMap.end();++i)
-            ret.push_back(i->first);
-        return ret;
+    void registerEnumeratedTypes() {
+    
+%(codeRegister)s    }
+
+    void unregisterEnumeratedTypes() {
+    
+%(codeUnregister)s    
     }
 
-    template <>
-    std::vector<std::string> Registry<std::string>::getTypeElements(const std::string& id) const {
-        std::map<std::string, TypeMapPtr>::const_iterator map = allTypesMap.find(id);
-        QL_REQUIRE(map != allTypesMap.end(), "Registry::getTypeElements: invalid enum id: " + id);
-        std::vector<std::string> ret;
-        for(TypeMap::const_iterator i = map->second->begin(); i != map->second->end(); ++i)
-            ret.push_back(i->first);
-        return ret;
-    }
-
-    EnumTypeRegistry::EnumTypeRegistry() {
-
-%s
-    }
-
-    EnumTypeRegistry::~EnumTypeRegistry() {
-
-%s
-    }
 }
 

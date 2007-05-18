@@ -21,7 +21,7 @@
 #include <qlo/interpolation2D.hpp>
 #include <ql/math/interpolations/bilinearinterpolation.hpp>
 #include <ql/math/interpolations/bicubicsplineinterpolation.hpp>
-#include <qlo/Factories/interpolationsfactory.hpp>
+#include <qlo/Enumerations/Factories/interpolationsfactory.hpp>
 
 namespace QuantLibAddin {
 
@@ -41,7 +41,7 @@ namespace QuantLibAddin {
             ") does not match number of columns in the data matrix ("
             << dataMatrix_.columns() << ")");
 
-        libraryObject_ = Create<boost::shared_ptr<QuantLib::Interpolation2D> >()
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::Interpolation2D> >()
             (interpolation2DType, x_.begin(), x_.end(), y_.begin(), y_.end(), dataMatrix_);
 
     }

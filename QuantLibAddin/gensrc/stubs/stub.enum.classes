@@ -2,27 +2,14 @@
     #include <qlo/config.hpp>
 #endif
 
-#include <qlo/enumclassctors.hpp>
-
-#define REG_ENUM(Type, Body) \
-    { \
-        TypeMapPtr typeMap(new TypeMap); \
-        Body \
-        allTypesMap[typeid(Type).name()] = typeMap; \
-    }
-
-#define MAP(str_id, constructor) \
-    (*typeMap)[str_id] = (void*) constructor
+#include <qlo/Enumerations/Constructors/enumeratedclasses.hpp>
+#include <qlo/Enumerations/Factories/all.hpp>
 
 namespace QuantLibAddin {
 
-    EnumCurveRegistry::EnumCurveRegistry() {
-
-%s    }
-
-    EnumClassRegistry::EnumClassRegistry() {
-
-%s    }
+    void registerEnumeratedClasses() {
+    
+%(buffer)s    }
 
 }
 

@@ -21,7 +21,7 @@
 #endif
 
 #include <qlo/payoffs.hpp>
-#include <qlo/Factories/payoffsfactory.hpp>
+#include <qlo/Enumerations/Factories/payoffsfactory.hpp>
 
 namespace QuantLibAddin {
 
@@ -31,10 +31,10 @@ namespace QuantLibAddin {
             const QuantLib::Real strike,
             const QuantLib::Real thirdParameter) {
         if (thirdParameter==QuantLib::Null<QuantLib::Real>())
-            libraryObject_ = Create<boost::shared_ptr<QuantLib::Payoff> >()(
+            libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::Payoff> >()(
                 payoffID, optionType, strike);
         else
-            libraryObject_ = Create<boost::shared_ptr<QuantLib::Payoff> >()(
+            libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::Payoff> >()(
                 payoffID, optionType, strike, thirdParameter);
     }
 

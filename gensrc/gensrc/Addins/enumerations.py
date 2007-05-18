@@ -32,11 +32,22 @@ class Enumerations(addin.Addin):
     # class variables
     #############################################
 
-    ENUM_END   =      '        );\n\n'
-    ENUM_LINE  =      '            MAP("%(string)s", %(value)s);\n'
-    ENUM_CURVE_LINE = '            MAP(KeyPair("%(traits)s", "%(interpolator)s"), %(value)s);\n'
-    ENUM_START =      '        REG_ENUM(%s,\n'
-    ENUM_UNREG =      '        UNREG_ENUM(%s)\n'
+    ENUM_REGISTER = '''\
+        {
+            ObjectHandler::Create<%(type)s> create;
+%(buffer)s        }\n\n'''
+    ENUM_UNREGISTER = '''\
+        ObjectHandler::Create<%(type)s>().unregisterTypes();\n'''
+    ENUM_LINE = '''\
+            create.registerType("%(string)s", new %(constructor)s);\n'''
+    ENUM_REGISTER2 = '''\
+        {
+            ObjectHandler::Create<boost::shared_ptr<%(type)s> > create;
+%(buffer)s        }\n\n'''
+    ENUM_LINE2 = '''\
+            create.registerType("%(string)s", reinterpret_cast<void*>(%(constructor)s));\n'''
+    ENUM_LINE3 = '''\
+            create.registerType(ObjectHandler::KeyPair("%(id1)s", "%(id2)s"), reinterpret_cast<void*>(%(value)s));\n'''
 
     #############################################
     # public interface
@@ -47,64 +58,80 @@ class Enumerations(addin.Addin):
 
         self.enumerationList_ = enumerationList
 
-        log.Log.instance().logMessage(' begin generating enumerations ...')
+        log.Log.instance().logMessage(' begin generating Enumerations ...')
         self.generateEnumeratedTypes()
         self.generateEnumeratedClasses()
-        log.Log.instance().logMessage(' done generating enumerations.')
-
-    def generateEnumeratedType(self, enumeratedTypeGroup):
-        """generate source code for enumerated type group."""
-        ret = Enumerations.ENUM_START % enumeratedTypeGroup.type()
-        for enumeratedType in enumeratedTypeGroup.enumeratedTypes():
-            ret += Enumerations.ENUM_LINE % {
-                'string' : enumeratedType.string(),
-                'value' : enumeratedType.constructor() }
-        ret += Enumerations.ENUM_END
-        return ret
-
-    def generateEnumeratedClass(self, enumeratedClassGroup):
-        """generate source code for enumerated class group."""
-        ret = Enumerations.ENUM_START % enumeratedClassGroup.className()
-        for enumeratedClass in enumeratedClassGroup.enumeratedClasses():
-            ret += Enumerations.ENUM_LINE % {
-                'string' : enumeratedClass.string(),
-                'value' : enumeratedClass.value() }
-        ret += Enumerations.ENUM_END
-        return ret
-
-    def generateEnumeratedCurve(self, enumeratedCurveGroup):
-        """generate source code for enumerated curve group."""
-        ret = Enumerations.ENUM_START % enumeratedCurveGroup.className()
-        for enumeratedCurve in enumeratedCurveGroup.enumeratedCurves():
-            ret += Enumerations.ENUM_CURVE_LINE % {
-                'traits' : enumeratedCurve.traits(),
-                'interpolator' : enumeratedCurve.interpolator(),
-                'value' : enumeratedCurve.value() }
-        ret += Enumerations.ENUM_END
-        return ret
+        self.generateEnumeratedPairs()
+        log.Log.instance().logMessage(' done generating Enumerations.')
 
     def generateEnumeratedTypes(self):
         """generate source file for enumerated types."""
-        buf1 = ''   # code to register the enumeration
-        buf2 = ''   # code to unregister the enumeration
+        codeRegister = ''       # code to register the enumeration
+        codeUnregister = ''     # code to unregister the enumeration
         for enumeratedTypeGroup in self.enumerationList_.enumeratedTypeGroups():
-            buf1 += self.generateEnumeratedType(enumeratedTypeGroup)
-            buf2 += Enumerations.ENUM_UNREG % enumeratedTypeGroup.type()
-        buf = self.bufferEnumTypes_.text() % (buf1, buf2)
-        fileName = environment.config().libFullPath() + 'enumtyperegistry.cpp'
+            codeRegister += self.generateEnumeratedType(enumeratedTypeGroup)
+            codeUnregister += Enumerations.ENUM_UNREGISTER % { 
+                'type' : enumeratedTypeGroup.type() }
+        buffer = self.bufferEnumTypes_.text() % {
+                'codeRegister' : codeRegister,
+                'codeUnregister' : codeUnregister }
+        fileName = environment.config().libFullPath() + '/Enumerations/Register/register_types.cpp'
         outputfile.OutputFile(self, fileName, 
-            self.enumerationList_.enumeratedTypeCopyright(), buf)
+            self.enumerationList_.enumeratedTypeCopyright(), buffer)
+
+    def generateEnumeratedType(self, enumeratedTypeGroup):
+        """generate source code for enumerated type group."""
+        buffer = ''
+        for enumeratedType in enumeratedTypeGroup.enumeratedTypes():
+            buffer += Enumerations.ENUM_LINE % {
+                'string' : enumeratedType.string(),
+                'constructor' : enumeratedType.constructor() }
+        return Enumerations.ENUM_REGISTER % {
+                'type' : enumeratedTypeGroup.type(),
+                'buffer' : buffer }
 
     def generateEnumeratedClasses(self):
-        """generate source file for enumerated classes."""
-        curveBuffer = ''
-        for enumeratedCurveGroup in self.enumerationList_.enumeratedCurveGroups():
-            curveBuffer += self.generateEnumeratedCurve(enumeratedCurveGroup)
-        classBuffer = ''
+        """generate source file for enumerated types."""
+        buffer = ''   # code to register the enumeration
         for enumeratedClassGroup in self.enumerationList_.enumeratedClassGroups():
-            classBuffer += self.generateEnumeratedClass(enumeratedClassGroup)
-        buf = self.bufferEnumClasses_.text() % (curveBuffer, classBuffer)
-        fileName = environment.config().libFullPath() + 'enumclassregistry.cpp'
-        fileEnum = outputfile.OutputFile(self, fileName,
+            buffer += self.generateEnumeratedClass(enumeratedClassGroup)
+        buf = self.bufferEnumClasses_.text() % {
+                'buffer' : buffer }
+        fileName = environment.config().libFullPath() + '/Enumerations/Register/register_classes.cpp'
+        outputfile.OutputFile(self, fileName, 
             self.enumerationList_.enumeratedClassCopyright(), buf)
+
+    def generateEnumeratedClass(self, enumeratedClassGroup):
+        """generate source code for enumerated type group."""
+        buffer = ''
+        for enumeratedType in enumeratedClassGroup.enumeratedClasses():
+            buffer += Enumerations.ENUM_LINE2 % {
+                'string' : enumeratedType.string(),
+                'constructor' : enumeratedType.value() }
+        return Enumerations.ENUM_REGISTER2 % {
+                'type' : enumeratedClassGroup.className(),
+                'buffer' : buffer }
+
+    def generateEnumeratedPairs(self):
+        """generate source file for enumerated types."""
+        buffer = ''   # code to register the enumeration
+        for enumeratedPairGroup in self.enumerationList_.enumeratedPairGroups():
+            buffer += self.generateEnumeratedPair(enumeratedPairGroup)
+        buf = self.bufferEnumPairs_.text() % {
+                'buffer' : buffer }
+        fileName = environment.config().libFullPath() + '/Enumerations/Register/register_pairs.cpp'
+        outputfile.OutputFile(self, fileName, 
+            self.enumerationList_.enumeratedPairCopyright(), buf)
+
+    def generateEnumeratedPair(self, enumeratedPairGroup):
+        """generate source code for enumerated type group."""
+        buffer = ''
+        for enumeratedPair in enumeratedPairGroup.enumeratedPairs():
+            buffer += Enumerations.ENUM_LINE3 % {
+                'id1' : enumeratedPair.id1(),
+                'id2' : enumeratedPair.id2(),
+                'value' : enumeratedPair.value() }
+        return Enumerations.ENUM_REGISTER2 % {
+                'type' : enumeratedPairGroup.className(),
+                'buffer' : buffer }
 

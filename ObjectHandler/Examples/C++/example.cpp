@@ -1,6 +1,6 @@
 
 /*!
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -47,20 +47,20 @@ int main() {
 
     try {
         // construct some objects and store them in the object handler
-        boost::shared_ptr < ObjectHandler::Object > accountObject1(new AccountObject(
+        boost::shared_ptr<ObjectHandler::Object> accountObject1(new AccountObject(
             123456789,
-            "savings"));
+            Account::Savings));
         accountObject1->setProperties(
             boost::shared_ptr<ObjectHandler::ValueObject>(new AccountValueObject(
-            "account1", 123456789, "savings")));
+            "account1", 123456789, "Savings")));
         ObjectHandler::Repository::instance().storeObject("account1", accountObject1);
 
-        boost::shared_ptr < ObjectHandler::Object > accountObject2(new AccountObject(
+        boost::shared_ptr<ObjectHandler::Object> accountObject2(new AccountObject(
             987654321,
-            "current"));
+            Account::Current));
         accountObject2->setProperties(
             boost::shared_ptr<ObjectHandler::ValueObject>(new AccountValueObject(
-            "account2", 987654321, "current")));
+            "account2", 987654321, "Current")));
         ObjectHandler::Repository::instance().storeObject("account2", accountObject2);
 
         // high level interrogation
@@ -73,9 +73,9 @@ int main() {
 
         // low-level interrogation
         ObjectHandler::logMessage("low-level interrogation - after update");
-        OH_GET_REFERENCE( accountObjectUnderlying, "account2", AccountObject, Account ) \
+        OH_GET_REFERENCE(accountObjectUnderlying, "account2", AccountObject, Account)
         std::ostringstream msg;
-        msg << "result of getBalance on underlying = " << accountObjectUnderlying->getBalance();
+        msg << "result of getBalance on underlying = " << accountObjectUnderlying->balance();
         ObjectHandler::logMessage(msg.str());
 
         ObjectHandler::Repository::instance().deleteObject("account2");

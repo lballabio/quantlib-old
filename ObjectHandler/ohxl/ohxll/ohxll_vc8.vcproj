@@ -295,6 +295,26 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Enumerations"
+				>
+				<File
+					RelativePath="..\..\oh\Enumerations\enumregistry.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\Enumerations\enumregistry.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\Enumerations\registry.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\Enumerations\typefactory.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="xl"
@@ -415,6 +435,10 @@
 				Name="Functions"
 				>
 				<File
+					RelativePath="..\Functions\enumerations.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\Functions\export.hpp"
 					>
 				</File>
@@ -460,6 +484,10 @@
 				</File>
 				<File
 					RelativePath="..\Register\register_all.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Register\register_enumerations.cpp"
 					>
 				</File>
 				<File

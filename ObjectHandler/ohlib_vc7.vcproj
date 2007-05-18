@@ -375,6 +375,22 @@
 			</File>
 		</Filter>
 		<Filter
+			Name="Enumerations"
+			Filter="">
+			<File
+				RelativePath="oh\Enumerations\enumregistry.cpp">
+			</File>
+			<File
+				RelativePath="oh\Enumerations\enumregistry.hpp">
+			</File>
+			<File
+				RelativePath="oh\Enumerations\registry.hpp">
+			</File>
+			<File
+				RelativePath="oh\Enumerations\typefactory.hpp">
+			</File>
+		</Filter>
+		<Filter
 			Name="Utilities"
 			Filter="">
 			<File

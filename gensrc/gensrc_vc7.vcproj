@@ -124,7 +124,7 @@
 				RelativePath="gensrc\Enumerations\enumeratedclasses.py">
 			</File>
 			<File
-				RelativePath="gensrc\Enumerations\enumeratedcurves.py">
+				RelativePath="gensrc\Enumerations\enumeratedpairs.py">
 			</File>
 			<File
 				RelativePath="gensrc\Enumerations\enumeratedtypes.py">

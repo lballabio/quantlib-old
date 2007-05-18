@@ -17,19 +17,19 @@
 
 
 #include <qlo/pricingengines.hpp>
-#include <qlo/Factories/pricingenginesfactory.hpp>
+#include <qlo/Enumerations/Factories/pricingenginesfactory.hpp>
 #include <ql/pricingengines/blackscholescalculator.hpp>
 
 namespace QuantLibAddin {
 
     PricingEngine::PricingEngine(const std::string &engineID, const long& timeSteps)
     {
-        libraryObject_ = Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
     }
 
     PricingEngine::PricingEngine(const std::string &engineID)
     {
-        libraryObject_ = Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, 1);
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, 1);
     }
 
     BlackSwaptionEngine::BlackSwaptionEngine(

@@ -23,7 +23,7 @@
 #include <qlo/index.hpp>
 #include <qlo/couponvectors.hpp>
 
-#include <ql/CashFlows/rangeaccrual.hpp>
+#include <ql/cashflows/rangeaccrual.hpp>
 
 namespace QuantLibAddin {
      

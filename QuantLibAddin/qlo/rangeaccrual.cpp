@@ -20,7 +20,7 @@
 #endif
 
 #include <qlo/rangeaccrual.hpp>
-#include <ql/CashFlows/rangeaccrual.hpp>
+#include <ql/cashflows/rangeaccrual.hpp>
 
 
 namespace QuantLibAddin {

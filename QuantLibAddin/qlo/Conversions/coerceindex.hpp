@@ -20,8 +20,8 @@
 
 #include <oh/Conversions/coerce.hpp>
 #include <oh/exception.hpp>
-#include <qlo/typefactory.hpp>
-#include <qlo/Factories/indexfactory.hpp>
+#include <oh/Enumerations/typefactory.hpp>
+#include <qlo/Enumerations/Factories/indexfactory.hpp>
 
 namespace QuantLibAddin {
 
@@ -34,10 +34,10 @@ namespace QuantLibAddin {
             const std::string &in,
             boost::shared_ptr<LibraryClass> &out) {
 
-        if (!QuantLibAddin::Create<boost::shared_ptr<QuantLib::Index> >().checkType(in))
+        if (!ObjectHandler::Create<boost::shared_ptr<QuantLib::Index> >().checkType(in))
             return false;
         boost::shared_ptr<QuantLib::Index> indexPointer = 
-            QuantLibAddin::Create<boost::shared_ptr<QuantLib::Index> >()(in);
+            ObjectHandler::Create<boost::shared_ptr<QuantLib::Index> >()(in);
 
         out = boost::dynamic_pointer_cast<LibraryClass>(indexPointer);
         OH_REQUIRE(out, "Unable to convert enumerated class with ID " << in <<

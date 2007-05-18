@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -27,9 +27,7 @@
 #ifndef qla_utilities_hpp
 #define qla_utilities_hpp
 
-// this include directive is required for the Addins as the enumeration
-// functionality is included in the utilities category
-#include <qlo/typeregistry.hpp>
+#include <string>
 
 namespace QuantLibAddin {
 

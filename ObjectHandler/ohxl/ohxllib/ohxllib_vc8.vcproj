@@ -404,6 +404,26 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Enumerations"
+				>
+				<File
+					RelativePath="..\..\oh\Enumerations\enumregistry.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\Enumerations\enumregistry.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\Enumerations\registry.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\Enumerations\typefactory.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="xl"
@@ -416,27 +436,7 @@
 					>
 				</File>
 				<File
-					RelativePath="..\Conversions\validations.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Conversions\validations.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\Conversions\matrixtooper.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Conversions\scalartooper.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Conversions\scalartooper.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Conversions\vectortooper.hpp"
 					>
 				</File>
 				<File
@@ -455,10 +455,34 @@
 					RelativePath="..\Conversions\opertovector.hpp"
 					>
 				</File>
+				<File
+					RelativePath="..\Conversions\scalartooper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Conversions\scalartooper.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Conversions\validations.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Conversions\validations.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Conversions\vectortooper.hpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Functions"
 				>
+				<File
+					RelativePath="..\Functions\enumerations.cpp"
+					>
+				</File>
 				<File
 					RelativePath="..\Functions\export.hpp"
 					>
@@ -497,6 +521,10 @@
 				</File>
 				<File
 					RelativePath="..\Register\register_all.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Register\register_enumerations.cpp"
 					>
 				</File>
 				<File

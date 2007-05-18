@@ -1,0 +1,125 @@
+<Category name='enumerations'>
+  <description>enumerations</description>
+  <displayName>Enumerations</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <includes>
+    <include>oh/Enumerations/enumregistry.hpp</include>
+  </includes>
+
+  <copyright>
+    Copyright (C) 2007 Eric Ehlers
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='ohListEnumeratedTypes'>
+      <description>list supported enumerated types</description>
+      <alias>ObjectHandler::EnumTypeRegistry::instance().getAllRegisteredTypes</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohEnumeratedType'>
+      <description>return the members of a given enumerated type</description>
+      <alias>ObjectHandler::EnumTypeRegistry::instance().getTypeElements</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='enumId'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>name of enumerated type</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohListEnumeratedClasses'>
+      <description>list supported enumerated types</description>
+      <alias>ObjectHandler::EnumClassRegistry::instance().getAllRegisteredTypes</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohEnumeratedClass'>
+      <description>return the members of a given enumerated type</description>
+      <alias>ObjectHandler::EnumClassRegistry::instance().getTypeElements</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='enumId'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>name of enumerated type</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohListEnumeratedPairs'>
+      <description>list supported enumerated types</description>
+      <alias>ObjectHandler::EnumPairRegistry::instance().getAllRegisteredTypes</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohEnumeratedPair'>
+      <description>return the members of a given enumerated type</description>
+      <alias>ObjectHandler::EnumPairRegistry::instance().getTypeElements</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='enumId'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>name of enumerated type</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+
+</Category>

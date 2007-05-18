@@ -83,7 +83,7 @@
 				>
 			</File>
 			<File
-				RelativePath="metadata\Enumerations\enumeratedcurves.xml"
+				RelativePath="metadata\Enumerations\enumeratedpairs.xml"
 				>
 			</File>
 			<File
@@ -328,6 +328,10 @@
 			</File>
 			<File
 				RelativePath="stubs\stub.enum.classes"
+				>
+			</File>
+			<File
+				RelativePath="stubs\stub.enum.pairs"
 				>
 			</File>
 			<File

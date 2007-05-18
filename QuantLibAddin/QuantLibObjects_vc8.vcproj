@@ -329,71 +329,91 @@
 		<Filter
 			Name="Enumerations"
 			>
-			<File
-				RelativePath="qlo\enumclassctors.cpp"
+			<Filter
+				Name="Register"
 				>
-			</File>
-			<File
-				RelativePath="qlo\enumclassctors.hpp"
+				<File
+					RelativePath=".\qlo\Enumerations\Register\register_all.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Register\register_all.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Register\register_classes.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Register\register_pairs.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Register\register_types.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Constructors"
 				>
-			</File>
-			<File
-				RelativePath="qlo\enumclassregistry.cpp"
-				>
-			</File>
-			<File
-				RelativePath="qlo\enumtyperegistry.cpp"
-				>
-			</File>
-			<File
-				RelativePath="qlo\typefactory.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qlo\typeregistry.hpp"
-				>
-			</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Constructors\enumeratedclasses.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Constructors\enumeratedclasses.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Constructors\enumeratedpairs.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Constructors\enumeratedpairs.hpp"
+					>
+				</File>
+			</Filter>
 			<Filter
 				Name="Factories"
 				>
 				<File
-					RelativePath=".\qlo\Factories\calendarfactory.cpp"
+					RelativePath=".\qlo\Enumerations\Factories\all.hpp"
 					>
 				</File>
 				<File
-					RelativePath=".\qlo\Factories\calendarfactory.hpp"
+					RelativePath=".\qlo\Enumerations\Factories\calendarfactory.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\qlo\Factories\conundrumpricerfactory.hpp"
+					RelativePath=".\qlo\Enumerations\Factories\calendarfactory.hpp"
 					>
 				</File>
 				<File
-					RelativePath=".\qlo\Factories\euriborhandlefactory.hpp"
+					RelativePath=".\qlo\Enumerations\Factories\conundrumpricerfactory.hpp"
 					>
 				</File>
 				<File
-					RelativePath=".\qlo\Factories\iborcouponpricersfactory.hpp"
+					RelativePath=".\qlo\Enumerations\Factories\iborcouponpricersfactory.hpp"
 					>
 				</File>
 				<File
-					RelativePath=".\qlo\Factories\indexfactory.hpp"
+					RelativePath=".\qlo\Enumerations\Factories\indexfactory.hpp"
 					>
 				</File>
 				<File
-					RelativePath=".\qlo\Factories\interpolationsfactory.hpp"
+					RelativePath=".\qlo\Enumerations\Factories\interpolationsfactory.hpp"
 					>
 				</File>
 				<File
-					RelativePath=".\qlo\Factories\payoffsfactory.hpp"
+					RelativePath=".\qlo\Enumerations\Factories\payoffsfactory.hpp"
 					>
 				</File>
 				<File
-					RelativePath=".\qlo\Factories\pricingenginesfactory.hpp"
+					RelativePath=".\qlo\Enumerations\Factories\pricingenginesfactory.hpp"
 					>
 				</File>
 				<File
-					RelativePath=".\qlo\Factories\termstructuresfactory.hpp"
+					RelativePath=".\qlo\Enumerations\Factories\termstructuresfactory.hpp"
 					>
 				</File>
 			</Filter>

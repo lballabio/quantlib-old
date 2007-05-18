@@ -99,7 +99,9 @@ AC_CONFIG_FILES([
     gensrc/Makefile
     Makefile
     qlo/Conversions/Makefile
-    qlo/Factories/Makefile
+    qlo/Enumerations/Constructors/Makefile
+    qlo/Enumerations/Factories/Makefile
+    qlo/Enumerations/Register/Makefile
     qlo/Loop/Makefile
     qlo/ValueObjects/Makefile
     qlo/Makefile])

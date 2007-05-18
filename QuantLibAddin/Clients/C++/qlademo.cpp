@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -48,8 +48,11 @@ int main() {
     }
 
     try {
-        // instantiate the objecthandler singleton
+        // Instantiate the ObjectHandler Repository
         ObjectHandler::Repository oh;
+
+		// Initialize the Enumeration Registry
+		registerEnumerations();
 
         logMessage(qlVersion());
         logMessage(OBJHANDLER_VERSION);

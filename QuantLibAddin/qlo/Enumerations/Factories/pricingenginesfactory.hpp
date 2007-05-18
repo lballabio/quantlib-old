@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,16 +19,12 @@
 #ifndef qla_pricingenginesfactory_hpp
 #define qla_pricingenginesfactory_hpp
 
-
-#include <qlo/typefactory.hpp>
+#include <oh/Enumerations/typefactory.hpp>
 #include <ql/pricingengine.hpp>
 #include <qlo/pricingengines.hpp>
 
-namespace QuantLibAddin {
+namespace ObjectHandler {
 
-
-
-    /* *** PricingEngine *** */
     typedef boost::shared_ptr<QuantLib::PricingEngine>(*PricingEngineConstructor)(
         const long&);
 
@@ -39,11 +35,12 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLib::PricingEngine> operator()(const std::string& engineID,
                                                               const long& timeSteps) {
             // FIXME move this validation into QL
-            QL_REQUIRE(timeSteps>0, "timeSteps must be positive");  
+            OH_REQUIRE(timeSteps>0, "timeSteps must be positive");  
             PricingEngineConstructor pricingEngineConstructor =
-                (PricingEngineConstructor)(getType(engineID));
+                reinterpret_cast<PricingEngineConstructor>(getType(engineID));
             return pricingEngineConstructor(timeSteps);
         }
+        using RegistryManager<QuantLib::PricingEngine, EnumClassRegistry>::registerType;
     };
 
  }

@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,10 +19,10 @@
 #ifndef qla_interpolationsfactory_hpp
 #define qla_interpolationsfactory_hpp
 
-#include <qlo/typefactory.hpp>
+#include <oh/Enumerations/typefactory.hpp>
 #include <ql/math/interpolations/interpolation2d.hpp>
 
-namespace QuantLibAddin {
+namespace ObjectHandler {
 
     /* *** Linear 1D Interpolation *** */
     typedef const std::vector<double>::const_iterator dbl_itr;
@@ -37,9 +37,10 @@ namespace QuantLibAddin {
                 const std::string& interpolationID,
                 dbl_itr& xBegin, dbl_itr& xEnd, dbl_itr& yBegin) {
             InterpolationConstructor interpolationConstructor =
-                (InterpolationConstructor)(getType(interpolationID));
+                reinterpret_cast<InterpolationConstructor>(getType(interpolationID));
             return interpolationConstructor(xBegin, xEnd, yBegin);
         }
+        using RegistryManager<QuantLib::Interpolation, EnumClassRegistry>::registerType;
     };
 
     /* *** Interpolation2D *** */
@@ -55,9 +56,10 @@ namespace QuantLibAddin {
                 dbl_itr& xBegin, dbl_itr& xEnd, dbl_itr& yBegin, dbl_itr& yEnd,
                 const QuantLib::Matrix& zData) {
             Interpolation2DConstructor interpolation2DConstructor =
-                (Interpolation2DConstructor)(getType(interpolationID));
+                reinterpret_cast<Interpolation2DConstructor>(getType(interpolationID));
             return interpolation2DConstructor(xBegin, xEnd, yBegin, yEnd, zData);
         }
+        using RegistryManager<QuantLib::Interpolation2D, EnumClassRegistry>::registerType;
     };
  }
 

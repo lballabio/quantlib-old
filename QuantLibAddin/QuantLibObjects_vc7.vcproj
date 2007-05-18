@@ -333,54 +333,75 @@
 		<Filter
 			Name="Enumerations"
 			Filter="">
-			<File
-				RelativePath=".\qlo\Factories\calendarfactory.cpp">
-			</File>
-			<File
-				RelativePath=".\qlo\Factories\calendarfactory.hpp">
-			</File>
-			<File
-				RelativePath=".\qlo\Factories\conundrumpricerfactory.hpp">
-			</File>
-			<File
-				RelativePath="qlo\enumclassctors.cpp">
-			</File>
-			<File
-				RelativePath="qlo\enumclassctors.hpp">
-			</File>
-			<File
-				RelativePath="qlo\enumclassregistry.cpp">
-			</File>
-			<File
-				RelativePath="qlo\enumtyperegistry.cpp">
-			</File>
-			<File
-				RelativePath=".\qlo\Factories\euriborhandlefactory.hpp">
-			</File>
-			<File
-				RelativePath=".\qlo\Factories\iborcouponpricersfactory.hpp">
-			</File>
-			<File
-				RelativePath=".\qlo\Factories\indexfactory.hpp">
-			</File>
-			<File
-				RelativePath=".\qlo\Factories\interpolationsfactory.hpp">
-			</File>
-			<File
-				RelativePath=".\qlo\Factories\payoffsfactory.hpp">
-			</File>
-			<File
-				RelativePath=".\qlo\Factories\pricingenginesfactory.hpp">
-			</File>
-			<File
-				RelativePath=".\qlo\Factories\termstructuresfactory.hpp">
-			</File>
-			<File
-				RelativePath="qlo\typefactory.hpp">
-			</File>
-			<File
-				RelativePath="qlo\typeregistry.hpp">
-			</File>
+			<Filter
+				Name="Constructors"
+				Filter="">
+				<File
+					RelativePath=".\qlo\Enumerations\Constructors\enumeratedclasses.cpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Constructors\enumeratedclasses.hpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Constructors\enumeratedpairs.cpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Constructors\enumeratedpairs.hpp">
+				</File>
+			</Filter>
+			<Filter
+				Name="Factories"
+				Filter="">
+				<File
+					RelativePath=".\qlo\Enumerations\Factories\all.hpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Factories\calendarfactory.cpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Factories\calendarfactory.hpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Factories\conundrumpricerfactory.hpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Factories\iborcouponpricersfactory.hpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Factories\indexfactory.hpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Factories\interpolationsfactory.hpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Factories\payoffsfactory.hpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Factories\pricingenginesfactory.hpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Factories\termstructuresfactory.hpp">
+				</File>
+			</Filter>
+			<Filter
+				Name="Register"
+				Filter="">
+				<File
+					RelativePath=".\qlo\Enumerations\Register\register_all.cpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Register\register_all.hpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Register\register_classes.cpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Register\register_pairs.cpp">
+				</File>
+				<File
+					RelativePath=".\qlo\Enumerations\Register\register_types.cpp">
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="ValueObjects"
@@ -970,6 +991,9 @@
 		</File>
 		<File
 			RelativePath="qlo\processes.hpp">
+		</File>
+		<File
+			RelativePath=".\qlo\qladdin.hpp">
 		</File>
 		<File
 			RelativePath="qlo\qladdindefines.hpp">

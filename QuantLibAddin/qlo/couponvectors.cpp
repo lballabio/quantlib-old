@@ -25,7 +25,7 @@
 
 #include <qlo/couponvectors.hpp>
 #include <qlo/termstructures.hpp>
-#include <qlo/Factories/iborcouponpricersfactory.hpp>
+#include <qlo/Enumerations/Factories/iborcouponpricersfactory.hpp>
 
 #include <ql/cashflow.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
@@ -174,7 +174,7 @@ namespace QuantLibAddin {
     IborCouponPricer::IborCouponPricer(
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& v,
             const std::string& typeOfIborCouponPricer) {
-        libraryObject_ = Create<boost::shared_ptr<QuantLib::IborCouponPricer> >()
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::IborCouponPricer> >()
             (typeOfIborCouponPricer, v);
     }
 

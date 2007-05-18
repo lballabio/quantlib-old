@@ -17,7 +17,7 @@
 
 from gensrc.Enumerations import enumeratedtypes
 from gensrc.Enumerations import enumeratedclasses
-from gensrc.Enumerations import enumeratedcurves
+from gensrc.Enumerations import enumeratedpairs
 from gensrc.Serialization import xmlreader
 from gensrc.Utilities import common
 
@@ -32,6 +32,9 @@ class EnumerationList(object):
 
     def enumeratedClassCopyright(self):
         return self.enumeratedClassCopyright_
+
+    def enumeratedPairCopyright(self):
+        return self.enumeratedPairCopyright_
 
     def enumeratedTypeGroups(self):
         """serve up enumerated type objects alphabetically by name."""
@@ -49,10 +52,10 @@ class EnumerationList(object):
         for key in self.enumeratedClassGroupKeys_:
             yield self.enumeratedClassGroups_[key]
 
-    def enumeratedCurveGroups(self):
-        """serve up enumerated curve objects alphabetically by name."""
-        for key in self.enumeratedCurveGroupKeys_:
-            yield self.enumeratedCurveGroups_[key]
+    def enumeratedPairGroups(self):
+        """serve up enumerated pair objects alphabetically by name."""
+        for key in self.enumeratedPairGroupKeys_:
+            yield self.enumeratedPairGroups_[key]
 
     #############################################
     # private member functions
@@ -68,6 +71,7 @@ class EnumerationList(object):
         xmlEnumClasses.serializeObjectDict(self, enumeratedclasses.EnumeratedClassGroup)
         xmlEnumClasses.serializeProperty(self, common.ENUM_CLASS_COPYRIGHT)
 
-        xmlEnumCurves = xmlreader.XmlReader('metadata/Enumerations/enumeratedcurves')
-        xmlEnumCurves.serializeObjectDict(self, enumeratedcurves.EnumeratedCurveGroup)
+        xmlEnumPairs = xmlreader.XmlReader('metadata/Enumerations/enumeratedpairs')
+        xmlEnumPairs.serializeObjectDict(self, enumeratedpairs.EnumeratedPairGroup)
+        xmlEnumPairs.serializeProperty(self, common.ENUM_PAIR_COPYRIGHT)
 

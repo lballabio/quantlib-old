@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
  Copyright (C) 2004 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
@@ -25,7 +25,7 @@
     #error using an old version of Boost, please update.
 #endif
 
-#include <oh/objecthandler.hpp>
+#include <oh/ohdefines.hpp>
 #if OBJHANDLER_HEX_VERSION < 0x000800f0
     #error using an old version of ObjectHandler, please update.
 #endif

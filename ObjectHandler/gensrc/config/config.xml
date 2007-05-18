@@ -6,6 +6,7 @@
   <libRootDirectory>oh</libRootDirectory>
 
   <categoryNames>
+    <categoryName>enumerations</categoryName>
     <categoryName>garbagecollection</categoryName>
     <categoryName>logging</categoryName>
     <categoryName>ohutils</categoryName>

@@ -2,6 +2,7 @@
 SUBDIRS = \
     gensrc \
     oh/Conversions \
+    oh/Enumerations \
     oh \
     ohxl \
     xlsdk \

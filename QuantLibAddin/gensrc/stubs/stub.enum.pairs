@@ -1,0 +1,15 @@
+#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
+    #include <qlo/config.hpp>
+#endif
+
+#include <oh/Enumerations/registry.hpp>
+#include <qlo/Enumerations/Constructors/enumeratedpairs.hpp>
+
+namespace QuantLibAddin {
+
+    void registerEnumeratedCurves() {
+    
+%(buffer)s    }
+
+}
+

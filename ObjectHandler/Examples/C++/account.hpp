@@ -19,32 +19,47 @@
 #define account_hpp
 
 #include <oh/objecthandler.hpp>
+#include <oh/valueobject.hpp>
 
 class Account {
 public:
-    Account(const int &accountNumber,
-        const std::string &accountType,
+
+    enum Type { Savings, Current };
+
+    Account(const int &number,
+        const Type &type,
         const int &balance = 0)
-        : accountNumber_(accountNumber), accountType_(accountType), balance_(balance) {}
-    void setBalance(const int &balance) {
-        balance_ = balance;
-    }
-    const int &getBalance() {
-        return balance_;
-    }
+        : number_(number), type_(type), balance_(balance) {}
+
+    void setBalance(const int &balance) { balance_ = balance; }
+    const int &balance() { return balance_; }
+    std::string type();
+
 private:
-    int accountNumber_;
-    std::string accountType_;
+    int number_;
+    Type type_;
     int balance_;
 };
+
+inline std::ostream& operator<<(std::ostream& out, Account::Type type) {
+    switch (type) {
+      case Account::Current:
+        return out << "Current";
+      case Account::Savings:
+        return out << "Savings";
+      default:
+        OH_FAIL("unknown account type");
+    }
+}
 
 class AccountObject : public ObjectHandler::LibraryObject<Account> {
 public:
     AccountObject(
-        const int &accountNumber,
-        const std::string &accountType);
+        const int &number,
+        const Account::Type &type);
     void setBalance(const int &balance);
-    const int &getBalance();
+    const int &balance();
+    std::string type();
 };
 
 typedef boost::shared_ptr<AccountObject> AccountObjectPtr;
@@ -53,16 +68,16 @@ class AccountValueObject : public ObjectHandler::ValueObject {
 public:
     AccountValueObject(
         const std::string &objectID,
-        const int &accountNumber,
-        const std::string &accountType) 
-        : objectID_(objectID), accountNumber_(accountNumber), accountType_(accountType) {}
+        const int &number,
+        const std::string &type) 
+        : objectID_(objectID), number_(number), type_(type) {}
     std::vector<std::string> getPropertyNames() const;
     boost::any getProperty(const std::string& name) const;
 protected:
     static const char* mPropertyNames[];
     std::string objectID_;
-    int accountNumber_;
-    std::string accountType_;
+    int number_;
+    std::string type_;
 };
 
 #endif

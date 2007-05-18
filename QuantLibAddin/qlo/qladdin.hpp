@@ -30,7 +30,6 @@
 #include <qlo/couponvectors.hpp>
 #include <qlo/date.hpp>
 #include <qlo/dividendvanillaoption.hpp>
-#include <qlo/enumclassctors.hpp>
 #include <qlo/europeanoption.hpp>
 #include <qlo/exercise.hpp>
 #include <qlo/forwardrateagreement.hpp>
@@ -66,8 +65,6 @@
 #include <qlo/swaptionvolstructure.hpp>
 #include <qlo/symmetricschurdecomposition.hpp>
 #include <qlo/termstructures.hpp>
-#include <qlo/typefactory.hpp>
-#include <qlo/typeregistry.hpp>
 #include <qlo/utilities.hpp>
 #include <qlo/vanillaoption.hpp>
 #include <qlo/vanillaswap.hpp>
@@ -75,6 +72,8 @@
 #include <qlo/volatilities.hpp>
 
 #include <qlo/ValueObjects/vo_all.hpp>
+#include <qlo/Enumerations/Register/register_all.hpp>
+#include <qlo/Enumerations/Factories/all.hpp>
 
 #endif
 
