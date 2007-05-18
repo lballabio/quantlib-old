@@ -1,2 +1,6 @@
 For a rundown of changes per QuantLibXL release please visit
 http://www.quantlibxl.org/history.html
+
+- added SpreadedSwaptionVolatilityStructure class in QuantLib
+- added SpreadedSmileSection class in QuantLib
+- exported qlSpreadedSwaptionVolatilityStructure 
