@@ -150,19 +150,31 @@ CRISTINA
 
 ---
 CHIARA
-- zspread/yield inversion
-- zerospreadedtermstructure: daycounter bug
-- IFR fixing calendar problem
-- verify bond in Testing and trunk (with Cristina)
-- cds options (with Giorgio)
-- with Giorgio: training on Bonds' Workbooks
-- Z-spread function, for zero coupon bond valuation (2.5d|10dd|WIP)
+- add and validate new bonds in all the environments
+- debug cmsrate bond constructor for cms bond paying once in arrears (0d|1d)
+- verify bond in Testing and Trunk (with Cristina)
+- current cpn as a method of bond (a trader's request) (0.5d|1.5dd|WIP)
+ *created qlCurrentCoupon
+ *add test in the testsuite in assetswap.cpp
+ *quick test againts BBG's values
+- IFR fixing calendar problem (Done)
+ *see email dated 18th May 
+- Z-spread function, for zero coupon bond valuation (3.0d|10dd|WIP)
  *lehman's documentation
  *created new workbook to replicate market practice (YAF, YAS on BBG) use of z-spread
+ *created qlBondCleanPriceFromZSpread()
+ *double check against YAF, YAS on BBG
+ *add test in test suite
+- cds options (with Giorgio) (1d-30dd)
+ *analysis of the trader's workbook
 - markedata\BloombergFeed (Maurizio Pietrini)
  *reviewed all the worksheets regarding market data feed and timeseries with Maurizio (0.5d|0.5d|Done)
  *waiting for BBG worksheets from Maurizion (time to start 2/3 weeks- time to complete 1/2 weeks)
-- current cpn as a method of bond (a trader's request)
+- ControlPanel.xls (0d|0.5d|)
+ *add checks for load bonds action
+- zspread/yield inversion
+- zerospreadedtermstructure: daycounter bug
+- with Giorgio: training on Bonds' Workbooks
 - bonds' workbooks integration with K+/Gatemate
 - Digital Bond contructor
 - Multicallable bond constructor
