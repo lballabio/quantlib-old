@@ -18,7 +18,7 @@
 #include <ql/math/interpolations/cubicspline.hpp>
 #include <ql/math/matrixutilities/pseudosqrt.hpp>
 #include <ql/math/optimization/endcriteria.hpp>
-#include <ql/termstructures/volatilities/cmsmarket.hpp>
+#include <ql/termstructures/volatilities/swaptionvol/cmsmarket.hpp>
 #include <qlo/interpolation.hpp>
 #include <qlo/interpolation2D.hpp>
 #include <qlo/ratehelpers.hpp>

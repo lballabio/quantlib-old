@@ -6,8 +6,8 @@
     <include>qlo/index.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/quotes.hpp</include>
-    <include>ql/termstructures/volatilities/capletconstantvol.hpp</include>
-    <include>ql/termstructures/volatilities/capstripper.hpp</include>
+    <include>ql/termstructures/volatilities/capletvol/capletconstantvol.hpp</include>
+    <include>ql/termstructures/volatilities/capletvol/capstripper.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
   </includes>
   <copyright>

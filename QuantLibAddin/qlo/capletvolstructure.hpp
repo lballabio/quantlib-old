@@ -19,7 +19,7 @@
 #define qla_capletvolstructure_hpp
 
 #include <oh/objecthandler.hpp>
-#include <ql/termstructures/volatilities/capletvolatilitiesstructures.hpp>
+#include <ql/termstructures/volatilities/capletvol/capletvolatilitiesstructures.hpp>
 #include <ql/termstructures/capvolstructures.hpp>
 #include <qlo/termstructures.hpp>
 #include <ql/termstructures/volatilities/smilesection.hpp>

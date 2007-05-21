@@ -26,8 +26,8 @@
 #include <qlo/smilesection.hpp>
 
 #include <ql/indexes/swapindex.hpp>
-#include <ql/termstructures/volatilities/swaptionvolcube.hpp>
-#include <ql/termstructures/volatilities/spreadedswaptionvolstructure.hpp>
+#include <ql/termstructures/volatilities/swaptionvol/swaptionvolcube.hpp>
+#include <ql/termstructures/volatilities/swaptionvol/spreadedswaptionvolstructure.hpp>
 
 namespace QuantLib {
     class QuantLib::EndCriteria;
