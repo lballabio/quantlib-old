@@ -60,22 +60,27 @@ NANDO
 
 ---
 K
+over 3 days:
+test & bug fix	50%
+SA		33%
+cap stripping	17%
+
+** sottolineare aggiornamento di news.txt 
 ** Calibrations: UpperBoundary calculation -> root not bracketed
-** Reuters destination cell rather than range
 ** Rt Update
-** pricing cap/floor
 STAND-BY
 - Citrix access
-    -> ok seconda licenza per accedere a testing.
-       In attesa di conferma che non ci sono costi (Di Cillo)
-    -> $+ ok
-    -> INFL ok
-    -> BGM manca (2a) utenza di accesso
-    -> CW richiesto link
-- Sensitivity Analysis: (0.5d/5w)
-	applied to cms book
-	create new .xls with NPVs of 4 cms books
-	test newly released version
+    -> $+ 	ok
+    -> INFL 	ok
+    -> BGM 	manca (2a) utenza di accesso
+    -> CW 	richiesto link
+- Rt destination cell (done)
+- coveredWarrants.xls (done)
+	- checked prices vs Mx
+- Sensitivity Analysis: (1d/5w)
+	applied to cms book 
+	create new .xls with NPVs of 4 cms books (done)
+	test newly released version 
 - foglio di Clerici per contribuire le cap forw/forw vol su Mx (1.5d/5d)
 	confronto forw/forw vols foglio clerici vs nostro cap stripper (0.5d/1.5d)
 	sostituzione di tutte le funzioni vba con ql()
@@ -107,12 +112,6 @@ STAND-BY
 	testa la smoothness della dorsale ATM con l'interpolazione lineare (0.5D/0.5D done)
 	CapStripper6MTestRepricing.xls: aggiungi (0.5D/0.5D done)
 	decidere se usare le interpolated vols da usare nel cap stripper
-- coveredWarrants.xls (2D/1w done)
-	- DONE check real time is OK -> 7 secs per recalc
-	- DONE gestione del primo periodo corto
-	- DONE qlMakeCapFloor() -> funziona solo per forward-start
-	- DONE punta a decorated objects
-	- DONE testing on Citrix
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
