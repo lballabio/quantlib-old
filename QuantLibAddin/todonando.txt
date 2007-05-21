@@ -65,9 +65,9 @@ NANDO
 
 ---
 K
+** Calibrations: UpperBoundary calculation -> root not bracketed
 ** Reuters destination cell rather than range
 ** Rt Update
-** Investigare problema calibrazione Beta 2Y (chiedere Giorgio)
 ** pricing cap/floor
 STAND-BY
 - Citrix access
