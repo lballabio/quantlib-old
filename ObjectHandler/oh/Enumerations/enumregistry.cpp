@@ -27,6 +27,20 @@ namespace ObjectHandler {
     // EnumTypeRegistry
 
     EnumTypeRegistry::AllTypeMap enumTypeMap_;
+    EnumTypeRegistry *EnumTypeRegistry::instance_;
+
+    EnumTypeRegistry::EnumTypeRegistry() {
+        instance_ = this;
+    }
+
+    EnumTypeRegistry::~EnumTypeRegistry() {
+        instance_ = 0;
+    }
+
+    EnumTypeRegistry &EnumTypeRegistry::instance() {
+        OH_REQUIRE(instance_, "Attempt to reference uninitialized EnumTypeRegistry object");
+        return *instance_;
+    }
 
     void EnumTypeRegistry::registerType(const std::string &mapID, const std::string &typeID, void *type) const {
         registerTypeImpl(enumTypeMap_, mapID, typeID, type);
@@ -51,6 +65,20 @@ namespace ObjectHandler {
     // EnumClassRegistry
 
     EnumClassRegistry::AllTypeMap enumClassMap_;
+    EnumClassRegistry *EnumClassRegistry::instance_;
+
+    EnumClassRegistry::EnumClassRegistry() {
+        instance_ = this;
+    }
+
+    EnumClassRegistry::~EnumClassRegistry() {
+        instance_ = 0;
+    }
+
+    EnumClassRegistry &EnumClassRegistry::instance() {
+        OH_REQUIRE(instance_, "Attempt to reference uninitialized EnumClassRegistry object");
+        return *instance_;
+    }
 
     void EnumClassRegistry::registerType(const std::string &mapID, const std::string &typeID, void *type) const {
         registerTypeImpl(enumClassMap_, mapID, typeID, type);
@@ -71,6 +99,20 @@ namespace ObjectHandler {
     // EnumPairRegistry
 
     EnumPairRegistry::AllTypeMap enumClassPairMap_;
+    EnumPairRegistry *EnumPairRegistry::instance_;
+
+    EnumPairRegistry::EnumPairRegistry() {
+        instance_ = this;
+    }
+
+    EnumPairRegistry::~EnumPairRegistry() {
+        instance_ = 0;
+    }
+
+    EnumPairRegistry &EnumPairRegistry::instance() {
+        OH_REQUIRE(instance_, "Attempt to reference uninitialized EnumPairRegistry object");
+        return *instance_;
+    }
 
     void EnumPairRegistry::registerType(const std::string &mapID, const KeyPair &typeID, void *type) const {
         registerTypeImpl(enumClassPairMap_, mapID, typeID, type);

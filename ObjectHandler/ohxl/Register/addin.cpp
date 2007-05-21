@@ -1,6 +1,6 @@
 
 /* 
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,8 +23,14 @@
 #include <ohxl/Utilities/xlutilities.hpp>
 #include <sstream>
 
-// instantiate the object handler singleton
+// Instantiate the ObjectHandler Repository
 ObjectHandler::RepositoryXL objectHandler;
+// Instantiate the Enumerated Type Registry
+ObjectHandler::EnumTypeRegistry enumTypeRegistry;
+// Instantiate the Enumerated Class Registry
+ObjectHandler::EnumClassRegistry enumClassRegistry;
+// Instantiate the Enumerated Pair Registry
+ObjectHandler::EnumPairRegistry enumPairRegistry;
 
 DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;

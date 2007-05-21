@@ -44,8 +44,14 @@
 #endif
 
 #ifdef XLL_STATIC
-    // Instantiate the ObjectHandler Repository
-    ObjectHandler::RepositoryXL oh;
+// Instantiate the ObjectHandler Repository
+ObjectHandler::RepositoryXL objectHandler;
+// Instantiate the Enumerated Type Registry
+ObjectHandler::EnumTypeRegistry enumTypeRegistry;
+// Instantiate the Enumerated Class Registry
+ObjectHandler::EnumClassRegistry enumClassRegistry;
+// Instantiate the Enumerated Pair Registry
+ObjectHandler::EnumPairRegistry enumPairRegistry;
 #endif
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {

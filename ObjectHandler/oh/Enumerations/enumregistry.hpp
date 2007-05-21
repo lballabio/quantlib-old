@@ -30,25 +30,50 @@
 namespace ObjectHandler {
 
     //! A concrete instantiation of the Registry class, for enumerated types.
-    class DLL_API EnumTypeRegistry : public Registry<std::string>, public Singleton<EnumTypeRegistry> {
-        friend class Singleton<EnumTypeRegistry>;
+    class DLL_API EnumTypeRegistry : public Registry<std::string> {
     public:
+        //! \name Structors and static members
+        //@{
+        //! Constructor - initialize the singleton.
+        EnumTypeRegistry();
+        //! Destructor - de-initialize the singleton.
+        virtual ~EnumTypeRegistry();
+        //! Client applications access the global object via a call to Repository::instance().
+        static EnumTypeRegistry &instance();
+        //@}
+
         virtual void registerType(const std::string &mapID, const std::string &typeID, void *type) const;
         virtual const AllTypeMap& getAllTypesMap() const;
         virtual std::vector<std::string> getAllRegisteredTypes() const;
         virtual std::vector<std::string> getTypeElements(const std::string &id) const;
         void deleteTypeMap(const std::string &mapID);
 
+    private:
+        //! A pointer to the Registry instance, used to support the Singleton pattern.
+        static EnumTypeRegistry *instance_;
     };
 
     //! A concrete instantiation of the Registry class, for enumerated classes.
-    class DLL_API EnumClassRegistry : public Registry<std::string>, public Singleton<EnumClassRegistry> {
-        friend class Singleton<EnumClassRegistry>;
+    class DLL_API EnumClassRegistry : public Registry<std::string> {
     public:
+        //! \name Structors and static members
+        //@{
+        //! Constructor - initialize the singleton.
+        EnumClassRegistry();
+        //! Destructor - de-initialize the singleton.
+        virtual ~EnumClassRegistry();
+        //! Client applications access the global object via a call to Repository::instance().
+        static EnumClassRegistry &instance();
+        //@}
+
         virtual void registerType(const std::string &mapID, const std::string &typeID, void *type) const;
         virtual const AllTypeMap& getAllTypesMap() const;
         virtual std::vector<std::string> getAllRegisteredTypes() const;
         virtual std::vector<std::string> getTypeElements(const std::string &id) const;
+
+    private:
+        //! A pointer to the Registry instance, used to support the Singleton pattern.
+        static EnumClassRegistry *instance_;
     };
 
     //! A concrete instantiation of the Registry class, for "pairs".
@@ -56,13 +81,26 @@ namespace ObjectHandler {
             std::pair<std::string, std::string>
         This additional flexibility is required for some application domains.
     */
-    class DLL_API EnumPairRegistry : public Registry<KeyPair>, public Singleton<EnumPairRegistry> {
-        friend class Singleton<EnumPairRegistry>;
+    class DLL_API EnumPairRegistry : public Registry<KeyPair> {
     public:
+        //! \name Structors and static members
+        //@{
+        //! Constructor - initialize the singleton.
+        EnumPairRegistry();
+        //! Destructor - de-initialize the singleton.
+        virtual ~EnumPairRegistry();
+        //! Client applications access the global object via a call to Repository::instance().
+        static EnumPairRegistry &instance();
+        //@}
+
         virtual void registerType(const std::string &mapID, const KeyPair &typeID, void *type) const;
         virtual const AllTypeMap& getAllTypesMap() const;
         virtual std::vector<std::string> getAllRegisteredTypes() const;
         virtual std::vector<std::string> getTypeElements(const std::string &id) const;
+
+    private:
+        //! A pointer to the Registry instance, used to support the Singleton pattern.
+        static EnumPairRegistry *instance_;
     };
 
 }

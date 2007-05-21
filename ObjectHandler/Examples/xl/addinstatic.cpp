@@ -32,8 +32,14 @@
 #endif
 #include <sstream>
 
-// instantiate objecthandler repository
-ObjectHandler::RepositoryXL oh;
+// Instantiate the ObjectHandler Repository
+ObjectHandler::RepositoryXL objectHandler;
+// Instantiate the Enumerated Type Registry
+ObjectHandler::EnumTypeRegistry enumTypeRegistry;
+// Instantiate the Enumerated Class Registry
+ObjectHandler::EnumClassRegistry enumClassRegistry;
+// Instantiate the Enumerated Pair Registry
+ObjectHandler::EnumPairRegistry enumPairRegistry;
 
 DLLEXPORT int xlAutoOpen() {
     static XLOPER xDll;
