@@ -31,20 +31,18 @@ GENERAL
 
 ---
 NANDO
-- move termstructures in subfolders
 - handle incomplete Reuters menu
 - check beta2Y sensitivity
 - handle already loaded addin
 - special handling of reuters/bloomberg addins
 - use Handle in SwaptionVolCubeChecks
 - manage auto-open macro problem -> propose:
-	Application.EnableEvents=True in qlxl.xla/ThisWorkbook
+  Application.EnableEvents=True in qlxl.xla/ThisWorkbook
 - TS time interface
 - recreating object quotes...
 - Higham covariance bug + review rank reduction
 - create relinkableHandle, then in ControlPanel only use linkTo
 - Instruments subfolder
-- termstructures/volatilities subfolders
 - null strike -> atm strike
 - vol term structure refactoring
 - joint calendar
@@ -55,7 +53,8 @@ NANDO
 - Risk, Wilmott papers (REMIND: VERIFICARE COPIE DISPERSE)
 - period algebra
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
-- refactor abcd vol file, adding more unary_functions for blackVol and covariance
+- refactor abcd vol file, adding more unary_functions for blackVol and
+  covariance
 - implement abcdinterpolation
 
 ---
@@ -65,7 +64,7 @@ test & bug fix	50%
 SA		33%
 cap stripping	17%
 
-** sottolineare aggiornamento di news.txt 
+** sottolineare aggiornamento di news.txt
 ** Calibrations: UpperBoundary calculation -> root not bracketed
 ** Rt Update
 STAND-BY
@@ -78,9 +77,9 @@ STAND-BY
 - coveredWarrants.xls (done)
 	- checked prices vs Mx
 - Sensitivity Analysis: (1d/5w)
-	applied to cms book 
+	applied to cms book
 	create new .xls with NPVs of 4 cms books (done)
-	test newly released version 
+	test newly released version
 - foglio di Clerici per contribuire le cap forw/forw vol su Mx (1.5d/5d)
 	confronto forw/forw vols foglio clerici vs nostro cap stripper (0.5d/1.5d)
 	sostituzione di tutte le funzioni vba con ql()
@@ -109,42 +108,44 @@ STAND-BY
   	atm backbone: CapStripper3MTestSmoothness.xls
 - 6M cap stripper: (1.5D/1w)
 	atm backbone: CapStripper6MTestSmoothness.xls (0.5D/0.5D done)
-	testa la smoothness della dorsale ATM con l'interpolazione lineare (0.5D/0.5D done)
+	testa la smoothness della dorsale ATM con l'interpolazione lineare
+	(0.5D/0.5D done)
 	CapStripper6MTestRepricing.xls: aggiungi (0.5D/0.5D done)
 	decidere se usare le interpolated vols da usare nel cap stripper
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
-- manual feeds: CalibrationParametersFeed partially updated to live/overwrite logic
+- manual feeds: CalibrationParametersFeed partially updated to live/overwrite
+  logic
 
 ---
 CRISTINA
-- sensitivity analysis                                                  (0D/1W)
+- sensitivity analysis                                        (0D/1W)
 - calibrazioni quotidiane sul tronco
-- CMS calibration tests (Cristina and K)                                (1D/1D - DONE)
-- EOD valuation: completare analisi dei nuovi deal                      (0.5D/0.5D - DONE)
-- debug qlCmsZeroLeg                                                    (0.5D/0.5D - DONE)
+- CMS calibration tests (Cristina and K)                      (1D/1D - DONE)
+- EOD valuation: completare analisi dei nuovi deal            (0.5D/0.5D - DONE)
+- debug qlCmsZeroLeg                                          (0.5D/0.5D - DONE)
 - testing that the manual procedure to set back/forward the evaluation
-  date returns the same results of the automatic procedure              (0D/1D)
-- new management of additional cashflows in Irs Cms book                (1D/1D - DONE)
+  date returns the same results of the automatic procedure   (0D/1D)
+- new management of additional cashflows in Irs Cms book     (1D/1D - DONE)
 - Cap Cms Book:
-  - pricing of Cms Cap without decomposition in Excel                   (To be discussed)
-  - new management of additional cashflows in Cap Cms book              (0D/1D - STAND-BY)
-- complete class digital coupon                                         (3D/1D)
+  - pricing of Cms Cap without decomposition in Excel        (To be discussed)
+  - new management of additional cashflows in Cap Cms book   (0D/1D - STAND-BY)
+- complete class digital coupon                              (3D/1D)
   - management of payoff with equal sign included (low priority)
-  - add the possibility of sub/over replication                         (0.5D/1D)
+  - add the possibility of sub/over replication              (0.5D/1D)
   - split optionRate() method in callOptionRate() and
-    putOptionRate()                                                     (0.5D/0.5D - DONE)
+    putOptionRate()                                          (0.5D/0.5D - DONE)
   - change signatures in DigitalCoupon constructor and in
-    DigitalLeg methods (from QL to QLXL)                                (0.5D/0.5D)
+    DigitalLeg methods (from QL to QLXL)                     (0.5D/0.5D)
 - change class CappedFlooredIborCoupon in order to add the
   possibility of adding/subracting call and put
-- digital coupon in call spread, add unit test                          (2D/2D)
-  - check call-put parity / check replication type                      (0.5D/0.5D - DONE)
-- create the digital leg and export it to QLXL                          (2D/0.5D - DONE)
-- better digital leg construction?                                      (To be discussed)
-- create a draft worksheet to price digital legs                        (0.5D/0.5D - DONE)
-- install VS in new pc                                                  (0D/1D - STAND-BY)
+- digital coupon in call spread, add unit test               (2D/2D)
+  - check call-put parity / check replication type           (0.5D/0.5D - DONE)
+- create the digital leg and export it to QLXL               (2D/0.5D - DONE)
+- better digital leg construction?                           (To be discussed)
+- create a draft worksheet to price digital legs             (0.5D/0.5D - DONE)
+- install VS in new pc                                       (0D/1D - STAND-BY)
 - market models: abcd for displaced vols (Chiara, Cristina, K)
 - fixing days in cashflow analisys                                      (FIXED)
 
@@ -158,18 +159,21 @@ CHIARA
  *add test in the testsuite in assetswap.cpp
  *quick test againts BBG's values
 - IFR fixing calendar problem (Done)
- *see email dated 18th May 
+ *see email dated 18th May
 - Z-spread function, for zero coupon bond valuation (3.0d|10dd|WIP)
  *lehman's documentation
- *created new workbook to replicate market practice (YAF, YAS on BBG) use of z-spread
+ *created new workbook to replicate market practice (YAF, YAS on BBG) use of
+  z-spread
  *created qlBondCleanPriceFromZSpread()
  *double check against YAF, YAS on BBG
  *add test in test suite
 - cds options (with Giorgio) (1d-30dd)
  *analysis of the trader's workbook
 - markedata\BloombergFeed (Maurizio Pietrini)
- *reviewed all the worksheets regarding market data feed and timeseries with Maurizio (0.5d|0.5d|Done)
- *waiting for BBG worksheets from Maurizion (time to start 2/3 weeks- time to complete 1/2 weeks)
+ *reviewed all the worksheets regarding market data feed and timeseries with
+  Maurizio (0.5d|0.5d|Done)
+ *waiting for BBG worksheets from Maurizion (time to start 2/3 weeks- time to
+  complete 1/2 weeks)
 - ControlPanel.xls (0d|0.5d|)
  *add checks for load bonds action
 - zspread/yield inversion
@@ -179,7 +183,8 @@ CHIARA
 - Digital Bond contructor
 - Multicallable bond constructor
 - review bond equivalent fo Reverse FRN
-- implement alternative version of bond instrument which should accept a leg object
+- implement alternative version of bond instrument which should accept a leg
+  object
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
 - market models: abcd for displaced vols (Chiara, Cristina, K)
@@ -191,10 +196,12 @@ FRANCOIS
 D testMultiStepCoterminalSwapsAndSwaptions failure (.5D/.5D)
 D serialization of market data (.5D/.5D)
 D Levenberg Marquardt bug (0.5D/0.5D)
-D investigate "root not bracketed" error message in cms calibration as in (0.5D/0.5D)
-  X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\CMS\MarketDataHistory\WorkbooksQl_FailRootBracketedNewtonSolver.zip
-D OH Wizard review: vector input, change in XML file structure to implement default values (0.5D/0.5D)
-D MM: different correlation structures (Rapisarda, Schoenmakers and Coffey)(5.5D/2D-5D) (To be reviewed)
+D investigate "root not bracketed" error message in cms calibration as in
+  (0.5D/0.5D) X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\CMS\MarketDataHistory\WorkbooksQl_FailRootBracketedNewtonSolver.zip
+D OH Wizard review: vector input, change in XML file structure to implement
+  default values (0.5D/0.5D)
+D MM: different correlation structures (Rapisarda, Schoenmakers and
+  Coffey)(5.5D/2D-5D) (To be reviewed)
 D integration framework refactoring (2D/2D)
 - conundrum pricer optimization (1D/2D)
 - notification chains pb (1D/3D)
@@ -203,37 +210,47 @@ D integration framework refactoring (2D/2D)
 	- use Levenberg optimizator
 	- move vol quotes from constructor(to be precised)
 - add SABR interpolation to the capstripper(to be precised)
-- refactor the method class (move Endcriteria as argument of the minimize) (done)
-- OH Wizard performance issue when the control panel is left opened(to be precised)
+- refactor the method class (move Endcriteria as argument of the minimize)
+  (done)
+- OH Wizard performance issue when the control panel is left opened(to be
+  precised)
 - To BE REVIEWED test abcd calibration
 - TO BE REVIEWED consolidate all multisteps in a single test
 - TO BE REVIEWED MultiStepSwaption
 - check sabr fit stability/accuracy for smilesections (.5D)
 - add atmRate to SmileSection base class (to be discussed)
-- review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls, CapStripperTest3M.xls. (to be precised)
+- review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls,
+  CapStripperTest3M.xls. (to be precised)
 
 ---
 GIORGIO (last update 16/5/2007)
 - verify single index calibration wbk and remove obsolete calibration wbks
 - CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando
-- WIP: test Levenberg-Marquardt in sabr interpolation  (shared with Marco, 2d/2d/WIP)
+- WIP: test Levenberg-Marquardt in sabr interpolation  (shared with Marco,
+  2d/2d/WIP)
   D QL: estend signature di SABRInterpolations and Swaptionvol1 (done)
   D check testsuite (done)
   D QLXL: export new signature (done)
-  D QLXL: update and test wkbs: swaptionvol1.xls and MultiIndexSingleMeanRevCalibration.xls (done)
+  D QLXL: update and test wkbs: swaptionvol1.xls and
+    MultiIndexSingleMeanRevCalibration.xls (done)
   WIP bug fixing for nested optimizations (shared also with Francois)
 - test Levenberg-Marquardt in abcd vol (0d/2d)
 D rename correctly Excel names of class qlSimultaneousCalibration() (1d/1d DONE)
 D fixed sabr parameters (1d/1d DONE)
-D arrichhita la test suite di sabrinterpolation (tutte le combinazioni di fixed/free guess, per diversi ottimizzatori) (0.5d/0.5d DONE)
-D adeguare RangeAccrual coupon alla gerarchia di Floating Rate coupon (1d/1d DONE)
-- WIP: digital coupon in call spread, add unit test (Marco, Giorgio and Cristina) (5d/7d)
+D arrichhita la test suite di sabrinterpolation (tutte le combinazioni di
+  fixed/free guess, per diversi ottimizzatori) (0.5d/0.5d DONE)
+D adeguare RangeAccrual coupon alla gerarchia di Floating Rate coupon (1d/1d
+  DONE)
+- WIP: digital coupon in call spread, add unit test (Marco, Giorgio and
+  Cristina) (5d/7d)
 D flat extrapolation of SABR parameters in vol cube (2d/2d DONE)
 - WIP ratchet Instrument C++ (shared with Marco) (3d/7d)
 - WIP range accrual coupon (con relativi test) (18d/30d)
-  - WIP create a workbook for range accrual under Workbooks\InterestRateDerivatives designing the workbook as done for CMS.xls
-D - WIP add unit test for range accrual (lowerB=0 and upperB=100->Floater, decreasing upperB, increasing lowerB) (2d/2d DONE)
+  - WIP create a workbook for range accrual under
+    Workbooks\InterestRateDerivatives designing the workbook as done for CMS.xls
+D - WIP add unit test for range accrual (lowerB=0 and upperB=100->Floater,
+    decreasing upperB, increasing lowerB) (2d/2d DONE)
 D - refactorize range accrual pricer (1d/1d DONE)
 WIP spreaded swaption vol structure (2d/5d/WIP)
 - spreaded caplet vol structure (0d/5d)
@@ -245,7 +262,8 @@ MARCO (last update 16/5/2007)
 - check optimizers:
   D: complete test in test suite (with Giorgio&Francois) (1d/2d/done)
   D: test Simplex (with Francois) (1.5d/1d)
-  D: check Simplex with GSL and refine termination criteria (with Francois) (1d/1d/done)
+  D: check Simplex with GSL and refine termination criteria (with Francois)
+     (1d/1d/done)
   D: test all code using Simplex (1d/1d/done)
   D: fix failing test in shortratemodels.cpp (1d/1d/done)
   D: test wkbs using simplex (1d/1d/ quasi-done):
@@ -257,14 +275,16 @@ MARCO (last update 16/5/2007)
   TBD: check export to excel and testing wkb (to be planned)
   TBD add more tests (multidimensional)
 - MM: corr hist extimation (after 21/5/2007)
-- pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)	(0.0/2d/WAITING FOR DIGITAL OPTIONS)
+- pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)
+  (0.0/2d/WAITING FOR DIGITAL OPTIONS)
 - Risk, Wilmott papers (0.0/1d/WAITING for Ferdinando)
 D Citrix:  (0.5d/0.5d/DONE)
   D verifica licenze accesso: individuato referente, -> Katiuscia
   D verifica accesso a $+ (ok)
 D Update bootstrapping algorithm to catch up changes in Mx curve (2d/3d/DONE)
   D introduce enumeration for Depos inclusion
-  D move selection of instruments from RateHelperSelection into spreadsheets (with Nando)
+  D move selection of instruments from RateHelperSelection into spreadsheets
+   (with Nando)
 - Inflation project:
   - Attività UAT (0/2w)
   - Programmazione prossime attività (0/2w?)
@@ -276,6 +296,8 @@ Eric
 - serialization
 - 2 DOF projects
 - JRisk
+- Launcher handling of Reuters/Bloomberg dlls
+- minimize Launcher data download
 - coerce from Frequency to Period
 - coerce from Period->Date to double/int
 - coerce from IMMcode to date
@@ -288,7 +310,8 @@ Eric
 - launcher issues
 - oh.chm
 - review native ohSplit on vector input to coerce from string to vector
-- why the error message doesn't disappear as soon as the cell is not in error anymore
+- why the error message doesn't disappear as soon as the cell is not in error
+  anymore
 - ohConcatenate, ohRange1D, ohRange2D
 - command (remove function SetEvaluationDate, etc?)
 - watch on
@@ -297,7 +320,8 @@ Eric
 - discount factors output is not col/row enabled
 - esporre ad excel i metodi commentati in payoff.xml
 - visitor pattern per 3rd parameter dei payoff
-- RtUpdate like approach for effective Quote, in order to avoid setting the same quote
+- RtUpdate like approach for effective Quote, in order to avoid setting the same
+  quote
 - Handle coercion to SwaptionVolDiscrete
 - freeze, unfreeze objects
 
