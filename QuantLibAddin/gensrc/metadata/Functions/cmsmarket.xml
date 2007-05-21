@@ -3,7 +3,7 @@
   <displayName>Cms Market</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
-    <include>ql/termstructures/volatilities/swaptionvol/cmsmarket.hpp</include>
+    <include>ql/termstructures/volatilities/swaption/cmsmarket.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
     <include>qlo/couponvectors.hpp</include>

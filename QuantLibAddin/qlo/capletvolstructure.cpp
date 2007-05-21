@@ -20,8 +20,8 @@
 #endif
 
 #include <qlo/capletvolstructure.hpp>
-#include <ql/termstructures/volatilities/capletvol/capletconstantvol.hpp>
-#include <ql/termstructures/volatilities/capletvol/capstripper.hpp>
+#include <ql/termstructures/volatilities/caplet/capletconstantvol.hpp>
+#include <ql/termstructures/volatilities/caplet/capstripper.hpp>
 
 namespace QuantLibAddin {
 
