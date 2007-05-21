@@ -19,6 +19,7 @@
 
 from gensrc.Utilities import utilities
 from gensrc.Categories import category
+from gensrc.Categories import exceptions
 from gensrc.Functions import supportedplatform
 from gensrc.Configuration import environment
 
@@ -49,6 +50,8 @@ class CategoryList(object):
 
         self.categoryDict_ = {}
         for categoryName in self.categoryNames_:
-            self.categoryDict_[categoryName] = \
-                utilities.serializeObject(category.Category, 'metadata/Functions/' + categoryName)
+            cat = utilities.serializeObject(category.Category, 'metadata/Functions/' + categoryName)
+            if self.categoryDict_.has_key(cat.name()):
+                raise exceptions.DuplicateNameException(cat.name())
+            self.categoryDict_[categoryName] = cat
 

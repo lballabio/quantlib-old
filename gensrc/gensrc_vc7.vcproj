@@ -106,6 +106,9 @@
 			<File
 				RelativePath="gensrc\Categories\categorylist.py">
 			</File>
+			<File
+				RelativePath="gensrc\Categories\exceptions.py">
+			</File>
 		</Filter>
 		<Filter
 			Name="Configuration"

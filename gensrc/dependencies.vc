@@ -14,6 +14,7 @@ CORE_IMPORT=$(GENSRC_DIR)\gensrc\Addins\addin.py \
             $(GENSRC_DIR)\gensrc\Addins\valueobjects.py \
             $(GENSRC_DIR)\gensrc\Categories\category.py \
             $(GENSRC_DIR)\gensrc\Categories\categorylist.py \
+            $(GENSRC_DIR)\gensrc\Categories\exceptions.py \
             $(GENSRC_DIR)\gensrc\Configuration\configuration.py \
             $(GENSRC_DIR)\gensrc\Configuration\environment.py \
             $(GENSRC_DIR)\gensrc\Enumerations\enumeratedclasses.py \
