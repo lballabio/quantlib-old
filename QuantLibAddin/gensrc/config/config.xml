@@ -21,6 +21,7 @@
     <categoryName>index</categoryName>
     <categoryName>instruments</categoryName>
     <categoryName>interpolation</categoryName>
+    <categoryName>leg</categoryName>
     <categoryName>marketmodels</categoryName>
     <categoryName>mathf</categoryName>
     <categoryName>ohfunctions</categoryName>

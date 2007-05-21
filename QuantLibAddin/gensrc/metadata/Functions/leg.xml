@@ -1,0 +1,241 @@
+<Category name='leg'>
+  <description>functions to construct and use Leg objects</description>
+  <displayName>Leg</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/couponvectors.hpp</include>
+    <include>qlo/conundrumpricer.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/capletvolstructure.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
+    Copyright (C) 2005 Aurelien Chanudet
+  </copyright>
+
+  <Functions>
+
+    <!-- Leg interface -->
+    <Member name='qlLegLastCouponRate' type='QuantLibAddin::Leg'>
+      <description>returns the last coupon rate (if any) for the given Leg object</description>
+      <libraryFunction>lastCouponRate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='settlementDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegCurrentCouponRate' type='QuantLibAddin::Leg'>
+      <description>returns the current coupon rate (if any) for the given Leg object</description>
+      <libraryFunction>currentCouponRate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='settlementDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegStartDate' type='QuantLibAddin::Leg'>
+      <description>Returns the start (i.e. first accrual) date for the given Leg object</description>
+      <libraryFunction>startDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegMaturityDate' type='QuantLibAddin::Leg'>
+      <description>Returns the maturity (i.e. last payment) date for the given Leg object</description>
+      <libraryFunction>startDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegNPV' type='QuantLibAddin::Leg'>
+      <description>Returns the net present value for the given Leg object</description>
+      <libraryFunction>npv</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve'  exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegBPS' type='QuantLibAddin::Leg'>
+      <description>Returns the basis point sensitivity for the given Leg object</description>
+      <libraryFunction>bps</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve'  exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegAtmRate' type='QuantLibAddin::Leg'>
+      <description>Returns the at-the-money rate for the given Leg object, i.e. the fixed rate for which an equivalent vector of fixed-rate cash flows would have the same NPV.</description>
+      <libraryFunction>atmRate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve'  exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegAnalysis' type='QuantLibAddin::Leg'>
+      <description>Returns the flow analysis for the given Leg object</description>
+      <libraryFunction>analysis</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegSetPricer' type='QuantLibAddin::Leg'>
+      <description>Set the coupon pricer at the given Leg object</description>
+      <libraryFunction>setPricer</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FloatingRateCouponPricer'>
+            <type>QuantLib::FloatingRateCouponPricer</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FloatingRate coupon pricer object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegSetPricers' type='QuantLibAddin::Leg'>
+      <description>Set the coupon pricer at the given Leg object</description>
+      <libraryFunction>setPricers</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FloatingRateCouponPricer'>
+            <type>QuantLib::FloatingRateCouponPricer</type>
+            <tensorRank>vector</tensorRank>
+            <description>FloatingRate coupon pricer object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+
+    <Constructor name='qlMultiPhaseLeg'>
+      <libraryFunction>MultiPhaseLeg</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='legIDs'>
+            <type>QuantLibAddin::Leg</type>
+            <tensorRank>vector</tensorRank>
+            <description>leg object IDs, one for each phase</description>
+          </Parameter>
+          <Parameter name='toBeSorted' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the CashFlows in the merged Leg must be sorted according to date/amount</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+
+</Category>

@@ -36,17 +36,12 @@ NANDO
 - check beta2Y sensitivity
 - handle already loaded addin
 - special handling of reuters/bloomberg addins
-- move leg in its own file:
-  rename ql/analisys.*pp
-  create qlo/leg
-  create leg.xml
+- use Handle in SwaptionVolCubeChecks
 - manage auto-open macro problem -> propose:
 	Application.EnableEvents=True in qlxl.xla/ThisWorkbook
 - TS time interface
 - recreating object quotes...
 - Higham covariance bug + review rank reduction
-- Higham covariance bug + review rank reduction
-- use Handle in SwaptionVolCubeChecks
 - create relinkableHandle, then in ControlPanel only use linkTo
 - Instruments subfolder
 - termstructures/volatilities subfolders

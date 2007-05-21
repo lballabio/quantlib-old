@@ -26,7 +26,7 @@
 #include <qlo/index.hpp>
 #include <oh/objecthandler.hpp>
 #include <qlo/schedule.hpp>
-#include <qlo/analysis.hpp>
+#include <qlo/flowanalysis.hpp>
 #include <qlo/couponvectors.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 

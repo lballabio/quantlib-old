@@ -470,6 +470,12 @@
 				RelativePath=".\qlo\ValueObjects\vo_interpolation.hpp">
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_leg.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_leg.hpp">
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_marketmodels.cpp">
 			</File>
 			<File
@@ -793,12 +799,6 @@
 			Name="CashFlows"
 			Filter="">
 			<File
-				RelativePath=".\qlo\analysis.cpp">
-			</File>
-			<File
-				RelativePath=".\qlo\analysis.hpp">
-			</File>
-			<File
 				RelativePath=".\qlo\conundrumpricer.cpp">
 			</File>
 			<File
@@ -809,6 +809,18 @@
 			</File>
 			<File
 				RelativePath="qlo\couponvectors.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\flowanalysis.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\flowanalysis.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\leg.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\leg.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\rangeaccrual.cpp">

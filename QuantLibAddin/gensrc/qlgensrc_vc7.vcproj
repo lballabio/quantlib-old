@@ -38,6 +38,9 @@
 				RelativePath="metadata\Addins\doxygen.xml">
 			</File>
 			<File
+				RelativePath="metadata\Addins\enumerations.xml">
+			</File>
+			<File
 				RelativePath="metadata\Addins\excel.xml">
 			</File>
 			<File
@@ -45,9 +48,6 @@
 			</File>
 			<File
 				RelativePath="metadata\Addins\loop.xml">
-			</File>
-			<File
-				RelativePath="metadata\Addins\enumerations.xml">
 			</File>
 			<File
 				RelativePath="metadata\Addins\valueobjects.xml">
@@ -110,6 +110,9 @@
 			</File>
 			<File
 				RelativePath="metadata\Functions\interpolation.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\leg.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\marketmodels.xml">
@@ -243,10 +246,7 @@
 				RelativePath="stubs\stub.copyright">
 			</File>
 			<File
-				RelativePath="stubs\stub.excel.includes">
-			</File>
-			<File
-				RelativePath="stubs\stub.enum.types">
+				RelativePath="stubs\stub.doxygen.enums">
 			</File>
 			<File
 				RelativePath="stubs\stub.enum.classes">
@@ -255,7 +255,10 @@
 				RelativePath="stubs\stub.enum.pairs">
 			</File>
 			<File
-				RelativePath="stubs\stub.doxygen.enums">
+				RelativePath="stubs\stub.enum.types">
+			</File>
+			<File
+				RelativePath="stubs\stub.excel.includes">
 			</File>
 		</Filter>
 		<File

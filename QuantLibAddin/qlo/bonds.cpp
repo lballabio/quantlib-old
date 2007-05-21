@@ -32,7 +32,7 @@
 #include <ql/instruments/bonds/zerocouponbond.hpp>
 #include <ql/instruments/bonds/cmsratebond.hpp>
 #include <ql/instruments/bonds/floatingratebond.hpp>
-#include <ql/cashflows/analysis.hpp>
+#include <ql/cashflows/cashflows.hpp>
 
 namespace QuantLibAddin {
 

@@ -472,6 +472,9 @@
 				RelativePath="Register\register_interpolation.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_leg.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_marketmodels.cpp">
 			</File>
 			<File
@@ -597,6 +600,9 @@
 			</File>
 			<File
 				RelativePath="Functions\interpolation.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\leg.cpp">
 			</File>
 			<File
 				RelativePath="Functions\manual.cpp">

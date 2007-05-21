@@ -151,6 +151,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\leg.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\marketmodels.xml"
 				>
 			</File>

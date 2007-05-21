@@ -25,7 +25,7 @@
 
 #include <qlo/schedule.hpp>
 #include <qlo/index.hpp>
-#include <qlo/analysis.hpp>
+#include <qlo/flowanalysis.hpp>
 #include <qlo/couponvectors.hpp>
 #include <ql/cashflows/conundrumpricer.hpp>
 #include <ql/termstructures/volatilities/all.hpp>

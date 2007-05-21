@@ -9,7 +9,6 @@ EXTRA_DIST = \
     auto_link.hpp
 
 include_HEADERS = \
-    analysis.hpp \
     asianoption.hpp \
     assetswap.hpp \
     barrieroption.hpp \
@@ -19,21 +18,23 @@ include_HEADERS = \
     capletvolstructure.hpp \
     cliquetoption.hpp \
     cmsmarket.hpp \
-    conundrumpricer.hpp \
     config.hpp \
+    conundrumpricer.hpp \
     conundrumpricer.hpp \
     couponvectors.hpp \
     date.hpp \
     dividendvanillaoption.hpp \
     europeanoption.hpp \
     exercise.hpp \
+    flowanalysis.hpp \
     forwardrateagreement.hpp \
     forwardvanillaoption.hpp \
     getcovariance.hpp \
     handle.hpp \
     index.hpp \
-    interpolation2D.hpp \
     interpolation.hpp \
+    interpolation2D.hpp \
+    leg.hpp \
     marketmodels.hpp \
     mathf.hpp \
     optimization.hpp \
@@ -68,7 +69,6 @@ include_HEADERS = \
     volatilities.hpp
 
 libQuantLibAddin_la_SOURCES = \
-    analysis.cpp \
     asianoption.cpp \
     assetswap.cpp \
     barrieroption.cpp \
@@ -83,12 +83,14 @@ libQuantLibAddin_la_SOURCES = \
     dividendvanillaoption.cpp \
     europeanoption.cpp \
     exercise.cpp \
+    flowanalysis.cpp \
     forwardrateagreement.cpp \
     forwardvanillaoption.cpp \
     getcovariance.cpp \
     index.cpp \
-    interpolation2D.cpp \
     interpolation.cpp \
+    interpolation2D.cpp \
+    leg.hpp \
     marketmodels.cpp \
     optimization.cpp \
     payoffs.cpp \

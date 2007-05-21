@@ -20,7 +20,7 @@
     #include <qlo/config.hpp>
 #endif
 
-#include <qlo/analysis.hpp>
+#include <qlo/flowanalysis.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
 #include <ql/cashflows/digitalcoupon.hpp>
 #include <ql/indexes/interestrateindex.hpp>

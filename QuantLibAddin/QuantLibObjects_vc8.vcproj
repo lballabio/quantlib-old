@@ -422,6 +422,10 @@
 			Name="ValueObjects"
 			>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_all.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_assetswap.cpp"
 				>
 			</File>
@@ -499,6 +503,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_interpolation.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_leg.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_leg.hpp"
 				>
 			</File>
 			<File
@@ -946,14 +958,6 @@
 			Name="CashFlows"
 			>
 			<File
-				RelativePath=".\qlo\analysis.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\qlo\analysis.hpp"
-				>
-			</File>
-			<File
 				RelativePath=".\qlo\conundrumpricer.cpp"
 				>
 			</File>
@@ -967,6 +971,22 @@
 			</File>
 			<File
 				RelativePath="qlo\couponvectors.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\flowanalysis.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\flowanalysis.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\leg.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\leg.hpp"
 				>
 			</File>
 			<File

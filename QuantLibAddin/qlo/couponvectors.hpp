@@ -22,46 +22,9 @@
 #define qla_couponvectors_hpp
 
 #include <oh/objecthandler.hpp>
-
-#include <qlo/schedule.hpp>
-#include <qlo/index.hpp>
-#include <qlo/analysis.hpp>
-#include <ql/termstructures/volatilities/all.hpp>
-
-#include <ql/cashflows/digitalcoupon.hpp>
+#include <qlo/leg.hpp>
 
 namespace QuantLibAddin {
-    
-    class Leg : public ObjectHandler::Object {
-      public:
-        QuantLib::Rate lastCouponRate(const QuantLib::Date& refDate) const;
-        QuantLib::Rate currentCouponRate(const QuantLib::Date& refDate) const;
-        QuantLib::Date startDate() const;
-        QuantLib::Date maturityDate() const;
-        QuantLib::Real npv(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
-        QuantLib::Real bps(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
-        QuantLib::Rate atmRate(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
-        void setPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
-        void setPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
-
-        std::vector<std::vector<boost::any> > analysis() const;
-        const QuantLib::Leg& getQuantLibLeg();        
-      protected:
-        // copy or shared_ptr?
-        QuantLib::Leg leg_;
-    };
-
-    class MultiPhaseLeg : public Leg {
-      public:
-        MultiPhaseLeg(const std::vector<boost::shared_ptr<Leg> >& legs,
-                      bool toBeSorted);
-    };
-
-    class SimpleCashFlowVector : public Leg {
-      public:
-        SimpleCashFlowVector(const std::vector<QuantLib::Real>& amounts, 
-                             const std::vector<QuantLib::Date>& dates);
-    };
     
     class FixedRateLeg : public Leg {
       public:
