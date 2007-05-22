@@ -152,7 +152,8 @@ CRISTINA
 ---
 CHIARA
 - add and validate new bonds in all the environments
-- debug cmsrate bond constructor for cms bond paying once in arrears (0d|1d)
+- debug cmsratebond constructor for cms bond paying once in arrears (e.g. IT0003650998.pdf) (0d|1d)
+ *prospectus added in Drafts
 - verify bond in Testing and Trunk (with Cristina)
 - current cpn as a method of bond (a trader's request) (0.5d|1.5dd|WIP)
  *created qlCurrentCoupon
