@@ -50,6 +50,9 @@ Partial Class FormMain
         Me.btnLaunch = New System.Windows.Forms.Button
         Me.tcLauncher = New System.Windows.Forms.TabControl
         Me.tpEnvironments = New System.Windows.Forms.TabPage
+        Me.grpFeeds = New System.Windows.Forms.GroupBox
+        Me.cbBloomberg = New System.Windows.Forms.CheckBox
+        Me.cbReuters = New System.Windows.Forms.CheckBox
         Me.tpPaths = New System.Windows.Forms.TabPage
         Me.lblFrameworkVersion = New System.Windows.Forms.Label
         Me.mskFrameworkVersion = New System.Windows.Forms.MaskedTextBox
@@ -70,14 +73,24 @@ Partial Class FormMain
         Me.btnAddinRename = New System.Windows.Forms.ToolStripButton
         Me.btnAddinUp = New System.Windows.Forms.ToolStripButton
         Me.btnAddinDown = New System.Windows.Forms.ToolStripButton
+        Me.tpFeeds = New System.Windows.Forms.TabPage
+        Me.txtBloomberg = New System.Windows.Forms.TextBox
+        Me.lblBloomberg = New System.Windows.Forms.Label
+        Me.btnBloomberg = New System.Windows.Forms.Button
+        Me.btnReuters = New System.Windows.Forms.Button
+        Me.txtReuters = New System.Windows.Forms.TextBox
+        Me.lblReuters = New System.Windows.Forms.Label
+        Me.lblBuildNumber = New System.Windows.Forms.Label
         Me.grpEnvironment.SuspendLayout()
         Me.tstEnvironment.SuspendLayout()
         Me.grpStartup.SuspendLayout()
         Me.tcLauncher.SuspendLayout()
         Me.tpEnvironments.SuspendLayout()
+        Me.grpFeeds.SuspendLayout()
         Me.tpPaths.SuspendLayout()
         Me.tpAddins.SuspendLayout()
         Me.tstAddins.SuspendLayout()
+        Me.tpFeeds.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnClose
@@ -259,7 +272,7 @@ Partial Class FormMain
         Me.grpStartup.Controls.Add(Me.cbYCBootstrap)
         Me.grpStartup.Location = New System.Drawing.Point(202, 6)
         Me.grpStartup.Name = "grpStartup"
-        Me.grpStartup.Size = New System.Drawing.Size(190, 301)
+        Me.grpStartup.Size = New System.Drawing.Size(190, 210)
         Me.grpStartup.TabIndex = 19
         Me.grpStartup.TabStop = False
         Me.grpStartup.Text = "Startup Actions"
@@ -269,7 +282,7 @@ Partial Class FormMain
         Me.cbStaticData.AutoSize = True
         Me.cbStaticData.Location = New System.Drawing.Point(10, 187)
         Me.cbStaticData.Name = "cbStaticData"
-        Me.cbStaticData.Size = New System.Drawing.Size(159, 17)
+        Me.cbStaticData.Size = New System.Drawing.Size(157, 17)
         Me.cbStaticData.TabIndex = 8
         Me.cbStaticData.Text = "Switch to static market data"
         Me.cbStaticData.UseVisualStyleBackColor = True
@@ -279,7 +292,7 @@ Partial Class FormMain
         Me.cbFitCMS.AutoSize = True
         Me.cbFitCMS.Location = New System.Drawing.Point(10, 118)
         Me.cbFitCMS.Name = "cbFitCMS"
-        Me.cbFitCMS.Size = New System.Drawing.Size(111, 17)
+        Me.cbFitCMS.Size = New System.Drawing.Size(162, 17)
         Me.cbFitCMS.TabIndex = 7
         Me.cbFitCMS.Text = "View CMS Market Current Fit"
         Me.cbFitCMS.UseVisualStyleBackColor = True
@@ -358,6 +371,7 @@ Partial Class FormMain
         Me.tcLauncher.Controls.Add(Me.tpEnvironments)
         Me.tcLauncher.Controls.Add(Me.tpPaths)
         Me.tcLauncher.Controls.Add(Me.tpAddins)
+        Me.tcLauncher.Controls.Add(Me.tpFeeds)
         Me.tcLauncher.Location = New System.Drawing.Point(3, 3)
         Me.tcLauncher.Name = "tcLauncher"
         Me.tcLauncher.SelectedIndex = 0
@@ -366,6 +380,7 @@ Partial Class FormMain
         '
         'tpEnvironments
         '
+        Me.tpEnvironments.Controls.Add(Me.grpFeeds)
         Me.tpEnvironments.Controls.Add(Me.grpEnvironment)
         Me.tpEnvironments.Controls.Add(Me.grpStartup)
         Me.tpEnvironments.Location = New System.Drawing.Point(4, 22)
@@ -375,6 +390,37 @@ Partial Class FormMain
         Me.tpEnvironments.TabIndex = 0
         Me.tpEnvironments.Text = "Environments"
         Me.tpEnvironments.UseVisualStyleBackColor = True
+        '
+        'grpFeeds
+        '
+        Me.grpFeeds.Controls.Add(Me.cbBloomberg)
+        Me.grpFeeds.Controls.Add(Me.cbReuters)
+        Me.grpFeeds.Location = New System.Drawing.Point(202, 222)
+        Me.grpFeeds.Name = "grpFeeds"
+        Me.grpFeeds.Size = New System.Drawing.Size(190, 85)
+        Me.grpFeeds.TabIndex = 20
+        Me.grpFeeds.TabStop = False
+        Me.grpFeeds.Text = "Feeds"
+        '
+        'cbBloomberg
+        '
+        Me.cbBloomberg.AutoSize = True
+        Me.cbBloomberg.Location = New System.Drawing.Point(10, 42)
+        Me.cbBloomberg.Name = "cbBloomberg"
+        Me.cbBloomberg.Size = New System.Drawing.Size(76, 17)
+        Me.cbBloomberg.TabIndex = 2
+        Me.cbBloomberg.Text = "Bloomberg"
+        Me.cbBloomberg.UseVisualStyleBackColor = True
+        '
+        'cbReuters
+        '
+        Me.cbReuters.AutoSize = True
+        Me.cbReuters.Location = New System.Drawing.Point(10, 19)
+        Me.cbReuters.Name = "cbReuters"
+        Me.cbReuters.Size = New System.Drawing.Size(63, 17)
+        Me.cbReuters.TabIndex = 1
+        Me.cbReuters.Text = "Reuters"
+        Me.cbReuters.UseVisualStyleBackColor = True
         '
         'tpPaths
         '
@@ -575,11 +621,91 @@ Partial Class FormMain
         Me.btnAddinDown.Size = New System.Drawing.Size(23, 22)
         Me.btnAddinDown.Text = "Move Down"
         '
+        'tpFeeds
+        '
+        Me.tpFeeds.Controls.Add(Me.txtBloomberg)
+        Me.tpFeeds.Controls.Add(Me.lblBloomberg)
+        Me.tpFeeds.Controls.Add(Me.btnBloomberg)
+        Me.tpFeeds.Controls.Add(Me.btnReuters)
+        Me.tpFeeds.Controls.Add(Me.txtReuters)
+        Me.tpFeeds.Controls.Add(Me.lblReuters)
+        Me.tpFeeds.Location = New System.Drawing.Point(4, 22)
+        Me.tpFeeds.Name = "tpFeeds"
+        Me.tpFeeds.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpFeeds.Size = New System.Drawing.Size(395, 310)
+        Me.tpFeeds.TabIndex = 3
+        Me.tpFeeds.Text = "Feeds"
+        Me.tpFeeds.UseVisualStyleBackColor = True
+        '
+        'txtBloomberg
+        '
+        Me.txtBloomberg.Location = New System.Drawing.Point(30, 65)
+        Me.txtBloomberg.Name = "txtBloomberg"
+        Me.txtBloomberg.Size = New System.Drawing.Size(315, 20)
+        Me.txtBloomberg.TabIndex = 24
+        '
+        'lblBloomberg
+        '
+        Me.lblBloomberg.AutoSize = True
+        Me.lblBloomberg.Location = New System.Drawing.Point(10, 49)
+        Me.lblBloomberg.Name = "lblBloomberg"
+        Me.lblBloomberg.Size = New System.Drawing.Size(57, 13)
+        Me.lblBloomberg.TabIndex = 23
+        Me.lblBloomberg.Text = "Bloomberg"
+        '
+        'btnBloomberg
+        '
+        Me.btnBloomberg.Location = New System.Drawing.Point(351, 65)
+        Me.btnBloomberg.Name = "btnBloomberg"
+        Me.btnBloomberg.Size = New System.Drawing.Size(32, 23)
+        Me.btnBloomberg.TabIndex = 22
+        Me.btnBloomberg.Text = "..."
+        Me.btnBloomberg.UseVisualStyleBackColor = True
+        '
+        'btnReuters
+        '
+        Me.btnReuters.Location = New System.Drawing.Point(351, 26)
+        Me.btnReuters.Name = "btnReuters"
+        Me.btnReuters.Size = New System.Drawing.Size(32, 23)
+        Me.btnReuters.TabIndex = 21
+        Me.btnReuters.Text = "..."
+        Me.btnReuters.UseVisualStyleBackColor = True
+        '
+        'txtReuters
+        '
+        Me.txtReuters.Location = New System.Drawing.Point(30, 26)
+        Me.txtReuters.Name = "txtReuters"
+        Me.txtReuters.Size = New System.Drawing.Size(315, 20)
+        Me.txtReuters.TabIndex = 20
+        '
+        'lblReuters
+        '
+        Me.lblReuters.AutoSize = True
+        Me.lblReuters.Location = New System.Drawing.Point(10, 10)
+        Me.lblReuters.Name = "lblReuters"
+        Me.lblReuters.Size = New System.Drawing.Size(44, 13)
+        Me.lblReuters.TabIndex = 19
+        Me.lblReuters.Text = "Reuters"
+        '
+        'lblBuildNumber
+        '
+        Me.lblBuildNumber.AutoSize = True
+        Me.lblBuildNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblBuildNumber.ForeColor = System.Drawing.Color.Blue
+        Me.lblBuildNumber.Location = New System.Drawing.Point(288, 356)
+        Me.lblBuildNumber.MinimumSize = New System.Drawing.Size(120, 0)
+        Me.lblBuildNumber.Name = "lblBuildNumber"
+        Me.lblBuildNumber.Size = New System.Drawing.Size(120, 12)
+        Me.lblBuildNumber.TabIndex = 22
+        Me.lblBuildNumber.Text = "version 0.0.0.0"
+        Me.lblBuildNumber.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(407, 370)
+        Me.Controls.Add(Me.lblBuildNumber)
         Me.Controls.Add(Me.tcLauncher)
         Me.Controls.Add(Me.btnLaunch)
         Me.Controls.Add(Me.btnClose)
@@ -595,13 +721,18 @@ Partial Class FormMain
         Me.grpStartup.PerformLayout()
         Me.tcLauncher.ResumeLayout(False)
         Me.tpEnvironments.ResumeLayout(False)
+        Me.grpFeeds.ResumeLayout(False)
+        Me.grpFeeds.PerformLayout()
         Me.tpPaths.ResumeLayout(False)
         Me.tpPaths.PerformLayout()
         Me.tpAddins.ResumeLayout(False)
         Me.tpAddins.PerformLayout()
         Me.tstAddins.ResumeLayout(False)
         Me.tstAddins.PerformLayout()
+        Me.tpFeeds.ResumeLayout(False)
+        Me.tpFeeds.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnClose As System.Windows.Forms.Button
@@ -654,4 +785,15 @@ Partial Class FormMain
     Friend WithEvents btnAddinDown As System.Windows.Forms.ToolStripButton
     Friend WithEvents lbAddins As System.Windows.Forms.ListBox
     Friend WithEvents btnAddinRename As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tpFeeds As System.Windows.Forms.TabPage
+    Friend WithEvents txtBloomberg As System.Windows.Forms.TextBox
+    Friend WithEvents lblBloomberg As System.Windows.Forms.Label
+    Friend WithEvents btnBloomberg As System.Windows.Forms.Button
+    Friend WithEvents btnReuters As System.Windows.Forms.Button
+    Friend WithEvents txtReuters As System.Windows.Forms.TextBox
+    Friend WithEvents lblReuters As System.Windows.Forms.Label
+    Friend WithEvents grpFeeds As System.Windows.Forms.GroupBox
+    Friend WithEvents cbReuters As System.Windows.Forms.CheckBox
+    Friend WithEvents cbBloomberg As System.Windows.Forms.CheckBox
+    Friend WithEvents lblBuildNumber As System.Windows.Forms.Label
 End Class

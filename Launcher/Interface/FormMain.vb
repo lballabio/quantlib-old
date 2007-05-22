@@ -32,6 +32,7 @@ Public Class FormMain
 
     Private Const PRECONFIGURED As String = "Preconfigured"
     Private Const USERCONFIGURED As String = "UserConfigured"
+    Private Const QUANTLIBXL_DIR As String = "QUANTLIBXL_DIR"
 
     ''''''''''''''''''''''''''''''''''''''''''
     ' Properties
@@ -76,6 +77,12 @@ Public Class FormMain
             overrideActions()
             initializeLists()
             selectEnvironment()
+
+            If (ApplicationDeployment.IsNetworkDeployed) Then
+                lblBuildNumber.Text = "version " & My.Application.Deployment.CurrentVersion.ToString()
+            Else
+                lblBuildNumber.Text = "local build"
+            End If
 
         Catch ex As Exception
 
@@ -198,6 +205,11 @@ Public Class FormMain
                  & vbCrLf & vbCrLf & ex.Message)
         End Try
 
+        txtReuters.Text = config_.ReutersPath
+        txtBloomberg.Text = config_.BloombergPath
+        cbReuters.Checked = config_.ReutersSelected
+        cbBloomberg.Checked = config_.BloombergSelected
+
     End Sub
 
     Private Sub overrideActions()
@@ -253,7 +265,7 @@ Public Class FormMain
 
         Try
 
-            SelectedEnvironment.launch()
+            SelectedEnvironment.launch(config_.FeedList())
 
         Catch ex As Exception
 
@@ -527,13 +539,13 @@ Public Class FormMain
 
     End Function
 
-    Private Function deriveDefaultFile(ByVal testFile As String, ByVal relativePath As String) As String
+    Private Function deriveDefaultFile(ByVal testFile As String, Optional ByVal relativePath As String = "") As String
 
         Try
 
             If fileExists(testFile) Then
                 deriveDefaultFile = testFile
-            ElseIf dirExists(qlxlDir_ & "\" & relativePath) Then
+            ElseIf relativePath.Length > 0 And dirExists(qlxlDir_ & "\" & relativePath) Then
                 deriveDefaultFile = qlxlDir_ & "\" & relativePath
             Else
                 deriveDefaultFile = ""
@@ -670,7 +682,7 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' Events - path - text
+    ' Events - Paths - text
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub txtFramework_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFramework.TextChanged
@@ -708,7 +720,7 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' Events - addins
+    ' Events - Addins
     ''''''''''''''''''''''''''''''''''''''''''
 
     ' Sub enableAddinButtons() - Based on the current selection,
@@ -842,6 +854,74 @@ Public Class FormMain
         lbAddins.Items.Insert(i + 1, o)
         lbAddins.SelectedIndex = i + 1
 
+    End Sub
+
+    ''''''''''''''''''''''''''''''''''''''''''
+    ' Events - Feeds
+    ''''''''''''''''''''''''''''''''''''''''''
+
+    Private Sub btnReuters_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReuters.Click
+
+        Try
+
+            Dim dlg As New OpenFileDialog()
+            dlg.InitialDirectory = deriveDefaultFile(txtReuters.Text)
+            dlg.FileName = QuantLibXL.Configuration.REUTERS_XLA_DEFAULT
+            dlg.Filter = "Excel VBA Addins (*.xla)|*.xla"
+            dlg.Title = "Select Reuters VBA Addin"
+            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                txtReuters.Text = dlg.FileName
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("Error processing Reuters path:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
+
+    End Sub
+
+    Private Sub btnBloomberg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBloomberg.Click
+
+        Try
+
+            Dim dlg As New OpenFileDialog()
+            dlg.InitialDirectory = deriveDefaultFile(txtBloomberg.Text)
+            dlg.FileName = QuantLibXL.Configuration.BLOOMBERG_XLA_DEFAULT
+            dlg.Filter = "Excel VBA Addins (*.xla)|*.xla"
+            dlg.Title = "Select Bloomberg VBA Addin"
+            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                txtBloomberg.Text = dlg.FileName
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("Error processing Bloomberg path:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
+
+    End Sub
+
+    Private Sub txtReuters_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtReuters.TextChanged
+        config_.ReutersPath = txtReuters.Text
+    End Sub
+
+    Private Sub txtBloomberg_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtBloomberg.TextChanged
+        config_.BloombergPath = txtBloomberg.Text
+    End Sub
+
+    Private Sub cbReuters_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbReuters.CheckedChanged
+        config_.ReutersSelected = cbReuters.Checked
+    End Sub
+
+    Private Sub cbBloomberg_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbBloomberg.CheckedChanged
+        config_.BloombergSelected = cbBloomberg.Checked
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''

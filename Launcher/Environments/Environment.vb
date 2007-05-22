@@ -186,7 +186,7 @@ Namespace QuantLibXL
         ' Serializable interface
         ''''''''''''''''''''''''''''''''''''''''''
 
-        ' serialize() - Write this object to the given serializer.
+        ' serialize() - Read/write this object from/to the given serializer.
         ' Version 6 supports a list of addin names.
         ' Version 5 requires exactly one addin name, split into directory and file.
 
@@ -204,9 +204,9 @@ Namespace QuantLibXL
 
                 If addinList_.Length <> 1 Then
 
-                    Throw New Exception("Unable to process addin list for Framework version 5." _
-                        & " The addin list contains " & addinList_.Length & " items" _
-                        & " but version 5 of the Framework expects exactly one addin.")
+                    Throw New Exception("Unable to process addin list for Framework version 5. " _
+                        & "The addin list contains " & addinList_.Length & " items " _
+                        & "but version 5 of the Framework expects exactly one addin.")
 
                 End If
 
@@ -302,7 +302,7 @@ Namespace QuantLibXL
             validateFile(userConfig_, "user configuration file")
 
             For Each addin As String In addinList_
-                validateFile(addin, "XLL addin file")
+                validateFile(addin, "Excel Addin file")
             Next
 
         End Sub
@@ -312,40 +312,59 @@ Namespace QuantLibXL
         ' directory, and set environment variable QUANTLIBXL_LAUNCH to
         ' inform the QuantLibXL session of the location of the file.
 
-        Public Sub launch()
+        Public Sub launch(ByVal feedAddins() As String)
 
-            validate()
-            authenticateUser()
+            ' Save the original value of addinList_
+            Dim keepAddinList() As String = addinList_
 
-            ' Derive a name for the XML file.  We must guard against race
-            ' conditions, i.e. two instances of the Launcher creating two
-            ' temp files with the same name.  So the name is in the format
-            ' QuantLibXL.launch.xxx.yyy.xml where xxx is this process ID
-            ' and yyy is the current time in subseconds.
+            Try
 
-            Dim tempFilePath As String = System.IO.Path.GetTempPath() _
-                & "QuantLibXL Launcher\"
+                ' Temporarily prepend feedAddins (Reuters/Bloomberg) to addinList_
+                processFeedAddins(feedAddins)
 
-            System.IO.Directory.CreateDirectory(tempFilePath)
+                validate()
+                authenticateUser()
 
-            tempFilePath = tempFilePath _
-                & "QuantLibXL.launch." & GetCurrentProcessId _
-                & "." & DateTime.Now.Ticks & ".xml"
+                ' Derive a name for the XML file.  We must guard against race
+                ' conditions, i.e. two instances of the Launcher creating two
+                ' temp files with the same name.  So the name is in the format
+                ' QuantLibXL.launch.xxx.yyy.xml where xxx is this process ID
+                ' and yyy is the current time in subseconds.
 
-            ' Write this environment object to the temp file.
+                Dim tempFilePath As String = System.IO.Path.GetTempPath() _
+                    & "QuantLibXL Launcher\"
 
-            Dim xmlWriter As New QuantLibXL.XmlWriter(tempFilePath)
-            xmlWriter.serializeObject(Me, "Environment", frameworkVersion_)
-            xmlWriter.close()
+                System.IO.Directory.CreateDirectory(tempFilePath)
 
-            ' Set the environment variable.
+                tempFilePath = tempFilePath _
+                    & "QuantLibXL.launch." & GetCurrentProcessId _
+                    & "." & DateTime.Now.Ticks & ".xml"
 
-            System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH, tempFilePath)
-            System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH2, tempFilePath)
+                ' Write this environment object to the temp file
 
-            ' Spawn the subprocess.
+                Dim xmlWriter As New QuantLibXL.XmlWriter(tempFilePath)
+                xmlWriter.serializeObject(Me, "Environment", frameworkVersion_)
+                xmlWriter.close()
 
-            Shell(CommandLine, AppWinStyle.NormalFocus)
+                ' Set the environment variable
+
+                System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH, tempFilePath)
+                System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH2, tempFilePath)
+
+                ' Spawn the subprocess
+
+                Shell(CommandLine, AppWinStyle.NormalFocus)
+
+                ' Restore addinList_ to its original value
+                addinList_ = keepAddinList
+
+            Catch ex As Exception
+
+                ' Restore addinList_ to its original value before rethrowing
+                addinList_ = keepAddinList
+                Throw
+
+            End Try
 
         End Sub
 
@@ -368,6 +387,28 @@ Namespace QuantLibXL
             For i As Long = 0 To UBound(addinList_)
                 addinList_(i) = addinDir & addinList_(i)
             Next
+
+        End Sub
+
+        ' processFeedAddins() - Temporarily prepend feedAddins (Reuters/Bloomberg) to addinList_.
+        ' feedAddins is a transient value and the caller must restore addinList_ to its original state.
+        Private Sub processFeedAddins(ByVal feedAddins() As String)
+
+            If feedAddins.Length = 0 Then Exit Sub
+
+            If frameworkVersion_ = 5 Then
+
+                Throw New Exception("You cannot specify feeds (Reuters/Bloomberg) " _
+                    & "for the given Framework because" & vbCrLf _
+                    & "the Framework is version 5 and is only able " _
+                    & "to load exactly one Addin (QuantLibXL).")
+
+            End If
+
+            Dim temp(feedAddins.Length + addinList_.Length - 1) As String
+            feedAddins.CopyTo(temp, 0)
+            addinList_.CopyTo(temp, feedAddins.Length)
+            addinList_ = temp
 
         End Sub
 

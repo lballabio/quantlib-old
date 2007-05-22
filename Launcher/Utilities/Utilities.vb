@@ -1,5 +1,5 @@
 
-'Copyright (C) 2006 Eric Ehlers
+'Copyright (C) 2006, 2007 Eric Ehlers
 
 'This file is part of QuantLib, a free-software/open-source library
 'for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,11 +16,11 @@
 
 Module Utilities
 
-    Public Const QUANTLIBXL_DIR As String = "QUANTLIBXL_DIR"
     Public Const EXCEL_PATH As String = "C:\Program Files\Microsoft Office\Office10\EXCEL.EXE"
     Private Const QUANTLIBXL_CONFIG_PATH As String = "QUANTLIBXL_CONFIG_PATH"
 
     Function fileExists(ByVal PathName As String) As Boolean
+
         Try
             Dim fileAttr As FileAttribute
             fileAttr = GetAttr(PathName)
@@ -33,6 +33,7 @@ Module Utilities
     End Function
 
     Function dirExists(ByVal PathName As String) As Boolean
+
         Try
             Dim fileAttr As FileAttribute
             fileAttr = GetAttr(PathName)
@@ -53,7 +54,7 @@ Module Utilities
             "equal to the location of the development environment " & _
             "for the QuantLibXL launcher, e.g:" & _
             vbCrLf & vbCrLf & QUANTLIBXL_CONFIG_PATH & _
-            "=C:\projects\QuantLibXL\framework\launcher")
+            "=C:\projects\trunk\Launcher")
         End If
 
     End Function

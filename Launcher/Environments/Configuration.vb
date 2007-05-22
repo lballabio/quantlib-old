@@ -19,8 +19,17 @@ Namespace QuantLibXL
     Public Class Configuration
         Implements ISerializable
 
+        Public Const REUTERS_PATH_DEFAULT As String = "C:\Program Files\Reuters\PowerPlus"
+        Public Const BLOOMBERG_PATH_DEFAULT As String = "C:\blp\API\dde"
+        Public Const REUTERS_XLA_DEFAULT As String = "PPP.xla"
+        Public Const BLOOMBERG_XLA_DEFAULT As String = "Blp.xla"
+
         Private selectedEnvConfig_ As String = ""
         Private selectedEnvName_ As String = ""
+        Private reutersPath_ As String = ""
+        Private bloombergPath_ As String = ""
+        Private reutersSelected_ As Boolean = False
+        Private bloombergSelected_ As Boolean = False
         'Private version_ As Integer
         Private overrideActions_ As QuantLibXL.StartupActionsList
 
@@ -70,13 +79,88 @@ Namespace QuantLibXL
 
         End Property
 
+        Public Property ReutersPath() As String
+
+            Get
+                Return reutersPath_
+            End Get
+
+            Set(ByVal value As String)
+                reutersPath_ = value
+            End Set
+
+        End Property
+
+        Public Property BloombergPath() As String
+
+            Get
+                Return bloombergPath_
+            End Get
+
+            Set(ByVal value As String)
+                bloombergPath_ = value
+            End Set
+
+        End Property
+
+        Public Property ReutersSelected() As Boolean
+
+            Get
+                Return reutersSelected_
+            End Get
+
+            Set(ByVal value As Boolean)
+                reutersSelected_ = value
+            End Set
+
+        End Property
+
+        Public Property BloombergSelected() As Boolean
+
+            Get
+                Return bloombergSelected_
+            End Get
+
+            Set(ByVal value As Boolean)
+                bloombergSelected_ = value
+            End Set
+
+        End Property
+
+        ' Generate a list of feed addins to be loaded by the Framework
+        Public ReadOnly Property FeedList() As String()
+
+            Get
+                Dim ret(boolToInt(reutersSelected_) + boolToInt(bloombergSelected_) - 1) As String
+                Dim idx As Integer = 0
+                If reutersSelected_ Then
+                    ret(0) = reutersPath_
+                    idx = 1
+                End If
+                If bloombergSelected_ Then
+                    ret(idx) = bloombergPath_
+                End If
+
+                FeedList = ret
+            End Get
+
+        End Property
+
         Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
 
             serializer.serializeProperty(selectedEnvConfig_, "SelectedEnvConfig")
             serializer.serializeProperty(selectedEnvName_, "SelectedEnvName")
+            serializer.serializeProperty(reutersPath_, "ReutersPath")
+            serializer.serializeProperty(bloombergPath_, "BloombergPath")
+            serializer.serializeProperty(reutersSelected_, "ReutersSelected")
+            serializer.serializeProperty(bloombergSelected_, "BloombergSelected")
             serializer.serializeObject(overrideActions_, "StartupActionsList", versionNumber)
 
         End Sub
+
+        Private Function boolToInt(ByVal b As Boolean) As Integer
+            If b Then boolToInt = 1 Else boolToInt = 0
+        End Function
 
     End Class
 
