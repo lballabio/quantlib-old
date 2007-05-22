@@ -33,7 +33,8 @@ namespace QuantLibAddin {
         FlatSmileSection(const QuantLib::Date& optionDate,
                          QuantLib::Volatility v,
                          const QuantLib::DayCounter& dc,
-                         const QuantLib::Date& refDate);
+                         const QuantLib::Date& refDate,
+                         QuantLib::Real atmValue);
     };
 
     class InterpolatedSmileSection : public SmileSection {
@@ -42,6 +43,7 @@ namespace QuantLibAddin {
               const QuantLib::Date& optionDate,
               const std::vector<QuantLib::Rate>& strikes,
               const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& stdDevs,
+              const QuantLib::RelinkableHandle<QuantLib::Quote>& atmLevel,
               const QuantLib::DayCounter& dc);
     };
 
@@ -51,7 +53,7 @@ namespace QuantLibAddin {
             const QuantLib::Time expiry,
             const std::vector<QuantLib::Rate>& strikes,
             const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& stdDevs,
-            QuantLib::Real forward, 
+            const QuantLib::RelinkableHandle<QuantLib::Quote>& forward,
             QuantLib::Real alpha, 
             QuantLib::Real beta,
             QuantLib::Real nu,

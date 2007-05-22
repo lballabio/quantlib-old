@@ -21,7 +21,7 @@
 #include <qlo/smilesection.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/termstructures/volatilities/smilesection.hpp>
-
+#include <ql/quotes/simplequote.hpp>
 
 namespace QuantLibAddin {
 
@@ -29,16 +29,18 @@ namespace QuantLibAddin {
                                 const QuantLib::Date& optionDate,
                                 QuantLib::Volatility v,
                                 const QuantLib::DayCounter& dc,
-                                const QuantLib::Date& refDate)
+                                const QuantLib::Date& refDate,
+                                QuantLib::Real atmValue)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::SmileSection>(new
-            QuantLib::FlatSmileSection(optionDate, v, dc, refDate));
+            QuantLib::FlatSmileSection(optionDate, v, dc, refDate, atmValue));
     }
 
     InterpolatedSmileSection::InterpolatedSmileSection(
             const QuantLib::Date& optionDate,
             const std::vector<QuantLib::Rate>& s,
             const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& stdDevs,
+            const QuantLib::RelinkableHandle<QuantLib::Quote>& atmLevel,
             const QuantLib::DayCounter& dc)
     {
         std::vector<QuantLib::Handle<QuantLib::Quote> > temp(stdDevs.size());
@@ -46,14 +48,14 @@ namespace QuantLibAddin {
             temp[i] = stdDevs[i];
         libraryObject_ = boost::shared_ptr<QuantLib::SmileSection>(new
             QuantLib::InterpolatedSmileSection<>(optionDate, s,
-                                                 temp, dc));
+                                                 temp, atmLevel, dc));
     }
 
     SabrSmileSection::SabrSmileSection(
             const QuantLib::Time expiry,
             const std::vector<QuantLib::Rate>& strikes,
             const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& stdDevs,
-            QuantLib::Real forward, 
+            const QuantLib::RelinkableHandle<QuantLib::Quote>& forward,
             QuantLib::Real alpha,
             QuantLib::Real beta,
             QuantLib::Real nu,
@@ -75,18 +77,17 @@ namespace QuantLibAddin {
         if (!endCriteria)
             QuantLib::EndCriteria endCriteria(60000, 100, 1e-8, 1e-8, 1e-8);
 
-        QuantLib::SABR sabrInterpolationFactory(expiry, forward, alpha, beta,
+        QuantLib::SABR sabrInterpolationFactory(expiry, forward->value(), alpha, beta,
             nu, rho, isAlphaFixed, isBetaFixed, isNuFixed, 
             isRhoFixed, vegaWeighted, endCriteria, method);
         
         std::vector<QuantLib::Handle<QuantLib::Quote> > temp(stdDevs.size());
         for(QuantLib::Size i = 0; i<temp.size(); ++i)
             temp[i] = stdDevs[i];
-
         QuantLib::InterpolatedSmileSection<QuantLib::SABR>* 
             genericInterpolatedSmileSection = new
                 QuantLib::InterpolatedSmileSection<QuantLib::SABR>(
-                    expiry, strikes, temp, sabrInterpolationFactory);
+                    expiry, strikes, temp, forward, sabrInterpolationFactory);
 
         libraryObject_ = boost::shared_ptr<
             QuantLib::InterpolatedSmileSection<QuantLib::SABR> >(

@@ -31,3 +31,6 @@ FUNCTIONS
 
 WORKBOOKS
 - Workbooks\DateCalendarsDayCounters\ScheduleGenerator.xls shows the usage of the Schedule class
+
+LIBRARY:
+atmLevel method implemented in all SmileSection classes
