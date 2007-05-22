@@ -258,34 +258,22 @@ WIP spreaded swaption vol structure (2d/5d/WIP)
 - install VS in new pc (0d/1d)
 
 ---
-MARCO (last update 16/5/2007)
-- Citrix showdown
+MARCO (last update 22/5/2007)
+- verify set up svn folders (DONE)
+- Citrix showdown: (0.5d/1d/WIP)
+  - verifica licenze accesso: individuato referente, -> Katiuscia (DONE)
+  - verifica accesso a $+ (DONE)
+  - chiedere utenze BGM x tutti (WIP)
+  - assistenza verifica accesso Quants (WIP)
 - check optimizers:
-  D: complete test in test suite (with Giorgio&Francois) (1d/2d/done)
-  D: test Simplex (with Francois) (1.5d/1d)
-  D: check Simplex with GSL and refine termination criteria (with Francois)
-     (1d/1d/done)
-  D: test all code using Simplex (1d/1d/done)
-  D: fix failing test in shortratemodels.cpp (1d/1d/done)
-  D: test wkbs using simplex (1d/1d/ quasi-done):
-    D: abcd.xls
-    D: interpolation.xls
-    D: cms calibration wkb MultiIndexSingleMeanRevCalibration.xls
-  D: fix conjugate gradient (with Francois) (1d/2d/done)
-  WIP: fix steepest descent (with Francois) (1d/2d/WIP)
-  TBD: check export to excel and testing wkb (to be planned)
-  TBD add more tests (multidimensional)
-- MM: corr hist extimation (after 21/5/2007)
+  - fix steepest descent (with Francois) (1d/2d/WIP)
+  - add more tests (multidimensional) in test suite (to be planned)
+  - add Broyden-Fletcher-Goldfarb-Shanno algorithm (to be planned)
+  - check export to excel and testing wkb (to be planned)
+- MM: corr hist extimation (after 29/5/2007)
 - pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)
   (0.0/2d/WAITING FOR DIGITAL OPTIONS)
 - Risk, Wilmott papers (0.0/1d/WAITING for Ferdinando)
-D Citrix:  (0.5d/0.5d/DONE)
-  D verifica licenze accesso: individuato referente, -> Katiuscia
-  D verifica accesso a $+ (ok)
-D Update bootstrapping algorithm to catch up changes in Mx curve (2d/3d/DONE)
-  D introduce enumeration for Depos inclusion
-  D move selection of instruments from RateHelperSelection into spreadsheets
-   (with Nando)
 - Inflation project:
   - Attività UAT (0/2w)
   - Programmazione prossime attività (0/2w?)
