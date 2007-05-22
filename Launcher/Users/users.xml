@@ -83,6 +83,11 @@
             <serialNumber>4C18CCC5</serialNumber>
           </serialNumbers>
         </User>
+        <User name="guidam1a">
+          <serialNumbers>
+            <serialNumber>30BFD1CB</serialNumber>
+          </serialNumbers>
+        </User>
         <!-- temporary users -->
         <User name="crosid2a">
           <serialNumbers>
