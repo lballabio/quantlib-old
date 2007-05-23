@@ -31,6 +31,7 @@ Namespace QuantLibXL
         Private capVolBootstrap_ As Boolean
         'Private swapVolBootstrap_ As Boolean
         Private swapSmileBootstrap_ As Boolean
+        Private calibrateCMS_ As Boolean
         Private fitCMS_ As Boolean
         Private indexesTimeSeries_ As Boolean
         Private loadBonds_ As Boolean
@@ -42,6 +43,7 @@ Namespace QuantLibXL
             serializer.serializeProperty(loadMurexYC_, "LoadMurexYieldCurve")
             serializer.serializeProperty(capVolBootstrap_, "CapVolBootstrap")
             serializer.serializeProperty(swapSmileBootstrap_, "SwapSmileBootstrap")
+            serializer.serializeProperty(calibrateCMS_, "CalibrateCMS")
             serializer.serializeProperty(fitCMS_, "FitCMS")
             serializer.serializeProperty(indexesTimeSeries_, "IndexesTimeSeries")
             serializer.serializeProperty(loadBonds_, "LoadBonds")
@@ -117,6 +119,18 @@ Namespace QuantLibXL
 
             Set(ByVal value As Boolean)
                 swapSmileBootstrap_ = value
+            End Set
+
+        End Property
+
+        Public Property CalibrateCMS() As Boolean
+
+            Get
+                CalibrateCMS = calibrateCMS_
+            End Get
+
+            Set(ByVal value As Boolean)
+                calibrateCMS_ = value
             End Set
 
         End Property

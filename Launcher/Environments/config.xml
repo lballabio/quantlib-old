@@ -20,6 +20,7 @@
         <CapVolBootstrap>false</CapVolBootstrap>
         <!--<SwapVolBootstrap>false</SwapVolBootstrap>-->
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
+        <CalibrateCMS>false</CalibrateCMS>
         <FitCMS>false</FitCMS>
         <IndexesTimeSeries>false</IndexesTimeSeries>
         <LoadBonds>false</LoadBonds>
@@ -43,6 +44,7 @@
         <CapVolBootstrap>false</CapVolBootstrap>
         <!--<SwapVolBootstrap>false</SwapVolBootstrap>-->
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
+        <CalibrateCMS>false</CalibrateCMS>
         <FitCMS>false</FitCMS>
         <IndexesTimeSeries>false</IndexesTimeSeries>
         <LoadBonds>false</LoadBonds>
@@ -66,6 +68,7 @@
         <CapVolBootstrap>false</CapVolBootstrap>
         <!--<SwapVolBootstrap>false</SwapVolBootstrap>-->
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
+        <CalibrateCMS>false</CalibrateCMS>
         <FitCMS>false</FitCMS>
         <IndexesTimeSeries>false</IndexesTimeSeries>
         <LoadBonds>false</LoadBonds>

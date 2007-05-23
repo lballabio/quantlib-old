@@ -498,6 +498,10 @@ Public Class FormMain
         SelectedEnvironment.StartupActions.SwapSmileBootstrap = cbSwapSmileBootstrap.Checked
     End Sub
 
+    Private Sub cbCalibrateCMS_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCalibrateCms.CheckedChanged
+        SelectedEnvironment.StartupActions.CalibrateCMS = cbCalibrateCms.Checked
+    End Sub
+
     Private Sub cbFitCMS_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbFitCMS.CheckedChanged
         SelectedEnvironment.StartupActions.FitCMS = cbFitCMS.Checked
     End Sub
@@ -980,6 +984,7 @@ Public Class FormMain
         cbLoadMurexYC.Checked = False
         cbCapVolBootstrap.Checked = False
         cbSwapSmileBootstrap.Checked = False
+        cbCalibrateCms.Checked = False
         cbFitCMS.Checked = False
         cbIndexesTimeSeries.Checked = False
         cbLoadBonds.Checked = False
@@ -1009,6 +1014,7 @@ Public Class FormMain
         cbLoadMurexYC.Checked = SelectedEnvironment.StartupActions.LoadMurexYieldCurve
         cbCapVolBootstrap.Checked = SelectedEnvironment.StartupActions.CapVolBootstrap
         cbSwapSmileBootstrap.Checked = SelectedEnvironment.StartupActions.SwapSmileBootstrap
+        cbCalibrateCms.Checked = SelectedEnvironment.StartupActions.CalibrateCMS
         cbFitCMS.Checked = SelectedEnvironment.StartupActions.FitCMS
         cbIndexesTimeSeries.Checked = SelectedEnvironment.StartupActions.IndexesTimeSeries
         cbLoadBonds.Checked = SelectedEnvironment.StartupActions.LoadBonds

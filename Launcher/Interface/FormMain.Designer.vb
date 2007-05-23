@@ -81,6 +81,7 @@ Partial Class FormMain
         Me.txtReuters = New System.Windows.Forms.TextBox
         Me.lblReuters = New System.Windows.Forms.Label
         Me.lblBuildNumber = New System.Windows.Forms.Label
+        Me.cbCalibrateCms = New System.Windows.Forms.CheckBox
         Me.grpEnvironment.SuspendLayout()
         Me.tstEnvironment.SuspendLayout()
         Me.grpStartup.SuspendLayout()
@@ -262,6 +263,7 @@ Partial Class FormMain
         '
         'grpStartup
         '
+        Me.grpStartup.Controls.Add(Me.cbCalibrateCms)
         Me.grpStartup.Controls.Add(Me.cbStaticData)
         Me.grpStartup.Controls.Add(Me.cbFitCMS)
         Me.grpStartup.Controls.Add(Me.cbLoadBonds)
@@ -272,7 +274,7 @@ Partial Class FormMain
         Me.grpStartup.Controls.Add(Me.cbYCBootstrap)
         Me.grpStartup.Location = New System.Drawing.Point(202, 6)
         Me.grpStartup.Name = "grpStartup"
-        Me.grpStartup.Size = New System.Drawing.Size(190, 210)
+        Me.grpStartup.Size = New System.Drawing.Size(190, 228)
         Me.grpStartup.TabIndex = 19
         Me.grpStartup.TabStop = False
         Me.grpStartup.Text = "Startup Actions"
@@ -280,7 +282,7 @@ Partial Class FormMain
         'cbStaticData
         '
         Me.cbStaticData.AutoSize = True
-        Me.cbStaticData.Location = New System.Drawing.Point(10, 187)
+        Me.cbStaticData.Location = New System.Drawing.Point(10, 199)
         Me.cbStaticData.Name = "cbStaticData"
         Me.cbStaticData.Size = New System.Drawing.Size(157, 17)
         Me.cbStaticData.TabIndex = 8
@@ -290,7 +292,7 @@ Partial Class FormMain
         'cbFitCMS
         '
         Me.cbFitCMS.AutoSize = True
-        Me.cbFitCMS.Location = New System.Drawing.Point(10, 118)
+        Me.cbFitCMS.Location = New System.Drawing.Point(10, 133)
         Me.cbFitCMS.Name = "cbFitCMS"
         Me.cbFitCMS.Size = New System.Drawing.Size(162, 17)
         Me.cbFitCMS.TabIndex = 7
@@ -300,7 +302,7 @@ Partial Class FormMain
         'cbLoadBonds
         '
         Me.cbLoadBonds.AutoSize = True
-        Me.cbLoadBonds.Location = New System.Drawing.Point(10, 164)
+        Me.cbLoadBonds.Location = New System.Drawing.Point(10, 177)
         Me.cbLoadBonds.Name = "cbLoadBonds"
         Me.cbLoadBonds.Size = New System.Drawing.Size(83, 17)
         Me.cbLoadBonds.TabIndex = 6
@@ -310,7 +312,7 @@ Partial Class FormMain
         'cbSwapSmileBootstrap
         '
         Me.cbSwapSmileBootstrap.AutoSize = True
-        Me.cbSwapSmileBootstrap.Location = New System.Drawing.Point(10, 95)
+        Me.cbSwapSmileBootstrap.Location = New System.Drawing.Point(10, 89)
         Me.cbSwapSmileBootstrap.Name = "cbSwapSmileBootstrap"
         Me.cbSwapSmileBootstrap.Size = New System.Drawing.Size(173, 17)
         Me.cbSwapSmileBootstrap.TabIndex = 5
@@ -320,7 +322,7 @@ Partial Class FormMain
         'cbIndexesTimeSeries
         '
         Me.cbIndexesTimeSeries.AutoSize = True
-        Me.cbIndexesTimeSeries.Location = New System.Drawing.Point(10, 141)
+        Me.cbIndexesTimeSeries.Location = New System.Drawing.Point(10, 155)
         Me.cbIndexesTimeSeries.Name = "cbIndexesTimeSeries"
         Me.cbIndexesTimeSeries.Size = New System.Drawing.Size(148, 17)
         Me.cbIndexesTimeSeries.TabIndex = 4
@@ -330,7 +332,7 @@ Partial Class FormMain
         'cbCapVolBootstrap
         '
         Me.cbCapVolBootstrap.AutoSize = True
-        Me.cbCapVolBootstrap.Location = New System.Drawing.Point(10, 72)
+        Me.cbCapVolBootstrap.Location = New System.Drawing.Point(10, 67)
         Me.cbCapVolBootstrap.Name = "cbCapVolBootstrap"
         Me.cbCapVolBootstrap.Size = New System.Drawing.Size(142, 17)
         Me.cbCapVolBootstrap.TabIndex = 2
@@ -340,7 +342,7 @@ Partial Class FormMain
         'cbLoadMurexYC
         '
         Me.cbLoadMurexYC.AutoSize = True
-        Me.cbLoadMurexYC.Location = New System.Drawing.Point(10, 47)
+        Me.cbLoadMurexYC.Location = New System.Drawing.Point(10, 45)
         Me.cbLoadMurexYC.Name = "cbLoadMurexYC"
         Me.cbLoadMurexYC.Size = New System.Drawing.Size(160, 17)
         Me.cbLoadMurexYC.TabIndex = 1
@@ -395,9 +397,9 @@ Partial Class FormMain
         '
         Me.grpFeeds.Controls.Add(Me.cbBloomberg)
         Me.grpFeeds.Controls.Add(Me.cbReuters)
-        Me.grpFeeds.Location = New System.Drawing.Point(202, 222)
+        Me.grpFeeds.Location = New System.Drawing.Point(202, 240)
         Me.grpFeeds.Name = "grpFeeds"
-        Me.grpFeeds.Size = New System.Drawing.Size(190, 85)
+        Me.grpFeeds.Size = New System.Drawing.Size(190, 67)
         Me.grpFeeds.TabIndex = 20
         Me.grpFeeds.TabStop = False
         Me.grpFeeds.Text = "Feeds"
@@ -700,6 +702,16 @@ Partial Class FormMain
         Me.lblBuildNumber.Text = "version 0.0.0.0"
         Me.lblBuildNumber.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
+        'cbCalibrateCms
+        '
+        Me.cbCalibrateCms.AutoSize = True
+        Me.cbCalibrateCms.Location = New System.Drawing.Point(10, 111)
+        Me.cbCalibrateCms.Name = "cbCalibrateCms"
+        Me.cbCalibrateCms.Size = New System.Drawing.Size(129, 17)
+        Me.cbCalibrateCms.TabIndex = 9
+        Me.cbCalibrateCms.Text = "Calibrate CMS Market"
+        Me.cbCalibrateCms.UseVisualStyleBackColor = True
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -796,4 +808,5 @@ Partial Class FormMain
     Friend WithEvents cbReuters As System.Windows.Forms.CheckBox
     Friend WithEvents cbBloomberg As System.Windows.Forms.CheckBox
     Friend WithEvents lblBuildNumber As System.Windows.Forms.Label
+    Friend WithEvents cbCalibrateCms As System.Windows.Forms.CheckBox
 End Class
