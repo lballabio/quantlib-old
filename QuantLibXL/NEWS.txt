@@ -3,6 +3,9 @@ http://www.quantlibxl.org/history.html
 
 new or updated in this release:
 
+LAUNCHER
+CalibrateCMS startup action added
+
 FUNCTIONS
 - exported qlSpreadedSwaptionVolatilityStructure:
 - exported qlSpreadedCapletVolatilityStructure:

@@ -198,7 +198,8 @@ CHIARA
 ---
 FRANCOIS
 - XML/ serialization presentation
-- launcher cms calibration check-box
+D launcher cms calibration check-box
+D add atmRate to SmileSection base class (.5D/.5D)
 D testMultiStepCoterminalSwapsAndSwaptions failure (.5D/.5D)
 D serialization of market data (.5D/.5D)
 D Levenberg Marquardt bug (0.5D/0.5D)
@@ -220,11 +221,10 @@ D integration framework refactoring (2D/2D)
   (done)
 - OH Wizard performance issue when the control panel is left opened(to be
   precised)
-- To BE REVIEWED test abcd calibration
-- TO BE REVIEWED consolidate all multisteps in a single test
+- test abcd calibration (to be precised)
+- consolidate all multisteps in a single test
 - TO BE REVIEWED MultiStepSwaption
 - check sabr fit stability/accuracy for smilesections (.5D)
-- add atmRate to SmileSection base class (to be discussed)
 - review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls,
   CapStripperTest3M.xls. (to be precised)
 
