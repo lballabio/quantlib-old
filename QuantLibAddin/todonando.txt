@@ -151,10 +151,11 @@ CRISTINA
 
 ---
 CHIARA
-- add and validate new bonds in all the environments
+- add and validate new bonds in all the environments (1d|1d|Done)
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g. IT0003650998.pdf) (0d|1d)
  *prospectus added in Drafts
 - verify bond in Testing and Trunk (with Cristina)
+- review and correct trader's bond monitor (0d|1d)
 - current cpn as a method of bond (a trader's request) (0.5d|1.5dd|WIP)
  *created qlCurrentCoupon
  *add test in the testsuite in assetswap.cpp
@@ -168,8 +169,9 @@ CHIARA
  *created qlBondCleanPriceFromZSpread()
  *double check against YAF, YAS on BBG
  *add test in test suite
-- cds options (with Giorgio) (1d-30dd)
+- cds options (with Giorgio) (1.5d-30dd|WIP)
  *analysis of the trader's workbook
+ *verified correct installation of Launcher, access given to the trader to the 3 different environments on the network
 - markedata\BloombergFeed (Maurizio Pietrini)
  *reviewed all the worksheets regarding market data feed and timeseries with
   Maurizio (0.5d|0.5d|Done)
