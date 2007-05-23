@@ -31,6 +31,9 @@ GENERAL
 
 ---
 NANDO
+- EvolutionDescription equality
+- ref market data set for test suite
+- evaluation date observers
 - handle incomplete Reuters menu
 - check beta2Y sensitivity
 - handle already loaded addin
