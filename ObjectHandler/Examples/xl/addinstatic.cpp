@@ -15,12 +15,12 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <account.hpp>
 #include <oh/Enumerations/typefactory.hpp>
 #include <ohxl/objecthandlerxl.hpp>
 #include <ohxl/Register/register_all.hpp>
 #include <ohxl/Functions/export.hpp>
 #include <ohxl/Utilities/xlutilities.hpp>
+#include <ExampleObjects/accountexample.hpp>
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
@@ -33,7 +33,7 @@
 #include <sstream>
 
 // Instantiate the ObjectHandler Repository
-ObjectHandler::RepositoryXL objectHandler;
+ObjectHandler::RepositoryXL repositoryXL;
 // Instantiate the Enumerated Type Registry
 ObjectHandler::EnumTypeRegistry enumTypeRegistry;
 // Instantiate the Enumerated Class Registry
@@ -42,16 +42,17 @@ ObjectHandler::EnumClassRegistry enumClassRegistry;
 ObjectHandler::EnumPairRegistry enumPairRegistry;
 
 DLLEXPORT int xlAutoOpen() {
+
     static XLOPER xDll;
+
     try {
 
         Excel(xlGetName, &xDll, 0);
 
         ObjectHandler::Configuration::instance().init();
-        registerOhFunctions(xDll);
 
-        ObjectHandler::Create<Account::Type>().registerType("Current", new Account::Type(Account::Current));
-        ObjectHandler::Create<Account::Type>().registerType("Savings", new Account::Type(Account::Savings));
+        registerOhFunctions(xDll);
+        AccountExample::registerEnumeratedTypes();
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x09""ohAccount"),           // function code name
@@ -112,8 +113,41 @@ DLLEXPORT int xlAutoOpen() {
     }
 }
 
+DLLEXPORT int xlAutoClose() {
+
+    static XLOPER xDll;
+
+    try {
+
+        Excel(xlGetName, &xDll, 0);
+
+        AccountExample::unregisterEnumeratedTypes();
+        unregisterOhFunctions(xDll);
+
+        Excel(xlFree, 0, 1, &xDll);
+        return 1;
+
+    } catch (const std::exception &e) {
+
+        std::ostringstream err;
+        err << "Error unloading ExampleXllStatic: " << e.what();
+        Excel(xlcAlert, 0, 1, TempStrStl(err.str()));
+        Excel(xlFree, 0, 1, &xDll);
+        return 0;
+
+    } catch (...) {
+
+        Excel(xlFree, 0, 1, &xDll);
+        return 0;
+
+    }
+
+}
+
 DLLEXPORT void xlAutoFree(XLOPER *px) {
+
     freeOper(px);
+
 }
 
 DLLEXPORT char *ohAccount(
@@ -124,17 +158,18 @@ DLLEXPORT char *ohAccount(
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
     try {
+
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
             (new ObjectHandler::FunctionCall("ohAccount"));
 
-        Account::Type typeEnum =
-            ObjectHandler::Create<Account::Type>()(type);
+        AccountExample::Account::Type typeEnum =
+            ObjectHandler::Create<AccountExample::Account::Type>()(type);
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountObject(*number, typeEnum));
+            new AccountExample::AccountObject(*number, typeEnum));
         object->setProperties(
             boost::shared_ptr<ObjectHandler::ValueObject>(
-                new AccountValueObject(objectID, *number, type)));
+                new AccountExample::AccountValueObject(objectID, *number, type)));
 
         std::string returnValue = 
             ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);
@@ -144,79 +179,105 @@ DLLEXPORT char *ohAccount(
         return ret;
 
     } catch (const std::exception &e) {
+
         ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
+
     }
 }
 
 DLLEXPORT short int *ohAccountSetBalance(char *objectID, long *balance) {
+
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
     try {
+
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
             (new ObjectHandler::FunctionCall("ohAccountSetBalance"));
 
-        OH_GET_OBJECT(accountObject, objectID, AccountObject)
+        OH_GET_OBJECT(accountObject, objectID, AccountExample::AccountObject)
         accountObject->setBalance(*balance);
 
         static short int ret = TRUE;
         return &ret;
+
     } catch (const std::exception &e) {
+
         ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
+
     }
 }
 
 DLLEXPORT long *ohAccountBalance(char *objectID, OPER *trigger) {
+
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
     try {
+
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
             (new ObjectHandler::FunctionCall("ohAccountBalance"));
 
-        OH_GET_OBJECT(accountObject, objectID, AccountObject)
+        OH_GET_OBJECT(accountObject, objectID, AccountExample::AccountObject)
 
         static long ret;
         ret = accountObject->balance();
         return &ret;
+
     } catch (const std::exception &e) {
+
         ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
+
     }
 }
 
 DLLEXPORT char *ohAccountType(char *objectID, OPER *trigger) {
+
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
     try {
+
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
             (new ObjectHandler::FunctionCall("ohAccountType"));
 
-        OH_GET_OBJECT(accountObject, objectID, AccountObject)
+        OH_GET_OBJECT(accountObject, objectID, AccountExample::AccountObject)
 
         static char ret[XL_MAX_STR_LEN];
         ObjectHandler::stringToChar(accountObject->type(), ret);
         return ret;
+
     } catch (const std::exception &e) {
+
         ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
+
     }
 }
 
 DLLEXPORT char *func1(char *objectID, OPER *trigger) {
+
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
     try {
+
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
             (new ObjectHandler::FunctionCall("func1"));
 
-        Account::Type typeEnum =
-            ObjectHandler::Create<Account::Type>()(objectID);
+        AccountExample::Account::Type typeEnum =
+            ObjectHandler::Create<AccountExample::Account::Type>()(objectID);
 
         std::ostringstream s;
         s << typeEnum;
         static char ret[XL_MAX_STR_LEN];
         ObjectHandler::stringToChar(s.str(), ret);
         return ret;
+
     } catch (const std::exception &e) {
+
         ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
+
     }
 }
 

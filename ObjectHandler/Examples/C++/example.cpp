@@ -15,7 +15,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <account.hpp>
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
 */
@@ -28,9 +27,20 @@
 #include <iostream>
 #include <exception>
 
-ObjectHandler::Repository oh;
+#include <oh/objecthandler.hpp>
+#include <ExampleObjects/accountexample.hpp>
+
+// Instantiate the ObjectHandler Repository
+ObjectHandler::Repository repository;
+// Instantiate the Enumerated Type Registry
+ObjectHandler::EnumTypeRegistry enumTypeRegistry;
+// Instantiate the Enumerated Class Registry
+ObjectHandler::EnumClassRegistry enumClassRegistry;
+// Instantiate the Enumerated Pair Registry
+ObjectHandler::EnumPairRegistry enumPairRegistry;
 
 int main() {
+
     try {
         // specify log file
         ObjectHandler::setLogFile("example.log");
@@ -46,53 +56,69 @@ int main() {
     }
 
     try {
-        // construct some objects and store them in the object handler
-        boost::shared_ptr<ObjectHandler::Object> accountObject1(new AccountObject(
-            123456789,
-            Account::Savings));
+
+        // Construct some objects and store them in the object handler
+        boost::shared_ptr<ObjectHandler::Object> accountObject1(
+            new AccountExample::AccountObject(
+                123456789,
+                AccountExample::Account::Savings));
         accountObject1->setProperties(
-            boost::shared_ptr<ObjectHandler::ValueObject>(new AccountValueObject(
-            "account1", 123456789, "Savings")));
+            boost::shared_ptr<ObjectHandler::ValueObject>(
+                new AccountExample::AccountValueObject(
+                    "account1", 123456789, "Savings")));
         ObjectHandler::Repository::instance().storeObject("account1", accountObject1);
 
-        boost::shared_ptr<ObjectHandler::Object> accountObject2(new AccountObject(
-            987654321,
-            Account::Current));
+        boost::shared_ptr<ObjectHandler::Object> accountObject2(
+            new AccountExample::AccountObject(
+                987654321,
+                AccountExample::Account::Current));
         accountObject2->setProperties(
-            boost::shared_ptr<ObjectHandler::ValueObject>(new AccountValueObject(
-            "account2", 987654321, "Current")));
+            boost::shared_ptr<ObjectHandler::ValueObject>(
+                new AccountExample::AccountValueObject(
+                    "account2", 987654321, "Current")));
         ObjectHandler::Repository::instance().storeObject("account2", accountObject2);
 
-        // high level interrogation
-        ObjectHandler::logMessage("high level interrogation - after constructor");
+        // High level interrogation
+        ObjectHandler::logMessage("High level interrogation - after constructor");
         ObjectHandler::logObject("account2");
 
-        // retrieve an object and update it
-        OH_GET_OBJECT( accountObject2_retrieve, "account2", AccountObject )
+        // Retrieve an object and update it
+        OH_GET_OBJECT(accountObject2_retrieve, 
+            "account2", AccountExample::AccountObject)
         accountObject2_retrieve->setBalance(100);
 
-        // low-level interrogation
-        ObjectHandler::logMessage("low-level interrogation - after update");
-        OH_GET_REFERENCE(accountObjectUnderlying, "account2", AccountObject, Account)
+        // Low-level interrogation
+        ObjectHandler::logMessage("Low-level interrogation - after update");
+        OH_GET_REFERENCE(accountObjectUnderlying, 
+            "account2", AccountExample::AccountObject, AccountExample::Account)
         std::ostringstream msg;
-        msg << "result of getBalance on underlying = " << accountObjectUnderlying->balance();
+        msg << "Result of getBalance on underlying = " 
+            << accountObjectUnderlying->balance();
         ObjectHandler::logMessage(msg.str());
 
+        // Delete an object
         ObjectHandler::Repository::instance().deleteObject("account2");
-        ObjectHandler::logMessage("log all objects after deleting account2:");
+
+        // Log all objects
+        ObjectHandler::logMessage("Log all objects after deleting account2:");
         ObjectHandler::logAllObjects();
 
-        ObjectHandler::logMessage("end example program");
+        ObjectHandler::logMessage("End example program");
 
         return 0;
+
     } catch (const std::exception &e) {
+
         std::ostringstream s;
         s << "Error: " << e.what();
         ObjectHandler::logMessage(s.str(), 1);
         return 1;
+
     } catch (...) {
+
         ObjectHandler::logMessage("Error", 1);
         return 1;
+
     }
 }
 

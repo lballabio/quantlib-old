@@ -4,6 +4,7 @@
 	Version="8.00"
 	Name="ExampleCpp"
 	ProjectGUID="{90BF5136-C003-45AB-BB63-7AE014A07F4E}"
+	RootNamespace="ExampleCpp"
 	>
 	<Platforms>
 		<Platform
@@ -44,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories=".,..,..\.."
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -71,7 +72,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc80-mt-0_3_12.exe"
+				OutputFile="bin\ExampleCpp-vc80-mt-0_8_0.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib"
@@ -136,7 +137,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories=".,..,..\.."
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -164,7 +165,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc80-mt-sgd-0_3_12.exe"
+				OutputFile="bin\ExampleCpp-vc80-mt-sgd-0_8_0.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib"
@@ -231,7 +232,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories=".,..,..\.."
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -258,7 +259,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc80-mt-s-0_3_12.exe"
+				OutputFile="bin\ExampleCpp-vc80-mt-s-0_8_0.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib"
@@ -323,7 +324,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories=".,..,..\.."
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -351,7 +352,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc80-mt-gd-0_3_12.exe"
+				OutputFile="bin\ExampleCpp-vc80-mt-gd-0_8_0.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\Lib"
@@ -391,14 +392,6 @@
 	<References>
 	</References>
 	<Files>
-		<File
-			RelativePath="account.cpp"
-			>
-		</File>
-		<File
-			RelativePath="account.hpp"
-			>
-		</File>
 		<File
 			RelativePath="example.cpp"
 			>

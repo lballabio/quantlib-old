@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories=".,..,..\.."
 				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;WIN32;XLL_IMPORTS;LOG4CXX_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -146,7 +146,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories=".,..,..\.."
 				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;WIN32;XLL_IMPORTS;LOG4CXX_STATIC"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -212,14 +212,6 @@
 	<References>
 	</References>
 	<Files>
-		<File
-			RelativePath="account.cpp"
-			>
-		</File>
-		<File
-			RelativePath="account.hpp"
-			>
-		</File>
 		<File
 			RelativePath="addindynamic2.cpp"
 			>
