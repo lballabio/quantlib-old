@@ -55,6 +55,11 @@
             <tensorRank>scalar</tensorRank>
             <description>quote</description>
           </Parameter>
+          <Parameter name='tickValue' example='0.0001'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tick value used for sensitivity analysis</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -91,6 +96,42 @@
       </ParameterList>
       <ReturnValue>
         <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimpleQuoteSetTickValue' type='QuantLibAddin::SimpleQuote'>
+      <description>sets the tick value of the given SimpleQuote object</description>
+      <libraryFunction>setTickValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='value' example='0.0001'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the new tick value</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimpleQuoteTickValue' type='QuantLibAddin::SimpleQuote'>
+      <description>returns the tick value of the given SimpleQuote object</description>
+      <libraryFunction>tickValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>

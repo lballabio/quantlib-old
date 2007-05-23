@@ -36,7 +36,14 @@ namespace QuantLibAddin {
 
     class SimpleQuote : public Quote {
       public:
-        SimpleQuote(QuantLib::Real value);
+        SimpleQuote(QuantLib::Real value,
+                    QuantLib::Real tickValue);
+        QuantLib::Real tickValue() const { return tickValue_; }
+        void setTickValue(QuantLib::Real tickValue) {
+            tickValue_ = tickValue;
+        }
+      private:
+        QuantLib::Real tickValue_;
     };
 
     class ForwardValueQuote : public Quote {

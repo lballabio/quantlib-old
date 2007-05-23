@@ -21,8 +21,9 @@
 
 namespace QuantLibAddin {
 
-    SimpleQuote::SimpleQuote(QuantLib::Real value)
-    {
+    SimpleQuote::SimpleQuote(QuantLib::Real value,
+                             QuantLib::Real tickValue)
+    : tickValue_(tickValue) {
         libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
             QuantLib::SimpleQuote(value));
     }
