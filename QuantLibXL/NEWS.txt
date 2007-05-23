@@ -23,10 +23,10 @@ FUNCTIONS
   qlScheduleBackward() returns TRUE if backward calculation has been used to calculate the given Schedule object
   qlScheduleEndOfMonth() returns TRUE if end-of-month convention has been used to calculate the given Schedule object
 - new methods added to Leg object:
-  qlLegLastCouponRate returns the last coupon rate (if any) for the given Leg object
+  qlLegPreviousCouponRate returns the previous coupon rate (if any) for the given Leg object
   qlLegCurrentCouponRate returns the current coupon rate (if any) for the given Leg object
 - new method added to Bond object:
-  qlBondLastCoupon returns the last coupon for the given bond. The default bond settlement is used if no date is given.
+  qlBondPreviousCoupon returns the previous coupon paid for the given bond. The default bond settlement is used if no date is given.
 - Quote stuff
   ...
 - new functions added to Bond class:

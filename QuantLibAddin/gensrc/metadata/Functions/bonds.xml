@@ -470,9 +470,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondLastCoupon' type='QuantLib::Bond'>
-      <description>returns the last coupon for the given bond. The default bond settlement is used if no date is given.</description>
-      <libraryFunction>lastCoupon</libraryFunction>
+    <Member name='qlBondPreviousCoupon' type='QuantLib::Bond'>
+      <description>Returns the previous period's coupon paid for the given bond. The default bond settlement is used if no date is given.</description>
+      <libraryFunction>previousCoupon</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -492,7 +492,7 @@
     </Member>
 
     <Member name='qlBondCurrentCoupon' type='QuantLib::Bond'>
-      <description>returns the current coupon for the given bond. The default bond settlement is used if no date is given.</description>
+      <description>Returns the current coupon for the given bond. The default bond settlement is used if no date is given.</description>
       <libraryFunction>currentCoupon</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />

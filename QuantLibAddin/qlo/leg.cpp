@@ -38,8 +38,8 @@ using QuantLib::CashFlow;
 
 namespace QuantLibAddin {
 
-    QuantLib::Rate Leg::lastCouponRate(const QuantLib::Date& refDate) const {
-        return QuantLib::CashFlows::lastCouponRate(leg_, refDate);
+    QuantLib::Rate Leg::previousCouponRate(const QuantLib::Date& refDate) const {
+        return QuantLib::CashFlows::previousCouponRate(leg_, refDate);
     }
 
     QuantLib::Rate Leg::currentCouponRate(const QuantLib::Date& refDate) const {

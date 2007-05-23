@@ -19,9 +19,9 @@
   <Functions>
 
     <!-- Leg interface -->
-    <Member name='qlLegLastCouponRate' type='QuantLibAddin::Leg'>
-      <description>returns the last coupon rate (if any) for the given Leg object</description>
-      <libraryFunction>lastCouponRate</libraryFunction>
+    <Member name='qlLegPreviousCouponRate' type='QuantLibAddin::Leg'>
+      <description>Returns the previous coupon rate paid (if any) for the given Leg object</description>
+      <libraryFunction>previousCouponRate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
       </SupportedPlatforms>
@@ -41,7 +41,7 @@
     </Member>
 
     <Member name='qlLegCurrentCouponRate' type='QuantLibAddin::Leg'>
-      <description>returns the current coupon rate (if any) for the given Leg object</description>
+      <description>Returns the current coupon rate (if any) for the given Leg object</description>
       <libraryFunction>currentCouponRate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
