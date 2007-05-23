@@ -33,8 +33,11 @@ ObjectHandler::EnumClassRegistry enumClassRegistry;
 ObjectHandler::EnumPairRegistry enumPairRegistry;
 
 DLLEXPORT int xlAutoOpen() {
+
     static XLOPER xDll;
+
     try {
+
         Excel(xlGetName, &xDll, 0);
 
         ObjectHandler::Configuration::instance().init();
@@ -42,45 +45,63 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlFree, 0, 1, &xDll);
         return 1;
+
     } catch (const std::exception &e) {
+
         std::ostringstream err;
         err << "Error loading ObjectHandler: " << e.what();
         Excel(xlcAlert, 0, 1, TempStrStl(err.str()));
         Excel(xlFree, 0, 1, &xDll);
         return 0;
+
     } catch (...) {
+
         Excel(xlFree, 0, 1, &xDll);
         return 0;
+
     }
 }
 
 DLLEXPORT int xlAutoClose() {
-    static XLOPER xDll;
-    try {
-        // empty the ObjectHandler repository
 
+    static XLOPER xDll;
+
+    try {
+
+        // empty the ObjectHandler repository
         Excel(xlUDF, 0, 1, TempStrNoSize("\x12""ohDeleteAllObjects"));
 
         // unregister the addin functions
-
         Excel(xlGetName, &xDll, 0);
-
         unregisterOhFunctions(xDll);
-
         Excel(xlFree, 0, 1, &xDll);
 
         return 1;
+
+    } catch (const std::exception &e) {
+
+        Excel(xlFree, 0, 1, &xDll);
+        std::ostringstream err;
+        err << "Error unloading ObjectHandler: " << e.what();
+        Excel(xlcAlert, 0, 1, TempStrStl(err.str()));
+        return 0;
+
     } catch (...) {
+
         Excel(xlFree, 0, 1, &xDll);
         return 0;
+
     }
 }
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
+
     freeOper(px);
+
 }
 
 DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
+
     XLOPER xlReturn;
     static XLOPER xlLongName;
 
