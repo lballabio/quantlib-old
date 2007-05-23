@@ -29,9 +29,18 @@ FUNCTIONS
   qlBondLastCoupon returns the last coupon for the given bond. The default bond settlement is used if no date is given.
 - Quote stuff
   ...
+- new functions added to Bond class:
+qlBondCleanPriceFromZSpread() Returns the clean price for the bond given Z-Spread and settlement date. The default bond settlement is used if no date is given
+qlBondDirtyPriceFromZSpread() Returns the dirty price for the bond given Z-Spread and settlement date. The default bond settlement is used if no date is given
 
 WORKBOOKS
 - Workbooks\DateCalendarsDayCounters\ScheduleGenerator.xls shows the usage of the Schedule class
+-Bonds
+added, validated and checked against the corresponding prospectus the following bonds:
+IT0003493258 IT0001307286 IT0006521139 IT0001303350 IT0001264792 IT0001271649 IT0001203295 IT0001296133;
+Added, checked against prospectus but not validated because treated as non callable maturing at the first call date ( according to the market) the following: 
+XS0080650806 XS0081247446 XS0083246032 XS0083714823 XS0083662923 and XS0084680106 (for this bond prospectus is missing)
+
 
 LIBRARY:
 atmLevel method implemented in all SmileSection classes
