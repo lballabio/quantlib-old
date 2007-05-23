@@ -5,6 +5,7 @@ new or updated in this release:
 
 FUNCTIONS
 - exported qlSpreadedSwaptionVolatilityStructure:
+- exported qlSpreadedCapletVolatilityStructure:
   ...
 - exported Schedule class full interface:
   qlScheduleSize() returns the number of dates in the given Schedule object
