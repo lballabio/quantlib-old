@@ -227,6 +227,8 @@ D integration framework refactoring (2D/2D)
 
 ---
 GIORGIO (last update 16/5/2007)
+- bug fix: start up & menu action: Multi Index Calibration
+- bug fix: start up action: bootstrap cap vols
 - verify single index calibration wbk and remove obsolete calibration wbks
 - CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando
