@@ -19,6 +19,7 @@
 #include <qlo/qladdindefines.hpp>
 #include <qlo/Enumerations/Register/register_all.hpp>
 #include <qlxl/Register/register_all.hpp>
+
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors
    (Metrowerks, for example) also #define _MSC_VER
 */
@@ -55,10 +56,13 @@ ObjectHandler::EnumPairRegistry enumPairRegistry;
 #endif
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
+
     freeOper(px);
+
 }
 
 DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
+
     XLOPER xlReturn;
     static XLOPER xlLongName;
 
@@ -79,8 +83,11 @@ DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
 }
 
 DLLEXPORT int xlAutoOpen() {
+
     XLOPER xDll;
+
     try {
+
         Excel(xlGetName, &xDll, 0);
 
 #ifdef XLL_STATIC
@@ -99,21 +106,29 @@ DLLEXPORT int xlAutoOpen() {
         Excel(xlFree, 0, 1, &xDll);
 
         return 1;
+
     } catch (const std::exception &e) {
+
         std::ostringstream err;
         err << "Error loading QuantLibXL: " << e.what();
         Excel(xlcAlert, 0, 1, TempStrStl(err.str()));
         Excel(xlFree, 0, 1, &xDll);
         return 0;
+
     } catch (...) {
+
         Excel(xlFree, 0, 1, &xDll);
         return 0;
+
     }
 }
 
 DLLEXPORT int xlAutoClose() {
+
     static XLOPER xDll;
+
     try {
+
         Excel(xlGetName, &xDll, 0);
 
 #ifdef XLL_STATIC
@@ -130,9 +145,21 @@ DLLEXPORT int xlAutoClose() {
         Excel(xlFree, 0, 1, &xDll);
 
         return 1;
+
+    } catch (const std::exception &e) {
+
+        Excel(xlFree, 0, 1, &xDll);
+        std::ostringstream err;
+        err << "Error unloading QuantLibXL: " << e.what();
+        Excel(xlcAlert, 0, 1, TempStrStl(err.str()));
+        return 0;
+
     } catch (...) {
+
         Excel(xlFree, 0, 1, &xDll);
         return 0;
+
     }
+
 }
 
