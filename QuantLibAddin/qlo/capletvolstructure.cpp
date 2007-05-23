@@ -22,6 +22,7 @@
 #include <qlo/capletvolstructure.hpp>
 #include <ql/termstructures/volatilities/caplet/capletconstantvol.hpp>
 #include <ql/termstructures/volatilities/caplet/capstripper.hpp>
+#include <ql/termstructures/volatilities/caplet/spreadedcapletvolstructure.hpp>
 
 namespace QuantLibAddin {
 
@@ -95,6 +96,14 @@ namespace QuantLibAddin {
             boost::shared_ptr<QuantLib::SmileSectionsVolStructure>(new
             QuantLib::SmileSectionsVolStructure(referenceDate,
             dayCounter, smileSections));
-   }
+    }
+
+    SpreadedCapletVolatilityStructure::SpreadedCapletVolatilityStructure(
+            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& underlyingVolStructure,
+            QuantLib::Spread spread){
+        libraryObject_ = boost::shared_ptr<QuantLib::SpreadedCapletVolatilityStructure>(new
+            QuantLib::SpreadedCapletVolatilityStructure(underlyingVolStructure,
+                                                        spread));
+    }
 
 }
