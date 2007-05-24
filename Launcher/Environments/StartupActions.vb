@@ -48,10 +48,10 @@ Namespace QuantLibXL
             serializer.serializeProperty(indexesTimeSeries_, "IndexesTimeSeries")
             serializer.serializeProperty(loadBonds_, "LoadBonds")
             serializer.serializeProperty(staticData_, "StaticData")
-            If versionNumber = 5 Then
-                Dim dummyValue As Boolean = False
-                serializer.serializeProperty(dummyValue, "SwapVolBootstrap")
-            End If
+            'If versionNumber = 5 Then
+            '    Dim dummyValue As Boolean = False
+            '    serializer.serializeProperty(dummyValue, "SwapVolBootstrap")
+            'End If
 
         End Sub
 
