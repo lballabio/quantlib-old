@@ -154,10 +154,11 @@ CRISTINA
 
 ---
 CHIARA
+- check access to  Citrix access to: $+,INFL,BGM (OK) (Done)
 - add and validate new bonds in all the environments (1d|1d|Done)
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g. IT0003650998.pdf) (0d|1d)
  *prospectus added in Drafts
-- verify bond in Testing and Trunk (with Cristina)
+- verify bond in Testing and Trunk (with Cristina) (Done)
 - review and correct trader's bond monitor (0d|1d)
 - current cpn as a method of bond (a trader's request) (0.5d|1.5dd|WIP)
  *created qlCurrentCoupon
@@ -180,7 +181,7 @@ CHIARA
   Maurizio (0.5d|0.5d|Done)
  *waiting for BBG worksheets from Maurizion (time to start 2/3 weeks- time to
   complete 1/2 weeks)
-- ControlPanel.xls (0d|0.5d|)
+- MainChecks.xls (0.5d|0.5d|Done)
  *add checks for load bonds action
 - zspread/yield inversion
 - zerospreadedtermstructure: daycounter bug
