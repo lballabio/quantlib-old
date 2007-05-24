@@ -229,40 +229,20 @@ D integration framework refactoring (2D/2D)
   CapStripperTest3M.xls. (to be precised)
 
 ---
-GIORGIO (last update 16/5/2007)
+
+GIORGIO (last update 23/5/2007)
 - bug fix: start up & menu action: Multi Index Calibration
 - bug fix: start up action: bootstrap cap vols
-- verify single index calibration wbk and remove obsolete calibration wbks
 - CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando
-- WIP: test Levenberg-Marquardt in sabr interpolation  (shared with Marco,
-  2d/2d/WIP)
-  D QL: estend signature di SABRInterpolations and Swaptionvol1 (done)
-  D check testsuite (done)
-  D QLXL: export new signature (done)
-  D QLXL: update and test wkbs: swaptionvol1.xls and
-    MultiIndexSingleMeanRevCalibration.xls (done)
-  WIP bug fixing for nested optimizations (shared also with Francois)
 - test Levenberg-Marquardt in abcd vol (0d/2d)
-D rename correctly Excel names of class qlSimultaneousCalibration() (1d/1d DONE)
-D fixed sabr parameters (1d/1d DONE)
-D arrichhita la test suite di sabrinterpolation (tutte le combinazioni di
-  fixed/free guess, per diversi ottimizzatori) (0.5d/0.5d DONE)
-D adeguare RangeAccrual coupon alla gerarchia di Floating Rate coupon (1d/1d
-  DONE)
-- WIP: digital coupon in call spread, add unit test (Marco, Giorgio and
-  Cristina) (5d/7d)
-D flat extrapolation of SABR parameters in vol cube (2d/2d DONE)
+D spreaded caplet vol structure (2d/5d DONE)
+- install VS in new pc (0d/1d)
 - WIP ratchet Instrument C++ (shared with Marco) (3d/7d)
 - WIP range accrual coupon (con relativi test) (18d/30d)
   - WIP create a workbook for range accrual under
     Workbooks\InterestRateDerivatives designing the workbook as done for CMS.xls
-D - WIP add unit test for range accrual (lowerB=0 and upperB=100->Floater,
-    decreasing upperB, increasing lowerB) (2d/2d DONE)
-D - refactorize range accrual pricer (1d/1d DONE)
-WIP spreaded swaption vol structure (2d/5d/WIP)
-- spreaded caplet vol structure (0d/5d)
-- install VS in new pc (0d/1d)
+
 
 ---
 MARCO (last update 22/5/2007)
