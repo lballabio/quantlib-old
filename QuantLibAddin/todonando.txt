@@ -151,6 +151,7 @@ CRISTINA
 - install VS in new pc (0D/1D)
 - market models: abcd for displaced vols (Chiara, Cristina, K)
 - fixing days in cashflow analisys (FIXED)
+- check Citrix access: $+,INFL,BGM (DONE)
 
 ---
 CHIARA
