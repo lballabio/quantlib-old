@@ -199,6 +199,7 @@ CHIARA
 
 ---
 FRANCOIS
+- check Citrix access: $+,INFL,BGM
 - XML/ serialization presentation
 D launcher cms calibration check-box
 D add atmRate to SmileSection base class (.5D/.5D)
@@ -224,7 +225,7 @@ D integration framework refactoring (2D/2D)
 - OH Wizard performance issue when the control panel is left opened(to be
   precised)
 - test abcd calibration (to be precised)
-- consolidate all multisteps in a single test
+D consolidate all multisteps in a single test
 - TO BE REVIEWED MultiStepSwaption
 - check sabr fit stability/accuracy for smilesections (.5D)
 - review workbooks: SmileSectionCaps.xls, SimpleQuote.xls, DerivedQuotes.xls,
