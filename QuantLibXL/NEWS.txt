@@ -43,6 +43,7 @@ WORKBOOKS
   IT0003493258 IT0001307286 IT0006521139 IT0001303350 IT0001264792 IT0001271649 IT0001203295 IT0001296133;
   Added, checked against prospectus but not validated because treated as non callable maturing at the first call date ( according to the market) the following:
   XS0080650806 XS0081247446 XS0083246032 XS0083714823 XS0083662923 and XS0084680106 (for this bond prospectus is missing)
+- Workbooks\MainChecks.xls now contains checks for: one fixed cpn bond, one frn cpn bond, and cms cpn bond.
 
 
 LIBRARY:
