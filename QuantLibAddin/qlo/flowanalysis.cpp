@@ -65,8 +65,8 @@ namespace QuantLibAddin {
 #define CONV_ADJ 15
 #define SPREAD 16
 #define CAP 17
-#define DIGITALRATE 18
-#define FUTUREUSE2 19
+#define CALLDIGITALRATE 18
+#define PUTDIGITALRATE 19
 
     AnalysisGenerator::AnalysisGenerator() { reset(); }
 
@@ -94,8 +94,8 @@ namespace QuantLibAddin {
         headings[CONV_ADJ]=std::string("Conv. Adj.");
         headings[SPREAD]=std::string("Spread");
         headings[CAP]=std::string("Cap");
-        headings[DIGITALRATE]=std::string("Digital Payoff Rate");
-        headings[FUTUREUSE2]=std::string("---");
+        headings[PUTDIGITALRATE]=std::string("Put Digital Payoff");
+        headings[CALLDIGITALRATE]=std::string("Call Digital Payoff");
 
         flowAnalysis_.push_back(headings);
     }
@@ -183,10 +183,14 @@ namespace QuantLibAddin {
             flowAnalysis_.back()[CAP]=c.callStrike();
         else
             flowAnalysis_.back()[CAP]=std::string("#N/A");
-        if (c.digitalPayoff() != QuantLib::Null<QuantLib::Rate>())
-            flowAnalysis_.back()[DIGITALRATE]=c.digitalPayoff();
+        if (c.putDigitalPayoff() != QuantLib::Null<QuantLib::Rate>())
+            flowAnalysis_.back()[PUTDIGITALRATE]=c.putDigitalPayoff();
         else
-            flowAnalysis_.back()[DIGITALRATE]=std::string("#N/A");
+            flowAnalysis_.back()[PUTDIGITALRATE]=std::string("#N/A");
+        if (c.callDigitalPayoff() != QuantLib::Null<QuantLib::Rate>())
+            flowAnalysis_.back()[CALLDIGITALRATE]=c.callDigitalPayoff();
+        else
+            flowAnalysis_.back()[CALLDIGITALRATE]=std::string("#N/A");
     }
 
     const std::vector<std::vector<boost::any> >& AnalysisGenerator::analysis() const {

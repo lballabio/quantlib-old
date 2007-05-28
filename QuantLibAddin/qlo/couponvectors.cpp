@@ -76,39 +76,113 @@ namespace QuantLibAddin {
     }
 
     DigitalIborLeg::DigitalIborLeg(
-                    QuantLib::BusinessDayConvention paymentConvention,
-                    const std::vector<QuantLib::Real>& nominals,
-                    const boost::shared_ptr<QuantLib::Schedule>& schedule,
-                    QuantLib::Natural fixingDays,
-                    bool isInArrears,
-                    const QuantLib::DayCounter& paymentDayCounter,
-                    const std::vector<QuantLib::Real>& gearings,
-                    const boost::shared_ptr<QuantLib::IborIndex>& index,
-                    const std::vector<QuantLib::Spread>& spreads,
-                    const std::vector<QuantLib::Rate>& callRates,
-                    bool isCallOptionAdded,
-                    const std::vector<QuantLib::Rate>& putRates,
-                    bool isPutOptionAdded,
-                    const std::vector<QuantLib::Rate>& digitalPayoffs,
-                    QuantLib::Replication::Type replicationType,
-                    QuantLib::Real eps) {
+            QuantLib::BusinessDayConvention paymentConvention,
+            const std::vector<QuantLib::Real>& nominals,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::Natural fixingDays,
+            bool isInArrears,
+            const QuantLib::DayCounter& paymentDayCounter,
+            const std::vector<QuantLib::Real>& gearings,
+            const boost::shared_ptr<QuantLib::IborIndex>& index,
+            const std::vector<QuantLib::Spread>& spreads,
+            const std::vector<QuantLib::Rate>& callStrikes,
+            std::string callPositionAndATMInclusion,
+            const std::vector<QuantLib::Rate>& callDigitalPayoffs,
+            const std::vector<QuantLib::Rate>& putStrikes,
+            std::string putPositionAndATMInclusion,
+            const std::vector<QuantLib::Rate>& putDigitalPayoffs,
+            QuantLib::Replication::Type replicationType,
+            QuantLib::Real eps) {
 
-                        leg_ = QuantLib::DigitalIborLeg(nominals,
-                                                        *schedule,
-                                                        index,
-                                                        paymentDayCounter,
-                                                        paymentConvention,
-                                                        fixingDays,
-                                                        gearings,
-                                                        spreads,
-                                                        isInArrears,
-                                                        callRates,
-                                                        isCallOptionAdded,
-                                                        putRates,
-                                                        isPutOptionAdded,
-                                                        digitalPayoffs,
-                                                        replicationType,
-                                                        eps);
+                QuantLib::Position::Type callPosition;
+                QuantLib::Position::Type putPosition;
+                bool isCallATMIncluded;
+                bool isPutATMIncluded;
+                
+                std::string legalLabels[] = { "Short - ATM included",
+                                              "Short - ATM excluded",
+                                              "Long - ATM included",
+                                              "Long - ATM excluded" };
+
+                int foundLabel = -1;
+                int counter = 0;
+                while (foundLabel==-1 && counter<4) {
+                    if (callPositionAndATMInclusion == legalLabels[counter])
+                        foundLabel = counter;
+                    counter++;
+                }
+                switch(foundLabel) {
+                    case 0:
+                        callPosition = QuantLib::Position::Short;                        
+                        isCallATMIncluded = true;
+                        break;
+                    case 1:
+                        callPosition = QuantLib::Position::Short;                        
+                        isCallATMIncluded = false;
+                        break;
+                    case 2:
+                        callPosition = QuantLib::Position::Long;                        
+                        isCallATMIncluded = true;
+                        break;
+                    case 3:
+                        callPosition = QuantLib::Position::Long;                        
+                        isCallATMIncluded = false;
+                        break;
+                    default:
+                        OH_FAIL("DigitalIborLeg::DigitalIborLeg: invalid string for call option: " 
+                                << callPositionAndATMInclusion);
+                        break;
+                }
+                foundLabel = -1;
+                counter = 0;
+                while (foundLabel==-1 && counter<4) {
+                    if (putPositionAndATMInclusion == legalLabels[counter])
+                        foundLabel = counter;
+                    counter++;
+                }
+                switch(foundLabel) {
+                    case 0:
+                        putPosition = QuantLib::Position::Short;                        
+                        isPutATMIncluded = true;
+                        break;
+                    case 1:
+                        putPosition = QuantLib::Position::Short;                        
+                        isPutATMIncluded = false;
+                        break;
+                    case 2:
+                        putPosition = QuantLib::Position::Long;                        
+                        isPutATMIncluded = true;
+                        break;
+                    case 3:
+                        putPosition = QuantLib::Position::Long;                        
+                        isPutATMIncluded = false;
+                        break;
+                    default:
+                        OH_FAIL("DigitalIborLeg::DigitalIborLeg: invalid string for put option: " 
+                                << callPositionAndATMInclusion);
+                        break;
+                }
+                
+
+                leg_ = QuantLib::DigitalIborLeg(nominals,
+                                                *schedule,
+                                                index,
+                                                paymentDayCounter,
+                                                paymentConvention,
+                                                fixingDays,
+                                                gearings,
+                                                spreads,
+                                                isInArrears,
+                                                callStrikes,
+                                                callPosition,
+                                                isCallATMIncluded,
+                                                callDigitalPayoffs,
+                                                putStrikes,
+                                                putPosition,
+                                                isPutATMIncluded,
+                                                putDigitalPayoffs,
+                                                replicationType,
+                                                eps);
     }
 
     
@@ -152,32 +226,106 @@ namespace QuantLibAddin {
                     const std::vector<QuantLib::Real>& gearings,
                     const boost::shared_ptr<QuantLib::SwapIndex>& index,
                     const std::vector<QuantLib::Spread>& spreads,
-                    const std::vector<QuantLib::Rate>& callRates,
-                    bool isCallOptionAdded,
-                    const std::vector<QuantLib::Rate>& putRates,
-                    bool isPutOptionAdded,
-                    const std::vector<QuantLib::Rate>& digitalPayoffs,
+                    const std::vector<QuantLib::Rate>& callStrikes,
+                    std::string callPositionAndATMInclusion,
+                    const std::vector<QuantLib::Rate>& callDigitalPayoffs,
+                    const std::vector<QuantLib::Rate>& putStrikes,
+                    std::string putPositionAndATMInclusion,
+                    const std::vector<QuantLib::Rate>& putDigitalPayoffs,
                     QuantLib::Replication::Type replicationType,
                     QuantLib::Real eps) {
 
-                        leg_ = QuantLib::DigitalCmsLeg(nominals,
-                                                        *schedule,
-                                                        index,
-                                                        paymentDayCounter,
-                                                        paymentConvention,
-                                                        fixingDays,
-                                                        gearings,
-                                                        spreads,
-                                                        isInArrears,
-                                                        callRates,
-                                                        isCallOptionAdded,
-                                                        putRates,
-                                                        isPutOptionAdded,
-                                                        digitalPayoffs,
-                                                        replicationType,
-                                                        eps);
- 
+
+                                        QuantLib::Position::Type callPosition;
+                QuantLib::Position::Type putPosition;
+                bool isCallATMIncluded;
+                bool isPutATMIncluded;
+                
+                std::string legalLabels[] = { "Short - ATM included",
+                                              "Short - ATM excluded",
+                                              "Long - ATM included",
+                                              "Long - ATM excluded" };
+
+                int foundLabel = -1;
+                int counter = 0;
+                while (foundLabel==-1) {
+                    if (callPositionAndATMInclusion == legalLabels[counter])
+                        foundLabel = counter;
+                    counter++;
+                }
+                switch(foundLabel) {
+                    case 0:
+                        callPosition = QuantLib::Position::Short;                        
+                        isCallATMIncluded = true;
+                        break;
+                    case 1:
+                        callPosition = QuantLib::Position::Short;                        
+                        isCallATMIncluded = false;
+                        break;
+                    case 2:
+                        callPosition = QuantLib::Position::Long;                        
+                        isCallATMIncluded = true;
+                        break;
+                    case 3:
+                        callPosition = QuantLib::Position::Long;                        
+                        isCallATMIncluded = false;
+                        break;
+                    default:
+                        OH_FAIL("DigitalIborLeg::DigitalIborLeg: invalid string for call option: " 
+                                << callPositionAndATMInclusion);
+                        break;
+                }
+                foundLabel = -1;
+                counter = 0;
+                while (foundLabel==-1) {
+                    if (putPositionAndATMInclusion == legalLabels[counter])
+                        foundLabel = counter;
+                    counter++;
+                }
+                switch(foundLabel) {
+                    case 0:
+                        putPosition = QuantLib::Position::Short;                        
+                        isPutATMIncluded = true;
+                        break;
+                    case 1:
+                        putPosition = QuantLib::Position::Short;                        
+                        isPutATMIncluded = false;
+                        break;
+                    case 2:
+                        putPosition = QuantLib::Position::Long;                        
+                        isPutATMIncluded = true;
+                        break;
+                    case 3:
+                        putPosition = QuantLib::Position::Long;                        
+                        isPutATMIncluded = false;
+                        break;
+                    default:
+                        OH_FAIL("DigitalIborLeg::DigitalIborLeg: invalid string for put option: " 
+                                << callPositionAndATMInclusion);
+                        break;
+                }
+
+                leg_ = QuantLib::DigitalCmsLeg(nominals,
+                                                *schedule,
+                                                index,
+                                                paymentDayCounter,
+                                                paymentConvention,
+                                                fixingDays,
+                                                gearings,
+                                                spreads,
+                                                isInArrears,
+                                                callStrikes,
+                                                callPosition,
+                                                isCallATMIncluded,
+                                                callDigitalPayoffs,
+                                                putStrikes,
+                                                putPosition,
+                                                isPutATMIncluded,
+                                                putDigitalPayoffs,
+                                                replicationType,
+                                                eps);
     }
+
 
     RangeAccrualLeg::RangeAccrualLeg(
            QuantLib::BusinessDayConvention paymentConvention,

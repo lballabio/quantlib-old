@@ -176,29 +176,34 @@
           <Parameter name='callStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>digital call option strikes. If omitted, no call option is assumed</description>
+            <description>digital call option strikes. If omitted, no call option is assumed.</description>
           </Parameter>
-          <Parameter name='longCallOption' default='true'>
-            <type>bool</type>
+          <Parameter name='callPosition_Inclusion'>
+            <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>If true, the digital call option is paid. If omitted, default = TRUE</description>
+            <description>position of the call option and inclusion of ATM .</description>
+          </Parameter>
+          <Parameter name='callPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>payoff if the call digital option ends in-the-money. If omitted, asset-or-nothing digital option is assumed.</description>
           </Parameter>
           <Parameter name='putStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>digital put option strikes. If omitted, no put option is assumed</description>
+            <description>digital put option strikes. If omitted, no put option is assumed.</description>
           </Parameter>
-          <Parameter name='longPutOption' default='true'>
-            <type>bool</type>
+          <Parameter name='putPositionAtmInclusion'>
+            <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>If true, the digital put option is paid. If omitted, default = TRUE</description>
+            <description>position (Short, Long) of the put option and inclusion of ATM.</description>
           </Parameter>
-          <Parameter name='digitalPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
+          <Parameter name='putPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>rates paid-received if the digital option ends in-the-money. If omitted, asset-or-nothing digital option is assumed</description>
+            <description>payoff if the put digital option ends in-the-money. If omitted, asset-or-nothing digital option is assumed.</description>
           </Parameter>
-          <Parameter name='replicationType'>
+          <Parameter name='replication'>
             <type>QuantLib::Replication::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>Replication type (Sub, Central, Super)</description>
@@ -206,7 +211,7 @@
           <Parameter name='gap' default='0.0001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>difference in strikes used in call-put spread pricing. If omitted, default is 1bp</description>
+            <description>spread in strikes used in call/put replication. If omitted, default = 1bp</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -333,29 +338,34 @@
           <Parameter name='callStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>digital call option strikes. If omitted, no call option is assumed</description>
+            <description>digital call option strikes. If omitted, no call option is assumed.</description>
           </Parameter>
-          <Parameter name='longCallOption' default='true'>
-            <type>bool</type>
+          <Parameter name='callPositionAtmInclusion'>
+            <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>If true, the digital call option is paid. If omitted, default = TRUE</description>
+            <description>position (Short, Long) of the call option and inclusion of ATM.</description>
+          </Parameter>
+          <Parameter name='callPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>payoff if the call digital option ends in-the-money. If omitted, asset-or-nothing digital option is assumed.</description>
           </Parameter>
           <Parameter name='putStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>digital put option strikes. If omitted, no put option is assumed</description>
+            <description>digital put option strikes. If omitted, no put option is assumed.</description>
           </Parameter>
-          <Parameter name='longPutOption' default='true'>
-            <type>bool</type>
+          <Parameter name='putPositionAtmInclusion'>
+            <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>If true, the digital put option is paid. If omitted, default = TRUE</description>
+            <description>position (Short, Long) of the put option and inclusion of ATM.</description>
           </Parameter>
-          <Parameter name='digitalPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
+          <Parameter name='putPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>rates paid-received if the digital option ends in-the-money. If omitted, asset-or-nothing digital option is assumed</description>
+            <description>payoff if the put digital option ends in-the-money. If omitted, asset-or-nothing digital option is assumed.</description>
           </Parameter>
-          <Parameter name='replicationType'>
+          <Parameter name='replication'>
             <type>QuantLib::Replication::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>Replication type (Sub, Central, Super)</description>
@@ -363,7 +373,7 @@
           <Parameter name='gap' default='0.0001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>difference in strikes used in call-put spread pricing. If omitted, default is 1bp</description>
+            <description>spread in strikes used in call/put replication. If omitted, default = 1bp.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
