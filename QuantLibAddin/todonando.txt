@@ -123,12 +123,12 @@ STAND-BY
 
 ---
 CRISTINA
-- sensitivity analysis (1.5D/1W)
+- sensitivity analysis (3.5D/1M)
 - calibrazioni quotidiane sul tronco
 - testing that the manual procedure to set back/forward the evaluation
   date returns the same results of the automatic procedure (0D/1D)
 - complete class digital coupon (3D/1D)
-  - management of payoff with equal sign included (0.5D/1D)
+  - management of payoff with equal sign included (1.5D/1D - DONE)
   - add the possibility of sub/over replication   (0.5D/1D - DONE)
   - split optionRate() method in callOptionRate() and
     putOptionRate()                               (0.5D/0.5D - DONE)
@@ -136,7 +136,7 @@ CRISTINA
     DigitalLeg methods (from QL to QLXL)          (0.5D/0.5D - DONE)
 - digital coupon in call spread, add unit test
   (check replication and option value vs Black formula,
-  check call-put parity, check replication type)  (2.5D/2.5D)
+  check call-put parity, check replication type)  (2.5D/2.5D - DONE)
 - create the digital leg and export it to QLXL    (2D/0.5D - DONE)
 - create a draft worksheet to price digital legs  (0.5D/0.5D - DONE)
 - change class CappedFlooredIborCoupon in order to add the
