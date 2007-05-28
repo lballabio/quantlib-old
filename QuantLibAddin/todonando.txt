@@ -65,24 +65,27 @@ K
 over 3 days:
 test & bug fix	50%
 SA		33%
-cap stripping	17%
+cap stripping	0%
 
-** sottolineare aggiornamento di news.txt
 ** Calibrations: UpperBoundary calculation -> root not bracketed
 ** Rt Update
 STAND-BY
 - Citrix access
-    -> $+ 	ok
-    -> INFL 	ok
     -> BGM 	manca (2a) utenza di accesso
-    -> CW 	richiesto link
 - Rt destination cell (done)
 - coveredWarrants.xls (done)
 	- checked prices vs Mx
-- Sensitivity Analysis: (1d/5w)
-	applied to cms book
-	create new .xls with NPVs of 4 cms books (done)
+- Sensitivity Analysis: (3d/5w)
 	test newly released version
+	create new .xls with NPVs of 4 cms books (done)
+	run sa on yc -> ok 			(done)
+	run sa on smile
+	test on irs book vs Mx (manual + code)	(1d/2d)
+	test on swaptions book (atm+smile)
+	test on cms book
+	save daily results to check replication
+	Eric: flag on deal, tick value, error msg (by eow)
+	Eric: upgrade user interface (by end of next week)
 - foglio di Clerici per contribuire le cap forw/forw vol su Mx (1.5d/5d)
 	confronto forw/forw vols foglio clerici vs nostro cap stripper (0.5d/1.5d)
 	sostituzione di tutte le funzioni vba con ql()
