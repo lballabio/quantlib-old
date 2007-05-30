@@ -154,6 +154,9 @@ CRISTINA
 
 ---
 CHIARA
+- check that par cpn is using native index's daycounter with nando (0d|1d)
+- add new bonds in al the enviroments (traders' request) (0d|0.5d)
+- fixed problem with missing ISDAFIX indexes for 28th may 2007 (0.5d|0.5d)
 - MainChecks.xls: add checks for load bonds action (0.5d|0.5d|Done)
 - check access to  Citrix access to: $+,INFL,BGM (OK) (Done)
 - add and validate new bonds in all the environments (1d|1d|Done)
