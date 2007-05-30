@@ -24,10 +24,10 @@ EXTRA_DIST = \
     LICENSE.TXT \
     NEWS.txt \
     QuantLibAddin.nsi \
-    QuantLibAddin.sln \
+    QuantLibAddin_vc7.sln \
     QuantLibAddin_vc8.sln \
     QuantLibObjects_vc8.vcproj \
-    QuantLibObjects.vcproj \
+    QuantLibObjects_vc7.vcproj \
     README.txt \
     todo.txt
 

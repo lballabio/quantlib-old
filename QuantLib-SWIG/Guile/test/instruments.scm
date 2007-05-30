@@ -15,7 +15,7 @@
 ; You should have received a copy of the QuantLib License along with this
 ; program; if not, please email quantlib-dev@lists.sf.net
 ;
-; The QuantLib License is also available at http://quantlib.org/license.html
+; The QuantLib License is also available at <http://quantlib.org/license.shtml>
 ; The members of the QuantLib Group are listed in the QuantLib License
 
 (load "unittest.scm")
@@ -32,14 +32,17 @@
      (let ((temp (Instrument->Observable s)))
        (Observer-register-with obs temp))
      (and
-      (begin (SimpleQuote-value-set! me1 3.14)
+      (begin (Instrument-NPV s)
+             (SimpleQuote-value-set! me1 3.14)
              (check flag
                     "Observer was not notified of instrument change"))
-      (begin (set! flag #f)
+      (begin (Instrument-NPV s)
+             (set! flag #f)
              (RelinkableQuoteHandle-link-to! h me2)
              (check flag
                     "Observer was not notified of instrument change"))
-      (begin (set! flag #f)
+      (begin (Instrument-NPV s)
+             (set! flag #f)
              (Instrument-freeze! s)
              (SimpleQuote-value-set! me2 2.71)
              (check (not flag)

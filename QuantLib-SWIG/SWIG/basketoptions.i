@@ -3,14 +3,16 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
+ Copyright (C) 2007 Joseph Wang
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -60,19 +62,17 @@ class MaxBasketPayoffPtr : public BasketPayoffPtr  {
 };
 
 %rename(AverageBasketPayoff) AverageBasketPayoffPtr;
-class AverageBasketPayoffPtr : 
+class AverageBasketPayoffPtr :
       public BasketPayoffPtr  {
   public:
     %extend {
         AverageBasketPayoffPtr(const boost::shared_ptr<Payoff> p,
-			       const Array &a) {				 
-            return new AverageBasketPayoffPtr(new 
-	    AverageBasketPayoff(p, a));
+                               const Array &a) {
+            return new AverageBasketPayoffPtr(new AverageBasketPayoff(p, a));
         }
         AverageBasketPayoffPtr(const boost::shared_ptr<Payoff> p,
-			       Size n) {
-            return new AverageBasketPayoffPtr(new 
-	    AverageBasketPayoff(p, n));
+                               Size n) {
+            return new AverageBasketPayoffPtr(new AverageBasketPayoff(p, n));
         }
     }
 };
@@ -92,8 +92,7 @@ class BasketOptionPtr : public MultiAssetOptionPtr {
                  boost::dynamic_pointer_cast<BasketPayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
             return new BasketOptionPtr(
-                        new BasketOption(process,stPayoff,exercise,
-			engine));
+                          new BasketOption(process,stPayoff,exercise,engine));
         }
     }
 };
@@ -171,7 +170,7 @@ class MCAmericanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
             if (s == "pseudorandom" || s == "pr")
                   return new MCAmericanBasketEnginePtr(
                   new MCAmericanBasketEngine<PseudoRandom>(timeSteps,
-							   timeStepsPerYear,
+                                                           timeStepsPerYear,
                                                            brownianBridge,
                                                            antitheticVariate,
                                                            controlVariate,
@@ -182,7 +181,7 @@ class MCAmericanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
             else if (s == "lowdiscrepancy" || s == "ld")
                 return new MCAmericanBasketEnginePtr(
                 new MCAmericanBasketEngine<LowDiscrepancy>(timeSteps,
-							   timeStepsPerYear,
+                                                           timeStepsPerYear,
                                                            brownianBridge,
                                                            antitheticVariate,
                                                            controlVariate,

@@ -5,7 +5,7 @@ LDFLAGS = -lObjectHandler -lQuantLib -lstdc++
 
 EXTRA_DIST = \
     ClientCDemo_vc8.vcproj \
-    ClientCDemo.vcproj
+    ClientCDemo_vc7.vcproj
 
 QLADemo_SOURCES = qlademo.c
 

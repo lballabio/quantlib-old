@@ -5,10 +5,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -35,58 +36,48 @@ using QuantLib::GarmanKlassSigma6;
 %}
 
 class ConstantEstimator {
-public:
+  public:
     ConstantEstimator(Size size);
-    TimeSeries<Volatility> 
-        calculate(const TimeSeries<Volatility> &volatilitySeries);
-};
-
-
-class GarmanKlassSigma1 {
-public:
-	GarmanKlassSigma1(Real yearFraction, Real marketOpenFraction);
-        TimeSeries<Volatility>
-        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+    TimeSeries<Volatility> calculate(const TimeSeries<Volatility>&);
 };
 
 
 class ParkinsonSigma {
-public:
-	ParkinsonSigma(Real yearFraction);
-        TimeSeries<Volatility>
-        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+  public:
+    ParkinsonSigma(Real yearFraction);
+    TimeSeries<Volatility> calculate(const TimeSeries<IntervalPrice>&);
+};
+
+
+class GarmanKlassSigma1 {
+  public:
+    GarmanKlassSigma1(Real yearFraction, Real marketOpenFraction);
+    TimeSeries<Volatility> calculate(const TimeSeries<IntervalPrice>&);
 };
 
 class GarmanKlassSigma3 {
-public:
-	GarmanKlassSigma3(Real yearFraction, Real marketOpenFraction);
-        TimeSeries<Volatility>
-        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+  public:
+    GarmanKlassSigma3(Real yearFraction, Real marketOpenFraction);
+    TimeSeries<Volatility> calculate(const TimeSeries<IntervalPrice>&);
 };
 
 class GarmanKlassSigma4 {
-public:
-	GarmanKlassSigma4(Real yearFraction);
-        TimeSeries<Volatility>
-        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+  public:
+    GarmanKlassSigma4(Real yearFraction);
+    TimeSeries<Volatility> calculate(const TimeSeries<IntervalPrice>&);
 };
-
 
 class GarmanKlassSigma5 {
-public:
-	GarmanKlassSigma5(Real yearFraction);
-        TimeSeries<Volatility>
-        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+  public:
+    GarmanKlassSigma5(Real yearFraction);
+    TimeSeries<Volatility> calculate(const TimeSeries<IntervalPrice>&);
 };
-
 
 class GarmanKlassSigma6 {
-public:
-	GarmanKlassSigma6(Real yearFraction, Real marketOpenFraction);
-        TimeSeries<Volatility>
-        calculate(const TimeSeries<IntervalPrice> &quoteSeries);
+  public:
+    GarmanKlassSigma6(Real yearFraction, Real marketOpenFraction);
+    TimeSeries<Volatility> calculate(const TimeSeries<IntervalPrice>&);
 };
-
 
 
 #endif

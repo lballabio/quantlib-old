@@ -8,9 +8,9 @@ EXTRA_DIST = \
     exampleDynamic.xls \
     exampleStatic.xls \
     ExampleXllDynamic1_vc8.vcproj \
-    ExampleXllDynamic1.vcproj \
+    ExampleXllDynamic1_vc7.vcproj \
     ExampleXllDynamic2_vc8.vcproj \
-    ExampleXllDynamic2.vcproj \
+    ExampleXllDynamic2_vc7.vcproj \
     ExampleXllStatic_vc8.vcproj \
-    ExampleXllStatic.vcproj
+    ExampleXllStatic_vc7.vcproj
 

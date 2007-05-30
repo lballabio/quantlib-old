@@ -5,10 +5,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -180,18 +181,16 @@ class StochasticProcessArrayPtr : public boost::shared_ptr<StochasticProcess> {
   public:
     %extend {
       StochasticProcessArrayPtr(
-                        const
-			std::vector<boost::shared_ptr<StochasticProcess> >&array,
-			const Matrix &correlation
-                        ) {
-			std::vector<boost::shared_ptr<StochasticProcess1D> > in_array;
-			for (Size j=0; j < array.size(); j++) 
-	in_array.push_back(boost::dynamic_pointer_cast<StochasticProcess1D>(array.at(j)));
-            return new StochasticProcessArrayPtr(
-                              new
-			      StochasticProcessArray(in_array, correlation));
-      }    
-}
+               const std::vector<boost::shared_ptr<StochasticProcess> >&array,
+               const Matrix &correlation) {
+          std::vector<boost::shared_ptr<StochasticProcess1D> > in_array;
+          for (Size j=0; j < array.size(); j++)
+              in_array.push_back(
+                  boost::dynamic_pointer_cast<StochasticProcess1D>(array[j]));
+          return new StochasticProcessArrayPtr(
+                           new StochasticProcessArray(in_array, correlation));
+      }
+    }
 };
 
 
@@ -202,7 +201,7 @@ SWIG_STD_VECTOR_SPECIALIZE( StochasticProcess, boost::shared_ptr<StochasticProce
 %template(StochasticProcessVector)
 std::vector<boost::shared_ptr<StochasticProcess> >;
 
-typedef std::vector<boost::shared_ptr<StochasticProcess> > 
+typedef std::vector<boost::shared_ptr<StochasticProcess> >
 StochasticProcessVector;
 
 

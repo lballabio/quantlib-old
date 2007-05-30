@@ -1,7 +1,7 @@
 
 EXTRA_DIST = \
     docs-QuantLibAddin_vc8.vcproj \
-    docs-QuantLibAddin.vcproj \
+    docs-QuantLibAddin_vc7.vcproj \
     Makefile.vc \
     qladdin.auto.doxy \
     qladdin.qlo.doxy \
@@ -14,12 +14,13 @@ EXTRA_DIST = \
     qla_headeronline.subdir.html \
     style.css
 
-QLA_CONFIG := qladdin.qlo.doxy
-QLA_CUSTOM := style.css qla_footer.html qla_footer.subdir.html \
+DOXYGEN_CONFIG := qladdin.qlo.doxy
+DOXYGEN_CUSTOM := style.css qla_footer.html qla_footer.subdir.html \
 	qla_header.html qla_headeronline.html qla_header.subdir.html qla_headeronline.subdir.html
-QLA_INPUT := $(shell find ${top_srcdir}/qlo -name *.hpp) \
-             $(wildcard pages/*.docs) \
-             $(wildcard auto.pages/*.docs)
+DOXYGEN_INPUT := $(shell find ${top_srcdir}/qlo -name *.hpp) \
+             $(wildcard ../../ObjectHandler/Docs/pages/*.docs) \
+             $(wildcard auto.pages/*.docs) \
+             $(wildcard pages/*.docs)
 
 %.gz: %
 	rm -f $@
@@ -35,10 +36,11 @@ QLA_INPUT := $(shell find ${top_srcdir}/qlo -name *.hpp) \
 
 dist-hook:
 	mkdir -p $(distdir)/pages $(distdir)/auto.pages $(distdir)/images
-	cp -p $(srcdir)/pages/*.docs $(distdir)/pages
-	cp -p $(srcdir)/auto.pages/*.docs $(distdir)/auto.pages
-	cp -p $(srcdir)/images/*.gif $(srcdir)/images/*.ico \
+	cp -fp $(srcdir)/pages/*.docs $(distdir)/pages
+	cp -fp $(srcdir)/auto.pages/*.docs $(distdir)/auto.pages
+	cp -fp $(srcdir)/images/*.gif $(srcdir)/images/*.ico \
 	      $(srcdir)/images/*.jpg $(srcdir)/images/*.png \
+	      $(srcdir)/images/*.php \
 	      $(distdir)/images
 
 docs-all: docs-html
@@ -47,19 +49,21 @@ docs-dist: docs-html-dist
 docs-html: .time-stamp-html
 .time-stamp-html: .time-stamp-auto .time-stamp-qlo .time-stamp-root
 	mkdir -p html/images
-	cp images/*.gif html/images
-	cp images/*.ico html/images
-	cp images/*.jpg html/images
-	cp images/*.png html/images
+	cp -f images/*.gif html/images
+	cp -f images/*.ico html/images
+	cp -f images/*.jpg html/images
+	cp -f images/*.png html/images
+	cp -f images/*.php html/images
 	touch .time-stamp-html
 
 docs-online: .time-stamp-html-online
 .time-stamp-html-online: .time-stamp-auto-online .time-stamp-qlo-online .time-stamp-root-online
 	mkdir -p html-online/images
-	cp images/*.gif html-online/images
-	cp images/*.ico html-online/images
-	cp images/*.jpg html-online/images
-	cp images/*.png html-online/images
+	cp -f images/*.gif html-online/images
+	cp -f images/*.ico html-online/images
+	cp -f images/*.jpg html-online/images
+	cp -f images/*.png html-online/images
+	cp -f images/*.php html-online/images
 	touch .time-stamp-html-online
 
 docs-html-dist: docs-html
@@ -73,7 +77,7 @@ docs-online-dist: docs-online
 	rm QuantLibAddin-docs-$(VERSION)-html
 
 docs-auto: .time-stamp-auto
-.time-stamp-auto: $(QLA_CONFIG) $(QLA_CUSTOM) $(QLA_INPUT)
+.time-stamp-auto: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
 	mkdir -p html
 	$(SED) -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
                -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
@@ -85,7 +89,7 @@ docs-auto: .time-stamp-auto
 	touch .time-stamp-auto
 
 docs-qlo: .time-stamp-qlo
-.time-stamp-qlo: $(QLA_CONFIG) $(QLA_CUSTOM) $(QLA_INPUT)
+.time-stamp-qlo: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
 	mkdir -p html
 	$(SED) -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
                -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
@@ -97,7 +101,7 @@ docs-qlo: .time-stamp-qlo
 	touch .time-stamp-qlo
 
 docs-root: .time-stamp-root
-.time-stamp-root: $(QLA_CONFIG) $(QLA_CUSTOM) $(QLA_INPUT)
+.time-stamp-root: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
 	mkdir -p html
 	$(SED) -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
                -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
@@ -109,7 +113,7 @@ docs-root: .time-stamp-root
 	touch .time-stamp-root
 
 docs-auto-online: .time-stamp-auto-online
-.time-stamp-auto-online: $(QLA_CONFIG) $(QLA_CUSTOM) $(QLA_INPUT)
+.time-stamp-auto-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
 	mkdir -p html-online
 	$(SED) -e "s/qla_header/qla_headeronline/" \
            -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
@@ -123,7 +127,7 @@ docs-auto-online: .time-stamp-auto-online
 	touch .time-stamp-auto-online
 
 docs-qlo-online: .time-stamp-qlo-online
-.time-stamp-qlo-online: $(QLA_CONFIG) $(QLA_CUSTOM) $(QLA_INPUT)
+.time-stamp-qlo-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
 	mkdir -p html-online
 	$(SED) -e "s/qla_header/qla_headeronline/" \
            -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
@@ -137,7 +141,7 @@ docs-qlo-online: .time-stamp-qlo-online
 	touch .time-stamp-qlo-online
 
 docs-root-online: .time-stamp-root-online
-.time-stamp-root-online: $(QLA_CONFIG) $(QLA_CUSTOM) $(QLA_INPUT)
+.time-stamp-root-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
 	mkdir -p html-online
 	$(SED) -e "s/qla_header/qla_headeronline/" \
            -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \

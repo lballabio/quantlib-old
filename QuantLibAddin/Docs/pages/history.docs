@@ -17,13 +17,13 @@
  You should have received a copy of the QuantLib License along with this
  program; if not, please email quantlib-dev@lists.sf.net
 
- The QuantLib License is also available at http://quantlib.org/license.html
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
 /*! \page history Version History
 
-<strong>Release 0.8.0 - April 2007</strong>
+<strong>Release 0.8.0 - May 2007</strong>
 
 REQUIRED PACKAGES
 
@@ -33,11 +33,18 @@ REQUIRED PACKAGES
 
 FUNCTIONALITY
 
-- 32 new functions / 594 in total
+- Orders of magnitude increase in performance due to a redesign of ObjectHandler
+- 78 new functions / 640 in total
+- New function category Range Accrual
+
+DOCUMENTATION
+
+- "Topics" page of documentation updated to provide overview of major design features
+- FAQ rewritten
 
 PLATFORMS
 
-- The C and Guile platforms have not been updated for this release.
+- The Guile platform has not been updated for this release
 
 <strong>Release 0.4.0 - February 2007</strong>
 
@@ -63,8 +70,8 @@ REQUIRED PACKAGES
 FUNCTIONALITY
 
 - 218 new functions / 445 in total
-- New categories: assetswap, capletvolstructure, cmsmarket, marketmodels,
-  sequencestatistics, statistics
+- New categories: Asset Swap, Caplet Volatility Term Structures, CMS Market,
+  Market Models, Sequence Statistics, Statistics
 
 DESIGN
 
@@ -96,7 +103,7 @@ and provides a Windows installer for the compiled package.
 
 For a further breakdown of the differences between the old and new QuantLibXL
 projects, please see the following item in the %QuantLibAddin FAQ:
-\ref faq_excel
+\ref faq_item_whats_qlxl
 
 GENSRC
 

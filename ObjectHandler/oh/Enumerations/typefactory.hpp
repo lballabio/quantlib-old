@@ -6,10 +6,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -48,7 +49,7 @@ namespace ObjectHandler {
     //@}
 
     //! Manage access to an Enumeration Registry.
-    /*! This template class manages the intersection between the given template 
+    /*! This template class manages the intersection between the given template
         parameters:
         \param T - The type of the Enumeration to be stored
         \param RegistryClass - The structure in which to store it
@@ -115,7 +116,7 @@ namespace ObjectHandler {
             if(!typeMap) {
                 typename RegistryClass::AllTypeMap::const_iterator i =
                     RegistryClass::instance().getAllTypesMap().find(typeid(T).name());
-                OH_REQUIRE(i != RegistryClass::instance().getAllTypesMap().end(), 
+                OH_REQUIRE(i != RegistryClass::instance().getAllTypesMap().end(),
                     "Error retrieving Enumeration from Registry - the type '"
                     << typeid(T).name() << "' is not available!");
                 typeMap = i->second;

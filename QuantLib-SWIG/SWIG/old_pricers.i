@@ -5,10 +5,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -35,11 +36,11 @@ using QuantLib::DiscreteGeometricASO;
 
 class DiscreteGeometricASO {
   public:
-	DiscreteGeometricASO(Option::Type type, Real underlying,
+    DiscreteGeometricASO(Option::Type type, Real underlying,
                          Spread dividendYield, Rate riskFreeRate,
                          const std::vector<Time>& timeDelays,
                          Volatility volatility);
-	Real value() const;
+    Real value() const;
 };
 
 
@@ -79,7 +80,7 @@ class McDiscreteArithmeticASO {
     %rename("error-estimate")     errorEstimate;
     #endif
   public:
-	McDiscreteArithmeticASO(Option::Type type, Real underlying,
+    McDiscreteArithmeticASO(Option::Type type, Real underlying,
                             const Handle<YieldTermStructure>& dividendYield,
                             const Handle<YieldTermStructure>& riskFreeRate,
                             const Handle<BlackVolTermStructure>& volatility,
@@ -122,9 +123,9 @@ class McHimalaya {
                const Handle<YieldTermStructure>& riskFreeRate,
                const std::vector<Handle<BlackVolTermStructure> >& volatilities,
                const Matrix& correlation,
-			   Real strike,
+               Real strike,
                const std::vector<Time>& timeDelays,
-		       BigInteger seed = 0);
+               BigInteger seed = 0);
     Real value(Real tolerance,
                Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
@@ -142,7 +143,7 @@ class McEverest {
               const std::vector<Handle<BlackVolTermStructure> >& volatilities,
               const Matrix& correlation,
               Time residualTime,
-			  BigInteger seed = 0);
+              BigInteger seed = 0);
     Real value(Real tolerance,
                Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;
@@ -162,8 +163,8 @@ class McPagoda {
              const Handle<YieldTermStructure>& riskFreeRate,
              const std::vector<Handle<BlackVolTermStructure> >& volatilities,
              const Matrix& correlation,
-		     const std::vector<Time>& timeDelays,
-		     BigInteger seed = 0);
+             const std::vector<Time>& timeDelays,
+             BigInteger seed = 0);
     Real value(Real tolerance,
                Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;

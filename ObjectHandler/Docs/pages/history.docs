@@ -17,7 +17,7 @@
  You should have received a copy of the QuantLib License along with this
  program; if not, please email quantlib-dev@lists.sf.net
 
- The QuantLib License is also available at http://quantlib.org/license.html
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
@@ -39,6 +39,7 @@ DESIGN
 
 EXCEL
 
+- New functions ohObjectCallerAddress(), ohObjectCallerKey(), ohRetrieveError()
 - Fixed problem of error handling malfunctioning for non-English versions
   of Excel.  Error handling is based on range references in R1C1 format,
   %ObjectHandler now caters for versions of Excel which abbreviate "R"ow
@@ -57,10 +58,16 @@ DOCUMENTATION
   result the  doxygen-generated documentation of classes and code is also up to date.
   Much of the other hand-written documentation still requires an update.
 
+LOG4CXX
+
+- A couple of minor fixes to makefiles
+- Repackaged as version 0.9.7d (see below for explanation of
+  log4cxx version numbers)
+
 REQUIRED PACKAGES
 
 - Boost version 1.31.0 or later
-- log4cxx version 0.9.7.c
+- log4cxx version 0.9.7.d
 - gensrc version 0.8.0
 
 <strong>Release 0.2.0 - February 2007</strong>

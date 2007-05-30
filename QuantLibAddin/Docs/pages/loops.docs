@@ -1,0 +1,96 @@
+
+/*
+ Copyright (C) 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page loops Looping Functions
+
+\section loop_overview Overview
+
+Some QuantLibXL functions are configured to loop automatically on one of the
+input values.  For example, rather than making ten separate calls to qlIndexFixing(),
+you can make a single call, passing in an array of ten values for the fixingDate
+parameter, and the function will automatically be invoked ten times and return
+an array of ten values, each corresponding to one of the input values.
+
+\section loop_list List of Looping Functions
+
+The table below lists the function name and loop parameter name for all
+QuantLibXL functions that are configured to loop.
+
+<table><tr><td><b>Function</b></td><td><b>Loop Parameter</b></td></tr>
+<tr><td>qlAbcdCovariance</td><td>tMax</td></tr>
+<tr><td>qlAbcdInstantaneousCovariance</td><td>u</td></tr>
+<tr><td>qlAbcdInstantaneousValue</td><td>u</td></tr>
+<tr><td>qlAbcdInstantaneousVariance</td><td>u</td></tr>
+<tr><td>qlAbcdInstantaneousVolatility</td><td>u</td></tr>
+<tr><td>qlAbcdVariance</td><td>tMax</td></tr>
+<tr><td>qlAbcdVolatility</td><td>tMax</td></tr>
+<tr><td>qlBondDirtyPrice2</td><td>yield</td></tr>
+<tr><td>qlCalendarAdjust</td><td>date</td></tr>
+<tr><td>qlCalendarAdvance</td><td>period</td></tr>
+<tr><td>qlCalendarBusinessDaysBetween</td><td>firstDate</td></tr>
+<tr><td>qlCalendarEndOfMonth</td><td>date</td></tr>
+<tr><td>qlCalendarIsBusinessDay</td><td>date</td></tr>
+<tr><td>qlCalendarIsEndOfMonth</td><td>date</td></tr>
+<tr><td>qlCalendarIsHoliday</td><td>date</td></tr>
+<tr><td>qlCapletVTSBlackVariance2</td><td>optionTenor</td></tr>
+<tr><td>qlCapletVTSBlackVariance</td><td>optionDate</td></tr>
+<tr><td>qlCapletVTSVolatility2</td><td>strike</td></tr>
+<tr><td>qlCapletVTSVolatility</td><td>strike</td></tr>
+<tr><td>qlDateEndOfMonth</td><td>date</td></tr>
+<tr><td>qlDateIsEndOfMonth</td><td>date</td></tr>
+<tr><td>qlDateIsLeap</td><td>year</td></tr>
+<tr><td>qlDateNextWeekday</td><td>date</td></tr>
+<tr><td>qlDayCounterDayCount</td><td>endDate</td></tr>
+<tr><td>qlDayCounterYearFraction</td><td>endDate</td></tr>
+<tr><td>qlFrequencyFromPeriod</td><td>period</td></tr>
+<tr><td>qlIMMcode</td><td>IMMdate</td></tr>
+<tr><td>qlIMMdate</td><td>IMMcode</td></tr>
+<tr><td>qlIMMIsIMMcode</td><td>code</td></tr>
+<tr><td>qlIMMIsIMMdate</td><td>date</td></tr>
+<tr><td>qlIndexFixing</td><td>fixingDate</td></tr>
+<tr><td>qlIndexIsValidFixingDate</td><td>fixingDate</td></tr>
+<tr><td>qlInterestRateIndexFixingDate</td><td>valueDate</td></tr>
+<tr><td>qlInterestRateIndexForecastFixing</td><td>fixingDate</td></tr>
+<tr><td>qlInterestRateIndexMaturity</td><td>valueDate</td></tr>
+<tr><td>qlInterestRateIndexValueDate</td><td>fixingDate</td></tr>
+<tr><td>qlInterpolation2DInterpolate</td><td>xValue</td></tr>
+<tr><td>qlInterpolationDerivative</td><td>xValues</td></tr>
+<tr><td>qlInterpolationInterpolate</td><td>xValues</td></tr>
+<tr><td>qlInterpolationIsInRange</td><td>xValues</td></tr>
+<tr><td>qlInterpolationPrimitive</td><td>xValues</td></tr>
+<tr><td>qlInterpolationSecondDerivative</td><td>xValues</td></tr>
+<tr><td>qlSwaptionVTSatmStrike2</td><td>optionTenor</td></tr>
+<tr><td>qlSwaptionVTSatmStrike</td><td>optionDate</td></tr>
+<tr><td>qlSwaptionVTSBlackVariance2</td><td>optionTenor</td></tr>
+<tr><td>qlSwaptionVTSBlackVariance</td><td>optionDate</td></tr>
+<tr><td>qlSwaptionVTSOptionDateFromTenor</td><td>optionTenor</td></tr>
+<tr><td>qlSwaptionVTSVolatility2</td><td>strike</td></tr>
+<tr><td>qlSwaptionVTSVolatility</td><td>strike</td></tr>
+<tr><td>qlYieldTSDiscount</td><td>DfDates</td></tr>
+<tr><td>qlYieldTSForwardRate2</td><td>date</td></tr>
+<tr><td>qlYieldTSForwardRate</td><td>d2</td></tr>
+<tr><td>qlYieldTSZeroRate</td><td>dates</td></tr>
+</table>
+
+*/
+

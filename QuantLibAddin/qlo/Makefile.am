@@ -48,6 +48,7 @@ include_HEADERS = \
     quantovanillaoption.hpp \
     quotes.hpp \
     randomsequencegenerator.hpp \
+    rangeaccrual.hpp \
     ratehelpers.hpp \
     schedule.hpp \
     sequencestatistics.hpp \

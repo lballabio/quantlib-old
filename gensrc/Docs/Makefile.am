@@ -1,6 +1,6 @@
 
 EXTRA_DIST = \
-	docs.vcproj \
+	docs_vc7.vcproj \
 	docs_vc8.vcproj \
     gensrc.doxy \
     gs_footer.html \
@@ -11,7 +11,7 @@ EXTRA_DIST = \
 
 DOXYGEN_CONFIG := gensrc.doxy
 DOXYGEN_CUSTOM := style.css gs_header.html gs_headeronline.html gs_footer.html
-DOXYGEN_INPUT := $(shell find ${top_srcdir} -name *.hpp) \
+DOXYGEN_INPUT := $(shell find ${top_srcdir} -name *.py) \
                  $(wildcard pages/*.docs)
 
 %.gz: %
@@ -28,7 +28,7 @@ dist-hook:
 	mkdir -p $(distdir)/pages $(distdir)/images
 	cp -p $(srcdir)/pages/*.docs $(distdir)/pages
 	cp -p $(srcdir)/images/*.gif $(srcdir)/images/*.ico \
-	      $(srcdir)/images/*.jpg $(srcdir)/images/*.png \
+	      $(srcdir)/images/*.jpg $(srcdir)/images/*.php \
 	      $(distdir)/images
 
 docs-all: docs-html
@@ -47,7 +47,7 @@ docs-html: .time-stamp-html
 	cp images/*.gif html/images
 	cp images/*.ico html/images
 	cp images/*.jpg html/images
-	cp images/*.png html/images
+	cp images/*.php html/images
 	touch .time-stamp-html
 
 docs-html-dist: docs-html
@@ -70,7 +70,7 @@ docs-online: .time-stamp-online
 	cp images/*.gif html-online/images
 	cp images/*.ico html-online/images
 	cp images/*.jpg html-online/images
-	cp images/*.png html-online/images
+	cp images/*.php html-online/images
 	touch .time-stamp-online
 
 docs-online-dist: docs-online

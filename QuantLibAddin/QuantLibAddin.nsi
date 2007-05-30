@@ -31,7 +31,7 @@ Section
     File "README.txt"
     File "LICENSE.TXT"
     File "NEWS.txt"
-    File "QuantLibAddin.sln"
+    File "QuantLibAddin_vc7.sln"
     File "QuantLibAddin_vc8.sln"
 
     File "*.txt"
@@ -100,7 +100,7 @@ Section
                    "$INSTDIR\LICENSE.TXT"
 
     CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin VC 7 project workspace.lnk" \
-                   "$INSTDIR\QuantLibAddin.sln"
+                   "$INSTDIR\QuantLibAddin_vc7.sln"
 
     CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin VC 8 project workspace.lnk" \
                    "$INSTDIR\QuantLibAddin_vc8.sln"

@@ -5,10 +5,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -38,7 +39,7 @@ class CompoundForwardPtr : public boost::shared_ptr<YieldTermStructure> {
                            BusinessDayConvention roll,
                            Integer compounding,
                            const DayCounter& dayCounter) {
-	        return new CompoundForwardPtr(
+            return new CompoundForwardPtr(
                 new CompoundForward(settlementDate,
                                     dates, rates, calendar, roll,
                                     compounding, dayCounter));
@@ -47,19 +48,17 @@ class CompoundForwardPtr : public boost::shared_ptr<YieldTermStructure> {
             return boost::dynamic_pointer_cast<CompoundForward>(*self)
                  ->dates();
         }
-	Rate compoundForward(const Date&d1,
-	     Integer f,
-	     bool extrapolate = false) const {
-	       return
-			 boost::dynamic_pointer_cast<CompoundForward>(*self)
-                 ->compoundForward(d1, f, extrapolate);
+        Rate compoundForward(const Date& d,
+                             Integer f,
+                             bool extrapolate = false) const {
+            return boost::dynamic_pointer_cast<CompoundForward>(*self)
+                ->compoundForward(d, f, extrapolate);
         }
-	Rate compoundForward(const Time t1,
-	     Integer f,
-	     bool extrapolate = false) const {
-	       return
-	 boost::dynamic_pointer_cast<CompoundForward>(*self)
-                 ->compoundForward(t1, f, extrapolate);
+        Rate compoundForward(const Time t,
+                             Integer f,
+                             bool extrapolate = false) const {
+            return boost::dynamic_pointer_cast<CompoundForward>(*self)
+                ->compoundForward(t, f, extrapolate);
         }
     }
 };

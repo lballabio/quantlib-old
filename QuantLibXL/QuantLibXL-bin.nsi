@@ -22,6 +22,12 @@ OutFile "..\${APP}-bin-${VER_NUMBER}.exe"
 UninstallIcon "Docs\images\favicon.ico"
 UninstallText "This will uninstall QuantLibXL. Hit next to continue."
 
+ComponentText \
+"By default the installer will install the QuantLibXL Addin (XLL) and basic example workbooks." \
+"Optional components:" \
+"The QuantLibXL Framework is a business application layer written in Excel VBA, \
+including template workbooks for market data and interest rate derivates."
+
 # Installer Instructions
 
 Section
@@ -44,8 +50,10 @@ Section
     File "Workbooks\Math\*.xls"
 
     SetOutPath "$INSTDIR\Workbooks\OriginalExamples"
-    File "Workbooks\OriginalExamples\*.xls"
     File "Workbooks\OriginalExamples\README.txt"
+    File /x "BlackFormula.xls" \
+         /x "capfloors.xls" \
+            "Workbooks\OriginalExamples\*.xls"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"
@@ -54,7 +62,7 @@ Section
     File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXLL-bin-${VER_NUMBER}" \
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-bin-${VER_NUMBER}" \
                 "DisplayName" "QuantLibXL-bin ${VER_NUMBER} (remove only)"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
@@ -86,6 +94,23 @@ Section
                 "InternetShortcut" "URL" "http://www.quantlibxl.org/"
 
     WriteUninstaller "QuantLibXLUninstall.exe"
+
+SectionEnd
+
+Section /o Framework
+
+    SetOutPath "$INSTDIR\framework"
+    File "framework\QuantLibXL.xla"
+
+    SetOutPath "$INSTDIR\Workbooks"
+    File /r "Workbooks\*.xls"
+
+    SetOutPath "$INSTDIR\metadata"
+    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
+
+    # ObjectBuilder crashes if it can't find the icon
+    SetOutPath "$INSTDIR\Docs\images"
+    File "Docs\images\favicon.bmp"
 
 SectionEnd
 

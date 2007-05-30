@@ -16,6 +16,8 @@ DOXYGEN_CUSTOM := style.css qlxl_footer.html \
                   qlxl_header.html qlxl_header.subdir.html \
                   qlxl_headeronline.html qlxl_headeronline.subdir.html
 DOXYGEN_INPUT := $(wildcard pages/*.docs) \
+                 $(wildcard ../../ObjectHandler/Docs/pages/*.docs) \
+                 $(wildcard ../../QuantLibAddin/Docs/pages/*.docs) \
                  $(wildcard ../../QuantLibAddin/Docs/auto.pages/*.docs)
 
 %.gz: %
@@ -32,9 +34,10 @@ DOXYGEN_INPUT := $(wildcard pages/*.docs) \
 
 dist-hook:
 	mkdir -p $(distdir)/pages $(distdir)/images
-	cp -p $(srcdir)/pages/*.docs $(distdir)/pages
-	cp -p $(srcdir)/images/*.gif $(srcdir)/images/*.ico \
+	cp -fp $(srcdir)/pages/*.docs $(distdir)/pages
+	cp -fp $(srcdir)/images/*.gif $(srcdir)/images/*.ico \
 	      $(srcdir)/images/*.jpg $(srcdir)/images/*.png \
+	      $(srcdir)/images/*.php \
 	      $(distdir)/images
 
 docs-all: docs-html
@@ -43,19 +46,21 @@ docs-dist: docs-html-dist
 docs-html: .time-stamp-html
 .time-stamp-html: .time-stamp-auto .time-stamp-root
 	mkdir -p html/images
-	cp images/*.gif html/images
-	cp images/*.ico html/images
-	cp images/*.jpg html/images
-	cp images/*.png html/images
+	cp -f images/*.gif html/images
+	cp -f images/*.ico html/images
+	cp -f images/*.jpg html/images
+	cp -f images/*.png html/images
+	cp -f images/*.php html/images
 	touch .time-stamp-html
 
 docs-online: .time-stamp-html-online
 .time-stamp-html-online: .time-stamp-auto-online .time-stamp-root-online
 	mkdir -p html-online/images
-	cp images/*.gif html-online/images
-	cp images/*.ico html-online/images
-	cp images/*.jpg html-online/images
-	cp images/*.png html-online/images
+	cp -f images/*.gif html-online/images
+	cp -f images/*.ico html-online/images
+	cp -f images/*.jpg html-online/images
+	cp -f images/*.png html-online/images
+	cp -f images/*.php html-online/images
 	touch .time-stamp-html-online
 
 docs-html-dist: docs-html

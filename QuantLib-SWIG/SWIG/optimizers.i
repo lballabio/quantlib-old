@@ -6,10 +6,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -168,27 +169,28 @@ class EndCriteria {
     %rename(NoCriteria) None;
     #endif
   public:
-  enum Type { 
-	      None,
-	      MaxIterations,
-	      StationaryPoint,
-	      StationaryFunctionValue,
-	      StationaryFunctionAccuracy,
-	      ZeroGradientNorm,
-	      Unknown };
+    enum Type {
+        None,
+        MaxIterations,
+        StationaryPoint,
+        StationaryFunctionValue,
+        StationaryFunctionAccuracy,
+        ZeroGradientNorm,
+        Unknown
+    };
     EndCriteria(Size maxIteration,
-		Size maxStationaryStateIterations,
-		Real rootEpsilon,
-		Real functionEpsilon,
-		Real gradientNormEpsilon);
+                Size maxStationaryStateIterations,
+                Real rootEpsilon,
+                Real functionEpsilon,
+                Real gradientNormEpsilon);
     bool operator()(Size iteration,
-		    Size &statState,
-		    const bool positiveOptimization,
+                    Size &statState,
+                    const bool positiveOptimization,
                     const Real fold,
                     const Real normgold,
                     const Real fnew,
                     const Real normgnewx,
-		    EndCriteria::Type & ecType) const;
+                    EndCriteria::Type & ecType) const;
 };
 
 
@@ -230,9 +232,9 @@ using QuantLib::Problem;
 %}
 #if defined(SWIGPYTHON)
 %extend Optimizer {
-    Array solve(PyObject* function, Constraint& c, 
-	  OptimizationMethod& m, EndCriteria &e,
-	  Array &iv) {
+    Array solve(PyObject* function, Constraint& c,
+                OptimizationMethod& m, EndCriteria &e,
+                Array &iv) {
         PyCostFunction f(function);
         Problem p(f,c,iv);
         m.minimize(p, e);
@@ -242,8 +244,8 @@ using QuantLib::Problem;
 #elif defined(SWIGRUBY)
 %extend Optimizer {
     Array solve(Constraint& c, OptimizationMethod& m,
-	  EndCriteria &e,
-	  Array &iv) {
+                EndCriteria &e,
+                Array &iv) {
         RubyCostFunction f;
         Problem p(f,c,iv);
         m.minimize(p, e);
@@ -253,9 +255,9 @@ using QuantLib::Problem;
 #elif defined(SWIGMZSCHEME)
 %extend Optimizer {
     Array solve(Scheme_Object* function, Constraint& c,
-    OptimizationMethod& m,
-			EndCriteria &e,
-			Array &iv) {
+                OptimizationMethod& m,
+                EndCriteria &e,
+                Array &iv) {
         MzCostFunction f(function);
         Problem p(f,c,iv);
         m.minimize(p, e);
@@ -265,7 +267,7 @@ using QuantLib::Problem;
 #elif defined(SWIGGUILE)
 %extend Optimizer {
     Array solve(SCM function, Constraint& c, OptimizationMethod& m,
-	  EndCriteria &e, Array &iv) {
+                EndCriteria &e, Array &iv) {
         GuileCostFunction f(function);
         Problem p(f,c,iv);
         m.minimize(p, e);

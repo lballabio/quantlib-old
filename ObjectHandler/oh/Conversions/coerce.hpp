@@ -5,10 +5,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -80,7 +81,7 @@ namespace ObjectHandler {
     protected:
         //! Typedef for a pointer to a conversion function.
         typedef bool (*Conversion)(const TypeIn&, TypeOut&);
-        //! Retrive the list of conversions defined for this instance of Coerce.
+        //! Retrieve the list of conversions defined for this instance of Coerce.
         /*! Pure virtual function which must be overridden as appropriate
             by each derived class.
         */
@@ -89,7 +90,7 @@ namespace ObjectHandler {
         /*! This base class provides a dummy definition of this function returning
             false, indicating that all inputs are always populated.
 
-            Base classes may override this function to inspect the input argument
+            Derived classes may override this function to inspect the input argument
             and determine whether it represents some kind of null value to indicate
             that no input was provided.
         */

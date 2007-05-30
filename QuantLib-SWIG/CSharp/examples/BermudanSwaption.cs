@@ -4,10 +4,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -38,8 +39,8 @@ namespace BermudanSwaption
 			double lambda ) 
 		{
 			Simplex om = new Simplex( lambda );
-			om.setEndCriteria( new EndCriteria(10000, 1e-7) );
-			model.calibrate(helpers, om);
+			model.calibrate(helpers, om,
+							new EndCriteria(1000, 250, 1e-7, 1e-7, 1e-7));
 
 			// Output the implied Black volatilities
 			for (int i=0; i<numRows; i++) 
@@ -77,8 +78,8 @@ namespace BermudanSwaption
 				settlementDate,
 				new QuoteHandle( flatRate ),
 				new Actual365Fixed() );
-			YieldTermStructureHandle rhTermStructure =
-                new YieldTermStructureHandle();
+			RelinkableYieldTermStructureHandle rhTermStructure =
+                new RelinkableYieldTermStructureHandle();
 			rhTermStructure.linkTo( myTermStructure );
 
 			// Define the ATM/OTM/ITM swaps
@@ -92,10 +93,9 @@ namespace BermudanSwaption
                 new Thirty360( Thirty360.Convention.European );
 			Frequency floatingLegFrequency = Frequency.Semiannual;
 			Period floatingLegTenor = new Period(6,TimeUnit.Months);
-			bool payFixedRate = true;
 			int fixingDays = 2;
 			double dummyFixedRate = 0.03;
-			Xibor indexSixMonths = new Euribor6M( rhTermStructure );
+			IborIndex indexSixMonths = new Euribor6M( rhTermStructure );
 
 			Date startDate = calendar.advance(settlementDate,1,TimeUnit.Years,
 				floatingLegConvention);
@@ -108,7 +108,7 @@ namespace BermudanSwaption
 				floatingLegTenor,calendar,floatingLegConvention,floatingLegConvention,
 				false,false);
 			VanillaSwap swap = new VanillaSwap(
-					   payFixedRate, 1000.0,
+					   VanillaSwap.Payer, 1000.0,
 					   fixedSchedule, dummyFixedRate, fixedLegDayCounter,
 					   floatSchedule, indexSixMonths, 0.0,
 					   indexSixMonths.dayCounter(), rhTermStructure);
@@ -117,17 +117,17 @@ namespace BermudanSwaption
 			double fixedITMRate = fixedATMRate * 0.8;
 
 			VanillaSwap atmSwap = new VanillaSwap(
-					   payFixedRate, 1000.0,
+					   VanillaSwap.Payer, 1000.0,
 					   fixedSchedule, fixedATMRate, fixedLegDayCounter,
 					   floatSchedule, indexSixMonths, 0.0,
 					   indexSixMonths.dayCounter(), rhTermStructure );
 			VanillaSwap otmSwap = new VanillaSwap(
-					   payFixedRate, 1000.0,
+					   VanillaSwap.Payer, 1000.0,
 					   fixedSchedule, fixedOTMRate, fixedLegDayCounter,
 					   floatSchedule, indexSixMonths, 0.0,
 					   indexSixMonths.dayCounter(), rhTermStructure);
 			VanillaSwap itmSwap = new VanillaSwap(
-					   payFixedRate, 1000.0,
+					   VanillaSwap.Payer, 1000.0,
 					   fixedSchedule, fixedITMRate, fixedLegDayCounter,
 					   floatSchedule, indexSixMonths, 0.0,
 					   indexSixMonths.dayCounter(), rhTermStructure);

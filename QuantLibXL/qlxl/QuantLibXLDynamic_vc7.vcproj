@@ -43,7 +43,7 @@
 				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc71-mt-gd-0_8_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;&quot;$(LOG4CXX_DIR)/msvc/lib&quot;;..\..\QuantLibAddin\lib"
+				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibAddinDynamic-vc71-mt-gd-0_8_0.pdb"
 				ImportLibrary=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibAddinDynamic-vc71-mt-gd-0_8_0.lib"
@@ -110,7 +110,7 @@
 				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc71-mt-0_8_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;&quot;$(LOG4CXX_DIR)/msvc/lib&quot;;..\..\QuantLibAddin\lib"
+				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
 				ProgramDatabaseFile=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibAddinDynamic-vc71-mt-0_8_0.pdb"
 				ImportLibrary=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibAddinDynamic-vc71-mt-0_8_0.lib"
 				TargetMachine="1"/>

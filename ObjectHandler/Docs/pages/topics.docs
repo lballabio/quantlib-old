@@ -17,18 +17,20 @@
  You should have received a copy of the QuantLib License along with this
  program; if not, please email quantlib-dev@lists.sf.net
 
- The QuantLib License is also available at http://quantlib.org/license.html
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
 /*! \page topics Topics
 
-The table below summarizes links to documentation for selected topics concerning end-user functionality of QuantLibAddin/QuantLibXL.
+The table below summarizes links to documentation for selected topics concerning end-user functionality of %ObjectHandler.
 
 <table>
 <tr><td><b>Topic</b></td><td><b>Summary</b></td></tr>
-<tr><td>\ref evaluationdate</td><td>Description of special processing for the Evaluation Date, which is implemented in QuantLib as a global variable</td></tr>
-<tr><td>\ref trigger</td><td>Using triggers to force dependencies between cells in QuantLibXL and flagging ObjectHandler objects as permanent so that they're ignored by ohDeleteAllObjects()</td></tr>
+<tr><td>\ref excelbinding</td><td>%ObjectHandler functionality for Microsoft Excel</td></tr>
+<tr><td>\ref log_messages</td><td>Writing messages to the log file</td></tr>
+<tr><td>\ref garbage_collection</td><td>Culling objects orphaned by the deletion of the calling cell</td></tr>
+<tr><td>\ref references</td><td>Flagging objects as permanent so that they're ignored by ohDeleteAllObjects(), and using triggers to force dependencies between cells in Microsoft Excel</td></tr>
 </table>
 
 */

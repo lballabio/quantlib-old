@@ -37,6 +37,7 @@ GENSRC_METADATA :=  metadata/Addins/calc.xml \
                     metadata/Functions/processes.xml \
                     metadata/Functions/quotes.xml \
                     metadata/Functions/randomsequencegenerator.xml \
+                    metadata/Functions/rangeaccrual.xml \
                     metadata/Functions/ratehelpers.xml \
                     metadata/Functions/schedule.xml \
                     metadata/Functions/sequencestatistics.xml \
@@ -76,7 +77,7 @@ GENSRC_INPUTS = $(GENSRC_METADATA) $(GENSRC_STUBS) $(GENSRC_CODE) $(GENSRC_CONF)
 # this should prevent running from a distributed tarball
 EXTRA_DIST = .time-stamp \
              qlgensrc_vc8.vcproj \
-             qlgensrc.vcproj \
+             qlgensrc_vc7.vcproj \
              Makefile.vc \
              $(GENSRC_INPUTS)
 
@@ -114,12 +115,25 @@ all-local: .time-stamp
 	touch .time-stamp
 	
 dist-hook:
-	mkdir -p $(distdir)/config $(distdir)/metadata $(distdir)/scripts $(distdir)/stubs
+	mkdir -p $(distdir)/code
+	mkdir -p $(distdir)/config
+	mkdir -p $(distdir)/metadata
+	mkdir -p $(distdir)/metadata/Addins
+	mkdir -p $(distdir)/metadata/Enumerations
+	mkdir -p $(distdir)/metadata/Functions
+	mkdir -p $(distdir)/metadata/Rules
+	mkdir -p $(distdir)/metadata/Types
+	mkdir -p $(distdir)/stubs
+	cp -p $(srcdir)/code/*.py $(distdir)/code
 	cp -p $(srcdir)/config/*.xml $(distdir)/config
-	cp -p $(srcdir)/metadata/*.xml $(distdir)/metadata
-	cp -p $(srcdir)/scripts/*.py $(distdir)/scripts
+	cp -p $(srcdir)/metadata/Addins/*.xml $(distdir)/metadata/Addins
+	cp -p $(srcdir)/metadata/Enumerations/*.xml $(distdir)/metadata/Enumerations
+	cp -p $(srcdir)/metadata/Functions/*.xml $(distdir)/metadata/Functions
+	cp -p $(srcdir)/metadata/Rules/*.xml $(distdir)/metadata/Rules
+	cp -p $(srcdir)/metadata/Types/*.xml $(distdir)/metadata/Types
 	cp -p $(srcdir)/stubs/stub.* $(distdir)/stubs
 	touch .time-stamp
 
 clean:
 	rm -f .time-stamp
+

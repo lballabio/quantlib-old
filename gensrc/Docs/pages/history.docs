@@ -17,7 +17,7 @@
  You should have received a copy of the QuantLib License along with this
  program; if not, please email quantlib-dev@lists.sf.net
 
- The QuantLib License is also available at http://quantlib.org/license.html
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
@@ -25,6 +25,7 @@
 
 <strong>Release 0.8.0 - May 2007</strong>
 
+- Every line of code reworked, many algorithms improved
 - Implemented gensrc as a Python package
 - Removed datatype metadata from function metadata into separate file
 - Refined the Rule algorithm which generates source code for a given

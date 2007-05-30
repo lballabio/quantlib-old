@@ -20,9 +20,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;Makefile.vc&quot;"
-				ReBuildCommandLine="nmake /f &quot;Makefile.vc&quot; /a"
-				CleanCommandLine="nmake /f &quot;Makefile.vc&quot; clean"/>
+				BuildCommandLine="nmake /f Makefile.vc"
+				ReBuildCommandLine="nmake /f Makefile.vc /a"
+				CleanCommandLine="nmake /f Makefile.vc clean"/>
 		</Configuration>
 	</Configurations>
 	<References>

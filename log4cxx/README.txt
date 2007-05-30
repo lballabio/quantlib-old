@@ -1,5 +1,5 @@
 ***************************************************************************
-* this is log4cxx version "0.9.7c", adapted from log4cxx 0.9.7 for use by
+* this is log4cxx version "0.9.7d", adapted from log4cxx 0.9.7 for use by
 * the QuantLib project.
 *
 * for Windows build, workspaces are provided for VC versions 7 and 8.

@@ -39,13 +39,24 @@ all-local: .time-stamp
 	touch .time-stamp
 
 dist-hook:
-	mkdir -p $(distdir)/config $(distdir)/metadata $(distdir)/scripts $(distdir)/stubs
-	cp -p $(srcdir)/config/*.xml $(distdir)/config
-	cp -p $(srcdir)/metadata/*.xml $(distdir)/metadata
-	cp -p $(srcdir)/scripts/*.py $(distdir)/scripts
-	cp -p $(srcdir)/stubs/stub.* $(distdir)/stubs
+	mkdir -p $(distdir)/code
+	mkdir -p $(distdir)/config
+	mkdir -p $(distdir)/metadata
+	mkdir -p $(distdir)/metadata/Addins
+	mkdir -p $(distdir)/metadata/Functions
+	mkdir -p $(distdir)/metadata/Rules
+	mkdir -p $(distdir)/metadata/Types
+	mkdir -p $(distdir)/stubs
+	cp -pf $(srcdir)/config/*.xml $(distdir)/config
+	cp -pf $(srcdir)/metadata/Addins/*.xml $(distdir)/metadata/Addins
+	cp -pf $(srcdir)/metadata/Functions/*.xml $(distdir)/metadata/Functions
+	cp -pf $(srcdir)/metadata/Rules/*.xml $(distdir)/metadata/Rules
+	cp -pf $(srcdir)/metadata/Types/*.xml $(distdir)/metadata/Types
+	cp -pf $(srcdir)/stubs/stub.* $(distdir)/stubs
 	touch .time-stamp
 
 clean:
 	rm -f .time-stamp
+
+DISTCLEANFILES = .time-stamp
 

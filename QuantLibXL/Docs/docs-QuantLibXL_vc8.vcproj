@@ -22,9 +22,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot;"
-				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a"
-				CleanCommandLine="NMAKE /f &quot;Makefile.vc&quot; clean"
+				BuildCommandLine="NMAKE /f Makefile.vc"
+				ReBuildCommandLine="NMAKE /f Makefile.vc /a"
+				CleanCommandLine="NMAKE /f Makefile.vc clean"
 				Output=""
 				PreprocessorDefinitions="WIN32;_DEBUG"
 				IncludeSearchPath=""
@@ -214,80 +214,72 @@
 			Name="pages"
 			>
 			<File
-				RelativePath=".\pages\evaluationdate.docs"
+				RelativePath="pages\framework.docs"
 				>
 			</File>
 			<File
-				RelativePath=".\pages\functional.docs"
+				RelativePath="pages\functional.docs"
 				>
 			</File>
 			<File
-				RelativePath=".\pages\history.docs"
+				RelativePath="pages\history.docs"
 				>
 			</File>
 			<File
-				RelativePath=".\pages\index.docs"
+				RelativePath="pages\index.docs"
 				>
 			</File>
 			<File
-				RelativePath=".\pages\installation.docs"
+				RelativePath="pages\installation.docs"
 				>
 			</File>
 			<File
-				RelativePath=".\pages\license.docs"
+				RelativePath="pages\license.docs"
 				>
 			</File>
 			<File
-				RelativePath=".\pages\people.docs"
-				>
-			</File>
-			<File
-				RelativePath=".\pages\topics.docs"
-				>
-			</File>
-			<File
-				RelativePath=".\pages\trigger.docs"
+				RelativePath="pages\people.docs"
 				>
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\Makefile.vc"
+			RelativePath="Makefile.vc"
 			>
 		</File>
 		<File
-			RelativePath=".\qlxl_footer.html"
+			RelativePath="qlxl_footer.html"
 			>
 		</File>
 		<File
-			RelativePath=".\qlxl_footer.subdir.html"
+			RelativePath="qlxl_footer.subdir.html"
 			>
 		</File>
 		<File
-			RelativePath=".\qlxl_header.html"
+			RelativePath="qlxl_header.html"
 			>
 		</File>
 		<File
-			RelativePath=".\qlxl_header.subdir.html"
+			RelativePath="qlxl_header.subdir.html"
 			>
 		</File>
 		<File
-			RelativePath=".\qlxl_headeronline.html"
+			RelativePath="qlxl_headeronline.html"
 			>
 		</File>
 		<File
-			RelativePath=".\qlxl_headeronline.subdir.html"
+			RelativePath="qlxl_headeronline.subdir.html"
 			>
 		</File>
 		<File
-			RelativePath=".\quantlibxl.auto.doxy"
+			RelativePath="quantlibxl.auto.doxy"
 			>
 		</File>
 		<File
-			RelativePath=".\quantlibxl.root.doxy"
+			RelativePath="quantlibxl.root.doxy"
 			>
 		</File>
 		<File
-			RelativePath=".\style.css"
+			RelativePath="style.css"
 			>
 		</File>
 	</Files>

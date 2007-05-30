@@ -17,9 +17,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot;"
-				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a"
-				CleanCommandLine="NMAKE /f &quot;Makefile.vc&quot; /clean"/>
+				BuildCommandLine="NMAKE /f Makefile.vc"
+				ReBuildCommandLine="NMAKE /f Makefile.vc /a"
+				CleanCommandLine="NMAKE /f Makefile.vc /clean"/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -38,6 +38,9 @@
 				RelativePath="pages\excelbinding.docs">
 			</File>
 			<File
+				RelativePath="pages\garbage_collection.docs">
+			</File>
+			<File
 				RelativePath="pages\history.docs">
 			</File>
 			<File
@@ -50,7 +53,16 @@
 				RelativePath="pages\license.docs">
 			</File>
 			<File
+				RelativePath="pages\log_messages.docs">
+			</File>
+			<File
 				RelativePath="pages\people.docs">
+			</File>
+			<File
+				RelativePath="pages\references.docs">
+			</File>
+			<File
+				RelativePath="pages\topics.docs">
 			</File>
 		</Filter>
 		<Filter

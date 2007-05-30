@@ -543,6 +543,10 @@
           <value>QuantLib::Indonesia(QuantLib::Indonesia::BEJ)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>Indonesia::JSX</string>
+          <value>QuantLib::Indonesia(QuantLib::Indonesia::JSX)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Italy::Exchange</string>
           <value>QuantLib::Italy(QuantLib::Italy::Exchange)</value>
         </EnumeratedType>
@@ -579,8 +583,8 @@
           <value>QuantLib::Poland()</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>SaudiArabia</string>
-          <value>QuantLib::SaudiArabia()</value>
+          <string>SaudiArabia::Tadawul</string>
+          <value>QuantLib::SaudiArabia(QuantLib::SaudiArabia::Tadawul)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Singapore::SGX</string>

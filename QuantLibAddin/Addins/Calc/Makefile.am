@@ -51,7 +51,7 @@ BUILT_SOURCES = $(COMPONENT_NAME).flag2
 endif
 
 EXTRA_DIST = \
-    AddinCalc.vcproj \
+    AddinCalc_vc7.vcproj \
     AddinCalc_vc8.vcproj \
     Makefile.vc \
     QuantLibAddinCalc.def \
@@ -70,7 +70,7 @@ noinst_HEADERS = \
     payoffs.hpp \
     pricingengines.hpp \
     processes.hpp \
-    qla_all.hpp \
+    qlo_all.hpp \
     qladdin.hpp \
     qldefs.hpp \
     ratehelpers.hpp \

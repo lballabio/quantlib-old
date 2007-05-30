@@ -1,0 +1,72 @@
+
+/*
+ Copyright (C) 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page coercion Coercion
+
+\section coercion_overview Overview
+
+QuantLibXL supports a feature called Coercion in which the arguments to a
+function may be automatically converted from one datatype to another.  For
+example, wherever a QuantLibXL function expects a quote, any of the
+following may be supplied:
+\li The ID of a quote object that was previously constructed with a call to
+qlSimpleQuote().
+\li The ID of a quote handle object that was previously constructed with a call
+to qlHandleQuote().
+\li A number, which the coercion feature will use to automatically create
+a temporary quote object on the fly.
+
+\section coercion_supported Supported Coercions
+
+The table below summarizes the automatic coercions supported by QuantLibXL:
+
+<table>
+
+<tr><td><b>Value Required</b></td><td><b>Supported Inputs</b></td></tr>
+<tr><td>Index</td>
+<td>
+\li ID of an Index object as returned by a function such as qlIborIndex()
+\li string identifying an enumerated index, e.g. Euribor6M</td></tr>
+<tr><td>Quote</td>
+<td>
+\li ID of a Quote object as returned by qlSimpleQuote()
+\li ID of a Quote handle object as returned by qlHandleQuote()
+\li number representing quote value</td></tr>
+<tr><td>TermStructure</td>
+<td>
+\li ID of a TermStructure object as returned by a function such as qlPiecewiseYieldCurve ()
+\li ID of a TermStructure handle object as returned by qlRelinkableHandleYieldTermStructure()</td></tr>
+</table>
+
+The logic for TermStructures is also applied to the following classes:
+FuturesConvAdjustmentQuote, SwaptionVolatilityCube, SwaptionVolatilityDiscrete,
+SwaptionVolatilityStructure, CapletVolatilityStructure
+
+\section coercion_lists Lists
+
+Functions which expect a list of values accept input in either of the following two forms:
+\li A reference to an Excel range of values
+\li A string comprising a semicolon-delimited list of values
+
+*/
+

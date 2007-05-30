@@ -1,0 +1,75 @@
+
+/*
+ Copyright (C) 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+/*! \page framework Framework
+
+\section fw_overview Overview
+
+The QuantLibXL Framework is an application layer written in Excel VBA which
+wraps the QuantLibXL Addin with additional functionality in support of market
+data feeds, creation of instruments, etc.
+
+\section fw_prerequisites Prerequisites
+
+The Framework has been developed and tested under Excel 2002.  Limited testing
+under Excel 2003 has not highlighted any problems.  The application hasn't been
+tested under versions of Excel prior to 2002 nor on Excel 2007.
+
+\section fw_installation Installation
+
+Installation of the QuantLibXL Framework appears as an option for the installer
+as described in the standard \ref installation document.
+
+\section fw_startup Startup
+
+To load the Framework into Excel, double click on file
+QuantLibXL\\framework\\QuantLibXL.xla.
+
+Bootstrap the yield curve by invoking menu item QuantLibXL / Actions / Bootstrap
+QuantLib Yield Curve.
+
+<div class="center"><img src="images/framework_bootstrap.jpg"></div>
+
+Additional market data may need to be initialized depending upon the
+instruments to be priced.  In directory QuantLibXL\\Workbooks, spreadsheets
+ControlPanel.xls and MainChecks.xls can be used to get an overview of available
+market data and to perform global functions such as rolling the evaluation
+date.
+
+The Framework automatically detects if market data feeds from Reuters are
+available and if so these are used for live updates of market data.  If not the
+market data is taken from cells updated manually.
+
+Template instrument workbooks are found in directory
+QuantLibXL\\Workbooks\\InterestRateDerivatives.
+
+\section fw_rightclick Right Click Menu
+
+Right clicking in a cell brings up a QuantLibXL menu.
+
+<div class="center"><img src="images/framework_menu.jpg"></div>
+
+If a QuantLib function returns \#NUM then menu option "Display Error" returns the
+associated error message.  (The error message may also be found in the log file,
+or by calling ohRetrieveError() on the relevant cell).
+
+The right click menu provides additional functions to create/remove various drop
+down menus in the chosen cell and to reformat the cell.
+
+*/
+

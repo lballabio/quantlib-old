@@ -17,9 +17,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="NMAKE /f &quot;Makefile.vc&quot;"
-				ReBuildCommandLine="NMAKE /f &quot;Makefile.vc&quot; /a"
-				CleanCommandLine="NMAKE /f &quot;Makefile.vc&quot; clean"/>
+				BuildCommandLine="NMAKE /f Makefile.vc"
+				ReBuildCommandLine="NMAKE /f Makefile.vc /a"
+				CleanCommandLine="NMAKE /f Makefile.vc clean"/>
 		</Configuration>
 	</Configurations>
 	<References>

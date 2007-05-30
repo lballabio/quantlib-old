@@ -77,7 +77,17 @@ WARN_LOGFILE           = doxywarnings.txt
 # configuration options related to the input files
 #---------------------------------------------------------------------------
 
-INPUT                  = ./pages
+INPUT                  = ./pages \
+                         ../../ObjectHandler/Docs/pages/references.docs \
+                         ../../ObjectHandler/Docs/pages/excelbinding.docs \
+                         ../../ObjectHandler/Docs/pages/garbage_collection.docs \
+                         ../../ObjectHandler/Docs/pages/log_messages.docs \
+                         ../../QuantLibAddin/Docs/pages/coercion.docs \
+                         ../../QuantLibAddin/Docs/pages/evaluationdate.docs \
+                         ../../QuantLibAddin/Docs/pages/faq.docs \
+                         ../../QuantLibAddin/Docs/pages/loops.docs \
+                         ../../QuantLibAddin/Docs/pages/observer.docs \
+                         ../../QuantLibAddin/Docs/pages/topics.docs
 FILE_PATTERNS          = *.docs
 RECURSIVE              =
 EXCLUDE                = 

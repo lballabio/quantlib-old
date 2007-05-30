@@ -5,10 +5,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -22,7 +23,7 @@
 
 namespace ObjectHandler {
 
-    /* 
+    /*
     Calendar factory - accept a string, and return either a
     QuantLib::Calendar or a QuantLib::JointCalendar as appropriate
     */
@@ -77,11 +78,11 @@ namespace ObjectHandler {
         // parse the ID (the other ~50%).
         static boost::regex jointCalendarID(
             "((?:JOINHOLIDAYS)|(?:JOINBUSINESSDAYS))\\((.+?),(.+?)(?:,(.+?))?(?:,(.+))?\\)");
-        boost::smatch m; 
-        OH_REQUIRE(boost::regex_match(idStrip, m, jointCalendarID), 
+        boost::smatch m;
+        OH_REQUIRE(boost::regex_match(idStrip, m, jointCalendarID),
             "the string '" << idOriginal << "' is not a valid joint calendar identifier");
 
-        // Derive the inputs to the JointCalendar constructor.  
+        // Derive the inputs to the JointCalendar constructor.
 
         // Add the calendar IDs to a set where they will be uniquely sorted.
         std::set<std::string> calendarIdSet;
@@ -105,9 +106,9 @@ namespace ObjectHandler {
             calendarIdSet.insert(m[4]);
         }
 
-        // if the list of calendars contained duplicates, 
+        // if the list of calendars contained duplicates,
         // we may end up with just one value, which is invalid
-        OH_REQUIRE(calendarIdSet.size() > 1, "the string '" << idOriginal << 
+        OH_REQUIRE(calendarIdSet.size() > 1, "the string '" << idOriginal <<
             "' is not a valid joint calendar identifier");
 
         /*

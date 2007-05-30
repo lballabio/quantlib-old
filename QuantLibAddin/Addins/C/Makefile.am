@@ -2,7 +2,7 @@
 AM_CPPFLAGS = -I${top_srcdir}
 
 EXTRA_DIST = \
-    AddinC.vcproj \
+    AddinC_vc7.vcproj \
     AddinC_vc8.vcproj
 
 if BUILD_C

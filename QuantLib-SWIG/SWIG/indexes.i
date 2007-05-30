@@ -1,15 +1,16 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -60,18 +61,29 @@ using QuantLib::Index;
 %ignore Index;
 class Index {
     #if defined(SWIGRUBY)
+    %rename("isValidFixingDate?") isValidFixingDate;
     %rename("addFixing!") addFixing;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("fixing-calendar") addFixing;
+    %rename("is-valid-fixing-date?") isValidFixingDate;
     %rename("add-fixing") addFixing;
     #endif
   public:
-    Rate fixing(const Date& fixingDate) const;
     std::string name() const;
+    Calendar fixingCalendar() const;
+    bool isValidFixingDate(const Date& fixingDate) const;
+    Real fixing(const Date& fixingDate,
+                bool forecastTodaysFixing = false) const;
     void addFixing(const Date& fixingDate, Rate fixing);
 };
 
 %template(Index) boost::shared_ptr<Index>;
 %extend boost::shared_ptr<Index> {
+    #if defined(SWIGRUBY)
+    %rename("addFixings!") addFixings;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("add-fixings") addFixings;
+    #endif
     void addFixings(const std::vector<Date>& fixingDates,
                     const std::vector<Rate>& fixings) {
         (*self)->addFixings(fixingDates.begin(),fixingDates.end(),
@@ -112,10 +124,10 @@ class InterestRateIndexPtr : public boost::shared_ptr<Index> {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->fixingDays();
         }
-	Date fixingDate(const Date& valueDate) {
+        Date fixingDate(const Date& valueDate) {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->fixingDate(valueDate);
-	}
+        }
         Currency currency() {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->currency();
@@ -124,18 +136,22 @@ class InterestRateIndexPtr : public boost::shared_ptr<Index> {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->dayCounter();
         }
-	Rate forecastFixing(const Date& fixingDate) {
+        Rate forecastFixing(const Date& fixingDate) {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->forecastFixing(fixingDate);
-	}
-	Handle<YieldTermStructure> termStructure() {
+        }
+        Handle<YieldTermStructure> termStructure() {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->termStructure();
-	}
-	Date maturityDate(const Date& valueDate) {
+        }
+        Date maturityDate(const Date& valueDate) {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->maturityDate(valueDate);
-	}
+        }
+        Date valueDate(const Date& fixingDate) {
+            return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
+                ->valueDate(fixingDate);
+        }
     }
 };
 
@@ -157,27 +173,28 @@ class IborIndexPtr : public InterestRateIndexPtr {
   public:
     %extend {
         IborIndexPtr(const std::string& familyName,
-                 const Period& tenor,
-                 Integer settlementDays,
-                 const Currency& currency,
-                 const Calendar& calendar,
-                 BusinessDayConvention convention,
-		 bool endOfMonth,
-                 const DayCounter& dayCounter,
-                 const Handle<YieldTermStructure>& h =
+                     const Period& tenor,
+                     Integer settlementDays,
+                     const Currency& currency,
+                     const Calendar& calendar,
+                     BusinessDayConvention convention,
+                     bool endOfMonth,
+                     const DayCounter& dayCounter,
+                     const Handle<YieldTermStructure>& h =
                                     Handle<YieldTermStructure>()) {
-            return new IborIndexPtr(new IborIndex(familyName, tenor, settlementDays,
-                                          currency, calendar,
-					  convention,
-					  endOfMonth,
-                                          dayCounter, h));
-        }
-        bool endOfMonth() {
-            return boost::dynamic_pointer_cast<IborIndex>(*self)->endOfMonth();
+            return new IborIndexPtr(new IborIndex(familyName, tenor,
+                                                  settlementDays,
+                                                  currency, calendar,
+                                                  convention,
+                                                  endOfMonth,
+                                                  dayCounter, h));
         }
         BusinessDayConvention businessDayConvention() {
             return boost::dynamic_pointer_cast<IborIndex>(*self)
-                 ->businessDayConvention();
+                ->businessDayConvention();
+        }
+        bool endOfMonth() {
+            return boost::dynamic_pointer_cast<IborIndex>(*self)->endOfMonth();
         }
     }
 };
@@ -234,12 +251,12 @@ class SwapIndexPtr : public InterestRateIndexPtr {
   public:
     %extend {
         SwapIndexPtr(const std::string& familyName,
-			   const Period& tenor,
-			   Integer settlementDays,
-			   Currency& currency,
+               const Period& tenor,
+               Integer settlementDays,
+               Currency& currency,
                            const Calendar& calendar,
-			   const Period& fixedLegTenor,
-			   BusinessDayConvention fixedLegConvention,
+               const Period& fixedLegTenor,
+               BusinessDayConvention fixedLegConvention,
                      const DayCounter& fixedLegDayCounter,
                      const IborIndexPtr& iborIndex) {
             boost::shared_ptr<IborIndex> xibor =

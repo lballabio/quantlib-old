@@ -3,6 +3,7 @@
 
 !define APP "QuantLibXL"
 !define VER_NUMBER "0.8.0"
+!define VER_NUMBER_UNDERSCORE "0_8_0"
 !define DEFAULT_PATH "c:\build_ql_0_8_0\${APP}"
 
 # Compiler Flags
@@ -21,6 +22,12 @@ Name "${APP}"
 OutFile "..\${APP}-src-${VER_NUMBER}.exe"
 UninstallIcon "Docs\images\favicon.ico"
 UninstallText "This will uninstall ${APP}. Hit next to continue."
+
+ComponentText \
+"By default the installer will install the QuantLibXL source code and basic example workbooks." \
+"Optional components:" \
+"The QuantLibXL Framework is a business application layer written in Excel VBA, \
+including template workbooks for market data and interest rate derivates."
 
 Section
 
@@ -63,7 +70,9 @@ Section
     File "Workbooks\Math\*.xls"
 
     SetOutPath "$INSTDIR\Workbooks\OriginalExamples"
-    File "Workbooks\OriginalExamples\*.xls"
+    File /x "BlackFormula.xls" \
+         /x "capfloors.xls" \
+            "Workbooks\OriginalExamples\*.xls"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"
@@ -100,6 +109,23 @@ Section
                 "InternetShortcut" "URL" "http://www.quantlibxl.org/"
 
     WriteUninstaller "QuantLibXLUninstall.exe"
+
+SectionEnd
+
+Section /o Framework
+
+    SetOutPath "$INSTDIR\xll"
+    File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+
+    SetOutPath "$INSTDIR\framework"
+    File "framework\QuantLibXL.xla"
+
+    SetOutPath "$INSTDIR\Workbooks"
+    File /r "Workbooks\*.xls"
+
+    # ObjectBuilder crashes if it can't find the icon
+    SetOutPath "$INSTDIR\Docs\images"
+    File "Docs\images\favicon.bmp"
 
 SectionEnd
 

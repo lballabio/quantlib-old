@@ -6,10 +6,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -90,9 +91,9 @@ namespace ObjectHandler {
             of pure virtual function registerType().
         */
         void registerTypeImpl(
-                AllTypeMap &allTypeMap, 
-                const std::string &mapID, 
-                const KeyClass &typeID, 
+                AllTypeMap &allTypeMap,
+                const std::string &mapID,
+                const KeyClass &typeID,
                 void *type) const;
         //! Retrieve the list of types in the AllTypeMap.
         /*! Concrete implementation of functionality common to all base classes.
@@ -112,9 +113,9 @@ namespace ObjectHandler {
 
     template <typename KeyClass>
     inline void Registry<KeyClass>::registerTypeImpl(
-            AllTypeMap &allTypeMap, 
-            const std::string &mapID, 
-            const KeyClass &typeID, 
+            AllTypeMap &allTypeMap,
+            const std::string &mapID,
+            const KeyClass &typeID,
             void *type) const {
         TypeMapPtr typeMapPtr;
         typename AllTypeMap::const_iterator i = allTypeMap.find(mapID);

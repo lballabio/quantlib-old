@@ -2,7 +2,7 @@ AM_CPPFLAGS = -I${top_srcdir}
 LDADD = ../../oh/libObjectHandler.la
 
 EXTRA_DIST = \
-    ExampleCpp.vcproj \
+    ExampleCpp_vc7.vcproj \
     ExampleCpp_vc8.vcproj
 
 noinst_HEADERS = \

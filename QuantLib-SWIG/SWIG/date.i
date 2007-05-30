@@ -1,16 +1,17 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -417,6 +418,44 @@ bool operator>=(const Date&, const Date&);
     }
 %}
 #endif
+
+%{
+using QuantLib::IMM;
+%}
+
+struct IMM {
+    #if defined(SWIGRUBY)
+    %rename("isIMMdate?")        isIMMdate;
+    %rename("isIMMcode?")        isIMMcode;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("is-imm-date?")      isIMMdate;
+    %rename("is-imm-code?")      isIMMcode;
+    %rename("next-date")         nextDate;
+    %rename("next-code")         nextCode;
+    #endif
+    enum Month { F =  1, G =  2, H =  3,
+                 J =  4, K =  5, M =  6,
+                 N =  7, Q =  8, U =  9,
+                 V = 10, X = 11, Z = 12 };
+
+    static bool isIMMdate(const Date& d,
+                          bool mainCycle = true);
+    static bool isIMMcode(const std::string& code,
+                          bool mainCycle = true);
+    static std::string code(const Date& immDate);
+    static Date date(const std::string& immCode,
+                     const Date& referenceDate = Date());
+    static Date nextDate(const Date& d = Date(),
+                         bool mainCycle = true);
+    static Date nextDate(const std::string& immCode,
+                         bool mainCycle = true,
+                         const Date& referenceDate = Date());
+    static std::string nextCode(const Date& d = Date(),
+                                bool mainCycle = true);
+    static std::string nextCode(const std::string& immCode,
+                                bool mainCycle = true,
+                                const Date& referenceDate = Date());
+};
 
 
 #endif

@@ -25,8 +25,8 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;Makefile.vc&quot;"
-				ReBuildCommandLine="nmake /f &quot;Makefile.vc&quot; /a"
+				BuildCommandLine="nmake /f Makefile.vc"
+				ReBuildCommandLine="nmake /f Makefile.vc /a"
 				CleanCommandLine=""
 				Output="AddinCalc.exe"
 				PreprocessorDefinitions=""

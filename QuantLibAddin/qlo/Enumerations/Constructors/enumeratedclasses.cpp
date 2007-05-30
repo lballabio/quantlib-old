@@ -11,10 +11,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -149,30 +150,30 @@ namespace QuantLibAddin {
             new QuantLib::StulzEngine);
     }
     boost::shared_ptr<QuantLib::PricingEngine> FE_Engine(const long& timeSteps) {
-        boost::shared_ptr<QuantLib::VanillaOption::engine> 
-            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);    
+        boost::shared_ptr<QuantLib::VanillaOption::engine>
+            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);
         return boost::shared_ptr<QuantLib::PricingEngine> (
             new QuantLib::ForwardEngine<QuantLib::VanillaOption::arguments,
                 QuantLib::VanillaOption::results>(underlyingEngine));
     }
     boost::shared_ptr<QuantLib::PricingEngine> FPE_Engine(const long& timeSteps) {
-        boost::shared_ptr<QuantLib::VanillaOption::engine> 
-            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);    
+        boost::shared_ptr<QuantLib::VanillaOption::engine>
+            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);
         return boost::shared_ptr<QuantLib::PricingEngine> (
             new QuantLib::ForwardPerformanceEngine
                 <QuantLib::VanillaOption::arguments,
                 QuantLib::VanillaOption::results>(underlyingEngine));
     }
     boost::shared_ptr<QuantLib::PricingEngine> QE_Engine(const long& timeSteps) {
-        boost::shared_ptr<QuantLib::VanillaOption::engine> 
-            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);    
+        boost::shared_ptr<QuantLib::VanillaOption::engine>
+            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);
         return boost::shared_ptr<QuantLib::PricingEngine> (
             new QuantLib::QuantoEngine<QuantLib::VanillaOption::arguments,
                 QuantLib::VanillaOption::results>(underlyingEngine));
     }
     boost::shared_ptr<QuantLib::PricingEngine> QFE_Engine(const long& timeSteps) {
-        boost::shared_ptr<QuantLib::VanillaOption::engine> 
-            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);    
+        boost::shared_ptr<QuantLib::VanillaOption::engine>
+            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);
         boost::shared_ptr<QuantLib::ForwardVanillaOption::engine> forwardEngine(
                 new QuantLib::ForwardEngine<QuantLib::VanillaOption::arguments,
                 QuantLib::VanillaOption::results>(underlyingEngine));
@@ -219,7 +220,7 @@ namespace QuantLibAddin {
     }
     boost::shared_ptr<QuantLib::PricingEngine> TRI_Engine(const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::BinomialVanillaEngine<QuantLib::Trigeorgis>(timeSteps));       
+            new QuantLib::BinomialVanillaEngine<QuantLib::Trigeorgis>(timeSteps));
     }
 
     /* *** Linear 1D Interpolation *** */

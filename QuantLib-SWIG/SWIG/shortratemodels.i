@@ -7,10 +7,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -71,20 +72,20 @@ class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
         SwaptionHelperPtr(const Period& maturity, const Period& length,
                           const Handle<Quote>& volatility,
                           const IborIndexPtr& index,
-			  const Period& fixedLegTenor,
+                          const Period& fixedLegTenor,
                           const DayCounter& fixedLegDayCounter,
                           const DayCounter& floatingLegDayCounter,
                           const Handle<YieldTermStructure>& termStructure,
-			  bool calibrateVolatility = false) {
+                          bool calibrateVolatility = false) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwaptionHelperPtr(
                 new SwaptionHelper(maturity,length,volatility,
                                    libor,fixedLegTenor,
                                    fixedLegDayCounter,
-                   floatingLegDayCounter,
-                   termStructure,
-		   calibrateVolatility));
+                                   floatingLegDayCounter,
+                                   termStructure,
+                                   calibrateVolatility));
         }
         std::vector<Time> times() {
             std::list<Time> l;
@@ -153,7 +154,7 @@ class ShortRateModel {
     void calibrate(
         const std::vector<boost::shared_ptr<CalibrationHelper> >&,
         OptimizationMethod&, const EndCriteria &,
-	const Constraint& constraint = Constraint(),
+        const Constraint& constraint = Constraint(),
         const std::vector<Real>& weights = std::vector<Real>());
 };
 

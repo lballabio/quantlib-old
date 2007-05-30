@@ -5,10 +5,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -48,32 +49,32 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
     %extend {
         DepositRateHelperPtr(
                 const Handle<Quote>& rate,
-                const Period& tenor, 
-		Natural settlementDays,
-                const Calendar& calendar, 
-		BusinessDayConvention convention,
-		bool endOfMonth,
-		Natural fixingDays,
+                const Period& tenor,
+                Natural settlementDays,
+                const Calendar& calendar,
+                BusinessDayConvention convention,
+                bool endOfMonth,
+                Natural fixingDays,
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
                 new DepositRateHelper(rate,tenor,settlementDays,
                                       calendar,convention,
-				      endOfMonth, fixingDays,
-				      dayCounter));
+                                      endOfMonth, fixingDays,
+                                      dayCounter));
         }
         DepositRateHelperPtr(
-                Rate rate, const Period& tenor, 
-		Natural settlementDays,
-                const Calendar& calendar, 
-		BusinessDayConvention convention,
-		bool endOfMonth,
-		Natural fixingDays,
+                Rate rate, const Period& tenor,
+                Natural settlementDays,
+                const Calendar& calendar,
+                BusinessDayConvention convention,
+                bool endOfMonth,
+                Natural fixingDays,
                 const DayCounter& dayCounter) {
             return new DepositRateHelperPtr(
                 new DepositRateHelper(rate,tenor,settlementDays,
                                       calendar,convention,
-				      endOfMonth, fixingDays,
-				      dayCounter));
+                                      endOfMonth, fixingDays,
+                                      dayCounter));
         }
     }
 };
@@ -86,31 +87,30 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const Handle<Quote>& rate,
                 Natural monthsToStart, Natural monthsToEnd,
                 Natural settlementDays,
-                const Calendar& calendar, 
-		BusinessDayConvention convention,
-		bool endOfMonth,
-		Natural fixingDays,	
+                const Calendar& calendar,
+                BusinessDayConvention convention,
+                bool endOfMonth,
+                Natural fixingDays,
                 const DayCounter& dayCounter) {
             return new FraRateHelperPtr(
                 new FraRateHelper(rate,monthsToStart,monthsToEnd,
                                   settlementDays,calendar,convention,
-				  endOfMonth, fixingDays,
+                                  endOfMonth, fixingDays,
                                   dayCounter));
         }
         FraRateHelperPtr(
-	                Rate rate,	
-			Natural monthsToStart, Natural monthsToEnd,
-			Natural settlementDays,
-			const Calendar& calendar, 
-			BusinessDayConvention convention,
-			bool endOfMonth,
-			Natural fixingDays,
-			const DayCounter& dayCounter) {
+                Rate rate,
+                Natural monthsToStart, Natural monthsToEnd,
+                Natural settlementDays,
+                const Calendar& calendar,
+                BusinessDayConvention convention,
+                bool endOfMonth,
+                Natural fixingDays,
+                const DayCounter& dayCounter) {
             return new FraRateHelperPtr(
                 new FraRateHelper(rate,monthsToStart,monthsToEnd,
                                   settlementDays,calendar,convention,
-				  endOfMonth,
-				  fixingDays,
+                                  endOfMonth, fixingDays,
                                   dayCounter));
         }
     }
@@ -197,8 +197,8 @@ class FixedCouponBondHelperPtr : public boost::shared_ptr<RateHelper> {
   public:
     %extend {
         FixedCouponBondHelperPtr(
-                const Handle<Quote>& cleanPrice,
-		      Size settlementDays,
+                      const Handle<Quote>& cleanPrice,
+                      Size settlementDays,
                       const Schedule& schedule,
                       const std::vector<Rate>& coupons,
                       const DayCounter& paymentDayCounter,
@@ -206,12 +206,10 @@ class FixedCouponBondHelperPtr : public boost::shared_ptr<RateHelper> {
                       Real redemption = 100.0,
                       const Date& issueDate = Date()) {
             return new FixedCouponBondHelperPtr(
-                new FixedCouponBondHelper(cleanPrice,
-		settlementDays, 
-		schedule, coupons, paymentDayCounter,
-                paymentConvention,
-		redemption, 
-		issueDate));
+                new FixedCouponBondHelper(cleanPrice, settlementDays,
+                                          schedule, coupons, paymentDayCounter,
+                                          paymentConvention, redemption,
+                                          issueDate));
         }
     }
 };

@@ -17,7 +17,7 @@
  You should have received a copy of the QuantLib License along with this
  program; if not, please email quantlib-dev@lists.sf.net
 
- The QuantLib License is also available at http://quantlib.org/license.html
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
@@ -52,7 +52,7 @@ Excel.  Object-orientation is achieved through use of the
 in the spreadsheet allow QuantLib objects to be instantiated, interrogated,
 passed as arguments to other functions, and destructed.
 
-%QuantLibXL implements 446 functions in support of market data and pricing for
+%QuantLibXL implements 640 functions in support of market data and pricing for
 a wide variety of instruments including bonds, options, swaps, swaptions,
 caps/floors, etc.
 

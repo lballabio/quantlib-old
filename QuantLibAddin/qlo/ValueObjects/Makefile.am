@@ -25,6 +25,7 @@ include_HEADERS = \
     vo_processes.hpp \
     vo_quotes.hpp \
     vo_randomsequencegenerator.hpp \
+    vo_rangeaccrual.hpp \
     vo_ratehelpers.hpp \
     vo_schedule.hpp \
     vo_sequencestatistics.hpp \
@@ -59,6 +60,7 @@ libValueObjects_la_SOURCES = \
     vo_processes.cpp \
     vo_quotes.cpp \
     vo_randomsequencegenerator.cpp \
+    vo_rangeaccrual.cpp \
     vo_ratehelpers.cpp \
     vo_schedule.cpp \
     vo_sequencestatistics.cpp \

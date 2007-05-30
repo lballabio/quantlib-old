@@ -5,10 +5,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -121,24 +122,20 @@ class ZeroCouponBondPtr : public BondPtr {
     %extend {
         ZeroCouponBondPtr(
                 Integer settlementDays,
-		Real faceAmount,
-		const Calendar &calendar,
-		const Date & maturityDate,
+                Real faceAmount,
+                const Calendar &calendar,
+                const Date & maturityDate,
                 const DayCounter& dayCounter,
-                BusinessDayConvention paymentConvention
-                                                       = QuantLib::Following,
+                BusinessDayConvention paymentConvention = QuantLib::Following,
                 Real redemption = 100.0,
-		const Date& issueDate = Date(),
+                const Date& issueDate = Date(),
                 const Handle<YieldTermStructure>& discountCurve
-                                              =
-                           Handle<YieldTermStructure>()) {
+                                              = Handle<YieldTermStructure>()) {
             return new ZeroCouponBondPtr(
                 new ZeroCouponBond(settlementDays, faceAmount,
-		    calendar, maturityDate, dayCounter,
-                    paymentConvention,
-                                    redemption, 
-				    issueDate,
-				    discountCurve));
+                                   calendar, maturityDate, dayCounter,
+                                   paymentConvention, redemption,
+                                   issueDate, discountCurve));
         }
     }
 };
@@ -150,24 +147,20 @@ class FixedRateBondPtr : public BondPtr {
     %extend {
         FixedRateBondPtr(
                 Integer settlementDays,
-		Real faceAmount,
-		const Schedule &schedule,
-               const std::vector<Rate>& coupons,
+                Real faceAmount,
+                const Schedule &schedule,
+                const std::vector<Rate>& coupons,
                 const DayCounter& paymentDayCounter,
-                BusinessDayConvention paymentConvention
-                                                       = QuantLib::Following,
+                BusinessDayConvention paymentConvention = QuantLib::Following,
                 Real redemption = 100.0,
-		Date issueDate = Date(),
+                Date issueDate = Date(),
                 const Handle<YieldTermStructure>& discountCurve
-                                              =
-                           Handle<YieldTermStructure>()) {
+                                              = Handle<YieldTermStructure>()) {
             return new FixedRateBondPtr(
                 new FixedRateBond(settlementDays, faceAmount,
-		schedule, coupons, paymentDayCounter,
-                paymentConvention,
-		redemption, 
-		issueDate,
-		discountCurve));
+                                  schedule, coupons, paymentDayCounter,
+                                  paymentConvention, redemption,
+                                  issueDate, discountCurve));
         }
     }
 };
@@ -178,38 +171,39 @@ class FloatingRateBondPtr : public BondPtr {
   public:
     %extend {
         FloatingRateBondPtr(Size settlementDays,
-                           Real faceAmount,
-                           const Schedule& schedule,
-                           const boost::shared_ptr<IborIndex>& index,
-                           const DayCounter& paymentDayCounter,
-                           BusinessDayConvention paymentConvention,
-                           Size fixingDays,
-                           const std::vector<Real>& gearings,
-                           const std::vector<Spread>& spreads,
-                           const std::vector<Rate>& caps,
-                           const std::vector<Rate>& floors,
-                           bool inArrears,
-                           Real redemption,
-                           const Date& issueDate,
-                           const Handle<YieldTermStructure>& discountCurve) {
+                            Real faceAmount,
+                            const Schedule& schedule,
+                            const boost::shared_ptr<IborIndex>& index,
+                            const DayCounter& paymentDayCounter,
+                            BusinessDayConvention paymentConvention,
+                            Size fixingDays,
+                            const std::vector<Real>& gearings,
+                            const std::vector<Spread>& spreads,
+                            const std::vector<Rate>& caps,
+                            const std::vector<Rate>& floors,
+                            bool inArrears,
+                            Real redemption,
+                            const Date& issueDate,
+                            const Handle<YieldTermStructure>& discountCurve
+                                              = Handle<YieldTermStructure>()) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new FloatingRateBondPtr(
-                new FloatingRateBond(settlementDays, 
-				     faceAmount,
-				     schedule,
-				     libor, 
-				     paymentDayCounter,
-				     paymentConvention,
-				     fixingDays,
-				     gearings,
-				     spreads, 
-				     caps,
-				     floors,
-				     inArrears,
-				     redemption,
-				     issueDate,
-				     discountCurve));
+                new FloatingRateBond(settlementDays,
+                                     faceAmount,
+                                     schedule,
+                                     libor,
+                                     paymentDayCounter,
+                                     paymentConvention,
+                                     fixingDays,
+                                     gearings,
+                                     spreads,
+                                     caps,
+                                     floors,
+                                     inArrears,
+                                     redemption,
+                                     issueDate,
+                                     discountCurve));
         }
     }
 };

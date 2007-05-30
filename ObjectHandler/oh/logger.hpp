@@ -5,10 +5,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -24,10 +25,12 @@
 
 #include <oh/singleton.hpp>
 
-// if the include below fails, it means you're using the wrong
-// version of log4cxx.
+// Some older builds of log4cxx did not include file log4cxxdefines.h.
+// If the include below fails, it means either that you have the wrong
+// version of log4cxx, or that your log4cxx installation (if any) cannot
+// be found at all.
 #include <log4cxx/log4cxxdefines.h>
-#if LOG4CXX_VERSION != 0x030907f3
+#if LOG4CXX_VERSION != 0x030907f4
     #error using an incorrect version of log4cxx, please update.
 #endif
 

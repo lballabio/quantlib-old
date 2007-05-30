@@ -5,10 +5,11 @@
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -105,18 +106,18 @@ class CompositeInstrumentPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         CompositeInstrumentPtr() {
-	        return new CompositeInstrumentPtr(new CompositeInstrument);
-	}
+            return new CompositeInstrumentPtr(new CompositeInstrument);
+        }
         void add(const boost::shared_ptr<Instrument>& instrument,
                  Real multiplier = 1.0) {
-	  boost::dynamic_pointer_cast<CompositeInstrument>(*self)->
-	    add(instrument, multiplier);
-	}
+            boost::dynamic_pointer_cast<CompositeInstrument>(*self)
+                ->add(instrument, multiplier);
+        }
         void subtract(const boost::shared_ptr<Instrument>& instrument,
-                 Real multiplier = 1.0) {
-	  boost::dynamic_pointer_cast<CompositeInstrument>(*self)->
-	    subtract(instrument, multiplier);
-	}
+                      Real multiplier = 1.0) {
+            boost::dynamic_pointer_cast<CompositeInstrument>(*self)
+                ->subtract(instrument, multiplier);
+        }
     }
 };
 
