@@ -132,7 +132,7 @@ CW	18%
 ---
 CRISTINA
 - IFR fixings
-- test fixings availability on all valid fixing dates
+- test fixings availability on all valid fixing dates (0.25D/0.25D - DONE)
 - fix number of relevant digits in all (forecasted) index fixings
 - sensitivity analysis (3.5D/1M)
 - daily trunk check and CMS calibration
