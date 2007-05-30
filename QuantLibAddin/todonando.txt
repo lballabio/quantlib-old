@@ -21,6 +21,9 @@ class Instrument {
 
 ---
 GENERAL
+- be ready to debug production
+- switch to boost 1.34
+- switch to dynamic xll
 - restore floating exception in test-suite
 - introduce type QuantLib::Money
 - wiki documentation
@@ -31,11 +34,12 @@ GENERAL
 
 ---
 NANDO
+- VS Express
+- relinkable handle creation (xla, then xll)
+- check Index used in Mx bootstrapping
+- test valid object creation with ALL quotes not initialized
 - leggere CDS docs
 - launcher: set eval date (macro), main check
-- SA: parallel shift added by default
-- SA: handle sensitivity to the late morning fixings
-- SA: centered differences
 - EvolutionDescription equality
 - ref market data set for test suite
 - evaluation date observers
@@ -51,7 +55,6 @@ NANDO
 - Higham covariance bug + review rank reduction
 - create relinkableHandle, then in ControlPanel only use linkTo
 - Instruments subfolder
-- null strike -> atm strike
 - vol term structure refactoring
 - joint calendar
 - mkt convention struct
@@ -78,16 +81,23 @@ CW	18%
 - coveredWarrants.xls
 	- check delta price in terms of vega (1d/2d)
 - Sensitivity Analysis: 				(5.5d/5w)
-	test newly released version 			(done)
-	create new .xls with NPVs of 4 cms books 	(done)
-	run sa on yc -> ok 				(done)
-	run sa on smile
-	test on irs book vs Mx (manual + code)		(1d/2d)
-	test on swaptions book (atm+smile)
-	test on cms book
-	save daily results to check replication
-	Eric: flag on deal, tick value, error msg (by eow)
-	Eric: upgrade user interface (by end of next week)
+  -	run sa on smile
+  -	test on irs book vs Mx (manual + code)		(1d/2d)
+  -	test on swaptions book (atm+smile)
+  -	test on cms book
+  -	check null vega of swap ptf
+  -	use seasoned deals
+  -	save daily results to check replication
+  -	Eric: flag on deal, tick value, error msg (by eow)
+  -	Eric: upgrade user interface (by end of next week)
+  -	parallel shift added by default
+  -	handle sensitivity to the late morning fixings
+  -	centered differences, then gamma
+  -	theta SA
+  -	xml output
+  -	list all quotes that we could analize
+  -	discriminate between invalid quote -> #NA() and error obtained
+    after having tweaked a quote -> #NUM
 - foglio di Clerici per contribuire le cap forw/forw vol su Mx 		(1.5d/5d)
 	confronto forw/forw vols foglio clerici vs nostro cap stripper 	(0.5d/1.5d)
 	sostituzione di tutte le funzioni vba con ql()
@@ -131,18 +141,17 @@ CW	18%
 
 ---
 CRISTINA
-- IFR fixings
+- fixing days vector
+- arrange session on digitals
+- clean up Clerici's abcd problems
+- IFR fixings, check deals
+- verify Murex daycount definition
 - test fixings availability on all valid fixing dates (0.25D/0.25D - DONE)
 - fix number of relevant digits in all (forecasted) index fixings
 - sensitivity analysis (3.5D/1M)
 - daily trunk check and CMS calibration
 - testing that the manual procedure to set back/forward the evaluation
   date returns the same results of the automatic procedure (0D/1D)
-- complete class digital coupon (3D/1D - DONE)
-  - management of payoff with equal sign included (1.5D/1D - DONE)
-- digital coupon in call spread, add unit test
-  (check replication and option value vs Black formula,
-  check call-put parity, check replication type)  (2.5D/2.5D - DONE)
 - change class CappedFlooredIborCoupon in order to add the
   possibility of adding/subracting call and put   (1D/2D)
 - Cap Cms Book:
@@ -150,16 +159,18 @@ CRISTINA
   - new management of additional cashflows in Cap Cms book (0D/1D - STAND-BY)
 - install VS in new pc (0D/1D)
 - market models: abcd for displaced vols (Chiara, Cristina, K)
-- check Citrix access: $+,INFL,BGM (DONE)
 
 ---
 CHIARA
-- check that par cpn is using native index's daycounter with nando (0d|1d)
+- arrange session on digitals
+- send Grisafi error screenshot to Eric
+- check dual user Launcher installation on Grisafi's workstation
+- with Giorgio: training on Bonds' Workbooks
+- investigate possible daycounter bug
+  - floating leg test using non-natural daycounter (360/365)
+  - check that par cpn is using native index's daycounter with nando (0d|1d)
 - add new bonds in al the enviroments (traders' request) (0d|0.5d)
 - fixed problem with missing ISDAFIX indexes for 28th may 2007 (0.5d|0.5d)
-- MainChecks.xls: add checks for load bonds action (0.5d|0.5d|Done)
-- check access to  Citrix access to: $+,INFL,BGM (OK) (Done)
-- add and validate new bonds in all the environments (1d|1d|Done)
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g.
   IT0003650998.pdf) (0d|1d)
 - review and correct trader's bond monitor (0d|1d)
@@ -187,7 +198,6 @@ CHIARA
     complete 1/2 weeks)
 - zspread/yield inversion
 - zerospreadedtermstructure: daycounter bug
-- with Giorgio: training on Bonds' Workbooks
 - bonds' workbooks integration with K+/Gatemate
 - Digital Bond contructor
 - Multicallable bond constructor
@@ -200,6 +210,9 @@ CHIARA
 
 ---
 FRANCOIS
+- null strike -> atm strike
+- arrange sessions on Rapisarda approach
+- historic corr matrix
 - control panel . xls crash when switch to MxCurve
 - check Citrix access: $+,INFL,BGM
 - XML/ serialization presentation
@@ -228,7 +241,8 @@ D consolidate all multisteps in a single test
 
 ---
 GIORGIO (last update 23/5/2007)
-
+- bond updating
+- adapt wbks to spreaded vol term structures
 - range accrual session
 - CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando
