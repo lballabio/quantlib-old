@@ -67,32 +67,29 @@ NANDO
 
 ---
 K
-over 3 days:
-test & bug fix	50%
-SA		33%
-cap stripping	0%
-
-** Calibrations: UpperBoundary calculation -> root not bracketed
-** Rt Update
-STAND-BY
-- Citrix access
-    -> BGM 	manca (2a) utenza di accesso
-- control panel . xls crash when switch to MxCurve
+SA	49%
+bug fix	20%
+test	14%
+CW	18%
+- Bug investigation: launcher menu actions 	(1d)
+- Rt Update
+	-> no evidence of stopping problems on our pcs
+	-> prepared wkb to test on traders' pc (next week)
 - coveredWarrants.xls
-	- checked with Clerici/Grisafi
-- Sensitivity Analysis: (3d/5w)
-	test newly released version
-	create new .xls with NPVs of 4 cms books (done)
-	run sa on yc -> ok 			(done)
+	- check delta price in terms of vega (1d/2d)
+- Sensitivity Analysis: 				(5.5d/5w)
+	test newly released version 			(done)
+	create new .xls with NPVs of 4 cms books 	(done)
+	run sa on yc -> ok 				(done)
 	run sa on smile
-	test on irs book vs Mx (manual + code)	(1d/2d)
+	test on irs book vs Mx (manual + code)		(1d/2d)
 	test on swaptions book (atm+smile)
 	test on cms book
 	save daily results to check replication
 	Eric: flag on deal, tick value, error msg (by eow)
 	Eric: upgrade user interface (by end of next week)
-- foglio di Clerici per contribuire le cap forw/forw vol su Mx (1.5d/5d)
-	confronto forw/forw vols foglio clerici vs nostro cap stripper (0.5d/1.5d)
+- foglio di Clerici per contribuire le cap forw/forw vol su Mx 		(1.5d/5d)
+	confronto forw/forw vols foglio clerici vs nostro cap stripper 	(0.5d/1.5d)
 	sostituzione di tutte le funzioni vba con ql()
 	scarico del campo hist_close da Reuters -> usato solo per
 	                                           controllo/supporto
@@ -129,6 +126,8 @@ STAND-BY
 - rimuovere Singleton and set YTS to Euribor
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite
   logic
+** Calibrations: UpperBoundary calculation -> root not bracketed
+** control panel . xls crash when switch to MxCurve
 
 ---
 CRISTINA
