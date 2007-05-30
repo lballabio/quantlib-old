@@ -139,13 +139,13 @@ CRISTINA
 - daily trunk check and CMS calibration
 - testing that the manual procedure to set back/forward the evaluation
   date returns the same results of the automatic procedure (0D/1D)
-- complete class digital coupon (3D/1D)
+- complete class digital coupon (3D/1D - DONE)
   - management of payoff with equal sign included (1.5D/1D - DONE)
 - digital coupon in call spread, add unit test
   (check replication and option value vs Black formula,
   check call-put parity, check replication type)  (2.5D/2.5D - DONE)
 - change class CappedFlooredIborCoupon in order to add the
-  possibility of adding/subracting call and put   (0D/2D)
+  possibility of adding/subracting call and put   (1D/2D)
 - Cap Cms Book:
   - pricing of Cms Cap without decomposition in Excel (To be discussed)
   - new management of additional cashflows in Cap Cms book (0D/1D - STAND-BY)
