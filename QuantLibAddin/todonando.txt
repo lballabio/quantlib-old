@@ -227,7 +227,6 @@ D consolidate all multisteps in a single test
   CapStripperTest3M.xls. (to be precised)
 
 ---
-
 GIORGIO (last update 23/5/2007)
 
 - range accrual session
@@ -263,42 +262,30 @@ MARCO (last update 30/5/2007)
   - Attività UAT (0/2w)
   - Programmazione prossime attività (0/2w?)
 
-========================
-
+---
 Eric
-- SA
-- serialization
+- SA, serialization
 - 2 DOF projects
 - JRisk
-- Launcher handling of Reuters/Bloomberg dlls
 - minimize Launcher data download
-- coerce from Frequency to Period
-- coerce from Period->Date to double/int
+- coerce Frequency->Period, Period->Date->double/int
 - coerce from IMMcode to date
 - imm functions (dates.xml) problems
-- launcher addin dir ?
 - remove quantlibxl-bin.nsi
 - merge quantlibxl.nsi and quantlib-network.nsi
 - in the nsi generalize the location of the xml files
 - log defaults
-- launcher issues
 - oh.chm
 - review native ohSplit on vector input to coerce from string to vector
 - why the error message doesn't disappear as soon as the cell is not in error
   anymore
 - ohConcatenate, ohRange1D, ohRange2D
 - command (remove function SetEvaluationDate, etc?)
-- watch on
-- SA
-- InterestRateQuoteFeed.xls: Auto_Open problem
 - discount factors output is not col/row enabled
 - esporre ad excel i metodi commentati in payoff.xml
 - visitor pattern per 3rd parameter dei payoff
-- RtUpdate like approach for effective Quote, in order to avoid setting the same
-  quote
 - Handle coercion to SwaptionVolDiscrete
 - freeze, unfreeze objects
-
 
 QuantLib
 - Cashflows::iborSpread function
@@ -342,8 +329,6 @@ QUANTLIBADDIN
 - RSG factory
 - export ImpliedCurve
 - export PathGeneration
-- SWAP GRID
-- VANILLA SWAP signature
 - export discount, loglinear selection
 - use QL folder structure
 - port old QuantLibXL functionalities
