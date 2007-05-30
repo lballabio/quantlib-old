@@ -241,19 +241,19 @@ D spreaded caplet vol structure (2d/5d DONE)
 - Visual Studio Express installation
 
 ---
-MARCO (last update 22/5/2007)
+MARCO (last update 30/5/2007)
 - verify set up svn folders (DONE)
 - Citrix showdown: (0.5d/1d/WIP)
   - verifica licenze accesso: individuato referente, -> Katiuscia (DONE)
   - verifica accesso a $+ (DONE)
-  - chiedere utenze BGM x tutti (WIP)
-  - assistenza verifica accesso Quants (WIP)
+  - chiedere utenze BGM x tutti (WIP: in attesa di autorizzazione da sicurezza informatica)
+  - assistenza verifica accesso Quants (pending in attesa della precedente)
 - check optimizers:
   - fix steepest descent (with Francois) (1d/2d/WIP)
   - add more tests (multidimensional) in test suite (to be planned)
   - add Broyden-Fletcher-Goldfarb-Shanno algorithm (to be planned)
   - check export to excel and testing wkb (to be planned)
-- MM: corr hist extimation (after 29/5/2007)
+- MM: corr hist extimation (after 29/5/2007 WARNING)
 - pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)
   (0.0/2d/WAITING FOR DIGITAL OPTIONS)
 - Risk, Wilmott papers (0.0/1d/WAITING for Ferdinando)
