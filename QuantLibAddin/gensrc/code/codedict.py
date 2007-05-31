@@ -5,11 +5,11 @@
 
 code11 = '''\
         std::string %(name)sCpp =
-            ObjectHandler::callOperToScalar<std::string>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+            ObjectHandler::callOperToScalar<std::string>(*%(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code12 = '''\
         %(nativeType)s %(name)sCpp =
-            ObjectHandler::callOperToScalar<%(nativeType)s>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+            ObjectHandler::callOperToScalar<%(nativeType)s>(*%(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code12b = '''\
         boost::any %(name)sCpp =
@@ -73,15 +73,15 @@ code24 = '''\
 
 code25 = '''\
         %(type)s %(name)sLib =
-            ObjectHandler::callOperToScalar<%(type)s>(%(name)s, "%(name)s", %(defaultValue)s);\n'''
+            ObjectHandler::callOperToScalar<%(type)s>(%(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code26 = '''\
         %(type)s %(name)sLib =
-            ObjectHandler::callOperToScalar<%(type)s>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+            ObjectHandler::callOperToScalar<%(type)s>(*%(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code27 = '''\
         QuantLib::Date %(name)sLib =
-            ObjectHandler::callOperToScalar<QuantLib::Date>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+            ObjectHandler::callOperToScalar<QuantLib::Date>(*%(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code28 = '''\
         %(type)s %(name)sLib =
@@ -109,7 +109,7 @@ code33 = '''\
         %(type)s %(name)sEnum =
             ObjectHandler::operToScalarEnum<%(type)s,
                 ObjectHandler::Create<%(type)s> >(
-                    *%(name)s, "%(name)s", %(defaultValue)s);\n'''
+                    *%(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code34 = '''\
         %(type)s %(name)sEnum =

@@ -180,6 +180,7 @@ class RuleGroup(serializable.Serializable):
             common.DEFAULT_VALUE : self.param_.default(),
             common.DESC_LEN : len(self.paramDesc_),
             common.DESCRIPTION : self.paramDesc_,
+            'errorValue' : self.param_.errorValue(),
             common.INDENT2 : self.indent_ + '    ',
             common.INDENT : self.indent_,
             common.NAME : self.param_.name(),

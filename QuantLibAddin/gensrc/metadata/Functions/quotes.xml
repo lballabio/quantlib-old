@@ -72,7 +72,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='value' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='value' default='QuantLib::Null&lt;QuantLib::Real&gt;()' errorValue='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the new value</description>

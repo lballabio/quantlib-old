@@ -81,12 +81,21 @@ namespace ObjectHandler {
     template <class T>
     T callOperToScalar(const OPER &xScalar, 
             const std::string &parameterName,
-            const T &defaultValue) {
+            const T &defaultValue,
+            const boost::any &errorValue = boost::any()) {
 
         if (xScalar.xltype & xltypeNil
         ||  xScalar.xltype & xltypeMissing
         ||  xScalar.xltype & xltypeErr && xScalar.val.err == xlerrNA)
             return defaultValue;
+
+        if (xScalar.xltype & xltypeErr && !errorValue.empty()) {
+            OH_REQUIRE(errorValue.type() == typeid(T),
+                "Error converting datatype '" << typeid(T).name()
+                << "' : the specified error value has the wrong datatype: '"
+                << errorValue.type().name() << "'");
+            return boost::any_cast<T>(errorValue);
+        }
 
         return callOperToScalar<T>(xScalar, parameterName);
 

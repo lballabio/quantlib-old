@@ -41,6 +41,7 @@ class Value(serializable.Serializable):
     lastParameter_ = False
     ignore_ = False
     default_ = ''
+    errorValue_ = None
 
     #############################################
     # public interface
@@ -78,6 +79,12 @@ class Value(serializable.Serializable):
 
     def lastParameter(self):
         return self.lastParameter_
+
+    def errorValue(self):
+        if self.errorValue_:
+            return ", static_cast<%s>(%s)" % (self.dataType_.nativeType(), self.errorValue_)
+        else:
+            return ''
 
     def setLastParameter(self, val):
         self.lastParameter_ = val
@@ -125,6 +132,7 @@ class Parameter(Value):
         serializer.serializeAttributeBoolean(self, common.IGNORE)
         serializer.serializeAttributeBoolean(self, common.CONST, True)
         serializer.serializeAttribute(self, common.DEFAULT)
+        serializer.serializeAttribute(self, 'errorValue')
         serializer.serializeAttribute(self, common.VECTOR_ITERATOR)
 
     def postSerialize(self):
