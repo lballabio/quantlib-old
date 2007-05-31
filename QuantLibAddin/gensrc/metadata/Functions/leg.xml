@@ -172,7 +172,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlLegSetPricer' type='QuantLibAddin::Leg'>
+    <!--<Member name='qlLegSetPricer' type='QuantLibAddin::Leg'>
       <description>Set the coupon pricer at the given Leg object</description>
       <libraryFunction>setPricer</libraryFunction>
       <SupportedPlatforms>
@@ -212,7 +212,7 @@
         <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Member>-->
 
 
     <Constructor name='qlMultiPhaseLeg'>

@@ -71,15 +71,15 @@ namespace QuantLibAddin {
         return flowAnalysis(leg_);
     }
 
-    void Leg::setPricer(
-            const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer) {
-        return QuantLib::CashFlows::setPricer(leg_,pricer);
-    }
+    //void Leg::setPricer(
+    //        const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer) {
+    //    return QuantLib::CashFlows::setPricer(leg_,pricer);
+    //}
 
-    void Leg::setPricers(
-            const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers) {
-        return QuantLib::CashFlows::setPricers(leg_,pricers);
-    }
+    //void Leg::setPricers(
+    //        const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers) {
+    //    return QuantLib::CashFlows::setPricers(leg_,pricers);
+    //}
 
     const QuantLib::Leg& Leg::getQuantLibLeg() {
         return leg_;

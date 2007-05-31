@@ -41,8 +41,8 @@ namespace QuantLibAddin {
         QuantLib::Real npv(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
         QuantLib::Real bps(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
         QuantLib::Rate atmRate(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
-        void setPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
-        void setPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
+  /*      void setPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
+        void setPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);*/
 
         std::vector<std::vector<boost::any> > analysis() const;
         const QuantLib::Leg& getQuantLibLeg();
