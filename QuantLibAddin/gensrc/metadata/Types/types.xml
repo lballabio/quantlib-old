@@ -257,6 +257,7 @@
         <DataType>QuantLib::MarketModelMultiProduct</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>
         <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
+        <DataType>QuantLib::Leg</DataType>
       </DataTypes>
     </SuperType>
 

@@ -172,49 +172,6 @@
       </ReturnValue>
     </Member>
 
-    <!--<Member name='qlLegSetPricer' type='QuantLibAddin::Leg'>
-      <description>Set the coupon pricer at the given Leg object</description>
-      <libraryFunction>setPricer</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='FloatingRateCouponPricer'>
-            <type>QuantLib::FloatingRateCouponPricer</type>
-            <tensorRank>scalar</tensorRank>
-            <description>FloatingRate coupon pricer object ID</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlLegSetPricers' type='QuantLibAddin::Leg'>
-      <description>Set the coupon pricer at the given Leg object</description>
-      <libraryFunction>setPricers</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='FloatingRateCouponPricer'>
-            <type>QuantLib::FloatingRateCouponPricer</type>
-            <tensorRank>vector</tensorRank>
-            <description>FloatingRate coupon pricer object ID</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>-->
-
-
     <Constructor name='qlMultiPhaseLeg'>
       <libraryFunction>MultiPhaseLeg</libraryFunction>
       <SupportedPlatforms>
