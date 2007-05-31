@@ -87,7 +87,9 @@ CW	18%
 	-> prepared wkb to test on traders' pc (next week)
 - coveredWarrants.xls
 	- check delta price in terms of vega (1d/2d)
-- Sensitivity Analysis: 				(5.5d/5w)
+- Sensitivity Analysis (K&Cristina): 			(5.5d/5w)
+  -     create book (test2) of irs seasoned deals in Mx	(done)
+  -	create book (test2) of swaptions in Mx & QLXL	(done)	
   -	run sa on smile
   -	test on irs book vs Mx (manual + code)		(1d/2d)
   -	test on swaptions book (atm+smile)
