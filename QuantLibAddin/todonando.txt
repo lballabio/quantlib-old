@@ -143,7 +143,7 @@ CW	18%
 CRISTINA
 - fixing days vector
 - arrange session on digitals
-- clean up Clerici's abcd problems
+- clean up Clerici's abcd problems (0.25D/0.25D - Waiting for users feedback)
 - IFR fixings, check deals
 - verify Murex daycount definition
 - test fixings availability on all valid fixing dates (0.25D/0.25D - DONE)
