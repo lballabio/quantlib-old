@@ -34,6 +34,9 @@ GENERAL
 
 ---
 NANDO
+- production: writing privileges (xla and the rest)
+- debug hook at xll loading (for debugging start-up actions)
+- remove log_path in xla
 - VS Express
 - relinkable handle creation (xla, then xll)
 - check Index used in Mx bootstrapping
@@ -74,6 +77,10 @@ SA	49%
 bug fix	20%
 test	14%
 CW	18%
+- trigger qlVersion() and format properly time stamp in the XXXFeed folders
+- add call to volatility method in CapsStripper creation
+- metadata creators error messages
+- use TRIM in ManualCapVolQuotes (as in CapVolQuotes)
 - Bug investigation: launcher menu actions 	(1d)
 - Rt Update
 	-> no evidence of stopping problems on our pcs
@@ -141,6 +148,7 @@ CW	18%
 
 ---
 CRISTINA
+- cap/floor flow analysis
 - fixing days vector
 - arrange session on digitals
 - clean up Clerici's abcd problems (0.25D/0.25D - Waiting for users feedback)
@@ -243,8 +251,11 @@ D consolidate all multisteps in a single test
 
 ---
 GIORGIO (last update 23/5/2007)
-- bond updating
-- adapt wbks to spreaded vol term structures
+- all pricers:
+  - fix termiantion date logic
+  - recreate all cell menus
+  - use spreaded vol term structures
+- bond updating (with hiara)
 - range accrual session
 - CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando
@@ -280,6 +291,9 @@ MARCO (last update 30/5/2007)
 
 ---
 Eric
+- open log file from menu
+- automatic cell menu updates
+- erratic error message behaviour
 - SA, serialization
 - 2 DOF projects
 - JRisk
@@ -304,6 +318,7 @@ Eric
 - freeze, unfreeze objects
 
 QuantLib
+- pricing enine refactoring
 - Cashflows::iborSpread function
 - clean up index fixing calendar
 - cash rebate è multistep?
