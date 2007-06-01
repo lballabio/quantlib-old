@@ -253,10 +253,10 @@ D consolidate all multisteps in a single test
 
 ---
 GIORGIO (last update 23/5/2007)
-- all pricers:
+-WIP all pricers:
   - fix termiantion date logic
-  - recreate all cell menus
-  - use spreaded vol term structures
+  D recreate all cell menus
+  D use spreaded vol term structures
 - bond updating (with hiara)
 - range accrual session
 - CDS options (with Chiara)
