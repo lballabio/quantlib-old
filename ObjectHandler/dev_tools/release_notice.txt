@@ -1,0 +1,32 @@
+quantlib-users@lists.sourceforge.net, quantlib-announce@lists.sourceforge.net
+
+QuantLibXL/ObjectHandler 0.8.0 Released
+
+QuantLibXL and ObjectHandler version 0.8.0 have been
+released and are available for download:
+http://sourceforge.net/project/showfiles.php?group_id=12740
+
+ObjectHandler
+http://www.objecthandler.org
+http://www.gensrc.org
+
+Integration of a generic C++ library such as QuantLib into spreadsheets and
+other end user tools requires a standalone ObjectHandler component, a
+repository allowing objects to be stored, shared, updated, interrogated, and
+destroyed.
+
+QuantLibXL
+http://www.quantlibxl.org
+http://www.quantlibaddin.org
+
+QuantLibAddin implements an interface supporting a subset of QuantLib
+functionality. Constructor, member and utility functions are defined in XML
+metadata from which Python application gensc generates source code for
+supported platforms including Microsoft Excel and OpenOffice.Org Calc.
+
+QuantLibXL is the implementation of QuantLibAddin for Microsoft Excel.  The
+QuantLibXL project includes a binary release comprising a compiled Addin and
+related spreadsheets.
+
+        The QuantLib group
+
