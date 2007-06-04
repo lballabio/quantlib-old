@@ -12,7 +12,7 @@ QuantLib_wrap.R and a compiled wrapper QuantLib.RData.
 Once you've compiled this you can load with
 
   dyn.load('QuantLib_wrap.so')
-  load('QuantLib.RData')
+  load('QuantLib_wrap.RData')
   cacheMetaData(1)
 
 The last line is to work around a bug that causes S4 methods not to
