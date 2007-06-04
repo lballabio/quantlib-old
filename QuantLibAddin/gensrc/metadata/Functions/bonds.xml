@@ -10,6 +10,7 @@
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/couponvectors.hpp</include>
+    <include>ql/instruments/bond.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006, 2007 Chiara Fornarola

@@ -21,8 +21,12 @@
 
 #include <qlo/swap.hpp>
 
-namespace QuantLibAddin {
+namespace QuantLib {
+    class Bond;
+}
 
+namespace QuantLibAddin {
+    
     class AssetSwap : public Swap {
     public:
         AssetSwap(bool payFixedRate,

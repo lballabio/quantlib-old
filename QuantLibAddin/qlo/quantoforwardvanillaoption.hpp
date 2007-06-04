@@ -20,9 +20,17 @@
 #define qla_quantoforwardvanillaoption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <qlo/processes.hpp>
-#include <qlo/termstructures.hpp>
-#include <ql/instruments/quantoforwardvanillaoption.hpp>
+#include <ql/handle.hpp>
+
+namespace QuantLib {
+    class YieldTermStructure;
+    class BlackVolTermStructure;
+    class GeneralizedBlackScholesProcess;
+    class StrikedTypePayoff;
+    class Exercise;
+    class Date;
+    class PricingEngine;
+}
 
 namespace QuantLibAddin {
 

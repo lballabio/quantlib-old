@@ -22,8 +22,8 @@
 #endif
 
 #include <oh/ohdefines.hpp>
-#include <qlo/termstructures.hpp>
 #include <qlo/forwardrateagreement.hpp>
+#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 

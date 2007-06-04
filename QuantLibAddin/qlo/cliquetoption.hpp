@@ -20,8 +20,15 @@
 #define qla_cliquetoption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <qlo/processes.hpp>
-#include <ql/instruments/cliquetoption.hpp>
+
+
+namespace QuantLib {
+    class GeneralizedBlackScholesProcess;
+    class PercentageStrikePayoff;
+    class EuropeanExercise;
+    class Date;
+    class PricingEngine;
+}
 
 namespace QuantLibAddin {
 

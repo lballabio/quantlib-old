@@ -20,7 +20,8 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/dividendvanillaoption.hpp>
-#include <qlo/exercise.hpp>
+#include <ql/instruments/dividendvanillaoption.hpp>
+#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 

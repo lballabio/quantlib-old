@@ -24,7 +24,7 @@
 
 #include <qlo/capfloor.hpp>
 #include <qlo/flowanalysis.hpp>
-
+#include <qlo/couponvectors.hpp>
 #include <ql/instruments/makecapfloor.hpp>
 
 namespace QuantLibAddin {

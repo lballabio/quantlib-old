@@ -20,8 +20,8 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/quantoforwardvanillaoption.hpp>
-#include <qlo/exercise.hpp>
-#include <qlo/volatilities.hpp>
+#include <ql/instruments/quantoforwardvanillaoption.hpp>
+#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 

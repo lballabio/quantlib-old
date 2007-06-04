@@ -21,9 +21,7 @@
 
 #include <oh/objecthandler.hpp>
 #include <ql/instrument.hpp>
-#include <ql/instruments/bond.hpp>
-#include <ql/instruments/forward.hpp>
-#include <ql/instruments/oneassetoption.hpp>
+
 
 namespace QuantLibAddin {
 

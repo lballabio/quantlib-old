@@ -20,8 +20,15 @@
 #define qla_forwardvanillaoption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <qlo/processes.hpp>
 #include <ql/instruments/forwardvanillaoption.hpp>
+
+namespace QuantLib {
+    class GeneralizedBlackScholesProcess;
+    class StrikedTypePayoff;
+    class Exercise;
+    class Date;
+    class PricingEngine;
+}
 
 namespace QuantLibAddin {
 

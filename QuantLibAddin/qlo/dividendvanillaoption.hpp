@@ -20,8 +20,14 @@
 #define qla_dividendvanillaoption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <qlo/processes.hpp>
-#include <ql/instruments/dividendvanillaoption.hpp>
+
+namespace QuantLib {
+    class GeneralizedBlackScholesProcess;
+    class StrikedTypePayoff;
+    class Exercise;
+    class Date;
+    class PricingEngine;
+}
 
 namespace QuantLibAddin {
 

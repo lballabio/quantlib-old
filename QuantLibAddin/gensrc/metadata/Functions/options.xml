@@ -6,6 +6,7 @@
     <include>qlo/options.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/payoffs.hpp</include>
+    <include>qlo/exercise.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers

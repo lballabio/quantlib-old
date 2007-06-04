@@ -20,8 +20,13 @@
 #define qla_europeanoption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <qlo/processes.hpp>
-#include <ql/instruments/europeanoption.hpp>
+
+namespace QuantLib {
+    class GeneralizedBlackScholesProcess;
+    class StrikedTypePayoff;
+    class Exercise;
+    class PricingEngine;
+}
 
 namespace QuantLibAddin {
 

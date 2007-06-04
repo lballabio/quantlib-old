@@ -20,7 +20,7 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/forwardvanillaoption.hpp>
-#include <qlo/exercise.hpp>
+#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 

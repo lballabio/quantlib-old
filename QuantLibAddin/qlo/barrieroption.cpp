@@ -20,7 +20,7 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/barrieroption.hpp>
-
+#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 

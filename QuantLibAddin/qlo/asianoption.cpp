@@ -22,6 +22,7 @@
 #endif
 #include <qlo/asianoption.hpp>
 #include <qlo/exercise.hpp>
+#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 

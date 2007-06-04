@@ -22,6 +22,8 @@
 #endif
 #include <qlo/cliquetoption.hpp>
 #include <qlo/exercise.hpp>
+#include <ql/instruments/cliquetoption.hpp>
+#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 

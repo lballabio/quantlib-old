@@ -20,15 +20,18 @@
 #define qla_asianoption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <qlo/processes.hpp>
 #include <ql/instruments/asianoption.hpp>
+
+namespace QuantLib {
+    class GeneralizedBlackScholesProcess;
+}   
 
 namespace QuantLibAddin {
 
     class ContinuousAveragingAsianOption : public OneAssetOption {
     public:
         ContinuousAveragingAsianOption(
-            const QuantLib::Average::Type &averageType,
+            const QuantLib::Average::Type& averageType,
             const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
             const boost::shared_ptr < QuantLib::Exercise > &exercise,

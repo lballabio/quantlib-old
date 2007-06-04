@@ -21,11 +21,14 @@
 #define qla_capfloor_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <qlo/couponvectors.hpp>
 #include <ql/instruments/capfloor.hpp>
 
-namespace QuantLibAddin {
+namespace QuantLib {
+    class IborIndex;
+}
 
+namespace QuantLibAddin {
+    class Leg;
     class CapFloor : public Instrument {
       public:
         CapFloor(QuantLib::CapFloor::Type type,

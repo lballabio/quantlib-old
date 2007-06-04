@@ -22,8 +22,11 @@
 
 #include <ql/instruments/forwardrateagreement.hpp>
 #include <qlo/baseinstruments.hpp>
-#include <qlo/termstructures.hpp>
-#include <qlo/index.hpp>
+
+namespace QuantLib {
+    class Date;
+    class IborIndex;
+}
 
 namespace QuantLibAddin {
 

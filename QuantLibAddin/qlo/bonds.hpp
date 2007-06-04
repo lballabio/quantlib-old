@@ -24,11 +24,9 @@
 #define qla_bonds_hpp
 
 #include <qlo/baseinstruments.hpp>
-
 #include <ql/currency.hpp>
-
-#include <oh/objecthandler.hpp>
-
+#include <ql/handle.hpp>
+#include <ql/time/businessdayconvention.hpp>
 #include <string>
 
 namespace QuantLib {
@@ -36,6 +34,10 @@ namespace QuantLib {
     class SwapIndex;
     class IborIndex;
     class Schedule;
+    class Calendar;
+    class Date;
+    class DayCounter;
+    class YieldTermStructure;
 }
 
 namespace QuantLibAddin {

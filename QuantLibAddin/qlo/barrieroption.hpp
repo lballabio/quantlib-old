@@ -20,9 +20,11 @@
 #define qla_barrieroption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <qlo/processes.hpp>
-#include <qlo/exercise.hpp>
 #include <ql/instruments/barrieroption.hpp>
+
+namespace QuantLib {
+    class GeneralizedBlackScholesProcess;
+}
 
 namespace QuantLibAddin {
 
