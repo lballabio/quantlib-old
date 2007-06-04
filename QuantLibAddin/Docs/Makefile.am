@@ -72,9 +72,9 @@ docs-html-dist: docs-html
 	rm QuantLibAddin-docs-$(VERSION)-html
 
 docs-online-dist: docs-online
-	ln -s html-online QuantLibAddin-docs-$(VERSION)-html
-	tar czfvh QuantLibAddin-docs-online-$(VERSION)-html.tar.gz QuantLibAddin-docs-$(VERSION)-html
-	rm QuantLibAddin-docs-$(VERSION)-html
+	ln -s html-online quantlibaddin
+	tar czfvh QuantLibAddin-docs-online-$(VERSION)-html.tar.gz quantlibaddin
+	rm quantlibaddin
 
 docs-auto: .time-stamp-auto
 .time-stamp-auto: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)

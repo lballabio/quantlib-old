@@ -20,7 +20,12 @@
 
 \section calc_overview Overview
 
-This document summarizes special considerations for compiling %QuantLibAddin for OpenOffice.org Calc.  The first section gives a general overview relevant to Windows and Linux, this is followed by additional notes specific to compiling on Linux.  For further help or to offer feedback on this document please send a message to the <a href="mailto:quantlib-users@lists.sourceforge.net">QuantLib-users</a> mailing list.
+This document summarizes special considerations for compiling %QuantLibAddin
+for OpenOffice.org Calc.  The first section gives a general overview relevant
+to Windows and Linux, this is followed by additional notes specific to
+compiling on Linux.  For further help or to offer feedback on this document
+please send email to
+<a href="mailto:quantlib-users@lists.sf.net">quantlib-users@lists.sf.net</a>.
 
 \section calc_compile Compiling QuantLibAddin for OpenOffice.org Calc
 
@@ -106,8 +111,8 @@ Once everything is in place, launch OOo Calc and hit \c Ctrl-F2 to bring up the 
 Please note that to compile QuantLibAddin for Calc under Windows, you need VC7 (Microsoft Visual Studio 2003).  Use configuration "Release CRTDLL".  You will need to configure VC7 so that the paths it searches for executables include
 
 <tt>
-C:\Program Files\OpenOffice.org_2.2_SDK\windows\bin<br>
-C:\Program Files\OpenOffice.org 2.2\program<br>
+C:\\Program Files\OpenOffice.org_2.2_SDK\windows\bin<br>
+C:\\Program Files\OpenOffice.org 2.2\program<br>
 </tt>
 
 \section calc_linux Additional Considerations for Linux Builds

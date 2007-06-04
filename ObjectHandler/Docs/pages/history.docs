@@ -57,6 +57,8 @@ DOCUMENTATION
 - The comments in the code have been brought completely up to date.  As a 
   result the  doxygen-generated documentation of classes and code is also up to date.
   Much of the other hand-written documentation still requires an update.
+- "Topics" page of documentation renamed to "Manual" and updated to provide
+  overview of major design features
 
 LOG4CXX
 

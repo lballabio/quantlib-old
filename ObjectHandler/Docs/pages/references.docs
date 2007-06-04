@@ -33,8 +33,8 @@ them is closed.
 "permanent" so that they are not deleted by functions ohDeleteObjects() and
 ohCollectGarbage().
 \li Referencing objects by raw strings circumvents Excel's dependency tracking
-mechanism and it may be necessary to use triggers to force Excel to reestablish
-dependencies between cells.
+mechanism.  Triggers can be used to force Excel to reestablish dependencies
+between cells.
 
 \section ref_references References
 

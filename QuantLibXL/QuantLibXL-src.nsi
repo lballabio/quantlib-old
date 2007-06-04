@@ -69,10 +69,10 @@ Section
     SetOutPath "$INSTDIR\Workbooks\Math"
     File "Workbooks\Math\*.xls"
 
-    SetOutPath "$INSTDIR\Workbooks\OriginalExamples"
+    SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
     File /x "BlackFormula.xls" \
          /x "capfloors.xls" \
-            "Workbooks\OriginalExamples\*.xls"
+            "Workbooks\StandaloneExamples\*.xls"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"

@@ -86,8 +86,8 @@ INPUT                  = ./pages \
                          ../../QuantLibAddin/Docs/pages/evaluationdate.docs \
                          ../../QuantLibAddin/Docs/pages/faq.docs \
                          ../../QuantLibAddin/Docs/pages/loops.docs \
-                         ../../QuantLibAddin/Docs/pages/observer.docs \
-                         ../../QuantLibAddin/Docs/pages/topics.docs
+                         ../../QuantLibAddin/Docs/pages/manual.docs \
+                         ../../QuantLibAddin/Docs/pages/observer.docs
 FILE_PATTERNS          = *.docs
 RECURSIVE              =
 EXCLUDE                = 

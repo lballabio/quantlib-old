@@ -74,9 +74,9 @@ docs-online: .time-stamp-online
 	touch .time-stamp-online
 
 docs-online-dist: docs-online
-	ln -s html-online gensrc-docs-$(VERSION)-html
-	tar czfvh gensrc-docs-online-$(VERSION)-html.tar.gz gensrc-docs-$(VERSION)-html
-	rm gensrc-docs-$(VERSION)-html
+	ln -s html-online gensrc
+	tar czfvh gensrc-docs-online-$(VERSION)-html.tar.gz gensrc
+	rm gensrc
 
 docs-clean:
 	rm -Rf html-online html

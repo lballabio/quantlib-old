@@ -53,6 +53,11 @@ docs-html: .time-stamp-html
 	cp -f images/*.php html/images
 	touch .time-stamp-html
 
+docs-html-dist: docs-html
+	ln -s html QuantLibXL-docs-$(VERSION)-html
+	tar czfvh QuantLibXL-docs-$(VERSION)-html.tar.gz QuantLibXL-docs-$(VERSION)-html
+	rm QuantLibXL-docs-$(VERSION)-html
+
 docs-online: .time-stamp-html-online
 .time-stamp-html-online: .time-stamp-auto-online .time-stamp-root-online
 	mkdir -p html-online/images
@@ -63,15 +68,10 @@ docs-online: .time-stamp-html-online
 	cp -f images/*.php html-online/images
 	touch .time-stamp-html-online
 
-docs-html-dist: docs-html
-	ln -s html QuantLibXL-docs-$(VERSION)-html
-	tar czfvh QuantLibXL-docs-$(VERSION)-html.tar.gz QuantLibXL-docs-$(VERSION)-html
-	rm QuantLibXL-docs-$(VERSION)-html
-
 docs-online-dist: docs-online
-	ln -s html-online QuantLibXL-docs-$(VERSION)-html
-	tar czfvh QuantLibXL-docs-online-$(VERSION)-html.tar.gz QuantLibXL-docs-$(VERSION)-html
-	rm QuantLibXL-docs-$(VERSION)-html
+	ln -s html-online quantlibxl
+	tar czfvh QuantLibXL-docs-online-$(VERSION)-html.tar.gz quantlibxl
+	rm quantlibxl
 
 docs-auto: .time-stamp-auto
 .time-stamp-auto: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)

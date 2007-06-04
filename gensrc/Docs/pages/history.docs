@@ -27,7 +27,8 @@
 
 - Every line of code reworked, many algorithms improved
 - Implemented gensrc as a Python package
-- Removed datatype metadata from function metadata into separate file
+- Datatype metadata factored out of function metadata into separate
+  file types.xml
 - Refined the Rule algorithm which generates source code for a given
   function argument
 
@@ -48,6 +49,9 @@
 <strong>Release 0.1.4 - August 2006</strong>
 
 - Decoupled from QuantLibAddin into standalone project
+
+Previous incarnations of gensrc were bundled with QuantLibAddin
+releases 0.3.10 - 0.3.12.
 
 */
 

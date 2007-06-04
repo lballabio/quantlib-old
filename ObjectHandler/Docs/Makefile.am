@@ -72,9 +72,9 @@ docs-online: .time-stamp-online
 	touch .time-stamp-online
 
 docs-online-dist: docs-online
-	ln -s html-online ObjectHandler-docs-$(VERSION)-html
-	tar czfvh ObjectHandler-docs-online-$(VERSION)-html.tar.gz ObjectHandler-docs-$(VERSION)-html
-	rm ObjectHandler-docs-$(VERSION)-html
+	ln -s html-online objecthandler
+	tar czfvh ObjectHandler-docs-online-$(VERSION)-html.tar.gz objecthandler
+	rm objecthandler
 
 docs-clean:
 	rm -Rf html-online html

@@ -33,13 +33,15 @@ REQUIRED PACKAGES
 
 FUNCTIONALITY
 
-- Orders of magnitude increase in performance due to a redesign of ObjectHandler
+- Orders of magnitude increase in performance due to a redesign of
+  ObjectHandler
 - 78 new functions / 640 in total
 - New function category Range Accrual
 
 DOCUMENTATION
 
-- "Topics" page of documentation updated to provide overview of major design features
+- "Topics" page of documentation renamed to "Manual" and updated to provide
+  overview of major design features
 - FAQ rewritten
 
 PLATFORMS
@@ -100,10 +102,6 @@ new QuantLibXL project reflects the fact that the majority of interest in
 new QuantLibXL project has a separate web page 
 (<a href="http://www.quantlibxl.org">http://www.quantlibxl.org</a>)
 and provides a Windows installer for the compiled package.
-
-For a further breakdown of the differences between the old and new QuantLibXL
-projects, please see the following item in the %QuantLibAddin FAQ:
-\ref faq_item_whats_qlxl
 
 GENSRC
 

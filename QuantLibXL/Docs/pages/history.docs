@@ -32,11 +32,12 @@ QuantLibAddin project, please refer to
 
 - Orders of magnitude increase in performance due to a redesign of ObjectHandler
 - 78 new functions / 640 in total
-- Release of the Framework, an Excel VBA application providing a layer of business logic
-  around the QuantLibXL XLL, including more than 100 new workbooks in support of market data and
-  instruments
+- Release of the Framework, an Excel VBA application providing a layer of
+  business logic around the QuantLibXL XLL, including more than 100 new
+  workbooks in support of market data and instruments
 - New function category Range Accrual
-- "Topics" page of documentation updated to provide overview of major design features
+- "Topics" page of documentation renamed to "Manual" and updated to provide
+  overview of major design features
 - FAQ rewritten
 
 <strong>Release 0.4.0 - February 2007</strong>
@@ -57,6 +58,9 @@ QuantLibAddin project, please refer to
 
 - 146 new functions / 227 in total
 - Separated QuantLibXL out of QuantLibAddin into standalone project.
+
+Previous incarnations of QuantLibXL were bundled with QuantLibAddin
+releases 0.3.10 - 0.3.12.
 
 */
 

@@ -91,7 +91,7 @@ namespace ObjectHandler {
             vectorToOper(v, xAny);
         } else if (value.type() == typeid(std::vector<std::vector<long> >)) {
             std::vector<std::vector<long> > vv = boost::any_cast<std::vector<std::vector<long> > >(value);
-            vectorToOper(vv, xAny);
+            matrixToOper(vv, xAny);
         } else if (value.type() == typeid(std::vector<std::vector<double> >)) {
             std::vector<std::vector<double> > vv = boost::any_cast<std::vector<std::vector<double> > >(value);
             matrixToOper(vv, xAny);

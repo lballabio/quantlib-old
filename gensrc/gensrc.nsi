@@ -56,7 +56,6 @@ Section "-gensrc"
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
-    File "Docs\images\*.png"
     File "Docs\images\*.gif"
 
     SetOutPath "$INSTDIR\Docs\pages"

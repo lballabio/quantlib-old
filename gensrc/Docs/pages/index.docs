@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -27,7 +27,9 @@
 gensrc is a Python application which takes XML descriptions of functions
 defined in a library and generates source code for addins on supported
 platforms including Microsoft Excel and OpenOffice.org Calc.  gensrc is used to
-generate source code for the ObjectHandler and QuantLibAddin applications.
+generate source code for the
+<a href="http://www.objecthandler.org">ObjectHandler</a> and 
+<a href="http://www.quantlibaddin.org">QuantLibAddin</a> applications.
 
 \section quantlib QuantLib
 gensrc shares the QuantLib project structure with regard to

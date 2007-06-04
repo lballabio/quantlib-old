@@ -5,6 +5,7 @@
 
 QL_DIR=..\..\..\QuantLib
 OBJECT_HANDLER_DIR=..\..\..\ObjectHandler
+LOG4CXX_DIR=..\..\..\log4cxx
 OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org 2.2\program
 OFFICE_SDK_PATH=C:\Program Files\OpenOffice.org_2.2_SDK
 

@@ -37,12 +37,12 @@ and the
 \ref faq_sec_installation\n
 - \ref faq_item_installation\n
 
+\ref faq_sec_compilation\n
+- \ref faq_item_bstr\n
+
 \ref faq_sec_usage\n
 - \ref faq_item_start\n
 - \ref faq_item_vba\n
-
-\ref faq_sec_compiling\n
-- \ref faq_item_bstr\n
 
 \ref faq_sec_troubleshooting\n
 - \ref faq_item_startup\n
@@ -147,22 +147,67 @@ over the QuantLibXL name:
 
 Send email to <a href="mailto:quantlib-users@lists.sf.net">quantlib-users@lists.sf.net</a>.
 
-The %QuantLibAddin project is provided through the collaboration of many
-volunteers.  Not all of them follow the mailing list and some questions go
-unanswered, sorry about that.  Try writing in Italian ;-)
+%QuantLibAddin is the product of collaboration from many volunteers.  Not all
+%of them follow the mailing list and some questions go unanswered, sorry about
+%that.  Try writing in Italian ;-)
 
 \section faq_sec_installation Installation
 
 \subsection faq_item_installation How do I compile and/or install QuantLibAddin/QuantLibXL?
 
 \li If you want an installer delivering a compiled QuantLibXL Addin and
-documentation for use with Microsoft Excel, please visit
+documentation for use with Microsoft Excel, visit
 <a href="http://www.quantlibxl.org">www.quantlibxl.org</a>.
-\li If you want to compile QuantLibXL from source code, please visit
+\li If you want to compile QuantLibXL from source code, visit
 <a href="http://www.quantlibaddin.org/build_tutorial.html">http://www.quantlibaddin.org/build_tutorial.html</a>.
 \li If you want to build QuantLibAddin for use on platforms other than
-Microsoft Excel, please visit
+Microsoft Excel, visit
 <a href="http://www.quantlibaddin.org/installation.html">http://www.quantlibaddin.org/installation.html</a>.
+
+\section faq_sec_compilation Compilation
+
+\subsection faq_item_bstr Why does my compilation fail with an error message about ConvertStringToBSTR?
+
+Several users have reported that their %QuantLibAddin or QuantLibXL build fails
+with an error message such as:
+\verbatim
+Creating library
+.\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_8_0.lib and object
+.\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_8_0.exp
+log4cxxs-vc80-mt-s.lib(msxml.obj) : error LNK2019: unresolved external symbol
+"wchar_t * __stdcall _com_util::ConvertStringToBSTR(char const *)"
+(?ConvertStringToBSTR@_com_util@@ YGPA_WPBD@Z) referenced in function "public:
+__thiscall _bstr_t::Data_t::Data_t(char const *)"
+(??0Data_t@_bstr_t@@QAE@PBD@Z)
+\endverbatim
+
+Apparently the fix is
+\li Set "C/C++ -> Language -> Treat wchar_t as Built-In Type" to "No".
+\li Add comsupp.lib to the additional dependencies of the linker.
+
+There is some confusion on this issue.  The table below summarizes the relevant
+compiler flag:
+<table>
+<tr><td><b>Label</b></td><td><b>Flag</b></td><td><b>Library</b></td></tr>
+<tr><td>Treat wchar_t as Built-In Type = No</td><td>/Zc:wchar_t-</td><td>comsupp.lib</td></tr>
+<tr><td>Treat wchar_t as Built-In Type = Yes</td><td>/Zc:wchar_t</td><td>comsuppw.lib</td></tr>
+</table>
+
+For most users the flag defaults to No and the project builds successfully.
+Some users report that it's necessary to manually set the value of the flag to
+No.  Some users have indicated that this change is necessary only for the
+log4cxx project, others have had to make the change in other projects as well
+e.g. %QuantLibAddin.
+
+Normally for whatever value of the flag, VC should automatically pick up the
+corresponding library.  Some users report that this is not the case and that
+it's necessary to manually specify the linker dependency.
+
+It may be that VC8 Express behaves differently than the commercial release of
+VC8.
+
+If you experience this error and can provide a definitive description of the
+fix it would be much appreciated.
 
 \section faq_sec_usage Usage
 
@@ -170,7 +215,7 @@ Microsoft Excel, please visit
 
 \li Start Excel
 \li Load the Addin: \b QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_8_0.xll
-\li Load a client worksheet e.g. \b QuantLibXL\\Workbooks\\OriginalExamples\\YC_SwapDemo.xls
+\li Load a client worksheet e.g. \b QuantLibXL\\Workbooks\\StandaloneExamples\\YC_SwapDemo.xls
 \li Hit \b Ctrl-Alt-F9 to force a recalculation of the workbook
 
 \subsection faq_item_vba How do I call QuantLibXL functions from Excel VBA?
@@ -219,51 +264,6 @@ MsgBox Err.Description, vbCritical, "QuantLibXL Error"
 End Sub
 \endverbatim
 
-\section faq_sec_compiling Compiling
-
-\subsection faq_item_bstr Why does my compilation fail with an error message about ConvertStringToBSTR?
-
-Several users have reported that their %QuantLibAddin or QuantLibXL build fails
-with an error message such as:
-\verbatim
-Creating library
-.\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_8_0.lib and object
-.\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_8_0.exp
-log4cxxs-vc80-mt-s.lib(msxml.obj) : error LNK2019: unresolved external symbol
-"wchar_t * __stdcall _com_util::ConvertStringToBSTR(char const *)"
-(?ConvertStringToBSTR@_com_util@@ YGPA_WPBD@Z) referenced in function "public:
-__thiscall _bstr_t::Data_t::Data_t(char const *)"
-(??0Data_t@_bstr_t@@QAE@PBD@Z)
-\endverbatim
-
-Apparently the fix is
-\li Set "C/C++ -> Language -> Treat wchar_t as Built-In Type" to "No".
-\li Add comsupp.lib to the additional dependencies of the linker.
-
-There is some confusion on this issue.  The table below summarizes the relevant
-compiler flag:
-<table>
-<tr><td><b>Label</b></td><td><b>Flag</b></td><td><b>Library</b></td></tr>
-<tr><td>Treat wchar_t as Built-In Type = No</td><td>/Zc:wchar_t-</td><td>comsupp.lib</td></tr>
-<tr><td>Treat wchar_t as Built-In Type = Yes</td><td>/Zc:wchar_t</td><td>comsuppw.lib</td></tr>
-</table>
-
-For most users the flag defaults to No and the project builds successfully.
-Some users report that it's necessary to manually set the value of the flag to
-No.  Some users have indicated that this change is necessary only for the
-log4cxx project, others have had to make the change in other projects as well
-e.g. %QuantLibAddin.
-
-Normally for whatever value of the flag, VC should automatically pick up the
-corresponding library.  Some users report that this is not the case and that
-it's necessary to manually specify the linker dependency.
-
-It may be that VC8 Express behaves differently than the commercial release of
-VC8.
-
-If you experience this error and can provide a definitive description of the
-fix it would be much appreciated.
-
 \section faq_sec_troubleshooting Troubleshooting
 
 \subsection faq_item_startup Why does Excel display an error message when I load QuantLibXL?
@@ -307,23 +307,23 @@ QuantLibXL functions are known to crash when called from the Function Wizard.
 
 \subsection faq_item_debugexcel How do I debug QuantLibXL?
 
+\li compile QuantLibXL with the Debug configuration
 \li start Excel and load QuantLibXL and a client worksheet
-\li Go into Microsoft Visual Studio and close any workspace which may
-be open
+\li Go into Microsoft Visual Studio
 \li do <strong>Build/Debug/Attach to Process</strong>
 \li Select Excel from the list of processes.
-\li From VC, open up a file containing the source
-code you'd like to debug - for example file
-<strong>%QuantLibAddin\\Addins\\Excel\\volatilities.cpp</strong>
-\li Identify a function you'd like to debug, for example \b
-qlBlackConstantVol.  Put the cursor on a line in the function and hit
-F9 to set a breakpoint on the line
-\li Back in Excel, trigger the breakpoint - select the cell containing
-the relevant formula, e.g. \b qlBlackConstantVol, hit F2 to force the
-cell to recalc
-\li Back in VC, execution should now be stopped on the breakpoint and
-you can debug from there, e.g.\n F10 - advance a line\n F11 - step into a
-function\n F5  - run until the next breakpoint or until completion\n etc.
+\li From VC, open up a file containing the source code you'd like to debug -
+for example file
+<strong>%QuantLibXL\\qlxl\\Functions\\volatilities.cpp</strong>
+\li Identify a function you'd like to debug, for example \b qlBlackConstantVol().
+Put the cursor on a line in the function and hit F9 to set a breakpoint on the
+line
+\li Back in Excel, trigger the breakpoint - select the cell containing the
+relevant formula, e.g. \b qlBlackConstantVol(), hit F2 to force the cell to
+recalc
+\li Back in VC, execution should now be stopped on the breakpoint and you can
+debug from there, e.g.\n F10 - advance a line\n F11 - step into a function\n
+F5 - run until the next breakpoint or until completion\n etc.
 
 \subsection faq_item_debuglinux How do I debug a QuantLibAddin Linux executable at the command line?
 
@@ -331,7 +331,7 @@ This section describes how to debug a standalone C++ %QuantLibAddin client
 linux program with the \b gdb command line debugger, using program \b
 %QuantLibAddin/Clients/C++/QLADemo as an example.
 
-\subsection compiling Compiling for Debug
+<h3>Compiling for Debug</h3>
 
 By default %QuantLibAddin compiles with flags <strong>-g -O2</strong>
 which is good for general purpose use but does not give ideal results
@@ -351,7 +351,7 @@ for each project, and run configure with the appropriate flags:
 \endverbatim
 Then recompile.
 
-\subsection executable The Executable
+<h3>The Executable</h3>
 
 The program we want to debug is QLADemo.
 File \b %QuantLibAddin/Clients/C++/QLADemo is a
@@ -360,7 +360,7 @@ shell script wrapper for the underlying executable
 created the first time the wrapper is invoked.  So run the wrapper
 once to create the executable, then cd into the .libs directory.
 
-\subsection debugging Debugging
+<h3>Debugging</h3>
 
 Now you can debug the program in the usual way e.g.
 

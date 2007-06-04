@@ -31,17 +31,17 @@ from gensrc.Exceptions import excepthook
 
 USAGE_ERROR = """
 usage: %(scriptName)s -[flags]
-    where [flags] are codes to generate source code for any of:
+    where [flags] specify that source code is to be generated for any of:
         x - Excel addin
         o - OpenOffice.org Calc addin
         g - Guile addin
         c - C addin
         v - ValueObjects code
-        e - enumerations
+        e - Enumerations
         l - Loop typedefs
-        d - doxygen documentation files
+        d - Doxygen documentation files
     or
-        a - all of the above
+        a - All of the above
     or
         h - display this help message"""
 
