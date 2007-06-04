@@ -17,7 +17,7 @@ volatilityQuote <- SimpleQuote(0.05)
 volatility <- BlackConstantVol(todaysDate,
 	   QuoteHandle(volatilityQuote), 
 	      Actual365Fixed())
-process <- BlackScholesProcess(QuoteHandle(underlying),
+process <- BlackScholesMertonProcess(QuoteHandle(underlying),
 		YieldTermStructureHandle(dividendYield),
 		YieldTermStructureHandle(riskFreeRate),
 		BlackVolTermStructureHandle(volatility))

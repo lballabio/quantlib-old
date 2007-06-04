@@ -8,7 +8,7 @@ payoff <- PlainVanillaPayoff("Call", 8.0)
 underlying <- SimpleQuote(x1)
 volatility <- BlackConstantVol(todaysDate, 0.10, Actual365Fixed())
 dividendYield <- FlatForward(settlementDate, 0.05, Actual365Fixed())
-process <- BlackScholesProcess(QuoteHandle(underlying),
+process <- BlackScholesMertonProcess(QuoteHandle(underlying),
 		YieldTermStructureHandle(dividendYield),
 		YieldTermStructureHandle(riskFreeRate),
 		BlackVolTermStructureHandle(volatility))
