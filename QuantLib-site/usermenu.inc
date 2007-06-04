@@ -15,6 +15,9 @@
 <li class="navlink"><a href="/mailinglists.shtml">Mailing Lists</a></li>
 
 <li class="navlink"><a href=
+"http://sourceforge.net/export/rss2_project.php?group_id=12740">RSS feeds</a></li>
+
+<li class="navlink"><a href=
 "http://sourceforge.net/news/?group_id=12740">News</a></li>
 
 <li class="navlink"><a href="/faq.shtml">FAQ</a></li>
