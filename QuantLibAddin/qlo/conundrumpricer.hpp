@@ -22,14 +22,8 @@
 #ifndef qla_conundrumpricer_hpp
 #define qla_conundrumpricer_hpp
 
-#include <oh/objecthandler.hpp>
 
-#include <qlo/schedule.hpp>
-#include <qlo/index.hpp>
-#include <qlo/flowanalysis.hpp>
 #include <qlo/couponvectors.hpp>
-#include <ql/cashflows/conundrumpricer.hpp>
-#include <ql/termstructures/volatilities/all.hpp>
 
 
 namespace QuantLibAddin {

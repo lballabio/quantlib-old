@@ -25,10 +25,8 @@
 #endif
 
 #include <qlo/couponvectors.hpp>
-#include <qlo/termstructures.hpp>
-#include <qlo/Enumerations/Factories/iborcouponpricersfactory.hpp>
 
-#include <ql/cashflow.hpp>
+#include <qlo/Enumerations/Factories/iborcouponpricersfactory.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/simplecashflow.hpp>
 #include <ql/cashflows/cmscoupon.hpp>

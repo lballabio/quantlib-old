@@ -22,10 +22,8 @@
 #ifndef qla_couponvectors_hpp
 #define qla_couponvectors_hpp
 
-#include <oh/objecthandler.hpp>
-
+#include <qlo/qladdindefines.hpp>
 #include <ql/cashflows/digitalcoupon.hpp>
-
 #include <qlo/leg.hpp>
 
 namespace QuantLib {

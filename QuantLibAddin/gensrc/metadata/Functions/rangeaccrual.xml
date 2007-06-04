@@ -7,6 +7,8 @@
     <include>qlo/rangeaccrual.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>qlo/schedule.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006, 2007 Giorgio Facchinetti

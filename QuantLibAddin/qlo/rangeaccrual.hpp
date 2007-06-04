@@ -20,14 +20,12 @@
 #define qla_rangeaccrual_hpp
 
 #include <oh/objecthandler.hpp>
-#include <qlo/schedule.hpp>
-#include <qlo/index.hpp>
 #include <qlo/couponvectors.hpp>
-
 #include <ql/cashflows/rangeaccrual.hpp>
 
+
 namespace QuantLibAddin {
-     
+    class Leg;    
     class RangeAccrualFloatersCoupon: public ObjectHandler::LibraryObject<QuantLib::RangeAccrualFloatersCoupon>{
 	 public:
         RangeAccrualFloatersCoupon(
