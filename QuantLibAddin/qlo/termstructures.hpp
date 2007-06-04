@@ -23,19 +23,16 @@
 #define qla_termstructures_hpp
 
 #include <ql/termstructure.hpp>
-#include <ql/termstructures/yieldcurves/forwardspreadedtermstructure.hpp>
-#include <ql/termstructures/yieldcurves/ratehelpers.hpp>
-#ifdef QL_DISABLE_DEPRECATED
-#include <ql/quotes/simplequote.hpp>
-#else
-#include <ql/quote.hpp>
-#endif
 #include <qlo/interpolation.hpp>
-
 #include <oh/objecthandler.hpp>
+#include <ql/interestrate.hpp>
+
+namespace QuantLib {
+    class YieldTermStructure;
+}
 
 namespace QuantLibAddin {
-
+     
     class TermStructure : public Extrapolator {};
 
     class YieldTermStructure : public TermStructure {};

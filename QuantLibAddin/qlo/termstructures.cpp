@@ -33,6 +33,7 @@
 #include <ql/termstructures/yieldcurves/forwardcurve.hpp>
 #include <ql/termstructures/yieldcurves/impliedtermstructure.hpp>
 #include <ql/termstructures/yieldcurves/flatforward.hpp>
+#include <ql/termstructures/yieldcurves/forwardspreadedtermstructure.hpp>
 
 namespace QuantLibAddin {
 

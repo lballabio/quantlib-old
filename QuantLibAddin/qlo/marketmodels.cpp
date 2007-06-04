@@ -33,6 +33,7 @@
 #include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
 #include <ql/models/marketmodels/correlations/correlations.hpp>
 #include <ql/math/matrix.hpp>
+#include <ql/models/marketmodels/historicalcorrelation.hpp>
 
 
 namespace QuantLibAddin {
@@ -485,5 +486,33 @@ namespace QuantLibAddin {
                                                      rates, annuities);
         return annuities;
     }
+
+    QuantLib::Matrix qlComputeHistoricalCorrelationsZeroYieldLinear(
+                   QuantLib::Date startDate, 
+                   QuantLib::Date endDate, 
+                   QuantLib::Period historicalStep,
+                   const QuantLib::Calendar& calendar,
+                   const boost::shared_ptr<QuantLib::InterestRateIndex> index,
+                   QuantLib::Period forwardHorizon,
+                   const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+                   const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+                   QuantLib::Natural depositSettlementDays, QuantLib::Natural swapSettlementDays,
+                   QuantLib::DayCounter& swapDayCounter,
+                   const QuantLib::DayCounter& yieldCurveDayCounter,
+                   QuantLib::Real yieldCurveAccuracy) {
+        
+        return computeHistoricalCorrelationsZeroYieldLinear(
+                   startDate, endDate, historicalStep,
+                   calendar,
+                   index,
+                   forwardHorizon,
+                   iborIndexes,
+                   swapIndexes,
+                   depositSettlementDays, swapSettlementDays,
+                   swapDayCounter,
+                   yieldCurveDayCounter,
+                   yieldCurveAccuracy);
+    }
+
 
 }

@@ -24,6 +24,8 @@
 #include <ql/termstructures/capvolstructures.hpp>
 #include <qlo/termstructures.hpp>
 #include <ql/termstructures/volatilities/smilesection.hpp>
+#include <ql/indexes/iborindex.hpp> 
+#include <ql/quote.hpp> 
 
 namespace QuantLibAddin {
     

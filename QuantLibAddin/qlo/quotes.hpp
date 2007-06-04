@@ -20,9 +20,8 @@
 #ifndef qla_quotes_hpp
 #define qla_quotes_hpp
 
-#include <qlo/index.hpp>
+#include <oh/objecthandler.hpp>
 #include <oh/libraryobject.hpp>
-#include <qlo/termstructures.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <ql/quotes/derivedquote.hpp>
 #include <ql/quotes/eurodollarfuturesquote.hpp>
@@ -30,6 +29,10 @@
 #include <ql/quotes/futuresconvadjustmentquote.hpp>
 #include <ql/quotes/impliedstddevquote.hpp>
 
+
+namespace QuantLib {
+    class IborIndex;
+}
 
 namespace QuantLibAddin {
 

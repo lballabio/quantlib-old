@@ -9,7 +9,10 @@
     <include>ql/models/marketmodels/curvestates/cmswapcurvestate.hpp</include>
     <include>ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp</include>
     <include>ql/models/marketmodels/curvestates/lmmcurvestate.hpp</include>
+    <include>ql/models/marketmodels/historicalcorrelation.hpp</include>
+    <include>qlo/Enumerations/Factories/indexfactory.hpp</include>
     <include>qlo/optimization.hpp</include>
+    <include>qlo/index.hpp</include>
     <include>qlo/marketmodels.hpp</include>
     <include>qlo/sequencestatistics.hpp</include>
     <include>qlo/payoffs.hpp</include>
@@ -2886,5 +2889,85 @@
       </ReturnValue>
     </Procedure>
 
+      <Procedure name='qlComputeHistoricalCorrelationsZeroYieldLinear'>
+          <description>Returns historical correlations between forward rates using a ZeroYield, Linear boostrapped curve</description>
+          <functionCategory>QuantLib</functionCategory>
+          <SupportedPlatforms>
+              <SupportedPlatform name='Excel' calcInWizard='false' />
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters>
+                  <Parameter name='startDate' default='QuantLib::Date()'>
+                      <type>QuantLib::Date</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>beginning of the time serie</description>
+                  </Parameter>
+                  <Parameter name='endDate' default='QuantLib::Date()'>
+                      <type>QuantLib::Date</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>End of the time serie</description>
+                  </Parameter>
+                  <Parameter name='historicalStep' exampleValue ='1D'>
+                      <type>QuantLib::Period</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>size of the step</description>
+                  </Parameter>
+                  <Parameter name='calendar' exampleValue='TARGET'>
+                      <type>QuantLib::Calendar</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>holiday calendar (e.g. TARGET)</description>
+                  </Parameter>
+                  <Parameter name='iborIndex'>
+                      <type>QuantLib::IborIndex</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>floating rate index</description>
+                  </Parameter>
+                  <Parameter name='forwardHorizon' exampleValue ='1D'>
+                      <type>QuantLib::Period</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>horizon of the bootstrap</description>
+                  </Parameter>
+                  <Parameter name='iborIndexes'>
+                      <type>QuantLib::IborIndex</type>
+                      <tensorRank>vector</tensorRank>
+                      <description>index</description>
+                  </Parameter>
+                  <Parameter name='swapIndexes'>
+                      <type>QuantLib::SwapIndex</type>
+                      <tensorRank>vector</tensorRank>
+                      <description>index</description>
+                  </Parameter>
+                  <Parameter name='depositSettlementDays' exampleValue='2'>
+                      <type>QuantLib::Natural</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>deposit SettlementDays</description>
+                  </Parameter>
+                  <Parameter name='swapSettlementDays' exampleValue='2'>
+                      <type>QuantLib::Natural</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>swap SettlementDays</description>
+                  </Parameter>
+                  <Parameter name='swapDayCounter' exampleValue='30/360 (Bond Basis)'>
+                      <type>QuantLib::DayCounter</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>swap DayCounter</description>
+                  </Parameter>
+                  <Parameter name='yieldCurveDayCounter' exampleValue='30/360 (Bond Basis)'>
+                      <type>QuantLib::DayCounter</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>yieldCurve DayCounter</description>
+                  </Parameter>
+                  <Parameter name='yieldCurveAccuracy' exampleValue='10e-12'>
+                      <type>QuantLib::Real</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>yieldCurve Accuracy</description>
+                  </Parameter>
+              </Parameters>
+          </ParameterList>
+          <ReturnValue>
+              <type>QuantLib::Matrix</type>
+              <tensorRank>matrix</tensorRank>
+          </ReturnValue>
+      </Procedure>
   </Functions>
 </Category>

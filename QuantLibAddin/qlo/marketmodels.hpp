@@ -44,6 +44,7 @@
 #include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
 #include <ql/termstructures/volatilities/abcd.hpp>
 #include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
+#include <ql/models/marketmodels/historicalcorrelation.hpp>
 
 namespace QuantLibAddin {
 
@@ -392,7 +393,19 @@ namespace QuantLibAddin {
                             const std::vector<QuantLib::Time>& taus);
 
 
-
+     QuantLib::Matrix qlComputeHistoricalCorrelationsZeroYieldLinear(
+                   QuantLib::Date startDate, 
+                   QuantLib::Date endDate, 
+                   QuantLib::Period historicalStep,
+                   const QuantLib::Calendar& calendar,
+                   const boost::shared_ptr<QuantLib::InterestRateIndex> index,
+                   QuantLib::Period forwardHorizon,
+                   const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+                   const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+                   QuantLib::Natural depositSettlementDays, QuantLib::Natural swapSettlementDays,
+                   QuantLib::DayCounter& swapDayCounter,
+                   const QuantLib::DayCounter& yieldCurveDayCounter,
+                   QuantLib::Real yieldCurveAccuracy);
 }
 
 #endif

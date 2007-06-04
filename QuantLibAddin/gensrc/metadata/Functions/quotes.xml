@@ -3,8 +3,10 @@
   <displayName>Quotes</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
+    <include>ql/quote.hpp</include>
     <include>qlo/quotes.hpp</include>
-    <include>ql/Utilities/null.hpp</include>
+    <include>qlo/index.hpp</include>
+      
   </includes>
   <copyright>
     Copyright (C) 2006 Francois du Vignaud
