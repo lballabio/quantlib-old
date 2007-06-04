@@ -10,7 +10,7 @@ GENSRC_METADATA :=  metadata/Addins/calc.xml \
                     metadata/Addins/loop.xml \
                     metadata/Addins/valueobjects.xml \
                     metadata/Enumerations/enumeratedclasses.xml \
-                    metadata/Enumerations/enumeratedcurves.xml \
+                    metadata/Enumerations/enumeratedpairs.xml \
                     metadata/Enumerations/enumeratedtypes.xml \
                     metadata/Functions/assetswap.xml \
                     metadata/Functions/bonds.xml \
@@ -111,9 +111,9 @@ endif
 all-local: .time-stamp
 
 .time-stamp: $(GENSRC_INPUTS)
-	python $(GENSRC_DIR)/gensrc.py $(GENSRC_ARGS)
+#	python $(GENSRC_DIR)/gensrc.py $(GENSRC_ARGS)
 	touch .time-stamp
-	
+
 dist-hook:
 	mkdir -p $(distdir)/code
 	mkdir -p $(distdir)/config
