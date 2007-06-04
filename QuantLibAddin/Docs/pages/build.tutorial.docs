@@ -137,14 +137,14 @@ files <tt>C:\\Boost\\lib</tt>:
 \section sec_build_runtime A Note on Runtime Libraries
 
 You are now ready to build QuantLib.  You need to compile the following projects:
-\li <a href="http://quantlib.org/">QuantLib 0.8.0</a> - the core C++ analytics
+\li <a href="http://quantlib.org/">QuantLib 0.9.0</a> - the core C++ analytics
 library
 \li <b>log4cxx 0.9.7d</b> - a logging framework, used by ObjectHandler
-\li <a href="http://www.objecthandler.org">ObjectHandler 0.8.0</a> - an object
+\li <a href="http://www.objecthandler.org">ObjectHandler 0.9.0</a> - an object
 repository
-\li <a href="http://www.quantlibaddin.org">QuantLibAddin 0.8.0</a> - Addins for
+\li <a href="http://www.quantlibaddin.org">QuantLibAddin 0.9.0</a> - Addins for
 QuantLib functionality
-\li <a href="http://www.quantlibxl.org">QuantLibXL 0.8.0</a> - the Excel
+\li <a href="http://www.quantlibxl.org">QuantLibXL 0.9.0</a> - the Excel
 implementation of QuantLibAddin
 
 These projects are available with four different runtime libraries
@@ -184,7 +184,7 @@ solution uses relative pathnames to refer to the prerequisite projects
 QuantLib, log4cxx, gensrc, ObjectHandler, and QuantLibAddin.  In order for this
 to work, these projects must reside side by side in the directory tree, and the
 name of each project's parent directory must not include the version number
-(e.g.  "QuantLib" not "QuantLib-0.8.0").  
+(e.g.  "QuantLib" not "QuantLib-0.9.0").  
 
 The QuantLibAll solution does not include the log4cxx solution, so log4cxx must
 be built separately.  However the QuantLibAll solution does use relative
@@ -192,40 +192,40 @@ pathnames to pick up the location of the log4cxx libs, so log4cxx must be
 installed alongside QuantLib in the directory tree.
 
 By default the installer for each project uncompresses the source code to
-<tt>C:\\build_ql_0_8_0</tt> (with the exception of the zip file for QuantLib,
-where you must manually specify the target directory, removing the "0.8.0"
+<tt>C:\\build_ql_0_9_0</tt> (with the exception of the zip file for QuantLib,
+where you must manually specify the target directory, removing the "0.9.0"
 suffix from the directory name).  For purposes of this tutorial we assume the
 packages have been installed in this way e.g.:
 \verbatim
-C:\build_ql_0_8_0\gensrc
-C:\build_ql_0_8_0\log4cxx
-C:\build_ql_0_8_0\ObjectHandler
-C:\build_ql_0_8_0\QuantLib
-C:\build_ql_0_8_0\QuantLibAddin
-C:\build_ql_0_8_0\QuantLibXL
+C:\build_ql_0_9_0\gensrc
+C:\build_ql_0_9_0\log4cxx
+C:\build_ql_0_9_0\ObjectHandler
+C:\build_ql_0_9_0\QuantLib
+C:\build_ql_0_9_0\QuantLibAddin
+C:\build_ql_0_9_0\QuantLibXL
 \endverbatim
 
 \section sec_build_source Install the Source Code
 
 Go to the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>, 
-download <tt>QuantLib-0.8.0.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_0_8_0\\QuantLib</tt>.
+download <tt>QuantLib-0.9.0.zip</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_0\\QuantLib</tt>.
 
 Download <tt>log4cxx-0.9.7d.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_8_0\\log4cxx</tt>.
+<tt>C:\\build_ql_0_9_0\\log4cxx</tt>.
 
-Download <tt>gensrc-0.8.0.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_8_0\\gensrc</tt>.
+Download <tt>gensrc-0.9.0.exe</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_0\\gensrc</tt>.
 
-Download <tt>ObjectHandler-0.8.0.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_8_0\\ObjectHandler</tt>.
+Download <tt>ObjectHandler-0.9.0.exe</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_0\\ObjectHandler</tt>.
 
-Download <tt>QuantLibAddin-0.8.0.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_8_0\\QuantLibAddin</tt>.
+Download <tt>QuantLibAddin-0.9.0.exe</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_0\\QuantLibAddin</tt>.
 
-Download <tt>QuantLibXL-src-0.8.0.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_8_0\\QuantLibXL</tt>.
+Download <tt>QuantLibXL-src-0.9.0.exe</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_0\\QuantLibXL</tt>.
 
 \section sec_build_log4cxx Build log4cxx
 
@@ -247,7 +247,7 @@ configuration <tt>Release</tt>, project <tt>QuantLibXL</tt>, and do
 <img src="images/build_qlxl.jpg">
 
 The build process creates the QuantLibAddin XLL file
-<tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_8_0.xll</tt>.
+<tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_0.xll</tt>.
 
 \section sec_build_quantlibtestsuite Run the QuantLib Testsuite
 
@@ -259,7 +259,7 @@ report something like:
 \verbatim
 1>Auto run test
 1>=====================================
-1>Testing QuantLib-vc80-mt-s-0_8_0.lib 
+1>Testing QuantLib-vc80-mt-s-0_9_0.lib 
 1>=====================================
 1>Running moreThan200 test cases...
 1>Platform: Win32
@@ -285,7 +285,7 @@ report something like:
 
 To launch QuantLibXL:
 - start Excel
-- load the addin <tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_8_0.xll</tt>
+- load the addin <tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_0.xll</tt>
 - load a sample spreadsheet e.g. <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\instruments.xls</tt>
 - hit <tt>Ctrl-Alt-F9</tt> to force a recalculation of all formulas
 

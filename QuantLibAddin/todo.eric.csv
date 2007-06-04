@@ -2,7 +2,7 @@
 ,,,,,,,
 "OH","Design","Database / grid / FpML",,,,,
 "SA","General Support","get Sensitivity Analysis into production",,,,,
-"QLA","General Support","0.8.0 release",,,,,
+"QLA","General Support","0.9.0 release",,,,,
 "QLXL","Framework","separate QuantLibXL.xla into multiple modules with loader facility","prototypped",3,,,
 "OH","Design","add support for commands (instead of functions) e.g. for ohDeleteAllObjects(), ohSetLogFile(), etc.",,,,,
 "OH","Design","Object Browser",,4,,,

@@ -23,13 +23,13 @@
 
 /*! \page installation Installation
 
-Download QuantLibXL-bin-0.8.0.exe from the 
+Download QuantLibXL-bin-0.9.0.exe from the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=159049">Downloads page</a>.
 
 Run the installer to install QuantLibXL to your system.  You are given the
 option to install the \ref framework if desired.  To use QuantLibXL:
 \li start Excel
-\li load the addin - QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_8_0.xll
+\li load the addin - QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_0.xll
 \li load an example workbook e.g. QuantLibXL\\Workbooks\\StandaloneExamples\\instruments.xls
 \li hit Ctrl-Alt-F9 to refresh the workbook
 

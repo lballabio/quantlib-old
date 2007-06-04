@@ -244,7 +244,7 @@ The name of the library depends on your compiler and configuration.
 For example, if you're using VC8, configuration Release, the library
 is called
 \verbatim
-ObjectHandler-vc80-mt-s-0_8_0.lib
+ObjectHandler-vc80-mt-s-0_9_0.lib
 \endverbatim
 
 The location of the library depends on which project you're using
@@ -275,8 +275,8 @@ variable GENSRC_DIR equal to the top level gensrc directory.
 %ObjectHandler is built in the standard way:
 
 \verbatim
-tar zxfv ObjectHandler-0.8.0.tar.gz
-cd ObjectHandler-0.8.0
+tar zxfv ObjectHandler-0.9.0.tar.gz
+cd ObjectHandler-0.9.0
 ./configure
 make
 make install

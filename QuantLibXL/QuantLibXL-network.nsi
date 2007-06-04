@@ -11,8 +11,8 @@
 
 ; Constants
 
-!define VER_NUMBER "0.8.0"
-!define VER_NUMBER_UNDERSCORE "0_8_0"
+!define VER_NUMBER "0.9.0"
+!define VER_NUMBER_UNDERSCORE "0_9_0"
 
 ; General Attributes
 

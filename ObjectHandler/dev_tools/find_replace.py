@@ -45,7 +45,7 @@ import re
 import getopt
 import shutil
 
-ROOT_DIR = 'C:/erik/projects/trunk/QuantLib'
+ROOT_DIR = 'C:/erik/projects/trunk/QuantLib-SWIG'
 
 # callback functions - called from regexes which require multiple passes
 
@@ -69,7 +69,17 @@ SUBSTITUTIONS = (
 #   place the active regexes here, 
 #   using the commented examples below
 
-    (re.compile(r'(for.*?\(.*?;.*?;)(.*?)\)'), sub1),
+#    (re.compile(r'(for.*?\(.*?;.*?;)(.*?)\)'), sub1),
+
+    (re.compile(r'0_8_0'), '0_9_0'),
+    (re.compile(r'0\.8\.0'), '0.9.0'),
+    (re.compile(r'0x000800f0'), '0x000900f0'),
+    (re.compile(r'Major=0\nMinor=8\nRelease=0'), 'Major=0\nMinor=9\nRelease=0'),
+
+    (re.compile(r'0_8_1'), '0_9_0'),
+    (re.compile(r'0\.8\.1'), '0.9.0'),
+    (re.compile(r'0x000801f0'), '0x000900f0'),
+    (re.compile(r'Major=0\nMinor=8\nRelease=1'), 'Major=0\nMinor=9\nRelease=0'),
 
 #   simple
 #    (re.compile(r'abd'), 'def'),
@@ -97,8 +107,10 @@ SUBSTITUTIONS = (
 # Regexes to indicate names of files to be processed by the find/replace.
 
 INCLUDE_FILES = (
-    re.compile(r'^.*\.?pp$'),
+#    re.compile(r'^.*\.?pp$'),
+#    re.compile(r'^.*defines\.hpp$'),
 
+#    re.compile(r'^testsuite.dev$'),
 #    re.compile(r'^capfloor.xml$'),
 #    re.compile(r'^couponvectors.xml$'),
 #    re.compile(r'^instruments.xml$'),
@@ -124,11 +136,13 @@ IGNORE_FILES = (
     re.compile(r'^\.'),
     re.compile(r'^.*\.bmp$'),
     re.compile(r'^.*\.exe$'),
+    re.compile(r'^.*\.exp$'),
     re.compile(r'^.*\.ico$'),
     re.compile(r'^.*\.jpg$'),
     re.compile(r'^.*\.lib$'),
     re.compile(r'^.*\.log$'),
     re.compile(r'^.*\.la$'),
+    re.compile(r'^.*\.ncb$'),
     re.compile(r'^.*\.o$'),
     re.compile(r'^.*\.pdf$'),
     re.compile(r'^.*\.plg$'),
@@ -142,6 +156,9 @@ IGNORE_FILES = (
     re.compile(r'^Makefile$'),
     re.compile(r'^Makefile\.in$'),
     re.compile(r'^NEWS\.txt$'),
+    re.compile(r'^News\.txt$'),
+    re.compile(r'^ChangeLog\.txt$'),
+    re.compile(r'^Announce\.txt$'),
     re.compile(r'^history\.docs$'),
     re.compile(r'^design\.docs$'),
     re.compile(r'^ohfunctions\.cpp$'),
@@ -163,6 +180,12 @@ IGNORE_DIRS = (
     re.compile(r'^html$'),
     re.compile(r'^lib$'),
     re.compile(r'^Workbooks$'),
+    re.compile(r'^Launcher$'),
+    re.compile(r'^log4cxx$'),
+    re.compile(r'^QuantLib-FpML$'),
+    re.compile(r'^QuantLib-site$'),
+#    re.compile(r'^QuantLib-SWIG$'),
+    re.compile(r'^SensitivityAnalysis$'),
 )
 
 def prompt_exit(msg='', status=0):
