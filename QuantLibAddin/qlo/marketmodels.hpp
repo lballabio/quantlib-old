@@ -403,7 +403,6 @@ namespace QuantLibAddin {
                    const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
                    const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
                    QuantLib::Natural depositSettlementDays, QuantLib::Natural swapSettlementDays,
-                   QuantLib::DayCounter& swapDayCounter,
                    const QuantLib::DayCounter& yieldCurveDayCounter,
                    QuantLib::Real yieldCurveAccuracy);
 }

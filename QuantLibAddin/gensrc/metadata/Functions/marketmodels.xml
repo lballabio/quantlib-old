@@ -2947,12 +2947,7 @@
                       <tensorRank>scalar</tensorRank>
                       <description>swap SettlementDays</description>
                   </Parameter>
-                  <Parameter name='swapDayCounter' exampleValue='30/360 (Bond Basis)'>
-                      <type>QuantLib::DayCounter</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>swap DayCounter</description>
-                  </Parameter>
-                  <Parameter name='yieldCurveDayCounter' exampleValue='30/360 (Bond Basis)'>
+                  <Parameter name='yieldCurveDayCounter' exampleValue='Actual/365 (Fixed)'>
                       <type>QuantLib::DayCounter</type>
                       <tensorRank>scalar</tensorRank>
                       <description>yieldCurve DayCounter</description>
