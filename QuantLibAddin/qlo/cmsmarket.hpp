@@ -20,12 +20,11 @@
 #define qla_cmsmarket_hpp
 
 #include <oh/objecthandler.hpp>
-#include <ql/termstructures/swaptionvolstructure.hpp>
 #include <ql/termstructures/volatilities/swaption/cmsmarket.hpp>
-#include <ql/termstructure.hpp>
-#include <ql/cashflows/conundrumpricer.hpp>
-#include <qlo/swaptionvolstructure.hpp>
 
+namespace QuantLib {
+    class CmsCouponPricer;
+}
 
 namespace QuantLibAddin {
     

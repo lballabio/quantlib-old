@@ -24,11 +24,15 @@
 
 #include <oh/objecthandler.hpp>
 
-#include <qlo/schedule.hpp>
-#include <qlo/index.hpp>
-#include <qlo/flowanalysis.hpp>
-#include <ql/termstructures/volatilities/all.hpp>
-#include <ql/cashflows/digitalcoupon.hpp>
+#include <ql/types.hpp>
+#include <ql/handle.hpp>
+#include <ql/cashflow.hpp>
+
+namespace QuantLib {
+    class FloatingRateCouponPricer;
+    class Date;
+    class YieldTermStructure;
+}
 
 namespace QuantLibAddin {
 
@@ -41,8 +45,8 @@ namespace QuantLibAddin {
         QuantLib::Real npv(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
         QuantLib::Real bps(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
         QuantLib::Rate atmRate(const QuantLib::Handle<QuantLib::YieldTermStructure>&) const;
-  /*      void setPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
-        void setPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);*/
+        void setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
+        void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
 
         std::vector<std::vector<boost::any> > analysis() const;
         const QuantLib::Leg& getQuantLibLeg();

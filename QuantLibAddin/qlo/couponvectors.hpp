@@ -23,7 +23,15 @@
 #define qla_couponvectors_hpp
 
 #include <oh/objecthandler.hpp>
+
+#include <ql/cashflows/digitalcoupon.hpp>
+
 #include <qlo/leg.hpp>
+
+namespace QuantLib {
+    class Schedule;
+    class IborIndex;
+}
 
 namespace QuantLibAddin {
     

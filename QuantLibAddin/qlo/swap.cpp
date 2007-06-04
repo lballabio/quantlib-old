@@ -25,10 +25,10 @@
 #endif
 
 #include <qlo/swap.hpp>
+#include <qlo/flowanalysis.hpp>
+
 #include <ql/instruments/swap.hpp>
 #include <ql/instruments/makecms.hpp>
-#include <ql/cashflows/cashflows.hpp>
-#include <ql/cashflows/couponpricer.hpp>
 
 namespace QuantLibAddin {
 

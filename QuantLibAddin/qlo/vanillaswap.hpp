@@ -22,6 +22,7 @@
 #define qla_simpleswap_hpp
 
 #include <qlo/swap.hpp>
+#include <ql/instruments/vanillaswap.hpp>
 
 namespace QuantLibAddin {
 

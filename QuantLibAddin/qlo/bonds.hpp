@@ -24,26 +24,21 @@
 #define qla_bonds_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <qlo/index.hpp>
-#include <oh/objecthandler.hpp>
-#include <qlo/schedule.hpp>
-#include <qlo/flowanalysis.hpp>
-#include <qlo/couponvectors.hpp>
-#include <qlo/swaptionvolstructure.hpp>
 
-#include <ql/cashflows/conundrumpricer.hpp>
-#include <ql/termstructures/volatilities/all.hpp>
-#include <ql/indexes/iborindex.hpp>
-#include <ql/indexes/swapindex.hpp>
-//#include <ql/currency.hpp>
+#include <ql/currency.hpp>
+
+#include <oh/objecthandler.hpp>
+
 #include <string>
 
 namespace QuantLib {
-    class Currency;
+    class FloatingRateCouponPricer;
+    class SwapIndex;
+    class IborIndex;
+    class Schedule;
 }
 
 namespace QuantLibAddin {
-
 
     class Bond : public Instrument {
       public:
@@ -55,8 +50,8 @@ namespace QuantLibAddin {
         std::vector<std::vector<boost::any> > flowAnalysis();
         const std::string& description() { return description_; }
         const QuantLib::Currency& currency() { return currency_; }
-        void setPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
-        void setPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
+        void setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
+        void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
 
       private:
         std::string description_;

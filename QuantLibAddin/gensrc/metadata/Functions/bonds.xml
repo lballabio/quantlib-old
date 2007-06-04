@@ -3,13 +3,11 @@
   <displayName>Bonds</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
-    <include>ql/instruments/bonds/fixedratebond.hpp</include>
-    <include>ql/instruments/bonds/zerocouponbond.hpp</include>
-    <include>ql/instruments/bonds/cmsratebond.hpp</include>
-    <include>ql/instruments/bonds/floatingratebond.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/bonds.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
-    <include>qlo/bonds.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/couponvectors.hpp</include>
   </includes>
@@ -230,9 +228,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondSetPricer' type='QuantLibAddin::Bond'>
+    <Member name='qlBondSetCouponPricer' type='QuantLibAddin::Bond'>
       <description>Set the coupon pricer at the given Bond object</description>
-      <libraryFunction>setPricer</libraryFunction>
+      <libraryFunction>setCouponPricer</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -251,9 +249,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondSetPricers' type='QuantLibAddin::Bond'>
+    <Member name='qlBondSetCouponPricers' type='QuantLibAddin::Bond'>
       <description>Set the coupon pricer at the given Bond object</description>
-      <libraryFunction>setPricers</libraryFunction>
+      <libraryFunction>setCouponPricers</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>

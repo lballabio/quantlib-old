@@ -25,7 +25,6 @@
 
 #include <qlo/baseinstruments.hpp>
 #include <qlo/couponvectors.hpp>
-#include <qlo/couponvectors.hpp>
 
 namespace QuantLibAddin {
     

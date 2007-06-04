@@ -36,7 +36,6 @@ GENERAL
 NANDO
 - production: writing privileges (xla and the rest)
 - debug hook at xll loading (for debugging start-up actions)
-- remove log_path in xla
 - VS Express
 - relinkable handle creation (xla, then xll)
 - check Index used in Mx bootstrapping
@@ -89,7 +88,7 @@ CW	18%
 	- check delta price in terms of vega (1d/2d)
 - Sensitivity Analysis (K&Cristina): 			(5.5d/5w)
   -     create book (test2) of irs seasoned deals in Mx	(done)
-  -	create book (test2) of swaptions in Mx & QLXL	(done)	
+  -	create book (test2) of swaptions in Mx & QLXL	(done)
   -	run sa on smile
   -	test on irs book vs Mx (manual + code)		(1d/2d)
   -	test on swaptions book (atm+smile)
@@ -294,8 +293,11 @@ MARCO (last update 30/5/2007)
 ---
 Eric
 - open log file from menu
+- log defaults
 - automatic cell menu updates
 - erratic error message behaviour
+  why the error message doesn't disappear as soon as the cell is not in error
+  anymore
 - SA, serialization
 - 2 DOF projects
 - JRisk
@@ -306,11 +308,8 @@ Eric
 - remove quantlibxl-bin.nsi
 - merge quantlibxl.nsi and quantlib-network.nsi
 - in the nsi generalize the location of the xml files
-- log defaults
 - oh.chm
 - review native ohSplit on vector input to coerce from string to vector
-- why the error message doesn't disappear as soon as the cell is not in error
-  anymore
 - ohConcatenate, ohRange1D, ohRange2D
 - command (remove function SetEvaluationDate, etc?)
 - discount factors output is not col/row enabled

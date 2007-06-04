@@ -25,15 +25,12 @@
 #endif
 
 #include <qlo/bonds.hpp>
-#include <qlo/couponvectors.hpp>
-#include <qlo/termstructures.hpp>
-#include <qlo/swaptionvolstructure.hpp>
-#include <qlo/capletvolstructure.hpp>
+#include <qlo/flowanalysis.hpp>
+
 #include <ql/instruments/bonds/fixedratebond.hpp>
 #include <ql/instruments/bonds/zerocouponbond.hpp>
 #include <ql/instruments/bonds/cmsratebond.hpp>
 #include <ql/instruments/bonds/floatingratebond.hpp>
-#include <ql/cashflows/cashflows.hpp>
 #include <ql/cashflows/couponpricer.hpp>
 
 namespace QuantLibAddin {
@@ -47,14 +44,14 @@ namespace QuantLibAddin {
         return QuantLibAddin::flowAnalysis(cashflows);
     }
 
-    void Bond::setPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer){
+    void Bond::setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer){
         boost::shared_ptr<QuantLib::Bond> temp;
         getLibraryObject(temp);
         const QuantLib::Leg& cashflows = temp->cashflows();
         QuantLib::setCouponPricer(cashflows, pricer);
     }
 
-    void Bond::setPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers){
+    void Bond::setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers){
         boost::shared_ptr<QuantLib::Bond> temp;
         getLibraryObject(temp);
         const QuantLib::Leg& cashflows = temp->cashflows();

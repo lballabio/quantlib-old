@@ -3,10 +3,12 @@
   <displayName>Asset Swap</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
-    <include>ql/instruments/assetswap.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>qlo/schedule.hpp</include>
     <include>qlo/assetswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/bonds.hpp</include>
+    <include>ql/instruments/assetswap.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006, 2007 Chiara Fornarola

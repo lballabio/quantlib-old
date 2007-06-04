@@ -3,10 +3,13 @@
   <displayName>Vanilla Swap</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
+    <include>qlo/index.hpp</include>
+    <include>qlo/schedule.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
   </includes>
   <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Aurelien Chanudet

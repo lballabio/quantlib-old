@@ -25,7 +25,8 @@
 #endif
 
 #include <qlo/leg.hpp>
-#include <qlo/termstructures.hpp>
+#include <qlo/flowanalysis.hpp>
+//#include <qlo/termstructures.hpp>
 #include <qlo/Enumerations/Factories/iborcouponpricersfactory.hpp>
 
 #include <ql/cashflow.hpp>
@@ -33,6 +34,7 @@
 #include <ql/cashflows/simplecashflow.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
 #include <ql/cashflows/cashflows.hpp>
+#include <ql/cashflows/couponpricer.hpp>
 
 using QuantLib::earlier_than;
 using QuantLib::CashFlow;
@@ -71,15 +73,15 @@ namespace QuantLibAddin {
         return flowAnalysis(leg_);
     }
 
-    //void Leg::setPricer(
-    //        const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer) {
-    //    return QuantLib::CashFlows::setPricer(leg_,pricer);
-    //}
+    void Leg::setCouponPricer(
+            const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer) {
+        return QuantLib::setCouponPricer(leg_, pricer);
+    }
 
-    //void Leg::setPricers(
-    //        const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers) {
-    //    return QuantLib::CashFlows::setPricers(leg_,pricers);
-    //}
+    void Leg::setCouponPricers(
+            const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers) {
+        return QuantLib::setCouponPricers(leg_, pricers);
+    }
 
     const QuantLib::Leg& Leg::getQuantLibLeg() {
         return leg_;

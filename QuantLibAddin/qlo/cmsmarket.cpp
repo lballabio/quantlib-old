@@ -21,8 +21,8 @@
 #endif
 
 #include <qlo/cmsmarket.hpp>
-#include <qlo/couponvectors.hpp>
-#include <qlo/termstructures.hpp>
+#include <qlo/swaptionvolstructure.hpp>
+
 #include <boost/timer.hpp>
 
 namespace QuantLibAddin {
