@@ -500,7 +500,7 @@ namespace QuantLibAddin {
                    const QuantLib::DayCounter& yieldCurveDayCounter,
                    QuantLib::Real yieldCurveAccuracy) {
         
-        return computeHistoricalCorrelationsZeroYieldLinear(
+        return QuantLib::computeHistoricalCorrelations<QuantLib::ZeroYield, QuantLib::Linear>(
                    startDate, endDate, historicalStep,
                    calendar,
                    index,
