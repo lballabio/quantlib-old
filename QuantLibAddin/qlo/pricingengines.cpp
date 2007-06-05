@@ -20,6 +20,10 @@
 #include <qlo/pricingengines.hpp>
 #include <qlo/Enumerations/Factories/pricingenginesfactory.hpp>
 #include <ql/pricingengines/blackscholescalculator.hpp>
+#include <ql/pricingengines/capfloor/analyticcapfloorengine.hpp>
+#include <ql/pricingengines/capfloor/blackcapfloorengine.hpp> 
+#include <ql/pricingengines/capfloor/marketmodelcapfloorengine.hpp>
+#include <qlo/swaption.hpp>
 
 namespace QuantLibAddin {
 

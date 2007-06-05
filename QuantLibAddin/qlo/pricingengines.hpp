@@ -23,10 +23,19 @@
 #include <oh/objecthandler.hpp>
 #include <ql/pricingengine.hpp>
 #include <ql/pricingengines/blackcalculator.hpp>
-#include <ql/pricingengines/swaption/blackswaptionengine.hpp>
-#include <ql/pricingengines/capfloor/blackcapfloorengine.hpp>
-#include <ql/pricingengines/capfloor/analyticcapfloorengine.hpp>
-#include <ql/pricingengines/capfloor/marketmodelcapfloorengine.hpp>
+#include <ql/handle.hpp>
+#include <ql/quote.hpp>
+
+namespace QuantLib {
+    class SimpleQuote;
+    class AffineModel;
+    class MarketModelFactory;
+    class SwaptionVolatilityStructure;
+    class CapletVolatilityStructure;
+    class BlackCapFloorEngine;
+    class AnalyticCapFloorEngine;
+    class MarketModelCapFloorEngine;
+}
 
 namespace QuantLibAddin {
 
@@ -59,10 +68,12 @@ namespace QuantLibAddin {
         AnalyticCapFloorEngine(
             const boost::shared_ptr<QuantLib::AffineModel>& model);
     };
+
     class MarketModelCapFloorEngine : public PricingEngine  {
       public:
         MarketModelCapFloorEngine(const boost::shared_ptr<QuantLib::MarketModelFactory>&);
-    }; 
+    };
+
     class BlackCalculator : public ObjectHandler::LibraryObject<QuantLib::BlackCalculator> {
       public:
         BlackCalculator(
