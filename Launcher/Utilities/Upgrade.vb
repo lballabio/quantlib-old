@@ -64,7 +64,7 @@ Module Upgrade
         Try
 
             r_ = New QuantLibXL.RegistryEditor
-            r_.deleteKey("QuantLibXL Launcher\LauncherVersion8")
+            r_.deleteKey("QuantLibXL Launcher")
             initializeRegistryLatestVersion()
             r_ = Nothing
 
@@ -84,18 +84,15 @@ Module Upgrade
     End Sub
 
     Private Sub getVersionNumber()
+
         If r_.keyExists("QuantLibXL Launcher\LauncherVersion8") Then
             registryVersion_ = 8
-            Exit Sub
-        End If
-        If r_.keyExists("QuantLibXL Launcher") Then
-            If r_.keyExists("QuantLibXL Launcher\LauncherVersion7") Then
-                registryVersion_ = 7
-            ElseIf r_.keyExists("QuantLibXL Launcher\LauncherVersion6") Then
-                registryVersion_ = 6
-            Else
-                registryVersion_ = 5
-            End If
+        ElseIf r_.keyExists("QuantLibXL Launcher\LauncherVersion7") Then
+            registryVersion_ = 7
+        ElseIf r_.keyExists("QuantLibXL Launcher\LauncherVersion6") Then
+            registryVersion_ = 6
+        ElseIf r_.keyExists("QuantLibXL Launcher") Then
+            registryVersion_ = 5
         ElseIf r_.keyExists("QuantLibXL") Then
             If r_.valueExists("QuantLibXL\Configuration", "Version") Then
                 registryVersion_ = r_.getValue("QuantLibXL\Configuration", "Version")
@@ -122,6 +119,15 @@ Module Upgrade
         If registryVersion_ = 5 Then upgradeVersion5to6()
         If registryVersion_ = 6 Then upgradeVersion6to7()
         If registryVersion_ = 7 Then upgradeVersion7to8()
+
+        ' Temporary hack - implement new feature without incrementing the launcher version number.
+        ' If the version 8 registry key doesn't contain value ExcelPath then initialize it.
+        ' This logic should be superceded by version 9 when it's implemented.
+        If Not r_.valueExists("QuantLibXL Launcher\LauncherVersion8\Configuration", "ExcelPath") Then
+            r_.setValue("QuantLibXL Launcher\LauncherVersion8\Configuration", _
+                "ExcelPath", deriveDefaultExcelPath())
+        End If
+
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -147,10 +153,6 @@ Module Upgrade
         registryVersion_ = 8
 
     End Sub
-
-    ''''''''''''''''''''''''''''''''''''''''''''''''''
-    ' upgrade registry from previous launcher versions
-    ''''''''''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub upgradeVersion6to7()
 
@@ -291,15 +293,17 @@ Module Upgrade
     ' initialize registry for first use
     ''''''''''''''''''''''''''''''''''''''''''
     Private Sub initializeRegistryLatestVersion()
+
         Dim path As String
         path = "QuantLibXL Launcher\LauncherVersion" & THIS_VERSION & "\Configuration"
         r_.createKey(path)
         r_.setValue(path, "SelectedEnvConfig", "")
         r_.setValue(path, "SelectedEnvName", "")
-        r_.setValue(path, "ReutersPath", QuantLibXL.Configuration.REUTERS_PATH_DEFAULT)
-        r_.setValue(path, "BloombergPath", QuantLibXL.Configuration.BLOOMBERG_PATH_DEFAULT)
+        r_.setValue(path, "ReutersPath", QuantLibXL.Configuration.REUTERS_PATH_DEFAULT & "\" & QuantLibXL.Configuration.REUTERS_XLA_DEFAULT)
+        r_.setValue(path, "BloombergPath", QuantLibXL.Configuration.BLOOMBERG_PATH_DEFAULT & "\" & QuantLibXL.Configuration.BLOOMBERG_XLA_DEFAULT)
         r_.setValue(path, "ReutersSelected", False)
         r_.setValue(path, "BloombergSelected", False)
+        r_.setValue(path, "ExcelPath", deriveDefaultExcelPath())
         r_.createKey(path & "\StartupActionsList")
         r_.createKey(path & "\Environments")
 

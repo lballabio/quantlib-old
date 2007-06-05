@@ -174,14 +174,6 @@ Namespace QuantLibXL
 
         End Property
 
-        Public ReadOnly Property CommandLine() As String
-
-            Get
-                CommandLine = """" & EXCEL_PATH & """ /e """ & frameworkName_ & """"
-            End Get
-
-        End Property
-
         ''''''''''''''''''''''''''''''''''''''''''
         ' Serializable interface
         ''''''''''''''''''''''''''''''''''''''''''
@@ -292,6 +284,22 @@ Namespace QuantLibXL
 
         End Sub
 
+        Private Sub validateExcelPath(ByVal excelPath As String)
+
+            If Len(excelPath) > 0 Then
+                If Not fileExists(excelPath) Then
+                    Throw New Exception("Error: this application is configured to load Excel " & _
+                    "from the following location:" & vbCrLf & vbCrLf & excelPath & _
+                    vbCrLf & vbCrLf & "The path appears to be invalid." & vbCrLf & vbCrLf & _
+                    "Go to the 'Paths' tab and set the path to Excel.")
+                End If
+            Else
+                Throw New Exception("The path to Excel has not been specified." & _
+                vbCrLf & "Go to the 'Paths' tab and set the path to Excel.")
+            End If
+
+        End Sub
+
         Private Sub validate()
 
             validateDirectory(workbooks_, "workbook directory")
@@ -312,7 +320,7 @@ Namespace QuantLibXL
         ' directory, and set environment variable QUANTLIBXL_LAUNCH to
         ' inform the QuantLibXL session of the location of the file.
 
-        Public Sub launch(ByVal feedAddins() As String)
+        Public Sub launch(ByVal feedAddins() As String, ByVal excelPath As String)
 
             ' Save the original value of addinList_
             Dim keepAddinList() As String = addinList_
@@ -322,6 +330,7 @@ Namespace QuantLibXL
                 ' Temporarily prepend feedAddins (Reuters/Bloomberg) to addinList_
                 processFeedAddins(feedAddins)
 
+                validateExcelPath(excelPath)
                 validate()
                 authenticateUser()
 
@@ -353,7 +362,9 @@ Namespace QuantLibXL
 
                 ' Spawn the subprocess
 
-                Shell(CommandLine, AppWinStyle.NormalFocus)
+                Dim commandLine As String
+                commandLine = """" & excelPath & """ /e """ & frameworkName_ & """"
+                Shell(commandLine, AppWinStyle.NormalFocus)
 
                 ' Restore addinList_ to its original value
                 addinList_ = keepAddinList

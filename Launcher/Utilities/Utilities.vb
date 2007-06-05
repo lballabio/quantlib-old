@@ -16,8 +16,9 @@
 
 Module Utilities
 
-    Public Const EXCEL_PATH As String = "C:\Program Files\Microsoft Office\Office10\EXCEL.EXE"
     Private Const QUANTLIBXL_CONFIG_PATH As String = "QUANTLIBXL_CONFIG_PATH"
+    Private Const EXCEL_10_PATH As String = "C:\Program Files\Microsoft Office\OFFICE10\EXCEL.EXE"
+    Private Const EXCEL_11_PATH As String = "C:\Program Files\Microsoft Office\OFFICE11\EXCEL.EXE2"
 
     Function fileExists(ByVal PathName As String) As Boolean
 
@@ -55,6 +56,18 @@ Module Utilities
             "for the QuantLibXL launcher, e.g:" & _
             vbCrLf & vbCrLf & QUANTLIBXL_CONFIG_PATH & _
             "=C:\projects\trunk\Launcher")
+        End If
+
+    End Function
+
+    Function deriveDefaultExcelPath() As String
+
+        If fileExists(EXCEL_11_PATH) Then
+            deriveDefaultExcelPath = EXCEL_11_PATH
+        ElseIf fileExists(EXCEL_10_PATH) Then
+            deriveDefaultExcelPath = EXCEL_10_PATH
+        Else
+            deriveDefaultExcelPath = ""
         End If
 
     End Function

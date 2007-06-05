@@ -22,7 +22,7 @@ Namespace QuantLibXL
         Public Const REUTERS_PATH_DEFAULT As String = "C:\Program Files\Reuters\PowerPlus"
         Public Const BLOOMBERG_PATH_DEFAULT As String = "C:\blp\API\dde"
         Public Const REUTERS_XLA_DEFAULT As String = "PPP.xla"
-        Public Const BLOOMBERG_XLA_DEFAULT As String = "Blp.xla"
+        Public Const BLOOMBERG_XLA_DEFAULT As String = "BlpMain.xla"
 
         Private selectedEnvConfig_ As String = ""
         Private selectedEnvName_ As String = ""
@@ -30,6 +30,9 @@ Namespace QuantLibXL
         Private bloombergPath_ As String = ""
         Private reutersSelected_ As Boolean = False
         Private bloombergSelected_ As Boolean = False
+        Private reutersEnabled_ As Boolean = False
+        Private bloombergEnabled_ As Boolean = False
+        Private excelPath_ As String = ""
         'Private version_ As Integer
         Private overrideActions_ As QuantLibXL.StartupActionsList
 
@@ -127,17 +130,56 @@ Namespace QuantLibXL
 
         End Property
 
+        Public Property ReutersEnabled() As Boolean
+
+            Get
+                Return reutersEnabled_
+            End Get
+
+            Set(ByVal value As Boolean)
+                reutersEnabled_ = value
+            End Set
+
+        End Property
+
+        Public Property BloombergEnabled() As Boolean
+
+            Get
+                Return bloombergEnabled_
+            End Get
+
+            Set(ByVal value As Boolean)
+                bloombergEnabled_ = value
+            End Set
+
+        End Property
+
+        Public Property ExcelPath() As String
+
+            Get
+                Return excelPath_
+            End Get
+
+            Set(ByVal value As String)
+                excelPath_ = value
+            End Set
+
+        End Property
+
         ' Generate a list of feed addins to be loaded by the Framework
         Public ReadOnly Property FeedList() As String()
 
             Get
-                Dim ret(boolToInt(reutersSelected_) + boolToInt(bloombergSelected_) - 1) As String
+                Dim usingReuters As Boolean = reutersSelected_ And reutersEnabled_
+                Dim usingBloomberg As Boolean = bloombergSelected_ And bloombergEnabled_
+
+                Dim ret(boolToInt(usingReuters) + boolToInt(usingBloomberg) - 1) As String
                 Dim idx As Integer = 0
-                If reutersSelected_ Then
+                If usingReuters Then
                     ret(0) = reutersPath_
                     idx = 1
                 End If
-                If bloombergSelected_ Then
+                If usingBloomberg Then
                     ret(idx) = bloombergPath_
                 End If
 
@@ -154,6 +196,7 @@ Namespace QuantLibXL
             serializer.serializeProperty(bloombergPath_, "BloombergPath")
             serializer.serializeProperty(reutersSelected_, "ReutersSelected")
             serializer.serializeProperty(bloombergSelected_, "BloombergSelected")
+            serializer.serializeProperty(excelPath_, "ExcelPath")
             serializer.serializeObject(overrideActions_, "StartupActionsList", versionNumber)
 
         End Sub

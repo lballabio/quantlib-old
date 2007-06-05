@@ -137,6 +137,7 @@
   <ItemGroup>
     <Content Include="Environments\config.xml" />
     <Content Include="images\down.bmp" />
+    <None Include="images\excel.ico" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\up.bmp" />
     <Content Include="updateLauncherXlls.py" />

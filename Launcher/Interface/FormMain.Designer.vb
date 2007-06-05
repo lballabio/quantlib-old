@@ -39,6 +39,7 @@ Partial Class FormMain
         Me.lblUserConfigured = New System.Windows.Forms.Label
         Me.lstPreconfigured = New System.Windows.Forms.ListBox
         Me.grpStartup = New System.Windows.Forms.GroupBox
+        Me.cbCalibrateCms = New System.Windows.Forms.CheckBox
         Me.cbStaticData = New System.Windows.Forms.CheckBox
         Me.cbFitCMS = New System.Windows.Forms.CheckBox
         Me.cbLoadBonds = New System.Windows.Forms.CheckBox
@@ -54,6 +55,10 @@ Partial Class FormMain
         Me.cbBloomberg = New System.Windows.Forms.CheckBox
         Me.cbReuters = New System.Windows.Forms.CheckBox
         Me.tpPaths = New System.Windows.Forms.TabPage
+        Me.btnLaunchExcel = New System.Windows.Forms.Button
+        Me.txtExcelPath = New System.Windows.Forms.TextBox
+        Me.lblExcelPath = New System.Windows.Forms.Label
+        Me.btnExcelPath = New System.Windows.Forms.Button
         Me.lblFrameworkVersion = New System.Windows.Forms.Label
         Me.mskFrameworkVersion = New System.Windows.Forms.MaskedTextBox
         Me.txtUserConfig = New System.Windows.Forms.TextBox
@@ -80,8 +85,16 @@ Partial Class FormMain
         Me.btnReuters = New System.Windows.Forms.Button
         Me.txtReuters = New System.Windows.Forms.TextBox
         Me.lblReuters = New System.Windows.Forms.Label
+        Me.tpAbout = New System.Windows.Forms.TabPage
+        Me.lblHardDiskValue = New System.Windows.Forms.Label
+        Me.lblDomainValue = New System.Windows.Forms.Label
+        Me.lblUserNameValue = New System.Windows.Forms.Label
+        Me.lblVersionValue = New System.Windows.Forms.Label
+        Me.lblHardDisk = New System.Windows.Forms.Label
+        Me.lblDomain = New System.Windows.Forms.Label
+        Me.lblUserName = New System.Windows.Forms.Label
+        Me.lblVersion = New System.Windows.Forms.Label
         Me.lblBuildNumber = New System.Windows.Forms.Label
-        Me.cbCalibrateCms = New System.Windows.Forms.CheckBox
         Me.grpEnvironment.SuspendLayout()
         Me.tstEnvironment.SuspendLayout()
         Me.grpStartup.SuspendLayout()
@@ -92,6 +105,7 @@ Partial Class FormMain
         Me.tpAddins.SuspendLayout()
         Me.tstAddins.SuspendLayout()
         Me.tpFeeds.SuspendLayout()
+        Me.tpAbout.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnClose
@@ -279,6 +293,16 @@ Partial Class FormMain
         Me.grpStartup.TabStop = False
         Me.grpStartup.Text = "Startup Actions"
         '
+        'cbCalibrateCms
+        '
+        Me.cbCalibrateCms.AutoSize = True
+        Me.cbCalibrateCms.Location = New System.Drawing.Point(10, 111)
+        Me.cbCalibrateCms.Name = "cbCalibrateCms"
+        Me.cbCalibrateCms.Size = New System.Drawing.Size(129, 17)
+        Me.cbCalibrateCms.TabIndex = 9
+        Me.cbCalibrateCms.Text = "Calibrate CMS Market"
+        Me.cbCalibrateCms.UseVisualStyleBackColor = True
+        '
         'cbStaticData
         '
         Me.cbStaticData.AutoSize = True
@@ -374,6 +398,7 @@ Partial Class FormMain
         Me.tcLauncher.Controls.Add(Me.tpPaths)
         Me.tcLauncher.Controls.Add(Me.tpAddins)
         Me.tcLauncher.Controls.Add(Me.tpFeeds)
+        Me.tcLauncher.Controls.Add(Me.tpAbout)
         Me.tcLauncher.Location = New System.Drawing.Point(3, 3)
         Me.tcLauncher.Name = "tcLauncher"
         Me.tcLauncher.SelectedIndex = 0
@@ -426,6 +451,10 @@ Partial Class FormMain
         '
         'tpPaths
         '
+        Me.tpPaths.Controls.Add(Me.btnLaunchExcel)
+        Me.tpPaths.Controls.Add(Me.txtExcelPath)
+        Me.tpPaths.Controls.Add(Me.lblExcelPath)
+        Me.tpPaths.Controls.Add(Me.btnExcelPath)
         Me.tpPaths.Controls.Add(Me.lblFrameworkVersion)
         Me.tpPaths.Controls.Add(Me.mskFrameworkVersion)
         Me.tpPaths.Controls.Add(Me.txtUserConfig)
@@ -450,6 +479,40 @@ Partial Class FormMain
         Me.tpPaths.TabIndex = 1
         Me.tpPaths.Text = "Paths"
         Me.tpPaths.UseVisualStyleBackColor = True
+        '
+        'btnLaunchExcel
+        '
+        Me.btnLaunchExcel.Image = Global.launcher.My.Resources.Resources.excel
+        Me.btnLaunchExcel.Location = New System.Drawing.Point(313, 260)
+        Me.btnLaunchExcel.Name = "btnLaunchExcel"
+        Me.btnLaunchExcel.Size = New System.Drawing.Size(32, 23)
+        Me.btnLaunchExcel.TabIndex = 28
+        Me.btnLaunchExcel.UseVisualStyleBackColor = True
+        '
+        'txtExcelPath
+        '
+        Me.txtExcelPath.Location = New System.Drawing.Point(31, 260)
+        Me.txtExcelPath.Name = "txtExcelPath"
+        Me.txtExcelPath.Size = New System.Drawing.Size(276, 20)
+        Me.txtExcelPath.TabIndex = 27
+        '
+        'lblExcelPath
+        '
+        Me.lblExcelPath.AutoSize = True
+        Me.lblExcelPath.Location = New System.Drawing.Point(11, 244)
+        Me.lblExcelPath.Name = "lblExcelPath"
+        Me.lblExcelPath.Size = New System.Drawing.Size(70, 13)
+        Me.lblExcelPath.TabIndex = 26
+        Me.lblExcelPath.Text = "Path to Excel"
+        '
+        'btnExcelPath
+        '
+        Me.btnExcelPath.Location = New System.Drawing.Point(351, 260)
+        Me.btnExcelPath.Name = "btnExcelPath"
+        Me.btnExcelPath.Size = New System.Drawing.Size(32, 23)
+        Me.btnExcelPath.TabIndex = 25
+        Me.btnExcelPath.Text = "..."
+        Me.btnExcelPath.UseVisualStyleBackColor = True
         '
         'lblFrameworkVersion
         '
@@ -689,6 +752,96 @@ Partial Class FormMain
         Me.lblReuters.TabIndex = 19
         Me.lblReuters.Text = "Reuters"
         '
+        'tpAbout
+        '
+        Me.tpAbout.Controls.Add(Me.lblHardDiskValue)
+        Me.tpAbout.Controls.Add(Me.lblDomainValue)
+        Me.tpAbout.Controls.Add(Me.lblUserNameValue)
+        Me.tpAbout.Controls.Add(Me.lblVersionValue)
+        Me.tpAbout.Controls.Add(Me.lblHardDisk)
+        Me.tpAbout.Controls.Add(Me.lblDomain)
+        Me.tpAbout.Controls.Add(Me.lblUserName)
+        Me.tpAbout.Controls.Add(Me.lblVersion)
+        Me.tpAbout.Location = New System.Drawing.Point(4, 22)
+        Me.tpAbout.Name = "tpAbout"
+        Me.tpAbout.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpAbout.Size = New System.Drawing.Size(395, 310)
+        Me.tpAbout.TabIndex = 4
+        Me.tpAbout.Text = "About"
+        Me.tpAbout.UseVisualStyleBackColor = True
+        '
+        'lblHardDiskValue
+        '
+        Me.lblHardDiskValue.AutoSize = True
+        Me.lblHardDiskValue.Location = New System.Drawing.Point(155, 80)
+        Me.lblHardDiskValue.Name = "lblHardDiskValue"
+        Me.lblHardDiskValue.Size = New System.Drawing.Size(69, 13)
+        Me.lblHardDiskValue.TabIndex = 7
+        Me.lblHardDiskValue.Text = "serial number"
+        '
+        'lblDomainValue
+        '
+        Me.lblDomainValue.AutoSize = True
+        Me.lblDomainValue.Location = New System.Drawing.Point(155, 58)
+        Me.lblDomainValue.Name = "lblDomainValue"
+        Me.lblDomainValue.Size = New System.Drawing.Size(41, 13)
+        Me.lblDomainValue.TabIndex = 6
+        Me.lblDomainValue.Text = "domain"
+        '
+        'lblUserNameValue
+        '
+        Me.lblUserNameValue.AutoSize = True
+        Me.lblUserNameValue.Location = New System.Drawing.Point(156, 34)
+        Me.lblUserNameValue.Name = "lblUserNameValue"
+        Me.lblUserNameValue.Size = New System.Drawing.Size(53, 13)
+        Me.lblUserNameValue.TabIndex = 5
+        Me.lblUserNameValue.Text = "username"
+        '
+        'lblVersionValue
+        '
+        Me.lblVersionValue.AutoSize = True
+        Me.lblVersionValue.Location = New System.Drawing.Point(155, 12)
+        Me.lblVersionValue.Name = "lblVersionValue"
+        Me.lblVersionValue.Size = New System.Drawing.Size(40, 13)
+        Me.lblVersionValue.TabIndex = 4
+        Me.lblVersionValue.Text = "0.0.0.0"
+        '
+        'lblHardDisk
+        '
+        Me.lblHardDisk.AutoSize = True
+        Me.lblHardDisk.Location = New System.Drawing.Point(6, 80)
+        Me.lblHardDisk.Name = "lblHardDisk"
+        Me.lblHardDisk.Size = New System.Drawing.Size(123, 13)
+        Me.lblHardDisk.TabIndex = 3
+        Me.lblHardDisk.Text = "Hard Disk Serial Number"
+        '
+        'lblDomain
+        '
+        Me.lblDomain.AutoSize = True
+        Me.lblDomain.Location = New System.Drawing.Point(6, 58)
+        Me.lblDomain.Name = "lblDomain"
+        Me.lblDomain.Size = New System.Drawing.Size(43, 13)
+        Me.lblDomain.TabIndex = 2
+        Me.lblDomain.Text = "Domain"
+        '
+        'lblUserName
+        '
+        Me.lblUserName.AutoSize = True
+        Me.lblUserName.Location = New System.Drawing.Point(6, 34)
+        Me.lblUserName.Name = "lblUserName"
+        Me.lblUserName.Size = New System.Drawing.Size(60, 13)
+        Me.lblUserName.TabIndex = 1
+        Me.lblUserName.Text = "User Name"
+        '
+        'lblVersion
+        '
+        Me.lblVersion.AutoSize = True
+        Me.lblVersion.Location = New System.Drawing.Point(6, 12)
+        Me.lblVersion.Name = "lblVersion"
+        Me.lblVersion.Size = New System.Drawing.Size(90, 13)
+        Me.lblVersion.TabIndex = 0
+        Me.lblVersion.Text = "Launcher Version"
+        '
         'lblBuildNumber
         '
         Me.lblBuildNumber.AutoSize = True
@@ -701,16 +854,6 @@ Partial Class FormMain
         Me.lblBuildNumber.TabIndex = 22
         Me.lblBuildNumber.Text = "version 0.0.0.0"
         Me.lblBuildNumber.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'cbCalibrateCms
-        '
-        Me.cbCalibrateCms.AutoSize = True
-        Me.cbCalibrateCms.Location = New System.Drawing.Point(10, 111)
-        Me.cbCalibrateCms.Name = "cbCalibrateCms"
-        Me.cbCalibrateCms.Size = New System.Drawing.Size(129, 17)
-        Me.cbCalibrateCms.TabIndex = 9
-        Me.cbCalibrateCms.Text = "Calibrate CMS Market"
-        Me.cbCalibrateCms.UseVisualStyleBackColor = True
         '
         'FormMain
         '
@@ -743,6 +886,8 @@ Partial Class FormMain
         Me.tstAddins.PerformLayout()
         Me.tpFeeds.ResumeLayout(False)
         Me.tpFeeds.PerformLayout()
+        Me.tpAbout.ResumeLayout(False)
+        Me.tpAbout.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -809,4 +954,17 @@ Partial Class FormMain
     Friend WithEvents cbBloomberg As System.Windows.Forms.CheckBox
     Friend WithEvents lblBuildNumber As System.Windows.Forms.Label
     Friend WithEvents cbCalibrateCms As System.Windows.Forms.CheckBox
+    Friend WithEvents txtExcelPath As System.Windows.Forms.TextBox
+    Friend WithEvents lblExcelPath As System.Windows.Forms.Label
+    Friend WithEvents btnExcelPath As System.Windows.Forms.Button
+    Friend WithEvents tpAbout As System.Windows.Forms.TabPage
+    Friend WithEvents lblUserName As System.Windows.Forms.Label
+    Friend WithEvents lblVersion As System.Windows.Forms.Label
+    Friend WithEvents lblHardDiskValue As System.Windows.Forms.Label
+    Friend WithEvents lblDomainValue As System.Windows.Forms.Label
+    Friend WithEvents lblUserNameValue As System.Windows.Forms.Label
+    Friend WithEvents lblVersionValue As System.Windows.Forms.Label
+    Friend WithEvents lblHardDisk As System.Windows.Forms.Label
+    Friend WithEvents lblDomain As System.Windows.Forms.Label
+    Friend WithEvents btnLaunchExcel As System.Windows.Forms.Button
 End Class

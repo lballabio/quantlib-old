@@ -77,12 +77,10 @@ Public Class FormMain
             overrideActions()
             initializeLists()
             selectEnvironment()
+            initializeAboutTab()
+            setToolTips()
 
-            If (ApplicationDeployment.IsNetworkDeployed) Then
-                lblBuildNumber.Text = "version " & My.Application.Deployment.CurrentVersion.ToString()
-            Else
-                lblBuildNumber.Text = "local build"
-            End If
+            lblBuildNumber.Text = buildNumber()
 
         Catch ex As Exception
 
@@ -150,18 +148,12 @@ Public Class FormMain
         If Not fileExists(deriveConfigPath) Then
             Throw New Exception("Error: this application loads configuration information " & _
             "from the following location:" & vbCrLf & vbCrLf & deriveConfigPath & vbCrLf & vbCrLf & _
-            "The path appears to be invalid.")
+            "The path is invalid.")
         End If
 
     End Function
 
     Private Sub initializeConfig()
-
-        If Not fileExists(EXCEL_PATH) Then
-            Throw New Exception("Error: this application is configured to load Excel " & _
-            "from the following location:" & vbCrLf & vbCrLf & EXCEL_PATH & vbCrLf & vbCrLf & _
-            "the path appears to be invalid")
-        End If
 
         ' Derive the location of the launcher configuration file config.xml:
         ' - If this application is being run across the network (a ClickOnce installation)
@@ -205,10 +197,20 @@ Public Class FormMain
                  & vbCrLf & vbCrLf & ex.Message)
         End Try
 
+        If Not fileExists(config_.ExcelPath) Then
+            MsgBox("Warning: The Launcher is unable to determine the path to Microsoft Excel." _
+                & vbCrLf & "Before launching QuantLibXL you must go to the 'Paths' tab" _
+                & vbCrLf & "and specify the path to Excel.", _
+                MsgBoxStyle.OkOnly + MsgBoxStyle.Information, "QuantLibXL Warning")
+        End If
+
         txtReuters.Text = config_.ReutersPath
         txtBloomberg.Text = config_.BloombergPath
         cbReuters.Checked = config_.ReutersSelected
         cbBloomberg.Checked = config_.BloombergSelected
+        txtExcelPath.Text = config_.ExcelPath
+        setReutersPathEnabled()
+        setBloombergPathEnabled()
 
     End Sub
 
@@ -242,16 +244,7 @@ Public Class FormMain
     Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
 
         Try
-            config_.OverrideActions.clear()
-            For Each environment As QuantLibXL.Environment In envPreconfigured_.Environments
-                config_.OverrideActions.add(environment.StartupActions, environment.Name)
-            Next
-
-            Dim registryWriter As New QuantLibXL.RegistryWriter()
-            registryWriter.deleteKey("Configuration")
-            registryWriter.serializeObject(config_, "Configuration", THIS_VERSION)
-            registryWriter.deleteKey("Environments")
-            registryWriter.serializeObject(envUserconfigured_, "Environments", THIS_VERSION)
+            saveConfiguration()
         Catch ex As Exception
             MsgBox("Error while closing launcher:" & vbCrLf & vbCrLf & ex.Message, _
                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
@@ -265,7 +258,8 @@ Public Class FormMain
 
         Try
 
-            SelectedEnvironment.launch(config_.FeedList())
+            SelectedEnvironment.launch(config_.FeedList(), config_.ExcelPath)
+            saveConfiguration()
 
         Catch ex As Exception
 
@@ -685,6 +679,54 @@ Public Class FormMain
 
     End Sub
 
+    Private Sub btnExcelPath_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExcelPath.Click
+
+        Try
+
+            Dim dlg As New OpenFileDialog()
+            Dim defaultPath As String = deriveDefaultFile(txtExcelPath.Text)
+            If defaultPath = "" Then defaultPath = deriveDefaultExcelPath()
+            dlg.InitialDirectory = defaultPath
+            dlg.FileName = "EXCEL.EXE"
+            dlg.Filter = "Excel executable (EXCEL.EXE)|EXCEL.EXE"
+            dlg.Title = "Select Excel executable"
+            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                txtExcelPath.Text = dlg.FileName
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("Error processing path to Excel:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
+
+    End Sub
+
+    Private Sub btnLaunchExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLaunchExcel.Click
+
+        Try
+
+            If Not fileExists(config_.ExcelPath) Then
+                Throw New Exception("The specified Excel path:" & vbCrLf & vbCrLf & config_.ExcelPath & _
+                vbCrLf & vbCrLf & "is invalid.")
+            End If
+
+            Shell(config_.ExcelPath, AppWinStyle.NormalFocus)
+
+        Catch ex As Exception
+
+            MsgBox("Error starting Excel:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
+
+    End Sub
+
     ''''''''''''''''''''''''''''''''''''''''''
     ' Events - Paths - text
     ''''''''''''''''''''''''''''''''''''''''''
@@ -707,6 +749,10 @@ Public Class FormMain
 
     Private Sub txtUserConfig_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtUserConfig.TextChanged
         SelectedEnvironment.UserConfig = txtUserConfig.Text
+    End Sub
+
+    Private Sub txtExcelPath_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtExcelPath.TextChanged
+        config_.ExcelPath = txtExcelPath.Text
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
@@ -871,7 +917,8 @@ Public Class FormMain
             Dim dlg As New OpenFileDialog()
             dlg.InitialDirectory = deriveDefaultFile(txtReuters.Text)
             dlg.FileName = QuantLibXL.Configuration.REUTERS_XLA_DEFAULT
-            dlg.Filter = "Excel VBA Addins (*.xla)|*.xla"
+            dlg.Filter = "Reuters Addin (" & QuantLibXL.Configuration.REUTERS_XLA_DEFAULT & _
+                ")|" & QuantLibXL.Configuration.REUTERS_XLA_DEFAULT & ""
             dlg.Title = "Select Reuters VBA Addin"
             If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 txtReuters.Text = dlg.FileName
@@ -895,7 +942,8 @@ Public Class FormMain
             Dim dlg As New OpenFileDialog()
             dlg.InitialDirectory = deriveDefaultFile(txtBloomberg.Text)
             dlg.FileName = QuantLibXL.Configuration.BLOOMBERG_XLA_DEFAULT
-            dlg.Filter = "Excel VBA Addins (*.xla)|*.xla"
+            dlg.Filter = "Bloomberg Addin (" & QuantLibXL.Configuration.BLOOMBERG_XLA_DEFAULT & _
+                ")|" & QuantLibXL.Configuration.BLOOMBERG_XLA_DEFAULT & ""
             dlg.Title = "Select Bloomberg VBA Addin"
             If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 txtBloomberg.Text = dlg.FileName
@@ -914,10 +962,24 @@ Public Class FormMain
 
     Private Sub txtReuters_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtReuters.TextChanged
         config_.ReutersPath = txtReuters.Text
+        setReutersPathEnabled()
+    End Sub
+
+    Private Sub setReutersPathEnabled()
+        Dim reutersPathValid = fileExists(txtReuters.Text)
+        cbReuters.Enabled = reutersPathValid
+        config_.ReutersEnabled = reutersPathValid
     End Sub
 
     Private Sub txtBloomberg_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtBloomberg.TextChanged
         config_.BloombergPath = txtBloomberg.Text
+        setBloombergPathEnabled()
+    End Sub
+
+    Private Sub setBloombergPathEnabled()
+        Dim bloombergPathValid = fileExists(txtBloomberg.Text)
+        cbBloomberg.Enabled = bloombergPathValid
+        config_.BloombergEnabled = bloombergPathValid
     End Sub
 
     Private Sub cbReuters_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbReuters.CheckedChanged
@@ -1037,5 +1099,47 @@ Public Class FormMain
         Call enableAddinButtons()
 
     End Sub
+
+    Private Sub initializeAboutTab()
+
+        Me.lblVersionValue.Text = buildNumber()
+        Me.lblUserNameValue.Text = System.Environment.UserName
+        Me.lblDomainValue.Text = System.Environment.UserDomainName
+        Me.lblHardDiskValue.Text = getSerialNumber()
+
+    End Sub
+
+    Private Sub setToolTips()
+
+        Dim toolTip1 As New ToolTip()
+        toolTip1.ShowAlways = True
+        toolTip1.SetToolTip(Me.btnLaunchExcel, "Launch an empty Excel session")
+
+    End Sub
+
+    Private Sub saveConfiguration()
+
+        config_.OverrideActions.clear()
+        For Each environment As QuantLibXL.Environment In envPreconfigured_.Environments
+            config_.OverrideActions.add(environment.StartupActions, environment.Name)
+        Next
+
+        Dim registryWriter As New QuantLibXL.RegistryWriter()
+        registryWriter.deleteKey("Configuration")
+        registryWriter.serializeObject(config_, "Configuration", THIS_VERSION)
+        registryWriter.deleteKey("Environments")
+        registryWriter.serializeObject(envUserconfigured_, "Environments", THIS_VERSION)
+
+    End Sub
+
+    Private Function buildNumber() As String
+
+        If (ApplicationDeployment.IsNetworkDeployed) Then
+            buildNumber = "version " & My.Application.Deployment.CurrentVersion.ToString()
+        Else
+            buildNumber = "local build"
+        End If
+
+    End Function
 
 End Class
