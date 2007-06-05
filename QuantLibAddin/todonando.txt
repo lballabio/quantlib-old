@@ -34,6 +34,7 @@ GENERAL
 
 ---
 NANDO
+- check testsuite error when QL_INDEXED_COUPON is used
 - production: writing privileges (xla and the rest)
 - debug hook at xll loading (for debugging start-up actions)
 - VS Express
@@ -178,11 +179,11 @@ CHIARA
  -another workstation has been set with dual user Launcher installation (Done)
 - with Giorgio: training on Bonds' Workbooks (0.5d|0.5d|Done)
 - MainChecks.xls: add market asw spreads for the 3 bonds chosen to check load bonds' action (Done)
-- investigate possible daycounter bug Bugs Fixed (1d|1d|Done) 
+- investigate possible daycounter bug Bugs Fixed (1d|1d|Done)
   - floating leg test using non-natural daycounter (360/365)
-  - check that par cpn is using native index's daycounter with nando 
+  - check that par cpn is using native index's daycounter with nando
   - fixed bug and its twin in assetswap
-  - added three new test cases in assetswap test suite in order to check behavior on 
+  - added three new test cases in assetswap test suite in order to check behavior on
     maturities occurring both on business days and on days that aren't business days.
 - add new bonds in all the enviroments (traders' request) (0d|0.5d)
 - fixed problem with missing ISDAFIX indexes for 28th may 2007 (0.5d|0.5d|)
