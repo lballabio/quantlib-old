@@ -173,22 +173,24 @@ CRISTINA
 CHIARA
 - arrange session on digitals
 - send Grisafi error screenshot to Eric
+ -the trader couldn't reproduce the error
 - check dual user Launcher installation on Grisafi's workstation
-- with Giorgio: training on Bonds' Workbooks
-- investigate possible daycounter bug
+ -another workstation has been set with dual user Launcher installation (Done)
+- with Giorgio: training on Bonds' Workbooks (0.5d|0.5d|Done)
+- MainChecks.xls: add market asw spreads for the 3 bonds chosen to check load bonds' action (Done)
+- investigate possible daycounter bug Bugs Fixed (1d|1d|Done) 
   - floating leg test using non-natural daycounter (360/365)
-  - check that par cpn is using native index's daycounter with nando (0d|1d)
-- add new bonds in al the enviroments (traders' request) (0d|0.5d)
-- fixed problem with missing ISDAFIX indexes for 28th may 2007 (0.5d|0.5d)
+  - check that par cpn is using native index's daycounter with nando 
+  - fixed bug and its twin in assetswap
+  - added three new test cases in assetswap test suite in order to check behavior on 
+    maturities occurring both on business days and on days that aren't business days.
+- add new bonds in all the enviroments (traders' request) (0d|0.5d)
+- fixed problem with missing ISDAFIX indexes for 28th may 2007 (0.5d|0.5d|)
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g.
   IT0003650998.pdf) (0d|1d)
+  -prospectus added in Drafts
 - review and correct trader's bond monitor (0d|1d)
-  - prospectus added in Drafts
 - verify bond in Testing and Trunk (with Cristina) (Done)
-- current cpn as a method of bond (a trader's request) (1.0d|1.5dd|Done)
-  - created qlCurrentCoupon
-  - dd test in the testsuite in assetswap.cpp
-  - quick test againts BBG's values
 - Z-spread function, for zero coupon bond valuation (3.0d|10dd|WIP)
   - lehman's documentation
   - created new workbook to replicate market practice (YAF, YAS on BBG) use of
@@ -200,11 +202,11 @@ CHIARA
   - analysis of the trader's workbook
   - verified correct installation of Launcher, access given to the trader to
     the 3 different environments on the network
+  - sent request to desktop service so to add the user to CABOTOXL
 - markedata\BloombergFeed (Maurizio Pietrini)
   - reviewed all the worksheets regarding market data feed and timeseries with
     Maurizio (0.5d|0.5d|Done)
-  - waiting for BBG worksheets from Maurizio (time to start 2/3 weeks- time to
-    complete 1/2 weeks)
+  - waiting for BBG worksheets from Maurizio (Maurizio is starting on 5th or 6th)
 - zspread/yield inversion
 - zerospreadedtermstructure: daycounter bug
 - bonds' workbooks integration with K+/Gatemate
