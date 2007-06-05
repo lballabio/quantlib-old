@@ -2900,17 +2900,17 @@
                   <Parameter name='startDate' default='QuantLib::Date()'>
                       <type>QuantLib::Date</type>
                       <tensorRank>scalar</tensorRank>
-                      <description>beginning of the time serie</description>
+                      <description>beginning of the time series</description>
                   </Parameter>
                   <Parameter name='endDate' default='QuantLib::Date()'>
                       <type>QuantLib::Date</type>
                       <tensorRank>scalar</tensorRank>
-                      <description>End of the time serie</description>
+                      <description>End of the time series</description>
                   </Parameter>
                   <Parameter name='historicalStep' exampleValue ='1D'>
                       <type>QuantLib::Period</type>
                       <tensorRank>scalar</tensorRank>
-                      <description>size of the step</description>
+                      <description>size of the time step in the time series</description>
                   </Parameter>
                   <Parameter name='calendar' exampleValue='TARGET'>
                       <type>QuantLib::Calendar</type>
@@ -2930,27 +2930,27 @@
                   <Parameter name='iborIndexes'>
                       <type>QuantLib::IborIndex</type>
                       <tensorRank>vector</tensorRank>
-                      <description>index</description>
+                      <description>Ibor indexes</description>
                   </Parameter>
                   <Parameter name='swapIndexes'>
                       <type>QuantLib::SwapIndex</type>
                       <tensorRank>vector</tensorRank>
-                      <description>index</description>
+                      <description>Swap indexes</description>
                   </Parameter>
                   <Parameter name='depositSettlementDays' exampleValue='2'>
                       <type>QuantLib::Natural</type>
                       <tensorRank>scalar</tensorRank>
-                      <description>deposit SettlementDays</description>
+                      <description>Deposit SettlementDays</description>
                   </Parameter>
                   <Parameter name='swapSettlementDays' exampleValue='2'>
                       <type>QuantLib::Natural</type>
                       <tensorRank>scalar</tensorRank>
-                      <description>swap SettlementDays</description>
+                      <description>Swap SettlementDays</description>
                   </Parameter>
                   <Parameter name='yieldCurveDayCounter' exampleValue='Actual/365 (Fixed)'>
                       <type>QuantLib::DayCounter</type>
                       <tensorRank>scalar</tensorRank>
-                      <description>yieldCurve DayCounter</description>
+                      <description>yieldCurve DayCount</description>
                   </Parameter>
                   <Parameter name='yieldCurveAccuracy' exampleValue='10e-12'>
                       <type>QuantLib::Real</type>
