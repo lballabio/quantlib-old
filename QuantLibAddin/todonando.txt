@@ -223,10 +223,10 @@ CHIARA
 ---
 FRANCOIS
 D Remove calls to YC in CapStripper constructor (.5D/.5D)
-- null strike -> atm strike
-- arrange sessions on Rapisarda approach
-- historic corr matrix
-- control panel . xls crash when switch to MxCurve
+- null strike -> atm strike (1W|WIP)
+- arrange sessions on Rapisarda approach(TBD)
+D historic corr matrix (2D|2D)
+D control panel . xls crash when switch to MxCurve
 D Citrix access: $+,BGM
 FAILURE Citrix access: INFL
 - XML/ serialization presentation
