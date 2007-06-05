@@ -26,6 +26,8 @@
 %{
 using QuantLib::SegmentIntegral;
 using QuantLib::TrapezoidIntegral;
+using QuantLib::Default;
+using QuantLib::MidPoint;
 using QuantLib::SimpsonIntegral;
 using QuantLib::GaussKronrodAdaptive;
 using QuantLib::GaussKronrodNonAdaptive;
@@ -64,16 +66,19 @@ class SegmentIntegral {
 };
 
 
+template <class IntegrationPolicy>
 class TrapezoidIntegral {
   public:
-    TrapezoidIntegral(Real accuracy);
+    TrapezoidIntegral(Real accuracy, Size maxIterations);
     INTEGRATION_METHODS;
 };
 
+%template(TrapezoidIntegralDefault) TrapezoidIntegral<Default>;
+%template(TrapezoidIntegralMidPoint) TrapezoidIntegral<MidPoint>;
 
 class SimpsonIntegral {
   public:
-    SimpsonIntegral(Real accuracy);
+    SimpsonIntegral(Real accuracy, Size maxIterations);
     INTEGRATION_METHODS;
 };
 
