@@ -52,7 +52,7 @@
 
     <Environment name="03 Testing">
       <Framework>X:\Apps\Appsscript\CabotoXL\03 Testing\framework\QuantLibXL.xla</Framework>
-      <FrameworkVersion>6</FrameworkVersion>
+      <FrameworkVersion>7</FrameworkVersion>
       <Workbooks>X:\Apps\Appsscript\CabotoXL\03 Testing\Workbooks</Workbooks>
       <HelpFile>X:\Apps\Appsscript\CabotoXL\03 Testing\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\03 users.xml</UserConfigurationFile>
