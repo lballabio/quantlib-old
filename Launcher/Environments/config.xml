@@ -18,7 +18,6 @@
         <YieldCurveBootstrap>true</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
-        <!--<SwapVolBootstrap>false</SwapVolBootstrap>-->
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
         <CalibrateCMS>false</CalibrateCMS>
         <FitCMS>false</FitCMS>
@@ -42,7 +41,6 @@
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
-        <!--<SwapVolBootstrap>false</SwapVolBootstrap>-->
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
         <CalibrateCMS>false</CalibrateCMS>
         <FitCMS>false</FitCMS>
@@ -60,13 +58,12 @@
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\03 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\03 Testing\metadata</FunctionMetadata>
       <AddinList>
-        <Addin>QuantLibXL-vc80-mt-s-0_8_0.xll</Addin>
+        <Addin>QuantLibXL-vc80-mt-s-0_9_0.xll</Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
-        <!--<SwapVolBootstrap>false</SwapVolBootstrap>-->
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
         <CalibrateCMS>false</CalibrateCMS>
         <FitCMS>false</FitCMS>
