@@ -24,7 +24,7 @@
 
 
 #include <qlo/couponvectors.hpp>
-
+#include <ql/cashflows/conundrumpricer.hpp>
 
 namespace QuantLibAddin {
 

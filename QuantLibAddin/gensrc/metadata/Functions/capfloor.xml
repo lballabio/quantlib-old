@@ -6,6 +6,7 @@
     <include>qlo/index.hpp</include>
     <include>qlo/capfloor.hpp</include>
     <include>qlo/couponvectors.hpp</include>
+    <include>qlo/pricingengines.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
