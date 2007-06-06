@@ -254,16 +254,16 @@ D consolidate all multisteps in a single test
   CapStripperTest3M.xls. (to be precised)
 
 ---
-GIORGIO (last update 23/5/2007)
--WIP all pricers:
-  - fix termiantion date logic
+GIORGIO (last update 6/6/2007)
+D all pricers:
+  D fix termination date logic
   D recreate all cell menus
   D use spreaded vol term structures
-- bond updating (with hiara)
+D bond updating (with Chiara)
 - range accrual session
 - CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando
-- test Levenberg-Marquardt in abcd vol (0d/2d)
+D test Levenberg-Marquardt in abcd vol (1d/2d DONE)
 D spreaded caplet vol structure (2d/5d DONE)
 - install VS in new pc (0d/1d)
 - WIP ratchet Instrument C++ (shared with Marco) (3d/7d)
@@ -278,26 +278,20 @@ MARCO (last update 30/5/2007)
 - Citrix showdown: (0.5d/1d/WIP)
   - verifica licenze accesso: individuato referente, -> Katiuscia (DONE)
   - verifica accesso a $+ (DONE)
-  - utenze BGM x tutti (DONE)
-  - autorizzazione accesso Francois a Iflazione (Waiting Ametrano)
-  - assistenza verifica accesso Quants (waiting Ametrano)
+  - chiedere utenze BGM x tutti (WIP: in attesa di autorizzazione da sicurezza informatica)
+  - assistenza verifica accesso Quants (pending in attesa della precedente)
 - check optimizers:
   - fix steepest descent (with Francois) (1d/2d/WIP)
   - add more tests (multidimensional) in test suite (to be planned)
   - add Broyden-Fletcher-Goldfarb-Shanno algorithm (to be planned)
   - check export to excel and testing wkb (to be planned)
-- historical correlation (shared with francois; TO BE REVIEWED)
+- MM: corr hist extimation (after 29/5/2007 WARNING)
 - pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)
   (0.0/2d/WAITING FOR DIGITAL OPTIONS)
 - Risk, Wilmott papers (0.0/1d/WAITING for Ferdinando)
 - Inflation project:
-  - Attività UAT (3w/2w/DONE)
-  - Caboto/DOF platform release EOD (DONE)
-  - Caboto/DOF platform release intraday (15/6/2007 ?)
-  - Planning next steps (15/6/2007 ?)
-  - Montecarlo implementation for Caboto Model (WIP)
-  - 3 factor model and Hybrids (?)
-- Applix: Rolling bund Futures on 8/6/2007
+  - Attività UAT (0/2w)
+  - Programmazione prossime attività (0/2w?)
 
 ---
 Eric
