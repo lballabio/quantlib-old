@@ -779,8 +779,8 @@ function(x) print(as.data.frame(x))
 
 setMethod("as.data.frame", "_p_SampledCurve",
 function(x,row.names,optional)
-data.frame("grid"=as.numeric(x$grid()),
-"values"=as.numeric(x$values())))
+data.frame("grid"=as(x$grid(), "numeric"),
+"values"=as(x$values(), "numeric")))
 
 setMethod("plot", "_p_SampledCurve",
 function(x,y) plot(as.data.frame(x)))
