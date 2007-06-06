@@ -34,6 +34,7 @@ GENERAL
 
 ---
 NANDO
+- all wbks must use qlxlVersion(true)
 - If omitted/blank/NA, default = FALSE
   If omitted/blank/NA/error, default = FALSE
 - check testsuite error when QL_INDEXED_COUPON is used
