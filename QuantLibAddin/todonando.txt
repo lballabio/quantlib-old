@@ -90,26 +90,32 @@ CW	18%
 	-> prepared wkb to test on traders' pc (next week)
 - coveredWarrants.xls
 	- check delta price in terms of vega (1d/2d)
-- Sensitivity Analysis (K&Cristina): 			(5.5d/5w)
-  -     create book (test2) of irs seasoned deals in Mx	(done)
-  -	create book (test2) of swaptions in Mx & QLXL	(done)
-  -	run sa on smile
-  -	test on irs book vs Mx (manual + code)		(1d/2d)
-  -	test on swaptions book (atm+smile)
-  -	test on cms book
-  -	check null vega of swap ptf
-  -	use seasoned deals
-  -	save daily results to check replication
-  -	Eric: flag on deal, tick value, error msg (by eow)
-  -	Eric: upgrade user interface (by end of next week)
-  -	parallel shift added by default
-  -	handle sensitivity to the late morning fixings
-  -	centered differences, then gamma
-  -	theta SA
-  -	xml output
-  -	list all quotes that we could analize
-  -	discriminate between invalid quote -> #NA() and error obtained
-    after having tweaked a quote -> #NUM
+- Sensitivity Analysis (K&Cristina):  				(7.0d/5w)
+  - General
+    run sa on rates, atm vols and vol spreads
+    save daily results to check replication
+    Eric: flag on deal, tick value, error msg (by eow)
+    Eric: upgrade user interface (by end of next week)
+    parallel shift added by default
+    handle sensitivity to the late morning fixings
+    centered differences, then gamma
+    theta SA
+    xml output
+    list all quotes that we could analize
+    discriminate between invalid quote -> #NA() 
+       and error obtained after having tweaked a quote -> #NUM
+  - Irs
+    - create book (test_fe_2) of irs seasoned deals in Mx	(done)
+    - check null vega of swap ptf (ATM+smile)			(done)
+    - test delta on irs spot single deals = Mx 			(done)		
+    - test delta on irs seasoned book = Mx         		()
+    - test delta on irs manual = sa code 			(done)
+    - generated .xls report 					()
+  - Swaption
+    - create book (test_fe_1) of swaptions in Mx & QLXL		(done)
+    - test on swaptions book (atm+smile)
+  - Cms
+    - test on cms books
 - foglio di Clerici per contribuire le cap forw/forw vol su Mx 		(1.5d/5d)
 	confronto forw/forw vols foglio clerici vs nostro cap stripper 	(0.5d/1.5d)
 	sostituzione di tutte le funzioni vba con ql()
