@@ -230,6 +230,21 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='ohBoostVersion'>
+      <description>returns the version number of Boost</description>
+      <alias>ObjectHandler::boostVersion</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
     <Procedure name='ohVersion'>
       <description>returns the version number of ObjectHandler</description>
       <alias>ObjectHandler::version</alias>

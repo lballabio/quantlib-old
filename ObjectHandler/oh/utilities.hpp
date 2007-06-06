@@ -32,6 +32,9 @@
 
 namespace ObjectHandler {
 
+    //! Returns Boost version string.
+    std::string boostVersion();
+
     //! Returns ObjectHandler version string.
     std::string version();
 

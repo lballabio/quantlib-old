@@ -34,6 +34,10 @@ using boost::algorithm::is_any_of;
 
 namespace ObjectHandler {
 
+    std::string boostVersion() {
+        return BOOST_LIB_VERSION;
+    }
+
     std::string version() {
         return OBJHANDLER_VERSION;
     }

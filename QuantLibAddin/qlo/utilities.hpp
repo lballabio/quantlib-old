@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
@@ -36,11 +37,15 @@ namespace QuantLibAddin {
     diagnostic and information functions for QuantLibAddin
 */
 
-    /*! return the version number of QuantLib
-    */
+    //! return the version number of QuantLib
     std::string qlVersion();
+
+    //! return the version number of QuantLibAddin (a.k.a. QuantLibObjects)
+    std::string qlAddinVersion();
+
+    //! return the version number of QuantLibXL
+    std::string qlxlVersion(bool verbose = false);
 
 }
 
 #endif
-

@@ -13,8 +13,29 @@
   </copyright>
   <Functions>
 
-    <Procedure name='qlVersion'>
-      <description>returns the version number of QuantLib</description>
+    <Procedure name='qlxlVersion'>
+      <description>returns the version number of QuantLibXL</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='verbose' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to get the verbose version string. If omitted, default = FALSE</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlAddinVersion'>
+      <description>returns the version number of QuantLibAddin (a.k.a QuantLibObject)</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
@@ -27,6 +48,21 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
+
+    <!--<Procedure name='qlVersion'>
+      <description>returns the version number of QuantLib</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>-->
 
     <Procedure name='qlFunctionCount'>
       <description>returns the number of functions in this Addin</description>

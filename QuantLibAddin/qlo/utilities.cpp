@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2004, 2005, 2006 Eric Ehlers
 
@@ -32,13 +33,24 @@
 #  define COMPILER_STRING
 #endif
 
-#define VERSION_STRING "QuantLib " QLADDIN_VERSION COMPILER_STRING
+#define VERSION_STRING "QuantLibXL " QLADDIN_VERSION
+#define VERSION_STRING_VERBOSE "QuantLibXL " QLADDIN_VERSION COMPILER_STRING " - " __DATE__ " " __TIME__
 
 namespace QuantLibAddin {
 
     std::string qlVersion() {
-        return VERSION_STRING;
+        return QL_VERSION;
+    }
+
+    std::string qlAddinVersion() {
+        return QLADDIN_VERSION;
+    }
+
+    std::string qlxlVersion(bool verbose) {
+        if (verbose)
+            return VERSION_STRING_VERBOSE;
+        else
+            return VERSION_STRING;
     }
 
 }
-

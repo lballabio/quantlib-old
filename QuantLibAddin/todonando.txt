@@ -34,6 +34,8 @@ GENERAL
 
 ---
 NANDO
+- If omitted/blank/NA, default = FALSE
+  If omitted/blank/NA/error, default = FALSE
 - check testsuite error when QL_INDEXED_COUPON is used
 - production: writing privileges (xla and the rest)
 - debug hook at xll loading (for debugging start-up actions)
