@@ -297,6 +297,7 @@ MARCO (last update 30/5/2007)
   - Planning next steps (15/6/2007 ?)
   - Montecarlo implementation for Caboto Model (WIP)
   - 3 factor model and Hybrids (?)
+- Applix: Rolling bund Futures on 8/6/2007
 
 ---
 Eric
