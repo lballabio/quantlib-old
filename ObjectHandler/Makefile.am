@@ -6,6 +6,11 @@ SUBDIRS = \
     oh \
     ohxl \
     xlsdk \
+    Examples/ExampleObjects/Enumerations \
+    Examples/ExampleObjects/Library \
+    Examples/ExampleObjects/Objects \
+    Examples/ExampleObjects/ValueObjects \
+    Examples/ExampleObjects \
     Examples/C++ \
     Examples/xl \
     Docs

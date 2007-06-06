@@ -54,6 +54,11 @@ AC_PATH_PROG([SED], [sed])
 # done, output the configured files
 AC_CONFIG_FILES([
     Docs/Makefile
+    Examples/ExampleObjects/Enumerations/Makefile
+    Examples/ExampleObjects/Library/Makefile
+    Examples/ExampleObjects/Objects/Makefile
+    Examples/ExampleObjects/ValueObjects/Makefile
+    Examples/ExampleObjects/Makefile
     Examples/C++/Makefile
     Examples/xl/Makefile
     gensrc/Makefile
