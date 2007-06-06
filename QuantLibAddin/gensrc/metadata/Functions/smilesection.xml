@@ -24,10 +24,10 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='strike' exampleValue ='0.04 '>
+                    <Parameter name='strike' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
                         <type>QuantLib::Rate</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>strike</description>
+                        <description>strike. If omitted, default = at-the-money is used.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
@@ -45,10 +45,10 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='strike' exampleValue ='0.04 '>
+                    <Parameter name='strike' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
                         <type>QuantLib::Rate</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>strike</description>
+                        <description>strike. If omitted, default = at-the-money is used.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
