@@ -491,6 +491,7 @@ namespace QuantLibAddin {
                    QuantLib::Date startDate, 
                    QuantLib::Date endDate, 
                    QuantLib::Period historicalStep,
+                   bool rollingForwardRatesTimeGrid,
                    const QuantLib::Calendar& calendar,
                    const boost::shared_ptr<QuantLib::InterestRateIndex> index,
                    QuantLib::Period forwardHorizon,
@@ -501,7 +502,9 @@ namespace QuantLibAddin {
                    QuantLib::Real yieldCurveAccuracy) {
         
         return QuantLib::computeHistoricalCorrelations<QuantLib::ZeroYield, QuantLib::Linear>(
-                   startDate, endDate, historicalStep,
+                   startDate, endDate, 
+                   historicalStep,
+                   rollingForwardRatesTimeGrid, 
                    calendar,
                    index,
                    forwardHorizon,

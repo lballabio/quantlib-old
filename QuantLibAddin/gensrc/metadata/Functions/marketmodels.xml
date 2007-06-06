@@ -2912,6 +2912,11 @@
                       <tensorRank>scalar</tensorRank>
                       <description>size of the time step in the time series</description>
                   </Parameter>
+                  <Parameter name='rollingForwardRatesTimeGrid' exampleValue ='true'>
+                      <type>bool</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>rolling (true) or fixed (false) time grid for historical forward rates </description>
+                  </Parameter>
                   <Parameter name='calendar' exampleValue='TARGET'>
                       <type>QuantLib::Calendar</type>
                       <tensorRank>scalar</tensorRank>
