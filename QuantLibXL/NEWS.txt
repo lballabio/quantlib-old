@@ -39,8 +39,8 @@ FUNCTIONS
   qlBondDirtyPriceFromZSpread() Returns the dirty price for the bond given Z-Spread and settlement date. The default bond settlement is used if no date is given
 
 WORKBOOKS
-- Workbooks\CmsCalibrations\MultiIndexSingleMeanRevCalibration.xls and Workbooks\MarketMetaData\SwaptionVols1.xls: added the choice between Simplex and Levenberg-Marquardt optimizers, set up reasonable parameters values, and extensive tests. 
 - Workbooks\Tests\Historical Correlations.xls for historical forward rate correlation estimation (TO BE TESTED)
+- Workbooks\CmsCalibrations\MultiIndexSingleMeanRevCalibration.xls and Workbooks\MarketMetaData\SwaptionVols1.xls: added the choice between Simplex and Levenberg-Marquardt optimizers, set up reasonable parameters values, and extensive tests. 
 - Workbooks\DateCalendarsDayCounters\ScheduleGenerator.xls shows the usage of the Schedule class
 - Bonds
   added, validated and checked against the corresponding prospectus the following bonds:
