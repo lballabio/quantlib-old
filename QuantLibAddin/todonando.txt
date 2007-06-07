@@ -21,6 +21,7 @@ class Instrument {
 
 ---
 GENERAL
+- remove useless env variables
 - be ready to debug production
 - switch to boost 1.34
 - switch to dynamic xll
@@ -34,9 +35,8 @@ GENERAL
 
 ---
 NANDO
-- all wbks must use qlxlVersion(true)
-- If omitted/blank/NA, default = FALSE
-  If omitted/blank/NA/error, default = FALSE
+- Yield Curve Bootstraping needs new style
+- all wbks must use qlxlVersion(true, Trigger)
 - check testsuite error when QL_INDEXED_COUPON is used
 - production: writing privileges (xla and the rest)
 - debug hook at xll loading (for debugging start-up actions)
@@ -97,17 +97,17 @@ CW	18%
     Eric: flag on deal, tick value, error msg (by eow)
     Eric: upgrade user interface (by end of next week)
     parallel shift added by default
-    handle sensitivity to the late morning fixings
     centered differences, then gamma
     theta SA
     xml output
+    handle sensitivity to index fixings
     list all quotes that we could analize
-    discriminate between invalid quote -> #NA() 
+    discriminate between invalid quote -> #NA()
        and error obtained after having tweaked a quote -> #NUM
   - Irs
     - create book (test_fe_2) of irs seasoned deals in Mx	(done)
     - check null vega of swap ptf (ATM+smile)			(done)
-    - test delta on irs spot single deals = Mx 			(done)		
+    - test delta on irs spot single deals = Mx 			(done)
     - test delta on irs seasoned book = Mx         		()
     - test delta on irs manual = sa code 			(done)
     - generated .xls report 					()
@@ -183,7 +183,7 @@ CRISTINA
 CHIARA
 - arrange session on digitals
 - send Grisafi error screenshot to Eric
- -the trader couldn't reproduce the error
+  the trader couldn't reproduce the error
 - check dual user Launcher installation on Grisafi's workstation
  -another workstation has been set with dual user Launcher installation (Done)
 - with Giorgio: training on Bonds' Workbooks (0.5d|0.5d|Done)
@@ -194,7 +194,7 @@ CHIARA
   - fixed bug and its twin in assetswap
   - added three new test cases in assetswap test suite in order to check behavior on
     maturities occurring both on business days and on days that aren't business days.
-- add new bonds in all the enviroments (traders' request) (0d|0.5d)
+- add new bonds in all the enviroments (traders' request) (0d|0.5d|done)
 - fixed problem with missing ISDAFIX indexes for 28th may 2007 (0.5d|0.5d|)
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g.
   IT0003650998.pdf) (0d|1d)
@@ -231,6 +231,7 @@ CHIARA
 
 ---
 FRANCOIS
+- format ddd, dd-mmm-yyyy, hh:mm:ss
 D Remove calls to YC in CapStripper constructor (.5D/.5D)
 - null strike -> atm strike (1W|WIP)
 - arrange sessions on Rapisarda approach(TBD)
@@ -304,6 +305,9 @@ MARCO (last update 30/5/2007)
 
 ---
 Eric
+- why xxl loading does not receive the same graful failure treatment
+- If omitted/blank/NA, default = FALSE
+  If omitted/blank/NA/error, default = FALSE
 - open log file from menu
 - log defaults
 - automatic cell menu updates
