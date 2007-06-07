@@ -75,7 +75,7 @@ namespace QuantLibAddin {
       public:
         SpreadedCapletVolatilityStructure(
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& underlyingVolStructure,
-            QuantLib::Spread spread);
+            const QuantLib::Handle<QuantLib::Quote>&);
 
     };
 

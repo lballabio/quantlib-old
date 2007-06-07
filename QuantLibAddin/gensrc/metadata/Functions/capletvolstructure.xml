@@ -430,7 +430,8 @@
             <description>Caplet volatility structure object ID</description>
           </Parameter>
           <Parameter name='spread'>
-            <type>QuantLib::Spread</type>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>spread</description>
           </Parameter>

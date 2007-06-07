@@ -121,7 +121,7 @@ namespace QuantLibAddin {
       public:
         SpreadedSwaptionVolatilityStructure(
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
-            QuantLib::Spread spread);
+            const QuantLib::Handle<QuantLib::Quote>&);
 
     };
         

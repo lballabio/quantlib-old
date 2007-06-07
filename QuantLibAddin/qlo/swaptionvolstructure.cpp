@@ -272,7 +272,7 @@ namespace QuantLibAddin {
 
     SpreadedSwaptionVolatilityStructure::SpreadedSwaptionVolatilityStructure(
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
-            QuantLib::Spread spread){
+            const QuantLib::Handle<QuantLib::Quote>& spread){
         libraryObject_ = boost::shared_ptr<QuantLib::SpreadedSwaptionVolatilityStructure>(new
             QuantLib::SpreadedSwaptionVolatilityStructure(underlyingVolStructure,
                                                           spread));

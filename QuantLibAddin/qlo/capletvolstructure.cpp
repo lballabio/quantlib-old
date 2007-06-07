@@ -101,7 +101,7 @@ namespace QuantLibAddin {
 
     SpreadedCapletVolatilityStructure::SpreadedCapletVolatilityStructure(
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& underlyingVolStructure,
-            QuantLib::Spread spread){
+            const QuantLib::Handle<QuantLib::Quote>& spread){
         libraryObject_ = boost::shared_ptr<QuantLib::SpreadedCapletVolatilityStructure>(new
             QuantLib::SpreadedCapletVolatilityStructure(underlyingVolStructure,
                                                         spread));
