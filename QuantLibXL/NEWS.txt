@@ -55,4 +55,5 @@ WORKBOOKS
 
 
 LIBRARY:
-- atmLevel method implemented in all SmileSection classes
+- atmLevel method implemented in all SmileSection classes, default parameter of volatility and
+variance methods is ATM level
