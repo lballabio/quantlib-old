@@ -28,7 +28,7 @@
   <Functions>
 
     <Procedure name="qlExponentialCorrelations">
-      <description>Returns the exponential correlation matrix.</description>
+      <description>Returns the correlation matrix (time independent long term + beta exponential functional form).</description>
       <alias>QuantLib::exponentialCorrelations</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -58,6 +58,47 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name="qlExponentialCorrelationsTimeDependent">
+      <description>Returns the correlation matrix (time dependent long term + beta + gamma exponential functional form).</description>
+      <alias>QuantLib::exponentialCorrelationsTimeDependent</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='longTermCorr' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation </description>
+          </Parameter>
+          <Parameter name='beta' exampleValue ='0.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponential decay factor</description>
+          </Parameter>
+          <Parameter name='gamma' exampleValue ='0.9'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponent for time to go</description>
+          </Parameter>
+          <Parameter name='time' exampleValue ='0.0'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time t </description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+    
     <Constructor name='qlTimeHomogeneousForwardCorrelation'>
       <libraryFunction>TimeHomogeneousForwardCorrelation</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
