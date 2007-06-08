@@ -83,7 +83,7 @@ SA	49%
 bug fix	20%
 test	14%
 CW	18%
-- trigger qlVersion() and format properly time stamp in the XXXFeed folders
+- trigger qlVersion() and format properly time stamp in the XXXFeed folders (done)
 - add call to volatility method in CapsStripper creation
 - metadata creators error messages
 - Bug investigation: launcher menu actions 	(1d)
@@ -92,7 +92,7 @@ CW	18%
 	-> prepared wkb to test on traders' pc (next week)
 - coveredWarrants.xls
 	- check delta price in terms of vega (1d/2d)
-- Sensitivity Analysis (K&Cristina):  				(7.0d/5w)
+- Sensitivity Analysis (K&Cristina):  				(7.5d/5w)
   - General
     run sa on rates, atm vols and vol spreads
     save daily results to check replication
@@ -110,11 +110,18 @@ CW	18%
     - create book (test_fe_2) of irs seasoned deals in Mx	(done)
     - check null vega of swap ptf (ATM+smile)			(done)
     - test delta on irs spot single deals = Mx 			(done)
-    - test delta on irs seasoned book = Mx         		()
+    - test delta on irs seasoned book = Mx         		(done)
     - test delta on irs manual = sa code 			(done)
-    - generated .xls report 					()
+    - generated .xls report 					(done)
+    - test fixing effect on pricing				(done)
+      a. present on spot starting irs
+      b. present on seasoned irs (via swap rate helpers)  
+    - test fixing effect on sa					()
+      a. spot starting irs
+      b. seasoned irs 						()  
   - Swaption
     - create book (test_fe_1) of swaptions in Mx & QLXL		(done)
+    - create book of not ATM (seasoned) swaption, X=3.5%	(done)
     - test on swaptions book (atm+smile)
   - Cms
     - test on cms books
