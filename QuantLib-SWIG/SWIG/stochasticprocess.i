@@ -51,7 +51,7 @@ using QuantLib::GeneralizedBlackScholesProcess;
 typedef boost::shared_ptr<StochasticProcess> GeneralizedBlackScholesProcessPtr;
 %}
 
-%rename(GeneralizedBlackScholesPress) GeneralizedBlackScholesProcessPtr;
+%rename(GeneralizedBlackScholesProcess) GeneralizedBlackScholesProcessPtr;
 class GeneralizedBlackScholesProcessPtr : public StochasticProcess1DPtr {
   public:
     %extend {
