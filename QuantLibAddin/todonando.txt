@@ -86,10 +86,12 @@ CW	18%
 - trigger qlVersion() and format properly time stamp in the XXXFeed folders (done)
 - add call to volatility method in CapsStripper creation
 - metadata creators error messages
-- Bug investigation: launcher menu actions 	(1d)
+- Bug investigation: launcher menu actions			(done)
+  - l'errore si presentava con la rev 10882 del foglio intratefeed.xls
+    il quale era stato salvato senza ricalcolo
 - Rt Update
-	-> no evidence of stopping problems on our pcs
-	-> prepared wkb to test on traders' pc (next week)
+  -> no evidence of stopping problems on our pcs
+  -> prepared wkb to test on traders' pc (next week)
 - coveredWarrants.xls
 	- check delta price in terms of vega (1d/2d)
 - Sensitivity Analysis (K&Cristina):  				(7.5d/5w)
