@@ -79,9 +79,9 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='fixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
+          <Parameter name='fixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
           </Parameter>
           <Parameter name='isInArrears' default='false'>
@@ -145,9 +145,9 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='fixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
+          <Parameter name='fixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
           </Parameter>
           <Parameter name='isInArrears' default='false'>
@@ -241,9 +241,9 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='fixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
+          <Parameter name='fixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
           </Parameter>
           <Parameter name='isInArrears' default='false'>
@@ -307,9 +307,9 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='fixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
+          <Parameter name='fixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
           </Parameter>
           <Parameter name='isInArrears' default='false'>
@@ -403,9 +403,9 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='fixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
+          <Parameter name='fixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
           </Parameter>
           <Parameter name='dayCounter' exampleValue='Actual/360'>
@@ -474,9 +474,9 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='fixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
+          <Parameter name='fixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
           </Parameter>
           <Parameter name='isInArrears' default='false'>
