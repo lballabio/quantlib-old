@@ -97,6 +97,7 @@
         <DataType>QuantLib::CurveState</DataType>
         <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
         <DataType>QuantLib::CapletCoterminalSwaptionCalibration</DataType>
+        <DataType>QuantLib::CapletCoterminalSwaptionCalibration3</DataType>
         <DataType>QuantLib::EndCriteria</DataType>
         <DataType>QuantLib::EuropeanExercise</DataType>
         <DataType>QuantLib::EvolutionDescription</DataType>

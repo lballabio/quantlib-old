@@ -39,6 +39,7 @@
 #include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
 #include <ql/models/marketmodels/correlations/cotswapfromfwdcorrelation.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
+#include <ql/models/marketmodels/models/capletcoterminalmaxhomogeneity.hpp>
 #include <ql/models/marketmodels/products/multiproductcomposite.hpp>
 #include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
 #include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
@@ -83,6 +84,18 @@ namespace QuantLibAddin {
         ObjectHandler::LibraryObject<QuantLib::CapletCoterminalSwaptionCalibration> {
       public:
         CapletCoterminalSwaptionCalibration(
+            const QuantLib::EvolutionDescription& evolution,
+            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
+            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
+            const std::vector<QuantLib::Volatility>& capletVols,
+            const boost::shared_ptr<QuantLib::CurveState>& cs,
+            QuantLib::Spread displacement);
+    };
+
+    class CapletCoterminalSwaptionCalibration3 : public
+        ObjectHandler::LibraryObject<QuantLib::CapletCoterminalSwaptionCalibration3> {
+      public:
+        CapletCoterminalSwaptionCalibration3(
             const QuantLib::EvolutionDescription& evolution,
             const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
