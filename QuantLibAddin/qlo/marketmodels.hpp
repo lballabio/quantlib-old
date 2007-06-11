@@ -443,6 +443,15 @@ namespace QuantLibAddin {
                    QuantLib::Natural depositSettlementDays, QuantLib::Natural swapSettlementDays,
                    const QuantLib::DayCounter& yieldCurveDayCounter,
                    QuantLib::Real yieldCurveAccuracy);
+
+     std::vector<QuantLib::Real> qlRateVolDifferences(
+                            const QuantLib::MarketModel&,
+                            const QuantLib::MarketModel&);
+
+     std::vector<QuantLib::Real> qlRateInstVolDifferences(
+                            const QuantLib::MarketModel&,
+                            const QuantLib::MarketModel&,
+                            QuantLib::Size);
 }
 
 #endif
