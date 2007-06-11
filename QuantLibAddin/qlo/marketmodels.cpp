@@ -32,7 +32,7 @@
 #include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
 #include <ql/models/marketmodels/correlations/correlations.hpp>
-//#include <ql/models/marketmodels/marketmodeldifferences.hpp>
+#include <ql/models/marketmodels/marketmodeldifferences.hpp>
 
 namespace QuantLibAddin {
 
@@ -557,7 +557,7 @@ namespace QuantLibAddin {
                    yieldCurveAccuracy);
     }
     
- /*  std::vector<QuantLib::Real> qlRateVolDifferences(
+   std::vector<QuantLib::Real> qlRateVolDifferences(
        const QuantLib::MarketModel& marketModel1,
        const QuantLib::MarketModel& marketModel2){
            return QuantLib::rateVolDifferences(marketModel1, marketModel2);
@@ -568,6 +568,6 @@ namespace QuantLibAddin {
                             const QuantLib::MarketModel& marketModel2, 
                             QuantLib::Size index){
         return QuantLib::rateInstVolDifferences(marketModel1, marketModel2, index);
-   }*/
+   }
 
 }

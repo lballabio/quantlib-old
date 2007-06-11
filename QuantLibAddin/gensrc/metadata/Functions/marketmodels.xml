@@ -700,7 +700,7 @@
     </Procedure>
 
     <!-- MarketModel base class interfaces -->
-    <Member name='qlMarketModelInitialRates' type='QuantLib::MarketModel'>
+    <Member name='qlMarketModelInitialRates' type='QuantLib::MarketModel' superType='libraryClass'>
       <description>initial rates for the MarketModel object</description>
       <libraryFunction>initialRates</libraryFunction>
       <SupportedPlatforms>
@@ -715,7 +715,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlMarketModelDisplacements' type='QuantLib::MarketModel'>
+    <Member name='qlMarketModelDisplacements' type='QuantLib::MarketModel' superType='libraryClass'>
       <description>rates' displacemets for the MarketModel object</description>
       <libraryFunction>displacements</libraryFunction>
       <SupportedPlatforms>
@@ -730,7 +730,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlMarketModelNumberOfRates' type='QuantLib::MarketModel'>
+    <Member name='qlMarketModelNumberOfRates' type='QuantLib::MarketModel' superType='libraryClass'>
       <description>number of rates for the MarketModel object</description>
       <libraryFunction>numberOfRates</libraryFunction>
       <SupportedPlatforms>
@@ -745,7 +745,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlMarketModelNumberOfFactors' type='QuantLib::MarketModel'>
+    <Member name='qlMarketModelNumberOfFactors' type='QuantLib::MarketModel' superType='libraryClass'>
       <description>number of factors for the MarketModel object</description>
       <libraryFunction>numberOfFactors</libraryFunction>
       <SupportedPlatforms>
@@ -760,7 +760,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlMarketModelNumberOfSteps' type='QuantLib::MarketModel'>
+    <Member name='qlMarketModelNumberOfSteps' type='QuantLib::MarketModel' superType='libraryClass'>
       <description>number of steps for the MarketModel object</description>
       <libraryFunction>numberOfSteps</libraryFunction>
       <SupportedPlatforms>
@@ -775,7 +775,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlMarketModelPseudoRoot' type='QuantLib::MarketModel'>
+    <Member name='qlMarketModelPseudoRoot' type='QuantLib::MarketModel' superType='libraryClass'>
       <description>Returns the pseudo root for the i-th step.</description>
       <libraryFunction>pseudoRoot</libraryFunction>
       <SupportedPlatforms>
@@ -796,7 +796,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlMarketModelCovariance' type='QuantLib::MarketModel'>
+    <Member name='qlMarketModelCovariance' type='QuantLib::MarketModel' superType='libraryClass'>
       <description>Returns the covariance matrix for the i-th step.</description>
       <libraryFunction>covariance</libraryFunction>
       <SupportedPlatforms>
@@ -817,7 +817,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlMarketModelTotalCovariance' type='QuantLib::MarketModel'>
+    <Member name='qlMarketModelTotalCovariance' type='QuantLib::MarketModel' superType='libraryClass'>
       <description>Returns the covariance matrix from start up to the i-th step.</description>
       <libraryFunction>totalCovariance</libraryFunction>
       <SupportedPlatforms>
@@ -2870,6 +2870,7 @@
         <Parameters>
           <Parameter name='marketModel'>
             <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>MarketModel object ID</description>
           </Parameter>
@@ -2897,6 +2898,7 @@
         <Parameters>
           <Parameter name='marketModel'>
             <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>MarketModel object ID</description>
           </Parameter>
@@ -2924,6 +2926,7 @@
         <Parameters>
           <Parameter name='marketModel'>
             <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>MarketModel object ID</description>
           </Parameter>
@@ -3319,7 +3322,7 @@
           </ReturnValue>
       </Procedure>
       
-      <!--<Procedure name='qlRateVolDifferences'>
+      <Procedure name='qlRateVolDifferences'>
           <description>Compute the differences between all implied forwards volatilities</description>
           <functionCategory>QuantLib</functionCategory>
           <SupportedPlatforms>
@@ -3378,6 +3381,7 @@
               <type>QuantLib::Real</type>
               <tensorRank>vector</tensorRank>
           </ReturnValue>
-      </Procedure>-->
+      </Procedure>
+    
   </Functions>
 </Category>
