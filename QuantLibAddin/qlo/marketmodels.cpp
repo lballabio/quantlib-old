@@ -530,12 +530,12 @@ namespace QuantLibAddin {
     }
 
     QuantLib::Matrix qlHistCorrZeroYieldLinear(
-               QuantLib::Date startDate, 
-               QuantLib::Date endDate, 
-               QuantLib::Period step,
-               const boost::shared_ptr<QuantLib::InterestRateIndex> fwdIndex,
-               QuantLib::Period initialGap,
-               QuantLib::Period horizon,
+               const QuantLib::Date& startDate, 
+               const QuantLib::Date& endDate, 
+               const QuantLib::Period& step,
+               const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+               const QuantLib::Period& initialGap,
+               const QuantLib::Period& horizon,
                const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
                const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
                const QuantLib::DayCounter& yieldCurveDayCounter,
