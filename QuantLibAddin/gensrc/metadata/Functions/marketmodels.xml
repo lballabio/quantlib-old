@@ -1701,6 +1701,8 @@
       </ParameterList>
     </Constructor>
 
+    <!-- Caplet calibration of a Coterminal Swap Market Model -->
+
     <Constructor name='qlCapletCoterminalSwaptionCalibration'>
       <libraryFunction>CapletCoterminalSwaptionCalibration</libraryFunction>
       <SupportedPlatforms>
@@ -1759,6 +1761,16 @@
             <tensorRank>scalar</tensorRank>
             <description>number of factors</description>
           </Parameter>
+          <Parameter name='maxIter' default='2'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>maximum number of iterations</description>
+          </Parameter>
+          <Parameter name='capletVolTol' default='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>caplet vol tolerance</description>
+          </Parameter>
           <Parameter name='alphas' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
@@ -1773,16 +1785,6 @@
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE for using Full Approximation</description>
-          </Parameter>
-          <Parameter name='maxIterations' default='2'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>maxIterations</description>
-          </Parameter>
-          <Parameter name='tolerance' default='0.001'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>tolerance</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1846,6 +1848,153 @@
       </ReturnValue>
     </Member>
 
+    
+    
+    <Constructor name='qlCapletCoterminalSwaptionCalibration2'>
+      <libraryFunction>CapletCoterminalSwaptionCalibration2</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='evolution' exampleValue ='EvolutionDescriptionID'>
+            <type>QuantLib::EvolutionDescription</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Evolution Description</description>
+          </Parameter>
+          <Parameter name='correlations'>
+            <type>QuantLib::PiecewiseConstantCorrelation</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>PiecewiseConstantCorrelation object ID</description>
+          </Parameter>
+          <Parameter name='swapPiecewiseConstantVariances'>
+            <type>QuantLib::PiecewiseConstantVariance</type>
+            <tensorRank>vector</tensorRank>
+            <description>PiecewiseConstantVariance IDs</description>
+          </Parameter>
+          <Parameter name='capletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>vector</tensorRank>
+            <description>caplet volatilities</description>
+          </Parameter>
+          <Parameter name='curveState' exampleValue ='CurveStateID'>
+            <type>QuantLib::CurveState</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID</description>
+          </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlCapletCoterminalSwaptionCalibration2Calibrate' type='QuantLib::CapletCoterminalSwaptionCalibration2' superType='libraryClass'>
+      <description>calibrate</description>
+      <libraryFunction>calibrate</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='numberOfFactors' example='3'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of factors</description>
+          </Parameter>
+          <Parameter name='maxIter' default='2'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>maximum number of iterations</description>
+          </Parameter>
+          <Parameter name='capletVolTol' default='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>caplet vol tolerance</description>
+          </Parameter>
+          <Parameter name='maxIterInner' default='100'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>maximum number of iterations for inner solving</description>
+          </Parameter>
+          <Parameter name='innerTol' default='1e-8'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance used in the inner solving</description>
+          </Parameter>
+          <Parameter name='maximizeHomogeneity' default='TRUE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for maximizing homogeneity</description>
+          </Parameter>
+          <Parameter name='alphaInitial' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>alphaInitial</description>
+          </Parameter>
+          <Parameter name='alphaMax' default ='1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>alphaMax</description>
+          </Parameter>
+          <Parameter name='alphaMin' default ='-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>alphaMin</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapletCoterminalSwaption2RmsError' type='QuantLib::CapletCoterminalSwaptionCalibration2' superType='libraryClass'>
+      <description>rmsError</description>
+      <libraryFunction>rmsError</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapletCoterminalSwaption2SwapPseudoRoot' type='QuantLib::CapletCoterminalSwaptionCalibration2' superType='libraryClass'>
+      <description>swapPseudoRoot</description>
+      <libraryFunction>swapPseudoRoot</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='index' exampleValue='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+
     <Constructor name='qlCapletCoterminalSwaptionCalibration3'>
       <libraryFunction>CapletCoterminalSwaptionCalibration3</libraryFunction>
       <SupportedPlatforms>
@@ -1904,25 +2053,25 @@
             <tensorRank>scalar</tensorRank>
             <description>number of factors</description>
           </Parameter>
-          <Parameter name='maxIterationsInner' default='100'>
+          <Parameter name='maxIter' default='2'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>maxIterations</description>
+            <description>maximum number of iterations</description>
           </Parameter>
-          <Parameter name='toleranceInner' default='1e-8'>
+          <Parameter name='capletVolTol' default='0.0001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance</description>
+            <description>caplet vol tolerance</description>
           </Parameter>
-          <Parameter name='maxIterations' default='2'>
+          <Parameter name='maxIterInner' default='100'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>maxIterations</description>
+            <description>maximum number of iterations for inner solving</description>
           </Parameter>
-          <Parameter name='tolerance' default='0.001'>
+          <Parameter name='innerTol' default='1e-8'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance</description>
+            <description>tolerance used in the inner solving</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1985,6 +2134,8 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
+
+    <!-- Forward Libor Market Model <-> Coterminal Swap Market Model -->
 
     <Procedure name='qlCoterminalSwapForwardJacobian'>
       <description>Returns the jacobian between coterminal swap rates and forward rates</description>

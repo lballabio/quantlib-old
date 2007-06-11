@@ -53,6 +53,21 @@ namespace QuantLibAddin {
                     displacement));
     }
 
+    CapletCoterminalSwaptionCalibration2::CapletCoterminalSwaptionCalibration2(
+            const QuantLib::EvolutionDescription& evolution,
+            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
+            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
+            const std::vector<QuantLib::Volatility>& capletVols,
+            const boost::shared_ptr<QuantLib::CurveState>& cs,
+            QuantLib::Spread displacement)
+    {
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::CapletCoterminalSwaptionCalibration2>(
+                new QuantLib::CapletCoterminalSwaptionCalibration2(
+                    evolution, corr, swapVariances, capletVols, cs,
+                    displacement));
+    }
+
     CapletCoterminalSwaptionCalibration3::CapletCoterminalSwaptionCalibration3(
             const QuantLib::EvolutionDescription& evolution,
             const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,

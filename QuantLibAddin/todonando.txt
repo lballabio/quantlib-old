@@ -21,6 +21,30 @@ class Instrument {
 
 ---
 GENERAL
+- max vol at t should not be negative
+- abcdBySwapTenor with global displacement
+- use OTm options for abcd wbks
+
+- slit up marketmodel.xml
+
+- common base class for capletswaption calibration
+
+- Reuters feed stay open even when no Reuters is available
+- missing fixings for May 25 2007
+
+- QuantLibXL About should use qlQuantLibXlVersion()
+- action for main checks
+- action for setevaluationdate
+
+- every factor in MM might have its own vol model
+- profiling MM
+- exporto to XL different alpha parametric forms
+
+- qlrequire last caplet == last swaption
+- calculate deformations for all methods
+- caplet swaption calib whith more than 3 factors
+- multiple displacements for swap indexes
+
 - 2Y beta sensitivity
 - remove all ActiveWorkbook usage
 - cap pricing quality
