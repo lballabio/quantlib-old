@@ -429,20 +429,17 @@ namespace QuantLibAddin {
                             const std::vector<QuantLib::DiscountFactor>& ds,
                             const std::vector<QuantLib::Time>& taus);
 
-
-     QuantLib::Matrix qlComputeHistoricalCorrelationsZeroYieldLinear(
-                   QuantLib::Date startDate, 
-                   QuantLib::Date endDate, 
-                   QuantLib::Period historicalStep,
-                   bool rollingForwardRatesTimeGrid,
-                   const QuantLib::Calendar& calendar,
-                   const boost::shared_ptr<QuantLib::InterestRateIndex> index,
-                   QuantLib::Period forwardHorizon,
-                   const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
-                   const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
-                   QuantLib::Natural depositSettlementDays, QuantLib::Natural swapSettlementDays,
-                   const QuantLib::DayCounter& yieldCurveDayCounter,
-                   QuantLib::Real yieldCurveAccuracy);
+    QuantLib::Matrix qlHistCorrZeroYieldLinear(
+            QuantLib::Date startDate, 
+            QuantLib::Date endDate, 
+            QuantLib::Period step,
+            const boost::shared_ptr<QuantLib::InterestRateIndex> fwdIndex,
+            QuantLib::Period initialGap,
+            QuantLib::Period horizon,
+            const std::vector<boost::shared_ptr<QuantLib::IborIndex> >&,
+            const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >&,
+            const QuantLib::DayCounter& yieldCurveDayCounter,
+            QuantLib::Real yieldCurveAccuracy);
 
      std::vector<QuantLib::Real> qlRateVolDifferences(
                             const QuantLib::MarketModel&,

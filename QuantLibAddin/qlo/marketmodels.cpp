@@ -529,32 +529,23 @@ namespace QuantLibAddin {
         return annuities;
     }
 
-    QuantLib::Matrix qlComputeHistoricalCorrelationsZeroYieldLinear(
-                   QuantLib::Date startDate, 
-                   QuantLib::Date endDate, 
-                   QuantLib::Period historicalStep,
-                   bool rollingForwardRatesTimeGrid,
-                   const QuantLib::Calendar& calendar,
-                   const boost::shared_ptr<QuantLib::InterestRateIndex> index,
-                   QuantLib::Period forwardHorizon,
-                   const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
-                   const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
-                   QuantLib::Natural depositSettlementDays, QuantLib::Natural swapSettlementDays,
-                   const QuantLib::DayCounter& yieldCurveDayCounter,
-                   QuantLib::Real yieldCurveAccuracy) {
+    QuantLib::Matrix qlHistCorrZeroYieldLinear(
+               QuantLib::Date startDate, 
+               QuantLib::Date endDate, 
+               QuantLib::Period step,
+               const boost::shared_ptr<QuantLib::InterestRateIndex> fwdIndex,
+               QuantLib::Period initialGap,
+               QuantLib::Period horizon,
+               const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+               const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+               const QuantLib::DayCounter& yieldCurveDayCounter,
+               QuantLib::Real yieldCurveAccuracy) {
         
-        return QuantLib::computeHistoricalCorrelations<QuantLib::ZeroYield, QuantLib::Linear>(
-                   startDate, endDate, 
-                   historicalStep,
-                   rollingForwardRatesTimeGrid, 
-                   calendar,
-                   index,
-                   forwardHorizon,
-                   iborIndexes,
-                   swapIndexes,
-                   depositSettlementDays, swapSettlementDays,
-                   yieldCurveDayCounter,
-                   yieldCurveAccuracy);
+        return QuantLib::historicalCorrelations<QuantLib::ZeroYield, QuantLib::Linear>(
+                   startDate, endDate, step,
+                   fwdIndex, initialGap, horizon,
+                   iborIndexes, swapIndexes,
+                   yieldCurveDayCounter, yieldCurveAccuracy);
     }
     
    std::vector<QuantLib::Real> qlRateVolDifferences(

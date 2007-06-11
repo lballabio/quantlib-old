@@ -41,6 +41,7 @@ Cri & Chiara
 - Reuters feed stay open even when no Reuters is available
 - missing fixings for May 25 2007
 
+- no need to open control panel after indexes loading
 - QuantLibXL About should use qlQuantLibXlVersion()
 - action for main checks
 - action for setevaluationdate

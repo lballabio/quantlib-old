@@ -98,7 +98,7 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Procedure>
-    
+
     <Constructor name='qlTimeHomogeneousForwardCorrelation'>
       <libraryFunction>TimeHomogeneousForwardCorrelation</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
@@ -1880,8 +1880,8 @@
       </ReturnValue>
     </Member>
 
-    
-    
+
+
     <Constructor name='qlCapletCoterminalSwaptionCalibration2'>
       <libraryFunction>CapletCoterminalSwaptionCalibration2</libraryFunction>
       <SupportedPlatforms>
@@ -3241,147 +3241,132 @@
       </ReturnValue>
     </Procedure>
 
-      <Procedure name='qlComputeHistoricalCorrelationsZeroYieldLinear'>
-          <description>Returns historical correlations between forward rates using a ZeroYield, Linear boostrapped curve</description>
-          <functionCategory>QuantLib</functionCategory>
-          <SupportedPlatforms>
-              <SupportedPlatform name='Excel' calcInWizard='false' />
-          </SupportedPlatforms>
-          <ParameterList>
-              <Parameters>
-                  <Parameter name='startDate' default='QuantLib::Date()'>
-                      <type>QuantLib::Date</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>beginning of the time series</description>
-                  </Parameter>
-                  <Parameter name='endDate' default='QuantLib::Date()'>
-                      <type>QuantLib::Date</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>End of the time series</description>
-                  </Parameter>
-                  <Parameter name='historicalStep' exampleValue ='1D'>
-                      <type>QuantLib::Period</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>size of the time step in the time series</description>
-                  </Parameter>
-                  <Parameter name='rollingForwardRatesTimeGrid' exampleValue ='true'>
-                      <type>bool</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>rolling (true) or fixed (false) time grid for historical forward rates </description>
-                  </Parameter>
-                  <Parameter name='calendar' exampleValue='TARGET'>
-                      <type>QuantLib::Calendar</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>holiday calendar (e.g. TARGET)</description>
-                  </Parameter>
-                  <Parameter name='iborIndex'>
-                      <type>QuantLib::IborIndex</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>floating rate index</description>
-                  </Parameter>
-                  <Parameter name='forwardHorizon' exampleValue ='1D'>
-                      <type>QuantLib::Period</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>horizon of the bootstrap</description>
-                  </Parameter>
-                  <Parameter name='iborIndexes'>
-                      <type>QuantLib::IborIndex</type>
-                      <tensorRank>vector</tensorRank>
-                      <description>Ibor indexes</description>
-                  </Parameter>
-                  <Parameter name='swapIndexes'>
-                      <type>QuantLib::SwapIndex</type>
-                      <tensorRank>vector</tensorRank>
-                      <description>Swap indexes</description>
-                  </Parameter>
-                  <Parameter name='depositSettlementDays' exampleValue='2'>
-                      <type>QuantLib::Natural</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>Deposit SettlementDays</description>
-                  </Parameter>
-                  <Parameter name='swapSettlementDays' exampleValue='2'>
-                      <type>QuantLib::Natural</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>Swap SettlementDays</description>
-                  </Parameter>
-                  <Parameter name='yieldCurveDayCounter' exampleValue='Actual/365 (Fixed)'>
-                      <type>QuantLib::DayCounter</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>yieldCurve DayCount</description>
-                  </Parameter>
-                  <Parameter name='yieldCurveAccuracy' exampleValue='10e-12'>
-                      <type>QuantLib::Real</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>yieldCurve Accuracy</description>
-                  </Parameter>
-              </Parameters>
-          </ParameterList>
-          <ReturnValue>
-              <type>QuantLib::Matrix</type>
-              <tensorRank>matrix</tensorRank>
-          </ReturnValue>
-      </Procedure>
-      
-      <Procedure name='qlRateVolDifferences'>
-          <description>Compute the differences between all implied forwards volatilities</description>
-          <functionCategory>QuantLib</functionCategory>
-          <SupportedPlatforms>
-              <SupportedPlatform name='Excel' calcInWizard='false' />
-          </SupportedPlatforms>
-          <ParameterList>
-              <Parameters>
-                  <Parameter name='marketModel1' >
-                      <type>QuantLib::MarketModel</type>
-                      <superType>underlyingClass</superType>
-                      <tensorRank>scalar</tensorRank>
-                      <description>First Market Model</description>
-                  </Parameter>
-                  <Parameter name='marketModel2'>
-                      <type>QuantLib::MarketModel</type>
-                      <superType>underlyingClass</superType>
-                      <tensorRank>scalar</tensorRank>
-                      <description>Second Market Model</description>
-                  </Parameter>
-              </Parameters>
-          </ParameterList>
-          <ReturnValue>
-              <type>QuantLib::Real</type>
-              <tensorRank>vector</tensorRank>
-          </ReturnValue>
-      </Procedure>
-      
-      <Procedure name='qlRateInstVolDifferences'>
-          <description>Compute the differences between volatilities at each evolution step</description>
-          <functionCategory>QuantLib</functionCategory>
-          <SupportedPlatforms>
-              <SupportedPlatform name='Excel' calcInWizard='false' />
-          </SupportedPlatforms>
-          <ParameterList>
-              <Parameters>
-                  <Parameter name='marketModel1' >
-                      <type>QuantLib::MarketModel</type>
-                      <superType>underlyingClass</superType>
-                      <tensorRank>scalar</tensorRank>
-                      <description>First Market Model</description>
-                  </Parameter>
-                  <Parameter name='marketModel2'>
-                      <type>QuantLib::MarketModel</type>
-                      <superType>underlyingClass</superType>
-                      <tensorRank>scalar</tensorRank>
-                      <description>Second Market Model</description>
-                  </Parameter>
-                  <Parameter name='index' exampleValue='2'>
-                      <type>QuantLib::Size</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>Forward Rate index</description>
-                  </Parameter>
-              </Parameters>
-          </ParameterList>
-          <ReturnValue>
-              <type>QuantLib::Real</type>
-              <tensorRank>vector</tensorRank>
-          </ReturnValue>
-      </Procedure>
-    
+    <Procedure name='qlHistCorrZeroYieldLinear'>
+      <description>Returns historical correlations between forward rates using a ZeroYield, Linear boostrapped curve</description>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='startDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beginning of the time series</description>
+          </Parameter>
+          <Parameter name='endDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end of the time series</description>
+          </Parameter>
+          <Parameter name='step' exampleValue='1D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time series' time step</description>
+          </Parameter>
+          <Parameter name='iborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating rate index</description>
+          </Parameter>
+          <Parameter name='initialGap' exampleValue='3M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initialGap</description>
+          </Parameter>
+          <Parameter name='horizon' exampleValue='30Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bootstrap horizon</description>
+          </Parameter>
+          <Parameter name='iborIndexes'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Ibor indexes</description>
+          </Parameter>
+          <Parameter name='swapIndexes'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Swap indexes</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/365 (Fixed)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>yield curve DayCounter</description>
+          </Parameter>
+          <Parameter name='bootstrapAccuracy' exampleValue='10e-12'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>boostrap accuracy</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlRateVolDifferences'>
+      <description>Compute the differences between all implied forwards volatilities</description>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketModel1' >
+            <type>QuantLib::MarketModel</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>First Market Model</description>
+          </Parameter>
+          <Parameter name='marketModel2'>
+            <type>QuantLib::MarketModel</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Second Market Model</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlRateInstVolDifferences'>
+      <description>Compute the differences between volatilities at each evolution step</description>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketModel1' >
+            <type>QuantLib::MarketModel</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>First Market Model</description>
+          </Parameter>
+          <Parameter name='marketModel2'>
+            <type>QuantLib::MarketModel</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Second Market Model</description>
+          </Parameter>
+          <Parameter name='index' exampleValue='2'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Forward Rate index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
   </Functions>
 </Category>
