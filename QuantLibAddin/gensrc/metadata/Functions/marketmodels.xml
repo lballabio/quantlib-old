@@ -121,6 +121,38 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlTimeHomogeneousTimeDependentForwardCorrelation'>
+      <libraryFunction>TimeHomogeneousTimeDependentForwardCorrelation</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' >
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate times</description>
+          </Parameter>
+          <Parameter name='longTermCorr' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation </description>
+          </Parameter>
+          <Parameter name='beta' exampleValue ='0.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponential decay factor</description>
+          </Parameter>
+          <Parameter name='gamma' exampleValue ='0.9'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponent for time to go</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <!-- MarketModelMultiProductComposite base class interface  -->
 
     <Constructor name='qlMarketModelMultiProductComposite'>

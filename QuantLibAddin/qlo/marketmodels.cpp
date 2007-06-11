@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Marco Bianchetti
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,9 +22,8 @@
 #endif
 #include <qlo/marketmodels.hpp>
 #include <qlo/ValueObjects/vo_marketmodels.hpp>
-#include <ql/models/marketmodels/curvestate.hpp>
+#include <ql/math/matrix.hpp>
 #include <ql/models/marketmodels/models/flatvol.hpp>
-#include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
 #include <ql/models/marketmodels/evolvers/lognormalfwdratepc.hpp>
 #include <ql/models/marketmodels/evolvers/lognormalfwdrateipc.hpp>
@@ -32,8 +32,6 @@
 #include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
 #include <ql/models/marketmodels/correlations/correlations.hpp>
-#include <ql/math/matrix.hpp>
-#include <ql/models/marketmodels/historicalcorrelation.hpp>
 
 
 namespace QuantLibAddin {
@@ -92,6 +90,20 @@ namespace QuantLibAddin {
             boost::shared_ptr<QuantLib::TimeHomogeneousForwardCorrelation>(
                 new QuantLib::TimeHomogeneousForwardCorrelation(
                     fwdCorrelation, rateTimes));
+    }
+
+    TimeHomogeneousTimeDependentForwardCorrelation::
+        TimeHomogeneousTimeDependentForwardCorrelation(
+            const std::vector<QuantLib::Time>& rateTimes,
+            QuantLib::Real longTermCorr,
+            QuantLib::Real beta,
+            QuantLib::Real gamma)
+    {
+        QL_REQUIRE(!rateTimes.empty(), "rate times vector is empty!");
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::TimeHomogeneousTimeDependentForwardCorrelation>(
+                new QuantLib::TimeHomogeneousTimeDependentForwardCorrelation(
+                    rateTimes,longTermCorr,beta,gamma));
     }
 
     CotSwapFromFwdCorrelation::CotSwapFromFwdCorrelation(

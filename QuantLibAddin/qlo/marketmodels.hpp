@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Marco Bianchetti
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,6 +23,7 @@
 #include <oh/objecthandler.hpp>
 
 #include <ql/instruments/payoffs.hpp>
+#include <ql/termstructures/volatilities/abcd.hpp>
 #include <ql/models/marketmodels/accountingengine.hpp>
 #include <ql/models/marketmodels/marketmodel.hpp>
 #include <ql/models/marketmodels/evolutiondescription.hpp>
@@ -32,21 +34,21 @@
 #include <ql/models/marketmodels/driftcomputation/smmdriftcalculator.hpp>
 #include <ql/models/marketmodels/browniangenerator.hpp>
 #include <ql/models/marketmodels/evolver.hpp>
-#include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/curvestates/cmswapcurvestate.hpp>
 #include <ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp>
 #include <ql/models/marketmodels/curvestates/lmmcurvestate.hpp>
+#include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
-#include <ql/models/marketmodels/correlations/cotswapfromfwdcorrelation.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalmaxhomogeneity.hpp>
 #include <ql/models/marketmodels/products/multiproductcomposite.hpp>
+#include <ql/models/marketmodels/correlations/cotswapfromfwdcorrelation.hpp>
+#include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
+#include <ql/models/marketmodels/correlations/TimeHomogeneousTimeDependentForwardCorrelation.hpp>
+#include <ql/models/marketmodels/historicalcorrelation.hpp>
 #include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
 #include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
-#include <ql/termstructures/volatilities/abcd.hpp>
-#include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
-#include <ql/models/marketmodels/historicalcorrelation.hpp>
 
 namespace QuantLibAddin {
 
@@ -59,6 +61,15 @@ namespace QuantLibAddin {
             TimeHomogeneousForwardCorrelation(
                 const QuantLib::Matrix& fwdCorrelation,
                 const std::vector<QuantLib::Time>& rateTimes);
+    };
+
+    class TimeHomogeneousTimeDependentForwardCorrelation : public PiecewiseConstantCorrelation {
+        public:
+            TimeHomogeneousTimeDependentForwardCorrelation(
+                const std::vector<QuantLib::Time>& rateTimes,
+                QuantLib::Real longTermCorr,
+                QuantLib::Real beta,
+                QuantLib::Real gamma);
     };
 
     class CotSwapFromFwdCorrelation : public PiecewiseConstantCorrelation {
