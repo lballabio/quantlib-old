@@ -4,12 +4,71 @@
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
   <includes>
     <include>qlo/optimization.hpp</include>
+    <include>ql/math/optimization/spherecylinder.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
   </copyright>
 
   <Functions>
+
+    <Procedure name='qlSphereCylinderOptimizerClosest' >
+      <description></description>
+      <alias>QuantLib::sphereCylinderOptimizerClosest</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='r'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+          <Parameter name='s'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+          <Parameter name='alpha'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+          <Parameter name='z1'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+          <Parameter name='z2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+          <Parameter name='z3'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+          <Parameter name='maxIter'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+          <Parameter name='tol'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+
 
     <!-- EndCriteria class and interface -->
 

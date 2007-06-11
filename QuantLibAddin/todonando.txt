@@ -24,13 +24,19 @@ GENERAL
 
 - USD yield curve and swaption vols
 
+Cri & Chiara
 - max vol at t should not be negative
 - abcdBySwapTenor with global displacement
 - use OTm options for abcd wbks
 
-- split up marketmodel.xml
+- split up marketmodel.xml (Giorgio)
 
-- common base class for capletswaption calibration
+- common base class for capletswaption calibration (io)
+  failures
+  export sphere to Excel
+  index method for accessing only timeseries
+
+- longer time series for hist (K & Marco)
 
 - Reuters feed stay open even when no Reuters is available
 - missing fixings for May 25 2007
