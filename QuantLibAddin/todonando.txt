@@ -21,6 +21,9 @@ class Instrument {
 
 ---
 GENERAL
+
+- USD yield curve and swaption vols
+
 - max vol at t should not be negative
 - abcdBySwapTenor with global displacement
 - use OTm options for abcd wbks
@@ -35,6 +38,8 @@ GENERAL
 - QuantLibXL About should use qlQuantLibXlVersion()
 - action for main checks
 - action for setevaluationdate
+- when returning a 1 col/row matrix add another col/row
+  with #NA to prevent Excel from duplicating col/row
 
 - every factor in MM might have its own vol model
 - profiling MM
