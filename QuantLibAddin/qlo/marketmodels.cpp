@@ -281,6 +281,22 @@ namespace QuantLibAddin {
                const QuantLib::DayCounter& yieldCurveDayCounter,
                QuantLib::Real yieldCurveAccuracy) {
         
+
+        //QuantLib::Cubic naturalCubic(
+        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
+        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
+        //    false);
+
+        //QuantLib::Cubic cubic1(
+        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
+        //    QuantLib::CubicSpline::FirstDerivative, 1.0,
+        //    false);
+
+        //QuantLib::Cubic monotoneCubic(
+        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
+        //    QuantLib::CubicSpline::FirstDerivative, 0.0,
+        //    true);
+
         return QuantLib::historicalCorrelations<QuantLib::ZeroYield, QuantLib::Linear>(
                    startDate, endDate, step,
                    fwdIndex, initialGap, horizon,
