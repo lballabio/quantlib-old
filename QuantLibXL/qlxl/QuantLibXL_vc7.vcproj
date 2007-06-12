@@ -451,6 +451,9 @@
 				RelativePath="Register\register_couponvectors.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_curvestate.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_date.cpp">
 			</File>
 			<File
@@ -497,6 +500,9 @@
 			</File>
 			<File
 				RelativePath="Register\register_processes.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_products.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_quotes.cpp">
