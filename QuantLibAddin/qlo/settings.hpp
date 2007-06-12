@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -30,21 +30,19 @@
 namespace QuantLibAddin {
 
 /*! \group utilities
-    diagnostic and information functions for QuantLibAddin
+    Settings functions
 */
 
     /*! set the evaluation date */
-    inline QuantLib::Date setEvaluationDate(const QuantLib::Date &evalDate) {
+    inline QuantLib::Date
+    qlSettingsSetEvaluationDate(const QuantLib::Date& evalDate) {
         QuantLib::Settings::instance().evaluationDate() = evalDate;
         return evalDate;
     }
 
-    inline bool qlSettingsEnforceTodaysHistoricFixings() {
-        return QuantLib::Settings::instance().enforcesTodaysHistoricFixings();
-    }
-
-    inline void qlSettingsSetEnforceTodaysHistoricFixings(bool val) {
-        QuantLib::Settings::instance().enforcesTodaysHistoricFixings() = val;
+    inline bool qlSettingsSetEnforceTodaysHistoricFixings(bool b) {
+        QuantLib::Settings::instance().enforcesTodaysHistoricFixings() = b;
+        return b;
     }
 }
 

@@ -3,7 +3,7 @@
   <displayName>Settings</displayName>
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
   <copyright>
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
   </copyright>
   <Functions>
 
@@ -27,7 +27,7 @@
 
     <Procedure name='qlSettingsSetEvaluationDate'>
       <description>sets the value of the Evaluation Date</description>
-      <alias>QuantLibAddin::setEvaluationDate</alias>
+      <alias>QuantLibAddin::qlSettingsSetEvaluationDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
@@ -51,7 +51,7 @@
 
     <Procedure name='qlSettingsEnforceTodaysHistoricFixings'>
       <description>returns the current value of the boolean which enforce the usage of historic fixings for today's date</description>
-      <alias>QuantLibAddin::qlSettingsEnforceTodaysHistoricFixings</alias>
+      <alias>QuantLib::Settings::instance().enforcesTodaysHistoricFixings</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
