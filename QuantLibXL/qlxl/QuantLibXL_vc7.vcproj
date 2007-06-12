@@ -433,6 +433,9 @@
 				RelativePath="Register\register_all.hpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_alphaform.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_assetswap.cpp">
 			</File>
 			<File
@@ -566,6 +569,9 @@
 			Name="Functions"
 			Filter="">
 			<File
+				RelativePath=".\Functions\abcd.cpp">
+			</File>
+			<File
 				RelativePath="Functions\assetswap.cpp">
 			</File>
 			<File
@@ -585,6 +591,9 @@
 			</File>
 			<File
 				RelativePath="Functions\couponvectors.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\curvestate.cpp">
 			</File>
 			<File
 				RelativePath="Functions\date.cpp">
@@ -639,6 +648,9 @@
 			</File>
 			<File
 				RelativePath="Functions\processes.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\products.cpp">
 			</File>
 			<File
 				RelativePath="Functions\quotes.cpp">

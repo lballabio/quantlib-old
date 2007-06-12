@@ -70,6 +70,12 @@
 			Name="Functions"
 			Filter="">
 			<File
+				RelativePath=".\metadata\Functions\abcd.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\alphaform.xml">
+			</File>
+			<File
 				RelativePath="metadata\Functions\assetswap.xml">
 			</File>
 			<File
@@ -148,10 +154,16 @@
 				RelativePath=".\metadata\Functions\products.xml">
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\quotes.xml">
+			</File>
+			<File
 				RelativePath=".\metadata\quotes.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\randomsequencegenerator.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\rangeaccrual.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\ratehelpers.xml">

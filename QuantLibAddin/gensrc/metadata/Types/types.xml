@@ -78,6 +78,7 @@
         <DataType>QuantLib::Abcd</DataType>
         <DataType>QuantLib::AccountingEngine</DataType>
         <DataType>QuantLib::AffineModel</DataType>
+        <DataType>QuantLib::AlphaForm</DataType>
         <DataType>QuantLib::AssetSwap</DataType>
         <DataType>QuantLib::BlackCalculator</DataType>
         <DataType>QuantLib::BlackScholesCalculator</DataType>

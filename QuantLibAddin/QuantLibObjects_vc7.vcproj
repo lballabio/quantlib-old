@@ -407,7 +407,19 @@
 			Name="ValueObjects"
 			Filter="">
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_abcd.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_abcd.hpp">
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_all.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_alphaform.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_alphaform.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_assetswap.cpp">
@@ -444,6 +456,12 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_couponvectors.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_curvestate.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_curvestate.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_exercise.cpp">
@@ -516,6 +534,12 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_processes.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_products.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_products.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_quotes.cpp">
@@ -879,6 +903,18 @@
 		<Filter
 			Name="MarketModels"
 			Filter="">
+			<File
+				RelativePath=".\qlo\abcd.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\abcd.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\alphaform.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\alphaform.hpp">
+			</File>
 			<File
 				RelativePath=".\qlo\curvestate.cpp">
 			</File>
