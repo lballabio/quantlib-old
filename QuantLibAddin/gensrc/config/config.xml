@@ -7,6 +7,7 @@
   <namespaceObjects>QuantLibAddin</namespaceObjects>
 
   <categoryNames>
+    <categoryName>abcd</categoryName>
     <categoryName>assetswap</categoryName>
     <categoryName>bonds</categoryName>
     <categoryName>calendar</categoryName>

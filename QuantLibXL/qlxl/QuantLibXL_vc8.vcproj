@@ -420,6 +420,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Register\register_abcd.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Register\register_all.cpp"
 				>
 			</File>
@@ -603,6 +607,10 @@
 		<Filter
 			Name="Functions"
 			>
+			<File
+				RelativePath=".\Functions\abcd.cpp"
+				>
+			</File>
 			<File
 				RelativePath="Functions\assetswap.cpp"
 				>

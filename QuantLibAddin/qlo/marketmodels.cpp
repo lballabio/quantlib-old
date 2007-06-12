@@ -22,7 +22,6 @@
 #endif
 #include <qlo/marketmodels.hpp>
 #include <qlo/products.hpp>
-//#include <qlo/ValueObjects/vo_marketmodels.hpp>
 #include <ql/math/matrix.hpp>
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
@@ -196,14 +195,6 @@ namespace QuantLibAddin {
                                          displacement));
     }
 
-    Abcd::Abcd(QuantLib::Real a, QuantLib::Real b,
-               QuantLib::Real c, QuantLib::Real d,
-               bool aIsFixed, bool bIsFixed,
-               bool cIsFixed, bool dIsFixed) {
-        libraryObject_ = boost::shared_ptr<QuantLib::Abcd>(
-            new QuantLib::Abcd(a, b, c, d,
-                               aIsFixed, bIsFixed, cIsFixed, dIsFixed));
-    }
 
     LMMDriftCalculator::LMMDriftCalculator(
                                     const QuantLib::Matrix& pseudo,

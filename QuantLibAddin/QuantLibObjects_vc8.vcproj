@@ -422,6 +422,14 @@
 			Name="ValueObjects"
 			>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_abcd.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_abcd.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_all.hpp"
 				>
 			</File>
@@ -1077,6 +1085,14 @@
 		<Filter
 			Name="MarketModels"
 			>
+			<File
+				RelativePath=".\qlo\abcd.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\abcd.hpp"
+				>
+			</File>
 			<File
 				RelativePath=".\qlo\curvestate.cpp"
 				>

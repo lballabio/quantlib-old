@@ -22,8 +22,8 @@
 
 #include <oh/objecthandler.hpp>
 
+#include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/instruments/payoffs.hpp>
-#include <ql/termstructures/volatilities/abcd.hpp>
 #include <ql/models/marketmodels/accountingengine.hpp>
 #include <ql/models/marketmodels/marketmodel.hpp>
 #include <ql/models/marketmodels/evolutiondescription.hpp>
@@ -37,7 +37,6 @@
 #include <ql/models/marketmodels/curvestates/cmswapcurvestate.hpp>
 #include <ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp>
 #include <ql/models/marketmodels/curvestates/lmmcurvestate.hpp>
-#include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp>
@@ -139,17 +138,6 @@ namespace QuantLibAddin {
             const QuantLib::MarketModelMultiProduct& product);
     };
 
-    class Abcd : public ObjectHandler::LibraryObject<QuantLib::Abcd> {
-    public:
-        Abcd(QuantLib::Real a,
-             QuantLib::Real b,
-             QuantLib::Real c,
-             QuantLib::Real d,
-             bool aIsFixed,
-             bool bIsFixed,
-             bool cIsFixed,
-             bool dIsFixed);
-    };
 
     // MarketModels
     class MarketModel : public ObjectHandler::LibraryObject<QuantLib::MarketModel> {
@@ -165,6 +153,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Rate>& initialRates,
             const std::vector<QuantLib::Rate>& displacements);
     };
+
 
     class AbcdVol : public MarketModel {
     public:
@@ -331,31 +320,6 @@ namespace QuantLibAddin {
                                             QuantLib::Size factors);
 
     };
-    /////
-    std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
-                            const QuantLib::Size firstValidIndex,
-                            const std::vector<QuantLib::DiscountFactor>& ds,
-                            const std::vector<QuantLib::Time>& taus);
-
-    std::vector<QuantLib::Rate> qlCoterminalSwapRatesFromDiscountRatios(
-                            const QuantLib::Size firstValidIndex,
-                            const std::vector<QuantLib::DiscountFactor>& ds,
-                            const std::vector<QuantLib::Time>& taus);
-    std::vector<QuantLib::Real> qlCoterminalSwapAnnuitiesFromDiscountRatios(
-                            const QuantLib::Size firstValidIndex,
-                            const std::vector<QuantLib::DiscountFactor>& ds,
-                            const std::vector<QuantLib::Time>& taus);
-
-    std::vector<QuantLib::Rate> qlConstantMaturitySwapRatesFromDiscountRatios(
-                            const QuantLib::Size spanningForwards,
-                            const QuantLib::Size firstValidIndex,
-                            const std::vector<QuantLib::DiscountFactor>& ds,
-                            const std::vector<QuantLib::Time>& taus);
-    std::vector<QuantLib::Real> qlConstantMaturitySwapAnnuitiesFromDiscountRatios(
-                            const QuantLib::Size spanningForwards,
-                            const QuantLib::Size firstValidIndex,
-                            const std::vector<QuantLib::DiscountFactor>& ds,
-                            const std::vector<QuantLib::Time>& taus);
 
     QuantLib::Matrix qlHistCorrZeroYieldLinear(
             const QuantLib::Date& startDate, 

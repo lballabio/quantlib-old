@@ -95,6 +95,10 @@
 			Name="Functions"
 			>
 			<File
+				RelativePath=".\metadata\Functions\abcd.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\assetswap.xml"
 				>
 			</File>
