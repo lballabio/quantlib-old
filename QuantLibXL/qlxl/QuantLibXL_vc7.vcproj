@@ -466,6 +466,9 @@
 				RelativePath="Register\register_daycounter.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_driftcalculators.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_exercise.cpp">
 			</File>
 			<File
@@ -482,6 +485,9 @@
 			</File>
 			<File
 				RelativePath=".\Register\register_leg.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_marketmodelevolvers.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_marketmodels.cpp">
