@@ -95,14 +95,6 @@
 			Name="Functions"
 			>
 			<File
-				RelativePath=".\metadata\Functions\abcd.xml"
-				>
-			</File>
-			<File
-				RelativePath=".\metadata\Functions\alphaform.xml"
-				>
-			</File>
-			<File
 				RelativePath="metadata\Functions\assetswap.xml"
 				>
 			</File>
@@ -131,23 +123,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\curvestate.xml"
-				>
-			</File>
-			<File
 				RelativePath="metadata\Functions\date.xml"
 				>
 			</File>
 			<File
 				RelativePath="metadata\Functions\daycounter.xml"
-				>
-			</File>
-			<File
-				RelativePath=".\metadata\Functions\driftcalculators.xml"
-				>
-			</File>
-			<File
-				RelativePath=".\metadata\Functions\evolutiondescription.xml"
 				>
 			</File>
 			<File
@@ -172,14 +152,6 @@
 			</File>
 			<File
 				RelativePath=".\metadata\Functions\leg.xml"
-				>
-			</File>
-			<File
-				RelativePath=".\metadata\Functions\marketmodelevolvers.xml"
-				>
-			</File>
-			<File
-				RelativePath="metadata\Functions\marketmodels.xml"
 				>
 			</File>
 			<File
@@ -212,10 +184,6 @@
 			</File>
 			<File
 				RelativePath="metadata\Functions\processes.xml"
-				>
-			</File>
-			<File
-				RelativePath=".\metadata\Functions\products.xml"
 				>
 			</File>
 			<File
@@ -290,6 +258,42 @@
 				RelativePath="metadata\Functions\volatilities.xml"
 				>
 			</File>
+			<Filter
+				Name="marketmodels"
+				>
+				<File
+					RelativePath=".\metadata\Functions\abcd.xml"
+					>
+				</File>
+				<File
+					RelativePath=".\metadata\Functions\alphaform.xml"
+					>
+				</File>
+				<File
+					RelativePath=".\metadata\Functions\curvestate.xml"
+					>
+				</File>
+				<File
+					RelativePath=".\metadata\Functions\driftcalculators.xml"
+					>
+				</File>
+				<File
+					RelativePath=".\metadata\Functions\evolutiondescription.xml"
+					>
+				</File>
+				<File
+					RelativePath=".\metadata\Functions\marketmodelevolvers.xml"
+					>
+				</File>
+				<File
+					RelativePath="metadata\Functions\marketmodels.xml"
+					>
+				</File>
+				<File
+					RelativePath=".\metadata\Functions\products.xml"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Rules"
