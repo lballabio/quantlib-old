@@ -21,8 +21,6 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/marketmodels.hpp>
-#include <qlo/products.hpp>
-#include <ql/math/matrix.hpp>
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
 #include <ql/models/marketmodels/marketmodeldifferences.hpp>

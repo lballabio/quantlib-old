@@ -4,6 +4,8 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
     <include>qlo/correlation.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/index.hpp</include>
   </includes>
   
@@ -165,6 +167,90 @@
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>exponent for time to go</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
+    <Member name='qlPiecewiseConstantCorrelationCorrelation' type='QuantLib::PiecewiseConstantCorrelation' superType='libraryClass'>
+      <description>Returns the pseudo-root of the equivalent covariance swap rates matrix</description>
+      <libraryFunction>correlation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='timeIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantCorrelationTimes' type='QuantLib::PiecewiseConstantCorrelation' superType='libraryClass'>
+      <description>Piecewise Constant Correlation Times</description>
+      <libraryFunction>times</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantCorrelationNumberOfRates' type='QuantLib::PiecewiseConstantCorrelation' superType='libraryClass'>
+      <description>Piecewise Constant Correlation Number of Rates</description>
+      <libraryFunction>numberOfRates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlCotSwapFromFwdCorrelation'>
+      <libraryFunction>CotSwapFromFwdCorrelation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='correlationMatrix'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>FRA correlation matrix</description>
+          </Parameter>
+          <Parameter name='curveState' exampleValue ='CurveStateID'>
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>curveState</description>
+          </Parameter>
+          <Parameter name='displacement' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
+          </Parameter>
+          <Parameter name='evolution' exampleValue ='EvolutionDescriptionID'>
+            <type>QuantLib::EvolutionDescription</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Evolution Description</description>
           </Parameter>
         </Parameters>
       </ParameterList>
