@@ -13,7 +13,7 @@
   <Functions>
 
     <Procedure name='qlSphereCylinderOptimizerClosest' >
-      <description></description>
+      <description>Sphere Cylinder Optimizer Closest</description>
       <alias>QuantLib::sphereCylinderOptimizerClosest</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -23,37 +23,37 @@
           <Parameter name='r'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description></description>
+            <description>r</description>
           </Parameter>
           <Parameter name='s'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description></description>
+            <description>s</description>
           </Parameter>
           <Parameter name='alpha'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description></description>
+            <description>alpha</description>
           </Parameter>
           <Parameter name='z1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description></description>
+            <description>z1</description>
           </Parameter>
           <Parameter name='z2'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description></description>
+            <description>z2</description>
           </Parameter>
           <Parameter name='z3'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description></description>
+            <description>z3</description>
           </Parameter>
           <Parameter name='maxIter'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description></description>
+            <description>maxIter</description>
           </Parameter>
           <Parameter name='tol'>
             <type>QuantLib::Real</type>
