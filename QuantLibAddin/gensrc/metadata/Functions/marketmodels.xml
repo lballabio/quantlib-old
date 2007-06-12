@@ -372,7 +372,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='numberOfFactors' example='3'>
+          <Parameter name='numberOfFactors' exampleValue='3'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of factors</description>
@@ -524,7 +524,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='numberOfFactors' example='3'>
+          <Parameter name='numberOfFactors' exampleValue='3'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of factors</description>
@@ -669,7 +669,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='numberOfFactors' example='3'>
+          <Parameter name='numberOfFactors' exampleValue='3'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of factors</description>
@@ -684,10 +684,10 @@
             <tensorRank>scalar</tensorRank>
             <description>caplet vol tolerance</description>
           </Parameter>
-          <Parameter name='capletSwaptionPriority' default='0.0'>
+          <Parameter name='caplet0Swaption1Priority' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>capletSwaptionPriority</description>
+            <description>caplet0Swaption1Priority</description>
           </Parameter>
           <Parameter name='maxIterInner' default='100'>
             <type>QuantLib::Size</type>
