@@ -8,7 +8,6 @@
     <include>qlo/alphaform.hpp</include>
   </includes>
   <copyright>
-
     Copyright (C) 2007 Marco Bianchetti
   </copyright>
   <Functions>

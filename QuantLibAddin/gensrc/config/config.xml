@@ -19,6 +19,7 @@
     <categoryName>curvestate</categoryName>
     <categoryName>date</categoryName>
     <categoryName>daycounter</categoryName>
+    <categoryName>driftcalculators</categoryName>
     <categoryName>exercise</categoryName>
     <categoryName>forwardrateagreement</categoryName>
     <categoryName>index</categoryName>
@@ -26,6 +27,7 @@
     <categoryName>interpolation</categoryName>
     <categoryName>leg</categoryName>
     <categoryName>marketmodels</categoryName>
+    <categoryName>marketmodelevolvers</categoryName>
     <categoryName>mathf</categoryName>
     <categoryName>ohfunctions</categoryName>
     <categoryName>optimization</categoryName>

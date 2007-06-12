@@ -99,6 +99,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\alphaform.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\assetswap.xml"
 				>
 			</File>
@@ -139,6 +143,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\driftcalculators.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\exercise.xml"
 				>
 			</File>
@@ -160,6 +168,10 @@
 			</File>
 			<File
 				RelativePath=".\metadata\Functions\leg.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\marketmodelevolvers.xml"
 				>
 			</File>
 			<File

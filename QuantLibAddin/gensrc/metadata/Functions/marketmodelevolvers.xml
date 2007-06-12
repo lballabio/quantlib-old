@@ -1,0 +1,169 @@
+<Category name='marketmodelevolvers'>
+  <description>functions to construct and use Market Model Evolvers objects</description>
+  <displayName>Market Model Evolvers</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/marketmodelevolvers.hpp</include>
+    <include>qlo/marketmodels.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2007 Chiara Fornarola
+    Copyright (C) 2006, 2007 Marco Bianchetti
+    Copyright (C) 2006, 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+    
+    <!-- MarketModelEvolver derived classes constructors  -->
+    <Constructor name='qlForwardRatePc'>
+      <libraryFunction>LogNormalFwdRatePc</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketModel'>
+            <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>MarketModel object ID</description>
+          </Parameter>
+          <Parameter name='brownianGeneratorFactory'>
+            <type>QuantLib::BrownianGeneratorFactory</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Brownian generator factory</description>
+          </Parameter>
+          <Parameter name='numeraires' exampleValue ='5,5,5,5,5'>
+            <type>QuantLib::Size</type>
+            <tensorRank>vector</tensorRank>
+            <description>numeraire vector</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlForwardRateIpc'>
+      <libraryFunction>LogNormalFwdRateIpc</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketModel'>
+            <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>MarketModel object ID</description>
+          </Parameter>
+          <Parameter name='brownianGeneratorFactory'>
+            <type>QuantLib::BrownianGeneratorFactory</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Brownian generator factory</description>
+          </Parameter>
+          <Parameter name='numeraires' exampleValue ='5,5,5,5,5'>
+            <type>QuantLib::Size</type>
+            <tensorRank>vector</tensorRank>
+            <description>numeraire vector</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlForwardRateNormalPc'>
+      <libraryFunction>NormalFwdRatePc</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketModel'>
+            <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>MarketModel object ID</description>
+          </Parameter>
+          <Parameter name='brownianGeneratorFactory'>
+            <type>QuantLib::BrownianGeneratorFactory</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Brownian generator factory</description>
+          </Parameter>
+          <Parameter name='numeraires' exampleValue ='5,5,5,5,5'>
+            <type>QuantLib::Size</type>
+            <tensorRank>vector</tensorRank>
+            <description>numeraire vector</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- MarketModelEvolver base class interfaces  -->
+    <Member name='qlMarketModelEvolverStartNewPath' type='QuantLib::MarketModelEvolver'>
+      <description>start a new path for the MarketModelEvolver object</description>
+      <libraryFunction>startNewPath</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelEvolverAdvanceStep' type='QuantLib::MarketModelEvolver'>
+      <description>advance a single step in the current path for the MarketModelEvolver object</description>
+      <libraryFunction>advanceStep</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelEvolverCurrentStep' type='QuantLib::MarketModelEvolver'>
+      <description>returns the current step index in the current path for the MarketModelEvolver object</description>
+      <libraryFunction>currentStep</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelEvolverNumeraires' type='QuantLib::MarketModelEvolver'>
+      <description>returns the current step index in the current path for the MarketModelEvolver object</description>
+      <libraryFunction>numeraires</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+  </Functions>
+</Category>

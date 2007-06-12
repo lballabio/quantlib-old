@@ -434,6 +434,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_alphaform.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_alphaform.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_assetswap.cpp"
 				>
 			</File>
@@ -490,6 +498,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_driftcalculators.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_driftcalculators.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_exercise.cpp"
 				>
 			</File>
@@ -527,6 +543,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_leg.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_marketmodelevolvers.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_marketmodelevolvers.hpp"
 				>
 			</File>
 			<File
@@ -1094,11 +1118,35 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\alphaform.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\alphaform.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\curvestate.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\qlo\curvestate.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\driftcalculators.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\driftcalculators.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\marketmodelevolvers.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\marketmodelevolvers.hpp"
 				>
 			</File>
 			<File

@@ -25,12 +25,6 @@
 #include <ql/math/matrix.hpp>
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
-#include <ql/models/marketmodels/evolvers/lognormalfwdratepc.hpp>
-#include <ql/models/marketmodels/evolvers/lognormalfwdrateipc.hpp>
-#include <ql/models/marketmodels/evolvers/normalfwdratepc.hpp>
-#include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
-#include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
-#include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
 #include <ql/models/marketmodels/correlations/correlations.hpp>
 #include <ql/models/marketmodels/marketmodeldifferences.hpp>
 
@@ -196,102 +190,7 @@ namespace QuantLibAddin {
     }
 
 
-    LMMDriftCalculator::LMMDriftCalculator(
-                                    const QuantLib::Matrix& pseudo,
-                                    const std::vector<QuantLib::Rate>& displ,
-                                    const std::vector<QuantLib::Time>& taus,
-                                    QuantLib::Size numeraire,
-                                    QuantLib::Size alive)
-    : drifts_(taus.size()) {
-        libraryObject_ = boost::shared_ptr<QuantLib::LMMDriftCalculator>(new
-            QuantLib::LMMDriftCalculator(pseudo, displ,
-                                         taus, numeraire, alive));
-    }
-
-    std::vector<QuantLib::Real> LMMDriftCalculator::compute(
-                                const QuantLib::LMMCurveState& cs) const {
-        libraryObject_->compute(cs, drifts_);
-        return drifts_;
-    }
-
-    std::vector<QuantLib::Real> LMMDriftCalculator::computePlain(
-                                const QuantLib::LMMCurveState& cs) const {
-        libraryObject_->computePlain(cs, drifts_);
-        return drifts_;
-    }
-
-    std::vector<QuantLib::Real> LMMDriftCalculator::computeReduced(
-                                const QuantLib::LMMCurveState& cs) const {
-        libraryObject_->computeReduced(cs, drifts_);
-        return drifts_;
-    }
-
-    LMMNormalDriftCalculator::LMMNormalDriftCalculator(
-                                const QuantLib::Matrix& pseudo,
-                                const std::vector<QuantLib::Time>& taus,
-                                QuantLib::Size numeraire,
-                                QuantLib::Size alive)
-    : drifts_(taus.size()) {
-        libraryObject_ = boost::shared_ptr<QuantLib::LMMNormalDriftCalculator>(
-            new QuantLib::LMMNormalDriftCalculator(pseudo,
-                                                   taus, numeraire, alive));
-    }
-
-    std::vector<QuantLib::Real> LMMNormalDriftCalculator::compute(
-                                const QuantLib::LMMCurveState& cs) const {
-        libraryObject_->compute(cs, drifts_);
-        return drifts_;
-    }
-
-    std::vector<QuantLib::Real> LMMNormalDriftCalculator::computePlain(
-                                const QuantLib::LMMCurveState& cs) const {
-        libraryObject_->computePlain(cs, drifts_);
-        return drifts_;
-    }
-
-    std::vector<QuantLib::Real> LMMNormalDriftCalculator::computeReduced(
-                                const QuantLib::LMMCurveState& cs) const {
-        libraryObject_->computeReduced(cs, drifts_);
-        return drifts_;
-    }
-
-    CMSMMDriftCalculator::CMSMMDriftCalculator(
-                                const QuantLib::Matrix& pseudo,
-                                const std::vector<QuantLib::Rate>& displ,
-                                const std::vector<QuantLib::Time>& taus,
-                                QuantLib::Size numeraire,
-                                QuantLib::Size alive,
-                                QuantLib::Size spanningFwds)
-    : drifts_(taus.size()) {
-        libraryObject_= boost::shared_ptr<QuantLib::CMSMMDriftCalculator>(new
-            QuantLib::CMSMMDriftCalculator(pseudo, displ,
-                                           taus, numeraire, alive,
-                                           spanningFwds));
-    }
-
-    std::vector<QuantLib::Real> CMSMMDriftCalculator::compute(
-                                const QuantLib::CMSwapCurveState& cs) const {
-        libraryObject_->compute(cs, drifts_);
-        return drifts_;
-    }
-
-    SMMDriftCalculator::SMMDriftCalculator(
-                                const QuantLib::Matrix& pseudo,
-                                const std::vector<QuantLib::Rate>& displ,
-                                const std::vector<QuantLib::Time>& taus,
-                                QuantLib::Size numeraire,
-                                QuantLib::Size alive)
-    : drifts_(taus.size()) {
-        libraryObject_= boost::shared_ptr<QuantLib::SMMDriftCalculator>(new
-            QuantLib::SMMDriftCalculator(pseudo, displ,
-                                         taus, numeraire, alive));
-    }
-
-    std::vector<QuantLib::Real> SMMDriftCalculator::compute(
-                                const QuantLib::CoterminalSwapCurveState& cs) const {
-        libraryObject_->compute(cs, drifts_);
-        return drifts_;
-    }
+  
 
     //SwapCovarianceApproximator::SwapCovarianceApproximator(
     //                            const QuantLib::CurveState& initialCurveState,
@@ -319,39 +218,7 @@ namespace QuantLibAddin {
             new QuantLib::MTBrownianGeneratorFactory(seed));
     }
 
-    LogNormalFwdRatePc::LogNormalFwdRatePc(
-        const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
-        const QuantLib::BrownianGeneratorFactory& generatorFactory,
-        const std::vector<QuantLib::Size>& numeraires)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
-            new QuantLib::LogNormalFwdRatePc(pseudoRoot,
-                                               generatorFactory,
-                                               numeraires));
-    }
-
-    LogNormalFwdRateIpc::LogNormalFwdRateIpc(
-        const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
-        const QuantLib::BrownianGeneratorFactory& generatorFactory,
-        const std::vector<QuantLib::Size>& numeraires)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
-            new QuantLib::LogNormalFwdRateIpc(pseudoRoot,
-                                                generatorFactory,
-                                                numeraires));
-    }
-
-    NormalFwdRatePc::NormalFwdRatePc(
-        const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
-        const QuantLib::BrownianGeneratorFactory& generatorFactory,
-        const std::vector<QuantLib::Size>& numeraires)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
-            new QuantLib::NormalFwdRatePc(pseudoRoot,
-                                                generatorFactory,
-                                                numeraires));
-    }
-
+    
     AccountingEngine::AccountingEngine(
         const boost::shared_ptr<QuantLib::MarketModelEvolver>& evolver,
         const QuantLib::Clone<QuantLib::MarketModelMultiProduct>& product,

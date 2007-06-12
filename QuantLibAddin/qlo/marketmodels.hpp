@@ -23,25 +23,14 @@
 #include <oh/objecthandler.hpp>
 
 #include <ql/models/marketmodels/models/abcdvol.hpp>
-#include <ql/instruments/payoffs.hpp>
 #include <ql/models/marketmodels/accountingengine.hpp>
 #include <ql/models/marketmodels/marketmodel.hpp>
 #include <ql/models/marketmodels/evolutiondescription.hpp>
-#include <ql/models/marketmodels/curvestate.hpp>
-#include <ql/models/marketmodels/driftcomputation/lmmdriftcalculator.hpp>
-#include <ql/models/marketmodels/driftcomputation/cmsmmdriftcalculator.hpp>
-#include <ql/models/marketmodels/driftcomputation/lmmnormaldriftcalculator.hpp>
-#include <ql/models/marketmodels/driftcomputation/smmdriftcalculator.hpp>
 #include <ql/models/marketmodels/browniangenerator.hpp>
-#include <ql/models/marketmodels/evolver.hpp>
-#include <ql/models/marketmodels/curvestates/cmswapcurvestate.hpp>
-#include <ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp>
-#include <ql/models/marketmodels/curvestates/lmmcurvestate.hpp>
 #include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalmaxhomogeneity.hpp>
-#include <ql/models/marketmodels/products/multiproductcomposite.hpp>
 #include <ql/models/marketmodels/correlations/cotswapfromfwdcorrelation.hpp>
 #include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
 #include <ql/models/marketmodels/correlations/TimeHomogeneousTimeDependentForwardCorrelation.hpp>
@@ -183,65 +172,6 @@ namespace QuantLibAddin {
                               QuantLib::Spread displacement);
     };
 
-   class LMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::LMMDriftCalculator> {
-      public:
-        LMMDriftCalculator(const QuantLib::Matrix& pseudo,
-                           const std::vector<QuantLib::Rate>& displacements,
-                           const std::vector<QuantLib::Time>& taus,
-                           QuantLib::Size numeraire,
-                           QuantLib::Size alive);
-        std::vector<QuantLib::Real> compute(
-            const QuantLib::LMMCurveState& cs) const;
-        std::vector<QuantLib::Real> computePlain(
-            const QuantLib::LMMCurveState& cs) const;
-        std::vector<QuantLib::Real> computeReduced(
-            const QuantLib::LMMCurveState& cs) const;
-      private:
-        mutable std::vector<QuantLib::Real> drifts_;
-    };
-
-    class LMMNormalDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::LMMNormalDriftCalculator> {
-      public:
-        LMMNormalDriftCalculator(const QuantLib::Matrix& pseudo,
-                        const std::vector<QuantLib::Time>& taus,
-                        QuantLib::Size numeraire,
-                        QuantLib::Size alive);
-        std::vector<QuantLib::Real> compute(
-            const QuantLib::LMMCurveState& cs) const;
-        std::vector<QuantLib::Real> computePlain(
-            const QuantLib::LMMCurveState& cs) const;
-        std::vector<QuantLib::Real> computeReduced(
-            const QuantLib::LMMCurveState& cs) const;
-      private:
-        mutable std::vector<QuantLib::Real> drifts_;
-    };
-
-    class CMSMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::CMSMMDriftCalculator> {
-      public:
-        CMSMMDriftCalculator(const QuantLib::Matrix& pseudo,
-                             const std::vector<QuantLib::Rate>& displacements,
-                             const std::vector<QuantLib::Time>& taus,
-                             QuantLib::Size numeraire,
-                             QuantLib::Size alive,
-                             QuantLib::Size spanningFwds);
-        std::vector<QuantLib::Real> compute(
-            const QuantLib::CMSwapCurveState& cs) const;
-      private:
-        mutable std::vector<QuantLib::Real> drifts_;
-    };
-
-    class SMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::SMMDriftCalculator> {
-      public:
-        SMMDriftCalculator(const QuantLib::Matrix& pseudo,
-                           const std::vector<QuantLib::Rate>& displacements,
-                           const std::vector<QuantLib::Time>& taus,
-                           QuantLib::Size numeraire,
-                           QuantLib::Size alive);
-        std::vector<QuantLib::Real> compute(
-            const QuantLib::CoterminalSwapCurveState& cs) const;
-      private:
-        mutable std::vector<QuantLib::Real> drifts_;
-    };
 
     //class SwapCovarianceApproximator : public ObjectHandler::LibraryObject<
     //    QuantLib::SwapCovarianceApproximator> {
@@ -263,29 +193,6 @@ namespace QuantLibAddin {
         MTBrownianGeneratorFactory(unsigned long seed);
     };
 
-    class MarketModelEvolver : public ObjectHandler::LibraryObject<
-        QuantLib::MarketModelEvolver> {
-    };
-
-    class LogNormalFwdRatePc : public MarketModelEvolver {
-    public:
-        LogNormalFwdRatePc(const boost::shared_ptr<QuantLib::MarketModel>&,
-                             const QuantLib::BrownianGeneratorFactory&,
-                             const std::vector<QuantLib::Size>& numeraires);
-    };
-
-    class LogNormalFwdRateIpc : public MarketModelEvolver {
-     public:
-        LogNormalFwdRateIpc(const boost::shared_ptr<QuantLib::MarketModel>&,
-                              const QuantLib::BrownianGeneratorFactory&,
-                              const std::vector<QuantLib::Size>& numeraires);
-    };
-    class NormalFwdRatePc : public MarketModelEvolver {
-     public:
-    NormalFwdRatePc(const boost::shared_ptr<QuantLib::MarketModel>&,
-                              const QuantLib::BrownianGeneratorFactory&,
-                              const std::vector<QuantLib::Size>& numeraires);
-    };
 
     class AccountingEngine : public ObjectHandler::LibraryObject<
         QuantLib::AccountingEngine> {
