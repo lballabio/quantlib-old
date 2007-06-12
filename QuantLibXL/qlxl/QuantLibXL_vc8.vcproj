@@ -480,6 +480,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Register\register_evolutiondescription.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Register\register_exercise.cpp"
 				>
 			</File>
@@ -669,6 +673,10 @@
 			</File>
 			<File
 				RelativePath=".\Functions\driftcalculators.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\evolutiondescription.cpp"
 				>
 			</File>
 			<File

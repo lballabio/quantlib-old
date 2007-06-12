@@ -113,28 +113,6 @@ namespace QuantLibAddin {
                                                           evolution));
     }
 
-    EvolutionDescription::EvolutionDescription(
-            const std::vector<QuantLib::Time>& rateTimes,
-            const std::vector<QuantLib::Time>& evolutionTimes)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::EvolutionDescription>(
-            new QuantLib::EvolutionDescription(rateTimes, evolutionTimes));
-    }
-
-    EvolutionDescription::EvolutionDescription(
-            const QuantLib::EvolutionDescription& ev)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::EvolutionDescription>(
-            new QuantLib::EvolutionDescription(ev));
-    }
-
-    EvolutionDescription::EvolutionDescription(
-            const QuantLib::MarketModelMultiProduct& product)
-    {
-        const QuantLib::EvolutionDescription& ev = product.evolution();
-        libraryObject_ =
-           boost::shared_ptr< QuantLib::EvolutionDescription>(new QuantLib::EvolutionDescription(ev));
-    }
 
     FlatVol::FlatVol(
             const std::vector<QuantLib::Volatility>& volatilities,

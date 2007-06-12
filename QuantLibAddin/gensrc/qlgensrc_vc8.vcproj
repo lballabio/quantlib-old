@@ -147,6 +147,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\evolutiondescription.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\exercise.xml"
 				>
 			</File>

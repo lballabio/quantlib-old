@@ -25,7 +25,7 @@
 #include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/accountingengine.hpp>
 #include <ql/models/marketmodels/marketmodel.hpp>
-#include <ql/models/marketmodels/evolutiondescription.hpp>
+
 #include <ql/models/marketmodels/browniangenerator.hpp>
 #include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
@@ -114,17 +114,6 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Volatility>& capletVols,
             const boost::shared_ptr<QuantLib::CurveState>& cs,
             QuantLib::Spread displacement);
-    };
-
-    class EvolutionDescription : public ObjectHandler::LibraryObject<QuantLib::EvolutionDescription> {
-    public:
-        EvolutionDescription(
-            const std::vector<QuantLib::Time>& rateTimes,
-            const std::vector<QuantLib::Time>& evolutionTimes);
-        EvolutionDescription(
-            const QuantLib::EvolutionDescription& ev);
-        EvolutionDescription(
-            const QuantLib::MarketModelMultiProduct& product);
     };
 
 

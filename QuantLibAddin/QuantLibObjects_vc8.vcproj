@@ -506,6 +506,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_evolutiondescription.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_evolutiondescription.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_exercise.cpp"
 				>
 			</File>
@@ -1139,6 +1147,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\driftcalculators.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\evolutiondescription.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\evolutiondescription.hpp"
 				>
 			</File>
 			<File
