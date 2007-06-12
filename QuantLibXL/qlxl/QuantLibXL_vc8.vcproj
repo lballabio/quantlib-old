@@ -456,6 +456,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Register\register_curvestate.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Register\register_date.cpp"
 				>
 			</File>
@@ -517,6 +521,10 @@
 			</File>
 			<File
 				RelativePath="Register\register_processes.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_products.cpp"
 				>
 			</File>
 			<File
@@ -624,6 +632,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Functions\curvestate.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Functions\date.cpp"
 				>
 			</File>
@@ -693,6 +705,10 @@
 			</File>
 			<File
 				RelativePath="Functions\processes.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\products.cpp"
 				>
 			</File>
 			<File

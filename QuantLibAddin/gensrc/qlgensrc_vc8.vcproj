@@ -123,6 +123,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\curvestate.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\date.xml"
 				>
 			</File>
@@ -188,6 +192,10 @@
 			</File>
 			<File
 				RelativePath="metadata\Functions\processes.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\products.xml"
 				>
 			</File>
 			<File

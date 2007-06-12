@@ -194,34 +194,7 @@ namespace QuantLibAddin {
                               QuantLib::Spread displacement);
     };
 
-    // CurveStates
-    class CurveState : public ObjectHandler::LibraryObject<QuantLib::CurveState> {};
-
-    class CMSwapCurveState : public CurveState {
-      public:
-        CMSwapCurveState(std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards) {
-            libraryObject_ = boost::shared_ptr<QuantLib::CMSwapCurveState>(new
-                QuantLib::CMSwapCurveState(rateTimes, spanningForwards));
-        }
-    };
-
-    class CoterminalSwapCurveState : public CurveState {
-      public:
-        CoterminalSwapCurveState(std::vector<QuantLib::Time>& rateTimes) {
-            libraryObject_ = boost::shared_ptr<QuantLib::CoterminalSwapCurveState>(new
-                QuantLib::CoterminalSwapCurveState(rateTimes));
-        }
-    };
-
-    class LMMCurveState : public CurveState {
-      public:
-        LMMCurveState(std::vector<QuantLib::Time>& rateTimes) {
-            libraryObject_ = boost::shared_ptr<QuantLib::LMMCurveState>(new
-                QuantLib::LMMCurveState(rateTimes));
-        }
-    };
-
-    class LMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::LMMDriftCalculator> {
+   class LMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::LMMDriftCalculator> {
       public:
         LMMDriftCalculator(const QuantLib::Matrix& pseudo,
                            const std::vector<QuantLib::Rate>& displacements,
@@ -291,51 +264,6 @@ namespace QuantLibAddin {
     //                               const QuantLib::Matrix& forwardCovarianceMatrix);
     //    QuantLib::Disposable<QuantLib::Matrix> swapCovarianceMatrix();
     //};
-
-    class MarketModelMultiProduct : public ObjectHandler::LibraryObject<
-        QuantLib::MarketModelMultiProduct> {
-      public:
-          std::string evolution() const;
-    };
-
-    class MarketModelComposite : public MarketModelMultiProduct {};
-
-    class MultiProductComposite : public MarketModelComposite {
-        public:
-            MultiProductComposite(){
-                libraryObject_ = boost::shared_ptr<QuantLib::MultiProductComposite>(
-                    new QuantLib::MultiProductComposite());};
-    };
-
-    class OneStepForwards : public MarketModelMultiProduct {
-    public:
-        OneStepForwards(const std::vector<QuantLib::Time>& rateTimes,
-                            const std::vector<QuantLib::Real>& accruals,
-                            const std::vector<QuantLib::Time>& paymentTimes,
-                            const std::vector<QuantLib::Rate>& strikes);
-    };
-
-    class OneStepOptionlets : public MarketModelMultiProduct {
-      public:
-        OneStepOptionlets(
-                const std::vector<QuantLib::Time>& rateTimes,
-                const std::vector<QuantLib::Real>& accruals,
-                const std::vector<QuantLib::Time>& paymentTimes,
-                const std::vector<boost::shared_ptr<QuantLib::Payoff> >&);
-    };
-
-    class MultiStepRatchet : public MarketModelMultiProduct {
-      public:
-        MultiStepRatchet(const std::vector<QuantLib::Time>& rateTimes,
-                         const std::vector<QuantLib::Real>& accruals,
-                         const std::vector<QuantLib::Time>& paymentTimes,
-                         QuantLib::Real gearingOfFloor,
-                         QuantLib::Real gearingOfFixing,
-                         QuantLib::Rate spreadOfFloor,
-                         QuantLib::Rate spreadOfFixing,
-                         QuantLib::Real initialFloor,
-                         bool payer);
-    };
 
     class BrownianGeneratorFactory : public ObjectHandler::LibraryObject<
         QuantLib::BrownianGeneratorFactory> {

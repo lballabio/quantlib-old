@@ -21,7 +21,8 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/marketmodels.hpp>
-#include <qlo/ValueObjects/vo_marketmodels.hpp>
+#include <qlo/products.hpp>
+//#include <qlo/ValueObjects/vo_marketmodels.hpp>
 #include <ql/math/matrix.hpp>
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
@@ -321,68 +322,6 @@ namespace QuantLibAddin {
     //    return result;
     //}
 
-    OneStepForwards::OneStepForwards(
-        const std::vector<QuantLib::Time>& rateTimes,
-        const std::vector<QuantLib::Real>& accruals,
-        const std::vector<QuantLib::Time>& paymentTimes,
-        const std::vector<QuantLib::Rate>& strikes)
-    {
-        QL_REQUIRE(rateTimes.size()>1, "rate times vector must contain at least two values");
-        libraryObject_ = boost::shared_ptr<QuantLib::MarketModelMultiProduct>(
-            new QuantLib::OneStepForwards(rateTimes, accruals,
-                                          paymentTimes, strikes));
-    }
-
-    MultiStepRatchet::MultiStepRatchet(
-        const std::vector<QuantLib::Time>& rateTimes,
-        const std::vector<QuantLib::Real>& accruals,
-        const std::vector<QuantLib::Time>& paymentTimes,
-        QuantLib::Real gearingOfFloor,
-        QuantLib::Real gearingOfFixing,
-        QuantLib::Rate spreadOfFloor,
-        QuantLib::Rate spreadOfFixing,
-        QuantLib::Real initialFloor,
-        bool payer)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::MarketModelMultiProduct>(
-            new QuantLib::MultiStepRatchet(rateTimes, accruals,
-                                          paymentTimes,
-                                          gearingOfFloor, gearingOfFixing,
-                                          spreadOfFloor, spreadOfFixing,
-                                          initialFloor, payer));
-    }
-
-    std::string MarketModelMultiProduct::evolution() const
-    {
-        const QuantLib::EvolutionDescription& ev = libraryObject_->evolution();
-        boost::shared_ptr<ObjectHandler::Object> objectPointer(
-            new QuantLibAddin::EvolutionDescription(ev));
-        // Eric 27-Apr-07 - A limitation of OH redesign is that there can only be one anonymous
-        // object per cell.  The line below may cause problems if creation of a second anonymous
-        // object is attempted elsewhere within the same overall operation.
-        std::string anonymousID =
-            ObjectHandler::Repository::instance().storeObject("", objectPointer);
-        objectPointer->setProperties(
-            boost::shared_ptr<ObjectHandler::ValueObject>(
-            new ValueObjects::qlEvolutionDescription(
-                anonymousID,
-                ev.rateTimes(),
-                ev.evolutionTimes())));
-        return anonymousID;
-    }
-
-    OneStepOptionlets::OneStepOptionlets(
-            const std::vector<QuantLib::Time>& rateTimes,
-            const std::vector<QuantLib::Real>& accruals,
-            const std::vector<QuantLib::Time>& paymentTimes,
-            const std::vector<boost::shared_ptr<QuantLib::Payoff> >& payoffs)
-    {
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::MarketModelMultiProduct>(new
-                QuantLib::OneStepOptionlets(
-                    rateTimes, accruals, paymentTimes, payoffs));
-    }
-
     MTBrownianGeneratorFactory::MTBrownianGeneratorFactory(unsigned long seed)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::BrownianGeneratorFactory>(
@@ -471,64 +410,7 @@ namespace QuantLibAddin {
                 new QuantLib::LmLinearExponentialCorrelationModel(size,rho,beta,factors));
 
     }
-    std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
-                            const QuantLib::Size firstValidIndex,
-                            const std::vector<QuantLib::DiscountFactor>& ds,
-                            const std::vector<QuantLib::Time>& taus) {
-        std::vector<QuantLib::Rate> result(taus.size());
-        QuantLib::forwardsFromDiscountRatios(firstValidIndex, ds, taus,
-                                             result);
-        return result;
-    }
-
-    std::vector<QuantLib::Rate> qlCoterminalSwapRatesFromDiscountRatios(
-                            const QuantLib::Size firstValidIndex,
-                            const std::vector<QuantLib::DiscountFactor>& ds,
-                            const std::vector<QuantLib::Time>& taus) {
-        std::vector<QuantLib::Real> rates(taus.size());
-        std::vector<QuantLib::Real> annuities(taus.size());
-        QuantLib::coterminalFromDiscountRatios(firstValidIndex, ds, taus,
-                                               rates, annuities);
-        return rates;
-    }
-
-    std::vector<QuantLib::Real> qlCoterminalSwapAnnuitiesFromDiscountRatios(
-                            const QuantLib::Size firstValidIndex,
-                            const std::vector<QuantLib::DiscountFactor>& ds,
-                            const std::vector<QuantLib::Time>& taus) {
-        std::vector<QuantLib::Real> rates(taus.size());
-        std::vector<QuantLib::Real> annuities(taus.size());
-        QuantLib::coterminalFromDiscountRatios(firstValidIndex, ds, taus,
-                                               rates, annuities);
-        return annuities;
-    }
-
-    std::vector<QuantLib::Rate> qlConstantMaturitySwapRatesFromDiscountRatios(
-                            const QuantLib::Size spanningForwards,
-                            const QuantLib::Size firstValidIndex,
-                            const std::vector<QuantLib::DiscountFactor>& ds,
-                            const std::vector<QuantLib::Time>& taus) {
-        std::vector<QuantLib::Real> rates(taus.size());
-        std::vector<QuantLib::Real> annuities(taus.size());
-        QuantLib::constantMaturityFromDiscountRatios(spanningForwards,
-                                                     firstValidIndex, ds, taus,
-                                                     rates, annuities);
-        return rates;
-    }
-
-    std::vector<QuantLib::Real> qlConstantMaturitySwapAnnuitiesFromDiscountRatios(
-                            const QuantLib::Size spanningForwards,
-                            const QuantLib::Size firstValidIndex,
-                            const std::vector<QuantLib::DiscountFactor>& ds,
-                            const std::vector<QuantLib::Time>& taus) {
-        std::vector<QuantLib::Real> rates(taus.size());
-        std::vector<QuantLib::Real> annuities(taus.size());
-        QuantLib::constantMaturityFromDiscountRatios(spanningForwards,
-                                                     firstValidIndex, ds, taus,
-                                                     rates, annuities);
-        return annuities;
-    }
-
+    
     QuantLib::Matrix qlHistCorrZeroYieldLinear(
                const QuantLib::Date& startDate, 
                const QuantLib::Date& endDate, 

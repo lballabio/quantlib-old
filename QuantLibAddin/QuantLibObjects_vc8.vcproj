@@ -474,6 +474,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_curvestate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_curvestate.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_exercise.cpp"
 				>
 			</File>
@@ -567,6 +575,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_processes.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_products.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_products.hpp"
 				>
 			</File>
 			<File
@@ -1062,11 +1078,27 @@
 			Name="MarketModels"
 			>
 			<File
+				RelativePath=".\qlo\curvestate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\curvestate.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\marketmodels.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\qlo\marketmodels.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\products.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\products.hpp"
 				>
 			</File>
 		</Filter>

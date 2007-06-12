@@ -14,6 +14,7 @@
     <categoryName>capletvolstructure</categoryName>
     <categoryName>cmsmarket</categoryName>
     <categoryName>couponvectors</categoryName>
+    <categoryName>curvestate</categoryName>
     <categoryName>date</categoryName>
     <categoryName>daycounter</categoryName>
     <categoryName>exercise</categoryName>
@@ -31,6 +32,7 @@
     <categoryName>prices</categoryName>
     <categoryName>pricingengines</categoryName>
     <categoryName>processes</categoryName>
+    <categoryName>products</categoryName>
     <categoryName>randomsequencegenerator</categoryName>
     <categoryName>rangeaccrual</categoryName>
     <categoryName>ratehelpers</categoryName>
