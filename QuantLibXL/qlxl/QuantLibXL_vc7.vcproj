@@ -424,6 +424,9 @@
 				RelativePath="Register\addin.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_abcd.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_all.cpp">
 			</File>
 			<File
