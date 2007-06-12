@@ -684,6 +684,11 @@
             <tensorRank>scalar</tensorRank>
             <description>caplet vol tolerance</description>
           </Parameter>
+          <Parameter name='capletSwaptionPriority' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>capletSwaptionPriority</description>
+          </Parameter>
           <Parameter name='maxIterInner' default='100'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
@@ -718,9 +723,25 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletCoterminalSwaption3RmsError' type='QuantLib::CapletCoterminalSwaptionCalibration3' superType='libraryClass'>
-      <description>rmsError</description>
-      <libraryFunction>rmsError</libraryFunction>
+    <Member name='qlCapletCoterminalSwaption3CapletRmsError' type='QuantLib::CapletCoterminalSwaptionCalibration3' superType='libraryClass'>
+      <description>rmsCapletError</description>
+      <libraryFunction>rmsCapletError</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCapletCoterminalSwaption3SwaptionRmsError' type='QuantLib::CapletCoterminalSwaptionCalibration3' superType='libraryClass'>
+      <description>rmsSwaptionError</description>
+      <libraryFunction>rmsSwaptionError</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
