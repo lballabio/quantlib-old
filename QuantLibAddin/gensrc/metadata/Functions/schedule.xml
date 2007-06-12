@@ -93,7 +93,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='index' example='0'>
+          <Parameter name='index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>zero based period index</description>
