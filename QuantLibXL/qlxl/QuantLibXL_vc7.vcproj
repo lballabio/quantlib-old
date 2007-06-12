@@ -569,9 +569,6 @@
 			Name="Functions"
 			Filter="">
 			<File
-				RelativePath=".\Functions\abcd.cpp">
-			</File>
-			<File
 				RelativePath="Functions\assetswap.cpp">
 			</File>
 			<File
@@ -591,9 +588,6 @@
 			</File>
 			<File
 				RelativePath="Functions\couponvectors.cpp">
-			</File>
-			<File
-				RelativePath=".\Functions\curvestate.cpp">
 			</File>
 			<File
 				RelativePath="Functions\date.cpp">
@@ -648,9 +642,6 @@
 			</File>
 			<File
 				RelativePath="Functions\processes.cpp">
-			</File>
-			<File
-				RelativePath=".\Functions\products.cpp">
 			</File>
 			<File
 				RelativePath="Functions\quotes.cpp">
