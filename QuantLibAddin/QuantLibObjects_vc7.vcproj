@@ -880,10 +880,22 @@
 			Name="MarketModels"
 			Filter="">
 			<File
+				RelativePath=".\qlo\curvestate.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\curvestate.hpp">
+			</File>
+			<File
 				RelativePath="qlo\marketmodels.cpp">
 			</File>
 			<File
 				RelativePath="qlo\marketmodels.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\products.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\products.hpp">
 			</File>
 		</Filter>
 		<Filter
