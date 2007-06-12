@@ -27,26 +27,23 @@ GENERAL
 Cri & Chiara
 - max vol at t should not be negative
 - abcdBySwapTenor with global displacement
-- use OTm options for abcd wbks
+- use OTM options for abcd wbks
 
 - split up marketmodel.xml (Giorgio)
 
 - common base class for capletswaption calibration (io)
   failures
-  export sphere to Excel
-  index method for accessing only timeseries
-
 - longer time series for hist (K & Marco)
 
 - Reuters feed stay open even when no Reuters is available
 - missing fixings for May 25 2007
 
-- no need to open control panel after indexes loading
-- QuantLibXL About should use qlQuantLibXlVersion()
+- QuantLibXL About should use qlXlVersion()
+- move info from ControlPanel (e.g. number of objects) to MainChecks
 - action for main checks
-- action for setevaluationdate
-- when returning a 1 col/row matrix add another col/row
-  with #NA to prevent Excel from duplicating col/row
+- action for setEvaluationDate
+- when returning a singe col (row) matrix add another col (row)
+  with #NA to prevent Excel from duplicating col (row)
 
 - every factor in MM might have its own vol model
 - profiling MM
@@ -153,10 +150,10 @@ CW	18%
     - generated .xls report 					(done)
     - test fixing effect on pricing				(done)
       a. present on spot starting irs
-      b. present on seasoned irs (via swap rate helpers)  
+      b. present on seasoned irs (via swap rate helpers)
     - test fixing effect on sa					()
       a. spot starting irs
-      b. seasoned irs 						()  
+      b. seasoned irs 						()
   - Swaption
     - create book (test_fe_1) of swaptions in Mx & QLXL		(done)
     - create book of not ATM (seasoned) swaption, X=3.5%	(done)
