@@ -51,7 +51,7 @@
 
     <Procedure name='qlSettingsEnforceTodaysHistoricFixings'>
       <description>returns the current value of the boolean which enforce the usage of historic fixings for today's date</description>
-      <alias>QuantLib::Settings::instance().enforceTodaysHistoricFixings</alias>
+      <alias>QuantLibAddin::qlSettingsEnforceTodaysHistoricFixings</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -66,7 +66,7 @@
 
     <Procedure name='qlSettingsSetEnforceTodaysHistoricFixings'>
       <description>sets the value of the boolean which enforce the usage of historic fixings for today's date</description>
-      <alias>QuantLib::Settings::instance().setEnforceTodaysHistoricFixings</alias>
+      <alias>QuantLibAddin::qlSettingsSetEnforceTodaysHistoricFixings</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>

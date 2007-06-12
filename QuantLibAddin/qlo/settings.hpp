@@ -39,6 +39,13 @@ namespace QuantLibAddin {
         return evalDate;
     }
 
+    inline bool qlSettingsEnforceTodaysHistoricFixings() {
+        return QuantLib::Settings::instance().enforcesTodaysHistoricFixings();
+    }
+
+    inline void qlSettingsSetEnforceTodaysHistoricFixings(bool val) {
+        QuantLib::Settings::instance().enforcesTodaysHistoricFixings() = val;
+    }
 }
 
 #endif
