@@ -482,6 +482,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_correlation.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_correlation.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_couponvectors.cpp"
 				>
 			</File>
@@ -1131,6 +1139,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\alphaform.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\correlation.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\correlation.hpp"
 				>
 			</File>
 			<File

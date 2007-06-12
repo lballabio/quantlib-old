@@ -1,0 +1,246 @@
+<Category name='correlation'>
+  <description>functions to construct and use Correlation objects</description>
+  <displayName>correlation</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/index.hpp</include>
+  </includes>
+  
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2007 Chiara Fornarola
+    Copyright (C) 2006, 2007 Marco Bianchetti
+    Copyright (C) 2006, 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+    <!-- LmLinearExponentialCorrelationModel constructor  -->
+
+    <Constructor name='qlMarketModelLmLinearExponentialCorrelationModel'>
+      <libraryFunction>LmLinearExponentialCorrelationModel</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='size' exampleValue ='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>size</description>
+          </Parameter>
+          <Parameter name='rho' exampleValue ='0.5'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rho</description>
+          </Parameter>
+          <Parameter name='beta' exampleValue ='.6'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta</description>
+          </Parameter>
+          <Parameter name='factors' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>factors</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Procedure name='qlHistCorrZeroYieldLinear'>
+      <description>Returns historical correlations between forward rates using a ZeroYield, Linear boostrapped curve</description>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='startDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beginning of the time series</description>
+          </Parameter>
+          <Parameter name='endDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end of the time series</description>
+          </Parameter>
+          <Parameter name='step' exampleValue='1D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time series' time step</description>
+          </Parameter>
+          <Parameter name='iborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating rate index</description>
+          </Parameter>
+          <Parameter name='initialGap' exampleValue='3M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initialGap</description>
+          </Parameter>
+          <Parameter name='horizon' exampleValue='30Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bootstrap horizon</description>
+          </Parameter>
+          <Parameter name='iborIndexes'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Ibor indexes</description>
+          </Parameter>
+          <Parameter name='swapIndexes'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Swap indexes</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/365 (Fixed)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>yield curve DayCounter</description>
+          </Parameter>
+          <Parameter name='bootstrapAccuracy' exampleValue='10e-12'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>boostrap accuracy</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Constructor name='qlTimeHomogeneousForwardCorrelation'>
+      <libraryFunction>TimeHomogeneousForwardCorrelation</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fwdCorrelation' >
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>forward correlations</description>
+          </Parameter>
+          <Parameter name='rateTimes' >
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate times</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlTimeHomogeneousTimeDependentForwardCorrelation'>
+      <libraryFunction>TimeHomogeneousTimeDependentForwardCorrelation</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' >
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate times</description>
+          </Parameter>
+          <Parameter name='longTermCorr' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation </description>
+          </Parameter>
+          <Parameter name='beta' exampleValue ='0.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponential decay factor</description>
+          </Parameter>
+          <Parameter name='gamma' exampleValue ='0.9'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponent for time to go</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Procedure name="qlExponentialCorrelations">
+      <description>Returns the correlation matrix (time independent long term + beta exponential functional form).</description>
+      <alias>QuantLib::exponentialCorrelations</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='longTermCorr' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation</description>
+          </Parameter>
+          <Parameter name='beta' exampleValue ='0.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponential decay factor</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name="qlExponentialCorrelationsTimeDependent">
+      <description>Returns the correlation matrix (time dependent long term + beta + gamma exponential functional form).</description>
+      <alias>QuantLib::exponentialCorrelationsTimeDependent</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times</description>
+          </Parameter>
+          <Parameter name='longTermCorr' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation </description>
+          </Parameter>
+          <Parameter name='beta' exampleValue ='0.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponential decay factor</description>
+          </Parameter>
+          <Parameter name='gamma' exampleValue ='0.9'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponent for time to go</description>
+          </Parameter>
+          <Parameter name='time' exampleValue ='0.0'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time t </description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+    
+  </Functions>
+</Category>

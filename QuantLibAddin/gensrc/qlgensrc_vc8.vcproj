@@ -270,6 +270,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\metadata\Functions\correlation.xml"
+					>
+				</File>
+				<File
 					RelativePath=".\metadata\Functions\curvestate.xml"
 					>
 				</File>

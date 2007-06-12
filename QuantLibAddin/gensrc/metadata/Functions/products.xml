@@ -7,8 +7,8 @@
     <include>qlo/marketmodels.hpp</include>
     <include>qlo/payoffs.hpp</include>
   </includes>
+ 
   <copyright>
-
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2007 Chiara Fornarola
     Copyright (C) 2006, 2007 Marco Bianchetti

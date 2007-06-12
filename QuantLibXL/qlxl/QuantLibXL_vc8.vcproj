@@ -460,6 +460,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Register\register_correlation.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Register\register_couponvectors.cpp"
 				>
 			</File>
@@ -653,6 +657,10 @@
 			</File>
 			<File
 				RelativePath="Functions\cmsmarket.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\correlation.cpp"
 				>
 			</File>
 			<File

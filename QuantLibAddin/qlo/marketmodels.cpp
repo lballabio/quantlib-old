@@ -25,7 +25,6 @@
 #include <ql/math/matrix.hpp>
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
-#include <ql/models/marketmodels/correlations/correlations.hpp>
 #include <ql/models/marketmodels/marketmodeldifferences.hpp>
 
 namespace QuantLibAddin {
@@ -76,44 +75,7 @@ namespace QuantLibAddin {
                     displacement));
     }
 
-    TimeHomogeneousForwardCorrelation::TimeHomogeneousForwardCorrelation(
-           const QuantLib::Matrix& fwdCorrelation,
-           const std::vector<QuantLib::Time>& rateTimes)
-    {
-        QL_REQUIRE(!rateTimes.empty(), "rate times vector is empty!");
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::TimeHomogeneousForwardCorrelation>(
-                new QuantLib::TimeHomogeneousForwardCorrelation(
-                    fwdCorrelation, rateTimes));
-    }
-
-    TimeHomogeneousTimeDependentForwardCorrelation::
-        TimeHomogeneousTimeDependentForwardCorrelation(
-            const std::vector<QuantLib::Time>& rateTimes,
-            QuantLib::Real longTermCorr,
-            QuantLib::Real beta,
-            QuantLib::Real gamma)
-    {
-        QL_REQUIRE(!rateTimes.empty(), "rate times vector is empty!");
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::TimeHomogeneousTimeDependentForwardCorrelation>(
-                new QuantLib::TimeHomogeneousTimeDependentForwardCorrelation(
-                    rateTimes,longTermCorr,beta,gamma));
-    }
-
-    CotSwapFromFwdCorrelation::CotSwapFromFwdCorrelation(
-            const QuantLib::Matrix& correlations,
-            const QuantLib::CurveState& curveState,
-            QuantLib::Real displacement,
-            const QuantLib::EvolutionDescription& evolution) {
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::CotSwapFromFwdCorrelation>(new
-                QuantLib::CotSwapFromFwdCorrelation(correlations,
-                                                          curveState,
-                                                          displacement,
-                                                          evolution));
-    }
-
+   
 
     FlatVol::FlatVol(
             const std::vector<QuantLib::Volatility>& volatilities,
@@ -167,9 +129,6 @@ namespace QuantLibAddin {
                                          yieldCurve,
                                          displacement));
     }
-
-
-  
 
     //SwapCovarianceApproximator::SwapCovarianceApproximator(
     //                            const QuantLib::CurveState& initialCurveState,
@@ -236,52 +195,8 @@ namespace QuantLibAddin {
             libraryObject_ = boost::shared_ptr<QuantLib::LmExtLinearExponentialVolModel>(
             new QuantLib::LmExtLinearExponentialVolModel(fixingTimes,a,b,c,d));
     }
-    //Correlation model
-    LmLinearExponentialCorrelationModel::LmLinearExponentialCorrelationModel(
-        QuantLib::Size size,
-        QuantLib::Real rho,
-        QuantLib::Real beta,
-        QuantLib::Size factors) {
 
-            libraryObject_ = boost::shared_ptr<QuantLib::LmLinearExponentialCorrelationModel>(
-                new QuantLib::LmLinearExponentialCorrelationModel(size,rho,beta,factors));
 
-    }
-    
-    QuantLib::Matrix qlHistCorrZeroYieldLinear(
-               const QuantLib::Date& startDate, 
-               const QuantLib::Date& endDate, 
-               const QuantLib::Period& step,
-               const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
-               const QuantLib::Period& initialGap,
-               const QuantLib::Period& horizon,
-               const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
-               const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
-               const QuantLib::DayCounter& yieldCurveDayCounter,
-               QuantLib::Real yieldCurveAccuracy) {
-        
-
-        //QuantLib::Cubic naturalCubic(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    false);
-
-        //QuantLib::Cubic cubic1(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::FirstDerivative, 1.0,
-        //    false);
-
-        //QuantLib::Cubic monotoneCubic(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::FirstDerivative, 0.0,
-        //    true);
-
-        return QuantLib::historicalCorrelations<QuantLib::ZeroYield, QuantLib::Linear>(
-                   startDate, endDate, step,
-                   fwdIndex, initialGap, horizon,
-                   iborIndexes, swapIndexes,
-                   yieldCurveDayCounter, yieldCurveAccuracy);
-    }
     
    std::vector<QuantLib::Real> qlRateVolDifferences(
        const QuantLib::MarketModel& marketModel1,
