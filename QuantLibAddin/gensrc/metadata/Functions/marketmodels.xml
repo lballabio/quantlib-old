@@ -893,11 +893,10 @@
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
           </Parameter>
-          <!--<Parameter name='alphaForm' libraryClass='AlphaForm' default='boost::shared_ptr&lt;QuantLib::AlphaForm&gt;()'>-->
-          <Parameter name='alphaForm' exampleValue ='AlphaFormID'>
+          <Parameter name='alphaForm' exampleValue ='AlphaFormID' default='""'>
             <type>QuantLib::AlphaForm</type>
             <tensorRank>scalar</tensorRank>
-            <description>alpha form ID.</description>
+            <description>alpha form ID. If omitted, default alpha form is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
