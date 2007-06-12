@@ -623,6 +623,10 @@
 				RelativePath="Register\register_volatilities.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\Register\register_volatility.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Functions"
@@ -829,6 +833,10 @@
 			</File>
 			<File
 				RelativePath="Functions\volatilities.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\volatility.cpp"
 				>
 			</File>
 		</Filter>

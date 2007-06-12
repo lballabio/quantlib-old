@@ -297,6 +297,10 @@
 					RelativePath=".\metadata\Functions\products.xml"
 					>
 				</File>
+				<File
+					RelativePath=".\metadata\Functions\volatility.xml"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter

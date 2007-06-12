@@ -24,12 +24,10 @@
 #define qla_market_models_hpp
 
 #include <oh/objecthandler.hpp>
-
-#include <ql/models/marketmodels/accountingengine.hpp>
 #include <ql/models/marketmodels/marketmodel.hpp>
-#include <ql/models/marketmodels/browniangenerator.hpp>
-#include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
 #include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
+#include <ql/models/marketmodels/accountingengine.hpp>
+#include <ql/models/marketmodels/browniangenerator.hpp>
 #include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
 #include <ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp>
@@ -37,16 +35,6 @@
 
 namespace QuantLibAddin {
 
-    class PiecewiseConstantVariance: public ObjectHandler::LibraryObject<QuantLib::PiecewiseConstantVariance>{};
-
-    class PiecewiseConstantAbcdVariance : public PiecewiseConstantVariance {
-      public:
-        PiecewiseConstantAbcdVariance(QuantLib::Real a, QuantLib::Real b,
-                                      QuantLib::Real c, QuantLib::Real d,
-                                      const QuantLib::Size resetIndex,
-                                      const std::vector<QuantLib::Time>& rateTimes);
-
-    };
 
     class CapletCoterminalSwaptionCalibration : public
         ObjectHandler::LibraryObject<QuantLib::CapletCoterminalSwaptionCalibration> {
@@ -160,22 +148,7 @@ namespace QuantLibAddin {
             const QuantLib::Clone<QuantLib::MarketModelMultiProduct>& product,
             double initialNumeraireValue);
     };
-
-    // Volatility Model
-    class LmVolatilityModel : public ObjectHandler::LibraryObject<
-        QuantLib::LmVolatilityModel> { };
-    class LmLinearExponentialVolatilityModel : public LmVolatilityModel { };
-    class LmExtLinearExponentialVolModel : public LmLinearExponentialVolatilityModel {
-    public:
-        LmExtLinearExponentialVolModel(const std::vector<QuantLib::Time>& fixingTimes,
-                                       QuantLib::Real a,
-                                       QuantLib::Real b,
-                                       QuantLib::Real c,
-                                       QuantLib::Real d);
-
-    };
-
-
+    
      std::vector<QuantLib::Real> qlRateVolDifferences(
                             const QuantLib::MarketModel&,
                             const QuantLib::MarketModel&);
@@ -183,7 +156,7 @@ namespace QuantLibAddin {
      std::vector<QuantLib::Real> qlRateInstVolDifferences(
                             const QuantLib::MarketModel&,
                             const QuantLib::MarketModel&,
-                            QuantLib::Size);
+                            QuantLib::Size);  
 }
 
 #endif

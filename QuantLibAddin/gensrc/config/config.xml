@@ -56,6 +56,7 @@
     <categoryName>utilities</categoryName>
     <categoryName>vanillaswap</categoryName>
     <categoryName>volatilities</categoryName>
+    <categoryName>volatility</categoryName>
     <categoryName>quotes</categoryName>
   </categoryNames>
 

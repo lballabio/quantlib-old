@@ -761,6 +761,14 @@
 				RelativePath=".\qlo\ValueObjects\vo_volatilities.hpp"
 				>
 			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_volatility.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_volatility.hpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="TermStructures"
@@ -1195,6 +1203,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\products.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\volatility.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\volatility.hpp"
 				>
 			</File>
 		</Filter>

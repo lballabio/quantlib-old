@@ -169,37 +169,8 @@ namespace QuantLibAddin {
                                            product,
                                            initialNumeraireValue));
     }
-
-
-    PiecewiseConstantAbcdVariance::PiecewiseConstantAbcdVariance(
-                            QuantLib::Real a, QuantLib::Real b,
-                            QuantLib::Real c, QuantLib::Real d,
-                            const QuantLib::Size resetIndex,
-                            const std::vector<QuantLib::Time>& rateTimes) {
-
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::PiecewiseConstantVariance>(new
-                QuantLib::PiecewiseConstantAbcdVariance(a, b, c, d,
-                                                        resetIndex,
-                                                        rateTimes));
-
-    }
-
-    //Volatility model
-    LmExtLinearExponentialVolModel::LmExtLinearExponentialVolModel(
-        const std::vector<QuantLib::Time>& fixingTimes,
-        QuantLib::Real a,
-        QuantLib::Real b,
-        QuantLib::Real c,
-        QuantLib::Real d) {
-
-            libraryObject_ = boost::shared_ptr<QuantLib::LmExtLinearExponentialVolModel>(
-            new QuantLib::LmExtLinearExponentialVolModel(fixingTimes,a,b,c,d));
-    }
-
-
-    
-   std::vector<QuantLib::Real> qlRateVolDifferences(
+       
+    std::vector<QuantLib::Real> qlRateVolDifferences(
        const QuantLib::MarketModel& marketModel1,
        const QuantLib::MarketModel& marketModel2){
            return QuantLib::rateVolDifferences(marketModel1, marketModel2);
@@ -211,5 +182,6 @@ namespace QuantLibAddin {
                             QuantLib::Size index){
         return QuantLib::rateInstVolDifferences(marketModel1, marketModel2, index);
    }
+    
 
 }
