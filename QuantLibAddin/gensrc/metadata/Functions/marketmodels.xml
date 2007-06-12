@@ -17,6 +17,7 @@
     <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/sequencestatistics.hpp</include>
     <include>qlo/payoffs.hpp</include>
+    <include>qlo/alphaform.hpp</include>
   </includes>
   
   <copyright>
@@ -891,6 +892,12 @@
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
+          </Parameter>
+          <!--<Parameter name='alphaForm' libraryClass='AlphaForm' default='boost::shared_ptr&lt;QuantLib::AlphaForm&gt;()'>-->
+          <Parameter name='alphaForm' exampleValue ='AlphaFormID'>
+            <type>QuantLib::AlphaForm</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha form ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

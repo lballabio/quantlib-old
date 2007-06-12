@@ -101,7 +101,8 @@ namespace QuantLibAddin {
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
             const std::vector<QuantLib::Volatility>& capletVols,
             const boost::shared_ptr<QuantLib::CurveState>& cs,
-            QuantLib::Spread displacement);
+            QuantLib::Spread displacement,
+            boost::shared_ptr<QuantLib::AlphaForm>& parametricform);
     };
 
     class CapletCoterminalSwaptionCalibration3 : public
