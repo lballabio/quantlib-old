@@ -42,6 +42,7 @@ WORKBOOKS
 - Workbooks\Tests\Historical Correlations.xls for historical forward rate correlation estimation (TO BE TESTED)
 - Workbooks\CmsCalibrations\MultiIndexSingleMeanRevCalibration.xls and Workbooks\MarketMetaData\SwaptionVols1.xls: added the choice between Simplex and Levenberg-Marquardt optimizers, set up reasonable parameters values, and extensive tests. 
 - Workbooks\DateCalendarsDayCounters\ScheduleGenerator.xls shows the usage of the Schedule class
+
 - Bonds
   added, validated and checked against the corresponding prospectus the following bonds:
   IT0003493258 IT0001307286 IT0006521139 IT0001303350 IT0001264792 IT0001271649 IT0001203295 IT0001296133 IT0001235404, XS0235012951, XS0082483388, IT0001203253, 
@@ -52,6 +53,7 @@ WORKBOOKS
 - Workbooks\InterestRateDerivatives\AssetSwap.xls modified so that it is now possible to use it with the following 3 types of bonds: fixedrate, floatingrate and cmsrate (this last
   wasn't available within the workbook in the previous release)
 - Workbooks\MainChecks.xls now contains checks for: one fixed cpn bond, one frn cpn bond, and cms cpn bond.
+- Workbooks\Tests\Z-SpreadTest.xls a new workbook to check the correctness of cleanPriceFromZSpread and dirtyPriceFromZSpread functions for fixed rate, floating rate, cms rate and zero coupon bonds.
 
 
 LIBRARY:
