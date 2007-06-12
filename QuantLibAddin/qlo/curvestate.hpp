@@ -55,10 +55,6 @@ namespace QuantLibAddin {
         }
     };
 
-
-
-
-
     std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
                             const QuantLib::Size firstValidIndex,
                             const std::vector<QuantLib::DiscountFactor>& ds,
