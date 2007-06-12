@@ -432,6 +432,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Register\register_alphaform.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Register\register_assetswap.cpp"
 				>
 			</File>
