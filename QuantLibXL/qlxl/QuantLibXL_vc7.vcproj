@@ -569,6 +569,9 @@
 			Name="Functions"
 			Filter="">
 			<File
+				RelativePath=".\Functions\alphaform.cpp">
+			</File>
+			<File
 				RelativePath="Functions\assetswap.cpp">
 			</File>
 			<File

@@ -16,7 +16,7 @@
     <!-- AlphaForm base class interfaces -->
     <Member name='qlAlphaFormOperator' type='QuantLib::AlphaForm' superType='libraryClass'>
       <description>returns the Alpha Form value at time i</description>
-      <libraryFunction>operator</libraryFunction>
+      <libraryFunction>operator()</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
