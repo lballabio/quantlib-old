@@ -469,6 +469,9 @@
 				RelativePath=".\Register\register_driftcalculators.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_evolutiondescription.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_exercise.cpp">
 			</File>
 			<File
