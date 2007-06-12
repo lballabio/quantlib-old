@@ -68,6 +68,7 @@ namespace QuantLibAddin {
                             const QuantLib::Size firstValidIndex,
                             const std::vector<QuantLib::DiscountFactor>& ds,
                             const std::vector<QuantLib::Time>& taus);
+
     std::vector<QuantLib::Real> qlCoterminalSwapAnnuitiesFromDiscountRatios(
                             const QuantLib::Size firstValidIndex,
                             const std::vector<QuantLib::DiscountFactor>& ds,
@@ -78,6 +79,7 @@ namespace QuantLibAddin {
                             const QuantLib::Size firstValidIndex,
                             const std::vector<QuantLib::DiscountFactor>& ds,
                             const std::vector<QuantLib::Time>& taus);
+
     std::vector<QuantLib::Real> qlConstantMaturitySwapAnnuitiesFromDiscountRatios(
                             const QuantLib::Size spanningForwards,
                             const QuantLib::Size firstValidIndex,
