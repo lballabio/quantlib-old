@@ -122,11 +122,23 @@ CW	18%
 - Bug investigation: launcher menu actions			(done)
   - l'errore si presentava con la rev 10882 del foglio intratefeed.xls
     il quale era stato salvato senza ricalcolo
+- Rt: se Reuters non è disponibile chiudi i live feed
+- Main checks action: da aggiungere nel launcher
+- Design e gestione della USD currency per contribuzione swaption vols
+- time series
+    *Refresh snapshot vba: estendere alle ts se open & editable
+    *Switch Data vba: verificare se estendere alle ts
+    *Verifica che macro che chiude le ts salva i fogli a False
+    *Close Live Feed vba: deve chiudere anche le ts se open
+    *Gestione smart per poter estendere le ts dinamicamente
+- Workbook_BeforeClose to remove triggers (verifica su pc diversi) 
+  su foglio ManualCapFeed
 - Rt Update
   -> no evidence of stopping problems on our pcs
   -> prepared wkb to test on traders' pc (next week)
 - coveredWarrants.xls
-	- check delta price in terms of vega (1d/2d)
+    *check delta price in terms of vega with flat vol 	(1d/2d)
+    *rivedere la gestione dei trigger
 - Sensitivity Analysis (K&Cristina):  				(7.5d/5w)
   - General
     run sa on rates, atm vols and vol spreads
@@ -142,18 +154,21 @@ CW	18%
     discriminate between invalid quote -> #NA()
        and error obtained after having tweaked a quote -> #NUM
   - Irs
-    - create book (test_fe_2) of irs seasoned deals in Mx	(done)
-    - check null vega of swap ptf (ATM+smile)			(done)
-    - test delta on irs spot single deals = Mx 			(done)
-    - test delta on irs seasoned book = Mx         		(done)
-    - test delta on irs manual = sa code 			(done)
-    - generated .xls report 					(done)
-    - test fixing effect on pricing				(done)
-      a. present on spot starting irs
-      b. present on seasoned irs (via swap rate helpers)
-    - test fixing effect on sa					()
-      a. spot starting irs
-      b. seasoned irs 						()
+      *create book (test_fe_2) of irs seasoned deals in Mx	(done)
+      *check null vega of swap ptf (ATM+smile)			(done)
+      *test delta on irs spot single deals = Mx 			(done)
+      *test delta on irs seasoned book = Mx         		(done)
+      *test delta on irs manual = sa code 			(done)
+      *generated .xls report 					(done)
+      *test fixing effect on pricing				(done)
+        a.present on spot starting irs
+        b.present on seasoned irs (via swap rate helpers)
+      *test fixing effect on sa					()
+        a.spot starting irs
+        b.seasoned irs 						()
+      *test setting Extrapolation = False in Yield Curve bootstrapping.xls
+        a.effect on pricing
+        b.effect on sa
   - Swaption
     - create book (test_fe_1) of swaptions in Mx & QLXL		(done)
     - create book of not ATM (seasoned) swaption, X=3.5%	(done)
