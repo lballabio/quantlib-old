@@ -24,12 +24,12 @@
 #define qla_products_hpp
 
 #include <oh/objecthandler.hpp>
+#include <ql/types.hpp>
 
-#include <ql/instruments/payoffs.hpp>
-#include <ql/models/marketmodels/products/multiproductcomposite.hpp>
-#include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
-#include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
-#include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
+namespace QuantLib {
+    class MarketModelMultiProduct;
+    class Payoff;
+}
 
 namespace QuantLibAddin {
 
@@ -42,18 +42,16 @@ namespace QuantLibAddin {
     class MarketModelComposite : public MarketModelMultiProduct {};
 
     class MultiProductComposite : public MarketModelComposite {
-        public:
-            MultiProductComposite(){
-                libraryObject_ = boost::shared_ptr<QuantLib::MultiProductComposite>(
-                    new QuantLib::MultiProductComposite());};
+      public:
+        MultiProductComposite();
     };
 
     class OneStepForwards : public MarketModelMultiProduct {
-    public:
+      public:
         OneStepForwards(const std::vector<QuantLib::Time>& rateTimes,
-                            const std::vector<QuantLib::Real>& accruals,
-                            const std::vector<QuantLib::Time>& paymentTimes,
-                            const std::vector<QuantLib::Rate>& strikes);
+                        const std::vector<QuantLib::Real>& accruals,
+                        const std::vector<QuantLib::Time>& paymentTimes,
+                        const std::vector<QuantLib::Rate>& strikes);
     };
 
     class OneStepOptionlets : public MarketModelMultiProduct {

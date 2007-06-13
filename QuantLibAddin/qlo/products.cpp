@@ -26,9 +26,20 @@
 #include <qlo/products.hpp>
 #include <qlo/evolutiondescription.hpp>
 #include <qlo/ValueObjects/vo_evolutiondescription.hpp>
+#include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
+#include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
+#include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
+#include <ql/models/marketmodels/products/multiproductcomposite.hpp>
+#include <ql/instruments/payoffs.hpp>
 
 namespace QuantLibAddin {
 
+    MultiProductComposite::MultiProductComposite()
+    {
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::MultiProductComposite>(new
+                QuantLib::MultiProductComposite());
+    }
 
     OneStepForwards::OneStepForwards(
         const std::vector<QuantLib::Time>& rateTimes,
@@ -36,9 +47,11 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Time>& paymentTimes,
         const std::vector<QuantLib::Rate>& strikes)
     {
-        QL_REQUIRE(rateTimes.size()>1, "rate times vector must contain at least two values");
-        libraryObject_ = boost::shared_ptr<QuantLib::MarketModelMultiProduct>(
-            new QuantLib::OneStepForwards(rateTimes, accruals,
+        QL_REQUIRE(rateTimes.size()>1,
+                   "rate times vector must contain at least two values");
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::MarketModelMultiProduct>(new
+                QuantLib::OneStepForwards(rateTimes, accruals,
                                           paymentTimes, strikes));
     }
 
@@ -53,12 +66,13 @@ namespace QuantLibAddin {
         QuantLib::Real initialFloor,
         bool payer)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::MarketModelMultiProduct>(
-            new QuantLib::MultiStepRatchet(rateTimes, accruals,
-                                          paymentTimes,
-                                          gearingOfFloor, gearingOfFixing,
-                                          spreadOfFloor, spreadOfFixing,
-                                          initialFloor, payer));
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::MarketModelMultiProduct>(new
+                QuantLib::MultiStepRatchet(rateTimes, accruals,
+                                           paymentTimes,
+                                           gearingOfFloor, gearingOfFixing,
+                                           spreadOfFloor, spreadOfFixing,
+                                           initialFloor, payer));
     }
 
     std::string MarketModelMultiProduct::evolution() const
@@ -88,9 +102,8 @@ namespace QuantLibAddin {
     {
         libraryObject_ =
             boost::shared_ptr<QuantLib::MarketModelMultiProduct>(new
-                QuantLib::OneStepOptionlets(
-                    rateTimes, accruals, paymentTimes, payoffs));
+                QuantLib::OneStepOptionlets(rateTimes, accruals,
+                                            paymentTimes, payoffs));
     }
-
   
 }

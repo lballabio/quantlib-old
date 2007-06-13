@@ -4,10 +4,13 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
     <include>qlo/products.hpp</include>
-    <include>qlo/marketmodels.hpp</include>
     <include>qlo/payoffs.hpp</include>
+    <include>ql/models/marketmodels/products/onestep/onestepforwards.hpp</include>
+    <include>ql/models/marketmodels/products/onestep/onestepoptionlets.hpp</include>
+    <include>ql/models/marketmodels/products/multistep/multistepratchet.hpp</include>
+    <include>ql/models/marketmodels/products/multiproductcomposite.hpp</include>
   </includes>
- 
+
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2007 Chiara Fornarola
