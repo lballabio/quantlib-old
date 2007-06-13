@@ -236,29 +236,35 @@ CRISTINA
 ---
 CHIARA
 - erratic Grisafi's bond monitor behaviour
-- Digital Bond contructor
-  - arrange session on digitals with Cristina
-- check dual user Launcher installation on Grisafi's workstation
-- fixed problem with missing ISDAFIX indexes for 28th may 2007 (0.5d|0.5d|)
+- Digital Bond contructor (0.5d|10dd|Wip)
+  - arranged session on digitals with Cristina
+  - check digital bonds' prospectus in order to list different specifications of payoff
+  - digitalcmsratebond constructor + digitalfloatingratebond constructor without cap and floor
+  - review digitalcoupon with cristina so to add capped and floored ibor/swap indexes
+  - review digitalcmsratebond constructor + digitalfloatingratebond constructor so to add capped and floored ibor/swap indexes
+- check dual user Launcher installation on Grisafi's workstation (Done on ingfin workstation)
+- fixed problem with missing ISDAFIX indexes for 28th may 2007 (0.5d|0.5d|Done)
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g.
   IT0003650998.pdf) (0d|1d)
   -prospectus added in Drafts
-- review and correct trader's bond monitor (0d|1d)
-- Z-spread function, for zero coupon bond valuation (3.0d|10dd|WIP)
+- Z-spread function, for zero coupon bond valuation (4.5d|10dd|Done)
   - lehman's documentation
   - created new workbook to replicate market practice (YAF, YAS on BBG) use of
     z-spread
   - created qlBondCleanPriceFromZSpread()
+  - created qlBondDirtyPriceFromZSpread()
   - double check against YAF, YAS on BBG
-  - add test in test suite
+  - add test in test suite (added test also for market assetswap)
+  - created nue workbook in Test
 - cds options (with Giorgio) (1.5d-30dd|WIP)
   - analysis of the trader's workbook
   - verified correct installation of Launcher, access given to the trader to
     the 3 different environments on the network
   - sent request to desktop service so to add the user to CABOTOXL
+  - arrange session with nando
 - markedata\BloombergFeed (Maurizio Pietrini)
   - waiting for BBG worksheets from Maurizio (Maurizio is starting on 5th or 6th)
-- zspread/yield inversion
+- zspread/yield inversion (lehman's paper values can optionally be reproduces in the testsuite)
 - zerospreadedtermstructure: daycounter bug
 - bonds' workbooks integration with K+/Gatemate
 - Multicallable bond constructor
@@ -267,7 +273,7 @@ CHIARA
   object
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
-- market models: abcd for displaced vols (Chiara, Cristina, K)
+- market models: abcd for displaced vols (Chiara, Cristina, K) (Done)
 
 ---
 FRANCOIS
