@@ -117,8 +117,8 @@ bug fix	20%
 test	14%
 CW	18%
 - trigger qlVersion() and format properly time stamp in the XXXFeed folders (done)
-- add call to volatility method in CapsStripper creation
-- metadata creators error messages
+- add call to volatility method in CapsStripper creation 	(done)
+- metadata creators error messages 				(done)
 - Bug investigation: launcher menu actions			(done)
   - l'errore si presentava con la rev 10882 del foglio intratefeed.xls
     il quale era stato salvato senza ricalcolo
