@@ -452,6 +452,12 @@
 				RelativePath=".\qlo\ValueObjects\vo_cmsmarket.hpp">
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_correlation.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_correlation.hpp">
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_couponvectors.cpp">
 			</File>
 			<File
@@ -468,6 +474,12 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_driftcalculators.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_evolutiondescription.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_evolutiondescription.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_exercise.cpp">
@@ -648,6 +660,12 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_volatilities.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_volatility.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_volatility.hpp">
 			</File>
 		</Filter>
 		<Filter
@@ -968,6 +986,12 @@
 			</File>
 			<File
 				RelativePath=".\qlo\products.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\volatility.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\volatility.hpp">
 			</File>
 		</Filter>
 		<Filter

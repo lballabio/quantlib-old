@@ -27,53 +27,65 @@
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
 #include <ql/models/marketmodels/marketmodeldifferences.hpp>
+#include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
+#include <ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp>
+#include <ql/models/marketmodels/models/capletcoterminalmaxhomogeneity.hpp>
 
 namespace QuantLibAddin {
 
-    CapletCoterminalSwaptionCalibration::CapletCoterminalSwaptionCalibration(
-            const QuantLib::EvolutionDescription& evolution,
-            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
-            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
-            const std::vector<QuantLib::Volatility>& capletVols,
-            const boost::shared_ptr<QuantLib::CurveState>& cs,
-            QuantLib::Spread displacement)
-    {
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::CapletCoterminalSwaptionCalibration>(
-                new QuantLib::CapletCoterminalSwaptionCalibration(
-                    evolution, corr, swapVariances, capletVols, cs,
-                    displacement));
-    }
-
-    CapletCoterminalSwaptionCalibration2::CapletCoterminalSwaptionCalibration2(
+    CTSMMCapletOriginalCalibration::CTSMMCapletOriginalCalibration(
             const QuantLib::EvolutionDescription& evolution,
             const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
             const std::vector<QuantLib::Volatility>& capletVols,
             const boost::shared_ptr<QuantLib::CurveState>& cs,
             QuantLib::Spread displacement,
-            boost::shared_ptr<QuantLib::AlphaForm>& parametricform)
+            const std::vector<QuantLib::Real>& alpha,
+            bool lowestRoot,
+			bool useFullApprox)
     {
         libraryObject_ =
-            boost::shared_ptr<QuantLib::CapletCoterminalSwaptionCalibration2>(
-                new QuantLib::CapletCoterminalSwaptionCalibration2(
+            boost::shared_ptr<QuantLib::CTSMMCapletCalibration>(new
+                QuantLib::CTSMMCapletOriginalCalibration(
                     evolution, corr, swapVariances, capletVols, cs,
-                    displacement,parametricform));
+                    displacement, alpha, lowestRoot, useFullApprox));
     }
 
-    CapletCoterminalSwaptionCalibration3::CapletCoterminalSwaptionCalibration3(
+    CTSMMCapletAlphaFormCalibration::CTSMMCapletAlphaFormCalibration(
             const QuantLib::EvolutionDescription& evolution,
             const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
             const std::vector<QuantLib::Volatility>& capletVols,
             const boost::shared_ptr<QuantLib::CurveState>& cs,
-            QuantLib::Spread displacement)
+            QuantLib::Spread displacement,
+            const std::vector<QuantLib::Real>& alphaInitial,
+            const std::vector<QuantLib::Real>& alphaMax,
+            const std::vector<QuantLib::Real>& alphaMin,
+            bool maximizeHomogeneity,
+            boost::shared_ptr<QuantLib::AlphaForm>& parametricForm)
     {
         libraryObject_ =
-            boost::shared_ptr<QuantLib::CapletCoterminalSwaptionCalibration3>(
-                new QuantLib::CapletCoterminalSwaptionCalibration3(
+            boost::shared_ptr<QuantLib::CTSMMCapletCalibration>(new
+                QuantLib::CTSMMCapletAlphaFormCalibration(
                     evolution, corr, swapVariances, capletVols, cs,
-                    displacement));
+                    displacement, alphaInitial, alphaMax, alphaMin,
+                    maximizeHomogeneity, parametricForm));
+    }
+
+    CTSMMCapletMaxHomogeneityCalibration::CTSMMCapletMaxHomogeneityCalibration(
+            const QuantLib::EvolutionDescription& evolution,
+            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
+            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
+            const std::vector<QuantLib::Volatility>& capletVols,
+            const boost::shared_ptr<QuantLib::CurveState>& cs,
+            QuantLib::Spread displacement,
+            QuantLib::Real caplet0Swaption1Priority)
+    {
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::CTSMMCapletCalibration>(new
+                QuantLib::CTSMMCapletMaxHomogeneityCalibration(
+                    evolution, corr, swapVariances, capletVols, cs,
+                    displacement, caplet0Swaption1Priority));
     }
 
    

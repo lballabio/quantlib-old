@@ -584,6 +584,9 @@
 			Name="Functions"
 			Filter="">
 			<File
+				RelativePath=".\Functions\abcd.cpp">
+			</File>
+			<File
 				RelativePath=".\Functions\alphaform.cpp">
 			</File>
 			<File
@@ -605,13 +608,25 @@
 				RelativePath="Functions\cmsmarket.cpp">
 			</File>
 			<File
+				RelativePath=".\Functions\correlation.cpp">
+			</File>
+			<File
 				RelativePath="Functions\couponvectors.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\curvestate.cpp">
 			</File>
 			<File
 				RelativePath="Functions\date.cpp">
 			</File>
 			<File
 				RelativePath="Functions\daycounter.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\driftcalculators.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\evolutiondescription.cpp">
 			</File>
 			<File
 				RelativePath="Functions\exercise.cpp">
@@ -638,6 +653,9 @@
 				RelativePath="Functions\manual.cpp">
 			</File>
 			<File
+				RelativePath=".\Functions\marketmodelevolvers.cpp">
+			</File>
+			<File
 				RelativePath="Functions\marketmodels.cpp">
 			</File>
 			<File
@@ -660,6 +678,9 @@
 			</File>
 			<File
 				RelativePath="Functions\processes.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\products.cpp">
 			</File>
 			<File
 				RelativePath="Functions\quotes.cpp">
@@ -714,6 +735,9 @@
 			</File>
 			<File
 				RelativePath="Functions\volatilities.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\volatility.cpp">
 			</File>
 		</Filter>
 		<Filter

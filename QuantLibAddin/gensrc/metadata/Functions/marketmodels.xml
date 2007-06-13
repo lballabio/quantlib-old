@@ -319,8 +319,168 @@
 
     <!-- Caplet calibration of a Coterminal Swap Market Model -->
 
-    <Constructor name='qlCapletCoterminalSwaptionCalibration'>
-      <libraryFunction>CapletCoterminalSwaptionCalibration</libraryFunction>
+    <Member name='qlCTSMMCapletCalibrationCalibrate' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>calibrate</description>
+      <libraryFunction>calibrate</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='numberOfFactors' exampleValue='3'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of factors</description>
+          </Parameter>
+          <Parameter name='maxIter' default='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>maximum number of iterations</description>
+          </Parameter>
+          <Parameter name='tol' default='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>caplet vol tolerance</description>
+          </Parameter>
+          <Parameter name='innerMaxIter' default='100'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>innerMaxIter</description>
+          </Parameter>
+          <Parameter name='innerTol' default='1e-8'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>caplet vol tolerance</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationFailures' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>failures</description>
+      <libraryFunction>failures</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Natural</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationDeformationSize' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>deformationSize</description>
+      <libraryFunction>deformationSize</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationCapletRmsError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>capletRmsError</description>
+      <libraryFunction>capletRmsError</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationCapletMaxError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>capletMaxError</description>
+      <libraryFunction>capletMaxError</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationSwaptionRmsError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>swaptionRmsError</description>
+      <libraryFunction>swaptionRmsError</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationSwaptionMaxError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>swaptionMaxError</description>
+      <libraryFunction>swaptionMaxError</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationSwapPseudoRoot' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>swapPseudoRoot</description>
+      <libraryFunction>swapPseudoRoot</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='index' exampleValue='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlCTSMMCapletOriginalCalibration'>
+      <libraryFunction>CTSMMCapletOriginalCalibration</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -358,34 +518,6 @@
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Member name='qlCapletCoterminalSwaptionCalibrationCalibrate' type='QuantLib::CapletCoterminalSwaptionCalibration' superType='libraryClass'>
-      <description>calibrate</description>
-      <libraryFunction>calibrate</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='numberOfFactors' exampleValue='3'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>number of factors</description>
-          </Parameter>
-          <Parameter name='maxIter' default='2'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>maximum number of iterations</description>
-          </Parameter>
-          <Parameter name='capletVolTol' default='0.0001'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>caplet vol tolerance</description>
           </Parameter>
           <Parameter name='alphas' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
             <type>QuantLib::Real</type>
@@ -404,70 +536,10 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-      <ReturnValue>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
+    </Constructor>
 
-    <Member name='qlCapletCoterminalSwaptionNegativeDiscriminants' type='QuantLib::CapletCoterminalSwaptionCalibration' superType='libraryClass'>
-      <description>negativeDiscriminants</description>
-      <libraryFunction>negativeDiscriminants</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Size</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCapletCoterminalSwaptionRmsError' type='QuantLib::CapletCoterminalSwaptionCalibration' superType='libraryClass'>
-      <description>rmsError</description>
-      <libraryFunction>rmsError</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCapletCoterminalSwaptionSwapPseudoRoot' type='QuantLib::CapletCoterminalSwaptionCalibration' superType='libraryClass'>
-      <description>swapPseudoRoot</description>
-      <libraryFunction>swapPseudoRoot</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='index' exampleValue='0'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>index</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Matrix</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
-
-
-
-    <Constructor name='qlCapletCoterminalSwaptionCalibration2'>
-      <libraryFunction>CapletCoterminalSwaptionCalibration2</libraryFunction>
+    <Constructor name='qlCTSMMCapletAlphaFormCalibration'>
+      <libraryFunction>CTSMMCapletAlphaFormCalibration</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -505,54 +577,6 @@
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
-          </Parameter>
-          <Parameter name='alphaForm' exampleValue ='AlphaFormID' default='""'>
-            <type>QuantLib::AlphaForm</type>
-            <tensorRank>scalar</tensorRank>
-            <description>alpha form ID. If omitted, default alpha form is used.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Member name='qlCapletCoterminalSwaptionCalibration2Calibrate' type='QuantLib::CapletCoterminalSwaptionCalibration2' superType='libraryClass'>
-      <description>calibrate</description>
-      <libraryFunction>calibrate</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='numberOfFactors' exampleValue='3'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>number of factors</description>
-          </Parameter>
-          <Parameter name='maxIter' default='2'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>maximum number of iterations</description>
-          </Parameter>
-          <Parameter name='capletVolTol' default='0.0001'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>caplet vol tolerance</description>
-          </Parameter>
-          <Parameter name='maxIterInner' default='100'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>maximum number of iterations for inner solving</description>
-          </Parameter>
-          <Parameter name='innerTol' default='1e-8'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>tolerance used in the inner solving</description>
-          </Parameter>
-          <Parameter name='maximizeHomogeneity' default='TRUE'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>TRUE for maximizing homogeneity</description>
           </Parameter>
           <Parameter name='alphaInitial' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
             <type>QuantLib::Real</type>
@@ -569,55 +593,23 @@
             <tensorRank>vector</tensorRank>
             <description>alphaMin</description>
           </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCapletCoterminalSwaption2RmsError' type='QuantLib::CapletCoterminalSwaptionCalibration2' superType='libraryClass'>
-      <description>rmsError</description>
-      <libraryFunction>rmsError</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCapletCoterminalSwaption2SwapPseudoRoot' type='QuantLib::CapletCoterminalSwaptionCalibration2' superType='libraryClass'>
-      <description>swapPseudoRoot</description>
-      <libraryFunction>swapPseudoRoot</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='index' exampleValue='0'>
-            <type>QuantLib::Size</type>
+          <Parameter name='maximizeHomogeneity' default='TRUE'>
+            <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>index</description>
+            <description>TRUE for maximizing homogeneity</description>
+          </Parameter>
+          <Parameter name='alphaForm' exampleValue ='AlphaFormID' default='""'>
+            <type>QuantLib::AlphaForm</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha form ID. If omitted, default alpha form is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Matrix</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
+    </Constructor>
 
 
-    <Constructor name='qlCapletCoterminalSwaptionCalibration3'>
-      <libraryFunction>CapletCoterminalSwaptionCalibration3</libraryFunction>
+    <Constructor name='qlCTSMMCapletMaxHomogeneityCalibration'>
+      <libraryFunction>CTSMMCapletMaxHomogeneityCalibration</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -656,126 +648,15 @@
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
           </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Member name='qlCapletCoterminalSwaptionCalibration3Calibrate' type='QuantLib::CapletCoterminalSwaptionCalibration3' superType='libraryClass'>
-      <description>calibrate</description>
-      <libraryFunction>calibrate</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='numberOfFactors' exampleValue='3'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>number of factors</description>
-          </Parameter>
-          <Parameter name='maxIter' default='2'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>maximum number of iterations</description>
-          </Parameter>
-          <Parameter name='capletVolTol' default='0.0001'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>caplet vol tolerance</description>
-          </Parameter>
-          <Parameter name='caplet0Swaption1Priority' default='0.0'>
+          <Parameter name='caplet0Swaption1Priority' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>caplet0Swaption1Priority</description>
           </Parameter>
-          <Parameter name='maxIterInner' default='100'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>maximum number of iterations for inner solving</description>
-          </Parameter>
-          <Parameter name='innerTol' default='1e-8'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>tolerance used in the inner solving</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
-      <ReturnValue>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
+    </Constructor>
 
-    <Member name='qlCapletCoterminalSwaption3DeformationSize' type='QuantLib::CapletCoterminalSwaptionCalibration3' superType='libraryClass'>
-      <description>deformationSize</description>
-      <libraryFunction>deformationSize</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCapletCoterminalSwaption3CapletRmsError' type='QuantLib::CapletCoterminalSwaptionCalibration3' superType='libraryClass'>
-      <description>rmsCapletError</description>
-      <libraryFunction>rmsCapletError</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCapletCoterminalSwaption3SwaptionRmsError' type='QuantLib::CapletCoterminalSwaptionCalibration3' superType='libraryClass'>
-      <description>rmsSwaptionError</description>
-      <libraryFunction>rmsSwaptionError</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCapletCoterminalSwaption3SwapPseudoRoot' type='QuantLib::CapletCoterminalSwaptionCalibration3' superType='libraryClass'>
-      <description>swapPseudoRoot</description>
-      <libraryFunction>swapPseudoRoot</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='index' exampleValue='0'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>index</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Matrix</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
 
     <!-- Forward Libor Market Model <-> Coterminal Swap Market Model -->
 
