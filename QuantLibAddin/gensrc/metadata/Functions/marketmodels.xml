@@ -4,6 +4,7 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
     <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
+    <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
     <include>qlo/Enumerations/Factories/indexfactory.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>qlo/marketmodels.hpp</include>
@@ -606,6 +607,22 @@
         </Parameters>
       </ParameterList>
     </Constructor>
+
+    <Member name='qlCTSMMCapletAlphaFormCalibrationAlpha' type='QuantLib::CTSMMCapletAlphaFormCalibration' superType='libraryClass'>
+      <description>alpha</description>
+      <libraryFunction>alpha</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
 
     <Constructor name='qlCTSMMCapletMaxHomogeneityCalibration'>
       <libraryFunction>CTSMMCapletMaxHomogeneityCalibration</libraryFunction>
