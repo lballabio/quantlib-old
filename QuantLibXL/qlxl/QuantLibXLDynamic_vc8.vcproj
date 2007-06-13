@@ -217,6 +217,14 @@
 			Name="Functions"
 			>
 			<File
+				RelativePath=".\Functions\abcd.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\alphaform.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Functions\assetswap.cpp"
 				>
 			</File>
@@ -241,7 +249,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Functions\correlation.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Functions\couponvectors.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\curvestate.cpp"
 				>
 			</File>
 			<File
@@ -250,6 +266,14 @@
 			</File>
 			<File
 				RelativePath="Functions\daycounter.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\driftcalculators.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\evolutiondescription.cpp"
 				>
 			</File>
 			<File
@@ -277,7 +301,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Functions\leg.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Functions\manual.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\marketmodelevolvers.cpp"
 				>
 			</File>
 			<File
@@ -310,6 +342,10 @@
 			</File>
 			<File
 				RelativePath="Functions\processes.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\products.cpp"
 				>
 			</File>
 			<File
@@ -384,6 +420,10 @@
 				RelativePath="Functions\volatilities.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\Functions\volatility.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Register"
@@ -393,11 +433,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Register\register_abcd.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Register\register_all.cpp"
 				>
 			</File>
 			<File
 				RelativePath="Register\register_all.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_alphaform.cpp"
 				>
 			</File>
 			<File
@@ -425,7 +473,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Register\register_correlation.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Register\register_couponvectors.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_curvestate.cpp"
 				>
 			</File>
 			<File
@@ -434,6 +490,14 @@
 			</File>
 			<File
 				RelativePath="Register\register_daycounter.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_driftcalculators.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_evolutiondescription.cpp"
 				>
 			</File>
 			<File
@@ -454,6 +518,14 @@
 			</File>
 			<File
 				RelativePath="Register\register_interpolation.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_leg.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_marketmodelevolvers.cpp"
 				>
 			</File>
 			<File
@@ -486,6 +558,10 @@
 			</File>
 			<File
 				RelativePath="Register\register_processes.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_products.cpp"
 				>
 			</File>
 			<File
@@ -558,6 +634,10 @@
 			</File>
 			<File
 				RelativePath="Register\register_volatilities.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_volatility.cpp"
 				>
 			</File>
 		</Filter>
