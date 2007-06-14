@@ -25,11 +25,23 @@
 
 #include <oh/objecthandler.hpp>
 
-#include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
-#include <ql/models/marketmodels/correlations/cotswapfromfwdcorrelation.hpp>
-#include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
-#include <ql/models/marketmodels/correlations/TimeHomogeneousTimeDependentForwardCorrelation.hpp>
-#include <ql/models/marketmodels/historicalcorrelation.hpp>
+
+
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class LmCorrelationModel;
+    class PiecewiseConstantCorrelation;
+    class Matrix;
+    class CurveState;
+    class EvolutionDescription;
+    class Date;
+    class Period;
+    class InterestRateIndex;
+    class IborIndex;
+    class SwapIndex;
+    class DayCounter;
+}
 
 namespace QuantLibAddin {
 

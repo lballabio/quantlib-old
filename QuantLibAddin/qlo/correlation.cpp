@@ -23,7 +23,13 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/correlation.hpp>
+#include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
+#include <ql/models/marketmodels/correlations/cotswapfromfwdcorrelation.hpp>
+#include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
+#include <ql/models/marketmodels/correlations/TimeHomogeneousTimeDependentForwardCorrelation.hpp>
+#include <ql/models/marketmodels/historicalcorrelation.hpp>
 
 namespace QuantLibAddin {
       

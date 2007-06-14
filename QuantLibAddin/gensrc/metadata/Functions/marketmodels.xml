@@ -393,6 +393,38 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
+    
+    <Member name='qlCTSMMCapletCalibrationMarketCapletVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>market caplet volalitilies</description>
+      <libraryFunction>mktCapletVols</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationModelCapletVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>model caplet volalitilies</description>
+      <libraryFunction>mdlCapletVols</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
 
     <Member name='qlCTSMMCapletCalibrationCapletRmsError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>capletRmsError</description>
@@ -426,6 +458,38 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlCTSMMCapletCalibrationMarketSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>market swaption volalitilies</description>
+      <libraryFunction>mktSwaptionVols</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlCTSMMCapletCalibrationModelSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>model swaption volalitilies</description>
+      <libraryFunction>mdlSwaptionVols</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
     <Member name='qlCTSMMCapletCalibrationSwaptionRmsError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>swaptionRmsError</description>
       <libraryFunction>swaptionRmsError</libraryFunction>

@@ -24,6 +24,7 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/abcd.hpp>
+#include <ql/termstructures/volatilities/abcd.hpp>
 
 namespace QuantLibAddin {
         

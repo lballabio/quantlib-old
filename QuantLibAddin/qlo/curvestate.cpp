@@ -24,8 +24,26 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/curvestate.hpp>
+#include <ql/models/marketmodels/curvestates/cmswapcurvestate.hpp>
+#include <ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp>
+#include <ql/models/marketmodels/curvestates/lmmcurvestate.hpp>
 
 namespace QuantLibAddin {
+
+    CMSwapCurveState::CMSwapCurveState(std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards) {
+        libraryObject_ = boost::shared_ptr<QuantLib::CMSwapCurveState>(new
+            QuantLib::CMSwapCurveState(rateTimes, spanningForwards));
+    }
+
+    CoterminalSwapCurveState::CoterminalSwapCurveState(std::vector<QuantLib::Time>& rateTimes) {
+        libraryObject_ = boost::shared_ptr<QuantLib::CoterminalSwapCurveState>(new
+            QuantLib::CoterminalSwapCurveState(rateTimes));
+    }
+
+    LMMCurveState::LMMCurveState(std::vector<QuantLib::Time>& rateTimes) {
+        libraryObject_ = boost::shared_ptr<QuantLib::LMMCurveState>(new
+            QuantLib::LMMCurveState(rateTimes));
+    }
 
     std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
                             const QuantLib::Size firstValidIndex,

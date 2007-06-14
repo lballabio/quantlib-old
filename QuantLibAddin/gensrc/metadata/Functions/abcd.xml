@@ -5,6 +5,7 @@
   <includes>
     <include>qlo/abcd.hpp</include>
     <include>qlo/optimization.hpp</include>
+    <include>ql/termstructures/volatilities/abcd.hpp</include>
   </includes>
   <copyright>
 

@@ -5,7 +5,11 @@
   <includes>
     <include>qlo/driftcalculators.hpp</include>
     <include>qlo/curvestate.hpp</include>
+    <include>ql/models/marketmodels/curvestates/cmswapcurvestate.hpp</include>
+    <include>ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp</include>
+    <include>ql/models/marketmodels/curvestates/lmmcurvestate.hpp</include>
   </includes>
+
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2007 Chiara Fornarola

@@ -7,8 +7,9 @@
     <include>qlo/curvestate.hpp</include>
     <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/index.hpp</include>
-  </includes>
-  
+    <include>ql/models/marketmodels/correlations/TimeHomogeneousTimeDependentForwardCorrelation.hpp</include>
+   </includes>
+
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2007 Chiara Fornarola

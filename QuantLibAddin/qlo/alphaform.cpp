@@ -20,6 +20,8 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/alphaform.hpp>
+#include <ql/models/marketmodels/models/alphaform.hpp>
+#include <ql/models/marketmodels/models/alphaformconcrete.hpp>
 
 namespace QuantLibAddin {
 

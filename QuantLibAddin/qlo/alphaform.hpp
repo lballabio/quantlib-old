@@ -20,10 +20,11 @@
 #define qla_alpha_form_hpp
 
 #include <oh/objecthandler.hpp>
+#include <ql/types.hpp>
 
-#include <ql/models/marketmodels/models/alphaform.hpp>
-#include <ql/models/marketmodels/models/alphaformconcrete.hpp>
-
+namespace QuantLib {
+    class AlphaForm;
+}
 
 namespace QuantLibAddin {
 

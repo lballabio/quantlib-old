@@ -24,11 +24,11 @@
 #define qla_curvestate_hpp
 
 #include <oh/objecthandler.hpp>
+#include <ql/types.hpp>
 
-#include <ql/models/marketmodels/curvestate.hpp>
-#include <ql/models/marketmodels/curvestates/cmswapcurvestate.hpp>
-#include <ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp>
-#include <ql/models/marketmodels/curvestates/lmmcurvestate.hpp>
+namespace QuantLib {
+    class CurveState;
+}
 
 namespace QuantLibAddin {
 
@@ -36,26 +36,17 @@ namespace QuantLibAddin {
 
     class CMSwapCurveState : public CurveState {
       public:
-        CMSwapCurveState(std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards) {
-            libraryObject_ = boost::shared_ptr<QuantLib::CMSwapCurveState>(new
-                QuantLib::CMSwapCurveState(rateTimes, spanningForwards));
-        }
+        CMSwapCurveState(std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards);
     };
 
     class CoterminalSwapCurveState : public CurveState {
       public:
-        CoterminalSwapCurveState(std::vector<QuantLib::Time>& rateTimes) {
-            libraryObject_ = boost::shared_ptr<QuantLib::CoterminalSwapCurveState>(new
-                QuantLib::CoterminalSwapCurveState(rateTimes));
-        }
+        CoterminalSwapCurveState(std::vector<QuantLib::Time>& rateTimes);
     };
 
     class LMMCurveState : public CurveState {
       public:
-        LMMCurveState(std::vector<QuantLib::Time>& rateTimes) {
-            libraryObject_ = boost::shared_ptr<QuantLib::LMMCurveState>(new
-                QuantLib::LMMCurveState(rateTimes));
-        }
+        LMMCurveState(std::vector<QuantLib::Time>& rateTimes);
     };
 
     std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(

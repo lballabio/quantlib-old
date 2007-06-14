@@ -24,9 +24,11 @@
 #define qla_abcd_hpp
 
 #include <oh/objecthandler.hpp>
+#include <ql/types.hpp>
 
-#include <ql/termstructures/volatilities/abcd.hpp>
-#include <qlo/marketmodels.hpp>
+namespace QuantLib {
+    class Abcd;
+}
 
 namespace QuantLibAddin {
     class Abcd : public ObjectHandler::LibraryObject<QuantLib::Abcd> {
