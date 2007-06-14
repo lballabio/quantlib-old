@@ -329,17 +329,17 @@
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='longTermCorr' exampleValue ='0.5'>
+          <Parameter name='longTermCorr' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Long term correlation </description>
           </Parameter>
-          <Parameter name='beta' exampleValue ='0.2'>
+          <Parameter name='beta' default='0.24'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>exponential decay factor</description>
           </Parameter>
-          <Parameter name='gamma' exampleValue ='0.9'>
+          <Parameter name='gamma' default='0.333'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>exponent for time to go</description>
