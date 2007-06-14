@@ -85,18 +85,6 @@ namespace QuantLibAddin {
             const QuantLib::EvolutionDescription& evolution);
     };
   
-    QuantLib::Matrix qlHistCorrZeroYieldLinear(
-            const QuantLib::Date& startDate, 
-            const QuantLib::Date& endDate, 
-            const QuantLib::Period& step,
-            const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
-            const QuantLib::Period& initialGap,
-            const QuantLib::Period& horizon,
-            const std::vector<boost::shared_ptr<QuantLib::IborIndex> >&,
-            const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >&,
-            const QuantLib::DayCounter& yieldCurveDayCounter,
-            QuantLib::Real yieldCurveAccuracy);
-
     class HistoricalCorrelation : public
         ObjectHandler::LibraryObject<QuantLib::HistoricalCorrelation> {
       public:
@@ -111,18 +99,7 @@ namespace QuantLibAddin {
                 const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
                 const QuantLib::DayCounter& yieldCurveDayCounter,
                 QuantLib::Real yieldCurveAccuracy);
-
-         QuantLib::Matrix calculate(
-               const QuantLib::Date& startDate, 
-               const QuantLib::Date& endDate, 
-               const QuantLib::Period& step,
-               const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
-               const QuantLib::Period& initialGap,
-               const QuantLib::Period& horizon,
-               const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
-               const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
-               const QuantLib::DayCounter& yieldCurveDayCounter,
-               QuantLib::Real yieldCurveAccuracy); 
+        const QuantLib::Matrix correlation() const;
     };
 }
 

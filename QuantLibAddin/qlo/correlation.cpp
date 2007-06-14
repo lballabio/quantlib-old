@@ -31,6 +31,7 @@
 #include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
 #include <ql/models/marketmodels/correlations/expcorrelations.hpp>
 #include <ql/models/marketmodels/historicalcorrelation.hpp>
+#include <ql/math/statistics/sequencestatistics.hpp>
 
 namespace QuantLibAddin {
       
@@ -86,45 +87,6 @@ namespace QuantLibAddin {
                                                           evolution));
     }
         
-    QuantLib::Matrix qlHistCorrZeroYieldLinear(
-               const QuantLib::Date& startDate, 
-               const QuantLib::Date& endDate, 
-               const QuantLib::Period& step,
-               const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
-               const QuantLib::Period& initialGap,
-               const QuantLib::Period& horizon,
-               const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
-               const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
-               const QuantLib::DayCounter& yieldCurveDayCounter,
-               QuantLib::Real yieldCurveAccuracy) {
-        
-
-        //QuantLib::Cubic naturalCubic(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    false);
-
-        //QuantLib::Cubic cubic1(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::FirstDerivative, 1.0,
-        //    false);
-
-        //QuantLib::Cubic monotoneCubic(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::FirstDerivative, 0.0,
-        //    true);
-
-        std::vector<QuantLib::Date> skippedDates, failedDates;
-        std::vector<QuantLib::Period> fixingPeriods;
-
-        return QuantLib::HistoricalCorrelation::historicalCorrelationCalculate<QuantLib::ZeroYield, QuantLib::Linear>(
-            skippedDates, failedDates, fixingPeriods,
-            startDate, endDate, step,
-            fwdIndex, initialGap, horizon,
-            iborIndexes, swapIndexes,
-            yieldCurveDayCounter, yieldCurveAccuracy);
-    }
-       
     HistoricalCorrelation::HistoricalCorrelation(
                 const QuantLib::Date& startDate,
                 const QuantLib::Date& endDate,
@@ -149,43 +111,8 @@ namespace QuantLibAddin {
                                             yieldCurveAccuracy));
     }
 
-    QuantLib::Matrix HistoricalCorrelation::calculate(
-               const QuantLib::Date& startDate, 
-               const QuantLib::Date& endDate, 
-               const QuantLib::Period& step,
-               const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
-               const QuantLib::Period& initialGap,
-               const QuantLib::Period& horizon,
-               const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
-               const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
-               const QuantLib::DayCounter& yieldCurveDayCounter,
-               QuantLib::Real yieldCurveAccuracy) {
-        
-
-        //QuantLib::Cubic naturalCubic(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    false);
-
-        //QuantLib::Cubic cubic1(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::FirstDerivative, 1.0,
-        //    false);
-
-        //QuantLib::Cubic monotoneCubic(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::FirstDerivative, 0.0,
-        //    true);
-
-        std::vector<QuantLib::Date> skippedDates, failedDates;
-        std::vector<QuantLib::Period> fixingPeriods;
-
-        return QuantLib::HistoricalCorrelation::historicalCorrelationCalculate<QuantLib::ZeroYield, QuantLib::Linear>(
-            skippedDates, failedDates, fixingPeriods,
-            startDate, endDate, step,
-            fwdIndex, initialGap, horizon,
-            iborIndexes, swapIndexes,
-            yieldCurveDayCounter, yieldCurveAccuracy);
+    const QuantLib::Matrix HistoricalCorrelation::correlation() const {
+        return libraryObject_->stats().correlation();
     }
-   
+
 }
