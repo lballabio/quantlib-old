@@ -167,6 +167,27 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
+    
+    <Member name='qlMarketModelTimeDependentVolatility' type='QuantLib::MarketModel' superType='libraryClass'>
+      <description>Returns the time dependent vol for rate i.</description>
+      <libraryFunction>timeDependentVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name="index" exampleValue ='0'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rate index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
 
     <!-- MarketModel derived class constructors -->
     <Constructor name='qlFlatVol'>
@@ -543,6 +564,50 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
+    
+    <Member name='qlCTSMMCapletCalibrationTimeDependentCalibratedSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>timeDependentCalibratedSwaptionVols</description>
+      <libraryFunction>timeDependentCalibratedSwaptionVols</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='index' exampleValue='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    <Member name='qlCTSMMCapletCalibrationTimeDependentUnCalibratedSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>timeDependentUnCalibratedSwaptionVols</description>
+      <libraryFunction>timeDependentUnCalibratedSwaptionVols</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='index' exampleValue='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
 
     <Constructor name='qlCTSMMCapletOriginalCalibration'>
       <libraryFunction>CTSMMCapletOriginalCalibration</libraryFunction>
