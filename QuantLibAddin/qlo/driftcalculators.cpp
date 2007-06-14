@@ -24,6 +24,10 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/driftcalculators.hpp>
+#include <ql/models/marketmodels/driftcomputation/lmmdriftcalculator.hpp>
+#include <ql/models/marketmodels/driftcomputation/cmsmmdriftcalculator.hpp>
+#include <ql/models/marketmodels/driftcomputation/lmmnormaldriftcalculator.hpp>
+#include <ql/models/marketmodels/driftcomputation/smmdriftcalculator.hpp>
 
 namespace QuantLibAddin {
         

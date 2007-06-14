@@ -24,9 +24,13 @@
 #define qla_evolutiondescription_hpp
 
 #include <oh/objecthandler.hpp>
+#include <ql/types.hpp>
 
-#include <ql/models/marketmodels/evolutiondescription.hpp>
-#include <qlo/products.hpp>
+namespace QuantLib {
+    class EvolutionDescription;
+    class MarketModelMultiProduct;
+}
+
 
 namespace QuantLibAddin {
 

@@ -24,8 +24,8 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/evolutiondescription.hpp>
-
 #include <ql/models/marketmodels/multiproduct.hpp>
+#include <ql/models/marketmodels/evolutiondescription.hpp>
 
 namespace QuantLibAddin {
     

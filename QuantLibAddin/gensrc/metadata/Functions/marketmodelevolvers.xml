@@ -5,6 +5,7 @@
   <includes>
     <include>qlo/marketmodelevolvers.hpp</include>
     <include>qlo/marketmodels.hpp</include>
+    <include>ql/models/marketmodels/evolver.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano

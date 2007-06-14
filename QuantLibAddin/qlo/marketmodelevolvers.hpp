@@ -24,9 +24,13 @@
 #define qla_marketmodelevolvers_hpp
 
 #include <oh/objecthandler.hpp>
-#include <ql/models/marketmodels/evolver.hpp>
-#include <ql/models/marketmodels/marketmodel.hpp>
-#include <ql/models/marketmodels/browniangenerator.hpp>
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class MarketModelEvolver;
+    class BrownianGeneratorFactory;
+    class MarketModel;
+}
 
 namespace QuantLibAddin {
     

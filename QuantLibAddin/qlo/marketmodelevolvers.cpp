@@ -28,6 +28,7 @@
 #include <ql/models/marketmodels/evolvers/lognormalfwdrateipc.hpp>
 #include <ql/models/marketmodels/evolvers/normalfwdratepc.hpp>
 
+
 namespace QuantLibAddin {
  
     LogNormalFwdRatePc::LogNormalFwdRatePc(

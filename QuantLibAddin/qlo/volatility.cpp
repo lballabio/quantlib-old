@@ -24,6 +24,8 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/volatility.hpp>
+#include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
+#include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
 
 namespace QuantLibAddin {
       

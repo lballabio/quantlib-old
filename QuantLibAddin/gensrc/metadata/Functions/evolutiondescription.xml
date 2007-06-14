@@ -4,6 +4,9 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
     <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/products.hpp</include>
+    <include>ql/models/marketmodels/multiproduct.hpp</include>
+    <include>ql/models/marketmodels/evolutiondescription.hpp</include>
   </includes>
   
   <copyright>

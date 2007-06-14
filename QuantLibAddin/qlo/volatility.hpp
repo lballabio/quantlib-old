@@ -24,9 +24,13 @@
 #define qla_volatility_hpp
 
 #include <oh/objecthandler.hpp>
+#include <ql/types.hpp>
 
-#include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
-#include <ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp>
+namespace QuantLib {
+    class LmVolatilityModel;
+    class PiecewiseConstantVariance;
+}
+
 
 namespace QuantLibAddin {
         

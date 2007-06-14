@@ -24,11 +24,18 @@
 #define qla_driftcalculators_hpp
 
 #include <oh/objecthandler.hpp>
-#include <ql/models/marketmodels/driftcomputation/lmmdriftcalculator.hpp>
-#include <ql/models/marketmodels/driftcomputation/cmsmmdriftcalculator.hpp>
-#include <ql/models/marketmodels/driftcomputation/lmmnormaldriftcalculator.hpp>
-#include <ql/models/marketmodels/driftcomputation/smmdriftcalculator.hpp>
+#include <ql/types.hpp>
 
+namespace QuantLib {
+    class LMMDriftCalculator;
+    class LMMNormalDriftCalculator;
+    class CMSMMDriftCalculator;
+    class SMMDriftCalculator;
+    class Matrix;
+    class LMMCurveState;
+    class CMSwapCurveState;
+    class CoterminalSwapCurveState;
+}
 
 namespace QuantLibAddin {
    
