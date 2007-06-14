@@ -110,6 +110,7 @@
         <DataType>QuantLib::ForwardRateAgreement</DataType>
         <DataType>QuantLib::FuturesRateHelper</DataType>
         <DataType>QuantLib::GeneralizedBlackScholesProcess</DataType>
+        <DataType>QuantLib::HistoricalCorrelation</DataType>
         <DataType>QuantLib::IborIndex</DataType>
         <DataType>QuantLib::Index</DataType>
         <DataType>QuantLib::Instrument</DataType>
@@ -216,6 +217,7 @@
         <DataType>QuantLibAddin::CmsMarket</DataType>
         <DataType>QuantLibAddin::CmsMarketCalibration</DataType>
         <DataType>QuantLibAddin::CMSMMDriftCalculator</DataType>
+        <DataType>QuantLibAddin::HistoricalCorrelation</DataType>
         <DataType>QuantLibAddin::Leg</DataType>
         <DataType>QuantLibAddin::LMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::LMMNormalDriftCalculator</DataType>

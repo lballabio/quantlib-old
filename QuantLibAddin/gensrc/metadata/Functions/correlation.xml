@@ -8,11 +8,13 @@
     <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/index.hpp</include>
     <include>ql/models/marketmodels/correlations/TimeHomogeneousTimeDependentForwardCorrelation.hpp</include>
-   </includes>
+    <include>ql/models/marketmodels/historicalcorrelation.hpp</include>
+  </includes>
 
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2007 Chiara Fornarola
+    Copyright (C) 2007 Katiuscia Manzoni
     Copyright (C) 2006, 2007 Marco Bianchetti
     Copyright (C) 2006, 2007 Cristina Duminuco
     Copyright (C) 2006, 2007 Giorgio Facchinetti
@@ -49,10 +51,183 @@
             <tensorRank>scalar</tensorRank>
             <description>factors</description>
           </Parameter>
-        </Parameters>
+        </Parameters>c
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlHistoricalCorrelation'>
+      <libraryFunction>HistoricalCorrelation</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='startDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beginning of the time series</description>
+          </Parameter>
+          <Parameter name='endDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end of the time series</description>
+          </Parameter>
+          <Parameter name='step' exampleValue='1D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time series' time step</description>
+          </Parameter>
+          <Parameter name='iborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating rate index</description>
+          </Parameter>
+          <Parameter name='initialGap' exampleValue='3M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initialGap</description>
+          </Parameter>
+          <Parameter name='horizon' exampleValue='30Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bootstrap horizon</description>
+          </Parameter>
+          <Parameter name='iborIndexes'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Ibor indexes</description>
+          </Parameter>
+          <Parameter name='swapIndexes'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Swap indexes</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/365 (Fixed)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>yield curve DayCounter</description>
+          </Parameter>
+          <Parameter name='bootstrapAccuracy' exampleValue='10e-12'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>boostrap accuracy</description>
+          </Parameter>
+       </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlHistoricalCorrelationFixingPeriods' type='QuantLib::HistoricalCorrelation'>
+      <description>Returns the forward rates time grid.</description>
+      <libraryFunction>fixingPeriods</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+          <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalCorrelationSkippedDates' type='QuantLib::HistoricalCorrelation'>
+      <description>Returns vector of historic dates for which fixing is missing.</description>
+      <libraryFunction>skippedDates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalCorrelationFailedDates' type='QuantLib::HistoricalCorrelation'>
+      <description>Returns vector of dates for which a forward rate could not be calculated.</description>
+      <libraryFunction>failedDates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlHistoricalCorrelationCalculate' type='QuantLibAddin::HistoricalCorrelation'>
+      <description>Returns historical correlations between forward rates using a ZeroYield, Linear boostrapped curve.</description>
+      <libraryFunction>calculate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='startDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beginning of the time series</description>
+          </Parameter>
+          <Parameter name='endDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end of the time series</description>
+          </Parameter>
+          <Parameter name='step' exampleValue='1D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time series' time step</description>
+          </Parameter>
+          <Parameter name='iborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating rate index</description>
+          </Parameter>
+          <Parameter name='initialGap' exampleValue='3M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initialGap</description>
+          </Parameter>
+          <Parameter name='horizon' exampleValue='30Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bootstrap horizon</description>
+          </Parameter>
+          <Parameter name='iborIndexes'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Ibor indexes</description>
+          </Parameter>
+          <Parameter name='swapIndexes'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Swap indexes</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/365 (Fixed)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>yield curve DayCounter</description>
+          </Parameter>
+          <Parameter name='bootstrapAccuracy' exampleValue='10e-12'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>boostrap accuracy</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+    
     <Procedure name='qlHistCorrZeroYieldLinear'>
       <description>Returns historical correlations between forward rates using a ZeroYield, Linear boostrapped curve</description>
       <functionCategory>QuantLib</functionCategory>

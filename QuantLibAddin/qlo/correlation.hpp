@@ -5,6 +5,7 @@
  Copyright (C) 2006, 2007 Marco Bianchetti
  Copyright (C) 2006, 2007 Cristina Duminuco
  Copyright (C) 2006, 2007 Giorgio Facchinetti
+ Copyright (C) 2007 Katiuscia Manzoni
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,9 +25,6 @@
 #define qla_correlation_hpp
 
 #include <oh/objecthandler.hpp>
-
-
-
 #include <ql/types.hpp>
 
 namespace QuantLib {
@@ -41,11 +39,11 @@ namespace QuantLib {
     class IborIndex;
     class SwapIndex;
     class DayCounter;
+    class HistoricalCorrelation;
 }
 
 namespace QuantLibAddin {
 
-    // Correlation Model
     class LmCorrelationModel : public ObjectHandler::LibraryObject<
         QuantLib::LmCorrelationModel> { };
 
@@ -58,20 +56,19 @@ namespace QuantLibAddin {
 
     };
 
-    class PiecewiseConstantCorrelation :
-        public ObjectHandler::LibraryObject<QuantLib::PiecewiseConstantCorrelation>{};
-
+    class PiecewiseConstantCorrelation : public
+        ObjectHandler::LibraryObject<QuantLib::PiecewiseConstantCorrelation>{};
 
     class TimeHomogeneousForwardCorrelation : public PiecewiseConstantCorrelation {
-        public:
-            TimeHomogeneousForwardCorrelation(
+      public:
+        TimeHomogeneousForwardCorrelation(
                 const QuantLib::Matrix& fwdCorrelation,
                 const std::vector<QuantLib::Time>& rateTimes);
     };
 
     class TimeHomogeneousTimeDependentForwardCorrelation : public PiecewiseConstantCorrelation {
-        public:
-            TimeHomogeneousTimeDependentForwardCorrelation(
+      public:
+        TimeHomogeneousTimeDependentForwardCorrelation(
                 const std::vector<QuantLib::Time>& rateTimes,
                 QuantLib::Real longTermCorr,
                 QuantLib::Real beta,
@@ -79,15 +76,14 @@ namespace QuantLibAddin {
     };
 
     class CotSwapFromFwdCorrelation : public PiecewiseConstantCorrelation {
-        public:
-            CotSwapFromFwdCorrelation(
+      public:
+        CotSwapFromFwdCorrelation(
             const QuantLib::Matrix& correlations,
             const QuantLib::CurveState& curveState,
             QuantLib::Real displacement,
             const QuantLib::EvolutionDescription& evolution);
     };
   
-    
     QuantLib::Matrix qlHistCorrZeroYieldLinear(
             const QuantLib::Date& startDate, 
             const QuantLib::Date& endDate, 
@@ -99,6 +95,34 @@ namespace QuantLibAddin {
             const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >&,
             const QuantLib::DayCounter& yieldCurveDayCounter,
             QuantLib::Real yieldCurveAccuracy);
+
+    class HistoricalCorrelation : public
+        ObjectHandler::LibraryObject<QuantLib::HistoricalCorrelation> {
+      public:
+        HistoricalCorrelation(
+                const QuantLib::Date& startDate,
+                const QuantLib::Date& endDate,
+                const QuantLib::Period& step,
+                const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+                const QuantLib::Period& initialGap,
+                const QuantLib::Period& horizon,
+                const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+                const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+                const QuantLib::DayCounter& yieldCurveDayCounter,
+                QuantLib::Real yieldCurveAccuracy);
+
+         QuantLib::Matrix calculate(
+               const QuantLib::Date& startDate, 
+               const QuantLib::Date& endDate, 
+               const QuantLib::Period& step,
+               const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+               const QuantLib::Period& initialGap,
+               const QuantLib::Period& horizon,
+               const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+               const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+               const QuantLib::DayCounter& yieldCurveDayCounter,
+               QuantLib::Real yieldCurveAccuracy); 
+    };
 }
 
 #endif

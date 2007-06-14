@@ -5,6 +5,7 @@
  Copyright (C) 2006, 2007 Marco Bianchetti
  Copyright (C) 2006, 2007 Cristina Duminuco
  Copyright (C) 2006, 2007 Giorgio Facchinetti
+ Copyright (C) 2007 Katiuscia Manzoni
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -111,12 +112,78 @@ namespace QuantLibAddin {
         //    QuantLib::CubicSpline::FirstDerivative, 0.0,
         //    true);
 
-        return QuantLib::historicalCorrelations<QuantLib::ZeroYield, QuantLib::Linear>(
-                   startDate, endDate, step,
-                   fwdIndex, initialGap, horizon,
-                   iborIndexes, swapIndexes,
-                   yieldCurveDayCounter, yieldCurveAccuracy);
+        std::vector<QuantLib::Date> skippedDates, failedDates;
+        std::vector<QuantLib::Period> fixingPeriods;
+
+        return QuantLib::HistoricalCorrelation::historicalCorrelationCalculate<QuantLib::ZeroYield, QuantLib::Linear>(
+            skippedDates, failedDates, fixingPeriods,
+            startDate, endDate, step,
+            fwdIndex, initialGap, horizon,
+            iborIndexes, swapIndexes,
+            yieldCurveDayCounter, yieldCurveAccuracy);
     }
        
+    HistoricalCorrelation::HistoricalCorrelation(
+                const QuantLib::Date& startDate,
+                const QuantLib::Date& endDate,
+                const QuantLib::Period& step,
+                const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+                const QuantLib::Period& initialGap,
+                const QuantLib::Period& horizon,
+                const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+                const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+                const QuantLib::DayCounter& yieldCurveDayCounter,
+                QuantLib::Real yieldCurveAccuracy) {
+        libraryObject_ = boost::shared_ptr<QuantLib::HistoricalCorrelation>(new
+            QuantLib::HistoricalCorrelation(startDate,
+                                            endDate,
+                                            step,
+                                            fwdIndex,
+                                            initialGap,
+                                            horizon,
+                                            iborIndexes,
+                                            swapIndexes,
+                                            yieldCurveDayCounter,
+                                            yieldCurveAccuracy));
+    }
+
+    QuantLib::Matrix HistoricalCorrelation::calculate(
+               const QuantLib::Date& startDate, 
+               const QuantLib::Date& endDate, 
+               const QuantLib::Period& step,
+               const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+               const QuantLib::Period& initialGap,
+               const QuantLib::Period& horizon,
+               const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+               const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+               const QuantLib::DayCounter& yieldCurveDayCounter,
+               QuantLib::Real yieldCurveAccuracy) {
+        
+
+        //QuantLib::Cubic naturalCubic(
+        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
+        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
+        //    false);
+
+        //QuantLib::Cubic cubic1(
+        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
+        //    QuantLib::CubicSpline::FirstDerivative, 1.0,
+        //    false);
+
+        //QuantLib::Cubic monotoneCubic(
+        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
+        //    QuantLib::CubicSpline::FirstDerivative, 0.0,
+        //    true);
+
+        std::vector<QuantLib::Date> skippedDates, failedDates;
+        std::vector<QuantLib::Period> fixingPeriods;
+
+        return QuantLib::HistoricalCorrelation::historicalCorrelationCalculate<QuantLib::ZeroYield, QuantLib::Linear>(
+            skippedDates, failedDates, fixingPeriods,
+            startDate, endDate, step,
+            fwdIndex, initialGap, horizon,
+            iborIndexes, swapIndexes,
+            yieldCurveDayCounter, yieldCurveAccuracy);
+    }
    
 }

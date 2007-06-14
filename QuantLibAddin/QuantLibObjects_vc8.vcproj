@@ -1347,6 +1347,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\qlo\qladdin.hpp"
+			>
+		</File>
+		<File
 			RelativePath="qlo\qladdindefines.hpp"
 			>
 		</File>
