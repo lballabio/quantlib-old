@@ -24,6 +24,9 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/marketmodels.hpp>
+#include <ql/models/marketmodels/models/fwdperiodadapter.hpp>
+#include <ql/models/marketmodels/models/fwdtocotswapadapter.hpp>
+#include <ql/models/marketmodels/models/pseudorootfacade.hpp>
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
 #include <ql/models/marketmodels/marketmodeldifferences.hpp>
@@ -124,6 +127,30 @@ namespace QuantLibAddin {
                                      numberOfFactors,
                                      initialRates,
                                      displacements));
+    }
+
+    FwdPeriodAdapter::FwdPeriodAdapter(
+              const boost::shared_ptr<QuantLib::MarketModel>& largeModel,
+              QuantLib::Size period,
+              QuantLib::Size offset,
+              const std::vector<QuantLib::Spread>& newDisplacements){
+        libraryObject_ = boost::shared_ptr<QuantLib::FwdPeriodAdapter>(new
+            QuantLib::FwdPeriodAdapter(largeModel,
+                                       period,
+                                       offset,
+                                       newDisplacements));
+    }
+
+    PseudoRootFacade::PseudoRootFacade(
+              const boost::shared_ptr<QuantLib::CTSMMCapletCalibration> calibrator) {
+        libraryObject_ = boost::shared_ptr<QuantLib::PseudoRootFacade>(new
+            QuantLib::PseudoRootFacade(calibrator));
+    }
+
+    FwdToCotSwapAdapter::FwdToCotSwapAdapter(
+              const boost::shared_ptr<QuantLib::MarketModel>& forwardModel) {
+        libraryObject_ = boost::shared_ptr<QuantLib::FwdToCotSwapAdapter>(new
+            QuantLib::FwdToCotSwapAdapter(forwardModel));
     }
 
     FlatVolFactory::FlatVolFactory(

@@ -17,6 +17,7 @@
     <include>qlo/alphaform.hpp</include>
     <include>qlo/volatility.hpp</include>
     <include>qlo/correlation.hpp</include>
+    <include>ql/models/marketmodels/models/fwdperiodadapter.hpp</include>
   </includes>
   
   <copyright>
@@ -295,6 +296,73 @@
         </Parameters>
       </ParameterList>
     </Constructor>
+
+    <Constructor name='qlFwdPeriodAdapter'>
+      <libraryFunction>FwdPeriodAdapter</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='largeModel'>
+            <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>large MarketModel ID</description>
+          </Parameter>
+          <Parameter name='period'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>period</description>
+          </Parameter>
+          <Parameter name='offset'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>offset</description>
+          </Parameter>
+          <Parameter name='displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>vector</tensorRank>
+            <description>displacements</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlPseudoRootFacade'>
+      <libraryFunction>PseudoRootFacade</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='calibrator'>
+            <type>QuantLib::CTSMMCapletCalibration</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CTSMMCapletCalibration ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlFwdToCotSwapAdapter'>
+      <libraryFunction>FwdToCotSwapAdapter</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='forwardModel'>
+            <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Forward Rate Market Model ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
 
     <!-- MarketModelFactory derived class constructors -->
     <Constructor name='qlFlatVolFactory'>
