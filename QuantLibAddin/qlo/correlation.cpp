@@ -29,7 +29,7 @@
 #include <ql/legacy/libormarketmodels/lmlinexpcorrmodel.hpp>
 #include <ql/models/marketmodels/correlations/cotswapfromfwdcorrelation.hpp>
 #include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
-#include <ql/models/marketmodels/correlations/TimeHomogeneousTimeDependentForwardCorrelation.hpp>
+#include <ql/models/marketmodels/correlations/expcorrelations.hpp>
 #include <ql/models/marketmodels/historicalcorrelation.hpp>
 
 namespace QuantLibAddin {
@@ -57,18 +57,20 @@ namespace QuantLibAddin {
                     fwdCorrelation, rateTimes));
     }
 
-    TimeHomogeneousTimeDependentForwardCorrelation::
-        TimeHomogeneousTimeDependentForwardCorrelation(
-            const std::vector<QuantLib::Time>& rateTimes,
-            QuantLib::Real longTermCorr,
-            QuantLib::Real beta,
-            QuantLib::Real gamma)
-    {
+    ExponentialForwardCorrelation::ExponentialForwardCorrelation(
+                                const std::vector<QuantLib::Time>& rateTimes,
+                                QuantLib::Real longTermCorr,
+                                QuantLib::Real beta,
+                                QuantLib::Real gamma,
+                                const std::vector<QuantLib::Time>& times) {
         QL_REQUIRE(!rateTimes.empty(), "rate times vector is empty!");
         libraryObject_ =
-            boost::shared_ptr<QuantLib::TimeHomogeneousTimeDependentForwardCorrelation>(
-                new QuantLib::TimeHomogeneousTimeDependentForwardCorrelation(
-                    rateTimes,longTermCorr,beta,gamma));
+            boost::shared_ptr<QuantLib::ExponentialForwardCorrelation>(new
+                QuantLib::ExponentialForwardCorrelation(rateTimes,
+                                                        longTermCorr,
+                                                        beta,
+                                                        gamma,
+                                                        times));
     }
 
     CotSwapFromFwdCorrelation::CotSwapFromFwdCorrelation(

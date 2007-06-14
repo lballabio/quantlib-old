@@ -25,15 +25,7 @@ GENERAL
 - USD yield curve and swaption vols
 
 Cri & Chiara
-- max vol at t should not be negative
-- abcdBySwapTenor with global displacement
 - use OTM options for abcd wbks
-
-- split up marketmodel.xml (Giorgio)
-
-- common base class for capletswaption calibration (io)
-  failures
-- longer time series for hist (K & Marco)
 
 - Reuters feed stay open even when no Reuters is available
 - missing fixings for May 25 2007
@@ -47,11 +39,8 @@ Cri & Chiara
 
 - every factor in MM might have its own vol model
 - profiling MM
-- exporto to XL different alpha parametric forms
 
-- qlrequire last caplet == last swaption
 - calculate deformations for all methods
-- caplet swaption calib whith more than 3 factors
 - multiple displacements for swap indexes
 
 - 2Y beta sensitivity
@@ -71,6 +60,7 @@ Cri & Chiara
 
 ---
 NANDO
+- per Luigi: floating point exception + pricing engines onservers dei market data
 - Yield Curve Bootstraping needs new style
 - all wbks must use qlxlVersion(true, Trigger)
 - check testsuite error when QL_INDEXED_COUPON is used
@@ -131,7 +121,7 @@ CW	18%
     *Verifica che macro che chiude le ts salva i fogli a False
     *Close Live Feed vba: deve chiudere anche le ts se open
     *Gestione smart per poter estendere le ts dinamicamente
-- Workbook_BeforeClose to remove triggers (verifica su pc diversi) 
+- Workbook_BeforeClose to remove triggers (verifica su pc diversi)
   su foglio ManualCapFeed
 - Rt Update
   -> no evidence of stopping problems on our pcs
@@ -349,7 +339,7 @@ MARCO (last update 7/6/2007)
 
 ---
 Eric
-- why xxl loading does not receive the same graful failure treatment
+- why xll loading does not receive the same graful failure treatment
 - If omitted/blank/NA, default = FALSE
   If omitted/blank/NA/error, default = FALSE
 - open log file from menu
@@ -358,6 +348,7 @@ Eric
 - erratic error message behaviour
   why the error message doesn't disappear as soon as the cell is not in error
   anymore
+- extra arguments in function goes unnoticed
 - SA, serialization
 - 2 DOF projects
 - JRisk

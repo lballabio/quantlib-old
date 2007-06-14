@@ -66,13 +66,14 @@ namespace QuantLibAddin {
                 const std::vector<QuantLib::Time>& rateTimes);
     };
 
-    class TimeHomogeneousTimeDependentForwardCorrelation : public PiecewiseConstantCorrelation {
+    class ExponentialForwardCorrelation : public PiecewiseConstantCorrelation {
       public:
-        TimeHomogeneousTimeDependentForwardCorrelation(
-                const std::vector<QuantLib::Time>& rateTimes,
-                QuantLib::Real longTermCorr,
-                QuantLib::Real beta,
-                QuantLib::Real gamma);
+        ExponentialForwardCorrelation(
+                                const std::vector<QuantLib::Time>& rateTimes,
+                                QuantLib::Real longTermCorr,
+                                QuantLib::Real beta,
+                                QuantLib::Real gamma,
+                                const std::vector<QuantLib::Time>& times);
     };
 
     class CotSwapFromFwdCorrelation : public PiecewiseConstantCorrelation {
