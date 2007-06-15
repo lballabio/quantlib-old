@@ -22,6 +22,8 @@ class Instrument {
 ---
 GENERAL
 
+- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
+
 - caplet/swaption calibration
   check displacements
   market model creation from calibrator
