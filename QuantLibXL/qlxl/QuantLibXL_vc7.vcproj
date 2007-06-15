@@ -744,40 +744,44 @@
 			Name="Conversions"
 			Filter="">
 			<File
-				RelativePath="Conversions\all.hpp">
+				RelativePath=".\Conversions\all.hpp">
 			</File>
 			<File
-				RelativePath="Conversions\matrixtooper.cpp">
+				RelativePath=".\Conversions\matrixtooper.cpp">
 			</File>
 			<File
-				RelativePath="Conversions\matrixtooper.hpp">
+				RelativePath=".\Conversions\matrixtooper.hpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertomatrix.cpp">
+				RelativePath=".\Conversions\opertomatrix.cpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertomatrix.hpp">
+				RelativePath=".\Conversions\opertomatrix.hpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertoscalar.cpp">
+				RelativePath=".\Conversions\opertovector.cpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertoscalar.hpp">
+				RelativePath=".\Conversions\opertovector.hpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertovector.cpp">
+				RelativePath=".\Conversions\scalartooper.cpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertovector.hpp">
+				RelativePath=".\Conversions\scalartooper.hpp">
 			</File>
 			<File
-				RelativePath="Conversions\scalartooper.cpp">
+				RelativePath=".\Conversions\vectortooper.hpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="Serialization"
+			Filter="">
+			<File
+				RelativePath=".\Serialization\serializationfactory.cpp">
 			</File>
 			<File
-				RelativePath="Conversions\scalartooper.hpp">
-			</File>
-			<File
-				RelativePath="Conversions\vectortooper.hpp">
+				RelativePath=".\Serialization\serializationfactory.hpp">
 			</File>
 		</Filter>
 		<File
