@@ -308,6 +308,42 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlPseudoRootFacade'>
+      <libraryFunction>PseudoRootFacade</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='calibrator'>
+            <type>QuantLib::CTSMMCapletCalibration</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CTSMMCapletCalibration ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='CotSwapToFwdAdapter'>
+      <libraryFunction>CotSwapToFwdAdapter</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='coterminalModel'>
+            <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CoTerminal Swap Market Model ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Constructor name='qlFwdPeriodAdapter'>
       <libraryFunction>FwdPeriodAdapter</libraryFunction>
       <SupportedPlatforms>
@@ -322,38 +358,20 @@
             <tensorRank>scalar</tensorRank>
             <description>large MarketModel ID</description>
           </Parameter>
-          <Parameter name='period'>
+          <Parameter name='period' exampleValue ='2'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>period</description>
+            <description>target period (e.g. 2 if going from semiannual LMM to annual LMM)</description>
           </Parameter>
-          <Parameter name='offset'>
+          <Parameter name='offset' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>offset</description>
+            <description>rate index offset, in order to pin down swaption coterminal to the last rate time</description>
           </Parameter>
           <Parameter name='displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlPseudoRootFacade'>
-      <libraryFunction>PseudoRootFacade</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='calibrator'>
-            <type>QuantLib::CTSMMCapletCalibration</type>
-            <superType>libraryClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>CTSMMCapletCalibration ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

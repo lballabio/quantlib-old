@@ -129,27 +129,33 @@ namespace QuantLibAddin {
                                      displacements));
     }
 
+    PseudoRootFacade::PseudoRootFacade(
+              const boost::shared_ptr<QuantLib::CTSMMCapletCalibration> calibrator) {
+        libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(new
+            QuantLib::PseudoRootFacade(calibrator));
+    }
+
+    CotSwapToFwdAdapter::CotSwapToFwdAdapter(
+              const boost::shared_ptr<QuantLib::MarketModel>& coterminalModel) {
+        libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(new
+            QuantLib::CotSwapToFwdAdapter(coterminalModel));
+    }
+
     FwdPeriodAdapter::FwdPeriodAdapter(
               const boost::shared_ptr<QuantLib::MarketModel>& largeModel,
               QuantLib::Size period,
               QuantLib::Size offset,
               const std::vector<QuantLib::Spread>& newDisplacements){
-        libraryObject_ = boost::shared_ptr<QuantLib::FwdPeriodAdapter>(new
+        libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(new
             QuantLib::FwdPeriodAdapter(largeModel,
                                        period,
                                        offset,
                                        newDisplacements));
     }
 
-    PseudoRootFacade::PseudoRootFacade(
-              const boost::shared_ptr<QuantLib::CTSMMCapletCalibration> calibrator) {
-        libraryObject_ = boost::shared_ptr<QuantLib::PseudoRootFacade>(new
-            QuantLib::PseudoRootFacade(calibrator));
-    }
-
     FwdToCotSwapAdapter::FwdToCotSwapAdapter(
               const boost::shared_ptr<QuantLib::MarketModel>& forwardModel) {
-        libraryObject_ = boost::shared_ptr<QuantLib::FwdToCotSwapAdapter>(new
+        libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(new
             QuantLib::FwdToCotSwapAdapter(forwardModel));
     }
 

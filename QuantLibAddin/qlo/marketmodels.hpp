@@ -113,6 +113,18 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Rate>& displacements);
     };
 
+    class PseudoRootFacade : public MarketModel {
+      public:
+        PseudoRootFacade(
+              const boost::shared_ptr<QuantLib::CTSMMCapletCalibration> calibrator);
+    };
+
+    class CotSwapToFwdAdapter : public MarketModel {
+      public:
+        FwdToCotSwapAdapter(
+              const boost::shared_ptr<QuantLib::MarketModel>& coterminalModel);
+    };
+
     class FwdPeriodAdapter : public MarketModel {
       public:
         FwdPeriodAdapter(
@@ -120,12 +132,6 @@ namespace QuantLibAddin {
               QuantLib::Size period,
               QuantLib::Size offset,
               const std::vector<QuantLib::Spread>& newDisplacements_ );
-    };
-
-    class PseudoRootFacade : public MarketModel {
-      public:
-        PseudoRootFacade(
-              const boost::shared_ptr<QuantLib::CTSMMCapletCalibration> calibrator);
     };
 
     class FwdToCotSwapAdapter : public MarketModel {
