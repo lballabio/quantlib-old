@@ -682,6 +682,7 @@
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
+    
     <Member name='qlCTSMMCapletCalibrationTimeDependentUnCalibratedSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>timeDependentUnCalibratedSwaptionVols</description>
       <libraryFunction>timeDependentUnCalibratedSwaptionVols</libraryFunction>
@@ -705,7 +706,6 @@
       </ReturnValue>
     </Member>
     
-
     <Constructor name='qlCTSMMCapletOriginalCalibration'>
       <libraryFunction>CTSMMCapletOriginalCalibration</libraryFunction>
       <SupportedPlatforms>
@@ -903,7 +903,6 @@
       </ParameterList>
     </Constructor>
 
-
     <!-- Forward Libor Market Model <-> Coterminal Swap Market Model -->
 
     <Procedure name='qlCoterminalSwapForwardJacobian'>
@@ -977,7 +976,6 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
 
     <!-- AccountingEngine class constructor -->
     <Constructor name='qlAccountingEngine'>
