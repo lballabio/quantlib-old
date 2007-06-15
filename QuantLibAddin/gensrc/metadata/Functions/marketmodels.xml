@@ -326,7 +326,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='CotSwapToFwdAdapter'>
+    <Constructor name='qlCotSwapToFwdAdapter'>
       <libraryFunction>CotSwapToFwdAdapter</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
