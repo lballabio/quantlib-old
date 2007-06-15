@@ -1135,6 +1135,12 @@
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
         </EnumeratedType>
 
+        <!-- Other? -->
+        <EnumeratedType>
+          <string>Business252</string>
+          <value>QuantLib::Business252()</value>
+        </EnumeratedType>
+
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
