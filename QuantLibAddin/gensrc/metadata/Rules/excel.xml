@@ -194,14 +194,10 @@
         <Rule tensorRank='scalar' nativeType='void'>static bool returnValue = true;&#10;        </Rule>
         <Rule tensorRank='scalar' nativeType='any'>boost::any returnValue = </Rule>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Array'>%(type)s returnValue = </Rule>
-        <!--FIXME is the line below required? -->
-        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Matrix'>%(type)s returnValue = </Rule>
         <Rule tensorRank='vector' superType='libraryType'>std::vector&lt;%(type)s&gt; returnValue = </Rule>
         <Rule tensorRank='vector' nativeType='string'>std::vector&lt;std::string&gt; returnValue = </Rule>
         <Rule tensorRank='vector' nativeType='any'>std::vector&lt;boost::any&gt; returnValue = </Rule>
         <Rule tensorRank='vector'>std::vector&lt;%(nativeType)s&gt; returnValue = </Rule>
-        <!--FIXME is the line below required? -->
-        <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Array'>%(type)s returnValue = </Rule>
         <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Matrix'>%(type)s returnValue = </Rule>
         <Rule tensorRank='matrix' superType='libraryType' codeID='code52'/>
         <Rule tensorRank='matrix' nativeType='string' codeID='code51'/>
