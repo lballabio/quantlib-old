@@ -45,7 +45,7 @@ import re
 import getopt
 import shutil
 
-ROOT_DIR = 'C:/erik/projects/trunk/QuantLib-SWIG'
+ROOT_DIR = '/erik/projects/trunk/QuantLibAddin/gensrc/metadata/Functions'
 
 # callback functions - called from regexes which require multiple passes
 
@@ -69,17 +69,11 @@ SUBSTITUTIONS = (
 #   place the active regexes here, 
 #   using the commented examples below
 
-#    (re.compile(r'(for.*?\(.*?;.*?;)(.*?)\)'), sub1),
-
-    (re.compile(r'0_8_0'), '0_9_0'),
-    (re.compile(r'0\.8\.0'), '0.9.0'),
-    (re.compile(r'0x000800f0'), '0x000900f0'),
-    (re.compile(r'Major=0\nMinor=8\nRelease=0'), 'Major=0\nMinor=9\nRelease=0'),
-
-    (re.compile(r'0_8_1'), '0_9_0'),
-    (re.compile(r'0\.8\.1'), '0.9.0'),
-    (re.compile(r'0x000801f0'), '0x000900f0'),
-    (re.compile(r'Major=0\nMinor=8\nRelease=1'), 'Major=0\nMinor=9\nRelease=0'),
+#      <SupportedPlatforms>
+#        <SupportedPlatform name='Excel' calcInWizard='false' />
+#      </SupportedPlatforms>
+    (re.compile(r'^(\s*?)(<SupportedPlatform .*?>)(\s*?</SupportedPlatforms>)', re.M | re.S), 
+    r"\1\2\n\1<SupportedPlatform name='Cpp'/>\3"),
 
 #   simple
 #    (re.compile(r'abd'), 'def'),
@@ -97,9 +91,10 @@ SUBSTITUTIONS = (
 #    (re.compile(r'^import .*?$', re.M), toLower),
 
 #   frequently used
-#    (re.compile(r'0_3_11'), '0_3_12'),
-#    (re.compile(r'0\.3\.11'), '0.3.12'),
-#    (re.compile(r'0x000311f0'), '0x000312f0'),
+#    (re.compile(r'0_8_0'), '0_9_0'),
+#    (re.compile(r'0\.8\.0'), '0.9.0'),
+#    (re.compile(r'0x000800f0'), '0x000900f0'),
+#    (re.compile(r'Major=0\nMinor=8\nRelease=0'), 'Major=0\nMinor=9\nRelease=0'),
 
 )
 
@@ -107,25 +102,8 @@ SUBSTITUTIONS = (
 # Regexes to indicate names of files to be processed by the find/replace.
 
 INCLUDE_FILES = (
-#    re.compile(r'^.*\.?pp$'),
-#    re.compile(r'^.*defines\.hpp$'),
-
-#    re.compile(r'^testsuite.dev$'),
-#    re.compile(r'^capfloor.xml$'),
-#    re.compile(r'^couponvectors.xml$'),
-#    re.compile(r'^instruments.xml$'),
-#    re.compile(r'^interpolation.xml$'),
-#    re.compile(r'^ohfunctions.xml$'),
-#    re.compile(r'^options.xml$'),
-#    re.compile(r'^processes.xml$'),
-#    re.compile(r'^schedule.xml$'),
-#    re.compile(r'^shortratemodels.xml$'),
-#    re.compile(r'^simpleswap.xml$'),
-#    re.compile(r'^swap.xml$'),
-#    re.compile(r'^termstructures.xml$'),
-#    re.compile(r'^utilities.xml$'),
-#    re.compile(r'^volatilities.xml$'),
-#    re.compile(r'^xibor.xml$'),
+    #re.compile(r'^junk\.xml$'),
+    re.compile(r'^.*\.xml$'),
 
 )
 

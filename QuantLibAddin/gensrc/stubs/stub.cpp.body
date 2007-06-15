@@ -1,0 +1,11 @@
+#include <qlo/qladdindefines.hpp>
+#include <qlo/handle.hpp>
+#include <qlo/Enumerations/Factories/all.hpp>
+%(categoryIncludes)s
+
+namespace QuantLibAddinCpp {
+
+%(bufferCpp)s
+
+}
+

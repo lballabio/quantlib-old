@@ -18,6 +18,7 @@
       <alias>QuantLibAddin::periodFromFrequency</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -40,6 +41,7 @@
       <alias>QuantLibAddin::frequencyFromPeriod</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -61,6 +63,7 @@
       <alias>QuantLib::operator&lt;</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -87,6 +90,7 @@
       <alias>QuantLib::Date::minDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -102,6 +106,7 @@
       <alias>QuantLib::Date::maxDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -117,6 +122,7 @@
       <alias>QuantLib::Date::isLeap</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -138,6 +144,7 @@
       <alias>QuantLib::Date::endOfMonth</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -159,6 +166,7 @@
       <alias>QuantLib::Date::isEndOfMonth</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -180,6 +188,7 @@
       <alias>QuantLib::Date::nextWeekday</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -207,6 +216,7 @@
       <alias>QuantLib::Date::nthWeekday</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -243,6 +253,7 @@
       <alias>QuantLib::IMM::isIMMdate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -269,6 +280,7 @@
       <alias>QuantLib::IMM::isIMMcode</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -295,6 +307,7 @@
       <alias>QuantLib::IMM::code</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -316,6 +329,7 @@
       <alias>QuantLib::IMM::nextCode</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -341,6 +355,7 @@
       <description>returns the codes for next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -367,6 +382,7 @@
       <alias>QuantLib::IMM::date</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -393,6 +409,7 @@
       <alias>QuantLib::IMM::nextDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -418,6 +435,7 @@
       <description>returns the delivery dates for next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

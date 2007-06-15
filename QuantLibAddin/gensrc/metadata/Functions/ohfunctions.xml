@@ -15,6 +15,7 @@
       <alias>ObjectHandler::dependsOn</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc' implementation='manual'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -81,6 +82,7 @@
       <alias>ObjectHandler::version</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -96,6 +98,7 @@
       <alias>ObjectHandler::Repository::instance().listObjectIDs</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -117,6 +120,7 @@
       <alias>ObjectHandler::Repository::instance().objectCount</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -132,6 +136,7 @@
       <alias>ObjectHandler::RepositoryXL::instance().packMatrix</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -153,6 +158,7 @@
       <alias>ObjectHandler::split</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -185,6 +191,7 @@
       <xlWizardRecalc>true</xlWizardRecalc>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -211,6 +218,7 @@
       <alias>ObjectHandler::RepositoryXL::instance().retrieveError</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -233,6 +241,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='documentationOnly'/>
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -248,6 +257,7 @@
       <alias>ObjectHandler::RepositoryXL::instance().callerAddress</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -269,6 +279,7 @@
       <alias>ObjectHandler::RepositoryXL::instance().callerKey</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='documentationOnly'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -290,6 +301,7 @@
       <alias>ObjectHandler::Repository::instance().deleteAllObjects</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -311,6 +323,7 @@
       <alias>ObjectHandler::Repository::instance().deleteObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -332,6 +345,7 @@
       <alias>ObjectHandler::logAllObjects</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -349,6 +363,7 @@
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -377,6 +392,7 @@
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -398,6 +414,7 @@
       <libraryFunction>propertyNames</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc' implementation='manual'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -413,6 +430,7 @@
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc' implementation='manual'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -436,6 +454,7 @@
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -462,6 +481,7 @@
       <alias>ObjectHandler::setLogLevel</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -485,6 +505,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

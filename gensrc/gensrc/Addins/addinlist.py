@@ -18,13 +18,13 @@
 
 from gensrc.Addins import excel
 from gensrc.Addins import calc
-from gensrc.Addins import guile
+from gensrc.Addins import cpp
 from gensrc.Addins import c
+#from gensrc.Addins import guile
+from gensrc.Addins import doxygen
 from gensrc.Addins import valueobjects
 from gensrc.Addins import enumerations
 from gensrc.Addins import loop
-from gensrc.Addins import serialization
-from gensrc.Addins import doxygen
 
 from gensrc.Categories import categorylist
 from gensrc.Enumerations import enumerationlist
@@ -51,12 +51,12 @@ addin           unchanged   updated     created     total'''
     creators = {
         'x' : (excel.ExcelAddin, 'excel'),
         'o' : (calc.CalcAddin, 'calc'),
-        'g' : (guile.GuileAddin, 'guile'),
+        'p' : (cpp.CppAddin, 'cpp'),
         'c' : (c.CAddin, 'c'),
+        #'g' : (guile.GuileAddin, 'guile'),
         'v' : (valueobjects.ValueObjects, 'valueobjects'),
         'e' : (enumerations.Enumerations, 'enumerations'),
         'l' : (loop.Loop, 'loop'),
-        's' : (serialization.Serialization, 'serialization'),
         'd' : (doxygen.Doxygen, 'doxygen'),
     }
 
@@ -131,5 +131,6 @@ addin           unchanged   updated     created     total'''
         self.addins_ = []
         for addinId in addinIds:
             creator, fileName = AddinList.creators[addinId]
+            print "filename=", fileName
             self.addins_.append(utilities.serializeObject(creator, 'metadata/Addins/' + fileName))
 

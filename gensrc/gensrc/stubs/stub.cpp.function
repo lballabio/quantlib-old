@@ -1,0 +1,9 @@
+
+    %(functionReturnType)s %(functionName)s (%(functionDeclaration)s) {
+
+%(functionBody)s
+
+        return returnValue;
+
+    }
+

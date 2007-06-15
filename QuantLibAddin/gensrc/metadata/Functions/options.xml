@@ -18,6 +18,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -65,6 +66,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -135,6 +137,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -187,6 +190,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -229,6 +233,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -273,6 +278,7 @@
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -305,6 +311,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -337,6 +344,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -385,6 +393,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -444,6 +453,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -460,6 +470,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -476,6 +487,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -492,6 +504,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -508,6 +521,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -524,6 +538,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -540,6 +555,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -556,6 +572,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -572,6 +589,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -588,6 +606,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>

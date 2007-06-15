@@ -34,8 +34,9 @@ usage: %(scriptName)s -[flags]
     where [flags] specify that source code is to be generated for any of:
         x - Excel addin
         o - OpenOffice.org Calc addin
-        g - Guile addin
+        p - C++ addin
         c - C addin
+        g - Guile addin
         v - ValueObjects code
         e - Enumerations
         l - Loops
@@ -57,7 +58,7 @@ sys.excepthook = excepthook.gensrc_excepthook
 # parse command line arguments
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'xogcvelsdah', 'help' )
+    opts, args = getopt.getopt(sys.argv[1:], 'xopcgveldah', 'help' )
 except getopt.GetoptError:
     usage()
 
@@ -68,10 +69,12 @@ for o, a in opts:
         addinIds.append('x')
     elif o == '-o':
         addinIds.append('o')
-    elif o == '-g':
-        addinIds.append('g')
+    elif o == '-p':
+        addinIds.append('p')
     elif o == '-c':
         addinIds.append('c')
+    #elif o == '-g':
+    #    addinIds.append('g')
     elif o == '-v':
         addinIds.append('v')
     elif o == '-e':
@@ -84,8 +87,8 @@ for o, a in opts:
         addinIds.append('d')
     elif o == '-a':
         if len(opts) != 1: sys.exit('flag -a cannot be combined with other flags')
-#        addinIds = [ 'e', 'o', 'g', 'c', 'v', 'x', 'l', 's', 'd' ]
-        addinIds = [ 'e', 'o', 'c', 'v', 'x', 'l', 's', 'd' ]
+        #addinIds = [ 'x', 'o', 'p', 'c', 'g', 'v', 'e', 'l', 'd' ]
+        addinIds = [ 'x', 'o', 'p', 'c', 'v', 'e', 'l', 'd' ]
     elif o in ('-h', '--help'):
         usage()
     else:

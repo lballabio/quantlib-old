@@ -5,10 +5,10 @@ Disallow: /reference
 Disallow: /styles
 Disallow: /templates
 Disallow: /quep/quep*/*
-Disallow: /gensrc
-Disallow: /objecthandler
-Disallow: /quantlibaddin
 # troubleshooting googlebot glitch
+Disallow: /gensrc
+#Disallow: /objecthandler
+#Disallow: /quantlibaddin
 #Disallow: /quantlibxl
 Disallow: /notfound.shtml
 Disallow: /cvs.shtml

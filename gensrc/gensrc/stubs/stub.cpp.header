@@ -1,0 +1,11 @@
+#ifndef qlcpp_%(categoryName)s_hpp
+#define qlcpp_%(categoryName)s_hpp
+
+namespace QuantLibAddinCpp {
+
+%(bufferHpp)s
+
+}
+
+#endif
+

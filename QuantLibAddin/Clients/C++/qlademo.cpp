@@ -67,7 +67,7 @@ int main() {
         Date settlementDate(17, May, 1998);
         Date exerciseDate(17, May, 1999);
 
-        QuantLibAddin::setEvaluationDate(evaluationDate);
+        QuantLibAddin::qlSettingsSetEvaluationDate(evaluationDate);
 
         boost::shared_ptr<Object> blackConstantVol(
             new QuantLibAddin::BlackConstantVol(

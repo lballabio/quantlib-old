@@ -14,6 +14,7 @@
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

@@ -22,6 +22,7 @@
     <functionCategory>QuantLib</functionCategory>
     <SupportedPlatforms>
       <SupportedPlatform name='Excel' calcInWizard='false' />
+      <SupportedPlatform name='Cpp'/>
     </SupportedPlatforms>
 		<ParameterList>
 			<Parameters>
@@ -104,6 +105,7 @@
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -127,6 +129,7 @@
       <libraryFunction>setPricer</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -148,6 +151,7 @@
       <libraryFunction>observationDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -164,6 +168,7 @@
       <libraryFunction>accrualStartDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -180,6 +185,7 @@
       <libraryFunction>accrualEndDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -196,6 +202,7 @@
       <libraryFunction>observationsNo</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -213,6 +220,7 @@
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -236,6 +244,7 @@
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -260,6 +269,7 @@
      <functionCategory>QuantLib</functionCategory>
      <SupportedPlatforms>
        <SupportedPlatform name='Excel' calcInWizard='false' />
+       <SupportedPlatform name='Cpp'/>
      </SupportedPlatforms>
       <ParameterList>
         <Parameters>

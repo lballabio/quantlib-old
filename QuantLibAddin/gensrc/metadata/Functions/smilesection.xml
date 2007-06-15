@@ -21,6 +21,7 @@
             <libraryFunction>volatility</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='false' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
@@ -42,6 +43,7 @@
             <libraryFunction>variance</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='false' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
@@ -63,6 +65,7 @@
             <libraryFunction>atmLevel</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='false' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
@@ -79,6 +82,7 @@
             <libraryFunction>exerciseDate</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='true' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters/>
@@ -94,6 +98,7 @@
             <libraryFunction>dayCounter</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='true' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters/>
@@ -110,6 +115,7 @@
             <functionCategory>QuantLib</functionCategory>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='false' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
@@ -148,6 +154,7 @@
             <functionCategory>QuantLib</functionCategory>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='false' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
@@ -242,6 +249,7 @@
             <libraryFunction>alpha</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='true' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters/>
@@ -257,6 +265,7 @@
             <libraryFunction>beta</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='true' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters/>
@@ -272,6 +281,7 @@
             <libraryFunction>nu</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='true' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters/>
@@ -287,6 +297,7 @@
             <libraryFunction>rho</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='true' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters/>
@@ -302,6 +313,7 @@
             <libraryFunction>interpolationError</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='true' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters/>
@@ -317,6 +329,7 @@
             <libraryFunction>interpolationMaxError</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='true' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters/>
@@ -332,6 +345,7 @@
             <libraryFunction>endCriteria</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='true' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters/>
@@ -347,6 +361,7 @@
             <functionCategory>QuantLib</functionCategory>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='false' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
@@ -436,6 +451,7 @@
             <functionCategory>QuantLib</functionCategory>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel' calcInWizard='false' />
+                <SupportedPlatform name='Cpp'/>
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
