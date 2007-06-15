@@ -37,10 +37,13 @@ GENERAL
   remove dates and just use periods
   check if iterative approach make it worse when there is a failure
   check/enforce alpha_i > 1/t_i
+  conditional formatting on calibration errors in 1Y wbk
 
 - adapter from LMM to CMSMM
 
 - refresh snapshot also for time series + merge quotefeeds and timeseries actions
+
+- qlxlversion e trigger formatting in time series
 
 - every factor in MM might have its own vol model
 - profiling MM
