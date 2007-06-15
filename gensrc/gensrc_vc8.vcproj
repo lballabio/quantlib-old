@@ -507,15 +507,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\gensrc\stubs\stub.serialization.addin"
-				>
-			</File>
-			<File
 				RelativePath=".\gensrc\stubs\stub.serialization.all"
 				>
 			</File>
 			<File
+				RelativePath=".\gensrc\stubs\stub.serialization.body"
+				>
+			</File>
+			<File
 				RelativePath=".\gensrc\stubs\stub.serialization.creator"
+				>
+			</File>
+			<File
+				RelativePath=".\gensrc\stubs\stub.serialization.declaration"
 				>
 			</File>
 			<File
@@ -524,6 +528,14 @@
 			</File>
 			<File
 				RelativePath=".\gensrc\stubs\stub.serialization.header"
+				>
+			</File>
+			<File
+				RelativePath=".\gensrc\stubs\stub.serialization.register"
+				>
+			</File>
+			<File
+				RelativePath=".\gensrc\stubs\stub.serialization.registerall"
 				>
 			</File>
 			<File

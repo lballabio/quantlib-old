@@ -1,0 +1,6 @@
+#ifndef %(addinDirectory)s_serialization_all_hpp
+#define %(addinDirectory)s_serialization_all_hpp
+
+%(allIncludes)s
+#endif
+

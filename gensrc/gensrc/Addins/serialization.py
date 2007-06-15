@@ -37,9 +37,14 @@ class Serialization(addin.Addin):
     REGISTER_CREATOR = '''\
         registerCreator("%(functionName)s", create_%(functionName)s);\n'''
     REGISTER_TYPE = '''\
+            // %(categoryDisplayName)s\n
+            register_%(categoryName)s(ar);\n\n'''           
+    REGISTER_CALL = '''\
             ar.template register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
     INCLUDE_CREATOR = '''\
 #include <%(libRootDirectory)s/Serialization/create_%(categoryName)s.hpp>\n'''
+    REGISTER_INCLUDE = '''\
+#include <%(addinDirectory)s/Serialization/serialization_%(categoryName)s.hpp>\n'''
 
     #############################################
     # public interface

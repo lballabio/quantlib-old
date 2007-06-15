@@ -26,6 +26,7 @@
 
 #include <string>
 #include <vector>
+#include <oh/variant.hpp>
 #include <boost/any.hpp>
 #include <boost/serialization/access.hpp>
 

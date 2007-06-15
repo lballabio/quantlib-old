@@ -57,6 +57,9 @@ class Configuration(serializable.Serializable):
     def prefix(self):
         return self.prefix_
 
+    def prefixExcel(self):
+        return self.prefixExcel_
+
     #############################################
     # serializer interface
     #############################################
@@ -69,6 +72,7 @@ class Configuration(serializable.Serializable):
         serializer.serializeProperty(self, common.NAMESPACE_OBJ)
         serializer.serializeProperty(self, common.NAMESPACE_LIB)
         serializer.serializeProperty(self, 'prefix')
+        serializer.serializeProperty(self, 'prefixExcel')
         serializer.serializeBoolean(self, 'usingEnumerations')
         serializer.serializeBoolean(self, 'usingSerialization')
 

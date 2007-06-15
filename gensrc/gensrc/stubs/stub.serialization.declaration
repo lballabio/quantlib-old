@@ -1,0 +1,14 @@
+#ifndef %(addinDirectory)s_serialization_%(categoryName)s_hpp
+#define %(addinDirectory)s_serialization_%(categoryName)s_hpp
+
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/archive/xml_oarchive.hpp>
+
+namespace %(namespaceAddin)s {
+
+    void register_%(categoryName)s(boost::archive::xml_oarchive &ar);
+    void register_%(categoryName)s(boost::archive::xml_iarchive &ar);
+    
+}
+
+#endif

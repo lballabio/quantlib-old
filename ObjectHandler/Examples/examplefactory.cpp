@@ -41,8 +41,18 @@ namespace ExampleAddin {
         OH_FAIL("Attempt to reference uninitialized ExampleFactory object");
     }
 
-    template<class Archive>
-    void tpl_register_classes(Archive& ar) {
+    //template<class Archive>
+    //void tpl_register_classes(Archive& ar) {
+    //    ar.template register_type<AccountExample::AccountValueObject>();
+    //    ar.template register_type<AccountExample::CustomerValueObject>();
+    //}
+
+    void tpl_register_classes(boost::archive::xml_oarchive &ar) {
+        ar.template register_type<AccountExample::AccountValueObject>();
+        ar.template register_type<AccountExample::CustomerValueObject>();
+    }
+
+    void tpl_register_classes(boost::archive::xml_iarchive &ar) {
         ar.template register_type<AccountExample::AccountValueObject>();
         ar.template register_type<AccountExample::CustomerValueObject>();
     }

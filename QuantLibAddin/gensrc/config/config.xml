@@ -1,6 +1,7 @@
 <Config>
 
   <prefix>ql</prefix>
+  <prefixExcel>qlxl</prefixExcel>
   <libRootDirectory>qlo</libRootDirectory>
   <usingEnumerations>true</usingEnumerations>
   <usingSerialization>true</usingSerialization>

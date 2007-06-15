@@ -1,0 +1,20 @@
+#include <%(addinDirectory)s/Serialization/serialization_%(categoryName)s.hpp>
+#include <qlo/ValueObjects/vo_%(categoryName)s.hpp>
+#include <boost/serialization/shared_ptr.hpp>
+#include <boost/serialization/variant.hpp>
+#include <boost/serialization/vector.hpp>
+
+namespace %(namespaceAddin)s {
+
+    void register_%(categoryName)s(boost::archive::xml_oarchive &ar) {
+    
+%(bufferCpp)s    
+    }
+    
+    void register_%(categoryName)s(boost::archive::xml_iarchive &ar) {
+    
+%(bufferCpp)s
+    }
+    
+}
+
