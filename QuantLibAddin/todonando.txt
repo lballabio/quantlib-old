@@ -22,26 +22,35 @@ class Instrument {
 ---
 GENERAL
 
-- USD yield curve and swaption vols
+- caplet/swaption calibration
+  check displacements
+  market model creation from calibrator
+  get result of alpha fitting in wbks
+  check if homo = false still crashes
+  first rate issue (i.e. when a solution does not exist)
+  more stats from hist corr classes
+  duplicate pseudorootfacade checks in the new constructor
+  use OTM options for abcd wbks
+  multiple displacements for swap indexes
+  remove dates and just use periods
+  check if iterative approach make it worse when there is a failure
+  check/enforce alpha_i > 1/t_i
 
-Cri & Chiara
-- use OTM options for abcd wbks
+- adapter from LMM to CMSMM
 
-- Reuters feed stay open even when no Reuters is available
-- missing fixings for May 25 2007
-
-- QuantLibXL About should use qlXlVersion()
-- move info from ControlPanel (e.g. number of objects) to MainChecks
-- action for main checks
-- action for setEvaluationDate
-- when returning a singe col (row) matrix add another col (row)
-  with #NA to prevent Excel from duplicating col (row)
+- refresh snapshot also for time series + merge quotefeeds and timeseries actions
 
 - every factor in MM might have its own vol model
 - profiling MM
 
-- calculate deformations for all methods
-- multiple displacements for swap indexes
+
+- fix yield curve cubic bootstrapping (first try Linear)
+
+- USD yield curve and swaption vols
+
+- move info from ControlPanel (e.g. number of objects) to MainChecks
+- action for main checks
+- action for setEvaluationDate
 
 - 2Y beta sensitivity
 - remove all ActiveWorkbook usage
@@ -339,6 +348,11 @@ MARCO (last update 7/6/2007)
 
 ---
 Eric
+- QuantLibXL About should use qlXlVersion()
+- when returning a singe col (row) matrix add another col (row)
+  with #NA to prevent Excel from duplicating col (row)
+- xml schema
+- error when too many input parameters are provided
 - why xll loading does not receive the same graful failure treatment
 - If omitted/blank/NA, default = FALSE
   If omitted/blank/NA/error, default = FALSE
