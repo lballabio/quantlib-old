@@ -111,8 +111,21 @@ namespace QuantLibAddin {
                                             yieldCurveAccuracy));
     }
 
+    const int HistoricalCorrelation::samples() const {
+        return libraryObject_->stats().samples();
+    }
+
+    const std::vector<double> HistoricalCorrelation::mean() const {
+        return libraryObject_->stats().mean();
+    }
+
+    const std::vector<double> HistoricalCorrelation::variance() const {
+        return libraryObject_->stats().variance();
+    }
+
     const QuantLib::Matrix HistoricalCorrelation::correlation() const {
         return libraryObject_->stats().correlation();
     }
 
 }
+

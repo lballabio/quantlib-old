@@ -99,8 +99,12 @@ namespace QuantLibAddin {
                 const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
                 const QuantLib::DayCounter& yieldCurveDayCounter,
                 QuantLib::Real yieldCurveAccuracy);
+        const int samples() const;
+        const std::vector<double> mean()const;
+        const std::vector<double> variance() const;
         const QuantLib::Matrix correlation() const;
     };
 }
 
 #endif
+

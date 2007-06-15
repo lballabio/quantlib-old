@@ -104,6 +104,54 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlHistoricalCorrelationSamples' type='QuantLibAddin::HistoricalCorrelation'>
+      <description>Returns forward rates' samples</description>
+      <libraryFunction>samples</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalCorrelationMean' type='QuantLibAddin::HistoricalCorrelation'>
+      <description>Returns vector of forward rates' means</description>
+      <libraryFunction>mean</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalCorrelationVariance' type='QuantLibAddin::HistoricalCorrelation'>
+      <description>Returns vector of forward rates' variances</description>
+      <libraryFunction>variance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
     <Member name='qlHistoricalCorrelationCorrelation' type='QuantLibAddin::HistoricalCorrelation'>
       <description>Returns historical correlations between forward rates</description>
       <libraryFunction>correlation</libraryFunction>
@@ -119,7 +167,7 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
-
+   
     <Constructor name='qlHistoricalCorrelation'>
       <libraryFunction>HistoricalCorrelation</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
