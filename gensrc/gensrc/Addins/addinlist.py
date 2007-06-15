@@ -22,6 +22,7 @@ from gensrc.Addins import cpp
 from gensrc.Addins import c
 #from gensrc.Addins import guile
 from gensrc.Addins import doxygen
+from gensrc.Addins import serialization
 from gensrc.Addins import valueobjects
 from gensrc.Addins import enumerations
 from gensrc.Addins import loop
@@ -57,6 +58,7 @@ addin           unchanged   updated     created     total'''
         'v' : (valueobjects.ValueObjects, 'valueobjects'),
         'e' : (enumerations.Enumerations, 'enumerations'),
         'l' : (loop.Loop, 'loop'),
+        's' : (serialization.Serialization, 'serialization'),
         'd' : (doxygen.Doxygen, 'doxygen'),
     }
 

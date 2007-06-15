@@ -58,7 +58,7 @@ sys.excepthook = excepthook.gensrc_excepthook
 # parse command line arguments
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'xopcgveldah', 'help' )
+    opts, args = getopt.getopt(sys.argv[1:], 'xopcgvelsdah', 'help' )
 except getopt.GetoptError:
     usage()
 
@@ -88,7 +88,7 @@ for o, a in opts:
     elif o == '-a':
         if len(opts) != 1: sys.exit('flag -a cannot be combined with other flags')
         #addinIds = [ 'x', 'o', 'p', 'c', 'g', 'v', 'e', 'l', 'd' ]
-        addinIds = [ 'x', 'o', 'p', 'c', 'v', 'e', 'l', 'd' ]
+        addinIds = [ 'x', 'o', 'p', 'c', 'v', 'e', 'l', 's', 'd' ]
     elif o in ('-h', '--help'):
         usage()
     else:
