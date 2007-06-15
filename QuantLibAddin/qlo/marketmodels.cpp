@@ -27,6 +27,7 @@
 #include <ql/models/marketmodels/models/fwdperiodadapter.hpp>
 #include <ql/models/marketmodels/models/fwdtocotswapadapter.hpp>
 #include <ql/models/marketmodels/models/pseudorootfacade.hpp>
+#include <ql/models/marketmodels/models/cotswaptofwdadapter.hpp>
 #include <ql/models/marketmodels/models/flatvol.hpp>
 #include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
 #include <ql/models/marketmodels/marketmodeldifferences.hpp>
