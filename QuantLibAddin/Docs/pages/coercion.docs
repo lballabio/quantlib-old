@@ -52,6 +52,10 @@ The table below summarizes the automatic coercions supported by QuantLibXL:
 \li ID of a Quote object as returned by qlSimpleQuote()
 \li ID of a Quote handle object as returned by qlHandleQuote()
 \li number representing quote value</td></tr>
+<tr><td>Date</td>
+<td>
+\li An integer representing the offset in days since 1 January 1970.  This is the format passed by Excel.
+\li A period, to be used as the offset from the current evaluation date.  For example, where a function expects a date, and the current evaluation date is 6 July 2005, and the user supplies the string "2Y", then the function receives the date value 6 July 2007.</td></tr>
 <tr><td>TermStructure</td>
 <td>
 \li ID of a TermStructure object as returned by a function such as qlPiecewiseYieldCurve ()
