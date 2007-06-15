@@ -121,7 +121,7 @@ namespace QuantLibAddin {
 
     class CotSwapToFwdAdapter : public MarketModel {
       public:
-        FwdToCotSwapAdapter(
+        CotSwapToFwdAdapter(
               const boost::shared_ptr<QuantLib::MarketModel>& coterminalModel);
     };
 
