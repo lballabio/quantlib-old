@@ -45,7 +45,7 @@ import re
 import getopt
 import shutil
 
-ROOT_DIR = '/erik/projects/trunk/QuantLibAddin/gensrc/metadata/Functions'
+ROOT_DIR = '/erik/projects/trunk/QuantLibXL'
 
 # callback functions - called from regexes which require multiple passes
 
@@ -69,11 +69,21 @@ SUBSTITUTIONS = (
 #   place the active regexes here, 
 #   using the commented examples below
 
-#      <SupportedPlatforms>
-#        <SupportedPlatform name='Excel' calcInWizard='false' />
-#      </SupportedPlatforms>
-    (re.compile(r'^(\s*?)(<SupportedPlatform .*?>)(\s*?</SupportedPlatforms>)', re.M | re.S), 
-    r"\1\2\n\1<SupportedPlatform name='Cpp'/>\3"),
+(re.compile(
+
+r'''
+ QuantLib is free software: you can redistribute it and/or modify it under the
+ terms of the QuantLib license.  You should have received a copy of the
+ license along with this program; if not, please email quantlib-dev@lists.sf.net
+ The license is also available online at http://quantlib.org/html/license.html
+'''),
+'''
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+'''),
 
 #   simple
 #    (re.compile(r'abd'), 'def'),
@@ -103,7 +113,7 @@ SUBSTITUTIONS = (
 
 INCLUDE_FILES = (
     #re.compile(r'^junk\.xml$'),
-    re.compile(r'^.*\.xml$'),
+    #re.compile(r'^varianttoscalar\.hpp$'),
 
 )
 
