@@ -352,6 +352,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\oh\other.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\oh\repository.cpp"
 					>
 				</File>
@@ -360,11 +364,31 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\oh\serializationfactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\serializationfactory.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\oh\singleton.hpp"
 					>
 				</File>
 				<File
+					RelativePath="..\..\oh\types.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\oh\valueobject.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\variant.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\variantvisitors.hpp"
 					>
 				</File>
 			</Filter>
@@ -401,6 +425,14 @@
 				</File>
 				<File
 					RelativePath="..\..\oh\Conversions\coerce.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\Conversions\ohconvertvariant.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\Conversions\varianttoscalar.hpp"
 					>
 				</File>
 			</Filter>
@@ -441,10 +473,6 @@
 				</File>
 				<File
 					RelativePath="..\Conversions\opertomatrix.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Conversions\opertoscalar.cpp"
 					>
 				</File>
 				<File
@@ -508,6 +536,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\Functions\serialization.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\Functions\valueobjects.cpp"
 					>
 				</File>
@@ -540,6 +572,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\Register\register_serialization.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\Register\register_valueobjects.cpp"
 					>
 				</File>
@@ -561,6 +597,14 @@
 				</File>
 				<File
 					RelativePath="..\configuration.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\convert_oper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\convert_oper.hpp"
 					>
 				</File>
 				<File

@@ -349,6 +349,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\oh\other.hpp"
+				>
+			</File>
+			<File
 				RelativePath="oh\repository.cpp"
 				>
 			</File>
@@ -357,11 +361,31 @@
 				>
 			</File>
 			<File
+				RelativePath=".\oh\serializationfactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\oh\serializationfactory.hpp"
+				>
+			</File>
+			<File
 				RelativePath="oh\singleton.hpp"
 				>
 			</File>
 			<File
+				RelativePath=".\oh\types.hpp"
+				>
+			</File>
+			<File
 				RelativePath="oh\valueobject.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\oh\variant.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\oh\variantvisitors.hpp"
 				>
 			</File>
 		</Filter>
@@ -374,6 +398,14 @@
 			</File>
 			<File
 				RelativePath="oh\Conversions\coerce.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\oh\Conversions\ohconvertvariant.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\oh\Conversions\varianttoscalar.hpp"
 				>
 			</File>
 		</Filter>

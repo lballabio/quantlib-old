@@ -17,52 +17,67 @@
 */
 
 /*! \file
-    \brief Conversion function operToMatrix - convert an OPER to a matrix.
+    \brief Conversion function operToMatrix - convert an OPER to a matrix
 */
 
 #ifndef ohxl_conversions_opertomatrix_hpp
 #define ohxl_conversions_opertomatrix_hpp
 
-#include <ohxl/Conversions/opertoscalar.hpp>
+#include <ohxl/convert_oper.hpp>
 #include <vector>
 
 namespace ObjectHandler {
 
-    //! Convert an Excel OPER to type std::vector<std::vector<T> >.
+    //! Helper template wrapper for operToMatrixImpl
+    /*! Accept an OPER as input and wrap this in class ConvertOper.
+        This simplifies syntax in client applications.
+    */
     template <class T>
-    std::vector<std::vector<T> > operToMatrix(const OPER &xMatrix) {
+    std::vector<std::vector<T> > operToMatrix(
+        const OPER &xMatrix, 
+        const std::string &paramName) {
 
-        if (xMatrix.xltype & xltypeNil
-        ||  xMatrix.xltype & xltypeMissing
-        ||  xMatrix.xltype & xltypeErr && xMatrix.val.err == xlerrNA)
-            return std::vector<std::vector<T> >();
+        return operToMatrixImpl<T>
+            (ConvertOper(xMatrix, false), paramName);
+    }
 
-        OH_REQUIRE(!(xMatrix.xltype & xltypeErr), "input value has type=error");
+    //! Convert a value of type ConvertOper to a matrix.
+    template <class T>
+    std::vector<std::vector<T> > operToMatrixImpl(
+        const ConvertOper &xMatrix, 
+        const std::string &paramName) {
 
-        Xloper xTemp;
-        const OPER *xMulti;
+        try {
+            if (xMatrix.missing()) return std::vector<std::vector<T> >();
 
-        if (xMatrix.xltype == xltypeMulti)
-            xMulti = &xMatrix;
-        else {
-            Excel(xlCoerce, &xTemp, 2, &xMatrix, TempInt(xltypeMulti));
-            xMulti = &xTemp;
-        }
+            OH_REQUIRE(!xMatrix.error(), "input value has type=error");
 
-        std::vector<std::vector<T> > ret;
-        ret.reserve(xMulti->val.array.rows);
-        for (int i=0; i<xMulti->val.array.rows; ++i) {
-            std::vector<T> row;
-            row.reserve(xMulti->val.array.columns);
-            for (int j=0; j<xMulti->val.array.columns; ++j) {
-                T value;
-                operToScalar(xMulti->val.array.lparray[i * xMulti->val.array.columns + j], value);
-                row.push_back(value);
+            const OPER *xMulti;
+            Xloper xCoerce;  // Freed automatically
+
+            if (xMatrix->xltype == xltypeMulti)
+                xMulti = xMatrix.get();
+            else {
+                Excel(xlCoerce, &xCoerce, 2, xMatrix.get(), TempInt(xltypeMulti));
+                xMulti = &xCoerce;
             }
-            ret.push_back(row);
-        }
 
-        return ret;
+            std::vector<std::vector<T> > ret;
+            ret.reserve(xMulti->val.array.rows);
+            for (int i=0; i<xMulti->val.array.rows; ++i) {
+                std::vector<T> row;
+                row.reserve(xMulti->val.array.columns);
+                for (int j=0; j<xMulti->val.array.columns; ++j) {
+                    row.push_back(operToScalar<T>(xMulti->val.array.lparray[i * xMulti->val.array.columns + j]));                
+                }
+                ret.push_back(row);
+            }
+
+            return ret;
+        } catch (const std::exception &e) {
+            OH_FAIL("operToMatrixImpl: error converting parameter '" << paramName 
+                << "' to type '" << typeid(T).name() << "' : " << e.what());
+        }
     }
 
     //! Convert an Excel FP to type std::vector<std::vector<T> >.

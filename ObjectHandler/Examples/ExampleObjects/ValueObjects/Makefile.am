@@ -1,11 +1,13 @@
 
-AM_CPPFLAGS = -I${top_srcdir}/Examples
+AM_CPPFLAGS = -I${top_srcdir} -I${top_srcdir}/Examples
 
 noinst_LTLIBRARIES = libValueObjects.la
 
 noinst_HEADERS = \
-    accountvalueobject.hpp
+    accountvalueobject.hpp \
+    customervalueobject.hpp
 
 libValueObjects_la_SOURCES = \
-    accountvalueobject.cpp
+    accountvalueobject.cpp \
+    customervalueobject.cpp
 

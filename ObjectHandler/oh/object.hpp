@@ -18,14 +18,13 @@
 */
 
 /*! \file
-    \brief Class Object - Define interface for Objects to be stored in the Repository.
+    \brief Class Object - Define interface for Objects to be stored in the Repository
 */
 
 #ifndef oh_object_hpp
 #define oh_object_hpp
 
 #include <boost/shared_ptr.hpp>
-#include <boost/any.hpp>
 #include <oh/ohdefines.hpp>
 #include <oh/valueobject.hpp>
 #include <oh/exception.hpp>
@@ -34,11 +33,6 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
-
-/*! \def OBJECT_LOG_COLUMN_WIDTH
-    The width of a column of data written to the log file.
-*/
-#define OBJECT_LOG_COLUMN_WIDTH 20
 
 namespace ObjectHandler {
 
@@ -72,6 +66,10 @@ namespace ObjectHandler {
         //! Set the ValueObject associated with this Object.
         void setProperties(const boost::shared_ptr<ValueObject>& p) {
             mProps = p;
+        }
+
+        const boost::shared_ptr<ValueObject>& properties() {
+            return mProps;
         }
 
         //! Retrieve a vector of property names.
@@ -110,6 +108,9 @@ namespace ObjectHandler {
         virtual void dump(std::ostream &out);
         //@}
 
+    protected:
+        // The width of a column of data written to the log file.
+        static const int logColumnWidth_ = 20;
     private:
         // The ValueObject associated with this Object.
         boost::shared_ptr<ValueObject> mProps;
@@ -143,10 +144,10 @@ namespace ObjectHandler {
                 i != propertyNames.end(); ++i) {
 	        std::string propertyName = *i;
 	        boost::any propertyValue = this->propertyValue(propertyName);
-            out << "property = " << std::left << std::setw(OBJECT_LOG_COLUMN_WIDTH) << propertyName;
-            out << " value = " << std::left << std::setw(OBJECT_LOG_COLUMN_WIDTH) << propertyValue << std::endl;
+            out << "property = " << std::left << std::setw(logColumnWidth_) << propertyName;
+            out << " value = " << std::left << std::setw(logColumnWidth_) << propertyValue << std::endl;
         }
-        out << "permanent = " << std::left << std::setw(OBJECT_LOG_COLUMN_WIDTH) 
+        out << "permanent = " << std::left << std::setw(logColumnWidth_) 
             << std::boolalpha << permanent_ << std::endl;
         out << std::endl;
     }

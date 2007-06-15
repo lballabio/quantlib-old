@@ -1,0 +1,69 @@
+<Category name='serialization'>
+  <description>serialization</description>
+  <displayName>Serialization</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <includes/>
+
+  <copyright>
+    Copyright (C) 2007 Eric Ehlers
+    Copyright (C) 2006 Plamen Neykov
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='ohObjectSave'>
+      <description>delete orphaned objects from repository</description>
+      <alias>ObjectHandler::Repository::instance().saveObject</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>also delete permanent objects (default FALSE)</description>
+          </Parameter>
+          <Parameter name='path'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>also delete permanent objects (default FALSE)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectLoad'>
+      <description>delete orphaned objects from repository</description>
+      <alias>ObjectHandler::Repository::instance().loadObject</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>also delete permanent objects (default FALSE)</description>
+          </Parameter>
+          <Parameter name='path'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>also delete permanent objects (default FALSE)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+
+  </Functions>
+
+</Category>

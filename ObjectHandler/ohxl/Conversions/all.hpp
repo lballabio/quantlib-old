@@ -17,13 +17,14 @@
 */
 
 /*! \file
-    \brief #includes for all Excel conversion functions.
+    \brief #includes for all Excel conversion functions
 */
 
 #ifndef ohxl_conversions_all_hpp
 #define ohxl_conversions_all_hpp
 
 #include <oh/Conversions/coerce.hpp>
+#include <oh/Conversions/varianttoscalar.hpp>
 #include <ohxl/Conversions/opertoscalar.hpp>
 #include <ohxl/Conversions/opertovector.hpp>
 #include <ohxl/Conversions/opertomatrix.hpp>

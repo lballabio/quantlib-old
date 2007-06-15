@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief #includes for all functionality in ObjectHandler.
+    \brief #includes for all functionality in ObjectHandler
 */
 
 #ifndef oh_objecthandlerxl_hpp

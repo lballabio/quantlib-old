@@ -10,7 +10,6 @@ XLL_DEC %(functionReturnType)s%(functionName)s(%(functionDeclaration)s) {
     
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>(
             new ObjectHandler::FunctionCall("%(functionName)s"));
-
 %(xlTrigger)s
 
         // initialize the session ID (if enabled)

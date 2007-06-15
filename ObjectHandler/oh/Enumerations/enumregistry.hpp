@@ -18,7 +18,7 @@
 */
 
 /*! \file
-    \brief EnumRegistry Classes - Concrete implementations of class Registry.
+    \brief EnumRegistry Classes - Concrete implementations of class Registry
 */
 
 #ifndef oh_enumregistry_hpp

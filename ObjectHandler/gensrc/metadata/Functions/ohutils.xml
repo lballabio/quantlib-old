@@ -187,7 +187,7 @@
       <alias>ObjectHandler::filter</alias>
       <xlWizardRecalc>true</xlWizardRecalc>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

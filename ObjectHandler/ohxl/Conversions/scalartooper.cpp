@@ -49,6 +49,44 @@ namespace ObjectHandler {
             strncpy(xString.val.str + 1, value.c_str(), len);
     }
 
+    void setError(OPER &oper, WORD val) {
+        oper.xltype = xltypeErr;
+        oper.val.err = val; 
+    }
+
+    class VariantToOper : public boost::static_visitor<> {
+    public:
+        VariantToOper(OPER &oper) : oper_(oper) {}
+        void operator()(const long &val) { scalarToOper(val, oper_); }
+        void operator()(const double &val) { scalarToOper(val, oper_); }
+        void operator()(const bool &val) { scalarToOper(val, oper_); }
+        void operator()(const std::string &val) { scalarToOper(val, oper_); }
+        // FIXME cater for error etc.
+        void operator()(const ObjectHandler::Other&) { setError(oper_, xlerrNA); }
+    private:
+        OPER &oper_;
+    };
+
+    DLL_API void scalarToOper(const ObjectHandler::Variant &value, OPER &xVariant, bool dllToFree) {
+        VariantToOper variantToOper(xVariant);
+        boost::apply_visitor(variantToOper, value.variant());
+    }
+
+    template <class T>
+    void wrapScalarToOper(const boost::any &value, OPER &xAny) {
+        scalarToOper(boost::any_cast<T>(value), xAny);
+    }
+
+    template <class T>
+    void wrapVectorToOper(const boost::any &value, OPER &xAny) {
+        vectorToOper(boost::any_cast<std::vector<T> >(value), xAny);
+    }
+
+    template <class T>
+    void wrapMatrixToOper(const boost::any &value, OPER &xAny) {
+        matrixToOper(boost::any_cast<std::vector<std::vector<T> > >(value), xAny);
+    }
+
     DLL_API void scalarToOper(const boost::any &value, OPER &xAny, bool dllToFree) {
         if (value.type() == typeid(OPER)) {
             OPER xTemp = boost::any_cast<OPER>(value);
@@ -57,56 +95,41 @@ namespace ObjectHandler {
             OPER *xTemp = boost::any_cast<OPER*>(value);
             Excel(xlCoerce, &xAny, 1, xTemp);
         } else if (value.type() == typeid(unsigned int)) {
-            xAny.xltype = xltypeNum;
-            xAny.val.num = boost::any_cast<unsigned int>(value); 
+            wrapScalarToOper<long>(value, xAny);
         } else if (value.type() == typeid(int)) {
-            xAny.xltype = xltypeNum;
-            xAny.val.num = boost::any_cast<int>(value);
+            wrapScalarToOper<long>(value, xAny);
         } else if (value.type() == typeid(long)) {
-            xAny.xltype = xltypeNum;
-            xAny.val.num = boost::any_cast<long>(value);
+            wrapScalarToOper<long>(value, xAny);
         } else if (value.type() == typeid(double)) {
-            xAny.xltype = xltypeNum;
-            xAny.val.num = boost::any_cast<double>(value);
+            wrapScalarToOper<double>(value, xAny);
         } else if (value.type() == typeid(bool)) {
-            xAny.xltype = xltypeBool;
-            xAny.val.boolean = boost::any_cast<bool>(value);
+            wrapScalarToOper<bool>(value, xAny);
         } else if (value.type() == typeid(std::string)) {
-            std::string s = boost::any_cast<std::string>(value);
-            scalarToOper(s, xAny);
+            wrapScalarToOper<std::string>(value, xAny);
+        } else if (value.type() == typeid(ObjectHandler::Variant)) {
+            wrapScalarToOper<ObjectHandler::Variant>(value, xAny);
         } else if (value.type() == typeid(std::vector<long>)) {
-            std::vector<long> v = boost::any_cast<std::vector<long> >(value);
-            vectorToOper(v, xAny);
+            wrapVectorToOper<long>(value, xAny);
         } else if (value.type() == typeid(std::vector<double>)) {
-            std::vector<double> v = boost::any_cast<std::vector<double> >(value);
-            vectorToOper(v, xAny);
+            wrapVectorToOper<double>(value, xAny);
         } else if (value.type() == typeid(std::vector<bool>)) {
-            std::vector<bool> v = boost::any_cast<std::vector<bool> >(value);
-            vectorToOper(v, xAny);
+            wrapVectorToOper<bool>(value, xAny);
         } else if (value.type() == typeid(std::vector<std::string>)) {
-            std::vector<std::string> v = boost::any_cast<std::vector<std::string> >(value);
-            vectorToOper(v, xAny);
+            wrapVectorToOper<std::string>(value, xAny);
         } else if (value.type() == typeid(std::vector<boost::any>)) {
-            std::vector<boost::any> v = boost::any_cast<std::vector<boost::any> >(value);
-            vectorToOper(v, xAny);
+            wrapVectorToOper<boost::any>(value, xAny);
         } else if (value.type() == typeid(std::vector<std::vector<long> >)) {
-            std::vector<std::vector<long> > vv = boost::any_cast<std::vector<std::vector<long> > >(value);
-            matrixToOper(vv, xAny);
+            wrapMatrixToOper<long>(value, xAny);            
         } else if (value.type() == typeid(std::vector<std::vector<double> >)) {
-            std::vector<std::vector<double> > vv = boost::any_cast<std::vector<std::vector<double> > >(value);
-            matrixToOper(vv, xAny);
+            wrapMatrixToOper<double>(value, xAny);            
         } else if (value.type() == typeid(std::vector<std::vector<bool> >)) {
-            std::vector<std::vector<bool> > vv = boost::any_cast<std::vector<std::vector<bool > > >(value);
-            matrixToOper<bool>(vv, xAny);
+            wrapMatrixToOper<bool>(value, xAny);            
         } else if (value.type() == typeid(std::vector<std::vector<std::string> >)) {
-            std::vector<std::vector<std::string> > vv = boost::any_cast<std::vector<std::vector<std::string> > >(value);
-            matrixToOper(vv, xAny);
+            wrapMatrixToOper<std::string>(value, xAny);            
         } else if (value.type() == typeid(std::vector<std::vector<boost::any> >)) {
-            std::vector<std::vector<boost::any> > vv = boost::any_cast<std::vector<std::vector<boost::any> > >(value);
-            matrixToOper(vv, xAny);
+            wrapMatrixToOper<boost::any>(value, xAny);            
         } else {
-            xAny.xltype = xltypeErr;
-            xAny.val.err = xlerrValue;
+            setError(xAny, xlerrValue);
         }
     }
 

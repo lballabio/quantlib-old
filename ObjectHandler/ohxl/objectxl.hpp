@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Class ObjectXL - Customization of the Object class for the Excel platform.
+    \brief Class ObjectXL - Customization of the Object class for the Excel platform
 */
 
 #ifndef oh_objectxl_hpp

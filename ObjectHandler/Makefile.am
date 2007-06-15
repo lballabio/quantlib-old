@@ -9,6 +9,7 @@ SUBDIRS = \
     Examples/ExampleObjects/Enumerations \
     Examples/ExampleObjects/Library \
     Examples/ExampleObjects/Objects \
+    Examples/ExampleObjects/Serialization \
     Examples/ExampleObjects/ValueObjects \
     Examples/ExampleObjects \
     Examples/C++ \

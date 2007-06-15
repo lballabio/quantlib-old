@@ -1,90 +1,19 @@
-# file for Visual Studio NMAKE
-# local gensrc makefiles can include this one to enforce make dependencies
+# File for Visual Studio NMAKE.
+# Local gensrc makefiles can include this one to
+# enforce make dependencies on the core gensrc files.
 
-CORE_IMPORT=$(GENSRC_DIR)\gensrc\Addins\addin.py \
-            $(GENSRC_DIR)\gensrc\Addins\addinlist.py \
-            $(GENSRC_DIR)\gensrc\Addins\c.py \
-            $(GENSRC_DIR)\gensrc\Addins\calc.py \
-            $(GENSRC_DIR)\gensrc\Addins\doxygen.py \
-            $(GENSRC_DIR)\gensrc\Addins\enumerations.py \
-            $(GENSRC_DIR)\gensrc\Addins\excel.py \
-            $(GENSRC_DIR)\gensrc\Addins\excelexceptions.py \
-            $(GENSRC_DIR)\gensrc\Addins\guile.py \
-            $(GENSRC_DIR)\gensrc\Addins\loop.py \
-            $(GENSRC_DIR)\gensrc\Addins\valueobjects.py \
-            $(GENSRC_DIR)\gensrc\Categories\category.py \
-            $(GENSRC_DIR)\gensrc\Categories\categorylist.py \
-            $(GENSRC_DIR)\gensrc\Categories\exceptions.py \
-            $(GENSRC_DIR)\gensrc\Configuration\configuration.py \
-            $(GENSRC_DIR)\gensrc\Configuration\environment.py \
-            $(GENSRC_DIR)\gensrc\Enumerations\enumeratedclasses.py \
-            $(GENSRC_DIR)\gensrc\Enumerations\enumeratedpairs.py \
-            $(GENSRC_DIR)\gensrc\Enumerations\enumeratedtypes.py \
-            $(GENSRC_DIR)\gensrc\Enumerations\enumerationlist.py \
-            $(GENSRC_DIR)\gensrc\Exceptions\excepthook.py \
-            $(GENSRC_DIR)\gensrc\Exceptions\exceptions.py \
-            $(GENSRC_DIR)\gensrc\Functions\behavior.py \
-            $(GENSRC_DIR)\gensrc\Functions\behaviorloop.py \
-            $(GENSRC_DIR)\gensrc\Functions\exceptions.py \
-            $(GENSRC_DIR)\gensrc\Functions\function.py \
-            $(GENSRC_DIR)\gensrc\Functions\supportedplatform.py \
-            $(GENSRC_DIR)\gensrc\Functions\constructor.py \
-            $(GENSRC_DIR)\gensrc\Functions\member.py \
-            $(GENSRC_DIR)\gensrc\Functions\procedure.py \
-            $(GENSRC_DIR)\gensrc\Functions\enumerationmember.py \
-            $(GENSRC_DIR)\gensrc\Parameters\exceptions.py \
-            $(GENSRC_DIR)\gensrc\Parameters\parameter.py \
-            $(GENSRC_DIR)\gensrc\Parameters\parameterlist.py \
-            $(GENSRC_DIR)\gensrc\Patterns\exceptions.py \
-            $(GENSRC_DIR)\gensrc\Patterns\singleton.py \
-            $(GENSRC_DIR)\gensrc\Rules\exceptions.py \
-            $(GENSRC_DIR)\gensrc\Rules\rule.py \
-            $(GENSRC_DIR)\gensrc\Serialization\exceptions.py \
-            $(GENSRC_DIR)\gensrc\Serialization\factory.py \
-            $(GENSRC_DIR)\gensrc\Serialization\serializable.py \
-            $(GENSRC_DIR)\gensrc\Serialization\serializer.py \
-            $(GENSRC_DIR)\gensrc\Serialization\xmlreader.py \
-            $(GENSRC_DIR)\gensrc\Types\datatype.py \
-            $(GENSRC_DIR)\gensrc\Types\exceptions.py \
-            $(GENSRC_DIR)\gensrc\Types\supertype.py \
-            $(GENSRC_DIR)\gensrc\Utilities\buffer.py \
-            $(GENSRC_DIR)\gensrc\Utilities\common.py \
-            $(GENSRC_DIR)\gensrc\Utilities\log.py \
-            $(GENSRC_DIR)\gensrc\Utilities\outputfile.py \
-            $(GENSRC_DIR)\gensrc\Utilities\utilities.py
-
-CORE_STUBS=$(GENSRC_DIR)\gensrc\stubs\stub.c.function \
-           $(GENSRC_DIR)\gensrc\stubs\stub.c.header \
-           $(GENSRC_DIR)\gensrc\stubs\stub.c.includes \
-           $(GENSRC_DIR)\gensrc\stubs\stub.calc.category \
-           $(GENSRC_DIR)\gensrc\stubs\stub.calc.function \
-           $(GENSRC_DIR)\gensrc\stubs\stub.calc.header \
-           $(GENSRC_DIR)\gensrc\stubs\stub.calc.idlfunc \
-           $(GENSRC_DIR)\gensrc\stubs\stub.calc.idlhead \
-           $(GENSRC_DIR)\gensrc\stubs\stub.calc.includes \
-           $(GENSRC_DIR)\gensrc\stubs\stub.calc.loop \
-           $(GENSRC_DIR)\gensrc\stubs\stub.calc.map \
-           $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.categories \
-           $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.file \
-           $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.function \
-           $(GENSRC_DIR)\gensrc\stubs\stub.doxygen.header \
-           $(GENSRC_DIR)\gensrc\stubs\stub.excel.function \
-           $(GENSRC_DIR)\gensrc\stubs\stub.excel.loop \
-           $(GENSRC_DIR)\gensrc\stubs\stub.excel.numfunc \
-           $(GENSRC_DIR)\gensrc\stubs\stub.excel.register.call \
-           $(GENSRC_DIR)\gensrc\stubs\stub.excel.register.file \
-           $(GENSRC_DIR)\gensrc\stubs\stub.excel.register.function \
-           $(GENSRC_DIR)\gensrc\stubs\stub.func.constructor \
-           $(GENSRC_DIR)\gensrc\stubs\stub.func.member \
-           $(GENSRC_DIR)\gensrc\stubs\stub.func.procedure \
-           $(GENSRC_DIR)\gensrc\stubs\stub.guile.function \
-           $(GENSRC_DIR)\gensrc\stubs\stub.guile.header \
-           $(GENSRC_DIR)\gensrc\stubs\stub.guile.includes \
-           $(GENSRC_DIR)\gensrc\stubs\stub.guile.initfunc \
-           $(GENSRC_DIR)\gensrc\stubs\stub.vo.class.body \
-           $(GENSRC_DIR)\gensrc\stubs\stub.vo.class.decl \
-           $(GENSRC_DIR)\gensrc\stubs\stub.vo.includes.body \
-           $(GENSRC_DIR)\gensrc\stubs\stub.vo.includes.decl
-
-CORE_DEPENDENCIES = $(CORE_IMPORT) $(CORE_STUBS)
+CORE_DEPENDENCIES=$(GENSRC_DIR)\gensrc.py \
+                  $(GENSRC_DIR)\gensrc\Addins\*.py \
+                  $(GENSRC_DIR)\gensrc\Categories\*.py \
+                  $(GENSRC_DIR)\gensrc\Configuration\*.py \
+                  $(GENSRC_DIR)\gensrc\Enumerations\*.py \
+                  $(GENSRC_DIR)\gensrc\Exceptions\*.py \
+                  $(GENSRC_DIR)\gensrc\Functions\*.py \
+                  $(GENSRC_DIR)\gensrc\Parameters\*.py \
+                  $(GENSRC_DIR)\gensrc\Patterns\*.py \
+                  $(GENSRC_DIR)\gensrc\Rules\*.py \
+                  $(GENSRC_DIR)\gensrc\Serialization\*.py \
+                  $(GENSRC_DIR)\gensrc\Types\*.py \
+                  $(GENSRC_DIR)\gensrc\Utilities\*.py \
+                  $(GENSRC_DIR)\gensrc\stubs\stub.*
 

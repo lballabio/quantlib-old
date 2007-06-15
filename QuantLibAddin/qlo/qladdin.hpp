@@ -18,7 +18,8 @@
 
 #ifndef qla_qladdin_hpp
 
-#include <qlo/analysis.hpp>
+#include <qlo/abcd.hpp>
+#include <qlo/alphaform.hpp>
 #include <qlo/asianoption.hpp>
 #include <qlo/assetswap.hpp>
 #include <qlo/barrieroption.hpp>
@@ -28,9 +29,12 @@
 #include <qlo/capletvolstructure.hpp>
 #include <qlo/cliquetoption.hpp>
 #include <qlo/cmsmarket.hpp>
+#include <qlo/conundrumpricer.hpp>
 #include <qlo/couponvectors.hpp>
+#include <qlo/curvestate.hpp>
 #include <qlo/date.hpp>
 #include <qlo/dividendvanillaoption.hpp>
+#include <qlo/driftcalculators.hpp>
 #include <qlo/europeanoption.hpp>
 #include <qlo/exercise.hpp>
 #include <qlo/forwardrateagreement.hpp>
@@ -40,6 +44,8 @@
 #include <qlo/index.hpp>
 #include <qlo/interpolation2D.hpp>
 #include <qlo/interpolation.hpp>
+#include <qlo/leg.hpp>
+#include <qlo/marketmodelevolvers.hpp>
 #include <qlo/marketmodels.hpp>
 #include <qlo/mathf.hpp>
 #include <qlo/optimization.hpp>
@@ -47,11 +53,13 @@
 #include <qlo/payoffs.hpp>
 #include <qlo/pricingengines.hpp>
 #include <qlo/processes.hpp>
+#include <qlo/products.hpp>
 #include <qlo/qladdindefines.hpp>
 #include <qlo/quantoforwardvanillaoption.hpp>
 #include <qlo/quantovanillaoption.hpp>
 #include <qlo/quotes.hpp>
 #include <qlo/randomsequencegenerator.hpp>
+#include <qlo/rangeaccrual.hpp>
 #include <qlo/ratehelpers.hpp>
 #include <qlo/schedule.hpp>
 #include <qlo/sequencestatistics.hpp>

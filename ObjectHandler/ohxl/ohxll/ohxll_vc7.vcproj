@@ -174,16 +174,34 @@
 					RelativePath="..\..\oh\ohdefines.hpp">
 				</File>
 				<File
+					RelativePath="..\..\oh\other.hpp">
+				</File>
+				<File
 					RelativePath="..\..\oh\repository.cpp">
 				</File>
 				<File
 					RelativePath="..\..\oh\repository.hpp">
 				</File>
 				<File
+					RelativePath="..\..\oh\serializationfactory.cpp">
+				</File>
+				<File
+					RelativePath="..\..\oh\serializationfactory.hpp">
+				</File>
+				<File
 					RelativePath="..\..\oh\singleton.hpp">
 				</File>
 				<File
+					RelativePath="..\..\oh\types.hpp">
+				</File>
+				<File
 					RelativePath="..\..\oh\valueobject.hpp">
+				</File>
+				<File
+					RelativePath="..\..\oh\variant.hpp">
+				</File>
+				<File
+					RelativePath="..\..\oh\variantvisitors.hpp">
 				</File>
 			</Filter>
 			<Filter
@@ -194,6 +212,9 @@
 				</File>
 				<File
 					RelativePath="..\..\oh\Conversions\coerce.hpp">
+				</File>
+				<File
+					RelativePath="..\..\oh\Conversions\varianttoscalar.hpp">
 				</File>
 			</Filter>
 			<Filter
@@ -251,6 +272,12 @@
 					RelativePath="..\configuration.hpp">
 				</File>
 				<File
+					RelativePath="..\convert_oper.cpp">
+				</File>
+				<File
+					RelativePath="..\convert_oper.hpp">
+				</File>
+				<File
 					RelativePath="..\functioncall.cpp">
 				</File>
 				<File
@@ -297,9 +324,6 @@
 					RelativePath="..\Conversions\opertomatrix.hpp">
 				</File>
 				<File
-					RelativePath="..\Conversions\opertoscalar.cpp">
-				</File>
-				<File
 					RelativePath="..\Conversions\opertoscalar.hpp">
 				</File>
 				<File
@@ -337,9 +361,6 @@
 					RelativePath="..\Functions\garbagecollection.cpp">
 				</File>
 				<File
-					RelativePath="..\Functions\garbagecollection.cpp">
-				</File>
-				<File
 					RelativePath="..\Functions\logging.cpp">
 				</File>
 				<File
@@ -347,6 +368,9 @@
 				</File>
 				<File
 					RelativePath="..\Functions\ohutils.cpp">
+				</File>
+				<File
+					RelativePath="..\Functions\serialization.cpp">
 				</File>
 				<File
 					RelativePath="..\Functions\valueobjects.cpp">
@@ -368,13 +392,13 @@
 					RelativePath="..\Register\register_garbagecollection.cpp">
 				</File>
 				<File
-					RelativePath="..\Register\register_garbagecollection.cpp">
-				</File>
-				<File
 					RelativePath="..\Register\register_logging.cpp">
 				</File>
 				<File
 					RelativePath="..\Register\register_ohutils.cpp">
+				</File>
+				<File
+					RelativePath="..\Register\register_serialization.cpp">
 				</File>
 				<File
 					RelativePath="..\Register\register_valueobjects.cpp">
@@ -388,6 +412,13 @@
 				</File>
 				<File
 					RelativePath="..\Utilities\xlutilities.hpp">
+				</File>
+			</Filter>
+			<Filter
+				Name="Loop"
+				Filter="">
+				<File
+					RelativePath="..\loop.hpp">
 				</File>
 			</Filter>
 		</Filter>

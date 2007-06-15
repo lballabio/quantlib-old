@@ -6,6 +6,7 @@ SUBDIRS = \
     qlo/Enumerations/Factories \
     qlo/Enumerations/Register \
     qlo/Loop \
+    qlo/Serialization \
     qlo/ValueObjects \
     qlo \
     Addins/Calc \

@@ -99,6 +99,7 @@ class Addin(serializable.Serializable):
         serializer.serializeObjectPropertyDict(self, buffer.Buffer)
         serializer.serializeProperty(self, common.COPYRIGHT)
         serializer.serializeBoolean(self, 'loadRules', True)
+        serializer.serializeProperty(self, 'namespaceAddin')
 
     def postSerialize(self):
         """Perform post serialization initialization."""

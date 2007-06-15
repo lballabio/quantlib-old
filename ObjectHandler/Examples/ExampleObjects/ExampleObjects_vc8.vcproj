@@ -282,12 +282,20 @@
 				RelativePath=".\Library\account.hpp"
 				>
 			</File>
+			<File
+				RelativePath=".\Library\customer.hpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Objects"
 			>
 			<File
 				RelativePath=".\Objects\accountobject.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Objects\customerobject.hpp"
 				>
 			</File>
 		</Filter>
@@ -302,6 +310,14 @@
 				RelativePath=".\ValueObjects\accountvalueobject.hpp"
 				>
 			</File>
+			<File
+				RelativePath=".\ValueObjects\customervalueobject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ValueObjects\customervalueobject.hpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Enumerations"
@@ -312,6 +328,26 @@
 			</File>
 			<File
 				RelativePath=".\Enumerations\accountenumerations.hpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Serialization"
+			>
+			<File
+				RelativePath=".\Serialization\creators.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\creators.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\examplefactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\examplefactory.hpp"
 				>
 			</File>
 		</Filter>

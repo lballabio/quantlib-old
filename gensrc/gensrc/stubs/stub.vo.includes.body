@@ -4,7 +4,4 @@
 
 namespace %(namespaceObjects)s { namespace ValueObjects {
 
-%(functions)s
-
-} }
-
+%(functions)s } }

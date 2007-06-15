@@ -3,6 +3,7 @@
   <prefix>ql</prefix>
   <libRootDirectory>qlo</libRootDirectory>
   <usingEnumerations>true</usingEnumerations>
+  <usingSerialization>true</usingSerialization>
   <namespaceLibrary>QuantLib</namespaceLibrary>
   <namespaceObjects>QuantLibAddin</namespaceObjects>
 
@@ -59,18 +60,5 @@
     <categoryName>volatility</categoryName>
     <categoryName>quotes</categoryName>
   </categoryNames>
-
-  <!-- 
-    implicit conversions: this information now appears in file
-	QuantLibAddin\gensrc\metadata\Types\types.xml
-  -->
-  <!--implicitConversions>
-    <implicitConversion>QuantLib::DiscountFactor</implicitConversion>
-    <implicitConversion>QuantLib::Rate</implicitConversion>
-    <implicitConversion>QuantLib::Spread</implicitConversion>
-    <implicitConversion>QuantLib::Volatility</implicitConversion>
-    <implicitConversion>QuantLib::Time</implicitConversion>
-    <implicitConversion>QuantLib::Real</implicitConversion>
-  </implicitConversions-->
 
 </Config>

@@ -1,4 +1,5 @@
 
 noinst_HEADERS = \
-    account.hpp
+    account.hpp \
+    customer.hpp
 

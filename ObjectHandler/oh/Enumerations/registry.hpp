@@ -18,7 +18,7 @@
 */
 
 /*! \file
-    \brief Class Registry - A registry of enumerated types and classes.
+    \brief Class Registry - A registry of enumerated types and classes
 */
 
 #ifndef oh_registry_hpp

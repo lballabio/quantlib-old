@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Conversion function matrixToOper - Convert matrix to Excel OPER.
+    \brief Conversion function matrixToOper - Convert matrix to Excel OPER
 */
 
 #ifndef ohxl_conversions_matrixtooper_hpp
@@ -48,10 +48,8 @@ namespace ObjectHandler {
             for (unsigned int j=0; j<v.size(); ++j) {
                 // For some instantiations of this template, VC8 refuses to compile the line below:
                 //scalarToOper(v[j], xMatrix.val.array.lparray[i * v.size() + j]);
-                // Instead we have to declare an explicit variable to store the array element.
-                // This forces VC8 to disambiguate native C++ datatypes from boost::any.
-                T t = v[j];
-                scalarToOper(t, xMatrix.val.array.lparray[i * v.size() + j]);
+                // A static_cast is necessary to disambiguate native C++ datatypes from boost::any.
+                scalarToOper(static_cast<T>(v[j]), xMatrix.val.array.lparray[i * v.size() + j]);
             }
         }
 

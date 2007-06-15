@@ -22,7 +22,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -84,7 +84,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
@@ -148,7 +148,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
@@ -210,7 +210,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -274,7 +274,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
@@ -336,7 +336,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -396,10 +396,10 @@
 			RelativePath="example.cpp">
 		</File>
 		<File
-			RelativePath="account.cpp">
+			RelativePath="..\examplefactory.cpp">
 		</File>
 		<File
-			RelativePath="account.hpp">
+			RelativePath="..\examplefactory.hpp">
 		</File>
 	</Files>
 	<Globals>

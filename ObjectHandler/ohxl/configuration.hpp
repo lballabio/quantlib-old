@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Class Configuration - Global configuration information.
+    \brief Class Configuration - Global configuration information
 */
 
 #ifndef ohxl_configuration_hpp

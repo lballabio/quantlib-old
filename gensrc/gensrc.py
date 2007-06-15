@@ -38,7 +38,8 @@ usage: %(scriptName)s -[flags]
         c - C addin
         v - ValueObjects code
         e - Enumerations
-        l - Loop typedefs
+        l - Loops
+        s - Serialization
         d - Doxygen documentation files
     or
         a - All of the above
@@ -56,7 +57,7 @@ sys.excepthook = excepthook.gensrc_excepthook
 # parse command line arguments
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'xogcveldah', 'help' )
+    opts, args = getopt.getopt(sys.argv[1:], 'xogcvelsdah', 'help' )
 except getopt.GetoptError:
     usage()
 
@@ -77,12 +78,14 @@ for o, a in opts:
         addinIds.append('e')
     elif o == '-l':
         addinIds.append('l')
+    elif o == '-s':
+        addinIds.append('s')
     elif o == '-d':
         addinIds.append('d')
     elif o == '-a':
         if len(opts) != 1: sys.exit('flag -a cannot be combined with other flags')
-#        addinIds = [ 'e', 'o', 'g', 'c', 'v', 'x', 'l', 'd' ]
-        addinIds = [ 'e', 'o', 'c', 'v', 'x', 'l', 'd' ]
+#        addinIds = [ 'e', 'o', 'g', 'c', 'v', 'x', 'l', 's', 'd' ]
+        addinIds = [ 'e', 'o', 'c', 'v', 'x', 'l', 's', 'd' ]
     elif o in ('-h', '--help'):
         usage()
     else:

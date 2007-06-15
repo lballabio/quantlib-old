@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Class Coerce - Support for automatic conversion of datatypes.
+    \brief Class Coerce - Support for automatic conversion of datatypes
 */
 
 #ifndef oh_conversions_coerce_hpp

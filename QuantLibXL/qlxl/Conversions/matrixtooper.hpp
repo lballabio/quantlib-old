@@ -23,7 +23,7 @@
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/math/matrix.hpp>
 
-// Override functions in ObjectHandler namespace
+// Override functions in the ObjectHandler namespace
 namespace ObjectHandler {
 
     void matrixToOper(const QuantLib::Matrix &m, OPER &xMatrix);

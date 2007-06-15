@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Miscellaneous validation routines.
+    \brief Miscellaneous validation routines
 */
 
 #ifndef ohxl_conversions_validations_hpp
@@ -34,7 +34,7 @@ namespace ObjectHandler {
     //! Convert the std::string to the char*.  
     /*! Assumes that the caller has allocated XL_MAX_STR_LEN bytes for the char *.
     */
-    DLL_API void stringToChar(const std::string &s, char *c);
+    DLL_API void stringToChar(const std::string&, char*);
 
 }
 

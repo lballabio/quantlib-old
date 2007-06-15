@@ -21,6 +21,7 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/Conversions/conversions.hpp>
+#include <ql/utilities/dataparsers.hpp>
 #include <ql/time/date.hpp>
 #include <ql/time/period.hpp>
 #include <ql/interestrate.hpp>
@@ -64,4 +65,23 @@ namespace QuantLibAddin {
     std::vector<long> libraryToVector(const std::vector<QuantLib::Size>& v) {
         return std::vector<long>(v.begin(), v.end());
     }
+
+    void cppToLibrary(const std::string &in, QuantLib::Period &ret) {
+        ret = QuantLib::PeriodParser::parse(in);
+    }
+
+    void cppToLibrary(const long &in, QuantLib::Size &ret) {
+        ret = QuantLib::Size(in);
+    }
+
+    QuantLib::Matrix vvToQlMatrix(const std::vector<std::vector<double> > &vv) {
+        int rows = vv.size();
+        int cols = rows ? vv[0].size() : 0;
+        QuantLib::Matrix m(rows, cols);
+        for (int i=0; i<rows; ++i)
+            for (int j=0; j<cols; ++j)
+                m[i][j] = vv[i][j];
+        return m;
+    }
+
 }

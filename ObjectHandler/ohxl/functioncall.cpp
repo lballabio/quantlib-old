@@ -20,7 +20,7 @@
 #include <ohxl/repositoryxl.hpp>
 #include <ohxl/functioncall.hpp>
 #include <ohxl/xloper.hpp>
-#include <ohxl/Conversions/opertoscalar.hpp>
+#include <ohxl/convert_oper.hpp>
 #include <sstream>
 #include <string>
 
@@ -38,7 +38,7 @@ namespace ObjectHandler {
         Excel(xlfCaller, &xCaller_, 0);
         if (xCaller_->xltype == xltypeRef || xCaller_->xltype == xltypeSRef) {
             Excel(xlfReftext, &xReftext_, 1, &xCaller_);
-            operToScalar(xReftext_(), refStr_);
+            refStr_ = ConvertOper(xReftext_());
         }
     }
 
@@ -70,7 +70,7 @@ namespace ObjectHandler {
         if (address_.empty()) {
             Xloper xAddress;
             Excel(xlfGetCell, &xAddress, 2, TempNum(1), &xCaller_);
-            operToScalar(xAddress(), address_);
+            address_ = ConvertOper(xAddress());
         }
         return address_;
     }

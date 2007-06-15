@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Class Repository - Maintain a store of Objects.
+    \brief Class Repository - Maintain a store of Objects
 */
 
 #ifndef oh_repository_hpp
@@ -93,9 +93,7 @@ namespace ObjectHandler {
             class Object and no recast is necessary.
         */
         void retrieveObject(boost::shared_ptr<Object> &ret,
-                            const std::string &id) {
-            ret = retrieveObjectImpl(id);
-        }
+                            const std::string &id);
 
         //! Default implementation of retrieveObjectImpl.
         /*! Retrieves the Object with the given ID.
@@ -115,6 +113,9 @@ namespace ObjectHandler {
         */
         virtual void deleteAllObjects(const bool &deletePermanent = false);
         //@}
+
+        virtual void saveObject(const std::string &objectID, const std::string &path);
+        virtual std::string loadObject(const std::string &objectID, const std::string &path);
 
         //! \name Logging
         //@{

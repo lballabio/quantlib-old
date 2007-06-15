@@ -20,6 +20,7 @@
 #include <qlo/qladdindefines.hpp>
 #include <qlo/Enumerations/Register/register_all.hpp>
 #include <qlxl/Register/register_all.hpp>
+#include <qlxl/Serialization/serializationfactory.hpp>
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors
    (Metrowerks, for example) also #define _MSC_VER
@@ -47,7 +48,7 @@
 
 #ifdef XLL_STATIC
 // Instantiate the ObjectHandler Repository
-ObjectHandler::RepositoryXL objectHandler;
+ObjectHandler::RepositoryXL repositoryXL;
 // Instantiate the Enumerated Type Registry
 ObjectHandler::EnumTypeRegistry enumTypeRegistry;
 // Instantiate the Enumerated Class Registry
@@ -55,6 +56,8 @@ ObjectHandler::EnumClassRegistry enumClassRegistry;
 // Instantiate the Enumerated Pair Registry
 ObjectHandler::EnumPairRegistry enumPairRegistry;
 #endif
+// Instantiate the Serialization Factory
+QuantLibXL::SerializationFactory factory;
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
 

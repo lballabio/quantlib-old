@@ -17,86 +17,64 @@
 */
 
 /*! \file
-    \brief A conversion function to write a value of type boost::any to a stream.
+    \brief A conversion function to write a value of type boost::any to a stream
 */
 
 #ifndef oh_anytostream_hpp
 #define oh_anytostream_hpp
 
+#include <oh/variant.hpp>
+
 namespace ObjectHandler {
 
-    //! Output a vector of values to the stream.
-    template <typename T>
-    std::ostream& operator<<(std::ostream &out, const std::vector<T> &v) {
-        typename std::vector<T>::const_iterator i;
-        for (i = v.begin(); i != v.end(); i++) {
-            out << *i << " ";
-        }
-        return out;
-    }
-
-    //! Output a matrix of values to the stream.
-    template <typename T>
-    std::ostream& operator<<(std::ostream &out, const std::vector<std::vector<T> > &vv) {
-        typename std::vector<std::vector<T> >::const_iterator i;
-        for (i = vv.begin(); i != vv.end(); i++) {
-            out << *i << std::endl;
-        }
-        return out;
+    //! Helper template to simplify the syntax of the function below.
+    template <class T>
+    std::ostream& anytostream(std::ostream& out, const boost::any& any) {
+        return out << boost::any_cast<T>(any);
     }
 
     //! Inspect the type of the boost::any value and output it to the stream.
     inline std::ostream& operator<<(std::ostream& out, const boost::any& any) {
         if (any.empty())
             return out << "null";
-        else if (any.type() == typeid(int))
-            return out << boost::any_cast<int>(any);
+        //else if (any.type() == typeid(int))
+        //    return out << boost::any_cast<int>(any);
         else if (any.type() == typeid(long))
-            return out << boost::any_cast<long>(any);
+            return anytostream<long>(out, any);
         else if (any.type() == typeid(double))
-            return out << boost::any_cast<double>(any);
+            return anytostream<double>(out, any);
         else if (any.type() == typeid(bool))
-            return out << boost::any_cast<bool>(any);
+            return anytostream<bool>(out, any);
         else if (any.type() == typeid(std::string))
-            return out << boost::any_cast<std::string>(any);
-        else if (any.type() == typeid(std::vector<long>)) {
-            std::vector<long> v= boost::any_cast< std::vector<long> >(any);
-            return out << v;
-        } else if (any.type() == typeid(std::vector<double>)) {
-            std::vector<double> v= boost::any_cast< std::vector<double> >(any);
-            return out << v;
-        } else if (any.type() == typeid(std::vector<bool>)) {
-            std::vector<bool> v= boost::any_cast< std::vector<bool> >(any);
-            return out << v;
-        } else if (any.type() == typeid(std::vector<std::string>)) {
-            std::vector<std::string> v= boost::any_cast< std::vector<std::string> >(any);
-            return out << v;
-        } else if (any.type() == typeid(std::vector<boost::any>)) {
-            std::vector<boost::any> v= boost::any_cast< std::vector<boost::any> >(any);
-            return out << v;
-        } else if (any.type() == typeid(std::vector<std::vector<long> >)) {
-            std::vector<std::vector<long> > vv = 
-                boost::any_cast< std::vector<std::vector<long> > >(any);
-            return out << vv;
-        } else if (any.type() == typeid(std::vector<std::vector<double> >)) {
-            std::vector<std::vector<double> > vv = 
-                boost::any_cast< std::vector<std::vector<double> > >(any);
-            return out << vv;
-        } else if (any.type() == typeid(std::vector<std::vector<bool> >)) {
-            std::vector<std::vector<bool> > vv = 
-                boost::any_cast< std::vector<std::vector<bool> > >(any);
-            return out << vv;
-        } else if (any.type() == typeid(std::vector<std::vector<std::string> >)) {
-            std::vector<std::vector<std::string> > vv = 
-                boost::any_cast< std::vector<std::vector<std::string> > >(any);
-            return out << vv;
-        } else if (any.type() == typeid(std::vector<std::vector<boost::any> >)) {
-            std::vector<std::vector<boost::any> > vv = 
-                boost::any_cast< std::vector<std::vector<boost::any> > >(any);
-            return out << vv;
-        } else {
+            return anytostream<std::string>(out, any);
+        else if (any.type() == typeid(Variant))
+            return anytostream<Variant>(out, any);
+        else if (any.type() == typeid(std::vector<long>))
+            return anytostream<std::vector<long> >(out, any);
+        else if (any.type() == typeid(std::vector<double>))
+            return anytostream<std::vector<double> >(out, any);
+        else if (any.type() == typeid(std::vector<bool>))
+            return anytostream<std::vector<bool> >(out, any);
+        else if (any.type() == typeid(std::vector<std::string>))
+            return anytostream<std::vector<std::string> >(out, any);
+        //else if (any.type() == typeid(std::vector<boost::any>))
+            //return anytostream<std::vector<boost::any> >(out, any);
+        else if (any.type() == typeid(std::vector<Variant>))
+            return anytostream<std::vector<Variant> >(out, any);
+        else if (any.type() == typeid(std::vector<std::vector<long> >))
+            return anytostream<std::vector<std::vector<long> > >(out, any);
+        else if (any.type() == typeid(std::vector<std::vector<double> >))
+            return anytostream<std::vector<std::vector<double> > >(out, any);
+        else if (any.type() == typeid(std::vector<std::vector<bool> >))
+            return anytostream<std::vector<std::vector<bool> > >(out, any);
+        else if (any.type() == typeid(std::vector<std::vector<std::string> >))
+            return anytostream<std::vector<std::vector<std::string> > >(out, any);
+        //else if (any.type() == typeid(std::vector<std::vector<boost::any> >))
+            //return anytostream<std::vector<std::vector<boost::any> > >(out, any);
+        else if (any.type() == typeid(std::vector<std::vector<Variant> >))
+            return anytostream<std::vector<std::vector<Variant> > >(out, any);
+        else
             return out << "unrecognized type";
-        }
     }
 
 }

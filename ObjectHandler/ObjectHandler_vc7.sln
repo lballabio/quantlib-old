@@ -2,20 +2,27 @@ Microsoft Visual Studio Solution File, Format Version 8.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleCpp", "Examples\C++\ExampleCpp_vc7.vcproj", "{2CCCD17C-2C60-4784-8C95-37B2597B2F18}"
 	ProjectSection(ProjectDependencies) = postProject
 		{238AAC7B-E8AE-4BF3-8683-FA96A0203FD0} = {238AAC7B-E8AE-4BF3-8683-FA96A0203FD0}
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF} = {7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleXllDynamic1", "Examples\xl\ExampleXllDynamic1_vc7.vcproj", "{23098765-3A5E-4598-9F1B-3E45F8230C90}"
 	ProjectSection(ProjectDependencies) = postProject
+		{60CA9440-286D-4BF9-BC36-7FBA5E448655} = {60CA9440-286D-4BF9-BC36-7FBA5E448655}
 		{C7D99E56-35A9-46F9-BD2B-726CD3150869} = {C7D99E56-35A9-46F9-BD2B-726CD3150869}
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF} = {7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleXllDynamic2", "Examples\xl\ExampleXllDynamic2_vc7.vcproj", "{DC4DE1B1-E952-4153-B3A2-79169C6E55FA}"
 	ProjectSection(ProjectDependencies) = postProject
+		{60CA9440-286D-4BF9-BC36-7FBA5E448655} = {60CA9440-286D-4BF9-BC36-7FBA5E448655}
 		{C7D99E56-35A9-46F9-BD2B-726CD3150869} = {C7D99E56-35A9-46F9-BD2B-726CD3150869}
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF} = {7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleXllStatic", "Examples\xl\ExampleXllStatic_vc7.vcproj", "{CBED43D9-77CB-423D-99E4-6A36F6E56E5C}"
 	ProjectSection(ProjectDependencies) = postProject
+		{60CA9440-286D-4BF9-BC36-7FBA5E448655} = {60CA9440-286D-4BF9-BC36-7FBA5E448655}
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF} = {7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}
 		{9CD013D7-2AE8-44A9-B2D6-9EBDAAA126AE} = {9CD013D7-2AE8-44A9-B2D6-9EBDAAA126AE}
 	EndProjectSection
 EndProject
@@ -45,6 +52,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs", "Docs\docs_vc7.vcpro
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ohgensrc", "gensrc\ohgensrc_vc7.vcproj", "{19C36A53-51F2-4951-9A38-CCF6A250814F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleObjects", "Examples\ExampleObjects\ExampleObjects_vc7.vcproj", "{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -189,6 +200,20 @@ Global
 		{19C36A53-51F2-4951-9A38-CCF6A250814F}.Release CRTDLL.Build.0 = All|Win32
 		{19C36A53-51F2-4951-9A38-CCF6A250814F}.Release SingleThread.ActiveCfg = All|Win32
 		{19C36A53-51F2-4951-9A38-CCF6A250814F}.Release SingleThread.Build.0 = All|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.All.ActiveCfg = Release|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.All.Build.0 = Release|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Debug.ActiveCfg = Debug|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Debug.Build.0 = Debug|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Debug SingleThread.ActiveCfg = Debug SingleThread|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Debug SingleThread.Build.0 = Debug SingleThread|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Release.ActiveCfg = Release|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Release.Build.0 = Release|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Release SingleThread.ActiveCfg = Release SingleThread|Win32
+		{7FB9C8B6-1983-4B04-A2C7-2F90F627B0AF}.Release SingleThread.Build.0 = Release SingleThread|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

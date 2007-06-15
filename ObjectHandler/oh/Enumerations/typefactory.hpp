@@ -18,7 +18,7 @@
 */
 
 /*! \file
-    \brief Class RegistryManager - Manage access to an Enumeration Registry.
+    \brief Class RegistryManager - Manage access to an Enumeration Registry
 */
 
 #ifndef oh_typefactory_hpp

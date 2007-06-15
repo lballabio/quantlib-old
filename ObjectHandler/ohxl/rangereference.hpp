@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Class RangeReference - Parse range references in string format.
+    \brief Class RangeReference - Parse range references in string format
 */
 
 #include <ohxl/ohxldefines.hpp>

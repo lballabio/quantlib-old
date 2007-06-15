@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Class RepositoryXL - Excel-specific enhancements to the Repository class.
+    \brief Class RepositoryXL - Excel-specific enhancements to the Repository class
 */
 
 #ifndef ohxl_repositoryxl_hpp
@@ -37,7 +37,7 @@ namespace ObjectHandler {
     */
     class DLL_API RepositoryXL : public Repository {
     public:
-    static RepositoryXL &instance();
+        static RepositoryXL &instance();
 
         //! \name Object Management
         //@{
@@ -61,6 +61,9 @@ namespace ObjectHandler {
         */
         virtual void deleteObject(const std::string &objectID);
         //@}
+
+        virtual void saveObject(const std::string &objectID, const std::string &path);
+        virtual std::string loadObject(const std::string &objectID, const std::string &path);
 
         //! \name Error Messages
         //@{

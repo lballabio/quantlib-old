@@ -51,6 +51,9 @@ class Configuration(serializable.Serializable):
     def usingEnumerations(self):
         return self.usingEnumerations_
 
+    def usingSerialization(self):
+        return self.usingSerialization_
+
     def prefix(self):
         return self.prefix_
 
@@ -67,6 +70,7 @@ class Configuration(serializable.Serializable):
         serializer.serializeProperty(self, common.NAMESPACE_LIB)
         serializer.serializeProperty(self, 'prefix')
         serializer.serializeBoolean(self, 'usingEnumerations')
+        serializer.serializeBoolean(self, 'usingSerialization')
 
     def postSerialize(self):
         """Perform post serialization initialization."""

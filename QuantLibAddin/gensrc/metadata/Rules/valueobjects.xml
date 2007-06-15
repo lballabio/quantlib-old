@@ -1,3 +1,4 @@
+
 <root>
 
   <RuleGroups>
@@ -5,64 +6,90 @@
     <RuleGroup name='constructorDeclaration' indent='3' delimiter=',&#10;' checkParameterIgnore='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
-        <Rule tensorRank='scalar' default='true'>%(indent)sconst boost::any&amp; %(name)s</Rule>
-        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sconst boost::any&amp; %(name)s</Rule>
-        <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sconst boost::any&amp; %(name)s</Rule>
+        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
+        <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string&amp; %(name)s</Rule>
-        <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst boost::any&amp; %(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s</Rule>
-        <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst std::vector&lt;boost::any&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Index'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Xibor'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' superType='libraryClass'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Size'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;boost::any&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix' type='QuantLib::Date'>%(indent)sconst std::vector&lt;std::vector &lt;boost::any&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Date'>%(indent)sconst std::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix' nativeType='string'>%(indent)sconst std::vector&lt;std::vector&lt;std::string&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;boost::any&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector&lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='memberDeclaration' indent='2' delimiter=';&#10;' checkParameterIgnore='true'>
+    <RuleGroup name='memberDeclaration' indent='2' delimiter=';&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
-        <Rule tensorRank='scalar' default='true'>%(indent)sboost::any %(name)s_</Rule>
-        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sboost::any %(name)s_</Rule>
-        <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sboost::any %(name)s_</Rule>
+        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
+        <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string %(name)s_</Rule>
-        <Rule tensorRank='scalar' nativeType='any'>%(indent)sboost::any %(name)s_</Rule>
-        <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s_</Rule>
-        <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sstd::vector&lt;boost::any&gt; %(name)s_</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
+        <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s_</Rule>       
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Index'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Xibor'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' superType='libraryClass'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Size'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
-        <Rule tensorRank='vector' nativeType='any'>%(indent)sstd::vector&lt;boost::any&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
         <Rule tensorRank='vector'>%(indent)sstd::vector&lt;%(nativeType)s&gt; %(name)s_</Rule>
-        <Rule tensorRank='matrix' type='QuantLib::Date'>%(indent)sstd::vector&lt;std::vector &lt;boost::any&gt; &gt; %(name)s_</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Date'>%(indent)sstd::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt; %(name)s_</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Quote'>%(indent)sstd::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt; %(name)s_</Rule>
         <Rule tensorRank='matrix' nativeType='string'>%(indent)sstd::vector&lt;std::vector&lt;std::string&gt; &gt; %(name)s_</Rule>
-        <Rule tensorRank='matrix' nativeType='any'>%(indent)sstd::vector&lt;std::vector &lt;boost::any&gt; &gt; %(name)s_</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sstd::vector&lt;std::vector &lt;ObjectHandler::Variant&gt; &gt; %(name)s_</Rule>
         <Rule tensorRank='matrix'>%(indent)sstd::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt; %(name)s_</Rule>
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='propertyDeclaration' indent='2' delimiter=',&#10;' checkParameterIgnore='true'>
-      <Wrap>&#10;%s</Wrap>
+    <RuleGroup name='propertyDeclaration' indent='2' checkParameterIgnore='true' checkSkipFirst='true' delimiter=',&#10;'>
+      <Wrap>,&#10;%s</Wrap>
       <Rules>
         <Rule>%(indent)s"%(name)s"</Rule>
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='propertyGet' checkParameterIgnore='true'>
+    <RuleGroup name='propertyGet' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap/>
       <Rules>
         <Rule codeID='code66'/>
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='constructorInit' indent='2' checkParameterIgnore='true' delimiter=',&#10;'>
-      <Wrap/>
+    <RuleGroup name='constructorInit' indent='2' checkParameterIgnore='true' checkSkipFirst='true' delimiter=',&#10;'>
+      <Wrap>,&#10;%s</Wrap>
       <Rules>
         <Rule>%(indent)s%(name)s_(%(name)s)</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='serializeMembers' indent='4' checkParameterIgnore='true' checkSkipFirst='true' delimiter='&#10;'>
+      <Wrap/>
+      <Rules>
+        <Rule>%(indent)s&amp; boost::serialization::make_nvp("%(name)s", %(name)s_)</Rule>
       </Rules>
     </RuleGroup>
 
   </RuleGroups>
 
 </root>
+

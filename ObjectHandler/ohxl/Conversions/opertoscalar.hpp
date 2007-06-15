@@ -17,88 +17,61 @@
 */
 
 /*! \file
-    \brief Conversion function operToScalar - convert an Excel OPER to a scalar value.
+    \brief Conversion function operToScalar - convert an Excel OPER to a scalar value
 */
 
-#ifndef ohxl_conversions_opertoscalar_hpp
-#define ohxl_conversions_opertoscalar_hpp
+#ifndef oh_conversions_opertoscalar_hpp
+#define oh_conversions_opertoscalar_hpp
 
 #include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
+#include <oh/Conversions/varianttoscalar.hpp>
+#include <ohxl/convert_oper.hpp>
 #include <string>
-#include <boost/any.hpp>
 
 namespace ObjectHandler {
 
-    //@{
-    //! Convert an OPER to a scalar value.
-    /*! These functions are usually wrapped in the callOperToScalar template.
-    */
-    DLL_API void operToScalar(const OPER &xScalar, long &ret);
-    DLL_API void operToScalar(const OPER &xScalar, double &ret);
-    DLL_API void operToScalar(const OPER &xScalar, bool &ret);
-    DLL_API void operToScalar(const OPER &xScalar, std::string &ret);
-    DLL_API void operToScalar(const OPER &xScalar, boost::any &ret);
-    //@}
-
-    //! Template function callOperToScalar - wrapper for operToScalar.
-    /*! This template implements error handling common to all overrides
-        of the operToScalar function.
+    //! Helper template wrapper for VariantToScalar functor.
+    /*! This template supplies ConvertOper as the V template argument
+        for VariantToScalar, simplifying syntax in client applications.
     */
     template <class T>
-    T callOperToScalar(const OPER &xIn, 
-                       const std::string &parameterName) {
+    T operToScalar(const OPER &oper) {
 
-        OH_REQUIRE(!(xIn.xltype & xltypeErr), 
-                   "input value '" << parameterName << "' has type=error");
-
-        const OPER *xScalar;
-        if (xIn.xltype & xltypeMulti) {
-            if (xIn.val.array.rows == 1 && xIn.val.array.rows == 1) {
-                xScalar = &xIn.val.array.lparray[0];
-            } else {
-                OH_FAIL("input value '" << parameterName << "' is vector or matrix, expected scalar");
-            }
-        } else {
-            xScalar = &xIn;
-        }
-
-        try {
-            T returnValue;
-            operToScalar(*xScalar, returnValue);
-            return returnValue;
-        } catch(const std::exception &e) {
-            OH_FAIL("unable to convert parameter '" << parameterName 
-                << "' to type " << typeid(T).name()
-                << " - " << e.what());
-        }
-
+        return VariantToScalar<ConvertOper, T>()(ConvertOper(oper));
     }
 
-    //! Template function callOperToScalar - wrapper for operToScalar.
-    /*! Special processing for the case where a default value is supplied.
-    */
+    //! Helper wrapper for variantToScalar template.
     template <class T>
-    T callOperToScalar(const OPER &xScalar, 
-            const std::string &parameterName,
-            const T &defaultValue,
-            const boost::any &errorValue = boost::any()) {
+    T operToScalar(
+        const OPER &oper,
+        const std::string &parameterName) {
 
-        if (xScalar.xltype & xltypeNil
-        ||  xScalar.xltype & xltypeMissing
-        ||  xScalar.xltype & xltypeErr && xScalar.val.err == xlerrNA)
-            return defaultValue;
+        return variantToScalar<ConvertOper, T>(
+            ConvertOper(oper), parameterName);
+    }
 
-        if (xScalar.xltype & xltypeErr && !errorValue.empty()) {
-            OH_REQUIRE(errorValue.type() == typeid(T),
-                "Error converting datatype '" << typeid(T).name()
-                << "' : the specified error value has the wrong datatype: '"
-                << errorValue.type().name() << "'");
-            return boost::any_cast<T>(errorValue);
-        }
+    //! Helper wrapper for variantToScalar template.
+    template <class T>
+    T operToScalar(
+        const OPER &oper,
+        const std::string &parameterName,
+        const T &defaultValue) {
 
-        return callOperToScalar<T>(xScalar, parameterName);
+        return variantToScalar<ConvertOper, T>(
+            ConvertOper(oper), parameterName, defaultValue);
+    }
 
+    //! Helper wrapper for variantToScalar template.
+    template <class T>
+    T operToScalar(
+        const OPER &oper,
+        const std::string &parameterName,
+        const T &defaultValue,
+        const T &errorValue) {
+
+        return variantToScalar<ConvertOper, T>(
+            ConvertOper(oper), parameterName, defaultValue, errorValue);
     }
 
 }

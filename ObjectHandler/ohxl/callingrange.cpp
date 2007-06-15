@@ -19,7 +19,7 @@
 
 #include <ohxl/callingrange.hpp>
 #include <oh/exception.hpp>
-#include <ohxl/Conversions/opertoscalar.hpp>
+#include <ohxl/convert_oper.hpp>
 #include <ohxl/repositoryxl.hpp>
 #include <ohxl/functioncall.hpp>
 #include <ohxl/xloper.hpp>
@@ -99,8 +99,7 @@ namespace ObjectHandler {
         
         Excel(xlfGetName, &xDef, 1, TempStrStl(key_));
 
-        std::string address;
-        operToScalar(xDef(), address);
+        std::string address = ConvertOper(xDef());
         Excel(xlfTextref, &xRef, 1, TempStrStl(address.substr(1)));
 
         bool ret = (xRef->xltype & (xltypeRef | xltypeSRef)) != 0;
@@ -111,8 +110,7 @@ namespace ObjectHandler {
     std::string CallingRange::addressString() const {
         Xloper xDef;
         Excel(xlfGetName, &xDef, 1, TempStrStl(key_));
-        std::string address;
-        operToScalar(xDef(), address);
+        std::string address = ConvertOper(xDef());
         // Strip off the '=' sign which xlfGetName prepends to the address
         if (address.length() > 1 && address[0] == '=')
             address = address.substr(1);

@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief General utility functions for the Excel platform.
+    \brief General utility functions for the Excel platform
 */
 
 #ifndef ohxl_utilities_hpp

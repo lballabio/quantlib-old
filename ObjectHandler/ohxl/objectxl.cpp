@@ -58,9 +58,9 @@ namespace ObjectHandler {
     void ObjectXL::dump(std::ostream &out) {
         object_->dump(out);
         out << "Excel info:" << std::endl << std::endl;
-        out << "full object ID = " << std::left << std::setw(OBJECT_LOG_COLUMN_WIDTH) 
+        out << "full object ID = " << std::left << std::setw(logColumnWidth_) 
             << idFull_ << std::endl;
-        out << "calling range  = " << std::left << std::setw(OBJECT_LOG_COLUMN_WIDTH) 
+        out << "calling range  = " << std::left << std::setw(logColumnWidth_) 
             << callerAddress() << std::endl << std::endl;
     }
 

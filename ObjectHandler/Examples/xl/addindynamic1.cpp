@@ -30,6 +30,10 @@
 #  undef BOOST_LIB_DIAGNOSTIC
 #endif
 #include <sstream>
+#include <Examples/examplefactory.hpp>
+
+// Instantiate the Serialization Factory
+ExampleAddin::ExampleFactory factory;
 
 DLLEXPORT int xlAutoOpen() {
 
@@ -43,9 +47,9 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x13""addin1CreateAccount"), // function code name
-            TempStrNoSize("\x05""CCNC#"),               // parameter codes
+            TempStrNoSize("\x06""CCCNP#"),               // parameter codes
             TempStrNoSize("\x13""addin1CreateAccount"), // function display name
-            TempStrNoSize("\x14""objectID,number,type"), // comma-delimited list of parameters
+            TempStrNoSize("\x1C""objectID,type,number,balance"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -112,10 +116,11 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 
 }
 
-DLLEXPORT char* addin1CreateAccount(
+DLLEXPORT char *addin1CreateAccount(
         char *objectID,
+        char *type,
         long *number,
-        char *type) {
+        OPER *balance) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
@@ -124,16 +129,22 @@ DLLEXPORT char* addin1CreateAccount(
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
             (new ObjectHandler::FunctionCall("addin1CreateAccount"));
 
+        long balanceLong = ObjectHandler::operToScalar<long>(
+            *balance, "balance", 100);
+
+        ObjectHandler::Variant balanceVariant = ObjectHandler::operToScalar<ObjectHandler::Variant>(
+            *balance, "balance");
+
         AccountExample::Account::Type typeEnum =
             ObjectHandler::Create<AccountExample::Account::Type>()(type);
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountExample::AccountObject(*number, typeEnum));
+            new AccountExample::AccountObject(typeEnum, *number, balanceLong));
         object->setProperties(
             boost::shared_ptr<ObjectHandler::ValueObject>(
-                new AccountExample::AccountValueObject(objectID, *number, type)));
+                new AccountExample::AccountValueObject(objectID, type, *number, balanceVariant)));
 
-        const std::string returnValue = 
+        std::string returnValue = 
             ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);
 
         static char ret[XL_MAX_STR_LEN];

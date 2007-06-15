@@ -46,9 +46,7 @@ class CalcAddin(addin.Addin):
     stringConvert = 'ouStringToStlString(%s)'
     objectIdSuffix_ = 'Cpp'
     voSupported_ = True
-    convertPermanentFlag_ = '''
-        bool permanentCpp;
-        calcToScalar(permanentCpp, permanent, false);'''
+    convertPermanentFlag_ = ''
 
     #############################################
     # public interface

@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief A customization of the Object class, suitable for most applications.
+    \brief A customization of the Object class, suitable for most applications
 */
 
 #ifndef oh_libraryobject_hpp

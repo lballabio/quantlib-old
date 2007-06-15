@@ -25,7 +25,7 @@
 #include <sstream>
 
 // Instantiate the ObjectHandler Repository
-ObjectHandler::RepositoryXL objectHandler;
+ObjectHandler::RepositoryXL repositoryXL;
 // Instantiate the Enumerated Type Registry
 ObjectHandler::EnumTypeRegistry enumTypeRegistry;
 // Instantiate the Enumerated Class Registry

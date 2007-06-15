@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Support for Excel functions which loop on an input value.
+    \brief Support for Excel functions which loop on an input value
 */
 
 #ifndef ohxl_loop_hpp
@@ -33,8 +33,7 @@ namespace ObjectHandler {
             LoopFunction &loopFunction, 
             XLOPER &xIn, 
             XLOPER &xOut) {
-        InputType inputItem;
-        operToScalar(xIn, inputItem);
+        InputType inputItem = ObjectHandler::operToScalar<InputType>(xIn);
         OutputType returnItem = loopFunction(inputItem);
         scalarToOper(returnItem, xOut);
     }
@@ -46,6 +45,7 @@ namespace ObjectHandler {
               OPER *xIn, 
               XLOPER &xOut) {
 
+        // FIXME declare xTemp as ObjectHandler::Xloper?
         OPER xTemp, *xMulti;
         bool excelToFree = false;
         bool xllToFree = false;

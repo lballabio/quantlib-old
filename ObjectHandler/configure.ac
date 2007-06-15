@@ -57,6 +57,7 @@ AC_CONFIG_FILES([
     Examples/ExampleObjects/Enumerations/Makefile
     Examples/ExampleObjects/Library/Makefile
     Examples/ExampleObjects/Objects/Makefile
+    Examples/ExampleObjects/Serialization/Makefile
     Examples/ExampleObjects/ValueObjects/Makefile
     Examples/ExampleObjects/Makefile
     Examples/C++/Makefile

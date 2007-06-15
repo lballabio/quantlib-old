@@ -21,7 +21,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -89,7 +89,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
@@ -156,7 +156,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
@@ -222,7 +222,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
@@ -290,7 +290,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -356,7 +356,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -417,13 +417,13 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="account.cpp">
-		</File>
-		<File
-			RelativePath="account.hpp">
-		</File>
-		<File
 			RelativePath="addinstatic.cpp">
+		</File>
+		<File
+			RelativePath="..\examplefactory.cpp">
+		</File>
+		<File
+			RelativePath="..\examplefactory.hpp">
 		</File>
 	</Files>
 	<Globals>

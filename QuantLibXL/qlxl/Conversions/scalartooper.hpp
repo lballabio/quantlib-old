@@ -24,7 +24,7 @@
 #include <ql/time/date.hpp>
 #include <ql/interestrate.hpp>
 
-// Override functions in ObjectHandler namespace
+// Override functions in the ObjectHandler namespace
 namespace ObjectHandler {
 
     void scalarToOper(const QuantLib::InterestRate &value, OPER &xScalar);

@@ -4,32 +4,37 @@
 ##########################################################################
 
 code11 = '''\
-        std::string %(name)sCpp =
-            ObjectHandler::callOperToScalar<std::string>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+        std::string %(name)sCpp = ObjectHandler::operToScalar<std::string>(
+            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code12 = '''\
-        %(nativeType)s %(name)sCpp =
-            ObjectHandler::callOperToScalar<%(nativeType)s>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+        %(nativeType)s %(name)sCpp = ObjectHandler::operToScalar<%(nativeType)s>(
+            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code13 = '''\
         std::vector<%(nativeType)s> %(name)sCpp =
-            ObjectHandler::operToVector<%(nativeType)s>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<%(nativeType)s>(
+                *%(name)s, "%(name)s");\n'''
 
 code14 = '''\
         std::vector<long> %(name)sCpp =
-            ObjectHandler::operToVector<long>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<long>(
+                *%(name)s, "%(name)s");\n'''
 
 code15 = '''\
         std::vector<double> %(name)sCpp =
-            ObjectHandler::operToVector<double>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<double>(
+                *%(name)s, "%(name)s");\n'''
 
 code16 = '''\
         std::vector<std::string> %(name)sCpp =
-            ObjectHandler::operToVector<std::string>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<std::string>(
+                *%(name)s, "%(name)s");\n'''
 
 code17 = '''\
         std::vector<boost::any> %(name)sCpp =
-            ObjectHandler::operToVector<boost::any>(*%(name)s, "%(name)s");\n'''
+            ObjectHandler::operToVector<boost::any>(
+                *%(name)s, "%(name)s");\n'''
 
 code18 = '''\
         std::vector<std::vector<%(type)s> > %(name)sCpp =
@@ -51,21 +56,13 @@ code21b = '''\
         std::vector<std::vector<boost::any> > %(name)sCpp =
             ObjectHandler::operToMatrix<boost::any>(*%(name)s);\n'''
 
-code22 = '''\
-        %(type)s %(name)sLib;
-        ObjectHandler::cppToLibrary(%(name)s, %(name)sLib);\n'''
-
-code23 = '''\
-        %(type)s %(name)sLib;
-        ObjectHandler::cppToLibrary(*%(name)s, %(name)sLib);\n'''
-
 code25 = '''\
-        %(type)s %(name)sLib =
-            ObjectHandler::callOperToScalar<%(type)s>(%(name)s, "%(name)s", %(defaultValue)s);\n'''
+        %(type)s %(name)sLib = ObjectHandler::operToScalar<%(type)s>(
+            %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code26 = '''\
-        %(type)s %(name)sLib =
-            ObjectHandler::callOperToScalar<%(type)s>(*%(name)s, "%(name)s", %(defaultValue)s);\n'''
+        %(type)s %(name)sLib = ObjectHandler::operToScalar<%(type)s>(
+            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code31 = '''\
         std::vector<%(type)s> %(name)sLib =
@@ -75,13 +72,7 @@ code31 = '''\
 code32 = '''\
         std::vector<%(type)s> %(name)sLib =
             ObjectHandler::operToVector<%(type)s>(
-            *%(name)s, "%(name)s");\n'''
-
-code33 = '''\
-        %(type)s %(name)sEnum =
-            ObjectHandler::operToScalarEnum<%(type)s,
-                %(namespaceObjects)s::Create<%(type)s> >(
-                    *%(name)s, %(defaultValue)s, "%(name)s");\n'''
+                *%(name)s, "%(name)s");\n'''
 
 code34 = '''\
         %(type)s %(name)sEnum =

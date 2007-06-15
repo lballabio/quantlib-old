@@ -30,6 +30,9 @@ from gensrc.Configuration import environment
 class ValueObjects(addin.Addin):
     """Generate source code for ValueObjects."""
 
+    VO_INCLUDE = '''\
+#include <%(libRootDirectory)s/ValueObjects/vo_%(categoryName)s.hpp>\n'''
+    
     #############################################
     # public interface
     #############################################
@@ -39,20 +42,34 @@ class ValueObjects(addin.Addin):
 
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
+        
+        allIncludes = ''
 
         log.Log.instance().logMessage(' begin generating ValueObjects ...')
+        
         for cat in self.categoryList_.categories('*'):
             if cat.generateVOs():
+                allIncludes += ValueObjects.VO_INCLUDE % {
+                    'categoryName' : cat.name(),
+                    'libRootDirectory' : environment.config().libRootDirectory() }
                 self.generateHeaders(cat)
                 self.generateFunctions(cat)
+               
+        allBuffer =  self.bufferAll_.text() % {
+            'allIncludes' : allIncludes,
+            'libRootDirectory' : environment.config().libRootDirectory() }
+        allFilename = self.rootPath_ + 'vo_all.hpp'
+        outputfile.OutputFile(self, allFilename, self.copyright_, allBuffer)
+                
         log.Log.instance().logMessage(' done generating ValueObjects.')
 
     def generateHeader(self, func):
         """Generate class definition source for prototype of given constructor function."""
         if not func.generateVOs(): return ''
         return self.bufferClassDecl_.text() % {
-            'functionName' : func.name(),
             'constructorDeclaration' : func.parameterList().generate(self.constructorDeclaration_),
+            'functionName' : func.name(),
+            'serializeMembers' : func.parameterList().generate(self.serializeMembers_),
             'memberDeclaration' : func.parameterList().generate(self.memberDeclaration_) }
 
     def generateHeaders(self, cat):
@@ -65,8 +82,9 @@ class ValueObjects(addin.Addin):
             'headers' : bufHeader,
             'libRoot' : environment.config().libRootDirectory(),
             'namespaceObjects' : environment.config().namespaceObjects() }
+            
         fileName = self.rootPath_ + 'vo_' + cat.name() + '.hpp'
-        fileHeader = outputfile.OutputFile(self, fileName, self.copyright_, buf)
+        outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
     def generateFunction(self, func):
         """Generate source code for function."""
@@ -94,18 +112,18 @@ class ValueObjects(addin.Addin):
         fileName = self.rootPath_ + 'vo_' + cat.name() + '.cpp'
         outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
-    def constructorDeclaration(self):
-        return self.constructorDeclaration_
+#    def constructorDeclaration(self):
+#        return self.constructorDeclaration_
 
-    def memberDeclaration(self):
-        return self.memberDeclaration_
+#    def memberDeclaration(self):
+#        return self.memberDeclaration_
 
-    def propertyDeclaration(self):
-        return self.propertyDeclaration_
+#    def propertyDeclaration(self):
+#        return self.propertyDeclaration_
 
-    def propertyGet(self):
-        return self.propertyGet_
+#    def propertyGet(self):
+#        return self.propertyGet_
 
-    def constructorInit(self):
-        return self.constructorInit_
+#    def constructorInit(self):
+#        return self.constructorInit_
 

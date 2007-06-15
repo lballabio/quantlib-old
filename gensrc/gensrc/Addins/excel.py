@@ -22,6 +22,7 @@
 
 from gensrc.Addins import addin
 from gensrc.Addins import excelexceptions
+from gensrc.Addins import serialization
 from gensrc.Serialization import serializable
 from gensrc.Utilities import outputfile
 from gensrc.Functions import supportedplatform
@@ -72,8 +73,6 @@ class ExcelAddin(addin.Addin):
 
     voSupported_ = True
     convertPermanentFlag_ = '''
-        bool permanentCpp =
-            ObjectHandler::callOperToScalar<bool>(*permanent, "permanent", false);
         if (permanentCpp)
             objectPointer->setPermanent();'''
 
@@ -91,6 +90,8 @@ class ExcelAddin(addin.Addin):
         self.generateAddin()
         self.generateFunctions()
         self.generateFunctionCount()
+        if environment.config().usingSerialization():
+            self.generateSerialization()
         if self.exportSymbols_: self.generateExportSymbols()
         log.Log.instance().logMessage(' done generating %s.' % self.name_)
 
@@ -264,6 +265,30 @@ class ExcelAddin(addin.Addin):
         buf = self.bufferNumFunc_.text() % self.functionCount_
         fileName = self.rootPath_ + 'Functions/functioncount.hpp'
         outputfile.OutputFile(self, fileName, self.copyright_, buf)
+
+    def generateSerialization(self):
+        """Generate source code for all functions in all categories."""
+
+        bufferRegister = ''
+        for cat in self.categoryList_.categories('*'):
+            if not cat.generateVOs(): continue
+            
+            bufferRegister += '\n            // %s\n\n' % cat.displayName()
+            
+            for func in cat.functions('*'):
+                if not func.generateVOs(): continue
+                
+                bufferRegister += serialization.Serialization.REGISTER_TYPE % {
+                    'functionName' : func.name(),
+                    'namespaceObjects' : environment.config().namespaceObjects() }
+                    
+        factoryBuffer = self.bufferSerialization_.text() % {        
+            'addinDirectory' : environment.config().prefix() + 'xl',
+            'bufferRegister' : bufferRegister,
+            'libRootDirectory' : environment.config().libRootDirectory(),
+            'namespaceAddin' : self.namespaceAddin_ }
+        factoryFile = self.rootPath_ + 'Serialization/serializationfactory.cpp'
+        outputfile.OutputFile(self, factoryFile, self.copyright_, factoryBuffer)
 
     def printDebug(self):
         self.xlRegisterParam_.printDebug()

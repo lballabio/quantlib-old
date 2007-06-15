@@ -26,7 +26,7 @@
 
 #include <oh/ohdefines.hpp>
 #include <oh/exception.hpp>
-#include <boost/any.hpp>
+//#include <boost/any.hpp>
 #include <string>
 #include <vector>
 
@@ -98,27 +98,6 @@ namespace ObjectHandler {
     std::vector<std::string> split(const std::string &line,
                                    const std::string &delim,
                                    bool token_compress);
-
-    //! Filter a list of data given a list of flags.
-    /*! Accept a list of values and a list of boolean flags.  Return
-        the list of values for which the corresponding flag is true.
-    */
-    template< typename T>
-    std::vector<T> filter(const std::vector<T> &in,
-                          const std::vector<bool> &flags) {
-        std::size_t size = in.size();
-        OH_REQUIRE(size==flags.size(),
-            "size mismatch between value vector (" << size << 
-            ") and flag vector (" << flags.size() << ")");
-
-        std::vector<T> out;
-        out.reserve(size); //excess capacity
-
-        for (std::size_t i=0; i<size; ++i)
-            if (flags[i]) out.push_back(in[i]);
-
-        return out;
-    }
     //@}
 
 }

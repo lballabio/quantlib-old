@@ -17,71 +17,92 @@
 */
 
 /*! \file
-    \brief Conversion function operToVector - convert an OPER to a std::vector.
+    \brief Conversion function operToVector - convert an OPER to a std::vector
 */
 
 #ifndef ohxl_conversions_opertovector_hpp
 #define ohxl_conversions_opertovector_hpp
 
-#include <ohxl/Conversions/opertoscalar.hpp>
 #include <ohxl/Utilities/xlutilities.hpp>
 #include <vector>
+#include <boost/shared_ptr.hpp>
 
 namespace ObjectHandler {
 
-    //! Convert an Excel OPER to a std::vector of type T.
+    //! Helper template wrapper for operToVectorImpl
+    /*! \li Accept an OPER as input and wrap this in class ConvertOper
+        \li Specify VariantToScalar as the algorithm to be used
+
+        This simplifies syntax in client applications.
+    */
     template <class T>
-    std::vector<T> operToVector(const OPER &xVector, 
-                   const std::string &paramName) {
+    std::vector<T> operToVector(
+        const OPER &xVector, 
+        const std::string &paramName) {
 
-        if (xVector.xltype & xltypeNil
-        ||  xVector.xltype & xltypeMissing
-        ||  xVector.xltype & xltypeErr && xVector.val.err == xlerrNA)
-            return std::vector<T>();
+        return operToVectorImpl<T, VariantToScalar<ConvertOper, T> >
+            (ConvertOper(xVector, false), paramName);
+    }
 
-        OH_REQUIRE(!(xVector.xltype & xltypeErr),
-            "input value '" << paramName << "' has type=error");
+    //! Helper template wrapper for operToVectorImpl
+    /*! \li Accept an OPER as input and wrap this in class ConvertOper
+        \li Specify VariantToScalarObject as the algorithm to be used
 
-        OPER xTemp;
-        bool excelToFree = false;
+        This simplifies syntax in client applications.
+    */
+    template <class LibraryClass, class ObjectClass>
+    std::vector<boost::shared_ptr<LibraryClass> >
+    operToObjectVector(
+        const OPER &xVector, 
+        const std::string &paramName) {
+
+        return operToVectorImpl<
+            boost::shared_ptr<LibraryClass>, 
+            VariantToScalarObject<ConvertOper, LibraryClass, ObjectClass> >
+                (ConvertOper(xVector, false), paramName);
+    }
+
+    //! Convert a value of type ConvertOper to a vector.
+    template <class T, class F>
+    std::vector<T> operToVectorImpl(
+        const ConvertOper &xVector, 
+        const std::string &paramName) {
+
+        OPER xSplit;            // Must be freed manually
         bool xllToFree = false;
         try {
-            const OPER *xMulti;
 
-            if (xVector.xltype == xltypeMulti) {
-                xMulti = &xVector;
-            } else if (xVector.xltype == xltypeStr) {
-                splitOper(&xVector, &xTemp);
-                xMulti = &xTemp;
+            if (xVector.missing()) return std::vector<T>();
+
+            OH_REQUIRE(!xVector.error(), "input value has type=error");
+
+            const OPER *xMulti;
+            Xloper xCoerce;      // Freed automatically
+
+            if (xVector->xltype == xltypeMulti) {
+                xMulti = xVector.get();
+            } else if (xVector->xltype == xltypeStr) {
+                splitOper(xVector.get(), &xSplit);
+                xMulti = &xSplit;
                 xllToFree = true;
             } else {
-                Excel(xlCoerce, &xTemp, 2, &xVector, TempInt(xltypeMulti));
-                xMulti = &xTemp;
-                excelToFree = true;
+                Excel(xlCoerce, &xCoerce, 2, xVector.get(), TempInt(xltypeMulti));
+                xMulti = &xCoerce;
             }
 
             std::vector<T> ret;
             ret.reserve(xMulti->val.array.rows * xMulti->val.array.columns);
             for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; ++i) {
-                T value;
-                operToScalar(xMulti->val.array.lparray[i], value);
-                ret.push_back(value);
+                ret.push_back(F()(ConvertOper(xMulti->val.array.lparray[i])));
             }
 
-            if (excelToFree) {
-                Excel(xlFree, 0, 1, &xTemp);
-            } else if (xllToFree) {
-                freeOper(&xTemp);
-            }
+            if (xllToFree) freeOper(&xSplit);
 
             return ret;
         } catch (const std::exception &e) {
-            if (excelToFree) {
-                Excel(xlFree, 0, 1, &xTemp);
-            } else if (xllToFree) {
-                freeOper(&xTemp);
-            }
-            OH_FAIL("operToVector: error converting parameter '" << paramName << "' : " << e.what());
+            if (xllToFree) freeOper(&xSplit);
+            OH_FAIL("operToVectorImpl: error converting parameter '" << paramName 
+                << "' to type '" << typeid(T).name() << "' : " << e.what());
         }
     }
 

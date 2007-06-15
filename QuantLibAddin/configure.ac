@@ -105,6 +105,7 @@ AC_CONFIG_FILES([
     qlo/Enumerations/Factories/Makefile
     qlo/Enumerations/Register/Makefile
     qlo/Loop/Makefile
+    qlo/Serialization/Makefile
     qlo/ValueObjects/Makefile
     qlo/Makefile])
 

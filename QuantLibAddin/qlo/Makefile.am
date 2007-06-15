@@ -9,6 +9,8 @@ EXTRA_DIST = \
     auto_link.hpp
 
 include_HEADERS = \
+    abcd.hpp \
+    alphaform.hpp \
     asianoption.hpp \
     assetswap.hpp \
     barrieroption.hpp \
@@ -20,10 +22,11 @@ include_HEADERS = \
     cmsmarket.hpp \
     config.hpp \
     conundrumpricer.hpp \
-    conundrumpricer.hpp \
     couponvectors.hpp \
+    curvestate.hpp \
     date.hpp \
     dividendvanillaoption.hpp \
+    driftcalculators.hpp \
     europeanoption.hpp \
     exercise.hpp \
     flowanalysis.hpp \
@@ -32,9 +35,10 @@ include_HEADERS = \
     getcovariance.hpp \
     handle.hpp \
     index.hpp \
-    interpolation.hpp \
     interpolation2D.hpp \
+    interpolation.hpp \
     leg.hpp \
+    marketmodelevolvers.hpp \
     marketmodels.hpp \
     mathf.hpp \
     optimization.hpp \
@@ -42,8 +46,9 @@ include_HEADERS = \
     payoffs.hpp \
     pricingengines.hpp \
     processes.hpp \
-    qladdin.hpp \
+    products.hpp \
     qladdindefines.hpp \
+    qladdin.hpp \
     quantoforwardvanillaoption.hpp \
     quantovanillaoption.hpp \
     quotes.hpp \
@@ -70,6 +75,8 @@ include_HEADERS = \
     volatilities.hpp
 
 libQuantLibAddin_la_SOURCES = \
+    abcd.cpp \
+    alphaform.cpp \
     asianoption.cpp \
     assetswap.cpp \
     barrieroption.cpp \
@@ -80,8 +87,10 @@ libQuantLibAddin_la_SOURCES = \
     cmsmarket.cpp \
     conundrumpricer.cpp \
     couponvectors.cpp \
+    curvestate.cpp \
     date.cpp \
     dividendvanillaoption.cpp \
+    driftcalculators.cpp \
     europeanoption.cpp \
     exercise.cpp \
     flowanalysis.cpp \
@@ -89,14 +98,16 @@ libQuantLibAddin_la_SOURCES = \
     forwardvanillaoption.cpp \
     getcovariance.cpp \
     index.cpp \
-    interpolation.cpp \
     interpolation2D.cpp \
-    leg.hpp \
+    interpolation.cpp \
+    leg.cpp \
+    marketmodelevolvers.cpp \
     marketmodels.cpp \
     optimization.cpp \
     payoffs.cpp \
     pricingengines.cpp \
     processes.cpp \
+    products.cpp \
     quantoforwardvanillaoption.cpp \
     quantovanillaoption.cpp \
     quotes.cpp \
@@ -124,5 +135,6 @@ libQuantLibAddin_la_LIBADD = \
     Enumerations/Constructors/libConstructors.la \
     Enumerations/Factories/libFactories.la \
     Enumerations/Register/libRegister.la \
+    Serialization/libSerialization.la \
     ValueObjects/libValueObjects.la
 

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,9 +19,8 @@
 #ifndef qlxl_conversions_all_hpp
 #define qlxl_conversions_all_hpp
 
-#include <qlo/Conversions/all.hpp>
 #include <ohxl/Conversions/all.hpp>
-#include <qlxl/Conversions/opertoscalar.hpp>
+#include <qlo/Conversions/all.hpp>
 #include <qlxl/Conversions/opertovector.hpp>
 #include <qlxl/Conversions/opertomatrix.hpp>
 #include <qlxl/Conversions/scalartooper.hpp>

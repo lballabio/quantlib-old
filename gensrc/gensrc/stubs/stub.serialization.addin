@@ -1,0 +1,59 @@
+#include <fstream>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/serialization/shared_ptr.hpp>
+#include <boost/serialization/variant.hpp>
+#include <boost/serialization/vector.hpp>
+#include <%(addinDirectory)s/Serialization/serializationfactory.hpp>
+#include <%(libRootDirectory)s/Serialization/create_all.hpp>
+#include <%(libRootDirectory)s/ValueObjects/vo_all.hpp>
+
+namespace %(namespaceAddin)s {
+
+    SerializationFactory &SerializationFactory::instance() {
+        if (instance_) {
+            SerializationFactory *ret = dynamic_cast<SerializationFactory*>(instance_);
+            if (ret) return *ret;
+        }
+        OH_FAIL("Attempt to reference uninitialized SerializationFactory object");
+    }
+
+    template<class Archive>
+    void tpl_register_classes(Archive& ar) {    
+%(bufferRegister)s
+    }
+
+    void SerializationFactory::saveObject(
+        const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject, 
+        const char *path) const {
+
+        std::ofstream ofs(path);
+        boost::archive::xml_oarchive oa(ofs);
+        tpl_register_classes(oa);
+
+
+        // We need to supply a name for the object to be serialized.
+        // The objectID isn't suitable because certain values of objectID are
+        // invalid as XML tags e.g. values beginning with numeric characters.
+        // For our purposes the tag is ignored, so just supply a dummy string.
+        //std::string objectID = boost::any_cast<std::string>(valueObject->getProperty("objectID"));
+        //oa << boost::serialization::make_nvp(objectID.c_str(), valueObject);
+        oa << boost::serialization::make_nvp("oh_object", valueObject);
+    }
+
+    boost::shared_ptr<ObjectHandler::ValueObject> SerializationFactory::loadObject(
+        const char *path, const char *objectID) const {
+
+        std::ifstream ifs(path);
+        boost::archive::xml_iarchive ia(ifs);
+        tpl_register_classes(ia);
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject;
+        ia >> boost::serialization::make_nvp(objectID, valueObject);
+        // This VO has picked up the ID of the old VO that was deserialized.
+        // Override this value with the new ID supplied by the caller.
+        valueObject->setID(objectID);
+        return valueObject;
+    }
+
+}
+

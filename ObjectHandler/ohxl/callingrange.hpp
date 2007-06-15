@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Class CallingRange - Processing for the host cell of an Object.
+    \brief Class CallingRange - Processing for the host cell of an Object
 */
 
 #ifndef ohxl_callingrange_hpp

@@ -1,4 +1,5 @@
 
 noinst_HEADERS = \
-    accountobject.hpp
+    accountobject.hpp \
+    customerobject.hpp
 

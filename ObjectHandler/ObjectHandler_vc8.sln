@@ -51,7 +51,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs", "Docs\docs_vc8.vcpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ohgensrc", "gensrc\ohgensrc_vc8.vcproj", "{88BE5568-6E55-41C5-A251-670FAFB44336}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleObjects", "Examples\ExampleObjects\ExampleObjects.vcproj", "{548C1A2B-E5E8-417F-B9E2-BD2D72757FBC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleObjects", "Examples\ExampleObjects\ExampleObjects_vc8.vcproj", "{548C1A2B-E5E8-417F-B9E2-BD2D72757FBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

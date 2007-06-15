@@ -18,7 +18,7 @@
 */
 
 /*! \file
-    \brief Class ValueObject - Captures the inputs to an Object.
+    \brief Class ValueObject - Captures the inputs to an Object
 */
 
 #ifndef oh_valueobject_hpp
@@ -27,6 +27,7 @@
 #include <string>
 #include <vector>
 #include <boost/any.hpp>
+#include <boost/serialization/access.hpp>
 
 namespace ObjectHandler {
 
@@ -40,15 +41,43 @@ namespace ObjectHandler {
         passed to the Object's constructor.  These values can be used later
         for serialization or run-time interrogation of the Object.
     */
-	class ValueObject {
-	public:
-        //! Retrieve the names of the properties stored in the ValueObject.
-		virtual std::vector<std::string> getPropertyNames() const = 0;
-        //! Retrieve the value of a property given its name.
-		virtual boost::any getProperty(const std::string& name) const = 0;
+    class ValueObject {
+    public:
+        //! \name Structors
+        //@{
+        //! Default constructor, required by boost::serialization.
+        /*! Member variables are initialized with null values, these will be
+            populated during deserialization.
+        */
+        ValueObject() : objectID_(""), className_("") {}
+        //! Standard constructor called by derived classes.
+        ValueObject(
+            const std::string &objectID,
+            const std::string &className)
+            : objectID_(objectID), className_(className) {}
         //! Empty virtual destructor.
         virtual ~ValueObject() {}
-	};
+        //@}
+
+        //! \name Inspectors
+        //@{
+        //! Retrieve the names of the properties stored in the ValueObject.
+        virtual std::vector<std::string> getPropertyNames() const = 0;
+        //! Retrieve the value of a property given its name.
+        virtual boost::any getProperty(const std::string& name) const = 0;
+        //@}
+
+        //! \name Serialization
+        //@{
+        //! Name of this ValueObject's class, used by class SerializationFactory.
+        const std::string &className() const { return className_; }
+        //! Override objectID after deserialization, used by class SerializationFactory.
+        virtual void setID(const std::string &objectID) { objectID_ = objectID; }
+        //@}
+    protected:
+        std::string objectID_;
+        std::string className_;
+    };
 
 }
 

@@ -19,7 +19,7 @@
 #ifndef example_account_object_hpp
 #define example_account_object_hpp
 
-#include <oh/object.hpp>
+#include <oh/libraryobject.hpp>
 #include <ExampleObjects/Library/account.hpp>
 
 namespace AccountExample {
@@ -29,17 +29,18 @@ namespace AccountExample {
     public:
 
         AccountObject(
-                const int &number,
-                const Account::Type &type) {
+                const Account::Type &type,
+                const long &number,
+                const long &balance) {
             libraryObject_ = boost::shared_ptr<Account>(
-                new Account(number, type));
+                new Account(type, number, balance));
         }
 
-        void setBalance(const int &balance)  {
+        void setBalance(const long &balance)  {
             libraryObject_->setBalance(balance);
         }
 
-        const int &balance()  {
+        const long &balance()  {
             return libraryObject_->balance();
         }
 

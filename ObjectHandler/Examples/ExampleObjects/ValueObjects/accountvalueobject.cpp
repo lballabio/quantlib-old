@@ -1,6 +1,7 @@
 
 /*!
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2006 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,13 +19,16 @@
 
 #include <ExampleObjects/ValueObjects/accountvalueobject.hpp>
 #include <oh/exception.hpp>
+#include <iostream>
 
 namespace AccountExample {
 
     const char* AccountValueObject::mPropertyNames[] = {
         "objectID",
+        "className",
         "number",
-        "type"};
+        "type",
+        "balance"};
 
     std::vector<std::string> AccountValueObject::getPropertyNames() const {
         return std::vector<std::string>(mPropertyNames,
@@ -33,9 +37,11 @@ namespace AccountExample {
 
     boost::any AccountValueObject::getProperty(const std::string& name) const {
         if(name == "objectID") return objectID_;
+        else if(name == "className") return className_;
         else if(name == "number") return number_;
         else if(name == "type") return type_;
-        else
+        else if(name == "balance") return balance_;
+        else 
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
         return boost::any(); /* Dummy return - just to avoid stupid compiler warnings/errors */
     }

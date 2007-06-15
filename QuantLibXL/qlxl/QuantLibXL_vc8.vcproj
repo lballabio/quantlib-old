@@ -883,14 +883,6 @@
 					>
 				</File>
 				<File
-					RelativePath="Conversions\opertoscalar.cpp"
-					>
-				</File>
-				<File
-					RelativePath="Conversions\opertoscalar.hpp"
-					>
-				</File>
-				<File
 					RelativePath="Conversions\opertovector.cpp"
 					>
 				</File>
@@ -899,6 +891,18 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Serialization"
+			>
+			<File
+				RelativePath=".\Serialization\serializationfactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serializationfactory.hpp"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="session.cpp"

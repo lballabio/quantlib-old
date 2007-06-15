@@ -18,32 +18,15 @@
 
 #include <qlxl/Conversions/opertomatrix.hpp>
 
-namespace ObjectHandler {
+namespace QuantLibXL {
 
-    QuantLib::Matrix operToMatrix(const FP &fpVector) {
+    QuantLib::Matrix operToQlMatrix(const FP &fpVector) {
         QuantLib::Matrix m(fpVector.rows, fpVector.columns);
         for (int i=0; i<fpVector.rows; ++i)
             for (int j=0; j<fpVector.columns; ++j)
                 m[i][j] = fpVector.array[i * fpVector.columns + j];
         return m;
     }
-
-    //std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >
-    //fpToMatrixHandle(const FP &fpVector) {
-    //    std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > > ret;
-    //    for (int i=0; i<fpVector.rows; ++i) {
-    //        std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > row;
-    //        for (int j=0; j<fpVector.columns; ++j) {
-    //            row.push_back(
-    //                QuantLib::RelinkableHandle<QuantLib::Quote>(
-    //                boost::shared_ptr<QuantLib::Quote>(
-    //                new QuantLib::SimpleQuote(
-    //                fpVector.array[i*fpVector.columns+j]))));
-    //        }
-    //        ret.push_back(row);
-    //    }
-    //    return ret;
-    //}
 
 }
 

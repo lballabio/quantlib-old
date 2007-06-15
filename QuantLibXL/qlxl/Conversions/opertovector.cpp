@@ -19,16 +19,9 @@
 #include <qlxl/Conversions/opertovector.hpp>
 #include <ohxl/Utilities/xlutilities.hpp>
 
-namespace ObjectHandler {
+namespace QuantLibXL {
 
-    //QuantLib::Array operToVector(const FP &fpVector) {
-    //    QuantLib::Array a(fpVector.rows * fpVector.columns);
-    //    for (int i=0; i<fpVector.rows * fpVector.columns; ++i)
-    //        a[i] = fpVector.array[i];
-    //    return a;
-    //}
-
-    QuantLib::Array operToVector(const OPER &xVector, 
+    QuantLib::Array operToQlArray(const OPER &xVector, 
             const std::string paramName) {
         OPER xTemp;
         bool excelToFree = false;
@@ -56,7 +49,7 @@ namespace ObjectHandler {
             int size = xMulti->val.array.rows * xMulti->val.array.columns;
             QuantLib::Array a(size);
             for (int i=0; i<size; ++i) {
-                operToScalar(xMulti->val.array.lparray[i], a[i]);
+                a[i] = ObjectHandler::operToScalar<double>(xMulti->val.array.lparray[i]);
             }
 
             if (excelToFree) {

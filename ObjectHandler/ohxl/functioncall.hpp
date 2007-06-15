@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Class FunctionCall - Handle state related to the function in progress.
+    \brief Class FunctionCall - Handle state related to the function in progress
 */
 
 #ifndef ohxl_functioncall_hpp

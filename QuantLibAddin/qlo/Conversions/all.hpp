@@ -21,10 +21,15 @@
 
 #include <oh/Conversions/coerce.hpp>
 #include <qlo/Conversions/conversions.hpp>
-#include <qlo/Conversions/coerceobject.hpp>
+#include <qlo/Conversions/coercecurve.hpp>
 #include <qlo/Conversions/coercehandle.hpp>
 #include <qlo/Conversions/coerceindex.hpp>
-#include <qlo/Conversions/coercecurve.hpp>
+#include <qlo/Conversions/coerceobject.hpp>
 #include <qlo/Conversions/coercetermstructure.hpp>
+#include <qlo/Conversions/varianttodate.hpp>
+#include <qlo/Conversions/varianttoperiod.hpp>
+#include <qlo/Conversions/varianttoquote.hpp>
+#include <qlo/Conversions/varianttoquotehandle.hpp>
+#include <qlo/Conversions/varianttosize.hpp>
 
 #endif

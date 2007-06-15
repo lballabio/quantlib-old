@@ -21,6 +21,7 @@
 
 #include <string>
 #include <sstream>
+#include <exception>
 
 namespace AccountExample {
 
@@ -29,13 +30,14 @@ namespace AccountExample {
 
         enum Type { Savings, Current };
 
-        Account(const int &number,
+        Account(
             const Type &type,
-            const int &balance = 0)
-            : number_(number), type_(type), balance_(balance) {}
+            const long &number,
+            const long &balance)
+            : type_(type), number_(number), balance_(balance) {}
 
         void setBalance(const int &balance) { balance_ = balance; }
-        const int &balance() { return balance_; }
+        const long &balance() { return balance_; }
         std::string type() {
             std::ostringstream s;
             s << type_;
@@ -43,10 +45,21 @@ namespace AccountExample {
         }
 
     private:
-        int number_;
         Type type_;
-        int balance_;
+        long number_;
+        long balance_;
     };
+
+    inline std::ostream& operator<<(std::ostream& out, Account::Type type) {
+        switch (type) {
+          case Account::Current:
+            return out << "Current";
+          case Account::Savings:
+            return out << "Savings";
+          default:
+              OH_FAIL("unknown account type");
+        }
+    }
 
 }
 

@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..,..\..,$(LOG4CXX_DIR)\include"
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="XLL_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -78,7 +78,7 @@
 				OutputFile="xll\ExampleXLLStatic-vc80-mt-sgd-0_9_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\lib"
+				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\buildXllStatic\vc80\$(ConfigurationName)\ExampleXLLStatic-vc80-mt-sgd-0_9_0.pdb"
 				ImportLibrary=".\buildXllStatic\vc80\$(ConfigurationName)\ExampleXLLStatic-vc80-mt-sgd-0_9_0.lib"
@@ -146,7 +146,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..,..\..,$(LOG4CXX_DIR)\include"
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="XLL_STATIC"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -176,7 +176,7 @@
 				OutputFile="xll\ExampleXLLStatic-vc80-mt-s-0_9_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\lib"
+				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				ProgramDatabaseFile=".\buildXllStatic\vc80\$(ConfigurationName)\ExampleXLLStatic-vc80-mt-s-0_9_0.pdb"
 				ImportLibrary=".\buildXllStatic\vc80\$(ConfigurationName)\ExampleXLLStatic-vc80-mt-s-0_9_0.lib"
 				TargetMachine="1"
@@ -243,7 +243,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..,..\..,$(LOG4CXX_DIR)\include"
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="XLL_STATIC"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -273,7 +273,7 @@
 				OutputFile="xll\ExampleXLLStatic-vc80-mt-0_9_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\lib"
+				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				ProgramDatabaseFile=".\buildXllStatic\vc80\$(ConfigurationName)\ExampleXLLStatic-vc80-mt-0_9_0.pdb"
 				ImportLibrary=".\buildXllStatic\vc80\$(ConfigurationName)\ExampleXLLStatic-vc80-mt-0_9_0.lib"
 				TargetMachine="1"
@@ -339,7 +339,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..,..\..,$(LOG4CXX_DIR)\include"
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="XLL_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -370,7 +370,7 @@
 				OutputFile="xll\ExampleXLLStatic-vc80-mt-gd-0_9_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\lib,$(LOG4CXX_DIR)\msvc\lib"
+				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\buildXllStatic\vc80\$(ConfigurationName)\ExampleXLLStatic-vc80-mt-gd-0_9_0.pdb"
 				ImportLibrary=".\buildXllStatic\vc80\$(ConfigurationName)\ExampleXLLStatic-vc80-mt-gd-0_9_0.lib"
@@ -409,6 +409,14 @@
 	<Files>
 		<File
 			RelativePath="addinstatic.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\examplefactory.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\examplefactory.hpp"
 			>
 		</File>
 	</Files>

@@ -1,0 +1,5 @@
+#ifndef %(libRootDirectory)s_create_all_hpp
+#define %(libRootDirectory)s_create_all_hpp
+
+%(bufferAll)s
+#endif

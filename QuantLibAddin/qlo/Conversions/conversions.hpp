@@ -22,6 +22,7 @@
 
 #include <qlo/qladdindefines.hpp>
 #include <ql/types.hpp>
+#include <ql/math/matrix.hpp>
 #include <vector>
 
 namespace QuantLib {
@@ -35,13 +36,21 @@ namespace QuantLibAddin {
     double libraryToScalar(const QuantLib::InterestRate&);
     double libraryToScalar(const QuantLib::Rate&);
     long libraryToScalar(const QuantLib::Date&);
-
     std::string libraryToScalar(const QuantLib::Period&);
 
     std::vector<long> libraryToVector(const std::vector<QuantLib::Date>&);
+    std::vector<std::string> libraryToVector(const std::vector<QuantLib::Period>&);
     std::vector<long> libraryToVector(const std::vector<QuantLib::Size>&);
 
-    std::vector<std::string> libraryToVector(const std::vector<QuantLib::Period>&);
+    void cppToLibrary(const std::string &in, QuantLib::Period &ret);
+    void cppToLibrary(const long &in, QuantLib::Size &ret);
+
+    template <class T>
+    std::vector<T> cppToLibrary(const std::vector<long>& v) {
+        return std::vector<T>(v.begin(), v.end());
+    }
+
+    QuantLib::Matrix vvToQlMatrix(const std::vector<std::vector<double> > &vv);
 
 }
 

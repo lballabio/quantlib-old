@@ -1,0 +1,19 @@
+
+<Addin name='Serialization'>
+  
+  <rootDirectory>qlo/Serialization</rootDirectory>
+
+  <copyright>
+    Copyright (C) 2007 Eric Ehlers
+    Copyright (C) 2006 Plamen Neykov
+  </copyright>
+
+  <Buffers>
+    <Buffer name='bufferAll' fileName='stub.serialization.all'/>
+    <Buffer name='bufferCreator' fileName='stub.serialization.creator'/>
+    <Buffer name='bufferFactory' fileName='stub.serialization.factory'/>
+    <Buffer name='bufferHeader' fileName='stub.serialization.header'/>
+    <Buffer name='bufferIncludes' fileName='stub.serialization.includes' local='true'/>
+  </Buffers>
+
+</Addin>

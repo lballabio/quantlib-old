@@ -2,9 +2,10 @@
   
   <rootDirectory>../QuantLibXL/qlxl</rootDirectory>
   <exportSymbols>false</exportSymbols>
+  <namespaceAddin>QuantLibXL</namespaceAddin>
 
   <copyright>
-    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+    Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
   </copyright>
 
   <Buffers>
@@ -15,6 +16,7 @@
     <Buffer name='bufferRegisterCall' fileName='stub.excel.register.call'/>
     <Buffer name='bufferRegisterFile' fileName='stub.excel.register.file'/>
     <Buffer name='bufferRegisterFunction' fileName='stub.excel.register.function'/>
+    <Buffer name='bufferSerialization' fileName='stub.serialization.addin'/>
   </Buffers>
 
 </Addin>

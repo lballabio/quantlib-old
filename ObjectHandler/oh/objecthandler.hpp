@@ -25,6 +25,8 @@
 #include <oh/repository.hpp>
 #include <oh/utilities.hpp>
 #include <oh/exception.hpp>
+#include <oh/variant.hpp>
+#include <oh/serializationfactory.hpp>
 #include <oh/Enumerations/typefactory.hpp>
 
 #endif

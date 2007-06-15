@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Conversion function scalarToOper - convert an Excel OPER to a scalar value.
+    \brief Conversion function scalarToOper - convert an Excel OPER to a scalar value
 */
 
 #ifndef ohxl_conversions_scalartooper_hpp
@@ -27,6 +27,7 @@
 #include <xlsdk/xlsdkdefines.hpp>
 #include <string>
 #include <boost/any.hpp>
+#include <oh/variant.hpp>
 
 namespace ObjectHandler {
 
@@ -39,6 +40,7 @@ namespace ObjectHandler {
     DLL_API void scalarToOper(const bool &value, OPER &xBoolean, bool dllToFree = true);
     DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree = true);
     DLL_API void scalarToOper(const boost::any &value, OPER &xAny, bool dllToFree = true);
+    DLL_API void scalarToOper(const ObjectHandler::Variant &value, OPER &xAny, bool dllToFree = true);
     //@}
 
 }

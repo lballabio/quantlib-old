@@ -25,7 +25,7 @@
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ql/math/array.hpp>
 
-// Override functions in ObjectHandler namespace
+// Override functions in the ObjectHandler namespace
 namespace ObjectHandler {
 
     inline void vectorToOper(const QuantLib::Array &a, OPER &xVector) {

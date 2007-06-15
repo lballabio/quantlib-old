@@ -11,7 +11,12 @@ include_HEADERS = \
     coerceindex.hpp \
     coerceobject.hpp \
     coercetermstructure.hpp \
-    conversions.hpp
+    conversions.hpp \
+    varianttodate.hpp \
+    varianttoperiod.hpp \
+    varianttoquotehandle.hpp \
+    varianttoquote.hpp \
+    varianttosize.hpp
 
 libConversions_la_SOURCES = \
     conversions.cpp

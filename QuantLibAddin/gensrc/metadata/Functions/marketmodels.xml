@@ -722,7 +722,7 @@
             <tensorRank>vector</tensorRank>
             <description>alphas</description>
           </Parameter>
-          <Parameter name='lowestRoot' default='TRUE'>
+          <Parameter name='lowestRoot' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE for lowest root, FALSE for the root nearest to 1.0</description>
@@ -791,7 +791,7 @@
             <tensorRank>vector</tensorRank>
             <description>alphaMin</description>
           </Parameter>
-          <Parameter name='maximizeHomogeneity' default='TRUE'>
+          <Parameter name='maximizeHomogeneity' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE for maximizing homogeneity</description>

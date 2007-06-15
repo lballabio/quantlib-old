@@ -1,0 +1,11 @@
+#include <qlo/Serialization/create_%(categoryName)s.hpp>
+#include <qlo/qladdindefines.hpp>
+#include <qlo/handle.hpp>
+#include <qlo/Enumerations/Factories/all.hpp>
+%(categoryIncludes)s
+#include <qlo/Conversions/all.hpp>
+#include <oh/Conversions/ohconvertvariant.hpp>
+
+namespace QuantLibAddin {
+
+%(bufferCreators)s}

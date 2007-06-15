@@ -10,20 +10,26 @@ include_HEADERS = \
     objecthandler.hpp \
     object.hpp \
     ohdefines.hpp \
+    other.hpp \
     repository.hpp \
+    serializationfactory.hpp \
     singleton.hpp \
+    types.hpp \
     utilities.hpp \
-    valueobject.hpp
+    valueobject.hpp \
+    variant.hpp \
+    variantvisitors.hpp
 
 EXTRA_DIST = \
     auto_link.hpp
 
 lib_LTLIBRARIES = libObjectHandler.la
-LDFLAGS = -llog4cxx -lboost_regex -release $(PACKAGE_VERSION)
+LDFLAGS = -llog4cxx -lboost_regex -lboost_serialization -release $(PACKAGE_VERSION)
 
 libObjectHandler_la_SOURCES = \
-    logger.cpp  \
-    repository.cpp  \
+    logger.cpp \
+    repository.cpp \
+    serializationfactory.cpp \
     utilities.cpp
 
 libObjectHandler_la_LIBADD = \

@@ -20,8 +20,12 @@
 #define example_account_all_hpp
 
 #include <ExampleObjects/Library/account.hpp>
+#include <ExampleObjects/Library/customer.hpp>
 #include <ExampleObjects/Objects/accountobject.hpp>
+#include <ExampleObjects/Objects/customerobject.hpp>
 #include <ExampleObjects/ValueObjects/accountvalueobject.hpp>
+#include <ExampleObjects/ValueObjects/customervalueobject.hpp>
+#include <ExampleObjects/Serialization/examplefactory.hpp>
 #include <ExampleObjects/Enumerations/accountenumerations.hpp>
 
 #endif

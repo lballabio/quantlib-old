@@ -17,7 +17,7 @@
 */
 
 /*! \file
-    \brief Class Xloper - Perform RAII for Excel's XLOPER datatype.
+    \brief Class Xloper - Perform RAII for Excel's XLOPER datatype
 */
 
 #ifndef oh_xloper_hpp
@@ -63,11 +63,8 @@ namespace ObjectHandler {
         //! operator() - return a const reference to the underlying XLOPER.
         const XLOPER &operator()() const { return xloper_; }
         //@}
-
     private:
-
         XLOPER xloper_;
-
     };
 
 }

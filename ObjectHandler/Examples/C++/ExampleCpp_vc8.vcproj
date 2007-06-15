@@ -45,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -137,7 +137,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -232,7 +232,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".,..,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -324,7 +324,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".,..,..\.."
+				AdditionalIncludeDirectories="..,..\.."
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;LOG4CXX_STATIC;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -394,6 +394,14 @@
 	<Files>
 		<File
 			RelativePath="example.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\examplefactory.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\examplefactory.hpp"
 			>
 		</File>
 	</Files>

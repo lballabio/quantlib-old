@@ -22,6 +22,7 @@
 #include <ohxl/Functions/export.hpp>
 #include <ohxl/Utilities/xlutilities.hpp>
 #include <ExampleObjects/accountexample.hpp>
+#include <Examples/examplefactory.hpp>
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
@@ -41,6 +42,8 @@ ObjectHandler::EnumTypeRegistry enumTypeRegistry;
 ObjectHandler::EnumClassRegistry enumClassRegistry;
 // Instantiate the Enumerated Pair Registry
 ObjectHandler::EnumPairRegistry enumPairRegistry;
+// Instantiate the Serialization Factory
+ExampleAddin::ExampleFactory factory;
 
 DLLEXPORT int xlAutoOpen() {
 
@@ -57,9 +60,9 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x09""ohAccount"),           // function code name
-            TempStrNoSize("\x06""CCNCP#"),              // parameter codes
+            TempStrNoSize("\x06""CCCNP#"),               // parameter codes
             TempStrNoSize("\x09""ohAccount"),           // function display name
-            TempStrNoSize("\x14""objectID,number,type"), // comma-delimited list of parameters
+            TempStrNoSize("\x1C""objectID,type,number,balance"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -153,8 +156,9 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 
 DLLEXPORT char *ohAccount(
         char *objectID,
+        char *type,
         long *number,
-        char *type) {
+        OPER *balance) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
@@ -163,14 +167,21 @@ DLLEXPORT char *ohAccount(
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
             (new ObjectHandler::FunctionCall("ohAccount"));
 
+        long balanceLong = ObjectHandler::operToScalar<long>(
+            *balance, "balance", 100);
+
+        ObjectHandler::Variant balanceVariant =
+            ObjectHandler::operToScalar<ObjectHandler::Variant>(
+                *balance, "balance");
+
         AccountExample::Account::Type typeEnum =
             ObjectHandler::Create<AccountExample::Account::Type>()(type);
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountExample::AccountObject(*number, typeEnum));
+            new AccountExample::AccountObject(typeEnum, *number, balanceLong));
         object->setProperties(
             boost::shared_ptr<ObjectHandler::ValueObject>(
-                new AccountExample::AccountValueObject(objectID, *number, type)));
+                new AccountExample::AccountValueObject(objectID, type, *number, balanceVariant)));
 
         std::string returnValue = 
             ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);

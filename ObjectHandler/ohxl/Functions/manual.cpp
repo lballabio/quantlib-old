@@ -27,6 +27,7 @@
 #include <ohxl/Functions/functioncount.hpp>
 #include <ohxl/xloper.hpp>
 #include <map>
+#include <algorithm>
 
 #define XLL_DEC extern "C"
 
@@ -175,6 +176,61 @@ XLL_DEC OPER *ohPack(OPER *xInputRange) {
 
         // log the exception and return a null pointer (#NUM!) to Excel
 
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
+        return 0;
+    }
+}
+
+XLL_DEC OPER *ohFilter(
+        OPER *xInput,
+        OPER *flags) {
+
+    // declare a shared pointer to the Function Call object
+
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
+    try {
+
+        // instantiate the Function Call object
+    
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>(
+            new ObjectHandler::FunctionCall("ohFilter"));
+
+        // convert input datatypes to C++ datatypes
+
+        std::vector<bool> flagsCpp = ObjectHandler::operToVector<bool>(*flags, "flags");
+
+        const OPER *xMulti;
+        ObjectHandler::Xloper xTemp;
+        if (xInput->xltype == xltypeMulti) {
+            xMulti = xInput;
+        } else {
+            Excel(xlCoerce, &xTemp, 2, xInput, TempInt(xltypeMulti));
+            xMulti = &xTemp;
+        }
+
+        int sizeInput = xMulti->val.array.rows * xMulti->val.array.columns;
+        OH_REQUIRE(sizeInput == flagsCpp.size(),
+            "size mismatch between value vector (" << sizeInput << 
+            ") and flag vector (" << flagsCpp.size() << ")");
+
+
+        static OPER xRet;
+        xRet.val.array.rows = count(flagsCpp.begin(), flagsCpp.end(), true);
+        xRet.val.array.columns = 1;
+        xRet.val.array.lparray = new OPER[xRet.val.array.rows]; 
+        xRet.xltype = xltypeMulti | xlbitDLLFree;
+
+        int idx = 0;
+        for (int i=0; i<sizeInput; i++) {
+            if (flagsCpp[i]) {
+                operToOper(&xRet.val.array.lparray[idx++], &xMulti->val.array.lparray[i]);
+            }
+        }
+
+        return &xRet;
+
+    } catch (const std::exception &e) {
         ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
     }

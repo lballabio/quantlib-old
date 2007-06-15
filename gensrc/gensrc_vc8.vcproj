@@ -159,6 +159,10 @@
 				>
 			</File>
 			<File
+				RelativePath="gensrc\Addins\enumerations.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\Addins\excel.py"
 				>
 			</File>
@@ -171,11 +175,11 @@
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\enumerations.py"
+				RelativePath="gensrc\Addins\loop.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\loop.py"
+				RelativePath=".\gensrc\Addins\serialization.py"
 				>
 			</File>
 			<File
@@ -255,6 +259,14 @@
 				>
 			</File>
 			<File
+				RelativePath="gensrc\Functions\constructor.py"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\Functions\enumerationmember.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\Functions\exceptions.py"
 				>
 			</File>
@@ -263,19 +275,11 @@
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Functions\constructor.py"
-				>
-			</File>
-			<File
 				RelativePath="gensrc\Functions\member.py"
 				>
 			</File>
 			<File
 				RelativePath="gensrc\Functions\procedure.py"
-				>
-			</File>
-			<File
-				RelativePath="gensrc\Functions\enumerationmember.py"
 				>
 			</File>
 			<File
@@ -503,6 +507,30 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gensrc\stubs\stub.serialization.addin"
+				>
+			</File>
+			<File
+				RelativePath=".\gensrc\stubs\stub.serialization.all"
+				>
+			</File>
+			<File
+				RelativePath=".\gensrc\stubs\stub.serialization.creator"
+				>
+			</File>
+			<File
+				RelativePath=".\gensrc\stubs\stub.serialization.factory"
+				>
+			</File>
+			<File
+				RelativePath=".\gensrc\stubs\stub.serialization.header"
+				>
+			</File>
+			<File
+				RelativePath=".\gensrc\stubs\stub.vo.all"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\stubs\stub.vo.class.body"
 				>
 			</File>
@@ -519,6 +547,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\dependencies.vc"
+			>
+		</File>
 		<File
 			RelativePath="gensrc.py"
 			>

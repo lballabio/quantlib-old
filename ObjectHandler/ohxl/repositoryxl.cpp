@@ -23,7 +23,7 @@
 #include <ohxl/objectxl.hpp>
 #include <ohxl/functioncall.hpp>
 #include <ohxl/rangereference.hpp>
-#include <ohxl/Conversions/opertoscalar.hpp>
+#include <ohxl/convert_oper.hpp>
 #include <boost/algorithm/string.hpp>
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
@@ -159,8 +159,7 @@ namespace ObjectHandler {
             "Input parameter is not a range reference.");
         Xloper xRangeText;
         Excel(xlfReftext, &xRangeText, 1, xRangeRef);
-        std::string refStr;
-        operToScalar(xRangeText(), refStr);
+        std::string refStr = ConvertOper(xRangeText());
         std::string refStrUpper = boost::algorithm::to_upper_copy(refStr);
 
         ErrorMessageMap::const_iterator i = errorMessageMap_.find(refStrUpper);
@@ -219,8 +218,7 @@ namespace ObjectHandler {
         
         if (xOldName->xltype == xltypeStr) {   
             // if name - return associated CallingRange object
-            std::string oldKey;
-            operToScalar(xOldName(), oldKey);
+            std::string oldKey = ConvertOper(xOldName());
             RangeMap::const_iterator i = callingRanges_.find(oldKey);
             OH_REQUIRE(i != callingRanges_.end(), "No calling range named " << oldKey);
             return i->second;
@@ -264,6 +262,18 @@ namespace ObjectHandler {
         boost::shared_ptr<ObjectXL> objectXL = boost::static_pointer_cast<ObjectXL>(object);
         return objectXL->callerKey();
 
+    }
+
+    void RepositoryXL::saveObject(const std::string &objectID, 
+        const std::string &path) {
+
+        Repository::saveObject(ObjectXL::getStub(objectID), path);
+    }
+
+    std::string RepositoryXL::loadObject(const std::string &objectID, 
+            const std::string &path) {
+
+        return Repository::loadObject(ObjectXL::getStub(objectID), path);
     }
 
 }

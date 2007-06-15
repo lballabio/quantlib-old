@@ -18,7 +18,7 @@
 */
 
 /*! \file
-    \brief Conversion function vectorToOper - Convert STL vector to Excel OPER.
+    \brief Conversion function vectorToOper - Convert STL vector to Excel OPER
 */
 
 #ifndef ohxl_conversions_vectortooper_hpp
@@ -36,8 +36,8 @@ namespace ObjectHandler {
     /*! If dllToFree is true then the function sets the xlbitDLLFree bit if necessary.
     */
     template <class T>
-    void vectorToOper(const std::vector<T> &v, OPER &xVector, bool dllToFree = true) {
-        vectorToOper(v.begin(), v.end(), xVector, dllToFree);
+    void vectorToOper(/*const*/ std::vector<T> &v, OPER &xVector, bool dllToFree = true) {
+        vectorToOper<std::vector<T>::const_iterator>(v.begin(), v.end(), xVector, dllToFree);
     }
 
     template <class T>

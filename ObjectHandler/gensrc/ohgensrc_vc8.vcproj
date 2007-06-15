@@ -78,6 +78,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\serialization.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\valueobjects.xml"
 				>
 			</File>

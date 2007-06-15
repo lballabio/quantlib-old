@@ -18,7 +18,7 @@
 */
 
 /*! \file
-    \brief Preprocessor directives for ObjectHandler compilation.
+    \brief Preprocessor directives for ObjectHandler compilation
 */
 
 #ifndef oh_defines_hpp
@@ -104,6 +104,28 @@
 #define OH_GET_UNDERLYING_NONCONST( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
     OH_GET_REFERENCE(NAME ## temp, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
     LIBRARY_CLASS &NAME = *(NAME ## temp.get());
+
+/*! \def OH_LOG_MESSAGE(message)
+    Raise an exception with the given message.
+*/
+
+#define OH_LOG_MESSAGE(message) \
+do { \
+    std::ostringstream _oh_msg_stream; \
+    _oh_msg_stream << message; \
+    ObjectHandler::logMessage(_oh_msg_stream.str()); \
+} while (false)
+
+/*! \def OH_LOG_ERROR(message)
+    Log the given error message.
+*/
+
+#define OH_LOG_ERROR(message) \
+do { \
+    std::ostringstream _oh_msg_stream; \
+    _oh_msg_stream << message; \
+    ObjectHandler::logMessage(_oh_msg_stream.str(), 1); \
+} while (false)
 
 #endif
 

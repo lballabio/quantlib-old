@@ -56,6 +56,10 @@ namespace QuantLibAddin {
             boost::shared_ptr<ObjectHandler::Object>, 
             boost::shared_ptr<LibraryClass> > {
 
+        typedef typename ObjectHandler::Coerce<
+            boost::shared_ptr<ObjectHandler::Object>,
+            boost::shared_ptr<LibraryClass> >::Conversion Conversion;
+
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToReference<ObjectClass, LibraryClass>,
@@ -69,3 +73,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

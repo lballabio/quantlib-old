@@ -22,11 +22,11 @@
 #endif
 
 #include <oh/repository.hpp>
+#include <oh/serializationfactory.hpp>
 #include <oh/exception.hpp>
 #include <boost/regex.hpp>
 #include <ostream>
 #include <sstream>
-#include <algorithm>
 
 namespace ObjectHandler {
 
@@ -51,14 +51,21 @@ namespace ObjectHandler {
  
     // TODO: implement Scott Meyers' "Effective STL" item 24
     std::string Repository::storeObject(
-                                const std::string &objectID, 
-                                const boost::shared_ptr<Object> &object) {
+        const std::string &objectID, 
+        const boost::shared_ptr<Object> &object) {
+
         objectMap_[objectID] = object;
         return objectID;
     }
 
+    void Repository::retrieveObject(boost::shared_ptr<Object> &ret,
+                        const std::string &id) {
+        ret = retrieveObjectImpl(id);
+    }
+
     boost::shared_ptr<Object> Repository::retrieveObjectImpl(
-            const std::string &objectID) const {
+        const std::string &objectID) const {
+
         ObjectMap::const_iterator result = objectMap_.find(objectID);
         OH_REQUIRE(result != objectMap_.end(), "ObjectHandler error: attempt to retrieve object with "
             "unknown ID '" << objectID << "'");
@@ -70,6 +77,7 @@ namespace ObjectHandler {
     }
 
     void Repository::deleteAllObjects(const bool &deletePermanent) {
+
         if (deletePermanent) {
             objectMap_.clear();
         } else {
@@ -84,6 +92,7 @@ namespace ObjectHandler {
     }
 
     void Repository::dump(std::ostream& out) {
+
         out << "dump of all objects in ObjectHandler:" <<
             std::endl << std::endl;
         for (ObjectMap::const_iterator i=objectMap_.begin();
@@ -94,6 +103,7 @@ namespace ObjectHandler {
     }
 
     void Repository::dumpObject(const std::string &objectID, std::ostream &out) {
+
         ObjectMap::const_iterator result = objectMap_.find(objectID);
         if (result == objectMap_.end()) {
             out << "no object in repository with ID = " << objectID << std::endl;
@@ -107,7 +117,8 @@ namespace ObjectHandler {
     }
 
     const std::vector<std::string> Repository::listObjectIDs(
-            const std::string &regex) {
+        const std::string &regex) {
+
         std::vector<std::string> objectIDs;
         if (regex.empty()) {
             objectIDs.reserve(objectMap_.size());
@@ -127,5 +138,16 @@ namespace ObjectHandler {
         return objectIDs;
     }
 
-}
+    void Repository::saveObject(const std::string &objectID, const std::string &path) {
+        boost::shared_ptr<Object> object;
+        retrieveObject(object, objectID);
+        ObjectHandler::SerializationFactory::instance().saveObject(object->properties(), path.c_str());
+    }
 
+    std::string Repository::loadObject(const std::string &objectID, const std::string &path) {
+        boost::shared_ptr<Object> object =
+            ObjectHandler::SerializationFactory::instance().makeObject(path.c_str(), objectID.c_str());
+        return storeObject(objectID, object);
+    }
+
+}

@@ -87,6 +87,7 @@ namespace %(namespace)s {
                 'returnType' : returnType }
         else:
             functionSignature = ''
+            
         return Loop.BUF_LOOP % {
             'functionBind' : functionBind,
             'functionName' : func.name(),
