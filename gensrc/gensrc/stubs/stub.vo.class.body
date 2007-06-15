@@ -13,7 +13,6 @@
         else if(name == "className") return className_;
 %(propertyGet)s        else
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
-        return boost::any(); /* Dummy return - just to avoid stupid compiler warnings/errors */
     }
 
     %(functionName)s::%(functionName)s(%(constructorParList)s) :

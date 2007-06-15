@@ -41,7 +41,6 @@ namespace AccountExample {
         else if(name == "age") return age_;
         else 
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
-        return boost::any(); /* Dummy return - just to avoid stupid compiler warnings/errors */
     }
 
 }
