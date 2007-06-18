@@ -430,6 +430,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_accountingengines.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_accountingengines.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_all.hpp"
 				>
 			</File>
@@ -455,6 +463,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_bonds.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_browniangenerators.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_browniangenerators.hpp"
 				>
 			</File>
 			<File
@@ -495,6 +511,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_couponvectors.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_ctsmmcapletcalibration.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_ctsmmcapletcalibration.hpp"
 				>
 			</File>
 			<File
@@ -1142,6 +1166,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\accountingengines.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\accountingengines.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\alphaform.cpp"
 				>
 			</File>
@@ -1150,11 +1182,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\browniangenerators.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\browniangenerators.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\correlation.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\qlo\correlation.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ctsmmcapletcalibration.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ctsmmcapletcalibration.hpp"
 				>
 			</File>
 			<File
@@ -1338,6 +1386,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\Serialization\create_accountingengines.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Serialization\create_accountingengines.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\Serialization\create_all.hpp"
 				>
 			</File>
@@ -1363,6 +1419,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\Serialization\create_bonds.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Serialization\create_browniangenerators.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Serialization\create_browniangenerators.hpp"
 				>
 			</File>
 			<File
@@ -1403,6 +1467,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\Serialization\create_couponvectors.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Serialization\create_ctsmmcapletcalibration.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Serialization\create_ctsmmcapletcalibration.hpp"
 				>
 			</File>
 			<File

@@ -330,7 +330,7 @@ D MM: different correlation structures (Rapisarda, Schoenmakers and
 ---
 GIORGIO (last update 6/6/2007)
 - prepare smile section refactoring proposal
-- fixing days vector
+D fixing days vector
 - range accrual session
 - CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando

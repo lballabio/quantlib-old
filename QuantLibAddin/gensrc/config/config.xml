@@ -10,8 +10,10 @@
 
   <categoryNames>
     <categoryName>abcd</categoryName>
+    <categoryName>accountingengines</categoryName>
     <categoryName>assetswap</categoryName>
     <categoryName>alphaform</categoryName>
+    <categoryName>browniangenerators</categoryName>
     <categoryName>bonds</categoryName>
     <categoryName>calendar</categoryName>
     <categoryName>capfloor</categoryName>
@@ -19,6 +21,7 @@
     <categoryName>cmsmarket</categoryName>
     <categoryName>couponvectors</categoryName>
     <categoryName>correlation</categoryName>
+    <categoryName>ctsmmcapletcalibration</categoryName>
     <categoryName>curvestate</categoryName>
     <categoryName>date</categoryName>
     <categoryName>daycounter</categoryName>

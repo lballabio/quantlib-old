@@ -29,70 +29,11 @@
 #include <ql/models/marketmodels/models/pseudorootfacade.hpp>
 #include <ql/models/marketmodels/models/cotswaptofwdadapter.hpp>
 #include <ql/models/marketmodels/models/flatvol.hpp>
-#include <ql/models/marketmodels/browniangenerators/mtbrowniangenerator.hpp>
+#include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
+#include <ql/models/marketmodels/models/abcdvol.hpp>
 #include <ql/models/marketmodels/marketmodeldifferences.hpp>
-#include <ql/models/marketmodels/models/capletcoterminalswaptioncalibration.hpp>
-#include <ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp>
-#include <ql/models/marketmodels/models/capletcoterminalmaxhomogeneity.hpp>
 
 namespace QuantLibAddin {
-
-    CTSMMCapletOriginalCalibration::CTSMMCapletOriginalCalibration(
-            const QuantLib::EvolutionDescription& evolution,
-            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
-            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
-            const std::vector<QuantLib::Volatility>& capletVols,
-            const boost::shared_ptr<QuantLib::CurveState>& cs,
-            QuantLib::Spread displacement,
-            const std::vector<QuantLib::Real>& alpha,
-            bool lowestRoot,
-			bool useFullApprox)
-    {
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::CTSMMCapletCalibration>(new
-                QuantLib::CTSMMCapletOriginalCalibration(
-                    evolution, corr, swapVariances, capletVols, cs,
-                    displacement, alpha, lowestRoot, useFullApprox));
-    }
-
-    CTSMMCapletAlphaFormCalibration::CTSMMCapletAlphaFormCalibration(
-            const QuantLib::EvolutionDescription& evolution,
-            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
-            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
-            const std::vector<QuantLib::Volatility>& capletVols,
-            const boost::shared_ptr<QuantLib::CurveState>& cs,
-            QuantLib::Spread displacement,
-            const std::vector<QuantLib::Real>& alphaInitial,
-            const std::vector<QuantLib::Real>& alphaMax,
-            const std::vector<QuantLib::Real>& alphaMin,
-            bool maximizeHomogeneity,
-            boost::shared_ptr<QuantLib::AlphaForm>& parametricForm)
-    {
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::CTSMMCapletCalibration>(new
-                QuantLib::CTSMMCapletAlphaFormCalibration(
-                    evolution, corr, swapVariances, capletVols, cs,
-                    displacement, alphaInitial, alphaMax, alphaMin,
-                    maximizeHomogeneity, parametricForm));
-    }
-
-    CTSMMCapletMaxHomogeneityCalibration::CTSMMCapletMaxHomogeneityCalibration(
-            const QuantLib::EvolutionDescription& evolution,
-            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
-            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
-            const std::vector<QuantLib::Volatility>& capletVols,
-            const boost::shared_ptr<QuantLib::CurveState>& cs,
-            QuantLib::Spread displacement,
-            QuantLib::Real caplet0Swaption1Priority)
-    {
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::CTSMMCapletCalibration>(new
-                QuantLib::CTSMMCapletMaxHomogeneityCalibration(
-                    evolution, corr, swapVariances, capletVols, cs,
-                    displacement, caplet0Swaption1Priority));
-    }
-
-   
 
     FlatVol::FlatVol(
             const std::vector<QuantLib::Volatility>& volatilities,
@@ -196,25 +137,6 @@ namespace QuantLibAddin {
     //    libraryObject_->swapCovarianceMatrix();
     //    return result;
     //}
-
-    MTBrownianGeneratorFactory::MTBrownianGeneratorFactory(unsigned long seed)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::BrownianGeneratorFactory>(
-            new QuantLib::MTBrownianGeneratorFactory(seed));
-    }
-
-    
-    AccountingEngine::AccountingEngine(
-        const boost::shared_ptr<QuantLib::MarketModelEvolver>& evolver,
-        const QuantLib::Clone<QuantLib::MarketModelMultiProduct>& product,
-        double initialNumeraireValue)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::AccountingEngine>(
-            new QuantLib::AccountingEngine(evolver,
-                                           //*(product.get()),
-                                           product,
-                                           initialNumeraireValue));
-    }
        
     std::vector<QuantLib::Real> qlRateVolDifferences(
        const QuantLib::MarketModel& marketModel1,

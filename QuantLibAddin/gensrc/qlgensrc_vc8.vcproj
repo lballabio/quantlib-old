@@ -270,11 +270,23 @@
 					>
 				</File>
 				<File
+					RelativePath=".\metadata\Functions\accountingengines.xml"
+					>
+				</File>
+				<File
 					RelativePath=".\metadata\Functions\alphaform.xml"
 					>
 				</File>
 				<File
+					RelativePath=".\metadata\Functions\browniangenerators.xml"
+					>
+				</File>
+				<File
 					RelativePath=".\metadata\Functions\correlation.xml"
+					>
+				</File>
+				<File
+					RelativePath=".\metadata\Functions\ctsmmcapletcalibration.xml"
 					>
 				</File>
 				<File

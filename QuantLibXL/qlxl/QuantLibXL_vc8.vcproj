@@ -424,6 +424,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Register\register_accountingengines.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Register\register_all.cpp"
 				>
 			</File>
@@ -441,6 +445,10 @@
 			</File>
 			<File
 				RelativePath="Register\register_bonds.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_browniangenerators.cpp"
 				>
 			</File>
 			<File
@@ -465,6 +473,10 @@
 			</File>
 			<File
 				RelativePath="Register\register_couponvectors.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_ctsmmcapletcalibration.cpp"
 				>
 			</File>
 			<File
@@ -636,6 +648,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Functions\accountingengines.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Functions\alphaform.cpp"
 				>
 			</File>
@@ -645,6 +661,10 @@
 			</File>
 			<File
 				RelativePath="Functions\bonds.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\browniangenerators.cpp"
 				>
 			</File>
 			<File
@@ -669,6 +689,10 @@
 			</File>
 			<File
 				RelativePath="Functions\couponvectors.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Functions\ctsmmcapletcalibration.cpp"
 				>
 			</File>
 			<File
@@ -904,6 +928,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Serialization\serialization_accountingengines.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_accountingengines.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Serialization\serialization_all.hpp"
 				>
 			</File>
@@ -929,6 +961,14 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_bonds.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_browniangenerators.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_browniangenerators.hpp"
 				>
 			</File>
 			<File
@@ -969,6 +1009,14 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_couponvectors.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_ctsmmcapletcalibration.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_ctsmmcapletcalibration.hpp"
 				>
 			</File>
 			<File

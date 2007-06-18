@@ -24,63 +24,19 @@
 #define qla_market_models_hpp
 
 #include <oh/objecthandler.hpp>
-#include <ql/models/marketmodels/marketmodel.hpp>
-#include <ql/legacy/libormarketmodels/lmextlinexpvolmodel.hpp>
-#include <ql/models/marketmodels/accountingengine.hpp>
-#include <ql/models/marketmodels/browniangenerator.hpp>
-#include <ql/models/marketmodels/models/abcdvol.hpp>
-#include <ql/models/marketmodels/models/ctsmmcapletcalibration.hpp>
-#include <ql/models/marketmodels/models/alphaform.hpp>
+#include <ql/types.hpp>
+#include <ql/handle.hpp>
+
+namespace QuantLib {
+    class MarketModel;
+    class PiecewiseConstantCorrelation;
+    class EvolutionDescription;
+    class CTSMMCapletCalibration;
+    class YieldTermStructure;
+    class MarketModelFactory;
+}
 
 namespace QuantLibAddin {
-
-
-    class CTSMMCapletCalibration : public
-        ObjectHandler::LibraryObject<QuantLib::CTSMMCapletCalibration> {
-    };
-
-    class CTSMMCapletOriginalCalibration : public CTSMMCapletCalibration {
-      public:
-        CTSMMCapletOriginalCalibration(
-            const QuantLib::EvolutionDescription& evolution,
-            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
-            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
-            const std::vector<QuantLib::Volatility>& capletVols,
-            const boost::shared_ptr<QuantLib::CurveState>& cs,
-            QuantLib::Spread displacement,
-            const std::vector<QuantLib::Real>& alpha,
-            bool lowestRoot,
-			bool useFullApprox);
-    };
-
-    class CTSMMCapletAlphaFormCalibration : public CTSMMCapletCalibration {
-      public:
-        CTSMMCapletAlphaFormCalibration(
-            const QuantLib::EvolutionDescription& evolution,
-            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
-            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
-            const std::vector<QuantLib::Volatility>& capletVols,
-            const boost::shared_ptr<QuantLib::CurveState>& cs,
-            QuantLib::Spread displacement,
-            const std::vector<QuantLib::Real>& alphaInitial,
-            const std::vector<QuantLib::Real>& alphaMax,
-            const std::vector<QuantLib::Real>& alphaMin,
-            bool maximizeHomogeneity,
-            boost::shared_ptr<QuantLib::AlphaForm>& parametricForm);
-    };
-
-    class CTSMMCapletMaxHomogeneityCalibration : public CTSMMCapletCalibration {
-      public:
-        CTSMMCapletMaxHomogeneityCalibration(
-            const QuantLib::EvolutionDescription& evolution,
-            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
-            const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
-            const std::vector<QuantLib::Volatility>& capletVols,
-            const boost::shared_ptr<QuantLib::CurveState>& cs,
-            QuantLib::Spread displacement,
-            QuantLib::Real caplet0Swaption1Priority);
-    };
-
 
     // MarketModels
     class MarketModel : public ObjectHandler::LibraryObject<QuantLib::MarketModel> {
@@ -166,25 +122,6 @@ namespace QuantLibAddin {
     //    QuantLib::Disposable<QuantLib::Matrix> swapCovarianceMatrix();
     //};
 
-    class BrownianGeneratorFactory : public ObjectHandler::LibraryObject<
-        QuantLib::BrownianGeneratorFactory> {
-    };
-
-    class MTBrownianGeneratorFactory : public BrownianGeneratorFactory {
-    public:
-        MTBrownianGeneratorFactory(unsigned long seed);
-    };
-
-
-    class AccountingEngine : public ObjectHandler::LibraryObject<
-        QuantLib::AccountingEngine> {
-    public:
-        AccountingEngine(
-            const boost::shared_ptr<QuantLib::MarketModelEvolver>& evolver,
-            const QuantLib::Clone<QuantLib::MarketModelMultiProduct>& product,
-            double initialNumeraireValue);
-    };
-    
      std::vector<QuantLib::Real> qlRateVolDifferences(
                             const QuantLib::MarketModel&,
                             const QuantLib::MarketModel&);
