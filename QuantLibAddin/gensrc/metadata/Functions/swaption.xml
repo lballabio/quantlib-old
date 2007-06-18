@@ -3,6 +3,7 @@
   <displayName>Swaption</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
+    <include>ql/exercise.hpp</include>
     <include>qlo/swaption.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>

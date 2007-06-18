@@ -19,7 +19,8 @@
 #ifndef qla_volatilities_hpp
 #define qla_volatilities_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/ohdefines.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/termstructures/volatilities/equity/blackconstantvol.hpp>
 #include <ql/termstructures/volatilities/equity/blackvariancesurface.hpp>
 

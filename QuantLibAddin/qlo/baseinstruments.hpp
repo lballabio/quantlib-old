@@ -19,7 +19,8 @@
 #ifndef qla_baseinstruments_hpp
 #define qla_baseinstruments_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/ohdefines.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/instrument.hpp>
 
 

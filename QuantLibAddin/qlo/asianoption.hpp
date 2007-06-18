@@ -19,6 +19,7 @@
 #ifndef qla_asianoption_hpp
 #define qla_asianoption_hpp
 
+
 #include <qlo/baseinstruments.hpp>
 #include <ql/instruments/asianoption.hpp>
 

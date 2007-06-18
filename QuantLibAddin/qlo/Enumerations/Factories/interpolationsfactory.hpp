@@ -21,6 +21,7 @@
 #define qla_interpolationsfactory_hpp
 
 #include <oh/Enumerations/typefactory.hpp>
+#include <ql/math/interpolation.hpp>
 #include <ql/math/interpolations/interpolation2d.hpp>
 
 namespace ObjectHandler {
