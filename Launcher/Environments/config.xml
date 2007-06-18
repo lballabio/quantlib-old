@@ -23,6 +23,7 @@
         <FitCMS>false</FitCMS>
         <IndexesTimeSeries>false</IndexesTimeSeries>
         <LoadBonds>false</LoadBonds>
+        <MainChecks>false</MainChecks>
         <StaticData>false</StaticData>
       </StartupActions>
     </Environment>
@@ -46,6 +47,7 @@
         <FitCMS>false</FitCMS>
         <IndexesTimeSeries>false</IndexesTimeSeries>
         <LoadBonds>false</LoadBonds>
+        <MainChecks>false</MainChecks>
         <StaticData>false</StaticData>
       </StartupActions>
     </Environment>
@@ -69,6 +71,7 @@
         <FitCMS>false</FitCMS>
         <IndexesTimeSeries>false</IndexesTimeSeries>
         <LoadBonds>false</LoadBonds>
+        <MainChecks>false</MainChecks>
         <StaticData>false</StaticData>
       </StartupActions>
     </Environment>

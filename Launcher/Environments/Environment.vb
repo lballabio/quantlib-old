@@ -41,9 +41,11 @@ Namespace QuantLibXL
         ' of the configuration file.
         ' QUANTLIBXL_LAUNCH2 is for Framework version 6.
         ' QUANTLIBXL_LAUNCH7 is for Framework version 7.
+        ' QUANTLIBXL_LAUNCH8 is for Framework version 8.
 
         Private Const QUANTLIBXL_LAUNCH2 As String = "QUANTLIBXL_LAUNCH2"
         Private Const QUANTLIBXL_LAUNCH7 As String = "QUANTLIBXL_LAUNCH7"
+        Private Const QUANTLIBXL_LAUNCH8 As String = "QUANTLIBXL_LAUNCH8"
 
         ' The maximum number of XLLs that the Launcher can instruct the Framework to load.
         ' At present this value is limited to 10 only because the addin names
@@ -191,30 +193,7 @@ Namespace QuantLibXL
             serializer.serializeProperty(helpPath_, "HelpFile")
             serializer.serializeProperty(xmlPath_, "FunctionMetadata")
             serializer.serializeProperty(userConfig_, "UserConfigurationFile")
-
-            'If versionNumber = 5 Then
-
-            '    If addinList_.Length <> 1 Then
-
-            '        Throw New Exception("Unable to process addin list for Framework version 5. " _
-            '            & "The addin list contains " & addinList_.Length & " items " _
-            '            & "but version 5 of the Framework expects exactly one addin.")
-
-            '    End If
-
-            '    Dim addinFullName As String = addinList_(0)
-            '    Dim addinDirectory As String = System.IO.Path.GetDirectoryName(addinFullName)
-            '    Dim addinFile As String = System.IO.Path.GetFileName(addinFullName)
-
-            '    serializer.serializeProperty(addinDirectory, "AddinDirectory")
-            '    serializer.serializeProperty(addinFile, "AddinName")
-
-            'Else
-
             serializer.serializePropertyList(addinList_, "AddinList", "Addin")
-
-            'End If
-
             serializer.serializeObject(startupActions_, "StartupActions", versionNumber)
 
         End Sub
@@ -359,6 +338,7 @@ Namespace QuantLibXL
 
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH2, tempFilePath)
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH7, tempFilePath)
+                System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH8, tempFilePath)
 
                 ' Spawn the subprocess
 

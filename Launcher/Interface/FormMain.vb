@@ -80,7 +80,7 @@ Public Class FormMain
             initializeAboutTab()
             setToolTips()
 
-            lblBuildNumber.Text = buildNumber()
+            lblBuildNumber.Text = "version " & buildNumber()
 
         Catch ex As Exception
 
@@ -506,6 +506,10 @@ Public Class FormMain
 
     Private Sub cbLoadBonds_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLoadBonds.CheckedChanged
         SelectedEnvironment.StartupActions.LoadBonds = cbLoadBonds.Checked
+    End Sub
+
+    Private Sub cbMainChecks_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbMainChecks.CheckedChanged
+        SelectedEnvironment.StartupActions.MainChecks = cbMainChecks.Checked
     End Sub
 
     Private Sub cbStaticData_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbStaticData.CheckedChanged
@@ -1050,6 +1054,7 @@ Public Class FormMain
         cbFitCMS.Checked = False
         cbIndexesTimeSeries.Checked = False
         cbLoadBonds.Checked = False
+        cbMainChecks.Checked = False
         cbStaticData.Checked = False
 
         ' Environment properties
@@ -1080,6 +1085,7 @@ Public Class FormMain
         cbFitCMS.Checked = SelectedEnvironment.StartupActions.FitCMS
         cbIndexesTimeSeries.Checked = SelectedEnvironment.StartupActions.IndexesTimeSeries
         cbLoadBonds.Checked = SelectedEnvironment.StartupActions.LoadBonds
+        cbMainChecks.Checked = SelectedEnvironment.StartupActions.MainChecks
         cbStaticData.Checked = SelectedEnvironment.StartupActions.StaticData
 
         ' Environment properties
@@ -1135,9 +1141,9 @@ Public Class FormMain
     Private Function buildNumber() As String
 
         If (ApplicationDeployment.IsNetworkDeployed) Then
-            buildNumber = "version " & My.Application.Deployment.CurrentVersion.ToString()
+            buildNumber = My.Application.Deployment.CurrentVersion.ToString()
         Else
-            buildNumber = "local build"
+            buildNumber = "?.?.? (local build)"
         End If
 
     End Function

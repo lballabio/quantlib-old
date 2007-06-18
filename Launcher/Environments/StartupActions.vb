@@ -35,6 +35,7 @@ Namespace QuantLibXL
         Private fitCMS_ As Boolean
         Private indexesTimeSeries_ As Boolean
         Private loadBonds_ As Boolean
+        Private mainChecks_ As Boolean
         Private staticData_ As Boolean
 
         Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
@@ -47,6 +48,7 @@ Namespace QuantLibXL
             serializer.serializeProperty(fitCMS_, "FitCMS")
             serializer.serializeProperty(indexesTimeSeries_, "IndexesTimeSeries")
             serializer.serializeProperty(loadBonds_, "LoadBonds")
+            serializer.serializeProperty(mainChecks_, "MainChecks")
             serializer.serializeProperty(staticData_, "StaticData")
             'If versionNumber = 5 Then
             '    Dim dummyValue As Boolean = False
@@ -171,6 +173,17 @@ Namespace QuantLibXL
 
         End Property
 
+        Public Property MainChecks() As Boolean
+
+            Get
+                MainChecks = mainChecks_
+            End Get
+
+            Set(ByVal value As Boolean)
+                mainChecks_ = value
+            End Set
+
+        End Property
         Public Property StaticData() As Boolean
 
             Get

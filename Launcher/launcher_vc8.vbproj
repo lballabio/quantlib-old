@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{44737976-E701-4913-961A-391533E13573}</ProjectGuid>
+    <ProjectGuid>{07765942-2F0A-437C-A9DD-23BF88630B8F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <StartupObject>launcher.My.MyApplication</StartupObject>
     <RootNamespace>launcher</RootNamespace>
@@ -31,7 +31,7 @@
     <ProductName>QuantLibXL Launcher</ProductName>
     <PublisherName>QuantLib Developer Team</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>1.3.0.0</ApplicationVersion>
+    <ApplicationVersion>1.7.0.0</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -160,7 +160,6 @@
     <None Include="images\launch.bmp" />
     <None Include="images\delete.bmp" />
     <None Include="images\copy.bmp" />
-    <None Include="launcher_vc8_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
