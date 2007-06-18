@@ -77,6 +77,11 @@ namespace ObjectHandler {
         scalarToOper(boost::any_cast<T>(value), xAny);
     }
 
+    template <class T1, class T2>
+    void wrapScalarToOper(const boost::any &value, OPER &xAny) {
+        scalarToOper(static_cast<T2>(boost::any_cast<T1>(value)), xAny);
+    }
+
     template <class T>
     void wrapVectorToOper(const boost::any &value, OPER &xAny) {
         vectorToOper(boost::any_cast<std::vector<T> >(value), xAny);
@@ -95,9 +100,9 @@ namespace ObjectHandler {
             OPER *xTemp = boost::any_cast<OPER*>(value);
             Excel(xlCoerce, &xAny, 1, xTemp);
         } else if (value.type() == typeid(unsigned int)) {
-            wrapScalarToOper<long>(value, xAny);
+            wrapScalarToOper<unsigned int, long>(value, xAny);
         } else if (value.type() == typeid(int)) {
-            wrapScalarToOper<long>(value, xAny);
+            wrapScalarToOper<int, long>(value, xAny);
         } else if (value.type() == typeid(long)) {
             wrapScalarToOper<long>(value, xAny);
         } else if (value.type() == typeid(double)) {
