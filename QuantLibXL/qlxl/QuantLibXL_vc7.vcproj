@@ -427,6 +427,9 @@
 				RelativePath=".\Register\register_abcd.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_accountingengines.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_all.cpp">
 			</File>
 			<File
@@ -440,6 +443,9 @@
 			</File>
 			<File
 				RelativePath="Register\register_bonds.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_browniangenerators.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_calendar.cpp">
@@ -458,6 +464,9 @@
 			</File>
 			<File
 				RelativePath="Register\register_couponvectors.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_ctsmmcapletcalibration.cpp">
 			</File>
 			<File
 				RelativePath=".\Register\register_curvestate.cpp">
@@ -801,6 +810,12 @@
 				RelativePath=".\Serialization\serialization_abcd.hpp">
 			</File>
 			<File
+				RelativePath=".\Serialization\serialization_accountingengines.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_accountingengines.hpp">
+			</File>
+			<File
 				RelativePath=".\Serialization\serialization_all.hpp">
 			</File>
 			<File
@@ -820,6 +835,12 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_bonds.hpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_browniangenerators.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_browniangenerators.hpp">
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_capfloor.cpp">
@@ -850,6 +871,12 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_couponvectors.hpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_ctsmmcapletcalibration.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_ctsmmcapletcalibration.hpp">
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_curvestate.cpp">

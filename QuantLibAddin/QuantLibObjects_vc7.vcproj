@@ -413,6 +413,12 @@
 				RelativePath=".\qlo\ValueObjects\vo_abcd.hpp">
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_accountingengines.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_accountingengines.hpp">
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_all.hpp">
 			</File>
 			<File
@@ -432,6 +438,12 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_bonds.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_browniangenerators.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_browniangenerators.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_capfloor.cpp">
@@ -462,6 +474,12 @@
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_couponvectors.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_ctsmmcapletcalibration.cpp">
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_ctsmmcapletcalibration.hpp">
 			</File>
 			<File
 				RelativePath=".\qlo\ValueObjects\vo_curvestate.cpp">
