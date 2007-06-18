@@ -26,8 +26,9 @@
 
 #include <boost/shared_ptr.hpp>
 #include <oh/ohdefines.hpp>
+#include <oh/valueobject.hpp>
 #include <oh/exception.hpp>
-#include <boost/any.hpp>
+#include <oh/Conversions/anytostream.hpp>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -44,9 +45,6 @@ namespace ObjectHandler {
         in the header file in order to allow derived classes to inherit from Object
         across DLL boundaries on the Windows platform.
     */
-
-    class ValueObject;
-
     class Object {        
     public:
         //! \name Structors
@@ -124,6 +122,35 @@ namespace ObjectHandler {
         Object(const Object&);
     };
 
+    inline std::vector<std::string> Object::propertyNames() const {
+        std::vector<std::string> ret;
+		if (mProps)
+			ret = mProps->getPropertyNames();
+			
+        return ret;
+    }
+
+    inline boost::any Object::propertyValue(const std::string &propertyName) const {
+		if (mProps)
+			return mProps->getProperty(propertyName);
+        OH_FAIL("ObjectHandler error: attempt to retrieve property "
+            << "with unknown name '" << propertyName << "'");
+    }
+
+    inline void Object::dump(std::ostream &out) {
+        out << std::endl;
+        std::vector<std::string> propertyNames = this->propertyNames();
+        for (std::vector<std::string>::const_iterator i = propertyNames.begin(); 
+                i != propertyNames.end(); ++i) {
+	        std::string propertyName = *i;
+	        boost::any propertyValue = this->propertyValue(propertyName);
+            out << "property = " << std::left << std::setw(logColumnWidth_) << propertyName;
+            out << " value = " << std::left << std::setw(logColumnWidth_) << propertyValue << std::endl;
+        }
+        out << "permanent = " << std::left << std::setw(logColumnWidth_) 
+            << std::boolalpha << permanent_ << std::endl;
+        out << std::endl;
+    }
 
     inline std::ostream &operator<<(std::ostream &out, const boost::shared_ptr<Object> &object) {
         object->dump(out);

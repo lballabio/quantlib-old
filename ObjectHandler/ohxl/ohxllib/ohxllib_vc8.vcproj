@@ -340,10 +340,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\object.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\oh\object.hpp"
 					>
 				</File>

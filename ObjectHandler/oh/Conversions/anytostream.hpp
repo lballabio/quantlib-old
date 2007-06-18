@@ -24,8 +24,6 @@
 #define oh_anytostream_hpp
 
 #include <oh/variant.hpp>
-#include <boost/any.hpp>
-#include <vector>
 
 namespace ObjectHandler {
 
