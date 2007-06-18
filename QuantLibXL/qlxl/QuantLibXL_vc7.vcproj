@@ -587,6 +587,9 @@
 				RelativePath=".\Functions\abcd.cpp">
 			</File>
 			<File
+				RelativePath=".\Functions\accountingengines.cpp">
+			</File>
+			<File
 				RelativePath=".\Functions\alphaform.cpp">
 			</File>
 			<File
@@ -594,6 +597,9 @@
 			</File>
 			<File
 				RelativePath="Functions\bonds.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\browniangenerators.cpp">
 			</File>
 			<File
 				RelativePath="Functions\calendar.cpp">
@@ -612,6 +618,9 @@
 			</File>
 			<File
 				RelativePath="Functions\couponvectors.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\ctsmmcapletcalibration.cpp">
 			</File>
 			<File
 				RelativePath=".\Functions\curvestate.cpp">

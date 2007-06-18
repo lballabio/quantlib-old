@@ -73,6 +73,9 @@
 				RelativePath=".\metadata\Functions\abcd.xml">
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\accountingengines.xml">
+			</File>
+			<File
 				RelativePath=".\metadata\Functions\alphaform.xml">
 			</File>
 			<File
@@ -80,6 +83,9 @@
 			</File>
 			<File
 				RelativePath="metadata\Functions\bonds.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\browniangenerators.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\calendar.xml">
@@ -98,6 +104,9 @@
 			</File>
 			<File
 				RelativePath="metadata\Functions\couponvectors.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\ctsmmcapletcalibration.xml">
 			</File>
 			<File
 				RelativePath=".\metadata\Functions\curvestate.xml">
@@ -166,10 +175,10 @@
 				RelativePath=".\metadata\Functions\products.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\quotes.xml">
+				RelativePath=".\metadata\quotes.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\quotes.xml">
+				RelativePath=".\metadata\Functions\quotes.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\randomsequencegenerator.xml">
