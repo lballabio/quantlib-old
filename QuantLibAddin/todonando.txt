@@ -143,8 +143,8 @@ CW	18%
 - Bug investigation: launcher menu actions			(done)
   - l'errore si presentava con la rev 10882 del foglio intratefeed.xls
     il quale era stato salvato senza ricalcolo
-- Rt: se Reuters non è disponibile chiudi i live feed
-- Main checks action: da aggiungere nel launcher
+- Rt: se Reuters non è disponibile chiudi i live feed		(done)
+- Main checks action: da aggiungere nel launcher		(done)
 - Design e gestione della USD currency per contribuzione swaption vols
 - time series
     *Refresh snapshot vba: estendere alle ts se open & editable
@@ -158,8 +158,8 @@ CW	18%
   -> no evidence of stopping problems on our pcs
   -> prepared wkb to test on traders' pc (next week)
 - coveredWarrants.xls
-    *check delta price in terms of vega with flat vol 	(1d/2d)
-    *rivedere la gestione dei trigger
+    *check delta price in terms of vega with flat vol 		(1d/2d)
+    *rivedere la gestione dei trigger				(done)
 - Sensitivity Analysis (K&Cristina):  				(7.5d/5w)
   - General
     run sa on rates, atm vols and vol spreads
