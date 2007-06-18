@@ -22,6 +22,7 @@ class Instrument {
 ---
 GENERAL
 
+- check period normalization (commented out code)
 - where is qlcalendar advance in the wizard
 - why wizard apply format doesn't work on multiple selection?
 - wbk open must reopen in the last folder
@@ -38,12 +39,6 @@ GENERAL
 - default valus per SequenceStatistics2
 
 - caplet/swaption calibration
-  ! spline bootstrapping
-  ! get result of alpha fitting in wbks
-  ! cotsmm corr classes
-  ! external stats class in fwd rate analysis
-  ! rename historic corr files
-  ! zero elements in CTSMM corr
   why to zero coefficients in CotSwapCorr make calib fail?
   just one test with multiple unit-test
   use more realistic corr structure in test suite
