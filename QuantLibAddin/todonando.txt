@@ -69,6 +69,8 @@ GENERAL
 
 ---
 NANDO
+- test ForwardPeriodAdapter
+- wbk_close: if read-only do not ask for saving
 - use class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
   for HistoricalForwardRatesAnalysis
 - Run Main Checks -> Open Main Checks
