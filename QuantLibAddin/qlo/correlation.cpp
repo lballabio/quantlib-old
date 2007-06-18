@@ -30,7 +30,7 @@
 #include <ql/models/marketmodels/correlations/cotswapfromfwdcorrelation.hpp>
 #include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
 #include <ql/models/marketmodels/correlations/expcorrelations.hpp>
-#include <ql/models/marketmodels/historicalcorrelation.hpp>
+#include <ql/models/marketmodels/historicalforwardratesanalysis.hpp>
 #include <ql/math/statistics/sequencestatistics.hpp>
 
 namespace QuantLibAddin {
@@ -75,57 +75,74 @@ namespace QuantLibAddin {
     }
 
     CotSwapFromFwdCorrelation::CotSwapFromFwdCorrelation(
-            const QuantLib::Matrix& correlations,
+            const boost::shared_ptr<
+                            QuantLib::PiecewiseConstantCorrelation>& fwdCorr,
             const QuantLib::CurveState& curveState,
-            QuantLib::Real displacement,
-            const QuantLib::EvolutionDescription& evolution) {
+            QuantLib::Real displacement) {
         libraryObject_ =
             boost::shared_ptr<QuantLib::CotSwapFromFwdCorrelation>(new
-                QuantLib::CotSwapFromFwdCorrelation(correlations,
-                                                          curveState,
-                                                          displacement,
-                                                          evolution));
+                QuantLib::CotSwapFromFwdCorrelation(fwdCorr,
+                                                    curveState,
+                                                    displacement));
     }
-        
-    HistoricalCorrelation::HistoricalCorrelation(
-                const QuantLib::Date& startDate,
-                const QuantLib::Date& endDate,
-                const QuantLib::Period& step,
-                const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
-                const QuantLib::Period& initialGap,
-                const QuantLib::Period& horizon,
-                const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
-                const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
-                const QuantLib::DayCounter& yieldCurveDayCounter,
-                QuantLib::Real yieldCurveAccuracy) {
-        libraryObject_ = boost::shared_ptr<QuantLib::HistoricalCorrelation>(new
-            QuantLib::HistoricalCorrelation(startDate,
-                                            endDate,
-                                            step,
-                                            fwdIndex,
-                                            initialGap,
-                                            horizon,
-                                            iborIndexes,
-                                            swapIndexes,
-                                            yieldCurveDayCounter,
-                                            yieldCurveAccuracy));
-    }
-
-    const int HistoricalCorrelation::samples() const {
-        return libraryObject_->stats().samples();
-    }
-
-    const std::vector<double> HistoricalCorrelation::mean() const {
-        return libraryObject_->stats().mean();
+  
+    HistoricalForwardRatesAnalysis::HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborInd,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapInd,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy)
+    {
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysis(stats,
+                                                         startDate,
+                                                         endDate,
+                                                         step,
+                                                         fwdIndex,
+                                                         initialGap,
+                                                         horizon,
+                                                         iborInd,
+                                                         swapInd,
+                                                         yieldCurveDayCounter,
+                                                         yieldCurveAccuracy));
     }
 
-    const std::vector<double> HistoricalCorrelation::variance() const {
-        return libraryObject_->stats().variance();
-    }
-
-    const QuantLib::Matrix HistoricalCorrelation::correlation() const {
-        return libraryObject_->stats().correlation();
-    }
+    //QuantLib::Size HistoricalForwardRatesAnalysis::size() const {
+    //    return libraryObject_->stats()->size();
+    //}
+    //QuantLib::Matrix HistoricalForwardRatesAnalysis::correlation() const {
+    //    return libraryObject_->stats()->correlation();
+    //}
+    //QuantLib::Size HistoricalForwardRatesAnalysis::samples() const {
+    //    return libraryObject_->stats()->samples();
+    //}
+    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::mean()const {
+    //    return libraryObject_->stats()->mean();
+    //}
+    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::variance() const {
+    //    return libraryObject_->stats()->variance();
+    //}
+    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::standardDeviation() const {
+    //    return libraryObject_->stats()->standardDeviation();
+    //}
+    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::skewness() const {
+    //    return libraryObject_->stats()->skewness();
+    //}
+    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::kurtosis() const {
+    //    return libraryObject_->stats()->kurtosis();
+    //}
+    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::min() const {
+    //    return libraryObject_->stats()->min();
+    //}
+    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::max() const {
+    //    return libraryObject_->stats()->max();
+    //}
 
 }
-

@@ -25,6 +25,7 @@
 #define qla_correlation_hpp
 
 #include <oh/objecthandler.hpp>
+#include <ql/math/statistics/sequencestatistics.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {
@@ -39,7 +40,7 @@ namespace QuantLib {
     class IborIndex;
     class SwapIndex;
     class DayCounter;
-    class HistoricalCorrelation;
+    class HistoricalForwardRatesAnalysis;
 }
 
 namespace QuantLibAddin {
@@ -79,32 +80,37 @@ namespace QuantLibAddin {
     class CotSwapFromFwdCorrelation : public PiecewiseConstantCorrelation {
       public:
         CotSwapFromFwdCorrelation(
-            const QuantLib::Matrix& correlations,
+            const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>&,
             const QuantLib::CurveState& curveState,
-            QuantLib::Real displacement,
-            const QuantLib::EvolutionDescription& evolution);
+            QuantLib::Real displacement);
     };
   
-    class HistoricalCorrelation : public
-        ObjectHandler::LibraryObject<QuantLib::HistoricalCorrelation> {
+    class HistoricalForwardRatesAnalysis : public
+        ObjectHandler::LibraryObject<QuantLib::HistoricalForwardRatesAnalysis> {
       public:
-        HistoricalCorrelation(
+        HistoricalForwardRatesAnalysis(
+                const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
                 const QuantLib::Date& startDate,
                 const QuantLib::Date& endDate,
                 const QuantLib::Period& step,
-                const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+                const boost::shared_ptr<QuantLib::InterestRateIndex>&,
                 const QuantLib::Period& initialGap,
                 const QuantLib::Period& horizon,
-                const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
-                const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+                const std::vector<boost::shared_ptr<QuantLib::IborIndex> >&,
+                const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >&,
                 const QuantLib::DayCounter& yieldCurveDayCounter,
                 QuantLib::Real yieldCurveAccuracy);
-        const int samples() const;
-        const std::vector<double> mean()const;
-        const std::vector<double> variance() const;
-        const QuantLib::Matrix correlation() const;
+        //QuantLib::Size size() const;
+        //QuantLib::Matrix correlation() const;
+        //QuantLib::Size samples() const;
+        //std::vector<QuantLib::Real> mean()const;
+        //std::vector<QuantLib::Real> variance() const;
+        //std::vector<QuantLib::Real> standardDeviation() const;
+        //std::vector<QuantLib::Real> skewness() const;
+        //std::vector<QuantLib::Real> kurtosis() const;
+        //std::vector<QuantLib::Real> min() const;
+        //std::vector<QuantLib::Real> max() const;
     };
 }
 
 #endif
-
