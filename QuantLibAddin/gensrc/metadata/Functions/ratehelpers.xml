@@ -47,9 +47,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlRateHelperReferenceQuote' type='QuantLib::RateHelper'>
-      <description>returns the reference quote for the given RateHelper object</description>
-      <libraryFunction>referenceQuote</libraryFunction>
+    <Member name='qlRateHelperQuoteValue' type='QuantLib::RateHelper'>
+      <description>returns the quote value wrapped in the given RateHelper object</description>
+      <libraryFunction>quoteValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Cpp'/>
