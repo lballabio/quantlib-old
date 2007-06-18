@@ -1036,7 +1036,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='sequenceStatistics' >
+          <Parameter name='SequenceStats'>
             <type>QuantLib::SequenceStatistics</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
