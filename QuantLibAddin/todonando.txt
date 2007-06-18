@@ -22,31 +22,21 @@ class Instrument {
 ---
 GENERAL
 
-- check period normalization (commented out code)
+
 - where is qlcalendar advance in the wizard
 - why wizard apply format doesn't work on multiple selection?
 - wbk open must reopen in the last folder
 - RateHelpers refactoring (using indexes)
-
-- riorganizzare quote/timeseries menus
-
-- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
-
 - cubic parameters as input to PiecewiseYieldCurve
-
-- vector of object IDS (as in PiecewiseYieldCurve)
-
-- default valus per SequenceStatistics2
-
 - caplet/swaption calibration
-  why to zero coefficients in CotSwapCorr make calib fail?
   just one test with multiple unit-test
+  check new cotsmm corr and old one
+  why to zero coefficients in CotSwapCorr make calib fail?
   use more realistic corr structure in test suite
   verify yc bootstrapping
   check corr times includes all rate times but the last
   check original calib result before deleting it
   object wizard does not paste InterpolationTraits
-  do not calculate hist corr in wizard (!?)
   1D as default value instead of exampleValue in hist corr
   check displacements
   market model creation from calibrator
@@ -59,24 +49,11 @@ GENERAL
   check/enforce alpha_i > 1/t_i
   conditional formatting on calibration errors in 1Y wbk
   error string for skipped/failed dates
-
 - adapter from LMM to CMSMM
-
-- refresh snapshot also for time series + merge quotefeeds and timeseries actions
-
-- qlxlversion e trigger formatting in time series
-
 - every factor in MM might have its own vol model
 - profiling MM
-
-
 - USD yield curve and swaption vols
-
-- move info from ControlPanel (e.g. number of objects) to MainChecks
-- action for main checks
-- action for setEvaluationDate
-
-- remove all ActiveWorkbook usage
+- QuantLib.xla: remove all ActiveWorkbook usage
 - cap pricing quality
 - remove useless env variables
 - be ready to debug production
@@ -92,6 +69,11 @@ GENERAL
 
 ---
 NANDO
+- use class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
+  for HistoricalForwardRatesAnalysis
+- Run Main Checks -> Open Main Checks
+- relinkable handle singleton
+- object creation for Eric
 - per Luigi: floating point exception + pricing engines observers dei market data
 - all wbks must use qlxlVersion(true, Trigger)
 - check testsuite error when QL_INDEXED_COUPON is used
@@ -137,6 +119,13 @@ SA	49%
 bug fix	20%
 test	14%
 CW	18%
+
+- action for setEvaluationDate
+- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni (K & Cri)
+- re-organize Quote/TimeSeries menus
+  refresh snapshot also for time series + merge quotefeeds and timeseries actions
+  qlxlversion and trigger formatting in time series
+- all handle used in main checks should be created in handles.xls
 - trigger qlVersion() and format properly time stamp in the XXXFeed folders (done)
 - add call to volatility method in CapsStripper creation 	(done)
 - metadata creators error messages 				(done)
@@ -236,6 +225,10 @@ CW	18%
 
 ---
 CRISTINA
+- test for relinkability (CMS npv + greeks)
+- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni (K & Cri)
+- check SequenceStatistics wbks for signature changes
+- deals serialization
 - cap/floor flow analysis
 - arrange session on digitals
 - clean up Clerici's abcd problems (0.25D/0.25D - Waiting for users feedback)
@@ -329,6 +322,13 @@ D MM: different correlation structures (Rapisarda, Schoenmakers and
 
 ---
 GIORGIO (last update 6/6/2007)
+- VBA missing menus:
+  enum QuantLib::EndCriteria::Type
+  enum QuantLib::CmsMarketCalibration::CalibrationType
+  class QuantLib::IborCouponPricer
+  class QuantLib::Payoff
+  class QuantLib::PricingEngine
+  class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
 - prepare smile section refactoring proposal
 D fixing days vector
 - range accrual session
@@ -370,6 +370,27 @@ MARCO (last update 7/6/2007)
 
 ---
 Eric
+- SA
+- Reuters
+- Trader wbk problem
+- object creation
+
+- native support of vector of object IDS (as RateHelpers in PiecewiseYieldCurve)
+- flow analysis bug
+- the only index we are enumeratig are InterestRateIndex
+- automate xls properties clean up
+- ohretrieveerror bug (see YieldCurveBootstrapping.xls)
+- enumeration aliases: avoid all aliases in ohEnumeratedType("class QuantLib::DayCounter")
+- automatic dropdown cell menu maintenance (see Enumerations.xls)
+- ohproperty value should iterate on field input
+- native Excel looping behaviour
+- HistoricalForwardRatesAnalysis should not calculate in wizard
+- business252 designed as in JointCalendar
+- market data serialization
+- multicurrency analysis
+- bloomberg dll loading
+- relinkable handle singleton
+- compilation time (header inclusion clean up, multiple xll, ecc)
 - QuantLibXL About should use qlXlVersion()
 - when returning a singe col (row) matrix add another col (row)
   with #NA to prevent Excel from duplicating col (row)
