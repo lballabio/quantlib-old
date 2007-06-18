@@ -26,31 +26,33 @@
 namespace ObjectHandler {
 
     typedef boost::shared_ptr<QuantLib::YieldTermStructure>(*YieldTermStructureConstructor)(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rh,
+            const QuantLib::DayCounter& dayCounter);
 
     template<>
     class Create<boost::shared_ptr<QuantLib::YieldTermStructure> > :
-        private RegistryManager<QuantLib::YieldTermStructure, EnumPairRegistry> {
+        private RegistryManager<QuantLib::YieldTermStructure,
+                                EnumPairRegistry> {
     public:
         boost::shared_ptr<QuantLib::YieldTermStructure> operator() (
                 const std::string& traitsID,
                 const std::string& interpolatorID,
-                const long &nDays,
-                const QuantLib::Calendar &calendar,
-                const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-                const QuantLib::DayCounter &dayCounter) {
+                QuantLib::Natural nDays,
+                const QuantLib::Calendar& calendar,
+                const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rh,
+                const QuantLib::DayCounter& dayCounter) {
             KeyPair key(traitsID, interpolatorID);
             YieldTermStructureConstructor yieldTermStructureConstructor =
                 reinterpret_cast<YieldTermStructureConstructor>(getType(key));
-            return yieldTermStructureConstructor(nDays, calendar, rateHelpers, dayCounter);
+            return yieldTermStructureConstructor(nDays, calendar,
+                                                 rh, dayCounter);
         }
-        using RegistryManager<QuantLib::YieldTermStructure, EnumPairRegistry>::registerType;
+        using RegistryManager<QuantLib::YieldTermStructure,
+                              EnumPairRegistry>::registerType;
     };
 
  }
 
 #endif
-

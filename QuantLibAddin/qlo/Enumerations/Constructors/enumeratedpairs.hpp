@@ -34,86 +34,99 @@ namespace QuantLibAddin {
 
     /* *** Discount based *** */
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_BACKWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_FORWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LOGLINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_CUBIC_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
 
     /* *** ZeroYield based *** */
     boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_BACKWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_FORWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LOGLINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_CUBIC_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
 
     /* *** ForwardRate based *** */
     boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_BACKWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_FORWARDFLAT_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LOGLINEAR_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_CUBIC_PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> > &rateHelpers,
-            const QuantLib::DayCounter &dayCounter);
-
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
 }
 
 #endif
-

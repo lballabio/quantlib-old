@@ -22,22 +22,48 @@ class Instrument {
 ---
 GENERAL
 
+- where is qlcalendar advance in the wizard
+- why wizard apply format doesn't work on multiple selection?
+- wbk open must reopen in the last folder
+- RateHelpers refactoring (using indexes)
+
+- riorganizzare quote/timeseries menus
+
 - evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
 
+- cubic parameters as input to PiecewiseYieldCurve
+
+- vector of object IDS (as in PiecewiseYieldCurve)
+
+- default valus per SequenceStatistics2
+
 - caplet/swaption calibration
+  ! spline bootstrapping
+  ! get result of alpha fitting in wbks
+  ! cotsmm corr classes
+  ! external stats class in fwd rate analysis
+  ! rename historic corr files
+  ! zero elements in CTSMM corr
+  why to zero coefficients in CotSwapCorr make calib fail?
+  just one test with multiple unit-test
+  use more realistic corr structure in test suite
+  verify yc bootstrapping
+  check corr times includes all rate times but the last
+  check original calib result before deleting it
+  object wizard does not paste InterpolationTraits
+  do not calculate hist corr in wizard (!?)
+  1D as default value instead of exampleValue in hist corr
   check displacements
   market model creation from calibrator
-  get result of alpha fitting in wbks
   check if homo = false still crashes
   first rate issue (i.e. when a solution does not exist)
-  more stats from hist corr classes
   duplicate pseudorootfacade checks in the new constructor
   use OTM options for abcd wbks
   multiple displacements for swap indexes
-  remove dates and just use periods
   check if iterative approach make it worse when there is a failure
   check/enforce alpha_i > 1/t_i
   conditional formatting on calibration errors in 1Y wbk
+  error string for skipped/failed dates
 
 - adapter from LMM to CMSMM
 
@@ -49,15 +75,12 @@ GENERAL
 - profiling MM
 
 
-- fix yield curve cubic bootstrapping (first try Linear)
-
 - USD yield curve and swaption vols
 
 - move info from ControlPanel (e.g. number of objects) to MainChecks
 - action for main checks
 - action for setEvaluationDate
 
-- 2Y beta sensitivity
 - remove all ActiveWorkbook usage
 - cap pricing quality
 - remove useless env variables
@@ -74,8 +97,7 @@ GENERAL
 
 ---
 NANDO
-- per Luigi: floating point exception + pricing engines onservers dei market data
-- Yield Curve Bootstraping needs new style
+- per Luigi: floating point exception + pricing engines observers dei market data
 - all wbks must use qlxlVersion(true, Trigger)
 - check testsuite error when QL_INDEXED_COUPON is used
 - production: writing privileges (xla and the rest)
@@ -90,13 +112,13 @@ NANDO
 - ref market data set for test suite
 - evaluation date observers
 - handle incomplete Reuters menu
-- check beta2Y sensitivity
+- check 2Y beta sensitivity
 - handle already loaded addin
 - special handling of reuters/bloomberg addins
 - use Handle in SwaptionVolCubeChecks
 - manage auto-open macro problem -> propose:
   Application.EnableEvents=True in qlxl.xla/ThisWorkbook
-- TS time interface
+- TermStructure time interface
 - recreating object quotes...
 - Higham covariance bug + review rank reduction
 - create relinkableHandle, then in ControlPanel only use linkTo
@@ -356,6 +378,8 @@ Eric
 - QuantLibXL About should use qlXlVersion()
 - when returning a singe col (row) matrix add another col (row)
   with #NA to prevent Excel from duplicating col (row)
+- when returning a singe cell vector add another cell
+  with #NA to prevent Excel from duplicating cel
 - xml schema
 - error when too many input parameters are provided
 - why xll loading does not receive the same graful failure treatment

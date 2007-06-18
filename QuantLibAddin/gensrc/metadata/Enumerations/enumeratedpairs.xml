@@ -17,6 +17,16 @@
         <!-- Discount based yield term structures -->
         <EnumeratedPair>
           <id1>Discount</id1>
+          <id2>BackwardFlat</id2>
+          <value>DISCOUNT_BACKWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>ForwardFlat</id2>
+          <value>DISCOUNT_FORWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
           <id2>Linear</id2>
           <value>DISCOUNT_LINEAR_PiecewiseYieldCurve</value>
         </EnumeratedPair>
@@ -33,6 +43,16 @@
         <!-- ZeroYield based yield term structures -->
         <EnumeratedPair>
           <id1>ZeroYield</id1>
+          <id2>BackwardFlat</id2>
+          <value>ZEROYIELD_BACKWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>ForwardFlat</id2>
+          <value>ZEROYIELD_FORWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
           <id2>Linear</id2>
           <value>ZEROYIELD_LINEAR_PiecewiseYieldCurve</value>
         </EnumeratedPair>
@@ -47,6 +67,16 @@
           <value>ZEROYIELD_CUBIC_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <!--ForwardRate based yield term structures-->
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>BackwardFlat</id2>
+          <value>FORWARDRATE_BACKWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>ForwardFlat</id2>
+          <value>FORWARDRATE_FORWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
         <EnumeratedPair>
           <id1>ForwardRate</id1>
           <id2>Linear</id2>
