@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2006 Cristina Duminuco
 
  This file is part of QuantLib, a free-software/open-source library
@@ -30,10 +30,9 @@ namespace QuantLibAddin {
     class SequenceStatistics : 
         public ObjectHandler::LibraryObject<QuantLib::SequenceStatistics> {
     public:
-        SequenceStatistics(QuantLib::Size dimension,
-                           QuantLib::Matrix values, 
-                           std::vector<QuantLib::Real> weights);
         SequenceStatistics(QuantLib::Size dimension);
+        SequenceStatistics(QuantLib::Matrix values, 
+                           std::vector<QuantLib::Real> weights);
     };
 
 }

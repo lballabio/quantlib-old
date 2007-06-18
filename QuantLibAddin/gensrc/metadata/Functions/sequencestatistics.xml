@@ -7,6 +7,7 @@
     <include>qlo/sequencestatistics.hpp</include>
   </includes>
   <copyright>
+    Copyright (C) 2007 Ferdinando Ametrano
     Copyright (C) 2006, 2007 Cristina Duminuco
   </copyright>
 
@@ -482,6 +483,24 @@
       </ReturnValue>
     </Member>
 
+    <!-- SequenceStatistics methods:  N-D inspectors -->
+
+    <Member name='qlSequenceStatisticsSize' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the size (sample dimensionality) for the given SequenceStatistics object</description>
+      <libraryFunction>size</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlSequenceStatisticsCovariance' type='QuantLib::SequenceStatistics' superType='libraryClass'>
       <description>Returns the covariance Matrix for the given SequenceStatistics object</description>
       <libraryFunction>covariance</libraryFunction>
@@ -516,10 +535,8 @@
 
     <!-- constructor -->
 
-    <Constructor name='qlSequenceStatistics2'>
-      <description>
-        Statistics analysis .
-      </description>
+    <Constructor name='qlSequenceStatistics'>
+      <description>Statistics analysis of N-dimensional (sequence) data.</description>
       <libraryFunction>SequenceStatistics</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -527,7 +544,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dimension' exampleValue='2'>
+          <Parameter name='dimension' default='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Statistics dimensionality.</description>
@@ -536,10 +553,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlSequenceStatistics'>
-      <description>
-        Statistics analysis of N-dimensional (sequence) data.
-      </description>
+    <Constructor name='qlSequenceStatistics2'>
+      <description>Statistics analysis of N-dimensional (sequence) data.</description>
       <libraryFunction>SequenceStatistics</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -547,19 +562,13 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dimension' exampleValue='2'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Statistics dimensionality.</description>
-          </Parameter>
           <Parameter name='values'>
-            <!--default='QuantLib::Matrix()'>-->
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>Sampled values. If omitted, an empty statistics is created.</description>
           </Parameter>
-          <Parameter name='weights' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.0'>
-            <type>double</type>
+          <Parameter name='weights' default='std::vector&lt;QuantLib::Real&gt;()'>
+            <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>If omitted, all sampled values have the same weight.</description>
           </Parameter>

@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2006 Cristina Duminuco
 
  This file is part of QuantLib, a free-software/open-source library
@@ -23,36 +24,35 @@
 
 namespace QuantLibAddin {
 
-    SequenceStatistics::SequenceStatistics(QuantLib::Size dimension,
-                                           QuantLib::Matrix values, 
-                                           std::vector<QuantLib::Real> weights)
-        {               
-            libraryObject_ = boost::shared_ptr<QuantLib::SequenceStatistics>(
-                new QuantLib::SequenceStatistics(dimension));
+    SequenceStatistics::SequenceStatistics(QuantLib::Matrix values, 
+                                           std::vector<QuantLib::Real> w)
+    {               
+        libraryObject_ = boost::shared_ptr<QuantLib::SequenceStatistics>(new
+                QuantLib::SequenceStatistics());
 
-            QL_REQUIRE(weights==std::vector<QuantLib::Real>() || values.rows()==weights.size(),
-                "Values and weights vectors must have the same number of elements.");
-            
-            if (values.rows()>0) {
-                if (weights!=std::vector<QuantLib::Real>()) {
-                    for (QuantLib::Size i=0; i<values.rows(); ++i) {
-                        libraryObject_->add(values.row_begin(i),
-                                            values.row_end(i),
-                                            weights[i]);
-                    }
-                } else {
-                    for (QuantLib::Size i=0; i<values.rows(); ++i) {
-                        libraryObject_->add(values.row_begin(i),
-                                            values.row_end(i));
-                    }
-                }
+        if (values.rows()>0) {
+            if (w!=std::vector<QuantLib::Real>()) {
+                QL_REQUIRE(values.rows()==w.size(),
+                           "Mismatch between number of samples (" <<
+                           values.rows() << ") and number of weights (" <<
+                           w.size() << ")");
+                for (QuantLib::Size i=0; i<values.rows(); ++i)
+                    libraryObject_->add(values.row_begin(i),
+                                        values.row_end(i),
+                                        w[i]);
+            } else {
+                for (QuantLib::Size i=0; i<values.rows(); ++i)
+                    libraryObject_->add(values.row_begin(i),
+                                        values.row_end(i));
             }
         }
 
+    }
 
-    SequenceStatistics::SequenceStatistics(QuantLib::Size dimension) {               
-            libraryObject_ = boost::shared_ptr<QuantLib::SequenceStatistics>(
-                new QuantLib::SequenceStatistics(dimension));
-         }
+
+    SequenceStatistics::SequenceStatistics(QuantLib::Size dimension) {
+        libraryObject_ = boost::shared_ptr<QuantLib::SequenceStatistics>(new
+            QuantLib::SequenceStatistics(dimension));
+    }
 
 }
