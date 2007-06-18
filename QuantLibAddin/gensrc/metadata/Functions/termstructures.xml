@@ -332,7 +332,7 @@
       <ParameterList>
         <Parameters>
           <Parameter name='nDays' default='0'>
-            <type>QuantLib::Size</type>
+            <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. If omitted, default = 0 is used.</description>
           </Parameter>
@@ -351,15 +351,20 @@
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='traitsID' default='"Discount"'>
+          <Parameter name='traitsID' default='"ForwardRate"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
           </Parameter>
-          <Parameter name='interpolatorID' default='"LogLinear"'>
+          <Parameter name='interpolatorID' default='"Cubic"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Linear, LogLinear, or Cubic. If omitted, default = LogLinear is used.</description>
+          </Parameter>
+          <Parameter name='accuracy' default='1.0e-12'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Bootstrappin accuracy.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
