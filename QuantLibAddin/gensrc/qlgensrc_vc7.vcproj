@@ -94,6 +94,9 @@
 				RelativePath="metadata\Functions\cmsmarket.xml">
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\correlation.xml">
+			</File>
+			<File
 				RelativePath="metadata\Functions\couponvectors.xml">
 			</File>
 			<File
@@ -104,6 +107,12 @@
 			</File>
 			<File
 				RelativePath="metadata\Functions\daycounter.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\driftcalculators.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\evolutiondescription.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\exercise.xml">
@@ -122,6 +131,9 @@
 			</File>
 			<File
 				RelativePath=".\metadata\Functions\leg.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\marketmodelevolvers.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\marketmodels.xml">
@@ -209,6 +221,9 @@
 			</File>
 			<File
 				RelativePath="metadata\Functions\volatilities.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\volatility.xml">
 			</File>
 		</Filter>
 		<Filter
