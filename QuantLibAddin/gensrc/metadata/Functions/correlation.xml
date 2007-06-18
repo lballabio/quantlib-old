@@ -3,12 +3,13 @@
   <displayName>correlation</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
+    <include>qlo/sequencestatistics.hpp</include>
     <include>qlo/correlation.hpp</include>
     <include>qlo/curvestate.hpp</include>
     <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/index.hpp</include>
     <include>ql/models/marketmodels/correlations/expcorrelations.hpp</include>
-    <include>ql/models/marketmodels/historicalcorrelation.hpp</include>
+    <include>ql/models/marketmodels/historicalforwardratesanalysis.hpp</include>
   </includes>
 
   <copyright>
@@ -56,7 +57,39 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlHistoricalCorrelationFixingPeriods' type='QuantLib::HistoricalCorrelation'>
+    <Member name='qlHistoricalForwardRatesAnalysisSkippedDates' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns vector of historic dates for which some fixing is missing.</description>
+      <libraryFunction>skippedDates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalForwardRatesAnalysisFailedDates' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns vector of dates for which forward rates could not be calculated.</description>
+      <libraryFunction>failedDates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalForwardRatesAnalysisFixingPeriods' type='QuantLib::HistoricalForwardRatesAnalysis'>
       <description>Returns the forward rates time grid.</description>
       <libraryFunction>fixingPeriods</libraryFunction>
       <SupportedPlatforms>
@@ -72,104 +105,8 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlHistoricalCorrelationSkippedDates' type='QuantLib::HistoricalCorrelation'>
-      <description>Returns vector of historic dates for which fixing is missing.</description>
-      <libraryFunction>skippedDates</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlHistoricalCorrelationFailedDates' type='QuantLib::HistoricalCorrelation'>
-      <description>Returns vector of dates for which a forward rate could not be calculated.</description>
-      <libraryFunction>failedDates</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlHistoricalCorrelationSamples' type='QuantLibAddin::HistoricalCorrelation'>
-      <description>Returns forward rates' samples</description>
-      <libraryFunction>samples</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlHistoricalCorrelationMean' type='QuantLibAddin::HistoricalCorrelation'>
-      <description>Returns vector of forward rates' means</description>
-      <libraryFunction>mean</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlHistoricalCorrelationVariance' type='QuantLibAddin::HistoricalCorrelation'>
-      <description>Returns vector of forward rates' variances</description>
-      <libraryFunction>variance</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-    
-    <Member name='qlHistoricalCorrelationCorrelation' type='QuantLibAddin::HistoricalCorrelation'>
-      <description>Returns historical correlations between forward rates</description>
-      <libraryFunction>correlation</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Matrix</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
-   
-    <Constructor name='qlHistoricalCorrelation'>
-      <libraryFunction>HistoricalCorrelation</libraryFunction>
+    <Constructor name='qlHistoricalForwardRatesAnalysis'>
+      <libraryFunction>HistoricalForwardRatesAnalysis</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -177,17 +114,23 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='startDate'>
+          <Parameter name='SequenceStats'>
+            <type>QuantLib::SequenceStatistics</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Sequence Statistics object ID</description>
+          </Parameter>
+          <Parameter name='startDate' exampleValue='37413'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>beginning of the time series</description>
           </Parameter>
-          <Parameter name='endDate'>
+          <Parameter name='endDate' exampleValue='39248'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>end of the time series</description>
           </Parameter>
-          <Parameter name='step' exampleValue='1D'>
+          <Parameter name='step' exampleValue='"1D"'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>time series' time step</description>
@@ -222,7 +165,7 @@
             <tensorRank>scalar</tensorRank>
             <description>yield curve DayCounter</description>
           </Parameter>
-          <Parameter name='bootstrapAccuracy' exampleValue='10e-12'>
+          <Parameter name='bootstrapAccuracy' default='1.0e-12'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>boostrap accuracy</description>
@@ -240,10 +183,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fwdCorrelation' >
+          <Parameter name='fwdCorrMatrix' >
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
-            <description>forward correlations</description>
+            <description>forward correlation matrix</description>
           </Parameter>
           <Parameter name='rateTimes' >
             <type>QuantLib::Time</type>
@@ -396,10 +339,11 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='correlationMatrix'>
-            <type>QuantLib::Matrix</type>
-            <tensorRank>matrix</tensorRank>
-            <description>FRA correlation matrix</description>
+          <Parameter name='fwdCorr' exampleValue ='PiecewiseConstantCorrelationID'>
+            <type>QuantLib::PiecewiseConstantCorrelation</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Forward rates correlation (i.e. PiecewiseConstantCorrelation object ID)</description>
           </Parameter>
           <Parameter name='curveState' exampleValue ='CurveStateID'>
             <type>QuantLib::CurveState</type>
@@ -411,12 +355,6 @@
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
-          </Parameter>
-          <Parameter name='evolution' exampleValue ='EvolutionDescriptionID'>
-            <type>QuantLib::EvolutionDescription</type>
-            <superType>underlyingClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>Evolution Description</description>
           </Parameter>
         </Parameters>
       </ParameterList>
