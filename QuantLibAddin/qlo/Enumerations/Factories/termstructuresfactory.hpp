@@ -21,7 +21,14 @@
 #define qla_termstructuresfactory_hpp
 
 #include <oh/Enumerations/typefactory.hpp>
-#include <ql/termstructures/yieldcurves/ratehelpers.hpp>
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class Calendar;
+    class DayCounter;
+    class RateHelper;
+    class YieldTermStructure;
+}
 
 namespace ObjectHandler {
 
