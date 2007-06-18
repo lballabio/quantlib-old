@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005, 2006 Eric Ehlers
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -31,19 +31,22 @@
 #include <ql/math/interpolations/cubicspline.hpp>
 #include <ql/termstructures/yieldcurves/discountcurve.hpp>
 #include <ql/termstructures/yieldcurves/forwardcurve.hpp>
+#include <ql/termstructures/yieldcurves/zerocurve.hpp>
 #include <ql/termstructures/yieldcurves/impliedtermstructure.hpp>
 #include <ql/termstructures/yieldcurves/flatforward.hpp>
 #include <ql/termstructures/yieldcurves/forwardspreadedtermstructure.hpp>
+//#include <ql/termstructures/yieldcurves/piecewiseyieldcurve.hpp>
 
 namespace QuantLibAddin {
 
     PiecewiseYieldCurve::PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<std::string> &handlesRateHelper,
-            const QuantLib::DayCounter &dayCounter,
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<std::string>& handlesRateHelper,
+            const QuantLib::DayCounter& dayCounter,
             const std::string& traitsID, 
-            const std::string& interpolatorID)
+            const std::string& interpolatorID,
+            QuantLib::Real accuracy)
     {
         std::vector<std::string>::const_iterator i;
         std::vector<boost::shared_ptr<QuantLib::RateHelper> > rateHelpersQL;
@@ -68,27 +71,22 @@ namespace QuantLibAddin {
         //    QuantLib::CubicSpline::FirstDerivative, 0.0,
         //    true);
 
-        //libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(
-        //    new QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
-        //                                      QuantLib::LogLinear>(
-        //        nDays, calendar,
-        //        rateHelpersQL,
-        //        dayCounter,
-        //        1.0e-6));
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
+            QuantLib::YieldTermStructure> >()(traitsID,
+                                              interpolatorID,
+                                              nDays,
+                                              calendar,
+                                              rateHelpersQL,
+                                              dayCounter);
 
-        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::YieldTermStructure> >()
-            (traitsID, interpolatorID, nDays, calendar, rateHelpersQL, dayCounter);
-
-        /*
-        termStructure_ = boost::shared_ptr<QuantLib::YieldTermStructure>(
-            new QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-                                              QuantLib::Cubic>(
-                nDays, calendar,
-                rateHelpersQL,
-                dayCounter,
-                1e-12,
-                monotoneCubic));
-        */
+        //libraryObject_ = boost::shared_ptr<QuantLib::YieldTermStructure>(new
+        //    QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+        //                                  QuantLib::Cubic>(nDays,
+        //                                                   calendar,
+        //                                                   rateHelpersQL,
+        //                                                   dayCounter,
+        //                                                   accuracy,
+        //                                                   monotoneCubic));
 
     }
 

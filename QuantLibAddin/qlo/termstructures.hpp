@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005, 2006 Eric Ehlers
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -22,13 +22,17 @@
 #ifndef qla_termstructures_hpp
 #define qla_termstructures_hpp
 
-#include <ql/termstructure.hpp>
 #include <qlo/interpolation.hpp>
+#include <ql/time/frequency.hpp>
+#include <ql/compounding.hpp>
+#include <ql/handle.hpp>
 #include <oh/objecthandler.hpp>
-#include <ql/interestrate.hpp>
 
 namespace QuantLib {
+    class Calendar;
     class YieldTermStructure;
+    class DayCounter;
+    class Date;
 }
 
 namespace QuantLibAddin {
@@ -40,12 +44,13 @@ namespace QuantLibAddin {
     class PiecewiseYieldCurve : public YieldTermStructure {
       public:
         PiecewiseYieldCurve(
-            const long &nDays,
-            const QuantLib::Calendar &calendar,
-            const std::vector<std::string> &handlesRateHelper,
-            const QuantLib::DayCounter &dayCounter,
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<std::string>& handlesRateHelper,
+            const QuantLib::DayCounter& dayCounter,
             const std::string& traitsID,
-            const std::string& interpolatorID);
+            const std::string& interpolatorID,
+            QuantLib::Real accuracy);
     };
 
     class DiscountCurve : public YieldTermStructure {
