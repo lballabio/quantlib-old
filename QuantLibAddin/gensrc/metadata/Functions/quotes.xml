@@ -70,7 +70,7 @@
     </Constructor>
 
     <Member name='qlSimpleQuoteSetValue' type='QuantLib::SimpleQuote'>
-      <description>sets the value of the given SimpleQuote object</description>
+      <description>sets a new value to the given SimpleQuote object and returns the difference with the previous value</description>
       <libraryFunction>setValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
