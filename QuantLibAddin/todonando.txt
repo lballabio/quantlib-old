@@ -111,7 +111,7 @@ test	14%
 CW	18%
 
 - hist fwd rates analysis action (not in the launcher)		(done)
-- fixing loading with and without Reuters
+- fixing loading with and without Reuters			(done)
 - error string for skipped/failed dates				(done)
 - action for setEvaluationDate
 - Run Main Checks -> Open Main Checks
