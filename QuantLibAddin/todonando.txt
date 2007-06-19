@@ -72,8 +72,7 @@ NANDO
 - wbk_close: if read-only do not ask for saving
 - use class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
   for HistoricalForwardRatesAnalysis
-- per Luigi: floating point exception + pricing engines observers dei market
-  data
+- per Luigi: floating point exception + pricing engines observers dei market data
 - all wbks must use qlxlVersion(true, Trigger)
 - check testsuite error when QL_INDEXED_COUPON is used
 - production: writing privileges (xla and the rest)
@@ -111,20 +110,18 @@ bug fix	20%
 test	14%
 CW	18%
 
-- hist fwd rates analysis action (not in the launcher)
+- hist fwd rates analysis action (not in the launcher)		(done)
 - fixing loading with and without Reuters
-- error string for skipped/failed dates
+- error string for skipped/failed dates				(done)
 - action for setEvaluationDate
 - Run Main Checks -> Open Main Checks
-- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
-  (K & Cri)
+- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni (K & Cri)
 - re-organize Quote/TimeSeries menus
-  refresh snapshot also for time series + merge quotefeeds and timeseries
-  actions
+  refresh snapshot also for time series + merge quotefeeds and timeseries actions
   qlxlversion and trigger formatting in time series
+
 - all handle used in main checks should be created in handles.xls
-- trigger qlVersion() and format properly time stamp in the XXXFeed folders
-  (done)
+- trigger qlVersion() and format properly time stamp in the XXXFeed folders (done)
 - add call to volatility method in CapsStripper creation 	(done)
 - metadata creators error messages 				(done)
 - Bug investigation: launcher menu actions			(done)
@@ -223,12 +220,11 @@ CW	18%
 
 ---
 CRISTINA
-- check SequenceStatistics wbks for signature changes (DONE)
-- test for relinkability (CMS npv + greeks) (DONE for NPV)
+- check SequenceStatistics wbks for signature changes
+- test for relinkability (CMS npv + greeks)
 - test valid object creation with ALL quotes not initialized
 - use OTM options instead of ITM options in all abcd wbks
-- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
-  (K & Cri)
+- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni (K & Cri)
 - deals serialization
 - cap/floor flow analysis
 - digital coupon pricing with analytic formula
@@ -254,16 +250,11 @@ CHIARA
 - erratic Grisafi's bond monitor behaviour
 - Digital Bond contructor (0.5d|10dd|Wip)
   - arranged session on digitals with Cristina
-  - check digital bonds' prospectus in order to list different specifications
-    of payoff
-  - digitalcmsratebond constructor + digitalfloatingratebond constructor
-    without cap and floor
-  - review digitalcoupon with cristina so to add capped and floored ibor/swap
-    indexes
-  - review digitalcmsratebond constructor + digitalfloatingratebond constructor
-    so to add capped and floored ibor/swap indexes
-- check dual user Launcher installation on Grisafi's workstation (Done on
-  ingfin workstation)
+  - check digital bonds' prospectus in order to list different specifications of payoff
+  - digitalcmsratebond constructor + digitalfloatingratebond constructor without cap and floor
+  - review digitalcoupon with cristina so to add capped and floored ibor/swap indexes
+  - review digitalcmsratebond constructor + digitalfloatingratebond constructor so to add capped and floored ibor/swap indexes
+- check dual user Launcher installation on Grisafi's workstation (Done on ingfin workstation)
 - fixed problem with missing ISDAFIX indexes for 28th may 2007 (0.5d|0.5d|Done)
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g.
   IT0003650998.pdf) (0d|1d)
@@ -284,10 +275,8 @@ CHIARA
   - sent request to desktop service so to add the user to CABOTOXL
   - arrange session with nando
 - markedata\BloombergFeed (Maurizio Pietrini)
-  - waiting for BBG worksheets from Maurizio (Maurizio is starting on 5th or
-    6th)
-- zspread/yield inversion (lehman's paper values can optionally be reproduces
-  in the testsuite)
+  - waiting for BBG worksheets from Maurizio (Maurizio is starting on 5th or 6th)
+- zspread/yield inversion (lehman's paper values can optionally be reproduces in the testsuite)
 - zerospreadedtermstructure: daycounter bug
 - bonds' workbooks integration with K+/Gatemate
 - Multicallable bond constructor
@@ -356,8 +345,7 @@ D fixing days vector
 - WIP ratchet Instrument C++ (shared with Marco) (3d/7d)
 - WIP range accrual coupon (con relativi test) (18d/30d)
   - WIP create a workbook for range accrual under
-    Workbooks\InterestRateDerivatives designing the workbook as done for
-    CMS.xls
+    Workbooks\InterestRateDerivatives designing the workbook as done for CMS.xls
 - Visual Studio Express installation
 
 ---
@@ -394,20 +382,15 @@ Eric
 - Trader wbk problem
 - object creation
 
-- rename all Index as InterestRateIndex (we haven't used Indexes yet, only
-  InterestRateIndexes)
 - ohRange coercion to Matrix, std::vector, Array, scalar, etc
-- in index.xml use QuantLibAddin::Index::addFixings instead of
-  QuantLib::Index::addFixings
+- in index.xml use QuantLibAddin::Index::addFixings instead of QuantLib::Index::addFixings
 - relinkable handle singletons
-- native support of vector of object IDS (as RateHelpers in
-  PiecewiseYieldCurve)
+- native support of vector of object IDS (as RateHelpers in PiecewiseYieldCurve)
 - flow analysis bug
 - the only index we are enumeratig are InterestRateIndex
 - automate xls properties clean up
 - ohretrieveerror bug (see YieldCurveBootstrapping.xls)
-- enumeration aliases: avoid all aliases in ohEnumeratedType("class
-  QuantLib::DayCounter")
+- enumeration aliases: avoid all aliases in ohEnumeratedType("class QuantLib::DayCounter")
 - automatic dropdown cell menu maintenance (see Enumerations.xls)
 - ohproperty value should iterate on field input
 - native Excel looping behaviour
@@ -492,8 +475,7 @@ LUIGI
   discount grid
 - InterpolatedYieldTermStructure<Discount,LogLinear>::gridDates()
 - generic ForwardSpreadedYieldCurve (spread term structure)
-- bootstrap ForwardSpreadedYieldCurve using its own ratehelpers and a base
-  curve
+- bootstrap ForwardSpreadedYieldCurve using its own ratehelpers and a base curve
 
 QUANTLIBADDIN
 - RSG factory
