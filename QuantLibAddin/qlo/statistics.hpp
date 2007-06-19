@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2006 Cristina Duminuco
 
  This file is part of QuantLib, a free-software/open-source library
@@ -21,47 +21,56 @@
 #define qla_riskstatistics_hpp
 
 #include <oh/objecthandler.hpp>
-#include <ql/math/statistics/statistics.hpp>
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class GeneralStatistics;
+
+    template<class Stat>
+    class GenericGaussianStatistics;
+
+    typedef GenericGaussianStatistics<GeneralStatistics> GaussianStatistics;
+
+    template <class S>
+    class GenericRiskStatistics;
+
+    typedef GenericRiskStatistics<GaussianStatistics> RiskStatistics;
+
+    typedef RiskStatistics Statistics;
+
+    class StatsHolder;
+}
 
 namespace QuantLibAddin {
 
     class Statistics : 
-        public ObjectHandler::LibraryObject<QuantLib::Statistics> {
-    public:
-        Statistics(std::vector<QuantLib::Real> values, 
-                   std::vector<QuantLib::Real> weights);
+                public ObjectHandler::LibraryObject<QuantLib::Statistics> {
+      public:
+        Statistics(const std::vector<QuantLib::Real>& values, 
+                   const std::vector<QuantLib::Real>& weights);
     };
 
 
-    #define TYPICAL_GAUSSIAN_2DOUBLE_STAT_FUNCTION(METHOD) \
-    inline double METHOD(double mean, double stdDev) { \
-        QuantLib::StatsHolder h(mean, stdDev); \
-        QuantLib::GenericGaussianStatistics< QuantLib::StatsHolder > s(h); \
-        return s.METHOD(); \
-    }
+    #define DECLARE_TYPICAL_GAUSSIAN_2DOUBLE_STAT_FUNCTION(NAME) \
+    QuantLib::Real NAME(QuantLib::Real, QuantLib::Real);
 
-    TYPICAL_GAUSSIAN_2DOUBLE_STAT_FUNCTION(gaussianDownsideVariance)
-    TYPICAL_GAUSSIAN_2DOUBLE_STAT_FUNCTION(gaussianDownsideDeviation)
+    DECLARE_TYPICAL_GAUSSIAN_2DOUBLE_STAT_FUNCTION(gaussianDownsideVariance)
+    DECLARE_TYPICAL_GAUSSIAN_2DOUBLE_STAT_FUNCTION(gaussianDownsideDeviation)
 
 
 
-    #define TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(METHOD) \
-    inline double METHOD(double x, double mean, double stdDev) { \
-        QuantLib::StatsHolder h(mean, stdDev); \
-        QuantLib::GenericGaussianStatistics< QuantLib::StatsHolder > s(h); \
-        return s.METHOD(x); \
-    }
+    #define DECLARE_TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(NAME) \
+    QuantLib::Real NAME(QuantLib::Real, QuantLib::Real, QuantLib::Real);
 
-    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianRegret)
-    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianPercentile)
-    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianTopPercentile)
-    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianPotentialUpside)
-    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianValueAtRisk)
-    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianExpectedShortfall)
-    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianShortfall)
-    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianAverageShortfall)
+    DECLARE_TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianRegret)
+    DECLARE_TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianPercentile)
+    DECLARE_TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianTopPercentile)
+    DECLARE_TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianPotentialUpside)
+    DECLARE_TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianValueAtRisk)
+    DECLARE_TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianExpectedShortfall)
+    DECLARE_TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianShortfall)
+    DECLARE_TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianAverageShortfall)
 
 }
 
 #endif
-

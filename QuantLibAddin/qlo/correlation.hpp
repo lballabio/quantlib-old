@@ -25,7 +25,6 @@
 #define qla_correlation_hpp
 
 #include <oh/objecthandler.hpp>
-#include <ql/math/statistics/sequencestatistics.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {
@@ -41,6 +40,25 @@ namespace QuantLib {
     class SwapIndex;
     class DayCounter;
     class HistoricalForwardRatesAnalysis;
+
+    class GeneralStatistics;
+
+    template<class Stat>
+    class GenericGaussianStatistics;
+
+    typedef GenericGaussianStatistics<GeneralStatistics> GaussianStatistics;
+
+    template <class S>
+    class GenericRiskStatistics;
+
+    typedef GenericRiskStatistics<GaussianStatistics> RiskStatistics;
+
+    typedef RiskStatistics Statistics;
+
+    template <class StatisticsType>
+    class GenericSequenceStatistics;
+
+    typedef GenericSequenceStatistics<Statistics> SequenceStatistics;
 }
 
 namespace QuantLibAddin {
@@ -100,16 +118,6 @@ namespace QuantLibAddin {
                 const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >&,
                 const QuantLib::DayCounter& yieldCurveDayCounter,
                 QuantLib::Real yieldCurveAccuracy);
-        //QuantLib::Size size() const;
-        //QuantLib::Matrix correlation() const;
-        //QuantLib::Size samples() const;
-        //std::vector<QuantLib::Real> mean()const;
-        //std::vector<QuantLib::Real> variance() const;
-        //std::vector<QuantLib::Real> standardDeviation() const;
-        //std::vector<QuantLib::Real> skewness() const;
-        //std::vector<QuantLib::Real> kurtosis() const;
-        //std::vector<QuantLib::Real> min() const;
-        //std::vector<QuantLib::Real> max() const;
     };
 }
 

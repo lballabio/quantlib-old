@@ -31,7 +31,6 @@
 #include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
 #include <ql/models/marketmodels/correlations/expcorrelations.hpp>
 #include <ql/models/marketmodels/historicalforwardratesanalysis.hpp>
-#include <ql/math/statistics/sequencestatistics.hpp>
 
 namespace QuantLibAddin {
       
@@ -113,36 +112,5 @@ namespace QuantLibAddin {
                                                          yieldCurveDayCounter,
                                                          yieldCurveAccuracy));
     }
-
-    //QuantLib::Size HistoricalForwardRatesAnalysis::size() const {
-    //    return libraryObject_->stats()->size();
-    //}
-    //QuantLib::Matrix HistoricalForwardRatesAnalysis::correlation() const {
-    //    return libraryObject_->stats()->correlation();
-    //}
-    //QuantLib::Size HistoricalForwardRatesAnalysis::samples() const {
-    //    return libraryObject_->stats()->samples();
-    //}
-    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::mean()const {
-    //    return libraryObject_->stats()->mean();
-    //}
-    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::variance() const {
-    //    return libraryObject_->stats()->variance();
-    //}
-    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::standardDeviation() const {
-    //    return libraryObject_->stats()->standardDeviation();
-    //}
-    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::skewness() const {
-    //    return libraryObject_->stats()->skewness();
-    //}
-    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::kurtosis() const {
-    //    return libraryObject_->stats()->kurtosis();
-    //}
-    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::min() const {
-    //    return libraryObject_->stats()->min();
-    //}
-    //std::vector<QuantLib::Real> HistoricalForwardRatesAnalysis::max() const {
-    //    return libraryObject_->stats()->max();
-    //}
 
 }

@@ -25,19 +25,21 @@
 
 namespace QuantLibAddin {
 
-    SequenceStatistics::SequenceStatistics(QuantLib::Size dimension,
-                                           const QuantLib::Matrix& values, 
-                                           const std::vector<QuantLib::Real>& w)
-    {               
+    SequenceStatistics::SequenceStatistics(
+                                        QuantLib::Size dimension,
+                                        const QuantLib::Matrix& values, 
+                                        const std::vector<QuantLib::Real>& w)
+    {
         libraryObject_ = boost::shared_ptr<QuantLib::SequenceStatistics>(new
-                QuantLib::SequenceStatistics(dimension));
+            QuantLib::SequenceStatistics(dimension));
+
+        QL_REQUIRE(w.empty() || values.rows()==w.size(),
+                   "Mismatch between number of samples (" <<
+                   values.rows() << ") and number of weights (" <<
+                   w.size() << ")");
 
         if (values.rows()>0) {
-            if (w!=std::vector<QuantLib::Real>()) {
-                QL_REQUIRE(values.rows()==w.size(),
-                           "Mismatch between number of samples (" <<
-                           values.rows() << ") and number of weights (" <<
-                           w.size() << ")");
+            if (!w.empty()) {
                 for (QuantLib::Size i=0; i<values.rows(); ++i)
                     libraryObject_->add(values.row_begin(i),
                                         values.row_end(i),

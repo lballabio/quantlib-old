@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,27 +20,58 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/statistics.hpp>
+#include <ql/math/statistics/statistics.hpp>
 
 namespace QuantLibAddin {
 
-    Statistics::Statistics(std::vector<QuantLib::Real> values, 
-                           std::vector<QuantLib::Real> weights)
-        {               
-            libraryObject_ = boost::shared_ptr<QuantLib::Statistics>(
-                new QuantLib::Statistics());
+    Statistics::Statistics(const std::vector<QuantLib::Real>& values, 
+                           const std::vector<QuantLib::Real>& w)
+    {               
+        libraryObject_ = boost::shared_ptr<QuantLib::Statistics>(new
+            QuantLib::Statistics());
 
-            QL_REQUIRE(weights.empty() || values.size()==weights.size(),
-                "Values and weights vectors must have the same number of elements.");
+        QL_REQUIRE(w.empty() || values.size()==w.size(),
+                   "Mismatch between number of samples (" <<
+                   values.size() << ") and number of weights (" <<
+                   w.size() << ")");
 
-            if (!values.empty()) {
-                if (!weights.empty())
-                    libraryObject_->addSequence(values.begin(),
-                                                values.end(),
-                                                weights.begin());
-                else
-                    libraryObject_->addSequence(values.begin(),
-                                                values.end());
-            }
+        if (!values.empty()) {
+            if (!w.empty())
+                libraryObject_->addSequence(values.begin(),
+                                            values.end(),
+                                            w.begin());
+            else
+                libraryObject_->addSequence(values.begin(),
+                                            values.end());
         }
+    }
+
+    #define TYPICAL_GAUSSIAN_2DOUBLE_STAT_FUNCTION(NAME) \
+    QuantLib::Real NAME(QuantLib::Real mean, QuantLib::Real stdDev) { \
+        QuantLib::StatsHolder h(mean, stdDev); \
+        QuantLib::GenericGaussianStatistics< QuantLib::StatsHolder > s(h); \
+        return s.NAME(); \
+    }
+
+    TYPICAL_GAUSSIAN_2DOUBLE_STAT_FUNCTION(gaussianDownsideVariance)
+    TYPICAL_GAUSSIAN_2DOUBLE_STAT_FUNCTION(gaussianDownsideDeviation)
+
+
+
+    #define TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(NAME) \
+    QuantLib::Real NAME(QuantLib::Real x, QuantLib::Real mean, QuantLib::Real stdDev) { \
+        QuantLib::StatsHolder h(mean, stdDev); \
+        QuantLib::GenericGaussianStatistics< QuantLib::StatsHolder > s(h); \
+        return s.NAME(x); \
+    }
+
+    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianRegret)
+    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianPercentile)
+    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianTopPercentile)
+    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianPotentialUpside)
+    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianValueAtRisk)
+    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianExpectedShortfall)
+    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianShortfall)
+    TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianAverageShortfall)
 
 }

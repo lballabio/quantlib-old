@@ -2,8 +2,12 @@
   <description>functions to construct and use Statistics objects</description>
   <displayName>Statistics</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/statistics.hpp</include>
+    <include>ql/math/statistics/statistics.hpp</include>
+  </includes>
   <copyright>
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006 Cristina Duminuco
   </copyright>
 
@@ -22,7 +26,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Size</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -38,7 +42,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -54,7 +58,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -70,7 +74,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -86,7 +90,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -102,7 +106,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -118,7 +122,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -134,7 +138,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -150,7 +154,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -166,7 +170,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -181,14 +185,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='x' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -203,14 +207,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='x' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -228,7 +232,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -244,7 +248,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -259,14 +263,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -281,14 +285,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='x' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -303,14 +307,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='x' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1].</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -325,14 +329,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -347,14 +351,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -369,14 +373,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -391,14 +395,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -413,14 +417,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -438,7 +442,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -454,7 +458,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -470,7 +474,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -486,7 +490,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -501,14 +505,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -523,14 +527,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='centile' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the centile</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -545,14 +549,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -567,14 +571,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='centile' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the centile</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -589,14 +593,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -611,14 +615,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -635,12 +639,12 @@
       <ParameterList>
         <Parameters>
           <Parameter name='values' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.5,2.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>Sampled values. If omitted, an empty statistics is created.</description>
           </Parameter>
           <Parameter name='weights' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.0,1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>Weights. If omitted, all sampled values have the same weight.</description>
           </Parameter>
@@ -661,19 +665,19 @@
       <ParameterList>
         <Parameters>
           <Parameter name='mean' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -688,19 +692,19 @@
       <ParameterList>
         <Parameters>
           <Parameter name='mean' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -715,24 +719,24 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
           <Parameter name='mean' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -747,24 +751,24 @@
       <ParameterList>
         <Parameters>
           <Parameter name='x' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
           <Parameter name='mean' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -779,24 +783,24 @@
       <ParameterList>
         <Parameters>
           <Parameter name='x' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
           <Parameter name='mean' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -811,24 +815,24 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
           <Parameter name='mean' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -843,24 +847,24 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
           <Parameter name='mean' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -875,24 +879,24 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
           <Parameter name='mean' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -907,24 +911,24 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
           <Parameter name='mean' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -939,24 +943,24 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
           <Parameter name='mean' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
           <Parameter name='stdDev' default='1.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
