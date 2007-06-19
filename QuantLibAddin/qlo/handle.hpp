@@ -26,21 +26,38 @@ namespace QuantLibAddin {
 
     template <class T>
     class RelinkableHandle : public ObjectHandler::Object {
-    public:
+      public:
         RelinkableHandle(const boost::shared_ptr<T> &observable) {
-            if (observable)
+            if (observable) {
                 handle_.linkTo(observable);
+                //currentLink_ = boost::any_cast<std::string>(propertyValue("currentLink"));
+                currentLink_ = "dummyID";
+            }
         }
         void linkTo(const boost::shared_ptr<T> &observable) {
-            QL_REQUIRE(observable, "Error relinking handle of type "
-                << typeid(this).name() << " - input object is null");
+        //void linkTo(const boost::shared_ptr<ObjectHandler::Object> &object) {
+
+            //boost::shared_ptr<T> observable;
+            //object->getLibraryObject(observable);
+
+            QL_REQUIRE(observable,
+                       "Error relinking handle of type " << typeid(this).name()
+                       << " - input object is null");
             handle_.linkTo(observable);
+
+            //currentLink_ = boost::any_cast<std::string>(object->propertyValue("objectID"));
+            currentLink_ = "newDummyID";
         }
         QuantLib::RelinkableHandle<T> getHandle() {
             return handle_;
         }
-    private:
+        std::string currentLink() {
+            //return boost::any_cast<std::string>(propertyValue("currentLink"));
+            return currentLink_;
+        }
+      private:
         QuantLib::RelinkableHandle<T> handle_;
+        std::string currentLink_;
     };
 
 }
