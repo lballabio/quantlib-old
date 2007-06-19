@@ -3,10 +3,14 @@
   <displayName>Quotes</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
-    <include>ql/quote.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/index.hpp</include>
-      
+    <include>ql/quotes/simplequote.hpp</include>
+    <include>ql/quotes/derivedquote.hpp</include>
+    <include>ql/quotes/eurodollarfuturesquote.hpp</include>
+    <include>ql/quotes/forwardvaluequote.hpp</include>
+    <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
+    <include>ql/quotes/impliedstddevquote.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2006 Francois du Vignaud
@@ -153,11 +157,11 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='quote' >
+          <Parameter name='currentLink' default='""'>
             <type>QuantLib::Quote</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Quote object ID</description>
+            <description>Quote object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -172,7 +176,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='quote' >
+          <Parameter name='currentLink' >
             <type>QuantLib::Quote</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>

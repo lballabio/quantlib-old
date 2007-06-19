@@ -382,6 +382,9 @@ Eric
 - Trader wbk problem
 - object creation
 
+- setProperty
+- rename all Index as InterestRateIndex (we haven't used Indexes yet, only
+  InterestRateIndexes)
 - ohRange coercion to Matrix, std::vector, Array, scalar, etc
 - in index.xml use QuantLibAddin::Index::addFixings instead of QuantLib::Index::addFixings
 - relinkable handle singletons
