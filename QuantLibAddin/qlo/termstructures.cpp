@@ -77,7 +77,8 @@ namespace QuantLibAddin {
                                               nDays,
                                               calendar,
                                               rateHelpersQL,
-                                              dayCounter);
+                                              dayCounter,
+                                              accuracy);
 
         //libraryObject_ = boost::shared_ptr<QuantLib::YieldTermStructure>(new
         //    QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
