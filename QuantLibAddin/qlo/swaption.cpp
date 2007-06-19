@@ -27,15 +27,15 @@
 namespace QuantLibAddin {
 
     Swaption::Swaption(
-        const boost::shared_ptr<QuantLib::VanillaSwap>& swap,
+        const boost::shared_ptr<QuantLib::VanillaSwap>& vanillaSwap,
         const boost::shared_ptr<QuantLib::Exercise>& exercise,
         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
         const boost::shared_ptr<QuantLib::BlackSwaptionEngine>& engine,
         QuantLib::Settlement::Type settlementType)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
-            new QuantLib::Swaption(swap, exercise, hYTS, engine,
-                                   settlementType));
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::Swaption(vanillaSwap, exercise, hYTS, engine,
+                               settlementType));
     }
 
 }
