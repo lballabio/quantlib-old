@@ -19,6 +19,12 @@
 
 
 #include <qlo/quotes.hpp>
+#include <ql/quotes/simplequote.hpp>
+#include <ql/quotes/derivedquote.hpp>
+#include <ql/quotes/eurodollarfuturesquote.hpp>
+#include <ql/quotes/forwardvaluequote.hpp>
+#include <ql/quotes/futuresconvadjustmentquote.hpp>
+#include <ql/quotes/impliedstddevquote.hpp>
 
 namespace QuantLibAddin {
 
@@ -29,6 +35,30 @@ namespace QuantLibAddin {
             QuantLib::SimpleQuote(value));
     }
 
+    QuantLib::Real SimpleQuote::tickValue() const {
+        //return boost::any_cast<QuantLib::Real>(propertyValue("tickValue"));
+        return tickValue_;
+    }
+
+    void SimpleQuote::setTickValue(QuantLib::Real tickValue) {
+        //properties()->setProperty("tickValue", tickValue);
+        tickValue_ = tickValue;
+    }
+
+    //QuantLib::Real SimpleQuote::setValue(QuantLib::Real value) {
+    //    QuantLib::Real result;
+    //    try {
+    //        // dynamic cast needed below
+    //        result = libraryObject_->setValue(value);
+    //    } catch (std::exception& e) { 
+    //        //properties()->setProperty("value", libraryObject_->value());
+    //        throw();
+    //    }
+    //    //properties()->setProperty("value", libraryObject_->value());
+    //    return result;
+    //}
+
+
     ForwardValueQuote::ForwardValueQuote(
         const boost::shared_ptr<QuantLib::IborIndex>& index,
         const QuantLib::Date& fixingDate)
@@ -38,7 +68,7 @@ namespace QuantLibAddin {
     }
     
     ImpliedStdDevQuote::ImpliedStdDevQuote(
-                            const QuantLib::Option::Type& optionType,
+                            QuantLib::Option::Type optionType,
                             const QuantLib::Handle<QuantLib::Quote>& forward,
                             const QuantLib::Handle<QuantLib::Quote>& price,
                             QuantLib::Real strike,

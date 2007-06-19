@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2006 François du Vignaud
  Copyright (C) 2006 Giorgio Facchinetti
 
@@ -21,17 +22,14 @@
 #define qla_quotes_hpp
 
 #include <oh/objecthandler.hpp>
-#include <oh/libraryobject.hpp>
-#include <ql/quotes/simplequote.hpp>
-#include <ql/quotes/derivedquote.hpp>
-#include <ql/quotes/eurodollarfuturesquote.hpp>
-#include <ql/quotes/forwardvaluequote.hpp>
-#include <ql/quotes/futuresconvadjustmentquote.hpp>
-#include <ql/quotes/impliedstddevquote.hpp>
-
+#include <ql/handle.hpp>
+#include <ql/option.hpp>
+#include <ql/types.hpp>
 
 namespace QuantLib {
     class IborIndex;
+    class Quote;
+    class Date;
 }
 
 namespace QuantLibAddin {
@@ -42,11 +40,13 @@ namespace QuantLibAddin {
       public:
         SimpleQuote(QuantLib::Real value,
                     QuantLib::Real tickValue);
-        QuantLib::Real tickValue() const { return tickValue_; }
-        void setTickValue(QuantLib::Real tickValue) {
-            tickValue_ = tickValue;
-        }
+        QuantLib::Real tickValue() const;
+        void setTickValue(QuantLib::Real tickValue);
+        // it wraps underlying QuantLib::SimpleQuote method
+        // in order to make SimpleQuote serializable in a stateful way
+        QuantLib::Real setValue(QuantLib::Real value);
       private:
+        // get rid of the following as soon as we have setProperty
         QuantLib::Real tickValue_;
     };
 
@@ -58,7 +58,7 @@ namespace QuantLibAddin {
 
     class ImpliedStdDevQuote : public Quote {
       public:
-        ImpliedStdDevQuote(const QuantLib::Option::Type& optionType,
+        ImpliedStdDevQuote(QuantLib::Option::Type optionType,
                            const QuantLib::Handle<QuantLib::Quote>& forward,
                            const QuantLib::Handle<QuantLib::Quote>& price,
                            QuantLib::Real strike,
@@ -90,4 +90,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-
