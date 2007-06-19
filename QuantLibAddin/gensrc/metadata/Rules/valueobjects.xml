@@ -7,6 +7,7 @@
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
+        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true'>%(indent)sconst std::string&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
@@ -36,6 +37,7 @@
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
+        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true'>%(indent)sstd::string %(name)s_</Rule>
         <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string %(name)s_</Rule>
         <Rule tensorRank='scalar' nativeType='any'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
