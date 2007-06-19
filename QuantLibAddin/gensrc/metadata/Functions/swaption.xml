@@ -25,6 +25,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <!-- if you change the vanillaSwap name, C++ code should be updated'-->
           <Parameter name='vanillaSwap'>
             <type>QuantLib::VanillaSwap</type>
             <tensorRank>scalar</tensorRank>
