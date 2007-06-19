@@ -40,6 +40,10 @@ class CategoryList(object):
             if platformName == '*' or cat.platformSupported(platformName, implementation):
                 yield cat
 
+    def init(self, enumerationList):
+        for cat in self.categoryDict_.values():
+            cat.init(enumerationList)
+
     #############################################
     # private member functions
     #############################################

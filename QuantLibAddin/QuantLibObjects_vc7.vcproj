@@ -353,9 +353,6 @@
 				Name="Factories"
 				Filter="">
 				<File
-					RelativePath=".\qlo\Enumerations\Factories\all.hpp">
-				</File>
-				<File
 					RelativePath=".\qlo\Enumerations\Factories\calendarfactory.cpp">
 				</File>
 				<File

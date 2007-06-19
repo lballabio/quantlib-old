@@ -49,21 +49,7 @@ class Category(serializable.Serializable):
                 yield func
 
     def includeList(self):
-        """Generate list of #include directives necessary to compile code
-        in this category."""
-        ret = ''
-        if self.includes_ == None:
-            ret = '#include <%s/%s.hpp>\n' % (
-                environment.config().libRootDirectory(),
-                self.name_)
-        else:
-            for includeFile in self.includes_:
-                ret += '#include <%s>\n' % includeFile
-        if self.generateVOs_:
-            ret += '#include <%s/vo_%s.hpp>\n' % (
-                environment.config().voRootDirectory(),
-                self.name_)
-        return ret
+        return self.includeList_
 
     def printDebug(self):
         for func in self.functions('*'):
@@ -110,4 +96,36 @@ class Category(serializable.Serializable):
                 self.generateVOs_ = True
             if func.loopParameter():
                 self.containsLoopFunction_ = True
+
+    def sort_uniq(self, list):
+        ret = []
+        for item in list:
+            if ret.count(item) == 0: ret.append(item)
+        ret.sort()
+        return ret
+        
+    def init(self, enumerationList):
+        #Generate list of #include directives necessary to compile code
+        #in this category.
+
+        self.includeList_ = ''
+        if environment.config().usingEnumerations():
+            enumIncludes = []
+            for func in self.functions_.values():
+                enumIncludes.extend(func.enumIncludes(enumerationList))
+            enumIncludesUnique = self.sort_uniq(enumIncludes)
+            for enumInclude in enumIncludesUnique:
+                if enumInclude: self.includeList_ += '#include <%s>\n' % enumInclude
+
+        if self.includes_ == None:
+            self.includeList_ += '#include <%s/%s.hpp>\n' % (
+                environment.config().libRootDirectory(),
+                self.name_)
+        else:
+            for includeFile in self.includes_:
+                self.includeList_ += '#include <%s>\n' % includeFile
+        if self.generateVOs_:
+            self.includeList_ += '#include <%s/vo_%s.hpp>\n' % (
+                environment.config().voRootDirectory(),
+                self.name_)
 

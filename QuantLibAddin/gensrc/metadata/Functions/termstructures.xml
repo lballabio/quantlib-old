@@ -4,6 +4,7 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <includes>
     <include>qlo/termstructures.hpp</include>
+    <include>ql/interestrate.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers

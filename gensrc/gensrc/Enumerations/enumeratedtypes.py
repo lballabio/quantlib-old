@@ -88,6 +88,9 @@ class EnumeratedTypeGroup(serializable.Serializable):
     def type(self):
         return self.type_
 
+    def includeFile(self):
+        return self.includeFile_
+
     #############################################
     # serializer interface
     #############################################
@@ -101,6 +104,7 @@ class EnumeratedTypeGroup(serializable.Serializable):
         serializer.serializeAttribute(self, common.TYPE)
         serializer.serializeBoolean(self, common.CONSTRUCTOR)
         serializer.serializeObjectDict(self, EnumeratedType)
+        serializer.serializeProperty(self, 'includeFile')
 
     def postSerialize(self):
         """invoke any post serialization behavior that may be required."""

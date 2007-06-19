@@ -80,6 +80,9 @@ class EnumeratedClassGroup(serializable.Serializable):
         for key in self.enumeratedClassKeys_:
             yield self.enumeratedClasses_[key]
 
+    def includeFile(self):
+        return self.includeFile_
+
     #############################################
     # serializer interface
     #############################################
@@ -92,4 +95,5 @@ class EnumeratedClassGroup(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, 'class')
         serializer.serializeObjectDict(self, EnumeratedClass)
+        serializer.serializeProperty(self, 'includeFile')
 

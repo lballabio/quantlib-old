@@ -80,6 +80,9 @@ class EnumeratedPairGroup(serializable.Serializable):
         for key in self.enumeratedPairKeys_:
             yield self.enumeratedPairs_[key]
 
+    def includeFile(self):
+        return self.includeFile_
+
     #############################################
     # serializer interface
     #############################################
@@ -92,4 +95,5 @@ class EnumeratedPairGroup(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, 'class')
         serializer.serializeObjectDict(self, EnumeratedPair)
+        serializer.serializeProperty(self, 'includeFile')
 

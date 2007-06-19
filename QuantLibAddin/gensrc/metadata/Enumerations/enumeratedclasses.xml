@@ -13,6 +13,7 @@
   <EnumeratedClassGroups>
 
     <EnumeratedClassGroup class='QuantLib::Interpolation'>
+      <includeFile>qlo/Enumerations/Factories/interpolationsfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>
           <string>Linear</string>
@@ -38,6 +39,7 @@
     </EnumeratedClassGroup>
 
     <EnumeratedClassGroup class='QuantLib::IborCouponPricer'>
+      <includeFile>qlo/Enumerations/Factories/iborcouponpricersfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>
           <string>IborByBlack</string>
@@ -48,6 +50,7 @@
     </EnumeratedClassGroup>
 
     <EnumeratedClassGroup class='QuantLib::CmsCouponPricer'>
+      <includeFile>qlo/Enumerations/Factories/conundrumpricerfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>
           <string>ConundrumByBlack</string>
@@ -63,6 +66,7 @@
     </EnumeratedClassGroup>
 
     <EnumeratedClassGroup class='QuantLib::Interpolation2D'>
+      <includeFile>qlo/Enumerations/Factories/interpolationsfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>
           <string>BiLinear</string>
@@ -78,6 +82,7 @@
     </EnumeratedClassGroup>
 
     <EnumeratedClassGroup class='QuantLib::PricingEngine'>
+      <includeFile>qlo/Enumerations/Factories/pricingenginesfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>
           <string>AB</string>
@@ -218,6 +223,7 @@
     </EnumeratedClassGroup>
 
     <EnumeratedClassGroup class='QuantLib::Payoff'>
+      <includeFile>qlo/Enumerations/Factories/payoffsfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>
           <string>Vanilla</string>
@@ -264,6 +270,7 @@
     </EnumeratedClassGroup>
 
     <EnumeratedClassGroup class='QuantLib::Index'>
+      <includeFile>qlo/Enumerations/Factories/indexfactory.hpp</includeFile>
       <EnumeratedClasses>
         <!-- QuantLib::Euribor -->
         <EnumeratedClass>

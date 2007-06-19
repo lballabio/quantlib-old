@@ -129,6 +129,7 @@ addin           unchanged   updated     created     total'''
             self.enumerationList_ = enumerationlist.EnumerationList()
         else:
             self.enumerationList_ = None
+        self.categoryList_.init(self.enumerationList_)
 
         self.addins_ = []
         for addinId in addinIds:

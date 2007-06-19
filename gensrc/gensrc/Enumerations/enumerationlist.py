@@ -76,3 +76,16 @@ class EnumerationList(object):
         xmlEnumPairs.serializeObjectDict(self, enumeratedpairs.EnumeratedPairGroup)
         xmlEnumPairs.serializeProperty(self, common.ENUM_PAIR_COPYRIGHT)
 
+        self.typeDict_ = {}
+        for item in self.enumeratedTypeGroups_.values():
+            self.typeDict_[item.type()] = item.includeFile()
+        for item in self.enumeratedClassGroups_.values():
+            self.typeDict_[item.className()] = item.includeFile()
+        for item in self.enumeratedPairGroups_.values():
+            self.typeDict_[item.className()] = item.includeFile()
+
+    def include(self, typeName):
+        if self.typeDict_.has_key(typeName):
+            return self.typeDict_[typeName]
+        else:
+            return ''

@@ -125,3 +125,8 @@ class Function(serializable.Serializable):
         else:
             self.xlTrigger_ = ''
 
+    def enumIncludes(self, enumerationList):
+        ret = []
+        for p in self.parameterList_.parameters():
+            ret.append(enumerationList.include(p.type()))
+        return ret

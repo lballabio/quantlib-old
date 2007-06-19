@@ -13,6 +13,7 @@
   <EnumeratedPairGroups>
 
     <EnumeratedPairGroup class='QuantLib::YieldTermStructure'>
+      <includeFile/>
       <EnumeratedPairs>
         <!-- Discount based yield term structures -->
         <EnumeratedPair>
