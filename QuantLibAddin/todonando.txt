@@ -344,13 +344,13 @@ D fixing days vector
 - Visual Studio Express installation
 
 ---
-MARCO (last update 7/6/2007)
+MARCO (last update 19/6/2007)
 - verify set up svn folders (DONE)
-- Citrix showdown: (0.5d/1d/WIP)
+- Citrix showdown: (1d/1d/DONE)
   - verifica licenze accesso: individuato referente, -> Katiuscia (DONE)
   - verifica accesso a $+ (DONE)
   - utenze BGM x tutti (DONE)
-  - autorizzazione accesso Francois a Iflazione (Waiting Ametrano)
+  - autorizzazione accesso Francois a Iflazione (DONE)
   - assistenza verifica accesso Quants (waiting Ametrano)
 - check optimizers:
   - fix steepest descent (with Francois) (1d/2d/WIP)
@@ -364,11 +364,11 @@ MARCO (last update 7/6/2007)
 - Inflation project:
   - Attività UAT (3w/2w/DONE)
   - Caboto/DOF platform release EOD (DONE)
-  - Caboto/DOF platform release intraday (15/6/2007 ?)
-  - Planning next steps (15/6/2007 ?)
+  - Caboto/DOF platform release intraday (DONE)
+  - Planning phase 2 (DONE)
   - Montecarlo implementation for Caboto Model (WIP)
-  - 3 factor model and Hybrids (?)
-- Applix: Rolling bund Futures on 8/6/2007 (DONE)
+  - 3 factor model and Hybrids (WIP)
+- Applix: Rolling bund Futures on 8/9/2007 (TBD)
 
 ---
 Eric
