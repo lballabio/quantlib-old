@@ -100,7 +100,7 @@ class Category(serializable.Serializable):
     def sort_uniq(self, list):
         ret = []
         for item in list:
-            if ret.count(item) == 0: ret.append(item)
+            if item and ret.count(item) == 0: ret.append(item)
         ret.sort()
         return ret
         
@@ -115,7 +115,7 @@ class Category(serializable.Serializable):
                 enumIncludes.extend(func.enumIncludes(enumerationList))
             enumIncludesUnique = self.sort_uniq(enumIncludes)
             for enumInclude in enumIncludesUnique:
-                if enumInclude: self.includeList_ += '#include <%s>\n' % enumInclude
+                self.includeList_ += '#include <%s>\n' % enumInclude
 
         if self.includes_ == None:
             self.includeList_ += '#include <%s/%s.hpp>\n' % (
