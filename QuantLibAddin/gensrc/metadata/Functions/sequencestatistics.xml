@@ -3,8 +3,8 @@
   <displayName>SequenceStatistics</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
   <includes>
-    <include>ql/math/statistics/riskstatistics.hpp</include>
     <include>qlo/sequencestatistics.hpp</include>
+    <include>ql/math/statistics/sequencestatistics.hpp</include>
   </includes>
   <copyright>
     Copyright (C) 2007 Ferdinando Ametrano
@@ -26,7 +26,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Size</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -42,7 +42,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -60,7 +60,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -76,7 +76,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -92,7 +92,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -108,7 +108,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -124,7 +124,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -140,7 +140,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -156,7 +156,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -172,7 +172,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -188,7 +188,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -204,7 +204,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -220,7 +220,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -236,7 +236,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -251,14 +251,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='x' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -273,14 +273,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='x' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -295,14 +295,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -317,14 +317,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='centile' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the centile</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -339,14 +339,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -361,14 +361,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -383,14 +383,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -405,14 +405,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -427,14 +427,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -449,14 +449,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -471,14 +471,14 @@
       <ParameterList>
         <Parameters>
           <Parameter name='target' exampleValue='0.5'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -545,9 +545,9 @@
       <ParameterList>
         <Parameters>
           <Parameter name='dimension' default='0'>
-            <type>long</type>
+            <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>Statistics dimensionality.</description>
+            <description>sample dimensionality.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -562,6 +562,11 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='dimension' default='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>sample dimensionality.</description>
+          </Parameter>
           <!--<Parameter name='values' default='QuantLib::Matrix()'>-->
           <Parameter name='values'>
             <type>QuantLib::Matrix</type>

@@ -21,9 +21,30 @@
 #define qla_sequencestatistics_hpp
 
 #include <oh/objecthandler.hpp>
-#include <ql/math/statistics/sequencestatistics.hpp>
-#include <ql/math/statistics/riskstatistics.hpp>
-#include <ql/math/matrix.hpp>
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class Matrix;
+
+    class GeneralStatistics;
+
+    template<class Stat>
+    class GenericGaussianStatistics;
+
+    typedef GenericGaussianStatistics<GeneralStatistics> GaussianStatistics;
+
+    template <class S>
+    class GenericRiskStatistics;
+
+    typedef GenericRiskStatistics<GaussianStatistics> RiskStatistics;
+
+    typedef RiskStatistics Statistics;
+
+    template <class StatisticsType>
+    class GenericSequenceStatistics;
+
+    typedef GenericSequenceStatistics<Statistics> SequenceStatistics;
+}
 
 namespace QuantLibAddin {
 
@@ -31,8 +52,9 @@ namespace QuantLibAddin {
         public ObjectHandler::LibraryObject<QuantLib::SequenceStatistics> {
     public:
         SequenceStatistics(QuantLib::Size dimension);
-        SequenceStatistics(QuantLib::Matrix values, 
-                           std::vector<QuantLib::Real> weights);
+        SequenceStatistics(QuantLib::Size dimension,
+                           const QuantLib::Matrix& values, 
+                           const std::vector<QuantLib::Real>& weights);
     };
 
 }

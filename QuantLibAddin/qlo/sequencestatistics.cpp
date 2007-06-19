@@ -21,14 +21,16 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/sequencestatistics.hpp>
+#include <ql/math/statistics/sequencestatistics.hpp>
 
 namespace QuantLibAddin {
 
-    SequenceStatistics::SequenceStatistics(QuantLib::Matrix values, 
-                                           std::vector<QuantLib::Real> w)
+    SequenceStatistics::SequenceStatistics(QuantLib::Size dimension,
+                                           const QuantLib::Matrix& values, 
+                                           const std::vector<QuantLib::Real>& w)
     {               
         libraryObject_ = boost::shared_ptr<QuantLib::SequenceStatistics>(new
-                QuantLib::SequenceStatistics());
+                QuantLib::SequenceStatistics(dimension));
 
         if (values.rows()>0) {
             if (w!=std::vector<QuantLib::Real>()) {
