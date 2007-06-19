@@ -73,6 +73,22 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlHistoricalForwardRatesAnalysisSkippedDatesErrorMessage' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns vector of error messages for historic dates with missing fixing.</description>
+      <libraryFunction>skippedDatesErrorMessage</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
     <Member name='qlHistoricalForwardRatesAnalysisFailedDates' type='QuantLib::HistoricalForwardRatesAnalysis'>
       <description>Returns vector of dates for which forward rates could not be calculated.</description>
       <libraryFunction>failedDates</libraryFunction>
@@ -89,6 +105,22 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlHistoricalForwardRatesAnalysisFailedDatesErrorMessage' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns vector of error messages for dates on which forward rates could not be calculated.</description>
+      <libraryFunction>failedDatesErrorMessage</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
     <Member name='qlHistoricalForwardRatesAnalysisFixingPeriods' type='QuantLib::HistoricalForwardRatesAnalysis'>
       <description>Returns the forward rates time grid.</description>
       <libraryFunction>fixingPeriods</libraryFunction>
