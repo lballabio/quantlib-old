@@ -422,7 +422,7 @@
             <tensorRank>vector</tensorRank>
             <description>Black vol vector.</description>
           </Parameter>
-          <Parameter name='times' vectorIterator='begin' exampleValue ='0,1,2,3,4'>
+          <Parameter name='times' exampleValue ='0,1,2,3,4'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Reference time for the above Black vol vector.</description>
@@ -449,7 +449,7 @@
             <tensorRank>vector</tensorRank>
             <description>Black vol vector.</description>
           </Parameter>
-          <Parameter name='times' vectorIterator='begin' exampleValue ='0,1,2,3,4'>
+          <Parameter name='times' exampleValue ='0,1,2,3,4'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Reference time for the above Black vol vector.</description>
@@ -476,7 +476,7 @@
             <tensorRank>vector</tensorRank>
             <description>Black vol vector.</description>
           </Parameter>
-          <Parameter name='times' vectorIterator='begin' exampleValue ='0,1,2,3,4'>
+          <Parameter name='times' exampleValue ='0,1,2,3,4'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>Reference time for the above Black vol vector.</description>
@@ -503,10 +503,10 @@
             <tensorRank>vector</tensorRank>
             <description>Black vol vector.</description>
           </Parameter>
-          <Parameter name='times' vectorIterator='begin' exampleValue ='0,1,2,3,4'>
+          <Parameter name='times' exampleValue ='0,1,2,3,4'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Reference time for the above Black vol vector.</description>
+            <description>times for the above Black vol vector.</description>
           </Parameter>
           <Parameter name='endCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
