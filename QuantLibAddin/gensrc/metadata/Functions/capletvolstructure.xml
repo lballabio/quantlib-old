@@ -185,11 +185,11 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='capletVol' default='""'>
+          <Parameter name='currentLink' default='""'>
             <type>QuantLib::CapletVolatilityStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CapletVolatilityStructure object ID. If omitted, no YieldTermStructure is linked by the RelinkableHandle.</description>
+            <description>CapletVolatilityStructure object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -204,7 +204,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='capletVol' >
+          <Parameter name='currentLink' >
             <type>QuantLib::CapletVolatilityStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>

@@ -262,11 +262,11 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='swaptionVol' default='""'>
+          <Parameter name='currentLink' default='""'>
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>SwaptionVolatilityStructure object ID. If omitted, no YieldTermStructure is linked by the RelinkableHandle.</description>
+            <description>SwaptionVolatilityStructure object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -281,7 +281,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='swaptionVol' >
+          <Parameter name='currentLink' >
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
