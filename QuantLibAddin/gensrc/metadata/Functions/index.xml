@@ -109,13 +109,11 @@
       <ParameterList>
         <Parameters>
           <Parameter name='fixingDates' libraryType='QuantLib::Date' vectorIterator='beginAndEnd'>
-            <!--<Parameter name='fixingDates'>-->
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>fixing dates</description>
           </Parameter>
           <Parameter name='fixingValues' libraryType='QuantLib::Real' vectorIterator='begin'>
-            <!--<Parameter name='fixingValues'>-->
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>fixing values</description>

@@ -34,8 +34,18 @@ namespace QuantLibAddin {
         QL_REQUIRE(dates.size()==values.size(),
                    "size mismatch between dates (" << dates.size() <<
                    ") and values (" << values.size() << ")");
-        libraryObject_->addFixings(dates.begin(), dates.end(),
-                                   values.begin());
+        std::vector<QuantLib::Date> d;
+        std::vector<QuantLib::Real> v;
+        for (QuantLib::Size i=0; i<values.size(); ++i) {
+            if (values[i]!=0.0 && values[i]!=QuantLib::Null<QuantLib::Real>()) {
+                QL_REQUIRE(values[i]>0.0,
+                           "negative fixing not allowed");
+                d.push_back(dates[i]);
+                v.push_back(values[i]);
+            }
+        }
+        libraryObject_->addFixings(d.begin(), d.end(),
+                                   v.begin());
     }
 
     IborIndex::IborIndex(const std::string& indexName,

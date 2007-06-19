@@ -22,33 +22,32 @@ class Instrument {
 ---
 GENERAL
 
-
 - where is qlcalendar advance in the wizard
-- why wizard apply format doesn't work on multiple selection?
+- why cell menu "format as" doesn't work on multiple selection?
 - wbk open must reopen in the last folder
 - RateHelpers refactoring (using indexes)
 - cubic parameters as input to PiecewiseYieldCurve
+* Grisafi
 - caplet/swaption calibration
-  just one test with multiple unit-test
-  check new cotsmm corr and old one
-  why to zero coefficients in CotSwapCorr make calib fail?
-  use more realistic corr structure in test suite
+* just one test with multiple unit-test
+* check new cotsmm corr and old one
+* why to zero coefficients in CotSwapCorr make calib fail?
+* use more realistic corr structure in test suite
   verify yc bootstrapping
   check corr times includes all rate times but the last
   check original calib result before deleting it
   object wizard does not paste InterpolationTraits
   1D as default value instead of exampleValue in hist corr
   check displacements
-  market model creation from calibrator
+- object creation for Eric
+* market model creation from calibrator
   check if homo = false still crashes
   first rate issue (i.e. when a solution does not exist)
   duplicate pseudorootfacade checks in the new constructor
-  use OTM options for abcd wbks
   multiple displacements for swap indexes
   check if iterative approach make it worse when there is a failure
   check/enforce alpha_i > 1/t_i
-  conditional formatting on calibration errors in 1Y wbk
-  error string for skipped/failed dates
+* conditional formatting on calibration errors in 1Y wbk
 - adapter from LMM to CMSMM
 - every factor in MM might have its own vol model
 - profiling MM
@@ -73,28 +72,19 @@ NANDO
 - wbk_close: if read-only do not ask for saving
 - use class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
   for HistoricalForwardRatesAnalysis
-- Run Main Checks -> Open Main Checks
-- relinkable handle singleton
-- object creation for Eric
 - per Luigi: floating point exception + pricing engines observers dei market data
 - all wbks must use qlxlVersion(true, Trigger)
 - check testsuite error when QL_INDEXED_COUPON is used
 - production: writing privileges (xla and the rest)
 - debug hook at xll loading (for debugging start-up actions)
 - VS Express
-- relinkable handle creation (xla, then xll)
 - check Index used in Mx bootstrapping
-- test valid object creation with ALL quotes not initialized
 - leggere CDS docs
-- launcher: set eval date (macro), main check
-- EvolutionDescription equality
 - ref market data set for test suite
 - evaluation date observers
 - handle incomplete Reuters menu
-- check 2Y beta sensitivity
 - handle already loaded addin
 - special handling of reuters/bloomberg addins
-- use Handle in SwaptionVolCubeChecks
 - manage auto-open macro problem -> propose:
   Application.EnableEvents=True in qlxl.xla/ThisWorkbook
 - TermStructure time interface
@@ -106,10 +96,8 @@ NANDO
 - joint calendar
 - mkt convention struct
 - YCDemo crash
-- alternative calibrations with null rho
 - make BlackCalculator observer/observable, make it lazy
 - Risk, Wilmott papers (REMIND: VERIFICARE COPIE DISPERSE)
-- period algebra
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 - refactor abcd vol file, adding more unary_functions for blackVol and
   covariance
@@ -122,11 +110,16 @@ bug fix	20%
 test	14%
 CW	18%
 
+- hist fwd rates analysis action (not in the launcher)
+- fixing loading with and without Reuters
+- error string for skipped/failed dates
 - action for setEvaluationDate
+- Run Main Checks -> Open Main Checks
 - evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni (K & Cri)
 - re-organize Quote/TimeSeries menus
   refresh snapshot also for time series + merge quotefeeds and timeseries actions
   qlxlversion and trigger formatting in time series
+
 - all handle used in main checks should be created in handles.xls
 - trigger qlVersion() and format properly time stamp in the XXXFeed folders (done)
 - add call to volatility method in CapsStripper creation 	(done)
@@ -227,11 +220,14 @@ CW	18%
 
 ---
 CRISTINA
-- test for relinkability (CMS npv + greeks)
-- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni (K & Cri)
 - check SequenceStatistics wbks for signature changes
+- test for relinkability (CMS npv + greeks)
+- test valid object creation with ALL quotes not initialized
+- use OTM options instead of ITM options in all abcd wbks
+- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni (K & Cri)
 - deals serialization
 - cap/floor flow analysis
+- digital coupon pricing with analytic formula
 - arrange session on digitals
 - clean up Clerici's abcd problems (0.25D/0.25D - Waiting for users feedback)
 - IFR fixings, check deals
@@ -324,6 +320,15 @@ D MM: different correlation structures (Rapisarda, Schoenmakers and
 
 ---
 GIORGIO (last update 6/6/2007)
+- use Handle in SwaptionVolCubeChecks
+- abcd
+  remove iterators
+  vega weighted abcd fit
+  interpolation
+- CMS
+  alternative calibrations with null rho
+  check 2Y beta sensitivity
+- EvolutionDescription equality
 - VBA missing menus:
   enum QuantLib::EndCriteria::Type
   enum QuantLib::CmsMarketCalibration::CalibrationType
@@ -377,6 +382,9 @@ Eric
 - Trader wbk problem
 - object creation
 
+- ohRange coercion to Matrix, std::vector, Array, scalar, etc
+- in index.xml use QuantLibAddin::Index::addFixings instead of QuantLib::Index::addFixings
+- relinkable handle singletons
 - native support of vector of object IDS (as RateHelpers in PiecewiseYieldCurve)
 - flow analysis bug
 - the only index we are enumeratig are InterestRateIndex
