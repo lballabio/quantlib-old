@@ -3,7 +3,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibXLDynamic", "qlxl\Q
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibXL", "qlxl\QuantLibXL_vc7.vcproj", "{AA73F007-F040-4A6F-A47A-3099DA0DECA4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibXLStatic", "qlxl\QuantLibXLStatic_vc7.vcproj", "{AA73F007-F040-4A6F-A47A-3099DA0DECA4}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject

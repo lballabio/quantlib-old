@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="QuantLibXL"
+	Name="QuantLibXLStatic"
 	ProjectGUID="{AA73F007-F040-4A6F-A47A-3099DA0DECA4}"
 	SccProjectName=""
 	SccLocalPath="">

@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="QuantLibXL"
+	Name="QuantLibXLStatic"
 	ProjectGUID="{DADFEC4C-A850-4312-8146-FB9BCC19CE92}"
-	RootNamespace="QuantLibXL"
+	RootNamespace="QuantLibXLStatic"
 	>
 	<Platforms>
 		<Platform
