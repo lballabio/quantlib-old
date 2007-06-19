@@ -223,8 +223,8 @@ CW	18%
 
 ---
 CRISTINA
-- check SequenceStatistics wbks for signature changes
-- test for relinkability (CMS npv + greeks)
+- check SequenceStatistics wbks for signature changes (DONE)
+- test for relinkability (CMS npv + greeks) (DONE for NPV)
 - test valid object creation with ALL quotes not initialized
 - use OTM options instead of ITM options in all abcd wbks
 - evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
