@@ -1754,6 +1754,10 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Handles"
+			>
+		</Filter>
 		<File
 			RelativePath="qlo\auto_link.hpp"
 			>
