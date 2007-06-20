@@ -154,16 +154,28 @@
 				RelativePath="Register\addin.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_abcd.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_accountingengines.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_all.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_all.hpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_alphaform.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_assetswap.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_bonds.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_browniangenerators.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_calendar.cpp">
@@ -178,13 +190,28 @@
 				RelativePath="Register\register_cmsmarket.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_correlation.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_couponvectors.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_ctsmmcapletcalibration.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_curvestate.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_date.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_daycounter.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_driftcalculators.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_evolutiondescription.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_exercise.cpp">
@@ -200,6 +227,12 @@
 			</File>
 			<File
 				RelativePath="Register\register_interpolation.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_leg.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_marketmodelevolvers.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_marketmodels.cpp">
@@ -224,6 +257,9 @@
 			</File>
 			<File
 				RelativePath="Register\register_processes.cpp">
+			</File>
+			<File
+				RelativePath=".\Register\register_products.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_quotes.cpp">
@@ -279,15 +315,30 @@
 			<File
 				RelativePath="Register\register_volatilities.cpp">
 			</File>
+			<File
+				RelativePath=".\Register\register_volatility.cpp">
+			</File>
 		</Filter>
 		<Filter
 			Name="Functions"
 			Filter="">
 			<File
+				RelativePath=".\Functions\abcd.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\accountingengines.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\alphaform.cpp">
+			</File>
+			<File
 				RelativePath="Functions\assetswap.cpp">
 			</File>
 			<File
 				RelativePath="Functions\bonds.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\browniangenerators.cpp">
 			</File>
 			<File
 				RelativePath="Functions\calendar.cpp">
@@ -302,13 +353,28 @@
 				RelativePath="Functions\cmsmarket.cpp">
 			</File>
 			<File
+				RelativePath=".\Functions\correlation.cpp">
+			</File>
+			<File
 				RelativePath="Functions\couponvectors.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\ctsmmcapletcalibration.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\curvestate.cpp">
 			</File>
 			<File
 				RelativePath="Functions\date.cpp">
 			</File>
 			<File
 				RelativePath="Functions\daycounter.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\driftcalculators.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\evolutiondescription.cpp">
 			</File>
 			<File
 				RelativePath="Functions\exercise.cpp">
@@ -329,7 +395,13 @@
 				RelativePath="Functions\interpolation.cpp">
 			</File>
 			<File
+				RelativePath=".\Functions\leg.cpp">
+			</File>
+			<File
 				RelativePath="Functions\manual.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\marketmodelevolvers.cpp">
 			</File>
 			<File
 				RelativePath="Functions\marketmodels.cpp">
@@ -354,6 +426,9 @@
 			</File>
 			<File
 				RelativePath="Functions\processes.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\products.cpp">
 			</File>
 			<File
 				RelativePath="Functions\quotes.cpp">
@@ -409,45 +484,42 @@
 			<File
 				RelativePath="Functions\volatilities.cpp">
 			</File>
+			<File
+				RelativePath=".\Functions\volatility.cpp">
+			</File>
 		</Filter>
 		<Filter
 			Name="Conversions"
 			Filter="">
 			<File
-				RelativePath="Conversions\all.hpp">
+				RelativePath=".\Conversions\all.hpp">
 			</File>
 			<File
-				RelativePath="Conversions\matrixtooper.cpp">
+				RelativePath=".\Conversions\matrixtooper.cpp">
 			</File>
 			<File
-				RelativePath="Conversions\matrixtooper.hpp">
+				RelativePath=".\Conversions\matrixtooper.hpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertomatrix.cpp">
+				RelativePath=".\Conversions\opertomatrix.cpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertomatrix.hpp">
+				RelativePath=".\Conversions\opertomatrix.hpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertoscalar.cpp">
+				RelativePath=".\Conversions\opertovector.cpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertoscalar.hpp">
+				RelativePath=".\Conversions\opertovector.hpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertovector.cpp">
+				RelativePath=".\Conversions\scalartooper.cpp">
 			</File>
 			<File
-				RelativePath="Conversions\opertovector.hpp">
+				RelativePath=".\Conversions\scalartooper.hpp">
 			</File>
 			<File
-				RelativePath="Conversions\scalartooper.cpp">
-			</File>
-			<File
-				RelativePath="Conversions\scalartooper.hpp">
-			</File>
-			<File
-				RelativePath="Conversions\vectortooper.hpp">
+				RelativePath=".\Conversions\vectortooper.hpp">
 			</File>
 		</Filter>
 		<Filter
@@ -458,6 +530,12 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_abcd.hpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_accountingengines.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_accountingengines.hpp">
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_all.hpp">
@@ -479,6 +557,12 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_bonds.hpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_browniangenerators.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_browniangenerators.hpp">
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_capfloor.cpp">
@@ -509,6 +593,12 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_couponvectors.hpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_ctsmmcapletcalibration.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_ctsmmcapletcalibration.hpp">
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_curvestate.cpp">

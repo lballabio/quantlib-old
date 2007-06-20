@@ -22,6 +22,8 @@ class Instrument {
 ---
 GENERAL
 
+- avoid ignoring class of files, as in *.suo
+- what is included in serialization files
 - check differences between QuantLibDynamicAll and SA-ALL
 - subscribe to SA mailing list
 - everybody
@@ -29,6 +31,7 @@ GENERAL
   remove useless env variables
   be ready to debug DevCycle/Production
   boost 1.34
+  clean up qlo files from ql inclusions
 - where is qlcalendar advance in the wizard
 - why cell menu "format as" doesn't work on multiple selection?
 - wbk open must reopen in the last folder
