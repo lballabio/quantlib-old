@@ -22,6 +22,13 @@ class Instrument {
 ---
 GENERAL
 
+- check differences between QuantLibDynamicAll and SA-ALL
+- subscribe to SA mailing list
+- everybody
+  switch to dynamic xll
+  remove useless env variables
+  be ready to debug DevCycle/Production
+  boost 1.34
 - where is qlcalendar advance in the wizard
 - why cell menu "format as" doesn't work on multiple selection?
 - wbk open must reopen in the last folder
@@ -54,10 +61,6 @@ GENERAL
 - USD yield curve and swaption vols
 - QuantLib.xla: remove all ActiveWorkbook usage
 - cap pricing quality
-- remove useless env variables
-- be ready to debug production
-- switch to boost 1.34
-- switch to dynamic xll
 - restore floating exception in test-suite
 - introduce type QuantLib::Money
 - wiki documentation
@@ -382,6 +385,7 @@ Eric
 - Trader wbk problem
 - object creation
 
+- double cliking QuantLib.xla should default to dynamic version
 - setProperty
 - rename all Index as InterestRateIndex (we haven't used Indexes yet, only
   InterestRateIndexes)
