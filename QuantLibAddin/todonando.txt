@@ -22,6 +22,9 @@ class Instrument {
 ---
 GENERAL
 
+- fix openIRDerivative macro
+- add docs-project to sln
+- remove bat from testsuite/bin
 - avoid ignoring class of files, as in *.suo
 - what is included in serialization files
 - check differences between QuantLibDynamicAll and SA-ALL
