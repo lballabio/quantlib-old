@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="ohgensrc"
-	ProjectGUID="{19C36A53-51F2-4951-9A38-CCF6A250814F}"
+	ProjectGUID="{E23C4DA6-10CD-4BF6-91D7-10AF87B16BB8}"
 	Keyword="MakeFileProj">
 	<Platforms>
 		<Platform
