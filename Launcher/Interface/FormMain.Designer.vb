@@ -111,7 +111,7 @@ Partial Class FormMain
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(198, 366)
+        Me.btnClose.Location = New System.Drawing.Point(209, 369)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 23)
         Me.btnClose.TabIndex = 1
@@ -197,7 +197,7 @@ Partial Class FormMain
         Me.tstEnvironment.Dock = System.Windows.Forms.DockStyle.None
         Me.tstEnvironment.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.tstEnvironment.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnNew, Me.btnCopy, Me.btnDelete, Me.btnClear, Me.btnRename})
-        Me.tstEnvironment.Location = New System.Drawing.Point(9, 267)
+        Me.tstEnvironment.Location = New System.Drawing.Point(9, 290)
         Me.tstEnvironment.Name = "tstEnvironment"
         Me.tstEnvironment.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
         Me.tstEnvironment.Size = New System.Drawing.Size(118, 25)
@@ -252,7 +252,7 @@ Partial Class FormMain
         'lstUserconfigured
         '
         Me.lstUserconfigured.FormattingEnabled = True
-        Me.lstUserconfigured.Location = New System.Drawing.Point(19, 126)
+        Me.lstUserconfigured.Location = New System.Drawing.Point(19, 152)
         Me.lstUserconfigured.Name = "lstUserconfigured"
         Me.lstUserconfigured.Size = New System.Drawing.Size(160, 134)
         Me.lstUserconfigured.Sorted = True
@@ -261,7 +261,7 @@ Partial Class FormMain
         'lblUserConfigured
         '
         Me.lblUserConfigured.AutoSize = True
-        Me.lblUserConfigured.Location = New System.Drawing.Point(6, 110)
+        Me.lblUserConfigured.Location = New System.Drawing.Point(6, 136)
         Me.lblUserConfigured.Name = "lblUserConfigured"
         Me.lblUserConfigured.Size = New System.Drawing.Size(83, 13)
         Me.lblUserConfigured.TabIndex = 5
@@ -272,7 +272,7 @@ Partial Class FormMain
         Me.lstPreconfigured.FormattingEnabled = True
         Me.lstPreconfigured.Location = New System.Drawing.Point(19, 38)
         Me.lstPreconfigured.Name = "lstPreconfigured"
-        Me.lstPreconfigured.Size = New System.Drawing.Size(160, 69)
+        Me.lstPreconfigured.Size = New System.Drawing.Size(160, 95)
         Me.lstPreconfigured.Sorted = True
         Me.lstPreconfigured.TabIndex = 4
         '
@@ -397,7 +397,7 @@ Partial Class FormMain
         '
         'btnLaunch
         '
-        Me.btnLaunch.Location = New System.Drawing.Point(117, 366)
+        Me.btnLaunch.Location = New System.Drawing.Point(128, 369)
         Me.btnLaunch.Name = "btnLaunch"
         Me.btnLaunch.Size = New System.Drawing.Size(75, 23)
         Me.btnLaunch.TabIndex = 20
@@ -444,7 +444,7 @@ Partial Class FormMain
         'cbBloomberg
         '
         Me.cbBloomberg.AutoSize = True
-        Me.cbBloomberg.Location = New System.Drawing.Point(10, 42)
+        Me.cbBloomberg.Location = New System.Drawing.Point(10, 45)
         Me.cbBloomberg.Name = "cbBloomberg"
         Me.cbBloomberg.Size = New System.Drawing.Size(76, 17)
         Me.cbBloomberg.TabIndex = 2
@@ -454,7 +454,7 @@ Partial Class FormMain
         'cbReuters
         '
         Me.cbReuters.AutoSize = True
-        Me.cbReuters.Location = New System.Drawing.Point(10, 19)
+        Me.cbReuters.Location = New System.Drawing.Point(10, 23)
         Me.cbReuters.Name = "cbReuters"
         Me.cbReuters.Size = New System.Drawing.Size(63, 17)
         Me.cbReuters.TabIndex = 1
@@ -487,7 +487,7 @@ Partial Class FormMain
         Me.tpPaths.Location = New System.Drawing.Point(4, 22)
         Me.tpPaths.Name = "tpPaths"
         Me.tpPaths.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpPaths.Size = New System.Drawing.Size(395, 310)
+        Me.tpPaths.Size = New System.Drawing.Size(395, 331)
         Me.tpPaths.TabIndex = 1
         Me.tpPaths.Text = "Paths"
         Me.tpPaths.UseVisualStyleBackColor = True
@@ -625,7 +625,7 @@ Partial Class FormMain
         Me.tpAddins.Location = New System.Drawing.Point(4, 22)
         Me.tpAddins.Name = "tpAddins"
         Me.tpAddins.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpAddins.Size = New System.Drawing.Size(395, 310)
+        Me.tpAddins.Size = New System.Drawing.Size(395, 331)
         Me.tpAddins.TabIndex = 2
         Me.tpAddins.Text = "Addins"
         Me.tpAddins.UseVisualStyleBackColor = True
@@ -709,7 +709,7 @@ Partial Class FormMain
         Me.tpFeeds.Location = New System.Drawing.Point(4, 22)
         Me.tpFeeds.Name = "tpFeeds"
         Me.tpFeeds.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpFeeds.Size = New System.Drawing.Size(395, 310)
+        Me.tpFeeds.Size = New System.Drawing.Size(395, 331)
         Me.tpFeeds.TabIndex = 3
         Me.tpFeeds.Text = "Feeds"
         Me.tpFeeds.UseVisualStyleBackColor = True
@@ -777,7 +777,7 @@ Partial Class FormMain
         Me.tpAbout.Location = New System.Drawing.Point(4, 22)
         Me.tpAbout.Name = "tpAbout"
         Me.tpAbout.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpAbout.Size = New System.Drawing.Size(395, 310)
+        Me.tpAbout.Size = New System.Drawing.Size(395, 331)
         Me.tpAbout.TabIndex = 4
         Me.tpAbout.Text = "About"
         Me.tpAbout.UseVisualStyleBackColor = True
@@ -858,8 +858,8 @@ Partial Class FormMain
         '
         Me.lblBuildNumber.AutoSize = True
         Me.lblBuildNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBuildNumber.ForeColor = System.Drawing.Color.Blue
-        Me.lblBuildNumber.Location = New System.Drawing.Point(279, 363)
+        Me.lblBuildNumber.ForeColor = System.Drawing.Color.DimGray
+        Me.lblBuildNumber.Location = New System.Drawing.Point(286, 389)
         Me.lblBuildNumber.MinimumSize = New System.Drawing.Size(120, 0)
         Me.lblBuildNumber.Name = "lblBuildNumber"
         Me.lblBuildNumber.Size = New System.Drawing.Size(120, 12)
@@ -871,7 +871,7 @@ Partial Class FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(415, 401)
+        Me.ClientSize = New System.Drawing.Size(411, 401)
         Me.Controls.Add(Me.lblBuildNumber)
         Me.Controls.Add(Me.tcLauncher)
         Me.Controls.Add(Me.btnLaunch)
