@@ -111,7 +111,7 @@ Partial Class FormMain
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(209, 369)
+        Me.btnClose.Location = New System.Drawing.Point(209, 364)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 23)
         Me.btnClose.TabIndex = 1
@@ -397,7 +397,7 @@ Partial Class FormMain
         '
         'btnLaunch
         '
-        Me.btnLaunch.Location = New System.Drawing.Point(128, 369)
+        Me.btnLaunch.Location = New System.Drawing.Point(128, 364)
         Me.btnLaunch.Name = "btnLaunch"
         Me.btnLaunch.Size = New System.Drawing.Size(75, 23)
         Me.btnLaunch.TabIndex = 20
@@ -859,19 +859,19 @@ Partial Class FormMain
         Me.lblBuildNumber.AutoSize = True
         Me.lblBuildNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBuildNumber.ForeColor = System.Drawing.Color.DimGray
-        Me.lblBuildNumber.Location = New System.Drawing.Point(286, 389)
+        Me.lblBuildNumber.Location = New System.Drawing.Point(286, 375)
         Me.lblBuildNumber.MinimumSize = New System.Drawing.Size(120, 0)
         Me.lblBuildNumber.Name = "lblBuildNumber"
         Me.lblBuildNumber.Size = New System.Drawing.Size(120, 12)
         Me.lblBuildNumber.TabIndex = 22
         Me.lblBuildNumber.Text = "version 0.0.0.0"
-        Me.lblBuildNumber.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.lblBuildNumber.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(411, 401)
+        Me.ClientSize = New System.Drawing.Size(411, 389)
         Me.Controls.Add(Me.lblBuildNumber)
         Me.Controls.Add(Me.tcLauncher)
         Me.Controls.Add(Me.btnLaunch)
