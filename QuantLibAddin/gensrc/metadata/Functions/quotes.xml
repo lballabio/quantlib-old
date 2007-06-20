@@ -2,7 +2,7 @@
   <description>quotes objects</description>
   <displayName>Quotes</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/quotes.hpp</include>
     <include>qlo/index.hpp</include>
     <include>ql/quotes/simplequote.hpp</include>
@@ -11,7 +11,18 @@
     <include>ql/quotes/forwardvaluequote.hpp</include>
     <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
     <include>ql/quotes/impliedstddevquote.hpp</include>
-  </includes>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/ValueObjects/vo_quotes.hpp</include>
+    <include>qlo/quotes.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>ql/quotes/simplequote.hpp</include>
+    <include>ql/quotes/derivedquote.hpp</include>
+    <include>ql/quotes/eurodollarfuturesquote.hpp</include>
+    <include>ql/quotes/forwardvaluequote.hpp</include>
+    <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
+    <include>ql/quotes/impliedstddevquote.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006 Francois du Vignaud
     Copyright (C) 2006 Giorgio Facchinetti

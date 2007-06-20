@@ -2,13 +2,13 @@
   <description>functions to construct and use Driftcalculators objects</description>
   <displayName>Driftcalculators</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/driftcalculators.hpp</include>
     <include>qlo/curvestate.hpp</include>
     <include>ql/models/marketmodels/curvestates/cmswapcurvestate.hpp</include>
     <include>ql/models/marketmodels/curvestates/coterminalswapcurvestate.hpp</include>
     <include>ql/models/marketmodels/curvestates/lmmcurvestate.hpp</include>
-  </includes>
+  </addinIncludes>
 
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano

@@ -30,6 +30,12 @@ from gensrc.Configuration import environment
 class Category(serializable.Serializable):
     """class to represent a group of functions."""
 
+    # class constants
+
+    SERIALIZATION_INCLUDES = '''
+#include <%(libRootDirectory)s/%(categoryName)s.hpp>
+#include <%(libRootDirectory)s/ValueObjects/vo_%(categoryName)s.hpp>\n'''
+
     #############################################
     # public interface
     #############################################
@@ -49,7 +55,7 @@ class Category(serializable.Serializable):
                 yield func
 
     def includeList(self):
-        return self.includeList_
+        return self.addinIncludeList_
 
     def printDebug(self):
         for func in self.functions('*'):
@@ -73,6 +79,9 @@ class Category(serializable.Serializable):
     def generateVOs(self):
         return self.generateVOs_
 
+    def serializationIncludes(self):
+        return self.serializationIncludeList_
+
     #############################################
     # serializer interface
     #############################################
@@ -84,7 +93,8 @@ class Category(serializable.Serializable):
         serializer.serializeProperty(self, common.DESCRIPTION)
         serializer.serializeProperty(self, common.FUNCTION_CATEGORY)
         serializer.serializeObjectDict(self, function.Function)
-        serializer.serializeList(self, 'includes', 'include', True)
+        serializer.serializeList(self, common.ADDIN_INCLUDES, common.INCLUDE, True)
+        serializer.serializeList(self, common.SERIALIZATION_INCLUDES, common.INCLUDE, True)
         serializer.serializeProperty(self, common.COPYRIGHT)
 
     def postSerialize(self):
@@ -108,24 +118,34 @@ class Category(serializable.Serializable):
         #Generate list of #include directives necessary to compile code
         #in this category.
 
-        self.includeList_ = ''
+        self.addinIncludeList_ = ''
+        self.serializationIncludeList_ = ''
         if environment.config().usingEnumerations():
             enumIncludes = []
             for func in self.functions_.values():
                 enumIncludes.extend(func.enumIncludes(enumerationList))
             enumIncludesUnique = self.sort_uniq(enumIncludes)
             for enumInclude in enumIncludesUnique:
-                self.includeList_ += '#include <%s>\n' % enumInclude
+                self.addinIncludeList_ += '#include <%s>\n' % enumInclude
+                self.serializationIncludeList_ += '#include <%s>\n' % enumInclude
 
-        if self.includes_ == None:
-            self.includeList_ += '#include <%s/%s.hpp>\n' % (
+        if self.addinIncludes_ == None:
+            self.addinIncludeList_ += '#include <%s/%s.hpp>\n' % (
                 environment.config().libRootDirectory(),
                 self.name_)
         else:
-            for includeFile in self.includes_:
-                self.includeList_ += '#include <%s>\n' % includeFile
+            for includeFile in self.addinIncludes_:
+                self.addinIncludeList_ += '#include <%s>\n' % includeFile
         if self.generateVOs_:
-            self.includeList_ += '#include <%s/vo_%s.hpp>\n' % (
+            self.addinIncludeList_ += '#include <%s/vo_%s.hpp>\n' % (
                 environment.config().voRootDirectory(),
                 self.name_)
+
+        if self.serializationIncludes_ == None:
+            self.serializationIncludeList_ += Category.SERIALIZATION_INCLUDES % {
+                'categoryName' : self.name_,
+                'libRootDirectory' : environment.config().libRootDirectory() }
+        else:
+            for includeFile in self.serializationIncludes_:
+                self.serializationIncludeList_ += '#include <%s>\n' % includeFile
 

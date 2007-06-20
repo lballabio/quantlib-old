@@ -2,7 +2,7 @@
   <description>functions to construct and use Interpolation and Interpolation2D objects</description>
   <displayName>Interpolation</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/interpolation.hpp</include>
     <include>qlo/interpolation2D.hpp</include>
     <include>qlo/optimization.hpp</include>
@@ -10,7 +10,17 @@
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
     <include>ql/math/interpolations/bilinearinterpolation.hpp</include>
     <include>ql/math/interpolations/bicubicsplineinterpolation.hpp</include>
-  </includes>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/ValueObjects/vo_interpolation.hpp</include>
+    <include>qlo/interpolation.hpp</include>
+    <include>qlo/interpolation2D.hpp</include>
+    <include>qlo/optimization.hpp</include>
+    <include>ql/math/optimization/method.hpp</include>
+    <include>ql/math/interpolations/sabrinterpolation.hpp</include>
+    <include>ql/math/interpolations/bilinearinterpolation.hpp</include>
+    <include>ql/math/interpolations/bicubicsplineinterpolation.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
   </copyright>

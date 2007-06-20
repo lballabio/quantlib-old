@@ -2,10 +2,10 @@
   <description>functions to construct and use Schedule objects</description>
   <displayName>Schedules</displayName>
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>ql/time/schedule.hpp</include>
     <include>qlo/schedule.hpp</include>
-  </includes>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet

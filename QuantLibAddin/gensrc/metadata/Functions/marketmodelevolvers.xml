@@ -2,12 +2,19 @@
   <description>functions to construct and use Market Model Evolvers objects</description>
   <displayName>Market Model Evolvers</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/marketmodelevolvers.hpp</include>
     <include>qlo/browniangenerators.hpp</include>
     <include>qlo/marketmodels.hpp</include>
     <include>ql/models/marketmodels/evolver.hpp</include>
-  </includes>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/ValueObjects/vo_marketmodelevolvers.hpp</include>
+    <include>qlo/marketmodelevolvers.hpp</include>
+    <include>qlo/browniangenerators.hpp</include>
+    <include>qlo/marketmodels.hpp</include>
+    <include>ql/models/marketmodels/evolver.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2007 Chiara Fornarola

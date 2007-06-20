@@ -2,7 +2,7 @@
   <description>functions to construct and use ctsmmcapletcalibration objects</description>
   <displayName>Ctsmmcapletcalibration</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/ctsmmcapletcalibration.hpp</include>
     <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/correlation.hpp</include>
@@ -10,7 +10,17 @@
     <include>qlo/volatility.hpp</include>
     <include>qlo/alphaform.hpp</include>
     <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
-  </includes>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/ValueObjects/vo_ctsmmcapletcalibration.hpp</include>
+    <include>qlo/ctsmmcapletcalibration.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/volatility.hpp</include>
+    <include>qlo/alphaform.hpp</include>
+    <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2007 Chiara Fornarola

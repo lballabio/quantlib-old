@@ -2,7 +2,7 @@
   <description>objecthandler utilities</description>
   <displayName>ObjectHandler Utilities</displayName>
   <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
-  <includes/>
+  <addinIncludes/>
 
   <copyright>
     Copyright (C) 2004, 2005, 2006, 2007 Ferdinando Ametrano

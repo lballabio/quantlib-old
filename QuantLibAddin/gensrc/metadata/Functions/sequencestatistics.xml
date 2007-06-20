@@ -2,10 +2,10 @@
   <description>QuantLib statistics analysis of N-dimensional (sequence) data</description>
   <displayName>SequenceStatistics</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/sequencestatistics.hpp</include>
     <include>ql/math/statistics/sequencestatistics.hpp</include>
-  </includes>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2007 Ferdinando Ametrano
     Copyright (C) 2006, 2007 Cristina Duminuco

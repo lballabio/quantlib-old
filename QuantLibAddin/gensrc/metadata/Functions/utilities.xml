@@ -2,10 +2,10 @@
   <description>diagnostic and utility functions</description>
   <displayName>Utilities</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/utilities.hpp</include>
     <include>ql/models/marketmodels/utilities.hpp</include>
-  </includes>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005 Plamen Neykov

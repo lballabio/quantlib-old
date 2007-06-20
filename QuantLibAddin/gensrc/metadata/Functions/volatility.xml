@@ -2,10 +2,10 @@
   <description>functions to construct and use Market Model Volatility objects</description>
   <displayName>Market Model Volatility</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/volatility.hpp</include>
     <include>ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp</include>
-  </includes>
+  </addinIncludes>
 
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano

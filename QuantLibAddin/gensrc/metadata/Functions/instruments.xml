@@ -2,10 +2,10 @@
   <description>functions to construct and use Instrument objects</description>
   <displayName>Instruments</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/baseinstruments.hpp</include>
     <include>qlo/pricingengines.hpp</include>
-  </includes>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
     Copyright (C) 2005 Walter Penschke

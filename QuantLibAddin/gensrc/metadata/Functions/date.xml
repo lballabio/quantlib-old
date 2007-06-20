@@ -2,11 +2,11 @@
   <description>Date- and Period-related QuantLib functions</description>
   <displayName>Date</displayName>
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/date.hpp</include>
     <include>ql/time/date.hpp</include>
     <include>ql/time/imm.hpp</include>
-  </includes>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
   </copyright>

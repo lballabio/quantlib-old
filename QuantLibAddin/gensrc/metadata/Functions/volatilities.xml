@@ -2,10 +2,10 @@
   <description>functions to construct and use volatility objects</description>
   <displayName>Volatilities</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/volatilities.hpp</include>
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
-  </includes>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers
   </copyright>

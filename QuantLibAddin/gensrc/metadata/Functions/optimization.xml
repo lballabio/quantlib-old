@@ -2,10 +2,10 @@
   <description>functions to construct and use Optimization objects</description>
   <displayName>Optimization</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/optimization.hpp</include>
     <include>ql/math/optimization/spherecylinder.hpp</include>
-  </includes>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
   </copyright>

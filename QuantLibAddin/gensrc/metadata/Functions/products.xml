@@ -2,14 +2,23 @@
   <description>functions to construct and use Market Models Products objects</description>
   <displayName>Products</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/products.hpp</include>
     <include>qlo/payoffs.hpp</include>
     <include>ql/models/marketmodels/products/onestep/onestepforwards.hpp</include>
     <include>ql/models/marketmodels/products/onestep/onestepoptionlets.hpp</include>
     <include>ql/models/marketmodels/products/multistep/multistepratchet.hpp</include>
     <include>ql/models/marketmodels/products/multiproductcomposite.hpp</include>
-  </includes>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/ValueObjects/vo_products.hpp</include>
+    <include>qlo/products.hpp</include>
+    <include>qlo/payoffs.hpp</include>
+    <include>ql/models/marketmodels/products/onestep/onestepforwards.hpp</include>
+    <include>ql/models/marketmodels/products/onestep/onestepoptionlets.hpp</include>
+    <include>ql/models/marketmodels/products/multistep/multistepratchet.hpp</include>
+    <include>ql/models/marketmodels/products/multiproductcomposite.hpp</include>
+  </serializationIncludes>
 
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano

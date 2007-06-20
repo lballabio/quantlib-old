@@ -2,7 +2,7 @@
   <description>functions to construct and use Leg objects</description>
   <displayName>Coupon Vectors</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
@@ -10,7 +10,17 @@
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/index.hpp</include>
-  </includes>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/ValueObjects/vo_couponvectors.hpp</include>
+    <include>qlo/couponvectors.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/conundrumpricer.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/index.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006, 2007 Cristina Duminuco

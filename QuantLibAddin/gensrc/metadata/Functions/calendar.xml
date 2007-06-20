@@ -2,10 +2,10 @@
     <description>Calendar related functions</description>
     <displayName>Calendar</displayName>
     <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
-    <includes>
+    <addinIncludes>
         <include>ql/time/date.hpp</include>
         <include>ql/time/calendar.hpp</include>
-    </includes>
+    </addinIncludes>
     <copyright>
         Copyright (C) 2006 Eric Ehlers
     </copyright>

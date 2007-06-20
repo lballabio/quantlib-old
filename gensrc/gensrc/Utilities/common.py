@@ -20,6 +20,7 @@
 
 """global constants."""
 
+ADDIN_INCLUDES = 'addinIncludes'
 ALIAS = 'alias'
 ANY = 'any'
 BEGIN = 'begin'
@@ -51,6 +52,7 @@ FUNCTION_CATEGORY = 'xlFunctionWizardCategory'
 HANDLE_TO_LIB = 'handleToLib'
 HANDLE_TO_LIB2 = 'handleToLib2'
 IGNORE = 'ignore'
+INCLUDE = 'include'
 INDENT = 'indent'
 INDENT2 = 'indent2'
 LIB_TO_HANDLE = 'libToHandle'
@@ -76,6 +78,7 @@ PAD_LAST_PARAM = 'padLastParamDesc'
 REFERENCE = 'reference'
 ROOT_DIRECTORY = 'rootDirectory'
 SCALAR = 'scalar'
+SERIALIZATION_INCLUDES = 'serializationIncludes'
 STRING = 'string'
 STUB = 'stub'
 SUPER_TYPE = 'superType'

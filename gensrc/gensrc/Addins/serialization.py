@@ -29,7 +29,7 @@ from gensrc.Configuration import environment
 class Serialization(addin.Addin):
     """Generate source code for Serialization."""
 
-    # constants
+    # class constants
 
     DECLARE_CREATOR = '''\
     boost::shared_ptr<ObjectHandler::Object> create_%(functionName)s(
@@ -124,7 +124,7 @@ class Serialization(addin.Addin):
 
             createBodyBuffer = self.bufferIncludes_.text() % {
                 'bufferCreators' : bufferCreators,
-                'categoryIncludes' : cat.includeList(),
+                'serializationIncludes' : cat.serializationIncludes(),
                 'categoryName' : cat.name() }
             createBodyFile = self.rootPath_ + 'create_' + cat.name() + '.cpp'
             outputfile.OutputFile(self, createBodyFile, self.copyright_, createBodyBuffer)

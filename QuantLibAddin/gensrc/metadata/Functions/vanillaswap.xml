@@ -2,12 +2,19 @@
   <description>functions to construct and use VanillaSwap objects</description>
   <displayName>Vanilla Swap</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/index.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
-  </includes>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/ValueObjects/vo_vanillaswap.hpp</include>
+    <include>qlo/vanillaswap.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers

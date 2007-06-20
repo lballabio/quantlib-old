@@ -2,10 +2,10 @@
   <description>functions to construct and use Statistics objects</description>
   <displayName>Statistics</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/statistics.hpp</include>
     <include>ql/math/statistics/statistics.hpp</include>
-  </includes>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006 Cristina Duminuco

@@ -2,12 +2,19 @@
   <description>functions to construct and use CapFloor objects</description>
   <displayName>Caps/Floors</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>qlo/index.hpp</include>
     <include>qlo/capfloor.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/pricingengines.hpp</include>
-  </includes>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/ValueObjects/vo_capfloor.hpp</include>
+    <include>qlo/capfloor.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>qlo/couponvectors.hpp</include>
+    <include>qlo/pricingengines.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet

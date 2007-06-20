@@ -2,14 +2,23 @@
   <description>functions to construct and use Range Accrual objects</description>
   <displayName>Range Accrual</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <includes>
+  <addinIncludes>
     <include>ql/cashflows/rangeaccrual.hpp</include>
     <include>qlo/rangeaccrual.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/schedule.hpp</include>
-  </includes>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/ValueObjects/vo_rangeaccrual.hpp</include>
+    <include>qlo/rangeaccrual.hpp</include>
+    <include>ql/cashflows/rangeaccrual.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>qlo/schedule.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Giorgio Facchinetti
   </copyright>

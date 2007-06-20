@@ -1,9 +1,9 @@
 <Category name='ohfunctions'>
   <description>ObjectHandler functions</description>
   <displayName>ObjectHandler</displayName>
-  <includes>
+  <addinIncludes>
     <include>oh/objecthandler.hpp</include>
-  </includes>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Eric Ehlers
   </copyright>
