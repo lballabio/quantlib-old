@@ -113,21 +113,25 @@ class Category(serializable.Serializable):
             if item and ret.count(item) == 0: ret.append(item)
         ret.sort()
         return ret
-        
-    def init(self, enumerationList):
-        #Generate list of #include directives necessary to compile code
-        #in this category.
 
-        self.addinIncludeList_ = ''
-        self.serializationIncludeList_ = ''
+    def enumIncludes(self, enumerationList, constructorOnly):
+        ret = ''
         if environment.config().usingEnumerations():
             enumIncludes = []
             for func in self.functions_.values():
-                enumIncludes.extend(func.enumIncludes(enumerationList))
+                if constructorOnly and not func.generateVOs(): continue
+                enumIncludes.extend(enumerationList.enumIncludes(
+                    func.parameterList().parameters()))
             enumIncludesUnique = self.sort_uniq(enumIncludes)
             for enumInclude in enumIncludesUnique:
-                self.addinIncludeList_ += '#include <%s>\n' % enumInclude
-                self.serializationIncludeList_ += '#include <%s>\n' % enumInclude
+                ret += '#include <%s>\n' % enumInclude
+        return ret
+        
+    def init(self, enumerationList):
+        """Generate list of #include directives necessary to compile code
+        in this category."""
+
+        self.addinIncludeList_ = self.enumIncludes(enumerationList, False)
 
         if self.addinIncludes_ == None:
             self.addinIncludeList_ += '#include <%s/%s.hpp>\n' % (
@@ -136,10 +140,13 @@ class Category(serializable.Serializable):
         else:
             for includeFile in self.addinIncludes_:
                 self.addinIncludeList_ += '#include <%s>\n' % includeFile
+
         if self.generateVOs_:
             self.addinIncludeList_ += '#include <%s/vo_%s.hpp>\n' % (
                 environment.config().voRootDirectory(),
                 self.name_)
+
+        self.serializationIncludeList_ = self.enumIncludes(enumerationList, True)
 
         if self.serializationIncludes_ == None:
             self.serializationIncludeList_ += Category.SERIALIZATION_INCLUDES % {

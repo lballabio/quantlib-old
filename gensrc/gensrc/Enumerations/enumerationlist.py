@@ -84,8 +84,12 @@ class EnumerationList(object):
         for item in self.enumeratedPairGroups_.values():
             self.typeDict_[item.className()] = item.includeFile()
 
-    def include(self, typeName):
-        if self.typeDict_.has_key(typeName):
-            return self.typeDict_[typeName]
-        else:
-            return ''
+    def enumIncludes(self, parameterList):
+        """Generate a list of all the #includes necessary to compile source code
+        for any enumerations which may appear in the given parameter list."""
+        ret = []
+        for p in parameterList:
+            if p.dataType().superType() == common.ENUM \
+            and self.typeDict_.has_key(p.type()):
+                ret.append(self.typeDict_[p.type()])
+        return ret
