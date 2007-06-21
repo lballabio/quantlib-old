@@ -425,8 +425,8 @@
       </ReturnValue>
     </Member>
 
-    <Member name='ohPropertyValue' type='QuantLibAddin::Object' dependencyTrigger='true'>
-      <description>retrieve the value of a named property</description>
+    <Member name='ohPropertyValue' type='ObjectHandler::Object' dependencyTrigger='true' loopParameter='propertyName'>
+      <description>retrieve the value(s) of one or more named properties</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc' implementation='manual'/>
@@ -434,16 +434,16 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fieldName'>
+          <Parameter name='propertyName'>
             <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>name of property</description>
+            <tensorRank>vector</tensorRank>
+            <description>property name(s) to be queried</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>any</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
