@@ -20,10 +20,14 @@
 #define qla_interpolation_hpp
 
 #include <oh/objecthandler.hpp>
-#include <ql/math/optimization/method.hpp>
-#include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/cubicspline.hpp>
-#include <ql/math/matrix.hpp>
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class Extrapolator;
+    class EndCriteria;
+    class OptimizationMethod;
+}
 
 namespace QuantLibAddin {
 
@@ -41,7 +45,7 @@ namespace QuantLibAddin {
 
     class LinearInterpolation : public Interpolation {
       public:
-          LinearInterpolation(const std::string &linearInterpolationType,
+          LinearInterpolation(const std::string& linearInterpolationType,
                               const std::vector<QuantLib::Real>& x,
                               const std::vector<QuantLib::Real>& y);
     };
@@ -52,9 +56,9 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& x,
             const std::vector<QuantLib::Real>& y,
             QuantLib::CubicSpline::BoundaryCondition leftCondition,
-            double leftConditionValue,
+            QuantLib::Real leftConditionValue,
             QuantLib::CubicSpline::BoundaryCondition rightCondition,
-            double rightConditionValue,
+            QuantLib::Real rightConditionValue,
             bool monotonicityConstraint);
     };
     

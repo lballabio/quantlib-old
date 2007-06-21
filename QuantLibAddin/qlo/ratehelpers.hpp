@@ -21,9 +21,20 @@
 #ifndef qla_ratehelpers_hpp
 #define qla_ratehelpers_hpp
 
-#include <ql/indexes/iborindex.hpp>
-#include <ql/termstructures/yieldcurves/ratehelpers.hpp>
 #include <oh/objecthandler.hpp>
+#include <ql/types.hpp>
+#include <ql/handle.hpp>
+#include <ql/time/businessdayconvention.hpp>
+#include <ql/time/Frequency.hpp>
+
+namespace QuantLib {
+    class RateHelper;
+    class Quote;
+    class Period;
+    class Calendar;
+    class DayCounter;
+    class IborIndex;
+}
 
 namespace QuantLibAddin {
 
@@ -35,8 +46,8 @@ namespace QuantLibAddin {
                         DeposBeforeFirstFuturesStartDatePlusOne,
                         DeposBeforeFirstFuturesExpiryDate
          };
-      protected:
-        QuantLib::Handle<QuantLib::Quote> quoteHandle_;
+      //protected:
+      //  QuantLib::Handle<QuantLib::Quote> quoteHandle_;
     };
 
     class DepositRateHelper : public RateHelper {
@@ -44,7 +55,7 @@ namespace QuantLibAddin {
         DepositRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
-            const QuantLib::Natural fixingDays,
+            QuantLib::Natural settlementDays,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
             const QuantLib::DayCounter& dayCounter);
@@ -55,7 +66,7 @@ namespace QuantLibAddin {
         FuturesRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& price,
             const std::string& immDateID,
-            const QuantLib::Integer months,
+            QuantLib::Size months,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention bDayConvention,
             const QuantLib::DayCounter& dayCounter,
@@ -70,7 +81,7 @@ namespace QuantLibAddin {
         SwapRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
-            const QuantLib::Natural fixingDays,
+            QuantLib::Natural settlementDays,
             const QuantLib::Calendar& calendar,
             const QuantLib::Frequency& fixedFrequency,
             QuantLib::BusinessDayConvention fixedConvention,
@@ -83,10 +94,9 @@ namespace QuantLibAddin {
     std::vector<std::string> qlRateHelperSelection(
         const std::vector<std::string>& instrumentIDs,
         const std::vector<QuantLib::Size>& priority,
-        const QuantLib::Natural nFutures,
-        const QuantLib::Natural frontFuturesRollingDays,
+        QuantLib::Natural nFutures,
+        QuantLib::Natural frontFuturesRollingDays,
         RateHelper::DepoInclusionCriteria depoInclusionCriteria);
-
 }
 
 #endif

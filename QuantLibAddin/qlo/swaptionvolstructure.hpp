@@ -26,12 +26,12 @@
 #include <qlo/termstructures.hpp>
 #include <qlo/smilesection.hpp>
 
-#include <ql/indexes/swapindex.hpp>
-#include <ql/termstructures/volatilities/swaption/swaptionvolcube.hpp>
-#include <ql/termstructures/volatilities/swaption/spreadedswaptionvolstructure.hpp>
-
 namespace QuantLib {
+    class SwaptionVolatilityStructure;
+    class SwaptionVolatilityCube;
     class QuantLib::EndCriteria;
+    class SwapIndex;
+    class Matrix;
 }
 
 namespace QuantLibAddin {

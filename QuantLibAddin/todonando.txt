@@ -22,6 +22,11 @@ class Instrument {
 ---
 GENERAL
 
+- swaption smile vega (risultati con De Nuccio)
+- perche' SABR interpolation ha un data member forward_
+- export FRARateHelper and BondRateHelper
+- automatic cast from IMM code to date and get FuturesRateHelper in line bertween QL and QLA
+- change QLA::DepositRateHelper as in QL::DepositRateHelper
 - fix openIRDerivative macro
 - add docs-project to sln
 - remove bat from testsuite/bin
@@ -394,18 +399,19 @@ Eric
 - double cliking QuantLib.xla should default to dynamic version
 - setProperty
 - rename all Index as InterestRateIndex (we haven't used Indexes yet, only
-  InterestRateIndexes)
-- ohRange coercion to Matrix, std::vector, Array, scalar, etc
-- in index.xml use QuantLibAddin::Index::addFixings instead of QuantLib::Index::addFixings
+  InterestRateIndexes), the only index we are enumerating so far are
+  InterestRateIndex
+- ohRange coercion to Matrix, std::vector, Array, scalar, string, etc
+- in index.xml use QuantLibAddin::Index::addFixings instead of
+  QuantLib::Index::addFixings
 - relinkable handle singletons
-- native support of vector of object IDS (as RateHelpers in PiecewiseYieldCurve)
-- flow analysis bug
-- the only index we are enumeratig are InterestRateIndex
+- native support of vector of object IDS (as RateHelpers in
+  PiecewiseYieldCurve)
 - automate xls properties clean up
-- ohretrieveerror bug (see YieldCurveBootstrapping.xls)
-- enumeration aliases: avoid all aliases in ohEnumeratedType("class QuantLib::DayCounter")
+- ohRetrieveError bug (see YieldCurveBootstrapping.xls)
+- enumeration aliases: avoid all aliases in ohEnumeratedType("class
+  QuantLib::DayCounter")
 - automatic dropdown cell menu maintenance (see Enumerations.xls)
-- ohproperty value should iterate on field input
 - native Excel looping behaviour
 - HistoricalForwardRatesAnalysis should not calculate in wizard
 - business252 designed as in JointCalendar

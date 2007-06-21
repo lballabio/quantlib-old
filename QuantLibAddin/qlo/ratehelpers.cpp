@@ -25,7 +25,8 @@
 #endif
 #include <oh/ohdefines.hpp>
 #include <qlo/ratehelpers.hpp>
-
+#include <ql/indexes/iborindex.hpp>
+#include <ql/termstructures/yieldcurves/ratehelpers.hpp>
 #include <ql/time/imm.hpp>
 
 namespace QuantLibAddin {
@@ -33,61 +34,62 @@ namespace QuantLibAddin {
     DepositRateHelper::DepositRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
-            const QuantLib::Natural fixingDays,
+            QuantLib::Natural settlementDays,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
             const QuantLib::DayCounter& dayCounter)
     {
-        quoteHandle_ = quote;
+        //quoteHandle_ = quote;
+        bool endOfMonth = false;
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::DepositRateHelper(quoteHandle_,
+            QuantLib::DepositRateHelper(quote,
                                         p,
-                                        fixingDays,
+                                        settlementDays,
                                         calendar,
                                         convention,
-                                        false,      // FIXME
-                                        fixingDays, // FIXME
+                                        endOfMonth,     // FIXME
+                                        settlementDays, // FIXME
                                         dayCounter));
     }
 
     FuturesRateHelper::FuturesRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& price,
             const std::string& immDateID,
-            const QuantLib::Integer months,
+            QuantLib::Size months,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention bDayConvention,
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& convAdj)
     {
-        quoteHandle_ = price;
-        convAdjHandle_= convAdj;
+        //quoteHandle_ = price;
+        //convAdjHandle_= convAdj;
         QuantLib::Date expiry = QuantLib::IMM::date(immDateID);
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::FuturesRateHelper(quoteHandle_,
+            QuantLib::FuturesRateHelper(price,
                                         expiry,
                                         months,
                                         calendar,
                                         bDayConvention,
                                         dayCounter,
-                                        convAdjHandle_));
+                                        convAdj));
     }
 
 
     SwapRateHelper::SwapRateHelper(
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
-            const QuantLib::Natural fixingDays,
+            QuantLib::Natural settlementDays,
             const QuantLib::Calendar& calendar,
             const QuantLib::Frequency& fixedFrequency,
             QuantLib::BusinessDayConvention fixedConvention,
             const QuantLib::DayCounter& fixedDayCounter,
             const boost::shared_ptr<QuantLib::IborIndex>& index)
     {
-        quoteHandle_ = quote;
+        //quoteHandle_ = quote;
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::SwapRateHelper(quoteHandle_,
+            QuantLib::SwapRateHelper(quote,
                                      p,
-                                     fixingDays,
+                                     settlementDays,
                                      calendar,
                                      fixedFrequency,
                                      fixedConvention,
@@ -139,8 +141,8 @@ namespace QuantLibAddin {
     std::vector<std::string> qlRateHelperSelection(
         const std::vector<std::string>& instrumentIDs,
         const std::vector<QuantLib::Size>& priority,
-        const QuantLib::Natural nFutures,
-        const QuantLib::Natural frontFuturesRollingDays,
+        QuantLib::Natural nFutures,
+        QuantLib::Natural frontFuturesRollingDays,
         RateHelper::DepoInclusionCriteria depoInclusionCriteria)
     {
         // Checks

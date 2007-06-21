@@ -4,13 +4,12 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
     <include>qlo/ratehelpers.hpp</include>
-    <include>qlo/termstructures.hpp</include>
     <include>qlo/index.hpp</include>
-  </addinIncludes>
+    <include>ql/termstructures/yieldcurves/ratehelpers.hpp</include>
+    </addinIncludes>
   <serializationIncludes>
     <include>qlo/ValueObjects/vo_ratehelpers.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
-    <include>qlo/termstructures.hpp</include>
     <include>qlo/index.hpp</include>
   </serializationIncludes>
   <copyright>

@@ -27,6 +27,10 @@
 #include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 
+#include <ql/math/optimization/method.hpp>
+#include <ql/math/interpolations/linearinterpolation.hpp>
+#include <ql/math/matrix.hpp>
+
 namespace QuantLibAddin {
 
     Interpolation::Interpolation(

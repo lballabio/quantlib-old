@@ -28,6 +28,7 @@
 #include <ql/termstructures/volatilities/swaption/swaptionvolcube2.hpp>
 #include <ql/termstructures/volatilities/swaption/swaptionvolcube1.hpp>
 #include <ql/termstructures/volatilities/swaption/swaptionvolmatrix.hpp>
+#include <ql/termstructures/volatilities/swaption/spreadedswaptionvolstructure.hpp>
 
 namespace QuantLibAddin {
 
