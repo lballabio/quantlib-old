@@ -6,7 +6,13 @@
     <include>qlo/abcd.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>ql/termstructures/volatilities/abcd.hpp</include>
+    <include>ql/termstructures/volatilities/abcdcalibration.hpp</include>
   </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/abcd.hpp</include>
+    <include>qlo/optimization.hpp</include>
+  </serializationIncludes>
+
   <copyright>
 
     Copyright (C) 2006, 2007 Ferdinando Ametrano
@@ -26,6 +32,49 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='a' default='-0.06'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.  If omitted, default = -0.06 is used.</description>
+          </Parameter>
+          <Parameter name='b' default='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
+          </Parameter>
+          <Parameter name='c' default='0.54'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.54 is used.</description>
+          </Parameter>
+          <Parameter name='d' default='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
+    <!-- AbcdCalibration (volatility) class costructor -->
+    <Constructor name='qlAbcdCalibration'>
+      <libraryFunction>AbcdCalibration</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='times' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>times</description>
+          </Parameter>
+          <Parameter name='blackVols' >
+            <type>QuantLib::Volatility</type>
+            <tensorRank>vector</tensorRank>
+            <description>Black Volatilities</description>
+          </Parameter>
           <Parameter name='a' default='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
@@ -66,10 +115,25 @@
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
           </Parameter>
+          <Parameter name='vegaWeighted' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
+          </Parameter>
+          <Parameter name="endCriteria" default='""'>
+            <type>QuantLib::EndCriteria</type>
+            <tensorRank>scalar</tensorRank>
+            <description>EndCriteria object ID</description>
+          </Parameter>
+          <Parameter name='method' default='""'>
+            <type>QuantLib::OptimizationMethod</type>
+            <tensorRank>scalar</tensorRank>
+            <description>OptimizationMethod object ID</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
-
+    
     <!-- Abcd (volatility) class interfaces -->
     <Member name='qlAbcdInstantaneousValue' type='QuantLib::Abcd' loopParameter='u'>
       <description>Returns the instantaneous volatility as function of residual time to maturity u=T-t: [a + b*u] * e^{-c*u} + d</description>
@@ -407,8 +471,26 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
-
-    <Member name='qlAbcdK' type='QuantLib::Abcd'>
+    
+    <!-- AbcdCalibration  class interfaces -->
+    <Member name='qlAbcdCalibrationCompute' type='QuantLib::AbcdCalibration'>
+      <description>compute calibration</description>
+      <libraryFunction>compute</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlAbcdCalibrationK' type='QuantLib::AbcdCalibration'>
       <description>Returns the 'k' adjustment factors needed to match Black vols</description>
       <libraryFunction>k</libraryFunction>
       <SupportedPlatforms>
@@ -417,15 +499,15 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackVols' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
+          <Parameter name='times'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>times</description>
+          </Parameter>
+          <Parameter name='blackVols'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
-            <description>Black vol vector.</description>
-          </Parameter>
-          <Parameter name='times' exampleValue ='0,1,2,3,4'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Reference time for the above Black vol vector.</description>
+            <description>Black Volatilities</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -435,7 +517,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdError' type='QuantLib::Abcd'>
+    <Member name='qlAbcdCalibrationError' type='QuantLib::AbcdCalibration'>
       <description>Returns the root mean squared error between the abdc implied Black vols and a given Black vol vector</description>
       <libraryFunction>error</libraryFunction>
       <SupportedPlatforms>
@@ -444,16 +526,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackVols' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
-            <type>QuantLib::Volatility</type>
-            <tensorRank>vector</tensorRank>
-            <description>Black vol vector.</description>
-          </Parameter>
-          <Parameter name='times' exampleValue ='0,1,2,3,4'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Reference time for the above Black vol vector.</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -462,7 +534,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdMaxError' type='QuantLib::Abcd'>
+    <Member name='qlAbcdCalibrationMaxError' type='QuantLib::AbcdCalibration'>
       <description>Returs the max error between the abdc implied Black vols and a given Black vol vector</description>
       <libraryFunction>maxError</libraryFunction>
       <SupportedPlatforms>
@@ -471,16 +543,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackVols' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
-            <type>QuantLib::Volatility</type>
-            <tensorRank>vector</tensorRank>
-            <description>Black vol vector.</description>
-          </Parameter>
-          <Parameter name='times' exampleValue ='0,1,2,3,4'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>Reference time for the above Black vol vector.</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -489,39 +551,83 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdCalibration' type='QuantLib::Abcd'>
+    <Member name='qlAbcdCalibrationEndCriteria' type='QuantLib::AbcdCalibration'>
       <description>Calibrates the a, b, c, d parameters of the vol parametrization</description>
-      <libraryFunction>calibration</libraryFunction>
+      <libraryFunction>endCriteria</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackVols' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
-            <type>QuantLib::Volatility</type>
-            <tensorRank>vector</tensorRank>
-            <description>Black vol vector.</description>
-          </Parameter>
-          <Parameter name='times' exampleValue ='0,1,2,3,4'>
-            <type>double</type>
-            <tensorRank>vector</tensorRank>
-            <description>times for the above Black vol vector.</description>
-          </Parameter>
-          <Parameter name='endCriteria' default='""'>
-            <type>QuantLib::EndCriteria</type>
-            <tensorRank>scalar</tensorRank>
-            <description>EndCriteria object ID. If omitted, default = "" is used.</description>
-          </Parameter>
-          <Parameter name='optimizationMethod' default='""'>
-            <type>QuantLib::OptimizationMethod</type>
-            <tensorRank>scalar</tensorRank>
-            <description>OptimizationMethod object ID. If omitted, default optimization method is used.</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::EndCriteria::Type</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdCalibrationA' type='QuantLib::AbcdCalibration'>
+      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <libraryFunction>a</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdCalibrationB' type='QuantLib::AbcdCalibration'>
+      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <libraryFunction>b</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdCalibrationC' type='QuantLib::AbcdCalibration'>
+      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <libraryFunction>c</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdCalibrationD' type='QuantLib::AbcdCalibration'>
+      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <libraryFunction>d</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>

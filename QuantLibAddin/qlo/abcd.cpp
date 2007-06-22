@@ -24,16 +24,32 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/abcd.hpp>
-#include <ql/termstructures/volatilities/abcd.hpp>
+#include <ql/termstructures/volatilities/abcdcalibration.hpp>
+#include <ql/quotes/simplequote.hpp>
 
 namespace QuantLibAddin {
-        
-    Abcd::Abcd(QuantLib::Real a, QuantLib::Real b,
+   
+    Abcd::Abcd(QuantLib::Real a, 
+               QuantLib::Real b,
+               QuantLib::Real c, 
+               QuantLib::Real d) {
+        libraryObject_ = boost::shared_ptr<QuantLib::Abcd>(
+            new QuantLib::Abcd(a, b, c, d));
+    }   
+
+    AbcdCalibration::AbcdCalibration(const std::vector<QuantLib::Time>& times,
+               const std::vector<QuantLib::Volatility>& blackVols,
+               QuantLib::Real a, QuantLib::Real b,
                QuantLib::Real c, QuantLib::Real d,
                bool aIsFixed, bool bIsFixed,
-               bool cIsFixed, bool dIsFixed) {
-        libraryObject_ = boost::shared_ptr<QuantLib::Abcd>(
-            new QuantLib::Abcd(a, b, c, d,
-                               aIsFixed, bIsFixed, cIsFixed, dIsFixed));
+               bool cIsFixed, bool dIsFixed,
+               bool vegaWeighted,
+               const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
+               const boost::shared_ptr<QuantLib::OptimizationMethod> method) {
+
+        libraryObject_ = boost::shared_ptr<QuantLib::AbcdCalibration>(
+            new QuantLib::AbcdCalibration(times, blackVols, a, b, c, d,
+                               aIsFixed, bIsFixed, cIsFixed, dIsFixed,
+                               vegaWeighted, endCriteria, method));
     }
 }

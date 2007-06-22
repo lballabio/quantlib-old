@@ -76,6 +76,7 @@
     <SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
         <DataType>QuantLib::Abcd</DataType>
+        <DataType>QuantLib::AbcdCalibration</DataType>
         <DataType>QuantLib::AccountingEngine</DataType>
         <DataType>QuantLib::AffineModel</DataType>
         <DataType>QuantLib::AlphaForm</DataType>
