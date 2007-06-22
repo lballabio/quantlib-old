@@ -36,21 +36,20 @@ namespace ObjectHandler {
         //! \name Structors and static members
         //@{
         //! Constructor - initialize the singleton.
-        EnumTypeRegistry();
+        EnumTypeRegistry() { instance_ = this; }
         //! Destructor - de-initialize the singleton.
-        virtual ~EnumTypeRegistry();
-        //! Client applications access the global object via a call to Repository::instance().
+        virtual ~EnumTypeRegistry() { instance_ = 0; }
+        //! Client applications access the global object via a call to EnumTypeRegistry::instance().
         static EnumTypeRegistry &instance();
         //@}
 
-        virtual void registerType(const std::string &mapID, const std::string &typeID, void *type) const;
-        virtual const AllTypeMap& getAllTypesMap() const;
-        virtual std::vector<std::string> getAllRegisteredTypes() const;
-        virtual std::vector<std::string> getTypeElements(const std::string &id) const;
-        void deleteTypeMap(const std::string &mapID);
-
+        //! \name Management of Enumerations
+        //@{
+        //! Return a non-const reference to the type map for use by the base class.
+        virtual EnumTypeRegistry::AllTypeMap& getAllTypesMap() const;
+        //@}
     private:
-        //! A pointer to the Registry instance, used to support the Singleton pattern.
+        //! A pointer to the EnumTypeRegistry instance, used to support the Singleton pattern.
         static EnumTypeRegistry *instance_;
     };
 
@@ -60,20 +59,20 @@ namespace ObjectHandler {
         //! \name Structors and static members
         //@{
         //! Constructor - initialize the singleton.
-        EnumClassRegistry();
+        EnumClassRegistry() { instance_ = this; }
         //! Destructor - de-initialize the singleton.
-        virtual ~EnumClassRegistry();
-        //! Client applications access the global object via a call to Repository::instance().
+        virtual ~EnumClassRegistry() { instance_ = 0; }
+        //! Client applications access the global object via a call to EnumClassRegistry::instance().
         static EnumClassRegistry &instance();
         //@}
 
-        virtual void registerType(const std::string &mapID, const std::string &typeID, void *type) const;
-        virtual const AllTypeMap& getAllTypesMap() const;
-        virtual std::vector<std::string> getAllRegisteredTypes() const;
-        virtual std::vector<std::string> getTypeElements(const std::string &id) const;
-
+        //! \name Management of Enumerations
+        //@{
+        //! Return a non-const reference to the type map for use by the base class.
+        virtual EnumClassRegistry::AllTypeMap& getAllTypesMap() const;
+        //@}
     private:
-        //! A pointer to the Registry instance, used to support the Singleton pattern.
+        //! A pointer to the EnumClassRegistry instance, used to support the Singleton pattern.
         static EnumClassRegistry *instance_;
     };
 
@@ -87,20 +86,20 @@ namespace ObjectHandler {
         //! \name Structors and static members
         //@{
         //! Constructor - initialize the singleton.
-        EnumPairRegistry();
+        EnumPairRegistry() { instance_ = this; }
         //! Destructor - de-initialize the singleton.
-        virtual ~EnumPairRegistry();
-        //! Client applications access the global object via a call to Repository::instance().
+        virtual ~EnumPairRegistry() { instance_ = 0; }
+        //! Client applications access the global object via a call to EnumPairRegistry::instance().
         static EnumPairRegistry &instance();
         //@}
 
-        virtual void registerType(const std::string &mapID, const KeyPair &typeID, void *type) const;
-        virtual const AllTypeMap& getAllTypesMap() const;
-        virtual std::vector<std::string> getAllRegisteredTypes() const;
-        virtual std::vector<std::string> getTypeElements(const std::string &id) const;
-
+        //! \name Management of Enumerations
+        //@{
+        //! Return a non-const reference to the type map for use by the base class.
+        virtual EnumPairRegistry::AllTypeMap& getAllTypesMap() const;
+        //@}
     private:
-        //! A pointer to the Registry instance, used to support the Singleton pattern.
+        //! A pointer to the EnumPairRegistry instance, used to support the Singleton pattern.
         static EnumPairRegistry *instance_;
     };
 

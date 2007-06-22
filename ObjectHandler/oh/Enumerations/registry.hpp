@@ -42,19 +42,10 @@ namespace ObjectHandler {
 
     //! A registry of enumerated types and classes.
     /*! Maintain a mapping of text strings to datatypes.
-
-        This class incorporates some workarounds to compensate for the fact
-        that std::map cannot be exported across DLL boundaries.  Normally the
-        AllTypeMap would be a protected member variable, but instead derived
-        classes must declare a AllTypeMap as a static variable within their cpp
-        files. Base member functions which access the AllTypeMap are declared as
-        xxxImpl() and base classes invoke these functions, passing in a reference
-        to their respective static AllTypeMap variables.
     */
     template <typename KeyClass>
     class Registry {
     public:
-
         //! A mapping of keys to type instances.
         typedef std::map<KeyClass, void*> TypeMap;
         //! Shared pointer to a type map.
@@ -64,16 +55,30 @@ namespace ObjectHandler {
 
         //! \name Management of Enumerations
         //@{
-        //! Store a type in the registry.
-        virtual void registerType(const std::string &mapID, const KeyClass &typeID, void *type) const = 0;
-        //! Retrieve the map of TypeMaps.
-        virtual const AllTypeMap& getAllTypesMap() const = 0;
-        //! Retrieve the list of types in the AllTypeMap.
-        virtual std::vector<std::string> getAllRegisteredTypes() const = 0;
-        //! Retrieve the list of instances for a given type.
-        virtual std::vector<std::string> getTypeElements(const std::string&) const = 0;
-        //@}
+        //! Return a reference to the type map.
+        /*! The type map would normally be declared as a member variable but that
+        isn't possible because std::map cannot be exported across DLL boundaries.
+        Instead this pure virtual member function is declared in the base class.
+        Derived classes must implement a concrete override of the function, returning
+        a (non-const) reference to a static variable declared in a cpp file.
 
+        \todo Make this function protected, and provide a public function returning
+        a const reference for use by client classes (e.g. RegistryManager).
+        */
+        virtual AllTypeMap& getAllTypesMap() const = 0;
+        //! Store a type in the registry.
+        void registerType(const std::string &mapID, const KeyClass &typeID, void *type) const;
+        //! Retrieve the list of types in the AllTypeMap.
+        std::vector<std::string> getAllRegisteredTypes() const;
+        //! Retrieve the list of instances for a given type.
+        std::vector<std::string> getTypeElements(const std::string&) const;
+        //! Free any memory allocated to the type map.
+        /*! If the derived class has called "new" when initializing the type map,
+        then when the application shuts down, a (harmless) memory leak will occur.
+        This function should be called to ensure a clean shutdown.
+        */
+        void deleteTypeMap(const std::string &mapID) const;
+        //@}
     protected:
         //! \name Structors
         //@{
@@ -82,41 +87,14 @@ namespace ObjectHandler {
         //! Empty virtual destructor.
         virtual ~Registry() {}
         //@}
-
-        //! \name Management of Enumerations
-        //@{
-        //! Store a type in the registry.
-        /*! Concrete implementation of functionality common to all base classes.
-            Base classes invoke this function from within their concrete instantiations
-            of pure virtual function registerType().
-        */
-        void registerTypeImpl(
-                AllTypeMap &allTypeMap,
-                const std::string &mapID,
-                const KeyClass &typeID,
-                void *type) const;
-        //! Retrieve the list of types in the AllTypeMap.
-        /*! Concrete implementation of functionality common to all base classes.
-            Base classes invoke this function from within their concrete instantiations
-            of pure virtual function getAllRegisteredTypes().
-        */
-        std::vector<std::string> getAllRegisteredTypesImpl(const AllTypeMap &allTypeMap) const;
-        //! Retrieve the list of instances for a given type.
-        /*! Concrete implementation of functionality common to all base classes.
-            Base classes invoke this function from within their concrete instantiations
-            of pure virtual function getTypeElements().
-        */
-        std::vector<std::string> getTypeElementsImpl(const AllTypeMap &allTypeMap, const std::string& id) const;
-        //@}
-
     };
 
     template <typename KeyClass>
-    inline void Registry<KeyClass>::registerTypeImpl(
-            AllTypeMap &allTypeMap,
+    inline void Registry<KeyClass>::registerType(
             const std::string &mapID,
             const KeyClass &typeID,
             void *type) const {
+        AllTypeMap &allTypeMap = getAllTypesMap();
         TypeMapPtr typeMapPtr;
         typename AllTypeMap::const_iterator i = allTypeMap.find(mapID);
         if (i == allTypeMap.end()) {
@@ -129,8 +107,8 @@ namespace ObjectHandler {
     }
 
     template <typename KeyClass>
-    inline std::vector<std::string> Registry<KeyClass>::getAllRegisteredTypesImpl(
-            const AllTypeMap &allTypeMap) const {
+    inline std::vector<std::string> Registry<KeyClass>::getAllRegisteredTypes() const {
+        AllTypeMap &allTypeMap = getAllTypesMap();
         std::vector<std::string> ret;
         for(typename AllTypeMap::const_iterator i = allTypeMap.begin(); i != allTypeMap.end(); ++i)
             ret.push_back(i->first);
@@ -138,8 +116,10 @@ namespace ObjectHandler {
     }
 
     template <typename KeyClass>
-    inline std::vector<std::string> Registry<KeyClass>::getTypeElementsImpl(
-            const AllTypeMap &allTypeMap, const std::string& id) const {
+    inline std::vector<std::string> Registry<KeyClass>::getTypeElements(
+        const std::string& id) const {
+
+        AllTypeMap &allTypeMap = getAllTypesMap();
         typename AllTypeMap::const_iterator map = allTypeMap.find(id);
         OH_REQUIRE(map != allTypeMap.end(), "Registry::getTypeElements: invalid enum id: " + id);
         std::vector<std::string> ret;
@@ -149,8 +129,10 @@ namespace ObjectHandler {
     }
 
     template <>
-    inline std::vector<std::string> Registry<KeyPair>::getTypeElementsImpl(
-            const AllTypeMap &allTypeMap, const std::string& id) const {
+    inline std::vector<std::string> Registry<KeyPair>::getTypeElements(
+        const std::string& id) const {
+
+        AllTypeMap &allTypeMap = getAllTypesMap();
         AllTypeMap::const_iterator map = allTypeMap.find(id);
         OH_REQUIRE(map != allTypeMap.end(), "Registry::getTypeElements: invalid enum id: " + id);
         std::vector<std::string> ret;
@@ -160,6 +142,12 @@ namespace ObjectHandler {
             ret.push_back(s.str());
         }
         return ret;
+    }
+
+    template <typename KeyClass>
+    inline void Registry<KeyClass>::deleteTypeMap(const std::string &mapID) const {
+        AllTypeMap &allTypeMap = getAllTypesMap();
+        allTypeMap.erase(mapID);
     }
 
 }
