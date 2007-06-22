@@ -209,11 +209,30 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohRetrieveError'>
-      <description>retrieve error message associated with a given range</description>
-      <alias>ObjectHandler::RepositoryXL::instance().retrieveError</alias>
+    <Procedure name='ohRetrieveError' dependencyTrigger='false'>
+      <description>Retrieve the error message if any that is associated with the given range</description>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Excel' implementation='manual' xlMacro='false'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='range'>
+            <type>reference</type>
+            <tensorRank>scalar</tensorRank>
+            <description>range to query</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>reference</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRetrieveErrorImpl' dependencyTrigger='false'>
+      <description>This function is required for internal processing and should not be called directly from the worksheet.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
