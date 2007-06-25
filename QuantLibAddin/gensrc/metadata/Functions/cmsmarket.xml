@@ -4,6 +4,7 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
     <include>ql/termstructures/volatilities/swaption/cmsmarket.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
     <include>qlo/couponvectors.hpp</include>
