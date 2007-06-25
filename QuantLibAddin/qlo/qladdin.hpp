@@ -85,4 +85,3 @@
 #include <qlo/Enumerations/Factories/all.hpp>
 
 #endif
-
