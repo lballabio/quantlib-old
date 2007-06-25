@@ -77,7 +77,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='quote'  exampleValue='0.036'>
+          <Parameter name='quote' exampleValue='0.036'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
