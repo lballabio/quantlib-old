@@ -20,6 +20,7 @@
 #define qla_date_hpp
 
 #include <ql/time/frequency.hpp>
+
 #include <vector>
 
 namespace QuantLib {

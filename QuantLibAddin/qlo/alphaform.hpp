@@ -19,7 +19,7 @@
 #ifndef qla_alpha_form_hpp
 #define qla_alpha_form_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {

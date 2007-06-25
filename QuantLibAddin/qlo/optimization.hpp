@@ -19,7 +19,7 @@
 #ifndef qla_optimization_hpp
 #define qla_optimization_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/math/optimization/method.hpp>
 #include <ql/math/optimization/linesearch.hpp>
 

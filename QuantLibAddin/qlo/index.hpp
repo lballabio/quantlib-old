@@ -22,10 +22,12 @@
 #ifndef qla_xibor_hpp
 #define qla_xibor_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
+
 #include <ql/time/businessdayconvention.hpp>
 #include <ql/handle.hpp>
 #include <ql/types.hpp>
+
 #include <string>
 
 namespace QuantLib {

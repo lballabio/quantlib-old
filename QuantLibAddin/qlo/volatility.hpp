@@ -23,7 +23,7 @@
 #ifndef qla_volatility_hpp
 #define qla_volatility_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {

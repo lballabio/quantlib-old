@@ -23,7 +23,7 @@
 #ifndef qla_accountingengines_hpp
 #define qla_accountingengines_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/models/marketmodels/accountingengine.hpp>
 
 namespace QuantLibAddin {

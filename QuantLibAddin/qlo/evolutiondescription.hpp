@@ -23,7 +23,7 @@
 #ifndef qla_evolutiondescription_hpp
 #define qla_evolutiondescription_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {

@@ -19,7 +19,7 @@
 #ifndef qla_interpolation_hpp
 #define qla_interpolation_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/math/interpolations/cubicspline.hpp>
 #include <ql/types.hpp>
 

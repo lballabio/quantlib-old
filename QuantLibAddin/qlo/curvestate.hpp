@@ -23,7 +23,7 @@
 #ifndef qla_curvestate_hpp
 #define qla_curvestate_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {

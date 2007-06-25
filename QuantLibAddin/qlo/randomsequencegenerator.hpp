@@ -20,7 +20,7 @@
 #ifndef qla_randomsequencegenerator_hpp
 #define qla_randomsequencegenerator_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/math/randomnumbers/rngtraits.hpp>
 #include <ql/math/randomnumbers/faurersg.hpp>
 #include <ql/math/randomnumbers/mt19937uniformrng.hpp>

@@ -19,7 +19,7 @@
 #ifndef qla_getcovariance_hpp
 #define qla_getcovariance_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/math/matrixutilities/getcovariance.hpp>
 
 namespace QuantLibAddin {

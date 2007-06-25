@@ -23,7 +23,7 @@
 #ifndef qla_abcd_hpp
 #define qla_abcd_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 #include <ql/handle.hpp>
 

@@ -24,7 +24,7 @@
 #ifndef qla_correlation_hpp
 #define qla_correlation_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {
