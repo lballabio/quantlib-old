@@ -24,11 +24,11 @@
 #ifndef oh_object_hpp
 #define oh_object_hpp
 
-#include <boost/shared_ptr.hpp>
 #include <oh/ohdefines.hpp>
 #include <oh/valueobject.hpp>
 #include <oh/exception.hpp>
 #include <oh/Conversions/anytostream.hpp>
+#include <boost/shared_ptr.hpp>
 #include <vector>
 #include <string>
 #include <sstream>
