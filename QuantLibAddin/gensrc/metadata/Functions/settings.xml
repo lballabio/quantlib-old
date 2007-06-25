@@ -46,7 +46,7 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>QuantLib::Date</type>
+        <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -62,7 +62,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>bool</type>
+        <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>

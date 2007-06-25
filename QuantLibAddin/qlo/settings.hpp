@@ -24,26 +24,23 @@
 
 #ifndef qla_settings_hpp
 #define qla_settings_hpp
-#include <ql/time/date.hpp>
-#include <ql/settings.hpp>
+
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class Date;
+}
 
 namespace QuantLibAddin {
 
-/*! \group utilities
-    Settings functions
-*/
+    /*! \group utilities
+        Settings functions
+    */
 
     /*! set the evaluation date */
-    inline QuantLib::Date
-    qlSettingsSetEvaluationDate(const QuantLib::Date& evalDate) {
-        QuantLib::Settings::instance().evaluationDate() = evalDate;
-        return evalDate;
-    }
+    void qlSettingsSetEvaluationDate(const QuantLib::Date& evalDate);
 
-    inline bool qlSettingsSetEnforceTodaysHistoricFixings(bool b) {
-        QuantLib::Settings::instance().enforcesTodaysHistoricFixings() = b;
-        return b;
-    }
+    void qlSettingsSetEnforceTodaysHistoricFixings(bool b);
 }
 
 #endif
