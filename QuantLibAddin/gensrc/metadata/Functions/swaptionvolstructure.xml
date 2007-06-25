@@ -779,7 +779,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Swaption volatility structure object ID</description>
           </Parameter>
-          <Parameter name='spread'>
+          <Parameter name='spread' exampleValue='0.0'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
