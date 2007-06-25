@@ -21,7 +21,7 @@
 #ifndef qla_ratehelpers_hpp
 #define qla_ratehelpers_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 #include <ql/handle.hpp>
 #include <ql/time/businessdayconvention.hpp>

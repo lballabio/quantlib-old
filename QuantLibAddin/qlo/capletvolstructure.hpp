@@ -19,13 +19,15 @@
 #ifndef qla_capletvolstructure_hpp
 #define qla_capletvolstructure_hpp
 
-#include <oh/objecthandler.hpp>
-#include <ql/termstructures/volatilities/caplet/capletvolatilitiesstructures.hpp>
-#include <ql/termstructures/capvolstructures.hpp>
 #include <qlo/termstructures.hpp>
-#include <ql/termstructures/volatilities/smilesection.hpp>
-#include <ql/indexes/iborindex.hpp> 
-#include <ql/quote.hpp> 
+#include <ql/termstructures/volatilities/caplet/capletvolatilitiesstructures.hpp>
+
+namespace QuantLib {
+    class CapletVolatilityStructure;
+    class Period;
+    class SmileSection;
+    class IborIndex;
+}
 
 namespace QuantLibAddin {
     
@@ -67,7 +69,7 @@ namespace QuantLibAddin {
         SmileSectionsVolStructure(
         const QuantLib::Date& referenceDate,
         const QuantLib::DayCounter& dayCounter,
-        const QuantLib::SmileSectionInterfaceVector& smileSections);
+        const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& smileSections);
         
         };
 

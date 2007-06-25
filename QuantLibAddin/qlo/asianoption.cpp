@@ -20,49 +20,48 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/asianoption.hpp>
-#include <qlo/exercise.hpp>
-#include <qlo/processes.hpp>
+
+#include <ql/instruments/asianoption.hpp>
+#include <ql/processes/blackscholesprocess.hpp>
 
 namespace QuantLibAddin {
 
     ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(
-            const QuantLib::Average::Type &averageType,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine) {
-
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
-                new QuantLib::ContinuousAveragingAsianOption(
-                    averageType,
-                    blackScholesProcess, 
-                    payoff, 
-                    exercise, 
-                    pricingEngine));
-    }
+            QuantLib::Average::Type averageType,
+            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& blackScholesProcess,
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::Exercise>& exercise,
+            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::ContinuousAveragingAsianOption(averageType,
+                                                     blackScholesProcess, 
+                                                     payoff, 
+                                                     exercise, 
+                                                     pricingEngine));
+     }
 
     DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(
-            const QuantLib::Average::Type &averageType,
-            const double &runningAccumulator,
-            const long &pastFixings,
-            const std::vector < QuantLib::Date > &fixingDates,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine) {
-
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
-                new QuantLib::DiscreteAveragingAsianOption(
-                    averageType,
-                    runningAccumulator,
-                    pastFixings,
-                    fixingDates,
-                    blackScholesProcess, 
-                    payoff, 
-                    exercise, 
-                    pricingEngine));
+            QuantLib::Average::Type averageType,
+            QuantLib::Real runningAccumulator,
+            QuantLib::Size pastFixings,
+            const std::vector<QuantLib::Date>& fixingDates,
+            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& blackScholesProcess,
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::Exercise>& exercise,
+            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::DiscreteAveragingAsianOption(averageType,
+                                                   runningAccumulator,
+                                                   pastFixings,
+                                                   fixingDates,
+                                                   blackScholesProcess, 
+                                                   payoff, 
+                                                   exercise, 
+                                                   pricingEngine));
     }
 
 }
-

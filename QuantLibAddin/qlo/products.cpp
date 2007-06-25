@@ -23,14 +23,18 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/products.hpp>
 #include <qlo/evolutiondescription.hpp>
 #include <qlo/ValueObjects/vo_evolutiondescription.hpp>
+
 #include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
 #include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepratchet.hpp>
 #include <ql/models/marketmodels/products/multiproductcomposite.hpp>
 #include <ql/instruments/payoffs.hpp>
+
+#include <oh/repository.hpp>
 
 namespace QuantLibAddin {
 

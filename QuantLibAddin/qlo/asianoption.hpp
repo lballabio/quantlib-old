@@ -19,40 +19,44 @@
 #ifndef qla_asianoption_hpp
 #define qla_asianoption_hpp
 
-
 #include <qlo/baseinstruments.hpp>
-#include <ql/instruments/asianoption.hpp>
+
+#include <ql/instruments/averagetype.hpp>
+#include <ql/types.hpp>
 
 namespace QuantLib {
     class GeneralizedBlackScholesProcess;
+    class StrikedTypePayoff;
+    class Exercise;
+    class PricingEngine;
+    class Date;
 }   
 
 namespace QuantLibAddin {
 
     class ContinuousAveragingAsianOption : public OneAssetOption {
-    public:
+      public:
         ContinuousAveragingAsianOption(
-            const QuantLib::Average::Type& averageType,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine);
+            QuantLib::Average::Type averageType,
+            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess >& blackScholesProcess,
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::Exercise>& exercise,
+            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine);
     };
 
     class DiscreteAveragingAsianOption : public OneAssetOption {
-    public:
+      public:
         DiscreteAveragingAsianOption(
-            const QuantLib::Average::Type &averageType,
-            const double &runningAccumulator,
-            const long &pastFixings,
-            const std::vector < QuantLib::Date > &fixingDates,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine);
+            QuantLib::Average::Type averageType,
+            QuantLib::Real runningAccumulator,
+            QuantLib::Size pastFixings,
+            const std::vector<QuantLib::Date>& fixingDates,
+            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess >& blackScholesProcess,
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::Exercise>& exercise,
+            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine);
     };
 
 }
 
 #endif
-

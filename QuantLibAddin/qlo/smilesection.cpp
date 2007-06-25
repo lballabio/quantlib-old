@@ -20,6 +20,9 @@
 #endif
 
 #include <qlo/smilesection.hpp>
+
+#include <ql/termstructures/volatilities/interpolatedsmilesection.hpp>
+#include <ql/termstructures/volatilities/sabrinterpolatedsmilesection.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/termstructures/volatilities/smilesection.hpp>
 #include <ql/quotes/simplequote.hpp>

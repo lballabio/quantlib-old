@@ -20,7 +20,9 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/processes.hpp>
+
 #include <ql/quote.hpp>
 #include <ql/termstructures/yieldcurves/flatforward.hpp>
 #include <ql/termstructures/voltermstructure.hpp>
@@ -29,11 +31,11 @@ namespace QuantLibAddin {
 
     GeneralizedBlackScholesProcess::GeneralizedBlackScholesProcess(
             const boost::shared_ptr < QuantLib::BlackVolTermStructure > &blackVolTermStructureP,
-            const double &underlying,
+            QuantLib::Real underlying,
             const QuantLib::DayCounter &dayCounter,
             const QuantLib::Date &settlementDate,
-            const double &riskFreeRate,
-            const double &dividendYield) {
+            QuantLib::Rate riskFreeRate,
+            QuantLib::Spread dividendYield) {
 
         QuantLib::Handle<QuantLib::Quote> underlyingH( 
             boost::shared_ptr<QuantLib::Quote>(

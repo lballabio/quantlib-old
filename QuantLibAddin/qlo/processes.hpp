@@ -19,25 +19,33 @@
 #ifndef qla_processes_hpp
 #define qla_processes_hpp
 
-#include <oh/ohdefines.hpp>
 #include <oh/libraryobject.hpp>
-#include <qlo/volatilities.hpp>
+
+#include <ql/types.hpp>
 #include <ql/processes/blackscholesprocess.hpp>
+#include <ql/termstructures/volatilities/equity/blackconstantvol.hpp>
+#include <ql/termstructures/volatilities/equity/blackvariancesurface.hpp>
+
+namespace QuantLib {
+    class GeneralizedBlackScholesProcess;
+    class BlackVolTermStructure;
+    class DayCounter;
+    class Date;
+}
 
 namespace QuantLibAddin {
 
     class GeneralizedBlackScholesProcess : public ObjectHandler::LibraryObject<QuantLib::GeneralizedBlackScholesProcess> {
-    public:
+      public:
         GeneralizedBlackScholesProcess(
-            const boost::shared_ptr < QuantLib::BlackVolTermStructure > &blackVolTermStructureP,
-            const double &underlying,
-            const QuantLib::DayCounter &dayCounter,
-            const QuantLib::Date &settlementDate,
-            const double &riskFreeRate,
-            const double &dividendYield);
+            const boost::shared_ptr<QuantLib::BlackVolTermStructure>& blackVolTermStructureP,
+            QuantLib::Real underlying,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Date& settlementDate,
+            QuantLib::Real riskFreeRate,
+            QuantLib::Spread dividendYield);
     };
 
 }
 
 #endif
-

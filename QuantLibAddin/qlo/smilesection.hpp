@@ -18,11 +18,19 @@
 #ifndef qla_smilesection_hpp
 #define qla_smilesection_hpp
 
-#include <oh/objecthandler.hpp>
-#include <ql/termstructures/volatilities/smilesection.hpp>
-#include <ql/termstructures/volatilities/interpolatedsmilesection.hpp>
-#include <ql/math/optimization/method.hpp>
-#include <ql/termstructures/volatilities/sabrinterpolatedsmilesection.hpp>
+#include <oh/libraryobject.hpp>
+
+#include <ql/types.hpp>
+#include <ql/handle.hpp>
+
+namespace QuantLib {
+    class Date;
+    class SmileSection;
+    class DayCounter;
+    class EndCriteria;
+    class Quote;
+    class OptimizationMethod;
+}
 
 namespace QuantLibAddin {
     

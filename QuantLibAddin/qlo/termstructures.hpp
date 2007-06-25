@@ -22,8 +22,10 @@
 #ifndef qla_termstructures_hpp
 #define qla_termstructures_hpp
 
-#include <oh/objecthandler.hpp>
 #include <qlo/interpolation.hpp>
+
+#include <oh/libraryobject.hpp>
+
 #include <ql/time/frequency.hpp>
 #include <ql/compounding.hpp>
 #include <ql/handle.hpp>
@@ -33,6 +35,7 @@ namespace QuantLib {
     class YieldTermStructure;
     class DayCounter;
     class Date;
+    class Quote;
 }
 
 namespace QuantLibAddin {
@@ -56,33 +59,31 @@ namespace QuantLibAddin {
     class DiscountCurve : public YieldTermStructure {
       public:
         DiscountCurve(
-            const std::vector<QuantLib::Date> &dates,
-            const std::vector<double> &dfs,
-            const QuantLib::DayCounter &dayCounter);
+            const std::vector<QuantLib::Date>& dates,
+            const std::vector<QuantLib::DiscountFactor>& dfs,
+            const QuantLib::DayCounter& dayCounter);
     };
 
     class ZeroCurve : public YieldTermStructure {
       public:
-        ZeroCurve(
-            const std::vector<QuantLib::Date> &dates,
-            const std::vector <double> &zeroRates,
-            const QuantLib::DayCounter &dayCounter);
+        ZeroCurve(const std::vector<QuantLib::Date>& dates,
+                  const std::vector <QuantLib::Rate>& zeroRates,
+                  const QuantLib::DayCounter& dayCounter);
     };
 
     class ForwardCurve : public YieldTermStructure {
       public:
-        ForwardCurve(
-            const std::vector<QuantLib::Date> &dates,
-            const std::vector <double> &forwardRates,
-            const QuantLib::DayCounter &dayCounter);
+        ForwardCurve(const std::vector<QuantLib::Date>& dates,
+                     const std::vector <QuantLib::Rate>& forwardRates,
+                     const QuantLib::DayCounter& dayCounter);
     };
 
     class FlatForward : public YieldTermStructure {
       public:
-        FlatForward(const long &nDays,
-                    const QuantLib::Calendar &calendar,
+        FlatForward(QuantLib::Size nDays,
+                    const QuantLib::Calendar& calendar,
                     QuantLib::Rate forward,
-                    const QuantLib::DayCounter &dayCounter,
+                    const QuantLib::DayCounter& dayCounter,
                     QuantLib::Compounding compounding,
                     QuantLib::Frequency frequency);
     };
@@ -91,7 +92,7 @@ namespace QuantLibAddin {
       public:
         ForwardSpreadedTermStructure(
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const double &spread);
+            const QuantLib::Handle<QuantLib::Quote>& spread);
     };
 
     class ImpliedTermStructure : public YieldTermStructure {

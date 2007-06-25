@@ -23,11 +23,13 @@
 #include <qlo/cmsmarket.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 
+#include <ql/termstructures/volatilities/swaption/cmsmarket.hpp>
+
 #include <boost/timer.hpp>
 
 namespace QuantLibAddin {
 
-   CmsMarket::CmsMarket(
+    CmsMarket::CmsMarket(
         const std::vector<QuantLib::Period>& expiries,
         const std::vector< boost::shared_ptr<QuantLib::SwapIndex> >& swapIndices,
         const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& bidAskSpreads,
@@ -50,6 +52,13 @@ namespace QuantLibAddin {
                             pricers,
                             yieldTermStructure));
     }
+
+    const std::vector<std::vector<boost::any> > CmsMarket::getCmsMarket()
+    {
+        QuantLib::Matrix cmsMarket = libraryObject_->browse();
+        return browseCmsMarket(cmsMarket);
+    }
+
 
     std::vector<std::vector<boost::any> > browseCmsMarket(QuantLib::Matrix & cmsMarket){
         std::vector<std::vector<boost::any> > result;
@@ -101,12 +110,11 @@ namespace QuantLibAddin {
         const QuantLib::Matrix& weights,
         QuantLib::CmsMarketCalibration::CalibrationType calibrationType){
         
-        libraryObject_ = boost::shared_ptr<QuantLib::CmsMarketCalibration>(
-        new QuantLib::CmsMarketCalibration(
-                        volCube,
-                        cmsMarket,
-                        weights,
-                        calibrationType));         
+        libraryObject_ = boost::shared_ptr<QuantLib::CmsMarketCalibration>(new
+            QuantLib::CmsMarketCalibration(volCube,
+                                           cmsMarket,
+                                           weights,
+                                           calibrationType));         
      }
         
     std::vector<std::vector<boost::any> >

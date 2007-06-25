@@ -22,16 +22,17 @@
 #ifndef qla_swaptionvolstructure_hpp
 #define qla_swaptionvolstructure_hpp
 
-#include <oh/objecthandler.hpp>
 #include <qlo/termstructures.hpp>
 #include <qlo/smilesection.hpp>
+
+#include <ql/time/businessdayconvention.hpp>
 
 namespace QuantLib {
     class SwaptionVolatilityStructure;
     class SwaptionVolatilityCube;
-    class QuantLib::EndCriteria;
     class SwapIndex;
     class Matrix;
+    class Period;
 }
 
 namespace QuantLibAddin {

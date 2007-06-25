@@ -23,7 +23,7 @@
 #ifndef qla_products_hpp
 #define qla_products_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {

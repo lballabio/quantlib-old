@@ -22,6 +22,17 @@ class Instrument {
 ---
 GENERAL
 
+- review QL::RelinkableHandle usage in QLO
+- apply Luigi's clean up to QLO, etc code
+- remove ql/handle.hpp dependency
+- review qlo/handle.hpp
+- review qlo/process.hpp
+- review qlo/quote.hpp (remove ql dependency)
+- can we remove quantlibaddin.cpp ??
+- use ValueObject for x,y interpolation persistance?
+- fix bug XS0093295953 PropertyValue("Coupons")
+- enforce implicit Property Names (e.g. objectID, className) first letter capitalization
+- close all must stop refresh and should not activate
 - swaption smile vega (risultati con De Nuccio)
 - perche' SABR interpolation ha un data member forward_
 - export FRARateHelper and BondRateHelper
@@ -34,12 +45,17 @@ GENERAL
 - what is included in serialization files
 - check differences between QuantLibDynamicAll and SA-ALL
 - subscribe to SA mailing list
-- everybody
+- everybody:
+  handles
   switch to dynamic xll
   remove useless env variables
   be ready to debug DevCycle/Production
   boost 1.34
   clean up qlo files from ql inclusions
+  Active wbk
+  ohretrieveError
+  ohObjectSave
+  ohProperty
 - where is qlcalendar advance in the wizard
 - why cell menu "format as" doesn't work on multiple selection?
 - wbk open must reopen in the last folder
@@ -334,6 +350,7 @@ D MM: different correlation structures (Rapisarda, Schoenmakers and
 
 ---
 GIORGIO (last update 6/6/2007)
+- split up CmsMarket and CmsMarketCalibration in 2 files
 - use Handle in SwaptionVolCubeChecks
 - abcd
   remove iterators

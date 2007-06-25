@@ -20,37 +20,40 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/volatilities.hpp>
 
+#include <ql/termstructures/volatilities/equity/blackconstantvol.hpp>
+#include <ql/termstructures/volatilities/equity/blackvariancesurface.hpp>
 
 namespace QuantLibAddin {
 
     BlackConstantVol::BlackConstantVol(
-            const QuantLib::Date &settlementDate,
-            const double &volatility,
-            const QuantLib::DayCounter &dayCounter) {
-
-        libraryObject_ = boost::shared_ptr<QuantLib::BlackVolTermStructure> (
-            new QuantLib::BlackConstantVol(
-                settlementDate,
-                volatility,
-                dayCounter));
+            const QuantLib::Date& settlementDate,
+            QuantLib::Volatility volatility,
+            const QuantLib::DayCounter& dayCounter)
+    {
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::BlackVolTermStructure>(new
+                QuantLib::BlackConstantVol(settlementDate,
+                                           volatility,
+                                           dayCounter));
     }
 
     BlackVarianceSurface::BlackVarianceSurface(
-            const QuantLib::Date &settlementDate,
-            const std::vector < QuantLib::Date > &dates,
-            const std::vector < double > &strikes,
-            const QuantLib::Matrix &vols,
-            const QuantLib::DayCounter &dayCounter) {
-
-        libraryObject_ = boost::shared_ptr<QuantLib::BlackVolTermStructure> (
-            new QuantLib::BlackVarianceSurface(
-                settlementDate,
-                dates,
-                strikes,
-                vols,
-                dayCounter));
+            const QuantLib::Date& settlementDate,
+            const std::vector<QuantLib::Date>& dates,
+            const std::vector<QuantLib::Rate>& strikes,
+            const QuantLib::Matrix& vols,
+            const QuantLib::DayCounter& dayCounter)
+    {
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::BlackVolTermStructure>(new
+                QuantLib::BlackVarianceSurface(settlementDate,
+                                               dates,
+                                               strikes,
+                                               vols,
+                                               dayCounter));
     }
 
 }

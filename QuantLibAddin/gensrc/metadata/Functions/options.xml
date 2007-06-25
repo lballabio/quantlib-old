@@ -7,6 +7,7 @@
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/payoffs.hpp</include>
     <include>qlo/exercise.hpp</include>
+    <include>qlo/volatilities.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/ValueObjects/vo_options.hpp</include>
@@ -14,6 +15,7 @@
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/payoffs.hpp</include>
     <include>qlo/exercise.hpp</include>
+    <include>qlo/volatilities.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers

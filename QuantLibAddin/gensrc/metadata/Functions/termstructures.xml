@@ -508,10 +508,11 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='spread' exampleValue ='0.0'>
-            <type>QuantLib::Spread</type>
+          <Parameter name='spread' exampleValue='0.0'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>the spread to be applied to the forward rates of the yield curve</description>
+            <description>spread</description>
           </Parameter>
         </Parameters>
       </ParameterList>

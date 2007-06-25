@@ -92,19 +92,22 @@ namespace QuantLibAddin {
     SmileSectionsVolStructure::SmileSectionsVolStructure(
         const QuantLib::Date& referenceDate,
         const QuantLib::DayCounter& dayCounter,
-        const QuantLib::SmileSectionInterfaceVector& smileSections){
+        const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& smiles)
+    {
         libraryObject_ = 
             boost::shared_ptr<QuantLib::SmileSectionsVolStructure>(new
-            QuantLib::SmileSectionsVolStructure(referenceDate,
-            dayCounter, smileSections));
+                QuantLib::SmileSectionsVolStructure(referenceDate,
+                                                    dayCounter, smiles));
     }
 
     SpreadedCapletVolatilityStructure::SpreadedCapletVolatilityStructure(
-            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& underlyingVolStructure,
-            const QuantLib::Handle<QuantLib::Quote>& spread){
-        libraryObject_ = boost::shared_ptr<QuantLib::SpreadedCapletVolatilityStructure>(new
-            QuantLib::SpreadedCapletVolatilityStructure(underlyingVolStructure,
-                                                        spread));
+        const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& baseVol,
+        const QuantLib::Handle<QuantLib::Quote>& spread)
+    {
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::SpreadedCapletVolatilityStructure>(new
+                QuantLib::SpreadedCapletVolatilityStructure(baseVol,
+                                                            spread));
     }
 
 }

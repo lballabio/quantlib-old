@@ -22,7 +22,7 @@
 #ifdef HAVE_CONFIG_H
 #include <qlo/config.hpp>
 #endif
-#include <oh/ohdefines.hpp>
+
 #include <qlo/termstructures.hpp>
 #include <qlo/ratehelpers.hpp>
 #include <qlo/Enumerations/Factories/termstructuresfactory.hpp>
@@ -37,6 +37,8 @@
 #include <ql/termstructures/yieldcurves/forwardspreadedtermstructure.hpp>
 //#include <ql/termstructures/yieldcurves/piecewiseyieldcurve.hpp>
 
+#include <oh/repository.hpp>
+
 namespace QuantLibAddin {
 
     PiecewiseYieldCurve::PiecewiseYieldCurve(
@@ -48,11 +50,11 @@ namespace QuantLibAddin {
             const std::string& interpolatorID,
             QuantLib::Real accuracy)
     {
-        std::vector<std::string>::const_iterator i;
         std::vector<boost::shared_ptr<QuantLib::RateHelper> > rateHelpersQL;
         rateHelpersQL.reserve(handlesRateHelper.size());
-        for (i=handlesRateHelper.begin() ; i != handlesRateHelper.end() ; ++i) {
-            OH_GET_REFERENCE(rateHelper, *i, RateHelper, QuantLib::RateHelper)
+        std::vector<std::string>::const_iterator i;
+        for (i=handlesRateHelper.begin() ; i!=handlesRateHelper.end() ; ++i) {
+            OH_GET_REFERENCE(rateHelper, *i, RateHelper, QuantLib::RateHelper);
             rateHelpersQL.push_back(rateHelper);
         }
 
@@ -92,55 +94,51 @@ namespace QuantLibAddin {
     }
 
     DiscountCurve::DiscountCurve(
-        const std::vector<QuantLib::Date> &dates,
-        const std::vector <double> &dfs,
-        const QuantLib::DayCounter &dayCounter) {
-            QL_REQUIRE(!dates.empty(), "no input dates given");
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(
-            new QuantLib::DiscountCurve(dates, dfs, dayCounter));
-    }
-
-    ZeroCurve::ZeroCurve(
-            const std::vector<QuantLib::Date> &dates,
-            const std::vector <double> &zeroRates,
-            const QuantLib::DayCounter &dayCounter) {
+        const std::vector<QuantLib::Date>& dates,
+        const std::vector<QuantLib::DiscountFactor>& dfs,
+        const QuantLib::DayCounter& dayCounter)
+    {
         QL_REQUIRE(!dates.empty(), "no input dates given");
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(
-            new QuantLib::ZeroCurve(dates, zeroRates, dayCounter));
+        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::DiscountCurve(dates, dfs, dayCounter));
     }
 
-    ForwardCurve::ForwardCurve(
-            const std::vector<QuantLib::Date> &dates,
-            const std::vector <double> &forwardRates,
-            const QuantLib::DayCounter &dayCounter) {
+    ZeroCurve::ZeroCurve(const std::vector<QuantLib::Date>& dates,
+                         const std::vector<QuantLib::Rate>& zeroRates,
+                         const QuantLib::DayCounter& dayCounter)
+    {
         QL_REQUIRE(!dates.empty(), "no input dates given");
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(
-            new QuantLib::ForwardCurve(dates, forwardRates, dayCounter));
+        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::ZeroCurve(dates, zeroRates, dayCounter));
     }
 
+    ForwardCurve::ForwardCurve(const std::vector<QuantLib::Date>& dates,
+                               const std::vector<QuantLib::Rate>& fwdRates,
+                               const QuantLib::DayCounter& dayCounter)
+    {
+        QL_REQUIRE(!dates.empty(), "no input dates given");
+        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::ForwardCurve(dates, fwdRates, dayCounter));
+    }
 
-    FlatForward::FlatForward(const long &nDays, 
-                             const QuantLib::Calendar &calendar,
+    FlatForward::FlatForward(QuantLib::Size nDays, 
+                             const QuantLib::Calendar& calendar,
                              QuantLib::Rate forward,
-                             const QuantLib::DayCounter &dayCounter,
+                             const QuantLib::DayCounter& dayCounter,
                              QuantLib::Compounding compounding,
                              QuantLib::Frequency frequency)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(
-            new QuantLib::FlatForward(nDays, calendar, forward, dayCounter,
-                                      compounding, frequency));
+        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::FlatForward(nDays, calendar, forward, dayCounter,
+                                  compounding, frequency));
     }
 
     ForwardSpreadedTermStructure::ForwardSpreadedTermStructure(
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const double &spread) {
+            const QuantLib::Handle<QuantLib::Quote>& spread) {
 
-        QuantLib::Handle<QuantLib::Quote> spreadQuote(
-            boost::shared_ptr<QuantLib::Quote>(
-                new QuantLib::SimpleQuote(spread)));
-
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(
-            new QuantLib::ForwardSpreadedTermStructure(hYTS, spreadQuote));
+        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::ForwardSpreadedTermStructure(hYTS, spread));
     }
 
 
@@ -148,8 +146,8 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
             const QuantLib::Date& referenceDate)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(
-            new QuantLib::ImpliedTermStructure(hYTS, referenceDate));
+        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::ImpliedTermStructure(hYTS, referenceDate));
     }
 
 }

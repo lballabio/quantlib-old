@@ -19,10 +19,16 @@
 #ifndef qla_volatilities_hpp
 #define qla_volatilities_hpp
 
-#include <oh/ohdefines.hpp>
 #include <oh/libraryobject.hpp>
-#include <ql/termstructures/volatilities/equity/blackconstantvol.hpp>
-#include <ql/termstructures/volatilities/equity/blackvariancesurface.hpp>
+
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class BlackVolTermStructure;
+    class Date;
+    class DayCounter;
+    class Matrix;
+}
 
 namespace QuantLibAddin {
 
@@ -30,24 +36,23 @@ namespace QuantLibAddin {
     };
 
     class BlackConstantVol : public BlackVolTermStructure {
-    public:
+      public:
         BlackConstantVol(
-            const QuantLib::Date &settlementDate,
-            const double &volatility,
-            const QuantLib::DayCounter &dayCounter);
+            const QuantLib::Date& settlementDate,
+            QuantLib::Volatility volatility,
+            const QuantLib::DayCounter& dayCounter);
     };
 
     class BlackVarianceSurface : public BlackVolTermStructure {
-    public:
+      public:
         BlackVarianceSurface(
-            const QuantLib::Date &settlementDate,
-            const std::vector < QuantLib::Date > &dates,
-            const std::vector < double > &strikes,
-            const QuantLib::Matrix &vols,
-            const QuantLib::DayCounter &dayCounter);
+            const QuantLib::Date& settlementDate,
+            const std::vector<QuantLib::Date>& dates,
+            const std::vector<QuantLib::Rate>& strikes,
+            const QuantLib::Matrix& vols,
+            const QuantLib::DayCounter& dayCounter);
     };
 
 }
 
 #endif
-

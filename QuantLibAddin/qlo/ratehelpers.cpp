@@ -23,11 +23,13 @@
 #ifdef HAVE_CONFIG_H
 #include <qlo/config.hpp>
 #endif
-#include <oh/ohdefines.hpp>
+
 #include <qlo/ratehelpers.hpp>
 #include <ql/indexes/iborindex.hpp>
 #include <ql/termstructures/yieldcurves/ratehelpers.hpp>
 #include <ql/time/imm.hpp>
+
+#include <oh/repository.hpp>
 
 namespace QuantLibAddin {
 
