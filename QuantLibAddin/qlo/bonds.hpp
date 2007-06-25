@@ -24,12 +24,15 @@
 #define qla_bonds_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <ql/currency.hpp>
+
 #include <ql/handle.hpp>
 #include <ql/time/businessdayconvention.hpp>
+#include <ql/types.hpp>
+
 #include <string>
 
 namespace QuantLib {
+    class Currency;
     class FloatingRateCouponPricer;
     class SwapIndex;
     class IborIndex;
@@ -44,20 +47,11 @@ namespace QuantLibAddin {
 
     class Bond : public Instrument {
       public:
-        Bond(const std::string& des,
-             const QuantLib::Currency& cur)
-        : description_(des), currency_(cur) {}
-       
-        virtual ~Bond() {}
         std::vector<std::vector<boost::any> > flowAnalysis();
-        const std::string& description() { return description_; }
-        const QuantLib::Currency& currency() { return currency_; }
+        std::string description();
+        QuantLib::Currency currency();
         void setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
-
-      private:
-        std::string description_;
-        QuantLib::Currency currency_;
     };
 
     class ZeroCouponBond : public Bond {
