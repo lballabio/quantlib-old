@@ -103,7 +103,7 @@ def trackDependencies(fileName):
 
 if __name__ == '__main__':
 	if len(sys.argv) != 2:
-		print 'Usage: %s <file>' % sys.argv[0]
+		print 'Give the relative path of the file you want to scan (wrt to the included folders)'
 		sys.exit()
 	args = sys.argv[1:]
 	fileName = args[0]
