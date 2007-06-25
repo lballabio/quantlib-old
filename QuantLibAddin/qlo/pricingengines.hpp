@@ -20,7 +20,7 @@
 #ifndef qla_pricingengine_hpp
 #define qla_pricingengine_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/pricingengine.hpp>
 #include <ql/pricingengines/blackcalculator.hpp>
 #include <ql/handle.hpp>

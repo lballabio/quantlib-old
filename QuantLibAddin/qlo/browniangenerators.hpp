@@ -23,7 +23,7 @@
 #ifndef qla_browniangenerators_hpp
 #define qla_browniangenerators_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {

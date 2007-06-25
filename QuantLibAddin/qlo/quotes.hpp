@@ -21,7 +21,8 @@
 #ifndef qla_quotes_hpp
 #define qla_quotes_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
+
 #include <ql/handle.hpp>
 #include <ql/option.hpp>
 #include <ql/types.hpp>

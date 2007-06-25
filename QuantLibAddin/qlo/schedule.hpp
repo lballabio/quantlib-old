@@ -19,7 +19,8 @@
 #ifndef qla_schedule_hpp
 #define qla_schedule_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
+
 #include <ql/time/businessdayconvention.hpp>
 
 namespace QuantLib {

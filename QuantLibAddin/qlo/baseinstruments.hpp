@@ -19,10 +19,11 @@
 #ifndef qla_baseinstruments_hpp
 #define qla_baseinstruments_hpp
 
-#include <oh/ohdefines.hpp>
 #include <oh/libraryobject.hpp>
-#include <ql/instrument.hpp>
 
+namespace QuantLib {
+    class Instrument;
+}
 
 namespace QuantLibAddin {
 
@@ -35,4 +36,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

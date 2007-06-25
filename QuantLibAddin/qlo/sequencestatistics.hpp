@@ -20,7 +20,7 @@
 #ifndef qla_sequencestatistics_hpp
 #define qla_sequencestatistics_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {

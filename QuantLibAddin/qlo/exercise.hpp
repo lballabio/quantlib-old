@@ -19,7 +19,7 @@
 #ifndef qla_exercise_hpp
 #define qla_exercise_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 
 namespace QuantLib {
     class Exercise;

@@ -21,7 +21,6 @@
     #include <qlo/config.hpp>
 #endif
 
-#include <oh/ohdefines.hpp>
 #include <qlo/forwardrateagreement.hpp>
 #include <qlo/processes.hpp>
 

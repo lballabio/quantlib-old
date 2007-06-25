@@ -20,7 +20,7 @@
 #ifndef qla_riskstatistics_hpp
 #define qla_riskstatistics_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {

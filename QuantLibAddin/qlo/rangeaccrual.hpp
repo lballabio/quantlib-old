@@ -19,7 +19,7 @@
 #ifndef qla_rangeaccrual_hpp
 #define qla_rangeaccrual_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <qlo/couponvectors.hpp>
 #include <ql/cashflows/rangeaccrual.hpp>
 

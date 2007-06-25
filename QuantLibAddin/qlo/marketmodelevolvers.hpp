@@ -23,7 +23,7 @@
 #ifndef qla_marketmodelevolvers_hpp
 #define qla_marketmodelevolvers_hpp
 
-#include <oh/objecthandler.hpp>
+#include <oh/libraryobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {
