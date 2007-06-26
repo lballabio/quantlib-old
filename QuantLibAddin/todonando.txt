@@ -22,8 +22,9 @@ class Instrument {
 ---
 GENERAL
 
+- Sensitivity Analysis menu before Windows
 - add ohxlversion
-- rename QuantLibXLDynamic to QuantLibXL: use only -s to discriminate
+- rename QuantLibXLDynamic to QuantLibXL: use only -s to discriminate?
 - review QL::RelinkableHandle usage in QLO
 - apply Luigi's clean up to QLO, etc code
 - remove ql/handle.hpp dependency
@@ -40,7 +41,6 @@ GENERAL
 - export FRARateHelper and BondRateHelper
 - automatic cast from IMM code to date and get FuturesRateHelper in line bertween QL and QLA
 - change QLA::DepositRateHelper as in QL::DepositRateHelper
-- fix openIRDerivative macro
 - add docs-project to sln
 - remove bat from testsuite/bin
 - avoid ignoring class of files, as in *.suo

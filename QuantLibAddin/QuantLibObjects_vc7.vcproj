@@ -1453,6 +1453,9 @@
 			RelativePath="qlo\schedule.hpp">
 		</File>
 		<File
+			RelativePath=".\qlo\settings.cpp">
+		</File>
+		<File
 			RelativePath="qlo\settings.hpp">
 		</File>
 		<File
