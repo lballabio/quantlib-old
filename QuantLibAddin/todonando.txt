@@ -261,14 +261,15 @@ CRISTINA
 - cap/floor flow analysis
 - digital coupon pricing with analytic formula
 - arrange session on digitals
-- clean up Clerici's abcd problems (0.25D/0.25D - Waiting for users feedback)
+- clean up Clerici's abcd problems (0.25D/0.25D - DONE)
 - IFR fixings, check deals
 - verify Murex daycount definition
 - fix number of relevant digits in all (forecasted) index fixings
-- sensitivity analysis (3.5D/1M)
+- sensitivity analysis (6D/1M)
 - daily trunk check and CMS calibration
 - testing that the manual procedure to set back/forward the evaluation
-  date returns the same results of the automatic procedure (0D/1D)
+  date returns the same results of the automatic procedure  (0.5D/1D - DONE)
+- testsuite: check volatility when shifting evaluation date (1D/3D)
 - change class CappedFlooredIborCoupon in order to add the
   possibility of adding/subracting call and put   (1D/2D)
 - Cap Cms Book:
