@@ -49,8 +49,12 @@ namespace QuantLibAddin {
         return boost::any_cast<std::string>(propertyValue("Description"));
     }
 
-    QuantLib::Currency Bond::currency() {
-        return boost::any_cast<QuantLib::Currency>(propertyValue("Currency"));
+    //QuantLib::Currency Bond::currency() {
+    //    return boost::any_cast<QuantLib::Currency>(propertyValue("Currency"));
+    //}
+
+    std::string Bond::currency() {
+        return boost::any_cast<std::string>(propertyValue("Currency"));
     }
 
     void Bond::setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer){

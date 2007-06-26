@@ -49,7 +49,8 @@ namespace QuantLibAddin {
       public:
         std::vector<std::vector<boost::any> > flowAnalysis();
         std::string description();
-        QuantLib::Currency currency();
+        //QuantLib::Currency currency();
+        std::string currency();
         void setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
     };

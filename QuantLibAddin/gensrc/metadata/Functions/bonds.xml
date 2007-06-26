@@ -76,7 +76,8 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>QuantLib::Currency</type>
+        <!--<type>QuantLib::Currency</type>-->
+        <type>string</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
