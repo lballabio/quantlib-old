@@ -27,6 +27,7 @@
 #include <qlo/couponvectors.hpp>
 
 #include <qlo/Enumerations/Factories/iborcouponpricersfactory.hpp>
+#include <ql/cashflows/digitalcoupon.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/simplecashflow.hpp>
 #include <ql/cashflows/cmscoupon.hpp>

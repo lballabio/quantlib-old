@@ -22,13 +22,17 @@
 #ifndef qla_couponvectors_hpp
 #define qla_couponvectors_hpp
 
-#include <qlo/qladdindefines.hpp>
-#include <ql/cashflows/digitalcoupon.hpp>
 #include <qlo/leg.hpp>
+
+#include <ql/time/businessdayconvention.hpp>
+#include <ql/cashflows/replication.hpp>
 
 namespace QuantLib {
     class Schedule;
     class IborIndex;
+    class DayCounter;
+    class SwapIndex;
+    class CapletVolatilityStructure;
 }
 
 namespace QuantLibAddin {
