@@ -21,8 +21,19 @@ class Instrument {
 
 ---
 GENERAL
+- everybody please:
+  note handles behaviour
+  switch to dynamic xll
+  remove useless env variables (all but QUANTLIBXL_CONFIG_PATH which should
+    point at C:\Projects\QuantLibSVN\trunk\Launcher)
+  be ready to debug DevCycle revisions
+  switch to boost 1.34 (bjam --toolset=msvc-8.0 install)
+  clean up qlo\xxx.hpp files from ql inclusions
+  avoid (implicitly) using ActiveWorkbook and ActiveWorksheet in VBA code
+  remove trigger ohretrieveError() calls
+  familiarize with ohObjectSave() ohObjectLoad()
+  familiarize with ohPropertyNames and ohPropertyValue()
 
-- Sensitivity Analysis menu before Windows
 - add ohxlversion
 - rename QuantLibXLDynamic to QuantLibXL: use only -s to discriminate?
 - review QL::RelinkableHandle usage in QLO
@@ -34,40 +45,26 @@ GENERAL
 - can we remove quantlibaddin.cpp ??
 - use ValueObject for x,y interpolation persistance?
 - fix bug XS0093295953 PropertyValue("Coupons")
-- enforce implicit Property Names (e.g. objectID, className) first letter capitalization
 - close all must stop refresh and should not activate
 - swaption smile vega (risultati con De Nuccio)
 - perche' SABR interpolation ha un data member forward_
 - export FRARateHelper and BondRateHelper
-- automatic cast from IMM code to date and get FuturesRateHelper in line bertween QL and QLA
+- automatic cast from IMM code to date and get FuturesRateHelper in line
+  bertween QL and QLA
 - change QLA::DepositRateHelper as in QL::DepositRateHelper
 - add docs-project to sln
 - remove bat from testsuite/bin
 - avoid ignoring class of files, as in *.suo
 - what is included in serialization files
-- check differences between QuantLibDynamicAll and SA-ALL
 - subscribe to SA mailing list
-- everybody:
-  handles
-  switch to dynamic xll
-  remove useless env variables
-  be ready to debug DevCycle/Production
-  boost 1.34
-  clean up qlo files from ql inclusions
-  Active wbk
-  ohretrieveError
-  ohObjectSave
-  ohProperty
 - where is qlcalendar advance in the wizard
 - why cell menu "format as" doesn't work on multiple selection?
 - wbk open must reopen in the last folder
 - RateHelpers refactoring (using indexes)
 - cubic parameters as input to PiecewiseYieldCurve
-* Grisafi
 - caplet/swaption calibration
 * just one test with multiple unit-test
 * check new cotsmm corr and old one
-* why to zero coefficients in CotSwapCorr make calib fail?
 * use more realistic corr structure in test suite
   verify yc bootstrapping
   check corr times includes all rate times but the last
@@ -75,7 +72,6 @@ GENERAL
   object wizard does not paste InterpolationTraits
   1D as default value instead of exampleValue in hist corr
   check displacements
-- object creation for Eric
 * market model creation from calibrator
   check if homo = false still crashes
   first rate issue (i.e. when a solution does not exist)
@@ -104,7 +100,8 @@ NANDO
 - wbk_close: if read-only do not ask for saving
 - use class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
   for HistoricalForwardRatesAnalysis
-- per Luigi: floating point exception + pricing engines observers dei market data
+- per Luigi: floating point exception + pricing engines observers dei market
+  data
 - all wbks must use qlxlVersion(true, Trigger)
 - check testsuite error when QL_INDEXED_COUPON is used
 - production: writing privileges (xla and the rest)
@@ -142,25 +139,20 @@ bug fix	20%
 test	14%
 CW	18%
 
-- hist fwd rates analysis action (not in the launcher)		(done)
-- fixing loading with and without Reuters			(done)
-- error string for skipped/failed dates				(done)
+- add sa.xll to testing environment
+- TRIMESTRALE
 - action for setEvaluationDate
 - Run Main Checks -> Open Main Checks
-- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni (K & Cri)
+- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
+  (K & Cri)
 - re-organize Quote/TimeSeries menus
-  refresh snapshot also for time series + merge quotefeeds and timeseries actions
+  refresh snapshot also for time series + merge quotefeeds and timeseries
+     actions
   qlxlversion and trigger formatting in time series
 
 - all handle used in main checks should be created in handles.xls
-- trigger qlVersion() and format properly time stamp in the XXXFeed folders (done)
-- add call to volatility method in CapsStripper creation 	(done)
-- metadata creators error messages 				(done)
-- Bug investigation: launcher menu actions			(done)
   - l'errore si presentava con la rev 10882 del foglio intratefeed.xls
     il quale era stato salvato senza ricalcolo
-- Rt: se Reuters non è disponibile chiudi i live feed		(done)
-- Main checks action: da aggiungere nel launcher		(done)
 - Design e gestione della USD currency per contribuzione swaption vols
 - time series
     *Refresh snapshot vba: estendere alle ts se open & editable
@@ -175,7 +167,6 @@ CW	18%
   -> prepared wkb to test on traders' pc (next week)
 - coveredWarrants.xls
     *check delta price in terms of vega with flat vol 		(1d/2d)
-    *rivedere la gestione dei trigger				(done)
 - Sensitivity Analysis (K&Cristina):  				(7.5d/5w)
   - General
     run sa on rates, atm vols and vol spreads
@@ -228,7 +219,6 @@ CW	18%
 	abcd adjustment della matrice delle forw/forw vol
 	contribuzione su Mx delle 1m, 3m, 6m, 1y
 - 3M cap stripper: 	(0/3w)
-	review triggers in wkbs (0.5D/0.5D done)
 	overview: focus on smile sections
 	sensitivity to market data
 	gestione manuale ordinaria (con Clerici)
@@ -237,10 +227,6 @@ CW	18%
 	test wbk: abcd fit
   	atm backbone: CapStripper3MTestSmoothness.xls
 - 6M cap stripper: (1.5D/1w)
-	atm backbone: CapStripper6MTestSmoothness.xls (0.5D/0.5D done)
-	testa la smoothness della dorsale ATM con l'interpolazione lineare
-	(0.5D/0.5D done)
-	CapStripper6MTestRepricing.xls: aggiungi (0.5D/0.5D done)
 	decidere se usare le interpolated vols da usare nel cap stripper
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
@@ -252,23 +238,27 @@ CW	18%
 
 ---
 CRISTINA
-- check SequenceStatistics wbks for signature changes (DONE)
+- chiusure DRM 29/6 e creazione ambiente dedicato
+- create greeks workbook
+- swaptionvolcube test with floating date
+- test that the manual procedure to set back/forward the evaluation
+  date returns the same results of the automatic procedure  (0.5D/1D)
 - test for relinkability (CMS npv + greeks)           (DONE for NPV)
-- test valid object creation with ALL quotes not initialized (DONE)
+- test valid object creation with ALL quotes not initialized
+  verify smile sections (no unknown ID error message)
 - use OTM options instead of ITM options in all abcd wbks
-- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni (K & Cri)
+- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
+  (K & Cri)
 - deals serialization
 - cap/floor flow analysis
 - digital coupon pricing with analytic formula
 - arrange session on digitals
-- clean up Clerici's abcd problems (0.25D/0.25D - DONE)
 - IFR fixings, check deals
+- verify excessive number of input parameter in DigitalLeg
 - verify Murex daycount definition
 - fix number of relevant digits in all (forecasted) index fixings
 - sensitivity analysis (6D/1M)
 - daily trunk check and CMS calibration
-- testing that the manual procedure to set back/forward the evaluation
-  date returns the same results of the automatic procedure  (0.5D/1D - DONE)
 - testsuite: check volatility when shifting evaluation date (1D/3D)
 - change class CappedFlooredIborCoupon in order to add the
   possibility of adding/subracting call and put   (1D/2D)
@@ -280,27 +270,18 @@ CRISTINA
 
 ---
 CHIARA
-- erratic Grisafi's bond monitor behaviour (Done| it seems so..)
+- mimic Grisafi session avery day all day long on IngFin workstation
 - Digital Bond contructor (1.0d|10dd|Wip)
-  - arranged session on digitals with Cristina (Done)
-  - check digital bonds' prospectus in order to list different specifications of payoff (Done)
-  - digitalcmsratebond constructor + digitalfloatingratebond constructor without cap and floor
-  - review digitalcoupon with cristina so to add capped and floored ibor/swap indexes
-  - review digitalcmsratebond constructor + digitalfloatingratebond constructor so to add capped and floored ibor/swap indexes
-- check dual user Launcher installation on Grisafi's workstation (Done on ingfin workstation)
-- fixed problem with missing ISDAFIX indexes for 28th may 2007 (0.5d|0.5d|Done)
+  - decompose each deal in different legs: one wbk per deal
+  - digitalcmsratebond constructor + digitalfloatingratebond constructor
+    without cap and floor
+  - review digitalcoupon with cristina so to add capped and floored ibor/swap
+    indexes
+  - review digitalcmsratebond constructor + digitalfloatingratebond constructor
+    so to add capped and floored ibor/swap indexes
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g.
   IT0003650998.pdf) (0d|1d)
   -prospectus added in Drafts
-- Z-spread function, for zero coupon bond valuation (4.5d|10dd|Done)
-  - lehman's documentation
-  - created new workbook to replicate market practice (YAF, YAS on BBG) use of
-    z-spread
-  - created qlBondCleanPriceFromZSpread()
-  - created qlBondDirtyPriceFromZSpread()
-  - double check against YAF, YAS on BBG
-  - add test in test suite (added test also for market assetswap)
-  - created nue workbook in Test
 - cds options (with Giorgio) (1.5d-30dd|WIP)
   - analysis of the trader's workbook
   - verified correct installation of Launcher, access given to the trader to
@@ -308,8 +289,10 @@ CHIARA
   - sent request to desktop service so to add the user to CABOTOXL
   - arrange session with nando
 - markedata\BloombergFeed (Maurizio Pietrini)
-  - waiting for BBG worksheets from Maurizio (Maurizio is starting on 5th or 6th)
-- zspread/yield inversion (lehman's paper values can optionally be reproduces in the testsuite)
+  - waiting for BBG worksheets from Maurizio (Maurizio is starting on 5th or
+    6th)
+- zspread/yield inversion (lehman's paper values can optionally be reproduces
+  in the testsuite)
 - zerospreadedtermstructure: daycounter bug
 - bonds' workbooks integration with K+/Gatemate
 - Multicallable bond constructor
@@ -318,13 +301,14 @@ CHIARA
   object
 - fare tutti i metodi dei bond restituiscano un InterestRate
 - i ThMethod perche' non accettano anche loro una Date settlementDate = Date()?
-- market models: abcd for displaced vols (Chiara, Cristina, K) (Done)
 
 ---
 FRANCOIS
-- removing the trigger in the error message cell (qlWizard)
-- removing dynamic memory allocation in irr bond
-- allow the user to choose traits and interpolator in forwardHistoricalAnalysis
+- allow the user to choose traits and interpolator in the
+  HistoricalForwardRatesAnalysis class (and expose it to
+  Excel as traits aware)
+- removing any trigger in the ohretrieveError() calls (qlWizard)
+- removing any dynamic memory allocation in bond irr calculation
 - null strike -> atm strike (1W|WIP)
 - arrange sessions on Rapisarda approach(TBD)
 D historic corr matrix (2D|2D)
@@ -332,20 +316,14 @@ D control panel . xls crash when switch to MxCurve
 D Citrix access: $+,BGM
 D Citrix access: INFL
 - XML/ serialization presentation
-D OH Wizard review: vector input, change in XML file structure to implement
-  default values (0.5D/0.5D)
 D MM: different correlation structures (Rapisarda, Schoenmakers and
   Coffey)(5.5D/2D-5D) (To be reviewed)
-- conundrum pricer optimization (1D/2D)
 - notification chains pb (1D/3D)
   tTermStructure lazyness in notification
 - smile sections:
-	D remove calibration from constructor(1H)
 	- use Levenberg optimizator
 	- move vol quotes from constructor(to be precised)
 - add SABR interpolation to the capstripper(to be precised)
-- refactor the method class (move Endcriteria as argument of the minimize)
-  (done)
 - OH Wizard performance issue when the control panel is left opened(to be
   precised)
 - test abcd calibration (to be precised)
@@ -356,10 +334,11 @@ D MM: different correlation structures (Rapisarda, Schoenmakers and
 
 ---
 GIORGIO (last update 6/6/2007)
+- clean up vega incoherencies
+- code MakeSwaption class
 - split up CmsMarket and CmsMarketCalibration in 2 files
 - use Handle in SwaptionVolCubeChecks
 - abcd
-  remove iterators
   vega weighted abcd fit
   interpolation
 - CMS
@@ -374,7 +353,6 @@ GIORGIO (last update 6/6/2007)
   class QuantLib::PricingEngine
   class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
 - prepare smile section refactoring proposal
-D fixing days vector
 - range accrual session
 - CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando
@@ -382,12 +360,12 @@ D fixing days vector
 - WIP ratchet Instrument C++ (shared with Marco) (3d/7d)
 - WIP range accrual coupon (con relativi test) (18d/30d)
   - WIP create a workbook for range accrual under
-    Workbooks\InterestRateDerivatives designing the workbook as done for CMS.xls
+    Workbooks\InterestRateDerivatives designing the workbook as done for
+      CMS.xls
 - Visual Studio Express installation
 
 ---
 MARCO (last update 27/6/2007)
-- verify set up svn folders (DONE)
 - Citrix showdown: (1d/1d/DONE)
   - verifica licenze accesso: individuato referente, -> Katiuscia (DONE)
   - verifica accesso a $+ (DONE)
@@ -420,7 +398,14 @@ Eric
 - Trader wbk problem
 - object creation
 
-- double cliking QuantLib.xla should default to dynamic version
+- 2 DOF projects
+- JRisk
+- bond currency propety value cast
+- allow foo object to have method to create bar objects
+- enforce implicit Property Names (e.g. objectID, className) first letter
+  capitalization
+- Sensitivity Analysis menu before Windows
+- remove trigger ohretrieveError() calls
 - setProperty
 - rename all Index as InterestRateIndex (we haven't used Indexes yet, only
   InterestRateIndexes), the only index we are enumerating so far are
@@ -432,7 +417,6 @@ Eric
 - native support of vector of object IDS (as RateHelpers in
   PiecewiseYieldCurve)
 - automate xls properties clean up
-- ohRetrieveError bug (see YieldCurveBootstrapping.xls)
 - enumeration aliases: avoid all aliases in ohEnumeratedType("class
   QuantLib::DayCounter")
 - automatic dropdown cell menu maintenance (see Enumerations.xls)
@@ -442,7 +426,6 @@ Eric
 - market data serialization
 - multicurrency analysis
 - bloomberg dll loading
-- relinkable handle singleton
 - compilation time (header inclusion clean up, multiple xll, ecc)
 - QuantLibXL About should use qlXlVersion()
 - when returning a singe col (row) matrix add another col (row)
@@ -450,20 +433,10 @@ Eric
 - when returning a singe cell vector add another cell
   with #NA to prevent Excel from duplicating cel
 - xml schema
-- error when too many input parameters are provided
+- extra arguments in function goes unnoticed instead of throwing an error
 - why xll loading does not receive the same graful failure treatment
-- If omitted/blank/NA, default = FALSE
-  If omitted/blank/NA/error, default = FALSE
 - open log file from menu
 - log defaults
-- automatic cell menu updates
-- erratic error message behaviour
-  why the error message doesn't disappear as soon as the cell is not in error
-  anymore
-- extra arguments in function goes unnoticed
-- SA, serialization
-- 2 DOF projects
-- JRisk
 - minimize Launcher data download
 - coerce Frequency->Period, Period->Date->double/int
 - coerce from IMMcode to date
@@ -472,7 +445,7 @@ Eric
 - merge quantlibxl.nsi and quantlib-network.nsi
 - in the nsi generalize the location of the xml files
 - oh.chm
-- review native ohSplit on vector input to coerce from string to vector
+- automatic ohSplit usage to coerce from string to vector
 - ohConcatenate, ohRange1D, ohRange2D
 - command (remove function SetEvaluationDate, etc?)
 - discount factors output is not col/row enabled
@@ -518,7 +491,8 @@ LUIGI
   discount grid
 - InterpolatedYieldTermStructure<Discount,LogLinear>::gridDates()
 - generic ForwardSpreadedYieldCurve (spread term structure)
-- bootstrap ForwardSpreadedYieldCurve using its own ratehelpers and a base curve
+- bootstrap ForwardSpreadedYieldCurve using its own ratehelpers and a base
+  curve
 
 QUANTLIBADDIN
 - RSG factory
