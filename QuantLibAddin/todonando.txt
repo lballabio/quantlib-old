@@ -383,7 +383,7 @@ D fixing days vector
 - Visual Studio Express installation
 
 ---
-MARCO (last update 19/6/2007)
+MARCO (last update 27/6/2007)
 - verify set up svn folders (DONE)
 - Citrix showdown: (1d/1d/DONE)
   - verifica licenze accesso: individuato referente, -> Katiuscia (DONE)
@@ -405,7 +405,8 @@ MARCO (last update 19/6/2007)
   - Caboto/DOF platform release EOD (DONE)
   - Caboto/DOF platform release intraday (DONE)
   - Planning phase 2 (DONE)
-  - Montecarlo implementation for Caboto Model (WIP)
+  - implementation of binary, digital, range accrual payoffs (TEST)
+  - implementation of Montecarlo pricing for TFR (TEST)
   - 3 factor model and Hybrids (WIP)
 - Applix: Rolling bund Futures on 8/9/2007 (TBD)
 
