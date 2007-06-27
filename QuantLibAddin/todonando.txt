@@ -322,12 +322,15 @@ CHIARA
 
 ---
 FRANCOIS
+- removing the trigger in the error message cell (qlWizard)
+- removing dynamic memory allocation in irr bond
+- allow the user to choose traits and interpolator in forwardHistoricalAnalysis
 - null strike -> atm strike (1W|WIP)
 - arrange sessions on Rapisarda approach(TBD)
 D historic corr matrix (2D|2D)
 D control panel . xls crash when switch to MxCurve
 D Citrix access: $+,BGM
-FAILURE Citrix access: INFL
+D Citrix access: INFL
 - XML/ serialization presentation
 D OH Wizard review: vector input, change in XML file structure to implement
   default values (0.5D/0.5D)
