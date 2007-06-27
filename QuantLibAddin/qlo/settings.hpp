@@ -18,7 +18,7 @@
 
 /*! \file
     \brief Implementations of the functions defined in settings.xml
-    for use within the Addins.
+           for use within the Addins.
 
 */
 

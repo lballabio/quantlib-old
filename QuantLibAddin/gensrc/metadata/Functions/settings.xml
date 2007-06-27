@@ -62,7 +62,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>void</type>
+        <type>bool</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
