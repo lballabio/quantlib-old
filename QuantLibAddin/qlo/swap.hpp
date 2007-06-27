@@ -26,6 +26,10 @@
 #include <qlo/baseinstruments.hpp>
 #include <qlo/couponvectors.hpp>
 
+namespace QuantLib {
+    class CmsCouponPricer;
+}
+
 namespace QuantLibAddin {
     
     class Swap : public Instrument {
