@@ -280,10 +280,10 @@ CRISTINA
 
 ---
 CHIARA
-- erratic Grisafi's bond monitor behaviour
-- Digital Bond contructor (0.5d|10dd|Wip)
-  - arranged session on digitals with Cristina
-  - check digital bonds' prospectus in order to list different specifications of payoff
+- erratic Grisafi's bond monitor behaviour (Done| it seems so..)
+- Digital Bond contructor (1.0d|10dd|Wip)
+  - arranged session on digitals with Cristina (Done)
+  - check digital bonds' prospectus in order to list different specifications of payoff (Done)
   - digitalcmsratebond constructor + digitalfloatingratebond constructor without cap and floor
   - review digitalcoupon with cristina so to add capped and floored ibor/swap indexes
   - review digitalcmsratebond constructor + digitalfloatingratebond constructor so to add capped and floored ibor/swap indexes
