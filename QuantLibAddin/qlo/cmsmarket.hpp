@@ -23,6 +23,7 @@
 
 // To be removed later
 #include <ql/termstructures/volatilities/swaption/cmsmarket.hpp>
+#include <ql/termstructures/volatilities/swaption/cmsmarketcalibration.hpp>
 
 #include <ql/types.hpp>
 #include <ql/handle.hpp>
