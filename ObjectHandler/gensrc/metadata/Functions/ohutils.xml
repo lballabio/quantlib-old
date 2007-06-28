@@ -229,8 +229,8 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohRetrieveErrorImpl' dependencyTrigger='false'>
-      <description>This function is required for internal processing and should not be called directly from the worksheet.</description>
+    <Procedure name='ohRetrieveErrorImpl' dependencyTrigger='false' visible='false'>
+      <description>Concrete implementation of ohRetrieveError().  This function is hidden.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>

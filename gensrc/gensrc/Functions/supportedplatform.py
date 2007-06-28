@@ -67,9 +67,9 @@ class SupportedPlatform(serializable.Serializable):
 
     def serialize(self, serializer):
         """Load/unload class state to/from serializer object."""
+        serializer.serializeAttribute(self, common.NAME)
         serializer.serializeAttribute(self, 'implementation', 'auto')
         serializer.serializeAttributeBoolean(self, 'xlMacro', True)
-        serializer.serializeAttribute(self, common.NAME)
 
     def postSerialize(self):
         self.implNum_ = SupportedPlatform.implStrToInt[self.implementation_]

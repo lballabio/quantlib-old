@@ -184,8 +184,10 @@ class ExcelAddin(addin.Addin):
             delim = ''
 
         if register:
+            functionType = func.visible()
             unregister = ''
         else:
+            functionType = 0
             unregister = UNREGISTER % (len(func.name()), func.name())
 
         return self.bufferRegisterFunction_.text() % {
@@ -196,7 +198,7 @@ class ExcelAddin(addin.Addin):
             'funcDescLen' : self.checkLen(funcDesc),
             'functionName' : func.name(),
             'functionNameLen' : self.checkLen(func.name()),
-            'functionType' : register,
+            'functionType' : functionType,
             'numParams' : numRegisterParams,
             'parameterList' : func.parameterList().generate(self.registerParameters_),
             'paramNames' : paramNames,

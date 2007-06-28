@@ -103,6 +103,9 @@ class Function(serializable.Serializable):
     def printDebug(self):
         self.parameterList_.printDebug()
 
+    def visible(self):
+        return self.visible_
+
     #############################################
     # serializer interface
     #############################################
@@ -117,6 +120,7 @@ class Function(serializable.Serializable):
         serializer.serializeObject(self, parameterlist.ParameterList)
         serializer.serializeBoolean(self, common.DOCUMENTATION_ONLY)
         serializer.serializeAttributeBoolean(self, common.TRIGGER, True)
+        serializer.serializeAttributeBoolean(self, 'visible', True)
 
     def postSerialize(self):
         # some fields required for the Excel addin
@@ -124,3 +128,4 @@ class Function(serializable.Serializable):
             self.xlTrigger_ = Function.VALIDATE_TRIGGER
         else:
             self.xlTrigger_ = ''
+

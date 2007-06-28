@@ -155,6 +155,7 @@ class Doxygen(addin.Addin):
             bufLink = ''
             bufDoc = ''
             for func in cat.functions('*'): 
+                if not func.visible(): continue
                 bufLink += '\\ref %s ()\\n\n' % func.name()
                 bufDoc += self.generateFunctionDoc(func)
                 allFuncs.append(func.name())
