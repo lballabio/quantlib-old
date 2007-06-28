@@ -115,7 +115,8 @@ SectionEnd
 Section /o Framework
 
     SetOutPath "$INSTDIR\xll"
-    File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+    File "xll\QuantLibXLDynamic-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "..\ObjectHandler\xll\ObjectHandler-xll-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
 
     SetOutPath "$INSTDIR\framework"
     File "framework\QuantLibXL.xla"

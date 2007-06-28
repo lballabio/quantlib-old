@@ -20,7 +20,7 @@
 
 Name "QuantLibXL Network Distribution"
 OutFile "..\QuantLibXL-${VER_NUMBER}-${NOW}-network.exe"
-InstallDir "X:\Apps\Appsscript\CabotoXL\03 Testing"
+InstallDir "X:\Apps\Appsscript\CabotoXL\RevXXXXX"
 
 ; Interface Settings
 
@@ -138,7 +138,8 @@ Section
     File "QuantLibXL.nsi"
 
     SetOutPath "$INSTDIR\xll"
-    File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+    File "xll\QuantLibXLDynamic-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "..\ObjectHandler\xll\ObjectHandler-xll-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r /x Drafts "Workbooks\*.xls"

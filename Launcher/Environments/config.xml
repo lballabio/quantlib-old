@@ -5,12 +5,12 @@
   <Environments>
 
     <Environment name="01 Production">
-      <Framework>X:\Apps\Appsscript\CabotoXL\01 Production\framework\QuantLibXL.xla</Framework>
+      <Framework>X:\Apps\Appsscript\CabotoXL\Rev10747\framework\QuantLibXL.xla</Framework>
       <FrameworkVersion>6</FrameworkVersion>
-      <Workbooks>X:\Apps\Appsscript\CabotoXL\01 Production\Workbooks</Workbooks>
-      <HelpFile>X:\Apps\Appsscript\CabotoXL\01 Production\Docs</HelpFile>
+      <Workbooks>X:\Apps\Appsscript\CabotoXL\Rev10747\Workbooks</Workbooks>
+      <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev10747\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\01 users.xml</UserConfigurationFile>
-      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\01 Production\metadata</FunctionMetadata>
+      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev10747\metadata</FunctionMetadata>
       <AddinList>
         <Addin>QuantLibXL-vc80-mt-s-0_8_0.xll</Addin>
       </AddinList>
@@ -29,14 +29,14 @@
     </Environment>
 
     <Environment name="02 Pre-Production">
-      <Framework>X:\Apps\Appsscript\CabotoXL\02 Pre-Production\framework\QuantLibXL.xla</Framework>
-      <FrameworkVersion>6</FrameworkVersion>
-      <Workbooks>X:\Apps\Appsscript\CabotoXL\02 Pre-Production\Workbooks</Workbooks>
-      <HelpFile>X:\Apps\Appsscript\CabotoXL\02 Pre-Production\Docs</HelpFile>
+      <Framework>X:\Apps\Appsscript\CabotoXL\Rev11190\framework\QuantLibXL.xla</Framework>
+      <FrameworkVersion>7</FrameworkVersion>
+      <Workbooks>X:\Apps\Appsscript\CabotoXL\Rev11190\Workbooks</Workbooks>
+      <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev11190\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\02 users.xml</UserConfigurationFile>
-      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\02 Pre-Production\metadata</FunctionMetadata>
+      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev11190\metadata</FunctionMetadata>
       <AddinList>
-        <Addin>QuantLibXL-vc80-mt-s-0_8_0.xll</Addin>
+        <Addin>QuantLibXL-vc80-mt-s-0_9_0.xll</Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
@@ -53,14 +53,15 @@
     </Environment>
 
     <Environment name="03 Testing">
-      <Framework>X:\Apps\Appsscript\CabotoXL\03 Testing\framework\QuantLibXL.xla</Framework>
+      <Framework>X:\Apps\Appsscript\CabotoXL\Rev11705\framework\QuantLibXL.xla</Framework>
       <FrameworkVersion>7</FrameworkVersion>
-      <Workbooks>X:\Apps\Appsscript\CabotoXL\03 Testing\Workbooks</Workbooks>
-      <HelpFile>X:\Apps\Appsscript\CabotoXL\03 Testing\Docs</HelpFile>
+      <Workbooks>X:\Apps\Appsscript\CabotoXL\Rev11705\Workbooks</Workbooks>
+      <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev11705\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\03 users.xml</UserConfigurationFile>
-      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\03 Testing\metadata</FunctionMetadata>
+      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev11705\metadata</FunctionMetadata>
       <AddinList>
-        <Addin>QuantLibXL-vc80-mt-s-0_9_0.xll</Addin>
+        <Addin>ObjectHandler-xll-vc80-mt-0_9_0.xll</Addin>
+        <Addin>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>

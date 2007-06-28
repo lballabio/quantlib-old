@@ -65,7 +65,8 @@ SectionIn 1 2 3
     File "QuantLibXL.nsi"
 
     SetOutPath "$INSTDIR\xll"
-    File "xll\QuantLibXL-vc*-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+    File "xll\QuantLibXLDynamic-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "..\ObjectHandler\xll\ObjectHandler-xll-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-${VER_NUMBER}" \
@@ -167,7 +168,8 @@ Section "Uninstall"
     #!include "qla2.log"
     #RMDir "$INSTDIR\framework"
 
-    Delete "$INSTDIR\xll\QuantLibXL-vc*-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+    Delete "$INSTDIR\xll\QuantLibXLDynamic-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    Delete "$INSTDIR\xll\ObjectHandler-xll-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
     RMDir "$INSTDIR\xll"
 
     Delete "$INSTDIR\Docs\QuantLibXL-docs-${VER_NUMBER}.chm"

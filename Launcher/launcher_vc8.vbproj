@@ -31,7 +31,7 @@
     <ProductName>QuantLibXL Launcher</ProductName>
     <PublisherName>QuantLib Developer Team</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>1.7.0.0</ApplicationVersion>
+    <ApplicationVersion>1.7.1.0</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -140,18 +140,23 @@
   <ItemGroup>
     <Content Include="Environments\config.xml" />
     <Content Include="images\down.bmp" />
+    <Content Include="Addins\02 Pre-Production\QuantLibXL-vc80-mt-s-0_9_0.xll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_0.xll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="images\excel.ico" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\up.bmp" />
     <Content Include="updateLauncherXlls.py" />
     <Content Include="Users\users.xml" />
-    <Content Include="Addins\03 Testing\QuantLibXL-vc80-mt-s-0_9_0.xll">
+    <Content Include="Addins\01 Production\QuantLibXL-vc80-mt-s-0_8_0.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\02 Pre-Production\QuantLibXL-vc80-mt-s-0_8_0.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\01 Production\QuantLibXL-vc80-mt-s-0_8_0.xll" />
     <None Include="images\rename.bmp" />
     <None Include="images\clear.bmp" />
     <None Include="images\create.bmp" />
@@ -171,47 +176,56 @@
   <ItemGroup>
     <PublishFile Include="Addins\01 Production\QuantLibXL-vc80-mt-s-0_8_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\QuantLibXL-vc80-mt-s-0_8_0.xll">
+    <PublishFile Include="Addins\02 Pre-Production\QuantLibXL-vc80-mt-s-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\03 Testing\QuantLibXL-vc80-mt-s-0_9_0.xll">
+    <PublishFile Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
+      <Visible>False</Visible>
       <PublishState>DataFile</PublishState>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="updateLauncherXlls.py">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Users\users.xml">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
