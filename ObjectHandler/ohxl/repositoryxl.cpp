@@ -87,7 +87,7 @@ namespace ObjectHandler {
         }
 
         // Repository::storeObject() results in the old Object (if any) being
-        // de-registered with the CallingRange object, the new Object is then 
+        // de-registered with the CallingRange object, the new Object is then
         // registered with the CallingRange object under the same ID.
         Repository::storeObject(objectXL->id(), objectXL);
         if (FunctionCall::instance().callerType() == CallerType::Cell) {
@@ -111,7 +111,7 @@ namespace ObjectHandler {
     }
 
     void RepositoryXL::setError(
-            const std::string &message, 
+            const std::string &message,
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
             const bool &append) {
 
@@ -133,9 +133,9 @@ namespace ObjectHandler {
     }
 
     void RepositoryXL::logError(
-            const std::string &message, 
-            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall, 
-            const bool &append) {        
+            const std::string &message,
+            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
+            const bool &append) {
         // This function is called during error handling and must not throw.
         try {
             if (functionCall) {
@@ -215,8 +215,8 @@ namespace ObjectHandler {
         // get name if any
 
         Excel(xlfGetDef, &xOldName, 1, FunctionCall::instance().callerAddress());
-        
-        if (xOldName->xltype == xltypeStr) {   
+
+        if (xOldName->xltype == xltypeStr) {
             // if name - return associated CallingRange object
             std::string oldKey = ConvertOper(xOldName());
             RangeMap::const_iterator i = callingRanges_.find(oldKey);
@@ -262,19 +262,28 @@ namespace ObjectHandler {
         boost::shared_ptr<ObjectXL> objectXL = boost::static_pointer_cast<ObjectXL>(object);
         return objectXL->callerKey();
 
+
     }
 
-    void RepositoryXL::saveObject(const std::string &objectID, 
-        const std::string &path) {
+    //void RepositoryXL::saveObject(const std::string &objectID, 
+    //    const std::string &path) {
 
-        Repository::saveObject(ObjectXL::getStub(objectID), path);
-    }
+    //    Repository::saveObject(ObjectXL::getStub(objectID), path);
+    //}
 
-    std::string RepositoryXL::loadObject(const std::string &objectID, 
+    boost::shared_ptr<ObjectHandler::Object> RepositoryXL::loadObject(const std::string &objectID, 
             const std::string &path) {
 
         return Repository::loadObject(ObjectXL::getStub(objectID), path);
     }
+
+	std::vector<boost::shared_ptr<ObjectHandler::Object> > RepositoryXL::loadObject(const std::vector<std::string> &idList, const std::string &path) {
+		std::vector<std::string> idListCpp;
+		for (std::vector<std::string>::const_iterator i = idList.begin(); i != idList.end(); ++i) {
+			idListCpp.push_back(ObjectXL::getStub(*i));
+		}
+        return Repository::loadObject(idListCpp, path);
+	}
 
 }
 

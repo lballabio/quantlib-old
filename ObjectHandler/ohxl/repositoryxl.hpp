@@ -46,7 +46,7 @@ namespace ObjectHandler {
             Perform a test to ensure that an object from one cell cannot overwrite
             an object in another cell with the same ID.
         */
-        virtual std::string storeObject(const std::string &objectID, 
+        virtual std::string storeObject(const std::string &objectID,
                                         const boost::shared_ptr<Object> &object);
         //! Implementation of the retrieveObject function.
         /*! Convert Excel-format Object IDs into the format recognized by the base
@@ -62,8 +62,9 @@ namespace ObjectHandler {
         virtual void deleteObject(const std::string &objectID);
         //@}
 
-        virtual void saveObject(const std::string &objectID, const std::string &path);
-        virtual std::string loadObject(const std::string &objectID, const std::string &path);
+//        virtual void saveObject(const std::string &objectID, const std::string &path);
+        virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const std::string &path);
+		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(const std::vector<std::string> &idList, const std::string &path);
 
         //! \name Error Messages
         //@{
@@ -77,7 +78,7 @@ namespace ObjectHandler {
             This function never throws.
         */
         void logError(
-            const std::string &message, 
+            const std::string &message,
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
             const bool &append = false);
         //! Retrieve the error associated with the given range.
@@ -118,7 +119,7 @@ namespace ObjectHandler {
     private:
         // Associate the given error message to the active cell.
         void setError(
-            const std::string &message, 
+            const std::string &message,
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
             const bool &append);
         // Retrieve a reference to the CallingRange object associated to the active cell.

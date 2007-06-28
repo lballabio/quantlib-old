@@ -65,6 +65,7 @@
           </Parameter>
           <Parameter name='floatingLegSchedule' default='""'>
             <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>floating leg schedule object ID</description>
           </Parameter>

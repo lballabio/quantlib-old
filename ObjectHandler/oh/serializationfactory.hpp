@@ -52,30 +52,27 @@ namespace ObjectHandler {
         //! \name Serialization - public interface
         //@{
         //! Serialize the given ValueObject to the path indicated.
-        virtual void saveObject(const boost::shared_ptr<ValueObject>&, const char *path) const = 0;
-        //! Deserialize an Object from the path indicated.
-        boost::shared_ptr<Object> makeObject(const char *path, const char *objectID) const;
-        //@}
-
-    protected:
-
+		virtual void saveObject(const std::vector<boost::shared_ptr<Object> >&, const char *path) const = 0;
+		virtual void saveObject(const boost::shared_ptr<ObjectHandler::Object>&, const char *path) const = 0;
         //! Deserialize an Object from the path indicated.
         /*! Concrete implementation of the deserialization algorithm,
             specific to the client platform.
         */
-        virtual boost::shared_ptr<ValueObject> loadObject(const char *objectID, const char *path) const = 0;
-        //! A pointer to the SerializationFactory instance, used to support the Singleton pattern.
+		virtual std::vector<boost::shared_ptr<Object> > loadObject(const std::vector<std::string> &idList, const char *path) const = 0;
+		virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const char *path) const = 0;
+        //@}
+
+    protected:
+
+		 //! A pointer to the SerializationFactory instance, used to support the Singleton pattern.
         static SerializationFactory *instance_;
         //! Define the type for a factory creator function.
         typedef boost::shared_ptr<Object> (*Creator)(const boost::shared_ptr<ValueObject>&);
         //! Register a Creator with the Factory.
         void registerCreator(const std::string &className, const Creator &creator);
-
-    private:
-
-        // A map of Creators for each supported class.
+		// A map of Creators for each supported class.
         typedef std::map<std::string, Creator> CreatorMap;
-        // Cannot export std::map across DLL boundaries, so instead of a data member
+		// Cannot export std::map across DLL boundaries, so instead of a data member
         // use a private member function that wraps a reference to a static variable.
         CreatorMap &creatorMap_() const;
     };

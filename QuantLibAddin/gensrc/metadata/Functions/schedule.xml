@@ -12,7 +12,7 @@
   </copyright>
   <Functions>
 
-    <Member name='qlScheduleSize' type='QuantLib::Schedule'>
+    <Member name='qlScheduleSize' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns the number of dates in the given Schedule object</description>
       <libraryFunction>size</libraryFunction>
       <SupportedPlatforms>
@@ -29,7 +29,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSchedulePreviousDate' type='QuantLib::Schedule'>
+    <Member name='qlSchedulePreviousDate' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns the highest date in the given Schedule object preceding the input reference date</description>
       <libraryFunction>previousDate</libraryFunction>
       <SupportedPlatforms>
@@ -51,7 +51,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleNextDate' type='QuantLib::Schedule'>
+    <Member name='qlScheduleNextDate' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns the lowest date in the given Schedule object following the input reference date</description>
       <libraryFunction>nextDate</libraryFunction>
       <SupportedPlatforms>
@@ -73,7 +73,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleDates' type='QuantLib::Schedule'>
+    <Member name='qlScheduleDates' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns the dates for the given Schedule object</description>
       <libraryFunction>dates</libraryFunction>
       <SupportedPlatforms>
@@ -89,7 +89,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleIsRegular' type='QuantLib::Schedule'>
+    <Member name='qlScheduleIsRegular' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns TRUE if the selected period in the given Schedule object is regular</description>
       <libraryFunction>isRegular</libraryFunction>
       <SupportedPlatforms>
@@ -111,7 +111,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleEmpty' type='QuantLib::Schedule'>
+    <Member name='qlScheduleEmpty' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns TRUE if the given Schedule object is empty</description>
       <libraryFunction>empty</libraryFunction>
       <SupportedPlatforms>
@@ -128,7 +128,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleCalendar' type='QuantLib::Schedule'>
+    <Member name='qlScheduleCalendar' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns the Calendar used to calculate the given Schedule object</description>
       <libraryFunction>calendar</libraryFunction>
       <SupportedPlatforms>
@@ -145,7 +145,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleStartDate' type='QuantLib::Schedule'>
+    <Member name='qlScheduleStartDate' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns the start date of the given Schedule object</description>
       <libraryFunction>startDate</libraryFunction>
       <SupportedPlatforms>
@@ -161,7 +161,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleEndDate' type='QuantLib::Schedule'>
+    <Member name='qlScheduleEndDate' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns the end date of the given Schedule object</description>
       <libraryFunction>endDate</libraryFunction>
       <SupportedPlatforms>
@@ -177,7 +177,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleTenor' type='QuantLib::Schedule'>
+    <Member name='qlScheduleTenor' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns the tenor used to calculate the given Schedule object</description>
       <libraryFunction>tenor</libraryFunction>
       <SupportedPlatforms>
@@ -193,7 +193,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleBDC' type='QuantLib::Schedule'>
+    <Member name='qlScheduleBDC' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns the business day convention used to calculate the given Schedule object</description>
       <libraryFunction>businessDayConvention</libraryFunction>
       <SupportedPlatforms>
@@ -209,7 +209,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleTerminationDateBDC' type='QuantLib::Schedule'>
+    <Member name='qlScheduleTerminationDateBDC' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns the business day convention used to calculate the termination date of the given Schedule object</description>
       <libraryFunction>businessDayConvention</libraryFunction>
       <SupportedPlatforms>
@@ -225,7 +225,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleBackward' type='QuantLib::Schedule'>
+    <Member name='qlScheduleBackward' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns TRUE if backward calculation has been used to calculate the given Schedule object</description>
       <libraryFunction>backward</libraryFunction>
       <SupportedPlatforms>
@@ -242,7 +242,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleEndOfMonth' type='QuantLib::Schedule'>
+    <Member name='qlScheduleEndOfMonth' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns TRUE if end-of-month convention has been used to calculate the given Schedule object</description>
       <libraryFunction>endOfMonth</libraryFunction>
       <SupportedPlatforms>

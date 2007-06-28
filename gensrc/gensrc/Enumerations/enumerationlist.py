@@ -21,6 +21,7 @@ from gensrc.Enumerations import enumeratedclasses
 from gensrc.Enumerations import enumeratedpairs
 from gensrc.Serialization import xmlreader
 from gensrc.Utilities import common
+import os.path
 
 class EnumerationList(object):
 
@@ -64,25 +65,38 @@ class EnumerationList(object):
 
     def __init__(self):
 
-        xmlEnumTypes = xmlreader.XmlReader('metadata/Enumerations/enumeratedtypes')
-        xmlEnumTypes.serializeObjectDict(self, enumeratedtypes.EnumeratedTypeGroup)
-        xmlEnumTypes.serializeProperty(self, common.ENUM_TYPE_COPYRIGHT)
-
-        xmlEnumClasses = xmlreader.XmlReader('metadata/Enumerations/enumeratedclasses')
-        xmlEnumClasses.serializeObjectDict(self, enumeratedclasses.EnumeratedClassGroup)
-        xmlEnumClasses.serializeProperty(self, common.ENUM_CLASS_COPYRIGHT)
-
-        xmlEnumPairs = xmlreader.XmlReader('metadata/Enumerations/enumeratedpairs')
-        xmlEnumPairs.serializeObjectDict(self, enumeratedpairs.EnumeratedPairGroup)
-        xmlEnumPairs.serializeProperty(self, common.ENUM_PAIR_COPYRIGHT)
-
         self.typeDict_ = {}
-        for item in self.enumeratedTypeGroups_.values():
-            self.typeDict_[item.type()] = item.includeFile()
-        for item in self.enumeratedClassGroups_.values():
-            self.typeDict_[item.className()] = item.includeFile()
-        for item in self.enumeratedPairGroups_.values():
-            self.typeDict_[item.className()] = item.includeFile()
+
+        if os.path.exists('metadata/Enumerations/enumeratedtypes.xml'):
+            xmlEnumTypes = xmlreader.XmlReader('metadata/Enumerations/enumeratedtypes')
+            xmlEnumTypes.serializeObjectDict(self, enumeratedtypes.EnumeratedTypeGroup)
+            xmlEnumTypes.serializeProperty(self, common.ENUM_TYPE_COPYRIGHT)
+            self.hasEnumeratedTypes = True
+            for item in self.enumeratedTypeGroups_.values():
+                self.typeDict_[item.type()] = item.includeFile()
+        else:
+            self.hasEnumeratedTypes = False
+
+        if os.path.exists('metadata/Enumerations/enumeratedclasses.xml'):
+            xmlEnumClasses = xmlreader.XmlReader('metadata/Enumerations/enumeratedclasses')
+            xmlEnumClasses.serializeObjectDict(self, enumeratedclasses.EnumeratedClassGroup)
+            xmlEnumClasses.serializeProperty(self, common.ENUM_CLASS_COPYRIGHT)
+            self.hasEnumeratedClasses = True
+            for item in self.enumeratedClassGroups_.values():
+                self.typeDict_[item.className()] = item.includeFile()
+        else:
+            self.hasEnumeratedClasses= False
+
+        if os.path.exists('metadata/Enumerations/enumeratedpairs.xml'):
+            xmlEnumPairs = xmlreader.XmlReader('metadata/Enumerations/enumeratedpairs')
+            xmlEnumPairs.serializeObjectDict(self, enumeratedpairs.EnumeratedPairGroup)
+            xmlEnumPairs.serializeProperty(self, common.ENUM_PAIR_COPYRIGHT)
+            self.hasEnumeratedPairs = True
+            for item in self.enumeratedPairGroups_.values():
+                self.typeDict_[item.className()] = item.includeFile()
+        else:
+            self.hasEnumeratedPairs = False
+
 
     def enumIncludes(self, parameterList):
         """Generate a list of all the #includes necessary to compile source code

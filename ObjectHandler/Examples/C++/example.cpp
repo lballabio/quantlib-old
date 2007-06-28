@@ -42,7 +42,7 @@ ObjectHandler::EnumTypeRegistry enumTypeRegistry;
 ExampleAddin::ExampleFactory factory;
 
 void makeAccount(
-    const std::string &objectID, 
+    const std::string &objectID,
     const std::string &type,
     const long &number,
     ObjectHandler::Variant::VariantDef balance2 = ObjectHandler::Other()) { // FIXME
@@ -104,7 +104,7 @@ int main() {
         ObjectHandler::logObject("account2");
 
         // Retrieve an object and update it
-        OH_GET_OBJECT(accountObject2_retrieve, 
+        OH_GET_OBJECT(accountObject2_retrieve,
             "account2", AccountExample::AccountObject)
         accountObject2_retrieve->setBalance(100);
 
@@ -112,7 +112,7 @@ int main() {
         OH_LOG_MESSAGE("Low-level interrogation - after update");
         OH_GET_REFERENCE(accountObjectUnderlying, "account2",
             AccountExample::AccountObject, AccountExample::Account)
-        OH_LOG_MESSAGE("Result of getBalance on underlying = " 
+        OH_LOG_MESSAGE("Result of getBalance on underlying = "
             << accountObjectUnderlying->balance());
 
         // Delete an object
@@ -124,7 +124,7 @@ int main() {
 
         // Serialize an object
         ObjectHandler::Repository::instance().saveObject(
-            "account1", "account.xml");
+            accountObject2_retrieve, "account.xml");
         // Deserialize an object
         ObjectHandler::Repository::instance().loadObject(
             "account1_load", "account.xml");
@@ -132,7 +132,7 @@ int main() {
         OH_GET_OBJECT(accountObject1_load,
             "account1_load", AccountExample::AccountObject)
         accountObject1_load->setBalance(200);
-        OH_LOG_MESSAGE("Balance of account account1_load = " 
+        OH_LOG_MESSAGE("Balance of account account1_load = "
             << accountObject1_load->balance());
 
         OH_LOG_MESSAGE("End example program");

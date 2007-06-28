@@ -32,8 +32,10 @@ namespace ExampleAddin {
     public:
         static ExampleFactory &instance();
     private:
-        virtual void saveObject(const boost::shared_ptr<ObjectHandler::ValueObject>&, const char*) const;
-        virtual boost::shared_ptr<ObjectHandler::ValueObject> loadObject(const char*, const char*) const;
+		virtual void saveObject(const boost::shared_ptr<ObjectHandler::Object>&, const char *path) const;
+		virtual void saveObject(const std::vector<boost::shared_ptr<ObjectHandler::Object> >&, const char *path) const;
+		virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const char *path) const;
+		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(const std::vector<std::string> &idList, const char *path) const;
     };
 
 

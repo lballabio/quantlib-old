@@ -34,7 +34,7 @@
 namespace ObjectHandler {
 
     //! Maintain a store of Objects.
-    /*! The client application may store, retrieve, and delete Objects in 
+    /*! The client application may store, retrieve, and delete Objects in
         the Repository.
 
         This class is implemented using a Singleton design pattern.  Rather
@@ -69,7 +69,7 @@ namespace ObjectHandler {
                 storeObject("MYOBJECT")         // overwrite "MyObject"
             \endcode
         */
-        virtual std::string storeObject(const std::string &objectID, 
+        virtual std::string storeObject(const std::string &objectID,
                                         const boost::shared_ptr<Object> &object);
 
         //! Template member function to retrieve the Object with given ID.
@@ -84,7 +84,7 @@ namespace ObjectHandler {
             boost::shared_ptr<Object> object = retrieveObjectImpl(id);
             ret = boost::dynamic_pointer_cast<T>(object);
             OH_REQUIRE(ret, "Error retrieving object with id '"
-                << id << "' - unable to convert reference to type '" 
+                << id << "' - unable to convert reference to type '"
                 << typeid(T).name() << "'");
         }
 
@@ -114,8 +114,10 @@ namespace ObjectHandler {
         virtual void deleteAllObjects(const bool &deletePermanent = false);
         //@}
 
-        virtual void saveObject(const std::string &objectID, const std::string &path);
-        virtual std::string loadObject(const std::string &objectID, const std::string &path);
+		virtual void saveObject(const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList, const std::string &path);
+		virtual void saveObject(const boost::shared_ptr<ObjectHandler::Object> &object, const std::string &path);
+		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(const std::vector<std::string> &idList, const std::string &path);
+		virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const std::string &path);
 
         //! \name Logging
         //@{

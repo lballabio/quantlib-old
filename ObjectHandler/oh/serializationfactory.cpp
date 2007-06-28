@@ -48,15 +48,5 @@ namespace ObjectHandler {
         creatorMap_()[className] = creator;
     }
 
-     boost::shared_ptr<Object> SerializationFactory::makeObject(const char *path, const char *objectID) const {
-
-        boost::shared_ptr<ValueObject> valueObject = loadObject(path, objectID);
-        CreatorMap::const_iterator i = creatorMap_().find(valueObject->className());
-        OH_REQUIRE(i != creatorMap_().end(), "No creator for class " << valueObject->className());
-        Creator creator = i->second;
-        return creator(valueObject);
-
-     }
-
 }
 

@@ -38,7 +38,7 @@ class Serialization(addin.Addin):
         registerCreator("%(functionName)s", create_%(functionName)s);\n'''
     REGISTER_TYPE = '''\
             // %(categoryDisplayName)s\n
-            register_%(categoryName)s(ar);\n\n'''           
+            register_%(categoryName)s(ar);\n\n'''
     REGISTER_CALL = '''\
             ar.template register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
     INCLUDE_CREATOR = '''\
@@ -65,18 +65,18 @@ class Serialization(addin.Addin):
         """Generate source code for all functions in all categories."""
 
         bufferCreators = ''
-        
+
         for cat in self.categoryList_.categories('*'):
             if not cat.generateVOs(): continue
-                            
+
             bufferCreators += '\n        // %s\n\n' % cat.displayName()
-            
+
             for func in cat.functions('*'):
                 if not func.generateVOs(): continue
-                
+
                 bufferCreators += Serialization.REGISTER_CREATOR % {
                     'functionName' : func.name() }
-                        
+
         factoryBuffer = self.bufferFactory_.text() % {
             'bufferCreators' : bufferCreators,
             'libRootDirectory' : environment.config().libRootDirectory(),
@@ -94,7 +94,7 @@ class Serialization(addin.Addin):
 
             bufferDeclarations = ''
             bufferCreators = ''
-            
+
             bufferAll += Serialization.INCLUDE_CREATOR % {
                 'categoryName' : cat.name(),
                 'libRootDirectory' : environment.config().libRootDirectory() }

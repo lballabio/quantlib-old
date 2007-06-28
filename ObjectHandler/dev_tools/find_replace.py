@@ -66,7 +66,7 @@ def sub1(m):
 
 SUBSTITUTIONS = (
 
-#   place the active regexes here, 
+#   place the active regexes here,
 #   using the commented examples below
 
 (re.compile(
@@ -86,7 +86,9 @@ r'''
 '''),
 
 #   simple
-#    (re.compile(r'abd'), 'def'),
+# <type>QuantLib::Schedule</type>
+    (re.compile(r'(^\s*)(\<type\>QuantLib::Schedule\<\/type\>)', re.M | re.S), 
+	    r'\1\2\n\1<superType>libraryClass</superType>'),
 
 #   group (\1 requires r'' not '')
 #    (re.compile(r"<Rule (.*)>"), r"<Rule \1><SubRules>"),
@@ -112,6 +114,7 @@ r'''
 # Regexes to indicate names of files to be processed by the find/replace.
 
 INCLUDE_FILES = (
+    #re.compile(r'^assetswap\.xml$'),
     #re.compile(r'^junk\.xml$'),
     #re.compile(r'^varianttoscalar\.hpp$'),
 

@@ -65,19 +65,22 @@ class Enumerations(addin.Addin):
         self.generateEnumeratedPairs()
         log.Log.instance().logMessage(' done generating Enumerations.')
 
+
     def generateEnumeratedTypes(self):
         """generate source file for enumerated types."""
+        if not self.enumerationList_.hasEnumeratedTypes:
+            return
         codeRegister = ''       # code to register the enumeration
         codeUnregister = ''     # code to unregister the enumeration
         for enumeratedTypeGroup in self.enumerationList_.enumeratedTypeGroups():
             codeRegister += self.generateEnumeratedType(enumeratedTypeGroup)
-            codeUnregister += Enumerations.ENUM_UNREGISTER % { 
+            codeUnregister += Enumerations.ENUM_UNREGISTER % {
                 'type' : enumeratedTypeGroup.type() }
         buffer = self.bufferEnumTypes_.text() % {
                 'codeRegister' : codeRegister,
                 'codeUnregister' : codeUnregister }
         fileName = environment.config().libFullPath() + '/Enumerations/Register/register_types.cpp'
-        outputfile.OutputFile(self, fileName, 
+        outputfile.OutputFile(self, fileName,
             self.enumerationList_.enumeratedTypeCopyright(), buffer)
 
     def generateEnumeratedType(self, enumeratedTypeGroup):
@@ -91,15 +94,18 @@ class Enumerations(addin.Addin):
                 'type' : enumeratedTypeGroup.type(),
                 'buffer' : buffer }
 
+
     def generateEnumeratedClasses(self):
         """generate source file for enumerated types."""
+        if not self.enumerationList_.hasEnumeratedClasses:
+            return
         buffer = ''   # code to register the enumeration
         for enumeratedClassGroup in self.enumerationList_.enumeratedClassGroups():
             buffer += self.generateEnumeratedClass(enumeratedClassGroup)
         buf = self.bufferEnumClasses_.text() % {
                 'buffer' : buffer }
         fileName = environment.config().libFullPath() + '/Enumerations/Register/register_classes.cpp'
-        outputfile.OutputFile(self, fileName, 
+        outputfile.OutputFile(self, fileName,
             self.enumerationList_.enumeratedClassCopyright(), buf)
 
     def generateEnumeratedClass(self, enumeratedClassGroup):
@@ -113,15 +119,18 @@ class Enumerations(addin.Addin):
                 'type' : enumeratedClassGroup.className(),
                 'buffer' : buffer }
 
+
     def generateEnumeratedPairs(self):
         """generate source file for enumerated types."""
+        if not self.enumerationList_.hasEnumeratedPairs:
+            return
         buffer = ''   # code to register the enumeration
         for enumeratedPairGroup in self.enumerationList_.enumeratedPairGroups():
             buffer += self.generateEnumeratedPair(enumeratedPairGroup)
         buf = self.bufferEnumPairs_.text() % {
                 'buffer' : buffer }
         fileName = environment.config().libFullPath() + '/Enumerations/Register/register_pairs.cpp'
-        outputfile.OutputFile(self, fileName, 
+        outputfile.OutputFile(self, fileName,
             self.enumerationList_.enumeratedPairCopyright(), buf)
 
     def generateEnumeratedPair(self, enumeratedPairGroup):

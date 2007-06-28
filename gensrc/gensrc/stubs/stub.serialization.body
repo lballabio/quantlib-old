@@ -1,5 +1,5 @@
 #include <%(addinDirectory)s/Serialization/serialization_%(categoryName)s.hpp>
-#include <qlo/ValueObjects/vo_%(categoryName)s.hpp>
+#include <%(libRootDirectory)s/ValueObjects/vo_%(categoryName)s.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/serialization/variant.hpp>
 #include <boost/serialization/vector.hpp>

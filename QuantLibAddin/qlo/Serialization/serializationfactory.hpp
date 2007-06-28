@@ -24,7 +24,7 @@
 
 namespace QuantLibAddin {
 
-    class SerializationFactory : public ObjectHandler::SerializationFactory {
+    class SerializationFactory : public virtual ObjectHandler::SerializationFactory {
     public:
         SerializationFactory();
     };

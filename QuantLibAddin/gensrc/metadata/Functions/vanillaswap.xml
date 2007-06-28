@@ -43,6 +43,7 @@
           </Parameter>
           <Parameter name='fixedLegSchedule' exampleValue='FixedSchedule'>
             <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg schedule object ID</description>
           </Parameter>
@@ -58,6 +59,7 @@
           </Parameter>
           <Parameter name='floatingLegSchedule' exampleValue='FloatingSchedule'>
             <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>floating leg schedule object ID</description>
           </Parameter>

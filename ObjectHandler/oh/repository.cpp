@@ -48,10 +48,10 @@ namespace ObjectHandler {
         OH_REQUIRE(instance_, "Attempt to reference uninitialized Repository object");
         return *instance_;
     }
- 
+
     // TODO: implement Scott Meyers' "Effective STL" item 24
     std::string Repository::storeObject(
-        const std::string &objectID, 
+        const std::string &objectID,
         const boost::shared_ptr<Object> &object) {
 
         objectMap_[objectID] = object;
@@ -138,16 +138,20 @@ namespace ObjectHandler {
         return objectIDs;
     }
 
-    void Repository::saveObject(const std::string &objectID, const std::string &path) {
-        boost::shared_ptr<Object> object;
-        retrieveObject(object, objectID);
-        ObjectHandler::SerializationFactory::instance().saveObject(object->properties(), path.c_str());
+	void Repository::saveObject(const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList, const std::string &path) {
+		ObjectHandler::SerializationFactory::instance().saveObject(objectList, path.c_str());   
+	}	
+	void Repository::saveObject(const boost::shared_ptr<ObjectHandler::Object> &object, const std::string &path) {
+		ObjectHandler::SerializationFactory::instance().saveObject(object, path.c_str());   
+	}
+
+	std::vector<boost::shared_ptr<ObjectHandler::Object> > Repository::loadObject(const std::vector<std::string> &idList, const std::string &path) {
+        return ObjectHandler::SerializationFactory::instance().loadObject(idList, path.c_str());			
     }
 
-    std::string Repository::loadObject(const std::string &objectID, const std::string &path) {
-        boost::shared_ptr<Object> object =
-            ObjectHandler::SerializationFactory::instance().makeObject(path.c_str(), objectID.c_str());
-        return storeObject(objectID, object);
-    }
+	boost::shared_ptr<ObjectHandler::Object> Repository::loadObject(const std::string &objectID, const std::string &path) {
+        return ObjectHandler::SerializationFactory::instance().loadObject(objectID, path.c_str());			
+	}
+
 
 }

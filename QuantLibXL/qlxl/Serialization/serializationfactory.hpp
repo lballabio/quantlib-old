@@ -21,6 +21,8 @@
 
 #include <oh/ohdefines.hpp>
 #include <qlo/Serialization/serializationfactory.hpp>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/archive/xml_oarchive.hpp>
 
 namespace QuantLibXL {
 
@@ -28,9 +30,14 @@ namespace QuantLibXL {
     public:
         static SerializationFactory &instance();
     private:
-        virtual void saveObject(const boost::shared_ptr<ObjectHandler::ValueObject>&, const char*) const;
-        virtual boost::shared_ptr<ObjectHandler::ValueObject> loadObject(const char*, const char*) const;
+		virtual void saveObject(const boost::shared_ptr<ObjectHandler::Object>&, const char *path) const;
+		virtual void saveObject(const std::vector<boost::shared_ptr<ObjectHandler::Object> >&, const char *path) const;
+		virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const char *path) const;
+		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(const std::vector<std::string> &idList, const char *path) const;
     };
+
+	void register_in(boost::archive::xml_iarchive&);
+	void register_out(boost::archive::xml_oarchive&);
 
 }
 

@@ -92,6 +92,7 @@
 				</Parameter>
 				<Parameter name='obserSchedID'>
 					<type>QuantLib::Schedule</type>
+					<superType>libraryClass</superType>
 					<tensorRank>scalar</tensorRank>
 					<description>observations schedule</description>
 				</Parameter>

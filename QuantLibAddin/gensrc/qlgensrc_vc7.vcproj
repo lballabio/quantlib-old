@@ -175,10 +175,10 @@
 				RelativePath=".\metadata\Functions\products.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\quotes.xml">
+				RelativePath=".\metadata\Functions\quotes.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\quotes.xml">
+				RelativePath=".\metadata\quotes.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\randomsequencegenerator.xml">

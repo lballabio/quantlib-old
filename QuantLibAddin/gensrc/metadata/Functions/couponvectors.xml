@@ -51,6 +51,7 @@
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
@@ -88,6 +89,7 @@
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
@@ -155,6 +157,7 @@
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
@@ -252,6 +255,7 @@
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
@@ -319,6 +323,7 @@
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
@@ -416,6 +421,7 @@
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
@@ -488,6 +494,7 @@
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>

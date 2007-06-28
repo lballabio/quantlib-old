@@ -30,6 +30,7 @@
 #include <examplefactory.hpp>
 #include <ExampleObjects/ValueObjects/accountvalueobject.hpp>
 #include <ExampleObjects/ValueObjects/customervalueobject.hpp>
+#include <oh/repository.hpp>
 
 namespace ExampleAddin {
 
@@ -41,12 +42,6 @@ namespace ExampleAddin {
         OH_FAIL("Attempt to reference uninitialized ExampleFactory object");
     }
 
-    //template<class Archive>
-    //void tpl_register_classes(Archive& ar) {
-    //    ar.template register_type<AccountExample::AccountValueObject>();
-    //    ar.template register_type<AccountExample::CustomerValueObject>();
-    //}
-
     void tpl_register_classes(boost::archive::xml_oarchive &ar) {
         ar.template register_type<AccountExample::AccountValueObject>();
         ar.template register_type<AccountExample::CustomerValueObject>();
@@ -57,36 +52,70 @@ namespace ExampleAddin {
         ar.template register_type<AccountExample::CustomerValueObject>();
     }
 
+	void ExampleFactory::saveObject(const boost::shared_ptr<ObjectHandler::Object> &object, const char *path) const {
+        std::ofstream ofs(path);
+        boost::archive::xml_oarchive oa(ofs);
+        tpl_register_classes(oa);
+		oa << boost::serialization::make_nvp("oh_object", object->properties());
+	}
+
     void ExampleFactory::saveObject(
-        const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject, 
-        const char *path) const {
+		const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
+		const char *path) const {
 
         std::ofstream ofs(path);
         boost::archive::xml_oarchive oa(ofs);
         tpl_register_classes(oa);
-
-        // We need to supply a name for the object to be serialized.
-        // The objectID isn't suitable because certain values of objectID are
-        // invalid as XML tags e.g. values beginning with numeric characters.
-        // For our purposes the tag is ignored, so just supply a dummy string.
-        //std::string objectID = boost::any_cast<std::string>(valueObject->getProperty("objectID"));
-        //oa << boost::serialization::make_nvp(objectID.c_str(), valueObject);
-        oa << boost::serialization::make_nvp("oh_object", valueObject);
+		for(std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i=objectList.begin();i!=objectList.end();++i){	
+			// We need to supply a name for the object to be serialized.
+			// The objectID isn't suitable because certain values of objectID are
+			// invalid as XML tags e.g. values beginning with numeric characters.
+			// For our purposes the tag is ignored, so just supply a dummy string.
+			//std::string objectID = boost::any_cast<std::string>(valueObject->getProperty("objectID"));
+			//oa << boost::serialization::make_nvp(objectID.c_str(), valueObject);
+			oa << boost::serialization::make_nvp("oh_object", (*i)->properties());
+		}
     }
 
-    boost::shared_ptr<ObjectHandler::ValueObject> ExampleFactory::loadObject(
-        const char *path, const char *objectID) const {
-
+	boost::shared_ptr<ObjectHandler::Object> ExampleFactory::loadObject(const std::string &objectID, const char *path) const {
         std::ifstream ifs(path);
         boost::archive::xml_iarchive ia(ifs);
         tpl_register_classes(ia);
-        boost::shared_ptr<ObjectHandler::ValueObject> valueObject;
-        ia >> boost::serialization::make_nvp(objectID, valueObject);
-        // This VO has picked up the ID of the old VO that was deserialized.
-        // Override this value with the new ID supplied by the caller.
-        valueObject->setID(objectID);
-        return valueObject;
-    }
+		boost::shared_ptr<ObjectHandler::ValueObject> valueObject;
+		ia >> boost::serialization::make_nvp(objectID.c_str(), valueObject);
+		// This VO has picked up the ID of the old VO that was deserialized.
+		// Override this value with the new ID supplied by the caller.
+		valueObject->setID(objectID);
+		CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
+		OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
+		Creator creator = j->second;
+		boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
+		ObjectHandler::Repository::instance().storeObject(objectID, object);
+		return object;
+	}
 
+	std::vector<boost::shared_ptr<ObjectHandler::Object> > ExampleFactory::loadObject(
+        const std::vector<std::string> &idList, const char *path) const {
+
+		std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValues;
+        std::ifstream ifs(path);
+        boost::archive::xml_iarchive ia(ifs);
+        tpl_register_classes(ia);
+
+		for(std::vector<std::string>::const_iterator i=idList.begin();i!=idList.end();++i){
+			boost::shared_ptr<ObjectHandler::ValueObject> valueObject;
+			ia >> boost::serialization::make_nvp(i->c_str(), valueObject);
+			// This VO has picked up the ID of the old VO that was deserialized.
+			// Override this value with the new ID supplied by the caller.
+			valueObject->setID(*i);
+			CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
+			OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
+			Creator creator = j->second;
+			boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
+			ObjectHandler::Repository::instance().storeObject(*i, object);
+			returnValues.push_back(object);
+		}
+	    return returnValues;
+	}
 }
 

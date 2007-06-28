@@ -19,9 +19,9 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectID'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
+          <Parameter name='objectList'>
+            <type>ObjectHandler::Object</type>
+            <tensorRank>vector</tensorRank>
             <description>also delete permanent objects (default FALSE)</description>
           </Parameter>
           <Parameter name='path'>
@@ -45,9 +45,9 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectID'>
+          <Parameter name='idList'>
             <type>string</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>also delete permanent objects (default FALSE)</description>
           </Parameter>
           <Parameter name='path'>
@@ -58,7 +58,7 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>string</type>
+        <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
