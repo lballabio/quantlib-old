@@ -5,7 +5,6 @@ includedir = $(prefix)/include/qlo/Factories
 noinst_LTLIBRARIES = libFactories.la
 
 include_HEADERS = \
-    all.hpp \
     calendarfactory.hpp \
     conundrumpricerfactory.hpp \
     iborcouponpricersfactory.hpp \

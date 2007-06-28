@@ -10,12 +10,14 @@ EXTRA_DIST = \
 
 include_HEADERS = \
     abcd.hpp \
+    accountingengines.hpp \
     alphaform.hpp \
     asianoption.hpp \
     assetswap.hpp \
     barrieroption.hpp \
     baseinstruments.hpp \
     bonds.hpp \
+    browniangenerators.hpp \
     capfloor.hpp \
     capletvolstructure.hpp \
     cliquetoption.hpp \
@@ -23,11 +25,13 @@ include_HEADERS = \
     config.hpp \
     conundrumpricer.hpp \
     couponvectors.hpp \
+    ctsmmcapletcalibration.hpp \
     curvestate.hpp \
     date.hpp \
     dividendvanillaoption.hpp \
     driftcalculators.hpp \
     europeanoption.hpp \
+    evolutiondescription.hpp \
     exercise.hpp \
     flowanalysis.hpp \
     forwardrateagreement.hpp \
@@ -72,26 +76,32 @@ include_HEADERS = \
     vanillaoption.hpp \
     vanillaswap.hpp \
     vcconfig.hpp \
-    volatilities.hpp
+    volatilities.hpp \
+    volatility.hpp
 
 libQuantLibAddin_la_SOURCES = \
     abcd.cpp \
+    accountingengines.cpp \
     alphaform.cpp \
     asianoption.cpp \
     assetswap.cpp \
     barrieroption.cpp \
     bonds.cpp \
+    browniangenerators.cpp \
     capfloor.cpp \
     capletvolstructure.cpp \
     cliquetoption.cpp \
     cmsmarket.cpp \
     conundrumpricer.cpp \
+    correlation.cpp \
     couponvectors.cpp \
+    ctsmmcapletcalibration.cpp \
     curvestate.cpp \
     date.cpp \
     dividendvanillaoption.cpp \
     driftcalculators.cpp \
     europeanoption.cpp \
+    evolutiondescription.cpp \
     exercise.cpp \
     flowanalysis.cpp \
     forwardrateagreement.cpp \
@@ -116,6 +126,7 @@ libQuantLibAddin_la_SOURCES = \
     ratehelpers.cpp \
     schedule.cpp \
     sequencestatistics.cpp \
+    settings.cpp \
     shortratemodels.cpp \
     smilesection.cpp \
     statistics.cpp \
@@ -128,7 +139,8 @@ libQuantLibAddin_la_SOURCES = \
     utilities.cpp \
     vanillaoption.cpp \
     vanillaswap.cpp \
-    volatilities.cpp
+    volatilities.cpp \
+    volatility.cpp
 
 libQuantLibAddin_la_LIBADD = \
     Conversions/libConversions.la \

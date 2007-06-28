@@ -6,16 +6,21 @@ noinst_LTLIBRARIES = libSerialization.la
 
 include_HEADERS = \
     create_abcd.hpp \
+    create_accountingengines.hpp \
     create_all.hpp \
     create_alphaform.hpp \
     create_assetswap.hpp \
     create_bonds.hpp \
+    create_browniangenerators.hpp \
     create_capfloor.hpp \
     create_capletvolstructure.hpp \
     create_cmsmarket.hpp \
+    create_correlation.hpp \
     create_couponvectors.hpp \
+    create_ctsmmcapletcalibration.hpp \
     create_curvestate.hpp \
     create_driftcalculators.hpp \
+    create_evolutiondescription.hpp \
     create_exercise.hpp \
     create_forwardrateagreement.hpp \
     create_index.hpp \
@@ -46,19 +51,25 @@ include_HEADERS = \
     create_termstructures.hpp \
     create_vanillaswap.hpp \
     create_volatilities.hpp \
+    create_volatility.hpp \
     serializationfactory.hpp
 
 libSerialization_la_SOURCES = \
     create_abcd.cpp \
+    create_accountingengines.cpp \
     create_alphaform.cpp \
     create_assetswap.cpp \
     create_bonds.cpp \
+    create_browniangenerators.cpp \
     create_capfloor.cpp \
     create_capletvolstructure.cpp \
     create_cmsmarket.cpp \
+    create_correlation.cpp \
     create_couponvectors.cpp \
+    create_ctsmmcapletcalibration.cpp \
     create_curvestate.cpp \
     create_driftcalculators.cpp \
+    create_evolutiondescription.cpp \
     create_exercise.cpp \
     create_forwardrateagreement.cpp \
     create_index.cpp \
@@ -89,5 +100,6 @@ libSerialization_la_SOURCES = \
     create_termstructures.cpp \
     create_vanillaswap.cpp \
     create_volatilities.cpp \
+    create_volatility.cpp \
     serializationfactory.cpp
 

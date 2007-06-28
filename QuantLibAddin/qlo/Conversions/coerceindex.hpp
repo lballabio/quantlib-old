@@ -21,6 +21,7 @@
 
 #include <oh/Conversions/coerce.hpp>
 #include <oh/exception.hpp>
+#include <oh/repository.hpp>
 #include <oh/Enumerations/typefactory.hpp>
 #include <qlo/Enumerations/Factories/indexfactory.hpp>
 

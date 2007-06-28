@@ -25,7 +25,7 @@
 #include <ql/types.hpp>
 #include <ql/handle.hpp>
 #include <ql/time/businessdayconvention.hpp>
-#include <ql/time/Frequency.hpp>
+#include <ql/time/frequency.hpp>
 
 namespace QuantLib {
     class RateHelper;
