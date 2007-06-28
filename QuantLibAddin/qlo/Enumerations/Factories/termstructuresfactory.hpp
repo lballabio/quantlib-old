@@ -22,12 +22,12 @@
 
 #include <oh/Enumerations/typefactory.hpp>
 #include <ql/types.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
     class Calendar;
     class DayCounter;
     class RateHelper;
-    class YieldTermStructure;
 }
 
 namespace ObjectHandler {
