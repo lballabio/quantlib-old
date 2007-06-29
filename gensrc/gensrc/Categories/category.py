@@ -54,8 +54,13 @@ class Category(serializable.Serializable):
             or func.platformSupported(platformName, implementation):
                 yield func
 
-    def includeList(self):
-        return self.addinIncludeList_
+    def includeList(self, loopBuffer = None):
+        ret = self.addinIncludeList_
+        if loopBuffer and self.containsLoopFunction_:
+            ret += loopBuffer % (
+                environment.config().loopRootDirectory(),
+                self.name_)
+        return ret
 
     def printDebug(self):
         for func in self.functions('*'):

@@ -265,6 +265,54 @@ code65 = '''\
         return &xRet;'''
 
 ##########################################################################
+# code for C++
+##########################################################################
+
+code200 = '''\
+        %(type)s %(name)sLib = ObjectHandler::ohVariantToScalar<%(type)s>(
+            %(name)s, "%(name)s");\n'''
+
+code201 = '''\
+        %(type)s %(name)sLib = ObjectHandler::ohVariantToScalar<%(type)s>(
+            %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+
+code202 = '''\
+        %(type)s %(name)sLib;
+        QuantLibAddin::cppToLibrary(%(name)s, %(name)sLib);\n'''
+
+code203 = '''\
+        /*%(type)s %(name)sLib =
+            QuantLibXL::operToQlArray(%(name)s, "%(name)s");*/\n'''
+
+code204 = '''\
+        std::vector<QuantLib::Date> %(name)sLib = 
+            ObjectHandler::ohVariantToVector<QuantLib::Date>(%(name)s, "%(name)s");\n'''
+
+code205 = '''\
+        std::vector<%(type)s> %(name)sLib =
+            ObjectHandler::ohVariantToVector<%(type)s>(%(name)s, "%(name)s");\n'''
+
+code206 = '''\
+        /*%(type)s %(name)sLib =
+            QuantLibXL::operToQlMatrix(%(name)s);*/\n'''
+
+code207 = '''\
+        std::string %(name)sCpp = ObjectHandler::ohVariantToScalar<std::string>(
+            %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+
+code208 = '''\
+        %(nativeType)s %(name)sCpp = ObjectHandler::ohVariantToScalar<%(nativeType)s>(
+            %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+
+code209 = '''\
+        std::vector<%(nativeType)s> returnValueLib = %(namespaceObjects)s::libraryToVector(returnValue);
+        return returnValueLib;'''
+ 
+code210 = '''\
+        %(nativeType)s returnValueLib = %(namespaceObjects)s::libraryToScalar(returnValue);
+        return returnValueLib;'''
+
+##########################################################################
 # code for Calc
 ##########################################################################
 

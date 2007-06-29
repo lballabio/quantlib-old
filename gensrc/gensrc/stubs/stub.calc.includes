@@ -5,6 +5,5 @@
 #include <Addins/Calc/%(prefix)saddin.hpp>
 #include <Addins/Calc/calcutils.hpp>
 #include <Addins/Calc/conversions.hpp>
-%(loopIncludes)s
 
 %(buffer)s

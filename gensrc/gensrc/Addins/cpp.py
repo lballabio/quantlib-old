@@ -67,10 +67,7 @@ class CppAddin(addin.Addin):
         bufferAll = ''
         for cat in self.categoryList_.categories(self.name_):
             categoryIncludes = cat.includeList()
-            #if cat.containsLoopFunction():
-            #    categoryIncludes += LOOP_INCLUDES % (
-            #        environment.config().loopRootDirectory(),
-            #        cat.name())
+            #categoryIncludes = cat.includeList(LOOP_INCLUDES)
             bufferAll += "#include <%s.hpp>\n" % cat.name()
             bufferCpp = ''
             bufferHpp = ''

@@ -35,6 +35,9 @@ MAPFILE = 'funcdef.cpp'
 MAPLINE = """    %s[ STRFROMANSI( "%s" ) ]
         =  STRFROMANSI( "%s" );\n"""
 PARMLINE = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
+LOOP_INCLUDES = '''\
+#include <%s/loop_%s.hpp>
+#include <Addins/Calc/loop.hpp>'''
 
 class CalcAddin(addin.Addin):
     """Generate source code for Calc addin."""
@@ -148,19 +151,11 @@ class CalcAddin(addin.Addin):
             buf = ''
             for func in cat.functions(self.name_): 
                 buf += self.generateFunction(func)
-            categoryIncludes = cat.includeList()
-            if cat.containsLoopFunction():
-                categoryIncludes += '#include <%s/loop_%s.hpp>' % (
-                    environment.config().loopRootDirectory(),
-                    cat.name())
-                loopIncludes = '#include <Addins/Calc/loop.hpp>'
-            else:
-                loopIncludes = ''
+            categoryIncludes = cat.includeList(LOOP_INCLUDES)
             buf2 = self.bufferIncludes_.text() % {
                 'categoryIncludes' : categoryIncludes,
                 'prefix' : environment.config().prefix(),
                 'libRoot' : environment.config().libRootDirectory(),
-                'loopIncludes' : loopIncludes,
                 'buffer' : buf }
             fileName = self.rootPath_ + cat.name() + '.cpp'
             outputfile.OutputFile(self, fileName, None, buf2, False)

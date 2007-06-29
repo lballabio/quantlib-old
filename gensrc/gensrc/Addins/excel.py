@@ -98,11 +98,7 @@ class ExcelAddin(addin.Addin):
     def generateFunctions(self):
         """Generate source code for all functions in all categories."""
         for cat in self.categoryList_.categories(self.name_):
-            categoryIncludes = cat.includeList()
-            if cat.containsLoopFunction():
-                categoryIncludes += LOOP_INCLUDES % (
-                    environment.config().loopRootDirectory(),
-                    cat.name())
+            categoryIncludes = cat.includeList(LOOP_INCLUDES)
             buf = self.bufferIncludes_.text() % {
                 'categoryIncludes' : categoryIncludes }
             for func in cat.functions(self.name_):
@@ -113,7 +109,7 @@ class ExcelAddin(addin.Addin):
 
     def indexOfCol(self, str):
         """convert an Excel column ID to an int"""
-        return reduce( lambda x, y: 26 * x + y, map(COL_TO_NUM.index, str.lower()))
+        return reduce(lambda x, y: 26 * x + y, map(COL_TO_NUM.index, str.lower()))
 
     def cellNameConflict(self, funcName):
         m = CELL_NAME_REGEX.match(funcName.upper())
