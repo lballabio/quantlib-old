@@ -123,6 +123,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\cmsmarketcalibration.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\couponvectors.xml"
 				>
 			</File>

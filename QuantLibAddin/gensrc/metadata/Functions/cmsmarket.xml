@@ -3,24 +3,18 @@
   <displayName>Cms Market</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
-    <include>ql/termstructures/volatilities/swaption/cmsmarket.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>qlo/optimization.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_cmsmarket.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
-    <include>ql/termstructures/volatilities/swaption/cmsmarket.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>qlo/optimization.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>
   </serializationIncludes>
@@ -72,175 +66,6 @@
     </Constructor>
 
     <Member name='qlBrowseCmsMarket' type='QuantLibAddin::CmsMarket'>
-      <description>return the market and implied spreads matrix</description>
-      <libraryFunction>getCmsMarket</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>any</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <!-- CmsMarketCalibration constructors -->
-
-    <Constructor name='qlCmsMarketCalibration'>
-      <libraryFunction>CmsMarketCalibration</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='volCube' >
-            <type>QuantLib::SwaptionVolatilityStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>Volatility Cube by Sabr</description>
-          </Parameter>
-          <Parameter name='cmsMarket'>
-            <type>QuantLib::CmsMarket</type>
-            <tensorRank>scalar</tensorRank>
-            <description>CmsMarket object ID</description>
-          </Parameter>
-          <Parameter name='weights'>
-            <type>QuantLib::Matrix</type>
-            <tensorRank>matrix</tensorRank>
-            <description>weights for cms market calibration.</description>
-          </Parameter>
-          <Parameter name='calibrationType'>
-            <type>QuantLib::CmsMarketCalibration::CalibrationType</type>
-            <tensorRank>scalar</tensorRank>
-            <description>calibration type (e.g. OnSpread, OnPrice, OnForwardPrice)</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Member name='qlCmsMarketCalibrationCompute' type='QuantLibAddin::CmsMarketCalibration'>
-      <description>Return the best beta and mean reversion</description>
-      <libraryFunction>compute</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='endCriteria' default='""'>
-            <type>QuantLib::EndCriteria</type>
-            <tensorRank>scalar</tensorRank>
-            <description>EndCriteria object ID</description>
-          </Parameter>
-          <Parameter name='optimizationMethod' default='""'>
-            <type>QuantLib::OptimizationMethod</type>
-            <tensorRank>scalar</tensorRank>
-            <description>OptimizationMethod object ID</description>
-          </Parameter>
-          <Parameter name="guess">
-            <type>QuantLib::Array</type>
-            <tensorRank>vector</tensorRank>
-            <description>guess</description>
-          </Parameter>
-          <Parameter name='isMeanRevFixed' exampleValue = 'FALSE'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>if TRUE mean reversion parameter is not calibrated, the guess is used.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Array</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCmsMarketCalibrationError' type='QuantLib::CmsMarketCalibration'>
-      <description>Returns the error of the simultaneous calibration</description>
-      <libraryFunction>error</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCmsMarketCalibrationEndCriteria' type='QuantLib::CmsMarketCalibration'>
-      <description>Returns the optimization end criteria of the simultaneous calibration</description>
-      <libraryFunction>endCriteria</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::EndCriteria::Type</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCmsMarketCalibrationElapsed' type='QuantLibAddin::CmsMarketCalibration'>
-      <description>Returns the elapsed time of the simultaneous calibration</description>
-      <libraryFunction>elapsed</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCmsMarketCalibrationSparseSabrParameters' type='QuantLibAddin::CmsMarketCalibration'>
-      <description>returns results of Sabr calibration</description>
-      <libraryFunction>getSparseSabrParameters</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>any</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCmsMarketCalibrationDenseSabrParameters' type='QuantLibAddin::CmsMarketCalibration'>
-      <description>returns results of Sabr calibration</description>
-      <libraryFunction>getDenseSabrParameters</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>any</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlSimultaneousCalibrationBrowseCmsMarket' type='QuantLibAddin::CmsMarketCalibration'>
       <description>return the market and implied spreads matrix</description>
       <libraryFunction>getCmsMarket</libraryFunction>
       <SupportedPlatforms>

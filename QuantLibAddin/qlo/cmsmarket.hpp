@@ -23,7 +23,6 @@
 
 // To be removed later
 #include <ql/termstructures/volatilities/swaption/cmsmarket.hpp>
-#include <ql/termstructures/volatilities/swaption/cmsmarketcalibration.hpp>
 
 #include <ql/types.hpp>
 #include <ql/handle.hpp>
@@ -37,10 +36,7 @@ namespace QuantLib {
     class SwapIndex;
     class Quote;
     class YieldTermStructure;
-    class CmsMarketCalibration;
     class SwaptionVolatilityStructure;
-    class EndCriteria;
-    class OptimizationMethod;
 }
 
 namespace QuantLibAddin {
@@ -60,25 +56,6 @@ namespace QuantLibAddin {
 
     };  
 
-    class CmsMarketCalibration: public ObjectHandler::LibraryObject<QuantLib::CmsMarketCalibration>{
-      public:
-        CmsMarketCalibration(
-            QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& volCube,
-            boost::shared_ptr<QuantLib::CmsMarket>& cmsMarket,
-            const QuantLib::Matrix& weights,
-            QuantLib::CmsMarketCalibration::CalibrationType calibrationType);
-        
-        std::vector<std::vector<boost::any> > getSparseSabrParameters();
-        std::vector<std::vector<boost::any> > getDenseSabrParameters();
-        std::vector<std::vector<boost::any> > getCmsMarket();
-        QuantLib::Real elapsed() {return elapsed_ ; }
-        QuantLib::Array compute(const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
-                                const boost::shared_ptr<QuantLib::OptimizationMethod>& method,
-                                const QuantLib::Array& guess,
-                                bool isMeanReversionFixed);
-      private:
-        QuantLib::Real elapsed_;
-    }; 
 }
 
 #endif

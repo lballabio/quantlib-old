@@ -494,6 +494,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_cmsmarketcalibration.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_cmsmarketcalibration.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_correlation.cpp"
 				>
 			</File>
@@ -1126,6 +1134,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\cmsmarketcalibration.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\cmsmarketcalibration.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\smilesection.cpp"
 				>
 			</File>
@@ -1447,6 +1463,14 @@
 			</File>
 			<File
 				RelativePath=".\qlo\Serialization\create_cmsmarket.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Serialization\create_cmsmarketcalibration.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Serialization\create_cmsmarketcalibration.hpp"
 				>
 			</File>
 			<File
