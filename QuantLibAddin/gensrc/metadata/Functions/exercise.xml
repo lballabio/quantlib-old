@@ -18,7 +18,7 @@
       <libraryFunction>dates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -34,7 +34,7 @@
       <libraryFunction>lastDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -50,7 +50,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -98,7 +98,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -118,3 +118,4 @@
 
   </Functions>
 </Category>
+

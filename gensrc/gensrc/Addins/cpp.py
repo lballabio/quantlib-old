@@ -41,11 +41,12 @@ class CppAddin(addin.Addin):
     #############################################
 
     voSupported_ = True
-    convertPermanentFlag_ = '''
-        bool permanentCpp =
-            ObjectHandler::callOperToScalar<bool>(*permanent, "permanent", false);
-        if (permanentCpp)
-            objectPointer->setPermanent();'''
+    #convertPermanentFlag_ = '''
+    #    bool permanentCpp =
+    #        ObjectHandler::callOperToScalar<bool>(*permanent, "permanent", false);
+    #    if (permanentCpp)
+    #        objectPointer->setPermanent();'''
+    convertPermanentFlag_ = ''
 
     #############################################
     # public interface
@@ -92,10 +93,16 @@ class CppAddin(addin.Addin):
     def generateFunction(self, func):
         """Generate source code for a given function."""
         return self.bufferFunction_.text() % {
+            'cppConversions' : func.parameterList().generate(self.cppConversions_),
+            'enumConversions' : func.parameterList().generate(self.enumConversions_),
             'functionBody' : func.generateBody(self),
-            'functionReturnType' : self.functionReturnType_.apply(func.returnValue()),
             'functionDeclaration' : func.parameterList().generate(self.functionDeclaration_),
-            'functionName' : func.name() }
+            'functionName' : func.name(),
+            'functionReturnType' : self.functionReturnType_.apply(func.returnValue()),
+            'libConversions' : func.parameterList().generate(self.libraryConversions_),
+            'objectConversions' : func.parameterList().generate(self.objectConversions_),
+            'refConversions' : func.parameterList().generate(self.referenceConversions_),
+            'returnConversion' : self.returnConversion_.apply(func.returnValue()) }
 
     def generateDeclaration(self, func):
         """Generate source code for a given function."""
