@@ -106,7 +106,7 @@
     LIBRARY_CLASS &NAME = *(NAME ## temp.get());
 
 /*! \def OH_LOG_MESSAGE(message)
-    Raise an exception with the given message.
+    Log the given message.
 */
 
 #define OH_LOG_MESSAGE(message) \
