@@ -15,6 +15,7 @@ include_HEADERS = \
     create_capfloor.hpp \
     create_capletvolstructure.hpp \
     create_cmsmarket.hpp \
+    create_cmsmarketcalibration.hpp \
     create_correlation.hpp \
     create_couponvectors.hpp \
     create_ctsmmcapletcalibration.hpp \
@@ -64,6 +65,7 @@ libSerialization_la_SOURCES = \
     create_capfloor.cpp \
     create_capletvolstructure.cpp \
     create_cmsmarket.cpp \
+    create_cmsmarketcalibration.cpp \
     create_correlation.cpp \
     create_couponvectors.cpp \
     create_ctsmmcapletcalibration.cpp \

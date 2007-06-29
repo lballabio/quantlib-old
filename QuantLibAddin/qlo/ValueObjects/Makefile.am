@@ -15,6 +15,7 @@ include_HEADERS = \
     vo_capfloor.hpp \
     vo_capletvolstructure.hpp \
     vo_cmsmarket.hpp \
+    vo_cmsmarketcalibration.hpp \
     vo_correlation.hpp \
     vo_couponvectors.hpp \
     vo_ctsmmcapletcalibration.hpp \
@@ -63,6 +64,7 @@ libValueObjects_la_SOURCES = \
     vo_capfloor.cpp \
     vo_capletvolstructure.cpp \
     vo_cmsmarket.cpp \
+    vo_cmsmarketcalibration.cpp \
     vo_correlation.cpp \
     vo_couponvectors.cpp \
     vo_ctsmmcapletcalibration.cpp \
