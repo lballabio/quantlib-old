@@ -43,13 +43,13 @@ namespace ExampleAddin {
     }
 
     void tpl_register_classes(boost::archive::xml_oarchive &ar) {
-        ar.template register_type<AccountExample::AccountValueObject>();
-        ar.template register_type<AccountExample::CustomerValueObject>();
+        ar.register_type<AccountExample::AccountValueObject>();
+        ar.register_type<AccountExample::CustomerValueObject>();
     }
 
     void tpl_register_classes(boost::archive::xml_iarchive &ar) {
-        ar.template register_type<AccountExample::AccountValueObject>();
-        ar.template register_type<AccountExample::CustomerValueObject>();
+        ar.register_type<AccountExample::AccountValueObject>();
+        ar.register_type<AccountExample::CustomerValueObject>();
     }
 
 	void ExampleFactory::saveObject(const boost::shared_ptr<ObjectHandler::Object> &object, const char *path) const {
@@ -66,7 +66,7 @@ namespace ExampleAddin {
         std::ofstream ofs(path);
         boost::archive::xml_oarchive oa(ofs);
         tpl_register_classes(oa);
-		for(std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i=objectList.begin();i!=objectList.end();++i){	
+		for (std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i=objectList.begin();i!=objectList.end();++i){	
 			// We need to supply a name for the object to be serialized.
 			// The objectID isn't suitable because certain values of objectID are
 			// invalid as XML tags e.g. values beginning with numeric characters.
