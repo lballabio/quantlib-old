@@ -100,6 +100,9 @@
 				RelativePath="metadata\Functions\cmsmarket.xml">
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\cmsmarketcalibration.xml">
+			</File>
+			<File
 				RelativePath=".\metadata\Functions\correlation.xml">
 			</File>
 			<File
@@ -175,10 +178,10 @@
 				RelativePath=".\metadata\Functions\products.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\quotes.xml">
+				RelativePath=".\metadata\quotes.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\quotes.xml">
+				RelativePath=".\metadata\Functions\quotes.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\randomsequencegenerator.xml">
