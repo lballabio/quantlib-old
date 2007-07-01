@@ -39,13 +39,13 @@ namespace QuantLibAddin {
         for (QuantLib::Size i=0; i<values.size(); ++i) {
             if (values[i]!=0.0 && values[i]!=QuantLib::Null<QuantLib::Real>()) {
                 QL_REQUIRE(values[i]>0.0,
-                           "negative fixing not allowed");
+                           "non positive fixing (" << values[i] <<
+                           ") at date " << dates[i] << " not allowed");
                 d.push_back(dates[i]);
                 v.push_back(values[i]);
             }
         }
-        libraryObject_->addFixings(d.begin(), d.end(),
-                                   v.begin());
+        libraryObject_->addFixings(d, v);
     }
 
     IborIndex::IborIndex(const std::string& indexName,
