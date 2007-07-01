@@ -5,6 +5,9 @@
   <addinIncludes>
     <include>qlo/couponvectors.hpp</include>
   </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/couponvectors.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Cristina Duminuco
   </copyright>
@@ -32,8 +35,6 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
-
 
   </Functions>
 </Category>

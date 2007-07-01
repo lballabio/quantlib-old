@@ -20,8 +20,9 @@
 
 #include <oh/libraryobject.hpp>
 
-#include <ql/types.hpp>
 #include <ql/handle.hpp>
+
+#include <ql/types.hpp>
 
 namespace QuantLib {
     class Date;

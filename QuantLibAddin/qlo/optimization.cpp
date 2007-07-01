@@ -19,7 +19,9 @@
 #if defined(HAVE_CONFIG_H)
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/optimization.hpp>
+
 #include <ql/math/optimization/armijo.hpp>
 #include <ql/math/optimization/conjugategradient.hpp>
 #include <ql/math/optimization/levenbergmarquardt.hpp>

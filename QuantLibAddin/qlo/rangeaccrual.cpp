@@ -21,13 +21,13 @@
 #endif
 
 #include <qlo/rangeaccrual.hpp>
-#include <ql/cashflows/rangeaccrual.hpp>
 
+#include <ql/cashflows/rangeaccrual.hpp>
 
 namespace QuantLibAddin {
     
    RangeAccrualFloatersCoupon::RangeAccrualFloatersCoupon(
-                const QuantLib::Real nominal,
+                QuantLib::Real nominal,
                 const QuantLib::Date& paymentDate,
                 const boost::shared_ptr<QuantLib::InterestRateIndex>& index,
                 const QuantLib::Date& startDate,                                  
@@ -39,9 +39,9 @@ namespace QuantLibAddin {
                 const QuantLib::Date& refPeriodStart,
                 const QuantLib::Date& refPeriodEnd,    
                 const boost::shared_ptr<QuantLib::Schedule>&  observationsSchedule,
-                const QuantLib::Real lowerTrigger,                                    
-                const QuantLib::Real upperTrigger) {
-    
+                QuantLib::Real lowerTrigger,                                    
+                QuantLib::Real upperTrigger)
+   {
       libraryObject_ = boost::shared_ptr<QuantLib::RangeAccrualFloatersCoupon>(
             new QuantLib::RangeAccrualFloatersCoupon(
                 nominal,
@@ -62,16 +62,17 @@ namespace QuantLibAddin {
 
     RangeAccrualFloatersCoupon::RangeAccrualFloatersCoupon(
                 const boost::shared_ptr<Leg>& rangeAccrualLeg,
-                QuantLib::Size i) {
-      const QuantLib::Leg& leg = rangeAccrualLeg->getQuantLibLeg();
-      QL_REQUIRE(i<leg.size(),"i>=leg.size()");
-      libraryObject_ = boost::dynamic_pointer_cast<QuantLib::RangeAccrualFloatersCoupon>(leg[i]);
+                QuantLib::Size i)
+    {
+        const QuantLib::Leg& leg = rangeAccrualLeg->getQuantLibLeg();
+        QL_REQUIRE(i<leg.size(), "i>=leg.size()");
+        libraryObject_ = boost::dynamic_pointer_cast<QuantLib::RangeAccrualFloatersCoupon>(leg[i]);
     }
 
     RangeAccrualPricerByBgm::RangeAccrualPricerByBgm(
-            const QuantLib::Real correlation,
-            const  boost::shared_ptr<QuantLib::SmileSection>& smilesOnExpiry,
-            const  boost::shared_ptr<QuantLib::SmileSection>& smilesOnPayment,
+            QuantLib::Real correlation,
+            const boost::shared_ptr<QuantLib::SmileSection>& smilesOnExpiry,
+            const boost::shared_ptr<QuantLib::SmileSection>& smilesOnPayment,
             bool isClosedFormula,
             bool byCallSpread) {
     

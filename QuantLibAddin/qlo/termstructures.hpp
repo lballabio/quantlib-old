@@ -26,9 +26,10 @@
 
 #include <oh/libraryobject.hpp>
 
+#include <ql/handle.hpp>
+
 #include <ql/time/frequency.hpp>
 #include <ql/compounding.hpp>
-#include <ql/handle.hpp>
 
 namespace QuantLib {
     class Calendar;

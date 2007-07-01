@@ -20,8 +20,14 @@
 #define qla_optimization_hpp
 
 #include <oh/libraryobject.hpp>
-#include <ql/math/optimization/method.hpp>
-#include <ql/math/optimization/linesearch.hpp>
+
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class EndCriteria;
+    class OptimizationMethod;
+    class LineSearch;
+}
 
 namespace QuantLibAddin {
 

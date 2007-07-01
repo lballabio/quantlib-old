@@ -19,17 +19,21 @@
 #ifndef qla_rangeaccrual_hpp
 #define qla_rangeaccrual_hpp
 
-#include <oh/libraryobject.hpp>
 #include <qlo/couponvectors.hpp>
-#include <ql/cashflows/rangeaccrual.hpp>
 
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class RangeAccrualFloatersCoupon;
+    class InterestRateIndex;
+    class SmileSection;
+}
 
 namespace QuantLibAddin {
-    class Leg;    
     class RangeAccrualFloatersCoupon: public ObjectHandler::LibraryObject<QuantLib::RangeAccrualFloatersCoupon>{
 	 public:
         RangeAccrualFloatersCoupon(
-                const QuantLib::Real nominal,
+                QuantLib::Real nominal,
                 const QuantLib::Date& paymentDate,
                 const boost::shared_ptr<QuantLib::InterestRateIndex>& index,
                 const QuantLib::Date& startDate,                                  
@@ -41,8 +45,8 @@ namespace QuantLibAddin {
                 const QuantLib::Date& refPeriodStart,
                 const QuantLib::Date& refPeriodEnd,    
                 const boost::shared_ptr<QuantLib::Schedule>&  observationsSchedule,
-                const QuantLib::Real lowerTrigger,                                    
-                const QuantLib::Real upperTrigger
+                QuantLib::Real lowerTrigger,                                    
+                QuantLib::Real upperTrigger
         );
         RangeAccrualFloatersCoupon(
                 const boost::shared_ptr<Leg>& rangeAccrualLeg,
@@ -53,9 +57,9 @@ namespace QuantLibAddin {
     class RangeAccrualPricerByBgm: public RangeAccrualPricer{
 	 public:
         RangeAccrualPricerByBgm(
-            const QuantLib::Real correlation,
-            const  boost::shared_ptr<QuantLib::SmileSection>& smilesOnExpiry,
-            const  boost::shared_ptr<QuantLib::SmileSection>& smilesOnPayment,
+            QuantLib::Real correlation,
+            const boost::shared_ptr<QuantLib::SmileSection>& smilesOnExpiry,
+            const boost::shared_ptr<QuantLib::SmileSection>& smilesOnPayment,
             bool isClosedFormula,
             bool byCallSpread);
         
@@ -64,4 +68,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

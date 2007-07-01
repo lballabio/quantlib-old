@@ -23,20 +23,23 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/accountingengines.hpp>
+
+#include <ql/models/marketmodels/accountingengine.hpp>
 
 namespace QuantLibAddin {
     
     AccountingEngine::AccountingEngine(
         const boost::shared_ptr<QuantLib::MarketModelEvolver>& evolver,
         const QuantLib::Clone<QuantLib::MarketModelMultiProduct>& product,
-        double initialNumeraireValue)
+        QuantLib::Real initialNumeraireValue)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::AccountingEngine>(
-            new QuantLib::AccountingEngine(evolver,
-                                           //*(product.get()),
-                                           product,
-                                           initialNumeraireValue));
+        libraryObject_ = boost::shared_ptr<QuantLib::AccountingEngine>(new
+            QuantLib::AccountingEngine(evolver,
+                                       //*(product.get()),
+                                       product,
+                                       initialNumeraireValue));
     }
    
 }

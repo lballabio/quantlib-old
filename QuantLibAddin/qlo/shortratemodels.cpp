@@ -20,29 +20,30 @@
 #ifdef HAVE_CONFIG_H
 #include <qlo/config.hpp>
 #endif
+
 #include <qlo/shortratemodels.hpp>
-#include <ql/termstructure.hpp>
+
+#include <ql/models/shortrate/onefactormodels/vasicek.hpp>
+#include <ql/models/shortrate/onefactormodels/hullwhite.hpp>
 
 namespace QuantLibAddin {
 
-    Vasicek::Vasicek(
-            const double &a,
-            const double &b,
-            const double &lambda,
-            const double &sigma) {
-
-        libraryObject_ = boost::shared_ptr<QuantLib::AffineModel>(
-            new QuantLib::Vasicek(a, b, lambda, sigma));
+    Vasicek::Vasicek(QuantLib::Real a,
+                     QuantLib::Real b,
+                     QuantLib::Real lambda,
+                     QuantLib::Real sigma)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::AffineModel>(new
+            QuantLib::Vasicek(a, b, lambda, sigma));
     }
 
     HullWhite::HullWhite(
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const double &a,
-            const double &sigma)
+                const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                QuantLib::Real a,
+                QuantLib::Real sigma)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::AffineModel>(
-            new QuantLib::HullWhite(hYTS, a, sigma));
+        libraryObject_ = boost::shared_ptr<QuantLib::AffineModel>(new
+            QuantLib::HullWhite(hYTS, a, sigma));
     }
 
 }
-

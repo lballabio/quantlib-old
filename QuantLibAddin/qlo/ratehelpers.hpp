@@ -22,8 +22,10 @@
 #define qla_ratehelpers_hpp
 
 #include <oh/libraryobject.hpp>
-#include <ql/types.hpp>
+
 #include <ql/handle.hpp>
+
+#include <ql/types.hpp>
 #include <ql/time/businessdayconvention.hpp>
 #include <ql/time/frequency.hpp>
 

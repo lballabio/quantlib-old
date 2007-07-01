@@ -24,8 +24,10 @@
 #define qla_market_models_hpp
 
 #include <oh/libraryobject.hpp>
-#include <ql/types.hpp>
+
 #include <ql/handle.hpp>
+
+#include <ql/types.hpp>
 
 namespace QuantLib {
     class MarketModel;

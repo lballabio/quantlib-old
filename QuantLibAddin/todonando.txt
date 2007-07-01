@@ -34,6 +34,10 @@ GENERAL
   familiarize with ohObjectSave() ohObjectLoad()
   familiarize with ohPropertyNames and ohPropertyValue()
 
+- rename onForwardCmsPrice
+- remove qlo/simplecashflow.hpp
+- review with Eric BlackCalculator/BlackScholesCalculator (and remove default constructor)
+- review with Eric PricingEngine (and remove default constructor)
 - add ohxlversion
 - rename QuantLibXLDynamic to QuantLibXL: use only -s to discriminate?
 - review QL::RelinkableHandle usage in QLO

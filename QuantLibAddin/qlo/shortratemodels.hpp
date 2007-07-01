@@ -20,34 +20,33 @@
 #ifndef qla_shortratemodels_hpp
 #define qla_shortratemodels_hpp
 
-#include <oh/libraryobject.hpp>
 #include <qlo/termstructures.hpp>
-#include <ql/models/shortrate/onefactormodels/vasicek.hpp>
-#include <ql/models/shortrate/onefactormodels/hullwhite.hpp>
+
+namespace QuantLib {
+    class AffineModel;
+}
 
 namespace QuantLibAddin {
 
-    class AffineModel : public ObjectHandler::LibraryObject<QuantLib::AffineModel> {
+    class AffineModel :
+        public ObjectHandler::LibraryObject<QuantLib::AffineModel> {
     };
 
     class Vasicek : public AffineModel {
       public:
-        Vasicek(
-            const double &a,
-            const double &b,
-            const double &lambda,
-            const double &sigma);
+          Vasicek(QuantLib::Real a,
+                  QuantLib::Real b,
+                  QuantLib::Real lambda,
+                  QuantLib::Real sigma);
     };
 
     class HullWhite : public AffineModel {
       public:
-        HullWhite(
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const double &a,
-            const double &sigma);
+        HullWhite(const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                  QuantLib::Real a,
+                  QuantLib::Real sigma);
     };
 
 }
 
 #endif
-

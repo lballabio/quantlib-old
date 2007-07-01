@@ -21,12 +21,10 @@
 
 #include <oh/libraryobject.hpp>
 
-// To be removed later
-#include <ql/termstructures/volatilities/swaption/cmsmarket.hpp>
-
-#include <ql/types.hpp>
 #include <ql/handle.hpp>
-#include <ql/math/array.hpp>
+
+#include <ql/termstructures/volatilities/swaption/cmsmarketcalibration.hpp>
+#include <ql/types.hpp>
 
 namespace QuantLib {
     class CmsCouponPricer;
@@ -36,7 +34,11 @@ namespace QuantLib {
     class SwapIndex;
     class Quote;
     class YieldTermStructure;
+    class CmsMarketCalibration;
     class SwaptionVolatilityStructure;
+    class EndCriteria;
+    class OptimizationMethod;
+    class Array;
 }
 
 namespace QuantLibAddin {
@@ -59,4 +61,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

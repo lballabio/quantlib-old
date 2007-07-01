@@ -24,7 +24,17 @@
 #define qla_accountingengines_hpp
 
 #include <oh/libraryobject.hpp>
-#include <ql/models/marketmodels/accountingengine.hpp>
+
+#include <ql/types.hpp>
+
+namespace QuantLib {
+    class AccountingEngine;
+    class MarketModelEvolver;
+    class MarketModelMultiProduct;
+
+    template <class T>
+    class Clone;
+}
 
 namespace QuantLibAddin {
 
@@ -34,7 +44,7 @@ namespace QuantLibAddin {
         AccountingEngine(
             const boost::shared_ptr<QuantLib::MarketModelEvolver>& evolver,
             const QuantLib::Clone<QuantLib::MarketModelMultiProduct>& product,
-            double initialNumeraireValue);
+            QuantLib::Real initialNumeraireValue);
     };
 
  }

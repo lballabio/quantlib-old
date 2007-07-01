@@ -20,7 +20,6 @@
 #ifndef qla_analysis_hpp
 #define qla_analysis_hpp
 
-
 #include <boost/any.hpp>
 #include <boost/shared_ptr.hpp>
 #include <vector>
@@ -28,7 +27,6 @@
 namespace QuantLib {
     class CashFlow;
     typedef std::vector<boost::shared_ptr<CashFlow> > Leg;
-    
 }
 
 namespace QuantLibAddin {

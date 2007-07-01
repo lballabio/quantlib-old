@@ -21,4 +21,3 @@
 #include <qlo/couponvectors.hpp>
 
 #endif
-

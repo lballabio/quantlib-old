@@ -20,6 +20,7 @@
 #define qla_capletvolstructure_hpp
 
 #include <qlo/termstructures.hpp>
+
 #include <ql/termstructures/volatilities/caplet/capletvolatilitiesstructures.hpp>
 
 namespace QuantLib {

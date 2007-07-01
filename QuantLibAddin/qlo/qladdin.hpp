@@ -65,7 +65,6 @@
 #include <qlo/sequencestatistics.hpp>
 #include <qlo/settings.hpp>
 #include <qlo/shortratemodels.hpp>
-#include <qlo/simplecashflow.hpp>
 #include <qlo/smilesection.hpp>
 #include <qlo/statistics.hpp>
 #include <qlo/stickyratchet.hpp>

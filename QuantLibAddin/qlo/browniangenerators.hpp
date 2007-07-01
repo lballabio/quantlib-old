@@ -24,6 +24,7 @@
 #define qla_browniangenerators_hpp
 
 #include <oh/libraryobject.hpp>
+
 #include <ql/types.hpp>
 
 namespace QuantLib {
