@@ -21,10 +21,10 @@
 #define qla_pricingengine_hpp
 
 #include <oh/libraryobject.hpp>
-#include <ql/pricingengine.hpp>
-#include <ql/pricingengines/blackcalculator.hpp>
+
 #include <ql/handle.hpp>
-#include <ql/quote.hpp>
+
+#include <ql/types.hpp>
 
 namespace QuantLib {
     class SimpleQuote;
@@ -35,16 +35,21 @@ namespace QuantLib {
     class BlackCapFloorEngine;
     class AnalyticCapFloorEngine;
     class MarketModelCapFloorEngine;
+    class BlackCalculator;
+    class StrikedTypePayoff;
+    class PricingEngine;
+    class Quote;
 }
 
 namespace QuantLibAddin {
 
     class PricingEngine : public ObjectHandler::LibraryObject<QuantLib::PricingEngine> {
       public:
-          PricingEngine(const std::string &engineID);
-          PricingEngine(const std::string &engineID, const long& timeSteps);
+        PricingEngine(const std::string& engineID);
+        PricingEngine(const std::string& engineID,
+                      const long& timeSteps);
       protected:
-          PricingEngine() {}
+        PricingEngine() {}
     };
 
     class BlackSwaptionEngine : public PricingEngine {
@@ -55,12 +60,9 @@ namespace QuantLibAddin {
 
     class BlackCapFloorEngine : public PricingEngine {
       public:
-        BlackCapFloorEngine(QuantLib::Volatility);
+        BlackCapFloorEngine(const QuantLib::Handle<QuantLib::Quote>& vol);
         BlackCapFloorEngine(
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>&);
-    private:
-        boost::shared_ptr<QuantLib::SimpleQuote> quote_;
-        QuantLib::RelinkableHandle<QuantLib::Quote> quoteHandle_;
     };
 
     class AnalyticCapFloorEngine : public PricingEngine {
@@ -82,7 +84,7 @@ namespace QuantLibAddin {
             QuantLib::Real variance,
             QuantLib::DiscountFactor discount);
       protected:
-          BlackCalculator() {}
+        BlackCalculator() {}
     };
 
     class BlackScholesCalculator : public BlackCalculator {

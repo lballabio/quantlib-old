@@ -1144,7 +1144,8 @@
       <ParameterList>
         <Parameters>
           <Parameter name='vol'>
-            <type>double</type>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>cap/floor term volatility</description>
           </Parameter>

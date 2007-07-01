@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,69 +18,62 @@
 
 
 #include <qlo/pricingengines.hpp>
+#include <qlo/swaption.hpp>
 #include <qlo/Enumerations/Factories/pricingenginesfactory.hpp>
+
 #include <ql/pricingengines/blackscholescalculator.hpp>
 #include <ql/pricingengines/capfloor/analyticcapfloorengine.hpp>
 #include <ql/pricingengines/capfloor/blackcapfloorengine.hpp> 
 #include <ql/pricingengines/capfloor/marketmodelcapfloorengine.hpp>
-#include <qlo/swaption.hpp>
 
 namespace QuantLibAddin {
 
-    PricingEngine::PricingEngine(const std::string &engineID, const long& timeSteps)
+    PricingEngine::PricingEngine(const std::string& engineID,
+                                 const long& timeSteps)
     {
-        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, timeSteps);
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
+            QuantLib::PricingEngine> >()(engineID, timeSteps);
     }
 
-    PricingEngine::PricingEngine(const std::string &engineID)
+    PricingEngine::PricingEngine(const std::string& engineID)
     {
-        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::PricingEngine> >()(engineID, 1);
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
+            QuantLib::PricingEngine> >()(engineID, 1);
     }
 
     BlackSwaptionEngine::BlackSwaptionEngine(
         const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(
-            new QuantLib::BlackSwaptionEngine(vol));
+        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
+            QuantLib::BlackSwaptionEngine(vol));
+    }
+
+    BlackCapFloorEngine::BlackCapFloorEngine(
+        const QuantLib::Handle<QuantLib::Quote>& vol)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
+            QuantLib::BlackCapFloorEngine(vol));
     }
 
     BlackCapFloorEngine::BlackCapFloorEngine(
         const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& vol)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(
-            new QuantLib::BlackCapFloorEngine(vol));
-    }
-
-    BlackCapFloorEngine::BlackCapFloorEngine(QuantLib::Volatility vol)
-    {
-
-        quote_ = boost::shared_ptr<QuantLib::SimpleQuote>(
-            new QuantLib::SimpleQuote(vol));
-        quoteHandle_.linkTo(quote_);
-
-        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(
-            new QuantLib::BlackCapFloorEngine(quoteHandle_));
-
-        //QuantLib::Handle<QuantLib::Quote> vol_hq(
-        //    boost::shared_ptr<QuantLib::Quote>(
-        //        new QuantLib::SimpleQuote(vol)));
-
-        //libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(
-        //    new QuantLib::BlackCapFloorEngine(vol_hq));
+        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
+            QuantLib::BlackCapFloorEngine(vol));
     }
 
     AnalyticCapFloorEngine::AnalyticCapFloorEngine(
-        const boost::shared_ptr < QuantLib::AffineModel >& model) {
-
-        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(
-            new QuantLib::AnalyticCapFloorEngine(model));
+        const boost::shared_ptr < QuantLib::AffineModel >& model)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
+            QuantLib::AnalyticCapFloorEngine(model));
     }
     
     MarketModelCapFloorEngine::MarketModelCapFloorEngine(
-            const boost::shared_ptr<QuantLib::MarketModelFactory>& factory) {
-
-        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(
-            new QuantLib::MarketModelCapFloorEngine(factory));
+            const boost::shared_ptr<QuantLib::MarketModelFactory>& factory)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
+            QuantLib::MarketModelCapFloorEngine(factory));
     }
 
     BlackCalculator::BlackCalculator(
@@ -99,12 +92,9 @@ namespace QuantLibAddin {
             QuantLib::Real stdDev,
             QuantLib::DiscountFactor discount)
     {
-        QL_REQUIRE(discount>0.0, "discount must be greater than zero: " <<
-                   discount << " not allowed");
         libraryObject_ = boost::shared_ptr<QuantLib::BlackCalculator>(new
             QuantLib::BlackScholesCalculator(payoff, spot, growth, stdDev,
                                              discount));
     }
 
 }
-
