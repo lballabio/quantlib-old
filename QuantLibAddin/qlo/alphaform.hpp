@@ -33,13 +33,13 @@ namespace QuantLibAddin {
 
     class AlphaFormInverseLinear : public AlphaForm {
       public:
-        AlphaFormInverseLinear(std::vector<QuantLib::Time>& times, 
+        AlphaFormInverseLinear(const std::vector<QuantLib::Time>& times, 
                                QuantLib::Real alpha);
     };
 
     class AlphaFormLinearHyperbolic : public AlphaForm {
       public:
-        AlphaFormLinearHyperbolic(std::vector<QuantLib::Time>& times, 
+        AlphaFormLinearHyperbolic(const std::vector<QuantLib::Time>& times, 
                                   QuantLib::Real alpha) ;
     };
 

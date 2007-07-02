@@ -26,7 +26,7 @@
 namespace QuantLibAddin {
 
     AlphaFormInverseLinear::AlphaFormInverseLinear(
-        std::vector<QuantLib::Time>& times, 
+        const std::vector<QuantLib::Time>& times, 
         QuantLib::Real alpha) {
             libraryObject_ = 
                 boost::shared_ptr<QuantLib::AlphaFormInverseLinear>(new
@@ -35,7 +35,7 @@ namespace QuantLibAddin {
 
 
     AlphaFormLinearHyperbolic::AlphaFormLinearHyperbolic(
-        std::vector<QuantLib::Time>& times, 
+        const std::vector<QuantLib::Time>& times, 
         QuantLib::Real alpha) {
             libraryObject_ = 
                 boost::shared_ptr<QuantLib::AlphaFormLinearHyperbolic>(new

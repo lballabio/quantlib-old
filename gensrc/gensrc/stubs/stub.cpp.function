@@ -1,5 +1,5 @@
 
-    %(functionReturnType)s %(functionName)s (%(functionDeclaration)s) {
+    %(functionReturnType)s %(functionName)s(%(functionDeclaration)s) {
 
         try {
 %(cppConversions)s%(libConversions)s%(enumConversions)s%(objectConversions)s%(refConversions)s%(functionBody)s%(returnConversion)s

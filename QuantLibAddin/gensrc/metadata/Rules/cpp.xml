@@ -14,14 +14,19 @@
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string &amp;%(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)sconst %(nativeType)s &amp;%(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Natural'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::CmsCouponPricer'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <!--Rule tensorRank='vector' superType='libraryClass'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule-->
         <Rule tensorRank='vector' superType='libToHandle' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;std::vector &lt;ObjectHandler::Variant&gt; &gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;ObjectHandler::Variant&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix' nativeType='std::string'>%(indent)sconst std::vector&lt;std::vector &lt;std::string&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='string'>%(indent)sconst std::vector&lt;std::vector &lt;std::string&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector&lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
       </Rules>
     </RuleGroup>
 
@@ -31,6 +36,7 @@
         <Rule default='true'>ObjectHandler::Variant</Rule>
         <Rule tensorRank='scalar' nativeType='string'>std::string</Rule>
         <Rule tensorRank='scalar' nativeType='any'>ObjectHandler::Variant</Rule>
+        <Rule tensorRank='scalar' nativeType='void'>bool</Rule>
         <Rule tensorRank='scalar'>%(nativeType)s</Rule>
         <Rule tensorRank='vector' nativeType='string'>std::vector&lt;std::string&gt;</Rule>
         <Rule tensorRank='vector' nativeType='any'>std::vector&lt;ObjectHandler::Variant&gt;</Rule>
@@ -42,6 +48,8 @@
       <Wrap codeID='wrap1'/>
       <Rules>
         <Rule loop='true'/>
+        <Rule tensorRank='scalar' type='QuantLib::Date'/>
+        <Rule tensorRank='scalar' type='QuantLib::Natural'/>
         <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code207'/>
         <Rule tensorRank='scalar' default='true' codeID='code208'/>
         <Rule tensorRank='scalar'/>
@@ -83,8 +91,8 @@
       <Wrap codeID='wrap2'/>
       <Rules>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Date' default='false' codeID='code200'/>
-        <Rule tensorRank='scalar' superType='libraryType' nativeType='string' default='true' codeID='code25'/>
-        <Rule tensorRank='scalar' superType='libraryType' nativeType='string' default='false' codeID='code22'/>
+        <Rule tensorRank='scalar' superType='libraryType' nativeType='string' default='true' codeID='code213'/>
+        <Rule tensorRank='scalar' superType='libraryType' nativeType='string' default='false' codeID='code212'/>
         <Rule tensorRank='scalar' superType='libraryType' default='true' codeID='code201'/>
         <Rule tensorRank='scalar' superType='libraryType' default='false' codeID='code202'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Array' codeID='code203'/>
@@ -123,7 +131,7 @@
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::IborIndex' codeID='code40'/>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' codeID='code47'/>
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code38'/>
-        <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code45a'/>
+        <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code214'/>
         <Rule tensorRank='scalar' superType='libToHandle' codeID='code44'/>
         <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::TermStructure' codeID='code46'/>
         <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::SwaptionVolatilityDiscrete' codeID='code46b'/>
@@ -131,15 +139,15 @@
         <Rule tensorRank='scalar' superType='handleToLib' codeID='code45b'/>
         <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='code49'/>
         <Rule tensorRank='scalar' superType='underlyingClass' codeID='code48'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Index' codeID='code41'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Xibor' codeID='code41'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex' codeID='code41'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex' codeID='code41'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex' codeID='code41'/>
-        <Rule tensorRank='vector' superType='libraryClass' codeID='code42'/>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Index' codeID='code216'/>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Xibor' codeID='code216'/>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex' codeID='code216'/>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex' codeID='code216'/>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex' codeID='code216'/>
+        <Rule tensorRank='vector' superType='libraryClass' codeID='code217'/>
         <Rule tensorRank='vector' superType='libToHandle' type='QuantLib::Quote' codeID='code43'/>
-        <Rule tensorRank='vector' superType='libToHandle' codeID='code42'/>
-        <Rule tensorRank='matrix' superType='libToHandle' type='QuantLib::Quote' codeID='code50'/>
+        <Rule tensorRank='vector' superType='libToHandle' codeID='code217'/>
+        <Rule tensorRank='matrix' superType='libToHandle' type='QuantLib::Quote' codeID='code215'/>
       </Rules>
     </RuleGroup>
 
@@ -207,7 +215,7 @@
         <!--Rule loop='true' codeID='code60'/-->
         <!--Rule tensorRank='scalar' superType='libraryType' nativeType='string' codeID='code56a'/-->
         <Rule tensorRank='scalar' superType='libraryType' codeID='code210'/>
-        <!--Rule tensorRank='scalar' superType='enumeration' codeID='code57'/-->
+        <Rule tensorRank='scalar' superType='enumeration' codeID='code211'/>
         <!--Rule tensorRank='scalar' nativeType='string' codeID='code58'/-->
         <!--Rule tensorRank='scalar' nativeType='any' codeID='code59'/-->
         <!--Rule tensorRank='scalar' codeID='code60'/-->

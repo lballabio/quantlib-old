@@ -414,7 +414,7 @@
       <libraryFunction>propertyNames</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc' implementation='manual'/>
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -430,7 +430,7 @@
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Calc' implementation='manual'/>
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
