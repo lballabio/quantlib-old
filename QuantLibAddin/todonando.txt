@@ -342,25 +342,24 @@ GIORGIO (last update 6/6/2007)
 - code MakeSwaption class
 D split up CmsMarket and CmsMarketCalibration in 2 files
 - use Handle in SwaptionVolCubeChecks
-- abcd
-  vega weighted abcd fit
-  interpolation
+D abcd
+D vega weighted abcd fit
+D interpolation
 - CMS
   alternative calibrations with null rho
   check 2Y beta sensitivity
 - EvolutionDescription equality
-- VBA missing menus:
-  enum QuantLib::EndCriteria::Type
-  enum QuantLib::CmsMarketCalibration::CalibrationType
-  class QuantLib::IborCouponPricer
-  class QuantLib::Payoff
-  class QuantLib::PricingEngine
-  class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
+D VBA missing menus:
+  D enum QuantLib::EndCriteria::Type
+  D enum QuantLib::CmsMarketCalibration::CalibrationType
+  D class QuantLib::IborCouponPricer
+  D class QuantLib::Payoff
+  D class QuantLib::PricingEngine
+  D class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
 - prepare smile section refactoring proposal
 - range accrual session
 - CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando
-- install VS in new pc (0d/1d)
 - WIP ratchet Instrument C++ (shared with Marco) (3d/7d)
 - WIP range accrual coupon (con relativi test) (18d/30d)
   - WIP create a workbook for range accrual under
