@@ -39,7 +39,7 @@ Module Volume
     End Function
 
     Public Function getSerialNumber() As String
-        Dim serialNumber As UInt32
+        Dim serialNumber As UInt32 = 0
         Dim returnCode As Boolean = GetVolumeInformation( _
             vbNullString, vbNullString, 0, _
             serialNumber, 0, 0, vbNullString, 0)
