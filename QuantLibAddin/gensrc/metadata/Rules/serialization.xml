@@ -30,7 +30,7 @@
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Size'/>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Date' default='false' codeID='code121'/>
         <Rule tensorRank='scalar' superType='libraryType' default='true' codeID='code122'/>
-        <Rule tensorRank='scalar' superType='libraryType' default='false' codeID='code120'/>
+        <Rule tensorRank='scalar' superType='libraryType' default='false' codeID='code22'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Date' codeID='code130'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Natural' codeID='code132'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Period' codeID='code131'/>

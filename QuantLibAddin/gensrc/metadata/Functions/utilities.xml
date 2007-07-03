@@ -18,7 +18,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -40,7 +40,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -71,7 +71,7 @@
       <description>returns the number of functions in this Addin</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -87,7 +87,7 @@
       <alias>QuantLib::isInSubset</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -111,3 +111,4 @@
 
   </Functions>
 </Category>
+

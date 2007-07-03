@@ -18,7 +18,7 @@
       <alias>QuantLib::sabrVolatility</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

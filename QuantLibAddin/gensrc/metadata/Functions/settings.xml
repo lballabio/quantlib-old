@@ -15,7 +15,7 @@
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Guile'/>
         <SupportedPlatform name='C'/>
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -34,7 +34,7 @@
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Guile'/>
         <SupportedPlatform name='C'/>
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -56,7 +56,7 @@
       <alias>QuantLib::Settings::instance().enforcesTodaysHistoricFixings</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -72,7 +72,7 @@
       <alias>QuantLibAddin::qlSettingsSetEnforceTodaysHistoricFixings</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

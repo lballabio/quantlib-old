@@ -284,10 +284,6 @@ code201 = '''\
         %(type)s %(name)sLib = ObjectHandler::ohVariantToScalar<%(type)s>(
             %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
-code202 = '''\
-        %(type)s %(name)sLib;
-        QuantLibAddin::cppToLibrary(%(name)s, %(name)sLib);\n'''
-
 code203 = '''\
         /*%(type)s %(name)sLib =
             QuantLibXL::operToQlArray(%(name)s, "%(name)s");*/\n'''
@@ -315,7 +311,7 @@ code208 = '''\
 code209 = '''\
         std::vector<%(nativeType)s> returnValueLib = %(namespaceObjects)s::libraryToVector(returnValue);
         return returnValueLib;'''
- 
+
 code210 = '''\
         %(nativeType)s returnValueLib = %(namespaceObjects)s::libraryToScalar(returnValue);
         return returnValueLib;'''
@@ -324,10 +320,6 @@ code211 = '''\
         std::ostringstream os;
         os << returnValue;
         return os.str();'''
-
-code212 = '''\
-        %(type)s %(name)sLib;
-        QuantLibAddin::cppToLibrary(%(name)s, %(name)sLib);\n'''
 
 code213 = '''\
         %(type)s %(name)sLib = ObjectHandler::ohVariantToScalar<%(type)s>(
@@ -349,10 +341,14 @@ code216 = '''\
                 %(namespaceLibrary)s::%(classname)s>(
                     %(name)s);\n'''
 
-code217 = '''\
-        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
-            ObjectHandler::ohVariantToObjectVector<%(namespaceLibrary)s::%(classname)s, %(namespaceObjects)s::%(classname)s>(
-            %(name)s, "%(name)s");\n'''
+#code217 = '''\
+#        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
+#            ObjectHandler::ohVariantToObjectVector<%(namespaceLibrary)s::%(classname)s, %(namespaceObjects)s::%(classname)s>(
+#            %(name)s, "%(name)s");\n'''
+
+code218 = '''\
+        std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > %(name)sLibObj =
+            ObjectHandler::ohVariantToVector<QuantLib::RelinkableHandle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 ##########################################################################
 # code for Calc
@@ -531,10 +527,6 @@ code117 = '''\
 code118 = '''\
         std::vector<std::vector<ObjectHandler::Variant> > %(name)s =
             boost::any_cast<std::vector<std::vector<ObjectHandler::Variant> > >(valueObject->getProperty("%(name)s"));\n'''
-
-code120 = '''\
-        %(type)s %(name)sLib;
-        QuantLibAddin::cppToLibrary(%(name)s, %(name)sLib);\n'''
 
 code121 = '''\
         %(type)s %(name)sLib = ObjectHandler::ohVariantToScalar<%(type)s>(

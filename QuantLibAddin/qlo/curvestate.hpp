@@ -37,17 +37,17 @@ namespace QuantLibAddin {
 
     class CMSwapCurveState : public CurveState {
       public:
-        CMSwapCurveState(std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards);
+        CMSwapCurveState(const std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards);
     };
 
     class CoterminalSwapCurveState : public CurveState {
       public:
-        CoterminalSwapCurveState(std::vector<QuantLib::Time>& rateTimes);
+        CoterminalSwapCurveState(const std::vector<QuantLib::Time>& rateTimes);
     };
 
     class LMMCurveState : public CurveState {
       public:
-        LMMCurveState(std::vector<QuantLib::Time>& rateTimes);
+        LMMCurveState(const std::vector<QuantLib::Time>& rateTimes);
     };
 
     std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(

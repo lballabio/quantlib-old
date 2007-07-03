@@ -27,24 +27,17 @@ noinst_HEADERS = \
     couponvectors.hpp \
     ctsmmcapletcalibration.hpp \
     curvestate.hpp \
-    date.hpp \
-    daycounter.hpp \
-    driftcalculators.hpp \
     evolutiondescription.hpp \
     exercise.hpp \
     forwardrateagreement.hpp \
     index.hpp \
-    instruments.hpp \
     interpolation.hpp \
     leg.hpp \
     marketmodelevolvers.hpp \
     marketmodels.hpp \
-    mathf.hpp \
-    ohfunctions.hpp \
     optimization.hpp \
     options.hpp \
     payoffs.hpp \
-    prices.hpp \
     pricingengines.hpp \
     processes.hpp \
     products.hpp \
@@ -54,7 +47,6 @@ noinst_HEADERS = \
     ratehelpers.hpp \
     schedule.hpp \
     sequencestatistics.hpp \
-    settings.hpp \
     shortratemodels.hpp \
     simplecashflow.hpp \
     smilesection.hpp \
@@ -63,7 +55,6 @@ noinst_HEADERS = \
     swaption.hpp \
     swaptionvolstructure.hpp \
     termstructures.hpp \
-    utilities.hpp \
     vanillaswap.hpp \
     volatilities.hpp \
     volatility.hpp
@@ -84,24 +75,17 @@ libQuantLibAddinCpp_la_SOURCES = \
     couponvectors.cpp \
     ctsmmcapletcalibration.cpp \
     curvestate.cpp \
-    date.cpp \
-    daycounter.cpp \
-    driftcalculators.cpp \
     evolutiondescription.cpp \
     exercise.cpp \
     forwardrateagreement.cpp \
     index.cpp \
-    instruments.cpp \
     interpolation.cpp \
     leg.cpp \
     marketmodelevolvers.cpp \
     marketmodels.cpp \
-    mathf.cpp \
-    ohfunctions.cpp \
     optimization.cpp \
     options.cpp \
     payoffs.cpp \
-    prices.cpp \
     pricingengines.cpp \
     processes.cpp \
     products.cpp \
@@ -111,7 +95,6 @@ libQuantLibAddinCpp_la_SOURCES = \
     ratehelpers.cpp \
     schedule.cpp \
     sequencestatistics.cpp \
-    settings.cpp \
     shortratemodels.cpp \
     simplecashflow.cpp \
     smilesection.cpp \
@@ -120,7 +103,6 @@ libQuantLibAddinCpp_la_SOURCES = \
     swaption.cpp \
     swaptionvolstructure.cpp \
     termstructures.cpp \
-    utilities.cpp \
     vanillaswap.cpp \
     volatilities.cpp \
     volatility.cpp

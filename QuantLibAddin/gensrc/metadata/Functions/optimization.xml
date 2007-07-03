@@ -18,7 +18,7 @@
       <alias>QuantLib::sphereCylinderOptimizerClosest</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -78,7 +78,7 @@
       <description>returns a hh:mm:ss string from the number of seconds provided as input.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
