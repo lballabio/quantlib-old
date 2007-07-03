@@ -173,6 +173,22 @@ namespace ObjectHandler {
 	    return ret;
     }
 
+    //! Convert a vector of strings to a vector of library objects.
+    template <class ObjectClass, class LibraryClass>
+    std::vector<boost::shared_ptr<LibraryClass> > getLibraryObjectVector(
+	        const std::vector<std::string> &objectIDs) {
+
+	    std::vector<boost::shared_ptr<LibraryClass> > ret;
+        ret.reserve(objectIDs.size());
+
+	    for (std::vector<std::string>::const_iterator i = objectIDs.begin();
+		        i != objectIDs.end(); ++i) {
+		    OH_GET_REFERENCE(objectPointer, *i, ObjectClass, LibraryClass);
+		    ret.push_back(objectPointer);
+	    }
+	    return ret;
+    }
+
 }
 
 #endif

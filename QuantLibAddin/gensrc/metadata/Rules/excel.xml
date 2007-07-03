@@ -94,12 +94,6 @@
         <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code11'/>
         <Rule tensorRank='scalar' default='true' codeID='code12'/>
         <Rule tensorRank='scalar'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Index' codeID='code15'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Xibor' codeID='code15'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex' codeID='code15'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex' codeID='code15'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex' codeID='code15'/>
-        <Rule tensorRank='vector' superType='libraryClass' codeID='code14'/>
         <Rule tensorRank='vector' type='QuantLib::Date' codeID='code14'/>
         <Rule tensorRank='vector' type='QuantLib::Period' codeID='code14'/>
         <Rule tensorRank='vector' type='QuantLib::Quote' codeID='code14'/>
@@ -176,7 +170,7 @@
         <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex' codeID='code41'/>
         <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex' codeID='code41'/>
         <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex' codeID='code41'/>
-        <Rule tensorRank='vector' superType='libraryClass' codeID='code42'/>
+        <Rule tensorRank='vector' superType='libraryClass' codeID='code37b'/>
         <Rule tensorRank='vector' superType='libToHandle' type='QuantLib::Quote' codeID='code43'/>
         <Rule tensorRank='vector' superType='libToHandle' codeID='code42'/>
         <Rule tensorRank='matrix' superType='libToHandle' type='QuantLib::Quote' codeID='code50'/>

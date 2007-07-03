@@ -12,12 +12,6 @@
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s</Rule>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Index'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Xibor'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' superType='libraryClass'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
@@ -42,12 +36,6 @@
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string %(name)s_</Rule>
         <Rule tensorRank='scalar' nativeType='any'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s_</Rule>       
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Index'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Xibor'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
-        <Rule tensorRank='vector' superType='libraryClass'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
         <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
         <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
         <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
