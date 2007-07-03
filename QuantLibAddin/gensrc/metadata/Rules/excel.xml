@@ -97,9 +97,6 @@
         <Rule tensorRank='vector' type='QuantLib::Date' codeID='code14'/>
         <Rule tensorRank='vector' type='QuantLib::Period' codeID='code14'/>
         <Rule tensorRank='vector' type='QuantLib::Quote' codeID='code14'/>
-        <Rule tensorRank='vector' type='QuantLib::Size' codeID='code14'/>
-        <Rule tensorRank='vector' nativeType='long' codeID='code13'/>
-        <Rule tensorRank='vector' nativeType='double' codeID='code13'/>
         <Rule tensorRank='vector' nativeType='string' codeID='code15'/>
         <Rule tensorRank='vector' nativeType='any' codeID='code14'/>
         <Rule tensorRank='vector' codeID='code13'/>
@@ -123,7 +120,8 @@
         <Rule tensorRank='scalar' superType='libraryType' default='false' codeID='code23'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Array' codeID='code28'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Date' codeID='code30'/>
-        <Rule tensorRank='vector' superType='libraryType' codeID='code31'/>
+        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Period' codeID='code31'/>
+        <Rule tensorRank='vector' superType='libraryType' codeID='code133'/>
         <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Matrix' codeID='code29'/>
       </Rules>
     </RuleGroup>

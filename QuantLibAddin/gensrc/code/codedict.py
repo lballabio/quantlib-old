@@ -561,8 +561,12 @@ code131 = '''\
             ObjectHandler::ohVariantToVector<%(type)s>(%(name)s, "%(name)s");\n'''
 
 code132 = '''\
-        std::vector<QuantLib::Natural> %(name)sLib = 
-            QuantLibAddin::cppToLibrary<QuantLib::Natural>(%(name)s);\n'''
+        std::vector<%(type)s> %(name)sLib = 
+            QuantLibAddin::cppToLibrary<%(type)s>(%(name)s);\n'''
+
+code133 = '''\
+        std::vector<%(type)s> %(name)sLib = 
+            QuantLibAddin::cppToLibrary<%(type)s>(%(name)sCpp);\n'''
 
 code135 = '''\
         QuantLib::Matrix %(name)sLib =

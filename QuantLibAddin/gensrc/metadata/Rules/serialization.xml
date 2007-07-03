@@ -11,18 +11,9 @@
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' codeID='code110'/>
         <Rule tensorRank='scalar' nativeType='string' codeID='code111'/>
         <Rule tensorRank='scalar' codeID='code112'/>               
-        <!--<Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Index' codeID='code115'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Xibor' codeID='code115'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex' codeID='code115'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex' codeID='code115'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex' codeID='code115'/>
-        <Rule tensorRank='vector' superType='libraryClass' codeID='code114'/>-->
         <Rule tensorRank='vector' type='QuantLib::Date' codeID='code114'/>
         <Rule tensorRank='vector' type='QuantLib::Period' codeID='code114'/>
         <Rule tensorRank='vector' type='QuantLib::Quote' codeID='code114'/>
-        <Rule tensorRank='vector' type='QuantLib::Size' codeID='code114'/>
-        <Rule tensorRank='vector' nativeType='long' codeID='code113'/>
-        <Rule tensorRank='vector' nativeType='double' codeID='code113'/>
         <Rule tensorRank='vector' nativeType='string' codeID='code115'/>
         <Rule tensorRank='vector' nativeType='any' codeID='code114'/>        
         <Rule tensorRank='vector' codeID='code113'/>
@@ -42,7 +33,8 @@
         <Rule tensorRank='scalar' superType='libraryType' default='false' codeID='code120'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Date' codeID='code130'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Natural' codeID='code132'/>
-        <Rule tensorRank='vector' superType='libraryType' codeID='code131'/>        
+        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Period' codeID='code131'/>
+        <Rule tensorRank='vector' superType='libraryType' codeID='code132'/>
         <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Matrix' codeID='code135'/>
       </Rules>
     </RuleGroup>
