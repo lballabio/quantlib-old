@@ -110,6 +110,10 @@ code37b = '''\
         std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
             ObjectHandler::getLibraryObjectVector<%(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s>(%(name)sCpp);\n'''
 
+code37c = '''\
+        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
+            ObjectHandler::getLibraryObjectVector<%(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s>(%(name)s);\n'''
+
 code38 = '''\
         OH_GET_REFERENCE(%(name)sLibObj, %(name)s,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
