@@ -16,15 +16,15 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qlxl_serialization_factory_hpp
-#define qlxl_serialization_factory_hpp
+#ifndef addin_cpp_serialization_factory_hpp
+#define addin_cpp_serialization_factory_hpp
 
 #include <oh/ohdefines.hpp>
 #include <qlo/Serialization/serializationfactory.hpp>
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 
-namespace QuantLibXL {
+namespace QuantLibAddinCpp {
 
     class SerializationFactory : public QuantLibAddin::SerializationFactory {
     public:
@@ -42,3 +42,4 @@ namespace QuantLibXL {
 }
 
 #endif
+

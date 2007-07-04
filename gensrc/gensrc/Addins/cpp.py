@@ -62,7 +62,7 @@ class CppAddin(addin.Addin):
         log.Log.instance().logMessage(' begin generating %s...' % self.name_)
         self.generateFunctions()
         if environment.config().usingSerialization():
-            serialization.generateSerialization(self)
+            serialization.generateSerialization(self, 'Addins/C++')
         log.Log.instance().logMessage(' done generating %s.' % self.name_)
 
     def generateFunctions(self):

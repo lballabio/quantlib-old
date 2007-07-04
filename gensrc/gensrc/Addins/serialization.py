@@ -40,7 +40,7 @@ class Serialization(addin.Addin):
             // %(categoryDisplayName)s\n
             register_%(categoryName)s(ar);\n\n'''
     REGISTER_CALL = '''\
-            ar.template register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
+            ar.register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
     INCLUDE_CREATOR = '''\
 #include <%(libRootDirectory)s/Serialization/create_%(categoryName)s.hpp>\n'''
     REGISTER_INCLUDE = '''\
@@ -143,7 +143,7 @@ class Serialization(addin.Addin):
         """load/unload class state to/from serializer object."""
         super(Serialization, self).serialize(serializer)
 
-def generateSerialization(addin):
+def generateSerialization(addin, path):
     """Generate source code for all functions in all categories.
 
     This is a utility function, not part of the Serialization addin class.
@@ -156,6 +156,7 @@ def generateSerialization(addin):
 
     allIncludes = ''
     bufferRegister = ''
+    includeGuard = 'addin_' + addin.name().lower()
     for cat in addin.categoryList_.categories('*'):
 
         if not cat.generateVOs(): continue
@@ -163,14 +164,14 @@ def generateSerialization(addin):
         bufferCpp = ''
         allIncludes += Serialization.REGISTER_INCLUDE % {
             'categoryName' : cat.name(),
-            'addinDirectory' : environment.config().prefixExcel() }
+            'addinDirectory' : path }
 
         bufferRegister += Serialization.REGISTER_TYPE % {
             'categoryDisplayName' : cat.displayName(),
             'categoryName' : cat.name() }
 
         bufferHpp = addin.bufferSerializeDeclaration_.text() % {
-            'addinDirectory' : environment.config().prefixExcel(),
+            'addinDirectory' : includeGuard,
             'categoryName' : cat.name(),
             'namespaceAddin' : addin.namespaceAddin_ }
         headerFile = '%sSerialization/serialization_%s.hpp' % ( addin.rootPath_, cat.name() )
@@ -184,7 +185,7 @@ def generateSerialization(addin):
                 'namespaceObjects' : environment.config().namespaceObjects() }
 
         bufferBody = addin.bufferSerializeBody_.text() % {
-            'addinDirectory' : environment.config().prefixExcel(),
+            'addinDirectory' : path,
             'bufferCpp' : bufferCpp,
             'categoryName' : cat.name(),
             'libRootDirectory' : environment.config().libRootDirectory(),
@@ -193,7 +194,7 @@ def generateSerialization(addin):
         outputfile.OutputFile(addin, cppFile, addin.copyright_, bufferBody)
     allBuffer =  addin.bufferSerializeAll_.text() % {
         'allIncludes' : allIncludes,
-        'addinDirectory' : environment.config().prefixExcel() }
+        'addinDirectory' : includeGuard }
     allFilename = addin.rootPath_ + 'Serialization/serialization_all.hpp'
     outputfile.OutputFile(addin, allFilename, addin.copyright_, allBuffer)
 
@@ -205,7 +206,7 @@ def generateSerialization(addin):
         callBaseOut =''
 
     bufferFactory = addin.bufferSerializeRegister_.text() % {
-        'addinDirectory' : environment.config().prefixExcel(),
+        'addinDirectory' : path,
         'bufferRegister' : bufferRegister,
         'libRootDirectory' : environment.config().libRootDirectory(),
         'namespaceAddin' : addin.namespaceAddin_,

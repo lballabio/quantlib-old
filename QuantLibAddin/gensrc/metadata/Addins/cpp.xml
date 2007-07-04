@@ -2,6 +2,7 @@
 <Addin name='Cpp'>
 
   <rootDirectory>Addins/C++</rootDirectory>
+  <namespaceAddin>QuantLibAddinCpp</namespaceAddin>
 
   <copyright>
     Copyright (C) 2007 Eric Ehlers
