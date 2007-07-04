@@ -16,11 +16,6 @@
         <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
-        <!--Rule tensorRank='vector' type='QuantLib::Natural'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule-->
-        <!--Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule-->
-        <!--Rule tensorRank='vector' superType='libraryClass' type='QuantLib::CmsCouponPricer'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule-->
-        <!--Rule tensorRank='vector' superType='libraryClass'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule-->
-        <!--Rule tensorRank='vector' superType='libToHandle' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule-->
         <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>

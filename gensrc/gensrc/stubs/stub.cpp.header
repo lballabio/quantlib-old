@@ -1,11 +1,12 @@
 #ifndef qlcpp_%(categoryName)s_hpp
 #define qlcpp_%(categoryName)s_hpp
 
+#include <oh/variant.hpp>
+#include <string>
+#include <vector>
+
 namespace QuantLibAddinCpp {
-
-%(bufferHpp)s
-
-}
+%(bufferHpp)s}
 
 #endif
 

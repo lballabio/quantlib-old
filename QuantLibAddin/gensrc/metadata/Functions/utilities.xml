@@ -40,7 +40,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>

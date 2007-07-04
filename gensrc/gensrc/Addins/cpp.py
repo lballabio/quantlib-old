@@ -64,11 +64,11 @@ class CppAddin(addin.Addin):
 
     def generateFunctions(self):
         """Generate source code for all functions in all categories."""
-        bufferAll = ''
+        bufferAll = '#include <Addins/C++/init.hpp>\n'
         for cat in self.categoryList_.categories(self.name_):
             categoryIncludes = cat.includeList()
             #categoryIncludes = cat.includeList(LOOP_INCLUDES)
-            bufferAll += "#include <%s.hpp>\n" % cat.name()
+            bufferAll += "#include <Addins/C++/%s.hpp>\n" % cat.name()
             bufferCpp = ''
             bufferHpp = ''
             for func in cat.functions(self.name_): 
@@ -84,6 +84,7 @@ class CppAddin(addin.Addin):
             outputfile.OutputFile(self, fileNameCpp, cat.copyright(), bufferBody)
             fileNameHpp = '%s%s.hpp' % ( self.rootPath_, cat.name())
             outputfile.OutputFile(self, fileNameHpp, cat.copyright(), bufferHeader)
+        bufferAll += "\n"
         fileNameAll = '%saddincpp.hpp' % self.rootPath_
         outputfile.OutputFile(self, fileNameAll, self.copyright_, bufferAll)
 

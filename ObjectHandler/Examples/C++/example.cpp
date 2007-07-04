@@ -45,9 +45,7 @@ void makeAccount(
     const std::string &objectID,
     const std::string &type,
     const long &number,
-    ObjectHandler::Variant::VariantDef balance2 = ObjectHandler::Other()) { // FIXME
-
-    ObjectHandler::Variant balance(balance2);
+    ObjectHandler::Variant balance = ObjectHandler::Variant()) {
 
     boost::shared_ptr <ObjectHandler::ValueObject> valueObject(
         new AccountExample::AccountValueObject(objectID, type, number, balance));

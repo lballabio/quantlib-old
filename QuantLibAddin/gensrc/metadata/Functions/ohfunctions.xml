@@ -241,7 +241,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='documentationOnly'/>
         <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -363,7 +363,7 @@
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Guile'/>
-        <!--SupportedPlatform name='Cpp'/-->
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -454,7 +454,7 @@
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Guile'/>
-        <!--SupportedPlatform name='Cpp'/-->
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -505,7 +505,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Guile'/>
-        <!--SupportedPlatform name='Cpp'/-->
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

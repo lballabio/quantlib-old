@@ -31,10 +31,12 @@ noinst_HEADERS = \
     exercise.hpp \
     forwardrateagreement.hpp \
     index.hpp \
+    init.hpp \
     interpolation.hpp \
     leg.hpp \
     marketmodelevolvers.hpp \
     marketmodels.hpp \
+    ohfunctions.hpp \
     optimization.hpp \
     options.hpp \
     payoffs.hpp \
@@ -55,6 +57,7 @@ noinst_HEADERS = \
     swaption.hpp \
     swaptionvolstructure.hpp \
     termstructures.hpp \
+    utilities.hpp \
     vanillaswap.hpp \
     volatilities.hpp \
     volatility.hpp
@@ -79,10 +82,12 @@ libQuantLibAddinCpp_la_SOURCES = \
     exercise.cpp \
     forwardrateagreement.cpp \
     index.cpp \
+    init.cpp \
     interpolation.cpp \
     leg.cpp \
     marketmodelevolvers.cpp \
     marketmodels.cpp \
+    ohfunctions.cpp \
     optimization.cpp \
     options.cpp \
     payoffs.cpp \
@@ -103,6 +108,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     swaption.cpp \
     swaptionvolstructure.cpp \
     termstructures.cpp \
+    utilities.cpp \
     vanillaswap.cpp \
     volatilities.cpp \
     volatility.cpp
