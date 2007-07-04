@@ -20,18 +20,18 @@
 
 """Generate source code for Excel addin."""
 
+from gensrc.Configuration import environment
 from gensrc.Addins import addin
 from gensrc.Addins import excelexceptions
 from gensrc.Addins import serialization
-from gensrc.Serialization import serializable
-from gensrc.Utilities import outputfile
 from gensrc.Functions import supportedplatform
+from gensrc.Categories import category
+from gensrc.Serialization import serializable
 from gensrc.Serialization import xmlreader
+from gensrc.Utilities import outputfile
 from gensrc.Utilities import buffer
 from gensrc.Utilities import common
 from gensrc.Utilities import log
-from gensrc.Categories import category
-from gensrc.Configuration import environment
 
 import re
 import string
@@ -91,7 +91,7 @@ class ExcelAddin(addin.Addin):
         self.generateFunctions()
         self.generateFunctionCount()
         if environment.config().usingSerialization():
-            self.generateSerialization()
+            serialization.generateSerialization(self)
         if self.exportSymbols_: self.generateExportSymbols()
         log.Log.instance().logMessage(' done generating %s.' % self.name_)
 
@@ -263,73 +263,6 @@ class ExcelAddin(addin.Addin):
         buf = self.bufferNumFunc_.text() % self.functionCount_
         fileName = self.rootPath_ + 'Functions/functioncount.hpp'
         outputfile.OutputFile(self, fileName, self.copyright_, buf)
-
-    def generateSerialization(self):
-        """Generate source code for all functions in all categories.
-
-        FIXME:  This function generates code which must belong to the Addin, but the code
-        is platform independent.  This function will be moved into serialization.py and
-        each addin will call it."""
-
-        allIncludes = ''
-        bufferRegister = ''
-        for cat in self.categoryList_.categories('*'):
-
-            if not cat.generateVOs(): continue
-
-            bufferCpp = ''
-            allIncludes += serialization.Serialization.REGISTER_INCLUDE % {
-                'categoryName' : cat.name(),
-                'addinDirectory' : environment.config().prefixExcel() }
-
-            bufferRegister += serialization.Serialization.REGISTER_TYPE % {
-                'categoryDisplayName' : cat.displayName(),
-                'categoryName' : cat.name() }
-
-            bufferHpp = self.bufferSerializeDeclaration_.text() % {
-                'addinDirectory' : environment.config().prefixExcel(),
-                'categoryName' : cat.name(),
-                'namespaceAddin' : self.namespaceAddin_ }
-            headerFile = '%sSerialization/serialization_%s.hpp' % ( self.rootPath_, cat.name() )
-            outputfile.OutputFile(self, headerFile, self.copyright_, bufferHpp)
-
-            for func in cat.functions('*'):
-                if not func.generateVOs(): continue
-
-                bufferCpp += serialization.Serialization.REGISTER_CALL % {
-                    'functionName' : func.name(),
-                    'namespaceObjects' : environment.config().namespaceObjects() }
-
-            bufferBody = self.bufferSerializeBody_.text() % {
-                'addinDirectory' : environment.config().prefixExcel(),
-                'bufferCpp' : bufferCpp,
-                'categoryName' : cat.name(),
-	'libRootDirectory' : environment.config().libRootDirectory(),
-                'namespaceAddin' : self.namespaceAddin_ }
-            cppFile = '%sSerialization/serialization_%s.cpp' % ( self.rootPath_, cat.name() )
-            outputfile.OutputFile(self, cppFile, self.copyright_, bufferBody)
-        allBuffer =  self.bufferSerializeAll_.text() % {
-            'allIncludes' : allIncludes,
-            'addinDirectory' : environment.config().prefixExcel() }
-        allFilename = self.rootPath_ + 'Serialization/serialization_all.hpp'
-        outputfile.OutputFile(self, allFilename, self.copyright_, allBuffer)
-
-        if self.serializationBase_:
-            callBaseIn = "%s::register_in(ia);" % self.serializationBase_
-            callBaseOut = "%s::register_out(oa);" % self.serializationBase_
-        else:
-            callBaseIn =''
-            callBaseOut =''
-
-        bufferFactory = self.bufferSerializeRegister_.text() % {
-            'addinDirectory' : environment.config().prefixExcel(),
-            'bufferRegister' : bufferRegister,
-            'libRootDirectory' : environment.config().libRootDirectory(),
-            'namespaceAddin' : self.namespaceAddin_,
-            'callBaseIn': callBaseIn,
-            'callBaseOut': callBaseOut}
-        factoryFile = self.rootPath_ + 'Serialization/serializationfactory.cpp'
-        outputfile.OutputFile(self, factoryFile, self.copyright_, bufferFactory)
 
     def printDebug(self):
         self.xlRegisterParam_.printDebug()

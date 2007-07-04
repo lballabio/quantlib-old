@@ -20,15 +20,16 @@
 
 from gensrc.Addins import addin
 from gensrc.Addins import cppexceptions
-#from gensrc.Serialization import serializable
+from gensrc.Addins import serialization
+from gensrc.Configuration import environment
+from gensrc.Categories import category
 from gensrc.Utilities import outputfile
+from gensrc.Utilities import log
+#from gensrc.Serialization import serializable
 #from gensrc.Functions import supportedplatform
 #from gensrc.Serialization import xmlreader
 #from gensrc.Utilities import buffer
 #from gensrc.Utilities import common
-from gensrc.Utilities import log
-from gensrc.Categories import category
-#from gensrc.Configuration import environment
 
 #import re
 #import string
@@ -60,6 +61,8 @@ class CppAddin(addin.Addin):
 
         log.Log.instance().logMessage(' begin generating %s...' % self.name_)
         self.generateFunctions()
+        if environment.config().usingSerialization():
+            serialization.generateSerialization(self)
         log.Log.instance().logMessage(' done generating %s.' % self.name_)
 
     def generateFunctions(self):
@@ -116,4 +119,5 @@ class CppAddin(addin.Addin):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         super(CppAddin, self).serialize(serializer)
+        serializer.serializeProperty(self, 'serializationBase')
 

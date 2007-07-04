@@ -13,6 +13,10 @@
     <Buffer name='bufferFunction' fileName='stub.cpp.function'/>
     <Buffer name='bufferHeader' fileName='stub.cpp.header'/>
     <Buffer name='bufferLoop' fileName='stub.cpp.loop'/>
+    <Buffer name='bufferSerializeAll' fileName='stub.serialization.registerall'/>
+    <Buffer name='bufferSerializeBody' fileName='stub.serialization.body'/>
+    <Buffer name='bufferSerializeRegister' fileName='stub.serialization.register'/>
+    <Buffer name='bufferSerializeDeclaration' fileName='stub.serialization.declaration'/>
   </Buffers>
 
 </Addin>
