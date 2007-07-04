@@ -84,6 +84,7 @@ EXTRA_DIST = .time-stamp \
 # Get the command line arguments to be passed to gensrc.
 # In all cases we will specify:
 # v - Value Objects
+# s - Serialization
 # l - Loop functions
 # e - Enumerations
 # d - Doxygen documentation files
@@ -91,15 +92,19 @@ EXTRA_DIST = .time-stamp \
 # we may also specify:
 # x - Excel addin
 # o - OpenOffice.org Calc addin
+# p - C++ addin
 # g - Guile addin
 # c - C addin
 
-GENSRC_ARGS = -vled
+GENSRC_ARGS = -vsled
 if BUILD_EXCEL
     GENSRC_ARGS += -x
 endif
 if BUILD_CALC
     GENSRC_ARGS += -o
+endif
+if BUILD_CPP
+    GENSRC_ARGS += -p
 endif
 #if BUILD_GUILE
 #    GENSRC_ARGS += -g
@@ -111,7 +116,7 @@ endif
 all-local: .time-stamp
 
 .time-stamp: $(GENSRC_INPUTS)
-#	python $(GENSRC_DIR)/gensrc.py $(GENSRC_ARGS)
+	python $(GENSRC_DIR)/gensrc.py $(GENSRC_ARGS)
 	touch .time-stamp
 
 dist-hook:
