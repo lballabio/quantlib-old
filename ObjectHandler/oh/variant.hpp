@@ -51,8 +51,8 @@ namespace ObjectHandler {
 
         //! Constructor - initialize the variant.
         Variant(const VariantDef &variant = Other()) : variant_(variant) {}
-        Variant(const long &l) : variant_(l) {}
-        Variant(const double &d) : variant_(d) {}
+        //Variant(const long &l) : variant_(l) {}
+        //Variant(const double &d) : variant_(d) {}
 
         //! \name Inspectors
         //@{
