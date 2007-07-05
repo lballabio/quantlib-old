@@ -4,15 +4,56 @@ http://www.quantlibxl.org/history.html
 new or updated in this release:
 
 LAUNCHER
-CalibrateCMS startup action added
+
 
 FUNCTIONS
-- exported qlComputeHistoricalCorrelationsZeroYieldLinear
-- qlSwaptionVolCube1 and qlSABRInterpolation: extended signature to accept the optimizer in input
-- exported qlSpreadedSwaptionVolatilityStructure:
-- exported qlSpreadedCapletVolatilityStructure:
+
+
+
   ...
-- exported Schedule class full interface:
+
+- Quote and SimpleQuote stuff
+  ...
+
+WORKBOOKS
+
+
+- Bonds
+
+
+
+LIBRARY:
+
+
+
+
+
+
+
+**************************
+    REV11190
+**************************
+
+Launcher:
+- new action “Calibrate CMS Market” to open relevant workbook. Please note that calibration must be triggered by the user 
+- enhanced to preload Reuters/Bloomberg if requested by the user
+- displays the ClickOnce Publish Version number in the bottom right corner of the Launcher dialog
+- made button backgrounds transparent
+
+Renamed functions:
+- qlSetBondPricer as qlSetBondCouponPricer
+- qlLegSetPricer as qlLegSetCouponPricer
+- qlLegLastCouponRate as qlLegPreviousCouponRate
+- qlBondLastCoupon as qlBondPreviousCoupon
+
+New functions:
+- qlSmileSectionAtmLevel returns the current value of the SmileSection underlying default parameter of volatility and variance methods is ATM level
+- qlSimpleQuoteReset to reset the given SimpleQuote object to the uninitialized state
+- qlBondCurrentCoupon Returns the current coupon for the given bond. The default bond settlement is used if no date is given
+- qlBondPreviousCoupon Returns the previous period's coupon paid for the given bond. The default bond settlement is used if no date is given
+- qlLegPreviousCouponRate returns the previous coupon rate (if any) for the given Leg object
+- qlLegCurrentCouponRate returns the current coupon rate (if any) for the given Leg object
+- Schedule related functions:
   qlScheduleSize() returns the number of dates in the given Schedule object
   qlSchedulePreviousDate(refDate) returns the highest date in the given Schedule object preceding the input reference date
   qlScheduleNextDate(refDate) returns the lowest date in the given Schedule object following the input reference date
@@ -27,35 +68,96 @@ FUNCTIONS
   qlScheduleTerminationDateBDC() returns the business day convention used to calculate the termination date of the given Schedule object
   qlScheduleBackward() returns TRUE if backward calculation has been used to calculate the given Schedule object
   qlScheduleEndOfMonth() returns TRUE if end-of-month convention has been used to calculate the given Schedule object
-- new methods added to Leg object:
-  qlLegPreviousCouponRate returns the previous coupon rate (if any) for the given Leg object
-  qlLegCurrentCouponRate returns the current coupon rate (if any) for the given Leg object
-- new method added to Bond object:
-  qlBondPreviousCoupon returns the previous coupon paid for the given bond. The default bond settlement is used if no date is given.
-- Quote and SimpleQuote stuff
-  ...
-- new functions added to Bond class:
-  qlBondCleanPriceFromZSpread() Returns the clean price for the bond given Z-Spread and settlement date. The default bond settlement is used if no date is given
-  qlBondDirtyPriceFromZSpread() Returns the dirty price for the bond given Z-Spread and settlement date. The default bond settlement is used if no date is given
+  These functions and usage of Schedule class are shown in Workbooks\DateCalendarsDayCounters\ScheduleGenerator.xls
 
-WORKBOOKS
-- Workbooks\Tests\Historical Correlations.xls for historical forward rate correlation estimation (TO BE TESTED)
-- Workbooks\CmsCalibrations\MultiIndexSingleMeanRevCalibration.xls and Workbooks\MarketMetaData\SwaptionVols1.xls: added the choice between Simplex and Levenberg-Marquardt optimizers, set up reasonable parameters values, and extensive tests. 
-- Workbooks\DateCalendarsDayCounters\ScheduleGenerator.xls shows the usage of the Schedule class
-
-- Bonds
-  added, validated and checked against the corresponding prospectus the following bonds:
-  IT0003493258 IT0001307286 IT0006521139 IT0001303350 IT0001264792 IT0001271649 IT0001203295 IT0001296133 IT0001235404, XS0235012951, XS0082483388, IT0001203253, 
-  IT0001205589,IT0001272498;
-  Added, checked against prospectus but not validated because treated as non callable maturing at the first call date ( according to the market) the following:
-  XS0080650806 XS0081247446 XS0083246032 XS0083714823 XS0083662923 and XS0084680106 (for this bond prospectus is missing)
-  Added IT0003644769 (for this bond prospectus is missing).
-- Workbooks\InterestRateDerivatives\AssetSwap.xls modified so that it is now possible to use it with the following 3 types of bonds: fixedrate, floatingrate and cmsrate (this last
-  wasn't available within the workbook in the previous release)
-- Workbooks\MainChecks.xls now contains checks for: one fixed cpn bond, one frn cpn bond, and cms cpn bond.
-- Workbooks\Tests\Z-SpreadTest.xls a new workbook to check the correctness of cleanPriceFromZSpread and dirtyPriceFromZSpread functions for fixed rate, floating rate, cms rate and zero coupon bonds.
+Bug fixing:
+- fixed bug in asset swap floating leg default schedule
+- fixed bug in IborCoupon implied fixing when payment daycount convention is not equal to the Index daycount convention
+- bug fix in switching to Mx Yield Curve. Added sheet where dedicated instances of euribor indices are created and used in the swap rate helpers' construction
+- Nested LevenbergMarquardt optimizations bug fixed
 
 
-LIBRARY:
-- atmLevel method implemented in all SmileSection classes, default parameter of volatility and
-variance methods is ATM level
+Digital Coupon:
+  Related functions are qlDigitalIborLeg and qlDigitalCmsLeg to price swaps with a leg with embedded option of type digital cash-or-nothing or asset-or-nothing, the option being either a call or a put, with a short or a long position. The digital option may account for ATM inclusion or exclusion in the payoff through a specific input parameter. Pricing is based on a replication strategy, which can be a central, sub, or super replication. The gap in the replication is 1 bp by default. Related workbooks are:
+- Workbooks/Tests/DigitalLegReplicationType.xls
+- Workbooks/ Tests /SwapWithDigitalLeg.xls
+
+Bonds:
+- corrected static data for: DE0001345759  and IT0001327524
+- Z-SpreadTest.xls added in Tests folder to check the correctness of qlCleanPriceFromZSpread and qlDirtyPriceFromZSpread functions for fixed rate, floating rate, cms rate and zero coupon bonds
+- qlBondPreviousCoupon: new method added to return the previous coupon paid for the given bond. The default bond settlement is used if no date is given
+- asset swap: correctly handles the creation of a new bond type, the cms rate bond in addition to fixed rate and floating rate coupon bonds 
+- AssetSwapPricesTest.xls: added test cases for fixed, floater, and cms bonds maturing on a day which isn't a business day according to the bond's calendar (IT0003543847, XS0228052402 and IT0006527060)
+- MainChecks.xls: contains checks for a fixed coupon bond, a floating rate coupon bond, and cms coupon bond
+
+Calibrations:
+- Workbooks\CmsCalibrations\MultiIndexSingleMeanRevCalibration.xls and Workbooks\MarketMetaData\SwaptionVols1.xls: added the choice between Simplex and Levenberg-Marquardt optimizers, set up reasonable parameters values, and extensive tests.
+- qlSwaptionVolCube1 and qlSABRInterpolation: extended signature so that qlSwaptionVolCube1 can accept the optimizer in input
+
+Volatilities:
+- qlSpreadedSwaptionVolatilityStructure and qlSpreadedCapletVolatilityStructure to add a scalar to volatility matrix and cube. Accordingly provided this functionality in RangeAccrualFloaters.xls, Swaption.xls, Swap.xls, MultiLegSwap.xls, MakeCMS.xls, MakeCapFloor.xls, CMS.xls, CapFloor.xls, AssetSwap.xls
+
+Market Models:
+- qlComputeHistoricalCorrelationsZeroYieldLinear returns historical correlations between forward rates using a ZeroYield
+- Historical Correlations.xls added in Tests folder for historical forward rate correlation estimation 
+
+Sensitivity Analysis:
+- introduced concept of tick value, i.e. the shift to be used in the sensitivity analysis. Default values are given in all workbooks where quote ids are created (see for example MarketData\Quotes\InterestRateQuotes.xls)
+- function qlSimpleQuoteSetTickValue is provided to set the tick value of the given SimpleQuote object
+
+
+**************************
+    REV10747
+**************************
+
+NEW FUNCTIONS:
+- qlBondCleanPriceFromZSpread and qlBondDirtyPriceFromZspread:
+they return clean and dirty price for a given bond object whe inputing a zero coupon spread.
+- qlCurrentCoupon as a new method of bond class qlBondCurrentCoupon esposed to excel and used in BondMonitor_EUR.xls and BondFunctions.xls
+wip for Z-spread
+
+BUG FIXES:
+- fixed bug in sabr interpolation when rho parameter is fixed
+- fixed bug in asset swap floating leg default schedule
+- fixed bug in IborCoupon implied fixing when payment daycount convention is different from the Index's daycount convention
+- prevented the addition of fixings at any date later than the evaluation date
+
+INDEX FIXING:
+Indexes time series:
+special management of index fixing when on a business day a quote is not provided 
+(e.g. if number of contributing bank is low). To this aim it has been added a new sheet 
+"AddSpecialFixings" to load manually the missing fixing from non official sources
+(e.g. on 28 Mat 2007 for EuriborSwapFixA)
+
+CALIBRATIONS:
+MultiIndexSingleMeanRevCalibration.xls:
+- changed parameters for Simplex optimizer to reasonable starting values (Lambda = 0.1 and RootEpsilon = 1e-2).
+
+BONDS:
+New bonds included:
+-checked against prospectus and validated the following bonds:
+DE0001345759, IT0001203253, IT0001203253, IT0001203295, IT0001203295, IT0001205589, IT0001205589, IT0001264792, IT0001271649, IT0001272498, IT0001272498, IT0001296133, IT0001303350, IT0001307286, IT0001327524, IT0003493258, IT0003644769, IT0006521139, XS0082483388, XS0082483388, XS0098379810, XS0235012951, XS0283497005
+-fix-to-reverse bond: IT0001235404 
+-naked zero-coupon part of equity kinked bond: IT0003324115
+-capped/floored coupon bonds: 
+IT0001214284, IT0006525742, IT0003825988, IT0003657381
+-cms bond: TEC10 XS0091349489
+
+-Added, checked against prospectus but not validated because treated as non callable maturing at the first call date (according to the market) the following:
+XS0080650806
+XS0081247446
+XS0083246032
+XS0083714823
+XS0083662923
+XS0084680106 (for this bond prospectus is missing)
+
+-Added the following zero coupon bonds callable but quoted as plain with maturity at the first call dates
+XS0080650806
+XS0081247446
+XS0083246032
+XS0083714823
+XS0083662923
+XS0084680106
+
+BondMonitor_EUR.xls: 
+- all market data triggers have been taken into account 
