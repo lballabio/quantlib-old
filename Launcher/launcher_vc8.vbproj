@@ -149,6 +149,9 @@
     <Content Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Addins\03 Testing\saohxll-vc80-mt-0_1_9.xll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="images\excel.ico" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\up.bmp" />
@@ -176,56 +179,65 @@
   <ItemGroup>
     <PublishFile Include="Addins\01 Production\QuantLibXL-vc80-mt-s-0_8_0.xll">
       <Visible>False</Visible>
-      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\02 Pre-Production\QuantLibXL-vc80-mt-s-0_9_0.xll">
       <Visible>False</Visible>
-      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
-      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
-      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>DataFile</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Addins\03 Testing\saohxll-vc80-mt-0_1_9.xll">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="updateLauncherXlls.py">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Users\users.xml">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
