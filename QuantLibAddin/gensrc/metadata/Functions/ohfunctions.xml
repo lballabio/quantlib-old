@@ -392,7 +392,7 @@
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Guile'/>
-        <!--SupportedPlatform name='Cpp'/-->
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

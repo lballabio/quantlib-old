@@ -30,6 +30,7 @@ noinst_HEADERS = \
     forwardrateagreement.hpp \
     index.hpp \
     init.hpp \
+    instruments.hpp \
     interpolation.hpp \
     leg.hpp \
     marketmodelevolvers.hpp \
@@ -47,6 +48,7 @@ noinst_HEADERS = \
     ratehelpers.hpp \
     schedule.hpp \
     sequencestatistics.hpp \
+    settings.hpp \
     shortratemodels.hpp \
     simplecashflow.hpp \
     smilesection.hpp \
@@ -81,6 +83,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     forwardrateagreement.cpp \
     index.cpp \
     init.cpp \
+    instruments.cpp \
     interpolation.cpp \
     leg.cpp \
     marketmodelevolvers.cpp \
@@ -98,6 +101,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     ratehelpers.cpp \
     schedule.cpp \
     sequencestatistics.cpp \
+    settings.cpp \
     shortratemodels.cpp \
     simplecashflow.cpp \
     smilesection.cpp \

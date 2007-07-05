@@ -26,116 +26,74 @@ int main() {
 
         initializeAddin();
 
-        ohSetLogFile("qlademo.log", 4);
-        ohSetConsole(1, 4);
-        ohLogMessage("Begin example program.", 4);
-        ohLogMessage(qlAddinVersion(), 4);
-        ohLogMessage(ohVersion(), 4);
+        ohSetLogFile("qlademo.log", 4L);
+        ohSetConsole(1, 4L);
+        ohLogMessage("Begin example program.", 4L);
+        ohLogMessage(qlAddinVersion(), 4L);
+        ohLogMessage(ohVersion(), 4L);
 
-        //double dividendYield = 0.00;
-        //double riskFreeRate = 0.06;
-        //double volatility = 0.20;
-        //double underlying = 36;
-        //double strike = 40;
-        //long evaluationDate = 35930;        // 15 May 1998
-        //long settlementDate = 35932;        // 17 May 1998
+        double dividendYield = 0.00;
+        double riskFreeRate = 0.06;
+        double volatility = 0.20;
+        double underlying = 36;
+        double strike = 40;
+        long evaluationDate = 35930;        // 15 May 1998
+        long settlementDate = 35932;        // 17 May 1998
         long exerciseDate = 36297;          // 17 May 1999
 
+        qlSettingsSetEvaluationDate(evaluationDate);
+
+        std::string idBlackConstantVol = qlBlackConstantVol(
+            "my_blackconstantvol",
+            settlementDate,
+            volatility,
+            "Actual/365 (Fixed)");
+
+        std::string idGeneralizedBlackScholesProcess = qlGeneralizedBlackScholesProcess(
+            "my_blackscholes",
+            idBlackConstantVol,             // black constant vol object ID
+            underlying,                     // underlying
+            "Actual/365 (Fixed)",           // daycount convention
+            settlementDate,                 // settlement date as long
+            riskFreeRate,                   // risk free rate
+            dividendYield);                 // dividend yield
+
         std::string idExercise = qlEuropeanExercise("my_exercise", exerciseDate);
-        ohLogMessage(idExercise, 4);
 
-//        QuantLibAddin::qlSettingsSetEvaluationDate(evaluationDate);
-//
-//        boost::shared_ptr<Object> blackConstantVol(
-//            new QuantLibAddin::BlackConstantVol(
-//                settlementDate,                 // settlement date as long
-//                volatility,                     // volatility
-//                Actual365Fixed()));             // daycount convention
-//        ObjectHandler::Repository::instance().storeObject(
-//            "my_blackconstantvol", blackConstantVol);
-//
-//        OH_GET_REFERENCE(blackvolRef, "my_blackconstantvol",
-//            QuantLibAddin::BlackVolTermStructure, QuantLib::BlackVolTermStructure)
-//
-//        boost::shared_ptr<Object> blackScholesProcess(
-//            new QuantLibAddin::GeneralizedBlackScholesProcess(
-//                blackvolRef,                    // black constant vol object ID
-//                underlying,                     // underlying
-//                Actual365Fixed(),               // daycount convention
-//                settlementDate,                 // settlement date as long
-//                riskFreeRate,                   // risk free rate
-//                dividendYield));                // dividend yield
-//        ObjectHandler::Repository::instance().storeObject(
-//            "my_blackscholes", blackScholesProcess);
-//
-//        boost::shared_ptr<Object> exercise(
-//            new QuantLibAddin::EuropeanExercise(
-//                exerciseDate));                 // exercise date
-//        ObjectHandler::Repository::instance().storeObject(
-//            "my_exercise", exercise);
-//
-//        boost::shared_ptr<ObjectHandler::Object> payoff(
-//            new QuantLibAddin::StrikedTypePayoff(
-//                "vanilla",
-//                Option::Put,
-//                strike, // "thirdParameter" ?
-//                strike));
-//        ObjectHandler::Repository::instance().storeObject(
-//            "my_payoff", payoff);
-//
-//        boost::shared_ptr<Object> engine(
-//            new QuantLibAddin::PricingEngine(
-//                "AE"));                         // engine ID (Analytic European)
-//        ObjectHandler::Repository::instance().storeObject(
-//            "my_engine", engine);
-//
-//        OH_GET_REFERENCE(blackscholesRef, "my_blackscholes",
-//            QuantLibAddin::GeneralizedBlackScholesProcess, 
-//            QuantLib::GeneralizedBlackScholesProcess)
-//
-//        OH_GET_REFERENCE(payoffRef, "my_payoff",
-//            QuantLibAddin::StrikedTypePayoff, QuantLib::StrikedTypePayoff)
-//
-//        OH_GET_REFERENCE(exerciseRef, "my_exercise",
-//            QuantLibAddin::EuropeanExercise, QuantLib::Exercise)
-//
-//        OH_GET_REFERENCE(engineRef, "my_engine",
-//            QuantLibAddin::PricingEngine, QuantLib::PricingEngine)
-//
-//        boost::shared_ptr<Object> vanillaOption(new QuantLibAddin::VanillaOption(
-//            blackscholesRef,                    // black scholes object
-//            payoffRef,                          // payoff object
-//            exerciseRef,                        // exercise object
-//            engineRef));                        // engine object
-//        ObjectHandler::Repository::instance().storeObject("my_option", vanillaOption);
-//
-//        vanillaOption->setProperties(boost::shared_ptr<ObjectHandler::ValueObject>(new QuantLibAddin::ValueObjects::qlVanillaOption(
-//            "my_option",                        // object ID
-//            "my_blackscholes",                  // stochastic process object ID
-//            "my_payoff",                        // option type
-//            "my_exercise",                      // payoff type
-//            "my_engine")));                     // time steps
-//
-//        ohLogMessage("High-level interrogation of VanillaOption");
-//        logObject("my_option");
-//
-//        ohLogMessage("Low-level interrogation: NPV of underlying option object");
-//        OH_GET_REFERENCE(optionRef, "my_option",
-//            QuantLibAddin::VanillaOption, QuantLib::VanillaOption)
-//        ostringstream s;
-//        s << "underlying option NPV() = " << optionRef->NPV();
-//        ohLogMessage(s.str());
+        std::string idStrikedTypePayoff = qlStrikedTypePayoff(
+            "my_payoff",
+            "Vanilla",
+            "Put",
+            strike,                         // "thirdParameter" ?
+            strike);
 
-        ohLogMessage("End example program.", 4);
+        std::string idPricingEngine = qlPricingEngine(
+            "my_engine",
+            "AE");                          // engine ID (Analytic European)
+
+        std::string idVanillaOption = qlVanillaOption(
+            "my_option",                        // object ID
+            idGeneralizedBlackScholesProcess,   // stochastic process object ID
+            idStrikedTypePayoff,                // option type
+            idExercise,                         // payoff type
+            idPricingEngine);                   // time steps
+
+        std::ostringstream s;
+        s << "option NPV() = " << qlInstrumentNPV(idVanillaOption);
+        ohLogMessage(s.str(), 4L);
+
+        ohLogObject(idVanillaOption);
+
+        ohLogMessage("End example program.", 4L);
 
         return 0;
     } catch (const std::exception &e) {
         std::ostringstream s;
         s << "Error: " << e.what();
-        ohLogMessage(s.str(), 1);
+        ohLogMessage(s.str(), 1L);
         return 1;
     } catch (...) {
-        ohLogMessage("unknown error", 1);
+        ohLogMessage("unknown error", 1L);
         return 1;
     }
 
