@@ -62,6 +62,7 @@
       <AddinList>
         <Addin>ObjectHandler-xll-vc80-mt-0_9_0.xll</Addin>
         <Addin>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Addin>
+        <Addin>saohxll-vc80-mt-0_1_9.xll</Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>

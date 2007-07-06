@@ -342,7 +342,7 @@ Partial Class FormMain
         Me.cbMainChecks.Name = "cbMainChecks"
         Me.cbMainChecks.Size = New System.Drawing.Size(111, 17)
         Me.cbMainChecks.TabIndex = 6
-        Me.cbMainChecks.Text = "Run Main Checks"
+        Me.cbMainChecks.Text = "Open Main Checks"
         Me.cbMainChecks.UseVisualStyleBackColor = True
         '
         'cbSwapSmileBootstrap
