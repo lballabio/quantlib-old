@@ -20,7 +20,7 @@
 #include <oh/repository.hpp>
 #include <oh/Enumerations/enumregistry.hpp>
 #include <qlo/Enumerations/Register/register_all.hpp>
-#include <qlo/Serialization/serializationfactory.hpp>
+#include <Addins/C++/Serialization/serializationfactory.hpp>
 
 void QuantLibAddinCpp::initializeAddin() {
 
@@ -28,7 +28,7 @@ void QuantLibAddinCpp::initializeAddin() {
         static ObjectHandler::Repository repository;
 
         // Instantiate the Serialization Factory
-        //static QuantLibAddin::SerializationFactory factory;
+        static QuantLibAddinCpp::SerializationFactory factory;
 
         // Instantiate the Enumerated Type Registry
         static ObjectHandler::EnumTypeRegistry enumTypeRegistry;

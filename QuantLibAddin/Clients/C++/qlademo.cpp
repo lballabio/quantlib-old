@@ -32,6 +32,11 @@ int main() {
         ohLogMessage(qlAddinVersion(), 4L);
         ohLogMessage(ohVersion(), 4L);
 
+        std::string daycountConvention = "Actual/365 (Fixed)";
+        std::string payoffType = "Vanilla";
+        std::string optionType = "Put";
+        std::string engineType = "AE";      // Analytic European
+        std::string xmlFileName = "option_demo.xml";
         double dividendYield = 0.00;
         double riskFreeRate = 0.06;
         double volatility = 0.20;
@@ -47,42 +52,53 @@ int main() {
             "my_blackconstantvol",
             settlementDate,
             volatility,
-            "Actual/365 (Fixed)");
+            daycountConvention);
 
         std::string idGeneralizedBlackScholesProcess = qlGeneralizedBlackScholesProcess(
             "my_blackscholes",
-            idBlackConstantVol,             // black constant vol object ID
-            underlying,                     // underlying
-            "Actual/365 (Fixed)",           // daycount convention
-            settlementDate,                 // settlement date as long
-            riskFreeRate,                   // risk free rate
-            dividendYield);                 // dividend yield
-
-        std::string idExercise = qlEuropeanExercise("my_exercise", exerciseDate);
+            idBlackConstantVol,
+            underlying,
+            daycountConvention,
+            settlementDate,
+            riskFreeRate,
+            dividendYield);
 
         std::string idStrikedTypePayoff = qlStrikedTypePayoff(
             "my_payoff",
-            "Vanilla",
-            "Put",
-            strike,                         // "thirdParameter" ?
+            payoffType,
+            optionType,
+            strike,
             strike);
+
+        std::string idExercise = qlEuropeanExercise(
+            "my_exercise",
+            exerciseDate);
 
         std::string idPricingEngine = qlPricingEngine(
             "my_engine",
-            "AE");                          // engine ID (Analytic European)
+            engineType);
 
         std::string idVanillaOption = qlVanillaOption(
-            "my_option",                        // object ID
-            idGeneralizedBlackScholesProcess,   // stochastic process object ID
-            idStrikedTypePayoff,                // option type
-            idExercise,                         // payoff type
-            idPricingEngine);                   // time steps
+            "my_option",
+            idGeneralizedBlackScholesProcess,
+            idStrikedTypePayoff,
+            idExercise,
+            idPricingEngine);
 
         std::ostringstream s;
         s << "option NPV() = " << qlInstrumentNPV(idVanillaOption);
         ohLogMessage(s.str(), 4L);
 
         ohLogObject(idVanillaOption);
+
+        std::vector<std::string> idList;
+        idList.push_back(idBlackConstantVol);
+        idList.push_back(idGeneralizedBlackScholesProcess);
+        idList.push_back(idStrikedTypePayoff);
+        idList.push_back(idExercise);
+        idList.push_back(idPricingEngine);
+        idList.push_back(idVanillaOption);
+        ohObjectSave(idList, xmlFileName);
 
         ohLogMessage("End example program.", 4L);
 

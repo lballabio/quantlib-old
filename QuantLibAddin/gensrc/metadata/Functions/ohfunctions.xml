@@ -409,7 +409,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Member name='ohPropertyNames' type='QuantLibAddin::Object'>
+    <Member name='ohPropertyNames' type='ObjectHandler::Object'>
       <description>retrieve the property names of a given object</description>
       <libraryFunction>propertyNames</libraryFunction>
       <SupportedPlatforms>
@@ -518,6 +518,58 @@
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>threshold for log messages</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectSave'>
+      <description>delete orphaned objects from repository</description>
+      <alias>ObjectHandler::Repository::instance().saveObject</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectList'>
+            <type>ObjectHandler::Object</type>
+            <tensorRank>vector</tensorRank>
+            <description>also delete permanent objects (default FALSE)</description>
+          </Parameter>
+          <Parameter name='path'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>also delete permanent objects (default FALSE)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectLoad'>
+      <description>delete orphaned objects from repository</description>
+      <alias>ObjectHandler::Repository::instance().loadObject</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='idList'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>also delete permanent objects (default FALSE)</description>
+          </Parameter>
+          <Parameter name='path'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>also delete permanent objects (default FALSE)</description>
           </Parameter>
         </Parameters>
       </ParameterList>

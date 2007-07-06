@@ -8,10 +8,11 @@ EXTRA_DIST = \
     ClientCppDemo_vc8.vcproj
 
 QLADemo_SOURCES = qlademo.cpp
+test_deserialize_SOURCES = test_deserialize.cpp
 
 if BUILD_CPP
-noinst_PROGRAMS = QLADemo
+noinst_PROGRAMS = QLADemo test_deserialize
 else
-EXTRA_PROGRAMS = QLADemo
+EXTRA_PROGRAMS = QLADemo test_deserialize
 endif
 
