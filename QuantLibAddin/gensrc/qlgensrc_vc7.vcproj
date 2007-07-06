@@ -35,6 +35,9 @@
 				RelativePath="metadata\Addins\calc.xml">
 			</File>
 			<File
+				RelativePath=".\metadata\Addins\cpp.xml">
+			</File>
+			<File
 				RelativePath="metadata\Addins\doxygen.xml">
 			</File>
 			<File
@@ -176,9 +179,6 @@
 			</File>
 			<File
 				RelativePath=".\metadata\Functions\products.xml">
-			</File>
-			<File
-				RelativePath=".\metadata\quotes.xml">
 			</File>
 			<File
 				RelativePath=".\metadata\Functions\quotes.xml">

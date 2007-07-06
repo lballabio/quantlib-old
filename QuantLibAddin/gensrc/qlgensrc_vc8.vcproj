@@ -51,6 +51,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Addins\cpp.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Addins\doxygen.xml"
 				>
 			</File>

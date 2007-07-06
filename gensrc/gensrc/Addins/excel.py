@@ -91,7 +91,7 @@ class ExcelAddin(addin.Addin):
         self.generateFunctions()
         self.generateFunctionCount()
         if environment.config().usingSerialization():
-            serialization.generateSerialization(self, 'qlxl')
+            serialization.generateSerialization(self, self.relativePath_)
         if self.exportSymbols_: self.generateExportSymbols()
         log.Log.instance().logMessage(' done generating %s.' % self.name_)
 
