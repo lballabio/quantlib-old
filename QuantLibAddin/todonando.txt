@@ -143,26 +143,22 @@ bug fix	20%
 test	14%
 CW	18%
 
-- add sa.xll to testing environment
+
 - TRIMESTRALE
 - action for setEvaluationDate
-- Run Main Checks -> Open Main Checks
 - evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
   (K & Cri)
-- re-organize Quote/TimeSeries menus
-  refresh snapshot also for time series + merge quotefeeds and timeseries
-     actions
-  qlxlversion and trigger formatting in time series
-
 - all handle used in main checks should be created in handles.xls
-  - l'errore si presentava con la rev 10882 del foglio intratefeed.xls
-    il quale era stato salvato senza ricalcolo
 - Design e gestione della USD currency per contribuzione swaption vols
+DONE add sa.xll to testing environment
+DONE Run Main Checks -> Open Main Checks
 - time series
-    *Refresh snapshot vba: estendere alle ts se open & editable
-    *Switch Data vba: verificare se estendere alle ts
-    *Verifica che macro che chiude le ts salva i fogli a False
-    *Close Live Feed vba: deve chiudere anche le ts se open
+    *DONE Refresh snapshot vba: estendere alle ts se open & editable
+    *DONE Switch Data vba: verificare se estendere alle ts
+    *DONE Verifica che macro che chiude le ts salva i fogli a False -> no è gestito in apertura
+    *DONE Close Live Feed vba: deve chiudere anche le ts se open
+    *DONE re-organize Quote/TimeSeries menus
+    *DONE qlxlversion and trigger formatting in time series
     *Gestione smart per poter estendere le ts dinamicamente
 - Workbook_BeforeClose to remove triggers (verifica su pc diversi)
   su foglio ManualCapFeed
@@ -170,7 +166,7 @@ CW	18%
   -> no evidence of stopping problems on our pcs
   -> prepared wkb to test on traders' pc (next week)
 - coveredWarrants.xls
-    *check delta price in terms of vega with flat vol 		(1d/2d)
+    *DONE check delta price in terms of vega with flat vol 		(1d/2d)
 - Sensitivity Analysis (K&Cristina):  				(7.5d/5w)
   - General
     run sa on rates, atm vols and vol spreads
@@ -238,7 +234,7 @@ CW	18%
 - manual feeds: CalibrationParametersFeed partially updated to live/overwrite
   logic
 ** Calibrations: UpperBoundary calculation -> root not bracketed
-** control panel . xls crash when switch to MxCurve
+
 
 ---
 CRISTINA
