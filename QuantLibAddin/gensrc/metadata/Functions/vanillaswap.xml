@@ -88,6 +88,29 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlVanillaSwapFromSwapIndex'>
+      <libraryFunction>VanillaSwap</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='swapIndex'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the SwapIndex index object ID</description>
+          </Parameter>
+          <Parameter name='fixingDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
     <Constructor name='qlMakeVanillaSwap'>
       <libraryFunction>VanillaSwap</libraryFunction>
       <SupportedPlatforms>

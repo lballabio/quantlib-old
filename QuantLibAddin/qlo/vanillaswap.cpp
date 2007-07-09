@@ -26,6 +26,7 @@
 
 #include <qlo/vanillaswap.hpp>
 #include <ql/instruments/makevanillaswap.hpp>
+#include <ql/indexes/swapindex.hpp>
 
 namespace QuantLibAddin {
 
@@ -63,6 +64,14 @@ namespace QuantLibAddin {
             fixedRate, forwardStart).operator
                 boost::shared_ptr<QuantLib::VanillaSwap>();
     }
+
+    VanillaSwap::VanillaSwap(const boost::shared_ptr<QuantLib::SwapIndex>& index,
+        const QuantLib::Date& fixingDate) {
+
+         libraryObject_ = index->underlyingSwap(fixingDate);
+    
+    }
+
 
     std::vector<std::vector<boost::any> > VanillaSwap::fixedLegAnalysis() {
         return Swap::legAnalysis(0);

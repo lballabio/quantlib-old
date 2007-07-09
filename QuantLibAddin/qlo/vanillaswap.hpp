@@ -44,6 +44,8 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::IborIndex>& index,
             QuantLib::Rate fixedRate,
             const QuantLib::Period& forwardStart);
+        VanillaSwap(const boost::shared_ptr<QuantLib::SwapIndex>& index,
+            const QuantLib::Date& fixingDate);
         std::vector<std::vector<boost::any> > fixedLegAnalysis();
         std::vector<std::vector<boost::any> > floatingLegAnalysis();
     };
