@@ -1,0 +1,34 @@
+<Category name='range'>
+  <description>range</description>
+  <displayName>Range</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>oh/range.hpp</include>
+  </addinIncludes>
+  <serializationIncludes/>
+
+  <copyright>
+    Copyright (C) 2007 Eric Ehlers
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='ohRange'>
+      <libraryFunction>Range</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='values'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>a range of values</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+
+</Category>

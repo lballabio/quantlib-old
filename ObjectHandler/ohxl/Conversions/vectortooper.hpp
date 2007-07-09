@@ -62,7 +62,7 @@ namespace ObjectHandler {
         if (dllToFree)
             xVector.xltype |= xlbitDLLFree;
         for (unsigned int i=0; i<size; ++i, ++begin)
-            scalarToOper(*begin, xVector.val.array.lparray[i], dllToFree);
+            scalarToOper(*begin, xVector.val.array.lparray[i], dllToFree, false);
     }
     //@}
 

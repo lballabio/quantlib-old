@@ -76,7 +76,7 @@
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='cppConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
+    <RuleGroup name='cppConversions' indent='2' checkParameterIgnore='false' delimiter='&#10;'>
       <Wrap codeID='wrap1'/>
       <Rules>
         <Rule loop='true'/>

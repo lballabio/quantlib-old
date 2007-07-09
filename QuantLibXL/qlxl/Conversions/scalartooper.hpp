@@ -27,9 +27,9 @@
 // Override functions in the ObjectHandler namespace
 namespace ObjectHandler {
 
-    void scalarToOper(const QuantLib::InterestRate &value, OPER &xScalar);
-    void scalarToOper(const QuantLib::Date &value, OPER &xScalar);
-    void scalarToOper(const QuantLib::Frequency &value, OPER &xScalar);
+    void scalarToOper(const QuantLib::InterestRate &value, OPER &xScalar, bool dllToFree = true, bool expandVector = true);
+    void scalarToOper(const QuantLib::Date &value, OPER &xScalar, bool dllToFree = true, bool expandVector = true);
+    void scalarToOper(const QuantLib::Frequency &value, OPER &xScalar, bool dllToFree = true, bool expandVector = true);
 }
 
 #endif

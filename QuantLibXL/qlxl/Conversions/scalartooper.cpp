@@ -21,15 +21,15 @@
 
 namespace ObjectHandler {
 
-    void scalarToOper(const QuantLib::InterestRate &value, OPER &xScalar) {
+    void scalarToOper(const QuantLib::InterestRate &value, OPER &xScalar, bool dllToFree, bool expandVector) {
         scalarToOper(value.rate(), xScalar);
     }
 
-    void scalarToOper(const QuantLib::Date &value, OPER &xScalar) {
+    void scalarToOper(const QuantLib::Date &value, OPER &xScalar, bool dllToFree, bool expandVector) {
         scalarToOper(value.serialNumber(), xScalar);
     }
 
-    void scalarToOper(const QuantLib::Frequency &value, OPER &xScalar) {
+    void scalarToOper(const QuantLib::Frequency &value, OPER &xScalar, bool dllToFree, bool expandVector) {
         std::ostringstream s;
         s << value;
         scalarToOper(s.str(), xScalar);

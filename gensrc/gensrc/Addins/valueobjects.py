@@ -112,18 +112,3 @@ class ValueObjects(addin.Addin):
         fileName = self.rootPath_ + 'vo_' + cat.name() + '.cpp'
         outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
-#    def constructorDeclaration(self):
-#        return self.constructorDeclaration_
-
-#    def memberDeclaration(self):
-#        return self.memberDeclaration_
-
-#    def propertyDeclaration(self):
-#        return self.propertyDeclaration_
-
-#    def propertyGet(self):
-#        return self.propertyGet_
-
-#    def constructorInit(self):
-#        return self.constructorInit_
-

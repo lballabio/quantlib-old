@@ -26,11 +26,12 @@
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/serialization/variant.hpp>
-//#include <boost/serialization/vector.hpp>
+#include <boost/serialization/vector.hpp>
 #include <examplefactory.hpp>
 #include <ExampleObjects/ValueObjects/accountvalueobject.hpp>
 #include <ExampleObjects/ValueObjects/customervalueobject.hpp>
 #include <oh/repository.hpp>
+#include <oh/ValueObjects/vo_range.hpp>
 
 namespace ExampleAddin {
 
@@ -43,11 +44,13 @@ namespace ExampleAddin {
     }
 
     void tpl_register_classes(boost::archive::xml_oarchive &ar) {
+        ar.register_type<ObjectHandler::ValueObjects::ohRange>();
         ar.register_type<AccountExample::AccountValueObject>();
         ar.register_type<AccountExample::CustomerValueObject>();
     }
 
     void tpl_register_classes(boost::archive::xml_iarchive &ar) {
+        ar.register_type<ObjectHandler::ValueObjects::ohRange>();
         ar.register_type<AccountExample::AccountValueObject>();
         ar.register_type<AccountExample::CustomerValueObject>();
     }

@@ -1,3 +1,4 @@
+
 <root>
 
   <RuleGroups>
@@ -17,7 +18,7 @@
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='memberDeclaration' indent='2' delimiter=';&#10;' checkParameterIgnore='true'>
+    <RuleGroup name='memberDeclaration' indent='2' delimiter=';&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string %(name)s_</Rule>
@@ -32,24 +33,31 @@
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='propertyDeclaration' indent='2' delimiter=',&#10;' checkParameterIgnore='true'>
-      <Wrap>&#10;%s</Wrap>
+    <RuleGroup name='propertyDeclaration' indent='2' checkParameterIgnore='true' checkSkipFirst='true' delimiter=',&#10;'>
+      <Wrap>,&#10;%s</Wrap>
       <Rules>
         <Rule>%(indent)s"%(name)s"</Rule>
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='propertyGet' checkParameterIgnore='true'>
+    <RuleGroup name='propertyGet' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap/>
       <Rules>
         <Rule codeID='code66'/>
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='constructorInit' indent='2' checkParameterIgnore='true' delimiter=',&#10;'>
-      <Wrap/>
+    <RuleGroup name='constructorInit' indent='2' checkParameterIgnore='true' checkSkipFirst='true' delimiter=',&#10;'>
+      <Wrap>,&#10;%s</Wrap>
       <Rules>
         <Rule>%(indent)s%(name)s_(%(name)s)</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='serializeMembers' indent='4' checkParameterIgnore='true' checkSkipFirst='true' delimiter='&#10;'>
+      <Wrap/>
+      <Rules>
+        <Rule>%(indent)s&amp; boost::serialization::make_nvp("%(name)s", %(name)s_)</Rule>
       </Rules>
     </RuleGroup>
 

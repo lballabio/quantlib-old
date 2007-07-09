@@ -917,6 +917,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Serialization\serialization_oh.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_oh.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Serialization\serialization_optimization.cpp"
 				>
 			</File>

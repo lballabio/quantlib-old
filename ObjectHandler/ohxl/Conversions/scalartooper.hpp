@@ -35,12 +35,12 @@ namespace ObjectHandler {
     //! Convert a scalar value to an OPER.
     /*! If dllToFree is true then the function sets the xlbitDLLFree bit if necessary.
     */
-    DLL_API void scalarToOper(const long &value, OPER &xLong, bool dllToFree = true);
-    DLL_API void scalarToOper(const double &value, OPER &xDouble, bool dllToFree = true);
-    DLL_API void scalarToOper(const bool &value, OPER &xBoolean, bool dllToFree = true);
-    DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree = true);
-    DLL_API void scalarToOper(const boost::any &value, OPER &xAny, bool dllToFree = true);
-    DLL_API void scalarToOper(const ObjectHandler::Variant &value, OPER &xAny, bool dllToFree = true);
+    DLL_API void scalarToOper(const long &value, OPER &xLong, bool dllToFree = true, bool expandVector = true);
+    DLL_API void scalarToOper(const double &value, OPER &xDouble, bool dllToFree = true, bool expandVector = true);
+    DLL_API void scalarToOper(const bool &value, OPER &xBoolean, bool dllToFree = true, bool expandVector = true);
+    DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree = true, bool expandVector = true);
+    DLL_API void scalarToOper(const boost::any &value, OPER &xAny, bool dllToFree = true, bool expandVector = true);
+    DLL_API void scalarToOper(const ObjectHandler::Variant &value, OPER &xAny, bool dllToFree = true, bool expandVector = true);
     //@}
 
 }

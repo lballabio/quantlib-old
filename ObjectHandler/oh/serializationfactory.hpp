@@ -77,6 +77,8 @@ namespace ObjectHandler {
         CreatorMap &creatorMap_() const;
     };
 
+    boost::shared_ptr<Object> createRange(const boost::shared_ptr<ValueObject>&);
+
 }
 
 #endif

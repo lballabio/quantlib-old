@@ -33,6 +33,15 @@ DLL_API void freeOper(XLOPER *px) {
         delete [] px->val.array.lparray;
     }
 }
+DLL_API bool isList(const OPER *xValue) {
+    if (xValue->xltype == xltypeStr) {
+        for (int i=1; i<=xValue->val.str[0]; i++) {
+            if (xValue->val.str[i] == ',' || xValue->val.str[i] == ';')
+                return true;
+        }
+    }
+    return false;
+}
 
 DLL_API void splitOper(const OPER *xFrom, OPER *xTo) {
     std::string text = ObjectHandler::ConvertOper(*xFrom);

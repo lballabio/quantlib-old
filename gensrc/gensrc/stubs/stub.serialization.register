@@ -19,6 +19,10 @@ namespace %(namespaceAddin)s {
     template<class Archive>
     void tpl_register_classes(Archive& ar) {
     
+            // ObjectHandler
+
+            register_oh(ar);
+    
 %(bufferRegister)s
     }
 

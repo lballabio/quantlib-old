@@ -27,6 +27,7 @@
 #include <xlsdk/xlsdkdefines.hpp>
 
 DLL_API void freeOper(XLOPER *px);
+DLL_API bool isList(const OPER *xValue);
 DLL_API void splitOper(const OPER *xFrom, OPER *xTo);
 
 #endif

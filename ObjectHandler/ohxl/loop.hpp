@@ -32,10 +32,11 @@ namespace ObjectHandler {
     void loopIteration(
             LoopFunction &loopFunction, 
             XLOPER &xIn, 
-            XLOPER &xOut) {
+            XLOPER &xOut,
+            bool expandVector) {
         InputType inputItem = ObjectHandler::operToScalar<InputType>(xIn);
         OutputType returnItem = loopFunction(inputItem);
-        scalarToOper(returnItem, xOut);
+        scalarToOper(returnItem, xOut, true, expandVector);
     }
 
     template<class LoopFunction, class InputType, class OutputType>
@@ -51,21 +52,22 @@ namespace ObjectHandler {
         bool xllToFree = false;
         bool errorInitialized = false;
 
-        // if the input is an array then take its address & carry on
+        // If the input is an array then take its address & carry on
         if (xIn->xltype == xltypeMulti) {
             xMulti = xIn;
-        // if the input is a string then call split on it
-        } else if (xIn->xltype == xltypeStr) {
+        // If the input is a list then call split on it
+        } else if (isList(xIn)) {
             splitOper(xIn, &xTemp);
             xMulti = &xTemp;
             xllToFree = true;
-        // if the input is a scalar then just call the function once & return
+        // If the input is a scalar then just call the function once & return
         } else if (xIn->xltype == xltypeNum
-        ||  xIn->xltype == xltypeBool) {
+        ||  xIn->xltype == xltypeBool
+        ||  xIn->xltype == xltypeStr) {
             loopIteration<LoopFunction, InputType, OutputType>(
-                loopFunction, *xIn, xOut);
+                loopFunction, *xIn, xOut, true);
             return;
-        // some other input (e.g. a reference) - try to convert to an array
+        // Some other input (e.g. a reference) - try to convert to an array
         } else {
             Excel(xlCoerce, &xTemp, 2, xIn, TempInt(xltypeMulti));
             xMulti = &xTemp;
@@ -83,7 +85,8 @@ namespace ObjectHandler {
                 loopIteration<LoopFunction, InputType, OutputType>(
                     loopFunction, 
                     xMulti->val.array.lparray[i],
-                    xOut.val.array.lparray[i]);
+                    xOut.val.array.lparray[i],
+                    false);
             } catch(const std::exception &e) {
                 std::ostringstream err;
                 if (!errorInitialized) {

@@ -353,6 +353,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\oh\range.hpp"
+				>
+			</File>
+			<File
 				RelativePath="oh\repository.cpp"
 				>
 			</File>
@@ -450,6 +454,22 @@
 			</File>
 			<File
 				RelativePath=".\oh\Enumerations\typefactory.hpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Loop"
+			>
+			<File
+				RelativePath=".\oh\Loop\loop_valueobjects.hpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="ValueObjects"
+			>
+			<File
+				RelativePath=".\oh\ValueObjects\vo_range.hpp"
 				>
 			</File>
 		</Filter>

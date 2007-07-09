@@ -10,9 +10,9 @@
     <categoryName>garbagecollection</categoryName>
     <categoryName>logging</categoryName>
     <categoryName>ohutils</categoryName>
+    <categoryName>range</categoryName>
     <categoryName>serialization</categoryName>
     <categoryName>valueobjects</categoryName>
   </categoryNames>
 
 </Config>
-

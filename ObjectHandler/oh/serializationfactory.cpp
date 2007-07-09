@@ -21,13 +21,24 @@
 #endif
 
 #include <oh/serializationfactory.hpp>
+#include <oh/range.hpp>
 
 namespace ObjectHandler {
+
+    boost::shared_ptr<Object> createRange(
+        const boost::shared_ptr<ValueObject> &valueObject) {
+
+        std::vector<double> values = boost::any_cast<std::vector<double> >(valueObject->getProperty("values"));
+        boost::shared_ptr<Object> object(new Range(values));
+        object->setProperties(valueObject);
+        return object;
+    }
 
     SerializationFactory *SerializationFactory::instance_;
 
     SerializationFactory::SerializationFactory() {
         instance_ = this;
+        registerCreator("ohRange", createRange);
     }
 
     SerializationFactory::~SerializationFactory() {

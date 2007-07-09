@@ -91,11 +91,7 @@ int main() {
 
         // Construct some objects and store them in the object handler
         makeAccount("account1", "Savings", 123456789);
-        ObjectHandler::Variant::VariantDef vd(100L);
-        ObjectHandler::Variant v(vd);
         makeAccount("account2", "Current", 987654321, 100L);
-        //makeAccount("account2", "Current", 987654321, v);
-        //makeAccount("account2", "Current", 987654321, ObjectHandler::Variant(100L));
 
         // High level interrogation
         OH_LOG_MESSAGE("High level interrogation - after constructor");
