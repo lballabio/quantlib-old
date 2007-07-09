@@ -240,12 +240,12 @@ DONE Run Main Checks -> Open Main Checks
 CRISTINA
 - chiusure DRM 29/6 e creazione ambiente dedicato
 - create greeks workbook
-- swaptionvolcube test with floating date
+- swaptionvolcube test with floating date  (2D/2D - DONE)
 - test that the manual procedure to set back/forward the evaluation
-  date returns the same results of the automatic procedure  (0.5D/1D)
+  date returns the same results of the automatic procedure  (1D/1D - DONE)
 - test for relinkability (CMS npv + greeks)           (DONE for NPV)
 - test valid object creation with ALL quotes not initialized
-  verify smile sections (no unknown ID error message)
+  verify smile sections (no unknown ID error message) (1D - DONE)
 - use OTM options instead of ITM options in all abcd wbks
 - evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
   (K & Cri)
