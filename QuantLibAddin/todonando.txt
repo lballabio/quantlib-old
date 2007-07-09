@@ -334,10 +334,10 @@ D MM: different correlation structures (Rapisarda, Schoenmakers and
 
 ---
 GIORGIO (last update 6/6/2007)
-- clean up vega incoherencies
-- code MakeSwaption class
+WIP clean up vega incoherencies
+WIP code MakeSwaption class
 D split up CmsMarket and CmsMarketCalibration in 2 files
-- use Handle in SwaptionVolCubeChecks
+WIP use Handle in SwaptionVolCubeChecks
 D abcd
 D vega weighted abcd fit
 D interpolation

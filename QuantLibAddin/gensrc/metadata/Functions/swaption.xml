@@ -5,15 +5,17 @@
   <addinIncludes>
     <include>ql/exercise.hpp</include>
     <include>qlo/swaption.hpp</include>
+    <include>qlo/index.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/exercise.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_swaption.hpp</include>
-    <include>qlo/swaption.hpp</include>
     <include>ql/exercise.hpp</include>
+    <include>qlo/ValueObjects/vo_swaption.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>qlo/swaption.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/pricingengines.hpp</include>
@@ -84,6 +86,47 @@
       </ReturnValue>
     </Member-->
 
+    <Constructor name='qlMakeSwaption'>
+      <libraryFunction>Swaption</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='swapIndex'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating swapIndex object ID</description>
+          </Parameter>
+          <Parameter name='strike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>strike</description>
+          </Parameter>
+          <Parameter name='optionTenor' exampleValue = '0D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>as period (e.g. '2Y') </description>
+          </Parameter>
+           <Parameter name='Engine'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>pricing engine object ID</description>
+          </Parameter>
+          <Parameter name='delivery'>
+            <type>QuantLib::Settlement::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>delivery type</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Constructor>
+    
     <Member name='qlSwaptionType' type='QuantLib::Swaption'>
       <description>returns the type (Payer or Receiver) for the given Swaption object</description>
       <libraryFunction>type</libraryFunction>

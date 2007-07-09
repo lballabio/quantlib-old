@@ -23,6 +23,7 @@
 
 #include <qlo/swaption.hpp>
 #include <ql/instruments/swaption.hpp>
+#include <ql/instruments/makeswaptions.hpp>
 
 namespace QuantLibAddin {
 
@@ -36,6 +37,18 @@ namespace QuantLibAddin {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::Swaption(vanillaSwap, exercise, hYTS, engine,
                                settlementType));
+    }
+
+    Swaption::Swaption(
+         const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
+         QuantLib::Rate strike,
+         const QuantLib::Period& optionTenor,
+         const boost::shared_ptr<QuantLib::PricingEngine>& engine,
+         QuantLib::Settlement::Type delivery)
+    {
+        libraryObject_ = QuantLib::MakeSwaption(swapIndex, strike,
+                            optionTenor, engine, delivery).operator
+                boost::shared_ptr<QuantLib::Swaption>();
     }
 
 }

@@ -21,8 +21,12 @@
 #define qla_swaption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <ql/pricingengines/swaption/blackswaptionengine.hpp>
 #include <ql/instruments/swaption.hpp>
+#include <ql/pricingengines/swaption/blackswaptionengine.hpp>
+
+namespace QuantLib {
+    class SwapIndex;
+}
 
 namespace QuantLibAddin {
     
@@ -33,6 +37,13 @@ namespace QuantLibAddin {
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                  const boost::shared_ptr<QuantLib::BlackSwaptionEngine>& engine,
                  QuantLib::Settlement::Type settlementType);
+
+        Swaption(const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
+                 QuantLib::Rate strike,
+                 const QuantLib::Period& optionTenor,
+                 const boost::shared_ptr<QuantLib::PricingEngine>& engine,
+                 QuantLib::Settlement::Type delivery);
+
         std::string underlyingSwap()
         {
             return boost::any_cast<std::string>(propertyValue("vanillaSwap"));
