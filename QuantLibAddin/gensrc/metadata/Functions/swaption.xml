@@ -114,11 +114,6 @@
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
           </Parameter>
-          <Parameter name='delivery'>
-            <type>QuantLib::Settlement::Type</type>
-            <tensorRank>scalar</tensorRank>
-            <description>delivery type</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
