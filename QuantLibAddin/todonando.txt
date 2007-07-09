@@ -146,7 +146,7 @@ CW	18%
 
 - TRIMESTRALE
 - action for setEvaluationDate
-- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
+DONE evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
   (K & Cri)
 - all handle used in main checks should be created in handles.xls
 - Design e gestione della USD currency per contribuzione swaption vols
@@ -160,7 +160,7 @@ DONE Run Main Checks -> Open Main Checks
     *DONE re-organize Quote/TimeSeries menus
     *DONE qlxlversion and trigger formatting in time series
     *Gestione smart per poter estendere le ts dinamicamente
-- Workbook_BeforeClose to remove triggers (verifica su pc diversi)
+DONE Workbook_BeforeClose to remove triggers (verifica su pc diversi)
   su foglio ManualCapFeed
 - Rt Update
   -> no evidence of stopping problems on our pcs
