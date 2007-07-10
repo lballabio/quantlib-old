@@ -26,10 +26,10 @@ namespace ObjectHandler {
 
     class Range : public Object {
     public:
-        Range(const std::vector<double> &values)
+        Range(const std::vector<std::vector<double> > &values)
             : values_(values) {}
     private:
-        std::vector<double> values_;
+        std::vector<std::vector<double> > values_;
     };
 
 }

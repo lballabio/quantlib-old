@@ -598,6 +598,10 @@ code160 = '''\
         std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(name)sObj =
             ObjectHandler::getObjectVector<%(namespaceObjects)s::%(classname)s>(%(name)s);\n'''
 
+code161 = '''\
+        OH_GET_REFERENCE_DEFAULT(%(name)sLibObj, %(name)s,
+            %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
+
 ##########################################################################
 # code for C
 ##########################################################################

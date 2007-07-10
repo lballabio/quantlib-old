@@ -89,9 +89,8 @@
         <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code12b'/>
         <Rule tensorRank='scalar' superType='objectHandle' type='QuantLib::Quote'/>
         <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::Quote'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true' codeID='code11'/>
-        <Rule tensorRank='scalar' type='QuantLib::Quote' codeID='code12b'/>
         <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code11'/>
+        <Rule tensorRank='scalar' type='QuantLib::Quote' codeID='code12b'/>
         <Rule tensorRank='scalar' default='true' codeID='code12'/>
         <Rule tensorRank='scalar'/>
         <Rule tensorRank='vector' type='QuantLib::Date' codeID='code14'/>

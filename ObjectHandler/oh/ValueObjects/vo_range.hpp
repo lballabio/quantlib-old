@@ -32,7 +32,7 @@ namespace ObjectHandler { namespace ValueObjects {
         ohRange() {}
         ohRange(
             const std::string& objectID,
-            const std::vector<double>& values) :
+            const std::vector<std::vector<double> > &values) :
             ValueObject(objectID, "ohRange"),
             values_(values) {}
 
@@ -54,7 +54,7 @@ namespace ObjectHandler { namespace ValueObjects {
 
     protected:
 
-        std::vector<double> values_;
+        std::vector<std::vector<double> > values_;
         
         template<class Archive>
         void serialize(Archive& ar, const unsigned int) {

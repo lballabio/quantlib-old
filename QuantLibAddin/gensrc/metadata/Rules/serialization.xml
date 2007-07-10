@@ -7,6 +7,7 @@
       <Wrap codeID='wrap1'/>
       <Rules>
         <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code110'/>
+        <Rule tensorRank='scalar' nativeType='string' default='true' codeID='code111'/>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code110'/>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' codeID='code110'/>
         <Rule tensorRank='scalar' nativeType='string' codeID='code111'/>
@@ -59,6 +60,7 @@
     <RuleGroup name='referenceConversions' indent='2' delimiter='&#10;'>
       <Wrap codeID='wrap5'/>
       <Rules>
+        <Rule tensorRank='scalar' superType='libraryClass' default='true' codeID='code161'/>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Index' codeID='code40'/>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Xibor' codeID='code40'/>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::SwapIndex' codeID='code40'/>

@@ -22,7 +22,7 @@
         <Parameters>
           <Parameter name='values'>
             <type>double</type>
-            <tensorRank>vector</tensorRank>
+            <tensorRank>matrix</tensorRank>
             <description>a range of values</description>
           </Parameter>
         </Parameters>
