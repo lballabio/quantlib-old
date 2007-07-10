@@ -33,6 +33,7 @@ GENERAL
   remove trigger ohretrieveError() calls
   familiarize with ohObjectSave() ohObjectLoad()
   familiarize with ohPropertyNames and ohPropertyValue()
+  VBA option explicit
 
 - rename onForwardCmsPrice
 - remove qlo/simplecashflow.hpp
@@ -146,8 +147,9 @@ CW	18%
 
 - TRIMESTRALE
 - action for setEvaluationDate
-DONE evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
+- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
   (K & Cri)
+- TimeSeries serialization
 - all handle used in main checks should be created in handles.xls
 - Design e gestione della USD currency per contribuzione swaption vols
 DONE add sa.xll to testing environment
@@ -160,7 +162,7 @@ DONE Run Main Checks -> Open Main Checks
     *DONE re-organize Quote/TimeSeries menus
     *DONE qlxlversion and trigger formatting in time series
     *Gestione smart per poter estendere le ts dinamicamente
-DONE Workbook_BeforeClose to remove triggers (verifica su pc diversi)
+- Workbook_BeforeClose to remove triggers (verifica su pc diversi)
   su foglio ManualCapFeed
 - Rt Update
   -> no evidence of stopping problems on our pcs
@@ -177,7 +179,7 @@ DONE Workbook_BeforeClose to remove triggers (verifica su pc diversi)
     centered differences, then gamma
     theta SA
     xml output
-    handle sensitivity to index fixings
+    sensitivity to index fixings
     list all quotes that we could analize
     discriminate between invalid quote -> #NA()
        and error obtained after having tweaked a quote -> #NUM
@@ -396,6 +398,13 @@ Eric
 - Reuters
 - Trader wbk problem
 - object creation
+
+- DevCycle branches/tags
+- nazcatech SVN browse?
+- SA version number
+- HD serial number
+- mkt data imp/exp
+
 
 - 2 DOF projects
 - JRisk
