@@ -48,6 +48,9 @@
 				RelativePath="metadata\Functions\demo.xml">
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\enumerations.xml">
+			</File>
+			<File
 				RelativePath="metadata\Functions\garbagecollection.xml">
 			</File>
 			<File
@@ -55,6 +58,9 @@
 			</File>
 			<File
 				RelativePath="metadata\Functions\ohutils.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\range.xml">
 			</File>
 			<File
 				RelativePath=".\metadata\Functions\serialization.xml">
