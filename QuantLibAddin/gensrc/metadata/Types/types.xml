@@ -267,6 +267,7 @@
         <DataType>QuantLib::MarketModel</DataType> 
         <DataType>QuantLib::Leg</DataType>
         <DataType>QuantLib::Schedule</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
