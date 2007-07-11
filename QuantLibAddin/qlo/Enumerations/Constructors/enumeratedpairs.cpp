@@ -27,6 +27,7 @@
 #include <qlo/termstructures.hpp>
 #include <ql/termstructures/yieldcurves/piecewiseyieldcurve.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
+#include <ql/math/interpolations/backwardflatinterpolation.hpp>
 
 namespace QuantLibAddin {
 

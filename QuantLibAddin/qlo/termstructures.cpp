@@ -35,7 +35,7 @@
 #include <ql/termstructures/yieldcurves/impliedtermstructure.hpp>
 #include <ql/termstructures/yieldcurves/flatforward.hpp>
 #include <ql/termstructures/yieldcurves/forwardspreadedtermstructure.hpp>
-//#include <ql/termstructures/yieldcurves/piecewiseyieldcurve.hpp>
+#include <ql/math/interpolations/backwardflatinterpolation.hpp>
 
 #include <oh/repository.hpp>
 
