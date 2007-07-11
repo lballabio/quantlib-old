@@ -15,6 +15,13 @@
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }
 
+    void %(functionName)s::setProperty(const std::string& name, const boost::any& value) {
+        if(name == "objectID") objectID_ = boost::any_cast<std::string>(value);
+        else if(name == "className") className_ = boost::any_cast<std::string>(value);
+%(propertySet)s        else
+            OH_FAIL("Error: attempt to set non-existent Property: '" + name + "'");
+    }
+
     %(functionName)s::%(functionName)s(%(constructorParList)s) :
         ObjectHandler::ValueObject(objectID, "%(functionName)s")%(constructorInit)s {}
 

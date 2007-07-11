@@ -43,5 +43,14 @@ namespace AccountExample {
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }
 
+    void CustomerValueObject::setProperty(const std::string& name, const boost::any& value) {
+        if(name == "objectID") objectID_ = boost::any_cast<std::string>(value);
+        else if(name == "className") className_ = boost::any_cast<std::string>(value);
+        else if(name == "name") name_ = boost::any_cast<std::string>(value);
+        else if(name == "age") age_ = boost::any_cast<long>(value);
+        else 
+            OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
+    }
+
 }
 

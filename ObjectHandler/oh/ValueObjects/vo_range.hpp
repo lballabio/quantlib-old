@@ -52,6 +52,14 @@ namespace ObjectHandler { namespace ValueObjects {
                 OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
         }
 
+        void setProperty(const std::string& name, const boost::any& value) {
+            if(name == "objectID") objectID_ = boost::any_cast<std::string>(value);
+            else if(name == "className") className_ = boost::any_cast<std::string>(value);
+            else if(name == "values") values_ = boost::any_cast<std::vector<std::vector<double> > >(value);
+            else
+                OH_FAIL("Error: attempt to set non-existent Property: '" + name + "'");
+        }
+
     protected:
 
         std::vector<std::vector<double> > values_;

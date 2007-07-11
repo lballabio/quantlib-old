@@ -42,6 +42,7 @@ namespace AccountExample {
 
         std::vector<std::string> getPropertyNames() const;
         boost::any getProperty(const std::string& name) const;
+        void setProperty(const std::string& name, const boost::any& value);
 
     private:
 

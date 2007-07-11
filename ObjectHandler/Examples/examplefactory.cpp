@@ -88,7 +88,7 @@ namespace ExampleAddin {
 		ia >> boost::serialization::make_nvp(objectID.c_str(), valueObject);
 		// This VO has picked up the ID of the old VO that was deserialized.
 		// Override this value with the new ID supplied by the caller.
-		valueObject->setID(objectID);
+		valueObject->setProperty("objectID", objectID);
 		CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
 		OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
 		Creator creator = j->second;
@@ -110,7 +110,7 @@ namespace ExampleAddin {
 			ia >> boost::serialization::make_nvp(i->c_str(), valueObject);
 			// This VO has picked up the ID of the old VO that was deserialized.
 			// Override this value with the new ID supplied by the caller.
-			valueObject->setID(*i);
+		    valueObject->setProperty("objectID", *i);
 			CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
 			OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
 			Creator creator = j->second;

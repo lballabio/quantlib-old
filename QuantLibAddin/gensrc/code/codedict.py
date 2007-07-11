@@ -488,6 +488,33 @@ code96 = '''\
 code66 = '''\
         else if(name == "%(name)s") return %(name)s_;\n'''
 
+code67a = '''\
+        else if(name == "%(name)s") %(name)s_ = boost::any_cast<ObjectHandler::Variant>(value);\n'''
+
+code67b = '''\
+        else if(name == "%(name)s") %(name)s_ = boost::any_cast<std::string>(value);\n'''
+
+code67c = '''\
+        else if(name == "%(name)s") %(name)s_ = boost::any_cast<%(nativeType)s>(value);\n'''
+
+code67d = '''\
+        else if(name == "%(name)s") %(name)s_ = boost::any_cast<std::vector<ObjectHandler::Variant> >(value);\n'''
+
+code67e = '''\
+        else if(name == "%(name)s") %(name)s_ = boost::any_cast<std::vector<std::string> >(value);\n'''
+
+code67f = '''\
+        else if(name == "%(name)s") %(name)s_ = boost::any_cast<std::vector<%(nativeType)s> >(value);\n'''
+
+code67g = '''\
+        else if(name == "%(name)s") %(name)s_ = boost::any_cast<std::vector<std::vector<ObjectHandler::Variant> > >(value);\n'''
+
+code67h = '''\
+        else if(name == "%(name)s") %(name)s_ = boost::any_cast<std::vector<std::vector<std::string> > >(value);\n'''
+
+code67i = '''\
+        else if(name == "%(name)s") %(name)s_ = boost::any_cast<std::vector<std::vector<%(nativeType)s> > >(value);\n'''
+
 ##########################################################################
 # code for Serialization
 ##########################################################################

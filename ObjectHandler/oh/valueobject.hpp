@@ -66,14 +66,14 @@ namespace ObjectHandler {
         virtual std::vector<std::string> getPropertyNames() const = 0;
         //! Retrieve the value of a property given its name.
         virtual boost::any getProperty(const std::string& name) const = 0;
+        //! Set the value of a named property.
+        virtual void setProperty(const std::string& name, const boost::any& value) = 0;
         //@}
 
         //! \name Serialization
         //@{
         //! Name of this ValueObject's class, used by class SerializationFactory.
         const std::string &className() const { return className_; }
-        //! Override objectID after deserialization, used by class SerializationFactory.
-        virtual void setID(const std::string &objectID) { objectID_ = objectID; }
         //@}
     protected:
         std::string objectID_;

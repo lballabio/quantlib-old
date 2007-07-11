@@ -94,7 +94,8 @@ class ValueObjects(addin.Addin):
                 'constructorParList' : func.parameterList().generate(self.constructorDeclaration_),
                 'functionName' : func.name(),
                 'propertyDeclaration' : func.parameterList().generate(self.propertyDeclaration_),
-                'propertyGet' : func.parameterList().generate(self.propertyGet_) }
+                'propertyGet' : func.parameterList().generate(self.propertyGet_),
+                'propertySet' : func.parameterList().generate(self.propertySet_) }
         else:
             return ''
 

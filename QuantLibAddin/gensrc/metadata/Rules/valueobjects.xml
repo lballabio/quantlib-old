@@ -63,6 +63,29 @@
       </Rules>
     </RuleGroup>
 
+    <RuleGroup name='propertySet' checkParameterIgnore='true' checkSkipFirst='true'>
+      <Wrap/>
+      <Rules>
+        <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code67a'/>
+        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true' codeID='code67b'/>
+        <Rule tensorRank='scalar' type='QuantLib::Quote' codeID='code67a'/>
+        <Rule tensorRank='scalar' nativeType='string' codeID='code67b'/>
+        <Rule tensorRank='scalar' nativeType='any' codeID='code67a'/>
+        <Rule tensorRank='scalar' codeID='code67c'/>
+        <Rule tensorRank='vector' type='QuantLib::Date' codeID='code67d'/>
+        <Rule tensorRank='vector' type='QuantLib::Period' codeID='code67d'/>
+        <Rule tensorRank='vector' type='QuantLib::Quote' codeID='code67d'/>
+        <Rule tensorRank='vector' nativeType='string' codeID='code67e'/>
+        <Rule tensorRank='vector' nativeType='any' codeID='code67d'/>
+        <Rule tensorRank='vector' codeID='code67f'/>
+        <Rule tensorRank='matrix' type='QuantLib::Date' codeID='code67g'/>
+        <Rule tensorRank='matrix' type='QuantLib::Quote' codeID='code67g'/>
+        <Rule tensorRank='matrix' nativeType='string' codeID='code67h'/>
+        <Rule tensorRank='matrix' nativeType='any' codeID='code67g'/>
+        <Rule tensorRank='matrix' codeID='code67i'/>
+      </Rules>
+    </RuleGroup>
+
     <RuleGroup name='constructorInit' indent='2' checkParameterIgnore='true' checkSkipFirst='true' delimiter=',&#10;'>
       <Wrap>,&#10;%s</Wrap>
       <Rules>
