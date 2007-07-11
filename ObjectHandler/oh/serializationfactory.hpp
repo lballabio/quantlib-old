@@ -51,15 +51,18 @@ namespace ObjectHandler {
 
         //! \name Serialization - public interface
         //@{
-        //! Serialize the given ValueObject to the path indicated.
-		virtual void saveObject(const std::vector<boost::shared_ptr<Object> >&, const char *path) const = 0;
+        //! Serialize the given Object to the path indicated.
 		virtual void saveObject(const boost::shared_ptr<ObjectHandler::Object>&, const char *path) const = 0;
+        //! Serialize the given Object list to the path indicated.
+		virtual void saveObject(const std::vector<boost::shared_ptr<Object> >&, const char *path) const = 0;
+        //! Serialize the given Object list to the path indicated (alternate implementation).
+		virtual void saveObject2(const std::vector<boost::shared_ptr<Object> >&, const char *path) const = 0;
         //! Deserialize an Object from the path indicated.
-        /*! Concrete implementation of the deserialization algorithm,
-            specific to the client platform.
-        */
-		virtual std::vector<boost::shared_ptr<Object> > loadObject(const std::vector<std::string> &idList, const char *path) const = 0;
 		virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const char *path) const = 0;
+        //! Deserialize an Object list from the path indicated.
+		virtual std::vector<boost::shared_ptr<Object> > loadObject(const std::vector<std::string> &idList, const char *path) const = 0;
+        //! Deserialize an Object list from the path indicated (alternate implementation).
+		virtual std::vector<boost::shared_ptr<Object> > loadObject2(const char *path) const = 0;
         //@}
 
     protected:

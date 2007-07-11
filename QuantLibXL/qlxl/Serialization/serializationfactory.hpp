@@ -32,8 +32,10 @@ namespace QuantLibXL {
     private:
 		virtual void saveObject(const boost::shared_ptr<ObjectHandler::Object>&, const char *path) const;
 		virtual void saveObject(const std::vector<boost::shared_ptr<ObjectHandler::Object> >&, const char *path) const;
+		virtual void saveObject2(const std::vector<boost::shared_ptr<ObjectHandler::Object> >&, const char *path) const;
 		virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const char *path) const;
 		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(const std::vector<std::string> &idList, const char *path) const;
+		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject2(const char *path) const;
     };
 
 	void register_in(boost::archive::xml_iarchive&);

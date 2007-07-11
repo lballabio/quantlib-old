@@ -69,7 +69,8 @@ namespace ExampleAddin {
         std::ofstream ofs(path);
         boost::archive::xml_oarchive oa(ofs);
         tpl_register_classes(oa);
-		for (std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i=objectList.begin();i!=objectList.end();++i){	
+        std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
+		for (i=objectList.begin(); i!=objectList.end(); ++i){	
 			// We need to supply a name for the object to be serialized.
 			// The objectID isn't suitable because certain values of objectID are
 			// invalid as XML tags e.g. values beginning with numeric characters.
@@ -78,6 +79,21 @@ namespace ExampleAddin {
 			//oa << boost::serialization::make_nvp(objectID.c_str(), valueObject);
 			oa << boost::serialization::make_nvp("oh_object", (*i)->properties());
 		}
+    }
+
+    void ExampleFactory::saveObject2(
+		const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
+		const char *path) const {
+
+        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
+        std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
+		for (i=objectList.begin(); i!=objectList.end(); ++i)
+            valueObjects.push_back((*i)->properties());
+
+        std::ofstream ofs(path);
+        boost::archive::xml_oarchive oa(ofs);
+        tpl_register_classes(oa);
+        oa << boost::serialization::make_nvp("object_list", valueObjects);
     }
 
 	boost::shared_ptr<ObjectHandler::Object> ExampleFactory::loadObject(const std::string &objectID, const char *path) const {
@@ -105,7 +121,7 @@ namespace ExampleAddin {
         boost::archive::xml_iarchive ia(ifs);
         tpl_register_classes(ia);
 
-		for(std::vector<std::string>::const_iterator i=idList.begin();i!=idList.end();++i){
+		for (std::vector<std::string>::const_iterator i=idList.begin(); i!=idList.end(); ++i) {
 			boost::shared_ptr<ObjectHandler::ValueObject> valueObject;
 			ia >> boost::serialization::make_nvp(i->c_str(), valueObject);
 			// This VO has picked up the ID of the old VO that was deserialized.
@@ -120,5 +136,32 @@ namespace ExampleAddin {
 		}
 	    return returnValues;
 	}
+
+	std::vector<boost::shared_ptr<ObjectHandler::Object> > ExampleFactory::loadObject2(
+        const char *path) const {
+
+        std::ifstream ifs(path);
+        boost::archive::xml_iarchive ia(ifs);
+        tpl_register_classes(ia);
+
+        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
+		ia >> boost::serialization::make_nvp("object_list", valueObjects);
+
+		std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValues;
+
+        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
+		for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
+		    CreatorMap::const_iterator j = creatorMap_().find((*i)->className());
+		    OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << (*i)->className());
+		    Creator creator = j->second;
+		    boost::shared_ptr<ObjectHandler::Object> object = creator(*i);
+            std::string objectID = boost::any_cast<std::string>((*i)->getProperty("objectID"));
+		    ObjectHandler::Repository::instance().storeObject(objectID, object);
+		    returnValues.push_back(object);
+        }
+
+        return returnValues;
+	}
+
 }
 

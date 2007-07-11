@@ -265,12 +265,6 @@ namespace ObjectHandler {
 
     }
 
-    //void RepositoryXL::saveObject(const std::string &objectID, 
-    //    const std::string &path) {
-
-    //    Repository::saveObject(ObjectXL::getStub(objectID), path);
-    //}
-
     boost::shared_ptr<ObjectHandler::Object> RepositoryXL::loadObject(const std::string &objectID, 
             const std::string &path) {
 

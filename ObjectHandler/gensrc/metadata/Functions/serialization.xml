@@ -12,7 +12,7 @@
   <Functions>
 
     <Procedure name='ohObjectSave'>
-      <description>delete orphaned objects from repository</description>
+      <description>serialize a list of objects to given file</description>
       <alias>ObjectHandler::Repository::instance().saveObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
@@ -22,12 +22,38 @@
           <Parameter name='objectList'>
             <type>ObjectHandler::Object</type>
             <tensorRank>vector</tensorRank>
-            <description>also delete permanent objects (default FALSE)</description>
+            <description>list of objects to be serialized</description>
           </Parameter>
           <Parameter name='path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>also delete permanent objects (default FALSE)</description>
+            <description>file to which objects are to be serialized</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectSave2'>
+      <description>experimental re-implementation of ohObjectSave</description>
+      <alias>ObjectHandler::Repository::instance().saveObject2</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectList'>
+            <type>ObjectHandler::Object</type>
+            <tensorRank>vector</tensorRank>
+            <description>list of objects to be serialized</description>
+          </Parameter>
+          <Parameter name='path'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>file to which objects are to be serialized</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -38,7 +64,7 @@
     </Procedure>
 
     <Procedure name='ohObjectLoad'>
-      <description>delete orphaned objects from repository</description>
+      <description>deserialize a list of objects</description>
       <alias>ObjectHandler::Repository::instance().loadObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
@@ -48,12 +74,12 @@
           <Parameter name='idList'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>also delete permanent objects (default FALSE)</description>
+            <description>list of objects to be deserialized</description>
           </Parameter>
           <Parameter name='path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>also delete permanent objects (default FALSE)</description>
+            <description>file from which objects are to be deserialized</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -63,6 +89,26 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='ohObjectLoad2'>
+      <description>experimental re-implementation of ohObjectLoad</description>
+      <alias>ObjectHandler::Repository::instance().loadObject2</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='path'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>file from which objects are to be deserialized</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
 
   </Functions>
 

@@ -138,20 +138,29 @@ namespace ObjectHandler {
         return objectIDs;
     }
 
+	void Repository::saveObject(const boost::shared_ptr<ObjectHandler::Object> &object, const std::string &path) {
+		ObjectHandler::SerializationFactory::instance().saveObject(object, path.c_str());   
+	}
+
 	void Repository::saveObject(const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList, const std::string &path) {
 		ObjectHandler::SerializationFactory::instance().saveObject(objectList, path.c_str());   
 	}	
-	void Repository::saveObject(const boost::shared_ptr<ObjectHandler::Object> &object, const std::string &path) {
-		ObjectHandler::SerializationFactory::instance().saveObject(object, path.c_str());   
+
+	void Repository::saveObject2(const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList, const std::string &path) {
+		ObjectHandler::SerializationFactory::instance().saveObject2(objectList, path.c_str());   
+	}	
+
+	boost::shared_ptr<ObjectHandler::Object> Repository::loadObject(const std::string &objectID, const std::string &path) {
+        return ObjectHandler::SerializationFactory::instance().loadObject(objectID, path.c_str());			
 	}
 
 	std::vector<boost::shared_ptr<ObjectHandler::Object> > Repository::loadObject(const std::vector<std::string> &idList, const std::string &path) {
         return ObjectHandler::SerializationFactory::instance().loadObject(idList, path.c_str());			
     }
 
-	boost::shared_ptr<ObjectHandler::Object> Repository::loadObject(const std::string &objectID, const std::string &path) {
-        return ObjectHandler::SerializationFactory::instance().loadObject(objectID, path.c_str());			
-	}
+	std::vector<boost::shared_ptr<ObjectHandler::Object> > Repository::loadObject2(const std::string &path) {
+        return ObjectHandler::SerializationFactory::instance().loadObject2(path.c_str());			
+    }
 
 
 }
