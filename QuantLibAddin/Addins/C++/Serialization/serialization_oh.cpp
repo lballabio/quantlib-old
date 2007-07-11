@@ -16,6 +16,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <boost/config.hpp>
+#if defined BOOST_MSVC
+#pragma warning(disable : 4267)
+#endif
+
 #include <Addins/C++/Serialization/serialization_oh.hpp>
 #include <oh/ValueObjects/vo_range.hpp>
 #include <boost/serialization/shared_ptr.hpp>

@@ -17,6 +17,8 @@
 */
 
 #include <Addins/C++/addincpp.hpp>
+#include <oh/ohdefines.hpp>
+#include <oh/auto_link.hpp>
 
 using namespace QuantLibAddinCpp;
 

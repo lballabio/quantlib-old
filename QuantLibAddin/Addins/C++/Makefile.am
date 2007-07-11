@@ -3,6 +3,9 @@ AM_CPPFLAGS = -I${top_srcdir}
 AM_LDFLAGS = -release $(PACKAGE_VERSION)
 includedir = $(prefix)/include/qlo/Addins/C++
 
+EXTRA_DIST = \
+    AddinCpp_vc8.vcproj
+
 if BUILD_CPP
 noinst_LTLIBRARIES = libQuantLibAddinCpp.la
 else

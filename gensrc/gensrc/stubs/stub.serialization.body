@@ -1,3 +1,9 @@
+
+#include <boost/config.hpp>
+#if defined BOOST_MSVC
+#pragma warning(disable : 4267)
+#endif
+
 #include <%(addinDirectory)s/Serialization/serialization_%(categoryName)s.hpp>
 #include <%(libRootDirectory)s/ValueObjects/vo_%(categoryName)s.hpp>
 #include <boost/serialization/shared_ptr.hpp>
