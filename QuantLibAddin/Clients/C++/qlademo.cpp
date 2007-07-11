@@ -18,7 +18,10 @@
 
 #include <Addins/C++/addincpp.hpp>
 #include <oh/ohdefines.hpp>
+#if defined BOOST_MSVC
 #include <oh/auto_link.hpp>
+#endif
+
 
 using namespace QuantLibAddinCpp;
 
