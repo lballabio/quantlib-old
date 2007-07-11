@@ -104,12 +104,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='YieldCurve'  exampleValue='EURYC'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
-          </Parameter>
+            <Parameter name='YieldCurve' exampleValue='EURYC'>
+                <type>QuantLib::YieldTermStructure</type>
+                <superType>underlyingClass</superType>
+                <tensorRank>scalar</tensorRank>
+                <description>discounting yield term structure object ID</description>
+            </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -127,12 +127,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
-          </Parameter>
+            <Parameter name='YieldCurve' exampleValue='EURYC'>
+                <type>QuantLib::YieldTermStructure</type>
+                <superType>underlyingClass</superType>
+                <tensorRank>scalar</tensorRank>
+                <description>discounting yield term structure object ID</description>
+            </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -150,12 +150,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
-          </Parameter>
+            <Parameter name='YieldCurve' exampleValue='EURYC'>
+                <type>QuantLib::YieldTermStructure</type>
+                <superType>underlyingClass</superType>
+                <tensorRank>scalar</tensorRank>
+                <description>discounting yield term structure object ID</description>
+            </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>

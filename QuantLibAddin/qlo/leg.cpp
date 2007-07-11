@@ -57,15 +57,15 @@ namespace QuantLibAddin {
         return QuantLib::CashFlows::maturityDate(leg_);
     }
 
-    QuantLib::Real Leg::npv(const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS) const {
+    QuantLib::Real Leg::npv(const QuantLib::YieldTermStructure& hYTS) const {
         return QuantLib::CashFlows::npv(leg_, hYTS);
     }
 
-    QuantLib::Real Leg::bps(const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS) const {
+    QuantLib::Real Leg::bps(const QuantLib::YieldTermStructure& hYTS) const {
         return QuantLib::CashFlows::bps(leg_, hYTS);
     }
 
-    QuantLib::Rate Leg::atmRate(const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS) const {
+    QuantLib::Rate Leg::atmRate(const QuantLib::YieldTermStructure& hYTS) const {
         return QuantLib::CashFlows::atmRate(leg_, hYTS);
     }
 
