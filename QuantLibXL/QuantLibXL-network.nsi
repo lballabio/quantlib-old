@@ -140,6 +140,7 @@ Section
     SetOutPath "$INSTDIR\xll"
     File "xll\QuantLibXLDynamic-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
     File "..\ObjectHandler\xll\ObjectHandler-xll-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "..\SensitivityAnalysis\saohxll\xll\saohxll-vc*-mt-0_1_9.xll"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r /x Drafts "Workbooks\*.xls"
