@@ -121,6 +121,8 @@ Bonds:
   (IT0003543847, XS0228052402 and IT0006527060)
 - MainChecks.xls: contains checks for a fixed coupon bond, a floating rate
   coupon bond, and cms coupon bond
+-added the following new workbooks, where digital bond are decomposed in simple digital
+ ibor and/or cms legs: IT0001278404.xls, IT0003730626.xls, XS0194140785.xls, XS0195731681.xls, XS0228052402.xls
 
 Calibrations:
 - Workbooks\CmsCalibrations\MultiIndexSingleMeanRevCalibration.xls and

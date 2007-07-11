@@ -272,15 +272,11 @@ CRISTINA
 
 ---
 CHIARA
-- mimic Grisafi session avery day all day long on IngFin workstation
-- Digital Bond contructor (1.0d|10dd|Wip)
-  - decompose each deal in different legs: one wbk per deal
+- mimic Grisafi session avery day all day long on IngFin workstation (Done see results in: X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\StructuredBonds)
+- Digital Bond contructor (5.0d|10dd|Wip)
+  - decompose each deal in different legs: one wbk per deal (Done)
   - digitalcmsratebond constructor + digitalfloatingratebond constructor
     without cap and floor
-  - review digitalcoupon with cristina so to add capped and floored ibor/swap
-    indexes
-  - review digitalcmsratebond constructor + digitalfloatingratebond constructor
-    so to add capped and floored ibor/swap indexes
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g.
   IT0003650998.pdf) (0d|1d)
   -prospectus added in Drafts
@@ -291,8 +287,9 @@ CHIARA
   - sent request to desktop service so to add the user to CABOTOXL
   - arrange session with nando
 - markedata\BloombergFeed (Maurizio Pietrini)
-  - waiting for BBG worksheets from Maurizio (Maurizio is starting on 5th or
-    6th)
+  - 7/6 clarified once again mkt data feed for interestratequotesfeed.xls
+  - 7/9 received first workbook interestratequotesfedd.xls incompleted from Maurizio
+  - 7/10 replied with feedback on the first workbook
 - zspread/yield inversion (lehman's paper values can optionally be reproduces
   in the testsuite)
 - zerospreadedtermstructure: daycounter bug
