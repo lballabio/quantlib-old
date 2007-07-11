@@ -17,7 +17,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCDemo", "Clients\C\Cl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCppDemo", "Clients\C++\ClientCppDemo_vc7.vcproj", "{88B70320-57E9-47B5-9298-881B79789139}"
 	ProjectSection(ProjectDependencies) = postProject
-		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F} = {A6C5CC98-9224-4684-AA25-FB1A7B674A6F}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibObjects", "QuantLibObjects_vc7.vcproj", "{6A4CC8C6-BE43-4571-B261-037E56A7A38D}"
@@ -51,6 +51,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qlgensrc", "gensrc\qlgensrc
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinCpp", "Addins\C++\AddinCpp_vc7.vcproj", "{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		All = All
@@ -60,6 +65,8 @@ Global
 		Release = Release
 		Release CRTDLL = Release CRTDLL
 		Release SingleThread = Release SingleThread
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{FE5EE378-AD4E-4B32-8030-C089D7067336}.All.ActiveCfg = Release CRTDLL|Win32
@@ -193,6 +200,20 @@ Global
 		{19C36A53-51F2-4951-9A38-CCF6A250814F}.Release CRTDLL.Build.0 = All|Win32
 		{19C36A53-51F2-4951-9A38-CCF6A250814F}.Release SingleThread.ActiveCfg = All|Win32
 		{19C36A53-51F2-4951-9A38-CCF6A250814F}.Release SingleThread.Build.0 = All|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.All.ActiveCfg = Release|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.All.Build.0 = Release|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Debug.ActiveCfg = Debug|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Debug.Build.0 = Debug|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Debug SingleThread.ActiveCfg = Debug SingleThread|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Debug SingleThread.Build.0 = Debug SingleThread|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Release.ActiveCfg = Release|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Release.Build.0 = Release|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Release SingleThread.ActiveCfg = Release SingleThread|Win32
+		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}.Release SingleThread.Build.0 = Release SingleThread|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
