@@ -36,6 +36,7 @@ noinst_HEADERS = \
     serialization_marketmodelevolvers.hpp \
     serialization_marketmodels.hpp \
     serialization_mathf.hpp \
+    serialization_oh.hpp \
     serialization_optimization.hpp \
     serialization_options.hpp \
     serialization_payoffs.hpp \
@@ -88,6 +89,7 @@ libSerialization_la_SOURCES = \
     serialization_marketmodelevolvers.cpp \
     serialization_marketmodels.cpp \
     serialization_mathf.cpp \
+    serialization_oh.cpp \
     serialization_optimization.cpp \
     serialization_options.cpp \
     serialization_payoffs.cpp \

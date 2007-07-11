@@ -11,6 +11,7 @@ include_HEADERS = \
     object.hpp \
     ohdefines.hpp \
     other.hpp \
+    range.hpp \
     repository.hpp \
     serializationfactory.hpp \
     singleton.hpp \

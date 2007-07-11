@@ -66,6 +66,7 @@ AC_CONFIG_FILES([
     Makefile
     oh/Conversions/Makefile
     oh/Enumerations/Makefile
+    oh/ValueObjects/Makefile
     oh/Makefile
     ohxl/Makefile
     xlsdk/Makefile ])

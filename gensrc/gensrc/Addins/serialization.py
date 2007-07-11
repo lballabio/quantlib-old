@@ -193,8 +193,9 @@ def generateSerialization(addin, path):
         cppFile = '%sSerialization/serialization_%s.cpp' % ( addin.rootPath_, cat.name() )
         outputfile.OutputFile(addin, cppFile, addin.copyright_, bufferBody)
     allBuffer =  addin.bufferSerializeAll_.text() % {
+        'addinDirectory' : includeGuard,
         'allIncludes' : allIncludes,
-        'addinDirectory' : includeGuard }
+        'path' : path }
     allFilename = addin.rootPath_ + 'Serialization/serialization_all.hpp'
     outputfile.OutputFile(addin, allFilename, addin.copyright_, allBuffer)
 

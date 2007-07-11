@@ -3,6 +3,7 @@ SUBDIRS = \
     gensrc \
     oh/Conversions \
     oh/Enumerations \
+    oh/ValueObjects \
     oh \
     ohxl \
     xlsdk \
