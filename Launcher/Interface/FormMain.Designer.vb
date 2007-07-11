@@ -39,6 +39,8 @@ Partial Class FormMain
         Me.lblUserConfigured = New System.Windows.Forms.Label
         Me.lstPreconfigured = New System.Windows.Forms.ListBox
         Me.grpStartup = New System.Windows.Forms.GroupBox
+        Me.txtEvaluationDate = New System.Windows.Forms.TextBox
+        Me.cbSetEvaluationDate = New System.Windows.Forms.CheckBox
         Me.cbCalibrateCms = New System.Windows.Forms.CheckBox
         Me.cbStaticData = New System.Windows.Forms.CheckBox
         Me.cbFitCMS = New System.Windows.Forms.CheckBox
@@ -52,6 +54,7 @@ Partial Class FormMain
         Me.btnLaunch = New System.Windows.Forms.Button
         Me.tcLauncher = New System.Windows.Forms.TabControl
         Me.tpEnvironments = New System.Windows.Forms.TabPage
+        Me.lblBuildNumber = New System.Windows.Forms.Label
         Me.grpFeeds = New System.Windows.Forms.GroupBox
         Me.cbBloomberg = New System.Windows.Forms.CheckBox
         Me.cbReuters = New System.Windows.Forms.CheckBox
@@ -95,7 +98,6 @@ Partial Class FormMain
         Me.lblDomain = New System.Windows.Forms.Label
         Me.lblUserName = New System.Windows.Forms.Label
         Me.lblVersion = New System.Windows.Forms.Label
-        Me.lblBuildNumber = New System.Windows.Forms.Label
         Me.grpEnvironment.SuspendLayout()
         Me.tstEnvironment.SuspendLayout()
         Me.grpStartup.SuspendLayout()
@@ -111,7 +113,7 @@ Partial Class FormMain
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(209, 364)
+        Me.btnClose.Location = New System.Drawing.Point(251, 412)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 23)
         Me.btnClose.TabIndex = 1
@@ -186,7 +188,7 @@ Partial Class FormMain
         Me.grpEnvironment.Controls.Add(Me.lblPreconfigured)
         Me.grpEnvironment.Location = New System.Drawing.Point(6, 7)
         Me.grpEnvironment.Name = "grpEnvironment"
-        Me.grpEnvironment.Size = New System.Drawing.Size(190, 318)
+        Me.grpEnvironment.Size = New System.Drawing.Size(190, 355)
         Me.grpEnvironment.TabIndex = 16
         Me.grpEnvironment.TabStop = False
         Me.grpEnvironment.Text = "Environments"
@@ -197,7 +199,7 @@ Partial Class FormMain
         Me.tstEnvironment.Dock = System.Windows.Forms.DockStyle.None
         Me.tstEnvironment.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.tstEnvironment.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnNew, Me.btnCopy, Me.btnDelete, Me.btnClear, Me.btnRename})
-        Me.tstEnvironment.Location = New System.Drawing.Point(9, 290)
+        Me.tstEnvironment.Location = New System.Drawing.Point(19, 309)
         Me.tstEnvironment.Name = "tstEnvironment"
         Me.tstEnvironment.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
         Me.tstEnvironment.Size = New System.Drawing.Size(118, 25)
@@ -252,7 +254,7 @@ Partial Class FormMain
         'lstUserconfigured
         '
         Me.lstUserconfigured.FormattingEnabled = True
-        Me.lstUserconfigured.Location = New System.Drawing.Point(19, 152)
+        Me.lstUserconfigured.Location = New System.Drawing.Point(19, 167)
         Me.lstUserconfigured.Name = "lstUserconfigured"
         Me.lstUserconfigured.Size = New System.Drawing.Size(160, 134)
         Me.lstUserconfigured.Sorted = True
@@ -261,7 +263,7 @@ Partial Class FormMain
         'lblUserConfigured
         '
         Me.lblUserConfigured.AutoSize = True
-        Me.lblUserConfigured.Location = New System.Drawing.Point(6, 136)
+        Me.lblUserConfigured.Location = New System.Drawing.Point(6, 151)
         Me.lblUserConfigured.Name = "lblUserConfigured"
         Me.lblUserConfigured.Size = New System.Drawing.Size(83, 13)
         Me.lblUserConfigured.TabIndex = 5
@@ -278,6 +280,8 @@ Partial Class FormMain
         '
         'grpStartup
         '
+        Me.grpStartup.Controls.Add(Me.cbSetEvaluationDate)
+        Me.grpStartup.Controls.Add(Me.txtEvaluationDate)
         Me.grpStartup.Controls.Add(Me.cbCalibrateCms)
         Me.grpStartup.Controls.Add(Me.cbStaticData)
         Me.grpStartup.Controls.Add(Me.cbFitCMS)
@@ -288,17 +292,36 @@ Partial Class FormMain
         Me.grpStartup.Controls.Add(Me.cbCapVolBootstrap)
         Me.grpStartup.Controls.Add(Me.cbLoadMurexYC)
         Me.grpStartup.Controls.Add(Me.cbYCBootstrap)
-        Me.grpStartup.Location = New System.Drawing.Point(202, 6)
+        Me.grpStartup.Location = New System.Drawing.Point(202, 7)
         Me.grpStartup.Name = "grpStartup"
-        Me.grpStartup.Size = New System.Drawing.Size(190, 244)
+        Me.grpStartup.Size = New System.Drawing.Size(227, 282)
         Me.grpStartup.TabIndex = 19
         Me.grpStartup.TabStop = False
         Me.grpStartup.Text = "Startup Actions"
         '
+        'cbSetEvaluationDate
+        '
+        Me.cbSetEvaluationDate.AutoSize = True
+        Me.cbSetEvaluationDate.Location = New System.Drawing.Point(10, 29)
+        Me.cbSetEvaluationDate.Name = "cbSetEvaluationDate"
+        Me.cbSetEvaluationDate.Size = New System.Drawing.Size(121, 17)
+        Me.cbSetEvaluationDate.TabIndex = 11
+        Me.cbSetEvaluationDate.Text = "Set Evaluation Date"
+        Me.cbSetEvaluationDate.UseVisualStyleBackColor = True
+        '
+        'txtEvaluationDate
+        '
+        Me.txtEvaluationDate.Location = New System.Drawing.Point(137, 26)
+        Me.txtEvaluationDate.Name = "txtEvaluationDate"
+        Me.txtEvaluationDate.Size = New System.Drawing.Size(75, 20)
+        Me.txtEvaluationDate.TabIndex = 10
+        Me.txtEvaluationDate.Text = "10/07/2007"
+        Me.txtEvaluationDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'cbCalibrateCms
         '
         Me.cbCalibrateCms.AutoSize = True
-        Me.cbCalibrateCms.Location = New System.Drawing.Point(10, 111)
+        Me.cbCalibrateCms.Location = New System.Drawing.Point(10, 144)
         Me.cbCalibrateCms.Name = "cbCalibrateCms"
         Me.cbCalibrateCms.Size = New System.Drawing.Size(129, 17)
         Me.cbCalibrateCms.TabIndex = 9
@@ -308,7 +331,7 @@ Partial Class FormMain
         'cbStaticData
         '
         Me.cbStaticData.AutoSize = True
-        Me.cbStaticData.Location = New System.Drawing.Point(10, 221)
+        Me.cbStaticData.Location = New System.Drawing.Point(10, 259)
         Me.cbStaticData.Name = "cbStaticData"
         Me.cbStaticData.Size = New System.Drawing.Size(157, 17)
         Me.cbStaticData.TabIndex = 8
@@ -318,7 +341,7 @@ Partial Class FormMain
         'cbFitCMS
         '
         Me.cbFitCMS.AutoSize = True
-        Me.cbFitCMS.Location = New System.Drawing.Point(10, 133)
+        Me.cbFitCMS.Location = New System.Drawing.Point(10, 167)
         Me.cbFitCMS.Name = "cbFitCMS"
         Me.cbFitCMS.Size = New System.Drawing.Size(162, 17)
         Me.cbFitCMS.TabIndex = 7
@@ -328,7 +351,7 @@ Partial Class FormMain
         'cbLoadBonds
         '
         Me.cbLoadBonds.AutoSize = True
-        Me.cbLoadBonds.Location = New System.Drawing.Point(10, 177)
+        Me.cbLoadBonds.Location = New System.Drawing.Point(10, 213)
         Me.cbLoadBonds.Name = "cbLoadBonds"
         Me.cbLoadBonds.Size = New System.Drawing.Size(83, 17)
         Me.cbLoadBonds.TabIndex = 6
@@ -338,9 +361,9 @@ Partial Class FormMain
         'cbMainChecks
         '
         Me.cbMainChecks.AutoSize = True
-        Me.cbMainChecks.Location = New System.Drawing.Point(10, 198)
+        Me.cbMainChecks.Location = New System.Drawing.Point(10, 236)
         Me.cbMainChecks.Name = "cbMainChecks"
-        Me.cbMainChecks.Size = New System.Drawing.Size(111, 17)
+        Me.cbMainChecks.Size = New System.Drawing.Size(117, 17)
         Me.cbMainChecks.TabIndex = 6
         Me.cbMainChecks.Text = "Open Main Checks"
         Me.cbMainChecks.UseVisualStyleBackColor = True
@@ -348,7 +371,7 @@ Partial Class FormMain
         'cbSwapSmileBootstrap
         '
         Me.cbSwapSmileBootstrap.AutoSize = True
-        Me.cbSwapSmileBootstrap.Location = New System.Drawing.Point(10, 89)
+        Me.cbSwapSmileBootstrap.Location = New System.Drawing.Point(10, 121)
         Me.cbSwapSmileBootstrap.Name = "cbSwapSmileBootstrap"
         Me.cbSwapSmileBootstrap.Size = New System.Drawing.Size(173, 17)
         Me.cbSwapSmileBootstrap.TabIndex = 5
@@ -358,7 +381,7 @@ Partial Class FormMain
         'cbIndexesTimeSeries
         '
         Me.cbIndexesTimeSeries.AutoSize = True
-        Me.cbIndexesTimeSeries.Location = New System.Drawing.Point(10, 155)
+        Me.cbIndexesTimeSeries.Location = New System.Drawing.Point(10, 190)
         Me.cbIndexesTimeSeries.Name = "cbIndexesTimeSeries"
         Me.cbIndexesTimeSeries.Size = New System.Drawing.Size(148, 17)
         Me.cbIndexesTimeSeries.TabIndex = 4
@@ -368,7 +391,7 @@ Partial Class FormMain
         'cbCapVolBootstrap
         '
         Me.cbCapVolBootstrap.AutoSize = True
-        Me.cbCapVolBootstrap.Location = New System.Drawing.Point(10, 67)
+        Me.cbCapVolBootstrap.Location = New System.Drawing.Point(10, 98)
         Me.cbCapVolBootstrap.Name = "cbCapVolBootstrap"
         Me.cbCapVolBootstrap.Size = New System.Drawing.Size(142, 17)
         Me.cbCapVolBootstrap.TabIndex = 2
@@ -378,7 +401,7 @@ Partial Class FormMain
         'cbLoadMurexYC
         '
         Me.cbLoadMurexYC.AutoSize = True
-        Me.cbLoadMurexYC.Location = New System.Drawing.Point(10, 45)
+        Me.cbLoadMurexYC.Location = New System.Drawing.Point(10, 75)
         Me.cbLoadMurexYC.Name = "cbLoadMurexYC"
         Me.cbLoadMurexYC.Size = New System.Drawing.Size(160, 17)
         Me.cbLoadMurexYC.TabIndex = 1
@@ -388,7 +411,7 @@ Partial Class FormMain
         'cbYCBootstrap
         '
         Me.cbYCBootstrap.AutoSize = True
-        Me.cbYCBootstrap.Location = New System.Drawing.Point(10, 23)
+        Me.cbYCBootstrap.Location = New System.Drawing.Point(10, 52)
         Me.cbYCBootstrap.Name = "cbYCBootstrap"
         Me.cbYCBootstrap.Size = New System.Drawing.Size(174, 17)
         Me.cbYCBootstrap.TabIndex = 0
@@ -397,7 +420,7 @@ Partial Class FormMain
         '
         'btnLaunch
         '
-        Me.btnLaunch.Location = New System.Drawing.Point(128, 364)
+        Me.btnLaunch.Location = New System.Drawing.Point(146, 412)
         Me.btnLaunch.Name = "btnLaunch"
         Me.btnLaunch.Size = New System.Drawing.Size(75, 23)
         Me.btnLaunch.TabIndex = 20
@@ -414,29 +437,43 @@ Partial Class FormMain
         Me.tcLauncher.Location = New System.Drawing.Point(3, 3)
         Me.tcLauncher.Name = "tcLauncher"
         Me.tcLauncher.SelectedIndex = 0
-        Me.tcLauncher.Size = New System.Drawing.Size(403, 357)
+        Me.tcLauncher.Size = New System.Drawing.Size(465, 403)
         Me.tcLauncher.TabIndex = 21
         '
         'tpEnvironments
         '
+        Me.tpEnvironments.Controls.Add(Me.lblBuildNumber)
         Me.tpEnvironments.Controls.Add(Me.grpFeeds)
         Me.tpEnvironments.Controls.Add(Me.grpEnvironment)
         Me.tpEnvironments.Controls.Add(Me.grpStartup)
         Me.tpEnvironments.Location = New System.Drawing.Point(4, 22)
         Me.tpEnvironments.Name = "tpEnvironments"
         Me.tpEnvironments.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpEnvironments.Size = New System.Drawing.Size(395, 331)
+        Me.tpEnvironments.Size = New System.Drawing.Size(457, 377)
         Me.tpEnvironments.TabIndex = 0
         Me.tpEnvironments.Text = "Environments"
         Me.tpEnvironments.UseVisualStyleBackColor = True
+        '
+        'lblBuildNumber
+        '
+        Me.lblBuildNumber.AutoSize = True
+        Me.lblBuildNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblBuildNumber.ForeColor = System.Drawing.Color.DimGray
+        Me.lblBuildNumber.Location = New System.Drawing.Point(309, 362)
+        Me.lblBuildNumber.MinimumSize = New System.Drawing.Size(120, 0)
+        Me.lblBuildNumber.Name = "lblBuildNumber"
+        Me.lblBuildNumber.Size = New System.Drawing.Size(120, 12)
+        Me.lblBuildNumber.TabIndex = 22
+        Me.lblBuildNumber.Text = "version 0.0.0.0"
+        Me.lblBuildNumber.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'grpFeeds
         '
         Me.grpFeeds.Controls.Add(Me.cbBloomberg)
         Me.grpFeeds.Controls.Add(Me.cbReuters)
-        Me.grpFeeds.Location = New System.Drawing.Point(202, 256)
+        Me.grpFeeds.Location = New System.Drawing.Point(202, 293)
         Me.grpFeeds.Name = "grpFeeds"
-        Me.grpFeeds.Size = New System.Drawing.Size(190, 69)
+        Me.grpFeeds.Size = New System.Drawing.Size(250, 69)
         Me.grpFeeds.TabIndex = 20
         Me.grpFeeds.TabStop = False
         Me.grpFeeds.Text = "Feeds"
@@ -487,7 +524,7 @@ Partial Class FormMain
         Me.tpPaths.Location = New System.Drawing.Point(4, 22)
         Me.tpPaths.Name = "tpPaths"
         Me.tpPaths.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpPaths.Size = New System.Drawing.Size(395, 331)
+        Me.tpPaths.Size = New System.Drawing.Size(457, 377)
         Me.tpPaths.TabIndex = 1
         Me.tpPaths.Text = "Paths"
         Me.tpPaths.UseVisualStyleBackColor = True
@@ -625,7 +662,7 @@ Partial Class FormMain
         Me.tpAddins.Location = New System.Drawing.Point(4, 22)
         Me.tpAddins.Name = "tpAddins"
         Me.tpAddins.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpAddins.Size = New System.Drawing.Size(395, 331)
+        Me.tpAddins.Size = New System.Drawing.Size(457, 377)
         Me.tpAddins.TabIndex = 2
         Me.tpAddins.Text = "Addins"
         Me.tpAddins.UseVisualStyleBackColor = True
@@ -709,7 +746,7 @@ Partial Class FormMain
         Me.tpFeeds.Location = New System.Drawing.Point(4, 22)
         Me.tpFeeds.Name = "tpFeeds"
         Me.tpFeeds.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpFeeds.Size = New System.Drawing.Size(395, 331)
+        Me.tpFeeds.Size = New System.Drawing.Size(457, 377)
         Me.tpFeeds.TabIndex = 3
         Me.tpFeeds.Text = "Feeds"
         Me.tpFeeds.UseVisualStyleBackColor = True
@@ -777,7 +814,7 @@ Partial Class FormMain
         Me.tpAbout.Location = New System.Drawing.Point(4, 22)
         Me.tpAbout.Name = "tpAbout"
         Me.tpAbout.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpAbout.Size = New System.Drawing.Size(395, 331)
+        Me.tpAbout.Size = New System.Drawing.Size(457, 377)
         Me.tpAbout.TabIndex = 4
         Me.tpAbout.Text = "About"
         Me.tpAbout.UseVisualStyleBackColor = True
@@ -854,25 +891,11 @@ Partial Class FormMain
         Me.lblVersion.TabIndex = 0
         Me.lblVersion.Text = "Launcher Version"
         '
-        'lblBuildNumber
-        '
-        Me.lblBuildNumber.AutoSize = True
-        Me.lblBuildNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBuildNumber.ForeColor = System.Drawing.Color.DimGray
-        Me.lblBuildNumber.Location = New System.Drawing.Point(286, 375)
-        Me.lblBuildNumber.MinimumSize = New System.Drawing.Size(120, 0)
-        Me.lblBuildNumber.Name = "lblBuildNumber"
-        Me.lblBuildNumber.Size = New System.Drawing.Size(120, 12)
-        Me.lblBuildNumber.TabIndex = 22
-        Me.lblBuildNumber.Text = "version 0.0.0.0"
-        Me.lblBuildNumber.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(411, 389)
-        Me.Controls.Add(Me.lblBuildNumber)
+        Me.ClientSize = New System.Drawing.Size(439, 438)
         Me.Controls.Add(Me.tcLauncher)
         Me.Controls.Add(Me.btnLaunch)
         Me.Controls.Add(Me.btnClose)
@@ -888,6 +911,7 @@ Partial Class FormMain
         Me.grpStartup.PerformLayout()
         Me.tcLauncher.ResumeLayout(False)
         Me.tpEnvironments.ResumeLayout(False)
+        Me.tpEnvironments.PerformLayout()
         Me.grpFeeds.ResumeLayout(False)
         Me.grpFeeds.PerformLayout()
         Me.tpPaths.ResumeLayout(False)
@@ -901,7 +925,6 @@ Partial Class FormMain
         Me.tpAbout.ResumeLayout(False)
         Me.tpAbout.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnClose As System.Windows.Forms.Button
@@ -980,4 +1003,6 @@ Partial Class FormMain
     Friend WithEvents lblHardDisk As System.Windows.Forms.Label
     Friend WithEvents lblDomain As System.Windows.Forms.Label
     Friend WithEvents btnLaunchExcel As System.Windows.Forms.Button
+    Friend WithEvents txtEvaluationDate As System.Windows.Forms.TextBox
+    Friend WithEvents cbSetEvaluationDate As System.Windows.Forms.CheckBox
 End Class

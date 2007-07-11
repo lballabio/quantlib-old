@@ -15,6 +15,7 @@
         <Addin>QuantLibXL-vc80-mt-s-0_8_0.xll</Addin>
       </AddinList>
       <StartupActions>
+        <SetEvaluationDate>false</SetEvaluationDate>
         <YieldCurveBootstrap>true</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
@@ -39,6 +40,7 @@
         <Addin>QuantLibXL-vc80-mt-s-0_9_0.xll</Addin>
       </AddinList>
       <StartupActions>
+        <SetEvaluationDate>false</SetEvaluationDate>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
@@ -65,6 +67,7 @@
         <Addin>saohxll-vc80-mt-0_1_9.xll</Addin>
       </AddinList>
       <StartupActions>
+        <SetEvaluationDate>false</SetEvaluationDate>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>

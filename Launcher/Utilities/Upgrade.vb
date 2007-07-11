@@ -85,7 +85,9 @@ Module Upgrade
 
     Private Sub getVersionNumber()
 
-        If r_.keyExists("QuantLibXL Launcher\LauncherVersion9") Then
+        If r_.keyExists("QuantLibXL Launcher\LauncherVersion10") Then
+            registryVersion_ = 10
+        ElseIf r_.keyExists("QuantLibXL Launcher\LauncherVersion9") Then
             registryVersion_ = 9
         ElseIf r_.keyExists("QuantLibXL Launcher\LauncherVersion8") Then
             registryVersion_ = 8
@@ -109,12 +111,41 @@ Module Upgrade
         If registryVersion_ = 6 Then upgradeVersion6to7()
         If registryVersion_ = 7 Then upgradeVersion7to8()
         If registryVersion_ = 8 Then upgradeVersion8to9()
+        If registryVersion_ = 9 Then upgradeVersion9to10()
 
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''''''''''
     ' upgrade registry from previous launcher versions
     ''''''''''''''''''''''''''''''''''''''''''''''''''
+
+    Private Sub upgradeVersion9to10()
+        r_.copyKey("QuantLibXL Launcher\LauncherVersion9", "QuantLibXL Launcher\LauncherVersion10")
+        ' The settings just copied from version 8 may or may not contain value ExcelPath
+        ' depending on whether the user picked up an incremental upgrade of version 8.
+        ' If the new registry key doesn't contain value ExcelPath then initialize it.
+        If Not r_.valueExists("QuantLibXL Launcher\LauncherVersion10\Configuration", "ExcelPath") Then
+            r_.setValue("QuantLibXL Launcher\LauncherVersion10\Configuration", _
+                "ExcelPath", deriveDefaultExcelPath())
+        End If
+
+        Dim envKeyName As String
+        Dim rootName As String
+        rootName = "QuantLibXL Launcher\LauncherVersion10\Configuration\StartupActionsList"
+        For Each keyName As String In r_.subKeyNames(rootName)
+            envKeyName = rootName & "\" & keyName & "\SetEvaluationDate"
+            r_.createKey(envKeyName)
+            r_.setValue(rootName & "\" & keyName, "SetEvaluationDate", False)
+        Next
+        rootName = "QuantLibXL Launcher\LauncherVersion10\Environments"
+        For Each keyName As String In r_.subKeyNames(rootName)
+            envKeyName = rootName & "\" & keyName & "\StartupActions\" & "\SetEvaluationDate"
+            r_.createKey(envKeyName)
+            r_.setValue(rootName & "\" & keyName & "\StartupActions", "SetEvaluationDate", False)
+        Next
+        registryVersion_ = 10
+
+    End Sub
 
     Private Sub upgradeVersion8to9()
         r_.copyKey("QuantLibXL Launcher\LauncherVersion8", "QuantLibXL Launcher\LauncherVersion9")

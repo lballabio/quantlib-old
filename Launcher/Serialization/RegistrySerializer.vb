@@ -71,7 +71,7 @@ Namespace QuantLibXL
 
             currentKeyName_ = "HKEY_CURRENT_USER\Software"
             pushKey("QuantLibXL Launcher")
-            pushKey("LauncherVersion9")
+            pushKey("LauncherVersion10")
 
         End Sub
 

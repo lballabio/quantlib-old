@@ -476,6 +476,14 @@ Public Class FormMain
     ' Events - startup actions
     ''''''''''''''''''''''''''''''''''''''''''
 
+    Private Sub cbSetEvaluationDate_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSetEvaluationDate.CheckedChanged
+        SelectedEnvironment.StartupActions.SetEvaluationDate = cbSetEvaluationDate.Checked
+    End Sub
+
+    'Private Sub txtEvaluationDate_???(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSetEvaluationDate.CheckedChanged
+    '    SelectedEnvironment.StartupActions.SetEvaluationDate = cbSetEvaluationDate.Checked
+    'End Sub
+
     Private Sub cbYCBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbYCBootstrap.CheckedChanged
         SelectedEnvironment.StartupActions.YieldCurveBootstrap = cbYCBootstrap.Checked
     End Sub
@@ -1046,6 +1054,7 @@ Public Class FormMain
         txtUserConfig.Clear()
 
         ' Startup actions
+        cbSetEvaluationDate.Checked = False
         cbYCBootstrap.Checked = False
         cbLoadMurexYC.Checked = False
         cbCapVolBootstrap.Checked = False
@@ -1077,6 +1086,7 @@ Public Class FormMain
         txtUserConfig.Text = SelectedEnvironment.UserConfig
 
         ' Startup actions
+        cbSetEvaluationDate.Checked = SelectedEnvironment.StartupActions.SetEvaluationDate
         cbYCBootstrap.Checked = SelectedEnvironment.StartupActions.YieldCurveBootstrap
         cbLoadMurexYC.Checked = SelectedEnvironment.StartupActions.LoadMurexYieldCurve
         cbCapVolBootstrap.Checked = SelectedEnvironment.StartupActions.CapVolBootstrap
@@ -1148,4 +1158,7 @@ Public Class FormMain
 
     End Function
 
+    Private Sub grpEnvironment_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles grpEnvironment.Enter
+
+    End Sub
 End Class

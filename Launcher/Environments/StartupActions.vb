@@ -26,6 +26,8 @@ Namespace QuantLibXL
 
         Private name_ As String = "StartupActions"
 
+        Private setEvaluationDate_ As Boolean
+        Private evaluationDateValue_ As String
         Private ycBootstrap_ As Boolean
         Private loadMurexYC_ As Boolean
         Private capVolBootstrap_ As Boolean
@@ -40,6 +42,8 @@ Namespace QuantLibXL
 
         Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
 
+            serializer.serializeProperty(setEvaluationDate_, "SetEvaluationDate")
+            'serializer.serializeProperty(evaluationDateValue_, "EvaluationDate")
             serializer.serializeProperty(ycBootstrap_, "YieldCurveBootstrap")
             serializer.serializeProperty(loadMurexYC_, "LoadMurexYieldCurve")
             serializer.serializeProperty(capVolBootstrap_, "CapVolBootstrap")
@@ -76,6 +80,29 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
         ' properties
         ''''''''''''''''''''''''''''''''''''''''''
+        Public Property EvaluationDate() As String
+
+            Get
+                EvaluationDate = evaluationDateValue_
+            End Get
+
+            Set(ByVal value As String)
+                evaluationDateValue_ = value
+            End Set
+
+        End Property
+
+        Public Property SetEvaluationDate() As Boolean
+
+            Get
+                SetEvaluationDate = setEvaluationDate_
+            End Get
+
+            Set(ByVal value As Boolean)
+                setEvaluationDate_ = value
+            End Set
+
+        End Property
 
         Public Property YieldCurveBootstrap() As Boolean
 

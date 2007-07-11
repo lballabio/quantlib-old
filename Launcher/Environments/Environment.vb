@@ -42,10 +42,12 @@ Namespace QuantLibXL
         ' QUANTLIBXL_LAUNCH2 is for Framework version 6.
         ' QUANTLIBXL_LAUNCH7 is for Framework version 7.
         ' QUANTLIBXL_LAUNCH8 is for Framework version 8.
+        ' QUANTLIBXL_LAUNCH9 is for Framework version 9.
 
         Private Const QUANTLIBXL_LAUNCH2 As String = "QUANTLIBXL_LAUNCH2"
         Private Const QUANTLIBXL_LAUNCH7 As String = "QUANTLIBXL_LAUNCH7"
         Private Const QUANTLIBXL_LAUNCH8 As String = "QUANTLIBXL_LAUNCH8"
+        Private Const QUANTLIBXL_LAUNCH9 As String = "QUANTLIBXL_LAUNCH9"
 
         ' The maximum number of XLLs that the Launcher can instruct the Framework to load.
         ' At present this value is limited to 10 only because the addin names
@@ -339,6 +341,7 @@ Namespace QuantLibXL
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH2, tempFilePath)
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH7, tempFilePath)
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH8, tempFilePath)
+                System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH9, tempFilePath)
 
                 ' Spawn the subprocess
 
