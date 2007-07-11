@@ -37,7 +37,7 @@ LIBRARY:
 Launcher:
 - new action “Calibrate CMS Market” to open relevant workbook. Please note that
   calibration must be triggered by the user
-- enhanced to preload Reuters/Bloomberg if requested by the user
+- enhanced to preload Reuters/Bloomberg *.xla if requested by the user
 - displays the ClickOnce Publish Version number in the bottom right corner of
   the Launcher dialog
 - made button backgrounds transparent
@@ -88,13 +88,14 @@ New functions:
   These functions and usage of Schedule class are shown in
   Workbooks\DateCalendarsDayCounters\ScheduleGenerator.xls
 
-Bug fixing:
-- fixed bug in IborCoupon implied fixing when payment daycount convention is
+Fixed Bugs:
+- excessive memory usage leading to "bad allocation" message
+- IborCoupon implied fixing when payment daycount convention is
   not equal to the Index daycount convention
-- bug fix in switching to Mx Yield Curve. Added sheet where dedicated instances
+- Mx Yield Curve: added sheet where dedicated instances
   of euribor indices are created and used in the swap rate helpers'
   construction
-- Nested LevenbergMarquardt optimizations bug fixed
+- Nested LevenbergMarquardt optimizations
 
 Digital Coupon:
   Related functions are qlDigitalIborLeg and qlDigitalCmsLeg to price swaps
