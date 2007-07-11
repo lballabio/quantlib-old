@@ -150,10 +150,11 @@ CW	18%
 - evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
   (K & Cri)
 - TimeSeries serialization
-- all handle used in main checks should be created in handles.xls
+DONE all handle used in main checks should be created in handles.xls: added 3mCaplet
 - Design e gestione della USD currency per contribuzione swaption vols
 DONE add sa.xll to testing environment
 DONE Run Main Checks -> Open Main Checks
+- run SA on EURYCMx2 replacing the quotes ids
 - time series
     *DONE Refresh snapshot vba: estendere alle ts se open & editable
     *DONE Switch Data vba: verificare se estendere alle ts
