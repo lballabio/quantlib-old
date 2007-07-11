@@ -112,7 +112,7 @@ namespace ObjectHandler {
         }
     }
 
-    const int Repository::objectCount() {
+    int Repository::objectCount() {
         return objectMap_.size();
     }
 

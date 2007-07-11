@@ -135,7 +135,7 @@ namespace ObjectHandler {
         //! \name Utilities
         //@{
         //! Count of all the Objects in the Repository.
-        virtual const int objectCount();
+        virtual int objectCount();
 
         //! List the IDs of all the Objects in the Repository.
         /*! Returns an empty list if the Repository is empty.
