@@ -1116,6 +1116,21 @@
 			<File
 				RelativePath=".\qlo\Conversions\conversions.hpp">
 			</File>
+			<File
+				RelativePath=".\qlo\Conversions\varianttodate.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Conversions\varianttoperiod.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Conversions\varianttoquote.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Conversions\varianttoquotehandle.hpp">
+			</File>
+			<File
+				RelativePath=".\qlo\Conversions\varianttosize.hpp">
+			</File>
 		</Filter>
 		<Filter
 			Name="Optimization"

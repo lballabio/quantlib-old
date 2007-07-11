@@ -53,6 +53,9 @@
 				RelativePath="metadata\Addins\loop.xml">
 			</File>
 			<File
+				RelativePath=".\metadata\Addins\serialization.xml">
+			</File>
+			<File
 				RelativePath="metadata\Addins\valueobjects.xml">
 			</File>
 		</Filter>
@@ -260,6 +263,9 @@
 				RelativePath="metadata\Rules\loop.xml">
 			</File>
 			<File
+				RelativePath=".\metadata\Rules\serialization.xml">
+			</File>
+			<File
 				RelativePath="metadata\Rules\valueobjects.xml">
 			</File>
 		</Filter>
@@ -291,6 +297,9 @@
 				RelativePath="stubs\stub.copyright">
 			</File>
 			<File
+				RelativePath=".\stubs\stub.cpp.body">
+			</File>
+			<File
 				RelativePath="stubs\stub.doxygen.enums">
 			</File>
 			<File
@@ -304,6 +313,9 @@
 			</File>
 			<File
 				RelativePath="stubs\stub.excel.includes">
+			</File>
+			<File
+				RelativePath=".\stubs\stub.serialization.includes">
 			</File>
 		</Filter>
 		<File

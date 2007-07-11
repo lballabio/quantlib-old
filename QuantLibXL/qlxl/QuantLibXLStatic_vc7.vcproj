@@ -460,6 +460,9 @@
 				RelativePath="Register\register_cmsmarket.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_cmsmarketcalibration.cpp">
+			</File>
+			<File
 				RelativePath=".\Register\register_correlation.cpp">
 			</File>
 			<File
@@ -621,6 +624,9 @@
 			</File>
 			<File
 				RelativePath="Functions\cmsmarket.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\cmsmarketcalibration.cpp">
 			</File>
 			<File
 				RelativePath=".\Functions\correlation.cpp">
@@ -861,6 +867,12 @@
 				RelativePath=".\Serialization\serialization_cmsmarket.hpp">
 			</File>
 			<File
+				RelativePath=".\Serialization\serialization_cmsmarketcalibration.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_cmsmarketcalibration.hpp">
+			</File>
+			<File
 				RelativePath=".\Serialization\serialization_correlation.cpp">
 			</File>
 			<File
@@ -943,6 +955,12 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_mathf.hpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_oh.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_oh.hpp">
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_optimization.cpp">

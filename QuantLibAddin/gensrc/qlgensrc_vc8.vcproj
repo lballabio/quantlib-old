@@ -395,6 +395,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\stubs\stub.cpp.body"
+				>
+			</File>
+			<File
 				RelativePath="stubs\stub.doxygen.enums"
 				>
 			</File>

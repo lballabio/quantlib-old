@@ -358,6 +358,9 @@
 					RelativePath="..\..\oh\other.hpp">
 				</File>
 				<File
+					RelativePath="..\..\oh\range.hpp">
+				</File>
+				<File
 					RelativePath="..\..\oh\repository.cpp">
 				</File>
 				<File
@@ -395,10 +398,10 @@
 					RelativePath="..\..\oh\Conversions\coerce.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\Conversions\varianttoscalar.hpp">
+					RelativePath="..\..\oh\Conversions\ohvarianttoscalar.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\Conversions\ohvarianttoscalar.hpp">
+					RelativePath="..\..\oh\Conversions\varianttoscalar.hpp">
 				</File>
 			</Filter>
 			<Filter
@@ -499,6 +502,9 @@
 					RelativePath="..\Functions\ohutils.cpp">
 				</File>
 				<File
+					RelativePath="..\Functions\range.cpp">
+				</File>
+				<File
 					RelativePath="..\Functions\serialization.cpp">
 				</File>
 				<File
@@ -580,6 +586,9 @@
 				</File>
 				<File
 					RelativePath="..\Register\register_ohutils.cpp">
+				</File>
+				<File
+					RelativePath="..\Register\register_range.cpp">
 				</File>
 				<File
 					RelativePath="..\Register\register_serialization.cpp">

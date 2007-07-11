@@ -355,6 +355,9 @@
 				RelativePath=".\oh\other.hpp">
 			</File>
 			<File
+				RelativePath=".\oh\range.hpp">
+			</File>
+			<File
 				RelativePath="oh\repository.cpp">
 			</File>
 			<File
@@ -390,6 +393,9 @@
 			</File>
 			<File
 				RelativePath="oh\Conversions\coerce.hpp">
+			</File>
+			<File
+				RelativePath=".\oh\Conversions\ohconvertvariant.hpp">
 			</File>
 			<File
 				RelativePath=".\oh\Conversions\varianttoscalar.hpp">
@@ -428,6 +434,20 @@
 			</File>
 			<File
 				RelativePath="oh\utilities.hpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="Loop"
+			Filter="">
+			<File
+				RelativePath=".\oh\Loop\loop_valueobjects.hpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="ValueObjects"
+			Filter="">
+			<File
+				RelativePath=".\oh\ValueObjects\vo_range.hpp">
 			</File>
 		</Filter>
 	</Files>
