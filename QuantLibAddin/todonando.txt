@@ -304,11 +304,12 @@ CHIARA
 
 ---
 FRANCOIS
+D bad allocation bug(1W/1W)
 - allow the user to choose traits and interpolator in the
   HistoricalForwardRatesAnalysis class (and expose it to
   Excel as traits aware)
-- removing any trigger in the ohretrieveError() calls (qlWizard)
-- removing any dynamic memory allocation in bond irr calculation
+D removing any trigger in the ohretrieveError() calls (qlWizard)(0D/0D)
+D removing any dynamic memory allocation in bond irr calculation
 - null strike -> atm strike (1W|WIP)
 - arrange sessions on Rapisarda approach(TBD)
 D historic corr matrix (2D|2D)
@@ -319,7 +320,7 @@ D Citrix access: INFL
 D MM: different correlation structures (Rapisarda, Schoenmakers and
   Coffey)(5.5D/2D-5D) (To be reviewed)
 - notification chains pb (1D/3D)
-  tTermStructure lazyness in notification
+  TermStructure lazyness in notification
 - smile sections:
 	- use Levenberg optimizator
 	- move vol quotes from constructor(to be precised)
