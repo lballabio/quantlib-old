@@ -4,6 +4,8 @@
 #include <oh/variant.hpp>
 #include <string>
 #include <vector>
+// FIXME:  the line below is required only for ohutils
+#include <boost/any.hpp>
 
 namespace QuantLibAddinCpp {
 %(bufferHpp)s}

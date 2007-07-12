@@ -3,6 +3,7 @@
   <displayName>ObjectHandler</displayName>
   <addinIncludes>
     <include>oh/objecthandler.hpp</include>
+    <include>boost/any.hpp</include>
   </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Eric Ehlers
@@ -447,6 +448,27 @@
       </ReturnValue>
     </Member>
 
+    <Member name='ohPropertyValue2' type='ObjectHandler::Object'>
+      <description>Temporary re-implementation of ohPropertyValue - required for C++ environment which does not support looping behavior</description>
+      <libraryFunction>propertyValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='propertyName'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>property name to be queried</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Procedure name='ohSetLogFile'>
       <description>begin logging to named file</description>
       <alias>ObjectHandler::setLogFile</alias>
@@ -528,22 +550,48 @@
     </Procedure>
 
     <Procedure name='ohObjectSave'>
-      <description>delete orphaned objects from repository</description>
+      <description>serialize a list of objects to given file</description>
       <alias>ObjectHandler::Repository::instance().saveObject</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
           <Parameter name='objectList'>
             <type>ObjectHandler::Object</type>
             <tensorRank>vector</tensorRank>
-            <description>also delete permanent objects (default FALSE)</description>
+            <description>list of objects to be serialized</description>
           </Parameter>
           <Parameter name='path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>also delete permanent objects (default FALSE)</description>
+            <description>file to which objects are to be serialized</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectSave2'>
+      <description>experimental re-implementation of ohObjectSave</description>
+      <alias>ObjectHandler::Repository::instance().saveObject2</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Cpp' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='objectList'>
+            <type>ObjectHandler::Object</type>
+            <tensorRank>vector</tensorRank>
+            <description>list of objects to be serialized</description>
+          </Parameter>
+          <Parameter name='path'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>file to which objects are to be serialized</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -554,22 +602,43 @@
     </Procedure>
 
     <Procedure name='ohObjectLoad'>
-      <description>delete orphaned objects from repository</description>
+      <description>deserialize a list of objects</description>
       <alias>ObjectHandler::Repository::instance().loadObject</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
           <Parameter name='idList'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>also delete permanent objects (default FALSE)</description>
+            <description>list of objects to be deserialized</description>
           </Parameter>
           <Parameter name='path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>also delete permanent objects (default FALSE)</description>
+            <description>file from which objects are to be deserialized</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectLoad2'>
+      <description>experimental re-implementation of ohObjectLoad</description>
+      <alias>ObjectHandler::Repository::instance().loadObject2</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Cpp' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='path'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>file from which objects are to be deserialized</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -31,7 +31,7 @@
       <Rules>
         <Rule default='true'>ObjectHandler::Variant</Rule>
         <Rule tensorRank='scalar' nativeType='string'>std::string</Rule>
-        <Rule tensorRank='scalar' nativeType='any'>ObjectHandler::Variant</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>boost::any</Rule>
         <Rule tensorRank='scalar' nativeType='void'>bool</Rule>
         <Rule tensorRank='scalar'>%(nativeType)s</Rule>
         <Rule tensorRank='vector' nativeType='string'>std::vector&lt;std::string&gt;</Rule>
@@ -158,7 +158,8 @@
         <Rule tensorRank='scalar' superType='libraryType'>%(type)s returnValue = </Rule>
         <Rule tensorRank='scalar' nativeType='string'>std::string returnValue = </Rule>
         <Rule tensorRank='scalar' nativeType='void'>static bool returnValue = true;&#10;        </Rule>
-        <Rule tensorRank='scalar' nativeType='any'>ObjectHandler::Variant returnValue = </Rule>
+        <!--Rule tensorRank='scalar' nativeType='any'>ObjectHandler::Variant returnValue = </Rule-->
+        <Rule tensorRank='scalar' nativeType='any'>boost::any returnValue = </Rule>
         <Rule tensorRank='scalar'>%(type)s returnValue = </Rule>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Array'>%(type)s returnValue = </Rule>
         <Rule tensorRank='vector' superType='libraryType'>std::vector&lt;%(type)s&gt; returnValue = </Rule>

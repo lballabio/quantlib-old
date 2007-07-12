@@ -25,14 +25,6 @@ from gensrc.Configuration import environment
 from gensrc.Categories import category
 from gensrc.Utilities import outputfile
 from gensrc.Utilities import log
-#from gensrc.Serialization import serializable
-#from gensrc.Functions import supportedplatform
-#from gensrc.Serialization import xmlreader
-#from gensrc.Utilities import buffer
-#from gensrc.Utilities import common
-
-#import re
-#import string
 
 class CppAddin(addin.Addin):
     """Generate source code for C++ addin."""
@@ -48,6 +40,9 @@ class CppAddin(addin.Addin):
     #    if (permanentCpp)
     #        objectPointer->setPermanent();'''
     convertPermanentFlag_ = ''
+    BUFFER_ALL = '''\
+#include <Addins/C++/addincppdefines.hpp>
+#include <Addins/C++/init.hpp>\n'''
 
     #############################################
     # public interface
@@ -67,7 +62,7 @@ class CppAddin(addin.Addin):
 
     def generateFunctions(self):
         """Generate source code for all functions in all categories."""
-        bufferAll = '#include <Addins/C++/init.hpp>\n'
+        bufferAll = CppAddin.BUFFER_ALL
         for cat in self.categoryList_.categories(self.name_):
             categoryIncludes = cat.includeList()
             #categoryIncludes = cat.includeList(LOOP_INCLUDES)

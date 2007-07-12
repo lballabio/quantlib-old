@@ -622,6 +622,9 @@
 			RelativePath=".\addincpp.hpp">
 		</File>
 		<File
+			RelativePath=".\addincppdefines.hpp">
+		</File>
+		<File
 			RelativePath=".\alphaform.cpp">
 		</File>
 		<File

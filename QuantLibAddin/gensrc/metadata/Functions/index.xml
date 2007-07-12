@@ -98,13 +98,39 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlIndexFixing2' type='QuantLib::Index'>
+      <description>Temporary re-implementation of qlIndexFixing - required for C++ environment which does not support looping behavior</description>
+      <libraryFunction>fixing</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='fixingDate' exampleValue='02-Jan-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing date(s)</description>
+          </Parameter>
+          <Parameter name='forecastToday' default='0' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forces the forecasting of today's fixing even if the actual fixing is already available in the time series.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlIndexAddFixings' type='QuantLib::Index'>
       <!--<Member name='qlIndexAddFixings' type='QuantLibAddin::Index'>-->
       <description>Adds fixings for the given Index object</description>
       <libraryFunction>addFixings</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <!--SupportedPlatform name='Cpp'/-->
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -430,7 +456,7 @@
       <alias>QuantLibAddin::EuriborHandle::instance().linkEuriborHandle</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <!--SupportedPlatform name='Cpp'/-->
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

@@ -17,6 +17,7 @@ noinst_HEADERS = \
     abcd.hpp \
     accountingengines.hpp \
     addincpp.hpp \
+    addincppdefines.hpp \
     alphaform.hpp \
     assetswap.hpp \
     bonds.hpp \
@@ -118,9 +119,6 @@ libQuantLibAddinCpp_la_SOURCES = \
     volatilities.cpp \
     volatility.cpp
 endif
-
-#libQuantLibAddinCpp_la_LDFLAGS = \
-#    -lQuantLib -lObjectHandler
 
 libQuantLibAddinCpp_la_LIBADD = \
     Serialization/libSerialization.la \

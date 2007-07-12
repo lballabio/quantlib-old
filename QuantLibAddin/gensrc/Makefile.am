@@ -2,30 +2,44 @@
 # gensrc.py probably needs to be re-executed if any of these change
 
 GENSRC_METADATA :=  metadata/Addins/calc.xml \
+                    metadata/Addins/cpp.xml \
                     metadata/Addins/c.xml \
                     metadata/Addins/doxygen.xml \
                     metadata/Addins/enumerations.xml \
                     metadata/Addins/excel.xml \
                     metadata/Addins/guile.xml \
                     metadata/Addins/loop.xml \
+                    metadata/Addins/serialization.xml \
                     metadata/Addins/valueobjects.xml \
                     metadata/Enumerations/enumeratedclasses.xml \
                     metadata/Enumerations/enumeratedpairs.xml \
                     metadata/Enumerations/enumeratedtypes.xml \
+                    metadata/Functions/abcd.xml \
+                    metadata/Functions/accountingengines.xml \
+                    metadata/Functions/alphaform.xml \
                     metadata/Functions/assetswap.xml \
                     metadata/Functions/bonds.xml \
+                    metadata/Functions/browniangenerators.xml \
                     metadata/Functions/calendar.xml \
                     metadata/Functions/capfloor.xml \
                     metadata/Functions/capletvolstructure.xml \
+                    metadata/Functions/cmsmarketcalibration.xml \
                     metadata/Functions/cmsmarket.xml \
+                    metadata/Functions/correlation.xml \
                     metadata/Functions/couponvectors.xml \
+                    metadata/Functions/ctsmmcapletcalibration.xml \
+                    metadata/Functions/curvestate.xml \
                     metadata/Functions/date.xml \
                     metadata/Functions/daycounter.xml \
+                    metadata/Functions/driftcalculators.xml \
+                    metadata/Functions/evolutiondescription.xml \
                     metadata/Functions/exercise.xml \
                     metadata/Functions/forwardrateagreement.xml \
                     metadata/Functions/index.xml \
                     metadata/Functions/instruments.xml \
                     metadata/Functions/interpolation.xml \
+                    metadata/Functions/leg.xml \
+                    metadata/Functions/marketmodelevolvers.xml \
                     metadata/Functions/marketmodels.xml \
                     metadata/Functions/mathf.xml \
                     metadata/Functions/ohfunctions.xml \
@@ -35,6 +49,7 @@ GENSRC_METADATA :=  metadata/Addins/calc.xml \
                     metadata/Functions/prices.xml \
                     metadata/Functions/pricingengines.xml \
                     metadata/Functions/processes.xml \
+                    metadata/Functions/products.xml \
                     metadata/Functions/quotes.xml \
                     metadata/Functions/randomsequencegenerator.xml \
                     metadata/Functions/rangeaccrual.xml \
@@ -53,12 +68,15 @@ GENSRC_METADATA :=  metadata/Addins/calc.xml \
                     metadata/Functions/utilities.xml \
                     metadata/Functions/vanillaswap.xml \
                     metadata/Functions/volatilities.xml \
+                    metadata/Functions/volatility.xml \
                     metadata/Rules/calc.xml \
+                    metadata/Rules/cpp.xml \
                     metadata/Rules/c.xml \
                     metadata/Rules/doxygen.xml \
                     metadata/Rules/excel.xml \
                     metadata/Rules/guile.xml \
                     metadata/Rules/loop.xml \
+                    metadata/Rules/serialization.xml \
                     metadata/Rules/valueobjects.xml \
                     metadata/Types/types.xml
 
