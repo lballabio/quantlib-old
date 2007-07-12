@@ -17,10 +17,11 @@
 */
 
 #include <Addins/C++/addincpp.hpp>
-#include <set_fixings.hpp>
-#include <oh/ohdefines.hpp>
+#include <Clients/C++/set_fixings.hpp>
+#include <ql/qldefines.hpp>
 #if defined BOOST_MSVC
 #include <oh/auto_link.hpp>
+#include <ql/auto_link.hpp>
 #endif
 
 #define OH_NULL ObjectHandler::Variant()

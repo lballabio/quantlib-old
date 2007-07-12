@@ -16,7 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <set_fixings.hpp>
+#include <Clients/C++/set_fixings.hpp>
 #include <Addins/C++/addincpp.hpp>
 
 #include <iostream>
