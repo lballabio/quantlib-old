@@ -25,8 +25,106 @@ WORKBOOKS
 LIBRARY:
 
 
+**************************
+    REV11705
+**************************
+
+Launcher:
+- Start up action added “Open Main Checks" 
+- Loading of the Sensitivity Analysis add-in
+- Disable Reuters/Bloomberg if the configured paths are invalid
+- Allow the path to Excel to be configured
+- Implement function to launch an empty Excel session
+- In addition to saving preferences to registry at shutdown, also save them after launch
+- Change Bloomberg default from Blp.xla to BlpMain.xla
+- Add new tab "About" listing user/domain/hard disk serial number
 
 
+QuantLibXL menu:
+- added menu action "Historical Forward Rates Analysis": which opens & triggers TimeSeriesFixings_Euribor.xls & TimeSeriesFixings_EuriborSwapFixA.xls and opens HistoricalForwardRatesAnalysis.xls
+- “Open Live Feed Workbooks”: live feeds are opened and then closed if Reuters is not available
+- added new action “Calibrate CTSMM to Caplets”
+
+
+Renamed functions:
+- qlVersion replaced by qlxlVersion
+
+
+New functions:
+- ohBoostVersion()
+- ohVersion()
+- qlVersion() 
+- qlAddinVersion()
+- qlxlVersion()
+
+
+Fixed Bugs:
+- Fix problem of ohRetrieveError() not being recalculated reliably
+- sabr interpolation: rounding error fixed around the ATM level
+
+
+Various:
+- added new EUR yield curve (EURYC3) in  Workbooks/MarketMetaData/YieldCurveBootstrappingMxSettings.xls. The curve is built according to Murex settings (depo3w excluded,  non main cycle futures excluded,  DeposBeforeFirstFuturesExpiryDate, swap35Y excluded) and live quotes retrieved from Reuters
+- RelinkableHandle are now created at start-up by Workbooks/MarketMetaData/Handles.xls. ControlPanel.xls only relinks handles to concrete instances 
+- info moved from ControlPanel.xls to MainCheck.xls
+- work in progress for spline bootstrapping: use Linear interpolation in the first iteration
+- included 60y swap in yield curve bootstrapping
+- a vector of fixing days can be passed to any coupon vector or leg constructors
+- add an enumeration for Business252 day counter
+
+
+Bonds:
+- wrong maturity dates (XS0082486050, IT0003749923) in BondObjects_EUR.xls
+- wrong fixed coupon (XS0080282907) in BondObjects_EUR.xls
+- Workbooks/Bonds/Z-Spread.xls: added new workbook for bonds price calculation given Z-spread
+- BondMonitor_EUR.xls: added static data for digital cms and digital eur[l]ibor bonds
+- added Workbooks/Tests/CmsWithDigitalLeg.xls, Workbooks/Tests/DigitalLegReplicationType.xls, Workbooks/Tests/SwapWithDigitalLeg.xls pricing/test workbooks for digital coupon 
+
+
+Market Models:
+- functions to construct and use Accounting Engines objects
+'qlAccountingEngine'
+'qlAccountingEngineMultiplePathValues'
+- functions to construct and use Brownian Generators objects:
+'qlMTBrownianGeneratorFactory'
+- functions to construct and use ctsmmcapletcalibration objects:
+'qlCTSMMCapletCalibrationCalibrate'
+'qlCTSMMCapletCalibrationFailures'
+'qlCTSMMCapletCalibrationDeformationSize'
+'qlCTSMMCapletCalibrationMarketCapletVols'
+'qlCTSMMCapletCalibrationModelCapletVols'
+'qlCTSMMCapletCalibrationCapletRmsError'
+'qlCTSMMCapletCalibrationCapletMaxError'
+'qlCTSMMCapletCalibrationMarketSwaptionVols'
+'qlCTSMMCapletCalibrationSwaptionRmsError'
+'qlCTSMMCapletCalibrationSwaptionMaxError'
+'qlCTSMMCapletCalibrationSwapPseudoRoot'
+'qlCTSMMCapletCalibrationTimeDependentCalibratedSwaptionVols'
+'qlCTSMMCapletCalibrationTimeDependentUnCalibratedSwaptionVols'
+'qlCTSMMCapletOriginalCalibration'
+'qlCTSMMCapletAlphaFormCalibrationAlpha'
+'qlCTSMMCapletMaxHomogeneityCalibration'
+
+- new functions qlRateVolDifferences (to compute the differences between all implied forwards volatilities) and qlRateInstVolDifferences (to compute the differences between volatilities at each evolution step)
+
+- coterminal swap market model caplet calibration:  show result of alpha fitting in workbooks
+Workbooks/MarketModels/CTSMM1YCapletCalibration.xls
+Workbooks/MarketModels/CTSMM6MCapletCalibration.xls
+Workbooks/MarketModels/CTSMM6MSimultaneousIterative.xls
+- Workbooks\MarketMetaData: added LMM_abcd.xls and SMM_displacementAndAbcd.xls
+- MarketModels/CorrelationMatrices.xls: includes historical correlations, Long-term, Beta time homogeneous correlations and Long-term, Beta, Gamma time homogeneous time dependent correlations
+- new function qlTimeHomogeneousTimeDependentForwardCorrelation
+- new function qlExponentialCorrelationsTimeDependent
+
+- Workbooks/MarketModels/SMM_displacementAndAcbd.xls: abcd calibration on displaced volatilities of all market swap indexes
+
+
+ObjectHandler:
+- serialization: new functions ohObjectSave and ohObjectLoad.
+
+
+Sensitivity Analysis:
+-  added Workbooks/Interest Rate Derivatives/SensitivityAnalysis.xls to run sensitivity analysis on a single deal.  Greeks can be calculated shifting yield curve, ATM vols, spread vols. 
 
 
 
