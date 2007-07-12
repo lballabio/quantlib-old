@@ -139,11 +139,6 @@ NANDO
 
 ---
 K
-SA	49%
-bug fix	20%
-test	14%
-CW	18%
-
 
 - TRIMESTRALE
 - action for setEvaluationDate
@@ -164,6 +159,9 @@ DONE Run Main Checks -> Open Main Checks
     *DONE qlxlversion and trigger formatting in time series
     *Gestione smart per poter estendere le ts dinamicamente
 - Workbook_BeforeClose to remove triggers (verifica su pc diversi)
+  Wkb_Open vs Auto_Open: 
+    *Manually: the event proc is fired first and then the Auto_Open
+    *Via Code: fires only the event, not the Auto_Open. To force the Auto_Open use RunAutoMacros. 
   su foglio ManualCapFeed
 - Rt Update
   -> no evidence of stopping problems on our pcs
