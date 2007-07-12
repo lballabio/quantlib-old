@@ -30,6 +30,7 @@
 namespace QuantLib {
     class IborIndex;
     class Quote;
+    class SimpleQuote;
     class Date;
 }
 
@@ -46,9 +47,8 @@ namespace QuantLibAddin {
         // it wraps underlying QuantLib::SimpleQuote method
         // in order to make SimpleQuote serializable in a stateful way
         QuantLib::Real setValue(QuantLib::Real value);
-      private:
-        // get rid of the following as soon as we have setProperty
-        QuantLib::Real tickValue_;
+    private:
+        boost::shared_ptr<QuantLib::SimpleQuote> simpleQuote_;
     };
 
     class ForwardValueQuote : public Quote {

@@ -29,34 +29,44 @@
 namespace QuantLibAddin {
 
     SimpleQuote::SimpleQuote(QuantLib::Real value,
-                             QuantLib::Real tickValue)
-    : tickValue_(tickValue) {
-        libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
-            QuantLib::SimpleQuote(value));
+                             QuantLib::Real tickValue) {
+        // The base class requires us to store a reference
+        // to a QuantLib::Quote in libraryObject_.
+        // For performance reasons we also store a reference to
+        // QuantLib::SimpleQuote in simpleQuote_, without this we would have to
+        // do a pointer cast on every call to QuantLibAddin::SimpleQuote::setValue().
+        libraryObject_ = simpleQuote_ = boost::shared_ptr<QuantLib::SimpleQuote>(
+            new QuantLib::SimpleQuote(value));
     }
 
     QuantLib::Real SimpleQuote::tickValue() const {
-        //return boost::any_cast<QuantLib::Real>(propertyValue("tickValue"));
-        return tickValue_;
+        return boost::any_cast<double>(propertyValue("tickValue"));
     }
 
     void SimpleQuote::setTickValue(QuantLib::Real tickValue) {
-        //properties()->setProperty("tickValue", tickValue);
-        tickValue_ = tickValue;
+        properties()->setProperty("tickValue", tickValue);
     }
 
-    //QuantLib::Real SimpleQuote::setValue(QuantLib::Real value) {
-    //    QuantLib::Real result;
-    //    try {
-    //        // dynamic cast needed below
-    //        result = libraryObject_->setValue(value);
-    //    } catch (std::exception& e) { 
-    //        //properties()->setProperty("value", libraryObject_->value());
-    //        throw();
-    //    }
-    //    //properties()->setProperty("value", libraryObject_->value());
-    //    return result;
-    //}
+    QuantLib::Real SimpleQuote::setValue(QuantLib::Real value) {
+
+        QuantLib::Real result;
+
+        try {
+            result = simpleQuote_->setValue(value);
+        } catch (...) { 
+            // In the event of an exception, ensure that the ValueObject remains
+            // in synch with the simpleQuote_ before rethrowing.
+            if (simpleQuote_->isValid())
+                properties()->setProperty("value", simpleQuote_->value());
+            else
+                properties()->setProperty("value", QuantLib::Null<QuantLib::Real>());
+            throw;
+        }
+
+        properties()->setProperty("value", result);
+        return result;
+
+    }
 
 
     ForwardValueQuote::ForwardValueQuote(

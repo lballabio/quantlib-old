@@ -84,8 +84,11 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlSimpleQuoteSetValue' type='QuantLib::SimpleQuote'>
-      <description>sets a new value to the given SimpleQuote object and returns the difference with the previous value</description>
+    <!-- Use a QuantLibAddin::SimpleQuote rather than a QuantLib::SimpleQuote. 
+         Note that we lose the automatic coercion from RelinkableHandle.
+    <Member name='qlSimpleQuoteSetValue' type='QuantLib::SimpleQuote'>-->
+    <Member name='qlSimpleQuoteSetValue' type='QuantLibAddin::SimpleQuote'>
+        <description>sets a new value to the given SimpleQuote object and returns the difference with the previous value</description>
       <libraryFunction>setValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
