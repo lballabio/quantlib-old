@@ -39,13 +39,11 @@ GENERAL
   check out and compile SA
 
 - RT stop
-- VC8 install
 - touch timestamp-buildnumber file
 - MultiPhaseLeg (no overlapping cf, payer only), MixedLeg (with payer/receiver)
-- flow analysis aggregation of flows with the same payment date, accr periods, etc
 - check cf sorted by amount too
 - addFixings(TimeSeries)
-- expose TimeSeries and IndexManager
+- expose QL::TimeSeries and QL::IndexManager to QLO/XL
 - use Handle<Quote> to switch from a set of mkt data to another set
 - weakness: redemption is not granted to be the last flow
 - build number
@@ -71,7 +69,6 @@ GENERAL
 - avoid ignoring class of files, as in *.suo
 - where is qlcalendar advance in the wizard
 - RateHelpers refactoring (using indexes)
-- export FRARateHelper and BondRateHelper
 - get FuturesRateHelper in line between QL and QLA
 - change QLA::DepositRateHelper as in QL::DepositRateHelper
 - refactor QL::Bond so that it expose its leg to be used by QL::Cashflows,
@@ -113,6 +110,10 @@ GENERAL
 
 ---
 NANDO
+- restore qlVersion()
+- install VC8 Express edition (Nando, Giorgio, Cri, K)
+- more pricing engines global instantiation
+- bond refactoring using leg as constructor arguments
 - eol and mime-type defaults
 - swaption smile vega (risultati con De Nuccio)
 - test ForwardPeriodAdapter
@@ -124,7 +125,6 @@ NANDO
 - check testsuite error when QL_INDEXED_COUPON is used
 - production: writing privileges (xla and the rest)
 - debug hook at xll loading (for debugging start-up actions)
-- VS Express
 - check Index used in Mx bootstrapping
 - leggere CDS docs
 - ref market data set for test suite
@@ -151,26 +151,19 @@ NANDO
 ---
 K
 
-- close all macro must stop sceen refresh and should not activate wbk
+- presa in carico del foglio di Clerici
+- check that CMS book NPV is ok when allowExtrapolation=False for YC and
+  volStructures (K and Giorgio)
+- install VC8 Express edition (Nando, Giorgio, Cri, K)
+- close all macro must stop screen refresh and should not activate wbk
 - TRIMESTRALE
 - action for setEvaluationDate
 - evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
   (K & Cri)
 - TimeSeries serialization
-DONE all handle used in main checks should be created in handles.xls: added
-     3mCaplet
 - Design e gestione della USD currency per contribuzione swaption vols
-DONE add sa.xll to testing environment
-DONE Run Main Checks -> Open Main Checks
 - run SA on EURYCMx2 replacing the quotes ids
 - time series
-    *DONE Refresh snapshot vba: estendere alle ts se open & editable
-    *DONE Switch Data vba: verificare se estendere alle ts
-    *DONE Verifica che macro che chiude le ts salva i fogli a False -> no è
-          gestito in apertura
-    *DONE Close Live Feed vba: deve chiudere anche le ts se open
-    *DONE re-organize Quote/TimeSeries menus
-    *DONE qlxlversion and trigger formatting in time series
     *Gestione smart per poter estendere le ts dinamicamente
 - Workbook_BeforeClose to remove triggers (verifica su pc diversi)
   Wkb_Open vs Auto_Open:
@@ -182,7 +175,6 @@ DONE Run Main Checks -> Open Main Checks
   -> no evidence of stopping problems on our pcs
   -> prepared wkb to test on traders' pc (next week)
 - coveredWarrants.xls
-    *DONE check delta price in terms of vega with flat vol 		(1d/2d)
 - Sensitivity Analysis (K&Cristina):  				(7.5d/5w)
   - General
     run sa on rates, atm vols and vol spreads
@@ -254,15 +246,24 @@ DONE Run Main Checks -> Open Main Checks
 
 ---
 CRISTINA
-- chiusure DRM 29/6 e creazione ambiente dedicato
-- create greeks workbook
-- swaptionvolcube test with floating date  (2D/2D - DONE)
+- create greeks workbook and add more sens analysis:
+  beta, mean rev,
+  cms quotes,
+  time value
 - test that the manual procedure to set back/forward the evaluation
-  date returns the same results of the automatic procedure  (1D/1D - DONE)
+  date returns the same results of the automatic procedure
+- flow analysis aggregation of flows with the same payment date,accrPeriods,etc
+- SA stress test with extrem tickValues
+- create in Workbooks/PricingEngines BlackSwaption and BlackCapFloor engines.
+  Use them for in IRDerivatives pricing workbooks
+- install VC8 Express edition (Nando, Giorgio, Cri, K)
+- chiusure DRM 29/6 e creazione ambiente dedicato
 - test for relinkability (CMS npv + greeks)           (DONE for NPV)
-- test valid object creation with ALL quotes not initialized
-  verify smile sections (no unknown ID error message) (1D - DONE)
+- test valid object creation with ALL quotes not initialized (waiting for
+  François)
 - use OTM options instead of ITM options in all abcd wbks
+- do not use short term option in abcd of Swap Indexes; see if d are more equal
+  across different Swap Indexes
 - evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
   (K & Cri)
 - deals serialization
@@ -273,7 +274,6 @@ CRISTINA
 - verify excessive number of input parameter in DigitalLeg
 - verify Murex daycount definition
 - fix number of relevant digits in all (forecasted) index fixings
-- sensitivity analysis (6D/1M)
 - daily trunk check and CMS calibration
 - testsuite: check volatility when shifting evaluation date (1D/3D)
 - change class CappedFlooredIborCoupon in order to add the
@@ -281,15 +281,16 @@ CRISTINA
 - Cap Cms Book:
   - pricing of Cms Cap without decomposition in Excel (To be discussed)
   - new management of additional cashflows in Cap Cms book (0D/1D - STAND-BY)
-- install VS in new pc (0D/1D)
-- market models: abcd for displaced vols (Chiara, Cristina, K)
 
 ---
 CHIARA
-- mimic Grisafi session avery day all day long on IngFin workstation (Done see
-  results in: X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\StructuredBonds)
+- daily monitor of Production/Pre-Production/Testing environment
+  (MainChecks+BondMonitor)
+- create Workbooks/PricingEngines folder and create there a wbk for
+  instantiating CMS/Ibor Pricers. Use them for Bonds and IRDerivatives
+  pricing workbooks
 - Digital Bond contructor (5.0d|10dd|Wip)
-  - decompose each deal in different legs: one wbk per deal (Done)
+  - decompose each deal in different legs: one wbk per deal (wip)
   - digitalcmsratebond constructor + digitalfloatingratebond constructor
     without cap and floor
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g.
@@ -319,23 +320,17 @@ CHIARA
 
 ---
 FRANCOIS
+- handle Cristina's mail report
 - QL menu "wbk open" must reopen in the last folder
 - have cell menu "format as" to work on multiple selection
 - allow the user to choose traits and interpolator in the
   HistoricalForwardRatesAnalysis class (and expose it to
   Excel as traits aware)
-- sabr discontinuity (Giorgio and François)
-D bad allocation bug (1W/1W)
-D removing any trigger in the ohretrieveError() calls (qlWizard)(0D/0D)
-D removing any dynamic memory allocation in bond irr calculation
+- sabr near-atm discontinuity (Giorgio and François)
 - null strike -> atm strike (1W|WIP)
 - arrange sessions on Rapisarda approach(TBD)
-D historic corr matrix (2D|2D)
-D control panel . xls crash when switch to MxCurve
-D Citrix access: $+,BGM
-D Citrix access: INFL
 - XML/ serialization presentation
-D MM: different correlation structures (Rapisarda, Schoenmakers and
+- MM: different correlation structures (Rapisarda, Schoenmakers and
   Coffey)(5.5D/2D-5D) (To be reviewed)
 - notification chains pb (1D/3D)
   TermStructure lazyness in notification
@@ -353,27 +348,19 @@ D MM: different correlation structures (Rapisarda, Schoenmakers and
 
 ---
 GIORGIO (last update 6/6/2007)
-- sabr discontinuity (Giorgio and François)
-- expose QL::CashFlows::irr, duration and convexity as qlLegIrr, qlLegDuration,
-  and qlLegConvexity
+- report last meeting content to François
+- expose QL::CashFlows::irr, duration and convexity to XL as qlLegIrr,
+  qlLegDuration, and qlLegConvexity (with their enums, etc)
+- export FRARateHelper and BondRateHelper
+- sabr near-atm discontinuity (Giorgio and François)
+- install VC8 Express edition (Nando, Giorgio, Cri, K)
 WIP clean up vega incoherencies
 WIP code MakeSwaption class
-D split up CmsMarket and CmsMarketCalibration in 2 files
 WIP use Handle in SwaptionVolCubeChecks
-D abcd
-D vega weighted abcd fit
-D interpolation
 - CMS
   alternative calibrations with null rho
   check 2Y beta sensitivity
 - EvolutionDescription equality
-D VBA missing menus:
-  D enum QuantLib::EndCriteria::Type
-  D enum QuantLib::CmsMarketCalibration::CalibrationType
-  D class QuantLib::IborCouponPricer
-  D class QuantLib::Payoff
-  D class QuantLib::PricingEngine
-  D class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
 - prepare smile section refactoring proposal
 - range accrual session
 - CDS options (with Chiara)
@@ -428,7 +415,7 @@ Eric
 - SA GUI
 - automatic cast from IMM code to date
 - what hpp are included in serialization files
-
+- family of objects or ohRange of ObjectIds ?
 - 2 DOF projects
 - JRisk
 - there is no warning if there is an empty xll list to be loaded by
