@@ -39,8 +39,8 @@ int main() {
         ohSetLogFile("qlademo.log", 4L);
         ohSetConsole(1, 4L);
         LOG_MESSAGE("Begin example program.");
-        LOG_MESSAGE(qlAddinVersion());
-        LOG_MESSAGE(ohVersion());
+        LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion());
+        LOG_MESSAGE("ObjectHandler version = " << ohVersion());
 
         // initialize some values
 
@@ -51,19 +51,26 @@ int main() {
         ohObjectLoad2("qlxl_demo_market.xml");
         ohObjectLoad2("qlxl_demo_cms.xml");
 
-        // Check that the yield curve bootstraps OK
+        // Enable extrapolation for the yield curve
 
         qlExtrapolatorEnableExtrapolation(yieldCurveID, true);
+
+        // Check that the yield curve bootstraps OK
+
         long referenceDate = qlTermStructureReferenceDate(yieldCurveID);
         long maxDate = qlTermStructureMaxDate(yieldCurveID);
-        LOG_MESSAGE("yts reference discount = " << qlYieldTSDiscount2(yieldCurveID, referenceDate, OH_NULL));
-        LOG_MESSAGE("yts max discount       = " << qlYieldTSDiscount2(yieldCurveID, maxDate, OH_NULL));
+        LOG_MESSAGE("yts reference discount = "
+            << qlYieldTSDiscount2(yieldCurveID, referenceDate, OH_NULL));
+        LOG_MESSAGE("yts max discount       = "
+            << qlYieldTSDiscount2(yieldCurveID, maxDate, OH_NULL));
 
-        // Set the index fixings and check a couple of them
+        // Set the index fixings and verify a couple of them
 
         setFixings();
-        LOG_MESSAGE("EuriborSwapFIXA5Y 18-May-2007 " << qlIndexFixing2("EuriborSwapFIXA5Y", 39220L, OH_NULL));
-        LOG_MESSAGE("EURIBOR6M         16-May-2006 " << qlIndexFixing2("EURIBOR6M", 38853L, OH_NULL));
+        LOG_MESSAGE("EuriborSwapFIXA5Y 18-May-2007 "
+            << qlIndexFixing2("EuriborSwapFIXA5Y", 39220L, OH_NULL));
+        LOG_MESSAGE("EURIBOR6M         16-May-2006 "
+            << qlIndexFixing2("EURIBOR6M", 38853L, OH_NULL));
 
         // Set the indexes to reference the yield curve
 
@@ -79,13 +86,13 @@ int main() {
         LOG_MESSAGE("CMS PV = " << qlInstrumentNPV("cms"));
 
         LOG_MESSAGE("End example program.");
-
         return 0;
+
     } catch (const std::exception &e) {
         LOG_ERROR("Error: " << e.what());
         return 1;
     } catch (...) {
-        LOG_ERROR("unknown error");
+        LOG_ERROR("Unknown error");
         return 1;
     }
 
