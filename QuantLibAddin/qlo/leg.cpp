@@ -95,8 +95,8 @@ namespace QuantLibAddin {
             leg_.insert(leg_.end(), leg.begin(), leg.end());
         }
         if (toBeSorted)
-            std::sort(leg_.begin(), leg_.end(),
-                      earlier_than<boost::shared_ptr<CashFlow> >());
+            std::stable_sort(leg_.begin(), leg_.end(),
+                             earlier_than<boost::shared_ptr<CashFlow> >());
     };
 
     SimpleCashFlowVector::SimpleCashFlowVector(const std::vector<QuantLib::Real>& amounts,
