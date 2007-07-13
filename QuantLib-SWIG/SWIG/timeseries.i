@@ -22,6 +22,7 @@
 %include common.i
 %include types.i
 %include date.i
+%include vectors.i
 
 %{
 using QuantLib::TimeSeries;
