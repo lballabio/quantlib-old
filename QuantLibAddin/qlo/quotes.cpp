@@ -56,6 +56,8 @@ namespace QuantLibAddin {
         } catch (...) { 
             // In the event of an exception, ensure that the ValueObject remains
             // in synch with the simpleQuote_ before rethrowing.
+                    // is the if/else really needed? not in my opinion...
+                    // 2007-07-13 Nando
             if (simpleQuote_->isValid())
                 properties()->setProperty("value", simpleQuote_->value());
             else
@@ -63,7 +65,7 @@ namespace QuantLibAddin {
             throw;
         }
 
-        properties()->setProperty("value", result);
+        properties()->setProperty("value", value);
         return result;
 
     }
