@@ -15,4 +15,15 @@ find . -name '*.a[cm]' -o -name '*.m4' -o -name '*.in'  -o -name '*.1' \
 # these should have Windows eol, even when extracted from a .tar.gz
 find . -name '*.dev' -o -name '*.nsi' -o -name '*.sln' \
     -o -name '*.vcproj' -o -name '*.csproj' -o -name '*.cmd' \
+    -o -name '*.dsw' -o -name '*.dsp' \
  | xargs -n 1 svn propset svn:eol-style CRLF
+# these should have svn:needs-lock
+find . -name '*.png' -o -name '*.jpg' -o -name '*.xls' \
+    -o -name '*.xla' -o -name '*.xll' \
+ | xargs -n 1 svn propset svn:needs-lock
+# these should have svn:mime-type application/vnd.ms-excel
+find . -name '*.xla' -o -name '*.xll' -o -name '*.xls' \
+ | xargs -n 1 svn propset svn:mime-type application/vnd.ms-excel
+# these should have svn:executable
+find . -name '*.sh' \
+ | xargs -n 1 svn propset svn:executable
