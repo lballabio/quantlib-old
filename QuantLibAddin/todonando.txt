@@ -1,4 +1,6 @@
 
+$ Id $
+
 class Fixing : public Event {
   private:
     boost::shared_ptr<FloatingRateCoupon> coupon_;
@@ -28,16 +30,30 @@ GENERAL
     point at C:\Projects\QuantLibSVN\trunk\Launcher)
   be ready to debug DevCycle revisions
   switch to boost 1.34 (bjam --toolset=msvc-8.0 install)
-  clean up qlo\xxx.hpp files from ql inclusions
   avoid (implicitly) using ActiveWorkbook and ActiveWorksheet in VBA code
   remove trigger ohretrieveError() calls
   familiarize with ohObjectSave() ohObjectLoad()
   familiarize with ohPropertyNames and ohPropertyValue()
-  VBA option explicit
+  stateful serialization
+  VBA option explicit (Tools | Option | Editor | Require Variable Declaration)
+  check out and compile SA
 
+- RT stop
+- VC8 install
+- touch timestamp-buildnumber file
+- MultiPhaseLeg (no overlapping cf, payer only), MixedLeg (with payer/receiver)
+- flow analysis aggregation of flows with the same payment date, accr periods, etc
+- check cf sorted by amount too
+- addFixings(TimeSeries)
+- expose TimeSeries and IndexManager
+- use Handle<Quote> to switch from a set of mkt data to another set
+- weakness: redemption is not granted to be the last flow
+- build number
+- clean up qlo\xxx.hpp files from ql inclusions
 - rename onForwardCmsPrice
 - remove qlo/simplecashflow.hpp
-- review with Eric BlackCalculator/BlackScholesCalculator (and remove default constructor)
+- review with Eric BlackCalculator/BlackScholesCalculator (and remove default
+  constructor)
 - review with Eric PricingEngine (and remove default constructor)
 - add ohxlversion
 - rename QuantLibXLDynamic to QuantLibXL: use only -s to discriminate?
@@ -50,22 +66,17 @@ GENERAL
 - can we remove quantlibaddin.cpp ??
 - use ValueObject for x,y interpolation persistance?
 - fix bug XS0093295953 PropertyValue("Coupons")
-- close all must stop refresh and should not activate
-- swaption smile vega (risultati con De Nuccio)
 - perche' SABR interpolation ha un data member forward_
-- export FRARateHelper and BondRateHelper
-- automatic cast from IMM code to date and get FuturesRateHelper in line
-  bertween QL and QLA
-- change QLA::DepositRateHelper as in QL::DepositRateHelper
-- add docs-project to sln
 - remove bat from testsuite/bin
 - avoid ignoring class of files, as in *.suo
-- what is included in serialization files
-- subscribe to SA mailing list
 - where is qlcalendar advance in the wizard
-- why cell menu "format as" doesn't work on multiple selection?
-- wbk open must reopen in the last folder
 - RateHelpers refactoring (using indexes)
+- export FRARateHelper and BondRateHelper
+- get FuturesRateHelper in line between QL and QLA
+- change QLA::DepositRateHelper as in QL::DepositRateHelper
+- refactor QL::Bond so that it expose its leg to be used by QL::Cashflows,
+  avoiding Bond methods that are doing nothing else than forwarding to
+  QL::Cashflows
 - cubic parameters as input to PiecewiseYieldCurve
 - caplet/swaption calibration
 * just one test with multiple unit-test
@@ -98,11 +109,13 @@ GENERAL
 - adopt boost::date
 - use boost property map in OH
 - have VBA code in text files
+- detect existing memory excessive usage
 
 ---
 NANDO
+- eol and mime-type defaults
+- swaption smile vega (risultati con De Nuccio)
 - test ForwardPeriodAdapter
-- wbk_close: if read-only do not ask for saving
 - use class QuantLib::PiecewiseYieldCurve (Traits, Interpolation)
   for HistoricalForwardRatesAnalysis
 - per Luigi: floating point exception + pricing engines observers dei market
@@ -124,7 +137,6 @@ NANDO
 - TermStructure time interface
 - recreating object quotes...
 - Higham covariance bug + review rank reduction
-- create relinkableHandle, then in ControlPanel only use linkTo
 - Instruments subfolder
 - vol term structure refactoring
 - joint calendar
@@ -135,17 +147,18 @@ NANDO
 - review dei seguenti workbooks: YC_SwapDemo.xls, IndexMethodsEnumOrObj.xls
 - refactor abcd vol file, adding more unary_functions for blackVol and
   covariance
-- implement abcdinterpolation
 
 ---
 K
 
+- close all macro must stop sceen refresh and should not activate wbk
 - TRIMESTRALE
 - action for setEvaluationDate
 - evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
   (K & Cri)
 - TimeSeries serialization
-DONE all handle used in main checks should be created in handles.xls: added 3mCaplet
+DONE all handle used in main checks should be created in handles.xls: added
+     3mCaplet
 - Design e gestione della USD currency per contribuzione swaption vols
 DONE add sa.xll to testing environment
 DONE Run Main Checks -> Open Main Checks
@@ -153,15 +166,17 @@ DONE Run Main Checks -> Open Main Checks
 - time series
     *DONE Refresh snapshot vba: estendere alle ts se open & editable
     *DONE Switch Data vba: verificare se estendere alle ts
-    *DONE Verifica che macro che chiude le ts salva i fogli a False -> no è gestito in apertura
+    *DONE Verifica che macro che chiude le ts salva i fogli a False -> no è
+          gestito in apertura
     *DONE Close Live Feed vba: deve chiudere anche le ts se open
     *DONE re-organize Quote/TimeSeries menus
     *DONE qlxlversion and trigger formatting in time series
     *Gestione smart per poter estendere le ts dinamicamente
 - Workbook_BeforeClose to remove triggers (verifica su pc diversi)
-  Wkb_Open vs Auto_Open: 
+  Wkb_Open vs Auto_Open:
     *Manually: the event proc is fired first and then the Auto_Open
-    *Via Code: fires only the event, not the Auto_Open. To force the Auto_Open use RunAutoMacros. 
+    *Via Code: fires only the event, not the Auto_Open. To force the Auto_Open
+     use RunAutoMacros.
   su foglio ManualCapFeed
 - Rt Update
   -> no evidence of stopping problems on our pcs
@@ -271,7 +286,8 @@ CRISTINA
 
 ---
 CHIARA
-- mimic Grisafi session avery day all day long on IngFin workstation (Done see results in: X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\StructuredBonds)
+- mimic Grisafi session avery day all day long on IngFin workstation (Done see
+  results in: X:\Offices\Financial Engineering\Derivatives Modelling\Projects\QuantLib\StructuredBonds)
 - Digital Bond contructor (5.0d|10dd|Wip)
   - decompose each deal in different legs: one wbk per deal (Done)
   - digitalcmsratebond constructor + digitalfloatingratebond constructor
@@ -287,7 +303,8 @@ CHIARA
   - arrange session with nando
 - markedata\BloombergFeed (Maurizio Pietrini)
   - 7/6 clarified once again mkt data feed for interestratequotesfeed.xls
-  - 7/9 received first workbook interestratequotesfedd.xls incompleted from Maurizio
+  - 7/9 received first workbook interestratequotesfedd.xls incompleted from
+    Maurizio
   - 7/10 replied with feedback on the first workbook
 - zspread/yield inversion (lehman's paper values can optionally be reproduces
   in the testsuite)
@@ -302,10 +319,13 @@ CHIARA
 
 ---
 FRANCOIS
-D bad allocation bug(1W/1W)
+- QL menu "wbk open" must reopen in the last folder
+- have cell menu "format as" to work on multiple selection
 - allow the user to choose traits and interpolator in the
   HistoricalForwardRatesAnalysis class (and expose it to
   Excel as traits aware)
+- sabr discontinuity (Giorgio and François)
+D bad allocation bug (1W/1W)
 D removing any trigger in the ohretrieveError() calls (qlWizard)(0D/0D)
 D removing any dynamic memory allocation in bond irr calculation
 - null strike -> atm strike (1W|WIP)
@@ -333,6 +353,9 @@ D MM: different correlation structures (Rapisarda, Schoenmakers and
 
 ---
 GIORGIO (last update 6/6/2007)
+- sabr discontinuity (Giorgio and François)
+- expose QL::CashFlows::irr, duration and convexity as qlLegIrr, qlLegDuration,
+  and qlLegConvexity
 WIP clean up vega incoherencies
 WIP code MakeSwaption class
 D split up CmsMarket and CmsMarketCalibration in 2 files
@@ -397,16 +420,20 @@ Eric
 - object creation
 
 - DevCycle branches/tags
-- nazcatech SVN browse?
 - SA version number
-- HD serial number
-- mkt data imp/exp
-
+- mkt data serialization
+- rename sa-docs as docs-sa
+- SA nsis (and general NSIS scripts refactoring)
+- memory usage
+- SA GUI
+- automatic cast from IMM code to date
+- what hpp are included in serialization files
 
 - 2 DOF projects
 - JRisk
-- there is no warning if there is an empty xll list to be loaded by QuantLix.xla
-- soohxll doesn't compile in debug mode
+- there is no warning if there is an empty xll list to be loaded by
+  QuantLix.xla
+- saohxll doesn't compile in debug mode
 - bond currency propety value cast
 - allow foo object to have method to create bar objects
 - enforce implicit Property Names (e.g. objectID, className) first letter
@@ -420,7 +447,9 @@ Eric
 - ohRange coercion to Matrix, std::vector, Array, scalar, string, etc
 - in index.xml use QuantLibAddin::Index::addFixings instead of
   QuantLib::Index::addFixings
-- relinkable handle singletons
+- xml (de)serialization can be used to recreate all "predefined" object at
+  start-up
+- relinkable handle singletons (?)
 - native support of vector of object IDS (as RateHelpers in
   PiecewiseYieldCurve)
 - automate xls properties clean up
