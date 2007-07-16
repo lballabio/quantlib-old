@@ -321,7 +321,7 @@ CHIARA
 ---
 FRANCOIS
 - handle Cristina's mail report
-- QL menu "wbk open" must reopen in the last folder
+D QL menu "wbk open" must reopen in the last folder (15m/15m)
 D have cell menu "format as" to work on multiple selection (30s/30s)
 - allow the user to choose traits and interpolator in the
   HistoricalForwardRatesAnalysis class (and expose it to
