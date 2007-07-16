@@ -34,6 +34,7 @@
         <DataType>QuantLib::CubicSpline::BoundaryCondition</DataType>
         <DataType>QuantLib::Currency</DataType>
         <DataType>QuantLib::DayCounter</DataType>
+        <DataType>QuantLib::Duration::Type</DataType>
         <DataType>QuantLib::EndCriteria::Type</DataType>
         <DataType>QuantLib::Frequency</DataType>
         <DataType>QuantLib::GFunctionFactory::ModelOfYieldCurve</DataType>
@@ -260,6 +261,7 @@
         <DataType>QuantLib::CoterminalSwapCurveState</DataType>
         <DataType>QuantLib::CurveState</DataType>
         <DataType>QuantLib::EvolutionDescription</DataType>
+        <DataType>QuantLib::InterestRate</DataType>
         <DataType>QuantLib::LMMCurveState</DataType>
         <DataType>QuantLib::MarketModelMultiProduct</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>

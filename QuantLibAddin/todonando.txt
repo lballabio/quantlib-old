@@ -355,7 +355,7 @@ GIORGIO (last update 6/6/2007)
 - sabr near-atm discontinuity (Giorgio and François)
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
 WIP clean up vega incoherencies
-WIP code MakeSwaption class
+D code MakeSwaption class
 WIP use Handle in SwaptionVolCubeChecks
 - CMS
   alternative calibrations with null rho
@@ -370,7 +370,6 @@ WIP use Handle in SwaptionVolCubeChecks
   - WIP create a workbook for range accrual under
     Workbooks\InterestRateDerivatives designing the workbook as done for
       CMS.xls
-- Visual Studio Express installation
 
 ---
 MARCO (last update 27/6/2007)

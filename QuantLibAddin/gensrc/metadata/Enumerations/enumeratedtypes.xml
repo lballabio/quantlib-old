@@ -1286,6 +1286,25 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
+    <EnumeratedTypeGroup type='QuantLib::Duration::Type'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Simple</string>
+          <value>QuantLib::Duration::Simple</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Macaulay</string>
+          <value>QuantLib::Duration::Macaulay</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Modified</string>
+          <value>QuantLib::Duration::Modified</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
   </EnumeratedTypeGroups>
 
 </root>

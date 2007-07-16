@@ -33,7 +33,6 @@
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/simplecashflow.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
-#include <ql/cashflows/cashflows.hpp>
 #include <ql/cashflows/couponpricer.hpp>
 
 using QuantLib::earlier_than;
@@ -68,7 +67,26 @@ namespace QuantLibAddin {
     QuantLib::Rate Leg::atmRate(const QuantLib::YieldTermStructure& hYTS) const {
         return QuantLib::CashFlows::atmRate(leg_, hYTS);
     }
-
+    QuantLib::Rate Leg::irr(QuantLib::Real marketPrice,
+                            const QuantLib::DayCounter& dayCounter,
+                            QuantLib::Compounding compounding,
+                            QuantLib::Frequency frequency,
+                            QuantLib::Date settlementDate,
+                            QuantLib::Real tolerance,
+                            QuantLib::Size maxIterations,
+                            QuantLib::Rate guess) const {
+        return QuantLib::CashFlows::irr(leg_, marketPrice, dayCounter, compounding,
+                      frequency, settlementDate, tolerance, maxIterations, guess);
+    }
+    QuantLib::Time Leg::duration(const QuantLib::InterestRate& y,
+                        QuantLib::Duration::Type type,
+                        QuantLib::Date settlementDate) const {
+        return QuantLib::CashFlows::duration(leg_, y, type, settlementDate);
+    }
+    QuantLib::Real Leg::convexity(const QuantLib::InterestRate& y,
+                                QuantLib::Date settlementDate) const { 
+        return QuantLib::CashFlows::convexity(leg_, y, settlementDate);
+    }
     std::vector<std::vector<boost::any> > Leg::analysis() const {
         return flowAnalysis(leg_);
     }
@@ -106,6 +124,14 @@ namespace QuantLibAddin {
             leg_.push_back(boost::shared_ptr<CashFlow>(new
                 QuantLib::SimpleCashFlow(amounts[i], dates[i])));
         }
+    }
+          
+    InterestRate::InterestRate(QuantLib::Rate r,
+                               const QuantLib::DayCounter& dc,
+                               QuantLib::Compounding comp,
+                               QuantLib::Frequency freq) {
+        libraryObject_ = boost::shared_ptr<QuantLib::InterestRate>(new
+            QuantLib::InterestRate(r, dc, comp, freq));
     }
 
 }

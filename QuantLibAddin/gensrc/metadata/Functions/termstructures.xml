@@ -177,6 +177,7 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::InterestRate</type>
+        <superType>libraryType</superType>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -224,6 +225,7 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::InterestRate</type>
+        <superType>libraryType</superType>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -266,6 +268,7 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::InterestRate</type>
+        <superType>libraryType</superType>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>

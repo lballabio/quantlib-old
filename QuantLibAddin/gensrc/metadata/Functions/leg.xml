@@ -163,7 +163,125 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
+    
+    <Member name='qlLegIrr' type='QuantLibAddin::Leg'>
+      <description>Returns the Internal rate of return for the given Leg object</description>
+      <libraryFunction>irr</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketPrice'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>market Price</description>
+          </Parameter>
+          <Parameter name='dayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+          </Parameter>
+          <Parameter name='Compounding' exampleValue='Compounded'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+          </Parameter>
+          <Parameter name='frequency' default='"Semiannual"' const='False'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='settlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+          <Parameter name='tolerance' default='1.0e12'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance. If omitted, default = 1.0e12 is used.</description>
+          </Parameter>
+          <Parameter name='maxIterations' exampleValue='1000'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max number of iterations.</description>
+          </Parameter>
+          <Parameter name='guess'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>guess</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
+    <Member name='qlLegDuration' type='QuantLibAddin::Leg'>
+      <description>Returns the Cash-flow duration for the given Leg object</description>
+      <libraryFunction>duration</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='interestRate'>
+            <type>QuantLib::InterestRate</type>
+            <superType>underlyingClass</superType> 
+            <tensorRank>scalar</tensorRank>
+            <description>interest rate object ID</description>
+          </Parameter>
+          <Parameter name='durationType'>
+            <type>QuantLib::Duration::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Duration type</description>
+          </Parameter>
+          <Parameter name='settlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegConvexity ' type='QuantLibAddin::Leg'>
+      <description>Returns the Cash-flow convexity for the given Leg object</description>
+      <libraryFunction>convexity</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='interestRate'>
+            <type>QuantLib::InterestRate</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>interest rate object ID</description>
+          </Parameter>
+          <Parameter name='settlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+   
     <Member name='qlLegAnalysis' type='QuantLibAddin::Leg'>
       <description>Returns the flow analysis for the given Leg object</description>
       <libraryFunction>analysis</libraryFunction>
@@ -241,6 +359,38 @@
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the CashFlows in the merged Leg must be sorted according to date/amount</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
+    <Constructor name='qlInterestRate'>
+      <libraryFunction>InterestRate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='marketPrice'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>market Price</description>
+          </Parameter>
+          <Parameter name='dayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+          </Parameter>
+          <Parameter name='Compounding' exampleValue='Compounded'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+          </Parameter>
+          <Parameter name='frequency' default='"Semiannual"' const='False'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
           </Parameter>
         </Parameters>
       </ParameterList>

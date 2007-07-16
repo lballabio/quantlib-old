@@ -28,11 +28,11 @@
 
 #include <ql/types.hpp>
 #include <ql/cashflow.hpp>
+#include <ql/compounding.hpp>
+#include <ql/cashflows/cashflows.hpp>
 
 namespace QuantLib {
     class FloatingRateCouponPricer;
-    class Date;
-    class YieldTermStructure;
 }
 
 namespace QuantLibAddin {
@@ -46,6 +46,20 @@ namespace QuantLibAddin {
         QuantLib::Real npv(const QuantLib::YieldTermStructure&) const;
         QuantLib::Real bps(const QuantLib::YieldTermStructure&) const;
         QuantLib::Rate atmRate(const QuantLib::YieldTermStructure&) const;
+        QuantLib::Rate irr(QuantLib::Real marketPrice,
+                          const QuantLib::DayCounter& dayCounter,
+                          QuantLib::Compounding compounding,
+                          QuantLib::Frequency frequency,
+                          QuantLib::Date settlementDate,
+                          QuantLib::Real tolerance,
+                          QuantLib::Size maxIterations,
+                          QuantLib::Rate guess) const;
+        QuantLib::Time duration(const QuantLib::InterestRate& y,
+                                QuantLib::Duration::Type type,
+                                QuantLib::Date settlementDate) const;
+        QuantLib::Real convexity(const QuantLib::InterestRate& y,
+                                QuantLib::Date settlementDate) const;
+
         void setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
 
@@ -67,6 +81,14 @@ namespace QuantLibAddin {
         SimpleCashFlowVector(const std::vector<QuantLib::Real>& amounts,
                              const std::vector<QuantLib::Date>& dates);
     };
+
+    class InterestRate : public ObjectHandler::LibraryObject<QuantLib::InterestRate> {
+      public:
+      InterestRate(QuantLib::Rate r,
+                   const QuantLib::DayCounter& dc,
+                   QuantLib::Compounding comp,
+                   QuantLib::Frequency freq);
+	};
 }
 
 #endif
