@@ -27,6 +27,7 @@
 #include <qlo/ratehelpers.hpp>
 #include <ql/indexes/iborindex.hpp>
 #include <ql/termstructures/yieldcurves/ratehelpers.hpp>
+#include <ql/termstructures/yieldcurves/bondhelpers.hpp>
 #include <ql/time/imm.hpp>
 
 #include <oh/repository.hpp>
@@ -99,6 +100,67 @@ namespace QuantLibAddin {
                                      index));
     }
 
+    FraRateHelper::FraRateHelper(const QuantLib::Handle<QuantLib::Quote>& rate,
+                  QuantLib::Natural monthsToStart,
+                  QuantLib::Natural monthsToEnd,
+                  QuantLib::Natural settlementDays,
+                  const QuantLib::Calendar& calendar,
+                  QuantLib::BusinessDayConvention convention,
+                  bool endOfMonth,
+                  QuantLib::Natural fixingDays,
+                  const QuantLib::DayCounter& dayCounter) {
+        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::FraRateHelper(rate,
+                                  monthsToStart,
+                                  monthsToEnd,
+                                  settlementDays,
+                                  calendar,
+                                  convention,
+                                  endOfMonth,
+                                  fixingDays,
+                                  dayCounter));
+    }
+
+    FraRateHelper::FraRateHelper(QuantLib::Rate rate,
+                  QuantLib::Natural monthsToStart,
+                  QuantLib::Natural monthsToEnd,
+                  QuantLib::Natural settlementDays,
+                  const QuantLib::Calendar& calendar,
+                  QuantLib::BusinessDayConvention convention,
+                  bool endOfMonth,
+                  QuantLib::Natural fixingDays,
+                  const QuantLib::DayCounter& dayCounter) {
+        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::FraRateHelper(rate,
+                                  monthsToStart,
+                                  monthsToEnd,
+                                  settlementDays,
+                                  calendar,
+                                  convention,
+                                  endOfMonth,
+                                  fixingDays,
+                                  dayCounter));
+    }
+
+    FixedCouponBondHelper::FixedCouponBondHelper(
+                      const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
+                      QuantLib::Natural settlementDays,
+                      const QuantLib::Schedule& schedule,
+                      const std::vector<QuantLib::Rate>& coupons,
+                      const QuantLib::DayCounter& paymentDayCounter,
+                      QuantLib::BusinessDayConvention paymentConvention,
+                      QuantLib::Real redemption,
+                      const QuantLib::Date& issueDate) {
+        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::FixedCouponBondHelper(cleanPrice,
+                      settlementDays,
+                      schedule,
+                      coupons,
+                      paymentDayCounter,
+                      paymentConvention,
+                      redemption,
+                      issueDate));
+    }
 
     // helper class
     namespace detail {

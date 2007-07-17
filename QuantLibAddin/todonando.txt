@@ -321,8 +321,8 @@ CHIARA
 ---
 FRANCOIS
 - handle Cristina's mail report
-D QL menu "wbk open" must reopen in the last folder (15m/15m)
-D have cell menu "format as" to work on multiple selection (30s/30s)
+- QL menu "wbk open" must reopen in the last folder
+- have cell menu "format as" to work on multiple selection
 - allow the user to choose traits and interpolator in the
   HistoricalForwardRatesAnalysis class (and expose it to
   Excel as traits aware)
@@ -348,10 +348,10 @@ D have cell menu "format as" to work on multiple selection (30s/30s)
 
 ---
 GIORGIO (last update 6/6/2007)
-- report last meeting content to François
-- expose QL::CashFlows::irr, duration and convexity to XL as qlLegIrr,
+D report last meeting content to François
+D expose QL::CashFlows::irr, duration and convexity to XL as qlLegIrr,
   qlLegDuration, and qlLegConvexity (with their enums, etc)
-- export FRARateHelper and BondRateHelper
+WIP export FRARateHelper and BondRateHelper
 - sabr near-atm discontinuity (Giorgio and François)
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
 WIP clean up vega incoherencies

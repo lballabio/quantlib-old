@@ -5,10 +5,12 @@
   <addinIncludes>
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/index.hpp</include>
+    <include>qlo/schedule.hpp</include>
     <include>ql/termstructures/yieldcurves/ratehelpers.hpp</include>
     </addinIncludes>
   <serializationIncludes>
     <include>qlo/ValueObjects/vo_ratehelpers.hpp</include>
+    <include>qlo/schedule.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/index.hpp</include>
   </serializationIncludes>
@@ -160,6 +162,118 @@
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>floating leg index object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlFraRateHelper'>
+      <libraryFunction>FraRateHelper</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='quote'  exampleValue='0.042'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>quote</description>
+          </Parameter>
+          <Parameter name='monthsToStart' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>months to start</description>
+          </Parameter>
+          <Parameter name='monthsToEnd' exampleValue='4'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>months to end</description>
+          </Parameter>
+          <Parameter name='settlementDays' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement days (e.g. 2)</description>
+          </Parameter>
+          <Parameter name='calendar'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET)</description>
+          </Parameter>
+          <Parameter name='convention'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>convention (e.g. Unadjusted)</description>
+          </Parameter>
+          <Parameter name='endOfMonth' exampleValue='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>endOfMonth</description>
+          </Parameter>
+          <Parameter name='fixingDays' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 2)</description>
+          </Parameter>
+          <Parameter name='dayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlFixedCouponBondHelper'>
+      <libraryFunction>FixedCouponBondHelper</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='cleanPrice'  exampleValue='0.042'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>cleanPrice</description>
+          </Parameter>
+          <Parameter name='settlementDays' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement days (e.g. 2)</description>
+          </Parameter>
+          <Parameter name='ScheduleID'>
+            <type>QuantLib::Schedule</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Schedule object ID</description>
+          </Parameter>
+          <Parameter name='coupons'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>coupons</description>
+          </Parameter>
+          <Parameter name='paymentDayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment day counter (e.g. Actual/360)</description>
+          </Parameter>
+          <Parameter name='paymentConvention'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment convention (e.g. Unadjusted)</description>
+          </Parameter>
+          <Parameter name='redemption'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>redemption</description>
+          </Parameter>
+          <Parameter name='issueDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

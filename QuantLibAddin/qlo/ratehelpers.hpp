@@ -36,6 +36,8 @@ namespace QuantLib {
     class Calendar;
     class DayCounter;
     class IborIndex;
+    class Schedule;
+    class Date;
 }
 
 namespace QuantLibAddin {
@@ -90,6 +92,41 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& fixedDayCounter,
             const boost::shared_ptr<QuantLib::IborIndex>& index);
     };
+
+    class FraRateHelper : public RateHelper {
+      public:
+        FraRateHelper(const QuantLib::Handle<QuantLib::Quote>& rate,
+                      QuantLib::Natural monthsToStart,
+                      QuantLib::Natural monthsToEnd,
+                      QuantLib::Natural settlementDays,
+                      const QuantLib::Calendar& calendar,
+                      QuantLib::BusinessDayConvention convention,
+                      bool endOfMonth,
+                      QuantLib::Natural fixingDays,
+                      const QuantLib::DayCounter& dayCounter);
+        FraRateHelper(QuantLib::Rate rate,
+                      QuantLib::Natural monthsToStart,
+                      QuantLib::Natural monthsToEnd,
+                      QuantLib::Natural settlementDays,
+                      const QuantLib::Calendar& calendar,
+                      QuantLib::BusinessDayConvention convention,
+                      bool endOfMonth,
+                      QuantLib::Natural fixingDays,
+                      const QuantLib::DayCounter& dayCounter);
+    };
+
+    class FixedCouponBondHelper : public RateHelper {
+      public:
+        FixedCouponBondHelper(const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
+                              QuantLib::Natural settlementDays,
+                              const QuantLib::Schedule& schedule,
+                              const std::vector<QuantLib::Rate>& coupons,
+                              const QuantLib::DayCounter& paymentDayCounter,
+                              QuantLib::BusinessDayConvention paymentConvention,
+                              QuantLib::Real redemption,
+                              const QuantLib::Date& issueDate);
+    };
+            
 
     // Processes the set of curve bootstrapping instruments
     // and selects a subset according to the given rules and parameters
