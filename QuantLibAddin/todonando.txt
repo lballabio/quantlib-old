@@ -326,7 +326,7 @@ FRANCOIS
 - allow the user to choose traits and interpolator in the
   HistoricalForwardRatesAnalysis class (and expose it to
   Excel as traits aware)
-- sabr near-atm discontinuity (Giorgio and François)
+D sabr near-atm discontinuity (Giorgio and François) (1D/1D)
 - null strike -> atm strike (1W|WIP)
 - arrange sessions on Rapisarda approach(TBD)
 - XML/ serialization presentation
@@ -352,7 +352,7 @@ D report last meeting content to François
 D expose QL::CashFlows::irr, duration and convexity to XL as qlLegIrr,
   qlLegDuration, and qlLegConvexity (with their enums, etc)
 WIP export FRARateHelper and BondRateHelper
-- sabr near-atm discontinuity (Giorgio and François)
+D sabr near-atm discontinuity (Giorgio and François) (1D/1D)
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
 WIP clean up vega incoherencies
 D code MakeSwaption class
