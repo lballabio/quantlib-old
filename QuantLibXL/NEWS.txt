@@ -124,7 +124,12 @@ ObjectHandler:
 
 
 Sensitivity Analysis:
--  added Workbooks/Interest Rate Derivatives/SensitivityAnalysis.xls to run sensitivity analysis on a single deal.  Greeks can be calculated shifting yield curve, ATM vols, spread vols. 
+- introduced concept of tick value, i.e. the shift to be used in the
+  sensitivity analysis. Default values are given in all workbooks where quote
+  ids are created (see for example MarketData\Quotes\InterestRateQuotes.xls)
+- function qlSimpleQuoteSetTickValue is provided to set the tick value of the
+  given SimpleQuote object
+- added Workbooks/Interest Rate Derivatives/SensitivityAnalysis.xls to run sensitivity analysis on a single deal.  Greeks can be calculated shifting yield curve, ATM vols, spread vols. 
 
 
 
@@ -315,3 +320,56 @@ BONDS:
 
 BondMonitor_EUR.xls:
 - all market data triggers have been taken into account
+
+
+**************************
+    REV11940
+**************************
+
+QuantLibXL MENU:
+- Refresh Snapshots: the action is performed also on Time Series workbooks if open
+- Switch Data to Live/Static: the action is performed on Time Series workbooks if open
+- Close Live Feeds: the action is performed on Time Series workbooks if open
+- right-click cell menu: added enumerations (EndCriteria::Type, CmsMarketCalibration::CalibrationType, IborCouponPricer, Payoff, PricingEngine, PiecewiseYieldCurve(Traits, Interpolation))
+
+BONDS:
+- added check against prospectus but not validated new bond (Tec10) IT0004011638
+- corrected static data for XS0091610153
+- added and checked against prospectus new floater: XS0233447936
+- Workbooks/Tests/BondvsSwap.xls: added new to test bond prices vs swap leg price
+- Workbooks/Bonds/XS0228052402.xls: changed cms coupon pricer in order to get updated mean reversion quote
+- added 2 new digital bonds decomposed in digital simple ibor/cms coupon IT0001278404 and IT0003730626: Workbooks/Bonds/IT0001278404.xls and Workbooks/Bonds/IT0003730626.xls
+- modified XS0194140785.xls, XS0195731681.xls and XS0228052402.xls so to include a rough calculation of bond dirty theorical price
+- Workbooks/Bonds/XS0228052402.xls: decomposed bond: XS0228052402 using both multiphase and multilegswap.
+
+NEW FUNCTIONS:
+- 'qlFraRateHelper' construction a FRA rate helper to be used in the yield curve bootstrapping
+- 'qlFixedCouponBondHelper' 
+- 'qlLegIrr' returns the Internal rate of return for the given Leg object
+- 'qlLegDuration' returns the Cash-flow duration for the given Leg object
+- 'qlLegConvexity’ returns the Cash-flow convexity for the given Leg object
+- 'qlInterestRate' constructs an object of class interest rate
+- qlVanillaSwapFromSwapIndex’ creates a vanilla swap object from a given swap index
+- ‘qlMakeSwaption’ to construct easily a swaption object given swapIndex, strike,  option tenor, pricing engine
+
+SENSITIVITY ANALYSIS:
+- Workbooks/MarketMetaData/YieldCurveMx.xls: added tick value to Mx quote ids to be used for greeks calculation
+- single deal sensitivity analysis book: Workbooks/InterestRateDerivatives/SensitivityAnalysis.xls
+
+***SERIALIZATION:
+- Serialize index fixings
+- Workbooks/StandaloneExamples/ConstantMaturitySwap.xls
+- Workbooks/StandaloneExamples/MarketData.xls 
+- ohRange() class to handle matrices in addition to vectors
+- Workbooks/StandaloneExamples/test_deserialize.xls
+- Workbooks/StandaloneExamples/test_serialize.xls
+
+VARIOUS:
+- CMS: added Workbooks/Tests/CmsWithDigitalLeg.xls
+- CapStrippers3M.xls: added Relinkable Handle EUR3MCapletVol. Links are EUR3MCapletVol1 or EUR6MCapletVol1
+- added Workbooks/MarketMetaData/YieldCurveBootstrappingMxSettings.xls: construct EURYC3 where depo3w is excluded, swap35Y and non main cycle futures are excluded, and depos before first futures expiry date are included
+
+FIXED BUGS:
+- bad allocation error: the argument spreads vector was increasing at each pricing, as a result  caps stripping was silently sucking all the memory
+- euriborfix and eurliborfix indexes: modified fixed leg business convention from Unadjusted to Modified Following
+- in the calculation of swap length in swaption atm volatility matrix and swaption volatility cube

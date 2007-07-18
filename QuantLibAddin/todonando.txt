@@ -150,19 +150,20 @@ NANDO
 
 ---
 K
-
+DONE rilascio Rev11490 in Testing, Rev11705 in Pre-Prod, Rev11190 in Produzione
+- prepara report per Rev11490 
 - presa in carico del foglio di Clerici
 - check that CMS book NPV is ok when allowExtrapolation=False for YC and
   volStructures (K and Giorgio)
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
-- close all macro must stop screen refresh and should not activate wbk
+DONE close all macro must stop screen refresh and should not activate wbk
 - TRIMESTRALE
-- action for setEvaluationDate
+- action for setEvaluationDate -> stand-by for Eric
 - evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
   (K & Cri)
 - TimeSeries serialization
 - Design e gestione della USD currency per contribuzione swaption vols
-- run SA on EURYCMx2 replacing the quotes ids
+- run SA on EURYCMx2 replacing the quotes ids -> emailed Eric with test-case
 - time series
     *Gestione smart per poter estendere le ts dinamicamente
 - Workbook_BeforeClose to remove triggers (verifica su pc diversi)
@@ -171,10 +172,9 @@ K
     *Via Code: fires only the event, not the Auto_Open. To force the Auto_Open
      use RunAutoMacros.
   su foglio ManualCapFeed
-- Rt Update
-  -> no evidence of stopping problems on our pcs
-  -> prepared wkb to test on traders' pc (next week)
+- Rt Update stop: testing
 - coveredWarrants.xls
+    * repricing vs Mx with new cap stripper
 - Sensitivity Analysis (K&Cristina):  				(7.5d/5w)
   - General
     run sa on rates, atm vols and vol spreads
