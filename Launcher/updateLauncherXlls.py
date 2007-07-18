@@ -5,13 +5,15 @@ import shutil
 import glob
 
 SOURCE_TARGET_FILE_LIST = (
-    ( "X:/Apps/Appsscript/CabotoXL/Rev10747/xll", "Addins/01 Production",     "QuantLibXL-vc80-mt-s-0_8_0.xll" ),
+    ( "X:/Apps/Appsscript/CabotoXL/Rev11190/xll", "Addins/01 Production", "QuantLibXL-vc80-mt-s-0_9_0.xll" ),
 
-    ( "X:/Apps/Appsscript/CabotoXL/Rev11190/xll", "Addins/02 Pre-Production", "QuantLibXL-vc80-mt-s-0_9_0.xll" ),
+    ( "X:/Apps/Appsscript/CabotoXL/Rev11705/xll", "Addins/02 Pre-Production", "QuantLibXLDynamic-vc80-mt-0_9_0.xll" ),
+    ( "X:/Apps/Appsscript/CabotoXL/Rev11705/xll", "Addins/02 Pre-Production", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
+    ( "X:/Apps/Appsscript/CabotoXL/Rev11705/xll", "Addins/02 Pre-Production", "saohxll-vc80-mt-0_1_9.xll" ),
 
-    ( "X:/Apps/Appsscript/CabotoXL/Rev11705/xll", "Addins/03 Testing", "QuantLibXLDynamic-vc80-mt-0_9_0.xll" ),
-    ( "X:/Apps/Appsscript/CabotoXL/Rev11705/xll", "Addins/03 Testing", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
-    ( "X:/Apps/Appsscript/CabotoXL/Rev11705/xll", "Addins/03 Testing", "saohxll-vc80-mt-0_1_9.xll" ),
+    ( "X:/Apps/Appsscript/CabotoXL/Rev11940/xll", "Addins/03 Testing", "QuantLibXLDynamic-vc80-mt-0_9_0.xll" ),
+    ( "X:/Apps/Appsscript/CabotoXL/Rev11940/xll", "Addins/03 Testing", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
+    ( "X:/Apps/Appsscript/CabotoXL/Rev11940/xll", "Addins/03 Testing", "saohxll-vc80-mt-0_1_9.xll" ),
 )
 
 #SOURCE_TARGET_FILE_LIST = (
