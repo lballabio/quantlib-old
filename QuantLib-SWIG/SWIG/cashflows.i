@@ -281,17 +281,23 @@ class CashFlows {
     static Date startDate(const Leg &);
     static Date maturityDate(const Leg &);
     static Real npv(const Leg&,
-                    const Handle<YieldTermStructure>&);
+                    const YieldTermStructure & discountCurve,
+		    const Date& settlementDate = Date(),
+                    const Date& npvDate = Date(),
+		    Integer exDividendDays = 0);
     static Real npv(const Leg&,
                     const InterestRate&,
                     Date settlementDate = Date());
     static Real bps(const Leg&,
-                    const Handle<YieldTermStructure>&);
+                    const YieldTermStructure & discountCurve,
+		    const Date& settlementDate = Date(),
+                    const Date& npvDate = Date(),
+		    Integer exDividendDays = 0);
     static Real bps(const Leg&,
                     const InterestRate &,
                     Date settlementDate = Date());
     static Rate atmRate(const Leg&,
-                        const Handle<YieldTermStructure>&,
+                        const YieldTermStructure &,
                         const Date& settlementDate = Date(),
                         const Date& npvDate = Date(),
                         Integer exDividendDays = 0,
