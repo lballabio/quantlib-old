@@ -288,9 +288,9 @@ CHIARA
   (MainChecks+BondMonitor)
 - create Workbooks/PricingEngines folder and create there a wbk for
   instantiating CMS/Ibor Pricers. Use them for Bonds and IRDerivatives
-  pricing workbooks
-- Digital Bond contructor (5.0d|10dd|Wip)
-  - decompose each deal in different legs: one wbk per deal (wip)
+  pricing workbooks (Done)
+- Digital Bond contructor (8.0d|10dd|Wip)
+  - decompose each deal in different legs: one wbk per deal (Done)
   - digitalcmsratebond constructor + digitalfloatingratebond constructor
     without cap and floor
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g.
