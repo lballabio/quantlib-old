@@ -294,7 +294,7 @@ CHIARA
   - digitalcmsratebond constructor + digitalfloatingratebond constructor
     without cap and floor
 - debug cmsratebond constructor for cms bond paying once in arrears (e.g.
-  IT0003650998.pdf) (0d|1d)
+  IT0003650998.pdf) (0.5d|1d) (Done without debugging)
   -prospectus added in Drafts
 - cds options (with Giorgio) (1.5d-30dd|WIP)
   - analysis of the trader's workbook
