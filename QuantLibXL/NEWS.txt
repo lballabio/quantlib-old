@@ -76,12 +76,14 @@ Various:
 Bonds:
 - wrong maturity dates (XS0082486050, IT0003749923) in BondObjects_EUR.xls
 - wrong fixed coupon (XS0080282907) in BondObjects_EUR.xls
+- added new cms bonds fixing in arrears (IT0003650998) in BondObjects_EUR.xls
 - Workbooks/Bonds/Z-Spread.xls: added new workbook for bonds price calculation given Z-spread
 - BondMonitor_EUR.xls: added static data for digital cms and digital eur[l]ibor bonds
 - added Workbooks/Bonds/XS0194140785.xls, XS0195731681.xls, XS0228052402.xls, IT0003766372.xls,IT0003747364.xls,IT0003730626.xls, and IT0001278404.xls. Each workbook replicates one of the following bonds:
 XS0194140785, XS0195731681, XS0228052402, IT0003766372,IT0003747364 ,IT0003730626, and IT0001278404 decomposing it in digital ibor/cms leg.
 - added Workbooks/Tests/CmsWithDigitalLeg.xls, Workbooks/Tests/DigitalLegReplicationType.xls, Workbooks/Tests/SwapWithDigitalLeg.xls pricing/test workbooks for digital coupon 
 - new named pricers created in: \Workbooks\PricingEngines\CmsCouponPricers.xls and IborCouponPricer.xls. This pricers are currently instantiated in the action:Load Bonds. 
+- added Workbooks/Tests/BondvsSwap.xls to tests fixed rate bond's dirty price against fixed leg NPV, with same schedule and cpn of the bond.
 
 Market Models:
 - functions to construct and use Accounting Engines objects
