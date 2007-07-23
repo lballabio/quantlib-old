@@ -151,7 +151,7 @@ NANDO
 ---
 K
 DONE rilascio Rev11490 in Testing, Rev11705 in Pre-Prod, Rev11190 in Produzione
-- prepara report per Rev11490 
+DONE prepara report per Rev11490 
 - presa in carico del foglio di Clerici
 - check that CMS book NPV is ok when allowExtrapolation=False for YC and
   volStructures (K and Giorgio)
@@ -159,8 +159,8 @@ DONE rilascio Rev11490 in Testing, Rev11705 in Pre-Prod, Rev11190 in Produzione
 DONE close all macro must stop screen refresh and should not activate wbk
 - TRIMESTRALE
 - action for setEvaluationDate -> stand-by for Eric
-- evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
-  (K & Cri)
+- (2volte) evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
+  (K). Dal Launcher seleziona YC, Smile, Rt. Open Live Feeds+save&Close. Calibrations.
 - TimeSeries serialization
 - Design e gestione della USD currency per contribuzione swaption vols
 - run SA on EURYCMx2 replacing the quotes ids -> emailed Eric with test-case
