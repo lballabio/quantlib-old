@@ -110,6 +110,7 @@ GENERAL
 
 ---
 NANDO
+- use Use svn:externals ? what about branches?
 - restore qlVersion()
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
 - more pricing engines global instantiation

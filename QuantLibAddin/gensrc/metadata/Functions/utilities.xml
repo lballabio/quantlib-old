@@ -51,7 +51,7 @@
       </ReturnValue>
     </Procedure>
 
-    <!--<Procedure name='qlVersion'>
+    <Procedure name='qlVersion'>
       <description>returns the version number of QuantLib</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
@@ -65,7 +65,7 @@
         <type>string</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Procedure>-->
+    </Procedure>
 
     <Procedure name='qlFunctionCount'>
       <description>returns the number of functions in this Addin</description>
