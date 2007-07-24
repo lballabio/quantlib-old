@@ -254,7 +254,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlLegConvexity ' type='QuantLibAddin::Leg'>
+    <Member name='qlLegConvexity' type='QuantLibAddin::Leg'>
       <description>Returns the Cash-flow convexity for the given Leg object</description>
       <libraryFunction>convexity</libraryFunction>
       <SupportedPlatforms>

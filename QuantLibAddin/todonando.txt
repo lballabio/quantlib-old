@@ -352,7 +352,7 @@ GIORGIO (last update 6/6/2007)
 D report last meeting content to François
 D expose QL::CashFlows::irr, duration and convexity to XL as qlLegIrr,
   qlLegDuration, and qlLegConvexity (with their enums, etc)
-WIP export FRARateHelper and BondRateHelper
+D export FRARateHelper and BondRateHelper
 D sabr near-atm discontinuity (Giorgio and François) (1D/1D)
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
 WIP clean up vega incoherencies
@@ -361,7 +361,7 @@ WIP use Handle in SwaptionVolCubeChecks
 - CMS
   alternative calibrations with null rho
   check 2Y beta sensitivity
-- EvolutionDescription equality
+WIP EvolutionDescription equality
 - prepare smile section refactoring proposal
 - range accrual session
 - CDS options (with Chiara)
