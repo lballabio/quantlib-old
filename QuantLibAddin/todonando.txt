@@ -153,19 +153,27 @@ NANDO
 K
 DONE rilascio Rev11490 in Testing, Rev11705 in Pre-Prod, Rev11190 in Produzione
 DONE prepara report per Rev11490 
+DONE documentazione della contribuzione dei dati di volatilità
 - presa in carico del foglio di Clerici
+- mostra De Nuccio standard di mercato di vanilla swap/swap/cap&floor
 - check that CMS book NPV is ok when allowExtrapolation=False for YC and
-  volStructures (K and Giorgio)
+  volStructures (K and Giorgio): 
+  -> YC=False ha impatto sulla costruzione del cubo 30x30, 
+     lo swap che fissa tra 30Y e ha durata 30Y ha come last date una 
+     date superiore alla max date della yc
+  -> cube=False: same results in trms of npv
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
 DONE close all macro must stop screen refresh and should not activate wbk
 - TRIMESTRALE
 - action for setEvaluationDate -> stand-by for Eric
-- (2volte) evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
+DONE (2volte) evitare di dover chiudere dopo il refresh snapshot prima delle calibrazioni
   (K). Dal Launcher seleziona YC, Smile, Rt. Open Live Feeds+save&Close. Calibrations.
+ERIC:
+- repository per caboto.xll e shared docs
 - TimeSeries serialization
 - Design e gestione della USD currency per contribuzione swaption vols
 - run SA on EURYCMx2 replacing the quotes ids -> emailed Eric with test-case
-- time series
+- time series (stand-by)
     *Gestione smart per poter estendere le ts dinamicamente
 - Workbook_BeforeClose to remove triggers (verifica su pc diversi)
   Wkb_Open vs Auto_Open:
