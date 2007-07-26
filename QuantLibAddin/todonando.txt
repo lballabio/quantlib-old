@@ -296,17 +296,11 @@ CHIARA
 - daily monitor of Production/Pre-Production/Testing environment
   (MainChecks+BondMonitor)
 - add new bonds in all the environments for traders' need (0.0D-0.5D)
-- create Workbooks/PricingEngines folder and create there a wbk for
-  instantiating CMS/Ibor Pricers. Use them for Bonds and IRDerivatives
-  pricing workbooks (Done)
 - Digital Bond contructor (8.0d|10dd|Wip)
   - decompose each deal in different legs: one wbk per deal (Done)
   - review workbook's design (0.5D|1D)
   - digitalcmsratebond constructor + digitalfloatingratebond constructor
     without cap and floor
-- debug cmsratebond constructor for cms bond paying once in arrears (e.g.
-  IT0003650998.pdf) (0.5d|1d) (Done without debugging)
-  -prospectus added in Drafts
 - cds options (with Giorgio) (1.5d-30dd|WIP)
   - analysis of the trader's workbook
   - verified correct installation of Launcher, access given to the trader to
