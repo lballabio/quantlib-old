@@ -321,20 +321,22 @@ CHIARA
 
 ---
 FRANCOIS
-- handle Cristina's mail report
-- QL menu "wbk open" must reopen in the last folder
-- have cell menu "format as" to work on multiple selection
-- allow the user to choose traits and interpolator in the
+- handle Cristina's mail report (WIP)
+D QL menu "wbk open" must reopen in the last folder
+D have cell menu "format as" to work on multiple selection
+WIP allow the user to choose traits and interpolator in the
   HistoricalForwardRatesAnalysis class (and expose it to
   Excel as traits aware)
+  -> waiting for Eric feedback
 D sabr near-atm discontinuity (Giorgio and François) (1D/1D)
 - null strike -> atm strike (1W|WIP)
-- arrange sessions on Rapisarda approach(TBD)
-- XML/ serialization presentation
-- MM: different correlation structures (Rapisarda, Schoenmakers and
+B arrange sessions on Rapisarda approach(TBD)
+B XML/ serialization presentation
+TBR MM: different correlation structures (Rapisarda, Schoenmakers and
   Coffey)(5.5D/2D-5D) (To be reviewed)
-- notification chains pb (1D/3D)
+WIP notification chains pb (1D/3D)
   TermStructure lazyness in notification
+  -> to be discussed with Luigi
 - smile sections:
 	- use Levenberg optimizator
 	- move vol quotes from constructor(to be precised)
