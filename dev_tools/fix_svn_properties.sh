@@ -3,7 +3,7 @@
 find . -name '*.[hc]pp' -o -name '*.[hc]' \
     -o -name '*.xhtml' -o -name '*.html' -o -name '*.htm' -o -name '*.css' \
     -o -name '*.docs' -o -name '*.doxy' -o -name '*.qbk' \
-    -o -name '*.el' -o -name '*.bat' -o -name '*.sh' -o -name '*.cmake' \
+    -o -name '*.el' -o -name '*.cmake' \
     -o -name '*.ipp' -o -name '*.jam' -o -name '*.tpp' \
     -o -iname '*.txt' -o -name '*.tex' -o -name '*.dtd' \
     -o -name '*.xml' -o -name 'stub.*' -o -name '*.rst' \
@@ -15,12 +15,12 @@ find . -name '*.[hc]pp' -o -name '*.[hc]' \
  | xargs -n 1 svn propset svn:eol-style native
 # these should have UNIX eol, even when extracted from a .zip
 find . -name '*.a[cm]' -o -name '*.m4' -o -name '*.in' \
-    -o -name '*.1' \
+    -o -name '*.sh' -o -name '*.1' \
  | xargs -n 1 svn propset svn:eol-style LF
 # these should have Windows eol, even when extracted from a .tar.gz
 find . -name '*.dev' -o -name '*.sln' \
     -o -name '*.vcproj' -o -name '*.csproj' \
-    -o -name '*.cmd' \
+    -o -name '*.cmd' -o -name '*.bat' \
     -o -name '*.dsw' -o -name '*.dsp' \
  | xargs -n 1 svn propset svn:eol-style CRLF
 # these should have svn:needs-lock
