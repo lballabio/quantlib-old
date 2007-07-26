@@ -252,13 +252,13 @@ CRISTINA
   cms quotes,
   time value
 - test that the manual procedure to set back/forward the evaluation
-  date returns the same results of the automatic procedure
+  date returns the same results of the automatic procedure (DONE)
 - flow analysis aggregation of flows with the same payment date,accrPeriods,etc
 - SA stress test with extrem tickValues
 - create in Workbooks/PricingEngines BlackSwaption and BlackCapFloor engines.
   Use them for in IRDerivatives pricing workbooks
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
-- chiusure DRM 29/6 e creazione ambiente dedicato
+- chiusure DRM 29/6 e creazione ambiente dedicato     (DONE)
 - test for relinkability (CMS npv + greeks)           (DONE for NPV)
 - test valid object creation with ALL quotes not initialized (waiting for
   François)
