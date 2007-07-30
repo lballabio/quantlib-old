@@ -28,7 +28,7 @@
 
 using namespace QuantLibAddinCpp;
 
-int main() { 
+int main() {  
 
     try {
 
