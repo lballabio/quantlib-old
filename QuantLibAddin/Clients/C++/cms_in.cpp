@@ -42,7 +42,11 @@ int main() {
         LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion());
         LOG_MESSAGE("ObjectHandler version = " << ohVersion());
 
-        // initialize some values
+        // Set the evaluation date to 12 July 2007
+
+        qlSettingsSetEvaluationDate(39275L);
+
+        // Initialize some values
 
         std::string yieldCurveID = "EUR_YC";
 
