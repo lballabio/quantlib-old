@@ -376,27 +376,16 @@ WIP EvolutionDescription equality
       CMS.xls
 
 ---
-MARCO (last update 27/6/2007)
-- Citrix showdown: (1d/1d/DONE)
-  - verifica licenze accesso: individuato referente, -> Katiuscia (DONE)
-  - verifica accesso a $+ (DONE)
-  - utenze BGM x tutti (DONE)
-  - autorizzazione accesso Francois a Iflazione (DONE)
-  - assistenza verifica accesso Quants (waiting Ametrano)
+MARCO (last update 30/7/2007)
+WIP pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)
+  (0.0/5d/)
 - check optimizers:
   - fix steepest descent (with Francois) (1d/2d/WIP)
   - add more tests (multidimensional) in test suite (to be planned)
   - add Broyden-Fletcher-Goldfarb-Shanno algorithm (to be planned)
   - check export to excel and testing wkb (to be planned)
-- historical correlation (shared with francois; TO BE REVIEWED)
-- pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)
-  (0.0/2d/WAITING FOR DIGITAL OPTIONS)
 - Risk, Wilmott papers (0.0/1d/WAITING for Ferdinando)
 - Inflation project:
-  - Attività UAT (3w/2w/DONE)
-  - Caboto/DOF platform release EOD (DONE)
-  - Caboto/DOF platform release intraday (DONE)
-  - Planning phase 2 (DONE)
   - implementation of binary, digital, range accrual payoffs (TEST)
   - implementation of Montecarlo pricing for TFR (TEST)
   - 3 factor model and Hybrids (WIP)
