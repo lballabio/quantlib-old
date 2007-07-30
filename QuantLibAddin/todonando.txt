@@ -33,9 +33,9 @@ GENERAL
   pricing engines are (the only) mkt data observers
   SVN config file
   pricing engines refactoring
-  log messages
+  verbose log messages
 
-- CabotoXL.xla (Murex curve, vol export, etc)
+- CabotoXL.xla (Murex curve, vol export, cms calibrations, cms book)
 - serialize RelinkableHandles and Pricing Engines
 - more release manager
 - bund future equivalent
@@ -322,13 +322,10 @@ CHIARA
 ---
 FRANCOIS
 - handle Cristina's mail report (WIP)
-D QL menu "wbk open" must reopen in the last folder
-D have cell menu "format as" to work on multiple selection
 WIP allow the user to choose traits and interpolator in the
   HistoricalForwardRatesAnalysis class (and expose it to
   Excel as traits aware)
   -> waiting for Eric feedback
-D sabr near-atm discontinuity (Giorgio and François) (1D/1D)
 - null strike -> atm strike (1W|WIP)
 B arrange sessions on Rapisarda approach(TBD)
 B XML/ serialization presentation
@@ -351,17 +348,17 @@ WIP notification chains pb (1D/3D)
 
 ---
 GIORGIO (last update 6/6/2007)
-- cap/swaption pricer with constant/spreaded vol
-D report last meeting content to François
-D expose QL::CashFlows::irr, duration and convexity to XL as qlLegIrr,
-  qlLegDuration, and qlLegConvexity (with their enums, etc)
-D export FRARateHelper and BondRateHelper
-D sabr near-atm discontinuity (Giorgio and François) (1D/1D)
+
+- bond-swaption refactoring
+- cap/swaption pricer with constant/spreaded vol (BUG)
+- export FRARateHelper and BondRateHelper
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
+- MakeXXX market conventions
 WIP clean up vega incoherencies
-D code MakeSwaption class
 WIP use Handle in SwaptionVolCubeChecks
 - CMS
+  macro for 5 single index calibration with 5 mean revs
+  macro for 5 single index calibration with 1 mean rev (the 10Y one)
   alternative calibrations with null rho
   check 2Y beta sensitivity
 WIP EvolutionDescription equality
