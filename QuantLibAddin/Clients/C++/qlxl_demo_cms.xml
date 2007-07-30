@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="3">
-<object_list class_id="163" tracking_level="0" version="0">
+<object_list class_id="166" tracking_level="0" version="0">
 	<count>8</count>
-	<item class_id="164" tracking_level="0" version="1">
-		<px class_id="125" tracking_level="1" version="0" object_id="_0">
+	<item class_id="167" tracking_level="0" version="1">
+		<px class_id="128" tracking_level="1" version="0" object_id="_0">
 			<objectID>schedule0</objectID>
 			<className>qlSchedule</className>
-			<effectiveDate class_id="165" tracking_level="0" version="0">
-				<variant_ class_id="166" tracking_level="0" version="0">
+			<effectiveDate class_id="168" tracking_level="0" version="0">
+				<variant_ class_id="169" tracking_level="0" version="0">
 					<which>1</which>
 					<value>38733</value>
 				</variant_>
@@ -28,7 +28,7 @@
 			<firstDate>
 				<variant_>
 					<which>4</which>
-					<value class_id="167" tracking_level="0" version="0">
+					<value class_id="170" tracking_level="0" version="0">
 						<type_>5</type_>
 					</value>
 				</variant_>
@@ -44,7 +44,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="125" object_id="_1">
+		<px class_id_reference="128" object_id="_1">
 			<objectID>schedule1</objectID>
 			<className>qlSchedule</className>
 			<effectiveDate>
@@ -92,7 +92,7 @@
 				<count>1</count>
 				<item>5000000</item>
 			</Nominals>
-			<ScheduleID>schedule0</ScheduleID>
+			<ScheduleID>schedule0#0000</ScheduleID>
 			<fixingDays>
 				<count>1</count>
 				<item>2</item>
@@ -127,7 +127,7 @@
 				<count>1</count>
 				<item>5000000</item>
 			</Nominals>
-			<ScheduleID>schedule1</ScheduleID>
+			<ScheduleID>schedule1#0000</ScheduleID>
 			<fixingDays>
 				<count>1</count>
 				<item>2</item>
@@ -152,7 +152,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="114" tracking_level="1" version="0" object_id="_4">
+		<px class_id="115" tracking_level="1" version="0" object_id="_4">
 			<objectID>EURSwaptionMeanReversion5Y_Quote</objectID>
 			<className>qlSimpleQuote</className>
 			<value>0.045699999999999998</value>
@@ -163,13 +163,13 @@
 		<px class_id="27" tracking_level="1" version="0" object_id="_5">
 			<objectID>cms_pricer</objectID>
 			<className>qlCmsCouponPricer</className>
-			<Volatility>SpreadsVolHandle</Volatility>
+			<Volatility>SpreadsVolHandle#0000</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
 			<ModelOfYieldCurve>nonParallelShifts</ModelOfYieldCurve>
 			<MeanReversion>
 				<variant_>
 					<which>3</which>
-					<value>EURSwaptionMeanReversion5Y_Quote</value>
+					<value>EURSwaptionMeanReversion5Y_Quote#0000</value>
 				</variant_>
 			</MeanReversion>
 		</px>
@@ -178,25 +178,25 @@
 		<px class_id="34" tracking_level="1" version="0" object_id="_6">
 			<objectID>ibor_pricer</objectID>
 			<className>qlIborCouponPricer</className>
-			<Volatility>CapletVolHandle</Volatility>
+			<Volatility>CapletVolHandle#0000</Volatility>
 			<IborCouponPricerType>IborByBlack</IborCouponPricerType>
 		</px>
 	</item>
 	<item>
-		<px class_id="137" tracking_level="1" version="0" object_id="_7">
+		<px class_id="140" tracking_level="1" version="0" object_id="_7">
 			<objectID>cms</objectID>
 			<className>qlSwap</className>
-			<legIDs class_id="170" tracking_level="0" version="0">
+			<legIDs class_id="173" tracking_level="0" version="0">
 				<count>2</count>
-				<item>leg0</item>
-				<item>leg1</item>
+				<item>leg0#0000</item>
+				<item>leg1#0000</item>
 			</legIDs>
 			<payer>
 				<count>2</count>
 				<item>1</item>
 				<item>0</item>
 			</payer>
-			<YieldCurve>EUR_YC</YieldCurve>
+			<YieldCurve>EUR_YC#0000</YieldCurve>
 		</px>
 	</item>
 </object_list>
