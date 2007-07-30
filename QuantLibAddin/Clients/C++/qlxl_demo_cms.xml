@@ -92,7 +92,7 @@
 				<count>1</count>
 				<item>5000000</item>
 			</Nominals>
-			<ScheduleID>schedule0#0000</ScheduleID>
+			<ScheduleID>schedule0</ScheduleID>
 			<fixingDays>
 				<count>1</count>
 				<item>2</item>
@@ -127,7 +127,7 @@
 				<count>1</count>
 				<item>5000000</item>
 			</Nominals>
-			<ScheduleID>schedule1#0000</ScheduleID>
+			<ScheduleID>schedule1</ScheduleID>
 			<fixingDays>
 				<count>1</count>
 				<item>2</item>
@@ -163,13 +163,13 @@
 		<px class_id="27" tracking_level="1" version="0" object_id="_5">
 			<objectID>cms_pricer</objectID>
 			<className>qlCmsCouponPricer</className>
-			<Volatility>SpreadsVolHandle#0000</Volatility>
+			<Volatility>SpreadsVolHandle</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
 			<ModelOfYieldCurve>nonParallelShifts</ModelOfYieldCurve>
 			<MeanReversion>
 				<variant_>
 					<which>3</which>
-					<value>EURSwaptionMeanReversion5Y_Quote#0000</value>
+					<value>EURSwaptionMeanReversion5Y_Quote</value>
 				</variant_>
 			</MeanReversion>
 		</px>
@@ -178,7 +178,7 @@
 		<px class_id="34" tracking_level="1" version="0" object_id="_6">
 			<objectID>ibor_pricer</objectID>
 			<className>qlIborCouponPricer</className>
-			<Volatility>CapletVolHandle#0000</Volatility>
+			<Volatility>CapletVolHandle</Volatility>
 			<IborCouponPricerType>IborByBlack</IborCouponPricerType>
 		</px>
 	</item>
@@ -188,15 +188,15 @@
 			<className>qlSwap</className>
 			<legIDs class_id="173" tracking_level="0" version="0">
 				<count>2</count>
-				<item>leg0#0000</item>
-				<item>leg1#0000</item>
+				<item>leg0</item>
+				<item>leg1</item>
 			</legIDs>
 			<payer>
 				<count>2</count>
 				<item>1</item>
 				<item>0</item>
 			</payer>
-			<YieldCurve>EUR_YC#0000</YieldCurve>
+			<YieldCurve>EUR_YC</YieldCurve>
 		</px>
 	</item>
 </object_list>

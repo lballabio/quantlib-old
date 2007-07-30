@@ -428,19 +428,19 @@
 			<futuresQuote class_id="168" tracking_level="0" version="0">
 				<variant_ class_id="169" tracking_level="0" version="0">
 					<which>3</which>
-					<value>EURFUTM7_Quote#0000</value>
+					<value>EURFUTM7_Quote</value>
 				</variant_>
 			</futuresQuote>
 			<volatility>
 				<variant_>
 					<which>3</which>
-					<value>HW_volatilityQuote#0000</value>
+					<value>HW_volatilityQuote</value>
 				</variant_>
 			</volatility>
 			<meanReversion>
 				<variant_>
 					<which>3</which>
-					<value>HW_meanReversionQuote#0000</value>
+					<value>HW_meanReversionQuote</value>
 				</variant_>
 			</meanReversion>
 		</px>
@@ -454,19 +454,19 @@
 			<futuresQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTN7_Quote#0000</value>
+					<value>EURFUTN7_Quote</value>
 				</variant_>
 			</futuresQuote>
 			<volatility>
 				<variant_>
 					<which>3</which>
-					<value>HW_volatilityQuote#0000</value>
+					<value>HW_volatilityQuote</value>
 				</variant_>
 			</volatility>
 			<meanReversion>
 				<variant_>
 					<which>3</which>
-					<value>HW_meanReversionQuote#0000</value>
+					<value>HW_meanReversionQuote</value>
 				</variant_>
 			</meanReversion>
 		</px>
@@ -480,19 +480,19 @@
 			<futuresQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTQ7_Quote#0000</value>
+					<value>EURFUTQ7_Quote</value>
 				</variant_>
 			</futuresQuote>
 			<volatility>
 				<variant_>
 					<which>3</which>
-					<value>HW_volatilityQuote#0000</value>
+					<value>HW_volatilityQuote</value>
 				</variant_>
 			</volatility>
 			<meanReversion>
 				<variant_>
 					<which>3</which>
-					<value>HW_meanReversionQuote#0000</value>
+					<value>HW_meanReversionQuote</value>
 				</variant_>
 			</meanReversion>
 		</px>
@@ -506,19 +506,19 @@
 			<futuresQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTU7_Quote#0000</value>
+					<value>EURFUTU7_Quote</value>
 				</variant_>
 			</futuresQuote>
 			<volatility>
 				<variant_>
 					<which>3</which>
-					<value>HW_volatilityQuote#0000</value>
+					<value>HW_volatilityQuote</value>
 				</variant_>
 			</volatility>
 			<meanReversion>
 				<variant_>
 					<which>3</which>
-					<value>HW_meanReversionQuote#0000</value>
+					<value>HW_meanReversionQuote</value>
 				</variant_>
 			</meanReversion>
 		</px>
@@ -532,19 +532,19 @@
 			<futuresQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTZ7_Quote#0000</value>
+					<value>EURFUTZ7_Quote</value>
 				</variant_>
 			</futuresQuote>
 			<volatility>
 				<variant_>
 					<which>3</which>
-					<value>HW_volatilityQuote#0000</value>
+					<value>HW_volatilityQuote</value>
 				</variant_>
 			</volatility>
 			<meanReversion>
 				<variant_>
 					<which>3</which>
-					<value>HW_meanReversionQuote#0000</value>
+					<value>HW_meanReversionQuote</value>
 				</variant_>
 			</meanReversion>
 		</px>
@@ -558,19 +558,19 @@
 			<futuresQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTH8_Quote#0000</value>
+					<value>EURFUTH8_Quote</value>
 				</variant_>
 			</futuresQuote>
 			<volatility>
 				<variant_>
 					<which>3</which>
-					<value>HW_volatilityQuote#0000</value>
+					<value>HW_volatilityQuote</value>
 				</variant_>
 			</volatility>
 			<meanReversion>
 				<variant_>
 					<which>3</which>
-					<value>HW_meanReversionQuote#0000</value>
+					<value>HW_meanReversionQuote</value>
 				</variant_>
 			</meanReversion>
 		</px>
@@ -584,19 +584,19 @@
 			<futuresQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTM8_Quote#0000</value>
+					<value>EURFUTM8_Quote</value>
 				</variant_>
 			</futuresQuote>
 			<volatility>
 				<variant_>
 					<which>3</which>
-					<value>HW_volatilityQuote#0000</value>
+					<value>HW_volatilityQuote</value>
 				</variant_>
 			</volatility>
 			<meanReversion>
 				<variant_>
 					<which>3</which>
-					<value>HW_meanReversionQuote#0000</value>
+					<value>HW_meanReversionQuote</value>
 				</variant_>
 			</meanReversion>
 		</px>
@@ -610,19 +610,19 @@
 			<futuresQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTU8_Quote#0000</value>
+					<value>EURFUTU8_Quote</value>
 				</variant_>
 			</futuresQuote>
 			<volatility>
 				<variant_>
 					<which>3</which>
-					<value>HW_volatilityQuote#0000</value>
+					<value>HW_volatilityQuote</value>
 				</variant_>
 			</volatility>
 			<meanReversion>
 				<variant_>
 					<which>3</which>
-					<value>HW_meanReversionQuote#0000</value>
+					<value>HW_meanReversionQuote</value>
 				</variant_>
 			</meanReversion>
 		</px>
@@ -636,19 +636,19 @@
 			<futuresQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTZ8_Quote#0000</value>
+					<value>EURFUTZ8_Quote</value>
 				</variant_>
 			</futuresQuote>
 			<volatility>
 				<variant_>
 					<which>3</which>
-					<value>HW_volatilityQuote#0000</value>
+					<value>HW_volatilityQuote</value>
 				</variant_>
 			</volatility>
 			<meanReversion>
 				<variant_>
 					<which>3</which>
-					<value>HW_meanReversionQuote#0000</value>
+					<value>HW_meanReversionQuote</value>
 				</variant_>
 			</meanReversion>
 		</px>
@@ -662,19 +662,19 @@
 			<futuresQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTH9_Quote#0000</value>
+					<value>EURFUTH9_Quote</value>
 				</variant_>
 			</futuresQuote>
 			<volatility>
 				<variant_>
 					<which>3</which>
-					<value>HW_volatilityQuote#0000</value>
+					<value>HW_volatilityQuote</value>
 				</variant_>
 			</volatility>
 			<meanReversion>
 				<variant_>
 					<which>3</which>
-					<value>HW_meanReversionQuote#0000</value>
+					<value>HW_meanReversionQuote</value>
 				</variant_>
 			</meanReversion>
 		</px>
@@ -698,7 +698,7 @@
 			<BDayConvention>Modified Following</BDayConvention>
 			<endOfMonth>1</endOfMonth>
 			<dayCounter>Actual/360</dayCounter>
-			<YieldCurve>ts_handle#0000</YieldCurve>
+			<YieldCurve>ts_handle</YieldCurve>
 		</px>
 	</item>
 	<item>
@@ -708,7 +708,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EUROND_Quote#0000</value>
+					<value>EUROND_Quote</value>
 				</variant_>
 			</quote>
 			<period>1D</period>
@@ -725,7 +725,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURTND_Quote#0000</value>
+					<value>EURTND_Quote</value>
 				</variant_>
 			</quote>
 			<period>1D</period>
@@ -742,7 +742,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURSND_Quote#0000</value>
+					<value>EURSND_Quote</value>
 				</variant_>
 			</quote>
 			<period>1D</period>
@@ -759,7 +759,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURSWD_Quote#0000</value>
+					<value>EURSWD_Quote</value>
 				</variant_>
 			</quote>
 			<period>1W</period>
@@ -776,7 +776,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EUR2WD_Quote#0000</value>
+					<value>EUR2WD_Quote</value>
 				</variant_>
 			</quote>
 			<period>2W</period>
@@ -793,7 +793,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EUR3WD_Quote#0000</value>
+					<value>EUR3WD_Quote</value>
 				</variant_>
 			</quote>
 			<period>3W</period>
@@ -810,7 +810,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EUR1MD_Quote#0000</value>
+					<value>EUR1MD_Quote</value>
 				</variant_>
 			</quote>
 			<period>1M</period>
@@ -827,7 +827,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EUR2MD_Quote#0000</value>
+					<value>EUR2MD_Quote</value>
 				</variant_>
 			</quote>
 			<period>2M</period>
@@ -844,7 +844,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EUR3MD_Quote#0000</value>
+					<value>EUR3MD_Quote</value>
 				</variant_>
 			</quote>
 			<period>3M</period>
@@ -861,7 +861,7 @@
 			<priceQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTM7_Quote#0000</value>
+					<value>EURFUTM7_Quote</value>
 				</variant_>
 			</priceQuote>
 			<IMM>M7</IMM>
@@ -872,7 +872,7 @@
 			<convexityAdjQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTM7ConvAdj_Quote#0000</value>
+					<value>EURFUTM7ConvAdj_Quote</value>
 				</variant_>
 			</convexityAdjQuote>
 		</px>
@@ -884,7 +884,7 @@
 			<priceQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTN7_Quote#0000</value>
+					<value>EURFUTN7_Quote</value>
 				</variant_>
 			</priceQuote>
 			<IMM>N7</IMM>
@@ -895,7 +895,7 @@
 			<convexityAdjQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTN7ConvAdj_Quote#0000</value>
+					<value>EURFUTN7ConvAdj_Quote</value>
 				</variant_>
 			</convexityAdjQuote>
 		</px>
@@ -907,7 +907,7 @@
 			<priceQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTQ7_Quote#0000</value>
+					<value>EURFUTQ7_Quote</value>
 				</variant_>
 			</priceQuote>
 			<IMM>Q7</IMM>
@@ -918,7 +918,7 @@
 			<convexityAdjQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTQ7ConvAdj_Quote#0000</value>
+					<value>EURFUTQ7ConvAdj_Quote</value>
 				</variant_>
 			</convexityAdjQuote>
 		</px>
@@ -930,7 +930,7 @@
 			<priceQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTU7_Quote#0000</value>
+					<value>EURFUTU7_Quote</value>
 				</variant_>
 			</priceQuote>
 			<IMM>U7</IMM>
@@ -941,7 +941,7 @@
 			<convexityAdjQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTU7ConvAdj_Quote#0000</value>
+					<value>EURFUTU7ConvAdj_Quote</value>
 				</variant_>
 			</convexityAdjQuote>
 		</px>
@@ -953,7 +953,7 @@
 			<priceQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTZ7_Quote#0000</value>
+					<value>EURFUTZ7_Quote</value>
 				</variant_>
 			</priceQuote>
 			<IMM>Z7</IMM>
@@ -964,7 +964,7 @@
 			<convexityAdjQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTZ7ConvAdj_Quote#0000</value>
+					<value>EURFUTZ7ConvAdj_Quote</value>
 				</variant_>
 			</convexityAdjQuote>
 		</px>
@@ -976,7 +976,7 @@
 			<priceQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTH8_Quote#0000</value>
+					<value>EURFUTH8_Quote</value>
 				</variant_>
 			</priceQuote>
 			<IMM>H8</IMM>
@@ -987,7 +987,7 @@
 			<convexityAdjQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTH8ConvAdj_Quote#0000</value>
+					<value>EURFUTH8ConvAdj_Quote</value>
 				</variant_>
 			</convexityAdjQuote>
 		</px>
@@ -999,7 +999,7 @@
 			<priceQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTM8_Quote#0000</value>
+					<value>EURFUTM8_Quote</value>
 				</variant_>
 			</priceQuote>
 			<IMM>M8</IMM>
@@ -1010,7 +1010,7 @@
 			<convexityAdjQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTM8ConvAdj_Quote#0000</value>
+					<value>EURFUTM8ConvAdj_Quote</value>
 				</variant_>
 			</convexityAdjQuote>
 		</px>
@@ -1022,7 +1022,7 @@
 			<priceQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTU8_Quote#0000</value>
+					<value>EURFUTU8_Quote</value>
 				</variant_>
 			</priceQuote>
 			<IMM>U8</IMM>
@@ -1033,7 +1033,7 @@
 			<convexityAdjQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTU8ConvAdj_Quote#0000</value>
+					<value>EURFUTU8ConvAdj_Quote</value>
 				</variant_>
 			</convexityAdjQuote>
 		</px>
@@ -1045,7 +1045,7 @@
 			<priceQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTZ8_Quote#0000</value>
+					<value>EURFUTZ8_Quote</value>
 				</variant_>
 			</priceQuote>
 			<IMM>Z8</IMM>
@@ -1056,7 +1056,7 @@
 			<convexityAdjQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTZ8ConvAdj_Quote#0000</value>
+					<value>EURFUTZ8ConvAdj_Quote</value>
 				</variant_>
 			</convexityAdjQuote>
 		</px>
@@ -1068,7 +1068,7 @@
 			<priceQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTH9_Quote#0000</value>
+					<value>EURFUTH9_Quote</value>
 				</variant_>
 			</priceQuote>
 			<IMM>H9</IMM>
@@ -1079,7 +1079,7 @@
 			<convexityAdjQuote>
 				<variant_>
 					<which>3</which>
-					<value>EURFUTH9ConvAdj_Quote#0000</value>
+					<value>EURFUTH9ConvAdj_Quote</value>
 				</variant_>
 			</convexityAdjQuote>
 		</px>
@@ -1091,7 +1091,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E3YS_Quote#0000</value>
+					<value>EURAB6E3YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>3Y</period>
@@ -1100,7 +1100,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1110,7 +1110,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E4YS_Quote#0000</value>
+					<value>EURAB6E4YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>4Y</period>
@@ -1119,7 +1119,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1129,7 +1129,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E5YS_Quote#0000</value>
+					<value>EURAB6E5YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>5Y</period>
@@ -1138,7 +1138,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1148,7 +1148,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E6YS_Quote#0000</value>
+					<value>EURAB6E6YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>6Y</period>
@@ -1157,7 +1157,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1167,7 +1167,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E7YS_Quote#0000</value>
+					<value>EURAB6E7YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>7Y</period>
@@ -1176,7 +1176,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1186,7 +1186,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E8YS_Quote#0000</value>
+					<value>EURAB6E8YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>8Y</period>
@@ -1195,7 +1195,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1205,7 +1205,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E9YS_Quote#0000</value>
+					<value>EURAB6E9YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>9Y</period>
@@ -1214,7 +1214,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1224,7 +1224,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E10YS_Quote#0000</value>
+					<value>EURAB6E10YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>10Y</period>
@@ -1233,7 +1233,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1243,7 +1243,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E11YS_Quote#0000</value>
+					<value>EURAB6E11YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>11Y</period>
@@ -1252,7 +1252,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1262,7 +1262,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E12YS_Quote#0000</value>
+					<value>EURAB6E12YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>12Y</period>
@@ -1271,7 +1271,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1281,7 +1281,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E13YS_Quote#0000</value>
+					<value>EURAB6E13YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>13Y</period>
@@ -1290,7 +1290,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1300,7 +1300,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E14YS_Quote#0000</value>
+					<value>EURAB6E14YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>14Y</period>
@@ -1309,7 +1309,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1319,7 +1319,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E15YS_Quote#0000</value>
+					<value>EURAB6E15YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>15Y</period>
@@ -1328,7 +1328,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1338,7 +1338,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E16YS_Quote#0000</value>
+					<value>EURAB6E16YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>16Y</period>
@@ -1347,7 +1347,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1357,7 +1357,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E17YS_Quote#0000</value>
+					<value>EURAB6E17YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>17Y</period>
@@ -1366,7 +1366,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1376,7 +1376,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E18YS_Quote#0000</value>
+					<value>EURAB6E18YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>18Y</period>
@@ -1385,7 +1385,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1395,7 +1395,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E19YS_Quote#0000</value>
+					<value>EURAB6E19YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>19Y</period>
@@ -1404,7 +1404,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1414,7 +1414,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E20YS_Quote#0000</value>
+					<value>EURAB6E20YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>20Y</period>
@@ -1423,7 +1423,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1433,7 +1433,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E21YS_Quote#0000</value>
+					<value>EURAB6E21YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>21Y</period>
@@ -1442,7 +1442,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1452,7 +1452,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E22YS_Quote#0000</value>
+					<value>EURAB6E22YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>22Y</period>
@@ -1461,7 +1461,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1471,7 +1471,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E23YS_Quote#0000</value>
+					<value>EURAB6E23YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>23Y</period>
@@ -1480,7 +1480,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1490,7 +1490,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E24YS_Quote#0000</value>
+					<value>EURAB6E24YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>24Y</period>
@@ -1499,7 +1499,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1509,7 +1509,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E25YS_Quote#0000</value>
+					<value>EURAB6E25YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>25Y</period>
@@ -1518,7 +1518,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1528,7 +1528,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E26YS_Quote#0000</value>
+					<value>EURAB6E26YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>26Y</period>
@@ -1537,7 +1537,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1547,7 +1547,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E27YS_Quote#0000</value>
+					<value>EURAB6E27YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>27Y</period>
@@ -1556,7 +1556,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1566,7 +1566,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E28YS_Quote#0000</value>
+					<value>EURAB6E28YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>28Y</period>
@@ -1575,7 +1575,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1585,7 +1585,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E29YS_Quote#0000</value>
+					<value>EURAB6E29YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>29Y</period>
@@ -1594,7 +1594,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1604,7 +1604,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E30YS_Quote#0000</value>
+					<value>EURAB6E30YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>30Y</period>
@@ -1613,7 +1613,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1623,7 +1623,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E35YS_Quote#0000</value>
+					<value>EURAB6E35YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>35Y</period>
@@ -1632,7 +1632,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1642,7 +1642,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E40YS_Quote#0000</value>
+					<value>EURAB6E40YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>40Y</period>
@@ -1651,7 +1651,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1661,7 +1661,7 @@
 			<quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E50YS_Quote#0000</value>
+					<value>EURAB6E50YS_Quote</value>
 				</variant_>
 			</quote>
 			<period>50Y</period>
@@ -1670,7 +1670,7 @@
 			<fixedLegFrequency>Annual</fixedLegFrequency>
 			<fixedLegConvention>Unadjusted</fixedLegConvention>
 			<fixedLegDayCounter>30/360 (Bond Basis)</fixedLegDayCounter>
-			<index>RH_EURIBOR6M#0000</index>
+			<index>RH_EURIBOR6M</index>
 		</px>
 	</item>
 	<item>
@@ -1681,56 +1681,56 @@
 			<calendar>Target</calendar>
 			<rateHelpers class_id="170" tracking_level="0" version="0">
 				<count>50</count>
-				<item>EUROND#0000</item>
-				<item>EURTND#0000</item>
-				<item>EURSND#0000</item>
-				<item>EURSWD#0000</item>
-				<item>EUR2WD#0000</item>
-				<item>EUR3WD#0000</item>
-				<item>EUR1MD#0000</item>
-				<item>EUR2MD#0000</item>
-				<item>EUR3MD#0000</item>
-				<item>EURFUTM7#0000</item>
-				<item>EURFUTN7#0000</item>
-				<item>EURFUTQ7#0000</item>
-				<item>EURFUTU7#0000</item>
-				<item>EURFUTZ7#0000</item>
-				<item>EURFUTH8#0000</item>
-				<item>EURFUTM8#0000</item>
-				<item>EURFUTU8#0000</item>
-				<item>EURFUTZ8#0000</item>
-				<item>EURFUTH9#0000</item>
-				<item>EURAB6E3YS#0000</item>
-				<item>EURAB6E4YS#0000</item>
-				<item>EURAB6E5YS#0000</item>
-				<item>EURAB6E6YS#0000</item>
-				<item>EURAB6E7YS#0000</item>
-				<item>EURAB6E8YS#0000</item>
-				<item>EURAB6E9YS#0000</item>
-				<item>EURAB6E10YS#0000</item>
-				<item>EURAB6E11YS#0000</item>
-				<item>EURAB6E12YS#0000</item>
-				<item>EURAB6E13YS#0000</item>
-				<item>EURAB6E14YS#0000</item>
-				<item>EURAB6E15YS#0000</item>
-				<item>EURAB6E16YS#0000</item>
-				<item>EURAB6E17YS#0000</item>
-				<item>EURAB6E18YS#0000</item>
-				<item>EURAB6E19YS#0000</item>
-				<item>EURAB6E20YS#0000</item>
-				<item>EURAB6E21YS#0000</item>
-				<item>EURAB6E22YS#0000</item>
-				<item>EURAB6E23YS#0000</item>
-				<item>EURAB6E24YS#0000</item>
-				<item>EURAB6E25YS#0000</item>
-				<item>EURAB6E26YS#0000</item>
-				<item>EURAB6E27YS#0000</item>
-				<item>EURAB6E28YS#0000</item>
-				<item>EURAB6E29YS#0000</item>
-				<item>EURAB6E30YS#0000</item>
-				<item>EURAB6E35YS#0000</item>
-				<item>EURAB6E40YS#0000</item>
-				<item>EURAB6E50YS#0000</item>
+				<item>EUROND</item>
+				<item>EURTND</item>
+				<item>EURSND</item>
+				<item>EURSWD</item>
+				<item>EUR2WD</item>
+				<item>EUR3WD</item>
+				<item>EUR1MD</item>
+				<item>EUR2MD</item>
+				<item>EUR3MD</item>
+				<item>EURFUTM7</item>
+				<item>EURFUTN7</item>
+				<item>EURFUTQ7</item>
+				<item>EURFUTU7</item>
+				<item>EURFUTZ7</item>
+				<item>EURFUTH8</item>
+				<item>EURFUTM8</item>
+				<item>EURFUTU8</item>
+				<item>EURFUTZ8</item>
+				<item>EURFUTH9</item>
+				<item>EURAB6E3YS</item>
+				<item>EURAB6E4YS</item>
+				<item>EURAB6E5YS</item>
+				<item>EURAB6E6YS</item>
+				<item>EURAB6E7YS</item>
+				<item>EURAB6E8YS</item>
+				<item>EURAB6E9YS</item>
+				<item>EURAB6E10YS</item>
+				<item>EURAB6E11YS</item>
+				<item>EURAB6E12YS</item>
+				<item>EURAB6E13YS</item>
+				<item>EURAB6E14YS</item>
+				<item>EURAB6E15YS</item>
+				<item>EURAB6E16YS</item>
+				<item>EURAB6E17YS</item>
+				<item>EURAB6E18YS</item>
+				<item>EURAB6E19YS</item>
+				<item>EURAB6E20YS</item>
+				<item>EURAB6E21YS</item>
+				<item>EURAB6E22YS</item>
+				<item>EURAB6E23YS</item>
+				<item>EURAB6E24YS</item>
+				<item>EURAB6E25YS</item>
+				<item>EURAB6E26YS</item>
+				<item>EURAB6E27YS</item>
+				<item>EURAB6E28YS</item>
+				<item>EURAB6E29YS</item>
+				<item>EURAB6E30YS</item>
+				<item>EURAB6E35YS</item>
+				<item>EURAB6E40YS</item>
+				<item>EURAB6E50YS</item>
 			</rateHelpers>
 			<dayCounter>Actual/365 (Fixed)</dayCounter>
 			<traitsID>ZeroYield</traitsID>
@@ -1742,7 +1742,7 @@
 		<px class_id_reference="157" object_id="_115">
 			<objectID>EUR_YC_HANDLE</objectID>
 			<className>qlRelinkableHandleYieldTermStructure</className>
-			<currentLink>EUR_YC#0000</currentLink>
+			<currentLink>EUR_YC</currentLink>
 		</px>
 	</item>
 	<item>
@@ -3853,172 +3853,85 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_1Y#0000</value>
+							<value>ICAP2_1M_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_2Y#0000</value>
+							<value>ICAP2_1M_2Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_3Y#0000</value>
+							<value>ICAP2_1M_3Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_4Y#0000</value>
+							<value>ICAP2_1M_4Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_5Y#0000</value>
+							<value>ICAP2_1M_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_6Y#0000</value>
+							<value>ICAP2_1M_6Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_7Y#0000</value>
+							<value>ICAP2_1M_7Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_8Y#0000</value>
+							<value>ICAP2_1M_8Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_9Y#0000</value>
+							<value>ICAP2_1M_9Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_10Y#0000</value>
+							<value>ICAP2_1M_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_15Y#0000</value>
+							<value>ICAP2_1M_15Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_20Y#0000</value>
+							<value>ICAP2_1M_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_25Y#0000</value>
+							<value>ICAP2_1M_25Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_1M_30Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>14</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_2Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_3Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_4Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_5Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_6Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_7Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_8Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_9Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_15Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_20Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_25Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2M_30Y#0000</value>
+							<value>ICAP2_1M_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -4027,172 +3940,85 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_1Y#0000</value>
+							<value>ICAP2_2M_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_2Y#0000</value>
+							<value>ICAP2_2M_2Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_3Y#0000</value>
+							<value>ICAP2_2M_3Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_4Y#0000</value>
+							<value>ICAP2_2M_4Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_5Y#0000</value>
+							<value>ICAP2_2M_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_6Y#0000</value>
+							<value>ICAP2_2M_6Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_7Y#0000</value>
+							<value>ICAP2_2M_7Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_8Y#0000</value>
+							<value>ICAP2_2M_8Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_9Y#0000</value>
+							<value>ICAP2_2M_9Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_10Y#0000</value>
+							<value>ICAP2_2M_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_15Y#0000</value>
+							<value>ICAP2_2M_15Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_20Y#0000</value>
+							<value>ICAP2_2M_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_25Y#0000</value>
+							<value>ICAP2_2M_25Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3M_30Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>14</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_2Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_3Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_4Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_5Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_6Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_7Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_8Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_9Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_15Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_20Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_25Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_6M_30Y#0000</value>
+							<value>ICAP2_2M_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -4201,172 +4027,85 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_1Y#0000</value>
+							<value>ICAP2_3M_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_2Y#0000</value>
+							<value>ICAP2_3M_2Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_3Y#0000</value>
+							<value>ICAP2_3M_3Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_4Y#0000</value>
+							<value>ICAP2_3M_4Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_5Y#0000</value>
+							<value>ICAP2_3M_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_6Y#0000</value>
+							<value>ICAP2_3M_6Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_7Y#0000</value>
+							<value>ICAP2_3M_7Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_8Y#0000</value>
+							<value>ICAP2_3M_8Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_9Y#0000</value>
+							<value>ICAP2_3M_9Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_10Y#0000</value>
+							<value>ICAP2_3M_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_15Y#0000</value>
+							<value>ICAP2_3M_15Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_20Y#0000</value>
+							<value>ICAP2_3M_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_25Y#0000</value>
+							<value>ICAP2_3M_25Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_9M_30Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>14</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_2Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_3Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_4Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_5Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_6Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_7Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_8Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_9Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_15Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_20Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_25Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_1Y_30Y#0000</value>
+							<value>ICAP2_3M_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -4375,172 +4114,85 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_1Y#0000</value>
+							<value>ICAP2_6M_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_2Y#0000</value>
+							<value>ICAP2_6M_2Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_3Y#0000</value>
+							<value>ICAP2_6M_3Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_4Y#0000</value>
+							<value>ICAP2_6M_4Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_5Y#0000</value>
+							<value>ICAP2_6M_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_6Y#0000</value>
+							<value>ICAP2_6M_6Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_7Y#0000</value>
+							<value>ICAP2_6M_7Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_8Y#0000</value>
+							<value>ICAP2_6M_8Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_9Y#0000</value>
+							<value>ICAP2_6M_9Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_10Y#0000</value>
+							<value>ICAP2_6M_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_15Y#0000</value>
+							<value>ICAP2_6M_15Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_20Y#0000</value>
+							<value>ICAP2_6M_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_25Y#0000</value>
+							<value>ICAP2_6M_25Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_18M_30Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>14</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_2Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_3Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_4Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_5Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_6Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_7Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_8Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_9Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_15Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_20Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_25Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_2Y_30Y#0000</value>
+							<value>ICAP2_6M_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -4549,172 +4201,85 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_1Y#0000</value>
+							<value>ICAP2_9M_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_2Y#0000</value>
+							<value>ICAP2_9M_2Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_3Y#0000</value>
+							<value>ICAP2_9M_3Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_4Y#0000</value>
+							<value>ICAP2_9M_4Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_5Y#0000</value>
+							<value>ICAP2_9M_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_6Y#0000</value>
+							<value>ICAP2_9M_6Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_7Y#0000</value>
+							<value>ICAP2_9M_7Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_8Y#0000</value>
+							<value>ICAP2_9M_8Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_9Y#0000</value>
+							<value>ICAP2_9M_9Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_10Y#0000</value>
+							<value>ICAP2_9M_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_15Y#0000</value>
+							<value>ICAP2_9M_15Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_20Y#0000</value>
+							<value>ICAP2_9M_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_25Y#0000</value>
+							<value>ICAP2_9M_25Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_3Y_30Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>14</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_2Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_3Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_4Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_5Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_6Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_7Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_8Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_9Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_15Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_20Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_25Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_4Y_30Y#0000</value>
+							<value>ICAP2_9M_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -4723,172 +4288,85 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_1Y#0000</value>
+							<value>ICAP2_1Y_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_2Y#0000</value>
+							<value>ICAP2_1Y_2Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_3Y#0000</value>
+							<value>ICAP2_1Y_3Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_4Y#0000</value>
+							<value>ICAP2_1Y_4Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_5Y#0000</value>
+							<value>ICAP2_1Y_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_6Y#0000</value>
+							<value>ICAP2_1Y_6Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_7Y#0000</value>
+							<value>ICAP2_1Y_7Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_8Y#0000</value>
+							<value>ICAP2_1Y_8Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_9Y#0000</value>
+							<value>ICAP2_1Y_9Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_10Y#0000</value>
+							<value>ICAP2_1Y_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_15Y#0000</value>
+							<value>ICAP2_1Y_15Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_20Y#0000</value>
+							<value>ICAP2_1Y_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_25Y#0000</value>
+							<value>ICAP2_1Y_25Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_5Y_30Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>14</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_2Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_3Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_4Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_5Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_6Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_7Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_8Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_9Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_15Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_20Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_25Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_7Y_30Y#0000</value>
+							<value>ICAP2_1Y_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -4897,172 +4375,85 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_1Y#0000</value>
+							<value>ICAP2_18M_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_2Y#0000</value>
+							<value>ICAP2_18M_2Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_3Y#0000</value>
+							<value>ICAP2_18M_3Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_4Y#0000</value>
+							<value>ICAP2_18M_4Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_5Y#0000</value>
+							<value>ICAP2_18M_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_6Y#0000</value>
+							<value>ICAP2_18M_6Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_7Y#0000</value>
+							<value>ICAP2_18M_7Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_8Y#0000</value>
+							<value>ICAP2_18M_8Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_9Y#0000</value>
+							<value>ICAP2_18M_9Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_10Y#0000</value>
+							<value>ICAP2_18M_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_15Y#0000</value>
+							<value>ICAP2_18M_15Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_20Y#0000</value>
+							<value>ICAP2_18M_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_25Y#0000</value>
+							<value>ICAP2_18M_25Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_10Y_30Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>14</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_2Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_3Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_4Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_5Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_6Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_7Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_8Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_9Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_15Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_20Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_25Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_15Y_30Y#0000</value>
+							<value>ICAP2_18M_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -5071,172 +4462,85 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_1Y#0000</value>
+							<value>ICAP2_2Y_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_2Y#0000</value>
+							<value>ICAP2_2Y_2Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_3Y#0000</value>
+							<value>ICAP2_2Y_3Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_4Y#0000</value>
+							<value>ICAP2_2Y_4Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_5Y#0000</value>
+							<value>ICAP2_2Y_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_6Y#0000</value>
+							<value>ICAP2_2Y_6Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_7Y#0000</value>
+							<value>ICAP2_2Y_7Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_8Y#0000</value>
+							<value>ICAP2_2Y_8Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_9Y#0000</value>
+							<value>ICAP2_2Y_9Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_10Y#0000</value>
+							<value>ICAP2_2Y_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_15Y#0000</value>
+							<value>ICAP2_2Y_15Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_20Y#0000</value>
+							<value>ICAP2_2Y_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_25Y#0000</value>
+							<value>ICAP2_2Y_25Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_20Y_30Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>14</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_2Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_3Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_4Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_5Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_6Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_7Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_8Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_9Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_15Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_20Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_25Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>ICAP2_25Y_30Y#0000</value>
+							<value>ICAP2_2Y_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -5245,85 +4549,781 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_1Y#0000</value>
+							<value>ICAP2_3Y_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_2Y#0000</value>
+							<value>ICAP2_3Y_2Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_3Y#0000</value>
+							<value>ICAP2_3Y_3Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_4Y#0000</value>
+							<value>ICAP2_3Y_4Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_5Y#0000</value>
+							<value>ICAP2_3Y_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_6Y#0000</value>
+							<value>ICAP2_3Y_6Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_7Y#0000</value>
+							<value>ICAP2_3Y_7Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_8Y#0000</value>
+							<value>ICAP2_3Y_8Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_9Y#0000</value>
+							<value>ICAP2_3Y_9Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_10Y#0000</value>
+							<value>ICAP2_3Y_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_15Y#0000</value>
+							<value>ICAP2_3Y_15Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_20Y#0000</value>
+							<value>ICAP2_3Y_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_25Y#0000</value>
+							<value>ICAP2_3Y_25Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>ICAP2_30Y_30Y#0000</value>
+							<value>ICAP2_3Y_30Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>14</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_2Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_3Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_4Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_6Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_7Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_8Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_9Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_15Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_25Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_4Y_30Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>14</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_2Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_3Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_4Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_6Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_7Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_8Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_9Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_15Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_25Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_5Y_30Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>14</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_2Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_3Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_4Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_6Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_7Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_8Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_9Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_15Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_25Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_7Y_30Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>14</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_2Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_3Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_4Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_6Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_7Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_8Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_9Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_15Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_25Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_10Y_30Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>14</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_2Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_3Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_4Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_6Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_7Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_8Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_9Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_15Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_25Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_15Y_30Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>14</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_2Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_3Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_4Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_6Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_7Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_8Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_9Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_15Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_25Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_20Y_30Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>14</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_2Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_3Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_4Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_6Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_7Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_8Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_9Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_15Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_25Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_25Y_30Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>14</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_2Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_3Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_4Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_6Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_7Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_8Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_9Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_15Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_25Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>ICAP2_30Y_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -5336,7 +5336,7 @@
 		<px class_id="143" tracking_level="1" version="0" object_id="_355">
 			<objectID>AtmVolHandle</objectID>
 			<className>qlRelinkableHandleSwaptionVolatilityStructure</className>
-			<currentLink>AtmVol#0000</currentLink>
+			<currentLink>AtmVol</currentLink>
 		</px>
 	</item>
 	<item>
@@ -8281,7 +8281,7 @@
 		<px class_id="149" tracking_level="1" version="0" object_id="_723">
 			<objectID>SpreadsVol</objectID>
 			<className>qlSwaptionVolCube1</className>
-			<atmVolStructure>AtmVolHandle#0000</atmVolStructure>
+			<atmVolStructure>AtmVolHandle</atmVolStructure>
 			<optionTenors>
 				<count>6</count>
 				<item>
@@ -8373,112 +8373,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M2Y_-0.02#0000</value>
+							<value>BGCP23M2Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M2Y_-0.01#0000</value>
+							<value>BGCP23M2Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M2Y_-0.005#0000</value>
+							<value>BGCP23M2Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M2Y_-0.0025#0000</value>
+							<value>BGCP23M2Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M2Y_0#0000</value>
+							<value>BGCP23M2Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M2Y_0.0025#0000</value>
+							<value>BGCP23M2Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M2Y_0.005#0000</value>
+							<value>BGCP23M2Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M2Y_0.01#0000</value>
+							<value>BGCP23M2Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M2Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M5Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M5Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M5Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M5Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M5Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M5Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M5Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M5Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M5Y_0.02#0000</value>
+							<value>BGCP23M2Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -8487,112 +8430,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M10Y_-0.02#0000</value>
+							<value>BGCP23M5Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M10Y_-0.01#0000</value>
+							<value>BGCP23M5Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M10Y_-0.005#0000</value>
+							<value>BGCP23M5Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M10Y_-0.0025#0000</value>
+							<value>BGCP23M5Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M10Y_0#0000</value>
+							<value>BGCP23M5Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M10Y_0.0025#0000</value>
+							<value>BGCP23M5Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M10Y_0.005#0000</value>
+							<value>BGCP23M5Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M10Y_0.01#0000</value>
+							<value>BGCP23M5Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M10Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M20Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M20Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M20Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M20Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M20Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M20Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M20Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M20Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP23M20Y_0.02#0000</value>
+							<value>BGCP23M5Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -8601,112 +8487,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M30Y_-0.02#0000</value>
+							<value>BGCP23M10Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M30Y_-0.01#0000</value>
+							<value>BGCP23M10Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M30Y_-0.005#0000</value>
+							<value>BGCP23M10Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M30Y_-0.0025#0000</value>
+							<value>BGCP23M10Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M30Y_0#0000</value>
+							<value>BGCP23M10Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M30Y_0.0025#0000</value>
+							<value>BGCP23M10Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M30Y_0.005#0000</value>
+							<value>BGCP23M10Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M30Y_0.01#0000</value>
+							<value>BGCP23M10Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP23M30Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y2Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y2Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y2Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y2Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y2Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y2Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y2Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y2Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y2Y_0.02#0000</value>
+							<value>BGCP23M10Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -8715,112 +8544,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y5Y_-0.02#0000</value>
+							<value>BGCP23M20Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y5Y_-0.01#0000</value>
+							<value>BGCP23M20Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y5Y_-0.005#0000</value>
+							<value>BGCP23M20Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y5Y_-0.0025#0000</value>
+							<value>BGCP23M20Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y5Y_0#0000</value>
+							<value>BGCP23M20Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y5Y_0.0025#0000</value>
+							<value>BGCP23M20Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y5Y_0.005#0000</value>
+							<value>BGCP23M20Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y5Y_0.01#0000</value>
+							<value>BGCP23M20Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y5Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y10Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y10Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y10Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y10Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y10Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y10Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y10Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y10Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y10Y_0.02#0000</value>
+							<value>BGCP23M20Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -8829,112 +8601,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y20Y_-0.02#0000</value>
+							<value>BGCP23M30Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y20Y_-0.01#0000</value>
+							<value>BGCP23M30Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y20Y_-0.005#0000</value>
+							<value>BGCP23M30Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y20Y_-0.0025#0000</value>
+							<value>BGCP23M30Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y20Y_0#0000</value>
+							<value>BGCP23M30Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y20Y_0.0025#0000</value>
+							<value>BGCP23M30Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y20Y_0.005#0000</value>
+							<value>BGCP23M30Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y20Y_0.01#0000</value>
+							<value>BGCP23M30Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP21Y20Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y30Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y30Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y30Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y30Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y30Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y30Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y30Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y30Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP21Y30Y_0.02#0000</value>
+							<value>BGCP23M30Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -8943,112 +8658,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y2Y_-0.02#0000</value>
+							<value>BGCP21Y2Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y2Y_-0.01#0000</value>
+							<value>BGCP21Y2Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y2Y_-0.005#0000</value>
+							<value>BGCP21Y2Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y2Y_-0.0025#0000</value>
+							<value>BGCP21Y2Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y2Y_0#0000</value>
+							<value>BGCP21Y2Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y2Y_0.0025#0000</value>
+							<value>BGCP21Y2Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y2Y_0.005#0000</value>
+							<value>BGCP21Y2Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y2Y_0.01#0000</value>
+							<value>BGCP21Y2Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y2Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y5Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y5Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y5Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y5Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y5Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y5Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y5Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y5Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y5Y_0.02#0000</value>
+							<value>BGCP21Y2Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -9057,112 +8715,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y10Y_-0.02#0000</value>
+							<value>BGCP21Y5Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y10Y_-0.01#0000</value>
+							<value>BGCP21Y5Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y10Y_-0.005#0000</value>
+							<value>BGCP21Y5Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y10Y_-0.0025#0000</value>
+							<value>BGCP21Y5Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y10Y_0#0000</value>
+							<value>BGCP21Y5Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y10Y_0.0025#0000</value>
+							<value>BGCP21Y5Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y10Y_0.005#0000</value>
+							<value>BGCP21Y5Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y10Y_0.01#0000</value>
+							<value>BGCP21Y5Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y10Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y20Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y20Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y20Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y20Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y20Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y20Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y20Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y20Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP25Y20Y_0.02#0000</value>
+							<value>BGCP21Y5Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -9171,112 +8772,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y30Y_-0.02#0000</value>
+							<value>BGCP21Y10Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y30Y_-0.01#0000</value>
+							<value>BGCP21Y10Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y30Y_-0.005#0000</value>
+							<value>BGCP21Y10Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y30Y_-0.0025#0000</value>
+							<value>BGCP21Y10Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y30Y_0#0000</value>
+							<value>BGCP21Y10Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y30Y_0.0025#0000</value>
+							<value>BGCP21Y10Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y30Y_0.005#0000</value>
+							<value>BGCP21Y10Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y30Y_0.01#0000</value>
+							<value>BGCP21Y10Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP25Y30Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y2Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y2Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y2Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y2Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y2Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y2Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y2Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y2Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y2Y_0.02#0000</value>
+							<value>BGCP21Y10Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -9285,112 +8829,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y5Y_-0.02#0000</value>
+							<value>BGCP21Y20Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y5Y_-0.01#0000</value>
+							<value>BGCP21Y20Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y5Y_-0.005#0000</value>
+							<value>BGCP21Y20Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y5Y_-0.0025#0000</value>
+							<value>BGCP21Y20Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y5Y_0#0000</value>
+							<value>BGCP21Y20Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y5Y_0.0025#0000</value>
+							<value>BGCP21Y20Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y5Y_0.005#0000</value>
+							<value>BGCP21Y20Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y5Y_0.01#0000</value>
+							<value>BGCP21Y20Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y5Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y10Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y10Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y10Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y10Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y10Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y10Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y10Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y10Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y10Y_0.02#0000</value>
+							<value>BGCP21Y20Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -9399,112 +8886,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y20Y_-0.02#0000</value>
+							<value>BGCP21Y30Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y20Y_-0.01#0000</value>
+							<value>BGCP21Y30Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y20Y_-0.005#0000</value>
+							<value>BGCP21Y30Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y20Y_-0.0025#0000</value>
+							<value>BGCP21Y30Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y20Y_0#0000</value>
+							<value>BGCP21Y30Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y20Y_0.0025#0000</value>
+							<value>BGCP21Y30Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y20Y_0.005#0000</value>
+							<value>BGCP21Y30Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y20Y_0.01#0000</value>
+							<value>BGCP21Y30Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP210Y20Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y30Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y30Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y30Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y30Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y30Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y30Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y30Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y30Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP210Y30Y_0.02#0000</value>
+							<value>BGCP21Y30Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -9513,112 +8943,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y2Y_-0.02#0000</value>
+							<value>BGCP25Y2Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y2Y_-0.01#0000</value>
+							<value>BGCP25Y2Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y2Y_-0.005#0000</value>
+							<value>BGCP25Y2Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y2Y_-0.0025#0000</value>
+							<value>BGCP25Y2Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y2Y_0#0000</value>
+							<value>BGCP25Y2Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y2Y_0.0025#0000</value>
+							<value>BGCP25Y2Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y2Y_0.005#0000</value>
+							<value>BGCP25Y2Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y2Y_0.01#0000</value>
+							<value>BGCP25Y2Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y2Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y5Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y5Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y5Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y5Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y5Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y5Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y5Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y5Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y5Y_0.02#0000</value>
+							<value>BGCP25Y2Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -9627,112 +9000,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y10Y_-0.02#0000</value>
+							<value>BGCP25Y5Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y10Y_-0.01#0000</value>
+							<value>BGCP25Y5Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y10Y_-0.005#0000</value>
+							<value>BGCP25Y5Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y10Y_-0.0025#0000</value>
+							<value>BGCP25Y5Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y10Y_0#0000</value>
+							<value>BGCP25Y5Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y10Y_0.0025#0000</value>
+							<value>BGCP25Y5Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y10Y_0.005#0000</value>
+							<value>BGCP25Y5Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y10Y_0.01#0000</value>
+							<value>BGCP25Y5Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y10Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y20Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y20Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y20Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y20Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y20Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y20Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y20Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y20Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP220Y20Y_0.02#0000</value>
+							<value>BGCP25Y5Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -9741,112 +9057,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y30Y_-0.02#0000</value>
+							<value>BGCP25Y10Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y30Y_-0.01#0000</value>
+							<value>BGCP25Y10Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y30Y_-0.005#0000</value>
+							<value>BGCP25Y10Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y30Y_-0.0025#0000</value>
+							<value>BGCP25Y10Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y30Y_0#0000</value>
+							<value>BGCP25Y10Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y30Y_0.0025#0000</value>
+							<value>BGCP25Y10Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y30Y_0.005#0000</value>
+							<value>BGCP25Y10Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y30Y_0.01#0000</value>
+							<value>BGCP25Y10Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP220Y30Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y2Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y2Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y2Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y2Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y2Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y2Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y2Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y2Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y2Y_0.02#0000</value>
+							<value>BGCP25Y10Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -9855,112 +9114,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y5Y_-0.02#0000</value>
+							<value>BGCP25Y20Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y5Y_-0.01#0000</value>
+							<value>BGCP25Y20Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y5Y_-0.005#0000</value>
+							<value>BGCP25Y20Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y5Y_-0.0025#0000</value>
+							<value>BGCP25Y20Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y5Y_0#0000</value>
+							<value>BGCP25Y20Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y5Y_0.0025#0000</value>
+							<value>BGCP25Y20Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y5Y_0.005#0000</value>
+							<value>BGCP25Y20Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y5Y_0.01#0000</value>
+							<value>BGCP25Y20Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y5Y_0.02#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>9</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y10Y_-0.02#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y10Y_-0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y10Y_-0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y10Y_-0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y10Y_0#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y10Y_0.0025#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y10Y_0.005#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y10Y_0.01#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>BGCP230Y10Y_0.02#0000</value>
+							<value>BGCP25Y20Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -9969,55 +9171,55 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y20Y_-0.02#0000</value>
+							<value>BGCP25Y30Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y20Y_-0.01#0000</value>
+							<value>BGCP25Y30Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y20Y_-0.005#0000</value>
+							<value>BGCP25Y30Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y20Y_-0.0025#0000</value>
+							<value>BGCP25Y30Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y20Y_0#0000</value>
+							<value>BGCP25Y30Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y20Y_0.0025#0000</value>
+							<value>BGCP25Y30Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y20Y_0.005#0000</value>
+							<value>BGCP25Y30Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y20Y_0.01#0000</value>
+							<value>BGCP25Y30Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y20Y_0.02#0000</value>
+							<value>BGCP25Y30Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -10026,55 +9228,853 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y30Y_-0.02#0000</value>
+							<value>BGCP210Y2Y_-0.02</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y30Y_-0.01#0000</value>
+							<value>BGCP210Y2Y_-0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y30Y_-0.005#0000</value>
+							<value>BGCP210Y2Y_-0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y30Y_-0.0025#0000</value>
+							<value>BGCP210Y2Y_-0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y30Y_0#0000</value>
+							<value>BGCP210Y2Y_0</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y30Y_0.0025#0000</value>
+							<value>BGCP210Y2Y_0.0025</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y30Y_0.005#0000</value>
+							<value>BGCP210Y2Y_0.005</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y30Y_0.01#0000</value>
+							<value>BGCP210Y2Y_0.01</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>BGCP230Y30Y_0.02#0000</value>
+							<value>BGCP210Y2Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y5Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y5Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y5Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y5Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y5Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y5Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y5Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y5Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y5Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y10Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y10Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y10Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y10Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y10Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y10Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y10Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y10Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y10Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y20Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y20Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y20Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y20Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y20Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y20Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y20Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y20Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y20Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y30Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y30Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y30Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y30Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y30Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y30Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y30Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y30Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP210Y30Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y2Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y2Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y2Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y2Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y2Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y2Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y2Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y2Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y2Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y5Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y5Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y5Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y5Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y5Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y5Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y5Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y5Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y5Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y10Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y10Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y10Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y10Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y10Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y10Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y10Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y10Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y10Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y20Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y20Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y20Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y20Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y20Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y20Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y20Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y20Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y20Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y30Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y30Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y30Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y30Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y30Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y30Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y30Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y30Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP220Y30Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y2Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y2Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y2Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y2Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y2Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y2Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y2Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y2Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y2Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y5Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y5Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y5Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y5Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y5Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y5Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y5Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y5Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y5Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y10Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y10Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y10Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y10Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y10Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y10Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y10Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y10Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y10Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y20Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y20Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y20Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y20Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y20Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y20Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y20Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y20Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y20Y_0.02</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>9</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y30Y_-0.02</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y30Y_-0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y30Y_-0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y30Y_-0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y30Y_0</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y30Y_0.0025</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y30Y_0.005</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y30Y_0.01</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>BGCP230Y30Y_0.02</value>
 						</variant_>
 					</item>
 				</item>
@@ -10088,52 +10088,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_2Y_3m#0000</value>
+							<value>Alpha_guess_2Y_3m</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta2Y_Quote#0000</value>
+							<value>EURSwaptionBeta2Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_2Y_3m#0000</value>
+							<value>Nu_guess_2Y_3m</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_2Y_3m#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_2Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta2Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_2Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_2Y_1Y#0000</value>
+							<value>Rho_guess_2Y_3m</value>
 						</variant_>
 					</item>
 				</item>
@@ -10142,52 +10115,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_2Y_5Y#0000</value>
+							<value>Alpha_guess_2Y_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta2Y_Quote#0000</value>
+							<value>EURSwaptionBeta2Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_2Y_5Y#0000</value>
+							<value>Nu_guess_2Y_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_2Y_5Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_2Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta2Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_2Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_2Y_10Y#0000</value>
+							<value>Rho_guess_2Y_1Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10196,52 +10142,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_2Y_20Y#0000</value>
+							<value>Alpha_guess_2Y_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta2Y_Quote#0000</value>
+							<value>EURSwaptionBeta2Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_2Y_20Y#0000</value>
+							<value>Nu_guess_2Y_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_2Y_20Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_2Y_30Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta2Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_2Y_30Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_2Y_30Y#0000</value>
+							<value>Rho_guess_2Y_5Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10250,52 +10169,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_5Y_3m#0000</value>
+							<value>Alpha_guess_2Y_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta5Y_Quote#0000</value>
+							<value>EURSwaptionBeta2Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_5Y_3m#0000</value>
+							<value>Nu_guess_2Y_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_5Y_3m#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_5Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta5Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_5Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_5Y_1Y#0000</value>
+							<value>Rho_guess_2Y_10Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10304,52 +10196,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_5Y_5Y#0000</value>
+							<value>Alpha_guess_2Y_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta5Y_Quote#0000</value>
+							<value>EURSwaptionBeta2Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_5Y_5Y#0000</value>
+							<value>Nu_guess_2Y_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_5Y_5Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_5Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta5Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_5Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_5Y_10Y#0000</value>
+							<value>Rho_guess_2Y_20Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10358,52 +10223,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_5Y_20Y#0000</value>
+							<value>Alpha_guess_2Y_30Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta5Y_Quote#0000</value>
+							<value>EURSwaptionBeta2Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_5Y_20Y#0000</value>
+							<value>Nu_guess_2Y_30Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_5Y_20Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_5Y_30Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta5Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_5Y_30Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_5Y_30Y#0000</value>
+							<value>Rho_guess_2Y_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10412,52 +10250,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_10Y_3m#0000</value>
+							<value>Alpha_guess_5Y_3m</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta10Y_Quote#0000</value>
+							<value>EURSwaptionBeta5Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_10Y_3m#0000</value>
+							<value>Nu_guess_5Y_3m</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_10Y_3m#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_10Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta10Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_10Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_10Y_1Y#0000</value>
+							<value>Rho_guess_5Y_3m</value>
 						</variant_>
 					</item>
 				</item>
@@ -10466,52 +10277,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_10Y_5Y#0000</value>
+							<value>Alpha_guess_5Y_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta10Y_Quote#0000</value>
+							<value>EURSwaptionBeta5Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_10Y_5Y#0000</value>
+							<value>Nu_guess_5Y_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_10Y_5Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_10Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta10Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_10Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_10Y_10Y#0000</value>
+							<value>Rho_guess_5Y_1Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10520,52 +10304,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_10Y_20Y#0000</value>
+							<value>Alpha_guess_5Y_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta10Y_Quote#0000</value>
+							<value>EURSwaptionBeta5Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_10Y_20Y#0000</value>
+							<value>Nu_guess_5Y_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_10Y_20Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_10Y_30Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta10Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_10Y_30Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_10Y_30Y#0000</value>
+							<value>Rho_guess_5Y_5Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10574,52 +10331,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_20Y_3m#0000</value>
+							<value>Alpha_guess_5Y_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta20Y_Quote#0000</value>
+							<value>EURSwaptionBeta5Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_20Y_3m#0000</value>
+							<value>Nu_guess_5Y_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_20Y_3m#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_20Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta20Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_20Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_20Y_1Y#0000</value>
+							<value>Rho_guess_5Y_10Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10628,52 +10358,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_20Y_5Y#0000</value>
+							<value>Alpha_guess_5Y_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta20Y_Quote#0000</value>
+							<value>EURSwaptionBeta5Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_20Y_5Y#0000</value>
+							<value>Nu_guess_5Y_20Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_20Y_5Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_20Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta20Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_20Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_20Y_10Y#0000</value>
+							<value>Rho_guess_5Y_20Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10682,52 +10385,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_20Y_20Y#0000</value>
+							<value>Alpha_guess_5Y_30Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta20Y_Quote#0000</value>
+							<value>EURSwaptionBeta5Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_20Y_20Y#0000</value>
+							<value>Nu_guess_5Y_30Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_20Y_20Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_20Y_30Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta20Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_20Y_30Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_20Y_30Y#0000</value>
+							<value>Rho_guess_5Y_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10736,52 +10412,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_30Y_3m#0000</value>
+							<value>Alpha_guess_10Y_3m</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta30Y_Quote#0000</value>
+							<value>EURSwaptionBeta10Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_30Y_3m#0000</value>
+							<value>Nu_guess_10Y_3m</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_30Y_3m#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_30Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta30Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_30Y_1Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_30Y_1Y#0000</value>
+							<value>Rho_guess_10Y_3m</value>
 						</variant_>
 					</item>
 				</item>
@@ -10790,52 +10439,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_30Y_5Y#0000</value>
+							<value>Alpha_guess_10Y_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta30Y_Quote#0000</value>
+							<value>EURSwaptionBeta10Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_30Y_5Y#0000</value>
+							<value>Nu_guess_10Y_1Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_30Y_5Y#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>4</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Alpha_guess_30Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EURSwaptionBeta30Y_Quote#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Nu_guess_30Y_10Y#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>Rho_guess_30Y_10Y#0000</value>
+							<value>Rho_guess_10Y_1Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10844,25 +10466,25 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_30Y_20Y#0000</value>
+							<value>Alpha_guess_10Y_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta30Y_Quote#0000</value>
+							<value>EURSwaptionBeta10Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_30Y_20Y#0000</value>
+							<value>Nu_guess_10Y_5Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_30Y_20Y#0000</value>
+							<value>Rho_guess_10Y_5Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10871,25 +10493,403 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Alpha_guess_30Y_30Y#0000</value>
+							<value>Alpha_guess_10Y_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EURSwaptionBeta30Y_Quote#0000</value>
+							<value>EURSwaptionBeta10Y_Quote</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Nu_guess_30Y_30Y#0000</value>
+							<value>Nu_guess_10Y_10Y</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>Rho_guess_30Y_30Y#0000</value>
+							<value>Rho_guess_10Y_10Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_10Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta10Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_10Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_10Y_20Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_10Y_30Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta10Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_10Y_30Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_10Y_30Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_20Y_3m</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta20Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_20Y_3m</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_20Y_3m</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_20Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta20Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_20Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_20Y_1Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_20Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta20Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_20Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_20Y_5Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_20Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta20Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_20Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_20Y_10Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_20Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta20Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_20Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_20Y_20Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_20Y_30Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta20Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_20Y_30Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_20Y_30Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_30Y_3m</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta30Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_30Y_3m</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_30Y_3m</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_30Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta30Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_30Y_1Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_30Y_1Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_30Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta30Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_30Y_5Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_30Y_5Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_30Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta30Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_30Y_10Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_30Y_10Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_30Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta30Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_30Y_20Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_30Y_20Y</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>4</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Alpha_guess_30Y_30Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EURSwaptionBeta30Y_Quote</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Nu_guess_30Y_30Y</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>Rho_guess_30Y_30Y</value>
 						</variant_>
 					</item>
 				</item>
@@ -10902,16 +10902,16 @@
 				<item>0</item>
 			</isFixed>
 			<isAtmCalibrated>1</isAtmCalibrated>
-			<endCriteria>end_criteria#0000</endCriteria>
+			<endCriteria>end_criteria</endCriteria>
 			<maxErrorTol>0.050000000000000003</maxErrorTol>
-			<optMethod>simplex#0000</optMethod>
+			<optMethod>simplex</optMethod>
 		</px>
 	</item>
 	<item>
 		<px class_id_reference="143" object_id="_724">
 			<objectID>SpreadsVolHandle</objectID>
 			<className>qlRelinkableHandleSwaptionVolatilityStructure</className>
-			<currentLink>SpreadsVol#0000</currentLink>
+			<currentLink>SpreadsVol</currentLink>
 		</px>
 	</item>
 	<item>
@@ -12809,100 +12809,49 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_3Y_6m_3.00#0000</value>
+							<value>EUR_VCAP_3Y_6m_3.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_3Y_6m_3.50#0000</value>
+							<value>EUR_VCAP_3Y_6m_3.50</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_3Y_6m_4.00#0000</value>
+							<value>EUR_VCAP_3Y_6m_4.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_3Y_6m_5.00#0000</value>
+							<value>EUR_VCAP_3Y_6m_5.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_3Y_6m_6.00#0000</value>
+							<value>EUR_VCAP_3Y_6m_6.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_3Y_6m_7.00#0000</value>
+							<value>EUR_VCAP_3Y_6m_7.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_3Y_6m_8.00#0000</value>
+							<value>EUR_VCAP_3Y_6m_8.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_3Y_6m_10.00#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>8</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_4Y_6m_3.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_4Y_6m_3.50#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_4Y_6m_4.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_4Y_6m_5.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_4Y_6m_6.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_4Y_6m_7.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_4Y_6m_8.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_4Y_6m_10.00#0000</value>
+							<value>EUR_VCAP_3Y_6m_10.00</value>
 						</variant_>
 					</item>
 				</item>
@@ -12911,100 +12860,49 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_5Y_6m_3.00#0000</value>
+							<value>EUR_VCAP_4Y_6m_3.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_5Y_6m_3.50#0000</value>
+							<value>EUR_VCAP_4Y_6m_3.50</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_5Y_6m_4.00#0000</value>
+							<value>EUR_VCAP_4Y_6m_4.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_5Y_6m_5.00#0000</value>
+							<value>EUR_VCAP_4Y_6m_5.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_5Y_6m_6.00#0000</value>
+							<value>EUR_VCAP_4Y_6m_6.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_5Y_6m_7.00#0000</value>
+							<value>EUR_VCAP_4Y_6m_7.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_5Y_6m_8.00#0000</value>
+							<value>EUR_VCAP_4Y_6m_8.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_5Y_6m_10.00#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>8</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_6Y_6m_3.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_6Y_6m_3.50#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_6Y_6m_4.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_6Y_6m_5.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_6Y_6m_6.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_6Y_6m_7.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_6Y_6m_8.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_6Y_6m_10.00#0000</value>
+							<value>EUR_VCAP_4Y_6m_10.00</value>
 						</variant_>
 					</item>
 				</item>
@@ -13013,100 +12911,49 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_7Y_6m_3.00#0000</value>
+							<value>EUR_VCAP_5Y_6m_3.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_7Y_6m_3.50#0000</value>
+							<value>EUR_VCAP_5Y_6m_3.50</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_7Y_6m_4.00#0000</value>
+							<value>EUR_VCAP_5Y_6m_4.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_7Y_6m_5.00#0000</value>
+							<value>EUR_VCAP_5Y_6m_5.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_7Y_6m_6.00#0000</value>
+							<value>EUR_VCAP_5Y_6m_6.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_7Y_6m_7.00#0000</value>
+							<value>EUR_VCAP_5Y_6m_7.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_7Y_6m_8.00#0000</value>
+							<value>EUR_VCAP_5Y_6m_8.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_7Y_6m_10.00#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>8</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_8Y_6m_3.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_8Y_6m_3.50#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_8Y_6m_4.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_8Y_6m_5.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_8Y_6m_6.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_8Y_6m_7.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_8Y_6m_8.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_8Y_6m_10.00#0000</value>
+							<value>EUR_VCAP_5Y_6m_10.00</value>
 						</variant_>
 					</item>
 				</item>
@@ -13115,100 +12962,49 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_9Y_6m_3.00#0000</value>
+							<value>EUR_VCAP_6Y_6m_3.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_9Y_6m_3.50#0000</value>
+							<value>EUR_VCAP_6Y_6m_3.50</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_9Y_6m_4.00#0000</value>
+							<value>EUR_VCAP_6Y_6m_4.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_9Y_6m_5.00#0000</value>
+							<value>EUR_VCAP_6Y_6m_5.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_9Y_6m_6.00#0000</value>
+							<value>EUR_VCAP_6Y_6m_6.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_9Y_6m_7.00#0000</value>
+							<value>EUR_VCAP_6Y_6m_7.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_9Y_6m_8.00#0000</value>
+							<value>EUR_VCAP_6Y_6m_8.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_9Y_6m_10.00#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>8</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_10Y_6m_3.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_10Y_6m_3.50#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_10Y_6m_4.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_10Y_6m_5.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_10Y_6m_6.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_10Y_6m_7.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_10Y_6m_8.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_10Y_6m_10.00#0000</value>
+							<value>EUR_VCAP_6Y_6m_10.00</value>
 						</variant_>
 					</item>
 				</item>
@@ -13217,100 +13013,49 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_12Y_6m_3.00#0000</value>
+							<value>EUR_VCAP_7Y_6m_3.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_12Y_6m_3.50#0000</value>
+							<value>EUR_VCAP_7Y_6m_3.50</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_12Y_6m_4.00#0000</value>
+							<value>EUR_VCAP_7Y_6m_4.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_12Y_6m_5.00#0000</value>
+							<value>EUR_VCAP_7Y_6m_5.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_12Y_6m_6.00#0000</value>
+							<value>EUR_VCAP_7Y_6m_6.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_12Y_6m_7.00#0000</value>
+							<value>EUR_VCAP_7Y_6m_7.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_12Y_6m_8.00#0000</value>
+							<value>EUR_VCAP_7Y_6m_8.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_12Y_6m_10.00#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>8</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_15Y_6m_3.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_15Y_6m_3.50#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_15Y_6m_4.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_15Y_6m_5.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_15Y_6m_6.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_15Y_6m_7.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_15Y_6m_8.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_15Y_6m_10.00#0000</value>
+							<value>EUR_VCAP_7Y_6m_10.00</value>
 						</variant_>
 					</item>
 				</item>
@@ -13319,100 +13064,49 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_20Y_6m_3.00#0000</value>
+							<value>EUR_VCAP_8Y_6m_3.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_20Y_6m_3.50#0000</value>
+							<value>EUR_VCAP_8Y_6m_3.50</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_20Y_6m_4.00#0000</value>
+							<value>EUR_VCAP_8Y_6m_4.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_20Y_6m_5.00#0000</value>
+							<value>EUR_VCAP_8Y_6m_5.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_20Y_6m_6.00#0000</value>
+							<value>EUR_VCAP_8Y_6m_6.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_20Y_6m_7.00#0000</value>
+							<value>EUR_VCAP_8Y_6m_7.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_20Y_6m_8.00#0000</value>
+							<value>EUR_VCAP_8Y_6m_8.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_20Y_6m_10.00#0000</value>
-						</variant_>
-					</item>
-				</item>
-				<item>
-					<count>8</count>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_25Y_6m_3.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_25Y_6m_3.50#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_25Y_6m_4.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_25Y_6m_5.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_25Y_6m_6.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_25Y_6m_7.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_25Y_6m_8.00#0000</value>
-						</variant_>
-					</item>
-					<item>
-						<variant_>
-							<which>3</which>
-							<value>EUR_VCAP_25Y_6m_10.00#0000</value>
+							<value>EUR_VCAP_8Y_6m_10.00</value>
 						</variant_>
 					</item>
 				</item>
@@ -13421,55 +13115,361 @@
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_30Y_6m_3.00#0000</value>
+							<value>EUR_VCAP_9Y_6m_3.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_30Y_6m_3.50#0000</value>
+							<value>EUR_VCAP_9Y_6m_3.50</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_30Y_6m_4.00#0000</value>
+							<value>EUR_VCAP_9Y_6m_4.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_30Y_6m_5.00#0000</value>
+							<value>EUR_VCAP_9Y_6m_5.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_30Y_6m_6.00#0000</value>
+							<value>EUR_VCAP_9Y_6m_6.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_30Y_6m_7.00#0000</value>
+							<value>EUR_VCAP_9Y_6m_7.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_30Y_6m_8.00#0000</value>
+							<value>EUR_VCAP_9Y_6m_8.00</value>
 						</variant_>
 					</item>
 					<item>
 						<variant_>
 							<which>3</which>
-							<value>EUR_VCAP_30Y_6m_10.00#0000</value>
+							<value>EUR_VCAP_9Y_6m_10.00</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>8</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_10Y_6m_3.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_10Y_6m_3.50</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_10Y_6m_4.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_10Y_6m_5.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_10Y_6m_6.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_10Y_6m_7.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_10Y_6m_8.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_10Y_6m_10.00</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>8</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_12Y_6m_3.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_12Y_6m_3.50</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_12Y_6m_4.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_12Y_6m_5.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_12Y_6m_6.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_12Y_6m_7.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_12Y_6m_8.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_12Y_6m_10.00</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>8</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_15Y_6m_3.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_15Y_6m_3.50</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_15Y_6m_4.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_15Y_6m_5.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_15Y_6m_6.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_15Y_6m_7.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_15Y_6m_8.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_15Y_6m_10.00</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>8</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_20Y_6m_3.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_20Y_6m_3.50</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_20Y_6m_4.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_20Y_6m_5.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_20Y_6m_6.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_20Y_6m_7.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_20Y_6m_8.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_20Y_6m_10.00</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>8</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_25Y_6m_3.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_25Y_6m_3.50</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_25Y_6m_4.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_25Y_6m_5.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_25Y_6m_6.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_25Y_6m_7.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_25Y_6m_8.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_25Y_6m_10.00</value>
+						</variant_>
+					</item>
+				</item>
+				<item>
+					<count>8</count>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_30Y_6m_3.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_30Y_6m_3.50</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_30Y_6m_4.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_30Y_6m_5.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_30Y_6m_6.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_30Y_6m_7.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_30Y_6m_8.00</value>
+						</variant_>
+					</item>
+					<item>
+						<variant_>
+							<which>3</which>
+							<value>EUR_VCAP_30Y_6m_10.00</value>
 						</variant_>
 					</item>
 				</item>
 			</volatilities>
 			<index>Euribor6M</index>
-			<YieldCurve>EUR_YC_HANDLE#0000</YieldCurve>
+			<YieldCurve>EUR_YC_HANDLE</YieldCurve>
 			<dayCounter>Actual/365 (Fixed)</dayCounter>
 			<impliedVolatilityAccuracy>1.0000000000000001e-005</impliedVolatilityAccuracy>
 			<maxEvaluations>100</maxEvaluations>
@@ -13480,7 +13480,7 @@
 		<px class_id="17" tracking_level="1" version="0" object_id="_950">
 			<objectID>CapletVolHandle</objectID>
 			<className>qlRelinkableHandleCapletVolatilityStructure</className>
-			<currentLink>EUR6MCapletVol1#0000</currentLink>
+			<currentLink>EUR6MCapletVol1</currentLink>
 		</px>
 	</item>
 	<item>
