@@ -115,6 +115,7 @@ Section "Spreadsheets"
 SectionIn 1 2
     SetOutPath "$INSTDIR\Workbooks"
     File /r /x Drafts "Workbooks\*.xls"
+    File /r /x Drafts "Workbooks\*.kof"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Example workbooks.lnk" \
                    "$INSTDIR\Workbooks"

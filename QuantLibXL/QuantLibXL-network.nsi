@@ -77,9 +77,6 @@ Are you certain that this is what you want to do?' IDYES +2
     Delete "$INSTDIR\Workbooks\CmsCalibrations\*"
     Delete "$INSTDIR\Workbooks\CoveredWarrants\*"
     Delete "$INSTDIR\Workbooks\DateCalendarsDayCounters\*"
-    Delete "$INSTDIR\Workbooks\FrozenMarketData\*"
-    Delete "$INSTDIR\Workbooks\FrozenMarketData\ManualFeed\*"
-    Delete "$INSTDIR\Workbooks\FrozenMarketData\ReutersFeed\*"
     Delete "$INSTDIR\Workbooks\InterestRateDerivatives\*"
     Delete "$INSTDIR\Workbooks\MarketData\*"
     Delete "$INSTDIR\Workbooks\MarketData\BloombergFeed\*"
@@ -89,7 +86,8 @@ Are you certain that this is what you want to do?' IDYES +2
     Delete "$INSTDIR\Workbooks\MarketModels\*"
     Delete "$INSTDIR\Workbooks\Math\*"
     Delete "$INSTDIR\Workbooks\ohTests\*"
-    Delete "$INSTDIR\Workbooks\OriginalExamples\*"
+    Delete "$INSTDIR\Workbooks\PricingEngines\*"
+    Delete "$INSTDIR\Workbooks\StandAloneExamples\*"
     Delete "$INSTDIR\Workbooks\Tests\*"
     Delete "$INSTDIR\Workbooks\TimeSeries\*"
     Delete "$INSTDIR\Workbooks\TimeSeries\BloombergFeed\*"
@@ -144,5 +142,6 @@ Section
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r /x Drafts "Workbooks\*.xls"
+    File /r /x Drafts "Workbooks\*.kof"
 
 SectionEnd
