@@ -96,7 +96,7 @@
       </EnumeratedPairs>
     </EnumeratedPairGroup>
 
-      <EnumeratedPairGroup class='QuantLib::HistoricalForwardRatesAnalysis'>
+      <!--<EnumeratedPairGroup class='QuantLib::HistoricalForwardRatesAnalysis'>
           <includeFile/>
           <EnumeratedPairs>
               <EnumeratedPair>
@@ -105,7 +105,7 @@
                   <value>DISCOUNT_CUBIC_HistoricalForwardRatesAnalysis</value>
               </EnumeratedPair>
           </EnumeratedPairs>
-      </EnumeratedPairGroup>
+      </EnumeratedPairGroup>-->
   </EnumeratedPairGroups>
 
 </root>
