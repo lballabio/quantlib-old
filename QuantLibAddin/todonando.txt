@@ -392,6 +392,8 @@ Eric
 - Reuters
 - Trader wbk problem
 - object creation
+- enum vs object (e.g. Index)
+- RelinkableHandle / Handle
 
 - remove trigger input parameter from ohretrieveError() signature
 - DevCycle branches/tags
@@ -409,7 +411,7 @@ Eric
 - there is no warning if there is an empty xll list to be loaded by
   QuantLix.xla
 - saohxll doesn't compile in debug mode
-- bond currency propety value cast
+- bond currency property value cast
 - allow foo object to have method to create bar objects
 - enforce implicit Property Names (e.g. objectID, className) first letter
   capitalization
@@ -434,7 +436,6 @@ Eric
 - native Excel looping behaviour
 - HistoricalForwardRatesAnalysis should not calculate in wizard
 - business252 designed as in JointCalendar
-- market data serialization
 - multicurrency analysis
 - bloomberg dll loading
 - compilation time (header inclusion clean up, multiple xll, ecc)
