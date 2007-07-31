@@ -45,7 +45,7 @@ import re
 import getopt
 import shutil
 
-ROOT_DIR = '/erik/projects/trunk/QuantLibXL'
+ROOT_DIR = '/erik/projects/trunk/QuantLibAddin'
 
 # callback functions - called from regexes which require multiple passes
 
@@ -69,26 +69,10 @@ SUBSTITUTIONS = (
 #   place the active regexes here,
 #   using the commented examples below
 
-(re.compile(
-
-r'''
- QuantLib is free software: you can redistribute it and/or modify it under the
- terms of the QuantLib license.  You should have received a copy of the
- license along with this program; if not, please email quantlib-dev@lists.sf.net
- The license is also available online at http://quantlib.org/html/license.html
-'''),
-'''
- QuantLib is free software: you can redistribute it and/or modify it
- under the terms of the QuantLib license.  You should have received a
- copy of the license along with this program; if not, please email
- <quantlib-dev@lists.sf.net>. The license is also available online at
- <http://quantlib.org/license.shtml>.
-'''),
+    (re.compile(r'aaa'), r'bbb'),
 
 #   simple
-# <type>QuantLib::Schedule</type>
-    (re.compile(r'(^\s*)(\<type\>QuantLib::Schedule\<\/type\>)', re.M | re.S), 
-	    r'\1\2\n\1<superType>libraryClass</superType>'),
+#    (re.compile(r'include <Addins/C++'), r'include <Addins/Cpp'),
 
 #   group (\1 requires r'' not '')
 #    (re.compile(r"<Rule (.*)>"), r"<Rule \1><SubRules>"),
@@ -114,10 +98,7 @@ r'''
 # Regexes to indicate names of files to be processed by the find/replace.
 
 INCLUDE_FILES = (
-    #re.compile(r'^assetswap\.xml$'),
-    #re.compile(r'^junk\.xml$'),
-    #re.compile(r'^varianttoscalar\.hpp$'),
-
+#    re.compile(r'^.*\.?pp$'),
 )
 
 # IGNORE_FILES
