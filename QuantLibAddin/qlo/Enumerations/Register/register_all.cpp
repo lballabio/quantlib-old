@@ -24,6 +24,7 @@ namespace QuantLibAddin {
 
         registerEnumeratedClasses();
         registerEnumeratedCurves();
+        //registerEnumeratedHistoricalForwardRatesAnalysis();
         registerEnumeratedTypes();
 
     }

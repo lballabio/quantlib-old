@@ -27,6 +27,7 @@
 
 #include <qlo/qladdindefines.hpp>
 #include <qlo/Enumerations/Factories/termstructuresfactory.hpp>
+#include <qlo/Enumerations/Factories/historicalforwardratesanalysisfactory.hpp>
 
 namespace QuantLibAddin {
 
@@ -127,6 +128,19 @@ namespace QuantLibAddin {
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
             QuantLib::Real accuracy);
+
+    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> DISCOUNT_CUBIC_HistoricalForwardRatesAnalysis(
+            const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+            const QuantLib::Date& startDate,
+            const QuantLib::Date& endDate,
+            const QuantLib::Period& step,
+            const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+            const QuantLib::Period& initialGap,
+            const QuantLib::Period& horizon,
+            const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+            const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+            const QuantLib::DayCounter& yieldCurveDayCounter,
+            QuantLib::Real yieldCurveAccuracy);
 }
 
 #endif

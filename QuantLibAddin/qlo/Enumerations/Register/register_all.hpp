@@ -23,6 +23,7 @@ namespace QuantLibAddin {
 
     void registerEnumeratedClasses();
     void registerEnumeratedCurves();
+    //void registerEnumeratedHistoricalForwardRatesAnalysis();
     void registerEnumeratedTypes();
     void unregisterEnumeratedTypes();
 

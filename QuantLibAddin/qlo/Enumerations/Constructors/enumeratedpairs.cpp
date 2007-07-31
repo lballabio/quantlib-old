@@ -249,4 +249,32 @@ namespace QuantLibAddin {
                                                            accuracy));
     }
 
+    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> DISCOUNT_CUBIC_HistoricalForwardRatesAnalysis(
+            const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+            const QuantLib::Date& startDate,
+            const QuantLib::Date& endDate,
+            const QuantLib::Period& step,
+            const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+            const QuantLib::Period& initialGap,
+            const QuantLib::Period& horizon,
+            const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+            const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+            const QuantLib::DayCounter& yieldCurveDayCounter,
+            QuantLib::Real yieldCurveAccuracy){
+        return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+            QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::Discount,
+                                          QuantLib::Cubic>(
+                                          stats,
+                                          startDate,
+                                          endDate,
+                                          step,
+                                          fwdIndex,
+                                          initialGap,
+                                          horizon,
+                                          iborIndexes,
+                                          swapIndexes,
+                                          yieldCurveDayCounter,
+                                          yieldCurveAccuracy)); 
+    
+    }
 }
