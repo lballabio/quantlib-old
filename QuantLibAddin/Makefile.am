@@ -9,11 +9,11 @@ SUBDIRS = \
     qlo/Serialization \
     qlo/ValueObjects \
     qlo \
-    Addins/C++/Serialization \
-    Addins/C++ \
+    Addins/Cpp/Serialization \
+    Addins/Cpp \
     Addins/Calc \
     Addins/C \
-    Clients/C++ \
+    Clients/Cpp \
     Clients/Calc \
     Clients/C \
     Docs

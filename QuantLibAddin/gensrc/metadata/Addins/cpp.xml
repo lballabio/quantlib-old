@@ -1,8 +1,8 @@
 
 <Addin name='Cpp'>
 
-  <relativePath>Addins/C++</relativePath>
-  <rootDirectory>Addins/C++</rootDirectory>
+  <relativePath>Addins/Cpp</relativePath>
+  <rootDirectory>Addins/Cpp</rootDirectory>
   <namespaceAddin>QuantLibAddinCpp</namespaceAddin>
 
   <copyright>

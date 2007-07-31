@@ -41,8 +41,8 @@ class CppAddin(addin.Addin):
     #        objectPointer->setPermanent();'''
     convertPermanentFlag_ = ''
     BUFFER_ALL = '''\
-#include <Addins/C++/addincppdefines.hpp>
-#include <Addins/C++/init.hpp>\n'''
+#include <Addins/Cpp/addincppdefines.hpp>
+#include <Addins/Cpp/init.hpp>\n'''
 
     #############################################
     # public interface
@@ -66,7 +66,7 @@ class CppAddin(addin.Addin):
         for cat in self.categoryList_.categories(self.name_):
             categoryIncludes = cat.includeList()
             #categoryIncludes = cat.includeList(LOOP_INCLUDES)
-            bufferAll += "#include <Addins/C++/%s.hpp>\n" % cat.name()
+            bufferAll += "#include <Addins/Cpp/%s.hpp>\n" % cat.name()
             bufferCpp = ''
             bufferHpp = ''
             for func in cat.functions(self.name_): 

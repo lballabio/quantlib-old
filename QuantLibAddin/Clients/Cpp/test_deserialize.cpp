@@ -16,7 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <Addins/C++/addincpp.hpp>
+#include <Addins/Cpp/addincpp.hpp>
 
 using namespace QuantLibAddinCpp;
 

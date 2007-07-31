@@ -1,6 +1,6 @@
  
 AM_CPPFLAGS = -I${top_srcdir}
-LDADD = ../../qlo/libQuantLibAddin.la ../../Addins/C++/libQuantLibAddinCpp.la
+LDADD = ../../qlo/libQuantLibAddin.la ../../Addins/Cpp/libQuantLibAddinCpp.la
 LDFLAGS = -lObjectHandler -lQuantLib
 
 EXTRA_DIST = \

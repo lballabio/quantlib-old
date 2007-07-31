@@ -15,7 +15,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCDemo", "Clients\C\Cl
 		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCppDemo", "Clients\C++\ClientCppDemo_vc7.vcproj", "{88B70320-57E9-47B5-9298-881B79789139}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCppDemo", "Clients\Cpp\ClientCppDemo_vc7.vcproj", "{88B70320-57E9-47B5-9298-881B79789139}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A6C5CC98-9224-4684-AA25-FB1A7B674A6F} = {A6C5CC98-9224-4684-AA25-FB1A7B674A6F}
 		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
@@ -52,7 +52,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qlgensrc", "gensrc\qlgensrc
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinCpp", "Addins\C++\AddinCpp_vc7.vcproj", "{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinCpp", "Addins\Cpp\AddinCpp_vc7.vcproj", "{A6C5CC98-9224-4684-AA25-FB1A7B674A6F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6A4CC8C6-BE43-4571-B261-037E56A7A38D} = {6A4CC8C6-BE43-4571-B261-037E56A7A38D}
 	EndProjectSection

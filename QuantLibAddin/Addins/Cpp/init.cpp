@@ -16,11 +16,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <Addins/C++/init.hpp>
+#include <Addins/Cpp/init.hpp>
 #include <oh/repository.hpp>
 #include <oh/Enumerations/enumregistry.hpp>
 #include <qlo/Enumerations/Register/register_all.hpp>
-#include <Addins/C++/Serialization/serializationfactory.hpp>
+#include <Addins/Cpp/Serialization/serializationfactory.hpp>
 
 void QuantLibAddinCpp::initializeAddin() {
 

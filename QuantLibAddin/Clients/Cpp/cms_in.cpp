@@ -16,8 +16,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <Addins/C++/addincpp.hpp>
-#include <Clients/C++/set_fixings.hpp>
+#include <Addins/Cpp/addincpp.hpp>
+#include <Clients/Cpp/set_fixings.hpp>
 #include <ql/qldefines.hpp>
 #if defined BOOST_MSVC
 #include <oh/auto_link.hpp>

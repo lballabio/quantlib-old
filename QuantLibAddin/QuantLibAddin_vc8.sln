@@ -13,7 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCDemo", "Clients\C\Cl
 		{ACCA0906-34AF-4CC4-8426-C3EF41315BF5} = {ACCA0906-34AF-4CC4-8426-C3EF41315BF5}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCppDemo", "Clients\C++\ClientCppDemo_vc8.vcproj", "{8F04F015-23CA-4D7E-83BE-FF9371D3964D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientCppDemo", "Clients\Cpp\ClientCppDemo_vc8.vcproj", "{8F04F015-23CA-4D7E-83BE-FF9371D3964D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E5C1A173-2885-4BAB-905B-F9521ACB8E31} = {E5C1A173-2885-4BAB-905B-F9521ACB8E31}
 	EndProjectSection
@@ -47,7 +47,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs-QuantLibXL", "..\Quant
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qlgensrc", "gensrc\qlgensrc_vc8.vcproj", "{C8A6BB98-75CA-4EB9-A750-8BA3B3AA5969}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinCpp", "Addins\C++\AddinCpp_vc8.vcproj", "{E5C1A173-2885-4BAB-905B-F9521ACB8E31}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinCpp", "Addins\Cpp\AddinCpp_vc8.vcproj", "{E5C1A173-2885-4BAB-905B-F9521ACB8E31}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CAB8330C-6424-4455-9285-3654587EF71F} = {CAB8330C-6424-4455-9285-3654587EF71F}
 	EndProjectSection
