@@ -249,7 +249,7 @@ namespace QuantLibAddin {
                                                            accuracy));
     }
 
-    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> DISCOUNT_CUBIC_HistoricalForwardRatesAnalysis(
+   /* boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> DISCOUNT_CUBIC_HistoricalForwardRatesAnalysis(
             const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
             const QuantLib::Date& startDate,
             const QuantLib::Date& endDate,
@@ -276,5 +276,5 @@ namespace QuantLibAddin {
                                           yieldCurveDayCounter,
                                           yieldCurveAccuracy)); 
     
-    }
+    }*/
 }
