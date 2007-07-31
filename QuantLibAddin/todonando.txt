@@ -35,6 +35,8 @@ GENERAL
   pricing engines refactoring
   verbose log messages
 
+- expose 2 constructors per each bond
+- reorder bond/leg signatures
 - CabotoXL.xla (Murex curve, vol export, cms calibrations, cms book)
 - serialize RelinkableHandles and Pricing Engines
 - more release manager
@@ -394,6 +396,7 @@ Eric
 - object creation
 - enum vs object (e.g. Index)
 - RelinkableHandle / Handle
+- Nazdatech env variable
 
 - remove trigger input parameter from ohretrieveError() signature
 - DevCycle branches/tags
