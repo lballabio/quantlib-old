@@ -47,7 +47,7 @@ class BehaviorLoop(object):
             functionSignature = ''
         return addin.bufferLoop().text() % {
             'inputList' : self.func_.parameterList().generate(addin.loopInputs()),
-            'inputParam' : self.loopParamRef_.name(),
+            'inputParam' : addin.loopName(self.loopParamRef_),
             'functionCodeName' : self.functionCodeName_,
             'functionName' : self.functionName_,
             'functionSignature' : functionSignature,

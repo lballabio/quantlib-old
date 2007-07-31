@@ -37,6 +37,7 @@ noinst_HEADERS = \
     instruments.hpp \
     interpolation.hpp \
     leg.hpp \
+    loop.hpp \
     marketmodelevolvers.hpp \
     marketmodels.hpp \
     ohfunctions.hpp \

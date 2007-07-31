@@ -276,6 +276,14 @@
 	</References>
 	<Files>
 		<Filter
+			Name="Loop"
+			>
+			<File
+				RelativePath=".\loop.hpp"
+				>
+			</File>
+		</Filter>
+		<Filter
 			Name="Serialization"
 			>
 			<File

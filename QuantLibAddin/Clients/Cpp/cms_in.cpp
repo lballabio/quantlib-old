@@ -61,20 +61,29 @@ int main() {
 
         // Check that the yield curve bootstraps OK
 
-        long referenceDate = qlTermStructureReferenceDate(yieldCurveID);
-        long maxDate = qlTermStructureMaxDate(yieldCurveID);
-        LOG_MESSAGE("yts reference discount = "
-            << qlYieldTSDiscount2(yieldCurveID, referenceDate, OH_NULL));
-        LOG_MESSAGE("yts max discount       = "
-            << qlYieldTSDiscount2(yieldCurveID, maxDate, OH_NULL));
+        std::vector<ObjectHandler::Variant> referenceDates;
+        referenceDates.push_back(qlTermStructureReferenceDate(yieldCurveID));
+        std::vector<double> refDiscounts = qlYieldTSDiscount(yieldCurveID, referenceDates, OH_NULL);
+        LOG_MESSAGE("yts reference discount = " << refDiscounts[0]);
+
+        std::vector<ObjectHandler::Variant> maxDates;
+        maxDates.push_back(qlTermStructureMaxDate(yieldCurveID));
+        std::vector<double> maxDiscounts = qlYieldTSDiscount(yieldCurveID, maxDates, OH_NULL);
+        LOG_MESSAGE("yts max discount       = " << maxDiscounts[0]);
 
         // Set the index fixings and verify a couple of them
 
         setFixings();
-        LOG_MESSAGE("EuriborSwapFIXA5Y 18-May-2007 "
-            << qlIndexFixing2("EuriborSwapFIXA5Y", 39220L, OH_NULL));
-        LOG_MESSAGE("EURIBOR6M         16-May-2006 "
-            << qlIndexFixing2("EURIBOR6M", 38853L, OH_NULL));
+
+        std::vector<ObjectHandler::Variant> fixingDates1;
+        fixingDates1.push_back(39220L);     // 18-May-2007
+        std::vector<double> fixing1 = qlIndexFixing("EuriborSwapFIXA5Y", fixingDates1, OH_NULL);
+        LOG_MESSAGE("EuriborSwapFIXA5Y 18-May-2007 " << fixing1[0]);
+
+        std::vector<ObjectHandler::Variant> fixingDates2;
+        fixingDates1.push_back(38853L);     // 16-May-2006
+        std::vector<double> fixing2 = qlIndexFixing("EURIBOR6M", fixingDates2, OH_NULL);
+        LOG_MESSAGE("EURIBOR6M         16-May-2006 " << fixing2[0]);
 
         // Set the indexes to reference the yield curve
 

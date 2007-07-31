@@ -27,8 +27,11 @@ using namespace QuantLibAddinCpp;
 
 template <class T>
 std::vector<T> extractVector(const std::string &objectID) {
+    std::vector<std::string> propertyNames;
+    propertyNames.push_back("values");
+    std::vector<boost::any> valueMatrixAny = ohPropertyValue(objectID, propertyNames);
     std::vector<std::vector<double> > valueMatrix = 
-        boost::any_cast<std::vector<std::vector<double> > >(ohPropertyValue2(objectID, "values"));
+        boost::any_cast<std::vector<std::vector<double> > >(valueMatrixAny[0]);
     std::vector<T> ret;
     for (std::vector<std::vector<double> >::const_iterator i = valueMatrix.begin(); i!=valueMatrix.end(); i++)
         ret.push_back((*i)[0]);

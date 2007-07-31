@@ -25,6 +25,7 @@ from gensrc.Configuration import environment
 from gensrc.Categories import category
 from gensrc.Utilities import outputfile
 from gensrc.Utilities import log
+from gensrc.Utilities import common
 
 class CppAddin(addin.Addin):
     """Generate source code for C++ addin."""
@@ -43,6 +44,9 @@ class CppAddin(addin.Addin):
     BUFFER_ALL = '''\
 #include <Addins/Cpp/addincppdefines.hpp>
 #include <Addins/Cpp/init.hpp>\n'''
+    LOOP_INCLUDES = '''\
+#include <%s/loop_%s.hpp>
+#include <Addins/Cpp/loop.hpp>\n'''
 
     #############################################
     # public interface
@@ -64,8 +68,7 @@ class CppAddin(addin.Addin):
         """Generate source code for all functions in all categories."""
         bufferAll = CppAddin.BUFFER_ALL
         for cat in self.categoryList_.categories(self.name_):
-            categoryIncludes = cat.includeList()
-            #categoryIncludes = cat.includeList(LOOP_INCLUDES)
+            categoryIncludes = cat.includeList(CppAddin.LOOP_INCLUDES)
             bufferAll += "#include <Addins/Cpp/%s.hpp>\n" % cat.name()
             bufferCpp = ''
             bufferHpp = ''
@@ -106,6 +109,12 @@ class CppAddin(addin.Addin):
             'functionReturnType' : self.functionReturnType_.apply(func.returnValue()),
             'functionDeclaration' : func.parameterList().generate(self.functionDeclaration_),
             'functionName' : func.name() }
+
+    def loopName(self, param):
+        if param.type() == common.STRING:
+            return param.name()
+        else:
+            return param.name() + 'Lib'
 
     #############################################
     # serializer interface

@@ -85,7 +85,7 @@
       <libraryFunction>discount</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
-        <!--SupportedPlatform name='Cpp'/-->
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -104,33 +104,6 @@
       <ReturnValue>
         <type>QuantLib::DiscountFactor</type>
         <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <!-- YieldTermStructure interface -->
-    <Member name='qlYieldTSDiscount2' type='QuantLib::YieldTermStructure' superType='handleToLib'>
-      <description>Temporary re-implementation of qlYieldTSDiscount - required for C++ environment which does not support looping behavior</description>
-      <libraryFunction>discount</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='DfDates' exampleValue ="'1Y,2Y,3Y,4Y,5Y">
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>vector of dates</description>
-          </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::DiscountFactor</type>
-        <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
 

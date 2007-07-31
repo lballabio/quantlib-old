@@ -303,6 +303,9 @@ class ExcelAddin(addin.Addin):
     def returnConversion(self):
         return self.returnConversion_
 
+    def loopName(self, param):
+        return param.name()
+
     #############################################
     # serializer interface
     #############################################
