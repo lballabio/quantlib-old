@@ -347,24 +347,22 @@ WIP notification chains pb (1D/3D)
   CapStripperTest3M.xls. (to be precised)
 
 ---
-GIORGIO (last update 6/6/2007)
-
-- bond-swaption refactoring
+GIORGIO (last update 31/7/2007)
+WIP bond-swaption refactoring
 - cap/swaption pricer with constant/spreaded vol (BUG)
-- export FRARateHelper and BondRateHelper
+WIP export FRARateHelper and BondRateHelper
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
-- MakeXXX market conventions
+WIP MakeXXX market conventions
 WIP clean up vega incoherencies
 WIP use Handle in SwaptionVolCubeChecks
 - CMS
-  macro for 5 single index calibration with 5 mean revs
-  macro for 5 single index calibration with 1 mean rev (the 10Y one)
-  alternative calibrations with null rho
-  check 2Y beta sensitivity
+  D macro for 5 single index calibration with 5 mean revs
+  D macro for 5 single index calibration with 1 mean rev (the 10Y one)
+  - alternative calibrations with null rho
+  - check 2Y beta sensitivity
 WIP EvolutionDescription equality
 - prepare smile section refactoring proposal
 - range accrual session
-- CDS options (with Chiara)
 - illustrate projectedCostFunction to Ferdinando
 - WIP ratchet Instrument C++ (shared with Marco) (3d/7d)
 - WIP range accrual coupon (con relativi test) (18d/30d)
