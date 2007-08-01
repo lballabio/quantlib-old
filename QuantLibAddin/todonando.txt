@@ -35,6 +35,7 @@ GENERAL
   pricing engines refactoring
   verbose log messages
 
+- change ddd, dd-mm-yyyy -> ddd, d-mm-yyyy
 - expose 2 constructors per each bond
 - reorder bond/leg signatures
 - CabotoXL.xla (Murex curve, vol export, cms calibrations, cms book)
@@ -43,14 +44,12 @@ GENERAL
 - bund future equivalent
 - multicallable
 - RT stop
-- touch timestamp-buildnumber file
 - MultiPhaseLeg (no overlapping cf, payer only), MixedLeg (with payer/receiver)
 - check cf sorted by amount too
 - addFixings(TimeSeries)
 - expose QL::TimeSeries and QL::IndexManager to QLO/XL
 - use Handle<Quote> to switch from a set of mkt data to another set
 - weakness: redemption is not granted to be the last flow
-- build number
 - clean up qlo\xxx.hpp files from ql inclusions
 - rename onForwardCmsPrice
 - remove qlo/simplecashflow.hpp
@@ -67,7 +66,6 @@ GENERAL
 - review qlo/quote.hpp (remove ql dependency)
 - can we remove quantlibaddin.cpp ??
 - use ValueObject for x,y interpolation persistance?
-- fix bug XS0093295953 PropertyValue("Coupons")
 - perche' SABR interpolation ha un data member forward_
 - remove bat from testsuite/bin
 - avoid ignoring class of files, as in *.suo
@@ -108,9 +106,6 @@ GENERAL
 - wiki documentation
 - automated build system
 - adopt boost::date
-- use boost property map in OH
-- have VBA code in text files
-- detect existing memory excessive usage
 
 ---
 NANDO
@@ -398,6 +393,12 @@ Eric
 - RelinkableHandle / Handle
 - Nazdatech env variable
 
+- use boost property map in OH
+- have VBA code in text files
+- detect existing memory excessive usage
+- touch timestamp-buildnumber file
+- build number
+- fix bug XS0093295953 PropertyValue("Coupons")
 - remove trigger input parameter from ohretrieveError() signature
 - DevCycle branches/tags
 - SA version number
