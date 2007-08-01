@@ -1,0 +1,5 @@
+
+if you experience a freeze of the RealTime feed using Excel 2002 SP3, try the
+Excel 2002 post-Service Pack 3 hotfix package 870751 (June 24, 2004):
+
+http://support.microsoft.com/kb/870751/EN-US/
