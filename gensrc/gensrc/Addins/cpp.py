@@ -42,11 +42,8 @@ class CppAddin(addin.Addin):
     #        objectPointer->setPermanent();'''
     convertPermanentFlag_ = ''
     BUFFER_ALL = '''\
-#include <Addins/Cpp/addincppdefines.hpp>
-#include <Addins/Cpp/init.hpp>\n'''
-    LOOP_INCLUDES = '''\
-#include <%s/loop_%s.hpp>
-#include <Addins/Cpp/loop.hpp>\n'''
+#include <%(path)s/addincppdefines.hpp>
+#include <%(path)s/init.hpp>\n'''
 
     #############################################
     # public interface
@@ -66,9 +63,12 @@ class CppAddin(addin.Addin):
 
     def generateFunctions(self):
         """Generate source code for all functions in all categories."""
-        bufferAll = CppAddin.BUFFER_ALL
+        bufferAll = CppAddin.BUFFER_ALL % { 'path' : self.relativePath_ }
+        loopIncludes = '''\
+#include <%s/loop_%s.hpp>
+#include <''' + self.relativePath_ + '''/loop.hpp>\n'''
         for cat in self.categoryList_.categories(self.name_):
-            categoryIncludes = cat.includeList(CppAddin.LOOP_INCLUDES)
+            categoryIncludes = cat.includeList(loopIncludes)
             bufferAll += "#include <Addins/Cpp/%s.hpp>\n" % cat.name()
             bufferCpp = ''
             bufferHpp = ''
