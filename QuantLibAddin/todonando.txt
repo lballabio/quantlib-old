@@ -161,12 +161,6 @@ K
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
 DONE close all macro must stop screen refresh and should not activate wbk
 - TRIMESTRALE
-- action for setEvaluationDate -> stand-by for Eric
-ERIC:
-- repository per caboto.xll e shared docs
-- TimeSeries serialization
-- Design e gestione della USD currency per contribuzione swaption vols
-- run SA on EURYCMx2 replacing the quotes ids -> emailed Eric with test-case
 - time series (stand-by)
     *Gestione smart per poter estendere le ts dinamicamente
 - Workbook_BeforeClose to remove triggers (verifica su pc diversi)
@@ -182,16 +176,12 @@ ERIC:
   - General
     run sa on rates, atm vols and vol spreads
     save daily results to check replication
-    Eric: flag on deal, tick value, error msg (by eow)
-    Eric: upgrade user interface (by end of next week)
-    parallel shift added by default
+    Eric: tick value usage, vol wbks required open
     centered differences, then gamma
     theta SA
     xml output
     sensitivity to index fixings
     list all quotes that we could analize
-    discriminate between invalid quote -> #NA()
-       and error obtained after having tweaked a quote -> #NUM
   - Irs
       *create book (test_fe_2) of irs seasoned deals in Mx	(done)
       *check null vega of swap ptf (ATM+smile)			(done)
@@ -385,90 +375,11 @@ WIP pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)
 
 ---
 Eric
-- SA
-- Reuters
-- Trader wbk problem
-- object creation
-- enum vs object (e.g. Index)
-- RelinkableHandle / Handle
-- Nazdatech env variable
 
-- use boost property map in OH
-- have VBA code in text files
-- detect existing memory excessive usage
-- touch timestamp-buildnumber file
-- build number
-- fix bug XS0093295953 PropertyValue("Coupons")
-- remove trigger input parameter from ohretrieveError() signature
-- DevCycle branches/tags
-- SA version number
-- mkt data serialization
-- rename sa-docs as docs-sa
-- SA nsis (and general NSIS scripts refactoring)
-- memory usage
-- SA GUI
-- automatic cast from IMM code to date
-- what hpp are included in serialization files
-- family of objects or ohRange of ObjectIds ?
-- 2 DOF projects
-- JRisk
-- there is no warning if there is an empty xll list to be loaded by
-  QuantLix.xla
-- saohxll doesn't compile in debug mode
-- bond currency property value cast
-- allow foo object to have method to create bar objects
-- enforce implicit Property Names (e.g. objectID, className) first letter
-  capitalization
-- Sensitivity Analysis menu before Windows
-- remove trigger ohretrieveError() calls
-- setProperty
-- rename all Index as InterestRateIndex (we haven't used Indexes yet, only
-  InterestRateIndexes), the only index we are enumerating so far are
-  InterestRateIndex
-- ohRange coercion to Matrix, std::vector, Array, scalar, string, etc
-- in index.xml use QuantLibAddin::Index::addFixings instead of
-  QuantLib::Index::addFixings
-- xml (de)serialization can be used to recreate all "predefined" object at
-  start-up
-- relinkable handle singletons (?)
-- native support of vector of object IDS (as RateHelpers in
-  PiecewiseYieldCurve)
-- automate xls properties clean up
-- enumeration aliases: avoid all aliases in ohEnumeratedType("class
-  QuantLib::DayCounter")
-- automatic dropdown cell menu maintenance (see Enumerations.xls)
-- native Excel looping behaviour
-- HistoricalForwardRatesAnalysis should not calculate in wizard
-- business252 designed as in JointCalendar
-- multicurrency analysis
-- bloomberg dll loading
-- compilation time (header inclusion clean up, multiple xll, ecc)
-- QuantLibXL About should use qlXlVersion()
-- when returning a singe col (row) matrix add another col (row)
-  with #NA to prevent Excel from duplicating col (row)
-- when returning a singe cell vector add another cell
-  with #NA to prevent Excel from duplicating cel
-- xml schema
-- extra arguments in function goes unnoticed instead of throwing an error
-- why xll loading does not receive the same graful failure treatment
-- open log file from menu
-- log defaults
-- minimize Launcher data download
-- coerce Frequency->Period, Period->Date->double/int
-- coerce from IMMcode to date
+- remove #include <ql/handle.hpp> in qlo files
 - imm functions (dates.xml) problems
-- remove quantlibxl-bin.nsi
-- merge quantlibxl.nsi and quantlib-network.nsi
-- in the nsi generalize the location of the xml files
-- oh.chm
-- automatic ohSplit usage to coerce from string to vector
-- ohConcatenate, ohRange1D, ohRange2D
-- command (remove function SetEvaluationDate, etc?)
-- discount factors output is not col/row enabled
 - esporre ad excel i metodi commentati in payoff.xml
 - visitor pattern per 3rd parameter dei payoff
-- Handle coercion to SwaptionVolDiscrete
-- freeze, unfreeze objects
 
 QuantLib
 - pricing enine refactoring
