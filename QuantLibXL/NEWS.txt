@@ -32,7 +32,7 @@ LIBRARY:
 XS0194140785, XS0195731681, XS0228052402, IT0003766372,IT0003747364 ,IT0003730626, and IT0001278404 decomposing it in digital ibor/cms leg.
 - new named pricers created in: \Workbooks\PricingEngines\CmsCouponPricers.xls and IborCouponPricer.xls. This pricers are currently instantiated in the action:Load Bonds. 
 - added Workbooks/Tests/BondvsSwap.xls to tests fixed rate bond's dirty price against fixed leg NPV, with same schedule and cpn of the bond.
-
+- SabrInterpolatedSmileSection is filtering market quotes dynamically
 
 
 **************************
