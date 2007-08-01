@@ -118,6 +118,8 @@ namespace QuantLibAddin {
                 const std::vector<boost::shared_ptr<QuantLib::IborIndex> >&,
                 const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >&,
                 const QuantLib::DayCounter& yieldCurveDayCounter,
+                const std::string& traitsID, 
+                const std::string& interpolatorID,
                 QuantLib::Real yieldCurveAccuracy);
     };
 }

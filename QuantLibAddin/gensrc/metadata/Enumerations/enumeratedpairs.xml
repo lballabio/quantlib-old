@@ -95,8 +95,8 @@
         </EnumeratedPair>
       </EnumeratedPairs>
     </EnumeratedPairGroup>
-
-      <!--<EnumeratedPairGroup class='QuantLib::HistoricalForwardRatesAnalysis'>
+      
+      <EnumeratedPairGroup class='QuantLib::HistoricalForwardRatesAnalysis'>
           <includeFile/>
           <EnumeratedPairs>
               <EnumeratedPair>
@@ -104,9 +104,14 @@
                   <id2>Cubic</id2>
                   <value>DISCOUNT_CUBIC_HistoricalForwardRatesAnalysis</value>
               </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>ZeroYield</id1>
+                  <id2>Linear</id2>
+                  <value>ZEROYIELD_LINEAR_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
           </EnumeratedPairs>
-      </EnumeratedPairGroup>-->
-  </EnumeratedPairGroups>
+      </EnumeratedPairGroup>
+   </EnumeratedPairGroups>
 
 </root>
 

@@ -31,6 +31,7 @@
 #include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
 #include <ql/models/marketmodels/correlations/expcorrelations.hpp>
 #include <ql/models/marketmodels/historicalforwardratesanalysis.hpp>
+#include <qlo/Enumerations/Factories/historicalforwardratesanalysisfactory.hpp>
 
 namespace QuantLibAddin {
       
@@ -96,21 +97,25 @@ namespace QuantLibAddin {
         const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborInd,
         const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapInd,
         const QuantLib::DayCounter& yieldCurveDayCounter,
+        const std::string& traitsID, 
+        const std::string& interpolatorID,
         QuantLib::Real yieldCurveAccuracy)
     {
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
-                QuantLib::HistoricalForwardRatesAnalysis(stats,
-                                                         startDate,
-                                                         endDate,
-                                                         step,
-                                                         fwdIndex,
-                                                         initialGap,
-                                                         horizon,
-                                                         iborInd,
-                                                         swapInd,
-                                                         yieldCurveDayCounter,
-                                                         yieldCurveAccuracy));
-    }
+        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
+            QuantLib::HistoricalForwardRatesAnalysis> >()(traitsID,
+                                              interpolatorID,
+                                              stats,
+                                              startDate,
+                                              endDate,
+                                              step,
+                                              fwdIndex,
+                                              initialGap,
+                                              horizon,
+                                              iborInd,
+                                              swapInd,
+                                              yieldCurveDayCounter,
+                                              yieldCurveAccuracy);
+        
+      }
 
 }
