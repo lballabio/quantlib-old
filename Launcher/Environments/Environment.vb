@@ -17,14 +17,6 @@
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' Class Environment - Encapsulate the state and behavior relating to
 ' a running instance of the QuantLibXL Framework.
-'
-' This class contains some temporary hacks to support backward compatibility
-' with Framework version 5, which relies on an older version of the 
-' Launcher<->Framework interface.
-'
-' Version information is included in version 6+ of the Launcher<->Framework 
-' interface and the hacks can be removed once version 5 of the Framewok
-' is retired.
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Imports System.Deployment.Application
@@ -183,8 +175,6 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
 
         ' serialize() - Read/write this object from/to the given serializer.
-        ' Version 6 supports a list of addin names.
-        ' Version 5 requires exactly one addin name, split into directory and file.
 
         Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
 
@@ -389,16 +379,6 @@ Namespace QuantLibXL
         Private Sub processFeedAddins(ByVal feedAddins() As String)
 
             If feedAddins.Length = 0 Then Exit Sub
-
-            If frameworkVersion_ = 5 Then
-
-                Throw New Exception("You cannot specify feeds (Reuters/Bloomberg) " _
-                    & "for the given Framework because" & vbCrLf _
-                    & "the Framework is version 5 and is only able " _
-                    & "to load exactly one Addin (QuantLibXL).")
-
-            End If
-
             Dim temp(feedAddins.Length + addinList_.Length - 1) As String
             feedAddins.CopyTo(temp, 0)
             addinList_.CopyTo(temp, feedAddins.Length)

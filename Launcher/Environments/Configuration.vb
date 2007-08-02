@@ -33,7 +33,6 @@ Namespace QuantLibXL
         Private reutersEnabled_ As Boolean = False
         Private bloombergEnabled_ As Boolean = False
         Private excelPath_ As String = ""
-        'Private version_ As Integer
         Private overrideActions_ As QuantLibXL.StartupActionsList
 
         Public Property Name() As String Implements ISerializable.Name

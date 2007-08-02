@@ -39,7 +39,7 @@ Partial Class FormMain
         Me.lblUserConfigured = New System.Windows.Forms.Label
         Me.lstPreconfigured = New System.Windows.Forms.ListBox
         Me.grpStartup = New System.Windows.Forms.GroupBox
-        Me.txtEvaluationDate = New System.Windows.Forms.TextBox
+        Me.dtEvaluationDate = New System.Windows.Forms.DateTimePicker
         Me.cbSetEvaluationDate = New System.Windows.Forms.CheckBox
         Me.cbCalibrateCms = New System.Windows.Forms.CheckBox
         Me.cbStaticData = New System.Windows.Forms.CheckBox
@@ -142,12 +142,12 @@ Partial Class FormMain
         '
         Me.txtFramework.Location = New System.Drawing.Point(30, 26)
         Me.txtFramework.Name = "txtFramework"
-        Me.txtFramework.Size = New System.Drawing.Size(315, 20)
+        Me.txtFramework.Size = New System.Drawing.Size(405, 20)
         Me.txtFramework.TabIndex = 5
         '
         'btnFrameworkSelect
         '
-        Me.btnFrameworkSelect.Location = New System.Drawing.Point(351, 26)
+        Me.btnFrameworkSelect.Location = New System.Drawing.Point(441, 26)
         Me.btnFrameworkSelect.Name = "btnFrameworkSelect"
         Me.btnFrameworkSelect.Size = New System.Drawing.Size(32, 23)
         Me.btnFrameworkSelect.TabIndex = 11
@@ -156,7 +156,7 @@ Partial Class FormMain
         '
         'btnWorkbooks
         '
-        Me.btnWorkbooks.Location = New System.Drawing.Point(351, 104)
+        Me.btnWorkbooks.Location = New System.Drawing.Point(441, 104)
         Me.btnWorkbooks.Name = "btnWorkbooks"
         Me.btnWorkbooks.Size = New System.Drawing.Size(32, 23)
         Me.btnWorkbooks.TabIndex = 15
@@ -167,7 +167,7 @@ Partial Class FormMain
         '
         Me.txtWorkbooks.Location = New System.Drawing.Point(30, 104)
         Me.txtWorkbooks.Name = "txtWorkbooks"
-        Me.txtWorkbooks.Size = New System.Drawing.Size(315, 20)
+        Me.txtWorkbooks.Size = New System.Drawing.Size(405, 20)
         Me.txtWorkbooks.TabIndex = 14
         '
         'lblWorkbooks
@@ -188,7 +188,7 @@ Partial Class FormMain
         Me.grpEnvironment.Controls.Add(Me.lblPreconfigured)
         Me.grpEnvironment.Location = New System.Drawing.Point(6, 7)
         Me.grpEnvironment.Name = "grpEnvironment"
-        Me.grpEnvironment.Size = New System.Drawing.Size(190, 355)
+        Me.grpEnvironment.Size = New System.Drawing.Size(230, 355)
         Me.grpEnvironment.TabIndex = 16
         Me.grpEnvironment.TabStop = False
         Me.grpEnvironment.Text = "Environments"
@@ -256,7 +256,7 @@ Partial Class FormMain
         Me.lstUserconfigured.FormattingEnabled = True
         Me.lstUserconfigured.Location = New System.Drawing.Point(19, 167)
         Me.lstUserconfigured.Name = "lstUserconfigured"
-        Me.lstUserconfigured.Size = New System.Drawing.Size(160, 134)
+        Me.lstUserconfigured.Size = New System.Drawing.Size(194, 134)
         Me.lstUserconfigured.Sorted = True
         Me.lstUserconfigured.TabIndex = 6
         '
@@ -274,14 +274,14 @@ Partial Class FormMain
         Me.lstPreconfigured.FormattingEnabled = True
         Me.lstPreconfigured.Location = New System.Drawing.Point(19, 38)
         Me.lstPreconfigured.Name = "lstPreconfigured"
-        Me.lstPreconfigured.Size = New System.Drawing.Size(160, 95)
+        Me.lstPreconfigured.Size = New System.Drawing.Size(194, 95)
         Me.lstPreconfigured.Sorted = True
         Me.lstPreconfigured.TabIndex = 4
         '
         'grpStartup
         '
+        Me.grpStartup.Controls.Add(Me.dtEvaluationDate)
         Me.grpStartup.Controls.Add(Me.cbSetEvaluationDate)
-        Me.grpStartup.Controls.Add(Me.txtEvaluationDate)
         Me.grpStartup.Controls.Add(Me.cbCalibrateCms)
         Me.grpStartup.Controls.Add(Me.cbStaticData)
         Me.grpStartup.Controls.Add(Me.cbFitCMS)
@@ -292,12 +292,21 @@ Partial Class FormMain
         Me.grpStartup.Controls.Add(Me.cbCapVolBootstrap)
         Me.grpStartup.Controls.Add(Me.cbLoadMurexYC)
         Me.grpStartup.Controls.Add(Me.cbYCBootstrap)
-        Me.grpStartup.Location = New System.Drawing.Point(202, 7)
+        Me.grpStartup.Location = New System.Drawing.Point(244, 6)
         Me.grpStartup.Name = "grpStartup"
-        Me.grpStartup.Size = New System.Drawing.Size(227, 282)
+        Me.grpStartup.Size = New System.Drawing.Size(230, 282)
         Me.grpStartup.TabIndex = 19
         Me.grpStartup.TabStop = False
         Me.grpStartup.Text = "Startup Actions"
+        '
+        'dtEvaluationDate
+        '
+        Me.dtEvaluationDate.CustomFormat = "dd-MMM-yyyy"
+        Me.dtEvaluationDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtEvaluationDate.Location = New System.Drawing.Point(135, 26)
+        Me.dtEvaluationDate.Name = "dtEvaluationDate"
+        Me.dtEvaluationDate.Size = New System.Drawing.Size(90, 20)
+        Me.dtEvaluationDate.TabIndex = 12
         '
         'cbSetEvaluationDate
         '
@@ -308,15 +317,6 @@ Partial Class FormMain
         Me.cbSetEvaluationDate.TabIndex = 11
         Me.cbSetEvaluationDate.Text = "Set Evaluation Date"
         Me.cbSetEvaluationDate.UseVisualStyleBackColor = True
-        '
-        'txtEvaluationDate
-        '
-        Me.txtEvaluationDate.Location = New System.Drawing.Point(137, 26)
-        Me.txtEvaluationDate.Name = "txtEvaluationDate"
-        Me.txtEvaluationDate.Size = New System.Drawing.Size(75, 20)
-        Me.txtEvaluationDate.TabIndex = 10
-        Me.txtEvaluationDate.Text = "10/07/2007"
-        Me.txtEvaluationDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'cbCalibrateCms
         '
@@ -420,7 +420,7 @@ Partial Class FormMain
         '
         'btnLaunch
         '
-        Me.btnLaunch.Location = New System.Drawing.Point(146, 412)
+        Me.btnLaunch.Location = New System.Drawing.Point(168, 412)
         Me.btnLaunch.Name = "btnLaunch"
         Me.btnLaunch.Size = New System.Drawing.Size(75, 23)
         Me.btnLaunch.TabIndex = 20
@@ -437,19 +437,18 @@ Partial Class FormMain
         Me.tcLauncher.Location = New System.Drawing.Point(3, 3)
         Me.tcLauncher.Name = "tcLauncher"
         Me.tcLauncher.SelectedIndex = 0
-        Me.tcLauncher.Size = New System.Drawing.Size(465, 403)
+        Me.tcLauncher.Size = New System.Drawing.Size(487, 403)
         Me.tcLauncher.TabIndex = 21
         '
         'tpEnvironments
         '
-        Me.tpEnvironments.Controls.Add(Me.lblBuildNumber)
         Me.tpEnvironments.Controls.Add(Me.grpFeeds)
         Me.tpEnvironments.Controls.Add(Me.grpEnvironment)
         Me.tpEnvironments.Controls.Add(Me.grpStartup)
         Me.tpEnvironments.Location = New System.Drawing.Point(4, 22)
         Me.tpEnvironments.Name = "tpEnvironments"
         Me.tpEnvironments.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpEnvironments.Size = New System.Drawing.Size(457, 377)
+        Me.tpEnvironments.Size = New System.Drawing.Size(479, 377)
         Me.tpEnvironments.TabIndex = 0
         Me.tpEnvironments.Text = "Environments"
         Me.tpEnvironments.UseVisualStyleBackColor = True
@@ -459,7 +458,7 @@ Partial Class FormMain
         Me.lblBuildNumber.AutoSize = True
         Me.lblBuildNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBuildNumber.ForeColor = System.Drawing.Color.DimGray
-        Me.lblBuildNumber.Location = New System.Drawing.Point(309, 362)
+        Me.lblBuildNumber.Location = New System.Drawing.Point(370, 423)
         Me.lblBuildNumber.MinimumSize = New System.Drawing.Size(120, 0)
         Me.lblBuildNumber.Name = "lblBuildNumber"
         Me.lblBuildNumber.Size = New System.Drawing.Size(120, 12)
@@ -471,9 +470,9 @@ Partial Class FormMain
         '
         Me.grpFeeds.Controls.Add(Me.cbBloomberg)
         Me.grpFeeds.Controls.Add(Me.cbReuters)
-        Me.grpFeeds.Location = New System.Drawing.Point(202, 293)
+        Me.grpFeeds.Location = New System.Drawing.Point(244, 293)
         Me.grpFeeds.Name = "grpFeeds"
-        Me.grpFeeds.Size = New System.Drawing.Size(250, 69)
+        Me.grpFeeds.Size = New System.Drawing.Size(230, 69)
         Me.grpFeeds.TabIndex = 20
         Me.grpFeeds.TabStop = False
         Me.grpFeeds.Text = "Feeds"
@@ -524,7 +523,7 @@ Partial Class FormMain
         Me.tpPaths.Location = New System.Drawing.Point(4, 22)
         Me.tpPaths.Name = "tpPaths"
         Me.tpPaths.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpPaths.Size = New System.Drawing.Size(457, 377)
+        Me.tpPaths.Size = New System.Drawing.Size(479, 377)
         Me.tpPaths.TabIndex = 1
         Me.tpPaths.Text = "Paths"
         Me.tpPaths.UseVisualStyleBackColor = True
@@ -532,7 +531,7 @@ Partial Class FormMain
         'btnLaunchExcel
         '
         Me.btnLaunchExcel.Image = Global.launcher.My.Resources.Resources.excel
-        Me.btnLaunchExcel.Location = New System.Drawing.Point(313, 260)
+        Me.btnLaunchExcel.Location = New System.Drawing.Point(403, 260)
         Me.btnLaunchExcel.Name = "btnLaunchExcel"
         Me.btnLaunchExcel.Size = New System.Drawing.Size(32, 23)
         Me.btnLaunchExcel.TabIndex = 28
@@ -542,7 +541,7 @@ Partial Class FormMain
         '
         Me.txtExcelPath.Location = New System.Drawing.Point(31, 260)
         Me.txtExcelPath.Name = "txtExcelPath"
-        Me.txtExcelPath.Size = New System.Drawing.Size(276, 20)
+        Me.txtExcelPath.Size = New System.Drawing.Size(366, 20)
         Me.txtExcelPath.TabIndex = 27
         '
         'lblExcelPath
@@ -556,7 +555,7 @@ Partial Class FormMain
         '
         'btnExcelPath
         '
-        Me.btnExcelPath.Location = New System.Drawing.Point(351, 260)
+        Me.btnExcelPath.Location = New System.Drawing.Point(441, 260)
         Me.btnExcelPath.Name = "btnExcelPath"
         Me.btnExcelPath.Size = New System.Drawing.Size(32, 23)
         Me.btnExcelPath.TabIndex = 25
@@ -584,7 +583,7 @@ Partial Class FormMain
         '
         Me.txtUserConfig.Location = New System.Drawing.Point(30, 221)
         Me.txtUserConfig.Name = "txtUserConfig"
-        Me.txtUserConfig.Size = New System.Drawing.Size(315, 20)
+        Me.txtUserConfig.Size = New System.Drawing.Size(405, 20)
         Me.txtUserConfig.TabIndex = 24
         '
         'lblUserConfig
@@ -598,7 +597,7 @@ Partial Class FormMain
         '
         'btnUserConfig
         '
-        Me.btnUserConfig.Location = New System.Drawing.Point(351, 221)
+        Me.btnUserConfig.Location = New System.Drawing.Point(441, 221)
         Me.btnUserConfig.Name = "btnUserConfig"
         Me.btnUserConfig.Size = New System.Drawing.Size(32, 23)
         Me.btnUserConfig.TabIndex = 22
@@ -609,7 +608,7 @@ Partial Class FormMain
         '
         Me.txtXmlPath.Location = New System.Drawing.Point(30, 182)
         Me.txtXmlPath.Name = "txtXmlPath"
-        Me.txtXmlPath.Size = New System.Drawing.Size(315, 20)
+        Me.txtXmlPath.Size = New System.Drawing.Size(405, 20)
         Me.txtXmlPath.TabIndex = 21
         '
         'lblXmlPath
@@ -623,7 +622,7 @@ Partial Class FormMain
         '
         'btnXmlPath
         '
-        Me.btnXmlPath.Location = New System.Drawing.Point(351, 182)
+        Me.btnXmlPath.Location = New System.Drawing.Point(441, 182)
         Me.btnXmlPath.Name = "btnXmlPath"
         Me.btnXmlPath.Size = New System.Drawing.Size(32, 23)
         Me.btnXmlPath.TabIndex = 19
@@ -634,7 +633,7 @@ Partial Class FormMain
         '
         Me.txtHelpPath.Location = New System.Drawing.Point(30, 143)
         Me.txtHelpPath.Name = "txtHelpPath"
-        Me.txtHelpPath.Size = New System.Drawing.Size(315, 20)
+        Me.txtHelpPath.Size = New System.Drawing.Size(405, 20)
         Me.txtHelpPath.TabIndex = 18
         '
         'lblHelpPath
@@ -648,7 +647,7 @@ Partial Class FormMain
         '
         'btnHelpFile
         '
-        Me.btnHelpFile.Location = New System.Drawing.Point(351, 143)
+        Me.btnHelpFile.Location = New System.Drawing.Point(441, 143)
         Me.btnHelpFile.Name = "btnHelpFile"
         Me.btnHelpFile.Size = New System.Drawing.Size(32, 23)
         Me.btnHelpFile.TabIndex = 16
@@ -662,7 +661,7 @@ Partial Class FormMain
         Me.tpAddins.Location = New System.Drawing.Point(4, 22)
         Me.tpAddins.Name = "tpAddins"
         Me.tpAddins.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpAddins.Size = New System.Drawing.Size(457, 377)
+        Me.tpAddins.Size = New System.Drawing.Size(479, 377)
         Me.tpAddins.TabIndex = 2
         Me.tpAddins.Text = "Addins"
         Me.tpAddins.UseVisualStyleBackColor = True
@@ -673,7 +672,7 @@ Partial Class FormMain
         Me.lbAddins.HorizontalScrollbar = True
         Me.lbAddins.Location = New System.Drawing.Point(6, 13)
         Me.lbAddins.Name = "lbAddins"
-        Me.lbAddins.Size = New System.Drawing.Size(377, 173)
+        Me.lbAddins.Size = New System.Drawing.Size(467, 173)
         Me.lbAddins.TabIndex = 10
         '
         'tstAddins
@@ -746,7 +745,7 @@ Partial Class FormMain
         Me.tpFeeds.Location = New System.Drawing.Point(4, 22)
         Me.tpFeeds.Name = "tpFeeds"
         Me.tpFeeds.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpFeeds.Size = New System.Drawing.Size(457, 377)
+        Me.tpFeeds.Size = New System.Drawing.Size(479, 377)
         Me.tpFeeds.TabIndex = 3
         Me.tpFeeds.Text = "Feeds"
         Me.tpFeeds.UseVisualStyleBackColor = True
@@ -755,7 +754,7 @@ Partial Class FormMain
         '
         Me.txtBloomberg.Location = New System.Drawing.Point(30, 65)
         Me.txtBloomberg.Name = "txtBloomberg"
-        Me.txtBloomberg.Size = New System.Drawing.Size(315, 20)
+        Me.txtBloomberg.Size = New System.Drawing.Size(405, 20)
         Me.txtBloomberg.TabIndex = 24
         '
         'lblBloomberg
@@ -769,7 +768,7 @@ Partial Class FormMain
         '
         'btnBloomberg
         '
-        Me.btnBloomberg.Location = New System.Drawing.Point(351, 65)
+        Me.btnBloomberg.Location = New System.Drawing.Point(441, 65)
         Me.btnBloomberg.Name = "btnBloomberg"
         Me.btnBloomberg.Size = New System.Drawing.Size(32, 23)
         Me.btnBloomberg.TabIndex = 22
@@ -778,7 +777,7 @@ Partial Class FormMain
         '
         'btnReuters
         '
-        Me.btnReuters.Location = New System.Drawing.Point(351, 26)
+        Me.btnReuters.Location = New System.Drawing.Point(441, 26)
         Me.btnReuters.Name = "btnReuters"
         Me.btnReuters.Size = New System.Drawing.Size(32, 23)
         Me.btnReuters.TabIndex = 21
@@ -789,7 +788,7 @@ Partial Class FormMain
         '
         Me.txtReuters.Location = New System.Drawing.Point(30, 26)
         Me.txtReuters.Name = "txtReuters"
-        Me.txtReuters.Size = New System.Drawing.Size(315, 20)
+        Me.txtReuters.Size = New System.Drawing.Size(405, 20)
         Me.txtReuters.TabIndex = 20
         '
         'lblReuters
@@ -814,7 +813,7 @@ Partial Class FormMain
         Me.tpAbout.Location = New System.Drawing.Point(4, 22)
         Me.tpAbout.Name = "tpAbout"
         Me.tpAbout.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpAbout.Size = New System.Drawing.Size(457, 377)
+        Me.tpAbout.Size = New System.Drawing.Size(479, 377)
         Me.tpAbout.TabIndex = 4
         Me.tpAbout.Text = "About"
         Me.tpAbout.UseVisualStyleBackColor = True
@@ -895,7 +894,8 @@ Partial Class FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(439, 438)
+        Me.ClientSize = New System.Drawing.Size(493, 438)
+        Me.Controls.Add(Me.lblBuildNumber)
         Me.Controls.Add(Me.tcLauncher)
         Me.Controls.Add(Me.btnLaunch)
         Me.Controls.Add(Me.btnClose)
@@ -911,7 +911,6 @@ Partial Class FormMain
         Me.grpStartup.PerformLayout()
         Me.tcLauncher.ResumeLayout(False)
         Me.tpEnvironments.ResumeLayout(False)
-        Me.tpEnvironments.PerformLayout()
         Me.grpFeeds.ResumeLayout(False)
         Me.grpFeeds.PerformLayout()
         Me.tpPaths.ResumeLayout(False)
@@ -925,6 +924,7 @@ Partial Class FormMain
         Me.tpAbout.ResumeLayout(False)
         Me.tpAbout.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnClose As System.Windows.Forms.Button
@@ -1003,6 +1003,6 @@ Partial Class FormMain
     Friend WithEvents lblHardDisk As System.Windows.Forms.Label
     Friend WithEvents lblDomain As System.Windows.Forms.Label
     Friend WithEvents btnLaunchExcel As System.Windows.Forms.Button
-    Friend WithEvents txtEvaluationDate As System.Windows.Forms.TextBox
     Friend WithEvents cbSetEvaluationDate As System.Windows.Forms.CheckBox
+    Friend WithEvents dtEvaluationDate As System.Windows.Forms.DateTimePicker
 End Class

@@ -26,6 +26,8 @@
         <LoadBonds>false</LoadBonds>
         <MainChecks>false</MainChecks>
         <StaticData>false</StaticData>
+        <SetEvaluationDate>false</SetEvaluationDate>
+        <EvaluationDate>0</EvaluationDate>
       </StartupActions>
     </Environment>
 
@@ -52,6 +54,8 @@
         <LoadBonds>false</LoadBonds>
         <MainChecks>false</MainChecks>
         <StaticData>false</StaticData>
+        <SetEvaluationDate>false</SetEvaluationDate>
+        <EvaluationDate>0</EvaluationDate>
       </StartupActions>
     </Environment>
 
@@ -78,6 +82,8 @@
         <LoadBonds>false</LoadBonds>
         <MainChecks>false</MainChecks>
         <StaticData>false</StaticData>
+        <SetEvaluationDate>false</SetEvaluationDate>
+        <EvaluationDate>0</EvaluationDate>
       </StartupActions>
     </Environment>
 

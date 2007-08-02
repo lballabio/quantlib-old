@@ -4,7 +4,7 @@ import re
 import shutil
 import glob
 
-SOURCE_TARGET_FILE_LIST = (
+SOURCE_TARGET_LIST = (
     ( "X:/Apps/Appsscript/CabotoXL/Rev11705/xll", "Addins/01 Production", "QuantLibXLDynamic-vc80-mt-0_9_0.xll" ),
     ( "X:/Apps/Appsscript/CabotoXL/Rev11705/xll", "Addins/01 Production", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
     ( "X:/Apps/Appsscript/CabotoXL/Rev11705/xll", "Addins/01 Production", "saohxll-vc80-mt-0_1_9.xll" ),
@@ -18,17 +18,15 @@ SOURCE_TARGET_FILE_LIST = (
     ( "X:/Apps/Appsscript/CabotoXL/Rev11940/xll", "Addins/03 Testing", "saohxll-vc80-mt-0_1_9.xll" ),
 )
 
-#SOURCE_TARGET_FILE_LIST = (
-#    ( "C:/erik/projects/trunk/ObjectHandler/xll",               "Addins/01 Production", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
+#SOURCE_TARGET_LIST = (
 #    ( "C:/erik/projects/trunk/QuantLibXL/xll",                  "Addins/01 Production", "QuantLibXLDynamic-vc80-mt-0_9_0.xll" ),
+#    ( "C:/erik/projects/trunk/ObjectHandler/xll",               "Addins/01 Production", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
 #    ( "C:/erik/projects/trunk/SensitivityAnalysis/saohxll/xll", "Addins/01 Production", "saohxll-vc80-mt-0_1_9.xll" ),
-
-#    ( "C:/erik/projects/trunk/ObjectHandler/xll",               "Addins/02 Pre-Production", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
 #    ( "C:/erik/projects/trunk/QuantLibXL/xll",                  "Addins/02 Pre-Production", "QuantLibXLDynamic-vc80-mt-0_9_0.xll" ),
+#    ( "C:/erik/projects/trunk/ObjectHandler/xll",               "Addins/02 Pre-Production", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
 #    ( "C:/erik/projects/trunk/SensitivityAnalysis/saohxll/xll", "Addins/02 Pre-Production", "saohxll-vc80-mt-0_1_9.xll" ),
-
-#    ( "C:/erik/projects/trunk/ObjectHandler/xll",               "Addins/03 Testing", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
 #    ( "C:/erik/projects/trunk/QuantLibXL/xll",                  "Addins/03 Testing", "QuantLibXLDynamic-vc80-mt-0_9_0.xll" ),
+#    ( "C:/erik/projects/trunk/ObjectHandler/xll",               "Addins/03 Testing", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
 #    ( "C:/erik/projects/trunk/SensitivityAnalysis/saohxll/xll", "Addins/03 Testing", "saohxll-vc80-mt-0_1_9.xll" ),
 #)
 
@@ -43,14 +41,14 @@ cwd = re.sub(r'\\', '/', os.getcwd())
 
 print "\nDeleting old copies of XLLs...\n"
 
-for sourceDir, targetDir, xllName in SOURCE_TARGET_FILE_LIST:
+for sourceDir, targetDir, xllName in SOURCE_TARGET_LIST:
     deleteGlob(cwd + "/" + targetDir + "/*.xll")
 
 print "\nDone.\n"
 
 print "Copying XLLs...\n"
 
-for (sourceDir, targetDir, xllName) in SOURCE_TARGET_FILE_LIST:
+for (sourceDir, targetDir, xllName) in SOURCE_TARGET_LIST:
     sourceFile = sourceDir + "/" + xllName
     if not os.path.exists(sourceFile):
         raw_input("Error - nonexistent file:\n" + sourceFile)

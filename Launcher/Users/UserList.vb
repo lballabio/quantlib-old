@@ -1,3 +1,4 @@
+
 'Copyright (C) 2006, 2007 Eric Ehlers
 
 'This file is part of QuantLib, a free-software/open-source library

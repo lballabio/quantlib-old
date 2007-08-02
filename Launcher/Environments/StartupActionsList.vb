@@ -56,16 +56,6 @@ Namespace QuantLibXL
 
         End Sub
 
-        'Public Sub intialize()
-
-        '    For Each startupActions As String In startupActionsList_.
-
-        '        startupActions.
-
-        '    Next
-
-        'End Sub
-
         Public Sub clear()
 
             startupActionsList_.Clear()

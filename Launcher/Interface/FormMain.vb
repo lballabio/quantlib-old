@@ -134,8 +134,7 @@ Public Class FormMain
 
         Catch ex As Exception
 
-            Throw New Exception("Error activating environment " _
-                & ex.Message)
+            Throw New Exception("Error activating environment " & ex.Message)
 
         End Try
 
@@ -463,10 +462,8 @@ Public Class FormMain
 
         Catch ex As Exception
 
-            MsgBox("Error renaming environment:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
+            MsgBox("Error renaming environment:" & vbCrLf & vbCrLf & ex.Message, _
+                MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
 
         End Try
 
@@ -478,11 +475,12 @@ Public Class FormMain
 
     Private Sub cbSetEvaluationDate_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSetEvaluationDate.CheckedChanged
         SelectedEnvironment.StartupActions.SetEvaluationDate = cbSetEvaluationDate.Checked
+        dtEvaluationDate.Enabled = cbSetEvaluationDate.Checked
     End Sub
 
-    'Private Sub txtEvaluationDate_???(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSetEvaluationDate.CheckedChanged
-    '    SelectedEnvironment.StartupActions.SetEvaluationDate = cbSetEvaluationDate.Checked
-    'End Sub
+    Private Sub dtEvaluationDate_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtEvaluationDate.ValueChanged
+        SelectedEnvironment.StartupActions.EvaluationDate = dtEvaluationDate.Value
+    End Sub
 
     Private Sub cbYCBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbYCBootstrap.CheckedChanged
         SelectedEnvironment.StartupActions.YieldCurveBootstrap = cbYCBootstrap.Checked
@@ -608,10 +606,8 @@ Public Class FormMain
 
         Catch ex As Exception
 
-            MsgBox("Error processing workbooks path:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
+            MsgBox("Error processing workbooks path:" & vbCrLf & vbCrLf & ex.Message, _
+                MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
 
         End Try
 
@@ -631,10 +627,8 @@ Public Class FormMain
 
         Catch ex As Exception
 
-            MsgBox("Error processing helpfile path:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
+            MsgBox("Error processing helpfile path:" & vbCrLf & vbCrLf & ex.Message, _
+                MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
 
         End Try
 
@@ -654,10 +648,8 @@ Public Class FormMain
 
         Catch ex As Exception
 
-            MsgBox("Error processing Function Metadata folder:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
+            MsgBox("Error processing Function Metadata folder:" & vbCrLf & vbCrLf & ex.Message, _
+                MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
 
         End Try
 
@@ -682,10 +674,8 @@ Public Class FormMain
 
         Catch ex As Exception
 
-            MsgBox("Error processing User Configuration File path:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
+            MsgBox("Error processing User Configuration File path:" & vbCrLf & vbCrLf & ex.Message, _
+                MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
 
         End Try
 
@@ -708,10 +698,8 @@ Public Class FormMain
 
         Catch ex As Exception
 
-            MsgBox("Error processing path to Excel:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
+            MsgBox("Error processing path to Excel:" & vbCrLf & vbCrLf & ex.Message, _
+                MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
 
         End Try
 
@@ -730,10 +718,8 @@ Public Class FormMain
 
         Catch ex As Exception
 
-            MsgBox("Error starting Excel:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
+            MsgBox("Error starting Excel:" & vbCrLf & vbCrLf & ex.Message, _
+                MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
 
         End Try
 
@@ -938,10 +924,8 @@ Public Class FormMain
 
         Catch ex As Exception
 
-            MsgBox("Error processing Reuters path:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
+            MsgBox("Error processing Reuters path:" & vbCrLf & vbCrLf & ex.Message, _
+                MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
 
         End Try
 
@@ -963,10 +947,8 @@ Public Class FormMain
 
         Catch ex As Exception
 
-            MsgBox("Error processing Bloomberg path:" _
-                 & vbCrLf & vbCrLf & ex.Message, _
-                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
-                "QuantLibXL Error")
+            MsgBox("Error processing Bloomberg path:" & vbCrLf & vbCrLf & ex.Message, _
+                MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
 
         End Try
 
@@ -1055,6 +1037,7 @@ Public Class FormMain
 
         ' Startup actions
         cbSetEvaluationDate.Checked = False
+        dtEvaluationDate.Value = System.DateTime.Today
         cbYCBootstrap.Checked = False
         cbLoadMurexYC.Checked = False
         cbCapVolBootstrap.Checked = False
@@ -1087,6 +1070,8 @@ Public Class FormMain
 
         ' Startup actions
         cbSetEvaluationDate.Checked = SelectedEnvironment.StartupActions.SetEvaluationDate
+        dtEvaluationDate.Enabled = SelectedEnvironment.StartupActions.SetEvaluationDate
+        dtEvaluationDate.Value = SelectedEnvironment.StartupActions.EvaluationDate
         cbYCBootstrap.Checked = SelectedEnvironment.StartupActions.YieldCurveBootstrap
         cbLoadMurexYC.Checked = SelectedEnvironment.StartupActions.LoadMurexYieldCurve
         cbCapVolBootstrap.Checked = SelectedEnvironment.StartupActions.CapVolBootstrap
@@ -1158,7 +1143,4 @@ Public Class FormMain
 
     End Function
 
-    Private Sub grpEnvironment_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles grpEnvironment.Enter
-
-    End Sub
 End Class

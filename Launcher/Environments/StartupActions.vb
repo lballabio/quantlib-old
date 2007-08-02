@@ -27,7 +27,7 @@ Namespace QuantLibXL
         Private name_ As String = "StartupActions"
 
         Private setEvaluationDate_ As Boolean
-        Private evaluationDateValue_ As String
+        Private evaluationDateValue_ As Integer
         Private ycBootstrap_ As Boolean
         Private loadMurexYC_ As Boolean
         Private capVolBootstrap_ As Boolean
@@ -43,7 +43,7 @@ Namespace QuantLibXL
         Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
 
             serializer.serializeProperty(setEvaluationDate_, "SetEvaluationDate")
-            'serializer.serializeProperty(evaluationDateValue_, "EvaluationDate")
+            serializer.serializeProperty(evaluationDateValue_, "EvaluationDate")
             serializer.serializeProperty(ycBootstrap_, "YieldCurveBootstrap")
             serializer.serializeProperty(loadMurexYC_, "LoadMurexYieldCurve")
             serializer.serializeProperty(capVolBootstrap_, "CapVolBootstrap")
@@ -54,10 +54,6 @@ Namespace QuantLibXL
             serializer.serializeProperty(loadBonds_, "LoadBonds")
             serializer.serializeProperty(mainChecks_, "MainChecks")
             serializer.serializeProperty(staticData_, "StaticData")
-            'If versionNumber = 5 Then
-            '    Dim dummyValue As Boolean = False
-            '    serializer.serializeProperty(dummyValue, "SwapVolBootstrap")
-            'End If
 
         End Sub
 
@@ -80,14 +76,24 @@ Namespace QuantLibXL
         ''''''''''''''''''''''''''''''''''''''''''
         ' properties
         ''''''''''''''''''''''''''''''''''''''''''
-        Public Property EvaluationDate() As String
+
+        ' Internally, the evaluation date is stored in integer evaluationDateValue_
+        ' which stores the value in Excel's "serial number" format.
+        ' Externally the evaluation date is represented by the VB .NET Date type.
+        ' The Get/Set methods of the property below perform the conversions.
+
+        Public Property EvaluationDate() As Date
 
             Get
-                EvaluationDate = evaluationDateValue_
+                If evaluationDateValue_ = 0 Then
+                    EvaluationDate = System.DateTime.Today
+                Else
+                    EvaluationDate = New DateTime((evaluationDateValue_ + 693593) * (10000000L * 24 * 3600))
+                End If
             End Get
 
-            Set(ByVal value As String)
-                evaluationDateValue_ = value
+            Set(ByVal d As Date)
+                evaluationDateValue_ = CInt((d.Ticks / (10000000L * 24 * 3600)) - 693593)
             End Set
 
         End Property

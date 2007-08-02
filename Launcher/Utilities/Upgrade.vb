@@ -21,7 +21,7 @@ Module Upgrade
 
     Private r_ As QuantLibXL.RegistryEditor
     Private registryVersion_ As Integer
-    Public Const THIS_VERSION As Integer = 9
+    Public Const THIS_VERSION As Integer = 10
 
     Public Sub run()
 
@@ -65,7 +65,7 @@ Module Upgrade
 
             r_ = New QuantLibXL.RegistryEditor
             r_.deleteKey("QuantLibXL Launcher")
-            initializeRegistryLatestVersion()
+            initializeRegistryVersion10()
             r_ = Nothing
 
             MsgBox("Default preferences successfully restored.")
@@ -104,7 +104,7 @@ Module Upgrade
     Private Sub updateRegistry()
 
         If registryVersion_ = 0 Then
-            initializeRegistryLatestVersion()
+            initializeRegistryVersion10()
             Exit Sub
         End If
 
@@ -120,34 +120,30 @@ Module Upgrade
     ''''''''''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub upgradeVersion9to10()
-        r_.copyKey("QuantLibXL Launcher\LauncherVersion9", "QuantLibXL Launcher\LauncherVersion10")
-        ' The settings just copied from version 8 may or may not contain value ExcelPath
-        ' depending on whether the user picked up an incremental upgrade of version 8.
-        ' If the new registry key doesn't contain value ExcelPath then initialize it.
-        If Not r_.valueExists("QuantLibXL Launcher\LauncherVersion10\Configuration", "ExcelPath") Then
-            r_.setValue("QuantLibXL Launcher\LauncherVersion10\Configuration", _
-                "ExcelPath", deriveDefaultExcelPath())
-        End If
 
-        Dim envKeyName As String
+        r_.copyKey("QuantLibXL Launcher\LauncherVersion9", "QuantLibXL Launcher\LauncherVersion10")
+
         Dim rootName As String
         rootName = "QuantLibXL Launcher\LauncherVersion10\Configuration\StartupActionsList"
         For Each keyName As String In r_.subKeyNames(rootName)
-            envKeyName = rootName & "\" & keyName & "\SetEvaluationDate"
-            r_.createKey(envKeyName)
+            r_.createKey(rootName & "\" & keyName & "\SetEvaluationDate")
             r_.setValue(rootName & "\" & keyName, "SetEvaluationDate", False)
+            r_.createKey(rootName & "\" & keyName & "\EvaluationDate")
+            r_.setValue(rootName & "\" & keyName, "EvaluationDate", 0)
         Next
         rootName = "QuantLibXL Launcher\LauncherVersion10\Environments"
         For Each keyName As String In r_.subKeyNames(rootName)
-            envKeyName = rootName & "\" & keyName & "\StartupActions\" & "\SetEvaluationDate"
-            r_.createKey(envKeyName)
+            r_.createKey(rootName & "\" & keyName & "\StartupActions\" & "\SetEvaluationDate")
             r_.setValue(rootName & "\" & keyName & "\StartupActions", "SetEvaluationDate", False)
+            r_.createKey(rootName & "\" & keyName & "\StartupActions\" & "\EvaluationDate")
+            r_.setValue(rootName & "\" & keyName & "\StartupActions", "EvaluationDate", 0)
         Next
         registryVersion_ = 10
 
     End Sub
 
     Private Sub upgradeVersion8to9()
+
         r_.copyKey("QuantLibXL Launcher\LauncherVersion8", "QuantLibXL Launcher\LauncherVersion9")
 
         ' The settings just copied from version 8 may or may not contain value ExcelPath
@@ -177,6 +173,7 @@ Module Upgrade
     End Sub
 
     Private Sub upgradeVersion7to8()
+
         r_.copyKey("QuantLibXL Launcher\LauncherVersion7", "QuantLibXL Launcher\LauncherVersion8")
         Dim envKeyName As String
         Dim rootName As String
@@ -213,7 +210,7 @@ Module Upgrade
     ''''''''''''''''''''''''''''''''''''''''''
     ' initialize registry for first use
     ''''''''''''''''''''''''''''''''''''''''''
-    Private Sub initializeRegistryLatestVersion()
+    Private Sub initializeRegistryVersion10()
 
         Dim path As String
         path = "QuantLibXL Launcher\LauncherVersion" & THIS_VERSION & "\Configuration"
