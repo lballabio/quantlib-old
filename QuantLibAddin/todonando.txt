@@ -365,9 +365,10 @@ WIP EvolutionDescription equality
       CMS.xls
 
 ---
-MARCO (last update 30/7/2007)
-WIP pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)
-  (0.0/5d/)
+MARCO (last update 2/8/2007)
+- Repricing BGM book (with Giorgio/Cristina)
+  - repricing of plain vanilla legs (DONE/5d/5d/)
+  - repricing of exotic legs (TBD/0d/30d)
 - check optimizers:
   - fix steepest descent (with Francois) (1d/2d/WIP)
   - add more tests (multidimensional) in test suite (to be planned)
@@ -375,8 +376,8 @@ WIP pricing plain vanilla legs in BGM book (with Marco/Giorgio/Cristina)
   - check export to excel and testing wkb (to be planned)
 - Risk, Wilmott papers (0.0/1d/WAITING for Ferdinando)
 - Inflation project:
-  - implementation of binary, digital, range accrual payoffs (TEST)
-  - implementation of Montecarlo pricing for TFR (TEST)
+  - implementation of binary, digital, range accrual payoffs (Test sviluppo)
+  - implementation of Montecarlo pricing for TFR (Test sviluppo)
   - 3 factor model and Hybrids (WIP)
 - Applix: Rolling bund Futures on 8/9/2007 (TBD)
 
