@@ -149,7 +149,9 @@ NANDO
 
 ---
 K
-
+- manutenzione foglio clerici ql_quickPricer.xls
+- manutenzione foglio clerici SDN_SABR_caps_EUR_ql.xls
+- verifica links nel foglio SDN_SABR_caps_EUR_ql.xls
 - presa in carico del foglio di Clerici
 - mostra De Nuccio standard di mercato di vanilla swap/swap/cap&floor
 - check that CMS book NPV is ok when allowExtrapolation=False for YC and
@@ -172,6 +174,11 @@ DONE close all macro must stop screen refresh and should not activate wbk
 - Rt Update stop: testing
 - coveredWarrants.xls
     * repricing vs Mx with new cap stripper
+    * isin -> feedcodes
+    * licenza comune Reuters estesa a tutte le borse
+    * accesso a citrix con cleric1a fallisce
+    * monitoring del foglio in real time
+    * hot fix deve essere applicato su Citrix  
 - Sensitivity Analysis (K&Cristina):  				(7.5d/5w)
   - General
     run sa on rates, atm vols and vol spreads
@@ -228,7 +235,7 @@ DONE close all macro must stop screen refresh and should not activate wbk
 	test wbk: abcd fit
   	atm backbone: CapStripper3MTestSmoothness.xls
 - 6M cap stripper: (1.5D/1w)
-	decidere se usare le interpolated vols da usare nel cap stripper
+	* 6m caps bootstrapping using cubic interpolation
 - bug in function SetRealTime() -> Rt seems not to switch settings
 - migliora la macro "Copy Values" in SingleMeanReversion.xls
 - rimuovere Singleton and set YTS to Euribor
