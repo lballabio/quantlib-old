@@ -362,6 +362,9 @@
 					RelativePath=".\qlo\Enumerations\Factories\conundrumpricerfactory.hpp">
 				</File>
 				<File
+					RelativePath=".\qlo\Enumerations\Factories\historicalforwardratesanalysisfactory.hpp">
+				</File>
+				<File
 					RelativePath=".\qlo\Enumerations\Factories\iborcouponpricersfactory.hpp">
 				</File>
 				<File
