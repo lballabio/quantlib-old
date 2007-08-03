@@ -561,6 +561,22 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlSABRInterpolationWeights' type='QuantLib::SABRInterpolation'>
+      <description>Returns the weights of the SABR fit for the given SABRInterpolation object</description>
+      <libraryFunction>interpolationWeights</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
     <!-- Interpolation2D interface -->
 
     <Member name='qlInterpolation2DXmin' type='QuantLib::Interpolation2D'>
