@@ -110,6 +110,9 @@ GENERAL
 
 ---
 NANDO
+- revise calibration
+- hide quotefeed worbooks
+- reorder CMS menu
 - rename qlVanillaSwapFromSwapIndex
 - use Use svn:externals ? what about branches?
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
@@ -345,6 +348,7 @@ WIP notification chains pb (1D/3D)
 ---
 GIORGIO (last update 31/7/2007)
 WIP bond-swaption refactoring
+- move sabr to Levemberg-Markard
 - cap/swaption pricer with constant/spreaded vol (BUG)
 WIP export FRARateHelper and BondRateHelper
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
