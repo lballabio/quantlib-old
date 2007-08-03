@@ -47,7 +47,11 @@ quantlib-users: the QuantLib admin will forward it to
 quantlib-announce if appropriate.<br> (go to <a href=
 "http://sourceforge.net/mailarchive/forum.php?forum_name=quantlib-announce">
 Archives</a>, <a href=
-"http://lists.sourceforge.net/mailman/listinfo/quantlib-announce">Subscribe/Unsubscribe/Preferences</a>)</li>
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-announce">Subscribe/Unsubscribe/Preferences</a>)<br>
+For those more comfortable with RSS
+readers, <a href="http://mailbucket.org/quantlib-announce.xml">a
+feed</a> for the posts is also available
+from <a href="http://mailbucket.org">Mailbucket</a>.</li>
 <li><strong>QuantLib-jobs</strong>:<br> Jobs list for supply and
 demand of quantitative finance jobs. You can post here: 1) job offers,
 2) links to job offers, 3) your resume.<br> Plain text, HTML, and PDF
@@ -57,20 +61,26 @@ later browsing: please state how long your message is valid.<br> (go
 to <a href=
 "http://sourceforge.net/mailarchive/forum.php?forum_name=quantlib-jobs">Archives</a>,
 <a href=
-"http://lists.sourceforge.net/mailman/listinfo/quantlib-jobs">Subscribe/Unsubscribe/Preferences</a>)</li>
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-jobs">Subscribe/Unsubscribe/Preferences</a>)<br>
+For those more comfortable with RSS
+readers, <a href="http://mailbucket.org/quantlib-jobs.xml">a feed</a>
+for the posts is also available from Mailbucket.</li>
 <li><strong>QuantLib-cvs</strong>:<br> High-traffic list for automated
 QuantLib <a href= "svn.shtml">Subversion</a> check-in messages. Every
 time a change is submitted to the QuantLib code repository, an email
 documenting the change is automatically generated.<br>  Suggested for
 developers only. Please do not post to this list.<br> (go to <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-cvs">Subscribe/Unsubscribe/Preferences</a>)<br>
-For those more comfortable with RSS, a feed for the check-in messages
-is also available from
+For those more comfortable with RSS readers, a feed for the check-in
+messages is also available from
 the <a href="http://cia.navi.cx/stats/project/quantlib">QuantLib
 page</a> at
 <a href="http://cia.navi.cx">cia.navi.cx</a>. The feed carries the
 commit messages only; no difference between revisions is
-provided.</li> </ol>
+provided. <a href="http://mailbucket.org/quantlib-cvs.xml">Another
+feed</a> carrying the full differences is available from
+Mailbucket.</li>
+</ol>
 
 </div>
 
