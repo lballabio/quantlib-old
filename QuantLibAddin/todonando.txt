@@ -36,10 +36,10 @@ GENERAL
   pricing engines refactoring
   verbose log messages
 
-- change ddd, dd-mm-yyyy -> ddd, d-mm-yyyy
+- impliedStdDev for Cap and Swaption
 - expose 2 constructors per each bond
 - reorder bond/leg signatures
-- CabotoXL.xla (Murex curve, vol export, cms calibrations, cms book)
+- CabotoXL.xla (Murex curve, vol export, cms calibrations, cms book, bgm book)
 - serialize RelinkableHandles and Pricing Engines
 - more release manager
 - bund future equivalent
@@ -180,7 +180,7 @@ DONE close all macro must stop screen refresh and should not activate wbk
     * licenza comune Reuters estesa a tutte le borse
     * accesso a citrix con cleric1a fallisce
     * monitoring del foglio in real time
-    * hot fix deve essere applicato su Citrix  
+    * hot fix deve essere applicato su Citrix
 - Sensitivity Analysis (K&Cristina):  				(7.5d/5w)
   - General
     run sa on rates, atm vols and vol spreads
