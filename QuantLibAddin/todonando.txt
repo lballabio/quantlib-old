@@ -30,6 +30,7 @@ GENERAL
   familiarize with ohPropertyNames and ohPropertyValue()
   stateful serialization
   check out and compile SA
+  property defaults
   pricing engines are (the only) mkt data observers
   SVN config file
   pricing engines refactoring
@@ -109,6 +110,7 @@ GENERAL
 
 ---
 NANDO
+- rename qlVanillaSwapFromSwapIndex
 - use Use svn:externals ? what about branches?
 - install VC8 Express edition (Nando, Giorgio, Cri, K)
 - more pricing engines global instantiation
