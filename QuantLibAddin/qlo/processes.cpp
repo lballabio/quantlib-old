@@ -25,7 +25,7 @@
 
 #include <ql/quote.hpp>
 #include <ql/termstructures/yieldcurves/flatforward.hpp>
-#include <ql/termstructures/voltermstructure.hpp>
+#include <ql/termstructures/blackvoltermstructure.hpp>
 
 namespace QuantLibAddin {
 
