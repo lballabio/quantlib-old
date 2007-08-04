@@ -36,6 +36,10 @@ namespace QuantLibAddin {
         return p.frequency();
     }
 
+    QuantLib::Period qlPeriodEquivalent(const QuantLib::Period& p) {
+        return p;
+    }
+
     vector<Date> qlIMMNextDates(const Date& date,
                                 const vector<bool>& mainCycle) {
         QL_REQUIRE(!mainCycle.empty(), "Main cycle flags vector is empty.");

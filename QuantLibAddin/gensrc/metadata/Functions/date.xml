@@ -59,7 +59,7 @@
     </Procedure>
 
     <Procedure name='qlPeriodLessThan'>
-      <description>Returns is a period is less than another.</description>
+      <description>Returns TRUE if the first period is less than the second.</description>
       <alias>QuantLib::operator&lt;</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
@@ -81,6 +81,27 @@
       </ParameterList>
       <ReturnValue>
         <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlPeriodEquivalent'>
+      <description>Returns the period equivalent to the input (e.g. 11M for 1Y-1M).</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='period' exampleValue='1Y-1M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>input period (e.g. 1Y-1M)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>

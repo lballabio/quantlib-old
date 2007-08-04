@@ -32,7 +32,13 @@ namespace QuantLibAddin {
 
     // to be removed using coercion
     QuantLib::Period periodFromFrequency(QuantLib::Frequency f);
+
+    // to be removed using coercion
     QuantLib::Frequency frequencyFromPeriod(const QuantLib::Period& p);
+
+    // it is not a dummy function!
+    // e.g. it returns "11M" when the input is "1Y-1M"
+    QuantLib::Period qlPeriodEquivalent(const QuantLib::Period& p);
 
     std::vector<QuantLib::Date> qlIMMNextDates(const QuantLib::Date& d,
                                                const std::vector<bool>& mainCycle);
