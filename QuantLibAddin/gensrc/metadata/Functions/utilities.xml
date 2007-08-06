@@ -22,7 +22,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='verbose' default='false'>
+          <Parameter name='Verbose' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE to get the verbose version string. If omitted, default = FALSE</description>
@@ -91,12 +91,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='set' exampleValue='0,1,2,3,4,5,6,7,8,9'>
+          <Parameter name='Set' exampleValue='0,1,2,3,4,5,6,7,8,9'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>set</description>
           </Parameter>
-          <Parameter name='subset' exampleValue='1,3,5,7,9'>
+          <Parameter name='Subset' exampleValue='1,3,5,7,9'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>subset</description>

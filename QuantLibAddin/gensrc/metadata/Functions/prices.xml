@@ -19,22 +19,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='bid' default='0' exampleValue='90'>
+          <Parameter name='Bid' default='0' exampleValue='90'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>bid price</description>
           </Parameter>
-          <Parameter name='ask' default='0' exampleValue='110'>
+          <Parameter name='Ask' default='0' exampleValue='110'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>ask price</description>
           </Parameter>
-          <Parameter name='last' default='0'>
+          <Parameter name='Last' default='0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>last price</description>
           </Parameter>
-          <Parameter name='close' default='0'>
+          <Parameter name='Close' default='0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>close price</description>
@@ -56,12 +56,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='bid' default='0' exampleValue='90'>
+          <Parameter name='Bid' default='0' exampleValue='90'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>bid price</description>
           </Parameter>
-          <Parameter name='ask' default='0' exampleValue='110'>
+          <Parameter name='Ask' default='0' exampleValue='110'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>ask price</description>

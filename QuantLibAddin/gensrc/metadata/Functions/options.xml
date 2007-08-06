@@ -31,37 +31,37 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='barrierType'>
+          <Parameter name='BarrierType'>
             <type>QuantLib::Barrier::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>barrier type</description>
           </Parameter>
-          <Parameter name='barrier' exampleValue ='1.0'>
+          <Parameter name='Barrier' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>barrier</description>
           </Parameter>
-          <Parameter name='rebate' exampleValue ='1.0'>
+          <Parameter name='Rebate' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>rebate</description>
           </Parameter>
-          <Parameter name='blackScholes'>
+          <Parameter name='BlackScholes'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <tensorRank>scalar</tensorRank>
             <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>striked type payoff object ID</description>
           </Parameter>
-          <Parameter name='exercise'>
+          <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
             <description>Exercise ID</description>
           </Parameter>
-          <Parameter name='pricingEngine'>
+          <Parameter name='PricingEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
@@ -79,27 +79,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='average'>
+          <Parameter name='Average'>
             <type>QuantLib::Average::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>average type</description>
           </Parameter>
-          <Parameter name='blackScholes'>
+          <Parameter name='BlackScholes'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <tensorRank>scalar</tensorRank>
             <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>striked type payoff object ID</description>
           </Parameter>
-          <Parameter name='exercise'>
+          <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
             <description>Exercise object ID</description>
           </Parameter>
-          <Parameter name='pricingEngine'>
+          <Parameter name='PricingEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
@@ -112,27 +112,27 @@
       <libraryFunction>CliquetOption</libraryFunction>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackScholes'>
+          <Parameter name='BlackScholes'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <tensorRank>scalar</tensorRank>
             <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::PercentageStrikePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>striked type payoff object ID</description>
           </Parameter>
-          <Parameter name='exercise'>
+          <Parameter name='Exercise'>
             <type>QuantLib::EuropeanExercise</type>
             <tensorRank>scalar</tensorRank>
             <description>Exercise object ID</description>
           </Parameter>
-          <Parameter name='resetDates'>
+          <Parameter name='ResetDates'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>vector of reset dates</description>
           </Parameter>
-          <Parameter name='pricingEngine'>
+          <Parameter name='PricingEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
@@ -150,42 +150,42 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='average'>
+          <Parameter name='Average'>
             <type>QuantLib::Average::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>average type</description>
           </Parameter>
-          <Parameter name='runningAccumulator' exampleValue ='1.0'>
+          <Parameter name='RunningAccumulator' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>running accumulator</description>
           </Parameter>
-          <Parameter name='pastFixings' exampleValue ='0.1'>
+          <Parameter name='PastFixings' exampleValue ='0.1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>past fixings</description>
           </Parameter>
-          <Parameter name='fixingDates' exampleValue ='1Y,2Y'>
+          <Parameter name='FixingDates' exampleValue ='1Y,2Y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>fixing dates</description>
           </Parameter>
-          <Parameter name='blackScholes'>
+          <Parameter name='BlackScholes'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <tensorRank>scalar</tensorRank>
             <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>striked type payoff object object ID</description>
           </Parameter>
-          <Parameter name='exercise'>
+          <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
             <description>Exercise object ID</description>
           </Parameter>
-          <Parameter name='pricingEngine'>
+          <Parameter name='PricingEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
@@ -203,32 +203,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackScholes'>
+          <Parameter name='BlackScholes'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <tensorRank>scalar</tensorRank>
             <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>striked type payoff object ID</description>
           </Parameter>
-          <Parameter name='exercise'>
+          <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
             <description>Exercise object ID</description>
           </Parameter>
-          <Parameter name='dividendDates' exampleValue ='1Y,2Y'>
+          <Parameter name='DividendDates' exampleValue ='1Y,2Y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>vector of dividend dates</description>
           </Parameter>
-          <Parameter name='dividends' exampleValue ='0.1,0.1'>
+          <Parameter name='Dividends' exampleValue ='0.1,0.1'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>vector of dividends</description>
           </Parameter>
-          <Parameter name='pricingEngine'>
+          <Parameter name='PricingEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
@@ -246,32 +246,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='moneyness' exampleValue ='0.0'>
+          <Parameter name='Moneyness' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>moneyness</description>
           </Parameter>
-          <Parameter name='resetDate' exampleValue ='1Y'>
+          <Parameter name='ResetDate' exampleValue ='1Y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>reset date</description>
           </Parameter>
-          <Parameter name='blackScholes'>
+          <Parameter name='BlackScholes'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <tensorRank>scalar</tensorRank>
             <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>striked type payoff object ID</description>
           </Parameter>
-          <Parameter name='exercise'>
+          <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
             <description>Exercise object ID</description>
           </Parameter>
-          <Parameter name='pricingEngine'>
+          <Parameter name='PricingEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
@@ -291,22 +291,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackScholes'>
+          <Parameter name='BlackScholes'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <tensorRank>scalar</tensorRank>
             <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>striked type payoff object ID</description>
           </Parameter>
-          <Parameter name='exercise'>
+          <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
             <description>Exercise object ID</description>
           </Parameter>
-          <Parameter name='pricingEngine'>
+          <Parameter name='PricingEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
@@ -324,22 +324,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackScholes'>
+          <Parameter name='BlackScholes'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <tensorRank>scalar</tensorRank>
             <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>striked type payoff object ID</description>
           </Parameter>
-          <Parameter name='exercise'>
+          <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
             <description>Exercise object ID</description>
           </Parameter>
-          <Parameter name='pricingEngine'>
+          <Parameter name='PricingEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
@@ -363,32 +363,32 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='blackVolID'>
+          <Parameter name='BlackVolID'>
             <type>QuantLib::BlackVolTermStructure</type>
             <tensorRank>scalar</tensorRank>
             <description>BlackVolTermStructure ID</description>
           </Parameter>
-          <Parameter name='correlation' exampleValue ='0.5'>
+          <Parameter name='Correlation' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>correlation</description>
           </Parameter>
-          <Parameter name='blackScholes'>
+          <Parameter name='BlackScholes'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <tensorRank>scalar</tensorRank>
             <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>striked type payoff object ID</description>
           </Parameter>
-          <Parameter name='exercise'>
+          <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
             <description>Exercise object ID</description>
           </Parameter>
-          <Parameter name='pricingEngine'>
+          <Parameter name='PricingEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>
@@ -412,42 +412,42 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='blackVol'>
+          <Parameter name='BlackVol'>
             <type>QuantLib::BlackVolTermStructure</type>
             <tensorRank>scalar</tensorRank>
             <description>BlackVolTermStructure object ID</description>
           </Parameter>
-          <Parameter name='correlation' exampleValue ='0.5'>
+          <Parameter name='Correlation' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>correlation</description>
           </Parameter>
-          <Parameter name='moneyness' exampleValue ='0.0'>
+          <Parameter name='Moneyness' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>moneyness</description>
           </Parameter>
-          <Parameter name='resetDate' exampleValue ='1Y'>
+          <Parameter name='ResetDate' exampleValue ='1Y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>reset date</description>
           </Parameter>
-          <Parameter name='blackScholes'>
+          <Parameter name='BlackScholes'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <tensorRank>scalar</tensorRank>
             <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>striked type payoff object ID</description>
           </Parameter>
-          <Parameter name='exercise'>
+          <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
             <description>Exercise object ID</description>
           </Parameter>
-          <Parameter name='pricingEngine'>
+          <Parameter name='PricingEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>

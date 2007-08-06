@@ -39,32 +39,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionType'>
+          <Parameter name='OptionType'>
             <type>QuantLib::Option::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>option type (i.e. Call or Put)</description>
           </Parameter>
-          <Parameter name='strike'>
+          <Parameter name='Strike'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='stdDev'>
+          <Parameter name='StdDev'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -86,27 +86,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionType'>
+          <Parameter name='OptionType'>
             <type>QuantLib::Option::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>option type (i.e. Call or Put)</description>
           </Parameter>
-          <Parameter name='strike'>
+          <Parameter name='Strike'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='stdDev'>
+          <Parameter name='StdDev'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -128,32 +128,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionType'>
+          <Parameter name='OptionType'>
             <type>QuantLib::Option::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>option type (i.e. Call or Put)</description>
           </Parameter>
-          <Parameter name='strike'>
+          <Parameter name='Strike'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='optionPrice'>
+          <Parameter name='OptionPrice'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option price</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -175,42 +175,42 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionType'>
+          <Parameter name='OptionType'>
             <type>QuantLib::Option::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>option type (i.e. Call or Put)</description>
           </Parameter>
-          <Parameter name='strike'>
+          <Parameter name='Strike'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='optionPrice'>
+          <Parameter name='OptionPrice'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option price</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
           </Parameter>
-          <Parameter name='guess' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Guess' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation guess</description>
           </Parameter>
-          <Parameter name='accuracy' default='1.0e-6'>
+          <Parameter name='Accuracy' default='1.0e-6'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation accuracy</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -232,27 +232,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='strike'>
+          <Parameter name='Strike'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='stdDev'>
+          <Parameter name='StdDev'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -274,27 +274,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionType'>
+          <Parameter name='OptionType'>
             <type>QuantLib::Option::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>option type (i.e. Call or Put)</description>
           </Parameter>
-          <Parameter name='strike'>
+          <Parameter name='Strike'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='stdDev'>
+          <Parameter name='StdDev'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized ABSOLUTE volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
@@ -316,27 +316,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::PlainVanillaPayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff object ID</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='stdDev'>
+          <Parameter name='StdDev'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -358,22 +358,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::PlainVanillaPayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff  object ID</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='stdDev'>
+          <Parameter name='StdDev'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -395,27 +395,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::PlainVanillaPayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff object ID</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='optionPrice'>
+          <Parameter name='OptionPrice'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option price</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -437,37 +437,37 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='payoffID'>
+          <Parameter name='PayoffID'>
             <type>QuantLib::PlainVanillaPayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff object ID</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='optionPrice'>
+          <Parameter name='OptionPrice'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option price</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
           </Parameter>
-          <Parameter name='guess' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Guess' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation guess</description>
           </Parameter>
-          <Parameter name='accuracy' default='1.0e-6'>
+          <Parameter name='Accuracy' default='1.0e-6'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation accuracy</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -490,27 +490,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='payoffID'>
+          <Parameter name='PayoffID'>
             <type>QuantLib::PlainVanillaPayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff object ID</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='stdDev'>
+          <Parameter name='StdDev'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -532,22 +532,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='payoff'>
+          <Parameter name='Payoff'>
             <type>QuantLib::PlainVanillaPayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff object ID</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='stdDev'>
+          <Parameter name='StdDev'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized ABSOLUTE volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
@@ -603,7 +603,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spot'>
+          <Parameter name='Spot'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spot value</description>
@@ -641,7 +641,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spot'>
+          <Parameter name='Spot'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spot value</description>
@@ -679,7 +679,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spot'>
+          <Parameter name='Spot'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spot value</description>
@@ -701,12 +701,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spot'>
+          <Parameter name='Spot'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spot value</description>
           </Parameter>
-          <Parameter name='timeToMaturity'>
+          <Parameter name='TimeToMaturity'>
             <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
             <description>time to maturity in years</description>
@@ -728,12 +728,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spot'>
+          <Parameter name='Spot'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spot value</description>
           </Parameter>
-          <Parameter name='timeToMaturity'>
+          <Parameter name='TimeToMaturity'>
             <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
             <description>time to maturity in years</description>
@@ -755,7 +755,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='timeToMaturity'>
+          <Parameter name='TimeToMaturity'>
             <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
             <description>time to maturity in years</description>
@@ -777,7 +777,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='timeToMaturity'>
+          <Parameter name='TimeToMaturity'>
             <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
             <description>time to maturity in years</description>
@@ -799,7 +799,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='timeToMaturity'>
+          <Parameter name='TimeToMaturity'>
             <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
             <description>time to maturity in years</description>
@@ -900,22 +900,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='payoffID'>
+          <Parameter name='PayoffID'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>payoff ID</description>
           </Parameter>
-          <Parameter name='atmForwardValue'>
+          <Parameter name='AtmForwardValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='stdDev'>
+          <Parameter name='StdDev'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
@@ -982,7 +982,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='timeToMaturity'>
+          <Parameter name='TimeToMaturity'>
             <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
             <description>time to maturity in years</description>
@@ -1004,7 +1004,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='timeToMaturity'>
+          <Parameter name='TimeToMaturity'>
             <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
             <description>time to maturity in years</description>
@@ -1025,27 +1025,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='payoffID'>
+          <Parameter name='PayoffID'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
             <description>payoff ID</description>
           </Parameter>
-          <Parameter name='spot'>
+          <Parameter name='Spot'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spot value</description>
           </Parameter>
-          <Parameter name='growth' default='1.0'>
+          <Parameter name='Growth' default='1.0'>
             <type>QuantLib::DiscountFactor</type>
             <tensorRank>scalar</tensorRank>
             <description>growth discount factor</description>
           </Parameter>
-          <Parameter name='stdDev'>
+          <Parameter name='StdDev'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='discount' default='1.0'>
+          <Parameter name='Discount' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>discount factor</description>
@@ -1066,7 +1066,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='engineID'>
+          <Parameter name='EngineID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>engine type</description>
@@ -1084,12 +1084,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='engineID'>
+          <Parameter name='EngineID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>engine type</description>
           </Parameter>
-          <Parameter name='timeSteps'>
+          <Parameter name='TimeSteps'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>#/time steps</description>
@@ -1106,7 +1106,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='vol' >
+          <Parameter name='Vol' >
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -1124,7 +1124,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='vol' >
+          <Parameter name='Vol' >
             <type>QuantLib::CapletVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -1143,7 +1143,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='vol'>
+          <Parameter name='Vol'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -1161,7 +1161,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='handleModel'>
+          <Parameter name='HandleModel'>
             <type>QuantLib::AffineModel</type>
             <tensorRank>scalar</tensorRank>
             <description>affine model (providing a discount bond option pricing formula) object ID</description>
@@ -1178,7 +1178,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='marketModelFactory'>
+          <Parameter name='MarketModelFactory'>
             <type>QuantLib::MarketModelFactory</type>
             <tensorRank>scalar</tensorRank>
             <description>Market Model Factory object ID</description>

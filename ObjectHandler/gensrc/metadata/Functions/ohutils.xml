@@ -21,52 +21,52 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dummy0' ignore='true'>
+          <Parameter name='Dummy0' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
           </Parameter>
-          <Parameter name='dummy1' ignore='true'>
+          <Parameter name='Dummy1' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
           </Parameter>
-          <Parameter name='dummy2' ignore='true'>
+          <Parameter name='Dummy2' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
           </Parameter>
-          <Parameter name='dummy3' ignore='true'>
+          <Parameter name='Dummy3' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
           </Parameter>
-          <Parameter name='dummy4' ignore='true'>
+          <Parameter name='Dummy4' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
           </Parameter>
-          <Parameter name='dummy5' ignore='true'>
+          <Parameter name='Dummy5' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
           </Parameter>
-          <Parameter name='dummy6' ignore='true'>
+          <Parameter name='Dummy6' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
           </Parameter>
-          <Parameter name='dummy7' ignore='true'>
+          <Parameter name='Dummy7' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
           </Parameter>
-          <Parameter name='dummy8' ignore='true'>
+          <Parameter name='Dummy8' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
           </Parameter>
-          <Parameter name='dummy9' ignore='true'>
+          <Parameter name='Dummy9' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
@@ -102,7 +102,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='regex'>
+          <Parameter name='Regex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>optional matching pattern in UNIX format (wildcard is .*)</description>
@@ -138,7 +138,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='inputRange'>
+          <Parameter name='InputRange'>
             <type>any</type>
             <tensorRank>matrix</tensorRank>
             <description>scalar/vector/matrix of values to be packed</description>
@@ -159,17 +159,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='text'>
+          <Parameter name='Text'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>string to be parsed</description>
           </Parameter>
-          <Parameter name='delimiters' default='",;"'>
+          <Parameter name='Delimiters' default='",;"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>characters used as delimiters: each single character is used as delimiter (default = \";,\")</description>
           </Parameter>
-          <Parameter name='concatenateDelim' default='false'>
+          <Parameter name='ConcatenateDelim' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>specifies if multiple adjacent delimiters are to be considered as one (TRUE) or not (FALSE). Default value is FALSE.</description>
@@ -191,12 +191,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='input'>
+          <Parameter name='Input'>
             <type>any</type>
             <tensorRank>vector</tensorRank>
             <description>vector to be filtered</description>
           </Parameter>
-          <Parameter name='flags'>
+          <Parameter name='Flags'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
             <description>vector to inclusion flags</description>
@@ -216,7 +216,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='range'>
+          <Parameter name='Range'>
             <type>reference</type>
             <tensorRank>scalar</tensorRank>
             <description>range to query</description>
@@ -236,7 +236,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='range'>
+          <Parameter name='Range'>
             <type>reference</type>
             <tensorRank>scalar</tensorRank>
             <description>range to query</description>
@@ -287,7 +287,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectID'>
+          <Parameter name='ObjectID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be queried</description>
@@ -308,7 +308,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectID'>
+          <Parameter name='ObjectID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be queried</description>

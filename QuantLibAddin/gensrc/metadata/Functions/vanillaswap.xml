@@ -41,39 +41,39 @@
             <tensorRank>scalar</tensorRank>
             <description>Notional Amount</description>
           </Parameter>
-          <Parameter name='fixedLegSchedule' exampleValue='FixedSchedule'>
+          <Parameter name='FixedLegSchedule' exampleValue='FixedSchedule'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg schedule object ID</description>
           </Parameter>
-          <Parameter name='fixedRate' exampleValue='5%'>
+          <Parameter name='FixedRate' exampleValue='5%'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>the fixed rate</description>
           </Parameter>
-          <Parameter name='fixedLegDayCounter' exampleValue='30/360 (Bond Basis)'>
+          <Parameter name='FixedLegDayCounter' exampleValue='30/360 (Bond Basis)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='floatingLegSchedule' exampleValue='FloatingSchedule'>
+          <Parameter name='FloatingLegSchedule' exampleValue='FloatingSchedule'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>floating leg schedule object ID</description>
           </Parameter>
-          <Parameter name='index'>
+          <Parameter name='Index'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>floating leg IborIndex index object ID</description>
           </Parameter>
-          <Parameter name='floatingLegSpread' exampleValue='0%'>
+          <Parameter name='FloatingLegSpread' exampleValue='0%'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>Index Spread</description>
           </Parameter>
-          <Parameter name='floatingLegDayCounter' exampleValue='Actual/360'>
+          <Parameter name='FloatingLegDayCounter' exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>floating day counter (e.g. Actual/360)</description>
@@ -96,12 +96,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='swapIndex'>
+          <Parameter name='SwapIndex'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>the SwapIndex index object ID</description>
           </Parameter>
-          <Parameter name='fixingDate'>
+          <Parameter name='FixingDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing date</description>
@@ -119,23 +119,23 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='swapTenor' exampleValue='1Y'>
+          <Parameter name='SwapTenor' exampleValue='1Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>swap tenor period</description>
           </Parameter>
-          <Parameter name='index'>
+          <Parameter name='Index'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>floating IborIndex index object ID</description>
           </Parameter>
-          <Parameter name='fixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
+          <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>the fixed rate</description>
           </Parameter>
-          <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
-          <Parameter name='forwardStart' exampleValue='0D'>
+          <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
+          <Parameter name='ForwardStart' exampleValue='0D'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period</description>

@@ -24,7 +24,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='seed' default='0'>
+          <Parameter name='Seed' default='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>seed for random sequence generator</description>

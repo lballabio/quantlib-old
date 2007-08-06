@@ -142,7 +142,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='price' exampleValue = '.01454'>
+          <Parameter name='Price' exampleValue = '.01454'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Price used to infer the implied volatility</description>
@@ -179,17 +179,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionType'>
+          <Parameter name='OptionType'>
             <type>QuantLib::CapFloor::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>option type (cap or floor)</description>
           </Parameter>
-          <Parameter name='legID'>
+          <Parameter name='LegID'>
             <type>QuantLibAddin::Leg</type>
             <tensorRank>scalar</tensorRank>
             <description>coupon vector</description>
           </Parameter>
-          <Parameter name='strikes' exampleValue = '.04'>
+          <Parameter name='Strikes' exampleValue = '.04'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
@@ -200,7 +200,7 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='capFloorEngine'>
+          <Parameter name='CapFloorEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>Cap floor pricing engine object ID</description>
@@ -217,34 +217,34 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionType'>
+          <Parameter name='OptionType'>
             <type>QuantLib::CapFloor::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>option type (cap or floor)</description>
           </Parameter>
-          <Parameter name='length' exampleValue = '5Y'>
+          <Parameter name='Length' exampleValue = '5Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>as period (e.g. 2Y)</description>
           </Parameter>
-          <Parameter name='index'>
+          <Parameter name='Index'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>floating index object ID</description>
           </Parameter>
-          <Parameter name='strike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
+          <Parameter name='Strike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>strike</description>
           </Parameter>
-          <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
-          <Parameter name='forwardStart' exampleValue = '0D'>
+          <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
+          <Parameter name='ForwardStart' exampleValue = '0D'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>as period (e.g. '2Y'). The default is '0D'. If '0D' the first caplet is removed.</description>
           </Parameter>
-          <!--<Parameter name='capFloorEngineID' libraryClass='PricingEngine' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
-          <Parameter name='capFloorEngine'>
+          <!--<Parameter name='CapFloorEngineID' libraryClass='PricingEngine' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
+          <Parameter name='CapFloorEngine'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>Cap floor pricing engine object ID</description>

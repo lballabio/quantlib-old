@@ -35,7 +35,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='enumId'>
+          <Parameter name='EnumId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>name of enumerated type</description>
@@ -71,7 +71,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='enumId'>
+          <Parameter name='EnumId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>name of enumerated type</description>
@@ -107,7 +107,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='enumId'>
+          <Parameter name='EnumId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>name of enumerated type</description>

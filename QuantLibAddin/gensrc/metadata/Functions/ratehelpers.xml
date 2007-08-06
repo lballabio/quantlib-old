@@ -79,33 +79,33 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='quote' exampleValue='0.036'>
+          <Parameter name='Quote' exampleValue='0.036'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>deposit quote</description>
           </Parameter>
-          <Parameter name='period' exampleValue='3M'>
+          <Parameter name='Period' exampleValue='3M'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>deposit length (e.g. 3M for three months)</description>
           </Parameter>
-          <Parameter name='fixingDays' exampleValue='2'>
+          <Parameter name='FixingDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
           </Parameter>
-          <Parameter name='calendar'>
+          <Parameter name='Calendar'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='convention'>
+          <Parameter name='Convention'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>business day convention (e.g. ModifiedFollowing)</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -122,43 +122,43 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='quote'  exampleValue='0.042'>
+          <Parameter name='Quote'  exampleValue='0.042'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>quote</description>
           </Parameter>
-          <Parameter name='period' exampleValue='5Y'>
+          <Parameter name='Period' exampleValue='5Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>deposit legth (e.g. 5Y for five years)</description>
           </Parameter>
-          <Parameter name='fixingDays' exampleValue='2'>
+          <Parameter name='FixingDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
           </Parameter>
-          <Parameter name='calendar'>
+          <Parameter name='Calendar'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='fixedLegFrequency'>
+          <Parameter name='FixedLegFrequency'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
-          <Parameter name='fixedLegConvention'>
+          <Parameter name='FixedLegConvention'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg convention (e.g. Unadjusted)</description>
           </Parameter>
-          <Parameter name='fixedLegDayCounter'>
+          <Parameter name='FixedLegDayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name="index">
+          <Parameter name='Index'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>floating leg index object ID</description>
@@ -175,48 +175,48 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='quote'  exampleValue='0.042'>
+          <Parameter name='Quote'  exampleValue='0.042'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>quote</description>
           </Parameter>
-          <Parameter name='monthsToStart' exampleValue='2'>
+          <Parameter name='MonthsToStart' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>months to start</description>
           </Parameter>
-          <Parameter name='monthsToEnd' exampleValue='4'>
+          <Parameter name='MonthsToEnd' exampleValue='4'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>months to end</description>
           </Parameter>
-          <Parameter name='settlementDays' exampleValue='2'>
+          <Parameter name='SettlementDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement days (e.g. 2)</description>
           </Parameter>
-          <Parameter name='calendar'>
+          <Parameter name='Calendar'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='convention'>
+          <Parameter name='Convention'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>convention (e.g. Unadjusted)</description>
           </Parameter>
-          <Parameter name='endOfMonth' exampleValue='true'>
+          <Parameter name='EndOfMonth' exampleValue='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>endOfMonth</description>
           </Parameter>
-          <Parameter name='fixingDays' exampleValue='2'>
+          <Parameter name='FixingDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -233,13 +233,13 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='cleanPrice'  exampleValue='0.042'>
+          <Parameter name='CleanPrice'  exampleValue='0.042'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>cleanPrice</description>
           </Parameter>
-          <Parameter name='settlementDays' exampleValue='2'>
+          <Parameter name='SettlementDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement days (e.g. 2)</description>
@@ -250,27 +250,27 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID</description>
           </Parameter>
-          <Parameter name='coupons'>
+          <Parameter name='Coupons'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>coupons</description>
           </Parameter>
-          <Parameter name='paymentDayCounter'>
+          <Parameter name='PaymentDayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>payment day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='paymentConvention'>
+          <Parameter name='PaymentConvention'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>payment convention (e.g. Unadjusted)</description>
           </Parameter>
-          <Parameter name='redemption'>
+          <Parameter name='Redemption'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>redemption</description>
           </Parameter>
-          <Parameter name='issueDate' default='QuantLib::Date()'>
+          <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
@@ -303,7 +303,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='priceQuote'  exampleValue='95.9'>
+          <Parameter name='PriceQuote'  exampleValue='95.9'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -314,27 +314,27 @@
             <tensorRank>scalar</tensorRank>
             <description>IMM code</description>
           </Parameter>
-          <Parameter name='months' exampleValue='3'>
+          <Parameter name='Months' exampleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>future contract length in months</description>
           </Parameter>
-          <Parameter name='calendar'>
+          <Parameter name='Calendar'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='bDayConvention'>
+          <Parameter name='BDayConvention'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>Business Day Convention (e.g. ModifiedFollowing)</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='convexityAdjQuote'  exampleValue='0.0'>
+          <Parameter name='ConvexityAdjQuote'  exampleValue='0.0'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -352,27 +352,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateHelpers'>
+          <Parameter name='RateHelpers'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>vector of rate-helpers</description>
           </Parameter>
-          <Parameter name='priority'>
+          <Parameter name='Priority'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
             <description>vector of priority integers (higher number for higher priority)</description>
           </Parameter>
-          <Parameter name='nFutures'>
+          <Parameter name='NFutures'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>max number of Futures to be included</description>
           </Parameter>
-          <Parameter name='frontFuturesRollingDays' default='0'>
+          <Parameter name='FrontFuturesRollingDays' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>discard the front Futures the given number of days before its expiry (e.g zero implies the use of the front Futures during its expiry day)</description>
           </Parameter>
-          <Parameter name='depoFuturesPriority' default='"AllDepos"'>
+          <Parameter name='DepoFuturesPriority' default='"AllDepos"'>
             <type>QuantLibAddin::RateHelper::DepoInclusionCriteria</type>
             <tensorRank>scalar</tensorRank>
             <description>Depo inclusion criteria. If missing, default=AllDepos is used</description>

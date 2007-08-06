@@ -34,17 +34,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='expiries' exampleValue = '10Y'>
+          <Parameter name='Expiries' exampleValue = '10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>cms matrix's expiries as periods</description>
           </Parameter>
-          <Parameter name='swapIndices'>
+          <Parameter name='SwapIndices'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>vector</tensorRank>
             <description>SwapIndex object IDs</description>
           </Parameter>
-          <Parameter name='bidsAsks' >
+          <Parameter name='BidsAsks' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>

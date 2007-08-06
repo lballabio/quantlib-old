@@ -38,7 +38,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='evalDate' exampleValue='13-Feb-2007'>
+          <Parameter name='EvalDate' exampleValue='13-Feb-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>new value for the evaluation date</description>
@@ -76,7 +76,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='boolean' default='true'>
+          <Parameter name='Boolean' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>new value for the boolean which enforce the usage of historic fixings for today's date</description>

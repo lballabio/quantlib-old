@@ -22,42 +22,42 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='r'>
+          <Parameter name='R'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>r</description>
           </Parameter>
-          <Parameter name='s'>
+          <Parameter name='S'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>s</description>
           </Parameter>
-          <Parameter name='alpha'>
+          <Parameter name='Alpha'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha</description>
           </Parameter>
-          <Parameter name='z1'>
+          <Parameter name='Z1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>z1</description>
           </Parameter>
-          <Parameter name='z2'>
+          <Parameter name='Z2'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>z2</description>
           </Parameter>
-          <Parameter name='z3'>
+          <Parameter name='Z3'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>z3</description>
           </Parameter>
-          <Parameter name='maxIter'>
+          <Parameter name='MaxIter'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>maxIter</description>
           </Parameter>
-          <Parameter name='tol'>
+          <Parameter name='Tol'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>tolerance</description>
@@ -82,7 +82,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='seconds' exampleValue='3661'>
+          <Parameter name='Seconds' exampleValue='3661'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>number of seconds</description>
@@ -167,27 +167,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='maxIterations' exampleValue='1000'>
+          <Parameter name='MaxIterations' exampleValue='1000'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>max number of iterations.</description>
           </Parameter>
-          <Parameter name='maxStationaryStateIterations' exampleValue='100'>
+          <Parameter name='MaxStationaryStateIterations' exampleValue='100'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>max number of iterations in a stationary state.</description>
           </Parameter>
-          <Parameter name='rootEpsilon' exampleValue='1e-8'>
+          <Parameter name='RootEpsilon' exampleValue='1e-8'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>tolerance on the root value.</description>
           </Parameter>
-          <Parameter name='functionEpsilon' exampleValue='1e-8'>
+          <Parameter name='FunctionEpsilon' exampleValue='1e-8'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>tolerance on the function value.</description>
           </Parameter>
-          <Parameter name='gradientNormEpsilon' exampleValue='1e-8'>
+          <Parameter name='GradientNormEpsilon' exampleValue='1e-8'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>tolerance on the function gradient norm value.</description>
@@ -206,7 +206,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="lambda" exampleValue="0.01">
+          <Parameter name='Lambda' exampleValue="0.01">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>lambda (typical scale length of the problem)</description>
@@ -223,17 +223,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="epsfcn" libraryType="QuantLib::Real" default="1.0e-8">
+          <Parameter name='Epsfcn' libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>epsfcn. If omitted, default = 1.0e-8 is used.</description>
           </Parameter>
-          <Parameter name="xtol" libraryType="QuantLib::Real" default="1.0e-8">
+          <Parameter name='Xtol' libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>xtol. If omitted, default = 1.0e-8 is used.</description>
           </Parameter>
-          <Parameter name="gtol" libraryType="QuantLib::Real" default="1.0e-8">
+          <Parameter name='Gtol' libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>gtol. If omitted, default = 1.0e-8 is used.</description>
@@ -250,7 +250,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="lineSearch" default='""'>
+          <Parameter name='LineSearch' default='""'>
             <type>QuantLib::LineSearch</type>
             <tensorRank>scalar</tensorRank>
             <description>LineSearch object ID</description>
@@ -267,7 +267,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="lineSearch" default='""'>
+          <Parameter name='LineSearch' default='""'>
             <type>QuantLib::LineSearch</type>
             <tensorRank>scalar</tensorRank>
             <description>LineSearch object ID</description>
@@ -286,17 +286,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="epsilon" default="1e-8">
+          <Parameter name='Epsilon' default="1e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>epsilon. If omitted, default = 1e-8 is used.</description>
           </Parameter>
-          <Parameter name="alpha" default="0.05">
+          <Parameter name='Alpha' default="0.05">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha. If omitted, default = 0.05 is used.</description>
           </Parameter>
-          <Parameter name="beta" default="0.65">
+          <Parameter name='Beta' default="0.65">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta. If omitted, default = 0.65 is used.</description>

@@ -28,7 +28,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='ohPropertyValue' type='ObjectHandler::Object' dependencyTrigger='true' loopParameter='propertyName'>
+    <Member name='ohPropertyValue' type='ObjectHandler::Object' dependencyTrigger='true' loopParameter='PropertyName'>
       <description>retrieve the value(s) of one or more named properties</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
@@ -36,7 +36,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='propertyName'>
+          <Parameter name='PropertyName'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>property name(s) to be queried</description>

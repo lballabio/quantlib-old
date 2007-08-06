@@ -28,27 +28,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='pseudo_square_root'>
+          <Parameter name='Pseudo_square_root'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>Pseudo square root of the covariance matrix</description>
           </Parameter>
-          <Parameter name='displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+          <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
           </Parameter>
-          <Parameter name='taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>taus</description>
           </Parameter>
-          <Parameter name='numeraire' exampleValue ='5'>
+          <Parameter name='Numeraire' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>numeraire</description>
           </Parameter>
-          <Parameter name='alive' exampleValue ='1'>
+          <Parameter name='Alive' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>index of the first rates still alive</description>
@@ -67,7 +67,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' >
+          <Parameter name='CurveState' >
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -90,7 +90,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' >
+          <Parameter name='CurveState' >
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -113,7 +113,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' >
+          <Parameter name='CurveState' >
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -136,22 +136,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='pseudo_square_root'>
+          <Parameter name='Pseudo_square_root'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>Pseudo square root of the covariance matrix</description>
           </Parameter>
-          <Parameter name='taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>taus</description>
           </Parameter>
-          <Parameter name='numeraire' exampleValue ='5'>
+          <Parameter name='Numeraire' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>numeraire</description>
           </Parameter>
-          <Parameter name='alive' exampleValue ='1'>
+          <Parameter name='Alive' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>index of the first rates still alive</description>
@@ -170,7 +170,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' >
+          <Parameter name='CurveState' >
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -193,7 +193,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' >
+          <Parameter name='CurveState' >
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -216,7 +216,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' >
+          <Parameter name='CurveState' >
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -239,32 +239,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='pseudo_square_root'>
+          <Parameter name='Pseudo_square_root'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>Pseudo square root of the covariance matrix</description>
           </Parameter>
-          <Parameter name='displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+          <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
           </Parameter>
-          <Parameter name='taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>taus</description>
           </Parameter>
-          <Parameter name='numeraire' exampleValue ='5'>
+          <Parameter name='Numeraire' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>numeraire</description>
           </Parameter>
-          <Parameter name='alive' exampleValue ='1'>
+          <Parameter name='Alive' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>index of the first rates still alive</description>
           </Parameter>
-          <Parameter name='spanningFwds' exampleValue ='5'>
+          <Parameter name='SpanningFwds' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forwards to be spanned</description>
@@ -283,7 +283,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' >
+          <Parameter name='CurveState' >
             <type>QuantLib::CMSwapCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -306,27 +306,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='pseudo_square_root'>
+          <Parameter name='Pseudo_square_root'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>Pseudo square root of the covariance matrix</description>
           </Parameter>
-          <Parameter name='displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+          <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
           </Parameter>
-          <Parameter name='taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>taus</description>
           </Parameter>
-          <Parameter name='numeraire' exampleValue ='5'>
+          <Parameter name='Numeraire' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>numeraire</description>
           </Parameter>
-          <Parameter name='alive' exampleValue ='1'>
+          <Parameter name='Alive' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>index of the first rates still alive</description>
@@ -345,7 +345,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' >
+          <Parameter name='CurveState' >
             <type>QuantLib::CoterminalSwapCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>

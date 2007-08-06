@@ -38,7 +38,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='refDate' default='QuantLib::Date()'>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>reference date</description>
@@ -60,7 +60,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='refDate' default='QuantLib::Date()'>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>reference date</description>
@@ -98,7 +98,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='index' exampleValue='0'>
+          <Parameter name='Index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>zero based period index</description>
@@ -267,52 +267,52 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='effectiveDate' exampleValue='2M'>
+          <Parameter name='EffectiveDate' exampleValue='2M'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>effective date</description>
           </Parameter>
-          <Parameter name='terminationDate' exampleValue='122M'>
+          <Parameter name='TerminationDate' exampleValue='122M'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>termination date</description>
           </Parameter>
-          <Parameter name='tenor' exampleValue='1Y'>
+          <Parameter name='Tenor' exampleValue='1Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='calendar' exampleValue='TARGET'>
+          <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='convention' exampleValue='Following'>
+          <Parameter name='Convention' exampleValue='Following'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual dates business day convention</description>
           </Parameter>
-          <Parameter name='termDateConv' exampleValue='Following'>
+          <Parameter name='TermDateConv' exampleValue='Following'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>termination date business day convention</description>
           </Parameter>
-          <Parameter name='backward' default='true'>
+          <Parameter name='Backward' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>backward generation of the schedule. TRUE by default.</description>
           </Parameter>
-          <Parameter name='endOfMonth' default='false'>
+          <Parameter name='EndOfMonth' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>end of month convention. FALSE by default.</description>
           </Parameter>
-          <Parameter name='firstDate' default='QuantLib::Date()'>
+          <Parameter name='FirstDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>stub date, if there is an irregular starting period. NA by default.</description>
           </Parameter>
-          <Parameter name='nextToLastDate' default='QuantLib::Date()'>
+          <Parameter name='NextToLastDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>stub date, if there an irregular final period. NA by default.</description>

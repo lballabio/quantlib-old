@@ -34,12 +34,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='evolutionTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+          <Parameter name='EvolutionTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>evolution times in the simulation</description>
@@ -56,7 +56,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='product' >
+          <Parameter name='Product' >
             <type>QuantLib::MarketModelMultiProduct</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -242,7 +242,7 @@
             <tensorRank>scalar</tensorRank>
             <description>ID of EvolutionDescription object</description>
           </Parameter>
-          <Parameter name='offset' default='1'>
+          <Parameter name='Offset' default='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>offset applied to the MoneyMarket measure. If omitted, default = 1 is used.</description>
@@ -270,7 +270,7 @@
             <tensorRank>scalar</tensorRank>
             <description>ID of EvolutionDescription object</description>
           </Parameter>
-          <Parameter name='numeraires' exampleValue ='5,5'>
+          <Parameter name='Numeraires' exampleValue ='5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
             <description>vector of numeraires</description>
@@ -298,7 +298,7 @@
             <tensorRank>scalar</tensorRank>
             <description>ID of EvolutionDescription object</description>
           </Parameter>
-          <Parameter name='numeraires' exampleValue ='5,5'>
+          <Parameter name='Numeraires' exampleValue ='5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
             <description>vector of numeraires</description>
@@ -326,12 +326,12 @@
             <tensorRank>scalar</tensorRank>
             <description>ID of EvolutionDescription object</description>
           </Parameter>
-          <Parameter name='numeraires' exampleValue ='5,5'>
+          <Parameter name='Numeraires' exampleValue ='5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
             <description>vector of numeraires</description>
           </Parameter>
-          <Parameter name='offset' default='1'>
+          <Parameter name='Offset' default='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>offset applied to the MoneyMarket measure If omitted, default = 1 is used.</description>

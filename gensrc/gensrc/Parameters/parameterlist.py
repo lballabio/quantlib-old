@@ -21,6 +21,7 @@ relating to a function parameter."""
 
 from gensrc.Utilities import common
 from gensrc.Parameters import parameter
+from gensrc.Parameters import exceptions
 from gensrc.Serialization import serializable
 
 class ParameterList(serializable.Serializable):
@@ -90,17 +91,26 @@ class ParameterList(serializable.Serializable):
     def postSerialize(self):
         """Perform post serialization initialization."""
 
-        # set some values:
-        # - underlyingCount - #/params passed to underlying function i.e. 
-        #   excluding 1) params with ignore = True 2) objectIDs etc
-        # - lastParameter - required for rules with padLastParameter=True
+        # Derive some values:
+        # - underlyingCount - The number of parameters that will actually
+        # be passed to the underlying Addin function.  This excludes 
+        # parameters with the "ignore" flag set to true, e.g. object IDs.
+        # - lastParameter - A boolean which must be set to true for the
+        # last parameter in the list.  The value is used for Rules 
+        # where padLastParameter=True
 
+        # Also ensure that all parameter IDs are unique.
+
+        alreadySeen = []
         self.underlyingCount_ = 0
         i = 1
         for param in self.parameters_:
+            if param.name().upper() in alreadySeen:
+                raise exceptions.ParameterDuplicateNameException(
+                    param.name())
+            alreadySeen.append(param.name().upper())
             if not param.ignore():
                 self.underlyingCount_ += 1
             if i == self.parameterCount_:
                 param.setLastParameter(True)
             i += 1
-

@@ -34,18 +34,18 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='marketModel'>
+          <Parameter name='MarketModel'>
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>MarketModel object ID</description>
           </Parameter>
-          <Parameter name='brownianGeneratorFactory'>
+          <Parameter name='BrownianGeneratorFactory'>
             <type>QuantLib::BrownianGeneratorFactory</type>
             <tensorRank>scalar</tensorRank>
             <description>Brownian generator factory</description>
           </Parameter>
-          <Parameter name='numeraires' exampleValue ='5,5,5,5,5'>
+          <Parameter name='Numeraires' exampleValue ='5,5,5,5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
             <description>numeraire vector</description>
@@ -63,18 +63,18 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='marketModel'>
+          <Parameter name='MarketModel'>
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>MarketModel object ID</description>
           </Parameter>
-          <Parameter name='brownianGeneratorFactory'>
+          <Parameter name='BrownianGeneratorFactory'>
             <type>QuantLib::BrownianGeneratorFactory</type>
             <tensorRank>scalar</tensorRank>
             <description>Brownian generator factory</description>
           </Parameter>
-          <Parameter name='numeraires' exampleValue ='5,5,5,5,5'>
+          <Parameter name='Numeraires' exampleValue ='5,5,5,5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
             <description>numeraire vector</description>
@@ -92,18 +92,18 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='marketModel'>
+          <Parameter name='MarketModel'>
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>MarketModel object ID</description>
           </Parameter>
-          <Parameter name='brownianGeneratorFactory'>
+          <Parameter name='BrownianGeneratorFactory'>
             <type>QuantLib::BrownianGeneratorFactory</type>
             <tensorRank>scalar</tensorRank>
             <description>Brownian generator factory</description>
           </Parameter>
-          <Parameter name='numeraires' exampleValue ='5,5,5,5,5'>
+          <Parameter name='Numeraires' exampleValue ='5,5,5,5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
             <description>numeraire vector</description>

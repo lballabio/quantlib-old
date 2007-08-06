@@ -28,7 +28,7 @@
             </ReturnValue>
         </EnumerationMember>
 
-        <EnumerationMember name='qlCalendarIsBusinessDay' type='QuantLib::Calendar' loopParameter='date'>
+        <EnumerationMember name='qlCalendarIsBusinessDay' type='QuantLib::Calendar' loopParameter='Date'>
             <description>Returns TRUE if the date is a business day for the given calendar</description>
             <libraryFunction>isBusinessDay</libraryFunction>
             <SupportedPlatforms>
@@ -37,7 +37,7 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='date'>
+                    <Parameter name='Date'>
                         <type>QuantLib::Date</type>
                         <tensorRank>vector</tensorRank>
                         <description>date</description>
@@ -50,7 +50,7 @@
             </ReturnValue>
         </EnumerationMember>
 
-        <EnumerationMember name='qlCalendarIsHoliday' type='QuantLib::Calendar' loopParameter='date'>
+        <EnumerationMember name='qlCalendarIsHoliday' type='QuantLib::Calendar' loopParameter='Date'>
             <description>returns TRUE if the date is a holiday for the given calendar</description>
             <libraryFunction>isHoliday</libraryFunction>
             <SupportedPlatforms>
@@ -59,7 +59,7 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='date'>
+                    <Parameter name='Date'>
                         <type>QuantLib::Date</type>
                         <tensorRank>vector</tensorRank>
                         <description>date</description>
@@ -72,7 +72,7 @@
             </ReturnValue>
         </EnumerationMember>
 
-        <EnumerationMember name='qlCalendarIsEndOfMonth' type='QuantLib::Calendar' loopParameter='date'>
+        <EnumerationMember name='qlCalendarIsEndOfMonth' type='QuantLib::Calendar' loopParameter='Date'>
             <description>returns TRUE if the date is last business day for the month in the given calendar</description>
             <libraryFunction>isEndOfMonth</libraryFunction>
             <SupportedPlatforms>
@@ -81,7 +81,7 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='date'>
+                    <Parameter name='Date'>
                         <type>QuantLib::Date</type>
                         <tensorRank>vector</tensorRank>
                         <description>date</description>
@@ -94,7 +94,7 @@
             </ReturnValue>
         </EnumerationMember>
 
-        <EnumerationMember name='qlCalendarEndOfMonth' type='QuantLib::Calendar' loopParameter='date'>
+        <EnumerationMember name='qlCalendarEndOfMonth' type='QuantLib::Calendar' loopParameter='Date'>
             <description>returns the last business day in the given calendar of the month to which the given date belongs</description>
             <libraryFunction>endOfMonth</libraryFunction>
             <SupportedPlatforms>
@@ -103,7 +103,7 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='date' const='False'>
+                    <Parameter name='Date' const='False'>
                         <type>QuantLib::Date</type>
                         <tensorRank>vector</tensorRank>
                         <description>date</description>
@@ -116,7 +116,7 @@
             </ReturnValue>
         </EnumerationMember>
 
-        <!--<EnumerationMember name='qlCalendarAddHoliday' type='QuantLib::Calendar' loopParameter='date'>-->
+        <!--<EnumerationMember name='qlCalendarAddHoliday' type='QuantLib::Calendar' loopParameter='Date'>-->
         <EnumerationMember name='qlCalendarAddHoliday' type='QuantLib::Calendar'>
             <description>adds an holiday to the given calendar</description>
             <libraryFunction>addHoliday</libraryFunction>
@@ -126,7 +126,7 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='date'>
+                    <Parameter name='Date'>
                         <type>QuantLib::Date</type>
                         <tensorRank>scalar</tensorRank>
                         <description>date</description>
@@ -139,7 +139,7 @@
             </ReturnValue>
         </EnumerationMember>
 
-        <!--<EnumerationMember name='qlCalendarRemoveHoliday' type='QuantLib::Calendar' loopParameter='date'>-->
+        <!--<EnumerationMember name='qlCalendarRemoveHoliday' type='QuantLib::Calendar' loopParameter='Date'>-->
         <EnumerationMember name='qlCalendarRemoveHoliday' type='QuantLib::Calendar'>
             <description>removes an holiday from the given calendar</description>
             <libraryFunction>removeHoliday</libraryFunction>
@@ -149,7 +149,7 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='date'>
+                    <Parameter name='Date'>
                         <type>QuantLib::Date</type>
                         <tensorRank>scalar</tensorRank>
                         <description>date</description>
@@ -171,22 +171,22 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='calendar' exampleValue ='TARGET'>
+                    <Parameter name='Calendar' exampleValue ='TARGET'>
                         <type>QuantLib::Calendar</type>
                         <tensorRank>scalar</tensorRank>
                         <description>Calendar to use for holiday determination</description>
                     </Parameter>
-                    <Parameter name='fromDate' exampleValue ='01-Jan-2005'>
+                    <Parameter name='FromDate' exampleValue ='01-Jan-2005'>
                         <type>QuantLib::Date</type>
                         <tensorRank>scalar</tensorRank>
                         <description>first date of the period</description>
                     </Parameter>
-                    <Parameter name='toDate' exampleValue ='01-Jan-2007'>
+                    <Parameter name='ToDate' exampleValue ='01-Jan-2007'>
                         <type>QuantLib::Date</type>
                         <tensorRank>scalar</tensorRank>
                         <description>last date of the period</description>
                     </Parameter>
-                    <Parameter name='includeWeekEnds' default='false'>
+                    <Parameter name='IncludeWeekEnds' default='false'>
                         <type>bool</type>
                         <tensorRank>scalar</tensorRank>
                         <description>include week-end as holidays</description>
@@ -199,7 +199,7 @@
             </ReturnValue>
         </Procedure>
 
-        <EnumerationMember name='qlCalendarAdjust' type='QuantLib::Calendar' loopParameter='date'>
+        <EnumerationMember name='qlCalendarAdjust' type='QuantLib::Calendar' loopParameter='Date'>
             <description>Adjusts a non-business day to the appropriate near business day according to a given calendar with respect to the given convention.</description>
             <libraryFunction>adjust</libraryFunction>
             <SupportedPlatforms>
@@ -208,7 +208,7 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='date'>
+                    <Parameter name='Date'>
                         <type>QuantLib::Date</type>
                         <tensorRank>vector</tensorRank>
                         <description>date to be adjusted</description>
@@ -226,7 +226,7 @@
             </ReturnValue>
         </EnumerationMember>
 
-        <EnumerationMember name='qlCalendarAdvance' type='QuantLib::Calendar' loopParameter='period'>
+        <EnumerationMember name='qlCalendarAdvance' type='QuantLib::Calendar' loopParameter='Period'>
             <description>advances a date according to a given calendar</description>
             <libraryFunction>advance</libraryFunction>
             <SupportedPlatforms>
@@ -235,12 +235,12 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='startDate'>
+                    <Parameter name='StartDate'>
                         <type>QuantLib::Date</type>
                         <tensorRank>scalar</tensorRank>
                         <description>start date to be advanced</description>
                     </Parameter>
-                    <Parameter name='period'>
+                    <Parameter name='Period'>
                         <type>QuantLib::Period</type>
                         <tensorRank>vector</tensorRank>
                         <description>period(s) to advance (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
@@ -250,7 +250,7 @@
                         <tensorRank>scalar</tensorRank>
                         <description>rolling convention</description>
                     </Parameter>
-                    <Parameter name='endOfMonth' default='false' const='False'>
+                    <Parameter name='EndOfMonth' default='false' const='False'>
                         <type>bool</type>
                         <tensorRank>scalar</tensorRank>
                         <description>flag to enforce end of month convention</description>
@@ -263,7 +263,7 @@
             </ReturnValue>
         </EnumerationMember>
 
-        <EnumerationMember name='qlCalendarBusinessDaysBetween' type='QuantLib::Calendar' loopParameter='firstDate'>
+        <EnumerationMember name='qlCalendarBusinessDaysBetween' type='QuantLib::Calendar' loopParameter='FirstDate'>
             <description>Returns the number of business days between two dates</description>
             <libraryFunction>businessDaysBetween</libraryFunction>
             <SupportedPlatforms>
@@ -272,22 +272,22 @@
             </SupportedPlatforms>
             <ParameterList>
                 <Parameters>
-                    <Parameter name='firstDate'>
+                    <Parameter name='FirstDate'>
                         <type>QuantLib::Date</type>
                         <tensorRank>vector</tensorRank>
                         <description>first date of the period</description>
                     </Parameter>
-                    <Parameter name='lastDate'>
+                    <Parameter name='LastDate'>
                         <type>QuantLib::Date</type>
                         <tensorRank>scalar</tensorRank>
                         <description>last date of the period</description>
                     </Parameter>
-                    <Parameter name='includeFirst' default='false'>
+                    <Parameter name='IncludeFirst' default='false'>
                         <type>bool</type>
                         <tensorRank>scalar</tensorRank>
                         <description>include the first date when counting business days</description>
                     </Parameter>
-                    <Parameter name='includeLast' default='false'>
+                    <Parameter name='IncludeLast' default='false'>
                         <type>bool</type>
                         <tensorRank>scalar</tensorRank>
                         <description>include the last date when counting business days</description>

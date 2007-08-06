@@ -95,7 +95,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spanningForwards' exampleValue ='5'>
+          <Parameter name='SpanningForwards' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forwards underlying the CMS</description>
@@ -117,12 +117,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='spanningForwards' exampleValue ='5'>
+          <Parameter name='SpanningForwards' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forwards underlying the CMS</description>
@@ -163,7 +163,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -204,7 +204,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -223,7 +223,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+          <Parameter name='Rates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>forward rates</description>
@@ -245,7 +245,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='discountRatios' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
+          <Parameter name='DiscountRatios' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>discount ratios</description>
@@ -268,7 +268,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='firstValidIndex' exampleValue ='1'>
+          <Parameter name='FirstValidIndex' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>marks the first non expired discount bond</description>
@@ -278,7 +278,7 @@
             <tensorRank>vector</tensorRank>
             <description>vector of discount bond ratios</description>
           </Parameter>
-          <Parameter name='taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate time intervals</description>
@@ -300,7 +300,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='firstValidIndex' exampleValue ='1'>
+          <Parameter name='FirstValidIndex' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>marks the first non expired discount bond</description>
@@ -310,7 +310,7 @@
             <tensorRank>vector</tensorRank>
             <description>vector of discount bond ratios</description>
           </Parameter>
-          <Parameter name='taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate time intervals</description>
@@ -332,7 +332,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='firstValidIndex' exampleValue ='1'>
+          <Parameter name='FirstValidIndex' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>marks the first non expired discount bond</description>
@@ -342,7 +342,7 @@
             <tensorRank>vector</tensorRank>
             <description>vector of discount bond ratios</description>
           </Parameter>
-          <Parameter name='taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate time intervals</description>
@@ -364,12 +364,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spanningForwards' exampleValue ='10'>
+          <Parameter name='SpanningForwards' exampleValue ='10'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forward rates spanned by the constant maturity swap</description>
           </Parameter>
-          <Parameter name='firstValidIndex' exampleValue ='0.001'>
+          <Parameter name='FirstValidIndex' exampleValue ='0.001'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>marks the first non expired discount bond</description>
@@ -379,7 +379,7 @@
             <tensorRank>vector</tensorRank>
             <description>vector of discount bond ratios</description>
           </Parameter>
-          <Parameter name='taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate time intervals</description>
@@ -401,12 +401,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='spanningForwards' exampleValue ='5'>
+          <Parameter name='SpanningForwards' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forward rates spanned by the constant maturity swap</description>
           </Parameter>
-          <Parameter name='firstValidIndex' exampleValue ='1'>
+          <Parameter name='FirstValidIndex' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>marks the first non expired discount bond</description>
@@ -416,7 +416,7 @@
             <tensorRank>vector</tensorRank>
             <description>vector of discount bond ratios</description>
           </Parameter>
-          <Parameter name='taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
+          <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate time intervals</description>

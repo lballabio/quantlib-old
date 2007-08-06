@@ -37,7 +37,7 @@
       <ParameterList>
         <Parameters>
           <!-- if you change the vanillaSwap name, C++ code should be updated'-->
-          <Parameter name='vanillaSwap'>
+          <Parameter name='VanillaSwap'>
             <type>QuantLib::VanillaSwap</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying (vanilla) swap object ID</description>
@@ -53,12 +53,12 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='blackSwaptionEngine'>
+          <Parameter name='BlackSwaptionEngine'>
             <type>QuantLib::BlackSwaptionEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>BlackSwaptionEngine object ID</description>
           </Parameter>
-          <Parameter name='settlementType'>
+          <Parameter name='SettlementType'>
             <type>QuantLib::Settlement::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement type (PhysicalSettlement, CashSettlement)</description>
@@ -94,17 +94,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='swapIndex'>
+          <Parameter name='SwapIndex'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>floating swapIndex object ID</description>
           </Parameter>
-          <Parameter name='strike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
+          <Parameter name='Strike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>strike</description>
           </Parameter>
-          <Parameter name='optionTenor' exampleValue = '0D'>
+          <Parameter name='OptionTenor' exampleValue = '0D'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>as period (e.g. '2Y') </description>
@@ -163,7 +163,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='price' exampleValue ='0.2'>
+          <Parameter name='Price' exampleValue ='0.2'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Price used to infer the implied volatility</description>

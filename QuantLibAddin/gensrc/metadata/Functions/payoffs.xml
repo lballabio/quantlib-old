@@ -59,7 +59,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='underlying' exampleValue ='0.01'>
+          <Parameter name='Underlying' exampleValue ='0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying reference level</description>
@@ -179,22 +179,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='payoffID'>
+          <Parameter name='PayoffID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>payoff ID (e.g. Vanilla, PercentageStrike, AssetOrNothing, CashOrNothing, Gap, SuperShare).</description>
           </Parameter>
-          <Parameter name='optionType' exampleValue ='Call'>
+          <Parameter name='OptionType' exampleValue ='Call'>
             <type>QuantLib::Option::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>option type</description>
           </Parameter>
-          <Parameter name='strike' exampleValue ='0.01'>
+          <Parameter name='Strike' exampleValue ='0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>strike</description>
           </Parameter>
-          <Parameter name='thirdParameter' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='ThirdParameter' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the 3rd paramenter for the payoff definition of CashOrNothing (cash), Gap (determines the size of the payoff), SuperFund (second strike).</description>
@@ -212,57 +212,57 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='type1' exampleValue ='-1.0'>
+          <Parameter name='Type1' exampleValue ='-1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description> Sticky (type1=1) or Ratchet (type1=-1) payoff </description>
           </Parameter>
-          <Parameter name='type2' exampleValue ='-1.0'>
+          <Parameter name='Type2' exampleValue ='-1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description> Strike type (type2=1 for Min, type2=-1 for Max, type2=0 for single sticky/ratchet) </description>
           </Parameter>
-          <Parameter name='gearing1' exampleValue ='1.0'>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='gearing2' exampleValue ='1.1'>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='gearing3' exampleValue ='1.2'>
+          <Parameter name='Gearing3' exampleValue ='1.2'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 3 (for forward rate 3)</description>
           </Parameter>
-          <Parameter name='spread1' exampleValue ='0.001'>
+          <Parameter name='Spread1' exampleValue ='0.001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='spread2' exampleValue ='0.002'>
+          <Parameter name='Spread2' exampleValue ='0.002'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='spread3' exampleValue ='0.003'>
+          <Parameter name='Spread3' exampleValue ='0.003'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 3 (for forward rate 3)</description>
           </Parameter>
-          <Parameter name='initialValue1' exampleValue ='0.02'>
+          <Parameter name='InitialValue1' exampleValue ='0.02'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike 1 (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='initialValue2' exampleValue ='0.03'>
+          <Parameter name='InitialValue2' exampleValue ='0.03'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike 2 (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='accrualFactor' exampleValue ='0.5'>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual factor</description>
@@ -279,32 +279,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='gearing1' exampleValue ='1.0'>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='gearing2' exampleValue ='1.1'>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='spread1' exampleValue ='0.001'>
+          <Parameter name='Spread1' exampleValue ='0.001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='spread2' exampleValue ='0.002'>
+          <Parameter name='Spread2' exampleValue ='0.002'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='initialValue' exampleValue ='0.02'>
+          <Parameter name='InitialValue' exampleValue ='0.02'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='accrualFactor' exampleValue ='0.5'>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual factor</description>
@@ -321,32 +321,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='gearing1' exampleValue ='1.0'>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='gearing2' exampleValue ='1.1'>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='spread1' exampleValue ='0.001'>
+          <Parameter name='Spread1' exampleValue ='0.001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='spread2' exampleValue ='0.002'>
+          <Parameter name='Spread2' exampleValue ='0.002'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='initialValue' exampleValue ='0.02'>
+          <Parameter name='InitialValue' exampleValue ='0.02'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='accrualFactor' exampleValue ='0.5'>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual factor</description>
@@ -363,47 +363,47 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='gearing1' exampleValue ='1.0'>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='gearing2' exampleValue ='1.1'>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='gearing3' exampleValue ='1.2'>
+          <Parameter name='Gearing3' exampleValue ='1.2'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 3 (for forward rate 3)</description>
           </Parameter>
-          <Parameter name='spread1' exampleValue ='0.001'>
+          <Parameter name='Spread1' exampleValue ='0.001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='spread2' exampleValue ='0.002'>
+          <Parameter name='Spread2' exampleValue ='0.002'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='spread3' exampleValue ='0.003'>
+          <Parameter name='Spread3' exampleValue ='0.003'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 3 (for forward rate 3)</description>
           </Parameter>
-          <Parameter name='initialValue1' exampleValue ='0.02'>
+          <Parameter name='InitialValue1' exampleValue ='0.02'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike 1 (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='initialValue2' exampleValue ='0.03'>
+          <Parameter name='InitialValue2' exampleValue ='0.03'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike 2 (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='accrualFactor' exampleValue ='0.5'>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual factor</description>
@@ -420,47 +420,47 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='gearing1' exampleValue ='1.0'>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='gearing2' exampleValue ='1.1'>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='gearing3' exampleValue ='1.2'>
+          <Parameter name='Gearing3' exampleValue ='1.2'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 3 (for forward rate 3)</description>
           </Parameter>
-          <Parameter name='spread1' exampleValue ='0.001'>
+          <Parameter name='Spread1' exampleValue ='0.001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='spread2' exampleValue ='0.002'>
+          <Parameter name='Spread2' exampleValue ='0.002'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='spread3' exampleValue ='0.003'>
+          <Parameter name='Spread3' exampleValue ='0.003'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 3 (for forward rate 3)</description>
           </Parameter>
-          <Parameter name='initialValue1' exampleValue ='0.02'>
+          <Parameter name='InitialValue1' exampleValue ='0.02'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike 1 (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='initialValue2' exampleValue ='0.03'>
+          <Parameter name='InitialValue2' exampleValue ='0.03'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike 2 (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='accrualFactor' exampleValue ='0.5'>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual factor</description>
@@ -477,47 +477,47 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='gearing1' exampleValue ='1.0'>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='gearing2' exampleValue ='1.1'>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='gearing3' exampleValue ='1.2'>
+          <Parameter name='Gearing3' exampleValue ='1.2'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 3 (for forward rate 3)</description>
           </Parameter>
-          <Parameter name='spread1' exampleValue ='0.001'>
+          <Parameter name='Spread1' exampleValue ='0.001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='spread2' exampleValue ='0.002'>
+          <Parameter name='Spread2' exampleValue ='0.002'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='spread3' exampleValue ='0.003'>
+          <Parameter name='Spread3' exampleValue ='0.003'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 3 (for forward rate 3)</description>
           </Parameter>
-          <Parameter name='initialValue1' exampleValue ='0.02'>
+          <Parameter name='InitialValue1' exampleValue ='0.02'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike 1 (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='initialValue2' exampleValue ='0.03'>
+          <Parameter name='InitialValue2' exampleValue ='0.03'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike 2 (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='accrualFactor' exampleValue ='0.5'>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual factor</description>
@@ -534,47 +534,47 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='gearing1' exampleValue ='1.0'>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='gearing2' exampleValue ='1.1'>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='gearing3' exampleValue ='1.2'>
+          <Parameter name='Gearing3' exampleValue ='1.2'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>gearing 3 (for forward rate 3)</description>
           </Parameter>
-          <Parameter name='spread1' exampleValue ='0.001'>
+          <Parameter name='Spread1' exampleValue ='0.001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 1 (for strike 1)</description>
           </Parameter>
-          <Parameter name='spread2' exampleValue ='0.002'>
+          <Parameter name='Spread2' exampleValue ='0.002'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 2 (for strike 2)</description>
           </Parameter>
-          <Parameter name='spread3' exampleValue ='0.003'>
+          <Parameter name='Spread3' exampleValue ='0.003'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spread 3 (for forward rate 3)</description>
           </Parameter>
-          <Parameter name='initialValue1' exampleValue ='0.02'>
+          <Parameter name='InitialValue1' exampleValue ='0.02'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike 1 (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='initialValue2' exampleValue ='0.03'>
+          <Parameter name='InitialValue2' exampleValue ='0.03'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>initial value for strike 2 (forward rate or coupon/accrualFactor)</description>
           </Parameter>
-          <Parameter name='accrualFactor' exampleValue ='0.5'>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual factor</description>

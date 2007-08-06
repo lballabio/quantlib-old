@@ -22,7 +22,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='frequency' exampleValue='Annual'>
+          <Parameter name='Frequency' exampleValue='Annual'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
@@ -36,7 +36,7 @@
     </Procedure>
 
     <!-- to be deprecated in favour of coercion -->
-    <Procedure name='qlFrequencyFromPeriod' loopParameter='period'>
+    <Procedure name='qlFrequencyFromPeriod' loopParameter='Period'>
       <description>returns a Frequency from a given Period (e.g. SemiAnnual from 6M).</description>
       <alias>QuantLibAddin::frequencyFromPeriod</alias>
       <SupportedPlatforms>
@@ -45,7 +45,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='period' exampleValue='1Y'>
+          <Parameter name='Period' exampleValue='1Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>period(s) to advance (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
@@ -67,12 +67,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='period1' exampleValue='1Y'>
+          <Parameter name='Period1' exampleValue='1Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>left hand side</description>
           </Parameter>
-          <Parameter name='period2' exampleValue='2Y'>
+          <Parameter name='Period2' exampleValue='2Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>right hand side</description>
@@ -93,7 +93,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='period' exampleValue='1Y-1M'>
+          <Parameter name='Period' exampleValue='1Y-1M'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>input period (e.g. 1Y-1M)</description>
@@ -138,7 +138,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlDateIsLeap' loopParameter='year'>
+    <Procedure name='qlDateIsLeap' loopParameter='Year'>
       <description>returns TRUE if a year is leap.</description>
       <alias>QuantLib::Date::isLeap</alias>
       <SupportedPlatforms>
@@ -147,7 +147,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='year' exampleValue='2007'>
+          <Parameter name='Year' exampleValue='2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
             <description>year (e.g. 2006)</description>
@@ -160,7 +160,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlDateEndOfMonth' loopParameter='date'>
+    <Procedure name='qlDateEndOfMonth' loopParameter='Date'>
       <description>returns the last day of the month to which the given date belongs.</description>
       <alias>QuantLib::Date::endOfMonth</alias>
       <SupportedPlatforms>
@@ -169,7 +169,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' exampleValue='15-Feb-2007'>
+          <Parameter name='Date' exampleValue='15-Feb-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
@@ -182,7 +182,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlDateIsEndOfMonth' loopParameter='date'>
+    <Procedure name='qlDateIsEndOfMonth' loopParameter='Date'>
       <description>returns TRUE if a date is the last day of its month.</description>
       <alias>QuantLib::Date::isEndOfMonth</alias>
       <SupportedPlatforms>
@@ -191,7 +191,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' exampleValue='28-Feb-2007'>
+          <Parameter name='Date' exampleValue='28-Feb-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
@@ -204,7 +204,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlDateNextWeekday' loopParameter='date'>
+    <Procedure name='qlDateNextWeekday' loopParameter='Date'>
       <description>Returns the next given weekday following or equal to the given date (e.g., the Friday following Tuesday, January 15th, 2002 was January 18th, 2002).</description>
       <alias>QuantLib::Date::nextWeekday</alias>
       <SupportedPlatforms>
@@ -213,12 +213,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' exampleValue='09-Feb-2007'>
+          <Parameter name='Date' exampleValue='09-Feb-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
           </Parameter>
-          <Parameter name='weekday' exampleValue='Monday' const='False'>
+          <Parameter name='Weekday' exampleValue='Monday' const='False'>
             <type>QuantLib::Weekday</type>
             <tensorRank>scalar</tensorRank>
             <description>Weekday (e.g. Wednesday, or Wed).</description>
@@ -241,22 +241,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='nth' exampleValue='2'>
+          <Parameter name='Nth' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>ordinal number (greater than zero, less than 6)</description>
           </Parameter>
-          <Parameter name='weekday' exampleValue='Monday'>
+          <Parameter name='Weekday' exampleValue='Monday'>
             <type>QuantLib::Weekday</type>
             <tensorRank>scalar</tensorRank>
             <description>Weekday (e.g. Wednesday, or Wed).</description>
           </Parameter>
-          <Parameter name='month' exampleValue='Feb'>
+          <Parameter name='Month' exampleValue='Feb'>
             <type>QuantLib::Month</type>
             <tensorRank>scalar</tensorRank>
             <description>Month (e.g. January, or Jan).</description>
           </Parameter>
-          <Parameter name='year' exampleValue='2007'>
+          <Parameter name='Year' exampleValue='2007'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>year (e.g. 2006)</description>
@@ -269,7 +269,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlIMMIsIMMdate' loopParameter='date'>
+    <Procedure name='qlIMMIsIMMdate' loopParameter='Date'>
       <description>returns whether or not the given date is an IMM date.</description>
       <alias>QuantLib::IMM::isIMMdate</alias>
       <SupportedPlatforms>
@@ -278,12 +278,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' exampleValue='21-Mar-2007'>
+          <Parameter name='Date' exampleValue='21-Mar-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
           </Parameter>
-          <Parameter name='mainCycle' default='true' const='false'>
+          <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
@@ -296,7 +296,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlIMMIsIMMcode' loopParameter='code'>
+    <Procedure name='qlIMMIsIMMcode' loopParameter='Code'>
       <description>returns whether or not the given code is an IMM code.</description>
       <alias>QuantLib::IMM::isIMMcode</alias>
       <SupportedPlatforms>
@@ -305,12 +305,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='code' exampleValue='H9'>
+          <Parameter name='Code' exampleValue='H9'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>2 letter string (e.g. H9)</description>
           </Parameter>
-          <Parameter name='mainCycle' default='true' const='false'>
+          <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
@@ -354,12 +354,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' default='QuantLib::Date()'>
+          <Parameter name='Date' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>date with respect to which the next IMM date is calculated</description>
           </Parameter>
-          <Parameter name='mainCycle' default='true' const='false'>
+          <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
@@ -380,12 +380,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' default='QuantLib::Date()'>
+          <Parameter name='Date' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>date with respect to which the next IMM codes are calculated</description>
           </Parameter>
-          <Parameter name='mainCycle' default='std::vector&lt;bool&gt;(40, true)'>
+          <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
             <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
@@ -412,7 +412,7 @@
             <tensorRank>vector</tensorRank>
             <description>2 letter IMM code (e.q. \"H9\")</description>
           </Parameter>
-          <Parameter name='refDate' default='QuantLib::Date()'>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>reference date use to fix the decade (default is the current EvaluationDate)</description>
@@ -434,12 +434,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' default='QuantLib::Date()'>
+          <Parameter name='Date' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>date with respect to which the next IMM date is calculated</description>
           </Parameter>
-          <Parameter name='mainCycle' default='true' const='false'>
+          <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
@@ -460,12 +460,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' default='QuantLib::Date()'>
+          <Parameter name='Date' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>date with respect to which the next IMM dates are calculated</description>
           </Parameter>
-          <Parameter name='mainCycle' default='std::vector&lt;bool&gt;(40, true)'>
+          <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
             <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>

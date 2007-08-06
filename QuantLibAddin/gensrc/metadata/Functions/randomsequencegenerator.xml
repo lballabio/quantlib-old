@@ -34,7 +34,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='seed' exampleValue ='2'>
+          <Parameter name='Seed' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>the seed used to initialize the random number generator</description>
@@ -56,7 +56,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='samples' exampleValue ='5'>
+          <Parameter name='Samples' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of samples</description>
@@ -77,12 +77,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dimension' exampleValue ='3'>
+          <Parameter name='Dimension' exampleValue ='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>dimension</description>
           </Parameter>
-          <Parameter name='seed' exampleValue ='2'>
+          <Parameter name='Seed' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>seed</description>
@@ -99,7 +99,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dimension' exampleValue ='2'>
+          <Parameter name='Dimension' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>dimension</description>
@@ -116,12 +116,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dimension' exampleValue ='2'>
+          <Parameter name='Dimension' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>dimension</description>
           </Parameter>
-          <Parameter name='seed' exampleValue ='2'>
+          <Parameter name='Seed' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>seed</description>
@@ -138,12 +138,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dimension' exampleValue ='3'>
+          <Parameter name='Dimension' exampleValue ='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>dimension</description>
           </Parameter>
-          <Parameter name='seed' exampleValue ='2'>
+          <Parameter name='Seed' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>seed</description>

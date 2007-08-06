@@ -36,18 +36,18 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='marketModelEvolver'>
+          <Parameter name='MarketModelEvolver'>
             <type>QuantLib::MarketModelEvolver</type>
             <tensorRank>scalar</tensorRank>
             <description>MarketModelEvolver object ID</description>
           </Parameter>
-          <Parameter name='product' >
+          <Parameter name='Product' >
             <type>QuantLib::MarketModelMultiProduct</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>MarketModelMultiProduct object ID</description>
           </Parameter>
-          <Parameter name='initialNumeraireValue'>
+          <Parameter name='InitialNumeraireValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>initial numeraire value</description>
@@ -73,7 +73,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Sequence Statistics object ID</description>
           </Parameter>
-          <Parameter name='paths' exampleValue ='8191'>
+          <Parameter name='Paths' exampleValue ='8191'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of paths</description>

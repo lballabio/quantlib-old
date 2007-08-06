@@ -20,52 +20,52 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dummy0' ignore='true' exampleValue='Trigger0'>
+          <Parameter name='Dummy0' ignore='true' exampleValue='Trigger0'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy1' ignore='true' exampleValue='Trigger1'>
+          <Parameter name='Dummy1' ignore='true' exampleValue='Trigger1'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy2' ignore='true' exampleValue='Trigger2'>
+          <Parameter name='Dummy2' ignore='true' exampleValue='Trigger2'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy3' ignore='true'>
+          <Parameter name='Dummy3' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy4' ignore='true'>
+          <Parameter name='Dummy4' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy5' ignore='true'>
+          <Parameter name='Dummy5' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy6' ignore='true'>
+          <Parameter name='Dummy6' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy7' ignore='true'>
+          <Parameter name='Dummy7' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy8' ignore='true'>
+          <Parameter name='Dummy8' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
           </Parameter>
-          <Parameter name='dummy9' ignore='true'>
+          <Parameter name='Dummy9' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy parameter (ignored)</description>
@@ -103,7 +103,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='regex' exampleValue='EURYC'>
+          <Parameter name='Regex' exampleValue='EURYC'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>optional matching pattern in UNIX format (wildcard is .*)</description>
@@ -141,7 +141,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='inputRange'>
+          <Parameter name='InputRange'>
             <type>any</type>
             <tensorRank>matrix</tensorRank>
             <description>scalar/vector/matrix of values to be packed</description>
@@ -163,17 +163,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='text'>
+          <Parameter name='Text'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>string to be parsed</description>
           </Parameter>
-          <Parameter name='delimiters' default='",;"'>
+          <Parameter name='Delimiters' default='",;"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>characters used as delimiters: each single character is used as delimiter (default = \";,\")</description>
           </Parameter>
-          <Parameter name='concatenateDelim' default='false'>
+          <Parameter name='ConcatenateDelim' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>specifies if multiple adjacent delimiters are to be considered as one (TRUE) or not (FALSE). Default value is FALSE.</description>
@@ -196,12 +196,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='input'>
+          <Parameter name='Input'>
             <type>any</type>
             <tensorRank>vector</tensorRank>
             <description>vector to be filtered</description>
           </Parameter>
-          <Parameter name='flags'>
+          <Parameter name='Flags'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
             <description>vector to inclusion flags</description>
@@ -223,7 +223,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='range'>
+          <Parameter name='Range'>
             <type>reference</type>
             <tensorRank>scalar</tensorRank>
             <description>range to query</description>
@@ -262,7 +262,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectID'>
+          <Parameter name='ObjectID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be queried</description>
@@ -284,7 +284,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectID'>
+          <Parameter name='ObjectID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be queried</description>
@@ -306,7 +306,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='deletePermanent' default='false'>
+          <Parameter name='DeletePermanent' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>also delete permanent objects</description>
@@ -368,12 +368,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='logMessage' exampleValue='Log this message'>
+          <Parameter name='LogMessage' exampleValue='Log this message'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>message to be logged</description>
           </Parameter>
-          <Parameter name='logLevel' default='4'>
+          <Parameter name='LogLevel' default='4'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>threshold for log messages</description>
@@ -397,7 +397,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectID' exampleValue='DummyObject'>
+          <Parameter name='ObjectID' exampleValue='DummyObject'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be logged</description>
@@ -426,7 +426,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='ohPropertyValue' type='ObjectHandler::Object' dependencyTrigger='true' loopParameter='propertyName'>
+    <Member name='ohPropertyValue' type='ObjectHandler::Object' dependencyTrigger='true' loopParameter='PropertyName'>
       <description>retrieve the value(s) of one or more named properties</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
@@ -435,7 +435,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='propertyName'>
+          <Parameter name='PropertyName'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>property name(s) to be queried</description>
@@ -459,12 +459,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='logFileName' exampleValue='MyLogFile'>
+          <Parameter name='LogFileName' exampleValue='MyLogFile'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>path and name of log file</description>
           </Parameter>
-          <Parameter name='logLevel' default='4'>
+          <Parameter name='LogLevel' default='4'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>threshold for log messages</description>
@@ -486,7 +486,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='logLevel'>
+          <Parameter name='LogLevel'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>threshold for log messages</description>
@@ -510,12 +510,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='console'>
+          <Parameter name='Console'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>1 (enable) / 0 (disable)</description>
           </Parameter>
-          <Parameter name='logLevel' default='4'>
+          <Parameter name='LogLevel' default='4'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>threshold for log messages</description>
@@ -536,12 +536,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectList'>
+          <Parameter name='ObjectList'>
             <type>ObjectHandler::Object</type>
             <tensorRank>vector</tensorRank>
             <description>list of objects to be serialized</description>
           </Parameter>
-          <Parameter name='path'>
+          <Parameter name='Path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>file to which objects are to be serialized</description>
@@ -562,12 +562,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectList'>
+          <Parameter name='ObjectList'>
             <type>ObjectHandler::Object</type>
             <tensorRank>vector</tensorRank>
             <description>list of objects to be serialized</description>
           </Parameter>
-          <Parameter name='path'>
+          <Parameter name='Path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>file to which objects are to be serialized</description>
@@ -588,12 +588,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='idList'>
+          <Parameter name='IdList'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>list of objects to be deserialized</description>
           </Parameter>
-          <Parameter name='path'>
+          <Parameter name='Path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>file from which objects are to be deserialized</description>
@@ -614,7 +614,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='path'>
+          <Parameter name='Path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>file from which objects are to be deserialized</description>

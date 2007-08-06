@@ -25,7 +25,7 @@
   <Functions>
 
     <!-- CapletVolatilityStructure interface-->
-    <Member name='qlCapletVTSVolatility' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='strike'>
+    <Member name='qlCapletVTSVolatility' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
       <description>Returns volatility from the given CapletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -34,17 +34,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' exampleValue ='5y'>
+          <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>caplet/floorlet expiry date</description>
           </Parameter>
-          <Parameter name='strike' exampleValue ='0.04' const='False'>
+          <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>caplet/floorlet strike</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Extrapolation Flag (TRUE allows extrapolation)</description>
@@ -57,7 +57,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletVTSVolatility2' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='strike'>
+    <Member name='qlCapletVTSVolatility2' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
       <description>Returns volatility from the given CapletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -66,17 +66,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionTenor' exampleValue ='5y'>
+          <Parameter name='OptionTenor' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>caplet/floorlet option tenor</description>
           </Parameter>
-          <Parameter name='strike' exampleValue ='0.04' const='False'>
+          <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>caplet/floorlet strike</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Extrapolation Flag (TRUE allows extrapolation)</description>
@@ -89,7 +89,7 @@
       </ReturnValue>
     </Member>
     
-    <Member name='qlCapletVTSBlackVariance' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='optionDate'>
+    <Member name='qlCapletVTSBlackVariance' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='OptionDate'>
       <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
@@ -98,17 +98,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' exampleValue ='5y'>
+          <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>cap/floor expiry date</description>
           </Parameter>
-          <Parameter name='strike' exampleValue ='0.04' const='False'>
+          <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>cap/floor strike vector</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False'>
+          <Parameter name='AllowExtrapolation' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Extrapolation Flag (TRUE allows extrapolation)</description>
@@ -121,7 +121,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletVTSBlackVariance2' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='optionTenor'>
+    <Member name='qlCapletVTSBlackVariance2' type='QuantLib::CapletVolatilityStructure' superType='handleToLib' loopParameter='OptionTenor'>
       <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
@@ -130,17 +130,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionTenor' exampleValue ='5y'>
+          <Parameter name='OptionTenor' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>cap/floor expiry date</description>
           </Parameter>
-          <Parameter name='strike' exampleValue ='0.04' const='False'>
+          <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>cap/floor strike vector</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False'>
+          <Parameter name='AllowExtrapolation' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Extrapolation Flag (TRUE allows extrapolation)</description>
@@ -194,7 +194,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='currentLink' default='""'>
+          <Parameter name='CurrentLink' default='""'>
             <type>QuantLib::CapletVolatilityStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -213,7 +213,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='currentLink' >
+          <Parameter name='CurrentLink' >
             <type>QuantLib::CapletVolatilityStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -237,13 +237,13 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='volatility' >
+          <Parameter name='Volatility' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>cap/floor constant volatility Quote</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -294,23 +294,23 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='capTenors'>
+          <Parameter name='CapTenors'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>cap lengths.</description>
           </Parameter>
-          <Parameter name='capStrikes'>
+          <Parameter name='CapStrikes'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>cap strikes.</description>
           </Parameter>
-          <Parameter name='volatilities' >
+          <Parameter name='Volatilities' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
             <description>cap volatilities.</description>
           </Parameter>
-          <Parameter name="index">
+          <Parameter name='Index'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>cap index object ID</description>
@@ -321,22 +321,22 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='impliedVolatilityAccuracy'>
+          <Parameter name='ImpliedVolatilityAccuracy'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>implied Volatility Accuracy.</description>
           </Parameter>
-          <Parameter name='maxEvaluations'>
+          <Parameter name='MaxEvaluations'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>implied Volatility max Evaluations.</description>
           </Parameter>
-          <Parameter name='decoupledInterpolation' const='false'>
+          <Parameter name='DecoupledInterpolation' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Used decoupled interpolations</description>
@@ -354,23 +354,23 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='capTenors'>
+          <Parameter name='CapTenors'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>cap lengths.</description>
           </Parameter>
-          <Parameter name='capStrikes'>
+          <Parameter name='CapStrikes'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>cap strikes.</description>
           </Parameter>
-          <Parameter name='volatilities' >
+          <Parameter name='Volatilities' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
             <description>cap volatilities.</description>
           </Parameter>
-          <Parameter name="index">
+          <Parameter name='Index'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>cap index object ID</description>
@@ -381,27 +381,27 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='impliedVolatilityAccuracy'>
+          <Parameter name='ImpliedVolatilityAccuracy'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>implied Volatility Accuracy.</description>
           </Parameter>
-          <Parameter name='maxEvaluations'>
+          <Parameter name='MaxEvaluations'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>implied Volatility max Evaluations.</description>
           </Parameter>
-          <Parameter name='smileSections'>
+          <Parameter name='SmileSections'>
             <type>QuantLib::SmileSection</type>
             <tensorRank>vector</tensorRank>
             <description>smile sections object IDs</description>
           </Parameter>
-          <Parameter name='decoupledInterpolation' const='false'>
+          <Parameter name='DecoupledInterpolation' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Used decoupled interpolations</description>
@@ -419,17 +419,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='referenceDate'>
+          <Parameter name='ReferenceDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>reference date</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='smileSections'>
+          <Parameter name='SmileSections'>
             <type>QuantLib::SmileSection</type>
             <tensorRank>vector</tensorRank>
             <description>smile sections object IDs</description>
@@ -453,7 +453,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Caplet volatility structure object ID</description>
           </Parameter>
-          <Parameter name='spread'>
+          <Parameter name='Spread'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>

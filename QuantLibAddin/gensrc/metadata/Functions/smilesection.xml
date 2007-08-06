@@ -34,7 +34,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='strike' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Strike' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>strike. If omitted, default = at-the-money is used.</description>
@@ -56,7 +56,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='strike' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Strike' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>strike. If omitted, default = at-the-money is used.</description>
@@ -128,27 +128,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' exampleValue ='3m'>
+          <Parameter name='OptionDate' exampleValue ='3m'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as date</description>
           </Parameter>
-          <Parameter name='volatility' exampleValue ='0.14'>
+          <Parameter name='Volatility' exampleValue ='0.14'>
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
             <description>volatilities</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='refDate' exampleValue ='0D'>
+          <Parameter name='RefDate' exampleValue ='0D'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>ref date</description>
           </Parameter>
-          <Parameter name='atmValue' exampleValue ='0.04'>
+          <Parameter name='AtmValue' exampleValue ='0.04'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Current value of the underlying</description>
@@ -167,84 +167,84 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' exampleValue ='3m'>
+          <Parameter name='OptionDate' exampleValue ='3m'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as Date</description>
           </Parameter>
-          <Parameter name='strikes' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
+          <Parameter name='Strikes' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
           </Parameter>
-          <Parameter name='stdDevs' >
+          <Parameter name='StdDevs' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
             <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
           </Parameter>
-          <Parameter name='forward'  exampleValue ='0.045'>
+          <Parameter name='Forward'  exampleValue ='0.045'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>atm rate</description>
           </Parameter>
-          <Parameter name='alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>nu (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>rho (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='alphaIsFixed' default='false'>
+          <Parameter name='AlphaIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
-          <Parameter name='betaIsFixed' default='false'>
+          <Parameter name='BetaIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
-          <Parameter name='nuIsFixed' default='false'>
+          <Parameter name='NuIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
-          <Parameter name='rhoIsFixed' default='false'>
+          <Parameter name='RhoIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
-          <Parameter name='vegaWeighted' default='false'>
+          <Parameter name='VegaWeighted' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
           </Parameter>
-          <Parameter name="endCriteria" default='""'>
+          <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
             <tensorRank>scalar</tensorRank>
             <description>EndCriteria object ID</description>
           </Parameter>
-          <Parameter name='method' default='""'>
+          <Parameter name='Method' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
             <description>OptimizationMethod object ID</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -374,79 +374,79 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionTime' exampleValue ='1.0 '>
+          <Parameter name='OptionTime' exampleValue ='1.0 '>
             <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as time</description>
           </Parameter>
-          <Parameter name='strikes' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
+          <Parameter name='Strikes' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
           </Parameter>
-          <Parameter name='stdDevs'  exampleValue ='0.1, 0.2, 0.3, 0.4 '>
+          <Parameter name='StdDevs'  exampleValue ='0.1, 0.2, 0.3, 0.4 '>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
             <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
           </Parameter>
-          <Parameter name='forward' exampleValue ='0.045 '>
+          <Parameter name='Forward' exampleValue ='0.045 '>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>atm rate</description>
           </Parameter>
-          <Parameter name='alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>nu (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>rho (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='alphaIsFixed' default='false'>
+          <Parameter name='AlphaIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
-          <Parameter name='betaIsFixed' default='false'>
+          <Parameter name='BetaIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
-          <Parameter name='nuIsFixed' default='false'>
+          <Parameter name='NuIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
-          <Parameter name='rhoIsFixed' default='false'>
+          <Parameter name='RhoIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
-          <Parameter name='vegaWeighted' default='false'>
+          <Parameter name='VegaWeighted' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
           </Parameter>
-          <Parameter name="endCriteria" default='""'>
+          <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
             <tensorRank>scalar</tensorRank>
             <description>EndCriteria object ID</description>
           </Parameter>
-          <Parameter name='method' default='""'>
+          <Parameter name='Method' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
             <description>Optimization Method</description>
@@ -464,29 +464,29 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' exampleValue ='3m'>
+          <Parameter name='OptionDate' exampleValue ='3m'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as date</description>
           </Parameter>
-          <Parameter name='strikes' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
+          <Parameter name='Strikes' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
           </Parameter>
-          <Parameter name='stdDevs'  exampleValue ='0.1, 0.2, 0.3, 0.4 '>
+          <Parameter name='StdDevs'  exampleValue ='0.1, 0.2, 0.3, 0.4 '>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
             <description>standard deviations (i.e. volatilities times square root of time to option expiry).</description>
           </Parameter>
-          <Parameter name='atmLevel'  exampleValue ='0.1'>
+          <Parameter name='AtmLevel'  exampleValue ='0.1'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>Current value of the underlying.</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>

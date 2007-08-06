@@ -27,32 +27,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='blackVolID'>
+          <Parameter name='BlackVolID'>
             <type>QuantLib::BlackVolTermStructure</type>
             <tensorRank>scalar</tensorRank>
             <description>Black Vol Term Structure</description>
           </Parameter>
-          <Parameter name='underlying'>
+          <Parameter name='Underlying'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='settlementDate'>
+          <Parameter name='SettlementDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement date</description>
           </Parameter>
-          <Parameter name='riskFreeRate'>
+          <Parameter name='RiskFreeRate'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>risk free rate</description>
           </Parameter>
-          <Parameter name='dividendYield'>
+          <Parameter name='DividendYield'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>dividend yield</description>

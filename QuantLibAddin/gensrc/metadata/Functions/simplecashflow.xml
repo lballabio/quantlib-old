@@ -22,12 +22,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='amounts' exampleValue='1000000.0,500000.0'>
+          <Parameter name='Amounts' exampleValue='1000000.0,500000.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>list of cash to be received/paid</description>
           </Parameter>
-          <Parameter name='dates' exampleValue='40238,40330'>
+          <Parameter name='Dates' exampleValue='40238,40330'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>payment dates corresponding to amounts</description>

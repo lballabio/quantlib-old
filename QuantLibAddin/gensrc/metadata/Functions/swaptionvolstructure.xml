@@ -26,7 +26,7 @@
   <Functions>
 
     <!-- SwaptionVolatilityStructure interface-->
-    <Member name='qlSwaptionVTSVolatility' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='strike'>
+    <Member name='qlSwaptionVTSVolatility' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
       <description>Returns volatility from the given SwaptionVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -35,22 +35,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' exampleValue ='5y'>
+          <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>swaption expiry date</description>
           </Parameter>
-          <Parameter name='swapTenor' exampleValue ='2y'>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>Underlying swap length as period (e.g. 5Y)</description>
           </Parameter>
-          <Parameter name='strike' exampleValue ='0.04' const='False'>
+          <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>swaption strike</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Extrapolation Flag (TRUE allows extrapolation).</description>
@@ -63,7 +63,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionVTSVolatility2' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='strike'>
+    <Member name='qlSwaptionVTSVolatility2' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
       <description>Returns volatility from the given SwaptionVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -72,22 +72,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionTenor' exampleValue ='5y'>
+          <Parameter name='OptionTenor' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>swaption option tenor</description>
           </Parameter>
-          <Parameter name='swapTenor' exampleValue ='2y'>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>Underlying swap length as period (e.g. 5Y)</description>
           </Parameter>
-          <Parameter name='strike' exampleValue ='0.04' const='False'>
+          <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>swaption strike</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Extrapolation Flag (TRUE allows extrapolation)</description>
@@ -100,7 +100,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionVTSBlackVariance' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='optionDate'>
+    <Member name='qlSwaptionVTSBlackVariance' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='OptionDate'>
       <description>Returns variance from the given SwaptionVolatilityStructure object.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
@@ -109,22 +109,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' exampleValue ='5y'>
+          <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>swaption expiry date</description>
           </Parameter>
-          <Parameter name='swapTenor' exampleValue ='2y'>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying swap tenor</description>
           </Parameter>
-          <Parameter name='strike' exampleValue ='0.04' const='False'>
+          <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>swaption strike vector</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Extrapolation Flag (TRUE allows extrapolation)</description>
@@ -137,7 +137,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionVTSBlackVariance2' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='optionTenor'>
+    <Member name='qlSwaptionVTSBlackVariance2' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='OptionTenor'>
       <description>Returns variance from the given SwaptionVolatilityStructure object.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
@@ -146,22 +146,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionTenor' exampleValue ='5y'>
+          <Parameter name='OptionTenor' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>swaption option tenor</description>
           </Parameter>
-          <Parameter name='swapTenor' exampleValue ='2y'>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying swap tenor</description>
           </Parameter>
-          <Parameter name='strike' exampleValue ='0.04' const='False'>
+          <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>swaption strike vector</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Extrapolation Flag (TRUE allows extrapolation)</description>
@@ -239,7 +239,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionVTSOptionDateFromTenor' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='optionTenor'>
+    <Member name='qlSwaptionVTSOptionDateFromTenor' type='QuantLib::SwaptionVolatilityStructure' superType='handleToLib' loopParameter='OptionTenor'>
       <description>Returns the option date corresponding to a given option tenor, taking calendar and business day convention into account, for the given SwaptionVolatilityStructure object.</description>
       <libraryFunction>optionDateFromTenor</libraryFunction>
       <SupportedPlatforms>
@@ -248,7 +248,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionTenor' exampleValue ='2y'>
+          <Parameter name='OptionTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>swaption option tenor</description>
@@ -270,7 +270,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='currentLink' default='""'>
+          <Parameter name='CurrentLink' default='""'>
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -289,7 +289,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='currentLink' >
+          <Parameter name='CurrentLink' >
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -312,18 +312,18 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='referenceDate' exampleValue='=qlSettingsEvaluationDate()'>
+          <Parameter name='ReferenceDate' exampleValue='=qlSettingsEvaluationDate()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>reference date</description>
           </Parameter>
-          <Parameter name='volatility'  exampleValue='12.5%'>
+          <Parameter name='Volatility'  exampleValue='12.5%'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>vol quotes</description>
           </Parameter>
-          <Parameter name='dayCounter' exampleValue='Actual/365 (Fixed)'>
+          <Parameter name='DayCounter' exampleValue='Actual/365 (Fixed)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -340,28 +340,28 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='calendar'>
+          <Parameter name='Calendar'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
           </Parameter>
-          <Parameter name='optionTenors' exampleValue ='2y, 5y'>
+          <Parameter name='OptionTenors' exampleValue ='2y, 5y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>swaption expiries as periods</description>
           </Parameter>
-          <Parameter name='swapTenors' exampleValue ='2y, 5y'>
+          <Parameter name='SwapTenors' exampleValue ='2y, 5y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>underlying swap lengths</description>
           </Parameter>
-          <Parameter name='volatilities' >
+          <Parameter name='Volatilities' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
             <description>vol quotes</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -435,12 +435,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' exampleValue ='5y'>
+          <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>swaption expiry date</description>
           </Parameter>
-          <Parameter name='swapTenor' exampleValue ='2y'>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>Underlying swap length as period (e.g. 5Y)</description>
@@ -464,39 +464,39 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='atmVolStructure' >
+          <Parameter name='AtmVolStructure' >
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>At-the-money volatility structure</description>
           </Parameter>
-          <Parameter name='optionTenor' exampleValue ='5y'>
+          <Parameter name='OptionTenor' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>smile cube's expiries as periods</description>
           </Parameter>
-          <Parameter name='swapTenor' exampleValue ='2y'>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>smile cube's underlying swap lengths</description>
           </Parameter>
-          <Parameter name='strikeSpreads' exampleValue ='.01, .02, .03'>
+          <Parameter name='StrikeSpreads' exampleValue ='.01, .02, .03'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
             <description>smile cube's strike spreads over the ATM strike rate.</description>
           </Parameter>
-          <Parameter name='spreadVols' >
+          <Parameter name='SpreadVols' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
             <description>matrix of spread vol quotes</description>
           </Parameter>
-          <Parameter name='swapIndexBase'>
+          <Parameter name='SwapIndexBase'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>Base SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='vegaWeightedSmileFit' exampleValue ='TRUE'>
+          <Parameter name='VegaWeightedSmileFit' exampleValue ='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>if TRUE the smile fit is weighted using options' vega.</description>
@@ -506,7 +506,7 @@
     </Constructor>
 
     <!-- SwaptionVolatilityCube interface -->
-    <Member name='qlSwaptionVTSatmStrike' type='QuantLib::SwaptionVolatilityCube' loopParameter='optionDate'>
+    <Member name='qlSwaptionVTSatmStrike' type='QuantLib::SwaptionVolatilityCube' loopParameter='OptionDate'>
       <description>Returns the at-the-money swaption strike, for a given exercise date and underlying swap length, for the given SwaptionVolatilityCube object.</description>
       <libraryFunction>atmStrike</libraryFunction>
       <SupportedPlatforms>
@@ -515,12 +515,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionDate' exampleValue ='5y'>
+          <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>swaption expiry date</description>
           </Parameter>
-          <Parameter name='swapTenor' exampleValue ='2y'>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>Underlying swap length as period (e.g. 5Y)</description>
@@ -533,7 +533,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionVTSatmStrike2' type='QuantLib::SwaptionVolatilityCube' loopParameter='optionTenor'>
+    <Member name='qlSwaptionVTSatmStrike2' type='QuantLib::SwaptionVolatilityCube' loopParameter='OptionTenor'>
       <description>Returns the at-the-money swaption strike, for a given option tenor and underlying swap length, for the given SwaptionVolatilityCube object.</description>
       <libraryFunction>atmStrike</libraryFunction>
       <SupportedPlatforms>
@@ -542,12 +542,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='optionTenor' exampleValue ='5y'>
+          <Parameter name='OptionTenor' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>swaption's option tenor</description>
           </Parameter>
-          <Parameter name='swapTenor' exampleValue ='2y'>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>Underlying swap length as period (e.g. 5Y)</description>
@@ -570,70 +570,70 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='atmVolStructure' >
+          <Parameter name='AtmVolStructure' >
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>At-the-money volatility structure</description>
           </Parameter>
-          <Parameter name='optionTenors' exampleValue ='5y'>
+          <Parameter name='OptionTenors' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>smile cube's expiries as periods</description>
           </Parameter>
-          <Parameter name='swapTenors' exampleValue ='2y'>
+          <Parameter name='SwapTenors' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>smile cube's underlying swap lengths</description>
           </Parameter>
-          <Parameter name='strikeSpreads' exampleValue ='.01, .02, .03'>
+          <Parameter name='StrikeSpreads' exampleValue ='.01, .02, .03'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
             <description>smile cube's strike spreads over the ATM strike rate.</description>
           </Parameter>
-          <Parameter name='spreadVols' >
+          <Parameter name='SpreadVols' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
             <description>matrix of spread vol quotes</description>
           </Parameter>
-          <Parameter name='swapIndexBase'>
+          <Parameter name='SwapIndexBase'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>Base SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='vegaWeightedSmileFit' exampleValue ='TRUE'>
+          <Parameter name='VegaWeightedSmileFit' exampleValue ='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>if TRUE the smile fit is weighted using options' vega.</description>
           </Parameter>
-          <Parameter name='guess' >
+          <Parameter name='Guess' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
             <description>matrix of parameters guess quotes.</description>
           </Parameter>
-          <Parameter name='isFixed' exampleValue ='FALSE, TRUE, FALSE, FALSE'>
+          <Parameter name='IsFixed' exampleValue ='FALSE, TRUE, FALSE, FALSE'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
             <description>if TRUE parameter guess is not calibrated.</description>
           </Parameter>
-          <Parameter name='isAtmCalibrated' exampleValue ='FALSE'>
+          <Parameter name='IsAtmCalibrated' exampleValue ='FALSE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>if TRUE the cube is calibrated to atm matrix .</description>
           </Parameter>
-          <Parameter name="endCriteria" default='""'>
+          <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
             <tensorRank>scalar</tensorRank>
             <description>EndCriteria object ID (if omitted default = EndCriteria(60000, 100, 1e-8, 1e-8, 1e-8) is used)</description>
           </Parameter>
-          <Parameter name='maxErrorTol' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='MaxErrorTol' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>max error tolerance</description>
           </Parameter>
-          <Parameter name="optMethod" default='""'>
+          <Parameter name='OptMethod' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
             <description>Optmization method object ID (if omitted default = Simplex(0.01) is used)</description>
@@ -717,17 +717,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='volCube'>
+          <Parameter name='VolCube'>
             <type>QuantLib::SwaptionVolatilityCube</type>
             <tensorRank>scalar</tensorRank>
             <description>Swaption volatility cube object ID</description>
           </Parameter>
-          <Parameter name='optionDate' exampleValue ='5y'>
+          <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as date</description>
           </Parameter>
-          <Parameter name='swapTenor' exampleValue ='2y'>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's underlying swap length</description>
@@ -745,17 +745,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='volCube'>
+          <Parameter name='VolCube'>
             <type>QuantLib::SwaptionVolatilityCube</type>
             <tensorRank>scalar</tensorRank>
             <description>Swaption volatility cube object ID</description>
           </Parameter>
-          <Parameter name='optionDate' exampleValue ='5y'>
+          <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's expiry as period</description>
           </Parameter>
-          <Parameter name='swapTenor' exampleValue ='2y'>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's underlying swap length</description>
@@ -779,7 +779,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Swaption volatility structure object ID</description>
           </Parameter>
-          <Parameter name='spread' exampleValue='0.0'>
+          <Parameter name='Spread' exampleValue='0.0'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>

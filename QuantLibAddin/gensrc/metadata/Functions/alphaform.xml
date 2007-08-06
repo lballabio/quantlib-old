@@ -23,7 +23,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='time' exampleValue ='0'>
+          <Parameter name='Time' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>integer corresponding to i-th time</description>
@@ -46,7 +46,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='alpha' exampleValue ='1'>
+          <Parameter name='Alpha' exampleValue ='1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Alpha parameter value for Alpha Form</description>
@@ -68,12 +68,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='alpha' exampleValue ='5'>
+          <Parameter name='Alpha' exampleValue ='5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha coefficient</description>
@@ -91,12 +91,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='alpha' exampleValue ='5'>
+          <Parameter name='Alpha' exampleValue ='5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha coefficient</description>

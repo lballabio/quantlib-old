@@ -37,7 +37,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='extrapolationFlag' default='true'>
+          <Parameter name='ExtrapolationFlag' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>global extrapolation flag</description>
@@ -52,7 +52,7 @@
 
     <!-- Interpolation interface -->
 
-    <Member name='qlInterpolationInterpolate' type='QuantLib::Interpolation' loopParameter='xValues'>
+    <Member name='qlInterpolationInterpolate' type='QuantLib::Interpolation' loopParameter='XValues'>
       <description>Returns interpolated values using the given Interpolation object</description>
       <longDescription>
         this is an example of long description.
@@ -67,12 +67,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' default='0' const='False'>
+          <Parameter name='AllowExtrapolation' default='0' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag</description>
@@ -85,7 +85,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationDerivative' type='QuantLib::Interpolation' loopParameter='xValues'>
+    <Member name='qlInterpolationDerivative' type='QuantLib::Interpolation' loopParameter='XValues'>
       <description>Returns the first derivative function values using the given Interpolation object</description>
       <libraryFunction>derivative</libraryFunction>
       <SupportedPlatforms>
@@ -94,12 +94,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' default='0' const='False'>
+          <Parameter name='AllowExtrapolation' default='0' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag</description>
@@ -112,7 +112,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationSecondDerivative' type='QuantLib::Interpolation' loopParameter='xValues'>
+    <Member name='qlInterpolationSecondDerivative' type='QuantLib::Interpolation' loopParameter='XValues'>
       <description>Returns the second derivative function values using the given Interpolation object</description>
       <libraryFunction>secondDerivative</libraryFunction>
       <SupportedPlatforms>
@@ -121,12 +121,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' default='0' const='False'>
+          <Parameter name='AllowExtrapolation' default='0' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag</description>
@@ -139,7 +139,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationPrimitive' type='QuantLib::Interpolation' loopParameter='xValues'>
+    <Member name='qlInterpolationPrimitive' type='QuantLib::Interpolation' loopParameter='XValues'>
       <description>Returns the primitive function values using the given Interpolation object</description>
       <libraryFunction>primitive</libraryFunction>
       <SupportedPlatforms>
@@ -148,12 +148,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' default='0' const='False'>
+          <Parameter name='AllowExtrapolation' default='0' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag</description>
@@ -166,7 +166,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationIsInRange' type='QuantLib::Interpolation' loopParameter='xValues'>
+    <Member name='qlInterpolationIsInRange' type='QuantLib::Interpolation' loopParameter='XValues'>
       <description>Returns TRUE if the input value is in the allowed interpolation range for the given Interpolation object</description>
       <libraryFunction>isInRange</libraryFunction>
       <SupportedPlatforms>
@@ -175,7 +175,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
@@ -262,17 +262,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='linearInterpolationType' exampleValue ='Linear'>
+          <Parameter name='LinearInterpolationType' exampleValue ='Linear'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>linear interpolation type (e.g Linear, BackwardFlat, ForwardFlat)</description>
           </Parameter>
-          <Parameter name='xArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
+          <Parameter name='XArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x array</description>
           </Parameter>
-          <Parameter name='yArray' exampleValue ='2.0,4.0,6.0,8.0,10.0,12.0'>
+          <Parameter name='YArray' exampleValue ='2.0,4.0,6.0,8.0,10.0,12.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>y array</description>
@@ -289,37 +289,37 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xArray' exampleValue ='1.0,2.0,3.0,4.0,5.0' >
+          <Parameter name='XArray' exampleValue ='1.0,2.0,3.0,4.0,5.0' >
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x array</description>
           </Parameter>
-          <Parameter name='yArray' exampleValue ='1.0,8.0,27.0,64.0,125.0' >
+          <Parameter name='YArray' exampleValue ='1.0,8.0,27.0,64.0,125.0' >
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>y array</description>
           </Parameter>
-          <Parameter name='leftConditionType'>
+          <Parameter name='LeftConditionType'>
             <type>QuantLib::CubicSpline::BoundaryCondition</type>
             <tensorRank>scalar</tensorRank>
             <description>left boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
           </Parameter>
-          <Parameter name='leftConditionValue' exampleValue='0'>
+          <Parameter name='LeftConditionValue' exampleValue='0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>left condition value.</description>
           </Parameter>
-          <Parameter name='rightConditionType'>
+          <Parameter name='RightConditionType'>
             <type>QuantLib::CubicSpline::BoundaryCondition</type>
             <tensorRank>scalar</tensorRank>
             <description>right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
           </Parameter>
-          <Parameter name='rightConditionValue' exampleValue='0'>
+          <Parameter name='RightConditionValue' exampleValue='0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>right condition value.</description>
           </Parameter>
-          <Parameter name='monotonicityConstraint' exampleValue='FALSE'>
+          <Parameter name='MonotonicityConstraint' exampleValue='FALSE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>monotonicity constraint flag</description>
@@ -336,77 +336,77 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xArray' exampleValue='0.0300,0.0400,0.0500,0.0700'>
+          <Parameter name='XArray' exampleValue='0.0300,0.0400,0.0500,0.0700'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x array</description>
           </Parameter>
-          <Parameter name='yArray' exampleValue='0.0850,0.0733,0.0844,0.1082'>
+          <Parameter name='YArray' exampleValue='0.0850,0.0733,0.0844,0.1082'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>y array</description>
           </Parameter>
-          <Parameter name='expiry' exampleValue='1.0'>
+          <Parameter name='Expiry' exampleValue='1.0'>
             <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
             <description>expiry time in years</description>
           </Parameter>
-          <Parameter name='forward' exampleValue='0.039'>
+          <Parameter name='Forward' exampleValue='0.039'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>forward</description>
           </Parameter>
-          <Parameter name='alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>nu (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>rho (fixed value or guess)</description>
           </Parameter>
-          <Parameter name='alphaIsFixed' default='false'>
+          <Parameter name='AlphaIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
           </Parameter>
-          <Parameter name='betaIsFixed' default='false'>
+          <Parameter name='BetaIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
           </Parameter>
-          <Parameter name='nuIsFixed' default='false'>
+          <Parameter name='NuIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
           </Parameter>
-          <Parameter name='rhoIsFixed' default='false'>
+          <Parameter name='RhoIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
           </Parameter>
-          <Parameter name='vegaWeighted' default='true'>
+          <Parameter name='VegaWeighted' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the interpolation is weighted using options Vega. Default is TRUE</description>
           </Parameter>
-          <Parameter name="endCriteria" default='""'>
+          <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
             <tensorRank>scalar</tensorRank>
             <description>EndCriteria object ID</description>
           </Parameter>
-          <Parameter name='optimizationMethod' default='""'>
+          <Parameter name='OptimizationMethod' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
             <description>OptimizationMethod object ID</description>
@@ -700,12 +700,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='yValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='YValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>y value</description>
@@ -719,7 +719,7 @@
     </Member>
 
     <!-- should loop on both parameters -->
-    <Member name='qlInterpolation2DInterpolate' type='QuantLib::Interpolation2D' loopParameter='xValue'>
+    <Member name='qlInterpolation2DInterpolate' type='QuantLib::Interpolation2D' loopParameter='XValue'>
       <description>Returns interpolated values for the (x,y) input for the given Interpolation2D object</description>
       <libraryFunction>operator()</libraryFunction>
       <SupportedPlatforms>
@@ -728,17 +728,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='xValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x value(s)</description>
           </Parameter>
-          <Parameter name='yValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='YValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>y value</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' default='0' const='False'>
+          <Parameter name='AllowExtrapolation' default='0' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag</description>
@@ -761,22 +761,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='interpolationType' exampleValue ='BiLinear'>
+          <Parameter name='InterpolationType' exampleValue ='BiLinear'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>2D-interpolation type (e.g BiLinear, BiCubic)</description>
           </Parameter>
-          <Parameter name='xArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
+          <Parameter name='XArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>x array</description>
           </Parameter>
-          <Parameter name='yArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
+          <Parameter name='YArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>y array</description>
           </Parameter>
-          <Parameter name='zMatrix'>
+          <Parameter name='ZMatrix'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>z-matrix values</description>

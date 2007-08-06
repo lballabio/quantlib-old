@@ -54,17 +54,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='earliestDate' exampleValue ='1Y'>
+          <Parameter name='EarliestDate' exampleValue ='1Y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>earliest exercise date</description>
           </Parameter>
-          <Parameter name='latestDate' exampleValue ='2Y'>
+          <Parameter name='LatestDate' exampleValue ='2Y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>latest exercise date</description>
           </Parameter>
-          <Parameter name='payoffAtExpiry' default='false'>
+          <Parameter name='PayoffAtExpiry' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>payoff at expiry. If omitted, default = FALSE is used.</description>
@@ -84,7 +84,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='expiryDate' exampleValue ='1Y'>
+          <Parameter name='ExpiryDate' exampleValue ='1Y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>expiry date</description>
@@ -102,12 +102,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dates' exampleValue ="'1Y,2Y">
+          <Parameter name='Dates' exampleValue ="'1Y,2Y">
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>dates</description>
           </Parameter>
-          <Parameter name='payoffAtExpiry' default='false'>
+          <Parameter name='PayoffAtExpiry' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>payoff at expiry. If omitted, default = FALSE is used.</description>

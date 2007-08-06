@@ -43,22 +43,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='size' exampleValue ='4'>
+          <Parameter name='Size' exampleValue ='4'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>size</description>
           </Parameter>
-          <Parameter name='rho' exampleValue ='0.5'>
+          <Parameter name='Rho' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>rho</description>
           </Parameter>
-          <Parameter name='beta' exampleValue ='.6'>
+          <Parameter name='Beta' exampleValue ='.6'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta</description>
           </Parameter>
-          <Parameter name='factors' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
+          <Parameter name='Factors' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>factors</description>
@@ -162,42 +162,42 @@
                       <tensorRank>scalar</tensorRank>
                       <description>Sequence Statistics object ID</description>
                   </Parameter>
-                  <Parameter name='startDate' exampleValue='37413'>
+                  <Parameter name='StartDate' exampleValue='37413'>
                       <type>QuantLib::Date</type>
                       <tensorRank>scalar</tensorRank>
                       <description>beginning of the time series</description>
                   </Parameter>
-                  <Parameter name='endDate' exampleValue='39248'>
+                  <Parameter name='EndDate' exampleValue='39248'>
                       <type>QuantLib::Date</type>
                       <tensorRank>scalar</tensorRank>
                       <description>end of the time series</description>
                   </Parameter>
-                  <Parameter name='step' exampleValue='1D'>
+                  <Parameter name='Step' exampleValue='1D'>
                       <type>QuantLib::Period</type>
                       <tensorRank>scalar</tensorRank>
                       <description>time series' time step</description>
                   </Parameter>
-                  <Parameter name='iborIndex'>
+                  <Parameter name='IborIndex'>
                       <type>QuantLib::IborIndex</type>
                       <tensorRank>scalar</tensorRank>
                       <description>floating rate index</description>
                   </Parameter>
-                  <Parameter name='initialGap' exampleValue='3M'>
+                  <Parameter name='InitialGap' exampleValue='3M'>
                       <type>QuantLib::Period</type>
                       <tensorRank>scalar</tensorRank>
                       <description>initialGap</description>
                   </Parameter>
-                  <Parameter name='horizon' exampleValue='30Y'>
+                  <Parameter name='Horizon' exampleValue='30Y'>
                       <type>QuantLib::Period</type>
                       <tensorRank>scalar</tensorRank>
                       <description>bootstrap horizon</description>
                   </Parameter>
-                  <Parameter name='iborIndexes'>
+                  <Parameter name='IborIndexes'>
                       <type>QuantLib::IborIndex</type>
                       <tensorRank>vector</tensorRank>
                       <description>Ibor indexes</description>
                   </Parameter>
-                  <Parameter name='swapIndexes'>
+                  <Parameter name='SwapIndexes'>
                       <type>QuantLib::SwapIndex</type>
                       <tensorRank>vector</tensorRank>
                       <description>Swap indexes</description>
@@ -207,17 +207,17 @@
                       <tensorRank>scalar</tensorRank>
                       <description>yield curve DayCounter</description>
                   </Parameter>
-                  <Parameter name='traitsID' default='"Discount"'>
+                  <Parameter name='TraitsID' default='"Discount"'>
                       <type>string</type>
                       <tensorRank>scalar</tensorRank>
                       <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
                   </Parameter>
-                  <Parameter name='interpolatorID' default='"Cubic"'>
+                  <Parameter name='InterpolatorID' default='"Cubic"'>
                       <type>string</type>
                       <tensorRank>scalar</tensorRank>
                       <description>Linear, LogLinear, or Cubic. If omitted, default = LogLinear is used.</description>
                   </Parameter>
-                  <Parameter name='bootstrapAccuracy' default='1.0e-12'>
+                  <Parameter name='BootstrapAccuracy' default='1.0e-12'>
                       <type>QuantLib::Real</type>
                       <tensorRank>scalar</tensorRank>
                       <description>boostrap accuracy</description>
@@ -235,12 +235,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fwdCorrMatrix' >
+          <Parameter name='FwdCorrMatrix' >
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>forward correlation matrix</description>
           </Parameter>
-          <Parameter name='rateTimes' >
+          <Parameter name='RateTimes' >
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate times</description>
@@ -258,27 +258,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='longTermCorr' default='0.0'>
+          <Parameter name='LongTermCorr' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Long term correlation </description>
           </Parameter>
-          <Parameter name='beta' default='0.24'>
+          <Parameter name='Beta' default='0.24'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>exponential decay factor</description>
           </Parameter>
-          <Parameter name='gamma' default='0.333'>
+          <Parameter name='Gamma' default='0.333'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>exponent for time to go</description>
           </Parameter>
-          <Parameter name='time' exampleValue ='0.0'>
+          <Parameter name='Time' exampleValue ='0.0'>
             <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
             <description>time t </description>
@@ -300,27 +300,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='rateTimes' >
+          <Parameter name='RateTimes' >
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate times</description>
           </Parameter>
-          <Parameter name='longTermCorr' exampleValue ='0.5'>
+          <Parameter name='LongTermCorr' exampleValue ='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Long term correlation </description>
           </Parameter>
-          <Parameter name='beta' exampleValue ='0.2'>
+          <Parameter name='Beta' exampleValue ='0.2'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>exponential decay factor</description>
           </Parameter>
-          <Parameter name='gamma' exampleValue ='0.9'>
+          <Parameter name='Gamma' exampleValue ='0.9'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>exponent for time to go</description>
           </Parameter>
-          <Parameter name='times' >
+          <Parameter name='Times' >
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>times</description>
@@ -338,7 +338,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='timeIndex' exampleValue ='0'>
+          <Parameter name='TimeIndex' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>time index.</description>
@@ -391,19 +391,19 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fwdCorr' exampleValue ='PiecewiseConstantCorrelationID'>
+          <Parameter name='FwdCorr' exampleValue ='PiecewiseConstantCorrelationID'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Forward rates correlation (i.e. PiecewiseConstantCorrelation object ID)</description>
           </Parameter>
-          <Parameter name='curveState' exampleValue ='CurveStateID'>
+          <Parameter name='CurveState' exampleValue ='CurveStateID'>
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>curveState</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>

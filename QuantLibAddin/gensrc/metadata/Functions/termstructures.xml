@@ -94,7 +94,7 @@
             <tensorRank>vector</tensorRank>
             <description>vector of dates</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
@@ -107,7 +107,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlYieldTSForwardRate' type='QuantLib::YieldTermStructure' superType='handleToLib' loopParameter='d2'>
+    <Member name='qlYieldTSForwardRate' type='QuantLib::YieldTermStructure' superType='handleToLib' loopParameter='D2'>
       <description>Returns the forward interest rate from the given YieldTermStructure object</description>
       <libraryFunction>forwardRate</libraryFunction>
       <SupportedPlatforms>
@@ -116,32 +116,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='d1' exampleValue ='1M'>
+          <Parameter name='D1' exampleValue ='1M'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>first date</description>
           </Parameter>
-          <Parameter name='d2' exampleValue ="'2M,3M,4M,5M,6M">
+          <Parameter name='D2' exampleValue ="'2M,3M,4M,5M,6M">
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>second date</description>
           </Parameter>
-          <Parameter name='resultDayCounter'>
+          <Parameter name='ResultDayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>result DayCounter</description>
           </Parameter>
-          <Parameter name='compounding' const='False'>
+          <Parameter name='Compounding' const='False'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate compounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
           </Parameter>
-          <Parameter name='frequency' default='"Annual"' const='False'>
+          <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
@@ -155,7 +155,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlYieldTSForwardRate2' type='QuantLib::YieldTermStructure' superType='handleToLib' loopParameter='date'>
+    <Member name='qlYieldTSForwardRate2' type='QuantLib::YieldTermStructure' superType='handleToLib' loopParameter='Date'>
       <description>Returns the forward interest rate from the given YieldTermStructure object</description>
       <libraryFunction>forwardRate</libraryFunction>
       <SupportedPlatforms>
@@ -164,7 +164,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='date' exampleValue ="'2M,3M,4M,5M,6M">
+          <Parameter name='Date' exampleValue ="'2M,3M,4M,5M,6M">
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>first date</description>
@@ -174,22 +174,22 @@
             <tensorRank>scalar</tensorRank>
             <description>Period (e.g. '7D', '3M', '1Y', etc)</description>
           </Parameter>
-          <Parameter name='resultDayCounter'>
+          <Parameter name='ResultDayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>result DayCounter</description>
           </Parameter>
-          <Parameter name='compounding' const='False'>
+          <Parameter name='Compounding' const='False'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate compounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
           </Parameter>
-          <Parameter name='frequency' default='"Annual"' const='False'>
+          <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE allows extrapolation. If omitted, default = Annual is used.</description>
@@ -203,7 +203,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlYieldTSZeroRate' type='QuantLib::YieldTermStructure' superType='handleToLib' loopParameter='dates'>
+    <Member name='qlYieldTSZeroRate' type='QuantLib::YieldTermStructure' superType='handleToLib' loopParameter='Dates'>
       <description>Returns the zero interest rate from the given YieldTermStructure object</description>
       <libraryFunction>zeroRate</libraryFunction>
       <SupportedPlatforms>
@@ -212,27 +212,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dates' exampleValue ="'2M,3M,4M,5M,6M">
+          <Parameter name='Dates' exampleValue ="'2M,3M,4M,5M,6M">
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
           </Parameter>
-          <Parameter name='resultDayCounter'>
+          <Parameter name='ResultDayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>resultDayCounter</description>
           </Parameter>
-          <Parameter name='compounding' const='False'>
+          <Parameter name='Compounding' const='False'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
           </Parameter>
-          <Parameter name='frequency' default='"Annual"' const='False'>
+          <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
@@ -255,22 +255,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='tenor' exampleValue ='1'>
+          <Parameter name='Tenor' exampleValue ='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>tenor in years</description>
           </Parameter>
-          <Parameter name='startDate' exampleValue ='0D'>
+          <Parameter name='StartDate' exampleValue ='0D'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>start date</description>
           </Parameter>
-          <Parameter name='frequency' default='"Annual"' const='False'>
+          <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
           </Parameter>
-          <Parameter name='allowExtrapolation' const='False' default='false'>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
@@ -292,7 +292,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='currentLink' default='""'>
+          <Parameter name='CurrentLink' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -311,7 +311,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='currentLink' >
+          <Parameter name='CurrentLink' >
             <type>QuantLib::YieldTermStructure</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -335,37 +335,37 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='nDays' default='0'>
+          <Parameter name='NDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='calendar'>
+          <Parameter name='Calendar'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate</description>
           </Parameter>
-          <Parameter name='rateHelpers' exampleValue ='EUROND,EURTND,EURSND,EURSWD,EUR2WD'>
+          <Parameter name='RateHelpers' exampleValue ='EUROND,EURTND,EURSND,EURSWD,EUR2WD'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>vector of rate-helpers</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='traitsID' default='"ForwardRate"'>
+          <Parameter name='TraitsID' default='"ForwardRate"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
           </Parameter>
-          <Parameter name='interpolatorID' default='"Cubic"'>
+          <Parameter name='InterpolatorID' default='"Cubic"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Linear, LogLinear, or Cubic. If omitted, default = LogLinear is used.</description>
           </Parameter>
-          <Parameter name='accuracy' default='1.0e-12'>
+          <Parameter name='Accuracy' default='1.0e-12'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Bootstrappin accuracy.</description>
@@ -382,17 +382,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveDates' exampleValue ="'2M,3M,4M,5M,6M">
+          <Parameter name='CurveDates' exampleValue ="'2M,3M,4M,5M,6M">
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
           </Parameter>
-          <Parameter name='curveDiscounts'  exampleValue ='1.0,0.95,0.9,0.85,0.8'>
+          <Parameter name='CurveDiscounts'  exampleValue ='1.0,0.95,0.9,0.85,0.8'>
             <type>QuantLib::DiscountFactor</type>
             <tensorRank>vector</tensorRank>
             <description>discount factors for the above dates</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -409,17 +409,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveDates' exampleValue ="'2M,3M,4M,5M,6M">
+          <Parameter name='CurveDates' exampleValue ="'2M,3M,4M,5M,6M">
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
           </Parameter>
-          <Parameter name='curveYields' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+          <Parameter name='CurveYields' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>zero rates for the above dates</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -436,17 +436,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveDates' exampleValue ="'2M,3M,4M,5M,6M">
+          <Parameter name='CurveDates' exampleValue ="'2M,3M,4M,5M,6M">
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>dates of the curve</description>
           </Parameter>
-          <Parameter name='forwardYields' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+          <Parameter name='ForwardYields' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>forwards rates for the above dates</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -463,32 +463,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='nDays' default='0'>
+          <Parameter name='NDays' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='calendar' exampleValue ='NullCalendar'>
+          <Parameter name='Calendar' exampleValue ='NullCalendar'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate</description>
           </Parameter>
-          <Parameter name='rate' exampleValue='0.044'>
+          <Parameter name='Rate' exampleValue='0.044'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>the curve level</description>
           </Parameter>
-          <Parameter name='dayCounter' exampleValue ='Actual/365'>
+          <Parameter name='DayCounter' exampleValue ='Actual/365'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='compounding' exampleValue ='Continuous'>
+          <Parameter name='Compounding' exampleValue ='Continuous'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
           </Parameter>
-          <Parameter name='frequency' default='"Annual"' exampleValue ='Annual'>
+          <Parameter name='Frequency' default='"Annual"' exampleValue ='Annual'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
@@ -511,7 +511,7 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='spread' exampleValue='0.0'>
+          <Parameter name='Spread' exampleValue='0.0'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -535,7 +535,7 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='referenceDate' exampleValue ='1D'>
+          <Parameter name='ReferenceDate' exampleValue ='1D'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>the reference date the base YieldTermStructure should be shifted to</description>

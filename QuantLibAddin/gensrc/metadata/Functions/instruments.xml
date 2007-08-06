@@ -41,7 +41,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='resultType' exampleValue='vega'>
+          <Parameter name='ResultType' exampleValue='vega'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>result type (e.g. 'vega')</description>
@@ -95,7 +95,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='pricingEngine' exampleValue='PricingEngineID'>
+          <Parameter name='PricingEngine' exampleValue='PricingEngineID'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>pricing engine object ID</description>

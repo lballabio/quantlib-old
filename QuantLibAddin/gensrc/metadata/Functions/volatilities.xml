@@ -22,37 +22,37 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='strike' exampleValue ='0.06'>
+          <Parameter name='Strike' exampleValue ='0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='forward' exampleValue ='0.04'>
+          <Parameter name='Forward' exampleValue ='0.04'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying forward value</description>
           </Parameter>
-          <Parameter name='expTime' exampleValue ='1.0'>
+          <Parameter name='ExpTime' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>expiry time (in years)</description>
           </Parameter>
-          <Parameter name='alpha' exampleValue ='0.02'>
+          <Parameter name='Alpha' exampleValue ='0.02'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha</description>
           </Parameter>
-          <Parameter name='beta' exampleValue ='0.6'>
+          <Parameter name='Beta' exampleValue ='0.6'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta</description>
           </Parameter>
-          <Parameter name='nu' exampleValue ='.02'>
+          <Parameter name='Nu' exampleValue ='.02'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>nu</description>
           </Parameter>
-          <Parameter name='rho' exampleValue ='0.03'>
+          <Parameter name='Rho' exampleValue ='0.03'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>rho</description>
@@ -76,17 +76,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='settlementDate' exampleValue ='0D'>
+          <Parameter name='SettlementDate' exampleValue ='0D'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement date</description>
           </Parameter>
-          <Parameter name='volatility' exampleValue ='0.2'>
+          <Parameter name='Volatility' exampleValue ='0.2'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>volatility</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -103,27 +103,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='settlementDate' exampleValue ='0D'>
+          <Parameter name='SettlementDate' exampleValue ='0D'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement date</description>
           </Parameter>
-          <Parameter name='dates' exampleValue ='3m, 1y, 5y'>
+          <Parameter name='Dates' exampleValue ='3m, 1y, 5y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>dates</description>
           </Parameter>
-          <Parameter name='strikes' exampleValue ='0.03, 0.05, 0.10'>
+          <Parameter name='Strikes' exampleValue ='0.03, 0.05, 0.10'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
           </Parameter>
-          <Parameter name='volatilities'>
+          <Parameter name='Volatilities'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>volatilities</description>
           </Parameter>
-          <Parameter name='dayCounter'>
+          <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>

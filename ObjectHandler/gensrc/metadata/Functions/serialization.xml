@@ -19,12 +19,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectList'>
+          <Parameter name='ObjectList'>
             <type>ObjectHandler::Object</type>
             <tensorRank>vector</tensorRank>
             <description>list of objects to be serialized</description>
           </Parameter>
-          <Parameter name='path'>
+          <Parameter name='Path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>file to which objects are to be serialized</description>
@@ -45,12 +45,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectList'>
+          <Parameter name='ObjectList'>
             <type>ObjectHandler::Object</type>
             <tensorRank>vector</tensorRank>
             <description>list of objects to be serialized</description>
           </Parameter>
-          <Parameter name='path'>
+          <Parameter name='Path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>file to which objects are to be serialized</description>
@@ -71,12 +71,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='idList'>
+          <Parameter name='IdList'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>list of objects to be deserialized</description>
           </Parameter>
-          <Parameter name='path'>
+          <Parameter name='Path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>file from which objects are to be deserialized</description>
@@ -97,7 +97,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='path'>
+          <Parameter name='Path'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>file from which objects are to be deserialized</description>

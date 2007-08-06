@@ -26,32 +26,32 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='valueDate' exampleValue='3M'>
+          <Parameter name='ValueDate' exampleValue='3M'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>Value date</description>
           </Parameter>
-          <Parameter name='maturityDate' exampleValue='6M'>
+          <Parameter name='MaturityDate' exampleValue='6M'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>Maturity date</description>
           </Parameter>
-          <Parameter name='position' exampleValue='Long'>
+          <Parameter name='Position' exampleValue='Long'>
             <type>QuantLib::Position::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>Instrument position (Long = purchase, Short = sale)</description>
           </Parameter>
-          <Parameter name='strike' exampleValue='0.02'>
+          <Parameter name='Strike' exampleValue='0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>Strike rate</description>
           </Parameter>
-          <Parameter name='notional' exampleValue='1000000'>
+          <Parameter name='Notional' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Notional amount</description>
           </Parameter>
-          <Parameter name="index">
+          <Parameter name='Index'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>Underlying index object ID</description>

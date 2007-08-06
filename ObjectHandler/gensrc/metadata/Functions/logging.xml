@@ -36,12 +36,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='logMessage'>
+          <Parameter name='LogMessage'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>message to be logged</description>
           </Parameter>
-          <Parameter name='logLevel' default='4'>
+          <Parameter name='LogLevel' default='4'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>threshold for log messages</description>
@@ -62,7 +62,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectID'>
+          <Parameter name='ObjectID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be logged</description>
@@ -83,12 +83,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='logFileName'>
+          <Parameter name='LogFileName'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>path and name of log file</description>
           </Parameter>
-          <Parameter name='logLevel' default='4'>
+          <Parameter name='LogLevel' default='4'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>threshold for log messages</description>
@@ -109,7 +109,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='logLevel'>
+          <Parameter name='LogLevel'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>threshold for log messages</description>

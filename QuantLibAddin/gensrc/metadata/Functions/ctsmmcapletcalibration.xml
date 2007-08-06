@@ -41,27 +41,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='numberOfFactors' exampleValue='3'>
+          <Parameter name='NumberOfFactors' exampleValue='3'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>number of factors</description>
           </Parameter>
-          <Parameter name='maxIter' default='2'>
+          <Parameter name='MaxIter' default='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>maximum number of iterations</description>
           </Parameter>
-          <Parameter name='tol' default='0.0001'>
+          <Parameter name='Tol' default='0.0001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>caplet vol tolerance</description>
           </Parameter>
-          <Parameter name='innerMaxIter' default='100'>
+          <Parameter name='InnerMaxIter' default='100'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>innerMaxIter</description>
           </Parameter>
-          <Parameter name='innerTol' default='1e-8'>
+          <Parameter name='InnerTol' default='1e-8'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>caplet vol tolerance</description>
@@ -254,7 +254,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='index' exampleValue='0'>
+          <Parameter name='Index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>index</description>
@@ -277,7 +277,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='index' exampleValue='0'>
+          <Parameter name='Index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>index</description>
@@ -300,7 +300,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='index' exampleValue='0'>
+          <Parameter name='Index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>index</description>
@@ -321,50 +321,50 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='evolution' exampleValue ='EvolutionDescriptionID'>
+          <Parameter name='Evolution' exampleValue ='EvolutionDescriptionID'>
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Evolution Description</description>
           </Parameter>
-          <Parameter name='correlations'>
+          <Parameter name='Correlations'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>PiecewiseConstantCorrelation object ID</description>
           </Parameter>
-          <Parameter name='swapPiecewiseConstantVariances'>
+          <Parameter name='SwapPiecewiseConstantVariances'>
             <type>QuantLib::PiecewiseConstantVariance</type>
             <tensorRank>vector</tensorRank>
             <description>PiecewiseConstantVariance IDs</description>
           </Parameter>
-          <Parameter name='capletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
+          <Parameter name='CapletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
             <description>caplet volatilities</description>
           </Parameter>
-          <Parameter name='curveState' exampleValue ='CurveStateID'>
+          <Parameter name='CurveState' exampleValue ='CurveStateID'>
             <type>QuantLib::CurveState</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>CurveState object ID</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
           </Parameter>
-          <Parameter name='alphas' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
+          <Parameter name='Alphas' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>alphas</description>
           </Parameter>
-          <Parameter name='lowestRoot' default='true'>
+          <Parameter name='LowestRoot' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE for lowest root, FALSE for the root nearest to 1.0</description>
           </Parameter>
-          <Parameter name='useFullApprox' exampleValue='TRUE'>
+          <Parameter name='UseFullApprox' exampleValue='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE for using Full Approximation</description>
@@ -381,60 +381,60 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='evolution' exampleValue ='EvolutionDescriptionID'>
+          <Parameter name='Evolution' exampleValue ='EvolutionDescriptionID'>
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Evolution Description</description>
           </Parameter>
-          <Parameter name='correlations'>
+          <Parameter name='Correlations'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>PiecewiseConstantCorrelation object ID</description>
           </Parameter>
-          <Parameter name='swapPiecewiseConstantVariances'>
+          <Parameter name='SwapPiecewiseConstantVariances'>
             <type>QuantLib::PiecewiseConstantVariance</type>
             <tensorRank>vector</tensorRank>
             <description>PiecewiseConstantVariance IDs</description>
           </Parameter>
-          <Parameter name='capletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
+          <Parameter name='CapletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
             <description>caplet volatilities</description>
           </Parameter>
-          <Parameter name='curveState' exampleValue ='CurveStateID'>
+          <Parameter name='CurveState' exampleValue ='CurveStateID'>
             <type>QuantLib::CurveState</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>CurveState object ID</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
           </Parameter>
-          <Parameter name='alphaInitial' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
+          <Parameter name='AlphaInitial' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>alphaInitial</description>
           </Parameter>
-          <Parameter name='alphaMax' default ='1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0'>
+          <Parameter name='AlphaMax' default ='1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>alphaMax</description>
           </Parameter>
-          <Parameter name='alphaMin' default ='-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0'>
+          <Parameter name='AlphaMin' default ='-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>alphaMin</description>
           </Parameter>
-          <Parameter name='maximizeHomogeneity' default='true'>
+          <Parameter name='MaximizeHomogeneity' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE for maximizing homogeneity</description>
           </Parameter>
-          <Parameter name='alphaForm' exampleValue ='AlphaFormID' default='""'>
+          <Parameter name='AlphaForm' exampleValue ='AlphaFormID' default='""'>
             <type>QuantLib::AlphaForm</type>
             <tensorRank>scalar</tensorRank>
             <description>alpha form ID. If omitted, default alpha form is used.</description>
@@ -468,40 +468,40 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='evolution' exampleValue ='EvolutionDescriptionID'>
+          <Parameter name='Evolution' exampleValue ='EvolutionDescriptionID'>
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Evolution Description</description>
           </Parameter>
-          <Parameter name='correlations'>
+          <Parameter name='Correlations'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>PiecewiseConstantCorrelation object ID</description>
           </Parameter>
-          <Parameter name='swapPiecewiseConstantVariances'>
+          <Parameter name='SwapPiecewiseConstantVariances'>
             <type>QuantLib::PiecewiseConstantVariance</type>
             <tensorRank>vector</tensorRank>
             <description>PiecewiseConstantVariance IDs</description>
           </Parameter>
-          <Parameter name='capletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
+          <Parameter name='CapletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
             <description>caplet volatilities</description>
           </Parameter>
-          <Parameter name='curveState' exampleValue ='CurveStateID'>
+          <Parameter name='CurveState' exampleValue ='CurveStateID'>
             <type>QuantLib::CurveState</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>CurveState object ID</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
           </Parameter>
-          <Parameter name='caplet0Swaption1Priority' default='1.0'>
+          <Parameter name='Caplet0Swaption1Priority' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>caplet0Swaption1Priority</description>

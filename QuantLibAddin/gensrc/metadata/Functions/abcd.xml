@@ -32,22 +32,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='a' default='-0.06'>
+          <Parameter name='A' default='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.  If omitted, default = -0.06 is used.</description>
           </Parameter>
-          <Parameter name='b' default='0.17'>
+          <Parameter name='B' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
           </Parameter>
-          <Parameter name='c' default='0.54'>
+          <Parameter name='C' default='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.54 is used.</description>
           </Parameter>
-          <Parameter name='d' default='0.17'>
+          <Parameter name='D' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
@@ -65,67 +65,67 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='times' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
+          <Parameter name='Times' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>times</description>
           </Parameter>
-          <Parameter name='blackVols' >
+          <Parameter name='BlackVols' >
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
             <description>Black Volatilities</description>
           </Parameter>
-          <Parameter name='a' default='-0.06'>
+          <Parameter name='A' default='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.  If omitted, default = -0.06 is used.</description>
           </Parameter>
-          <Parameter name='b' default='0.17'>
+          <Parameter name='B' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
           </Parameter>
-          <Parameter name='c' default='0.54'>
+          <Parameter name='C' default='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.54 is used.</description>
           </Parameter>
-          <Parameter name='d' default='0.17'>
+          <Parameter name='D' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
           </Parameter>
-          <Parameter name='aIsFixed' default='false'>
+          <Parameter name='AIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
           </Parameter>
-          <Parameter name='bIsFixed' default='false'>
+          <Parameter name='BIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
           </Parameter>
-          <Parameter name='cIsFixed' default='false'>
+          <Parameter name='CIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
           </Parameter>
-          <Parameter name='dIsFixed' default='false'>
+          <Parameter name='DIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
           </Parameter>
-          <Parameter name='vegaWeighted' default='false'>
+          <Parameter name='VegaWeighted' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
           </Parameter>
-          <Parameter name="endCriteria" default='""'>
+          <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
             <tensorRank>scalar</tensorRank>
             <description>EndCriteria object ID</description>
           </Parameter>
-          <Parameter name='method' default='""'>
+          <Parameter name='Method' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
             <description>OptimizationMethod object ID</description>
@@ -135,7 +135,7 @@
     </Constructor>
     
     <!-- Abcd (volatility) class interfaces -->
-    <Member name='qlAbcdInstantaneousValue' type='QuantLib::Abcd' loopParameter='u'>
+    <Member name='qlAbcdInstantaneousValue' type='QuantLib::Abcd' loopParameter='U'>
       <description>Returns the instantaneous volatility as function of residual time to maturity u=T-t: [a + b*u] * e^{-c*u} + d</description>
       <libraryFunction>operator()</libraryFunction>
       <SupportedPlatforms>
@@ -144,7 +144,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='u' const='False' exampleValue ='5.0,4.0,3.0,2.0,1.0'>
+          <Parameter name='U' const='False' exampleValue ='5.0,4.0,3.0,2.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>residual time(s) to maturity</description>
@@ -157,7 +157,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdInstantaneousCovariance' type='QuantLib::Abcd' loopParameter='u'>
+    <Member name='qlAbcdInstantaneousCovariance' type='QuantLib::Abcd' loopParameter='U'>
       <description>Returns covariance at calendar time u between T and S rates fixing times.</description>
       <libraryFunction>instantaneousCovariance</libraryFunction>
       <SupportedPlatforms>
@@ -166,7 +166,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='u' const='False' exampleValue ='0.0,0.5,1.0'>
+          <Parameter name='U' const='False' exampleValue ='0.0,0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>calendar time(s)</description>
@@ -189,7 +189,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdInstantaneousVariance' type='QuantLib::Abcd' loopParameter='u'>
+    <Member name='qlAbcdInstantaneousVariance' type='QuantLib::Abcd' loopParameter='U'>
       <description>Returns variance at calendar time(s) u of T-fixing rate.</description>
       <libraryFunction>instantaneousVariance</libraryFunction>
       <SupportedPlatforms>
@@ -198,7 +198,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='u' const='False' exampleValue ='0.0,0.5,1.0'>
+          <Parameter name='U' const='False' exampleValue ='0.0,0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>calendar time(s)</description>
@@ -216,7 +216,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdInstantaneousVolatility' type='QuantLib::Abcd' loopParameter='u'>
+    <Member name='qlAbcdInstantaneousVolatility' type='QuantLib::Abcd' loopParameter='U'>
       <description>Returns volatility/ies at calendar time(s) u of T-fixing rate.</description>
       <libraryFunction>instantaneousVolatility</libraryFunction>
       <SupportedPlatforms>
@@ -225,7 +225,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='u' const='False' exampleValue ='0.0,0.5,1.0'>
+          <Parameter name='U' const='False' exampleValue ='0.0,0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>calendar time(s)</description>
@@ -243,7 +243,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdCovariance' type='QuantLib::Abcd' loopParameter='tMax'>
+    <Member name='qlAbcdCovariance' type='QuantLib::Abcd' loopParameter='TMax'>
       <description>Returns covariance(s) in [tMin,tMax] between T and S rate fixing times.</description>
       <libraryFunction>covariance</libraryFunction>
       <SupportedPlatforms>
@@ -252,12 +252,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='tMin' const='False' exampleValue ='0.0'>
+          <Parameter name='TMin' const='False' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>lower bound of the covariance integral</description>
           </Parameter>
-          <Parameter name='tMax' const='False' exampleValue ='0.25,0.5'>
+          <Parameter name='TMax' const='False' exampleValue ='0.25,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>upper bound(s) of the covariance integral(s)</description>
@@ -280,7 +280,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdVariance' type='QuantLib::Abcd' loopParameter='tMax'>
+    <Member name='qlAbcdVariance' type='QuantLib::Abcd' loopParameter='TMax'>
       <description>Returns variance(s) in [tMin,tMax] of T rate fixing time.</description>
       <libraryFunction>variance</libraryFunction>
       <SupportedPlatforms>
@@ -289,12 +289,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='tMin' const='False' exampleValue ='0.0'>
+          <Parameter name='TMin' const='False' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>lower bound of the covariance integral</description>
           </Parameter>
-          <Parameter name='tMax' const='False' exampleValue ='0.5,1.0'>
+          <Parameter name='TMax' const='False' exampleValue ='0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>upper bound of the covariance integral</description>
@@ -312,7 +312,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdVolatility' type='QuantLib::Abcd' loopParameter='tMax'>
+    <Member name='qlAbcdVolatility' type='QuantLib::Abcd' loopParameter='TMax'>
       <description>Returns volatility/ies in [tMin,tMax] of T rate fixing time.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -321,12 +321,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='tMin' const='False' exampleValue ='1.0'>
+          <Parameter name='TMin' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>lower bound of the covariance integral</description>
           </Parameter>
-          <Parameter name='tMax' const='False' exampleValue ='0.5,1.0'>
+          <Parameter name='TMax' const='False' exampleValue ='0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>upper bound(s) of the covariance integral(s)</description>
@@ -499,12 +499,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='times'>
+          <Parameter name='Times'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>times</description>
           </Parameter>
-          <Parameter name='blackVols'>
+          <Parameter name='BlackVols'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
             <description>Black Volatilities</description>

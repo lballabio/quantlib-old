@@ -34,12 +34,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='legIDs'>
+          <Parameter name='LegIDs'>
             <type>QuantLibAddin::Leg</type>
             <tensorRank>vector</tensorRank>
             <description>leg object IDs</description>
           </Parameter>
-          <Parameter name='payer'>
+          <Parameter name='Payer'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
             <description>TRUE for payed leg</description>
@@ -62,17 +62,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='swapTenor' exampleValue='5Y'>
+          <Parameter name='SwapTenor' exampleValue='5Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>swap tenor period</description>
           </Parameter>
-          <Parameter name='swapIndex'>
+          <Parameter name='SwapIndex'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>swap index object ID</description>
           </Parameter>
-          <Parameter name='iborSpread' exampleValue='0%'>
+          <Parameter name='IborSpread' exampleValue='0%'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>spread over the ibor leg</description>
@@ -82,9 +82,9 @@
             <tensorRank>scalar</tensorRank>
             <description>Cms coupon pricer object ID</description>
           </Parameter>
-          <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='0*QuantLib::Days'>-->
-          <!--<Parameter name='forwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
-          <Parameter name='forwardStart' exampleValue='0D'>
+          <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='0*QuantLib::Days'>-->
+          <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
+          <Parameter name='ForwardStart' exampleValue='0D'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period</description>
@@ -106,7 +106,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='legNumber' exampleValue='1'>
+          <Parameter name='LegNumber' exampleValue='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>
@@ -128,7 +128,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='legNumber' exampleValue='1'>
+          <Parameter name='LegNumber' exampleValue='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>
@@ -182,7 +182,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='legNumber' exampleValue='1'>
+          <Parameter name='LegNumber' exampleValue='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.)</description>

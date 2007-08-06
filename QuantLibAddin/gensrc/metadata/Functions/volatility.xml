@@ -74,7 +74,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='timeIndex' exampleValue ='0'>
+          <Parameter name='TimeIndex' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>time index.</description>
@@ -96,7 +96,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='timeIndex' exampleValue ='0'>
+          <Parameter name='TimeIndex' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>time index.</description>
@@ -118,7 +118,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='timeIndex' exampleValue ='0'>
+          <Parameter name='TimeIndex' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>time index.</description>
@@ -140,7 +140,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='timeIndex' exampleValue ='0'>
+          <Parameter name='TimeIndex' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>time index.</description>
@@ -162,22 +162,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='a' default='-0.06'>
+          <Parameter name='A' default='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>coefficient in abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = -0.06 is used. </description>
           </Parameter>
-          <Parameter name='b' default='0.17'>
+          <Parameter name='B' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
           </Parameter>
-          <Parameter name='c' default='0.54'>
+          <Parameter name='C' default='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.54 is used.</description>
           </Parameter>
-          <Parameter name='d' default='0.17'>
+          <Parameter name='D' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
@@ -187,7 +187,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Index that defines the reset time of rate.</description>
           </Parameter>
-          <Parameter name='rateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
@@ -206,27 +206,27 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fixingTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+          <Parameter name='FixingTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>rate fixing times</description>
           </Parameter>
-          <Parameter name='a' exampleValue ='1.0'>
+          <Parameter name='A' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>a parameter</description>
           </Parameter>
-          <Parameter name='b' exampleValue ='1.0'>
+          <Parameter name='B' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>b parameter</description>
           </Parameter>
-          <Parameter name='c' exampleValue ='1.0'>
+          <Parameter name='C' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>c parameter</description>
           </Parameter>
-          <Parameter name='d' exampleValue ='1.0'>
+          <Parameter name='D' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>d parameter</description>

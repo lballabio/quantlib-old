@@ -21,7 +21,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='deletePermanent' default='false'>
+          <Parameter name='DeletePermanent' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>also delete permanent objects (default FALSE)</description>
@@ -42,7 +42,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='deletePermanent' default='false'>
+          <Parameter name='DeletePermanent' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>also delete permanent objects (default FALSE)</description>
@@ -63,7 +63,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='objectID'>
+          <Parameter name='ObjectID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be deleted</description>

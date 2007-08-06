@@ -30,23 +30,23 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='volCube' >
+          <Parameter name='VolCube' >
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>Volatility Cube by Sabr</description>
           </Parameter>
-          <Parameter name='cmsMarket'>
+          <Parameter name='CmsMarket'>
             <type>QuantLib::CmsMarket</type>
             <tensorRank>scalar</tensorRank>
             <description>CmsMarket object ID</description>
           </Parameter>
-          <Parameter name='weights'>
+          <Parameter name='Weights'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>weights for cms market calibration.</description>
           </Parameter>
-          <Parameter name='calibrationType'>
+          <Parameter name='CalibrationType'>
             <type>QuantLib::CmsMarketCalibration::CalibrationType</type>
             <tensorRank>scalar</tensorRank>
             <description>calibration type (e.g. OnSpread, OnPrice, OnForwardPrice)</description>
@@ -64,22 +64,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='endCriteria' default='""'>
+          <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
             <tensorRank>scalar</tensorRank>
             <description>EndCriteria object ID</description>
           </Parameter>
-          <Parameter name='optimizationMethod' default='""'>
+          <Parameter name='OptimizationMethod' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
             <description>OptimizationMethod object ID</description>
           </Parameter>
-          <Parameter name="guess">
+          <Parameter name='Guess'>
             <type>QuantLib::Array</type>
             <tensorRank>vector</tensorRank>
             <description>guess</description>
           </Parameter>
-          <Parameter name='isMeanRevFixed' exampleValue = 'FALSE'>
+          <Parameter name='IsMeanRevFixed' exampleValue = 'FALSE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>if TRUE mean reversion parameter is not calibrated, the guess is used.</description>

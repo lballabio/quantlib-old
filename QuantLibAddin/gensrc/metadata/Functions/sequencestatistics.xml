@@ -250,7 +250,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x' exampleValue='0.5'>
+          <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
@@ -272,7 +272,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x' exampleValue='0.5'>
+          <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
@@ -294,7 +294,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -316,7 +316,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='centile' exampleValue='0.5'>
+          <Parameter name='Centile' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the centile</description>
@@ -338,7 +338,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -360,7 +360,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -382,7 +382,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -404,7 +404,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -426,7 +426,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -448,7 +448,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -470,7 +470,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -544,7 +544,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dimension' default='0'>
+          <Parameter name='Dimension' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>sample dimensionality.</description>
@@ -562,18 +562,18 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='dimension' default='0'>
+          <Parameter name='Dimension' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>sample dimensionality.</description>
           </Parameter>
-          <!--<Parameter name='values' default='QuantLib::Matrix()'>-->
-          <Parameter name='values'>
+          <!--<Parameter name='Values' default='QuantLib::Matrix()'>-->
+          <Parameter name='Values'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>Sampled values. If omitted, an empty statistics is created.</description>
           </Parameter>
-          <Parameter name='weights' default='std::vector&lt;QuantLib::Real&gt;()'>
+          <Parameter name='Weights' default='std::vector&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>If omitted, all sampled values have the same weight.</description>

@@ -27,7 +27,7 @@
       </ReturnValue>
     </EnumerationMember>
 
-    <EnumerationMember name='qlDayCounterDayCount' type='QuantLib::DayCounter' loopParameter='endDate'>
+    <EnumerationMember name='qlDayCounterDayCount' type='QuantLib::DayCounter' loopParameter='EndDate'>
       <description>calculate the number of days in a period according to a given day count convention</description>
       <libraryFunction>dayCount</libraryFunction>
       <SupportedPlatforms>
@@ -36,12 +36,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='startDate'>
+          <Parameter name='StartDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>start date</description>
           </Parameter>
-          <Parameter name='endDate'>
+          <Parameter name='EndDate'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>end date</description>
@@ -54,7 +54,7 @@
       </ReturnValue>
     </EnumerationMember>
 
-    <EnumerationMember name='qlDayCounterYearFraction' type='QuantLib::DayCounter' loopParameter='endDate'>
+    <EnumerationMember name='qlDayCounterYearFraction' type='QuantLib::DayCounter' loopParameter='EndDate'>
       <description>calculate a year fraction</description>
       <libraryFunction>yearFraction</libraryFunction>
       <SupportedPlatforms>
@@ -63,22 +63,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='startDate'>
+          <Parameter name='StartDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>start date</description>
           </Parameter>
-          <Parameter name='endDate'>
+          <Parameter name='EndDate'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>end date</description>
           </Parameter>
-          <Parameter name='refPeriodStart' default='QuantLib::Date()'>
+          <Parameter name='RefPeriodStart' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>start date for reference period</description>
           </Parameter>
-          <Parameter name='refPeriodEnd' default='QuantLib::Date()'>
+          <Parameter name='RefPeriodEnd' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>end date for reference period</description>

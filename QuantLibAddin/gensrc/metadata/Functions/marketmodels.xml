@@ -124,7 +124,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="index" exampleValue ='0'>
+          <Parameter name='Index' exampleValue ='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>evolution step index</description>
@@ -146,7 +146,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="index" exampleValue ='0'>
+          <Parameter name='Index' exampleValue ='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>evolution step index</description>
@@ -168,7 +168,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="index" exampleValue ='0'>
+          <Parameter name='Index' exampleValue ='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>evolution step index</description>
@@ -190,7 +190,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="index" exampleValue ='0'>
+          <Parameter name='Index' exampleValue ='0'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>rate index</description>
@@ -212,18 +212,18 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='volatilities' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
+          <Parameter name='Volatilities' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
             <description>volatilities</description>
           </Parameter>
-          <Parameter name='correlations'>
+          <Parameter name='Correlations'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>PiecewiseConstantCorrelation object ID</description>
           </Parameter>
-          <Parameter name='evolutionDescription' >
+          <Parameter name='EvolutionDescription' >
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -234,12 +234,12 @@
             <tensorRank>scalar</tensorRank>
             <description>number of factors to be retained in the simulation</description>
           </Parameter>
-          <Parameter name='initialRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+          <Parameter name='InitialRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>initial rates</description>
           </Parameter>
-          <Parameter name='displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+          <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
@@ -256,38 +256,38 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='a' exampleValue ='-0.06'>
+          <Parameter name='A' exampleValue ='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the a coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='b' exampleValue ='0.17'>
+          <Parameter name='B' exampleValue ='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the b coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='c' exampleValue ='0.54'>
+          <Parameter name='C' exampleValue ='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the c coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='d' exampleValue ='0.17'>
+          <Parameter name='D' exampleValue ='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>the d coefficient in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='ks' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
+          <Parameter name='Ks' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>K_i adjustment factors in the abcd vol parametrization</description>
           </Parameter>
-          <Parameter name='correlations'>
+          <Parameter name='Correlations'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>PiecewiseConstantCorrelation object ID</description>
           </Parameter>
-          <Parameter name='evolutionDescription' >
+          <Parameter name='EvolutionDescription' >
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -298,12 +298,12 @@
             <tensorRank>scalar</tensorRank>
             <description>number of factors to be retained in the simulation</description>
           </Parameter>
-          <Parameter name='initialRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+          <Parameter name='InitialRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>initial rates</description>
           </Parameter>
-          <Parameter name='displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+          <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
@@ -320,7 +320,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='calibrator'>
+          <Parameter name='Calibrator'>
             <type>QuantLib::CTSMMCapletCalibration</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -338,7 +338,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='coterminalModel'>
+          <Parameter name='CoterminalModel'>
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -356,23 +356,23 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='largeModel'>
+          <Parameter name='LargeModel'>
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>large MarketModel ID</description>
           </Parameter>
-          <Parameter name='period' exampleValue ='2'>
+          <Parameter name='Period' exampleValue ='2'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>target period (e.g. 2 if going from semiannual LMM to annual LMM)</description>
           </Parameter>
-          <Parameter name='offset' exampleValue ='0'>
+          <Parameter name='Offset' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>rate index offset, in order to pin down swaption coterminal to the last rate time</description>
           </Parameter>
-          <Parameter name='displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+          <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
             <description>displacements</description>
@@ -389,7 +389,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='forwardModel'>
+          <Parameter name='ForwardModel'>
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -413,17 +413,17 @@
             <tensorRank>scalar</tensorRank>
             <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
           </Parameter>
-          <Parameter name='beta' exampleValue ='0.2'>
+          <Parameter name='Beta' exampleValue ='0.2'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
           </Parameter>
-          <Parameter name='times' exampleValue ='0.1,0.2,0.3,0.4,0.5'>
+          <Parameter name='Times' exampleValue ='0.1,0.2,0.3,0.4,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
             <description>times</description>
           </Parameter>
-          <Parameter name='volatilities' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
+          <Parameter name='Volatilities' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
             <description>volatilities</description>
@@ -434,7 +434,7 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -455,7 +455,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' >
+          <Parameter name='CurveState' >
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -479,13 +479,13 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='curveState' >
+          <Parameter name='CurveState' >
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>CurveState object ID</description>
           </Parameter>
-          <Parameter name='displacement' default='0.0'>
+          <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>displacement</description>
@@ -508,13 +508,13 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='marketModel1' >
+          <Parameter name='MarketModel1' >
             <type>QuantLib::MarketModel</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>First Market Model</description>
           </Parameter>
-          <Parameter name='marketModel2'>
+          <Parameter name='MarketModel2'>
             <type>QuantLib::MarketModel</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -537,19 +537,19 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='marketModel1' >
+          <Parameter name='MarketModel1' >
             <type>QuantLib::MarketModel</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>First Market Model</description>
           </Parameter>
-          <Parameter name='marketModel2'>
+          <Parameter name='MarketModel2'>
             <type>QuantLib::MarketModel</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Second Market Model</description>
           </Parameter>
-          <Parameter name='index' exampleValue='2'>
+          <Parameter name='Index' exampleValue='2'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>Forward Rate index</description>

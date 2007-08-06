@@ -49,7 +49,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlIndexIsValidFixingDate' type='QuantLib::Index' loopParameter='fixingDate'>
+    <Member name='qlIndexIsValidFixingDate' type='QuantLib::Index' loopParameter='FixingDate'>
       <description>Returns TRUE if the fixing date is a valid one for the given Index object</description>
       <libraryFunction>isValidFixingDate</libraryFunction>
       <SupportedPlatforms>
@@ -58,7 +58,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fixingDate' exampleValue='10-Feb-2007'>
+          <Parameter name='FixingDate' exampleValue='10-Feb-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>fixing date(s)</description>
@@ -71,7 +71,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlIndexFixing' type='QuantLib::Index' loopParameter='fixingDate'>
+    <Member name='qlIndexFixing' type='QuantLib::Index' loopParameter='FixingDate'>
       <description>Returns the fixing for the given Index object. The fixing is retrieved from the time series if available, otherways it is forecasted.</description>
       <libraryFunction>fixing</libraryFunction>
       <SupportedPlatforms>
@@ -80,12 +80,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fixingDate' exampleValue='02-Jan-2007'>
+          <Parameter name='FixingDate' exampleValue='02-Jan-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>fixing date(s)</description>
           </Parameter>
-          <Parameter name='forecastToday' default='0' const='False'>
+          <Parameter name='ForecastToday' default='0' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>If set to TRUE it forces the forecasting of today's fixing even if the actual fixing is already available in the time series. The default value is FALSE.</description>
@@ -108,12 +108,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fixingDates' libraryType='QuantLib::Date'>
+          <Parameter name='FixingDates' libraryType='QuantLib::Date'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>fixing dates</description>
           </Parameter>
-          <Parameter name='fixingValues' libraryType='QuantLib::Real'>
+          <Parameter name='FixingValues' libraryType='QuantLib::Real'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>fixing values</description>
@@ -224,7 +224,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterestRateIndexForecastFixing' type='QuantLib::InterestRateIndex' loopParameter='fixingDate'>
+    <Member name='qlInterestRateIndexForecastFixing' type='QuantLib::InterestRateIndex' loopParameter='FixingDate'>
       <description>Returns the forecasted fixing for the given InterestRateIndex object. Today's fixing is forecasted even if the actual one is available in the time series.</description>
       <libraryFunction>forecastFixing</libraryFunction>
       <SupportedPlatforms>
@@ -233,7 +233,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fixingDate' exampleValue='02-Jan-2007'>
+          <Parameter name='FixingDate' exampleValue='02-Jan-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>fixing date(s)</description>
@@ -246,7 +246,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterestRateIndexValueDate' type='QuantLib::InterestRateIndex' loopParameter='fixingDate'>
+    <Member name='qlInterestRateIndexValueDate' type='QuantLib::InterestRateIndex' loopParameter='FixingDate'>
       <description>Returns the value date for the given fixing date for the given InterestRateIndex object</description>
       <libraryFunction>valueDate</libraryFunction>
       <SupportedPlatforms>
@@ -255,7 +255,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='fixingDate' exampleValue='02-Jan-2007'>
+          <Parameter name='FixingDate' exampleValue='02-Jan-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>fixing date</description>
@@ -268,7 +268,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterestRateIndexFixingDate' type='QuantLib::InterestRateIndex' loopParameter='valueDate'>
+    <Member name='qlInterestRateIndexFixingDate' type='QuantLib::InterestRateIndex' loopParameter='ValueDate'>
       <description>Returns the fixing date for the given value date for the given InterestRateIndex object</description>
       <libraryFunction>fixingDate</libraryFunction>
       <SupportedPlatforms>
@@ -277,7 +277,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='valueDate' exampleValue='02-Jan-2007'>
+          <Parameter name='ValueDate' exampleValue='02-Jan-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>value date</description>
@@ -290,7 +290,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterestRateIndexMaturity' type='QuantLib::InterestRateIndex' loopParameter='valueDate'>
+    <Member name='qlInterestRateIndexMaturity' type='QuantLib::InterestRateIndex' loopParameter='ValueDate'>
       <description>Returns the maturity date for the given value date for the given InterestRateIndex object</description>
       <libraryFunction>maturityDate</libraryFunction>
       <SupportedPlatforms>
@@ -299,7 +299,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='valueDate' exampleValue='02-Jan-2007'>
+          <Parameter name='ValueDate' exampleValue='02-Jan-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>value date</description>
@@ -372,17 +372,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='familyName' exampleValue='Euribor6M Actual/360'>
+          <Parameter name='FamilyName' exampleValue='Euribor6M Actual/360'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>index name</description>
           </Parameter>
-          <Parameter name='tenor' exampleValue='6M'>
+          <Parameter name='Tenor' exampleValue='6M'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='fixingDays' exampleValue='2'>
+          <Parameter name='FixingDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
@@ -392,7 +392,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Index Currency</description>
           </Parameter>
-          <Parameter name='calendar' exampleValue='TARGET'>
+          <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
@@ -402,12 +402,12 @@
             <tensorRank>scalar</tensorRank>
             <description>business day convention (e.g. ModifiedFollowing)</description>
           </Parameter>
-          <Parameter name='endOfMonth'  exampleValue='TRUE'>
+          <Parameter name='EndOfMonth'  exampleValue='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the index follow the 'end of month' convention</description>
           </Parameter>
-          <Parameter name='dayCounter'  exampleValue='Actual/360'>
+          <Parameter name='DayCounter'  exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual360)</description>
@@ -434,7 +434,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='termStructureID' exampleValue='EURYC'>
+          <Parameter name='TermStructureID' exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>handleToLib</superType>
             <tensorRank>scalar</tensorRank>
@@ -512,17 +512,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='familyName' exampleValue='EuriborSwapFixA10Y 30/360 (BondBasis)'>
+          <Parameter name='FamilyName' exampleValue='EuriborSwapFixA10Y 30/360 (BondBasis)'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>index name</description>
           </Parameter>
-          <Parameter name='tenor' exampleValue='10Y'>
+          <Parameter name='Tenor' exampleValue='10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='fixingDays' exampleValue='2'>
+          <Parameter name='FixingDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>swap rate fixing days (e.g. 2)</description>
@@ -532,27 +532,27 @@
             <tensorRank>scalar</tensorRank>
             <description>Index Currency</description>
           </Parameter>
-          <Parameter name='calendar' exampleValue='TARGET'>
+          <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='fixedLegTenor' exampleValue='1Y'>
+          <Parameter name='FixedLegTenor' exampleValue='1Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>tenor of the underlying swap's fixed leg (e.g. 6M, 1Y, 3M)</description>
           </Parameter>
-          <Parameter name='fixedLegBDC' exampleValue='Unadjusted'>
+          <Parameter name='FixedLegBDC' exampleValue='Unadjusted'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>business day convention of the underlying swap's fixed leg (e.g. ModifiedFollowing)</description>
           </Parameter>
-          <Parameter name='fixedLegDayCounter' exampleValue='30/360 (Bond Basis)'>
+          <Parameter name='FixedLegDayCounter' exampleValue='30/360 (Bond Basis)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter of the underlying swap's fixed leg (e.g. 30/360::BondBasis)</description>
           </Parameter>
-          <Parameter name='index' exampleValue='Euribor6M'>
+          <Parameter name='Index' exampleValue='Euribor6M'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>swap's floating ibor index object ID</description>

@@ -184,7 +184,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x' exampleValue='0.5'>
+          <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
@@ -206,7 +206,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x' exampleValue='0.5'>
+          <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
@@ -262,7 +262,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -284,7 +284,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x' exampleValue='0.5'>
+          <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1]</description>
@@ -306,7 +306,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x' exampleValue='0.5'>
+          <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Must be in the range (0,1].</description>
@@ -328,7 +328,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -350,7 +350,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -372,7 +372,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target'>
+          <Parameter name='Target'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -394,7 +394,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -416,7 +416,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -504,7 +504,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -526,7 +526,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='centile' exampleValue='0.5'>
+          <Parameter name='Centile' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the centile</description>
@@ -548,7 +548,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
@@ -570,7 +570,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='centile' exampleValue='0.5'>
+          <Parameter name='Centile' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the centile</description>
@@ -592,7 +592,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -614,7 +614,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
@@ -638,12 +638,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='values' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.5,2.0'>
+          <Parameter name='Values' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.5,2.0'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>Sampled values. If omitted, an empty statistics is created.</description>
           </Parameter>
-          <Parameter name='weights' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.0,1.0'>
+          <Parameter name='Weights' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.0,1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>Weights. If omitted, all sampled values have the same weight.</description>
@@ -664,12 +664,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='mean' default='0.0'>
+          <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='stdDev' default='1.0'>
+          <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
@@ -691,12 +691,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='mean' default='0.0'>
+          <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='stdDev' default='1.0'>
+          <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
@@ -718,17 +718,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
-          <Parameter name='mean' default='0.0'>
+          <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='stdDev' default='1.0'>
+          <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
@@ -750,17 +750,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x' exampleValue='0.5'>
+          <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
-          <Parameter name='mean' default='0.0'>
+          <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='stdDev' default='1.0'>
+          <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
@@ -782,17 +782,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='x' exampleValue='0.5'>
+          <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
-          <Parameter name='mean' default='0.0'>
+          <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='stdDev' default='1.0'>
+          <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
@@ -814,17 +814,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
-          <Parameter name='mean' default='0.0'>
+          <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='stdDev' default='1.0'>
+          <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
@@ -846,17 +846,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
-          <Parameter name='mean' default='0.0'>
+          <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='stdDev' default='1.0'>
+          <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
@@ -878,17 +878,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the percentile</description>
           </Parameter>
-          <Parameter name='mean' default='0.0'>
+          <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='stdDev' default='1.0'>
+          <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
@@ -910,17 +910,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
-          <Parameter name='mean' default='0.0'>
+          <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='stdDev' default='1.0'>
+          <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
@@ -942,17 +942,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='target' exampleValue='0.5'>
+          <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>the target</description>
           </Parameter>
-          <Parameter name='mean' default='0.0'>
+          <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='stdDev' default='1.0'>
+          <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>

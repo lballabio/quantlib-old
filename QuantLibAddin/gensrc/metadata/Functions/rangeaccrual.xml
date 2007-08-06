@@ -35,73 +35,73 @@
     </SupportedPlatforms>
 		<ParameterList>
 			<Parameters>
-				<Parameter name='nominal'>
+				<Parameter name='Nominal'>
 					<type>double</type>
 					<tensorRank>scalar</tensorRank>
 					<description>coupon nominal</description>
 				</Parameter>
-        <Parameter name='paymentDate'>
+        <Parameter name='PaymentDate'>
 					<type>QuantLib::Date</type>
 					<tensorRank>scalar</tensorRank>
 					<description>payment Date</description>
 				</Parameter>
-				<Parameter name='indexID'>
+				<Parameter name='IndexID'>
 					<type>QuantLib::InterestRateIndex</type>
 					<tensorRank>scalar</tensorRank>
 					<description>underlying xibor index</description>
 				</Parameter>
-				<Parameter name='startDate'>
+				<Parameter name='StartDate'>
 					<type>QuantLib::Date</type>
 					<tensorRank>scalar</tensorRank>
 					<description>start Date</description>
 				</Parameter>
-				<Parameter name='endDate'>
+				<Parameter name='EndDate'>
 					<type>QuantLib::Date</type>
 					<tensorRank>scalar</tensorRank>
 					<description>end Date</description>
 				</Parameter>
-				<Parameter name='fixingDays'>
+				<Parameter name='FixingDays'>
 					<type>long</type>
 					<tensorRank>scalar</tensorRank>
 					<description>fixingDays</description>
 				</Parameter>
-				<Parameter name='dayCountID'>
+				<Parameter name='DayCountID'>
 					<type>QuantLib::DayCounter</type>
 					<tensorRank>scalar</tensorRank>
 					<description>day counter</description>
 				</Parameter>
-				<Parameter name='gearings'>
+				<Parameter name='Gearings'>
 					<type>double</type>
 					<tensorRank>scalar</tensorRank>
 					<description>gearings</description>
 				</Parameter>
-				<Parameter name='spreads'> 
+				<Parameter name='Spreads'> 
 					<type>double</type>
 					<tensorRank>scalar</tensorRank>
 					<description>spreads</description>
 				</Parameter>
-				<Parameter name='refPeriodStart'>
+				<Parameter name='RefPeriodStart'>
 					<type>QuantLib::Date</type>
 					<tensorRank>scalar</tensorRank>
 					<description>refPeriodStart</description>
 				</Parameter>
-				<Parameter name='refPeriodEnd'>
+				<Parameter name='RefPeriodEnd'>
 					<type>QuantLib::Date</type>
 					<tensorRank>scalar</tensorRank>
 					<description>refPeriodEnd</description>
 				</Parameter>
-				<Parameter name='obserSchedID'>
+				<Parameter name='ObserSchedID'>
 					<type>QuantLib::Schedule</type>
 					<superType>libraryClass</superType>
 					<tensorRank>scalar</tensorRank>
 					<description>observations schedule</description>
 				</Parameter>
-				<Parameter name='lowerTrigger'> 
+				<Parameter name='LowerTrigger'> 
 					<type>double</type>
 					<tensorRank>scalar</tensorRank>
 					<description>lowerTrigger</description>
 				</Parameter>
-				<Parameter name='upperTrigger'>
+				<Parameter name='UpperTrigger'>
 					<type>double</type>
 					<tensorRank>scalar</tensorRank>
 					<description>upperTrigger</description>
@@ -125,7 +125,7 @@
             <tensorRank>scalar</tensorRank>
             <description>range accrual leg object ID</description>
           </Parameter>
-          <Parameter name='position'>
+          <Parameter name='Position'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>position</description>
@@ -283,29 +283,29 @@
      </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='correlation' > 
+          <Parameter name='Correlation' > 
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>correlation.</description>
           </Parameter>
-          <Parameter name='smileOnStartDateID'>
+          <Parameter name='SmileOnStartDateID'>
             <type>QuantLib::SmileSection</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>ID of the smile on start date object</description>
           </Parameter>
-          <Parameter name='smileOnEndDateID'>
+          <Parameter name='SmileOnEndDateID'>
             <type>QuantLib::SmileSection</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>ID of the smile on end date object</description>
           </Parameter>
-          <Parameter name='withSmile' > 
+          <Parameter name='WithSmile' > 
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>with Smile?</description>
           </Parameter>
-          <Parameter name='byCallSpread' > 
+          <Parameter name='ByCallSpread' > 
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>replicated by Call spread?</description>

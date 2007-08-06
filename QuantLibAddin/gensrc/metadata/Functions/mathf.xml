@@ -56,22 +56,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="X" exampleValue ='0.0'>
+          <Parameter name='X' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is the value for which you want the distribution</description>
           </Parameter>
-          <Parameter name="Mean" default="0.0">
+          <Parameter name='Mean' default="0.0">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is the arithmetic mean of the distribution. If omitted, default = 0.0 is used.</description>
           </Parameter>
-          <Parameter name="Standard_dev" default="1.0">
+          <Parameter name='Standard_dev' default="1.0">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is the standard deviation of the distribution, a positive number. If omitted, default = 1.0 is used.</description>
           </Parameter>
-          <Parameter name="cumulative" default="TRUE">
+          <Parameter name='Cumulative' default="TRUE">
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>is a logical value: for the cumulative distribution function, use TRUE; for the probability mass function, use FALSE. If omitted, default = TRUE is used.</description>
@@ -93,7 +93,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="Z" exampleValue ='0.0'>
+          <Parameter name='Z' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is the value for which you want the distribution</description>
@@ -115,17 +115,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="Probability" exampleValue ='0.5'>
+          <Parameter name='Probability' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive</description>
           </Parameter>
-          <Parameter name="Mean" default="0.0">
+          <Parameter name='Mean' default="0.0">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is the arithmetic mean of the distribution. If omitted, default = 0.0 is used.</description>
           </Parameter>
-          <Parameter name="Standard_dev" default="1.0">
+          <Parameter name='Standard_dev' default="1.0">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is the standard deviation of the distribution, a positive number. If omitted, default = 1.0 is used.</description>
@@ -147,7 +147,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="Probability" exampleValue ='0.5'>
+          <Parameter name='Probability' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive</description>
@@ -204,7 +204,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='symmetricMatrix'>
+          <Parameter name='SymmetricMatrix'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>Symmetrix matrix to be decomposed</description>
@@ -224,12 +224,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="matrix">
+          <Parameter name='Matrix'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>symmetric matrix (hopefully positive semi-definite at least)</description>
           </Parameter>
-          <Parameter name='flexible' default='false'>
+          <Parameter name='Flexible' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>If TRUE it returns a result also for positive semi-definite matrix. If omitted, default = FALSE is used.</description>
@@ -251,12 +251,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="matrix">
+          <Parameter name='Matrix'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>symmetric matrix (hopefully positive semi-definite at least)</description>
           </Parameter>
-          <Parameter name='salvagingAlgorithm'>
+          <Parameter name='SalvagingAlgorithm'>
             <type>QuantLib::SalvagingAlgorithm::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>Salvaging algorithm for symmetric matrix not positive semi-definite (None, Spectral)</description>
@@ -278,22 +278,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="matrix">
+          <Parameter name='Matrix'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>symmetric matrix (hopefully positive semi-definite at least)</description>
           </Parameter>
-          <Parameter name="maxRank" exampleValue ='10'>
+          <Parameter name='MaxRank' exampleValue ='10'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>number of principal components retained, i.e. max rank for the result matrix</description>
           </Parameter>
-          <Parameter name="componentPercentage">
+          <Parameter name='ComponentPercentage'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>principal components retained as percentage of eigenvalues' sum</description>
           </Parameter>
-          <Parameter name='salvagingAlgorithm'>
+          <Parameter name='SalvagingAlgorithm'>
             <type>QuantLib::SalvagingAlgorithm::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>Salvaging algorithm for symmetric matrix not positive semi-definite (None, Spectral)</description>
@@ -315,17 +315,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name="vols" vectorIterator='beginAndEnd'>
+          <Parameter name='Vols' vectorIterator='beginAndEnd'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
             <description>volatility vector</description>
           </Parameter>
-          <Parameter name="matrix">
+          <Parameter name='Matrix'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>symmetric matrix (hopefully positive semi-definite at least)</description>
           </Parameter>
-          <Parameter name='tolerance' default='1.0e12'>
+          <Parameter name='Tolerance' default='1.0e12'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>numerical tolerance for non symmetric matrix. If omitted, default = 1.0e12 is used.</description>
@@ -398,12 +398,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='symmetricMatrix'>
+          <Parameter name='SymmetricMatrix'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
             <description>Symmetrix covariance matrix to be decomposed</description>
           </Parameter>
-          <Parameter name='tolerance' default='1.0e12'>
+          <Parameter name='Tolerance' default='1.0e12'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>numerical tolerance for non symmetric matrix. If omitted, default = 1.0e12 is used.</description>

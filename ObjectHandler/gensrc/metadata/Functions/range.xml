@@ -20,7 +20,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='values'>
+          <Parameter name='Values'>
             <type>double</type>
             <tensorRank>matrix</tensorRank>
             <description>a range of values</description>
