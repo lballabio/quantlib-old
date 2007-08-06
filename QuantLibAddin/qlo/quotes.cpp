@@ -40,11 +40,11 @@ namespace QuantLibAddin {
     }
 
     QuantLib::Real SimpleQuote::tickValue() const {
-        return boost::any_cast<double>(propertyValue("tickValue"));
+        return boost::any_cast<double>(propertyValue("TickValue"));
     }
 
     void SimpleQuote::setTickValue(QuantLib::Real tickValue) {
-        properties()->setProperty("tickValue", tickValue);
+        properties()->setProperty("TickValue", tickValue);
     }
 
     QuantLib::Real SimpleQuote::setValue(QuantLib::Real value) {
@@ -56,22 +56,14 @@ namespace QuantLibAddin {
         } catch (...) { 
             // In the event of an exception, ensure that the ValueObject remains
             // in synch with the simpleQuote_ before rethrowing.
-                    // is the if/else really needed? not in my opinion...
-                    // 2007-07-13 Nando
-   
-					// Eric 13-07-2007:  Yes it is.  QuantLib::SimpleQuote::value() is
-					// capable of throwing an exception, which, here in a catch clause,
-					// would cause the application to crash.  So before invoking
-					// QuantLib::SimpleQuote::value() we must first confirm that 
-					// QuantLib::SimpleQuote::isValid() returns true.
             if (simpleQuote_->isValid())
-                properties()->setProperty("value", simpleQuote_->value());
+                properties()->setProperty("Value", simpleQuote_->value());
             else
-                properties()->setProperty("value", QuantLib::Null<QuantLib::Real>());
+                properties()->setProperty("Value", QuantLib::Null<QuantLib::Real>());
             throw;
         }
 
-        properties()->setProperty("value", value);
+        properties()->setProperty("Value", value);
         return result;
 
     }
