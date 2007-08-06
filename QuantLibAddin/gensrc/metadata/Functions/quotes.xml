@@ -163,7 +163,7 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlHandleQuote'>
+    <Constructor name='qlRelinkableHandleQuote'>
       <libraryFunction>RelinkableHandle&lt;QuantLib::Quote&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -181,7 +181,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlHandleQuoteLinkTo' type='QuantLib::Quote' superType='objectHandle'>
+    <Member name='qlRelinkableHandleQuoteLinkTo' type='QuantLib::Quote' superType='objectHandle'>
       <libraryFunction>linkTo</libraryFunction>
       <description>relink handle</description>
       <SupportedPlatforms>
