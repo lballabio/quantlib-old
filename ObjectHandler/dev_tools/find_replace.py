@@ -45,13 +45,12 @@ import re
 import getopt
 import shutil
 
-ROOT_DIR = 'C:/eric/projects/trunk/QuantLibAddin/gensrc/metadata/Functions'
+ROOT_DIR = '/erik/projects/trunk/QuantLibAddin'
 
 # callback functions - called from regexes which require multiple passes
 
 # convert case
-def toLower(m):
-    return m.group(1) + m.group(2)[0].upper() + m.group(2)[1:] + "'"
+def toLower(m): return m.group(0).lower()
 
 # replace pre increment/decrement with post increment/decrement
 regex2 = re.compile(r'(\w+?)\+\+')
@@ -70,10 +69,7 @@ SUBSTITUTIONS = (
 #   place the active regexes here,
 #   using the commented examples below
 
-    (re.compile(r"(Parameter name=')(.*?)'", re.M), toLower),
-    (re.compile(r"(loopParameter=')(.*?)'", re.M), toLower),
-    #(re.compile(r'Parameter name="(.*?)"', re.M), r"Parameter name='\1'"),
-    #(re.compile(r'loopParameter="(.*?)"', re.M), r"loopParameter='\1'"),
+    (re.compile(r'aaa'), r'bbb'),
 
 #   simple
 #    (re.compile(r'include <Addins/C++'), r'include <Addins/Cpp'),
@@ -102,7 +98,7 @@ SUBSTITUTIONS = (
 # Regexes to indicate names of files to be processed by the find/replace.
 
 INCLUDE_FILES = (
-    re.compile(r'^.*\.xml$'),
+#    re.compile(r'^.*\.?pp$'),
 )
 
 # IGNORE_FILES
