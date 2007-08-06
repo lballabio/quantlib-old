@@ -8,35 +8,35 @@
 		<px class_id="114" tracking_level="1" version="0" object_id="_0">
 			<objectID>EURSwaptionMeanReversion2Y_QuoteHandle</objectID>
 			<className>qlRelinkableHandleQuote</className>
-			<currentLink></currentLink>
+			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
 		<px class_id_reference="114" object_id="_1">
 			<objectID>EURSwaptionMeanReversion5Y_QuoteHandle</objectID>
 			<className>qlRelinkableHandleQuote</className>
-			<currentLink></currentLink>
+			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
 		<px class_id_reference="114" object_id="_2">
 			<objectID>EURSwaptionMeanReversion10Y_QuoteHandle</objectID>
 			<className>qlRelinkableHandleQuote</className>
-			<currentLink></currentLink>
+			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
 		<px class_id_reference="114" object_id="_3">
 			<objectID>EURSwaptionMeanReversion20Y_QuoteHandle</objectID>
 			<className>qlRelinkableHandleQuote</className>
-			<currentLink></currentLink>
+			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
 		<px class_id_reference="114" object_id="_4">
 			<objectID>EURSwaptionMeanReversion30Y_QuoteHandle</objectID>
 			<className>qlRelinkableHandleQuote</className>
-			<currentLink></currentLink>
+			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 </object_list>

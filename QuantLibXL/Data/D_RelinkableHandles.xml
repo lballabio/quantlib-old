@@ -8,35 +8,35 @@
 		<px class_id="17" tracking_level="1" version="0" object_id="_0">
 			<objectID>EUR3MCapletVol</objectID>
 			<className>qlRelinkableHandleCapletVolatilityStructure</className>
-			<currentLink></currentLink>
+			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
 		<px class_id_reference="17" object_id="_1">
 			<objectID>EUR6MCapletVol</objectID>
 			<className>qlRelinkableHandleCapletVolatilityStructure</className>
-			<currentLink></currentLink>
+			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
 		<px class_id="143" tracking_level="1" version="0" object_id="_2">
 			<objectID>EURSwaptionATMVol</objectID>
 			<className>qlRelinkableHandleSwaptionVolatilityStructure</className>
-			<currentLink></currentLink>
+			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
 		<px class_id_reference="143" object_id="_3">
 			<objectID>EURSwaptionVol</objectID>
 			<className>qlRelinkableHandleSwaptionVolatilityStructure</className>
-			<currentLink></currentLink>
+			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
 		<px class_id="157" tracking_level="1" version="0" object_id="_4">
 			<objectID>EURYC</objectID>
 			<className>qlRelinkableHandleYieldTermStructure</className>
-			<currentLink></currentLink>
+			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 </object_list>

@@ -1,0 +1,2168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="166" tracking_level="0" version="0">
+	<count>270</count>
+	<item_version>1</item_version>
+	<item class_id="167" tracking_level="0" version="1">
+		<px class_id="115" tracking_level="1" version="0" object_id="_0">
+			<objectID>BGCP10Y10Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_1">
+			<objectID>BGCP10Y10Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_2">
+			<objectID>BGCP10Y10Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_3">
+			<objectID>BGCP10Y10Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_4">
+			<objectID>BGCP10Y10Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_5">
+			<objectID>BGCP10Y10Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_6">
+			<objectID>BGCP10Y10Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_7">
+			<objectID>BGCP10Y10Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_8">
+			<objectID>BGCP10Y10Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_9">
+			<objectID>BGCP10Y20Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_10">
+			<objectID>BGCP10Y20Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_11">
+			<objectID>BGCP10Y20Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_12">
+			<objectID>BGCP10Y20Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_13">
+			<objectID>BGCP10Y20Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_14">
+			<objectID>BGCP10Y20Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_15">
+			<objectID>BGCP10Y20Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_16">
+			<objectID>BGCP10Y20Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_17">
+			<objectID>BGCP10Y20Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_18">
+			<objectID>BGCP10Y2Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_19">
+			<objectID>BGCP10Y2Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_20">
+			<objectID>BGCP10Y2Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_21">
+			<objectID>BGCP10Y2Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_22">
+			<objectID>BGCP10Y2Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_23">
+			<objectID>BGCP10Y2Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_24">
+			<objectID>BGCP10Y2Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_25">
+			<objectID>BGCP10Y2Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_26">
+			<objectID>BGCP10Y2Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_27">
+			<objectID>BGCP10Y30Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_28">
+			<objectID>BGCP10Y30Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_29">
+			<objectID>BGCP10Y30Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_30">
+			<objectID>BGCP10Y30Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_31">
+			<objectID>BGCP10Y30Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_32">
+			<objectID>BGCP10Y30Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_33">
+			<objectID>BGCP10Y30Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_34">
+			<objectID>BGCP10Y30Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_35">
+			<objectID>BGCP10Y30Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_36">
+			<objectID>BGCP10Y5Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_37">
+			<objectID>BGCP10Y5Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_38">
+			<objectID>BGCP10Y5Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_39">
+			<objectID>BGCP10Y5Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_40">
+			<objectID>BGCP10Y5Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_41">
+			<objectID>BGCP10Y5Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_42">
+			<objectID>BGCP10Y5Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_43">
+			<objectID>BGCP10Y5Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_44">
+			<objectID>BGCP10Y5Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_45">
+			<objectID>BGCP1Y10Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_46">
+			<objectID>BGCP1Y10Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_47">
+			<objectID>BGCP1Y10Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_48">
+			<objectID>BGCP1Y10Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_49">
+			<objectID>BGCP1Y10Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_50">
+			<objectID>BGCP1Y10Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_51">
+			<objectID>BGCP1Y10Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_52">
+			<objectID>BGCP1Y10Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_53">
+			<objectID>BGCP1Y10Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_54">
+			<objectID>BGCP1Y20Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_55">
+			<objectID>BGCP1Y20Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_56">
+			<objectID>BGCP1Y20Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_57">
+			<objectID>BGCP1Y20Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_58">
+			<objectID>BGCP1Y20Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_59">
+			<objectID>BGCP1Y20Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_60">
+			<objectID>BGCP1Y20Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_61">
+			<objectID>BGCP1Y20Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_62">
+			<objectID>BGCP1Y20Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_63">
+			<objectID>BGCP1Y2Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_64">
+			<objectID>BGCP1Y2Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_65">
+			<objectID>BGCP1Y2Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_66">
+			<objectID>BGCP1Y2Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_67">
+			<objectID>BGCP1Y2Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_68">
+			<objectID>BGCP1Y2Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_69">
+			<objectID>BGCP1Y2Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_70">
+			<objectID>BGCP1Y2Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_71">
+			<objectID>BGCP1Y2Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_72">
+			<objectID>BGCP1Y30Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_73">
+			<objectID>BGCP1Y30Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_74">
+			<objectID>BGCP1Y30Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_75">
+			<objectID>BGCP1Y30Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_76">
+			<objectID>BGCP1Y30Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_77">
+			<objectID>BGCP1Y30Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_78">
+			<objectID>BGCP1Y30Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_79">
+			<objectID>BGCP1Y30Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_80">
+			<objectID>BGCP1Y30Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_81">
+			<objectID>BGCP1Y5Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_82">
+			<objectID>BGCP1Y5Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_83">
+			<objectID>BGCP1Y5Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_84">
+			<objectID>BGCP1Y5Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_85">
+			<objectID>BGCP1Y5Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_86">
+			<objectID>BGCP1Y5Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_87">
+			<objectID>BGCP1Y5Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_88">
+			<objectID>BGCP1Y5Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_89">
+			<objectID>BGCP1Y5Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_90">
+			<objectID>BGCP20Y10Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_91">
+			<objectID>BGCP20Y10Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_92">
+			<objectID>BGCP20Y10Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_93">
+			<objectID>BGCP20Y10Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_94">
+			<objectID>BGCP20Y10Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_95">
+			<objectID>BGCP20Y10Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_96">
+			<objectID>BGCP20Y10Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_97">
+			<objectID>BGCP20Y10Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_98">
+			<objectID>BGCP20Y10Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_99">
+			<objectID>BGCP20Y20Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_100">
+			<objectID>BGCP20Y20Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_101">
+			<objectID>BGCP20Y20Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_102">
+			<objectID>BGCP20Y20Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_103">
+			<objectID>BGCP20Y20Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_104">
+			<objectID>BGCP20Y20Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_105">
+			<objectID>BGCP20Y20Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_106">
+			<objectID>BGCP20Y20Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_107">
+			<objectID>BGCP20Y20Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_108">
+			<objectID>BGCP20Y2Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_109">
+			<objectID>BGCP20Y2Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_110">
+			<objectID>BGCP20Y2Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_111">
+			<objectID>BGCP20Y2Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_112">
+			<objectID>BGCP20Y2Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_113">
+			<objectID>BGCP20Y2Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_114">
+			<objectID>BGCP20Y2Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_115">
+			<objectID>BGCP20Y2Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_116">
+			<objectID>BGCP20Y2Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_117">
+			<objectID>BGCP20Y30Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_118">
+			<objectID>BGCP20Y30Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_119">
+			<objectID>BGCP20Y30Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_120">
+			<objectID>BGCP20Y30Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_121">
+			<objectID>BGCP20Y30Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_122">
+			<objectID>BGCP20Y30Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_123">
+			<objectID>BGCP20Y30Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_124">
+			<objectID>BGCP20Y30Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_125">
+			<objectID>BGCP20Y30Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_126">
+			<objectID>BGCP20Y5Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_127">
+			<objectID>BGCP20Y5Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_128">
+			<objectID>BGCP20Y5Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_129">
+			<objectID>BGCP20Y5Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_130">
+			<objectID>BGCP20Y5Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_131">
+			<objectID>BGCP20Y5Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_132">
+			<objectID>BGCP20Y5Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_133">
+			<objectID>BGCP20Y5Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_134">
+			<objectID>BGCP20Y5Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_135">
+			<objectID>BGCP30Y10Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_136">
+			<objectID>BGCP30Y10Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_137">
+			<objectID>BGCP30Y10Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_138">
+			<objectID>BGCP30Y10Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_139">
+			<objectID>BGCP30Y10Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_140">
+			<objectID>BGCP30Y10Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_141">
+			<objectID>BGCP30Y10Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_142">
+			<objectID>BGCP30Y10Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_143">
+			<objectID>BGCP30Y10Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_144">
+			<objectID>BGCP30Y20Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_145">
+			<objectID>BGCP30Y20Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_146">
+			<objectID>BGCP30Y20Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_147">
+			<objectID>BGCP30Y20Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_148">
+			<objectID>BGCP30Y20Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_149">
+			<objectID>BGCP30Y20Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_150">
+			<objectID>BGCP30Y20Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_151">
+			<objectID>BGCP30Y20Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_152">
+			<objectID>BGCP30Y20Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_153">
+			<objectID>BGCP30Y2Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_154">
+			<objectID>BGCP30Y2Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_155">
+			<objectID>BGCP30Y2Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_156">
+			<objectID>BGCP30Y2Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_157">
+			<objectID>BGCP30Y2Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_158">
+			<objectID>BGCP30Y2Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_159">
+			<objectID>BGCP30Y2Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_160">
+			<objectID>BGCP30Y2Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_161">
+			<objectID>BGCP30Y2Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_162">
+			<objectID>BGCP30Y30Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_163">
+			<objectID>BGCP30Y30Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_164">
+			<objectID>BGCP30Y30Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_165">
+			<objectID>BGCP30Y30Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_166">
+			<objectID>BGCP30Y30Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_167">
+			<objectID>BGCP30Y30Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_168">
+			<objectID>BGCP30Y30Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_169">
+			<objectID>BGCP30Y30Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_170">
+			<objectID>BGCP30Y30Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_171">
+			<objectID>BGCP30Y5Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_172">
+			<objectID>BGCP30Y5Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_173">
+			<objectID>BGCP30Y5Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_174">
+			<objectID>BGCP30Y5Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_175">
+			<objectID>BGCP30Y5Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_176">
+			<objectID>BGCP30Y5Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_177">
+			<objectID>BGCP30Y5Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_178">
+			<objectID>BGCP30Y5Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_179">
+			<objectID>BGCP30Y5Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_180">
+			<objectID>BGCP3M10Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_181">
+			<objectID>BGCP3M10Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_182">
+			<objectID>BGCP3M10Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_183">
+			<objectID>BGCP3M10Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_184">
+			<objectID>BGCP3M10Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_185">
+			<objectID>BGCP3M10Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_186">
+			<objectID>BGCP3M10Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_187">
+			<objectID>BGCP3M10Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_188">
+			<objectID>BGCP3M10Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_189">
+			<objectID>BGCP3M20Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_190">
+			<objectID>BGCP3M20Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_191">
+			<objectID>BGCP3M20Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_192">
+			<objectID>BGCP3M20Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_193">
+			<objectID>BGCP3M20Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_194">
+			<objectID>BGCP3M20Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_195">
+			<objectID>BGCP3M20Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_196">
+			<objectID>BGCP3M20Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_197">
+			<objectID>BGCP3M20Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_198">
+			<objectID>BGCP3M2Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_199">
+			<objectID>BGCP3M2Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_200">
+			<objectID>BGCP3M2Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_201">
+			<objectID>BGCP3M2Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_202">
+			<objectID>BGCP3M2Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_203">
+			<objectID>BGCP3M2Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_204">
+			<objectID>BGCP3M2Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_205">
+			<objectID>BGCP3M2Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_206">
+			<objectID>BGCP3M2Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_207">
+			<objectID>BGCP3M30Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_208">
+			<objectID>BGCP3M30Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_209">
+			<objectID>BGCP3M30Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_210">
+			<objectID>BGCP3M30Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_211">
+			<objectID>BGCP3M30Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_212">
+			<objectID>BGCP3M30Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_213">
+			<objectID>BGCP3M30Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_214">
+			<objectID>BGCP3M30Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_215">
+			<objectID>BGCP3M30Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_216">
+			<objectID>BGCP3M5Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_217">
+			<objectID>BGCP3M5Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_218">
+			<objectID>BGCP3M5Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_219">
+			<objectID>BGCP3M5Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_220">
+			<objectID>BGCP3M5Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_221">
+			<objectID>BGCP3M5Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_222">
+			<objectID>BGCP3M5Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_223">
+			<objectID>BGCP3M5Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_224">
+			<objectID>BGCP3M5Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_225">
+			<objectID>BGCP5Y10Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_226">
+			<objectID>BGCP5Y10Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_227">
+			<objectID>BGCP5Y10Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_228">
+			<objectID>BGCP5Y10Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_229">
+			<objectID>BGCP5Y10Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_230">
+			<objectID>BGCP5Y10Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_231">
+			<objectID>BGCP5Y10Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_232">
+			<objectID>BGCP5Y10Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_233">
+			<objectID>BGCP5Y10Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_234">
+			<objectID>BGCP5Y20Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_235">
+			<objectID>BGCP5Y20Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_236">
+			<objectID>BGCP5Y20Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_237">
+			<objectID>BGCP5Y20Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_238">
+			<objectID>BGCP5Y20Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_239">
+			<objectID>BGCP5Y20Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_240">
+			<objectID>BGCP5Y20Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_241">
+			<objectID>BGCP5Y20Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_242">
+			<objectID>BGCP5Y20Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_243">
+			<objectID>BGCP5Y2Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_244">
+			<objectID>BGCP5Y2Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_245">
+			<objectID>BGCP5Y2Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_246">
+			<objectID>BGCP5Y2Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_247">
+			<objectID>BGCP5Y2Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_248">
+			<objectID>BGCP5Y2Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_249">
+			<objectID>BGCP5Y2Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_250">
+			<objectID>BGCP5Y2Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_251">
+			<objectID>BGCP5Y2Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_252">
+			<objectID>BGCP5Y30Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_253">
+			<objectID>BGCP5Y30Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_254">
+			<objectID>BGCP5Y30Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_255">
+			<objectID>BGCP5Y30Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_256">
+			<objectID>BGCP5Y30Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_257">
+			<objectID>BGCP5Y30Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_258">
+			<objectID>BGCP5Y30Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_259">
+			<objectID>BGCP5Y30Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_260">
+			<objectID>BGCP5Y30Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_261">
+			<objectID>BGCP5Y5Y_-100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_262">
+			<objectID>BGCP5Y5Y_-200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_263">
+			<objectID>BGCP5Y5Y_-25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_264">
+			<objectID>BGCP5Y5Y_-50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_265">
+			<objectID>BGCP5Y5Y_100bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_266">
+			<objectID>BGCP5Y5Y_200bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_267">
+			<objectID>BGCP5Y5Y_25bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_268">
+			<objectID>BGCP5Y5Y_50bp</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_269">
+			<objectID>BGCP5Y5Y_ATM</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>

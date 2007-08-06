@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="166" tracking_level="0" version="0">
+	<count>99</count>
+	<item_version>1</item_version>
+	<item class_id="167" tracking_level="0" version="1">
+		<px class_id="115" tracking_level="1" version="0" object_id="_0">
+			<objectID>EUR1MD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_1">
+			<objectID>EUR1YD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_2">
+			<objectID>EUR2MD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_3">
+			<objectID>EUR2WD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_4">
+			<objectID>EUR3MD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_5">
+			<objectID>EUR3WD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_6">
+			<objectID>EUR4MD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_7">
+			<objectID>EUR5MD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_8">
+			<objectID>EUR6MD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_9">
+			<objectID>EUR9MD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_10">
+			<objectID>EURAB3E15MS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_11">
+			<objectID>EURAB3E18MS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_12">
+			<objectID>EURAB3E1YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_13">
+			<objectID>EURAB3E21MS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_14">
+			<objectID>EURAB6E10YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_15">
+			<objectID>EURAB6E11YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_16">
+			<objectID>EURAB6E12YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_17">
+			<objectID>EURAB6E13YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_18">
+			<objectID>EURAB6E14YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_19">
+			<objectID>EURAB6E15MS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_20">
+			<objectID>EURAB6E15YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_21">
+			<objectID>EURAB6E16YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_22">
+			<objectID>EURAB6E17YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_23">
+			<objectID>EURAB6E18MS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_24">
+			<objectID>EURAB6E18YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_25">
+			<objectID>EURAB6E19YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_26">
+			<objectID>EURAB6E1YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_27">
+			<objectID>EURAB6E20YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_28">
+			<objectID>EURAB6E21MS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_29">
+			<objectID>EURAB6E21YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_30">
+			<objectID>EURAB6E22YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_31">
+			<objectID>EURAB6E23YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_32">
+			<objectID>EURAB6E24YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_33">
+			<objectID>EURAB6E25YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_34">
+			<objectID>EURAB6E26YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_35">
+			<objectID>EURAB6E27YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_36">
+			<objectID>EURAB6E28YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_37">
+			<objectID>EURAB6E29YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_38">
+			<objectID>EURAB6E2YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_39">
+			<objectID>EURAB6E30YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_40">
+			<objectID>EURAB6E35YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_41">
+			<objectID>EURAB6E3YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_42">
+			<objectID>EURAB6E40YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_43">
+			<objectID>EURAB6E4YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_44">
+			<objectID>EURAB6E50YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_45">
+			<objectID>EURAB6E5YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_46">
+			<objectID>EURAB6E60YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_47">
+			<objectID>EURAB6E6YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_48">
+			<objectID>EURAB6E7YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_49">
+			<objectID>EURAB6E8YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_50">
+			<objectID>EURAB6E9YS_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_51">
+			<objectID>EURFUTH0_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_52">
+			<objectID>EURFUTH1_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_53">
+			<objectID>EURFUTH2_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_54">
+			<objectID>EURFUTH3_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_55">
+			<objectID>EURFUTH4_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_56">
+			<objectID>EURFUTH5_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_57">
+			<objectID>EURFUTH6_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_58">
+			<objectID>EURFUTH7_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_59">
+			<objectID>EURFUTH8_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_60">
+			<objectID>EURFUTH9_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_61">
+			<objectID>EURFUTM0_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_62">
+			<objectID>EURFUTM1_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_63">
+			<objectID>EURFUTM2_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_64">
+			<objectID>EURFUTM3_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_65">
+			<objectID>EURFUTM4_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_66">
+			<objectID>EURFUTM5_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_67">
+			<objectID>EURFUTM6_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_68">
+			<objectID>EURFUTM7_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_69">
+			<objectID>EURFUTM8_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_70">
+			<objectID>EURFUTM9_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_71">
+			<objectID>EURFUTQ7_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_72">
+			<objectID>EURFUTU0_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_73">
+			<objectID>EURFUTU1_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_74">
+			<objectID>EURFUTU2_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_75">
+			<objectID>EURFUTU3_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_76">
+			<objectID>EURFUTU4_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_77">
+			<objectID>EURFUTU5_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_78">
+			<objectID>EURFUTU6_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_79">
+			<objectID>EURFUTU7_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_80">
+			<objectID>EURFUTU8_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_81">
+			<objectID>EURFUTU9_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_82">
+			<objectID>EURFUTV7_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_83">
+			<objectID>EURFUTZ0_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_84">
+			<objectID>EURFUTZ1_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_85">
+			<objectID>EURFUTZ2_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_86">
+			<objectID>EURFUTZ3_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_87">
+			<objectID>EURFUTZ4_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_88">
+			<objectID>EURFUTZ5_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_89">
+			<objectID>EURFUTZ6_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_90">
+			<objectID>EURFUTZ7_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_91">
+			<objectID>EURFUTZ8_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_92">
+			<objectID>EURFUTZ9_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_93">
+			<objectID>EUROND_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_94">
+			<objectID>EURSND_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_95">
+			<objectID>EURSWD_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_96">
+			<objectID>EURTND_Quote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_97">
+			<objectID>HW_meanReversionQuote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>1</TickValue>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="115" object_id="_98">
+			<objectID>HW_volatilityQuote</objectID>
+			<className>qlSimpleQuote</className>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>1</TickValue>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
