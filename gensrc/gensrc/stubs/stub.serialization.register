@@ -6,6 +6,7 @@
 #include <%(addinDirectory)s/Serialization/serializationfactory.hpp>
 #include <%(addinDirectory)s/Serialization/serialization_all.hpp>
 #include <oh/repository.hpp>
+#include <boost/filesystem.hpp>
 
 namespace %(namespaceAddin)s {
 
@@ -128,17 +129,16 @@ namespace %(namespaceAddin)s {
         return returnValues;
     }
 
-    std::vector<boost::shared_ptr<ObjectHandler::Object> > SerializationFactory::loadObject2(
-        const char *path) const {
+    void SerializationFactory::processPath(
+        const std::string &path,
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > &returnValues) const {
 
-        std::ifstream ifs(path);
+        std::ifstream ifs(path.c_str());
         boost::archive::xml_iarchive ia(ifs);
         register_in(ia);
 
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
         ia >> boost::serialization::make_nvp("object_list", valueObjects);
-
-        std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValues;
 
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
         for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
@@ -149,6 +149,23 @@ namespace %(namespaceAddin)s {
             std::string objectID = boost::any_cast<std::string>((*i)->getProperty("objectID"));
             ObjectHandler::Repository::instance().storeObject(objectID, object);
             returnValues.push_back(object);
+        }
+    }
+        
+    std::vector<boost::shared_ptr<ObjectHandler::Object> > SerializationFactory::loadObject2(
+        const char *path) const {
+
+        OH_REQUIRE(boost::filesystem::exists(path), "Invalid path : " << path);
+
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValues;
+
+        if (boost::filesystem::is_directory(path)) {
+            for (boost::filesystem::directory_iterator itr(path); 
+                itr!=boost::filesystem::directory_iterator(); ++itr) {
+                processPath(itr->path().string(), returnValues);
+            }
+        } else {
+            processPath(path, returnValues);
         }
 
         return returnValues;
