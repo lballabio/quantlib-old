@@ -1,6 +1,6 @@
     const char* %(functionName)s::mPropertyNames[] = {
-        "objectID",
-        "className"%(propertyDeclaration)s
+        "className",
+        "objectID"%(propertyDeclaration)s
     };
 
     std::vector<std::string> %(functionName)s::getPropertyNames() const {
