@@ -757,14 +757,12 @@ Public Class FormMain
     ' Events - environment properties
     ''''''''''''''''''''''''''''''''''''''''''
 
-    Private Sub mskFrameworkVersion_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mskFrameworkVersion.TextChanged
-
-        If Len(mskFrameworkVersion.Text) > 0 Then
-            SelectedEnvironment.FrameworkVersion = CInt(mskFrameworkVersion.Text)
-        Else
+    Private Sub cbFrameworkVersion_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbFrameworkVersion.SelectedIndexChanged
+        If cbFrameworkVersion.SelectedIndex = -1 Then
             SelectedEnvironment.FrameworkVersion = 0
+        Else
+            SelectedEnvironment.FrameworkVersion = CInt(cbFrameworkVersion.Text)
         End If
-
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
@@ -1010,7 +1008,7 @@ Public Class FormMain
         txtUserConfig.Enabled = enabled
 
         ' Environment properties
-        mskFrameworkVersion.Enabled = enabled
+        cbFrameworkVersion.Enabled = enabled
 
         ' Addins
         lbAddins.Enabled = enabled
@@ -1050,7 +1048,7 @@ Public Class FormMain
         cbStaticData.Checked = False
 
         ' Environment properties
-        mskFrameworkVersion.Clear()
+        cbFrameworkVersion.SelectedIndex = -1
 
         ' Addins
 
@@ -1084,7 +1082,12 @@ Public Class FormMain
         cbStaticData.Checked = SelectedEnvironment.StartupActions.StaticData
 
         ' Environment properties
-        mskFrameworkVersion.Text = CStr(SelectedEnvironment.FrameworkVersion)
+        Dim frameworkVersion As String = CStr(SelectedEnvironment.FrameworkVersion)
+        If cbFrameworkVersion.Items.Contains(frameworkVersion) Then
+            cbFrameworkVersion.Text = frameworkVersion
+        Else
+            cbFrameworkVersion.SelectedIndex = -1
+        End If
 
         ' Addins
         lbAddins.Items.Clear()

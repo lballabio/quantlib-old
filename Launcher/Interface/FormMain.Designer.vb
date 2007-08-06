@@ -54,7 +54,6 @@ Partial Class FormMain
         Me.btnLaunch = New System.Windows.Forms.Button
         Me.tcLauncher = New System.Windows.Forms.TabControl
         Me.tpEnvironments = New System.Windows.Forms.TabPage
-        Me.lblBuildNumber = New System.Windows.Forms.Label
         Me.grpFeeds = New System.Windows.Forms.GroupBox
         Me.cbBloomberg = New System.Windows.Forms.CheckBox
         Me.cbReuters = New System.Windows.Forms.CheckBox
@@ -64,7 +63,6 @@ Partial Class FormMain
         Me.lblExcelPath = New System.Windows.Forms.Label
         Me.btnExcelPath = New System.Windows.Forms.Button
         Me.lblFrameworkVersion = New System.Windows.Forms.Label
-        Me.mskFrameworkVersion = New System.Windows.Forms.MaskedTextBox
         Me.txtUserConfig = New System.Windows.Forms.TextBox
         Me.lblUserConfig = New System.Windows.Forms.Label
         Me.btnUserConfig = New System.Windows.Forms.Button
@@ -98,6 +96,8 @@ Partial Class FormMain
         Me.lblDomain = New System.Windows.Forms.Label
         Me.lblUserName = New System.Windows.Forms.Label
         Me.lblVersion = New System.Windows.Forms.Label
+        Me.lblBuildNumber = New System.Windows.Forms.Label
+        Me.cbFrameworkVersion = New System.Windows.Forms.ComboBox
         Me.grpEnvironment.SuspendLayout()
         Me.tstEnvironment.SuspendLayout()
         Me.grpStartup.SuspendLayout()
@@ -453,19 +453,6 @@ Partial Class FormMain
         Me.tpEnvironments.Text = "Environments"
         Me.tpEnvironments.UseVisualStyleBackColor = True
         '
-        'lblBuildNumber
-        '
-        Me.lblBuildNumber.AutoSize = True
-        Me.lblBuildNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBuildNumber.ForeColor = System.Drawing.Color.DimGray
-        Me.lblBuildNumber.Location = New System.Drawing.Point(370, 423)
-        Me.lblBuildNumber.MinimumSize = New System.Drawing.Size(120, 0)
-        Me.lblBuildNumber.Name = "lblBuildNumber"
-        Me.lblBuildNumber.Size = New System.Drawing.Size(120, 12)
-        Me.lblBuildNumber.TabIndex = 22
-        Me.lblBuildNumber.Text = "version 0.0.0.0"
-        Me.lblBuildNumber.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        '
         'grpFeeds
         '
         Me.grpFeeds.Controls.Add(Me.cbBloomberg)
@@ -499,12 +486,12 @@ Partial Class FormMain
         '
         'tpPaths
         '
+        Me.tpPaths.Controls.Add(Me.cbFrameworkVersion)
         Me.tpPaths.Controls.Add(Me.btnLaunchExcel)
         Me.tpPaths.Controls.Add(Me.txtExcelPath)
         Me.tpPaths.Controls.Add(Me.lblExcelPath)
         Me.tpPaths.Controls.Add(Me.btnExcelPath)
         Me.tpPaths.Controls.Add(Me.lblFrameworkVersion)
-        Me.tpPaths.Controls.Add(Me.mskFrameworkVersion)
         Me.tpPaths.Controls.Add(Me.txtUserConfig)
         Me.tpPaths.Controls.Add(Me.lblUserConfig)
         Me.tpPaths.Controls.Add(Me.btnUserConfig)
@@ -570,14 +557,6 @@ Partial Class FormMain
         Me.lblFrameworkVersion.Size = New System.Drawing.Size(137, 13)
         Me.lblFrameworkVersion.TabIndex = 0
         Me.lblFrameworkVersion.Text = "Framework Version Number"
-        '
-        'mskFrameworkVersion
-        '
-        Me.mskFrameworkVersion.Location = New System.Drawing.Point(153, 56)
-        Me.mskFrameworkVersion.Mask = "0"
-        Me.mskFrameworkVersion.Name = "mskFrameworkVersion"
-        Me.mskFrameworkVersion.Size = New System.Drawing.Size(29, 20)
-        Me.mskFrameworkVersion.TabIndex = 1
         '
         'txtUserConfig
         '
@@ -890,6 +869,29 @@ Partial Class FormMain
         Me.lblVersion.TabIndex = 0
         Me.lblVersion.Text = "Launcher Version"
         '
+        'lblBuildNumber
+        '
+        Me.lblBuildNumber.AutoSize = True
+        Me.lblBuildNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblBuildNumber.ForeColor = System.Drawing.Color.DimGray
+        Me.lblBuildNumber.Location = New System.Drawing.Point(370, 423)
+        Me.lblBuildNumber.MinimumSize = New System.Drawing.Size(120, 0)
+        Me.lblBuildNumber.Name = "lblBuildNumber"
+        Me.lblBuildNumber.Size = New System.Drawing.Size(120, 12)
+        Me.lblBuildNumber.TabIndex = 22
+        Me.lblBuildNumber.Text = "version 0.0.0.0"
+        Me.lblBuildNumber.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
+        'cbFrameworkVersion
+        '
+        Me.cbFrameworkVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbFrameworkVersion.FormattingEnabled = True
+        Me.cbFrameworkVersion.Items.AddRange(New Object() {"8", "9"})
+        Me.cbFrameworkVersion.Location = New System.Drawing.Point(161, 59)
+        Me.cbFrameworkVersion.Name = "cbFrameworkVersion"
+        Me.cbFrameworkVersion.Size = New System.Drawing.Size(47, 21)
+        Me.cbFrameworkVersion.TabIndex = 29
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -970,7 +972,6 @@ Partial Class FormMain
     Friend WithEvents btnXmlPath As System.Windows.Forms.Button
     Friend WithEvents tpAddins As System.Windows.Forms.TabPage
     Friend WithEvents lblFrameworkVersion As System.Windows.Forms.Label
-    Friend WithEvents mskFrameworkVersion As System.Windows.Forms.MaskedTextBox
     Friend WithEvents tstAddins As System.Windows.Forms.ToolStrip
     Friend WithEvents btnAddinInsert As System.Windows.Forms.ToolStripButton
     Friend WithEvents btnAddinDelete As System.Windows.Forms.ToolStripButton
@@ -1005,4 +1006,5 @@ Partial Class FormMain
     Friend WithEvents btnLaunchExcel As System.Windows.Forms.Button
     Friend WithEvents cbSetEvaluationDate As System.Windows.Forms.CheckBox
     Friend WithEvents dtEvaluationDate As System.Windows.Forms.DateTimePicker
+    Friend WithEvents cbFrameworkVersion As System.Windows.Forms.ComboBox
 End Class
