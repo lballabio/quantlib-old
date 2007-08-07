@@ -625,6 +625,11 @@
           <string>LIN ACTACT ISDA</string>
           <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>LIN ACTACT ISMA</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
+        </EnumeratedType>
+
 
         <!-- Other? -->
         <EnumeratedType>
