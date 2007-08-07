@@ -24,8 +24,17 @@
 #endif
 
 #include <qlo/index.hpp>
-#include <ql/indexes/swapindex.hpp>
-#include <ql/indexes/iborindex.hpp>
+
+#include <ql/indexes/ibor/euribor.hpp>
+#include <ql/indexes/ibor/eurlibor.hpp>
+
+#include <ql/indexes/swap/euriborswapfixa.hpp>
+#include <ql/indexes/swap/euriborswapfixb.hpp>
+#include <ql/indexes/swap/euriborswapfixifr.hpp>
+
+#include <ql/indexes/swap/eurliborswapfixa.hpp>
+#include <ql/indexes/swap/eurliborswapfixb.hpp>
+#include <ql/indexes/swap/eurliborswapfixifr.hpp>
 
 namespace QuantLibAddin {
 
@@ -58,12 +67,34 @@ namespace QuantLibAddin {
                  const QuantLib::DayCounter& fltDayCounter,
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Index>(new
+        libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
             QuantLib::IborIndex(indexName, 
                                 p,
                                 fixingDays, crr, calendar, 
                                 fltBDC, endOfMonth, fltDayCounter,
                                 hYTS));
+    }
+
+
+    Euribor::Euribor(const QuantLib::Period& p,
+                     const QuantLib::Handle<QuantLib::YieldTermStructure>& h)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Euribor>(new
+            QuantLib::Euribor(p, h));
+    }
+
+    Euribor365::Euribor365(const QuantLib::Period& p,
+                           const QuantLib::Handle<QuantLib::YieldTermStructure>& h)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Euribor365>(new
+            QuantLib::Euribor365(p, h));
+    }
+
+    EURLibor::EURLibor(const QuantLib::Period& p,
+                       const QuantLib::Handle<QuantLib::YieldTermStructure>& h)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::EURLibor>(new
+            QuantLib::EURLibor(p, h));
     }
 
     SwapIndex::SwapIndex(const std::string& familyName,
@@ -76,11 +107,53 @@ namespace QuantLibAddin {
                          const QuantLib::DayCounter& fixedLegDayCounter,
                          const boost::shared_ptr<QuantLib::IborIndex>& index)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Index>(new
+        libraryObject_ = boost::shared_ptr<QuantLib::SwapIndex>(new
             QuantLib::SwapIndex(familyName, p,
                                 fixingDays, crr, calendar, 
                                 fixedLegTenor, fixedLegBDC,
                                 fixedLegDayCounter, index));
+    }
+
+    EuriborSwapFixA::EuriborSwapFixA(const QuantLib::Period& p,
+                                     const QuantLib::Handle<QuantLib::YieldTermStructure>& h)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::EuriborSwapFixA>(new
+            QuantLib::EuriborSwapFixA(p, h));
+    }
+
+    EuriborSwapFixB::EuriborSwapFixB(const QuantLib::Period& p,
+                                     const QuantLib::Handle<QuantLib::YieldTermStructure>& h)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::EuriborSwapFixB>(new
+            QuantLib::EuriborSwapFixB(p, h));
+    }
+
+    EurliborSwapFixA::EurliborSwapFixA(const QuantLib::Period& p,
+                                       const QuantLib::Handle<QuantLib::YieldTermStructure>& h)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::EurliborSwapFixA>(new
+            QuantLib::EurliborSwapFixA(p, h));
+    }
+
+    EurliborSwapFixB::EurliborSwapFixB(const QuantLib::Period& p,
+                                       const QuantLib::Handle<QuantLib::YieldTermStructure>& h)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::EurliborSwapFixB>(new
+            QuantLib::EurliborSwapFixB(p, h));
+    }
+
+    EuriborSwapFixIFR::EuriborSwapFixIFR(const QuantLib::Period& p,
+                                         const QuantLib::Handle<QuantLib::YieldTermStructure>& h)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::EuriborSwapFixIFR>(new
+            QuantLib::EuriborSwapFixIFR(p, h));
+    }
+
+    EurliborSwapFixIFR::EurliborSwapFixIFR(const QuantLib::Period& p,
+                                           const QuantLib::Handle<QuantLib::YieldTermStructure>& h)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::EurliborSwapFixIFR>(new
+            QuantLib::EurliborSwapFixIFR(p, h));
     }
 
 }

@@ -62,6 +62,26 @@ namespace QuantLibAddin {
                   bool endOfMonth,
                   const QuantLib::DayCounter& fltDayCounter,
                   const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+      protected:
+        IborIndex() {}
+    };
+
+    class Euribor : public IborIndex {
+      public:
+        Euribor(const QuantLib::Period& p,
+                const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+    };
+
+    class Euribor365 : public IborIndex {
+      public:
+        Euribor365(const QuantLib::Period& p,
+                   const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+    };
+
+    class EURLibor : public IborIndex {
+      public:
+        EURLibor(const QuantLib::Period& p,
+                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
     };
 
     class SwapIndex : public InterestRateIndex {
@@ -75,6 +95,44 @@ namespace QuantLibAddin {
                   QuantLib::BusinessDayConvention fixedLegBDC,
                   const QuantLib::DayCounter& fixedLegDayCounter,
                   const boost::shared_ptr<QuantLib::IborIndex>& index);
+      protected:
+        SwapIndex() {}
+    };
+
+    class EuriborSwapFixA : public SwapIndex {
+      public:
+        EuriborSwapFixA(const QuantLib::Period& p,
+                        const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+    };
+
+    class EuriborSwapFixB : public SwapIndex {
+      public:
+        EuriborSwapFixB(const QuantLib::Period& p,
+                        const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+    };
+
+    class EurliborSwapFixA : public SwapIndex {
+      public:
+        EurliborSwapFixA(const QuantLib::Period& p,
+                         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+    };
+
+    class EurliborSwapFixB : public SwapIndex {
+      public:
+        EurliborSwapFixB(const QuantLib::Period& p,
+                         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+    };
+
+    class EuriborSwapFixIFR : public SwapIndex {
+      public:
+        EuriborSwapFixIFR(const QuantLib::Period& p,
+                          const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+    };
+
+    class EurliborSwapFixIFR : public SwapIndex {
+      public:
+        EurliborSwapFixIFR(const QuantLib::Period& p,
+                           const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
     };
 
 }
