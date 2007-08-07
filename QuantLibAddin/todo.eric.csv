@@ -1,95 +1,95 @@
-"project","subproject","task","status","priority","days","comp date","comment"
-,,,,,,,
-"QLA","General Support","calculate memory usage of repository",,2,,,
-"QLXL","Design","when returning a singe col (row) matrix add another col (row) with #NA to prevent col duplication; when returning a singe cell vector add another cell with #NA to prevent cell duplication",,2,,,
-"gensrc","Design","calcInWizard = 'false' for HistoricalForwardRatesAnalysis, ohObjectSave",,3,,,
-,,,,,,,
-"SA",,"NAZCATECH_DIR env var ??",,1,,,
-"SA",,"Enable user interface",,2,,,
-"SA",,"centered differences (rigt, left, and centered)",,1,,,
-"SA",,"discriminate between invalid quote -> #NA() and error obtained after having tweaked a quote -> #NUM (with the cell containing the error message)",,1,,,
-"SA",,"it doesn't work with different quotes ids (e.g. the one used by EURYCMx2) (k)",,1,,,
-"SA",,"NSIS script (and clean up QLXL scripts)",,2,,,
-"SA",,"parallel shift SA added by default to bucket SA",,2,,,
-"SA",,"Citrix problem (k)",,2,,,
-"SA",,"move SA version number up to OH version number",,2,,,
-"SA",,"menu before Windows menu",,2,,,
-,,,,,,,
-"Grid/DB",,"Project plan, resources.  Servers, grid connection, OH enhancements",,0,,,
-"General",,"SVN reposiotories and interaction between QuantLibXL, CabotoXL, SA",,1,,,
-"QLXL","Framework","separate QuantLibXL.xla into multiple modules with loader facility","prototyped",2,,,
-"QLA","Cpp","have QLO::RelinkableHandle as standard wrapper of QL::RelinkableHandle, clean up Handle related code",,1,,,
-"QLA","Design","coerce (Relinkable)Handle<SwaptionVolStructure> to SwaptionVolDiscrete (do it with Nando)",,2,,,
-"QLA","Design","qlIndexAddFixings() / libraryClass='Index' / objectClass='Index' (Indexes as Objects vs Enumerations)",,3,,,
-,,,,,,,
-"OH",,"consolidate ohLoad/ohSave with ohLoad2/ohSave2",,,,,
-"OH",,"ohObjectLoad should have an optional parameter to force overwriting of already existing objectIDs",,1,,,
-"OH","Serialization","Raise exception if ohObjectSave attempts to overwrite existing file",,,,,
-"OH","Serialization","ohObjectLoad – nonexistent file – 'stream error' to be replaced with meaningful message",,,,,
-"OH","Serialization","permanent' object property to be included in VO / serialized",,,,,
-"OH","Serialization","raise exception on attempt to save/load empty file",,,,,
-"OH","Serialization","add functionality to recursively load all files in a directory tree",,,,,
-"OH","Serialization","serialize objects and their ancestors recursively",,2,,,
-,,,,,,,
-"OH","Design","object ID when used from VBA can never be reused by Excel",,,,,
-"OH","Design","implement ohObjectRename()",,3,,,
-"OH","Design","allow objects to be grouped (ohGroup, order preserved, etc)",,1,,,
-"OH","Design","case insensitive Property Names",,1,,,
-"QLA","VBA framework","replace usage of Handles.xls (and pricing enigines wbks) with serialization",,2,,,
-"OH",,"ohListObjectIDs should return ID in creation order, optionally in alphabetic order",,1,,,
-"QLA","Design","export TimeSeries to excel, allow for their serialization, implement QuantLib::Index::addFixings(const TimeSeries&) and export it to Excel",,2,,,
-,,,,,,,
-"QLA","Cpp","use Cpp addin for functional unit test of equivalent Excel actions",,2,,,
-"QLA","Design","coerce Frequency<->Period, Period(->Date)->double/int",,2,,,
-"QLXL","VBA framework","have a function for inspecting Framework version number",,2,,,
-"QLXL",,"touch timestamp-buildnumber file",,2,,,
-"QLXL",,"throw an error when an excessive arguments are provided in any function",,2,,,
-"QLXL",,"provide an example of macro command",,2,,,
-"OH","Design","coerce ohRange to Matrix, std::vector, Array, scalar, string, date, etc",,3,,,
-"OH","Enumerations","enumeration aliases - in in ohEnumeratedType(""class  QuantLib::DayCounter"") map multiple strings to single enum value, the one which would appear if the enum is returned as string",,3,1,,
-"OH",,"implement ohConcatenate as inverse of ohSplit",,3,,,
-"QLA","Design","freeze, unfreeze observable objects",,3,,,
-"QLA","Design","review hpp inclusion to minimize dependencies and reduce compilation time",,3,,,
-"QLA","Design","bond: property value cast to QL::Currency fails (see qlo/bond.cpp line 52)",,3,,,
-"QLA","Design","rename all Index as InterestRateIndex (we haven't used Indexes yet, only  InterestRateIndexes), the only index we are enumerating so far are  InterestRateIndex",,3,,,
-"QLA","Design","implement business252 in the same way as JointCalendar",,3,,,
-"QLA","gensrc","Provide schema for XML",,3,2,,
-"QLA","VBA framework","new menu entry: open log file",,3,,,
-"QLA",,"IborIndex factory and SwapIndex factory",,3,,,
-"QLXL","Design","native Excel looping behaviour (what about looping on multiple ObjectIds ? )",,3,,,
-"QLXL","Design","multicurrency framework analysis",,3,,,
-"QLXL","Design","review hpp inclusion to minimize dependencies and reduce compilation time",,3,,,
-"QLXL","Design","split QuantLibXL.xll into multiple XLLs to reduce compilation time",,3,,,
-"QLXL","VBA framework","automatic dropdown cell menu maintenance (see Enumerations.xls): implement proper design using hidden sheet",,3,1,,
-"QLXL","VBA framework","have VBA code in text files",,3,,,
-"QLXL",,"in the nsis script generalize the location of the xml files",,3,,,
-"QLXL",,"*.xls properties clean up",,3,,,
-"gensrc","Design","return std::pair (see locate in swaptionvolmatrix)",,4,1,,
-"Launcher",,"minimize data download (same xll for multiple env, download only the relevant xll, etc)",,4,,,
-"OH","Design","Object Browser",,4,,,
-"OH","Design","update design doc",,4,,,
-"OH","Design","investigate the possible usage of boost property map",,4,,,
-"QLA","Design","native support for an input parameter which is an ohGroup or a vector of object IDS (as RateHelpers in PiecewiseYieldCurve, see qlo/termstructures.cpp   line 53-59). E.g. to be used in ohSave",,4,,,
-"QLA","Design","coercion from IMM code (Z9) to date (16-Dec-2009) (see qlIMMdate())",,4,,,
-"QLA","Docs","include more info in autogenerated docs: enumeration, default value, platform, loop",,4,,,
-"QLA","Documentation","add support for description e.g. Nullcalendar, DayCounter::NoFrequency, DayCounter::Simple","?",4,,,
-"QLA","Enumerations","wizard: suffix description with loop, default parameter, optional parameter, etc information",,4,,,
-"QLA","Enumerations","wizard: when enums are inputs add optional description suffixed with generic description taken from enum metadata",,4,,,
-"QLA","ValueObjects","dynamic properties e.g. ohMember(""instanceName"", ""NPV"", ...) replaces qlNPV(""instanceName"")",,4,,,
-"QLA","VBA framework","access logfile (GUI browser)",,4,,,
-"QLXL","Design","use Excel SmartTags to allow interrogation of objects",,4,,,
-"QLXL","Design","fix bloomberg dll loading",,4,,,
-"QLXL","General Support","investigate bug in AssetSwap.xls","in progress",4,,,
-"QLXL","General Support","resolve signing/certificate problem (italian documentation)",,4,,,
-"QLXL","VBA framework","there is no warning if there is an empty xll list to be loaded",,4,,,
-"QLXL","VBA framework","revise and improve log defaults (filename, etc)",,4,,,
-"QLXL","VBA framework","same graceful treatment for xll loading failure, as for xla",,4,,,
-"QLXL",,"QuantLibXL About should use qlXlVersion()",,4,,,
-"SA",,"update sa-docs. Use xxx-docs or docs-xxx pattern also for OH, QLA, QLXL, etc",,4,,,
-"OH","Design","volatile functions - allow user to specify it as volatile in function metadata (false by default)",,5,,,
-"OH","Design","""reflection"" - support member functions dynamically",,5,,,
-"OH","Design","Upgrade to latest version of log4cxx",,5,,,
-"OH",,"discount factors output is not col/row smart-enabled",,5,,,
-"OH",,"create and distribute oh.chm",,5,,,
-"QLA","Design","Sessions: instead of using workbook as session, allow user to specify session number",,5,,,
-"QLA","Documentation","segregate documentation for QLA / QLXL / OH",,5,,,
+project,subproject,task,status,priority,days,comp date,comment
+
+QLA,General Support,calculate memory usage of repository,,2,,,
+QLXL,Design,when returning a singe col (row) matrix add another col (row) with #NA to prevent col duplication; when returning a singe cell vector add another cell with #NA to prevent cell duplication,,2,,,
+gensrc,Design,"calcInWizard = 'false' for HistoricalForwardRatesAnalysis, ohObjectSave",,3,,,
+
+SA,,NAZCATECH_DIR env var ??,,1,,,
+SA,,Enable user interface,,2,,,
+SA,,"centered differences (rigt, left, and centered)",,1,,,
+SA,,discriminate between invalid quote -> #NA() and error obtained after having tweaked a quote -> #NUM (with the cell containing the error message),,1,,,
+SA,,it doesn't work with different quotes ids (e.g. the one used by EURYCMx2) (k),,1,,,
+SA,,NSIS script (and clean up QLXL scripts),,2,,,
+SA,,parallel shift SA added by default to bucket SA,,2,,,
+SA,,Citrix problem (k),,2,,,
+SA,,move SA version number up to OH version number,,2,,,
+SA,,menu before Windows menu,,2,,,
+
+Grid/DB,,"Project plan, resources.  Servers, grid connection, OH enhancements",,0
+General,,"SVN reposiotories and interaction between QuantLibXL, CabotoXL, SA",,1
+QLXL,Framework,separate QuantLibXL.xla into multiple modules with loader facility,prototyped,2
+QLA,Cpp,"have QLO::RelinkableHandle as standard wrapper of QL::RelinkableHandle, clean up Handle related code",,1
+QLA,Design,coerce (Relinkable)Handle<SwaptionVolStructure> to SwaptionVolDiscrete (do it with Nando),,2
+QLA,Design,qlIndexAddFixings() / libraryClass='Index' / objectClass='Index' (Indexes as Objects vs Enumerations),,3
+QLA,Design,"rename all Index as InterestRateIndex (we haven't used Indexes yet, only  InterestRateIndexes), the only index we are enumerating so far are  InterestRateIndex",,3
+
+OH,,consolidate ohLoad/ohSave with ohLoad2/ohSave2,,
+OH,,ohObjectLoad should have an optional parameter to force overwriting of already existing objectIDs,,1
+OH,Serialization,Raise exception if ohObjectSave attempts to overwrite existing file,,
+OH,Serialization,ohObjectLoad – nonexistent file – 'stream error' to be replaced with meaningful message,,
+OH,Serialization,permanent' object property to be included in VO / serialized,,
+OH,Serialization,raise exception on attempt to save/load empty file,,
+OH,Serialization,add functionality to recursively load all files in a directory tree,,
+OH,Serialization,serialize objects and their ancestors recursively,,2
+
+OH,Design,object ID when used from VBA can never be reused by Excel,,
+OH,Design,implement ohObjectRename(),,3
+OH,Design,"allow objects to be grouped (ohGroup, order preserved, etc)",,1
+OH,Design,case insensitive Property Names,,1
+QLA,VBA framework,replace usage of Handles.xls (and pricing enigines wbks) with serialization,,2
+OH,,"ohListObjectIDs should return ID in creation order, optionally in alphabetic order",,1
+QLA,Design,"export TimeSeries to excel, allow for their serialization, implement QuantLib::Index::addFixings(const TimeSeries&) and export it to Excel",,2
+
+QLA,Cpp,use Cpp addin for functional unit test of equivalent Excel actions,,2
+QLA,Design,"coerce Frequency<->Period, Period(->Date)->double/int",,2
+QLXL,VBA framework,have a function for inspecting Framework version number,,2
+QLXL,,touch timestamp-buildnumber file,,2
+QLXL,,throw an error when an excessive arguments are provided in any function,,2
+QLXL,,provide an example of macro command,,2
+OH,Design,"coerce ohRange to Matrix, std::vector, Array, scalar, string, date, etc",,3,
+OH,Enumerations,"enumeration aliases - in in ohEnumeratedType(""class  QuantLib::DayCounter"") map multiple strings to single enum value, the one which would appear if the enum is returned as string",,3,1
+OH,,implement ohConcatenate as inverse of ohSplit,,3,
+QLA,Design,"freeze, unfreeze observable objects",,3,
+QLA,Design,review hpp inclusion to minimize dependencies and reduce compilation time,,3,
+QLA,Design,bond: property value cast to QL::Currency fails (see qlo/bond.cpp line 52),,3,
+QLA,Design,implement business252 in the same way as JointCalendar,,3,
+QLA,gensrc,Provide schema for XML,,3,2
+QLA,VBA framework,new menu entry: open log file,,3,
+QLA,,IborIndex factory and SwapIndex factory,,3,
+QLXL,Design,native Excel looping behaviour (what about looping on multiple ObjectIds ? ),,3,
+QLXL,Design,multicurrency framework analysis,,3,
+QLXL,Design,review hpp inclusion to minimize dependencies and reduce compilation time,,3,
+QLXL,Design,split QuantLibXL.xll into multiple XLLs to reduce compilation time,,3,
+QLXL,VBA framework,automatic dropdown cell menu maintenance (see Enumerations.xls): implement proper design using hidden sheet,,3,1
+QLXL,VBA framework,have VBA code in text files,,3,
+QLXL,,in the nsis script generalize the location of the xml files,,3,
+QLXL,,*.xls properties clean up,,3,
+gensrc,Design,return std::pair (see locate in swaptionvolmatrix),,4,1
+Launcher,,"minimize data download (same xll for multiple env, download only the relevant xll, etc)",,4,
+OH,Design,Object Browser,,4,
+OH,Design,update design doc,,4,
+OH,Design,investigate the possible usage of boost property map,,4,
+QLA,Design,"native support for an input parameter which is an ohGroup or a vector of object IDS (as RateHelpers in PiecewiseYieldCurve, see qlo/termstructures.cpp   line 53-59). E.g. to be used in ohSave",,4,
+QLA,Design,coercion from IMM code (Z9) to date (16-Dec-2009) (see qlIMMdate()),,4,
+QLA,Docs,"include more info in autogenerated docs: enumeration, default value, platform, loop",,4,
+QLA,Documentation,"add support for description e.g. Nullcalendar, DayCounter::NoFrequency, DayCounter::Simple",?,4,
+QLA,Enumerations,"wizard: suffix description with loop, default parameter, optional parameter, etc information",,4,
+QLA,Enumerations,wizard: when enums are inputs add optional description suffixed with generic description taken from enum metadata,,4,
+QLA,ValueObjects,"dynamic properties e.g. ohMember(""instanceName"", ""NPV"", ...) replaces qlNPV(""instanceName"")",,4,
+QLA,VBA framework,access logfile (GUI browser),,4,
+QLXL,Design,use Excel SmartTags to allow interrogation of objects,,4,
+QLXL,Design,fix bloomberg dll loading,,4
+QLXL,General Support,investigate bug in AssetSwap.xls,in progress,4
+QLXL,General Support,resolve signing/certificate problem (italian documentation),,4
+QLXL,VBA framework,there is no warning if there is an empty xll list to be loaded,,4
+QLXL,VBA framework,"revise and improve log defaults (filename, etc)",,4
+QLXL,VBA framework,"same graceful treatment for xll loading failure, as for xla",,4
+QLXL,,QuantLibXL About should use qlXlVersion(),,4
+SA,,"update sa-docs. Use xxx-docs or docs-xxx pattern also for OH, QLA, QLXL, etc",,4
+OH,Design,volatile functions - allow user to specify it as volatile in function metadata (false by default),,5
+OH,Design,"""reflection"" - support member functions dynamically",,5
+OH,Design,Upgrade to latest version of log4cxx,,5
+OH,,discount factors output is not col/row smart-enabled,,5
+OH,,create and distribute oh.chm,,5
+QLA,Design,"Sessions: instead of using workbook as session, allow user to specify session number",,5
+QLA,Documentation,segregate documentation for QLA / QLXL / OH,,5
