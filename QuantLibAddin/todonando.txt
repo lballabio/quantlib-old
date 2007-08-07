@@ -347,6 +347,8 @@ WIP notification chains pb (1D/3D)
 
 ---
 GIORGIO (last update 31/7/2007)
+- qlsabrinterpolation: investigate failure on CapVolsInterpQuotesFeed.xls
+  if default guesses are used
 WIP bond-swaption refactoring
 - move sabr to Levemberg-Markard
 - cap/swaption pricer with constant/spreaded vol (BUG)
