@@ -45,10 +45,10 @@ integrating %(tag)s
         self.singleTest(QuantLib.SegmentIntegral(10000))
     def testTrapezoid(self):
         "Testing trapezoid integration"
-        self.singleTest(QuantLib.TrapezoidIntegral(1.0e-4))
+        self.singleTest(QuantLib.TrapezoidIntegralDefault(1.0e-4, 1000))
     def testSimpson(self):
         "Testing Simpson integration"
-        self.singleTest(QuantLib.SimpsonIntegral(1.0e-4))
+        self.singleTest(QuantLib.SimpsonIntegral(1.0e-4, 1000))
     def testKronrod(self):
         "Testing Gauss-Kronrod integration"
         self.singleTest(QuantLib.GaussKronrodAdaptive(1.0e-4))
