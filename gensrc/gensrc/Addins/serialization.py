@@ -19,12 +19,15 @@
 """Generate source code for Serialization."""
 
 from gensrc.Addins import addin
+from gensrc.Addins import serializationexceptions
 from gensrc.Functions import function
 from gensrc.Utilities import outputfile
 from gensrc.Utilities import common
 from gensrc.Utilities import log
 from gensrc.Categories import category
 from gensrc.Configuration import environment
+import glob
+import re
 
 class Serialization(addin.Addin):
     """Generate source code for Serialization."""
@@ -144,7 +147,62 @@ class Serialization(addin.Addin):
         """load/unload class state to/from serializer object."""
         super(Serialization, self).serialize(serializer)
 
-def generateSerialization(addin, path):
+#############################################
+# utility functions
+#############################################
+
+# Map class names to the ID numbers from the boost serialization framework.
+idMap = {}
+
+def findReplace(m):
+    """This function is called with a match object containing the 5 groups
+    documented in the regex below.  Group 2 is the old class ID and group 4
+    is the class name.  Use the class name to look up the new class ID in
+    the map, and return the original text with new ID replacing old."""
+    global idMap
+
+    className = m.group(4)
+    if className in idMap:
+        return m.group(1) + str(idMap[className]) + m.group(3) + className + m.group(5)
+    else:
+        raise serializationexceptions.InvalidClassException(className)
+
+def updateData(addin):
+    """Bring application XML data up to date with any changes that may have occurred
+    to the ID numbers that the boost serialization framework assigns to Addin classes."""
+
+#   The pattern we are searching for looks like this:
+#       <px class_id_reference="114" object_id="_2">
+#           <objectID>EURSwaptionMeanReversion10Y_QuoteHandle</objectID>
+#           <className>qlRelinkableHandleQuote</className>
+#           <CurrentLink>EURSwaptionMeanReversion10Y_Quote</CurrentLink>
+#       </px>
+
+#   We chop it into 5 groups:
+    pattern = r'''
+(<px\ (?:(?:class_id_reference)|(?:class_id))=")    # 1) Match either of the following:
+                                                    #       <px class_id="
+                                                    #       <px class_id_reference="
+(\d*)                                               # 2) the class ID number
+(".*?<className>)                                   # 3) everything from endquote " to tag <className>
+(\w*)                                               # 4) the class name
+(</className>.*?</px>)                              # 5) everything else
+'''
+
+    # Compile the regex
+    regex = re.compile(pattern, re.M | re.S | re.X)
+
+    # Loop through the application data files
+    dataDirectoryPattern = addin.dataDirectory() + '/*.xml'
+    for fileName in glob.glob(dataDirectoryPattern):
+        # Perform the find and replace on each file
+        fileBuffer = open(fileName)
+        bufferIn = fileBuffer.read()
+        fileBuffer.close()
+        bufferOut = regex.sub(findReplace, bufferIn)
+        outputfile.OutputFile(addin, fileName, None, bufferOut, False)
+
+def generateSerialization(addin):
     """Generate source code for all functions in all categories.
 
     This is a utility function, not part of the Serialization addin class.
@@ -154,11 +212,20 @@ def generateSerialization(addin, path):
     library) because of issues related to linking and to template
     metaprogramming performed by the boost::serialization library.  Each Addin
     that supports serialization must call in to this function."""
+    global idMap
 
     allIncludes = ''
     bufferRegister = ''
     includeGuard = 'addin_' + addin.name().lower()
+    addinDirectory = addin.relativePath()
+
+    # Keep track of the ID assigned to each Addin class by
+    # the boost serialization framework.  This number is initialized to 3
+    # because 0, 1 and 2 are reserved for ObjectHandler as explained in file
+    # QuantLibAddin/Addins/Cpp/Serialization/serialization_oh.cpp
     classID = 3
+    # Initialize the global map
+    idMap = {}
 
     for cat in addin.categoryList_.categories('*'):
 
@@ -167,7 +234,7 @@ def generateSerialization(addin, path):
         bufferCpp = ''
         allIncludes += Serialization.REGISTER_INCLUDE % {
             'categoryName' : cat.name(),
-            'addinDirectory' : path }
+            'addinDirectory' : addinDirectory }
 
         bufferRegister += Serialization.REGISTER_TYPE % {
             'categoryDisplayName' : cat.displayName(),
@@ -188,10 +255,11 @@ def generateSerialization(addin, path):
                 'functionName' : func.name(),
                 'namespaceObjects' : environment.config().namespaceObjects() }
 
+            idMap[func.name()] = classID
             classID += 1
 
         bufferBody = addin.bufferSerializeBody_.text() % {
-            'addinDirectory' : path,
+            'addinDirectory' : addinDirectory,
             'bufferCpp' : bufferCpp,
             'categoryName' : cat.name(),
             'libRootDirectory' : environment.config().libRootDirectory(),
@@ -199,9 +267,9 @@ def generateSerialization(addin, path):
         cppFile = '%sSerialization/serialization_%s.cpp' % ( addin.rootPath_, cat.name() )
         outputfile.OutputFile(addin, cppFile, addin.copyright_, bufferBody)
     allBuffer =  addin.bufferSerializeAll_.text() % {
-        'addinDirectory' : includeGuard,
+        'includeGuard' : includeGuard,
         'allIncludes' : allIncludes,
-        'path' : path }
+        'addinDirectory' : addinDirectory }
     allFilename = addin.rootPath_ + 'Serialization/serialization_all.hpp'
     outputfile.OutputFile(addin, allFilename, addin.copyright_, allBuffer)
 
@@ -213,7 +281,7 @@ def generateSerialization(addin, path):
         callBaseOut =''
 
     bufferFactory = addin.bufferSerializeRegister_.text() % {
-        'addinDirectory' : path,
+        'addinDirectory' : addinDirectory,
         'bufferRegister' : bufferRegister,
         'libRootDirectory' : environment.config().libRootDirectory(),
         'namespaceAddin' : addin.namespaceAddin_,
@@ -221,4 +289,7 @@ def generateSerialization(addin, path):
         'callBaseOut': callBaseOut}
     factoryFile = addin.rootPath_ + 'Serialization/serializationfactory.cpp'
     outputfile.OutputFile(addin, factoryFile, addin.copyright_, bufferFactory)
+
+    if addin.dataDirectory():
+        updateData(addin)
 

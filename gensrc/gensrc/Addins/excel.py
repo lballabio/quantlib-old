@@ -87,12 +87,12 @@ class ExcelAddin(addin.Addin):
         self.enumerationList_ = enumerationList
 
         log.Log.instance().logMessage(' begin generating %s...' % self.name_)
-        self.generateAddin()
-        self.generateFunctions()
-        self.generateFunctionCount()
+        #self.generateAddin()
+        #self.generateFunctions()
+        #self.generateFunctionCount()
         if environment.config().usingSerialization():
-            serialization.generateSerialization(self, self.relativePath_)
-        if self.exportSymbols_: self.generateExportSymbols()
+            serialization.generateSerialization(self)
+        #if self.exportSymbols_: self.generateExportSymbols()
         log.Log.instance().logMessage(' done generating %s.' % self.name_)
 
     def generateFunctions(self):

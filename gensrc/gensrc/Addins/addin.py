@@ -88,6 +88,12 @@ class Addin(serializable.Serializable):
     def loopReturnType(self):
         return self.loopReturnType_
 
+    def relativePath(self):
+        return self.relativePath_
+
+    def dataDirectory(self):
+        return self.dataDirectory_
+
     #############################################
     # serializer interface
     #############################################
@@ -96,6 +102,7 @@ class Addin(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeProperty(self, common.ROOT_DIRECTORY)
+        serializer.serializeProperty(self, 'dataDirectory')
         serializer.serializeObjectPropertyDict(self, buffer.Buffer)
         serializer.serializeProperty(self, common.COPYRIGHT)
         serializer.serializeBoolean(self, 'loadRules', True)

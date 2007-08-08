@@ -137,27 +137,29 @@ namespace %(namespaceAddin)s {
         const std::string &path,
         std::vector<boost::shared_ptr<ObjectHandler::Object> > &returnValues) const {
 
-        std::ifstream ifs(path.c_str());
-        boost::archive::xml_iarchive ia(ifs);
-        register_in(ia);
-
-        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
         try {
-            ia >> boost::serialization::make_nvp("object_list", valueObjects);
+
+            std::ifstream ifs(path.c_str());
+            boost::archive::xml_iarchive ia(ifs);
+            register_in(ia);
+
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
+                ia >> boost::serialization::make_nvp("object_list", valueObjects);
+
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
+            for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
+                boost::shared_ptr<ObjectHandler::ValueObject> valueObject = *i;
+                CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
+                OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
+                Creator creator = j->second;
+                boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
+                std::string objectID = boost::any_cast<std::string>(valueObject->getProperty("objectID"));
+                ObjectHandler::Repository::instance().storeObject(objectID, object);
+                returnValues.push_back(object);
+            }
+
         } catch (const std::exception &e) {
             OH_FAIL("Error deserializing file " << path << ": " << e.what());
-        }
-
-        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
-        for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
-            boost::shared_ptr<ObjectHandler::ValueObject> valueObject = *i;
-            CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
-            OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
-            Creator creator = j->second;
-            boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
-            std::string objectID = boost::any_cast<std::string>(valueObject->getProperty("objectID"));
-            ObjectHandler::Repository::instance().storeObject(objectID, object);
-            returnValues.push_back(object);
         }
     }
         
@@ -169,10 +171,15 @@ namespace %(namespaceAddin)s {
         std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValues;
 
         if (boost::filesystem::is_directory(path)) {
+
             for (boost::filesystem::directory_iterator itr(path); 
                 itr!=boost::filesystem::directory_iterator(); ++itr) {
-                processPath(itr->path().string(), returnValues);
+
+                if (boost::filesystem::is_regular(itr->path().string()))
+                    processPath(itr->path().string(), returnValues);
+
             }
+
         } else {
             processPath(path, returnValues);
         }

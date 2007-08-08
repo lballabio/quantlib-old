@@ -171,6 +171,10 @@
 				>
 			</File>
 			<File
+				RelativePath="gensrc\Addins\serializationexceptions.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\Addins\guile.py"
 				>
 			</File>

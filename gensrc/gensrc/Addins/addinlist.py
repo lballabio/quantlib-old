@@ -134,6 +134,5 @@ addin           unchanged   updated     created     total'''
         self.addins_ = []
         for addinId in addinIds:
             creator, fileName = AddinList.creators[addinId]
-            print "filename=", fileName
             self.addins_.append(utilities.serializeObject(creator, 'metadata/Addins/' + fileName))
 

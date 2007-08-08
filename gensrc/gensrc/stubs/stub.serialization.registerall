@@ -1,7 +1,7 @@
-#ifndef %(addinDirectory)s_serialization_all_hpp
-#define %(addinDirectory)s_serialization_all_hpp
+#ifndef %(includeGuard)s_serialization_all_hpp
+#define %(includeGuard)s_serialization_all_hpp
 
-#include <%(path)s/Serialization/serialization_oh.hpp>
+#include <%(addinDirectory)s/Serialization/serialization_oh.hpp>
 %(allIncludes)s
 #endif
 

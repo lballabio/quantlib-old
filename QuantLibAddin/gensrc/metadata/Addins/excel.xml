@@ -2,6 +2,7 @@
   
   <relativePath>qlxl</relativePath>
   <rootDirectory>../QuantLibXL/qlxl</rootDirectory>
+  <dataDirectory>../../QuantLibXL/Data</dataDirectory>
   <exportSymbols>false</exportSymbols>
   <namespaceAddin>QuantLibXL</namespaceAddin>
 
