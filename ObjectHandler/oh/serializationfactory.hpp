@@ -56,7 +56,10 @@ namespace ObjectHandler {
         //! Serialize the given Object list to the path indicated.
 		virtual void saveObject(const std::vector<boost::shared_ptr<Object> >&, const char *path) const = 0;
         //! Serialize the given Object list to the path indicated (alternate implementation).
-		virtual void saveObject2(const std::vector<boost::shared_ptr<Object> >&, const char *path) const = 0;
+		virtual void saveObject2(
+            const std::vector<boost::shared_ptr<Object> >&,
+            const char *path,
+            bool forceOverwrite) const = 0;
         //! Deserialize an Object from the path indicated.
 		virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const char *path) const = 0;
         //! Deserialize an Object list from the path indicated.

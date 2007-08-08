@@ -116,7 +116,10 @@ namespace ObjectHandler {
 
 		virtual void saveObject(const boost::shared_ptr<ObjectHandler::Object> &object, const std::string &path);
 		virtual void saveObject(const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList, const std::string &path);
-		virtual void saveObject2(const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList, const std::string &path);
+		virtual void saveObject2(
+            const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
+            const std::string &path,
+            bool forceOverwrite);
 		virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const std::string &path);
 		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(const std::vector<std::string> &idList, const std::string &path);
 		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject2(const std::string &path);

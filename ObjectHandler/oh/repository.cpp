@@ -146,8 +146,12 @@ namespace ObjectHandler {
 		ObjectHandler::SerializationFactory::instance().saveObject(objectList, path.c_str());   
 	}	
 
-	void Repository::saveObject2(const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList, const std::string &path) {
-		ObjectHandler::SerializationFactory::instance().saveObject2(objectList, path.c_str());   
+	void Repository::saveObject2(
+        const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
+        const std::string &path,
+        bool forceOverwrite) {
+		ObjectHandler::SerializationFactory::instance().saveObject2(
+            objectList, path.c_str(), forceOverwrite);   
 	}	
 
 	boost::shared_ptr<ObjectHandler::Object> Repository::loadObject(const std::string &objectID, const std::string &path) {

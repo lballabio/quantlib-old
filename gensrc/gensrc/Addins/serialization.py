@@ -40,7 +40,8 @@ class Serialization(addin.Addin):
             // %(categoryDisplayName)s\n
             register_%(categoryName)s(ar);\n\n'''
     REGISTER_CALL = '''\
-            ar.register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
+        // class ID %(classID)d in the boost serialization framework
+        ar.register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
     INCLUDE_CREATOR = '''\
 #include <%(libRootDirectory)s/Serialization/create_%(categoryName)s.hpp>\n'''
     REGISTER_INCLUDE = '''\
@@ -157,6 +158,8 @@ def generateSerialization(addin, path):
     allIncludes = ''
     bufferRegister = ''
     includeGuard = 'addin_' + addin.name().lower()
+    classID = 3
+
     for cat in addin.categoryList_.categories('*'):
 
         if not cat.generateVOs(): continue
@@ -181,8 +184,11 @@ def generateSerialization(addin, path):
             if not func.generateVOs(): continue
 
             bufferCpp += Serialization.REGISTER_CALL % {
+                'classID' : classID,
                 'functionName' : func.name(),
                 'namespaceObjects' : environment.config().namespaceObjects() }
+
+            classID += 1
 
         bufferBody = addin.bufferSerializeBody_.text() % {
             'addinDirectory' : path,

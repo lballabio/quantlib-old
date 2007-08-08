@@ -70,7 +70,11 @@ namespace %(namespaceAddin)s {
 
     void SerializationFactory::saveObject2(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
-        const char *path) const {
+        const char *path,
+        bool forceOverwrite) const {
+
+        OH_REQUIRE(forceOverwrite || !boost::filesystem::exists(path),
+            "Cannot overwrite output file : " << path);
 
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
         std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
@@ -138,15 +142,20 @@ namespace %(namespaceAddin)s {
         register_in(ia);
 
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
-        ia >> boost::serialization::make_nvp("object_list", valueObjects);
+        try {
+            ia >> boost::serialization::make_nvp("object_list", valueObjects);
+        } catch (const std::exception &e) {
+            OH_FAIL("Error deserializing file " << path << ": " << e.what());
+        }
 
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
         for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
-            CreatorMap::const_iterator j = creatorMap_().find((*i)->className());
-            OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << (*i)->className());
+            boost::shared_ptr<ObjectHandler::ValueObject> valueObject = *i;
+            CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
+            OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
             Creator creator = j->second;
-            boost::shared_ptr<ObjectHandler::Object> object = creator(*i);
-            std::string objectID = boost::any_cast<std::string>((*i)->getProperty("objectID"));
+            boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
+            std::string objectID = boost::any_cast<std::string>(valueObject->getProperty("objectID"));
             ObjectHandler::Repository::instance().storeObject(objectID, object);
             returnValues.push_back(object);
         }

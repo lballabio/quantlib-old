@@ -55,6 +55,11 @@
             <tensorRank>scalar</tensorRank>
             <description>file to which objects are to be serialized</description>
           </Parameter>
+          <Parameter name='ForceOverwrite' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>overwrite the output file if it exists</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
