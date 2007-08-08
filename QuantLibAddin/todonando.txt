@@ -110,6 +110,11 @@ GENERAL
 
 ---
 NANDO
+- why freeze is for LazyObject and not for Observers?
+- verify native ohsplit usage
+- Index::setTermStructure
+- 10 sec Reuters update
+- Futures serialization (rate and options)
 - revise calibration
 - hide quotefeed worbooks
 - reorder CMS menu
