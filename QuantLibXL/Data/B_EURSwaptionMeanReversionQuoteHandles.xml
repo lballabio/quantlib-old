@@ -5,35 +5,35 @@
 	<count>5</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="114" tracking_level="1" version="0" object_id="_0">
+		<px class_id="125" tracking_level="1" version="0" object_id="_0">
 			<objectID>EURSwaptionMeanReversion2Y_QuoteHandle</objectID>
 			<className>qlRelinkableHandleQuote</className>
 			<CurrentLink>EURSwaptionMeanReversion2Y_Quote</CurrentLink>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="114" object_id="_1">
+		<px class_id_reference="125" object_id="_1">
 			<objectID>EURSwaptionMeanReversion5Y_QuoteHandle</objectID>
 			<className>qlRelinkableHandleQuote</className>
 			<CurrentLink>EURSwaptionMeanReversion5Y_Quote</CurrentLink>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="114" object_id="_2">
+		<px class_id_reference="125" object_id="_2">
 			<objectID>EURSwaptionMeanReversion10Y_QuoteHandle</objectID>
 			<className>qlRelinkableHandleQuote</className>
 			<CurrentLink>EURSwaptionMeanReversion10Y_Quote</CurrentLink>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="114" object_id="_3">
+		<px class_id_reference="125" object_id="_3">
 			<objectID>EURSwaptionMeanReversion20Y_QuoteHandle</objectID>
 			<className>qlRelinkableHandleQuote</className>
 			<CurrentLink>EURSwaptionMeanReversion20Y_Quote</CurrentLink>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="114" object_id="_4">
+		<px class_id_reference="125" object_id="_4">
 			<objectID>EURSwaptionMeanReversion30Y_QuoteHandle</objectID>
 			<className>qlRelinkableHandleQuote</className>
 			<CurrentLink>EURSwaptionMeanReversion30Y_Quote</CurrentLink>
