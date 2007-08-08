@@ -120,6 +120,8 @@ namespace QuantLibAddin {
     SimpleCashFlowVector::SimpleCashFlowVector(const std::vector<QuantLib::Real>& amounts,
                                                const std::vector<QuantLib::Date>& dates)
     {
+        QL_REQUIRE(!amounts.empty(), "Amounts vector must have at least one element");
+        QL_REQUIRE(amounts.size() == dates.size(), "Dates and amounts vector must have the same size");
         for (QuantLib::Size i=0; i < amounts.size(); ++i) {
             leg_.push_back(boost::shared_ptr<CashFlow>(new
                 QuantLib::SimpleCashFlow(amounts[i], dates[i])));
