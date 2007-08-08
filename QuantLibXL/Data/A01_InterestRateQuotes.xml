@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
-<object_list class_id="166" tracking_level="0" version="0">
+<object_list class_id="1" tracking_level="0" version="0">
 	<count>99</count>
 	<item_version>1</item_version>
-	<item class_id="167" tracking_level="0" version="1">
+	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="115" tracking_level="1" version="0" object_id="_0">
 			<objectID>EUR1MD_Quote</objectID>
 			<className>qlSimpleQuote</className>
