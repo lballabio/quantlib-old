@@ -30,24 +30,11 @@ namespace QuantLibAddinCpp {
     public:
         static SerializationFactory &instance();
     private:
-        virtual void saveObject(
-            const boost::shared_ptr<ObjectHandler::Object> &object,
-            const char *path) const;
-        virtual void saveObject(
+        virtual int saveObject(
             const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
             const char *path) const;
-        virtual void saveObject2(
-            const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
-            const char *path) const;
-        virtual boost::shared_ptr<ObjectHandler::Object> loadObject(
-            const std::string &objectID,
-            const char *path) const;
-        virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(
-            const std::vector<std::string> &idList,
-            const char *path) const;
-        virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject2(
-            const char *path) const;
-
+        virtual int loadObject(const char *path) const;
+        int processPath(const std::string &path) const;
     };
 
     void register_in(boost::archive::xml_iarchive&);
