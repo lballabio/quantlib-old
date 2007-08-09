@@ -314,5 +314,5 @@ class ExcelAddin(addin.Addin):
         """load/unload class state to/from serializer object."""
         super(ExcelAddin, self).serialize(serializer)
         serializer.serializeBoolean(self, 'exportSymbols')
-        serializer.serializeProperty(self, 'serializationBase')
+        #serializer.serializeProperty(self, 'serializationBase')
 

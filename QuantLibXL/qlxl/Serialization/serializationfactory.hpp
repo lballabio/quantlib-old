@@ -43,6 +43,9 @@ namespace QuantLibXL {
             std::vector<boost::shared_ptr<ObjectHandler::Object> > &returnValues) const;
     };
 
+    // Wrappers for template tpl_register_classes.  Do not call the
+    // template directly, use these wrappers, this is required for
+    // external third party applications which extend the factory.
 	void register_in(boost::archive::xml_iarchive&);
 	void register_out(boost::archive::xml_oarchive&);
 

@@ -40,8 +40,8 @@ class Serialization(addin.Addin):
     REGISTER_CREATOR = '''\
         registerCreator("%(functionName)s", create_%(functionName)s);\n'''
     REGISTER_TYPE = '''\
-            // %(categoryDisplayName)s\n
-            register_%(categoryName)s(ar);\n\n'''
+        // %(categoryDisplayName)s\n
+        register_%(categoryName)s(ar);\n\n'''
     REGISTER_CALL = '''\
         // class ID %(classID)d in the boost serialization framework
         ar.register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
@@ -152,6 +152,7 @@ class Serialization(addin.Addin):
 #############################################
 
 # Map class names to the ID numbers from the boost serialization framework.
+# Global because it's shared by generateSerialization() and findReplace().
 idMap = {}
 
 def findReplace(m):
@@ -210,8 +211,8 @@ def generateSerialization(addin):
     factory.  The code is platform independent.  However, the generated source
     code must be compiled as part of the final Addin binary (not in a static
     library) because of issues related to linking and to template
-    metaprogramming performed by the boost::serialization library.  Each Addin
-    that supports serialization must call in to this function."""
+    metaprogramming performed by the boost::serialization library. 
+    Each Addin that supports serialization must call in to this function."""
     global idMap
 
     allIncludes = ''
@@ -224,8 +225,10 @@ def generateSerialization(addin):
     # because 0, 1 and 2 are reserved for ObjectHandler as explained in file
     # QuantLibAddin/Addins/Cpp/Serialization/serialization_oh.cpp
     classID = 3
-    # Initialize the global map
-    idMap = {}
+    # Initialize the global map with the values reserved for ObjectHandler.
+    # 0 and 1 refer respectively to ValueObject and vector of ValueObject,
+    # but these are omitted because they never occur in app XML data.
+    idMap = { 'ohRange' : 3 }
 
     for cat in addin.categoryList_.categories('*'):
 
@@ -273,21 +276,21 @@ def generateSerialization(addin):
     allFilename = addin.rootPath_ + 'Serialization/serialization_all.hpp'
     outputfile.OutputFile(addin, allFilename, addin.copyright_, allBuffer)
 
-    if addin.serializationBase_:
-        callBaseIn = "%s::register_in(ia);" % addin.serializationBase_
-        callBaseOut = "%s::register_out(oa);" % addin.serializationBase_
-    else:
-        callBaseIn =''
-        callBaseOut =''
+    #if addin.serializationBase_:
+    #    callBaseIn = "%s::register_in(ia);" % addin.serializationBase_
+    #    callBaseOut = "%s::register_out(oa);" % addin.serializationBase_
+    #else:
+    #    callBaseIn =''
+    #    callBaseOut =''
 
     bufferFactory = addin.bufferSerializeRegister_.text() % {
         'addinDirectory' : addinDirectory,
         'bufferRegister' : bufferRegister,
-        'libRootDirectory' : environment.config().libRootDirectory(),
-        'namespaceAddin' : addin.namespaceAddin_,
-        'callBaseIn': callBaseIn,
-        'callBaseOut': callBaseOut}
-    factoryFile = addin.rootPath_ + 'Serialization/serializationfactory.cpp'
+        'namespaceAddin' : addin.namespaceAddin_ } 
+    #    'libRootDirectory' : environment.config().libRootDirectory(),
+    #    'callBaseIn': callBaseIn,
+    #    'callBaseOut': callBaseOut}
+    factoryFile = addin.rootPath_ + 'Serialization/serialization_register.hpp'
     outputfile.OutputFile(addin, factoryFile, addin.copyright_, bufferFactory)
 
     if addin.dataDirectory():

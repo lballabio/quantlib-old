@@ -123,5 +123,5 @@ class CppAddin(addin.Addin):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         super(CppAddin, self).serialize(serializer)
-        serializer.serializeProperty(self, 'serializationBase')
+        #serializer.serializeProperty(self, 'serializationBase')
 

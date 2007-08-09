@@ -571,6 +571,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Serialization\serialization_register.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Serialization\serialization_schedule.cpp"
 				>
 			</File>

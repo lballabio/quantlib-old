@@ -47,6 +47,7 @@ noinst_HEADERS = \
     serialization_randomsequencegenerator.hpp \
     serialization_rangeaccrual.hpp \
     serialization_ratehelpers.hpp \
+    serialization_register.hpp \
     serialization_schedule.hpp \
     serialization_sequencestatistics.hpp \
     serialization_shortratemodels.hpp \
