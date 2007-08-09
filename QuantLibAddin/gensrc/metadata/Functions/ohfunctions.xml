@@ -549,7 +549,7 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>void</type>
+        <type>long</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -570,7 +570,7 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>void</type>
+        <type>long</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>

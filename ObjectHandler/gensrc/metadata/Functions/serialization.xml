@@ -12,7 +12,7 @@
   <Functions>
 
     <Procedure name='ohObjectSave'>
-      <description>experimental re-implementation of ohObjectSave</description>
+      <description>Serialize list of objects to given path, return count of objects serialized</description>
       <alias>ObjectHandler::Repository::instance().saveObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
@@ -37,13 +37,13 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>void</type>
+        <type>long</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
 
     <Procedure name='ohObjectLoad'>
-      <description>experimental re-implementation of ohObjectLoad</description>
+      <description>Deserialize list of objects from given path, return count of objects deserialized</description>
       <alias>ObjectHandler::Repository::instance().loadObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
@@ -58,7 +58,7 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>void</type>
+        <type>long</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>

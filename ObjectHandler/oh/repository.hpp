@@ -114,12 +114,11 @@ namespace ObjectHandler {
         virtual void deleteAllObjects(const bool &deletePermanent = false);
         //@}
 
-		virtual void saveObject(
+		virtual int saveObject(
             const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
             const std::string &path,
             bool forceOverwrite);
-		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(
-            const std::string &path);
+		virtual int loadObject(const std::string &path);
 
         //! \name Logging
         //@{

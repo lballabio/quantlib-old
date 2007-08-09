@@ -52,12 +52,12 @@ namespace ObjectHandler {
         //! \name Serialization - public interface
         //@{
         //! Serialize the given Object list to the path indicated.
-		virtual void saveObject(
+		virtual int saveObject(
             const std::vector<boost::shared_ptr<Object> >&,
             const char *path,
             bool forceOverwrite) const = 0;
         //! Deserialize an Object list from the path indicated.
-		virtual std::vector<boost::shared_ptr<Object> > loadObject(const char *path) const = 0;
+		virtual int loadObject(const char *path) const = 0;
         //@}
 
     protected:

@@ -30,13 +30,12 @@ namespace QuantLibXL {
     public:
         static SerializationFactory &instance();
     private:
-		virtual void saveObject(
+		virtual int saveObject(
             const std::vector<boost::shared_ptr<ObjectHandler::Object> >&objectList,
             const char *path,
             bool forceOverwrite) const;
-		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(const char *path) const;
-        void processPath(const std::string &path,
-            std::vector<boost::shared_ptr<ObjectHandler::Object> > &returnValues) const;
+		virtual int loadObject(const char *path) const;
+        int processPath(const std::string &path) const;
     };
 
     // Wrappers for template tpl_register_classes.  Do not call the

@@ -36,13 +36,15 @@ namespace QuantLibXL {
         OH_FAIL("Attempt to reference uninitialized SerializationFactory object");
     }
 
-    void SerializationFactory::saveObject(
+    int SerializationFactory::saveObject(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
         const char *path,
         bool forceOverwrite) const {
 
         OH_REQUIRE(forceOverwrite || !boost::filesystem::exists(path),
             "Cannot overwrite output file : " << path);
+
+        OH_REQUIRE(objectList.size(), "Object list is empty");
 
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
         std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
@@ -53,11 +55,10 @@ namespace QuantLibXL {
         boost::archive::xml_oarchive oa(ofs);
         register_out(oa);
         oa << boost::serialization::make_nvp("object_list", valueObjects);
+        return valueObjects.size();
     }
 
-    void SerializationFactory::processPath(
-        const std::string &path,
-        std::vector<boost::shared_ptr<ObjectHandler::Object> > &returnValues) const {
+    int SerializationFactory::processPath(const std::string &path) const {
 
         try {
 
@@ -66,7 +67,8 @@ namespace QuantLibXL {
             register_in(ia);
 
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
-                ia >> boost::serialization::make_nvp("object_list", valueObjects);
+            ia >> boost::serialization::make_nvp("object_list", valueObjects);
+            OH_REQUIRE(valueObjects.size(), "Object list is empty");
 
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
@@ -79,35 +81,33 @@ namespace QuantLibXL {
                 boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
                 std::string objectID = boost::any_cast<std::string>(valueObject->getProperty("objectID"));
                 ObjectHandler::Repository::instance().storeObject(objectID, object);
-                returnValues.push_back(object);
             }
+
+            return valueObjects.size();
 
         } catch (const std::exception &e) {
             OH_FAIL("Error deserializing file " << path << ": " << e.what());
         }
     }
         
-    std::vector<boost::shared_ptr<ObjectHandler::Object> > SerializationFactory::loadObject(
-        const char *path) const {
+    int SerializationFactory::loadObject(const char *path) const {
 
         OH_REQUIRE(boost::filesystem::exists(path), "Invalid path : " << path);
 
-        std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValues;
-
         if (boost::filesystem::is_directory(path)) {
 
+            int returnValue = 0;
             for (boost::filesystem::directory_iterator itr(path); 
                 itr!=boost::filesystem::directory_iterator(); ++itr) {
 
                 if (boost::filesystem::is_regular(itr->path().string()))
-                    processPath(itr->path().string(), returnValues);
+                    returnValue += processPath(itr->path().string());
             }
+            return returnValue;
 
         } else {
-            processPath(path, returnValues);
+            return processPath(path);
         }
-
-        return returnValues;
     }
 
     void register_in(boost::archive::xml_iarchive& ia) {        

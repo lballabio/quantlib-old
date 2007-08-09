@@ -136,18 +136,16 @@ namespace ObjectHandler {
         return objectIDs;
     }
 
-	void Repository::saveObject(
+	int Repository::saveObject(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
         const std::string &path,
         bool forceOverwrite) {
 
-		ObjectHandler::SerializationFactory::instance().saveObject(
+		return ObjectHandler::SerializationFactory::instance().saveObject(
             objectList, path.c_str(), forceOverwrite);   
 	}	
 
-	std::vector<boost::shared_ptr<ObjectHandler::Object> > Repository::loadObject(
-        const std::string &path) {
-
+	int Repository::loadObject(const std::string &path) {
         return ObjectHandler::SerializationFactory::instance().loadObject(path.c_str());			
     }
 
