@@ -37,25 +37,6 @@ namespace QuantLibXL {
         OH_FAIL("Attempt to reference uninitialized SerializationFactory object");
     }
 
-    std::vector<boost::shared_ptr<ObjectHandler::Object> > removeDuplicates(
-        const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList) {
-
-        std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValue;
-        std::set<std::string> seen;
-        std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
-        for (i=objectList.begin(); i!=objectList.end(); ++i) {
-            boost::shared_ptr<ObjectHandler::Object> object = *i;
-            std::string objectID = boost::any_cast<std::string>(
-                object->properties()->getProperty("objectID"));
-            if (seen.find(objectID) == seen.end()) {
-                returnValue.push_back(object);
-                seen.insert(objectID);
-            }
-        }
-
-        return returnValue;
-    }
-
     int SerializationFactory::saveObject(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
         const char *path,
@@ -66,13 +47,18 @@ namespace QuantLibXL {
 
         OH_REQUIRE(objectList.size(), "Object list is empty");
 
-        std::vector<boost::shared_ptr<ObjectHandler::Object> > objectListUnique
-            = removeDuplicates(objectList);
-
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
+        std::set<std::string> seen;
         std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
-        for (i=objectListUnique.begin(); i!=objectListUnique.end(); ++i)
-            valueObjects.push_back((*i)->properties());
+        for (i=objectList.begin(); i!=objectList.end(); ++i) {
+            boost::shared_ptr<ObjectHandler::Object> object = *i;
+            std::string objectID = boost::any_cast<std::string>(
+                object->properties()->getProperty("objectID"));
+            if (seen.find(objectID) == seen.end()) {
+                valueObjects.push_back(object->properties());
+                seen.insert(objectID);
+            }
+        }
 
         std::ofstream ofs(path);
         boost::archive::xml_oarchive oa(ofs);
