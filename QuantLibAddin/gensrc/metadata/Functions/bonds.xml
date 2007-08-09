@@ -11,6 +11,9 @@
     <include>qlo/termstructures.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>ql/instruments/bond.hpp</include>
+    <include>ql/currency.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/ValueObjects/vo_bonds.hpp</include>
@@ -22,6 +25,9 @@
     <include>qlo/termstructures.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>ql/instruments/bond.hpp</include>
+    <include>ql/currency.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Chiara Fornarola

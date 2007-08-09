@@ -9,6 +9,7 @@
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/schedule.hpp</include>
+    <include>ql/indexes/interestrateindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/ValueObjects/vo_rangeaccrual.hpp</include>
@@ -18,6 +19,7 @@
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/schedule.hpp</include>
+    <include>ql/indexes/interestrateindex.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Giorgio Facchinetti

@@ -7,6 +7,8 @@
     <include>qlo/schedule.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/ValueObjects/vo_vanillaswap.hpp</include>
@@ -14,6 +16,8 @@
     <include>qlo/index.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/termstructures.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano

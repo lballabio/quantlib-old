@@ -23,7 +23,6 @@
 #include <qlo/Conversions/conversions.hpp>
 #include <qlo/Conversions/coercecurve.hpp>
 #include <qlo/Conversions/coercehandle.hpp>
-#include <qlo/Conversions/coerceindex.hpp>
 #include <qlo/Conversions/coerceobject.hpp>
 #include <qlo/Conversions/coercetermstructure.hpp>
 #include <qlo/Conversions/varianttodate.hpp>

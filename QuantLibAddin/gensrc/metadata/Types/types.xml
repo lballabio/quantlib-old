@@ -115,6 +115,7 @@
         <DataType>QuantLib::HistoricalForwardRatesAnalysis</DataType>
         <DataType>QuantLib::IborIndex</DataType>
         <DataType>QuantLib::Index</DataType>
+        <DataType>QuantLibAddin::Index</DataType>
         <DataType>QuantLib::Instrument</DataType>
         <DataType>QuantLib::InterestRateIndex</DataType>
         <DataType>QuantLib::Interpolation</DataType>

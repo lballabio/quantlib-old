@@ -61,11 +61,6 @@
       <Wrap codeID='wrap5'/>
       <Rules>
         <Rule tensorRank='scalar' superType='libraryClass' default='true' codeID='code161'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Index' codeID='code40'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Xibor' codeID='code40'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::SwapIndex' codeID='code40'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::InterestRateIndex' codeID='code40'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::IborIndex' codeID='code40'/>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' codeID='code152'/>
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code38'/>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code140'/>
@@ -76,11 +71,6 @@
         <Rule tensorRank='scalar' superType='handleToLib' codeID='code45b'/>
         <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='code49'/>
         <Rule tensorRank='scalar' superType='underlyingClass' codeID='code48'/>        
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Index' codeID='code154'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Xibor' codeID='code154'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex' codeID='code154'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex' codeID='code154'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex' codeID='code154'/>
         <Rule tensorRank='vector' superType='libraryClass' codeID='code37c'/>
         <Rule tensorRank='vector' superType='libToHandle' type='QuantLib::Quote' codeID='code150'/>
         <Rule tensorRank='vector' superType='libToHandle' codeID='code153'/>

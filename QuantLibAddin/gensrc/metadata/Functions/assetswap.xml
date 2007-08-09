@@ -9,6 +9,7 @@
     <include>qlo/termstructures.hpp</include>
     <include>qlo/bonds.hpp</include>
     <include>ql/instruments/assetswap.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/ValueObjects/vo_assetswap.hpp</include>
@@ -18,6 +19,7 @@
     <include>qlo/termstructures.hpp</include>
     <include>qlo/bonds.hpp</include>
     <include>ql/instruments/assetswap.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Chiara Fornarola

@@ -91,11 +91,6 @@
       <Wrap codeID='wrap5'/>
       <Rules>
         <Rule tensorRank='scalar' superType='libraryClass' default='true' codeID='code39'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Index' codeID='code40'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Xibor' codeID='code40'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::SwapIndex' codeID='code40'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::InterestRateIndex' codeID='code40'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::IborIndex' codeID='code40'/>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' codeID='code47'/>
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code38'/>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code214'/>
@@ -106,11 +101,6 @@
         <Rule tensorRank='scalar' superType='handleToLib' codeID='code45b'/>
         <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='code49'/>
         <Rule tensorRank='scalar' superType='underlyingClass' codeID='code48'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Index' codeID='code216'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::Xibor' codeID='code216'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::SwapIndex' codeID='code216'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::InterestRateIndex' codeID='code216'/>
-        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::IborIndex' codeID='code216'/>
         <Rule tensorRank='vector' superType='libraryClass' codeID='code37c'/>
         <Rule tensorRank='vector' superType='libToHandle' type='QuantLib::Quote' codeID='code218'/>
         <Rule tensorRank='matrix' superType='libToHandle' type='QuantLib::Quote' codeID='code215'/>

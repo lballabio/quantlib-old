@@ -7,6 +7,7 @@
     <include>qlo/capfloor.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/pricingengines.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/ValueObjects/vo_capfloor.hpp</include>
@@ -14,6 +15,7 @@
     <include>qlo/index.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/pricingengines.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano

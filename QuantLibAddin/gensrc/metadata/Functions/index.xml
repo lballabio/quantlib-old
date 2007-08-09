@@ -3,10 +3,17 @@
   <displayName>Indices</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
-    <include>ql/indexes/swapindex.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/termstructures.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/index.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006 Katiuscia Manzoni
@@ -99,7 +106,7 @@
     </Member>
 
     <!--<Member name='qlIndexAddFixings' type='QuantLibAddin::Index'>-->
-    <Member name='qlIndexAddFixings' type='QuantLib::Index'>
+    <Member name='qlIndexAddFixings' type='QuantLibAddin::Index'>
       <description>Adds fixings for the given Index object</description>
       <libraryFunction>addFixings</libraryFunction>
       <SupportedPlatforms>
@@ -492,30 +499,6 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
-    <!-- might we have qlGetEuriborTermStructure ?? -->
-    <Procedure name='qlSetEuriborTermStructure'>
-      <description>Sets the yield term structure which is linked to by the handle shared by all enumerated Euribor objects</description>
-      <alias>QuantLibAddin::EuriborHandle::instance().linkEuriborHandle</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='TermStructureID' exampleValue='EURYC'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>handleToLib</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>yield term structure to be referenced by all enumerated Euribor objects</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
 
     <!-- SwapIndex interface -->
 

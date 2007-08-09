@@ -5,7 +5,6 @@
 #include <qlo/Enumerations/Constructors/enumeratedclasses.hpp>
 #include <qlo/Enumerations/Factories/conundrumpricerfactory.hpp>
 #include <qlo/Enumerations/Factories/iborcouponpricersfactory.hpp>
-#include <qlo/Enumerations/Factories/indexfactory.hpp>
 #include <qlo/Enumerations/Factories/interpolationsfactory.hpp>
 #include <qlo/Enumerations/Factories/payoffsfactory.hpp>
 #include <qlo/Enumerations/Factories/pricingenginesfactory.hpp>

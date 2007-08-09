@@ -397,10 +397,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\qlo\Enumerations\Factories\indexfactory.hpp"
-					>
-				</File>
-				<File
 					RelativePath=".\qlo\Enumerations\Factories\interpolationsfactory.hpp"
 					>
 				</File>

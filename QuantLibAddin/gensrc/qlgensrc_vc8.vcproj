@@ -339,6 +339,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Rules\cpp.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Rules\doxygen.xml"
 				>
 			</File>

@@ -122,20 +122,6 @@ code39 = '''\
         OH_GET_REFERENCE_DEFAULT(%(name)sLibObj, %(name)sCpp,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
-code40 = '''\
-        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            %(namespaceObjects)s::CoerceIndex<
-                %(namespaceObjects)s::%(classname)s,
-                %(namespaceLibrary)s::%(classname)s>()(
-                    %(name)s);\n'''
-
-code41 = '''\
-        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
-            %(namespaceObjects)s::CoerceIndexVector<
-                %(namespaceObjects)s::%(classname)s,
-                %(namespaceLibrary)s::%(classname)s>(
-                    %(name)sCpp);\n'''
-
 code42 = '''\
         std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
             ObjectHandler::operToObjectVector<%(namespaceLibrary)s::%(classname)s, %(namespaceObjects)s::%(classname)s>(
@@ -333,18 +319,6 @@ code214 = '''\
 code215 = '''\
         std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > > %(name)sLibObj =
             ObjectHandler::ohVariantToMatrix<QuantLib::RelinkableHandle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
-
-code216 = '''\
-        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
-            %(namespaceObjects)s::CoerceIndexVector<
-                %(namespaceObjects)s::%(classname)s,
-                %(namespaceLibrary)s::%(classname)s>(
-                    %(name)s);\n'''
-
-#code217 = '''\
-#        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
-#            ObjectHandler::ohVariantToObjectVector<%(namespaceLibrary)s::%(classname)s, %(namespaceObjects)s::%(classname)s>(
-#            %(name)s, "%(name)s");\n'''
 
 code218 = '''\
         std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > %(name)sLibObj =
@@ -613,13 +587,6 @@ code153 = '''\
         std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
             ObjectHandler::ohVariantToObjectVector<%(namespaceLibrary)s::%(classname)s, %(namespaceObjects)s::%(classname)s>(
             %(name)s, "%(name)s");\n'''
-
-code154 = '''\
-        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
-            %(namespaceObjects)s::CoerceIndexVector<
-                %(namespaceObjects)s::%(classname)s,
-                %(namespaceLibrary)s::%(classname)s>(
-                    %(name)s);\n'''
 
 code160 = '''\
         std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(name)sObj =
