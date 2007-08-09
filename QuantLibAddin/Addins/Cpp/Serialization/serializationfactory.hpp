@@ -31,12 +31,20 @@ namespace QuantLibAddinCpp {
         static SerializationFactory &instance();
     private:
         virtual int saveObject(
-            const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
-            const char *path) const;
-        virtual int loadObject(const char *path) const;
-        int processPath(const std::string &path) const;
+            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&objectList,
+            const char *path,
+            bool forceOverwrite) const;
+        virtual int loadObject(
+            const char *path,
+            bool overwriteExisting) const;
+        int processPath(
+            const std::string &path,
+            bool overwriteExisting) const;
     };
 
+    // Wrappers for template tpl_register_classes.  Do not call the
+    // template directly, use these wrappers, this is required for
+    // external third party applications which extend the factory.
     void register_in(boost::archive::xml_iarchive&);
     void register_out(boost::archive::xml_oarchive&);
 

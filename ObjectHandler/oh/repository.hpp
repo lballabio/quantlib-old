@@ -118,7 +118,9 @@ namespace ObjectHandler {
             const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
             const std::string &path,
             bool forceOverwrite);
-		virtual int loadObject(const std::string &path);
+		virtual int loadObject(
+            const std::string &path,
+            bool overwriteExisting);
 
         //! \name Logging
         //@{

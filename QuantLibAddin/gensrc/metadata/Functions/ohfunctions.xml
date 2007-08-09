@@ -567,6 +567,11 @@
             <tensorRank>scalar</tensorRank>
             <description>file from which objects are to be deserialized</description>
           </Parameter>
+          <Parameter name='OverwriteExisting' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Overwrite any existing Object that has the same ID as one being loaded</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>

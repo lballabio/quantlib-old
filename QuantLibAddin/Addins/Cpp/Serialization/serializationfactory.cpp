@@ -1,5 +1,5 @@
 
-/*  
+/*
  Copyright (C) 2007 Eric Ehlers
  
  This file is part of QuantLib, a free-software/open-source library
@@ -36,6 +36,25 @@ namespace QuantLibAddinCpp {
         OH_FAIL("Attempt to reference uninitialized SerializationFactory object");
     }
 
+    std::vector<boost::shared_ptr<ObjectHandler::Object> > removeDuplicates(
+        const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList) {
+
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValue;
+        std::set<std::string> seen;
+        std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
+        for (i=objectList.begin(); i!=objectList.end(); ++i) {
+            boost::shared_ptr<ObjectHandler::Object> object = *i;
+            std::string objectID = boost::any_cast<std::string>(
+                object->properties()->getProperty("objectID"));
+            if (seen.find(objectID) == seen.end()) {
+                returnValue.push_back(object);
+                seen.insert(objectID);
+            }
+        }
+
+        return returnValue;
+    }
+
     int SerializationFactory::saveObject(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
         const char *path,
@@ -46,9 +65,12 @@ namespace QuantLibAddinCpp {
 
         OH_REQUIRE(objectList.size(), "Object list is empty");
 
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > objectListUnique
+            = removeDuplicates(objectList);
+
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
         std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
-        for (i=objectList.begin(); i!=objectList.end(); ++i)
+        for (i=objectListUnique.begin(); i!=objectListUnique.end(); ++i)
             valueObjects.push_back((*i)->properties());
 
         std::ofstream ofs(path);
@@ -58,7 +80,9 @@ namespace QuantLibAddinCpp {
         return valueObjects.size();
     }
 
-    int SerializationFactory::processPath(const std::string &path) const {
+    int SerializationFactory::processPath(
+        const std::string &path,
+        bool overwriteExisting) const {
 
         try {
 
@@ -73,11 +97,16 @@ namespace QuantLibAddinCpp {
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
                 boost::shared_ptr<ObjectHandler::ValueObject> valueObject = *i;
+                // Code to overwrite the object ID
+                //valueObject->setProperty("objectID", XXX);
                 CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
                 OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
                 Creator creator = j->second;
                 boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
-                std::string objectID = boost::any_cast<std::string>(valueObject->getProperty("objectID"));
+                std::string objectID =
+                    boost::any_cast<std::string>(valueObject->getProperty("objectID"));
+                if (overwriteExisting)
+                    ObjectHandler::Repository::instance().deleteObject(objectID);
                 ObjectHandler::Repository::instance().storeObject(objectID, object);
             }
 
@@ -88,26 +117,25 @@ namespace QuantLibAddinCpp {
         }
     }
 
-    int SerializationFactory::loadObject(const char *path) const {
+    int SerializationFactory::loadObject(
+        const char *path,
+        bool overwriteExisting) const {
 
         OH_REQUIRE(boost::filesystem::exists(path), "Invalid path : " << path);
 
-        std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValues;
-
-        int returnValue = 0;
         if (boost::filesystem::is_directory(path)) {
 
+            int returnValue = 0;
             for (boost::filesystem::directory_iterator itr(path); 
                 itr!=boost::filesystem::directory_iterator(); ++itr) {
 
                 if (boost::filesystem::is_regular(itr->path().string()))
-                    processPath(itr->path().string());
-
+                    returnValue += processPath(itr->path().string(), overwriteExisting);
             }
             return returnValue;
 
         } else {
-            return processPath(path);
+            return processPath(path, overwriteExisting);
         }
     }
 

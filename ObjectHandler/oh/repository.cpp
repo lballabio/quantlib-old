@@ -145,8 +145,12 @@ namespace ObjectHandler {
             objectList, path.c_str(), forceOverwrite);   
 	}	
 
-	int Repository::loadObject(const std::string &path) {
-        return ObjectHandler::SerializationFactory::instance().loadObject(path.c_str());			
+	int Repository::loadObject(
+        const std::string &path,
+        bool overwriteExisting) {
+
+        return ObjectHandler::SerializationFactory::instance().loadObject(
+            path.c_str(), overwriteExisting);			
     }
 
 

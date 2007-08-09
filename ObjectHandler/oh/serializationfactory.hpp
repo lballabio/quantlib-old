@@ -57,7 +57,9 @@ namespace ObjectHandler {
             const char *path,
             bool forceOverwrite) const = 0;
         //! Deserialize an Object list from the path indicated.
-		virtual int loadObject(const char *path) const = 0;
+		virtual int loadObject(
+            const char *path,
+            bool overwriteExisting) const = 0;
         //@}
 
     protected:

@@ -1,5 +1,5 @@
 
-/*  
+/*
  Copyright (C) 2007 Eric Ehlers
  
  This file is part of QuantLib, a free-software/open-source library
@@ -17,6 +17,7 @@
 */
 
 #include <fstream>
+#include <set>
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/shared_ptr.hpp>
@@ -36,6 +37,25 @@ namespace QuantLibXL {
         OH_FAIL("Attempt to reference uninitialized SerializationFactory object");
     }
 
+    std::vector<boost::shared_ptr<ObjectHandler::Object> > removeDuplicates(
+        const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList) {
+
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValue;
+        std::set<std::string> seen;
+        std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
+        for (i=objectList.begin(); i!=objectList.end(); ++i) {
+            boost::shared_ptr<ObjectHandler::Object> object = *i;
+            std::string objectID = boost::any_cast<std::string>(
+                object->properties()->getProperty("objectID"));
+            if (seen.find(objectID) == seen.end()) {
+                returnValue.push_back(object);
+                seen.insert(objectID);
+            }
+        }
+
+        return returnValue;
+    }
+
     int SerializationFactory::saveObject(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
         const char *path,
@@ -46,9 +66,12 @@ namespace QuantLibXL {
 
         OH_REQUIRE(objectList.size(), "Object list is empty");
 
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > objectListUnique
+            = removeDuplicates(objectList);
+
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
         std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
-        for (i=objectList.begin(); i!=objectList.end(); ++i)
+        for (i=objectListUnique.begin(); i!=objectListUnique.end(); ++i)
             valueObjects.push_back((*i)->properties());
 
         std::ofstream ofs(path);
@@ -58,7 +81,9 @@ namespace QuantLibXL {
         return valueObjects.size();
     }
 
-    int SerializationFactory::processPath(const std::string &path) const {
+    int SerializationFactory::processPath(
+        const std::string &path,
+        bool overwriteExisting) const {
 
         try {
 
@@ -79,7 +104,10 @@ namespace QuantLibXL {
                 OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
                 Creator creator = j->second;
                 boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
-                std::string objectID = boost::any_cast<std::string>(valueObject->getProperty("objectID"));
+                std::string objectID =
+                    boost::any_cast<std::string>(valueObject->getProperty("objectID"));
+                if (overwriteExisting)
+                    ObjectHandler::Repository::instance().deleteObject(objectID);
                 ObjectHandler::Repository::instance().storeObject(objectID, object);
             }
 
@@ -89,8 +117,10 @@ namespace QuantLibXL {
             OH_FAIL("Error deserializing file " << path << ": " << e.what());
         }
     }
-        
-    int SerializationFactory::loadObject(const char *path) const {
+
+    int SerializationFactory::loadObject(
+        const char *path,
+        bool overwriteExisting) const {
 
         OH_REQUIRE(boost::filesystem::exists(path), "Invalid path : " << path);
 
@@ -101,20 +131,20 @@ namespace QuantLibXL {
                 itr!=boost::filesystem::directory_iterator(); ++itr) {
 
                 if (boost::filesystem::is_regular(itr->path().string()))
-                    returnValue += processPath(itr->path().string());
+                    returnValue += processPath(itr->path().string(), overwriteExisting);
             }
             return returnValue;
 
         } else {
-            return processPath(path);
+            return processPath(path, overwriteExisting);
         }
     }
 
-    void register_in(boost::archive::xml_iarchive& ia) {        
+    void register_in(boost::archive::xml_iarchive& ia) {
         tpl_register_classes(ia);
     }
 
-    void register_out(boost::archive::xml_oarchive& oa) {        
+    void register_out(boost::archive::xml_oarchive& oa) {
         tpl_register_classes(oa);
     }
 
