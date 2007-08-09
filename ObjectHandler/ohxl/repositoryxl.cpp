@@ -265,19 +265,5 @@ namespace ObjectHandler {
 
     }
 
-    boost::shared_ptr<ObjectHandler::Object> RepositoryXL::loadObject(const std::string &objectID, 
-            const std::string &path) {
-
-        return Repository::loadObject(ObjectXL::getStub(objectID), path);
-    }
-
-	std::vector<boost::shared_ptr<ObjectHandler::Object> > RepositoryXL::loadObject(const std::vector<std::string> &idList, const std::string &path) {
-		std::vector<std::string> idListCpp;
-		for (std::vector<std::string>::const_iterator i = idList.begin(); i != idList.end(); ++i) {
-			idListCpp.push_back(ObjectXL::getStub(*i));
-		}
-        return Repository::loadObject(idListCpp, path);
-	}
-
 }
 

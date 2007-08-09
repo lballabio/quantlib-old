@@ -67,8 +67,8 @@ namespace ObjectHandler {
         const std::string &objectID) const {
 
         ObjectMap::const_iterator result = objectMap_.find(objectID);
-        OH_REQUIRE(result != objectMap_.end(), "ObjectHandler error: attempt to retrieve object with "
-            "unknown ID '" << objectID << "'");
+        OH_REQUIRE(result != objectMap_.end(), "ObjectHandler error: attempt to retrieve object "
+            "with unknown ID '" << objectID << "'");
         return result->second;
     }
 
@@ -83,10 +83,10 @@ namespace ObjectHandler {
         } else {
             ObjectMap::iterator i = objectMap_.begin();
             while (i != objectMap_.end()) {
-                if (!i->second->permanent())
-                    objectMap_.erase(i++);
-                else
+                if (i->second->permanent())
                     ++i;
+                else
+                    objectMap_.erase(i++);
             }
         }
     }
@@ -123,14 +123,12 @@ namespace ObjectHandler {
         if (regex.empty()) {
             objectIDs.reserve(objectMap_.size());
             for (ObjectMap::const_iterator i=objectMap_.begin();
-                 i!=objectMap_.end();
-                 ++i)
+                i!=objectMap_.end(); ++i)
                 objectIDs.push_back(i->first);
         } else {
             boost::regex r(regex, boost::regex::perl | boost::regex::icase);
             for (ObjectMap::const_iterator i=objectMap_.begin();
-                 i!=objectMap_.end();
-                 ++i) {
+                i!=objectMap_.end(); ++i) {
                 std::string objectID = i->first;
                 if (regex_match(objectID, r)) objectIDs.push_back(objectID);
             }
@@ -138,32 +136,19 @@ namespace ObjectHandler {
         return objectIDs;
     }
 
-	void Repository::saveObject(const boost::shared_ptr<ObjectHandler::Object> &object, const std::string &path) {
-		ObjectHandler::SerializationFactory::instance().saveObject(object, path.c_str());   
-	}
-
-	void Repository::saveObject(const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList, const std::string &path) {
-		ObjectHandler::SerializationFactory::instance().saveObject(objectList, path.c_str());   
-	}	
-
-	void Repository::saveObject2(
+	void Repository::saveObject(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
         const std::string &path,
         bool forceOverwrite) {
-		ObjectHandler::SerializationFactory::instance().saveObject2(
+
+		ObjectHandler::SerializationFactory::instance().saveObject(
             objectList, path.c_str(), forceOverwrite);   
 	}	
 
-	boost::shared_ptr<ObjectHandler::Object> Repository::loadObject(const std::string &objectID, const std::string &path) {
-        return ObjectHandler::SerializationFactory::instance().loadObject(objectID, path.c_str());			
-	}
+	std::vector<boost::shared_ptr<ObjectHandler::Object> > Repository::loadObject(
+        const std::string &path) {
 
-	std::vector<boost::shared_ptr<ObjectHandler::Object> > Repository::loadObject(const std::vector<std::string> &idList, const std::string &path) {
-        return ObjectHandler::SerializationFactory::instance().loadObject(idList, path.c_str());			
-    }
-
-	std::vector<boost::shared_ptr<ObjectHandler::Object> > Repository::loadObject2(const std::string &path) {
-        return ObjectHandler::SerializationFactory::instance().loadObject2(path.c_str());			
+        return ObjectHandler::SerializationFactory::instance().loadObject(path.c_str());			
     }
 
 

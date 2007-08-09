@@ -62,12 +62,6 @@ namespace ObjectHandler {
         virtual void deleteObject(const std::string &objectID);
         //@}
 
-        virtual boost::shared_ptr<ObjectHandler::Object> loadObject(
-            const std::string &objectID, const std::string &path);
-		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(
-            const std::vector<std::string> &idList, 
-            const std::string &path);
-
         //! \name Error Messages
         //@{
         //! Log an error message.

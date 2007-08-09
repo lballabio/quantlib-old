@@ -529,7 +529,7 @@
     </Procedure>
 
     <Procedure name='ohObjectSave'>
-      <description>serialize a list of objects to given file</description>
+      <description>experimental re-implementation of ohObjectSave</description>
       <alias>ObjectHandler::Repository::instance().saveObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp' />
@@ -554,61 +554,9 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohObjectSave2'>
-      <description>experimental re-implementation of ohObjectSave</description>
-      <alias>ObjectHandler::Repository::instance().saveObject2</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Cpp' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='ObjectList'>
-            <type>ObjectHandler::Object</type>
-            <tensorRank>vector</tensorRank>
-            <description>list of objects to be serialized</description>
-          </Parameter>
-          <Parameter name='Path'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>file to which objects are to be serialized</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
     <Procedure name='ohObjectLoad'>
-      <description>deserialize a list of objects</description>
-      <alias>ObjectHandler::Repository::instance().loadObject</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Cpp' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='IdList'>
-            <type>string</type>
-            <tensorRank>vector</tensorRank>
-            <description>list of objects to be deserialized</description>
-          </Parameter>
-          <Parameter name='Path'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>file from which objects are to be deserialized</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='ohObjectLoad2'>
       <description>experimental re-implementation of ohObjectLoad</description>
-      <alias>ObjectHandler::Repository::instance().loadObject2</alias>
+      <alias>ObjectHandler::Repository::instance().loadObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>

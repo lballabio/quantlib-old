@@ -30,15 +30,11 @@ namespace QuantLibXL {
     public:
         static SerializationFactory &instance();
     private:
-		virtual void saveObject(const boost::shared_ptr<ObjectHandler::Object>&, const char *path) const;
-		virtual void saveObject(const std::vector<boost::shared_ptr<ObjectHandler::Object> >&, const char *path) const;
-		virtual void saveObject2(
+		virtual void saveObject(
             const std::vector<boost::shared_ptr<ObjectHandler::Object> >&objectList,
             const char *path,
             bool forceOverwrite) const;
-		virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const char *path) const;
-		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(const std::vector<std::string> &idList, const char *path) const;
-		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject2(const char *path) const;
+		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(const char *path) const;
         void processPath(const std::string &path,
             std::vector<boost::shared_ptr<ObjectHandler::Object> > &returnValues) const;
     };

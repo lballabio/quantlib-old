@@ -37,35 +37,6 @@ namespace QuantLibXL {
     }
 
     void SerializationFactory::saveObject(
-        const boost::shared_ptr<ObjectHandler::Object> &object,
-        const char *path) const {
-
-        std::ofstream ofs(path);
-        boost::archive::xml_oarchive oa(ofs);
-        register_out(oa);
-        oa << boost::serialization::make_nvp("oh_object", object->properties());
-    }
-
-    void SerializationFactory::saveObject(
-        const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
-        const char *path) const {
-
-        std::ofstream ofs(path);
-        boost::archive::xml_oarchive oa(ofs);
-        register_out(oa);
-        std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
-        for (i=objectList.begin(); i!=objectList.end(); ++i){
-            // We need to supply a name for the object to be serialized.
-            // The objectID isn't suitable because certain values of objectID are
-            // invalid as XML tags e.g. values beginning with numeric characters.
-            // For our purposes the tag is ignored, so just supply a dummy string.
-            //std::string objectID = boost::any_cast<std::string>(valueObject->getProperty("objectID"));
-            //oa << boost::serialization::make_nvp(objectID.c_str(), valueObject);
-            oa << boost::serialization::make_nvp("oh_object", (*i)->properties());
-        }
-    }
-
-    void SerializationFactory::saveObject2(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
         const char *path,
         bool forceOverwrite) const {
@@ -84,52 +55,6 @@ namespace QuantLibXL {
         oa << boost::serialization::make_nvp("object_list", valueObjects);
     }
 
-    boost::shared_ptr<ObjectHandler::Object> SerializationFactory::loadObject(
-        const std::string &objectID,
-        const char *path) const {
-
-        std::ifstream ifs(path);
-        boost::archive::xml_iarchive ia(ifs);
-        register_in(ia);
-        boost::shared_ptr<ObjectHandler::ValueObject> valueObject;
-        ia >> boost::serialization::make_nvp(objectID.c_str(), valueObject);
-        // This VO has picked up the ID of the old VO that was deserialized.
-        // Override this value with the new ID supplied by the caller.
-        valueObject->setProperty("objectID", objectID);
-        CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
-        OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
-        Creator creator = j->second;
-        boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
-        ObjectHandler::Repository::instance().storeObject(objectID, object);
-        return object;
-    }
-
-    std::vector<boost::shared_ptr<ObjectHandler::Object> > SerializationFactory::loadObject(
-        const std::vector<std::string> &idList,
-        const char *path) const {
-
-        std::vector<boost::shared_ptr<ObjectHandler::Object> > returnValues;
-        std::ifstream ifs(path);
-        boost::archive::xml_iarchive ia(ifs);
-        register_in(ia);
-
-        std::vector<std::string>::const_iterator i;
-        for (i=idList.begin(); i!=idList.end(); ++i) {
-            boost::shared_ptr<ObjectHandler::ValueObject> valueObject;
-            ia >> boost::serialization::make_nvp(i->c_str(), valueObject);
-            // This VO has picked up the ID of the old VO that was deserialized.
-            // Override this value with the new ID supplied by the caller.
-            valueObject->setProperty("objectID", *i);
-            CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
-            OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
-            Creator creator = j->second;
-            boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
-            ObjectHandler::Repository::instance().storeObject(*i, object);
-            returnValues.push_back(object);
-        }
-        return returnValues;
-    }
-
     void SerializationFactory::processPath(
         const std::string &path,
         std::vector<boost::shared_ptr<ObjectHandler::Object> > &returnValues) const {
@@ -146,6 +71,8 @@ namespace QuantLibXL {
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
                 boost::shared_ptr<ObjectHandler::ValueObject> valueObject = *i;
+                // Code to overwrite the object ID
+                //valueObject->setProperty("objectID", XXX);
                 CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
                 OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
                 Creator creator = j->second;
@@ -160,7 +87,7 @@ namespace QuantLibXL {
         }
     }
         
-    std::vector<boost::shared_ptr<ObjectHandler::Object> > SerializationFactory::loadObject2(
+    std::vector<boost::shared_ptr<ObjectHandler::Object> > SerializationFactory::loadObject(
         const char *path) const {
 
         OH_REQUIRE(boost::filesystem::exists(path), "Invalid path : " << path);
