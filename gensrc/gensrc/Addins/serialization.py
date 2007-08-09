@@ -181,7 +181,7 @@ def updateData(addin):
 
 #   We chop it into 5 groups:
     pattern = r'''
-(<px\ (?:(?:class_id_reference)|(?:class_id))=")    # 1) Match either of the following:
+(<px\ (?:(?:class_id)|(?:class_id_reference))=")    # 1) Match either of the following:
                                                     #       <px class_id="
                                                     #       <px class_id_reference="
 (\d*)                                               # 2) the class ID number
@@ -204,7 +204,7 @@ def updateData(addin):
         outputfile.OutputFile(addin, fileName, None, bufferOut, False)
 
 def generateSerialization(addin):
-    """Generate source code for all functions in all categories.
+    """Generate source code for serialization factory.
 
     This is a utility function, not part of the Serialization addin class.
     This function generates the source code required for the serialization
@@ -228,7 +228,7 @@ def generateSerialization(addin):
     # Initialize the global map with the values reserved for ObjectHandler.
     # 0 and 1 refer respectively to ValueObject and vector of ValueObject,
     # but these are omitted because they never occur in app XML data.
-    idMap = { 'ohRange' : 3 }
+    idMap = { 'ohRange' : 2 }
 
     for cat in addin.categoryList_.categories('*'):
 
