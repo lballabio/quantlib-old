@@ -5,13 +5,13 @@ QLXL,Design,when returning a singe col (row) matrix add another col (row) with #
 gensrc,Design,"calcInWizard = 'false' for HistoricalForwardRatesAnalysis, ohObjectSave",,3,,,
 
 SA,,NAZCATECH_DIR env var ??,,1,,,
-SA,,Enable user interface,,2,,,
-SA,,"centered differences (rigt, left, and centered)",,1,,,
+SA,,Citrix problem (k),,1,,,
 SA,,discriminate between invalid quote -> #NA() and error obtained after having tweaked a quote -> #NUM (with the cell containing the error message),,1,,,
-SA,,it doesn't work with different quotes ids (e.g. the one used by EURYCMx2) (k),,1,,,
+SA,,"centered differences (rigt, left, and centered)",,2,,,
+SA,,it doesn't work with different quotes ids (e.g. the one used by EURYCMx2) (k),,2,,,
 SA,,NSIS script (and clean up QLXL scripts),,2,,,
+SA,,Enable user interface,,2,,,
 SA,,parallel shift SA added by default to bucket SA,,2,,,
-SA,,Citrix problem (k),,2,,,
 SA,,move SA version number up to OH version number,,2,,,
 SA,,menu before Windows menu,,2,,,
 
@@ -23,17 +23,17 @@ QLA,Design,coerce (Relinkable)Handle<SwaptionVolStructure> to SwaptionVolDiscret
 QLA,Design,qlIndexAddFixings() / libraryClass='Index' / objectClass='Index' (Indexes as Objects vs Enumerations),,3
 QLA,Design,"rename all Index as InterestRateIndex (we haven't used Indexes yet, only  InterestRateIndexes), the only index we are enumerating so far are  InterestRateIndex",,3
 
-OH,Serialization,ohObjectLoad should have an optional parameter to force overwriting of already existing objectIDs,,1
 OH,Serialization,permanent object property to be included in VO / serialized,,1
-OH,Serialization,ohSave/Load should return the # of object saved/loaded,,1
+OH,Serialization,serialize objects and their ancestors recursively,,1
 OH,Serialization,log error messages when creating objects,,1
+OH,Serialization,ohObjectLoad should have an optional parameter to force overwriting of already existing objectIDs,,1
+OH,Serialization,ohSave/Load should return the # of object saved/loaded,,1
 OH,Serialization,consolidate ohLoad/ohSave with ohLoad2/ohSave2,,1
 OH,Serialization,"avoid serializing twice a duplicated objectID, skipping the second one",,2
 OH,Serialization,ohObjectSave and Load should not be executed in the wizard,,2
 OH,Serialization,put undecoreted objectIDs in ValueObject,,2
-OH,Serialization,verify (and automate?) if Null<XX>() vlaue could be just removed in ValueObject,,2
 OH,Serialization,raise exception on attempt to save/load empty file,,2
-OH,Serialization,serialize objects and their ancestors recursively,,2
+OH,Serialization,verify (and automate?) if Null<XX>() vlaue could be just removed in ValueObject,,2
 OH,Serialization,enumeration in ValueObjects might be converted to the string which is used by the class to identify itself in output,,2
 
 OH,Design,object ID when used from VBA can never be reused by Excel,,
