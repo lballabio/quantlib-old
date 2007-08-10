@@ -46,7 +46,8 @@ namespace QuantLibAddin {
     class Index : public ObjectHandler::LibraryObject<QuantLib::Index> {
       public:
           void addFixings(const std::vector<QuantLib::Date>& dates,
-			              const std::vector<QuantLib::Real>& values);
+			              const std::vector<QuantLib::Real>& values,
+                          bool forceOverwrite);
 	};
 
     class InterestRateIndex : public Index {};

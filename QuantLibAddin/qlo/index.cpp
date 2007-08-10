@@ -39,13 +39,15 @@
 namespace QuantLibAddin {
 
     void Index::addFixings(const std::vector<QuantLib::Date>& dates,
-                           const std::vector<QuantLib::Real>& values) {
+                           const std::vector<QuantLib::Real>& values,
+                           bool forceOverwrite) {
         QL_REQUIRE(dates.size()==values.size(),
                    "size mismatch between dates (" << dates.size() <<
                    ") and values (" << values.size() << ")");
         std::vector<QuantLib::Date> d;
         std::vector<QuantLib::Real> v;
         for (QuantLib::Size i=0; i<values.size(); ++i) {
+            // skip null fixings
             if (values[i]!=0.0 && values[i]!=QuantLib::Null<QuantLib::Real>()) {
                 QL_REQUIRE(values[i]>0.0,
                            "non positive fixing (" << values[i] <<
@@ -54,7 +56,8 @@ namespace QuantLibAddin {
                 v.push_back(values[i]);
             }
         }
-        libraryObject_->addFixings(d, v);
+        libraryObject_->addFixings(d.begin(), d.end(),
+                                   v.begin(), forceOverwrite);
     }
 
     IborIndex::IborIndex(const std::string& indexName,

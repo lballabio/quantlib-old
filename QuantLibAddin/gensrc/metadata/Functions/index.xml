@@ -107,7 +107,6 @@
       </ReturnValue>
     </Member>
 
-    <!--<Member name='qlIndexAddFixings' type='QuantLibAddin::Index'>-->
     <Member name='qlIndexAddFixings' type='QuantLibAddin::Index'>
       <description>Adds fixings for the given Index object</description>
       <libraryFunction>addFixings</libraryFunction>
@@ -127,6 +126,11 @@
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>fixing values</description>
+          </Parameter>
+          <Parameter name='ForceOverwrite' default='0' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Set to TRUE to force overwriting of existing fixings, if any. The default value is FALSE.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
