@@ -23,7 +23,8 @@
     <Constructor name='qlLMMDriftCalculator'>
       <libraryFunction>LMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -62,7 +63,8 @@
       <description>Full factor drift computation using the LMMDriftCalculator object</description>
       <libraryFunction>computePlain</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -85,7 +87,8 @@
       <description>Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object</description>
       <libraryFunction>computeReduced</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -108,7 +111,8 @@
       <description>Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -131,7 +135,8 @@
     <Constructor name='qlLMMNormalDriftCalculator'>
       <libraryFunction>LMMNormalDriftCalculator</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -165,7 +170,8 @@
       <description>Full factor drift computation using the LMMNormalDriftCalculator object</description>
       <libraryFunction>computePlain</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -188,7 +194,8 @@
       <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object</description>
       <libraryFunction>computeReduced</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -211,7 +218,8 @@
       <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -234,7 +242,8 @@
     <Constructor name='qlCMSMMDriftCalculator'>
       <libraryFunction>CMSMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -278,7 +287,8 @@
       <description>Full factor drift computation using the CMSMMDriftCalculator object</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -301,7 +311,8 @@
     <Constructor name='qlSMMDriftCalculator'>
       <libraryFunction>SMMDriftCalculator</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -340,7 +351,8 @@
       <description>Full factor drift computation using the SMMDriftCalculator object</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

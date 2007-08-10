@@ -30,7 +30,8 @@
     <Constructor name='qlVanillaSwap'>
       <libraryFunction>VanillaSwap</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -95,7 +96,8 @@
     <Constructor name='qlVanillaSwapFromSwapIndex'>
       <libraryFunction>VanillaSwap</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -118,7 +120,8 @@
     <Constructor name='qlMakeVanillaSwap'>
       <libraryFunction>VanillaSwap</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -156,7 +159,8 @@
       <description>returns the BPS of the fixed rate leg for the given VanillaSwap object</description>
       <libraryFunction>fixedLegBPS</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -172,7 +176,8 @@
       <description>returns the NPV of the fixed rate leg for the given VanillaSwap object</description>
       <libraryFunction>fixedLegNPV</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -188,7 +193,8 @@
       <description>returns the fair fixed rate which would zero the swap NPV for the given VanillaSwap object</description>
       <libraryFunction>fairRate</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -204,7 +210,8 @@
       <description>returns the BPS of the floating rate leg for the given VanillaSwap object</description>
       <libraryFunction>floatingLegBPS</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -220,7 +227,8 @@
       <description>returns the NPV of the floating rate leg for the given VanillaSwap object</description>
       <libraryFunction>floatingLegNPV</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -236,7 +244,8 @@
       <description>returns the fair spread over the floating rate which would zero the swap NPV for the given VanillaSwap object</description>
       <libraryFunction>fairSpread</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -252,7 +261,8 @@
       <description>returns the fixed rate for the given VanillaSwap object</description>
       <libraryFunction>fixedRate</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -268,7 +278,8 @@
       <description>returns the spread over floating rate for the given VanillaSwap object</description>
       <libraryFunction>spread</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -284,7 +295,8 @@
       <description>returns the swap nominal for the given VanillaSwap object</description>
       <libraryFunction>nominal</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -300,7 +312,8 @@
       <description>returns the swap type (Payer or Receiver) of the given VanillaSwap object</description>
       <libraryFunction>type</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -316,7 +329,8 @@
       <description>returns the fixed rate leg cash flow analysis of the given VanillaSwap object</description>
       <libraryFunction>fixedLegAnalysis</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -332,7 +346,8 @@
       <description>returns the floating rate leg cash flow analysis</description>
       <libraryFunction>floatingLegAnalysis</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

@@ -29,7 +29,8 @@
       <description>Returns the volatility at a given strike from the SmileSection object</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -51,7 +52,8 @@
       <description>Returns the variance at a given strike from the SmileSection object</description>
       <libraryFunction>variance</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -73,7 +75,8 @@
       <description>Returns the current value of the SmileSection underlying</description>
       <libraryFunction>atmLevel</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -90,7 +93,7 @@
       <description>Returns the exercise date of the SmileSection object</description>
       <libraryFunction>exerciseDate</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -106,7 +109,7 @@
       <description>Returns the DayCounter of the SmileSection object</description>
       <libraryFunction>dayCounter</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -123,7 +126,8 @@
       <libraryFunction>FlatSmileSection</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -162,7 +166,8 @@
       <libraryFunction>SabrInterpolatedSmileSection</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -257,7 +262,7 @@
       <description>Returns the alpha of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>alpha</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -273,7 +278,7 @@
       <description>Returns the beta of the SABR fit</description>
       <libraryFunction>beta</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -289,7 +294,7 @@
       <description>Returns the nu of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>nu</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -305,7 +310,7 @@
       <description>Returns the rho of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>rho</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -321,7 +326,7 @@
       <description>Returns the error of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>interpolationError</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -337,7 +342,7 @@
       <description>Returns the max error of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>interpolationMaxError</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -353,7 +358,7 @@
       <description>Returns the optimization end criteria of the SABR fit for the given SabrInterpolatedSmileSection object</description>
       <libraryFunction>endCriteria</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -369,7 +374,8 @@
       <libraryFunction>SabrSmileSection</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -459,7 +465,8 @@
       <libraryFunction>InterpolatedSmileSection</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>

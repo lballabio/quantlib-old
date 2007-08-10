@@ -38,7 +38,8 @@
     <Constructor name='qlFixedRateLeg'>
       <libraryFunction>FixedRateLeg</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -76,7 +77,8 @@
     <Constructor name='qlIborLeg'>
       <libraryFunction>IborLeg</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -144,7 +146,8 @@
     <Constructor name='qlDigitalIborLeg'>
       <libraryFunction>DigitalIborLeg</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -242,7 +245,8 @@
     <Constructor name='qlCmsLeg'>
       <libraryFunction>CmsLeg</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -310,7 +314,8 @@
     <Constructor name='qlDigitalCmsLeg'>
       <libraryFunction>DigitalCmsLeg</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -408,7 +413,8 @@
     <Constructor name='qlRangeAccrualLeg'>
       <libraryFunction>RangeAccrualLeg</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -481,7 +487,8 @@
     <Constructor name='qlCmsZeroLeg'>
       <libraryFunction>CmsZeroLeg</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -550,7 +557,8 @@
     <Constructor name='qlIborCouponPricer'>
       <libraryFunction>IborCouponPricer</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -573,7 +581,8 @@
     <Constructor name='qlCmsCouponPricer'>
       <libraryFunction>CmsCouponPricer</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -608,7 +617,8 @@
       <libraryFunction>ConundrumPricerByNumericalIntegration</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -653,7 +663,7 @@
       <description>Returns the upper limit of the integral</description>
       <libraryFunction>upperLimit</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

@@ -32,7 +32,8 @@
 		<libraryFunction>RangeAccrualFloatersCoupon</libraryFunction>
     <functionCategory>QuantLib</functionCategory>
     <SupportedPlatforms>
-      <SupportedPlatform name='Excel' calcInWizard='false' />
+      <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+      <SupportedPlatform name='Excel'/>
       <SupportedPlatform name='Cpp'/>
     </SupportedPlatforms>
 		<ParameterList>
@@ -116,7 +117,8 @@
       <libraryFunction>RangeAccrualFloatersCoupon</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -140,7 +142,8 @@
       <description>Set the coupon pricer at the given coupon object</description>
       <libraryFunction>setPricer</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -162,7 +165,8 @@
       <description>Return the observation Dates</description>
       <libraryFunction>observationDates</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -179,7 +183,8 @@
       <description>Return the accrual start Date</description>
       <libraryFunction>accrualStartDate</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -196,7 +201,8 @@
       <description>Return the accrual end Date</description>
       <libraryFunction>accrualEndDate</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -213,7 +219,8 @@
       <description>Return the observations number</description>
       <libraryFunction>observationsNo</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -231,7 +238,8 @@
       <libraryFunction>price</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -255,7 +263,8 @@
       <libraryFunction>priceWithoutOptionality</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -280,7 +289,8 @@
       <libraryFunction>RangeAccrualPricerByBgm</libraryFunction>
      <functionCategory>QuantLib</functionCategory>
      <SupportedPlatforms>
-       <SupportedPlatform name='Excel' calcInWizard='false' />
+       <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+       <SupportedPlatform name='Excel'/>
        <SupportedPlatform name='Cpp'/>
      </SupportedPlatforms>
       <ParameterList>

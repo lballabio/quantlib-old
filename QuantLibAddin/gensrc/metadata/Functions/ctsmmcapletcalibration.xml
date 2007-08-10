@@ -36,7 +36,7 @@
       <libraryFunction>calibrate</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -79,7 +79,7 @@
       <libraryFunction>failures</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -96,7 +96,7 @@
       <libraryFunction>deformationSize</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -113,7 +113,7 @@
       <libraryFunction>mktCapletVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -130,7 +130,7 @@
       <libraryFunction>mdlCapletVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -147,7 +147,7 @@
       <libraryFunction>capletRmsError</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -164,7 +164,7 @@
       <libraryFunction>capletMaxError</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -181,7 +181,7 @@
       <libraryFunction>mktSwaptionVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -198,7 +198,7 @@
       <libraryFunction>mdlSwaptionVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -215,7 +215,7 @@
       <libraryFunction>swaptionRmsError</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -232,7 +232,7 @@
       <libraryFunction>swaptionMaxError</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -249,7 +249,7 @@
       <libraryFunction>swapPseudoRoot</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -272,7 +272,7 @@
       <libraryFunction>timeDependentCalibratedSwaptionVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -295,7 +295,7 @@
       <libraryFunction>timeDependentUnCalibratedSwaptionVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -316,7 +316,8 @@
     <Constructor name='qlCTSMMCapletOriginalCalibration'>
       <libraryFunction>CTSMMCapletOriginalCalibration</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -376,7 +377,8 @@
     <Constructor name='qlCTSMMCapletAlphaFormCalibration'>
       <libraryFunction>CTSMMCapletAlphaFormCalibration</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -448,7 +450,7 @@
       <libraryFunction>alpha</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -463,7 +465,8 @@
     <Constructor name='qlCTSMMCapletMaxHomogeneityCalibration'>
       <libraryFunction>CTSMMCapletMaxHomogeneityCalibration</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>

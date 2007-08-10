@@ -35,7 +35,8 @@
       <libraryFunction>MultiProductComposite</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -49,7 +50,7 @@
       <libraryFunction>MarketModelComposite::add</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -73,7 +74,7 @@
       <libraryFunction>finalize</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -92,7 +93,7 @@
       <libraryFunction>suggestedNumeraires</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -109,7 +110,7 @@
       <libraryFunction>possibleCashFlowTimes</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -126,7 +127,7 @@
       <libraryFunction>numberOfProducts</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -143,7 +144,7 @@
       <libraryFunction>maxNumberOfCashFlowsPerProductPerStep</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -161,7 +162,8 @@
       <libraryFunction>OneStepForwards</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -194,7 +196,8 @@
       <libraryFunction>MultiStepRatchet</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -252,7 +255,8 @@
       <libraryFunction>OneStepOptionlets</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>

@@ -75,6 +75,9 @@ class ExcelAddin(addin.Addin):
     convertPermanentFlag_ = '''
         if (permanentCpp)
             objectPointer->setPermanent();'''
+    XL_WIZARD_CHECK = '''
+        if (functionCall->calledByFunctionWizard())
+            return 0;\n'''
 
     #############################################
     # public interface
@@ -117,6 +120,12 @@ class ExcelAddin(addin.Addin):
         and self.indexOfCol(m.group('colLabel')) <= CELL_MAX_COL_NUM \
         and int(m.group('rowLabel')) <= CELL_MAX_ROW_NUM
 
+    def xlWizardCheck(self, func):
+        if func.calcInWizard():
+            return ''
+        else:
+            return ExcelAddin.XL_WIZARD_CHECK
+
     def generateFunction(self, func):
         """Generate source code for a given function."""
         if func.parameterList().parameterCount() > MAXPARAM:
@@ -138,7 +147,8 @@ class ExcelAddin(addin.Addin):
             'refConversions' : func.parameterList().generate(self.referenceConversions_),
             'returnConversion' : self.returnConversion_.apply(func.returnValue()),
             'validatePermanent' : func.validatePermanent(),
-            'xlTrigger' : func.xlTrigger() }
+            'xlTrigger' : func.xlTrigger(),
+            'xlWizardCheck' : self.xlWizardCheck(func) }
 
     def checkLen(self, str):
         """Calculate the length of the string, ensure that this value doesn't exceed

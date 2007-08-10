@@ -17,7 +17,8 @@
       <description>Sabr formula for smile volatility</description>
       <alias>QuantLib::sabrVolatility</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -68,7 +69,8 @@
     <Constructor name='qlBlackConstantVol'>
       <libraryFunction>BlackConstantVol</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Guile'/>
@@ -98,7 +100,8 @@
     <Constructor name='qlBlackVarianceSurface'>
       <libraryFunction>BlackVarianceSurface</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

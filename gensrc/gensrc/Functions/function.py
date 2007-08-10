@@ -61,6 +61,11 @@ class Function(serializable.Serializable):
         return self.supportedPlatforms_.has_key('Excel') \
             and self.supportedPlatforms_['Excel'].xlMacro()
 
+    def calcInWizard(self):
+        """Determine whether to calc this function under the Excel Function Wizard."""
+        return self.supportedPlatforms_.has_key('Excel') \
+            and self.supportedPlatforms_['Excel'].calcInWizard()
+
     def parameterList(self):
         return self.parameterList_
 

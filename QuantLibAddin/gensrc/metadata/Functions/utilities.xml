@@ -16,7 +16,7 @@
     <Procedure name='qlxlVersion'>
       <description>returns the version number of QuantLibXL</description>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
@@ -38,7 +38,7 @@
     <Procedure name='qlAddinVersion'>
       <description>returns the version number of QuantLibAddin (a.k.a QuantLibObject)</description>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
@@ -54,7 +54,7 @@
     <Procedure name='qlVersion'>
       <description>returns the version number of QuantLib</description>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
@@ -86,7 +86,8 @@
       <description>Looks for elements of a set in a subset. Returns a vector of present/not present booleans, one for each element of the set.</description>
       <alias>QuantLib::isInSubset</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

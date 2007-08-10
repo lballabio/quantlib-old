@@ -15,7 +15,7 @@
       <description>Serialize list of objects to given path, return count of objects serialized</description>
       <alias>ObjectHandler::Repository::instance().saveObject</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' />
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -46,7 +46,7 @@
       <description>Deserialize list of objects from given path, return count of objects deserialized</description>
       <alias>ObjectHandler::Repository::instance().loadObject</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' />
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

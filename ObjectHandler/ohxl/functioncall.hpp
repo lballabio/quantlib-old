@@ -77,6 +77,10 @@ namespace ObjectHandler {
             an XLOPER with xltype initialized to zero.
         */
         const XLOPER *callerArray();
+        //! Whether or not this function has been called from the Function Wizard.
+        /*! This test is expensive.
+        */
+        bool calledByFunctionWizard();
         //@}
 
         //! \name Conversions

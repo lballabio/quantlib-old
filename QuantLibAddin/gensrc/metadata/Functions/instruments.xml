@@ -17,7 +17,8 @@
       <description>Returns the NPV for the given Instrument object</description>
       <libraryFunction>NPV</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Guile'/>
         <SupportedPlatform name='C'/>
@@ -36,7 +37,8 @@
       <description>Returns the required result (if available) for the given Instrument object</description>
       <libraryFunction>result&lt;QuantLib::Real&gt;</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -58,7 +60,8 @@
       <description>Returns the NPV error estimation (for e.g. Monte Carlo simulation) for the given Instrument object</description>
       <libraryFunction>errorEstimate</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -74,7 +77,7 @@
       <description>Returns TRUE if the given Instrument object is expired</description>
       <libraryFunction>isExpired</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -90,7 +93,8 @@
       <description>Sets a new pricing engine to the given Instrument pbject</description>
       <libraryFunction>setPricingEngine</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

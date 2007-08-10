@@ -17,7 +17,7 @@
       <description>retrieve the property names of a given object</description>
       <libraryFunction>propertyNames</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>

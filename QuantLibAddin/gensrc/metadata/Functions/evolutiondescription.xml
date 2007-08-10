@@ -29,7 +29,8 @@
     <Constructor name='qlEvolutionDescription'>
       <libraryFunction>EvolutionDescription</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -51,7 +52,8 @@
     <Constructor name='qlEvolutionDescriptionFromProduct'>
       <libraryFunction>EvolutionDescription</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -71,7 +73,7 @@
       <description>rates fixing times for the EvolutionDescription object</description>
       <libraryFunction>rateTimes</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -87,7 +89,7 @@
       <description>rate taus for the EvolutionDescription object</description>
       <libraryFunction>rateTaus</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -103,7 +105,7 @@
       <description>evolution times for the EvolutionDescription object</description>
       <libraryFunction>evolutionTimes</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -119,7 +121,7 @@
       <description>for each step returns a row with the effective evolution stopping time for each rate</description>
       <libraryFunction>effectiveStopTimes</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -135,7 +137,7 @@
       <description>first alive rate at each evolution time for the EvolutionDescription object</description>
       <libraryFunction>firstAliveRate</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -151,7 +153,7 @@
       <description>number of rates for the EvolutionDescription object</description>
       <libraryFunction>numberOfRates</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -167,7 +169,7 @@
       <description>number of steps for the EvolutionDescription object</description>
       <libraryFunction>numberOfSteps</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -185,7 +187,8 @@
       <description>Returns the terminal measure for the given EvolutionDescription object</description>
       <alias>QuantLib::terminalMeasure</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -208,7 +211,8 @@
       <description>Returns the discretely compounded money market measure for the given EvolutionDescription object</description>
       <alias>QuantLib::moneyMarketMeasure</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -231,7 +235,8 @@
       <description>Returns the discretely compounded money market measure for the given EvolutionDescription object</description>
       <alias>QuantLib::moneyMarketPlusMeasure</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -259,7 +264,8 @@
       <description>Returns TRUE if the numeraire vector is Terminal measure for the given EvolutionDescription object</description>
       <alias>QuantLib::isInTerminalMeasure</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -287,7 +293,8 @@
       <description>Returns TRUE if the numeraire vector is money market measure for the given EvolutionDescription object</description>
       <alias>QuantLib::isInMoneyMarketMeasure</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -315,7 +322,8 @@
       <description>Returns TRUE if the numeraire vector is money market measure plus for the given EvolutionDescription object</description>
       <alias>QuantLib::isInMoneyMarketPlusMeasure</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

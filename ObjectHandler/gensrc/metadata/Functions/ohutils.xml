@@ -119,7 +119,7 @@
       <description>#/objects in repository</description>
       <alias>ObjectHandler::RepositoryXL::instance().objectCount</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -253,7 +253,7 @@
       <description>returns the version number of Boost</description>
       <alias>ObjectHandler::boostVersion</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -268,7 +268,7 @@
       <description>returns the version number of ObjectHandler</description>
       <alias>ObjectHandler::version</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>

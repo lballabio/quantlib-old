@@ -29,7 +29,8 @@
       <description>returns the N-th prime number</description>
       <alias>QuantLib::PrimeNumbers::get</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -51,7 +52,8 @@
       <description>Returns the normal cumulative distribution for the specified mean and standard deviation.</description>
       <alias>QuantLibAddin::normDist</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -88,7 +90,8 @@
       <description>Returns the standard normal cumulative distribution (has a mean of zero and standard deviation of one).</description>
       <alias>QuantLibAddin::normSDist</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -110,7 +113,8 @@
       <description>Returns the inverse of the normal cumulative distribution for the specified mean and standard deviation.</description>
       <alias>QuantLibAddin::normInv</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -142,7 +146,8 @@
       <description>Returns the inverse of the standard normal cumulative distribution (has a mean of zero and standard deviation of one).</description>
       <alias>QuantLibAddin::normSInv</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -166,7 +171,7 @@
       <description>Returns the eigenvalues for the given SymmetricSchurDecomposition object</description>
       <libraryFunction>eigenvalues</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -182,7 +187,7 @@
       <description>Returns the eigenvectors  for the given SymmetricSchurDecomposition object. Eigenvectors are returned columnwise.</description>
       <libraryFunction>eigenvectors</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -199,7 +204,8 @@
     <Constructor name='qlSymmetricSchurDecomposition'>
       <libraryFunction>SymmetricSchurDecomposition</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -219,7 +225,8 @@
       <description>Returns the Cholesky decomposition of a real symmetric matrix.</description>
       <alias>QuantLib::CholeskyDecomposition</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -246,7 +253,8 @@
       <description>Returns the pseudo square root of a real symmetric matrix.</description>
       <alias>QuantLib::pseudoSqrt</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -273,7 +281,8 @@
       <description>Returns the rank reduced pseudo square root of a real symmetric matrix.</description>
       <alias>QuantLib::rankReducedSqrt</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -310,7 +319,8 @@
       <description>Returns the covariance matrix generated using the correlation matrix and the standard deviation (i.e. volatility times square root of time) array.</description>
       <alias>getCovariance</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -344,7 +354,8 @@
       <description>Returns the variance vector for the given CovarianceDecomposition object</description>
       <libraryFunction>variances</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -360,7 +371,7 @@
       <description>Returns the standard deviation (i.e. volatility times square root of time) vector for the given CovarianceDecomposition object</description>
       <libraryFunction>standardDeviations</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -376,7 +387,7 @@
       <description>Returns the correlation matrix for the given CovarianceDecomposition object</description>
       <libraryFunction>correlationMatrix</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -393,7 +404,8 @@
     <Constructor name='qlCovarianceDecomposition'>
       <libraryFunction>CovarianceDecomposition</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

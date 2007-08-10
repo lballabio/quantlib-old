@@ -16,7 +16,7 @@
             <description>Returns the name of the given calendar</description>
             <libraryFunction>name</libraryFunction>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='true' />
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>
@@ -32,7 +32,8 @@
             <description>Returns TRUE if the date is a business day for the given calendar</description>
             <libraryFunction>isBusinessDay</libraryFunction>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
+                <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>
@@ -54,7 +55,8 @@
             <description>returns TRUE if the date is a holiday for the given calendar</description>
             <libraryFunction>isHoliday</libraryFunction>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
+                <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>
@@ -76,7 +78,8 @@
             <description>returns TRUE if the date is last business day for the month in the given calendar</description>
             <libraryFunction>isEndOfMonth</libraryFunction>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
+                <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>
@@ -98,7 +101,8 @@
             <description>returns the last business day in the given calendar of the month to which the given date belongs</description>
             <libraryFunction>endOfMonth</libraryFunction>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
+                <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>
@@ -121,7 +125,8 @@
             <description>adds an holiday to the given calendar</description>
             <libraryFunction>addHoliday</libraryFunction>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
+                <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>
@@ -144,7 +149,8 @@
             <description>removes an holiday from the given calendar</description>
             <libraryFunction>removeHoliday</libraryFunction>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
+                <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>
@@ -166,7 +172,8 @@
             <description>returns the holidays in a period between two dates according to a given holiday calendar</description>
             <alias>QuantLib::Calendar::holidayList</alias>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
+                <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>
@@ -203,7 +210,8 @@
             <description>Adjusts a non-business day to the appropriate near business day according to a given calendar with respect to the given convention.</description>
             <libraryFunction>adjust</libraryFunction>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
+                <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>
@@ -230,7 +238,8 @@
             <description>advances a date according to a given calendar</description>
             <libraryFunction>advance</libraryFunction>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
+                <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>
@@ -267,7 +276,8 @@
             <description>Returns the number of business days between two dates</description>
             <libraryFunction>businessDaysBetween</libraryFunction>
             <SupportedPlatforms>
-                <SupportedPlatform name='Excel' calcInWizard='false' />
+                <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+                <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
             </SupportedPlatforms>
             <ParameterList>

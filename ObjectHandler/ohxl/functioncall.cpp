@@ -103,5 +103,85 @@ namespace ObjectHandler {
         return callerType_;
     }
 
+    // Code to determine whether we've been called from the Excel function wizard.
+    // This test is very expensive in terms of CPU.
+    //
+    // This code is based on code from MSDN and has inherited some bugs from the
+    // MSDN version:
+    // 1) The Function Wizard dialog is assumed to be any window of class
+    //    "bosa_sdm_XL" but that class can also indicate the "Edit->Replace" dialog
+    // 2) The main excel parent window is identified only by the LOWORD half of its
+    //    DWORD handle
+    //
+    // Consequently there is the risk that this function will return false positives
+    // i.e. we'll conclude that we've been called from the Function Wizard when in
+    // fact we've been called while
+    // 1) the "Edit->Replace" dialog is active
+    // 2) some other Excel session is displaying the Function Wizard or
+    //    "Edit->Replace" dialog
+
+    typedef struct {
+        bool bFuncWiz;
+        short hwndXLMain;
+    } EnumStruct;
+
+    // The class name of the window for the Function Wizard dialog.  Various
+    // versions of Excel may suffix this string with additional characters.
+    #define WIZ_ID_BUF "bosa_sdm_XL"
+    #define WIZ_ID_BUF_LEN 12
+
+    // Called by EnumWindows (below) for each open window
+    bool CALLBACK EnumProc(HWND hwnd, EnumStruct *pEnum) {
+
+        // Retrieve the class name of the current window.  We only want to
+        // compare the resulting string with the "bosa_sdm_XL" value so we set
+        // the buffer size such that any trailing characters are truncated.
+
+        char class_name[WIZ_ID_BUF_LEN];
+        GetClassName(hwnd, class_name, WIZ_ID_BUF_LEN);
+
+        if (stricmp(class_name, WIZ_ID_BUF) == 0) {
+
+            // Apparently this window is the Excel Function Wizard dialog.
+            // Now check whether the ID of this window's parent matches that of
+            // our main Excel window as returned by xlGetHwnd (below).
+
+            if (LOWORD((DWORD) GetParent(hwnd)) == pEnum->hwndXLMain) {
+                pEnum->bFuncWiz = TRUE; // We've (probably) been called from the wizard
+                return false;           // Tell EnumWindows to stop
+            }
+
+        }
+
+        return true;                    // Tell EnumWindows to continue
+    }
+
+    short int getWinID() {
+
+        // Retrieve the LOWORD half of the DWORD handle
+        // of the main Excel window.
+
+        XLOPER xHwndMain;
+        Excel(xlGetHwnd, &xHwndMain, 0);
+
+        return xHwndMain.val.w;
+    }
+
+    bool FunctionCall::calledByFunctionWizard() {
+
+        // ID of the main Excel window.  This value is retrieved once
+        // for this running instance of the Addin.
+
+        static short int winID = getWinID();
+
+        // Call EnumWindows which iteratively calls EnumProc which sets
+        // enm.bFuncWiz if the Excel Function Wizard dialog is detected.
+
+        EnumStruct enm = { false, winID };
+        EnumWindows((WNDENUMPROC)EnumProc, (LPARAM)&enm);
+
+        return enm.bFuncWiz;
+    }
+
 }
 

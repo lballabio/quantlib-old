@@ -33,7 +33,8 @@
     <Constructor name='qlSwaption'>
       <libraryFunction>Swaption</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -59,13 +60,13 @@
     </Constructor>
 
     <!--
-	This function is commented out for the 0.3.14 release because
-	it breaks QuantLibXLDynamic.
+	  This function is commented out for the 0.3.14 release because
+	  it breaks QuantLibXLDynamic.
     <Member name='qlSwaptionUnderlyingSwap' type='QuantLibAddin::Swaption'>
       <description>returns the underlying swap for the given Swaption object</description>
       <libraryFunction>underlyingSwap</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -80,7 +81,8 @@
     <Constructor name='qlMakeSwaption'>
       <libraryFunction>Swaption</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -117,7 +119,8 @@
       <description>returns the type (Payer or Receiver) for the given Swaption object</description>
       <libraryFunction>type</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -133,7 +136,8 @@
       <description>returns the settlement type (Cash or Delivery) for the given Swaption object</description>
       <libraryFunction>settlementType</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -149,7 +153,8 @@
       <description>returns the implied volatility for the given Swaption object</description>
       <libraryFunction>impliedVolatility</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -171,7 +176,8 @@
       <description>returns the at-the-money rate for the given Swaption object</description>
       <libraryFunction>atmRate</libraryFunction>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
