@@ -5,35 +5,35 @@
 	<count>5</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="19" tracking_level="1" version="0" object_id="_0">
+		<px class_id="20" tracking_level="1" version="0" object_id="_0">
 			<objectID>EUR3MCapletVol</objectID>
 			<className>qlRelinkableHandleCapletVolatilityStructure</className>
 			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="19" object_id="_1">
+		<px class_id_reference="20" object_id="_1">
 			<objectID>EUR6MCapletVol</objectID>
 			<className>qlRelinkableHandleCapletVolatilityStructure</className>
 			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
-		<px class_id="154" tracking_level="1" version="0" object_id="_2">
+		<px class_id="156" tracking_level="1" version="0" object_id="_2">
 			<objectID>EURSwaptionATMVol</objectID>
 			<className>qlRelinkableHandleSwaptionVolatilityStructure</className>
 			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="154" object_id="_3">
+		<px class_id_reference="156" object_id="_3">
 			<objectID>EURSwaptionVol</objectID>
 			<className>qlRelinkableHandleSwaptionVolatilityStructure</className>
 			<CurrentLink></CurrentLink>
 		</px>
 	</item>
 	<item>
-		<px class_id="168" tracking_level="1" version="0" object_id="_4">
+		<px class_id="170" tracking_level="1" version="0" object_id="_4">
 			<objectID>EURYC</objectID>
 			<className>qlRelinkableHandleYieldTermStructure</className>
 			<CurrentLink></CurrentLink>

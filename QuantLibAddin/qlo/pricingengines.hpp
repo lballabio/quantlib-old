@@ -39,6 +39,8 @@ namespace QuantLib {
     class StrikedTypePayoff;
     class PricingEngine;
     class Quote;
+    class YieldTermStructure;
+    class BondEngine;
 }
 
 namespace QuantLibAddin {
@@ -55,7 +57,8 @@ namespace QuantLibAddin {
     class BlackSwaptionEngine : public PricingEngine {
       public:
           BlackSwaptionEngine(
-              const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>&);
+              const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>&,
+              const QuantLib::Handle<QuantLib::YieldTermStructure>&);
     };
 
     class BlackCapFloorEngine : public PricingEngine {
@@ -97,6 +100,10 @@ namespace QuantLibAddin {
             QuantLib::DiscountFactor discount);
     };
 
+    class BondEngine : public PricingEngine {
+      public:
+          BondEngine(const QuantLib::Handle<QuantLib::YieldTermStructure>& discountCurve);
+    };
 }
 
 #endif

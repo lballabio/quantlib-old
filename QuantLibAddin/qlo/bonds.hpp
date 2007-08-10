@@ -24,6 +24,7 @@
 #define qla_bonds_hpp
 
 #include <qlo/baseinstruments.hpp>
+#include <qlo/leg.hpp>
 
 #include <ql/handle.hpp>
 #include <ql/time/businessdayconvention.hpp>
@@ -55,20 +56,28 @@ namespace QuantLibAddin {
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
     };
 
+    class GenericBond : public Bond {
+      public:
+        GenericBond(const std::string& des,
+                    const QuantLib::Currency& cur,
+                    QuantLib::Natural settlementDays,
+                    const QuantLib::Calendar& calendar,
+                    QuantLib::Real faceAmount,
+                    const boost::shared_ptr<Leg>& leg);
+    };
+
     class ZeroCouponBond : public Bond {
       public:
         ZeroCouponBond(
             const std::string& des,
             const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
-            QuantLib::BusinessDayConvention paymentConvention,
-            QuantLib::Real faceAmount,
             const QuantLib::Calendar& calendar,
+            QuantLib::Real faceAmount,
             const QuantLib::Date& maturityDate,
-            const QuantLib::DayCounter& dayCounter,
+            QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+            const QuantLib::Date& issueDate);
     };
 
     class FixedRateBond : public Bond {
@@ -77,14 +86,30 @@ namespace QuantLibAddin {
             const std::string& des,
             const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
-            QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real faceAmount,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
             const std::vector<QuantLib::Rate>& coupons,
-            const QuantLib::DayCounter& paymentDayCounter,
+            const QuantLib::DayCounter& accrualDayCounter,
+            QuantLib::BusinessDayConvention paymentConvention,
+            QuantLib::Real redemption,
+            const QuantLib::Date& issueDate);
+        FixedRateBond(
+            const std::string& des,
+            const QuantLib::Currency& cur,
+            QuantLib::Natural settlementDays,
+            const QuantLib::Calendar& calendar,
+            QuantLib::Real faceAmount,
+            const QuantLib::Date& startDate,
+            const QuantLib::Date& maturityDate,
+            const QuantLib::Period& tenor,
+            const std::vector<QuantLib::Rate>& coupons,
+            const QuantLib::DayCounter& accrualDayCounter,
+            QuantLib::BusinessDayConvention accrualConvention,
+            QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+            const QuantLib::Date& stubDate,
+            bool fromEnd);
     };
 
     class FloatingRateBond : public Bond {
@@ -105,9 +130,9 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Spread>& spreads,
             const std::vector<QuantLib::Rate>& caps,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
-        };
+            const QuantLib::Date& issueDate);
+        // add constructor without schedule
+    };
 
     class CmsRateBond : public Bond {
       public:
@@ -127,8 +152,8 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Spread>& spreads,
             const std::vector<QuantLib::Rate>& caps,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+            const QuantLib::Date& issueDate);
+        // add constructor without schedule
     };
 
 }

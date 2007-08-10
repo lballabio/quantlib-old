@@ -110,9 +110,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondInterestAccrualDate' type='QuantLib::Bond'>
+    <Member name='qlBondFirstAccrualDate' type='QuantLib::Bond'>
       <description>Returns the initial interest accrual date of the bond.</description>
-      <libraryFunction>interestAccrualDate</libraryFunction>
+      <libraryFunction>firstAccrualDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='true' />
         <!--SupportedPlatform name='Cpp'/-->
@@ -158,54 +158,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondPaymentBDC' type='QuantLib::Bond'>
-      <description>Returns the payment business day convention for the given Bond, e.g. Following.</description>
-      <libraryFunction>paymentConvention</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::BusinessDayConvention</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondDayCounter' type='QuantLib::Bond'>
-      <description>Returns the DayCounter convention for the given Bond, e.g. Actual/360.</description>
-      <libraryFunction>dayCounter</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::DayCounter</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondFrequency' type='QuantLib::Bond'>
-      <description>Returns the frequency for the given Bond, e.g. Annual.</description>
-      <libraryFunction>frequency</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='true' />
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Frequency</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlBondCleanPrice' type='QuantLib::Bond'>
       <description>Returns the clean price for the given bond. The default bond settlement date is used for calculation.</description>
       <libraryFunction>cleanPrice</libraryFunction>
@@ -247,10 +199,20 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. 'Actual/Actual (ISMA)')</description>
+          </Parameter>
           <Parameter name='Compounding' exampleValue='Compounded'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+          </Parameter>
+          <Parameter name='Frequency' exampleValue='Annual'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -319,10 +281,20 @@
             <tensorRank>scalar</tensorRank>
             <description>bond yield</description>
           </Parameter>
-          <Parameter name='Compounding' const='False'>
+          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. 'Actual/Actual (ISMA)')</description>
+          </Parameter>
+          <Parameter name='Compounding' const='False' exampleValue='Compounded'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
-            <description>interest rate coumpounding rule (i.e. Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+          </Parameter>
+          <Parameter name='Frequency' exampleValue='Annual'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -351,10 +323,20 @@
             <tensorRank>vector</tensorRank>
             <description>bond yield</description>
           </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. 'Actual/Actual (ISMA)')</description>
+          </Parameter>
           <Parameter name='Compounding' const='False' exampleValue='Compounded'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
-            <description>interest rate coumpounding rule ( i.e. Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+          </Parameter>
+          <Parameter name='Frequency' exampleValue='Annual' const='False'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -384,10 +366,20 @@
             <tensorRank>scalar</tensorRank>
             <description>clean price</description>
           </Parameter>
-          <Parameter name='Compounding' exampleValue='Continuous'>
+          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+          </Parameter>
+          <Parameter name='Compounding' const='False' exampleValue='Continuous'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
-            <description>interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+            <description>interest rate coumpounding rule (i.e. Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+          </Parameter>
+          <Parameter name='Frequency' default='"Semiannual"' const='False'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
           </Parameter>
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -416,6 +408,11 @@
             <tensorRank>scalar</tensorRank>
             <description>the Z-spread</description>
           </Parameter>
+          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+          </Parameter>
           <Parameter name='Compounding' const='False'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
@@ -425,11 +422,6 @@
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
-          </Parameter>
-          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
-            <type>QuantLib::DayCounter</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
           </Parameter>
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -458,6 +450,11 @@
             <tensorRank>scalar</tensorRank>
             <description>the Z-spread</description>
           </Parameter>
+          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+          </Parameter>
           <Parameter name='Compounding' const='False'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
@@ -467,11 +464,6 @@
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
-          </Parameter>
-          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
-            <type>QuantLib::DayCounter</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
           </Parameter>
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -575,30 +567,25 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement days</description>
           </Parameter>
-          <Parameter name='PaymentBDC' default='"Following"'>
-            <type>QuantLib::BusinessDayConvention</type>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention. If omitted, default = Following.</description>
+            <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
           <Parameter name='FaceAmount' default='100.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Face nominal amount. If omitted, default = 100.0</description>
           </Parameter>
-          <Parameter name='Calendar' exampleValue='TARGET'>
-            <type>QuantLib::Calendar</type>
-            <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET)</description>
-          </Parameter>
           <Parameter name='Maturity' exampleValue='45348'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>maturity date</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
-            <type>QuantLib::DayCounter</type>
+          <Parameter name='PaymentBDC' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            <description>payment business day convention. If omitted, default = Following.</description>
           </Parameter>
           <Parameter name='Redemption' default='100'>
             <type>double</type>
@@ -609,12 +596,6 @@
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
-          </Parameter>
-          <Parameter name='YieldCurve'  exampleValue='EURYC'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -643,11 +624,6 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement days</description>
           </Parameter>
-          <Parameter name='PaymentBDC' default='"Following"'>
-            <type>QuantLib::BusinessDayConvention</type>
-            <tensorRank>scalar</tensorRank>
-            <description>payment business day convention. If omitted, default = Following.</description>
-          </Parameter>
           <Parameter name='FaceAmount' default='100.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
@@ -669,6 +645,11 @@
             <tensorRank>scalar</tensorRank>
             <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
           </Parameter>
+          <Parameter name='PaymentBDC' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment business day convention. If omitted, default = Following.</description>
+          </Parameter>
           <Parameter name='Redemption' default='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
@@ -678,12 +659,6 @@
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
-          </Parameter>
-          <Parameter name='YieldCurve'  exampleValue='EURYC'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -778,12 +753,6 @@
             <tensorRank>scalar</tensorRank>
             <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
           </Parameter>
-          <Parameter name='YieldCurve'  exampleValue='EURYC'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -877,11 +846,46 @@
             <tensorRank>scalar</tensorRank>
             <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
           </Parameter>
-          <Parameter name='YieldCurve'  exampleValue='EURYC'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    <Constructor name='qlGenericBond'>
+      <libraryFunction>GenericBond</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Description' default='"no description available"'>
+            <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
+            <description>bond description string. If omitted, default = 'no description available'</description>
+          </Parameter>
+          <Parameter name='Currency'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond Currency</description>
+          </Parameter>
+          <Parameter name='SettlementDays' exampleValue='3'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement days</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET)</description>
+          </Parameter>
+          <Parameter name='FaceAmount' default='100.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Face nominal amount. If omitted, default = 100.0</description>
+          </Parameter>
+          <Parameter name='LegID'>
+            <type>QuantLibAddin::Leg</type>
+            <tensorRank>scalar</tensorRank>
+            <description>leg object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

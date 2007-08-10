@@ -32,6 +32,7 @@
 #include <ql/instruments/bonds/cmsratebond.hpp>
 #include <ql/instruments/bonds/floatingratebond.hpp>
 #include <ql/cashflows/couponpricer.hpp>
+#include <ql/pricingengines/bond/bondengine.hpp>
 #include <ql/currency.hpp>
 
 namespace QuantLibAddin {
@@ -71,47 +72,91 @@ namespace QuantLibAddin {
         QuantLib::setCouponPricers(cashflows, pricers);
     }
 
+    GenericBond::GenericBond(const std::string&,
+                             const QuantLib::Currency&,
+                             QuantLib::Natural settlementDays,
+                             const QuantLib::Calendar& calendar,
+                             QuantLib::Real faceAmount,
+                             const boost::shared_ptr<Leg>& leg)
+
+    {   
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::Bond(settlementDays,
+                           calendar,
+                           faceAmount,
+                           leg->getQuantLibLeg()));
+    }
+
     ZeroCouponBond::ZeroCouponBond(
-            const std::string&,
-            const QuantLib::Currency&,
+            const std::string& des,
+            const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
-            QuantLib::BusinessDayConvention paymentConvention,
-            QuantLib::Real faceAmount,
             const QuantLib::Calendar& calendar,
+            QuantLib::Real faceAmount,
             const QuantLib::Date& maturityDate,
-            const QuantLib::DayCounter& dayCounter,
+            QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
+            const QuantLib::Date& issueDate)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
-            QuantLib::ZeroCouponBond(settlementDays, faceAmount,
-                                     calendar, maturityDate,
-                                     dayCounter, paymentConvention,
-                                     redemption, issueDate, hYTS));
-
+            QuantLib::ZeroCouponBond(settlementDays,
+                                     calendar,
+                                     faceAmount,
+                                     maturityDate,
+                                     paymentConvention,
+                                     redemption, issueDate));
     }
 
     FixedRateBond::FixedRateBond(
-            const std::string&,
-            const QuantLib::Currency&,
+            const std::string& des,
+            const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
-            QuantLib::BusinessDayConvention payConvention,
             QuantLib::Real faceAmount,
-            const boost::shared_ptr<QuantLib::Schedule>& sch,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
             const std::vector<QuantLib::Rate>& coupons,
-            const QuantLib::DayCounter& payDayCounter,
+            const QuantLib::DayCounter& accrualDayCounter,
+            QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
+            const QuantLib::Date& issueDate)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
-            QuantLib::FixedRateBond(settlementDays, faceAmount, *sch,
-                                    coupons, payDayCounter, payConvention,
-                                    redemption, issueDate, hYTS));
+            QuantLib::FixedRateBond(settlementDays, faceAmount,
+                                    *schedule,
+                                    coupons, accrualDayCounter,
+                                    paymentConvention,
+                                    redemption, issueDate));
     }
 
-     FloatingRateBond::FloatingRateBond(
+    FixedRateBond::FixedRateBond(
+            const std::string& des,
+            const QuantLib::Currency& cur,
+            QuantLib::Natural settlementDays,
+            const QuantLib::Calendar& calendar,
+            QuantLib::Real faceAmount,
+            const QuantLib::Date& startDate,
+            const QuantLib::Date& maturityDate,
+            const QuantLib::Period& tenor,
+            const std::vector<QuantLib::Rate>& coupons,
+            const QuantLib::DayCounter& accrualDayCounter,
+            QuantLib::BusinessDayConvention accrualConvention,
+            QuantLib::BusinessDayConvention paymentConvention,
+            QuantLib::Real redemption,
+            const QuantLib::Date& issueDate,
+            const QuantLib::Date& stubDate,
+            bool fromEnd)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::FixedRateBond(settlementDays, calendar, faceAmount,
+                                    startDate, maturityDate, tenor,
+                                    coupons, accrualDayCounter,
+                                    accrualConvention, paymentConvention,
+                                    redemption,
+                                    issueDate, stubDate,
+                                    fromEnd));
+    }
+    
+    
+    FloatingRateBond::FloatingRateBond(
             const std::string&,
             const QuantLib::Currency&,
             QuantLib::Natural settlementDays,
@@ -127,8 +172,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Spread>& spreads,
             const std::vector<QuantLib::Rate>& caps,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
+            const QuantLib::Date& issueDate)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::FloatingRateBond(settlementDays, faceAmount, *schedule,
@@ -137,7 +181,7 @@ namespace QuantLibAddin {
                                        gearings, spreads,
                                        caps, floors,
                                        inArrears,
-                                       redemption, issueDate, hYTS));
+                                       redemption, issueDate));        
     }
 
     CmsRateBond::CmsRateBond(
@@ -156,8 +200,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Spread>& spreads,
             const std::vector<QuantLib::Rate>& caps,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
+            const QuantLib::Date& issueDate)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::CmsRateBond(settlementDays, faceAmount, *schedule,
@@ -166,7 +209,7 @@ namespace QuantLibAddin {
                                   gearings, spreads,
                                   caps, floors,
                                   inArrears,
-                                  redemption, issueDate, hYTS));
+                                  redemption, issueDate));        
     }
 
 }

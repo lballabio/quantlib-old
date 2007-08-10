@@ -1112,6 +1112,12 @@
             <tensorRank>scalar</tensorRank>
             <description>SwaptionVolatilityStructure object ID</description>
           </Parameter>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -1186,6 +1192,24 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
+   
+    <Constructor name='qlBondEngine'>
+      <libraryFunction>BondEngine</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
   </Functions>
 </Category>
