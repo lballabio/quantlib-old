@@ -2,7 +2,6 @@ project,subproject,task,status,priority,days,comp date,comment
 
 QLA,General Support,calculate memory usage of repository,,2,,,
 QLXL,Design,when returning a singe col (row) matrix add another col (row) with #NA to prevent col duplication; when returning a singe cell vector add another cell with #NA to prevent cell duplication,,2,,,
-gensrc,Design,"calcInWizard = 'false' for HistoricalForwardRatesAnalysis, ohObjectSave",,3,,,
 
 SA,,NAZCATECH_DIR env var ??,,1,,,
 SA,,Citrix problem (k),,1,,,
@@ -26,7 +25,6 @@ QLA,Design,"rename all Index as InterestRateIndex (we haven't used Indexes yet, 
 OH,Serialization,permanent object property to be included in VO / serialized,,1
 OH,Serialization,serialize objects and their ancestors recursively,,1
 OH,Serialization,log error messages when creating objects,,1
-OH,Serialization,ohObjectSave and Load should not be executed in the wizard,,2
 OH,Serialization,put undecoreted objectIDs in ValueObject,,2
 OH,Serialization,verify (and automate?) if Null<XX>() vlaue could be just removed in ValueObject,,2
 OH,Serialization,enumeration in ValueObjects might be converted to the string which is used by the class to identify itself in output,,2
@@ -46,8 +44,8 @@ QLA,Design,"coerce Frequency<->Period, Period(->Date)->double/int",,2
 QLXL,VBA framework,have a function for inspecting Framework version number,,2
 QLXL,,touch timestamp-buildnumber file,,2
 QLXL,,throw an error when an excessive arguments are provided in any function,,2
-QLXL,,provide an example of macro command,,2,
-OH,Design,"coerce ohRange to Matrix, std::vector, Array, scalar, string, date, etc",,3,
+QLXL,,provide an example of macro command,,2
+OH,Design,"coerce ohRange to Matrix, std::vector, Array, scalar, string, date, etc",,3
 OH,Enumerations,"enumeration aliases - in in ohEnumeratedType(""class  QuantLib::DayCounter"") map multiple strings to single enum value, the one which would appear if the enum is returned as string",,3,1
 OH,,implement ohConcatenate as inverse of ohSplit,,3,
 QLA,Design,"freeze, unfreeze observable objects",,3,
@@ -78,8 +76,8 @@ QLA,Enumerations,"wizard: suffix description with loop, default parameter, optio
 QLA,Enumerations,wizard: when enums are inputs add optional description suffixed with generic description taken from enum metadata,,4,
 QLA,ValueObjects,"dynamic properties e.g. ohMember(""instanceName"", ""NPV"", ...) replaces qlNPV(""instanceName"")",,4,
 QLA,VBA framework,access logfile (GUI browser),,4,
-QLXL,Design,use Excel SmartTags to allow interrogation of objects,,4
-QLXL,Design,fix bloomberg dll loading,,4
+QLXL,Design,use Excel SmartTags to allow interrogation of objects,,4,
+QLXL,Design,fix bloomberg dll loading,,4,
 QLXL,General Support,investigate bug in AssetSwap.xls,in progress,4
 QLXL,General Support,resolve signing/certificate problem (italian documentation),,4
 QLXL,VBA framework,there is no warning if there is an empty xll list to be loaded,,4
