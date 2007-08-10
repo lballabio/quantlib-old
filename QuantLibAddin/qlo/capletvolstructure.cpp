@@ -24,6 +24,7 @@
 #include <ql/termstructures/volatilities/caplet/capletconstantvol.hpp>
 #include <ql/termstructures/volatilities/caplet/capstripper.hpp>
 #include <ql/termstructures/volatilities/caplet/spreadedcapletvolstructure.hpp>
+#include <ql/termstructures/volatilities/caplet/genericcapletvolatilitiesstructures.hpp>
 
 namespace QuantLibAddin {
 
@@ -108,6 +109,43 @@ namespace QuantLibAddin {
             boost::shared_ptr<QuantLib::SpreadedCapletVolatilityStructure>(new
                 QuantLib::SpreadedCapletVolatilityStructure(baseVol,
                                                             spread));
+    }
+
+        GenericCapletVolStructure::GenericCapletVolStructure(
+        std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& capletVols,
+        const std::vector<QuantLib::Rate>& strikes,
+        const std::vector<QuantLib::Time>& tenors)
+    {
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(capletVols.size());
+        QuantLib::Size nbColumns  = capletVols.front().size();
+        for(QuantLib::Size i = 0; i<temp.size(); ++i){
+            temp[i].resize(nbColumns);
+            for (QuantLib::Size j = 0; j<nbColumns; ++j)
+                temp[i][j]=  capletVols[i][j];
+        } 
+        libraryObject_ =
+            boost::shared_ptr<QuantLib::GenericCapletVolStructure>(new
+                QuantLib::GenericCapletVolStructure(temp, 
+                                                    strikes,
+                                                    tenors));
+    }
+
+    CapVolatilityVector::CapVolatilityVector(
+          QuantLib::Natural settlementDays,
+          const QuantLib::Calendar& calendar,
+          const std::vector<QuantLib::Period>& optionTenors,
+          const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& volatilities,
+          const QuantLib::DayCounter& dayCounter) {
+        std::vector<QuantLib::Handle<QuantLib::Quote> > temp(volatilities.size());
+        for(QuantLib::Size i = 0; i<temp.size(); ++i){
+            temp[i] = volatilities[i];
+        }
+        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::CapVolatilityVector(settlementDays,
+                                          calendar,
+                                          optionTenors,
+                                          temp,
+                                          dayCounter));
     }
 
 }

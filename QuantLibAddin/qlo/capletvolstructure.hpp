@@ -22,6 +22,8 @@
 #include <qlo/termstructures.hpp>
 
 #include <ql/termstructures/volatilities/caplet/capletvolatilitiesstructures.hpp>
+#include <ql/termstructures/volatilities/caplet/genericcapletvolatilitiesstructures.hpp>
+#include <ql/termstructures/volatilities/caplet/capflatvolvector.hpp>
 
 namespace QuantLib {
     class CapletVolatilityStructure;
@@ -82,6 +84,23 @@ namespace QuantLibAddin {
 
     };
 
+      class GenericCapletVolStructure : public CapletVolatilityStructure {
+      public:
+          GenericCapletVolStructure(std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& capletVols,
+                                    const std::vector<QuantLib::Rate>& strikes,
+                                    const std::vector<QuantLib::Time>& tenors);
+    };
+
+    class CapVolatilityStructure : public TermStructure {};
+    class CapVolatilityVector : public CapVolatilityStructure {
+      public:
+      CapVolatilityVector(
+          QuantLib::Natural settlementDays,
+          const QuantLib::Calendar& calendar,
+          const std::vector<QuantLib::Period>& optionTenors,
+          const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& volatilities,
+          const QuantLib::DayCounter& dayCounter);
+    };
 }
 
 #endif
