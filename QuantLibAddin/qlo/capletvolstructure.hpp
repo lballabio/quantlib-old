@@ -22,7 +22,7 @@
 #include <qlo/termstructures.hpp>
 
 #include <ql/termstructures/volatilities/caplet/capletvolatilitiesstructures.hpp>
-#include <ql/termstructures/volatilities/caplet/genericcapletvolatilitiesstructures.hpp>
+//#include <ql/termstructures/volatilities/caplet/genericcapletvolatilitiesstructures.hpp>
 #include <ql/termstructures/volatilities/caplet/capflatvolvector.hpp>
 
 namespace QuantLib {

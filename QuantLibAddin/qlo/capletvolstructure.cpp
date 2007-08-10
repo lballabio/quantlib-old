@@ -24,7 +24,7 @@
 #include <ql/termstructures/volatilities/caplet/capletconstantvol.hpp>
 #include <ql/termstructures/volatilities/caplet/capstripper.hpp>
 #include <ql/termstructures/volatilities/caplet/spreadedcapletvolstructure.hpp>
-#include <ql/termstructures/volatilities/caplet/genericcapletvolatilitiesstructures.hpp>
+//#include <ql/termstructures/volatilities/caplet/genericcapletvolatilitiesstructures.hpp>
 
 namespace QuantLibAddin {
 
@@ -111,24 +111,24 @@ namespace QuantLibAddin {
                                                             spread));
     }
 
-        GenericCapletVolStructure::GenericCapletVolStructure(
-        std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& capletVols,
-        const std::vector<QuantLib::Rate>& strikes,
-        const std::vector<QuantLib::Time>& tenors)
-    {
-        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(capletVols.size());
-        QuantLib::Size nbColumns  = capletVols.front().size();
-        for(QuantLib::Size i = 0; i<temp.size(); ++i){
-            temp[i].resize(nbColumns);
-            for (QuantLib::Size j = 0; j<nbColumns; ++j)
-                temp[i][j]=  capletVols[i][j];
-        } 
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::GenericCapletVolStructure>(new
-                QuantLib::GenericCapletVolStructure(temp, 
-                                                    strikes,
-                                                    tenors));
-    }
+    //    GenericCapletVolStructure::GenericCapletVolStructure(
+    //    std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& capletVols,
+    //    const std::vector<QuantLib::Rate>& strikes,
+    //    const std::vector<QuantLib::Time>& tenors)
+    //{
+    //    std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(capletVols.size());
+    //    QuantLib::Size nbColumns  = capletVols.front().size();
+    //    for(QuantLib::Size i = 0; i<temp.size(); ++i){
+    //        temp[i].resize(nbColumns);
+    //        for (QuantLib::Size j = 0; j<nbColumns; ++j)
+    //            temp[i][j]=  capletVols[i][j];
+    //    } 
+    //    libraryObject_ =
+    //        boost::shared_ptr<QuantLib::GenericCapletVolStructure>(new
+    //            QuantLib::GenericCapletVolStructure(temp, 
+    //                                                strikes,
+    //                                                tenors));
+    //}
 
     CapVolatilityVector::CapVolatilityVector(
           QuantLib::Natural settlementDays,

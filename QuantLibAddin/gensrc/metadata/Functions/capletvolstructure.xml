@@ -477,7 +477,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlGenericCapletVolStructure'>
+    <!--<Constructor name='qlGenericCapletVolStructure'>
       <libraryFunction>GenericCapletVolStructure</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -503,7 +503,7 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor>
+    </Constructor>-->
 
     <!-- SwaptionVolatilityStructure interface-->
     <Member name='qlCapTermVolatilityVectorInterpVol' type='QuantLib::CapVolatilityVector' superType='handleToLib'>
