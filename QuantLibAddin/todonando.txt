@@ -30,9 +30,8 @@ GENERAL
   familiarize with ohPropertyNames and ohPropertyValue()
   stateful serialization
   check out and compile SA
-  property defaults
+  property defaults and SVN config file
   pricing engines are (the only) mkt data observers
-  SVN config file
   pricing engines refactoring
   verbose log messages
 
@@ -49,7 +48,7 @@ GENERAL
 - check cf sorted by amount too
 - addFixings(TimeSeries)
 - expose QL::TimeSeries and QL::IndexManager to QLO/XL
-- use Handle<Quote> to switch from a set of mkt data to another set
+- use RelinkableHandle<Quote> to switch from a set of mkt data to another set
 - weakness: redemption is not granted to be the last flow
 - clean up qlo\xxx.hpp files from ql inclusions
 - rename onForwardCmsPrice
