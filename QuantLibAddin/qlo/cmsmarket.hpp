@@ -23,7 +23,7 @@
 
 #include <ql/handle.hpp>
 
-#include <ql/termstructures/volatilities/swaption/cmsmarketcalibration.hpp>
+#include <ql/termstructures/volatilities/interestrate/swaption/cmsmarketcalibration.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {

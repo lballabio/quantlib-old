@@ -21,10 +21,10 @@
 #endif
 
 #include <qlo/capletvolstructure.hpp>
-#include <ql/termstructures/volatilities/caplet/capletconstantvol.hpp>
-#include <ql/termstructures/volatilities/caplet/capstripper.hpp>
-#include <ql/termstructures/volatilities/caplet/spreadedcapletvolstructure.hpp>
-//#include <ql/termstructures/volatilities/caplet/genericcapletvolatilitiesstructures.hpp>
+#include <ql/termstructures/volatilities/interestrate/caplet/capletconstantvol.hpp>
+#include <ql/termstructures/volatilities/interestrate/caplet/capstripper.hpp>
+#include <ql/termstructures/volatilities/interestrate/caplet/spreadedcapletvolstructure.hpp>
+//#include <ql/termstructures/volatilities/interestrate/caplet/genericcapletvolatilitiesstructures.hpp>
 
 namespace QuantLibAddin {
 

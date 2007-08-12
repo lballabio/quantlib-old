@@ -5,8 +5,8 @@
   <addinIncludes>
     <include>qlo/abcd.hpp</include>
     <include>qlo/optimization.hpp</include>
-    <include>ql/termstructures/volatilities/abcd.hpp</include>
-    <include>ql/termstructures/volatilities/abcdcalibration.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/abcd.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/abcdcalibration.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/abcd.hpp</include>

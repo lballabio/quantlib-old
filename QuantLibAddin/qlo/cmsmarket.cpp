@@ -22,7 +22,7 @@
 
 #include <qlo/cmsmarket.hpp>
 #include <qlo/swaptionvolstructure.hpp>
-#include <ql/termstructures/volatilities/swaption/cmsmarket.hpp>
+#include <ql/termstructures/volatilities/interestrate/swaption/cmsmarket.hpp>
 
 namespace QuantLibAddin {
 

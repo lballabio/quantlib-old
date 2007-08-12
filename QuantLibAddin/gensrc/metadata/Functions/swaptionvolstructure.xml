@@ -3,7 +3,7 @@
   <displayName>Swaption Volatility Term Structures</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
-    <include>ql/termstructures/volatilities/swaption/swaptionvolcube2.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/swaption/swaptionvolcube2.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
@@ -13,7 +13,7 @@
   <serializationIncludes>
     <include>qlo/ValueObjects/vo_swaptionvolstructure.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>ql/termstructures/volatilities/swaption/swaptionvolcube2.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/swaption/swaptionvolcube2.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>qlo/index.hpp</include>

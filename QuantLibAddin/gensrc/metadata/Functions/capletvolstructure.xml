@@ -7,9 +7,9 @@
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>ql/termstructures/volatilities/caplet/capletconstantvol.hpp</include>
-    <include>ql/termstructures/volatilities/caplet/capstripper.hpp</include>
-    <include>ql/termstructures/volatilities/caplet/capflatvolvector.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/caplet/capletconstantvol.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/caplet/capstripper.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/caplet/capflatvolvector.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
@@ -18,8 +18,8 @@
     <include>qlo/index.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>ql/termstructures/volatilities/caplet/capletconstantvol.hpp</include>
-    <include>ql/termstructures/volatilities/caplet/capstripper.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/caplet/capletconstantvol.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/caplet/capstripper.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <copyright>
