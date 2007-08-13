@@ -72,65 +72,34 @@ Please go to the
 
 \section sec_build_boost Install and Build Boost
 
-QuantLib depends on the Boost library.  Procedures for downloading and
-installing Boost may be found at: 
-<a href="http://www.boost.org/more/getting_started.html">http://www.boost.org/more/getting_started.html</a>.
+For the build described in this tutorial you need Boost version 1.34.1.  Newer
+versions of boost are probably OK too.
 
-QuantLib requires boost version 1.31 or later.  The latest releases of Boost,
-1.34, include a binary installer, so that no build step is necessary.  Boost
-1.33 must be built from source code, here are some notes on the procedure:
+The main Boost website <a href="http://www.boost.org">http://www.boost.org</a>
+includes instructions for downloading Boost and building the package from source code.
+However it's easier to use the installer from the following link on the Boost 
+Consulting website:
+<a href="http://www.boost-consulting.com/products/free">http://www.boost-consulting.com/products/free</a>
 
-\li Download Boost from <a href="www.boost.org">www.boost.org</a>: get the
-latest version of the \c boost package and the ntx86 binary version of the \c
-boost-jam package (<tt>boost_1_33_1.exe</tt> and
-<tt>boost-jam-3.1.12-1-ntx86.zip</tt> respectively at the time of this
-writing).
+Start the installer, when prompted to select the variant you require, specify
+VC8 and Multithreaded, DLL e.g:
 
-\li Run <tt>boost_1_33_1.exe</tt> and it will extract files to a folder of your
-choice (for this example it's assumed to be <tt>C:\\Projects</tt>) creating a
-boost_1_33_1 subfolder. Your Boost top level dir will be
-<tt>C:\\Projects\\boost_1_33_1</tt>.
+<img src="images/boost_variants.jpg">
 
-\li Now unzip <tt>boost-jam-3.1.12-1-ntx86.zip</tt> and copy the extracted
-<tt>bjam.exe</tt> file into <tt>C:\\Projects\\boost_1_33_1</tt>.
-
-\li From the Start menu access <tt>Programs | Microsoft Visual Studio 2005 |
-Microsoft Visual Studio 2005 Command Prompt</tt>. Change the directory,
-selecting your Boost top level directory <tt>C:\\Projects\\boost_1_33_1</tt>
-
-\li run the command:
-\verbatim
-C:\Projects\boost_1_33_1>bjam "-sTOOLS=vc-8_0" install
-\endverbatim
-This command will create the Boost include directory
-<tt>C:\\Boost\\include\\boost-1_33_1</tt> and the Boost library directory
-<tt>C:\\Boost\\lib</tt>. Relax: it takes a long while.
-If you're running VC8 Express you may find that the above command fails with an
-error message such as
-\verbatim
-C:\boost_1_33_1\libs\regex\build\../src/w32_regex_traits.cpp(29) : fatal error C
-1083: Cannot open include file: 'windows.h': No such file or directory
-\endverbatim
-This error results because VC8 Express's command line environment doesn't
-reference correctly to the Platform SDK (installed separately), a workaround is
-to specify the location of the Platform SDK explicitly when invoking boost e.g:
-\verbatim
-set INCLUDE="C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include"
-set LIB="C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Lib"
-bjam "-sTOOLS=vc-8_0" install
-\endverbatim
+The next dialog asks you which components you need, retain the default setting
+which is to install everything.  Finish the installation.
 
 \li You need to configure VC8 with the location of the Boost header files.
 Under <tt>Tools/Options/Projects and Solutions/VC++ Directories</tt>, select
 Include files and specify the path to the top level directory containing the
-Boost header files <tt>C:\\Boost\\include\\boost-1_33_1</tt>:
+Boost header files <tt>C:\\Program Files\\boost\\boost_1_34_1</tt>:
 
 <img src="images/boost_include_path.jpg">
 
 \li You need to configure VC8 with the location of the Boost lib files. Under
 <tt>Tools/Options/Projects and Solutions/VC++ Directories</tt>, select Library
 files and specify the path to the top level directory containing the Boost lib
-files <tt>C:\\Boost\\lib</tt>:
+files <tt>C:\\Program Files\\boost\\boost_1_34_1\\lib</tt>:
 
 <img src="images/boost_lib_path.jpg">
 

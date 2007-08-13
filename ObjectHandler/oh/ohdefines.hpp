@@ -26,7 +26,11 @@
 
 #include <boost/config.hpp>
 #include <boost/version.hpp>
-#if BOOST_VERSION < 103100
+// Boost version 1.34.1 is now required for the boost::filesystem features
+// used in classes derived from ObjectHandler::SerializationFactory in
+// downstream applications e.g. QuantLibAddin.  If you don't require that
+// functionality you can probably disable this test without problems.
+#if BOOST_VERSION < 103401
     #error using an old version of Boost, please update.
 #endif
 
