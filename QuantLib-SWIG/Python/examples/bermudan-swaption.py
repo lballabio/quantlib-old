@@ -180,12 +180,13 @@ print rule
 print header
 print rule
 
-atmSwaption = Swaption(atmSwap, exercise, termStructure,
-                       TreeSwaptionEngine(G2model, 50))
-otmSwaption = Swaption(otmSwap, exercise, termStructure,
-                       TreeSwaptionEngine(G2model, 50))
-itmSwaption = Swaption(itmSwap, exercise, termStructure,
-                       TreeSwaptionEngine(G2model, 50))
+atmSwaption = Swaption(atmSwap, exercise)
+otmSwaption = Swaption(otmSwap, exercise)
+itmSwaption = Swaption(itmSwap, exercise)
+
+atmSwaption.setPricingEngine(TreeSwaptionEngine(G2model, 50))
+otmSwaption.setPricingEngine(TreeSwaptionEngine(G2model, 50))
+itmSwaption.setPricingEngine(TreeSwaptionEngine(G2model, 50))
 
 print format % ('G2 analytic', formatPrice(itmSwaption.NPV()),
                 formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
