@@ -27,8 +27,13 @@
 
 %{
 using QuantLib::Swaption;
+using QuantLib::Settlement;
 typedef boost::shared_ptr<Instrument> SwaptionPtr;
 %}
+
+struct Settlement {
+   enum Type { Physical, Cash };
+};
 
 %rename(Swaption) SwaptionPtr;
 class SwaptionPtr : public boost::shared_ptr<Instrument> {
@@ -36,13 +41,11 @@ class SwaptionPtr : public boost::shared_ptr<Instrument> {
     %extend {
         SwaptionPtr(const VanillaSwapPtr& simpleSwap,
                     const boost::shared_ptr<Exercise>& exercise,
-                    const Handle<YieldTermStructure>& termStructure,
-                    const boost::shared_ptr<PricingEngine>& engine) {
+                    Settlement::Type type = Settlement::Physical) {
             boost::shared_ptr<VanillaSwap> swap =
                  boost::dynamic_pointer_cast<VanillaSwap>(simpleSwap);
             QL_REQUIRE(swap, "simple swap required");
-            return new SwaptionPtr(new Swaption(swap,exercise,
-                                                termStructure,engine));
+            return new SwaptionPtr(new Swaption(swap,exercise,type));
         }
     }
 };
@@ -59,11 +62,16 @@ typedef boost::shared_ptr<PricingEngine> BlackSwaptionEnginePtr;
 class BlackSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BlackSwaptionEnginePtr(const Handle<Quote>& vol) {
-            return new BlackSwaptionEnginePtr(new BlackSwaptionEngine(vol));
+        BlackSwaptionEnginePtr(const Handle<Quote>& vol,
+                               const Handle<YieldTermStructure> & discountCurve) {
+            return new BlackSwaptionEnginePtr(new
+	    BlackSwaptionEngine(vol, discountCurve));
         }
-        BlackSwaptionEnginePtr(const Handle<SwaptionVolatilityStructure>& v) {
-            return new BlackSwaptionEnginePtr(new BlackSwaptionEngine(v));
+        BlackSwaptionEnginePtr(const
+			Handle<SwaptionVolatilityStructure>& v,
+ 	                              const Handle<YieldTermStructure> & discountCurve) {
+            return new BlackSwaptionEnginePtr(new
+	    BlackSwaptionEngine(v, discountCurve));
         }
     }
 };
