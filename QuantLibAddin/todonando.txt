@@ -292,12 +292,19 @@ CRISTINA
 CHIARA
 - daily monitoring of Production/Pre-Production/Testing environments:
   MainChecks, BondMonitor, CMS calibration, CTSMM calibration
-- add new bonds in all the environments for traders' need (0.0D-0.5D)
+- add new bonds in all the environments for traders' need (0.5D-0.5D|Done)
 - Digital Bond contructor (8.0d|10dd|Wip)
   - decompose each deal in different legs: one wbk per deal (Done)
   - review workbook's design (0.5D|1D)
-  - digitalcmsratebond constructor + digitalfloatingratebond constructor
-    without cap and floor
+- Generic Bond
+  -espose new contructor to excel 
+  -catch up with bond's class mofications in excel workbook
+  -testsuite: add tests using new bond's constructor to check (0.5D|2D|Wip)
+   1) implied value against asset-swap fair price with spread=0
+   2) correct relationship between market asset swap and par asset swap
+   3) clean- and dirty-price calculation goven Z-sèread
+   4) correspondence between clean and dirty prices coming from old 
+      bonds' constructor and new bond's contructor
 - cds options (with Giorgio) (1.5d-30dd|WIP)
   - analysis of the trader's workbook
   - verified correct installation of Launcher, access given to the trader to
@@ -305,12 +312,11 @@ CHIARA
   - sent request to desktop service so to add the user to CABOTOXL
   - arrange session with nando
 - markedata\BloombergFeed (Maurizio Pietrini)
-  - 7/6 clarified once again mkt data feed for interestratequotesfeed.xls
-  - 7/9 received first workbook interestratequotesfeed.xls incompleted from
-    Maurizio
-  - 7/10 replied with feedback on the first workbook
-  - 7/23 received 2nd version of interestratequotesfeed.xls still incompleted from Maurizio,
-    replied with feedback
+  - 8/6 added nterestRateQuotesFeed.xls and MMIndicesAddLastFixing.xls
+   these new market data workbooks which will allow to bootstrap the yield curve 
+   using the following contributors: Bloomberg KLIEM ICAP Tullets Tradition Prebon COSMOREX 
+   and Bloomberg provider
+
 - zspread/yield inversion (lehman's paper values can optionally be reproduces
   in the testsuite)
 - zerospreadedtermstructure: daycounter bug
