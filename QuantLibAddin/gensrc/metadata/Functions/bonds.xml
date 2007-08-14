@@ -111,22 +111,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondFirstAccrualDate' type='QuantLib::Bond'>
-      <description>Returns the initial interest accrual date of the bond.</description>
-      <libraryFunction>firstAccrualDate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlBondMaturityDate' type='QuantLib::Bond'>
       <description>Returns the maturity date of the bond.</description>
       <libraryFunction>maturityDate</libraryFunction>
@@ -865,6 +849,7 @@
         </Parameters>
       </ParameterList>
     </Constructor>
+
     <Constructor name='qlGenericBond'>
       <libraryFunction>GenericBond</libraryFunction>
       <SupportedPlatforms>
@@ -898,6 +883,11 @@
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Face nominal amount. If omitted, default = 100.0</description>
+          </Parameter>
+          <Parameter name='IssueDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
           </Parameter>
           <Parameter name='LegID'>
             <type>QuantLibAddin::Leg</type>

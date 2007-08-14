@@ -63,6 +63,7 @@ namespace QuantLibAddin {
                     QuantLib::Natural settlementDays,
                     const QuantLib::Calendar& calendar,
                     QuantLib::Real faceAmount,
+                    const QuantLib::Date& issueDate,
                     const boost::shared_ptr<Leg>& leg);
     };
 
