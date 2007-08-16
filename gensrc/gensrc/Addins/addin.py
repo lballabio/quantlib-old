@@ -36,7 +36,6 @@ class Addin(serializable.Serializable):
     # class variables
     #############################################
 
-    voSupported_ = False
     objectIdSuffix_ = ''
 
     #############################################
@@ -45,12 +44,6 @@ class Addin(serializable.Serializable):
 
     def objectIdSuffix(self):
         return self.objectIdSuffix_
-
-#    def voSupported(self):
-#        return self.voSupported_
-
-#    def permanentParamName(self):
-#        return self.permanentParamName_
 
     def bufferLoop(self):
         return self.bufferLoop_

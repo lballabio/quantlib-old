@@ -48,7 +48,6 @@ class CalcAddin(addin.Addin):
 
     stringConvert = 'ouStringToStlString(%s)'
     objectIdSuffix_ = 'Cpp'
-    voSupported_ = True
     convertPermanentFlag_ = ''
 
     #############################################

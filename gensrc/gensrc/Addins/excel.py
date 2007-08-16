@@ -71,8 +71,6 @@ class ExcelAddin(addin.Addin):
     # class variables
     #############################################
 
-    voSupported_ = True
-#    permanentParamName_ = 'permanentCpp'
     XL_WIZARD_CHECK = '''
         if (functionCall->calledByFunctionWizard())
             return 0;\n'''
