@@ -29,12 +29,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class AlphaForm : public ObjectHandler::LibraryObject<QuantLib::AlphaForm> {
-        public:
-            AlphaForm(
-              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-              bool permanent) : ObjectHandler::LibraryObject<QuantLib::AlphaForm>(properties, permanent) {}
-    };
+    OH_LIB_CLASS(AlphaForm, QuantLib::AlphaForm)
 
     class AlphaFormInverseLinear : public AlphaForm {
       public:

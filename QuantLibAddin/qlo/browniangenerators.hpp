@@ -33,14 +33,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class BrownianGeneratorFactory : public ObjectHandler::LibraryObject<
-        QuantLib::BrownianGeneratorFactory> {
-        public:
-            BrownianGeneratorFactory(
-                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                bool permanent) : 
-            ObjectHandler::LibraryObject<QuantLib::BrownianGeneratorFactory>(properties, permanent) {}
-    };
+    OH_LIB_CLASS(BrownianGeneratorFactory, QuantLib::BrownianGeneratorFactory)
 
     class MTBrownianGeneratorFactory : public BrownianGeneratorFactory {
     public:

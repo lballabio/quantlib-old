@@ -30,7 +30,6 @@ namespace QuantLibAddin {
 
     class CmsCouponPricer : public FloatingRateCouponPricer {
       public:
-		//CmsCouponPricer(){}; //fdv hack ...
         OH_OBJ_CTOR(CmsCouponPricer, FloatingRateCouponPricer)
         CmsCouponPricer(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

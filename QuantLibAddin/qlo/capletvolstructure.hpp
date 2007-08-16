@@ -34,12 +34,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
     
-    class CapletVolatilityStructure : public TermStructure {
-        public:
-            CapletVolatilityStructure(
-              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-              bool permanent) : TermStructure(properties, permanent) {}
-    };
+    OH_OBJ_CLASS(CapletVolatilityStructure, TermStructure)
 
     class CapletConstantVolatility : public CapletVolatilityStructure {
       public:
@@ -108,12 +103,7 @@ namespace QuantLibAddin {
                                     bool permanent);
     };
 
-    class CapVolatilityStructure : public TermStructure {
-        public:
-            CapVolatilityStructure(
-              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-              bool permanent) : TermStructure(properties, permanent) {}
-    };
+    OH_OBJ_CLASS(CapVolatilityStructure, TermStructure)
 
     class CapVolatilityVector : public CapVolatilityStructure {
       public:
