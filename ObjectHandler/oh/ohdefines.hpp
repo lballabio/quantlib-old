@@ -31,7 +31,7 @@
 // downstream applications e.g. QuantLibAddin.  If you don't require that
 // functionality you can probably disable this test without problems.
 #if BOOST_VERSION < 103401
-    #error using an old version of Boost, please update.
+    #error using an old version of Boost, please update to 1.34.1 or higher.
 #endif
 
 //! version string
