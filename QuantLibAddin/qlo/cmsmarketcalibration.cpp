@@ -31,10 +31,12 @@
 namespace QuantLibAddin {
 
      CmsMarketCalibration::CmsMarketCalibration(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& volCube,
         boost::shared_ptr<QuantLib::CmsMarket>& cmsMarket,
         const QuantLib::Matrix& weights,
-        QuantLib::CmsMarketCalibration::CalibrationType calibrationType){
+        QuantLib::CmsMarketCalibration::CalibrationType calibrationType,
+        bool permanent) : ObjectHandler::LibraryObject<QuantLib::CmsMarketCalibration>(properties, permanent) {
         
         libraryObject_ = boost::shared_ptr<QuantLib::CmsMarketCalibration>(new
             QuantLib::CmsMarketCalibration(volCube,
@@ -74,3 +76,4 @@ namespace QuantLibAddin {
    }
 
 }
+

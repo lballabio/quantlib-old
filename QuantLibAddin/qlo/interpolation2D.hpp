@@ -28,10 +28,12 @@ namespace QuantLibAddin {
     class Interpolation2D : public Extrapolator 
     {
       public:
-          Interpolation2D(const std::string &interpolation2DType,
+          Interpolation2D(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                        const std::string &interpolation2DType,
                         const std::vector<double>& x,
                         const std::vector<double>& y,
-                        const QuantLib::Matrix& dataMatrix);
+                        const QuantLib::Matrix& dataMatrix,
+                        bool permanent);
       private:
         std::vector<QuantLib::Real> x_, y_;
         QuantLib::Matrix dataMatrix_;
@@ -40,3 +42,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

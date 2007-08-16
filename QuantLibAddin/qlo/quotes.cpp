@@ -28,8 +28,11 @@
 
 namespace QuantLibAddin {
 
-    SimpleQuote::SimpleQuote(QuantLib::Real value,
-                             QuantLib::Real tickValue) {
+    SimpleQuote::SimpleQuote(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Real value,
+            QuantLib::Real tickValue,
+            bool permanent) : Quote(properties, permanent) {
         // The base class requires us to store a reference
         // to a QuantLib::Quote in libraryObject_.
         // For performance reasons we also store a reference to
@@ -70,20 +73,24 @@ namespace QuantLibAddin {
 
 
     ForwardValueQuote::ForwardValueQuote(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const boost::shared_ptr<QuantLib::IborIndex>& index,
-        const QuantLib::Date& fixingDate)
+        const QuantLib::Date& fixingDate,
+        bool permanent) : Quote(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
             QuantLib::ForwardValueQuote(index, fixingDate));
     }
     
     ImpliedStdDevQuote::ImpliedStdDevQuote(
+                            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                             QuantLib::Option::Type optionType,
                             const QuantLib::Handle<QuantLib::Quote>& forward,
                             const QuantLib::Handle<QuantLib::Quote>& price,
                             QuantLib::Real strike,
                             QuantLib::Real guess,
-                            QuantLib::Real accuracy)
+                            QuantLib::Real accuracy,
+                            bool permanent) : Quote(properties, permanent)
     {
     libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
         QuantLib::ImpliedStdDevQuote(optionType, forward, price, strike,
@@ -91,12 +98,14 @@ namespace QuantLibAddin {
     }
 
     EurodollarFuturesImpliedStdDevQuote::EurodollarFuturesImpliedStdDevQuote(
+                        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                         const QuantLib::Handle<QuantLib::Quote>& forward,
                         const QuantLib::Handle<QuantLib::Quote>& callPrice,
                         const QuantLib::Handle<QuantLib::Quote>& putPrice,
                         QuantLib::Real strike,
                         QuantLib::Real guess,
-                        QuantLib::Real accuracy)
+                        QuantLib::Real accuracy,
+                        bool permanent) : Quote(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
             QuantLib::EurodollarFuturesImpliedStdDevQuote(forward,
@@ -104,11 +113,13 @@ namespace QuantLibAddin {
     }
 
     FuturesConvAdjustmentQuote::FuturesConvAdjustmentQuote(
+                               const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                const boost::shared_ptr<QuantLib::IborIndex>& index,
                                const std::string& immCode, 
                                const QuantLib::Handle<QuantLib::Quote>& futuresQuote,
                                const QuantLib::Handle<QuantLib::Quote>& volatility,
-                               const QuantLib::Handle<QuantLib::Quote>& meanReversion)
+                               const QuantLib::Handle<QuantLib::Quote>& meanReversion,
+                               bool permanent) : Quote(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
             QuantLib::FuturesConvAdjustmentQuote(index, immCode,
@@ -118,3 +129,4 @@ namespace QuantLibAddin {
     }
 
 }
+

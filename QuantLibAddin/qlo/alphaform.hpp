@@ -29,20 +29,30 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class AlphaForm : public ObjectHandler::LibraryObject<QuantLib::AlphaForm> {};
+    class AlphaForm : public ObjectHandler::LibraryObject<QuantLib::AlphaForm> {
+        public:
+            AlphaForm(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+              bool permanent) : ObjectHandler::LibraryObject<QuantLib::AlphaForm>(properties, permanent) {}
+    };
 
     class AlphaFormInverseLinear : public AlphaForm {
       public:
-        AlphaFormInverseLinear(const std::vector<QuantLib::Time>& times, 
-                               QuantLib::Real alpha);
+        AlphaFormInverseLinear(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                               const std::vector<QuantLib::Time>& times, 
+                               QuantLib::Real alpha,
+                               bool permanent);
     };
 
     class AlphaFormLinearHyperbolic : public AlphaForm {
       public:
-        AlphaFormLinearHyperbolic(const std::vector<QuantLib::Time>& times, 
-                                  QuantLib::Real alpha) ;
+        AlphaFormLinearHyperbolic(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                  const std::vector<QuantLib::Time>& times, 
+                                  QuantLib::Real alpha,
+                                  bool permanent);
     };
 
 }
 
 #endif
+

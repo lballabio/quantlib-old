@@ -37,10 +37,12 @@ namespace QuantLibAddin {
       
     //Correlation model
     LmLinearExponentialCorrelationModel::LmLinearExponentialCorrelationModel(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         QuantLib::Size size,
         QuantLib::Real rho,
         QuantLib::Real beta,
-        QuantLib::Size factors) {
+        QuantLib::Size factors,
+        bool permanent) : LmCorrelationModel(properties, permanent) {
 
             libraryObject_ = boost::shared_ptr<QuantLib::LmLinearExponentialCorrelationModel>(
                 new QuantLib::LmLinearExponentialCorrelationModel(size,rho,beta,factors));
@@ -48,8 +50,10 @@ namespace QuantLibAddin {
     }
     
     TimeHomogeneousForwardCorrelation::TimeHomogeneousForwardCorrelation(
+           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
            const QuantLib::Matrix& fwdCorrelation,
-           const std::vector<QuantLib::Time>& rateTimes)
+           const std::vector<QuantLib::Time>& rateTimes,
+           bool permanent) : PiecewiseConstantCorrelation(properties, permanent)
     {
         QL_REQUIRE(!rateTimes.empty(), "rate times vector is empty!");
         libraryObject_ =
@@ -59,11 +63,13 @@ namespace QuantLibAddin {
     }
 
     ExponentialForwardCorrelation::ExponentialForwardCorrelation(
+                                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                 const std::vector<QuantLib::Time>& rateTimes,
                                 QuantLib::Real longTermCorr,
                                 QuantLib::Real beta,
                                 QuantLib::Real gamma,
-                                const std::vector<QuantLib::Time>& times) {
+                                const std::vector<QuantLib::Time>& times,
+                                bool permanent) : PiecewiseConstantCorrelation(properties, permanent) {
         QL_REQUIRE(!rateTimes.empty(), "rate times vector is empty!");
         libraryObject_ =
             boost::shared_ptr<QuantLib::ExponentialForwardCorrelation>(new
@@ -75,10 +81,12 @@ namespace QuantLibAddin {
     }
 
     CotSwapFromFwdCorrelation::CotSwapFromFwdCorrelation(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<
                             QuantLib::PiecewiseConstantCorrelation>& fwdCorr,
             const QuantLib::CurveState& curveState,
-            QuantLib::Real displacement) {
+            QuantLib::Real displacement,
+            bool permanent) : PiecewiseConstantCorrelation(properties, permanent) {
         libraryObject_ =
             boost::shared_ptr<QuantLib::CotSwapFromFwdCorrelation>(new
                 QuantLib::CotSwapFromFwdCorrelation(fwdCorr,
@@ -87,6 +95,7 @@ namespace QuantLibAddin {
     }
   
     HistoricalForwardRatesAnalysis::HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
         const QuantLib::Date& startDate,
         const QuantLib::Date& endDate,
@@ -99,7 +108,8 @@ namespace QuantLibAddin {
         const QuantLib::DayCounter& yieldCurveDayCounter,
         const std::string& traitsID, 
         const std::string& interpolatorID,
-        QuantLib::Real yieldCurveAccuracy)
+        QuantLib::Real yieldCurveAccuracy,
+        bool permanent) : ObjectHandler::LibraryObject<QuantLib::HistoricalForwardRatesAnalysis>(properties, permanent)
     {
         libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
             QuantLib::HistoricalForwardRatesAnalysis> >()(traitsID,
@@ -119,3 +129,4 @@ namespace QuantLibAddin {
       }
 
 }
+

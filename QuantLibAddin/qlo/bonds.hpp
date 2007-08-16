@@ -48,6 +48,7 @@ namespace QuantLibAddin {
 
     class Bond : public Instrument {
       public:
+        OH_OBJ_CTOR(Bond, Instrument)
         std::vector<std::vector<boost::any> > flowAnalysis();
         std::string description();
         //QuantLib::Currency currency();
@@ -58,18 +59,21 @@ namespace QuantLibAddin {
 
     class GenericBond : public Bond {
       public:
-        GenericBond(const std::string& des,
+        GenericBond(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    const std::string& des,
                     const QuantLib::Currency& cur,
                     QuantLib::Natural settlementDays,
                     const QuantLib::Calendar& calendar,
                     QuantLib::Real faceAmount,
                     const QuantLib::Date& issueDate,
-                    const boost::shared_ptr<Leg>& leg);
+                    const boost::shared_ptr<Leg>& leg,
+                    bool permanent);
     };
 
     class ZeroCouponBond : public Bond {
       public:
         ZeroCouponBond(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string& des,
             const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
@@ -78,12 +82,14 @@ namespace QuantLibAddin {
             const QuantLib::Date& maturityDate,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate);
+            const QuantLib::Date& issueDate,
+            bool permanent);
     };
 
     class FixedRateBond : public Bond {
       public:
         FixedRateBond(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string& des,
             const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
@@ -93,8 +99,10 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& accrualDayCounter,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate);
+            const QuantLib::Date& issueDate,
+            bool permanent);
         FixedRateBond(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string& des,
             const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
@@ -110,12 +118,14 @@ namespace QuantLibAddin {
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
             const QuantLib::Date& stubDate,
-            bool fromEnd);
+            bool fromEnd,
+            bool permanent);
     };
 
     class FloatingRateBond : public Bond {
       public:
         FloatingRateBond(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string& des,
             const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
@@ -131,13 +141,15 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Spread>& spreads,
             const std::vector<QuantLib::Rate>& caps,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate);
+            const QuantLib::Date& issueDate,
+            bool permanent);
         // add constructor without schedule
     };
 
     class CmsRateBond : public Bond {
       public:
         CmsRateBond(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string& des,
             const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
@@ -153,10 +165,12 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Spread>& spreads,
             const std::vector<QuantLib::Rate>& caps,
             QuantLib::Real redemption,
-            const QuantLib::Date& issueDate);
+            const QuantLib::Date& issueDate,
+            bool permanent);
         // add constructor without schedule
     };
 
 }
 
 #endif
+

@@ -1,12 +1,15 @@
 
         // construct the object
 
-        boost::shared_ptr<ObjectHandler::Object> objectPointer(
-            new %(namespaceObjects)s::%(libraryFunction)s(%(parameterList)s));
-%(setPermanent)s
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
+            new %(namespaceObjects)s::ValueObjects::%(functionName)s(%(voParameters)s));
+
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new %(namespaceObjects)s::%(libraryFunction)s(
+                valueObject,%(libraryParameters)s));
+
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(objectID%(suffix)s, objectPointer);
-%(voCall)s
+            ObjectHandler::Repository::instance().storeObject(objectID%(suffix)s, object);
 
         // convert and return the return value
 

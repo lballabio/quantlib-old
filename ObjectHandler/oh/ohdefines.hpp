@@ -131,5 +131,51 @@ do { \
     ObjectHandler::logMessage(_oh_msg_stream.str(), 1); \
 } while (false)
 
+/*! \def OH_OBJ_CTOR(derived_class, base_class)
+    Declaration and implementation of empty constructor
+    for a class derived from ObjectHandler::Object.
+*/
+
+#define OH_OBJ_CTOR(derived_class, base_class) \
+derived_class( \
+const boost::shared_ptr<ObjectHandler::ValueObject>& properties, \
+bool permanent) \
+: base_class(properties, permanent) {}
+
+/*! \def OH_OBJ_CLASS(derived_class, base_class)
+    Declaration and implementation of empty class
+    derived from ObjectHandler::Object.
+*/
+    
+#define OH_OBJ_CLASS(derived_class, base_class) \
+class derived_class : \
+public base_class { \
+public: \
+OH_OBJ_CTOR(derived_class, base_class) \
+};
+
+/*! \def OH_LIB_CTOR(derived_class, base_class)
+    Declaration and implementation of empty constructor
+    for a class derived from ObjectHandler::LibraryObject.
+*/
+
+#define OH_LIB_CTOR(derived_class, base_class) \
+derived_class( \
+const boost::shared_ptr<ObjectHandler::ValueObject>& properties, \
+bool permanent) \
+: ObjectHandler::LibraryObject<base_class>(properties, permanent) {}
+
+/*! \def OH_LIB_CLASS(derived_class, base_class)
+    Declaration and implementation of empty class
+    derived from ObjectHandler::LibraryObject.
+*/
+    
+#define OH_LIB_CLASS(derived_class, base_class) \
+class derived_class : \
+public ObjectHandler::LibraryObject<base_class> { \
+public: \
+OH_LIB_CTOR(derived_class, base_class) \
+};
+
 #endif
 

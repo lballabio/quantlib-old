@@ -41,68 +41,83 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
      
-    class TermStructure : public Extrapolator {};
+    OH_OBJ_CLASS(TermStructure, Extrapolator)
 
-    class YieldTermStructure : public TermStructure {};
+    OH_OBJ_CLASS(YieldTermStructure, TermStructure)
 
     class PiecewiseYieldCurve : public YieldTermStructure {
       public:
         PiecewiseYieldCurve(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
             const std::vector<std::string>& handlesRateHelper,
             const QuantLib::DayCounter& dayCounter,
             const std::string& traitsID,
             const std::string& interpolatorID,
-            QuantLib::Real accuracy);
+            QuantLib::Real accuracy,
+            bool permanent);
     };
 
     class DiscountCurve : public YieldTermStructure {
       public:
         DiscountCurve(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Date>& dates,
             const std::vector<QuantLib::DiscountFactor>& dfs,
-            const QuantLib::DayCounter& dayCounter);
+            const QuantLib::DayCounter& dayCounter,
+            bool permanent);
     };
 
     class ZeroCurve : public YieldTermStructure {
       public:
-        ZeroCurve(const std::vector<QuantLib::Date>& dates,
+        ZeroCurve(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                  const std::vector<QuantLib::Date>& dates,
                   const std::vector <QuantLib::Rate>& zeroRates,
-                  const QuantLib::DayCounter& dayCounter);
+                  const QuantLib::DayCounter& dayCounter,
+                  bool permanent);
     };
 
     class ForwardCurve : public YieldTermStructure {
       public:
-        ForwardCurve(const std::vector<QuantLib::Date>& dates,
+        ForwardCurve(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                     const std::vector<QuantLib::Date>& dates,
                      const std::vector <QuantLib::Rate>& forwardRates,
-                     const QuantLib::DayCounter& dayCounter);
+                     const QuantLib::DayCounter& dayCounter,
+                     bool permanent);
     };
 
     class FlatForward : public YieldTermStructure {
       public:
-        FlatForward(QuantLib::Size nDays,
+        FlatForward(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    QuantLib::Size nDays,
                     const QuantLib::Calendar& calendar,
                     QuantLib::Rate forward,
                     const QuantLib::DayCounter& dayCounter,
                     QuantLib::Compounding compounding,
-                    QuantLib::Frequency frequency);
+                    QuantLib::Frequency frequency,
+                    bool permanent);
     };
 
     class ForwardSpreadedTermStructure : public YieldTermStructure {
       public:
         ForwardSpreadedTermStructure(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const QuantLib::Handle<QuantLib::Quote>& spread);
+            const QuantLib::Handle<QuantLib::Quote>& spread,
+            bool permanent);
     };
 
     class ImpliedTermStructure : public YieldTermStructure {
       public:
         ImpliedTermStructure(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const QuantLib::Date& referenceDate);
+            const QuantLib::Date& referenceDate,
+            bool permanent);
     };
 
 }
 
 #endif
+

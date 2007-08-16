@@ -47,63 +47,91 @@ namespace QuantLibAddin {
 
     class PricingEngine : public ObjectHandler::LibraryObject<QuantLib::PricingEngine> {
       public:
-        PricingEngine(const std::string& engineID);
-        PricingEngine(const std::string& engineID,
-                      const long& timeSteps);
+        PricingEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& engineID,
+            bool permanent);
+        PricingEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& engineID,
+            const long& timeSteps,
+            bool permanent);
       protected:
-        PricingEngine() {}
+        OH_LIB_CTOR(PricingEngine, QuantLib::PricingEngine)
+        //PricingEngine() {}
     };
 
     class BlackSwaptionEngine : public PricingEngine {
       public:
           BlackSwaptionEngine(
-              const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>&,
-              const QuantLib::Handle<QuantLib::YieldTermStructure>&);
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>&,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
+            bool permanent);
     };
 
     class BlackCapFloorEngine : public PricingEngine {
       public:
-        BlackCapFloorEngine(const QuantLib::Handle<QuantLib::Quote>& vol);
         BlackCapFloorEngine(
-            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>&);
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& vol,
+            bool permanent);
+        BlackCapFloorEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>&,
+            bool permanent);
     };
 
     class AnalyticCapFloorEngine : public PricingEngine {
       public:
         AnalyticCapFloorEngine(
-            const boost::shared_ptr<QuantLib::AffineModel>& model);
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::AffineModel>& model,
+            bool permanent);
     };
 
     class MarketModelCapFloorEngine : public PricingEngine  {
       public:
-        MarketModelCapFloorEngine(const boost::shared_ptr<QuantLib::MarketModelFactory>&);
+        MarketModelCapFloorEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::MarketModelFactory>&,
+            bool permanent);
     };
 
     class BlackCalculator : public ObjectHandler::LibraryObject<QuantLib::BlackCalculator> {
       public:
         BlackCalculator(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
             QuantLib::Real forward,
             QuantLib::Real variance,
-            QuantLib::DiscountFactor discount);
+            QuantLib::DiscountFactor discount,
+            bool permanent);
       protected:
-        BlackCalculator() {}
+        //BlackCalculator() {}
+        OH_LIB_CTOR(BlackCalculator, QuantLib::BlackCalculator)
     };
 
     class BlackScholesCalculator : public BlackCalculator {
       public:
         BlackScholesCalculator(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
             QuantLib::Real spot,
             QuantLib::DiscountFactor growth,
             QuantLib::Real variance,
-            QuantLib::DiscountFactor discount);
+            QuantLib::DiscountFactor discount,
+            bool permanent);
     };
 
     class BondEngine : public PricingEngine {
       public:
-          BondEngine(const QuantLib::Handle<QuantLib::YieldTermStructure>& discountCurve);
+          BondEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discountCurve,
+            bool permanent);
     };
 }
 
 #endif
+

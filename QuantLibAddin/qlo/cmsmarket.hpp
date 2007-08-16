@@ -48,11 +48,13 @@ namespace QuantLibAddin {
     class CmsMarket: public ObjectHandler::LibraryObject<QuantLib::CmsMarket>{
       public:
         CmsMarket(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Period>& expiries,
             const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndices,
             const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& bidAskSpreads,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldTermStructure,
-            const std::vector<boost::shared_ptr<QuantLib::CmsCouponPricer> >& pricers);
+            const std::vector<boost::shared_ptr<QuantLib::CmsCouponPricer> >& pricers,
+            bool permanent);
         
         const std::vector<std::vector<boost::any> > getCmsMarket();
 
@@ -61,3 +63,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

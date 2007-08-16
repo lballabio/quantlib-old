@@ -36,9 +36,12 @@ namespace QuantLibAddin {
     {
       public:
         CovarianceDecomposition(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Matrix& cov,
-            double tol);
+            double tol,
+            bool permanent);
     };
 }
 
 #endif
+

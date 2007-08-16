@@ -28,22 +28,27 @@
 
 namespace QuantLibAddin {
 
-    Vasicek::Vasicek(QuantLib::Real a,
+    Vasicek::Vasicek(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                     QuantLib::Real a,
                      QuantLib::Real b,
                      QuantLib::Real lambda,
-                     QuantLib::Real sigma)
+                     QuantLib::Real sigma,
+                     bool permanent) : AffineModel(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::AffineModel>(new
             QuantLib::Vasicek(a, b, lambda, sigma));
     }
 
     HullWhite::HullWhite(
+                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                 QuantLib::Real a,
-                QuantLib::Real sigma)
+                QuantLib::Real sigma,
+                bool permanent) : AffineModel(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::AffineModel>(new
             QuantLib::HullWhite(hYTS, a, sigma));
     }
 
 }
+

@@ -32,15 +32,20 @@ namespace ExampleAddin {
     public:
         static ExampleFactory &instance();
     private:
-		virtual void saveObject(const boost::shared_ptr<ObjectHandler::Object>&, const char *path) const;
-		virtual void saveObject(const std::vector<boost::shared_ptr<ObjectHandler::Object> >&, const char *path) const;
-		virtual void saveObject2(const std::vector<boost::shared_ptr<ObjectHandler::Object> >&, const char *path) const;
-		virtual boost::shared_ptr<ObjectHandler::Object> loadObject(const std::string &objectID, const char *path) const;
-		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject(const std::vector<std::string> &idList, const char *path) const;
-		virtual std::vector<boost::shared_ptr<ObjectHandler::Object> > loadObject2(const char *path) const;
+        virtual int saveObject(
+            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&objectList,
+            const char *path,
+            bool forceOverwrite) const;
+        virtual int loadObject(
+            const char *path,
+            bool overwriteExisting) const;
+        int processPath(
+            const std::string &path,
+            bool overwriteExisting) const;
     };
 
 
 }
 
 #endif
+

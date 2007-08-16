@@ -37,8 +37,9 @@ namespace AccountExample {
             const std::string &objectID,
             const std::string &type,
             const long &number,
-            const ObjectHandler::Variant &balance)
-            : ObjectHandler::ValueObject(objectID, "Account"),
+            const ObjectHandler::Variant &balance,
+            bool permanent)
+            : ObjectHandler::ValueObject(objectID, "Account", permanent),
             type_(type), number_(number), balance_(balance) {}
 
         std::vector<std::string> getPropertyNames() const;
@@ -57,9 +58,10 @@ namespace AccountExample {
             boost::serialization::void_cast_register<AccountValueObject, ValueObject>(this, this);
             ar & boost::serialization::make_nvp("objectID", objectID_)
                & boost::serialization::make_nvp("className", className_)
-               & boost::serialization::make_nvp("type", type_)
-               & boost::serialization::make_nvp("number", number_)
-               & boost::serialization::make_nvp("balance", balance_);
+               & boost::serialization::make_nvp("Type", type_)
+               & boost::serialization::make_nvp("Number", number_)
+               & boost::serialization::make_nvp("Balance", balance_)
+               & boost::serialization::make_nvp("Permanent", permanent_);
         }
 
     };

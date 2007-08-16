@@ -27,11 +27,13 @@
 namespace QuantLibAddin {
 
     Interpolation2D::Interpolation2D(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::string &interpolation2DType, 
         const std::vector<double>& x,
         const std::vector<double>& y,
-        const QuantLib::Matrix& dataMatrix)
-    : x_(x), y_(y), dataMatrix_(dataMatrix)
+        const QuantLib::Matrix& dataMatrix,
+        bool permanent)
+    : Extrapolator(properties, permanent), x_(x), y_(y), dataMatrix_(dataMatrix)
     {
         QL_REQUIRE(y.size()==dataMatrix_.rows(),
             "y size (" << y.size() <<
@@ -48,3 +50,4 @@ namespace QuantLibAddin {
     }
   
 }
+

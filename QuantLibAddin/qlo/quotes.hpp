@@ -36,12 +36,14 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class Quote : public ObjectHandler::LibraryObject<QuantLib::Quote> {};
+    OH_LIB_CLASS(Quote, QuantLib::Quote)
 
     class SimpleQuote : public Quote {
       public:
-        SimpleQuote(QuantLib::Real value,
-                    QuantLib::Real tickValue);
+        SimpleQuote(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    QuantLib::Real value,
+                    QuantLib::Real tickValue,
+                    bool permanent);
         QuantLib::Real tickValue() const;
         void setTickValue(QuantLib::Real tickValue);
         // it wraps underlying QuantLib::SimpleQuote method
@@ -53,41 +55,50 @@ namespace QuantLibAddin {
 
     class ForwardValueQuote : public Quote {
       public:
-        ForwardValueQuote(const boost::shared_ptr<QuantLib::IborIndex>&,
-                          const QuantLib::Date& fixingDate);
+        ForwardValueQuote(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                          const boost::shared_ptr<QuantLib::IborIndex>&,
+                          const QuantLib::Date& fixingDate,
+                          bool permanent);
     };
 
     class ImpliedStdDevQuote : public Quote {
       public:
-        ImpliedStdDevQuote(QuantLib::Option::Type optionType,
+        ImpliedStdDevQuote(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                           QuantLib::Option::Type optionType,
                            const QuantLib::Handle<QuantLib::Quote>& forward,
                            const QuantLib::Handle<QuantLib::Quote>& price,
                            QuantLib::Real strike,
                            QuantLib::Real guess,
-                           QuantLib::Real accuracy);
+                           QuantLib::Real accuracy,
+                           bool permanent);
     };
 
     class EurodollarFuturesImpliedStdDevQuote : public Quote {
       public:
         EurodollarFuturesImpliedStdDevQuote(
+                        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                         const QuantLib::Handle<QuantLib::Quote>& forward,
                         const QuantLib::Handle<QuantLib::Quote>& callPrice,
                         const QuantLib::Handle<QuantLib::Quote>& putPrice,
                         QuantLib::Real strike,
                         QuantLib::Real guess,
-                        QuantLib::Real accuracy);
+                        QuantLib::Real accuracy,
+                        bool permanent);
     };
 
      class FuturesConvAdjustmentQuote : public Quote {
       public:
         FuturesConvAdjustmentQuote(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                     const boost::shared_ptr<QuantLib::IborIndex>& index,
                     const std::string& immCode,
                     const QuantLib::Handle<QuantLib::Quote>& futuresQuote,
                     const QuantLib::Handle<QuantLib::Quote>& volatility,
-                    const QuantLib::Handle<QuantLib::Quote>& meanReversion);
+                    const QuantLib::Handle<QuantLib::Quote>& meanReversion,
+                    bool permanent);
     };
 
 }
 
 #endif
+

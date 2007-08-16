@@ -30,12 +30,15 @@
 namespace QuantLibAddin {
 
     GeneralizedBlackScholesProcess::GeneralizedBlackScholesProcess(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr < QuantLib::BlackVolTermStructure > &blackVolTermStructureP,
             QuantLib::Real underlying,
             const QuantLib::DayCounter &dayCounter,
             const QuantLib::Date &settlementDate,
             QuantLib::Rate riskFreeRate,
-            QuantLib::Spread dividendYield) {
+            QuantLib::Spread dividendYield,
+            bool permanent)
+        : ObjectHandler::LibraryObject<QuantLib::GeneralizedBlackScholesProcess>(properties, permanent) {
 
         QuantLib::Handle<QuantLib::Quote> underlyingH( 
             boost::shared_ptr<QuantLib::Quote>(

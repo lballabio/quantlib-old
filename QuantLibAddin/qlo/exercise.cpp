@@ -25,26 +25,34 @@
 namespace QuantLibAddin {
 
     AmericanExercise::AmericanExercise(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& earliestDate,
             const QuantLib::Date& latestDate,
-            const bool payoffAtExpiry) {
+            const bool payoffAtExpiry,
+            bool permanent) : Exercise(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::Exercise>(new
             QuantLib::AmericanExercise(earliestDate,
                                        latestDate,
                                        payoffAtExpiry));
     }
 
-    EuropeanExercise::EuropeanExercise(const QuantLib::Date& expiryDate) {
+    EuropeanExercise::EuropeanExercise(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Date& expiryDate,
+            bool permanent) : Exercise(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::Exercise>(new
             QuantLib::EuropeanExercise(expiryDate));
     }
 
     BermudanExercise::BermudanExercise(
-        const std::vector<QuantLib::Date>& dates,
-        const bool payoffAtExpiry) {
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Date>& dates,
+            const bool payoffAtExpiry,
+            bool permanent) : Exercise(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::Exercise>(new
             QuantLib::BermudanExercise(dates,
                                        payoffAtExpiry));
     }
 
 }
+

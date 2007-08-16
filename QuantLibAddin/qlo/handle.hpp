@@ -27,7 +27,11 @@ namespace QuantLibAddin {
     template <class T>
     class RelinkableHandle : public ObjectHandler::Object {
       public:
-        RelinkableHandle(const boost::shared_ptr<T> &observable) {
+        RelinkableHandle(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<T> &observable,
+            bool permanent) : ObjectHandler::Object(properties, permanent) {
+
             if (observable) {
                 handle_.linkTo(observable);
                 //currentLink_ = boost::any_cast<std::string>(propertyValue("currentLink"));
@@ -63,3 +67,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

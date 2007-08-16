@@ -32,12 +32,14 @@
 namespace QuantLibAddin {
         
   LMMDriftCalculator::LMMDriftCalculator(
+                                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                     const QuantLib::Matrix& pseudo,
                                     const std::vector<QuantLib::Rate>& displ,
                                     const std::vector<QuantLib::Time>& taus,
                                     QuantLib::Size numeraire,
-                                    QuantLib::Size alive)
-    : drifts_(taus.size()) {
+                                    QuantLib::Size alive,
+                                    bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::LMMDriftCalculator>(properties, permanent), drifts_(taus.size()) {
         libraryObject_ = boost::shared_ptr<QuantLib::LMMDriftCalculator>(new
             QuantLib::LMMDriftCalculator(pseudo, displ,
                                          taus, numeraire, alive));
@@ -62,11 +64,13 @@ namespace QuantLibAddin {
     }
 
     LMMNormalDriftCalculator::LMMNormalDriftCalculator(
+                                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                 const QuantLib::Matrix& pseudo,
                                 const std::vector<QuantLib::Time>& taus,
                                 QuantLib::Size numeraire,
-                                QuantLib::Size alive)
-    : drifts_(taus.size()) {
+                                QuantLib::Size alive,
+                                bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::LMMNormalDriftCalculator>(properties, permanent), drifts_(taus.size()) {
         libraryObject_ = boost::shared_ptr<QuantLib::LMMNormalDriftCalculator>(
             new QuantLib::LMMNormalDriftCalculator(pseudo,
                                                    taus, numeraire, alive));
@@ -91,13 +95,15 @@ namespace QuantLibAddin {
     }
 
     CMSMMDriftCalculator::CMSMMDriftCalculator(
+                                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                 const QuantLib::Matrix& pseudo,
                                 const std::vector<QuantLib::Rate>& displ,
                                 const std::vector<QuantLib::Time>& taus,
                                 QuantLib::Size numeraire,
                                 QuantLib::Size alive,
-                                QuantLib::Size spanningFwds)
-    : drifts_(taus.size()) {
+                                QuantLib::Size spanningFwds,
+                                bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::CMSMMDriftCalculator>(properties, permanent), drifts_(taus.size()) {
         libraryObject_= boost::shared_ptr<QuantLib::CMSMMDriftCalculator>(new
             QuantLib::CMSMMDriftCalculator(pseudo, displ,
                                            taus, numeraire, alive,
@@ -111,12 +117,14 @@ namespace QuantLibAddin {
     }
 
     SMMDriftCalculator::SMMDriftCalculator(
+                                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                 const QuantLib::Matrix& pseudo,
                                 const std::vector<QuantLib::Rate>& displ,
                                 const std::vector<QuantLib::Time>& taus,
                                 QuantLib::Size numeraire,
-                                QuantLib::Size alive)
-    : drifts_(taus.size()) {
+                                QuantLib::Size alive,
+                                bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::SMMDriftCalculator>(properties, permanent), drifts_(taus.size()) {
         libraryObject_= boost::shared_ptr<QuantLib::SMMDriftCalculator>(new
             QuantLib::SMMDriftCalculator(pseudo, displ,
                                          taus, numeraire, alive));
@@ -129,3 +137,4 @@ namespace QuantLibAddin {
     }
 
 }
+

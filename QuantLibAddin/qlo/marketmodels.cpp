@@ -36,12 +36,14 @@
 namespace QuantLibAddin {
 
     FlatVol::FlatVol(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Volatility>& volatilities,
             const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
-            const std::vector<QuantLib::Rate>& displacements) {
+            const std::vector<QuantLib::Rate>& displacements,
+            bool permanent) : MarketModel(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(new
             QuantLib::FlatVol(volatilities,
                                      corr,
@@ -52,6 +54,7 @@ namespace QuantLibAddin {
     }
 
     AbcdVol::AbcdVol(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Real a,
             QuantLib::Real b,
             QuantLib::Real c,
@@ -61,7 +64,8 @@ namespace QuantLibAddin {
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
-            const std::vector<QuantLib::Rate>& displacements) {
+            const std::vector<QuantLib::Rate>& displacements,
+            bool permanent) : MarketModel(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(new
             QuantLib::AbcdVol(a, b, c, d, ks,
                                      corr,
@@ -72,22 +76,28 @@ namespace QuantLibAddin {
     }
 
     PseudoRootFacade::PseudoRootFacade(
-              const boost::shared_ptr<QuantLib::CTSMMCapletCalibration> calibrator) {
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::CTSMMCapletCalibration> calibrator,
+            bool permanent) : MarketModel(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(new
             QuantLib::PseudoRootFacade(calibrator));
     }
 
     CotSwapToFwdAdapter::CotSwapToFwdAdapter(
-              const boost::shared_ptr<QuantLib::MarketModel>& coterminalModel) {
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::MarketModel>& coterminalModel,
+            bool permanent) : MarketModel(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(new
             QuantLib::CotSwapToFwdAdapter(coterminalModel));
     }
 
     FwdPeriodAdapter::FwdPeriodAdapter(
-              const boost::shared_ptr<QuantLib::MarketModel>& largeModel,
-              QuantLib::Size period,
-              QuantLib::Size offset,
-              const std::vector<QuantLib::Spread>& newDisplacements){
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::MarketModel>& largeModel,
+            QuantLib::Size period,
+            QuantLib::Size offset,
+            const std::vector<QuantLib::Spread>& newDisplacements,
+            bool permanent) : MarketModel(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(new
             QuantLib::FwdPeriodAdapter(largeModel,
                                        period,
@@ -96,18 +106,22 @@ namespace QuantLibAddin {
     }
 
     FwdToCotSwapAdapter::FwdToCotSwapAdapter(
-              const boost::shared_ptr<QuantLib::MarketModel>& forwardModel) {
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::MarketModel>& forwardModel,
+            bool permanent) : MarketModel(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModel>(new
             QuantLib::FwdToCotSwapAdapter(forwardModel));
     }
 
     FlatVolFactory::FlatVolFactory(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         QuantLib::Real longTermCorr,
         QuantLib::Real beta,
         const std::vector<QuantLib::Time>& times,
         const std::vector<QuantLib::Volatility>& vols,
         const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldCurve,
-        QuantLib::Spread displacement)
+        QuantLib::Spread displacement,
+        bool permanent) : MarketModelFactory(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelFactory>(
             new QuantLib::FlatVolFactory(longTermCorr,
@@ -151,5 +165,5 @@ namespace QuantLibAddin {
         return QuantLib::rateInstVolDifferences(marketModel1, marketModel2, index);
    }
     
-
 }
+

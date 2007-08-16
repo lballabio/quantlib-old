@@ -55,3 +55,4 @@ for runtime version info.
 #define COMPILER_STRING " - MS VC++ " VC_VERSION " - " RUNTIME_THREAD " " RUNTIME_LINKAGE " Runtime library - " RUNTIME_CONFIG
 
 #endif
+

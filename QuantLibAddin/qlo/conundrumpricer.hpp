@@ -30,23 +30,28 @@ namespace QuantLibAddin {
 
     class CmsCouponPricer : public FloatingRateCouponPricer {
       public:
-		CmsCouponPricer(){}; //fdv hack ...
+		//CmsCouponPricer(){}; //fdv hack ...
+        OH_OBJ_CTOR(CmsCouponPricer, FloatingRateCouponPricer)
         CmsCouponPricer(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,
             const std::string& typeOfCmsCouponPricer,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-            const QuantLib::Handle<QuantLib::Quote>& meanReversion);
+            const QuantLib::Handle<QuantLib::Quote>& meanReversion,
+            bool permanent);
     };
 
 	class ConundrumPricerByNumericalIntegration: public CmsCouponPricer{
 	public:
 	  ConundrumPricerByNumericalIntegration(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
 			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
 			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             QuantLib::Rate lowerLimit,
             QuantLib::Rate upperLimit,
-			QuantLib::Real precision);
+			QuantLib::Real precision,
+            bool permanent);
 	};
 }
 

@@ -35,12 +35,14 @@
 namespace QuantLibAddin {
 
     DepositRateHelper::DepositRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
             QuantLib::Natural settlementDays,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
-            const QuantLib::DayCounter& dayCounter)
+            const QuantLib::DayCounter& dayCounter,
+            bool permanent) : RateHelper(properties, permanent)
     {
         //quoteHandle_ = quote;
         bool endOfMonth = false;
@@ -56,13 +58,15 @@ namespace QuantLibAddin {
     }
 
     FuturesRateHelper::FuturesRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
             const std::string& immDateID,
             QuantLib::Size months,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention bDayConvention,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& convAdj)
+            const QuantLib::Handle<QuantLib::Quote>& convAdj,
+            bool permanent) : RateHelper(properties, permanent)
     {
         //quoteHandle_ = price;
         //convAdjHandle_= convAdj;
@@ -77,8 +81,8 @@ namespace QuantLibAddin {
                                         convAdj));
     }
 
-
     SwapRateHelper::SwapRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
             QuantLib::Natural settlementDays,
@@ -86,7 +90,8 @@ namespace QuantLibAddin {
             const QuantLib::Frequency& fixedFrequency,
             QuantLib::BusinessDayConvention fixedConvention,
             const QuantLib::DayCounter& fixedDayCounter,
-            const boost::shared_ptr<QuantLib::IborIndex>& index)
+            const boost::shared_ptr<QuantLib::IborIndex>& index,
+            bool permanent) : RateHelper(properties, permanent)
     {
         //quoteHandle_ = quote;
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
@@ -100,15 +105,18 @@ namespace QuantLibAddin {
                                      index));
     }
 
-    FraRateHelper::FraRateHelper(const QuantLib::Handle<QuantLib::Quote>& rate,
-                  QuantLib::Natural monthsToStart,
-                  QuantLib::Natural monthsToEnd,
-                  QuantLib::Natural settlementDays,
-                  const QuantLib::Calendar& calendar,
-                  QuantLib::BusinessDayConvention convention,
-                  bool endOfMonth,
-                  QuantLib::Natural fixingDays,
-                  const QuantLib::DayCounter& dayCounter) {
+    FraRateHelper::FraRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& rate,
+            QuantLib::Natural monthsToStart,
+            QuantLib::Natural monthsToEnd,
+            QuantLib::Natural settlementDays,
+            const QuantLib::Calendar& calendar,
+            QuantLib::BusinessDayConvention convention,
+            bool endOfMonth,
+            QuantLib::Natural fixingDays,
+            const QuantLib::DayCounter& dayCounter,
+            bool permanent) : RateHelper(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FraRateHelper(rate,
                                   monthsToStart,
@@ -121,15 +129,18 @@ namespace QuantLibAddin {
                                   dayCounter));
     }
 
-    FraRateHelper::FraRateHelper(QuantLib::Rate rate,
-                  QuantLib::Natural monthsToStart,
-                  QuantLib::Natural monthsToEnd,
-                  QuantLib::Natural settlementDays,
-                  const QuantLib::Calendar& calendar,
-                  QuantLib::BusinessDayConvention convention,
-                  bool endOfMonth,
-                  QuantLib::Natural fixingDays,
-                  const QuantLib::DayCounter& dayCounter) {
+    FraRateHelper::FraRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Rate rate,
+            QuantLib::Natural monthsToStart,
+            QuantLib::Natural monthsToEnd,
+            QuantLib::Natural settlementDays,
+            const QuantLib::Calendar& calendar,
+            QuantLib::BusinessDayConvention convention,
+            bool endOfMonth,
+            QuantLib::Natural fixingDays,
+            const QuantLib::DayCounter& dayCounter,
+            bool permanent) : RateHelper(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FraRateHelper(rate,
                                   monthsToStart,
@@ -143,14 +154,16 @@ namespace QuantLibAddin {
     }
 
     FixedCouponBondHelper::FixedCouponBondHelper(
-                      const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
-                      QuantLib::Natural settlementDays,
-                      const QuantLib::Schedule& schedule,
-                      const std::vector<QuantLib::Rate>& coupons,
-                      const QuantLib::DayCounter& paymentDayCounter,
-                      QuantLib::BusinessDayConvention paymentConvention,
-                      QuantLib::Real redemption,
-                      const QuantLib::Date& issueDate) {
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
+            QuantLib::Natural settlementDays,
+            const QuantLib::Schedule& schedule,
+            const std::vector<QuantLib::Rate>& coupons,
+            const QuantLib::DayCounter& paymentDayCounter,
+            QuantLib::BusinessDayConvention paymentConvention,
+            QuantLib::Real redemption,
+            const QuantLib::Date& issueDate,
+            bool permanent) : RateHelper(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FixedCouponBondHelper(cleanPrice,
                       settlementDays,
@@ -356,3 +369,4 @@ namespace QuantLibAddin {
     }
 
 }
+

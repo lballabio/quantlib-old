@@ -32,22 +32,26 @@
 namespace QuantLibAddin {
 
    CmsCouponPricer::CmsCouponPricer(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& v,
             const std::string& typeOfCmsCouponPricer,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
-            const QuantLib::Handle<QuantLib::Quote>& meanReversion) {
+            const QuantLib::Handle<QuantLib::Quote>& meanReversion,
+            bool permanent) : FloatingRateCouponPricer(properties, permanent) {
         libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::CmsCouponPricer> >()
             (typeOfCmsCouponPricer, v, modelOfYieldCurve, meanReversion);
     }
 
 
 	ConundrumPricerByNumericalIntegration::ConundrumPricerByNumericalIntegration(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
 			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
 			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             QuantLib::Rate lowerLimit,
             QuantLib::Rate upperLimit,
-			QuantLib::Real precision){
+			QuantLib::Real precision,
+            bool permanent) : CmsCouponPricer(properties, permanent) {
 				/*QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve
 					= QuantLib::GFunctionFactory::ModelOfYieldCurve(2);*/
 				libraryObject_ = 
@@ -60,3 +64,4 @@ namespace QuantLibAddin {
 																	precision));
 	};
 }
+

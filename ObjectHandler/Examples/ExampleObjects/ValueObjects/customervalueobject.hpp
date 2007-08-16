@@ -37,8 +37,9 @@ namespace AccountExample {
         CustomerValueObject(
             const std::string &objectID,
             const std::string &name, 
-            const long &age) 
-            : ObjectHandler::ValueObject(objectID, "Customer"), name_(name), age_(age) {}
+            const long &age,
+            bool permanent)
+            : ObjectHandler::ValueObject(objectID, "Customer", permanent), name_(name), age_(age) {}
 
         std::vector<std::string> getPropertyNames() const;
         boost::any getProperty(const std::string& name) const;
@@ -55,8 +56,9 @@ namespace AccountExample {
             boost::serialization::void_cast_register<CustomerValueObject, ValueObject>(this, this);
             ar & boost::serialization::make_nvp("objectID", objectID_)
                & boost::serialization::make_nvp("className", className_)
-               & boost::serialization::make_nvp("name", name_)
-               & boost::serialization::make_nvp("age", age_);
+               & boost::serialization::make_nvp("Name", name_)
+               & boost::serialization::make_nvp("Age", age_)
+               & boost::serialization::make_nvp("Permanent", permanent_);
         }
 
     };

@@ -30,17 +30,27 @@
 
 namespace QuantLibAddin {
 
-    CMSwapCurveState::CMSwapCurveState(const std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards) {
+    CMSwapCurveState::CMSwapCurveState(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Time>& rateTimes, 
+            QuantLib::Size spanningForwards,
+            bool permanent) : CurveState(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::CMSwapCurveState>(new
             QuantLib::CMSwapCurveState(rateTimes, spanningForwards));
     }
 
-    CoterminalSwapCurveState::CoterminalSwapCurveState(const std::vector<QuantLib::Time>& rateTimes) {
+    CoterminalSwapCurveState::CoterminalSwapCurveState(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Time>& rateTimes,
+            bool permanent) : CurveState(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::CoterminalSwapCurveState>(new
             QuantLib::CoterminalSwapCurveState(rateTimes));
     }
 
-    LMMCurveState::LMMCurveState(const std::vector<QuantLib::Time>& rateTimes) {
+    LMMCurveState::LMMCurveState(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Time>& rateTimes,
+            bool permanent) : CurveState(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::LMMCurveState>(new
             QuantLib::LMMCurveState(rateTimes));
     }
@@ -104,3 +114,4 @@ namespace QuantLibAddin {
     }
 
 }
+

@@ -35,30 +35,35 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
     
-    class MarketModelEvolver : public ObjectHandler::LibraryObject<
-        QuantLib::MarketModelEvolver> {
-    };
+    OH_LIB_CLASS(MarketModelEvolver, QuantLib::MarketModelEvolver)
 
     class LogNormalFwdRatePc : public MarketModelEvolver {
     public:
-        LogNormalFwdRatePc(const boost::shared_ptr<QuantLib::MarketModel>&,
-                             const QuantLib::BrownianGeneratorFactory&,
-                             const std::vector<QuantLib::Size>& numeraires);
+        LogNormalFwdRatePc(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                           const boost::shared_ptr<QuantLib::MarketModel>&,
+                           const QuantLib::BrownianGeneratorFactory&,
+                           const std::vector<QuantLib::Size>& numeraires,
+                           bool permanent);
     };
 
     class LogNormalFwdRateIpc : public MarketModelEvolver {
      public:
-        LogNormalFwdRateIpc(const boost::shared_ptr<QuantLib::MarketModel>&,
-                              const QuantLib::BrownianGeneratorFactory&,
-                              const std::vector<QuantLib::Size>& numeraires);
+        LogNormalFwdRateIpc(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                            const boost::shared_ptr<QuantLib::MarketModel>&,
+                            const QuantLib::BrownianGeneratorFactory&,
+                            const std::vector<QuantLib::Size>& numeraires,
+                            bool permanent);
     };
     class NormalFwdRatePc : public MarketModelEvolver {
      public:
-    NormalFwdRatePc(const boost::shared_ptr<QuantLib::MarketModel>&,
-                              const QuantLib::BrownianGeneratorFactory&,
-                              const std::vector<QuantLib::Size>& numeraires);
+    NormalFwdRatePc(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    const boost::shared_ptr<QuantLib::MarketModel>&,
+                    const QuantLib::BrownianGeneratorFactory&,
+                    const std::vector<QuantLib::Size>& numeraires,
+                    bool permanent);
     };
 
 }
 
 #endif
+

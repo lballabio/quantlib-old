@@ -25,13 +25,15 @@
 namespace QuantLibAddin {
 
     BarrierOption::BarrierOption(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Barrier::Type &barrierType,
             const double &barrier,
             const double &rebate,
             const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
             const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine) {
+            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            bool permanent) : OneAssetOption(properties, permanent) {
 
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
             new QuantLib::BarrierOption(

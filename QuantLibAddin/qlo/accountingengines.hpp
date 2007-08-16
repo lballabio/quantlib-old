@@ -42,11 +42,14 @@ namespace QuantLibAddin {
         QuantLib::AccountingEngine> {
     public:
         AccountingEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::MarketModelEvolver>& evolver,
             const QuantLib::Clone<QuantLib::MarketModelMultiProduct>& product,
-            QuantLib::Real initialNumeraireValue);
+            QuantLib::Real initialNumeraireValue,
+            bool permanent);
     };
 
  }
 
 #endif
+

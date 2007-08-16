@@ -31,13 +31,15 @@ namespace QuantLibAddin {
     class BarrierOption : public OneAssetOption {
     public:
         BarrierOption(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Barrier::Type &barrierType,
             const double &barrier,
             const double &rebate,
             const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
             const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine);
+            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            bool permanent);
     };
 
 }

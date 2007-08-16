@@ -25,23 +25,27 @@
 
 namespace QuantLibAddin {
 
-    class Payoff : public ObjectHandler::LibraryObject<QuantLib::Payoff> {};
+    OH_LIB_CLASS(Payoff, QuantLib::Payoff)
 
-    class TypePayoff : public Payoff {};
+    OH_OBJ_CLASS(TypePayoff, Payoff)
 
     class StrikedTypePayoff : public TypePayoff {
       public:
-          StrikedTypePayoff() {}
+          //StrikedTypePayoff() {}
+          OH_OBJ_CTOR(StrikedTypePayoff, TypePayoff)
           StrikedTypePayoff(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const std::string& payoffID,
               const QuantLib::Option::Type& optionType,
               const QuantLib::Real strike,
-              const QuantLib::Real thirdParameter);
+              const QuantLib::Real thirdParameter,
+              bool permanent);
           QuantLib::Real thirdParameter() const;
     };
 
-    class PlainVanillaPayoff : public StrikedTypePayoff {};
+    OH_OBJ_CLASS(PlainVanillaPayoff, StrikedTypePayoff)
     
 }
 
 #endif
+

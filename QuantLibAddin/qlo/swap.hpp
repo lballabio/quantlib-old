@@ -34,22 +34,28 @@ namespace QuantLibAddin {
     
     class Swap : public Instrument {
       public:
-        Swap(const std::vector<boost::shared_ptr<Leg> >& legWrappers,
+        Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+             const std::vector<boost::shared_ptr<Leg> >& legWrappers,
              const std::vector<bool>& payer,
-             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+             bool permanent);
  
-        Swap(const QuantLib::Period& swapTenor,
+        Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+             const QuantLib::Period& swapTenor,
              const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
              const QuantLib::Spread iborSpread,
              const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
-             const QuantLib::Period& forwardStart);
+             const QuantLib::Period& forwardStart,
+             bool permanent);
 
         std::vector<std::vector<boost::any> > legAnalysis(QuantLib::Size i);
 
       protected:
-        Swap() {}
+        //Swap() {}
+        OH_OBJ_CTOR(Swap, Instrument)
     };
     
 }
 
 #endif
+

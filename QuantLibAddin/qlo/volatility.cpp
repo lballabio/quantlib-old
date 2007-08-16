@@ -30,28 +30,32 @@
 namespace QuantLibAddin {
       
      PiecewiseConstantAbcdVariance::PiecewiseConstantAbcdVariance(
+                            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                             QuantLib::Real a, QuantLib::Real b,
                             QuantLib::Real c, QuantLib::Real d,
                             const QuantLib::Size resetIndex,
-                            const std::vector<QuantLib::Time>& rateTimes) {
+                            const std::vector<QuantLib::Time>& rateTimes,
+                            bool permanent) : PiecewiseConstantVariance(properties, permanent) {
 
         libraryObject_ =
             boost::shared_ptr<QuantLib::PiecewiseConstantVariance>(new
                 QuantLib::PiecewiseConstantAbcdVariance(a, b, c, d,
                                                         resetIndex,
                                                         rateTimes));
-
     }
 
     //Volatility model
     LmExtLinearExponentialVolModel::LmExtLinearExponentialVolModel(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::vector<QuantLib::Time>& fixingTimes,
         QuantLib::Real a,
         QuantLib::Real b,
         QuantLib::Real c,
-        QuantLib::Real d) {
+        QuantLib::Real d,
+        bool permanent) : LmLinearExponentialVolatilityModel(properties, permanent) {
 
             libraryObject_ = boost::shared_ptr<QuantLib::LmExtLinearExponentialVolModel>(
             new QuantLib::LmExtLinearExponentialVolModel(fixingTimes,a,b,c,d));
     }   
 }
+

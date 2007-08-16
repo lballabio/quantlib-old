@@ -72,9 +72,7 @@ class ExcelAddin(addin.Addin):
     #############################################
 
     voSupported_ = True
-    convertPermanentFlag_ = '''
-        if (permanentCpp)
-            objectPointer->setPermanent();'''
+#    permanentParamName_ = 'permanentCpp'
     XL_WIZARD_CHECK = '''
         if (functionCall->calledByFunctionWizard())
             return 0;\n'''

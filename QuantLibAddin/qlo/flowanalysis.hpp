@@ -36,3 +36,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

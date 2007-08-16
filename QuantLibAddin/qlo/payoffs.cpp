@@ -27,10 +27,12 @@
 namespace QuantLibAddin {
 
     StrikedTypePayoff::StrikedTypePayoff(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string& payoffID,
             const QuantLib::Option::Type& optionType,
             const QuantLib::Real strike,
-            const QuantLib::Real thirdParameter) {
+            const QuantLib::Real thirdParameter,
+            bool permanent) : TypePayoff(properties, permanent) {
         if (thirdParameter==QuantLib::Null<QuantLib::Real>())
             libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::Payoff> >()(
                 payoffID, optionType, strike);
@@ -43,3 +45,4 @@ namespace QuantLibAddin {
         return 0.0;
     }
 }
+

@@ -46,8 +46,10 @@ namespace QuantLibAddin {
     class Statistics : 
                 public ObjectHandler::LibraryObject<QuantLib::Statistics> {
       public:
-        Statistics(const std::vector<QuantLib::Real>& values, 
-                   const std::vector<QuantLib::Real>& weights);
+        Statistics(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                   const std::vector<QuantLib::Real>& values, 
+                   const std::vector<QuantLib::Real>& weights,
+                   bool permanent);
     };
 
 
@@ -74,3 +76,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

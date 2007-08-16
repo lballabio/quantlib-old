@@ -26,9 +26,12 @@
 namespace QuantLibAddin {
 
     SequenceStatistics::SequenceStatistics(
-                                        QuantLib::Size dimension,
-                                        const QuantLib::Matrix& values, 
-                                        const std::vector<QuantLib::Real>& w)
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Size dimension,
+            const QuantLib::Matrix& values, 
+            const std::vector<QuantLib::Real>& w,
+            bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::SequenceStatistics>(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::SequenceStatistics>(new
             QuantLib::SequenceStatistics(dimension));
@@ -54,9 +57,14 @@ namespace QuantLibAddin {
     }
 
 
-    SequenceStatistics::SequenceStatistics(QuantLib::Size dimension) {
+    SequenceStatistics::SequenceStatistics(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Size dimension,
+            bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::SequenceStatistics>(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::SequenceStatistics>(new
             QuantLib::SequenceStatistics(dimension));
     }
 
 }
+

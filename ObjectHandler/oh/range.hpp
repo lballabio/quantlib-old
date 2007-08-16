@@ -26,8 +26,11 @@ namespace ObjectHandler {
 
     class Range : public Object {
     public:
-        Range(const std::vector<std::vector<double> > &values)
-            : values_(values) {}
+        Range(
+            const boost::shared_ptr<ValueObject>& properties,
+            const std::vector<std::vector<double> > &values,
+            bool permanent)
+            : Object(properties, permanent), values_(values) {}
     private:
         std::vector<std::vector<double> > values_;
     };

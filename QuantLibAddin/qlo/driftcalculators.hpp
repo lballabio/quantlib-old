@@ -42,11 +42,13 @@ namespace QuantLibAddin {
    
     class LMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::LMMDriftCalculator> {
       public:
-        LMMDriftCalculator(const QuantLib::Matrix& pseudo,
+        LMMDriftCalculator(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                           const QuantLib::Matrix& pseudo,
                            const std::vector<QuantLib::Rate>& displacements,
                            const std::vector<QuantLib::Time>& taus,
                            QuantLib::Size numeraire,
-                           QuantLib::Size alive);
+                           QuantLib::Size alive,
+                           bool permanent);
         std::vector<QuantLib::Real> compute(
             const QuantLib::LMMCurveState& cs) const;
         std::vector<QuantLib::Real> computePlain(
@@ -59,10 +61,13 @@ namespace QuantLibAddin {
 
     class LMMNormalDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::LMMNormalDriftCalculator> {
       public:
-        LMMNormalDriftCalculator(const QuantLib::Matrix& pseudo,
+        LMMNormalDriftCalculator(
+                        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                        const QuantLib::Matrix& pseudo,
                         const std::vector<QuantLib::Time>& taus,
                         QuantLib::Size numeraire,
-                        QuantLib::Size alive);
+                        QuantLib::Size alive,
+                        bool permanent);
         std::vector<QuantLib::Real> compute(
             const QuantLib::LMMCurveState& cs) const;
         std::vector<QuantLib::Real> computePlain(
@@ -75,12 +80,14 @@ namespace QuantLibAddin {
 
     class CMSMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::CMSMMDriftCalculator> {
       public:
-        CMSMMDriftCalculator(const QuantLib::Matrix& pseudo,
+        CMSMMDriftCalculator(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                             const QuantLib::Matrix& pseudo,
                              const std::vector<QuantLib::Rate>& displacements,
                              const std::vector<QuantLib::Time>& taus,
                              QuantLib::Size numeraire,
                              QuantLib::Size alive,
-                             QuantLib::Size spanningFwds);
+                             QuantLib::Size spanningFwds,
+                             bool permanent);
         std::vector<QuantLib::Real> compute(
             const QuantLib::CMSwapCurveState& cs) const;
       private:
@@ -89,11 +96,13 @@ namespace QuantLibAddin {
 
     class SMMDriftCalculator : public ObjectHandler::LibraryObject<QuantLib::SMMDriftCalculator> {
       public:
-        SMMDriftCalculator(const QuantLib::Matrix& pseudo,
+        SMMDriftCalculator(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                           const QuantLib::Matrix& pseudo,
                            const std::vector<QuantLib::Rate>& displacements,
                            const std::vector<QuantLib::Time>& taus,
                            QuantLib::Size numeraire,
-                           QuantLib::Size alive);
+                           QuantLib::Size alive,
+                           bool permanent);
         std::vector<QuantLib::Real> compute(
             const QuantLib::CoterminalSwapCurveState& cs) const;
       private:
@@ -103,3 +112,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

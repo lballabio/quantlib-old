@@ -26,6 +26,7 @@
 namespace QuantLibAddin {
 
     Schedule::Schedule(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Date& effectiveDate,
         const QuantLib::Date& terminationDate,
         const QuantLib::Period& tenor,
@@ -35,7 +36,8 @@ namespace QuantLibAddin {
         bool backward,
         bool endOfMonth,
         const QuantLib::Date& firstDate,
-        const QuantLib::Date& nextToLastDate) {
+        const QuantLib::Date& nextToLastDate,
+        bool permanent) : ObjectHandler::LibraryObject<QuantLib::Schedule>(properties, permanent) {
     
         libraryObject_ = boost::shared_ptr<QuantLib::Schedule>(new
             QuantLib::Schedule(effectiveDate,
@@ -51,3 +53,4 @@ namespace QuantLibAddin {
     }
 
 }
+

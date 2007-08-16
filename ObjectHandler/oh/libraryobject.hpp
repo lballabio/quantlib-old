@@ -38,6 +38,12 @@ namespace ObjectHandler {
     template <class LibraryClass>
     class LibraryObject : public Object {
     public:
+        //! Ctor.
+        LibraryObject(
+            const boost::shared_ptr<ValueObject>& properties,
+            bool permanent)
+            : Object(properties, permanent) {}
+
         //! Retrieve the underlying reference and recast it to the specified class.
         template <class LibraryDerivedClass>
         void getLibraryObject(boost::shared_ptr<LibraryDerivedClass> &ret) const {

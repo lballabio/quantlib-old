@@ -33,21 +33,31 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class CurveState : public ObjectHandler::LibraryObject<QuantLib::CurveState> {};
+    OH_LIB_CLASS(CurveState, QuantLib::CurveState)
 
     class CMSwapCurveState : public CurveState {
       public:
-        CMSwapCurveState(const std::vector<QuantLib::Time>& rateTimes, QuantLib::Size spanningForwards);
+        CMSwapCurveState(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Time>& rateTimes, 
+            QuantLib::Size spanningForwards,
+            bool permanent);
     };
 
     class CoterminalSwapCurveState : public CurveState {
       public:
-        CoterminalSwapCurveState(const std::vector<QuantLib::Time>& rateTimes);
+        CoterminalSwapCurveState(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Time>& rateTimes,
+            bool permanent);
     };
 
     class LMMCurveState : public CurveState {
       public:
-        LMMCurveState(const std::vector<QuantLib::Time>& rateTimes);
+        LMMCurveState(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Time>& rateTimes,
+            bool permanent);
     };
 
     std::vector<QuantLib::Rate> qlForwardsFromDiscountRatios(
@@ -79,3 +89,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

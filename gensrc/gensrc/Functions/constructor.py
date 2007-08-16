@@ -41,10 +41,6 @@ class Constructor(function.Function):
     funcCtorBuffer_ = buffer.loadBuffer('stub.func.constructor')
     validatePermanent_ = '''
         //ObjectHandler::validateRange(permanent, "permanent");'''
-    VO_CALL = '''
-        objectPointer->setProperties(
-            boost::shared_ptr<ObjectHandler::ValueObject>(
-            new %(namespaceObjects)s::ValueObjects::%(functionName)s(%(parameterList)s)));'''
     DESCRIPTION = 'Construct an object of class %s and return its id'
 
     #############################################
@@ -53,22 +49,13 @@ class Constructor(function.Function):
 
     def generateBody(self, addin):
         """Generate source code for function body."""
-        if addin.voSupported():
-            setPermanent = addin.convertPermanentFlag()
-            voCall = Constructor.VO_CALL % {
-                'functionName' : self.name_,
-                'namespaceObjects' : environment.config().namespaceObjects(),
-                'parameterList' : self.parameterList_.generate(addin.voCall())}
-        else:
-            setPermanent = ''
-            voCall = ''
         return Constructor.funcCtorBuffer_ % {
+            'functionName' : self.name_,
             'libraryFunction' : self.libraryFunction_,
             'namespaceObjects' : environment.config().namespaceObjects(),
-            'parameterList' : self.parameterList_.generate(addin.libraryCall()), 
-            'setPermanent' : setPermanent, 
-            'suffix' : addin.objectIdSuffix(), 
-            'voCall' : voCall}
+            'libraryParameters' : self.parameterList_.generate(addin.libraryCall()), 
+            'voParameters' : self.parameterList_.generate(addin.voCall()),
+            'suffix' : addin.objectIdSuffix() }
 
     def libraryFunction(self):
         return self.libraryFunction_

@@ -28,9 +28,12 @@ namespace ObjectHandler {
     boost::shared_ptr<Object> createRange(
         const boost::shared_ptr<ValueObject> &valueObject) {
 
-        std::vector<std::vector<double> > values = boost::any_cast<std::vector<std::vector<double> > >(valueObject->getProperty("values"));
-        boost::shared_ptr<Object> object(new Range(values));
-        object->setProperties(valueObject);
+        bool permanent = 
+            boost::any_cast<bool>(valueObject->getProperty("Permanent"));
+        std::vector<std::vector<double> > values = 
+            boost::any_cast<std::vector<std::vector<double> > >(valueObject->getProperty("Values"));
+
+        boost::shared_ptr<Object> object(new Range(valueObject, values, permanent));
         return object;
     }
 

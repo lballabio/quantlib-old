@@ -23,5 +23,5 @@
     }
 
     %(functionName)s::%(functionName)s(%(constructorParList)s) :
-        ObjectHandler::ValueObject(objectID, "%(functionName)s")%(constructorInit)s {}
+        ObjectHandler::ValueObject(objectID, "%(functionName)s", permanent)%(constructorInit)s {}
 

@@ -50,12 +50,13 @@ namespace ObjectHandler {
         /*! Member variables are initialized with null values, these will be
             populated during deserialization.
         */
-        ValueObject() : objectID_(""), className_("") {}
+        ValueObject() : objectID_(""), className_(""), permanent_(false) {}
         //! Standard constructor called by derived classes.
         ValueObject(
             const std::string &objectID,
-            const std::string &className)
-            : objectID_(objectID), className_(className) {}
+            const std::string &className,
+            bool permanent)
+            : objectID_(objectID), className_(className), permanent_(permanent) {}
         //! Empty virtual destructor.
         virtual ~ValueObject() {}
         //@}
@@ -78,6 +79,7 @@ namespace ObjectHandler {
     protected:
         std::string objectID_;
         std::string className_;
+        bool permanent_;
     };
 
 }

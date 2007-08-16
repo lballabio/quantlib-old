@@ -45,16 +45,18 @@ namespace QuantLibAddin {
 
     class Index : public ObjectHandler::LibraryObject<QuantLib::Index> {
       public:
+          OH_LIB_CTOR(Index, QuantLib::Index)
           void addFixings(const std::vector<QuantLib::Date>& dates,
 			              const std::vector<QuantLib::Real>& values,
                           bool forceOverwrite);
 	};
 
-    class InterestRateIndex : public Index {};
+    OH_OBJ_CLASS(InterestRateIndex, Index)
 
     class IborIndex : public InterestRateIndex {
       public:
-        IborIndex(const std::string& indexName,
+        IborIndex(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                  const std::string& indexName,
                   const QuantLib::Period& p,
                   const QuantLib::Natural fixingDays,
                   const QuantLib::Currency& crr,
@@ -62,32 +64,40 @@ namespace QuantLibAddin {
                   QuantLib::BusinessDayConvention fltBDC,
                   bool endOfMonth,
                   const QuantLib::DayCounter& fltDayCounter,
-                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                  bool permanent);
       protected:
-        IborIndex() {}
+        OH_OBJ_CTOR(IborIndex, InterestRateIndex)
     };
 
     class Euribor : public IborIndex {
       public:
-        Euribor(const QuantLib::Period& p,
-                const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+        Euribor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                const QuantLib::Period& p,
+                const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                bool permanent);
     };
 
     class Euribor365 : public IborIndex {
       public:
-        Euribor365(const QuantLib::Period& p,
-                   const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+        Euribor365(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                   const QuantLib::Period& p,
+                   const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                   bool permanent);
     };
 
     class EURLibor : public IborIndex {
       public:
-        EURLibor(const QuantLib::Period& p,
-                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+        EURLibor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                 const QuantLib::Period& p,
+                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                 bool permanent);
     };
 
     class SwapIndex : public InterestRateIndex {
       public:
-        SwapIndex(const std::string& familyName,
+        SwapIndex(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                  const std::string& familyName,
                   const QuantLib::Period& p,
                   QuantLib::Natural fixingDays,
                   QuantLib::Currency& crr,
@@ -95,47 +105,61 @@ namespace QuantLibAddin {
                   const QuantLib::Period& fixedLegTenor,
                   QuantLib::BusinessDayConvention fixedLegBDC,
                   const QuantLib::DayCounter& fixedLegDayCounter,
-                  const boost::shared_ptr<QuantLib::IborIndex>& index);
+                  const boost::shared_ptr<QuantLib::IborIndex>& index,
+                  bool permanent);
       protected:
-        SwapIndex() {}
+        OH_OBJ_CTOR(SwapIndex, InterestRateIndex)
     };
 
     class EuriborSwapFixA : public SwapIndex {
       public:
-        EuriborSwapFixA(const QuantLib::Period& p,
-                        const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+        EuriborSwapFixA(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                        const QuantLib::Period& p,
+                        const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                        bool permanent);
     };
 
     class EuriborSwapFixB : public SwapIndex {
       public:
-        EuriborSwapFixB(const QuantLib::Period& p,
-                        const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+        EuriborSwapFixB(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                        const QuantLib::Period& p,
+                        const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                        bool permanent);
     };
 
     class EurliborSwapFixA : public SwapIndex {
       public:
-        EurliborSwapFixA(const QuantLib::Period& p,
-                         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+        EurliborSwapFixA(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                         const QuantLib::Period& p,
+                         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                         bool permanent);
     };
 
     class EurliborSwapFixB : public SwapIndex {
       public:
-        EurliborSwapFixB(const QuantLib::Period& p,
-                         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+        EurliborSwapFixB(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                         const QuantLib::Period& p,
+                         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                         bool permanent);
     };
 
     class EuriborSwapFixIFR : public SwapIndex {
       public:
-        EuriborSwapFixIFR(const QuantLib::Period& p,
-                          const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+        EuriborSwapFixIFR(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                          const QuantLib::Period& p,
+                          const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                          bool permanent);
     };
 
     class EurliborSwapFixIFR : public SwapIndex {
       public:
-        EurliborSwapFixIFR(const QuantLib::Period& p,
-                           const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS);
+        EurliborSwapFixIFR(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                           const QuantLib::Period& p,
+                           const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                           bool permanent);
     };
 
 }
 
 #endif
+

@@ -34,17 +34,21 @@
 namespace QuantLibAddin {
 
     Interpolation::Interpolation(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::vector<QuantLib::Real>& x,
-        const std::vector<QuantLib::Real>& y)
-    : x_(x), y_(y) {
+        const std::vector<QuantLib::Real>& y,
+        bool permanent)
+    : Extrapolator(properties, permanent), x_(x), y_(y) {
         QL_REQUIRE(x.size()==y.size(), "unmatched x/y");
     }
 
     LinearInterpolation::LinearInterpolation(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::string &linearInterpolationType, 
         const std::vector<QuantLib::Real>& x,
-        const std::vector<QuantLib::Real>& y)
-    : Interpolation(x,y) {
+        const std::vector<QuantLib::Real>& y,
+        bool permanent)
+    : Interpolation(properties, x, y, permanent) {
         libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::Interpolation> >()
             (linearInterpolationType, x_.begin(), x_.end(), y_.begin());
         boost::dynamic_pointer_cast<QuantLib::Interpolation>(
@@ -52,14 +56,16 @@ namespace QuantLibAddin {
     }
 
     CubicSplineInterpolation::CubicSplineInterpolation(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::vector<QuantLib::Real>& x,
         const std::vector<QuantLib::Real>& y,
         QuantLib::CubicSpline::BoundaryCondition leftCondition,
         double leftConditionValue,
         QuantLib::CubicSpline::BoundaryCondition rightCondition,
         double rightConditionValue,
-        bool monotonicityConstraint)
-    : Interpolation(x,y) {
+        bool monotonicityConstraint,
+        bool permanent)
+    : Interpolation(properties, x, y, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CubicSpline(x_.begin(), x_.end(), y_.begin(),
                                   leftCondition, leftConditionValue,
@@ -70,6 +76,7 @@ namespace QuantLibAddin {
     }
 
     SABRInterpolation::SABRInterpolation(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::vector<QuantLib::Real>& x,
         const std::vector<QuantLib::Real>& y,
         QuantLib::Time t,
@@ -84,8 +91,9 @@ namespace QuantLibAddin {
         bool isRhoFixed,
         bool vegaWeighted,
         const boost::shared_ptr<QuantLib::EndCriteria>& ec,
-        const boost::shared_ptr<QuantLib::OptimizationMethod>& om)
-    : Interpolation(x,y), forward_(forward) {
+        const boost::shared_ptr<QuantLib::OptimizationMethod>& om,
+        bool permanent)
+    : Interpolation(properties, x, y, permanent), forward_(forward) {
 
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SABRInterpolation(x_.begin(), x_.end(), y_.begin(),

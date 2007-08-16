@@ -38,7 +38,9 @@
 
 namespace QuantLibAddin {
 
-    MultiProductComposite::MultiProductComposite()
+    MultiProductComposite::MultiProductComposite(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        bool permanent) : MarketModelComposite(properties, permanent)
     {
         libraryObject_ =
             boost::shared_ptr<QuantLib::MultiProductComposite>(new
@@ -46,10 +48,12 @@ namespace QuantLibAddin {
     }
 
     OneStepForwards::OneStepForwards(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::vector<QuantLib::Time>& rateTimes,
         const std::vector<QuantLib::Real>& accruals,
         const std::vector<QuantLib::Time>& paymentTimes,
-        const std::vector<QuantLib::Rate>& strikes)
+        const std::vector<QuantLib::Rate>& strikes,
+        bool permanent) : MarketModelMultiProduct(properties, permanent)
     {
         QL_REQUIRE(rateTimes.size()>1,
                    "rate times vector must contain at least two values");
@@ -60,6 +64,7 @@ namespace QuantLibAddin {
     }
 
     MultiStepRatchet::MultiStepRatchet(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::vector<QuantLib::Time>& rateTimes,
         const std::vector<QuantLib::Real>& accruals,
         const std::vector<QuantLib::Time>& paymentTimes,
@@ -68,7 +73,8 @@ namespace QuantLibAddin {
         QuantLib::Rate spreadOfFloor,
         QuantLib::Rate spreadOfFixing,
         QuantLib::Real initialFloor,
-        bool payer)
+        bool payer,
+        bool permanent) : MarketModelMultiProduct(properties, permanent)
     {
         libraryObject_ =
             boost::shared_ptr<QuantLib::MarketModelMultiProduct>(new
@@ -81,28 +87,30 @@ namespace QuantLibAddin {
 
     std::string MarketModelMultiProduct::evolution() const
     {
-        const QuantLib::EvolutionDescription& ev = libraryObject_->evolution();
-        boost::shared_ptr<ObjectHandler::Object> objectPointer(
-            new QuantLibAddin::EvolutionDescription(ev));
-        // Eric 27-Apr-07 - A limitation of OH redesign is that there can only be one anonymous
-        // object per cell.  The line below may cause problems if creation of a second anonymous
+        // Eric 27-Apr-07 - A limitation of OH redesign is that there can only be one
+        // anonymous object per cell.  The code below creates an anonymous object on
+        // the fly which may cause problems if creation of a second anonymous
         // object is attempted elsewhere within the same overall operation.
-        std::string anonymousID =
-            ObjectHandler::Repository::instance().storeObject("", objectPointer);
-        objectPointer->setProperties(
-            boost::shared_ptr<ObjectHandler::ValueObject>(
+
+        const QuantLib::EvolutionDescription& ev = libraryObject_->evolution();
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
             new ValueObjects::qlEvolutionDescription(
-                anonymousID,
+                "",
                 ev.rateTimes(),
-                ev.evolutionTimes())));
-        return anonymousID;
+                ev.evolutionTimes(),
+                false));
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new QuantLibAddin::EvolutionDescription(valueObject, ev, false));
+        return ObjectHandler::Repository::instance().storeObject("", object);
     }
 
     OneStepOptionlets::OneStepOptionlets(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Time>& rateTimes,
             const std::vector<QuantLib::Real>& accruals,
             const std::vector<QuantLib::Time>& paymentTimes,
-            const std::vector<boost::shared_ptr<QuantLib::Payoff> >& payoffs)
+            const std::vector<boost::shared_ptr<QuantLib::Payoff> >& payoffs,
+            bool permanent) : MarketModelMultiProduct(properties, permanent)
     {
         libraryObject_ =
             boost::shared_ptr<QuantLib::MarketModelMultiProduct>(new
@@ -111,3 +119,4 @@ namespace QuantLibAddin {
     }
   
 }
+

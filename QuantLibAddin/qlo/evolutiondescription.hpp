@@ -38,14 +38,21 @@ namespace QuantLibAddin {
     class EvolutionDescription : public ObjectHandler::LibraryObject<QuantLib::EvolutionDescription> {
     public:
         EvolutionDescription(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Time>& rateTimes,
-            const std::vector<QuantLib::Time>& evolutionTimes);
+            const std::vector<QuantLib::Time>& evolutionTimes,
+            bool permanent);
         EvolutionDescription(
-            const QuantLib::EvolutionDescription& ev);
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::EvolutionDescription& ev,
+            bool permanent);
         EvolutionDescription(
-            const QuantLib::MarketModelMultiProduct& product);
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::MarketModelMultiProduct& product,
+            bool permanent);
     };
   
 }
 
 #endif
+

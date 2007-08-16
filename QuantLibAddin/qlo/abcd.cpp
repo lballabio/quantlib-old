@@ -30,15 +30,19 @@
 
 namespace QuantLibAddin {
    
-    Abcd::Abcd(QuantLib::Real a, 
+    Abcd::Abcd(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+               QuantLib::Real a, 
                QuantLib::Real b,
                QuantLib::Real c, 
-               QuantLib::Real d) {
+               QuantLib::Real d,
+               bool permanent) : ObjectHandler::LibraryObject<QuantLib::Abcd>(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::Abcd>(
             new QuantLib::Abcd(a, b, c, d));
     }   
 
-    AbcdCalibration::AbcdCalibration(const std::vector<QuantLib::Time>& times,
+    AbcdCalibration::AbcdCalibration(
+               const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+               const std::vector<QuantLib::Time>& times,
                const std::vector<QuantLib::Volatility>& blackVols,
                QuantLib::Real a, QuantLib::Real b,
                QuantLib::Real c, QuantLib::Real d,
@@ -46,7 +50,8 @@ namespace QuantLibAddin {
                bool cIsFixed, bool dIsFixed,
                bool vegaWeighted,
                const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
-               const boost::shared_ptr<QuantLib::OptimizationMethod> method) {
+               const boost::shared_ptr<QuantLib::OptimizationMethod> method,
+               bool permanent) : ObjectHandler::LibraryObject<QuantLib::AbcdCalibration>(properties, permanent) {
 
         libraryObject_ = boost::shared_ptr<QuantLib::AbcdCalibration>(
             new QuantLib::AbcdCalibration(times, blackVols, a, b, c, d,
@@ -54,3 +59,4 @@ namespace QuantLibAddin {
                                vegaWeighted, endCriteria, method));
     }
 }
+

@@ -27,8 +27,10 @@ namespace QuantLibAddin {
 
     class DoubleStickyRatchetPayoff : public Payoff {
       public:
-          DoubleStickyRatchetPayoff() {}
+          //DoubleStickyRatchetPayoff() {}
+          OH_OBJ_CTOR(DoubleStickyRatchetPayoff, Payoff)
           DoubleStickyRatchetPayoff(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const QuantLib::Real type1,
               const QuantLib::Real type2,
               const QuantLib::Real gearing1,
@@ -39,34 +41,40 @@ namespace QuantLibAddin {
               const QuantLib::Spread spread3,
               const QuantLib::Real initialValue1,
               const QuantLib::Real initialValue2,
-              const QuantLib::Real accrualFactor);
+              const QuantLib::Real accrualFactor,
+              bool permanent);
     };
 
     class RatchetPayoff : public DoubleStickyRatchetPayoff {
       public:
           RatchetPayoff(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const QuantLib::Real gearing1,
               const QuantLib::Real gearing2,
               const QuantLib::Spread spread1,
               const QuantLib::Spread spread2,
               const QuantLib::Real initialValue,
-              const QuantLib::Real accrualFactor);
+              const QuantLib::Real accrualFactor,
+              bool permanent);
     };
 
     class StickyPayoff : public DoubleStickyRatchetPayoff {
       public:
           StickyPayoff(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const QuantLib::Real gearing1,
               const QuantLib::Real gearing2,
               const QuantLib::Spread spread1,
               const QuantLib::Spread spread2,
               const QuantLib::Real initialValue,
-              const QuantLib::Real accrualFactor);
+              const QuantLib::Real accrualFactor,
+              bool permanent);
     };
 
     class RatchetMaxPayoff : public DoubleStickyRatchetPayoff {
       public:
           RatchetMaxPayoff(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const QuantLib::Real gearing1,
               const QuantLib::Real gearing2,
               const QuantLib::Real gearing3,
@@ -75,12 +83,14 @@ namespace QuantLibAddin {
               const QuantLib::Spread spread3,
               const QuantLib::Real initialValue1,
               const QuantLib::Real initialValue2,
-              const QuantLib::Real accrualFactor);
+              const QuantLib::Real accrualFactor,
+              bool permanent);
     };
 
     class RatchetMinPayoff : public DoubleStickyRatchetPayoff {
       public:
           RatchetMinPayoff(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const QuantLib::Real gearing1,
               const QuantLib::Real gearing2,
               const QuantLib::Real gearing3,
@@ -89,12 +99,14 @@ namespace QuantLibAddin {
               const QuantLib::Spread spread3,
               const QuantLib::Real initialValue1,
               const QuantLib::Real initialValue2,
-              const QuantLib::Real accrualFactor);
+              const QuantLib::Real accrualFactor,
+              bool permanent);
     };
 
     class StickyMaxPayoff : public DoubleStickyRatchetPayoff {
       public:
           StickyMaxPayoff(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const QuantLib::Real gearing1,
               const QuantLib::Real gearing2,
               const QuantLib::Real gearing3,
@@ -103,12 +115,14 @@ namespace QuantLibAddin {
               const QuantLib::Spread spread3,
               const QuantLib::Real initialValue1,
               const QuantLib::Real initialValue2,
-              const QuantLib::Real accrualFactor);
+              const QuantLib::Real accrualFactor,
+              bool permanent);
     };
 
     class StickyMinPayoff : public DoubleStickyRatchetPayoff {
       public:
           StickyMinPayoff(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const QuantLib::Real gearing1,
               const QuantLib::Real gearing2,
               const QuantLib::Real gearing3,
@@ -117,9 +131,11 @@ namespace QuantLibAddin {
               const QuantLib::Spread spread3,
               const QuantLib::Real initialValue1,
               const QuantLib::Real initialValue2,
-              const QuantLib::Real accrualFactor);
+              const QuantLib::Real accrualFactor,
+              bool permanent);
     };
 
 }
 
 #endif
+

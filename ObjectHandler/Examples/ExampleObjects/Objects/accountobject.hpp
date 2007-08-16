@@ -29,9 +29,13 @@ namespace AccountExample {
     public:
 
         AccountObject(
-                const Account::Type &type,
-                const long &number,
-                const long &balance) {
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const Account::Type &type,
+            const long &number,
+            const long &balance,
+            bool permanent)
+            : ObjectHandler::LibraryObject<Account>(properties, permanent) {
+
             libraryObject_ = boost::shared_ptr<Account>(
                 new Account(type, number, balance));
         }

@@ -37,16 +37,19 @@ namespace QuantLibAddin {
     class ContinuousAveragingAsianOption : public OneAssetOption {
       public:
         ContinuousAveragingAsianOption(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Average::Type averageType,
             const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess >& blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
             const boost::shared_ptr<QuantLib::Exercise>& exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine);
+            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine,
+            bool permanent);
     };
 
     class DiscreteAveragingAsianOption : public OneAssetOption {
       public:
         DiscreteAveragingAsianOption(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Average::Type averageType,
             QuantLib::Real runningAccumulator,
             QuantLib::Size pastFixings,
@@ -54,9 +57,11 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess >& blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
             const boost::shared_ptr<QuantLib::Exercise>& exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine);
+            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine,
+            bool permanent);
     };
 
 }
 
 #endif
+

@@ -28,28 +28,36 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class Exercise : public ObjectHandler::LibraryObject<QuantLib::Exercise> {
-    };
+    OH_LIB_CLASS(Exercise, QuantLib::Exercise)
 
     class AmericanExercise : public Exercise {
     public:
         AmericanExercise(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& earliestDate,
             const QuantLib::Date& latestDate,
-            const bool payoffAtExpiry);
+            const bool payoffAtExpiry,
+            bool permanent);
     };
 
     class EuropeanExercise : public Exercise {
     public:
-        EuropeanExercise(const QuantLib::Date& expiryDate);
+        EuropeanExercise(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Date& expiryDate,
+            bool permanent);
     };
 
     class BermudanExercise : public Exercise {
     public:
-        BermudanExercise(const std::vector<QuantLib::Date>& dates,
-                         const bool payoffAtExpiry);
+        BermudanExercise(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Date>& dates,
+            const bool payoffAtExpiry,
+            bool permanent);
     };
 
 }
 
 #endif
+

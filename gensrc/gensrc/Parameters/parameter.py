@@ -180,7 +180,7 @@ class PermanentFlag(Value):
     name_ = 'permanent'
     tensorRank_ = common.SCALAR
     type_ = common.BOOL
-    ignore_ = True
+    #ignore_ = True
     description_ = 'object permanent/nonpermanent'
     default_ = 'false'
 

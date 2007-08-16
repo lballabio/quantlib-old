@@ -35,31 +35,35 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
     
-    class SmileSection : 
-                public ObjectHandler::LibraryObject<QuantLib::SmileSection> {};
+    OH_LIB_CLASS(SmileSection, QuantLib::SmileSection)
 
     class FlatSmileSection : public SmileSection {
       public:
-        FlatSmileSection(const QuantLib::Date& optionDate,
+        FlatSmileSection(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                         const QuantLib::Date& optionDate,
                          QuantLib::Volatility v,
                          const QuantLib::DayCounter& dc,
                          const QuantLib::Date& refDate,
-                         QuantLib::Real atmValue);
+                         QuantLib::Real atmValue,
+                         bool permanent);
     };
 
     class InterpolatedSmileSection : public SmileSection {
       public:
         InterpolatedSmileSection(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const QuantLib::Date& optionDate,
               const std::vector<QuantLib::Rate>& strikes,
               const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& stdDevs,
               const QuantLib::RelinkableHandle<QuantLib::Quote>& atmLevel,
-              const QuantLib::DayCounter& dc);
+              const QuantLib::DayCounter& dc,
+              bool permanent);
     };
 
     class SabrSmileSection: public SmileSection{
       public:
         SabrSmileSection(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Time expiry,
             const std::vector<QuantLib::Rate>& strikes,
             const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& stdDevs,
@@ -76,13 +80,15 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::EndCriteria> endCriteria
                 = boost::shared_ptr<QuantLib::EndCriteria>(),
             const boost::shared_ptr<QuantLib::OptimizationMethod> method
-                = boost::shared_ptr<QuantLib::OptimizationMethod>());
+                = boost::shared_ptr<QuantLib::OptimizationMethod>(),
+            bool permanent = false);
         
     };
 
     class SabrInterpolatedSmileSection: public SmileSection {
       public:
         SabrInterpolatedSmileSection(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& optionDate,
             const std::vector<QuantLib::Rate>& strikes,
             const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& stdDevs,
@@ -98,8 +104,10 @@ namespace QuantLibAddin {
             bool vegaWeighted,
             const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
             const boost::shared_ptr<QuantLib::OptimizationMethod> method,
-            const QuantLib::DayCounter& dc);
+            const QuantLib::DayCounter& dc,
+            bool permanent);
     };
 }
 
 #endif
+

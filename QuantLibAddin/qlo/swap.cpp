@@ -33,9 +33,11 @@
 
 namespace QuantLibAddin {
 
-    Swap::Swap(const std::vector<boost::shared_ptr<Leg> >& legWrappers,
+    Swap::Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+               const std::vector<boost::shared_ptr<Leg> >& legWrappers,
                const std::vector<bool>& payer,
-               const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS) {
+               const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+               bool permanent) : Instrument(properties, permanent) {
 
         std::vector<QuantLib::Leg> legs(legWrappers.size());
         for (QuantLib::Size i = 0; i<legWrappers.size(); ++i)
@@ -46,12 +48,14 @@ namespace QuantLibAddin {
 
     // QuantLib::MakeCms
     Swap::Swap(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Period& swapTenor,
         const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
         const QuantLib::Spread iborSpread,
         const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
-        const QuantLib::Period& forwardStart)
-    {
+        const QuantLib::Period& forwardStart,
+        bool permanent) : Instrument(properties, permanent) {
+
         boost::shared_ptr<QuantLib::Swap> swap = QuantLib::MakeCms(swapTenor, swapIndex, iborSpread,
             forwardStart).operator
                 boost::shared_ptr<QuantLib::Swap>();
@@ -67,3 +71,4 @@ namespace QuantLibAddin {
     }
 
 }
+

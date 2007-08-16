@@ -47,9 +47,9 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x13""addin1CreateAccount"), // function code name
-            TempStrNoSize("\x06""CCCNP#"),               // parameter codes
+            TempStrNoSize("\x07""CCCNPL#"),             // parameter codes
             TempStrNoSize("\x13""addin1CreateAccount"), // function display name
-            TempStrNoSize("\x1C""objectID,type,number,balance"), // comma-delimited list of parameters
+            TempStrNoSize("\x26""objectID,type,number,balance,permanent"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -120,7 +120,8 @@ DLLEXPORT char *addin1CreateAccount(
         char *objectID,
         char *type,
         long *number,
-        OPER *balance) {
+        OPER *balance,
+        bool *permanent) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
@@ -138,11 +139,11 @@ DLLEXPORT char *addin1CreateAccount(
         AccountExample::Account::Type typeEnum =
             ObjectHandler::Create<AccountExample::Account::Type>()(type);
 
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
+            new AccountExample::AccountValueObject(objectID, type, *number, balanceVariant, *permanent));
+
         boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountExample::AccountObject(typeEnum, *number, balanceLong));
-        object->setProperties(
-            boost::shared_ptr<ObjectHandler::ValueObject>(
-                new AccountExample::AccountValueObject(objectID, type, *number, balanceVariant)));
+            new AccountExample::AccountObject(valueObject, typeEnum, *number, balanceLong, *permanent));
 
         std::string returnValue = 
             ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);

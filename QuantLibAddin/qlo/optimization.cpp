@@ -30,11 +30,14 @@
 
 namespace QuantLibAddin {
 
-    EndCriteria::EndCriteria(QuantLib::Size maxIterations,
+    EndCriteria::EndCriteria(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                             QuantLib::Size maxIterations,
                              QuantLib::Size maxStationaryStateIterations,
                              QuantLib::Real rootEpsilon,
                              QuantLib::Real functionEpsilon,
-                             QuantLib::Real gradientNormEpsilon) {
+                             QuantLib::Real gradientNormEpsilon,
+                             bool permanent)
+        : ObjectHandler::LibraryObject<QuantLib::EndCriteria>(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::EndCriteria>(new
             QuantLib::EndCriteria(maxIterations,
                                   maxStationaryStateIterations,
@@ -43,38 +46,50 @@ namespace QuantLibAddin {
                                   gradientNormEpsilon));
     }
 
-    Simplex::Simplex(QuantLib::Real lambda) {
+    Simplex::Simplex(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Real lambda,
+            bool permanent) : OptimizationMethod(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
             QuantLib::Simplex(lambda));
     }
 
-    LevenbergMarquardt::LevenbergMarquardt(QuantLib::Real epsfcn,
+    LevenbergMarquardt::LevenbergMarquardt(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                           QuantLib::Real epsfcn,
                                            QuantLib::Real xtol,
-                                           QuantLib::Real gtol)
+                                           QuantLib::Real gtol,
+                                           bool permanent) : OptimizationMethod(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
             QuantLib::LevenbergMarquardt(epsfcn, xtol, gtol));
     }
 
-    ArmijoLineSearch::ArmijoLineSearch(QuantLib::Real eps,
+    ArmijoLineSearch::ArmijoLineSearch(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                       QuantLib::Real eps,
                                        QuantLib::Real alpha,
-                                       QuantLib::Real beta) {
+                                       QuantLib::Real beta,
+                                       bool permanent) : LineSearch(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::LineSearch>(new
             QuantLib::ArmijoLineSearch(eps, alpha, beta));
     }
 
     ConjugateGradient::ConjugateGradient(
-                   const boost::shared_ptr<QuantLib::LineSearch>& lineSearch)
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::LineSearch>& lineSearch,
+            bool permanent) : LineSearchBasedMethod(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
             QuantLib::ConjugateGradient(lineSearch));
     }
 
     SteepestDescent::SteepestDescent(
-                   const boost::shared_ptr<QuantLib::LineSearch>& lineSearch)
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::LineSearch>& lineSearch,
+            bool permanent) : LineSearchBasedMethod(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::OptimizationMethod>(new
             QuantLib::SteepestDescent(lineSearch));
     }
       
 }
+

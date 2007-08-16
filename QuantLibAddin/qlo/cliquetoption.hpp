@@ -35,11 +35,13 @@ namespace QuantLibAddin {
     class CliquetOption : public OneAssetOption {
     public:
         CliquetOption(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
             const boost::shared_ptr<QuantLib::PercentageStrikePayoff> &payoff,
             const boost::shared_ptr < QuantLib::EuropeanExercise > &exercise,
             const std::vector < QuantLib::Date > &resetDates,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine);
+            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            bool permanent);
     };
 
 }

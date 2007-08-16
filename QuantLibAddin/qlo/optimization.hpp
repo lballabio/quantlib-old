@@ -45,50 +45,64 @@ namespace QuantLibAddin {
     class EndCriteria :
         public ObjectHandler::LibraryObject<QuantLib::EndCriteria> {
       public:
-        EndCriteria(QuantLib::Size maxIterations,
+        EndCriteria(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    QuantLib::Size maxIterations,
                     QuantLib::Size maxStationaryStateIterations,
                     QuantLib::Real rootEpsilon,
                     QuantLib::Real functionEpsilon,
-                    QuantLib::Real gradientNormEpsilon);
+                    QuantLib::Real gradientNormEpsilon,
+                    bool permanent);
     };
 
-    class OptimizationMethod :
-        public ObjectHandler::LibraryObject<QuantLib::OptimizationMethod> {};
+    OH_LIB_CLASS(OptimizationMethod, QuantLib::OptimizationMethod)
 
     class Simplex : public OptimizationMethod {
       public:
-        Simplex(QuantLib::Real lambda);
+        Simplex(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Real lambda,
+            bool permanent);
     };
 
     class LevenbergMarquardt : public OptimizationMethod {
       public:
-        LevenbergMarquardt(QuantLib::Real epsfcn,
+        LevenbergMarquardt(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                           QuantLib::Real epsfcn,
                            QuantLib::Real xtol,
-                           QuantLib::Real gtol);
+                           QuantLib::Real gtol,
+                           bool permanent);
     };
    
-    class LineSearch :
-        public ObjectHandler::LibraryObject<QuantLib::LineSearch> {};
+    OH_LIB_CLASS(LineSearch, QuantLib::LineSearch)
 
     class ArmijoLineSearch : public LineSearch {
       public:
-        ArmijoLineSearch(QuantLib::Real eps,
+        ArmijoLineSearch(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                         QuantLib::Real eps,
                          QuantLib::Real alpha,
-                         QuantLib::Real beta);
+                         QuantLib::Real beta,
+                         bool permanent);
     };
 
-    class LineSearchBasedMethod : public OptimizationMethod {};
+    OH_OBJ_CLASS(LineSearchBasedMethod, OptimizationMethod)
 
     class ConjugateGradient : public LineSearchBasedMethod {
       public:
-        ConjugateGradient(const boost::shared_ptr<QuantLib::LineSearch>&);
+        ConjugateGradient(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::LineSearch>&,
+            bool permanent);
     };
 
     class SteepestDescent : public LineSearchBasedMethod {
       public:
-        SteepestDescent(const boost::shared_ptr<QuantLib::LineSearch>&);
+        SteepestDescent(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::LineSearch>&,
+            bool permanent);
     };
 
 }
 
 #endif
+

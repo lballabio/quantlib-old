@@ -28,13 +28,15 @@ namespace QuantLibAddin {
     class QuantoVanillaOption : public OneAssetOption {
     public:
         QuantoVanillaOption(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-                const boost::shared_ptr<QuantLib::BlackVolTermStructure> &blackVolTermStructure,
-                const double &correlation,
-                const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess> &blackScholesProcess,
-                const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-                const boost::shared_ptr<QuantLib::Exercise> &exercise,
-                const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine);
+            const boost::shared_ptr<QuantLib::BlackVolTermStructure> &blackVolTermStructure,
+            const double &correlation,
+            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess> &blackScholesProcess,
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
+            const boost::shared_ptr<QuantLib::Exercise> &exercise,
+            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            bool permanent);
     };
 
 }

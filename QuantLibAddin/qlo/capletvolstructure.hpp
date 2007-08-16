@@ -34,17 +34,25 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
     
-    class CapletVolatilityStructure : public TermStructure {};
+    class CapletVolatilityStructure : public TermStructure {
+        public:
+            CapletVolatilityStructure(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+              bool permanent) : TermStructure(properties, permanent) {}
+    };
 
     class CapletConstantVolatility : public CapletVolatilityStructure {
       public:
-      CapletConstantVolatility(const QuantLib::Handle<QuantLib::Quote>& volatility,
-                               const QuantLib::DayCounter& dayCounter);
+      CapletConstantVolatility(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                               const QuantLib::Handle<QuantLib::Quote>& volatility,
+                               const QuantLib::DayCounter& dayCounter,
+                               bool permanent);
     };
 
     class CapsStripper : public CapletVolatilityStructure {
         public:
-        CapsStripper(const std::vector<QuantLib::Period>& tenors,
+        CapsStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                     const std::vector<QuantLib::Period>& tenors,
                      const std::vector<QuantLib::Rate>& strikes,
                      const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
                      const boost::shared_ptr<QuantLib::IborIndex>& index,
@@ -52,9 +60,11 @@ namespace QuantLibAddin {
                      const QuantLib::DayCounter& dayCounter,
                      QuantLib::Real impliedVolatilityAccuracy,
                      QuantLib::Size maxEvaluations,
-                     bool decoupledInterpolation);
+                     bool decoupledInterpolation,
+                     bool permanent);
 
-     CapsStripper(const std::vector<QuantLib::Period>& tenors,
+     CapsStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                  const std::vector<QuantLib::Period>& tenors,
                   const std::vector<QuantLib::Rate>& strikes,
                   const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
                   const boost::shared_ptr<QuantLib::IborIndex>& index,
@@ -64,43 +74,59 @@ namespace QuantLibAddin {
                   QuantLib::Size maxEvaluations,
                   const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& 
                     smileSectionInterfaces,
-                  bool decoupledInterpolation);
+                  bool decoupledInterpolation,
+                  bool permanent);
     };
 
     class SmileSectionsVolStructure: public CapletVolatilityStructure {
       public:
         SmileSectionsVolStructure(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Date& referenceDate,
         const QuantLib::DayCounter& dayCounter,
-        const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& smileSections);
+        const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& smileSections,
+        bool permanent);
         
         };
 
     class SpreadedCapletVolatilityStructure : public CapletVolatilityStructure {
       public:
         SpreadedCapletVolatilityStructure(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& underlyingVolStructure,
-            const QuantLib::Handle<QuantLib::Quote>&);
+            const QuantLib::Handle<QuantLib::Quote>&,
+            bool permanent);
 
     };
 
       class GenericCapletVolStructure : public CapletVolatilityStructure {
       public:
-          GenericCapletVolStructure(std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& capletVols,
+          GenericCapletVolStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                    std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& capletVols,
                                     const std::vector<QuantLib::Rate>& strikes,
-                                    const std::vector<QuantLib::Time>& tenors);
+                                    const std::vector<QuantLib::Time>& tenors,
+                                    bool permanent);
     };
 
-    class CapVolatilityStructure : public TermStructure {};
+    class CapVolatilityStructure : public TermStructure {
+        public:
+            CapVolatilityStructure(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+              bool permanent) : TermStructure(properties, permanent) {}
+    };
+
     class CapVolatilityVector : public CapVolatilityStructure {
       public:
       CapVolatilityVector(
+          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
           const std::vector<QuantLib::Period>& optionTenors,
           const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& volatilities,
-          const QuantLib::DayCounter& dayCounter);
+          const QuantLib::DayCounter& dayCounter,
+          bool permanent);
     };
 }
 
 #endif
+

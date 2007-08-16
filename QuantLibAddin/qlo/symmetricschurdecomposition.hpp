@@ -27,9 +27,12 @@ namespace QuantLibAddin {
     class SymmetricSchurDecomposition : public ObjectHandler::LibraryObject<
         QuantLib::SymmetricSchurDecomposition> {
       public:
-        SymmetricSchurDecomposition(const QuantLib::Matrix & s);
+        SymmetricSchurDecomposition(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                    const QuantLib::Matrix & s,
+                                    bool permanent);
     };
     
 }
 
 #endif
+

@@ -34,18 +34,22 @@ namespace QuantLibAddin {
 
     class Schedule : public ObjectHandler::LibraryObject<QuantLib::Schedule> {
       public:
-        Schedule(const QuantLib::Date& effectiveDate,
-                 const QuantLib::Date& terminationDate,
-                 const QuantLib::Period& tenor,
-                 const QuantLib::Calendar& calendar,
-                 QuantLib::BusinessDayConvention convention,
-                 QuantLib::BusinessDayConvention terminationDateConvention,
-                 bool backward,
-                 bool endOfMonth,
-                 const QuantLib::Date& firstDate,
-                 const QuantLib::Date& nextToLastDate);
+        Schedule(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Date& effectiveDate,
+            const QuantLib::Date& terminationDate,
+            const QuantLib::Period& tenor,
+            const QuantLib::Calendar& calendar,
+            QuantLib::BusinessDayConvention convention,
+            QuantLib::BusinessDayConvention terminationDateConvention,
+            bool backward,
+            bool endOfMonth,
+            const QuantLib::Date& firstDate,
+            const QuantLib::Date& nextToLastDate,
+            bool permanent);
     };
 
 }
 
 #endif
+

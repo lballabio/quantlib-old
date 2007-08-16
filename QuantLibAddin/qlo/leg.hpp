@@ -39,6 +39,7 @@ namespace QuantLibAddin {
 
     class Leg : public ObjectHandler::Object {
       public:
+        OH_OBJ_CTOR(Leg, ObjectHandler::Object)
         QuantLib::Rate previousCouponRate(const QuantLib::Date& refDate) const;
         QuantLib::Rate currentCouponRate(const QuantLib::Date& refDate) const;
         QuantLib::Date startDate() const;
@@ -72,23 +73,30 @@ namespace QuantLibAddin {
 
     class MultiPhaseLeg : public Leg {
       public:
-        MultiPhaseLeg(const std::vector<boost::shared_ptr<Leg> >& legs,
-                      bool toBeSorted);
+        MultiPhaseLeg(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                      const std::vector<boost::shared_ptr<Leg> >& legs,
+                      bool toBeSorted,
+                      bool permanent);
     };
 
     class SimpleCashFlowVector : public Leg {
       public:
-        SimpleCashFlowVector(const std::vector<QuantLib::Real>& amounts,
-                             const std::vector<QuantLib::Date>& dates);
+        SimpleCashFlowVector(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                             const std::vector<QuantLib::Real>& amounts,
+                             const std::vector<QuantLib::Date>& dates,
+                             bool permanent);
     };
 
     class InterestRate : public ObjectHandler::LibraryObject<QuantLib::InterestRate> {
       public:
-      InterestRate(QuantLib::Rate r,
+      InterestRate(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                   QuantLib::Rate r,
                    const QuantLib::DayCounter& dc,
                    QuantLib::Compounding comp,
-                   QuantLib::Frequency freq);
+                   QuantLib::Frequency freq,
+                   bool permanent);
 	};
 }
 
 #endif
+

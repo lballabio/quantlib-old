@@ -29,9 +29,11 @@
 namespace QuantLibAddin {
 
     BlackConstantVol::BlackConstantVol(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& settlementDate,
             QuantLib::Volatility volatility,
-            const QuantLib::DayCounter& dayCounter)
+            const QuantLib::DayCounter& dayCounter,
+            bool permanent) : BlackVolTermStructure(properties, permanent)
     {
         libraryObject_ =
             boost::shared_ptr<QuantLib::BlackVolTermStructure>(new
@@ -41,11 +43,13 @@ namespace QuantLibAddin {
     }
 
     BlackVarianceSurface::BlackVarianceSurface(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& settlementDate,
             const std::vector<QuantLib::Date>& dates,
             const std::vector<QuantLib::Rate>& strikes,
             const QuantLib::Matrix& vols,
-            const QuantLib::DayCounter& dayCounter)
+            const QuantLib::DayCounter& dayCounter,
+            bool permanent) : BlackVolTermStructure(properties, permanent)
     {
         libraryObject_ =
             boost::shared_ptr<QuantLib::BlackVolTermStructure>(new
@@ -57,3 +61,4 @@ namespace QuantLibAddin {
     }
 
 }
+

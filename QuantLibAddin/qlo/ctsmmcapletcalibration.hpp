@@ -38,13 +38,12 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class CTSMMCapletCalibration : public
-        ObjectHandler::LibraryObject<QuantLib::CTSMMCapletCalibration> {
-    };
+    OH_LIB_CLASS(CTSMMCapletCalibration, QuantLib::CTSMMCapletCalibration)
 
     class CTSMMCapletOriginalCalibration : public CTSMMCapletCalibration {
       public:
         CTSMMCapletOriginalCalibration(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::EvolutionDescription& evolution,
             const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
@@ -53,12 +52,14 @@ namespace QuantLibAddin {
             QuantLib::Spread displacement,
             const std::vector<QuantLib::Real>& alpha,
             bool lowestRoot,
-			bool useFullApprox);
+			bool useFullApprox,
+            bool permanent);
     };
 
     class CTSMMCapletAlphaFormCalibration : public CTSMMCapletCalibration {
       public:
         CTSMMCapletAlphaFormCalibration(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::EvolutionDescription& evolution,
             const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
@@ -69,22 +70,26 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& alphaMax,
             const std::vector<QuantLib::Real>& alphaMin,
             bool maximizeHomogeneity,
-            boost::shared_ptr<QuantLib::AlphaForm>& parametricForm);
+            boost::shared_ptr<QuantLib::AlphaForm>& parametricForm,
+            bool permanent);
     };
 
     class CTSMMCapletMaxHomogeneityCalibration : public CTSMMCapletCalibration {
       public:
         CTSMMCapletMaxHomogeneityCalibration(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::EvolutionDescription& evolution,
             const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const std::vector<boost::shared_ptr<QuantLib::PiecewiseConstantVariance> >& swapVariances,
             const std::vector<QuantLib::Volatility>& capletVols,
             const boost::shared_ptr<QuantLib::CurveState>& cs,
             QuantLib::Spread displacement,
-            QuantLib::Real caplet0Swaption1Priority);
+            QuantLib::Real caplet0Swaption1Priority,
+            bool permanent);
     };
 
 
  }
 
 #endif
+

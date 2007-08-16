@@ -32,9 +32,11 @@
 namespace QuantLibAddin {
  
     LogNormalFwdRatePc::LogNormalFwdRatePc(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
         const QuantLib::BrownianGeneratorFactory& generatorFactory,
-        const std::vector<QuantLib::Size>& numeraires)
+        const std::vector<QuantLib::Size>& numeraires,
+        bool permanent) : MarketModelEvolver(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
             new QuantLib::LogNormalFwdRatePc(pseudoRoot,
@@ -43,9 +45,11 @@ namespace QuantLibAddin {
     }
 
     LogNormalFwdRateIpc::LogNormalFwdRateIpc(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
         const QuantLib::BrownianGeneratorFactory& generatorFactory,
-        const std::vector<QuantLib::Size>& numeraires)
+        const std::vector<QuantLib::Size>& numeraires,
+        bool permanent) : MarketModelEvolver(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
             new QuantLib::LogNormalFwdRateIpc(pseudoRoot,
@@ -54,9 +58,11 @@ namespace QuantLibAddin {
     }
 
     NormalFwdRatePc::NormalFwdRatePc(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const boost::shared_ptr<QuantLib::MarketModel>& pseudoRoot,
         const QuantLib::BrownianGeneratorFactory& generatorFactory,
-        const std::vector<QuantLib::Size>& numeraires)
+        const std::vector<QuantLib::Size>& numeraires,
+        bool permanent) : MarketModelEvolver(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::MarketModelEvolver>(
             new QuantLib::NormalFwdRatePc(pseudoRoot,
@@ -65,3 +71,4 @@ namespace QuantLibAddin {
     }
 
 }
+

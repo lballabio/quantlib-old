@@ -26,8 +26,9 @@ namespace AccountExample {
     const char* CustomerValueObject::mPropertyNames[] = {
         "objectID",
         "className",
-        "name",
-        "age"};
+        "Permanent",
+        "Name",
+        "Age"};
 
     std::vector<std::string> CustomerValueObject::getPropertyNames() const {
         return std::vector<std::string>(mPropertyNames,
@@ -37,8 +38,9 @@ namespace AccountExample {
     boost::any CustomerValueObject::getProperty(const std::string& name) const {
         if(name == "objectID") return objectID_;
         else if(name == "className") return className_;
-        else if(name == "name") return name_;
-        else if(name == "age") return age_;
+        else if(name == "Permanent") return permanent_;
+        else if(name == "Name") return name_;
+        else if(name == "Age") return age_;
         else 
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }
@@ -46,8 +48,9 @@ namespace AccountExample {
     void CustomerValueObject::setProperty(const std::string& name, const boost::any& value) {
         if(name == "objectID") objectID_ = boost::any_cast<std::string>(value);
         else if(name == "className") className_ = boost::any_cast<std::string>(value);
-        else if(name == "name") name_ = boost::any_cast<std::string>(value);
-        else if(name == "age") age_ = boost::any_cast<long>(value);
+        else if(name == "Permanent") name_ = boost::any_cast<bool>(value);
+        else if(name == "Name") name_ = boost::any_cast<std::string>(value);
+        else if(name == "Age") age_ = boost::any_cast<long>(value);
         else 
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }

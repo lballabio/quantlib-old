@@ -42,13 +42,15 @@
 namespace QuantLibAddin {
 
     PiecewiseYieldCurve::PiecewiseYieldCurve(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
             const std::vector<std::string>& handlesRateHelper,
             const QuantLib::DayCounter& dayCounter,
             const std::string& traitsID, 
             const std::string& interpolatorID,
-            QuantLib::Real accuracy)
+            QuantLib::Real accuracy,
+            bool permanent) : YieldTermStructure(properties, permanent)
     {
         std::vector<boost::shared_ptr<QuantLib::RateHelper> > rateHelpersQL;
         rateHelpersQL.reserve(handlesRateHelper.size());
@@ -94,39 +96,47 @@ namespace QuantLibAddin {
     }
 
     DiscountCurve::DiscountCurve(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::vector<QuantLib::Date>& dates,
         const std::vector<QuantLib::DiscountFactor>& dfs,
-        const QuantLib::DayCounter& dayCounter)
+        const QuantLib::DayCounter& dayCounter,
+        bool permanent) : YieldTermStructure(properties, permanent)
     {
         QL_REQUIRE(!dates.empty(), "no input dates given");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::DiscountCurve(dates, dfs, dayCounter));
     }
 
-    ZeroCurve::ZeroCurve(const std::vector<QuantLib::Date>& dates,
+    ZeroCurve::ZeroCurve(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                         const std::vector<QuantLib::Date>& dates,
                          const std::vector<QuantLib::Rate>& zeroRates,
-                         const QuantLib::DayCounter& dayCounter)
+                         const QuantLib::DayCounter& dayCounter,
+                         bool permanent) : YieldTermStructure(properties, permanent)
     {
         QL_REQUIRE(!dates.empty(), "no input dates given");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::ZeroCurve(dates, zeroRates, dayCounter));
     }
 
-    ForwardCurve::ForwardCurve(const std::vector<QuantLib::Date>& dates,
+    ForwardCurve::ForwardCurve(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                               const std::vector<QuantLib::Date>& dates,
                                const std::vector<QuantLib::Rate>& fwdRates,
-                               const QuantLib::DayCounter& dayCounter)
+                               const QuantLib::DayCounter& dayCounter,
+                               bool permanent) : YieldTermStructure(properties, permanent)
     {
         QL_REQUIRE(!dates.empty(), "no input dates given");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::ForwardCurve(dates, fwdRates, dayCounter));
     }
 
-    FlatForward::FlatForward(QuantLib::Size nDays, 
+    FlatForward::FlatForward(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                             QuantLib::Size nDays, 
                              const QuantLib::Calendar& calendar,
                              QuantLib::Rate forward,
                              const QuantLib::DayCounter& dayCounter,
                              QuantLib::Compounding compounding,
-                             QuantLib::Frequency frequency)
+                             QuantLib::Frequency frequency,
+                             bool permanent) : YieldTermStructure(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::FlatForward(nDays, calendar, forward, dayCounter,
@@ -134,8 +144,10 @@ namespace QuantLibAddin {
     }
 
     ForwardSpreadedTermStructure::ForwardSpreadedTermStructure(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const QuantLib::Handle<QuantLib::Quote>& spread) {
+            const QuantLib::Handle<QuantLib::Quote>& spread,
+            bool permanent) : YieldTermStructure(properties, permanent) {
 
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::ForwardSpreadedTermStructure(hYTS, spread));
@@ -143,11 +155,14 @@ namespace QuantLibAddin {
 
 
     ImpliedTermStructure::ImpliedTermStructure(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const QuantLib::Date& referenceDate)
+            const QuantLib::Date& referenceDate,
+            bool permanent) : YieldTermStructure(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::ImpliedTermStructure(hYTS, referenceDate));
     }
 
 }
+

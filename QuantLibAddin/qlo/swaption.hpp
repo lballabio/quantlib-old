@@ -32,17 +32,20 @@ namespace QuantLibAddin {
     
     class Swaption : public Instrument {
       public:
-        Swaption(const boost::shared_ptr<QuantLib::VanillaSwap>& vanillaSwap,
+        Swaption(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                 const boost::shared_ptr<QuantLib::VanillaSwap>& vanillaSwap,
                  const boost::shared_ptr<QuantLib::Exercise>& exercise,
-                 QuantLib::Settlement::Type settlementType);
+                 QuantLib::Settlement::Type settlementType,
+                 bool permanent);
 
-        Swaption(const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
+        Swaption(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                 const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
                  QuantLib::Rate strike,
                  const QuantLib::Period& optionTenor,
-                 const boost::shared_ptr<QuantLib::PricingEngine>& engine);
+                 const boost::shared_ptr<QuantLib::PricingEngine>& engine,
+                 bool permanent);
 
-        std::string underlyingSwap()
-        {
+        std::string underlyingSwap() {
             return boost::any_cast<std::string>(propertyValue("vanillaSwap"));
         }
 
@@ -51,3 +54,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

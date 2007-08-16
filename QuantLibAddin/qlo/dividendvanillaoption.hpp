@@ -34,12 +34,14 @@ namespace QuantLibAddin {
     class DividendVanillaOption : public OneAssetOption {
     public:
         DividendVanillaOption(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
             const boost::shared_ptr < QuantLib::Exercise > &exercise,
             const std::vector < QuantLib::Date > &dividendDates,
             const std::vector < double > &dividends,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine);
+            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            bool permanent);
     };
 
 }

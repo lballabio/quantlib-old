@@ -47,10 +47,12 @@ namespace QuantLibAddin {
     class CmsMarketCalibration: public ObjectHandler::LibraryObject<QuantLib::CmsMarketCalibration>{
       public:
         CmsMarketCalibration(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& volCube,
             boost::shared_ptr<QuantLib::CmsMarket>& cmsMarket,
             const QuantLib::Matrix& weights,
-            QuantLib::CmsMarketCalibration::CalibrationType calibrationType);
+            QuantLib::CmsMarketCalibration::CalibrationType calibrationType,
+            bool permanent);
         
         std::vector<std::vector<boost::any> > getSparseSabrParameters();
         std::vector<std::vector<boost::any> > getDenseSabrParameters();

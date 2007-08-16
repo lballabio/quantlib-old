@@ -28,25 +28,28 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class AffineModel :
-        public ObjectHandler::LibraryObject<QuantLib::AffineModel> {
-    };
+    OH_LIB_CLASS(AffineModel, QuantLib::AffineModel)
 
     class Vasicek : public AffineModel {
       public:
-          Vasicek(QuantLib::Real a,
+          Vasicek(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                  QuantLib::Real a,
                   QuantLib::Real b,
                   QuantLib::Real lambda,
-                  QuantLib::Real sigma);
+                  QuantLib::Real sigma,
+                  bool permanent);
     };
 
     class HullWhite : public AffineModel {
       public:
-        HullWhite(const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+        HullWhite(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                   QuantLib::Real a,
-                  QuantLib::Real sigma);
+                  QuantLib::Real sigma,
+                  bool permanent);
     };
 
 }
 
 #endif
+

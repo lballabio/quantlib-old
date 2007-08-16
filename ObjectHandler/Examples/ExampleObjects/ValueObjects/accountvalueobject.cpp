@@ -26,9 +26,10 @@ namespace AccountExample {
     const char* AccountValueObject::mPropertyNames[] = {
         "objectID",
         "className",
-        "number",
-        "type",
-        "balance"};
+        "Permanent",
+        "Number",
+        "Type",
+        "Balance"};
 
     std::vector<std::string> AccountValueObject::getPropertyNames() const {
         return std::vector<std::string>(mPropertyNames,
@@ -38,9 +39,10 @@ namespace AccountExample {
     boost::any AccountValueObject::getProperty(const std::string& name) const {
         if(name == "objectID") return objectID_;
         else if(name == "className") return className_;
-        else if(name == "number") return number_;
-        else if(name == "type") return type_;
-        else if(name == "balance") return balance_;
+        else if(name == "Permanent") return permanent_;
+        else if(name == "Number") return number_;
+        else if(name == "Type") return type_;
+        else if(name == "Balance") return balance_;
         else 
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }
@@ -48,9 +50,10 @@ namespace AccountExample {
     void AccountValueObject::setProperty(const std::string& name, const boost::any& value) {
         if(name == "objectID") objectID_ = boost::any_cast<std::string>(value);
         else if(name == "className") className_ = boost::any_cast<std::string>(value);
-        else if(name == "number") number_ = boost::any_cast<long>(value);
-        else if(name == "type") type_ = boost::any_cast<std::string>(value);
-        else if(name == "balance") balance_ = boost::any_cast<ObjectHandler::Variant>(value);
+        else if(name == "Permanent") number_ = boost::any_cast<bool>(value);
+        else if(name == "Number") number_ = boost::any_cast<long>(value);
+        else if(name == "Type") type_ = boost::any_cast<std::string>(value);
+        else if(name == "Balance") balance_ = boost::any_cast<ObjectHandler::Variant>(value);
         else 
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }

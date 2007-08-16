@@ -26,6 +26,7 @@
 namespace QuantLibAddin {
 
     AssetSwap::AssetSwap(
+                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                 bool payFixedRate,
                 const boost::shared_ptr<QuantLib::Bond>& bond,
                 const QuantLib::Real bondCleanPrice,
@@ -34,7 +35,8 @@ namespace QuantLibAddin {
                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                 const boost::shared_ptr<QuantLib::Schedule>& floatSchedule,
                 const QuantLib::DayCounter& floatingDayCount,
-                bool parSwap)
+                bool parSwap,
+                bool permanent) : Swap(properties, permanent)
     {
         boost::shared_ptr<QuantLib::Schedule> actualFloatSchedule;
         if (floatSchedule.get()==NULL)
@@ -56,3 +58,4 @@ namespace QuantLibAddin {
     }
 
 }
+

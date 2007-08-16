@@ -48,7 +48,7 @@ void makeAccount(
     ObjectHandler::Variant balance = ObjectHandler::Variant()) {
 
     boost::shared_ptr <ObjectHandler::ValueObject> valueObject(
-        new AccountExample::AccountValueObject(objectID, type, number, balance));
+        new AccountExample::AccountValueObject(objectID, type, number, balance, false));
 
     AccountExample::Account::Type typeEnum =
         ObjectHandler::Create<AccountExample::Account::Type>()(type);
@@ -58,9 +58,8 @@ void makeAccount(
 
     boost::shared_ptr<ObjectHandler::Object> accountObject1(
         new AccountExample::AccountObject(
-            typeEnum, number, accountBalance));
+            valueObject, typeEnum, number, accountBalance, false));
 
-    accountObject1->setProperties(valueObject);
     ObjectHandler::Repository::instance().storeObject(objectID, accountObject1);
 }
 
@@ -117,16 +116,23 @@ int main() {
         ObjectHandler::logAllObjects();
 
         // Serialize an object
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > objectList;
+        objectList.push_back(accountObject2_retrieve);
         ObjectHandler::Repository::instance().saveObject(
-            accountObject2_retrieve, "account.xml");
+            objectList, "account.xml", true);
+
+        // Delete all objects
+        ObjectHandler::Repository::instance().deleteAllObjects();
+
         // Deserialize an object
         ObjectHandler::Repository::instance().loadObject(
-            "account1_load", "account.xml");
+            "account.xml", true);
+
         // Manipulate the deserialized object
         OH_GET_OBJECT(accountObject1_load,
-            "account1_load", AccountExample::AccountObject)
+            "account2", AccountExample::AccountObject)
         accountObject1_load->setBalance(200);
-        OH_LOG_MESSAGE("Balance of account account1_load = "
+        OH_LOG_MESSAGE("Balance of account account2 = "
             << accountObject1_load->balance());
 
         OH_LOG_MESSAGE("End example program");

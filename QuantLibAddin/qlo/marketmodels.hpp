@@ -41,24 +41,26 @@ namespace QuantLib {
 namespace QuantLibAddin {
 
     // MarketModels
-    class MarketModel : public ObjectHandler::LibraryObject<QuantLib::MarketModel> {
-    };
+    OH_LIB_CLASS(MarketModel, QuantLib::MarketModel)
 
     class FlatVol : public MarketModel {
     public:
         FlatVol(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Volatility>& volatilities,
             const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>& corr,
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
-            const std::vector<QuantLib::Rate>& displacements);
+            const std::vector<QuantLib::Rate>& displacements,
+            bool permanent);
     };
 
 
     class AbcdVol : public MarketModel {
     public:
         AbcdVol(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Real a,
             QuantLib::Real b,
             QuantLib::Real c,
@@ -68,48 +70,58 @@ namespace QuantLibAddin {
             const QuantLib::EvolutionDescription& evolution,
             const QuantLib::Size numberOfFactors,
             const std::vector<QuantLib::Rate>& initialRates,
-            const std::vector<QuantLib::Rate>& displacements);
+            const std::vector<QuantLib::Rate>& displacements,
+            bool permanent);
     };
 
     class PseudoRootFacade : public MarketModel {
       public:
         PseudoRootFacade(
-              const boost::shared_ptr<QuantLib::CTSMMCapletCalibration> calibrator);
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::CTSMMCapletCalibration> calibrator,
+            bool permanent);
     };
 
     class CotSwapToFwdAdapter : public MarketModel {
       public:
         CotSwapToFwdAdapter(
-              const boost::shared_ptr<QuantLib::MarketModel>& coterminalModel);
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::MarketModel>& coterminalModel,
+            bool permanent);
     };
 
     class FwdPeriodAdapter : public MarketModel {
       public:
         FwdPeriodAdapter(
-              const boost::shared_ptr<QuantLib::MarketModel>& largeModel,
-              QuantLib::Size period,
-              QuantLib::Size offset,
-              const std::vector<QuantLib::Spread>& newDisplacements_ );
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::MarketModel>& largeModel,
+            QuantLib::Size period,
+            QuantLib::Size offset,
+            const std::vector<QuantLib::Spread>& newDisplacements_,
+            bool permanent);
     };
 
     class FwdToCotSwapAdapter : public MarketModel {
       public:
         FwdToCotSwapAdapter(
-              const boost::shared_ptr<QuantLib::MarketModel>& forwardModel);
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::MarketModel>& forwardModel,
+            bool permanent);
     };
 
     // MarketModelFactories
-    class MarketModelFactory : public ObjectHandler::LibraryObject<QuantLib::MarketModelFactory> {
-    };
+    OH_LIB_CLASS(MarketModelFactory, QuantLib::MarketModelFactory)
 
     class FlatVolFactory : public MarketModelFactory {
     public:
-        FlatVolFactory(QuantLib::Real longTermCorr,
-                              QuantLib::Real beta,
-                              const std::vector<QuantLib::Time>& times,
-                              const std::vector<QuantLib::Volatility>& vols,
-                              const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldCurve,
-                              QuantLib::Spread displacement);
+        FlatVolFactory(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                       QuantLib::Real longTermCorr,
+                       QuantLib::Real beta,
+                       const std::vector<QuantLib::Time>& times,
+                       const std::vector<QuantLib::Volatility>& vols,
+                       const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldCurve,
+                       QuantLib::Spread displacement,
+                       bool permanent);
     };
 
 
@@ -135,3 +147,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

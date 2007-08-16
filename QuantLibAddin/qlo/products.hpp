@@ -34,48 +34,59 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class MarketModelMultiProduct : public ObjectHandler::LibraryObject<
-        QuantLib::MarketModelMultiProduct> {
-      public:
-          std::string evolution() const;
+    class MarketModelMultiProduct : public ObjectHandler::LibraryObject<QuantLib::MarketModelMultiProduct> {
+    public:
+        OH_LIB_CTOR(MarketModelMultiProduct, QuantLib::MarketModelMultiProduct)
+        std::string evolution() const;
     };
 
-    class MarketModelComposite : public MarketModelMultiProduct {};
+    OH_OBJ_CLASS(MarketModelComposite, MarketModelMultiProduct)
 
     class MultiProductComposite : public MarketModelComposite {
       public:
-        MultiProductComposite();
+        MultiProductComposite(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            bool permanent);
     };
 
     class OneStepForwards : public MarketModelMultiProduct {
       public:
-        OneStepForwards(const std::vector<QuantLib::Time>& rateTimes,
-                        const std::vector<QuantLib::Real>& accruals,
-                        const std::vector<QuantLib::Time>& paymentTimes,
-                        const std::vector<QuantLib::Rate>& strikes);
+        OneStepForwards(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Time>& rateTimes,
+            const std::vector<QuantLib::Real>& accruals,
+            const std::vector<QuantLib::Time>& paymentTimes,
+            const std::vector<QuantLib::Rate>& strikes,
+            bool permanent);
     };
 
     class OneStepOptionlets : public MarketModelMultiProduct {
       public:
         OneStepOptionlets(
-                const std::vector<QuantLib::Time>& rateTimes,
-                const std::vector<QuantLib::Real>& accruals,
-                const std::vector<QuantLib::Time>& paymentTimes,
-                const std::vector<boost::shared_ptr<QuantLib::Payoff> >&);
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Time>& rateTimes,
+            const std::vector<QuantLib::Real>& accruals,
+            const std::vector<QuantLib::Time>& paymentTimes,
+            const std::vector<boost::shared_ptr<QuantLib::Payoff> >&,
+            bool permanent);
     };
 
     class MultiStepRatchet : public MarketModelMultiProduct {
       public:
-        MultiStepRatchet(const std::vector<QuantLib::Time>& rateTimes,
-                         const std::vector<QuantLib::Real>& accruals,
-                         const std::vector<QuantLib::Time>& paymentTimes,
-                         QuantLib::Real gearingOfFloor,
-                         QuantLib::Real gearingOfFixing,
-                         QuantLib::Rate spreadOfFloor,
-                         QuantLib::Rate spreadOfFixing,
-                         QuantLib::Real initialFloor,
-                         bool payer);
+        MultiStepRatchet(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Time>& rateTimes,
+            const std::vector<QuantLib::Real>& accruals,
+            const std::vector<QuantLib::Time>& paymentTimes,
+            QuantLib::Real gearingOfFloor,
+            QuantLib::Real gearingOfFixing,
+            QuantLib::Rate spreadOfFloor,
+            QuantLib::Rate spreadOfFixing,
+            QuantLib::Real initialFloor,
+            bool payer,
+            bool permanent);
     };
 }
 
 #endif
+

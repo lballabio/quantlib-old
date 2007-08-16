@@ -32,31 +32,31 @@ namespace AccountExample {
     boost::shared_ptr<ObjectHandler::Object> createAccount(
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject) {
 
-        std::string type = boost::any_cast<std::string>(valueObject->getProperty("type"));
-        long number = boost::any_cast<long>(valueObject->getProperty("number"));
-        ObjectHandler::Variant balance = boost::any_cast<ObjectHandler::Variant>(valueObject->getProperty("balance"));
+        bool permanent = boost::any_cast<bool>(valueObject->getProperty("Permanent"));
+        std::string type = boost::any_cast<std::string>(valueObject->getProperty("Type"));
+        long number = boost::any_cast<long>(valueObject->getProperty("Number"));
+        ObjectHandler::Variant balance = boost::any_cast<ObjectHandler::Variant>(valueObject->getProperty("Balance"));
 
         Account::Type typeEnum =
             ObjectHandler::Create<Account::Type>()(type);
 
         long accountBalance = ObjectHandler::variantToScalar<ObjectHandler::Variant, long>(
-            balance, "balance", 100);
+            balance, "Balance", 100);
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountObject(typeEnum, number, accountBalance));
-        object->setProperties(valueObject);
+            new AccountObject(valueObject, typeEnum, number, accountBalance, permanent));
         return object;
     }
 
     boost::shared_ptr<ObjectHandler::Object> createCustomer(
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject) {
 
+        bool permanent = boost::any_cast<bool>(valueObject->getProperty("Permanent"));
         std::string name = boost::any_cast<std::string>(valueObject->getProperty("name"));
         long age = boost::any_cast<long>(valueObject->getProperty("age"));
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new CustomerObject(name, age));
-        object->setProperties(valueObject);
+            new CustomerObject(valueObject, name, age, permanent));
         return object;
     }
 

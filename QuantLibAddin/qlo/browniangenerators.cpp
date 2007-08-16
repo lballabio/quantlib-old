@@ -28,10 +28,14 @@
 
 namespace QuantLibAddin {
     
-    MTBrownianGeneratorFactory::MTBrownianGeneratorFactory(unsigned long seed)
+    MTBrownianGeneratorFactory::MTBrownianGeneratorFactory(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            unsigned long seed,
+            bool permanent) : BrownianGeneratorFactory(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::BrownianGeneratorFactory>(
             new QuantLib::MTBrownianGeneratorFactory(seed));
     }
    
 }
+

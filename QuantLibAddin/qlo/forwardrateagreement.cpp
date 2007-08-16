@@ -27,13 +27,15 @@
 namespace QuantLibAddin {
 
     ForwardRateAgreement::ForwardRateAgreement(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& valueDate,
             const QuantLib::Date& maturityDate,
             QuantLib::Position::Type type,
             QuantLib::Rate strike,
             double notional,
             const boost::shared_ptr<QuantLib::IborIndex>& index,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+            bool permanent) : Instrument(properties, permanent)
     {
             libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
                 new QuantLib::ForwardRateAgreement(valueDate,
@@ -46,3 +48,4 @@ namespace QuantLibAddin {
     }
 
 }
+

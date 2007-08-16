@@ -31,6 +31,7 @@
 namespace QuantLibAddin {
 
     VanillaSwap::VanillaSwap(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::VanillaSwap::Type type,
             const QuantLib::Real nominal,
             const boost::shared_ptr<QuantLib::Schedule>& fixedSchedule,
@@ -40,7 +41,8 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::IborIndex>& index,
             const QuantLib::Spread spread,
             const QuantLib::DayCounter& floatDayCounter,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS)
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+            bool permanent) : Swap(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
             new QuantLib::VanillaSwap(type,
@@ -56,20 +58,24 @@ namespace QuantLibAddin {
     }
 
     VanillaSwap::VanillaSwap(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Period& swapTenor, 
             const boost::shared_ptr<QuantLib::IborIndex>& index,
             QuantLib::Rate fixedRate,
-            const QuantLib::Period& forwardStart) {
+            const QuantLib::Period& forwardStart,
+            bool permanent) : Swap(properties, permanent) {
         libraryObject_ = QuantLib::MakeVanillaSwap(swapTenor, index,
             fixedRate, forwardStart).operator
                 boost::shared_ptr<QuantLib::VanillaSwap>();
     }
 
-    VanillaSwap::VanillaSwap(const boost::shared_ptr<QuantLib::SwapIndex>& index,
-        const QuantLib::Date& fixingDate) {
+    VanillaSwap::VanillaSwap(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        const boost::shared_ptr<QuantLib::SwapIndex>& index,
+        const QuantLib::Date& fixingDate,
+        bool permanent) : Swap(properties, permanent) {
 
          libraryObject_ = index->underlyingSwap(fixingDate);
-    
     }
 
 
@@ -82,3 +88,4 @@ namespace QuantLibAddin {
     }
 
 }
+

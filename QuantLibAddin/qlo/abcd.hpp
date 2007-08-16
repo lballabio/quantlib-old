@@ -24,9 +24,7 @@
 #define qla_abcd_hpp
 
 #include <oh/libraryobject.hpp>
-
 #include <ql/handle.hpp>
-
 #include <ql/types.hpp>
 
 namespace QuantLib {
@@ -40,15 +38,19 @@ namespace QuantLib {
 namespace QuantLibAddin {
     class Abcd : public ObjectHandler::LibraryObject<QuantLib::Abcd> {
       public:
-        Abcd(QuantLib::Real a,
+        Abcd(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+             QuantLib::Real a,
              QuantLib::Real b,
              QuantLib::Real c,
-             QuantLib::Real d);
+             QuantLib::Real d,
+             bool permanent);
     };
 
     class AbcdCalibration : public ObjectHandler::LibraryObject<QuantLib::AbcdCalibration> {
       public:
-        AbcdCalibration(const std::vector<QuantLib::Time>& times,
+        AbcdCalibration(
+             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+             const std::vector<QuantLib::Time>& times,
              const std::vector<QuantLib::Volatility>& blackVols,
              QuantLib::Real a,
              QuantLib::Real b,
@@ -62,8 +64,10 @@ namespace QuantLibAddin {
              const boost::shared_ptr<QuantLib::EndCriteria> endCriteria
                  = boost::shared_ptr<QuantLib::EndCriteria>(),
              const boost::shared_ptr<QuantLib::OptimizationMethod> method
-                 = boost::shared_ptr<QuantLib::OptimizationMethod>());
+                 = boost::shared_ptr<QuantLib::OptimizationMethod>(),
+            bool permanent = false);
     };
 }
 
 #endif
+

@@ -37,56 +37,58 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class SwaptionVolatilityStructure : public TermStructure {};
+    OH_OBJ_CLASS(SwaptionVolatilityStructure, TermStructure)
 
     class SwaptionConstantVolatility : public SwaptionVolatilityStructure {
       public:
-        SwaptionConstantVolatility(const QuantLib::Date& referenceDate,
+        SwaptionConstantVolatility(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                   const QuantLib::Date& referenceDate,
                                    const QuantLib::Handle<QuantLib::Quote>&,
-                                   const QuantLib::DayCounter& dayCounter);
+                                   const QuantLib::DayCounter& dayCounter,
+                                   bool permanent);
     };
 
-    class SwaptionVolatilityDiscrete : public SwaptionVolatilityStructure {};
+    OH_OBJ_CLASS(SwaptionVolatilityDiscrete, SwaptionVolatilityStructure)
 
     class SwaptionVolatilityMatrix : public SwaptionVolatilityDiscrete {
       public:
-        SwaptionVolatilityMatrix(const QuantLib::Calendar& calendar,
+        SwaptionVolatilityMatrix(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                 const QuantLib::Calendar& calendar,
                                  const std::vector<QuantLib::Period>& optionTenors,
                                  const std::vector<QuantLib::Period>& tenors,
                                  const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& vols,
                                  const QuantLib::DayCounter& dayCounter,
-                                 const QuantLib::BusinessDayConvention bdc);
+                                 const QuantLib::BusinessDayConvention bdc,
+                                 bool permanent);
         std::vector<long> locate(const QuantLib::Date& d,
                                  const QuantLib::Period& p);
     };
     
-
-    class SwaptionVolatilityCube : public SwaptionVolatilityDiscrete {
-    };
+    OH_OBJ_CLASS(SwaptionVolatilityCube, SwaptionVolatilityDiscrete)
     
     class SwaptionVolCube2 : public SwaptionVolatilityCube {
     public:
         SwaptionVolCube2(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& atmVol,
             const std::vector<QuantLib::Period>& optionTenors,
             const std::vector<QuantLib::Period>& swapTenors,
             const std::vector<QuantLib::Spread>& strikeSpreads,
             const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volSpreads,
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndexBase,
-            bool vegaWeightedSmileFit);
+            bool vegaWeightedSmileFit,
+            bool permanent);
     };
     
-    // FIXME Clients of these functions pass in a temporary object as input which can
-    // result in a crash if the param is declared as a reference so change to pass-by-value
-    // instead.  Please confirm this change is OK then delete these comments :-)
-    //std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix & sabrParameters);
+    // The 2 functions below must declare their input parameters as pass by value rather
+    // than pass by reference to allow clients of these functions to pass temporary objects.
     std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix sabrParameters);
-    //std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix & volCube);
     std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix volCube);
     
     class SwaptionVolCube1 : public SwaptionVolatilityCube {
       public:
         SwaptionVolCube1(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& atmVol,
             const std::vector<QuantLib::Period>& optionTenors,
             const std::vector<QuantLib::Period>& swapTenors,
@@ -99,7 +101,8 @@ namespace QuantLibAddin {
             bool isAtmCalibrated,
             const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
             QuantLib::Real maxErrorTolerance,
-            const boost::shared_ptr<QuantLib::OptimizationMethod>& optMethod);
+            const boost::shared_ptr<QuantLib::OptimizationMethod>& optMethod,
+            bool permanent);
         std::vector<std::vector<boost::any> > getSparseSabrParameters();
         std::vector<std::vector<boost::any> > getDenseSabrParameters();
         std::vector<std::vector<boost::any> > getMarketVolCube();
@@ -109,23 +112,29 @@ namespace QuantLibAddin {
     class SmileSectionByCube : public SmileSection {
       public:
         SmileSectionByCube(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::SwaptionVolatilityCube>& cube,
             const QuantLib::Period& optionTenors,
-            const QuantLib::Period& swapTenors);
+            const QuantLib::Period& swapTenors,
+            bool permanent);
         SmileSectionByCube(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::SwaptionVolatilityCube>& cube,
             const QuantLib::Date& optionDate,
-            const QuantLib::Period& swapTenors);
+            const QuantLib::Period& swapTenors,
+            bool permanent);
     };
     
     class SpreadedSwaptionVolatilityStructure : public SwaptionVolatilityStructure {
       public:
         SpreadedSwaptionVolatilityStructure(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
-            const QuantLib::Handle<QuantLib::Quote>&);
-
+            const QuantLib::Handle<QuantLib::Quote>&,
+            bool permanent);
     };
         
 }
 
 #endif
+

@@ -28,7 +28,13 @@ namespace AccountExample {
 
     public:
 
-        CustomerObject(const std::string &name, const long &age) {
+        CustomerObject(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string &name, 
+            const long &age,
+            bool permanent)
+            : ObjectHandler::LibraryObject<Customer>(properties, permanent) {
+
             libraryObject_ = boost::shared_ptr<Customer>(
                 new Customer(name, age));
         }

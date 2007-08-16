@@ -32,33 +32,38 @@ namespace QuantLib {
     class PiecewiseConstantVariance;
 }
 
-
 namespace QuantLibAddin {
         
     // Volatility Model
-    class LmVolatilityModel : public ObjectHandler::LibraryObject<
-        QuantLib::LmVolatilityModel> { };
-    class LmLinearExponentialVolatilityModel : public LmVolatilityModel { };
+    OH_LIB_CLASS(LmVolatilityModel, QuantLib::LmVolatilityModel)
+
+    OH_OBJ_CLASS(LmLinearExponentialVolatilityModel, LmVolatilityModel)
+
     class LmExtLinearExponentialVolModel : public LmLinearExponentialVolatilityModel {
     public:
-        LmExtLinearExponentialVolModel(const std::vector<QuantLib::Time>& fixingTimes,
+        LmExtLinearExponentialVolModel(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                       const std::vector<QuantLib::Time>& fixingTimes,
                                        QuantLib::Real a,
                                        QuantLib::Real b,
                                        QuantLib::Real c,
-                                       QuantLib::Real d);
+                                       QuantLib::Real d,
+                                       bool permanent);
 
     };
 
-    class PiecewiseConstantVariance: public ObjectHandler::LibraryObject<QuantLib::PiecewiseConstantVariance>{};
+    OH_LIB_CLASS(PiecewiseConstantVariance, QuantLib::PiecewiseConstantVariance)
 
     class PiecewiseConstantAbcdVariance : public PiecewiseConstantVariance {
       public:
-        PiecewiseConstantAbcdVariance(QuantLib::Real a, QuantLib::Real b,
+        PiecewiseConstantAbcdVariance(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                      QuantLib::Real a, QuantLib::Real b,
                                       QuantLib::Real c, QuantLib::Real d,
                                       const QuantLib::Size resetIndex,
-                                      const std::vector<QuantLib::Time>& rateTimes);
+                                      const std::vector<QuantLib::Time>& rateTimes,
+                                      bool permanent);
 
     };  
 }
 
 #endif
+

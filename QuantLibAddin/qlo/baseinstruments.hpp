@@ -27,12 +27,11 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class Instrument : public ObjectHandler::LibraryObject<QuantLib::Instrument> {
-    };
+    OH_LIB_CLASS(Instrument, QuantLib::Instrument)
 
-    class OneAssetOption : public Instrument {
-    };
+    OH_OBJ_CLASS(OneAssetOption, Instrument)
 
 }
 
 #endif
+

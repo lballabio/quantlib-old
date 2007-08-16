@@ -3,7 +3,7 @@
  Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2006 Silvia Frasson
  Copyright (C) 2006 Mario Pucci
- Copyright (C) 2006,2007 Giorgio Facchinetti
+ Copyright (C) 2006, 2007 Giorgio Facchinetti
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -35,10 +35,12 @@
 namespace QuantLibAddin {
 
     SwaptionConstantVolatility::SwaptionConstantVolatility(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Date& referenceDate,
         const QuantLib::Handle<QuantLib::Quote>& vol,
-        const QuantLib::DayCounter& dayCounter)
-    {
+        const QuantLib::DayCounter& dayCounter,
+        bool permanent) : SwaptionVolatilityStructure(properties, permanent) {
+
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SwaptionConstantVolatility(referenceDate,
                                                  vol,
@@ -46,12 +48,14 @@ namespace QuantLibAddin {
     }
 
     SwaptionVolatilityMatrix::SwaptionVolatilityMatrix(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Calendar& calendar,
             const std::vector<QuantLib::Period>& optionTenors,
             const std::vector<QuantLib::Period>& swapTenors,
             const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& vols,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::BusinessDayConvention bdc) {
+            const QuantLib::BusinessDayConvention bdc,
+            bool permanent) : SwaptionVolatilityDiscrete(properties, permanent) {
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(vols.size());
         QuantLib::Size nbColumns  = vols.front().size();
         for(QuantLib::Size i = 0; i<temp.size(); ++i){
@@ -81,14 +85,16 @@ namespace QuantLibAddin {
     }
 
     SwaptionVolCube2::SwaptionVolCube2(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& atmVol,
         const std::vector<QuantLib::Period>& optionTenors,
         const std::vector<QuantLib::Period>& swapTenors,
         const std::vector<QuantLib::Spread>& strikeSpreads,
         const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volSpreads,
         const boost::shared_ptr<QuantLib::SwapIndex>& swapIndexBase,
-        bool vegaWeightedSmileFit)
-    {
+        bool vegaWeightedSmileFit,
+        bool permanent) : SwaptionVolatilityCube(properties, permanent) {
+
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volSpreads.size());
         QuantLib::Size nbColumns  = volSpreads.front().size();
         for(QuantLib::Size i = 0; i<temp.size(); ++i){
@@ -108,6 +114,7 @@ namespace QuantLibAddin {
     }
 
     SwaptionVolCube1::SwaptionVolCube1(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& atmVol,
         const std::vector<QuantLib::Period>& optionTenors,
         const std::vector<QuantLib::Period>& swapTenors,
@@ -120,8 +127,9 @@ namespace QuantLibAddin {
         bool isAtmCalibrated,
         const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
         QuantLib::Real maxErrorTolerance,
-        const boost::shared_ptr<QuantLib::OptimizationMethod>& optMethod)
-    {   
+        const boost::shared_ptr<QuantLib::OptimizationMethod>& optMethod,
+        bool permanent) : SwaptionVolatilityCube(properties, permanent) {
+
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp1(volSpreads.size());
         QuantLib::Size nbColumns  = volSpreads.front().size();
         for(QuantLib::Size i = 0; i<temp1.size(); ++i){
@@ -186,8 +194,6 @@ namespace QuantLibAddin {
         return getVolCube(volCube->volCubeAtmCalibrated());
     }
 
-        
-    //std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix & sabrParameters)
     std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix sabrParameters)
     {
         std::vector<std::vector<boost::any> > sparseSabrParameters;
@@ -225,7 +231,6 @@ namespace QuantLibAddin {
         return sparseSabrParameters;
     }
 
-    //std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix & volCube)
     std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix volCube)
     {
         std::vector<std::vector<boost::any> > volatilityCube;
@@ -260,25 +265,32 @@ namespace QuantLibAddin {
     }
 
     SmileSectionByCube::SmileSectionByCube(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::SwaptionVolatilityCube>& cube,
             const QuantLib::Period& optionTenor,
-            const QuantLib::Period& swapTenors){
+            const QuantLib::Period& swapTenors,
+            bool permanent) : SmileSection(properties, permanent) {
              libraryObject_ = cube->smileSection(optionTenor,swapTenors);
     }
 
     SmileSectionByCube::SmileSectionByCube(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::SwaptionVolatilityCube>& cube,
             const QuantLib::Date& optionDate,
-            const QuantLib::Period& swapTenors){
+            const QuantLib::Period& swapTenors,
+            bool permanent) : SmileSection(properties, permanent) {
              libraryObject_ = cube->smileSection(optionDate,swapTenors);
     }
 
     SpreadedSwaptionVolatilityStructure::SpreadedSwaptionVolatilityStructure(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
-            const QuantLib::Handle<QuantLib::Quote>& spread){
+            const QuantLib::Handle<QuantLib::Quote>& spread,
+            bool permanent) : SwaptionVolatilityStructure(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::SpreadedSwaptionVolatilityStructure>(new
             QuantLib::SpreadedSwaptionVolatilityStructure(underlyingVolStructure,
                                                           spread));
     }
 
 }
+

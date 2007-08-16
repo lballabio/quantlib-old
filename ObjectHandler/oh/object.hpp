@@ -55,7 +55,10 @@ namespace ObjectHandler {
             To store the resulting Object in the ObjectHandler, call
                 Repository::instance().storeObject(objectID, object);
         */
-        Object() : permanent_(false) {}
+        Object(
+            const boost::shared_ptr<ValueObject>& properties = boost::shared_ptr<ValueObject>(),
+            bool permanent = false)
+            : mProps(properties), permanent_(permanent) {}
 
         //! Empty virtual destructor.
         virtual ~Object() {}
@@ -63,11 +66,7 @@ namespace ObjectHandler {
 
         //! \name Value Objects
         //@{
-        //! Set the ValueObject associated with this Object.
-        void setProperties(const boost::shared_ptr<ValueObject>& p) {
-            mProps = p;
-        }
-
+        //! Retrieve the ValueObject associated with this Object.
         const boost::shared_ptr<ValueObject>& properties() {
             return mProps;
         }
@@ -87,15 +86,13 @@ namespace ObjectHandler {
 
         //! \name Permanent Objects
         //@{
-        //! Set the "permanent" flag to True for this Object.
+        //! Query the value of the "permanent" flag.
         /*! Permanent Objects remain in the Repository after a call to
             Repository::deleteAllObjects() or Repository::collectGarbage().
 
             This feature allows a finer level of granularity in maintaining
             the contents of the Repository.
         */
-        void setPermanent() { permanent_ = true; }
-        //! Query the value of the "permanent" flag.
         const virtual bool &permanent() const { return permanent_; }
         //@}
 

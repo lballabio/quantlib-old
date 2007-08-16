@@ -106,8 +106,10 @@ namespace QuantLibAddin {
     }
 
     MultiPhaseLeg::MultiPhaseLeg(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                     const std::vector<boost::shared_ptr<Leg> >& streams,
-                    bool toBeSorted) {
+                    bool toBeSorted,
+                    bool permanent) : Leg(properties, permanent) {
         for (QuantLib::Size i=0; i<streams.size(); ++i) {
             const QuantLib::Leg& leg = streams[i]->getQuantLibLeg();
             leg_.insert(leg_.end(), leg.begin(), leg.end());
@@ -117,8 +119,10 @@ namespace QuantLibAddin {
                              earlier_than<boost::shared_ptr<CashFlow> >());
     };
 
-    SimpleCashFlowVector::SimpleCashFlowVector(const std::vector<QuantLib::Real>& amounts,
-                                               const std::vector<QuantLib::Date>& dates)
+    SimpleCashFlowVector::SimpleCashFlowVector(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                               const std::vector<QuantLib::Real>& amounts,
+                                               const std::vector<QuantLib::Date>& dates,
+                                               bool permanent) : Leg(properties, permanent)
     {
         QL_REQUIRE(!amounts.empty(), "Amounts vector must have at least one element");
         QL_REQUIRE(amounts.size() == dates.size(), "Dates and amounts vector must have the same size");
@@ -128,12 +132,16 @@ namespace QuantLibAddin {
         }
     }
           
-    InterestRate::InterestRate(QuantLib::Rate r,
+    InterestRate::InterestRate(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                               QuantLib::Rate r,
                                const QuantLib::DayCounter& dc,
                                QuantLib::Compounding comp,
-                               QuantLib::Frequency freq) {
+                               QuantLib::Frequency freq,
+                               bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::InterestRate>(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::InterestRate>(new
             QuantLib::InterestRate(r, dc, comp, freq));
     }
 
 }
+

@@ -30,27 +30,33 @@
 namespace QuantLibAddin {
     
     EvolutionDescription::EvolutionDescription(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Time>& rateTimes,
-            const std::vector<QuantLib::Time>& evolutionTimes)
+            const std::vector<QuantLib::Time>& evolutionTimes,
+            bool permanent) : ObjectHandler::LibraryObject<QuantLib::EvolutionDescription>(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::EvolutionDescription>(
             new QuantLib::EvolutionDescription(rateTimes, evolutionTimes));
     }
 
     EvolutionDescription::EvolutionDescription(
-            const QuantLib::EvolutionDescription& ev)
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::EvolutionDescription& ev,
+            bool permanent) : ObjectHandler::LibraryObject<QuantLib::EvolutionDescription>(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::EvolutionDescription>(
             new QuantLib::EvolutionDescription(ev));
     }
 
     EvolutionDescription::EvolutionDescription(
-            const QuantLib::MarketModelMultiProduct& product)
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::MarketModelMultiProduct& product,
+            bool permanent) : ObjectHandler::LibraryObject<QuantLib::EvolutionDescription>(properties, permanent)
     {
         const QuantLib::EvolutionDescription& ev = product.evolution();
         libraryObject_ =
            boost::shared_ptr< QuantLib::EvolutionDescription>(new QuantLib::EvolutionDescription(ev));
     }
 
-
 }
+

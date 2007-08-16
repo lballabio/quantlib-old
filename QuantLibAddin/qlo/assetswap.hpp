@@ -29,7 +29,8 @@ namespace QuantLibAddin {
     
     class AssetSwap : public Swap {
     public:
-        AssetSwap(bool payFixedRate,
+        AssetSwap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                  bool payFixedRate,
                   const boost::shared_ptr<QuantLib::Bond>& bond,
                   const QuantLib::Real bondCleanPrice,
                   const boost::shared_ptr<QuantLib::IborIndex>& index,
@@ -37,7 +38,8 @@ namespace QuantLibAddin {
                   const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                   const boost::shared_ptr<QuantLib::Schedule>& floatSchedule,
                   const QuantLib::DayCounter& floatingDayCount,
-                  bool parSwap);
+                  bool parSwap,
+                  bool permanent);
                                       
         std::vector<std::vector<boost::any> > bondLeg() {
             return Swap::legAnalysis(0);
@@ -51,3 +53,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

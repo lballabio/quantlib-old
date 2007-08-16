@@ -24,8 +24,10 @@
 
 namespace QuantLibAddin {
 
-    Statistics::Statistics(const std::vector<QuantLib::Real>& values, 
-                           const std::vector<QuantLib::Real>& w)
+    Statistics::Statistics(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                           const std::vector<QuantLib::Real>& values, 
+                           const std::vector<QuantLib::Real>& w,
+                           bool permanent) : ObjectHandler::LibraryObject<QuantLib::Statistics>(properties, permanent)
     {               
         libraryObject_ = boost::shared_ptr<QuantLib::Statistics>(new
             QuantLib::Statistics());
@@ -75,3 +77,4 @@ namespace QuantLibAddin {
     TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianAverageShortfall)
 
 }
+

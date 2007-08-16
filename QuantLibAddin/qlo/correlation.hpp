@@ -64,50 +64,57 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class LmCorrelationModel : public ObjectHandler::LibraryObject<
-        QuantLib::LmCorrelationModel> { };
+    OH_LIB_CLASS(LmCorrelationModel, QuantLib::LmCorrelationModel)
 
     class LmLinearExponentialCorrelationModel : public LmCorrelationModel {
      public:
-        LmLinearExponentialCorrelationModel(QuantLib::Size size,
+        LmLinearExponentialCorrelationModel(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                            QuantLib::Size size,
                                             QuantLib::Real rho,
                                             QuantLib::Real beta,
-                                            QuantLib::Size factors);
+                                            QuantLib::Size factors,
+                                            bool permanent);
 
     };
 
-    class PiecewiseConstantCorrelation : public
-        ObjectHandler::LibraryObject<QuantLib::PiecewiseConstantCorrelation>{};
+    OH_LIB_CLASS(PiecewiseConstantCorrelation, QuantLib::PiecewiseConstantCorrelation)
 
     class TimeHomogeneousForwardCorrelation : public PiecewiseConstantCorrelation {
       public:
         TimeHomogeneousForwardCorrelation(
+                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                 const QuantLib::Matrix& fwdCorrelation,
-                const std::vector<QuantLib::Time>& rateTimes);
+                const std::vector<QuantLib::Time>& rateTimes,
+                bool permanent);
     };
 
     class ExponentialForwardCorrelation : public PiecewiseConstantCorrelation {
       public:
         ExponentialForwardCorrelation(
+                                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                 const std::vector<QuantLib::Time>& rateTimes,
                                 QuantLib::Real longTermCorr,
                                 QuantLib::Real beta,
                                 QuantLib::Real gamma,
-                                const std::vector<QuantLib::Time>& times);
+                                const std::vector<QuantLib::Time>& times,
+                                bool permanent);
     };
 
     class CotSwapFromFwdCorrelation : public PiecewiseConstantCorrelation {
       public:
         CotSwapFromFwdCorrelation(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::PiecewiseConstantCorrelation>&,
             const QuantLib::CurveState& curveState,
-            QuantLib::Real displacement);
+            QuantLib::Real displacement,
+            bool permanent);
     };
   
     class HistoricalForwardRatesAnalysis : public
         ObjectHandler::LibraryObject<QuantLib::HistoricalForwardRatesAnalysis> {
       public:
         HistoricalForwardRatesAnalysis(
+                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                 const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
                 const QuantLib::Date& startDate,
                 const QuantLib::Date& endDate,
@@ -120,8 +127,10 @@ namespace QuantLibAddin {
                 const QuantLib::DayCounter& yieldCurveDayCounter,
                 const std::string& traitsID, 
                 const std::string& interpolatorID,
-                QuantLib::Real yieldCurveAccuracy);
+                QuantLib::Real yieldCurveAccuracy,
+                bool permanent);
     };
 }
 
 #endif
+

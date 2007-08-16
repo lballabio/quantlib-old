@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) 2006 Cristina Duminuco
  
@@ -21,3 +22,4 @@
 #include <qlo/couponvectors.hpp>
 
 #endif
+

@@ -23,7 +23,6 @@
 
 namespace QuantLibAddin {
 
-
     static QuantLib::MersenneTwisterUniformRng rng_;
 
     QuantLib::Real rand() {
@@ -44,17 +43,33 @@ namespace QuantLibAddin {
         return rtn;
     }
 
-    MersenneTwisterRsg::MersenneTwisterRsg(long dimension, long seed)
-    : PseudoRandomSequenceGenerator<urng_type>(dimension, urng_type(seed)) {}
+    MersenneTwisterRsg::MersenneTwisterRsg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            long dimension,
+            long seed,
+            bool permanent)
+    : PseudoRandomSequenceGenerator<urng_type>(properties, dimension, urng_type(seed), permanent) {}
 
     // QuantLib::FaureRsg does not work for dimension = 0
-    FaureRsg::FaureRsg(long dimension)
-    : LowDiscrepancySequenceGenerator<rsg_type>(rsg_type(dimension)) {}
+    FaureRsg::FaureRsg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            long dimension,
+            bool permanent)
+    : LowDiscrepancySequenceGenerator<rsg_type>(properties, rsg_type(dimension), permanent) {}
 
-    HaltonRsg::HaltonRsg(long dimension, long seed)
-    : LowDiscrepancySequenceGenerator<rsg_type>(rsg_type(dimension, seed)) {}
+    HaltonRsg::HaltonRsg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            long dimension,
+            long seed,
+            bool permanent)
+    : LowDiscrepancySequenceGenerator<rsg_type>(properties, rsg_type(dimension, seed), permanent) {}
 
-    SobolRsg::SobolRsg(long dimension, long seed)
-    : LowDiscrepancySequenceGenerator<rsg_type>(rsg_type(dimension, seed)) {}
+    SobolRsg::SobolRsg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            long dimension,
+            long seed,
+            bool permanent)
+    : LowDiscrepancySequenceGenerator<rsg_type>(properties, rsg_type(dimension, seed), permanent) {}
 
 }
+

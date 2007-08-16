@@ -25,12 +25,14 @@
 namespace QuantLibAddin {
 
     ForwardVanillaOption::ForwardVanillaOption(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const double &moneyness,
             QuantLib::Date resetDate,
             const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
             const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine) {
+            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            bool permanent) : OneAssetOption(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
             new QuantLib::ForwardVanillaOption(
                 moneyness,

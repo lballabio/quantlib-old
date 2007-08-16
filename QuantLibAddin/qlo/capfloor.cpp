@@ -30,23 +30,27 @@
 namespace QuantLibAddin {
 
     CapFloor::CapFloor(
+                 const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                  QuantLib::CapFloor::Type type,
                  const boost::shared_ptr<Leg>& floatingLeg,
                  const std::vector<QuantLib::Rate>& strikes,
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& termStructure,
-                 const boost::shared_ptr<QuantLib::PricingEngine>& engine)
+                 const boost::shared_ptr<QuantLib::PricingEngine>& engine,
+                 bool permanent) : Instrument(properties, permanent)
     {
         const QuantLib::Leg& leg = floatingLeg->getQuantLibLeg();
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::CapFloor(type, leg, strikes, termStructure, engine));
     }
 
-    CapFloor::CapFloor(QuantLib::CapFloor::Type capFloorType,
+    CapFloor::CapFloor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                       QuantLib::CapFloor::Type capFloorType,
                        const QuantLib::Period& capFloorTenor, 
                        const boost::shared_ptr<QuantLib::IborIndex>& index,
                        QuantLib::Rate strike,
                        const QuantLib::Period& forwardStart,
-                 const boost::shared_ptr<QuantLib::PricingEngine>& engine) {
+                       const boost::shared_ptr<QuantLib::PricingEngine>& engine,
+                       bool permanent) : Instrument(properties, permanent) {
         libraryObject_ = QuantLib::MakeCapFloor(capFloorType, capFloorTenor,
             index, strike, forwardStart, engine).operator
                 boost::shared_ptr<QuantLib::CapFloor>();
@@ -61,3 +65,4 @@ namespace QuantLibAddin {
     }
 
 }
+

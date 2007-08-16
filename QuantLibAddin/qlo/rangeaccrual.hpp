@@ -33,6 +33,7 @@ namespace QuantLibAddin {
     class RangeAccrualFloatersCoupon: public ObjectHandler::LibraryObject<QuantLib::RangeAccrualFloatersCoupon>{
 	 public:
         RangeAccrualFloatersCoupon(
+                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                 QuantLib::Real nominal,
                 const QuantLib::Date& paymentDate,
                 const boost::shared_ptr<QuantLib::InterestRateIndex>& index,
@@ -46,25 +47,30 @@ namespace QuantLibAddin {
                 const QuantLib::Date& refPeriodEnd,    
                 const boost::shared_ptr<QuantLib::Schedule>&  observationsSchedule,
                 QuantLib::Real lowerTrigger,                                    
-                QuantLib::Real upperTrigger
-        );
+                QuantLib::Real upperTrigger,
+                bool permanent);
         RangeAccrualFloatersCoupon(
+                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                 const boost::shared_ptr<Leg>& rangeAccrualLeg,
-                QuantLib::Size i);
+                QuantLib::Size i,
+                bool permanent);
     };  
-    class RangeAccrualPricer: public FloatingRateCouponPricer{ }; 
+
+    OH_OBJ_CLASS(RangeAccrualPricer, FloatingRateCouponPricer)
 
     class RangeAccrualPricerByBgm: public RangeAccrualPricer{
 	 public:
         RangeAccrualPricerByBgm(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Real correlation,
             const boost::shared_ptr<QuantLib::SmileSection>& smilesOnExpiry,
             const boost::shared_ptr<QuantLib::SmileSection>& smilesOnPayment,
             bool isClosedFormula,
-            bool byCallSpread);
-        
+            bool byCallSpread,
+            bool permanent);
     };    
 
 }
 
 #endif
+

@@ -39,11 +39,13 @@ using QuantLib::CashFlow;
 namespace QuantLibAddin {
 
     FixedRateLeg::FixedRateLeg(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                     QuantLib::BusinessDayConvention paymentConvention,
                     const std::vector<QuantLib::Real>& nominals,
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
                     const std::vector<QuantLib::Rate>& couponRates,
-                    const QuantLib::DayCounter& paymentDayCounter) {
+                    const QuantLib::DayCounter& paymentDayCounter,
+                    bool permanent) : Leg(properties, permanent) {
         leg_ = QuantLib::FixedRateLeg(nominals,
                                       *schedule,
                                       couponRates,
@@ -52,6 +54,7 @@ namespace QuantLibAddin {
     }
 
     IborLeg::IborLeg(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                     QuantLib::BusinessDayConvention paymentConvention,
                     const std::vector<QuantLib::Real>& nominals,
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -62,7 +65,8 @@ namespace QuantLibAddin {
                     const std::vector<QuantLib::Real>& gearings,
                     const boost::shared_ptr<QuantLib::IborIndex>& index,
                     const std::vector<QuantLib::Spread>& spreads,
-                    const std::vector<QuantLib::Rate>& caps) {
+                    const std::vector<QuantLib::Rate>& caps,
+                    bool permanent) : Leg(properties, permanent) {
 
             leg_ = QuantLib::IborLeg(nominals,
                                  *schedule,
@@ -76,6 +80,7 @@ namespace QuantLibAddin {
     }
 
     DigitalIborLeg::DigitalIborLeg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::BusinessDayConvention paymentConvention,
             const std::vector<QuantLib::Real>& nominals,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -92,7 +97,8 @@ namespace QuantLibAddin {
             std::string putPositionAndATMInclusion,
             const std::vector<QuantLib::Rate>& putDigitalPayoffs,
             QuantLib::Replication::Type replicationType,
-            QuantLib::Real eps) {
+            QuantLib::Real eps,
+            bool permanent) : Leg(properties, permanent) {
 
                 QuantLib::Position::Type callPosition;
                 QuantLib::Position::Type putPosition;
@@ -187,13 +193,16 @@ namespace QuantLibAddin {
 
 
     IborCouponPricer::IborCouponPricer(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& v,
-            const std::string& typeOfIborCouponPricer) {
+            const std::string& typeOfIborCouponPricer,
+            bool permanent) : FloatingRateCouponPricer(properties, permanent) {
         libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::IborCouponPricer> >()
             (typeOfIborCouponPricer, v);
     }
 
     CmsLeg::CmsLeg(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                     QuantLib::BusinessDayConvention paymentConvention,
                     const std::vector<QuantLib::Real>& nominals,
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -204,7 +213,8 @@ namespace QuantLibAddin {
                     const std::vector<QuantLib::Real>& gearings,
                     const boost::shared_ptr<QuantLib::SwapIndex>& index,
                     const std::vector<QuantLib::Spread>& spreads,
-                    const std::vector<QuantLib::Rate>& caps) {
+                    const std::vector<QuantLib::Rate>& caps,
+                    bool permanent) : Leg(properties, permanent) {
         leg_ = QuantLib::CmsLeg(nominals,
                                 *schedule,
                                 index,
@@ -217,6 +227,7 @@ namespace QuantLibAddin {
     }
 
     DigitalCmsLeg::DigitalCmsLeg(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                     QuantLib::BusinessDayConvention paymentConvention,
                     const std::vector<QuantLib::Real>& nominals,
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -233,7 +244,8 @@ namespace QuantLibAddin {
                     std::string putPositionAndATMInclusion,
                     const std::vector<QuantLib::Rate>& putDigitalPayoffs,
                     QuantLib::Replication::Type replicationType,
-                    QuantLib::Real eps) {
+                    QuantLib::Real eps,
+                    bool permanent) : Leg(properties, permanent) {
 
 
                                         QuantLib::Position::Type callPosition;
@@ -328,6 +340,7 @@ namespace QuantLibAddin {
 
 
     RangeAccrualLeg::RangeAccrualLeg(
+           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
            QuantLib::BusinessDayConvention paymentConvention,
            const std::vector<QuantLib::Real>& nominals,
            const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -339,7 +352,8 @@ namespace QuantLibAddin {
            const std::vector<QuantLib::Spread>& spreads,
            const std::vector<QuantLib::Rate>& upperTriggers,
            const QuantLib::Period& observationTenor,
-           QuantLib::BusinessDayConvention observationConvention) {
+           QuantLib::BusinessDayConvention observationConvention,
+           bool permanent) : Leg(properties, permanent) {
         leg_ = QuantLib::RangeAccrualLeg(nominals,
                                 *schedule,
                                 index,
@@ -355,6 +369,7 @@ namespace QuantLibAddin {
     }
 
     CmsZeroLeg::CmsZeroLeg(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                     QuantLib::BusinessDayConvention paymentConvention,
                     const std::vector<QuantLib::Real>& nominals,
                     const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -365,7 +380,8 @@ namespace QuantLibAddin {
                     const std::vector<QuantLib::Real>& gearings,
                     const boost::shared_ptr<QuantLib::SwapIndex>& index,
                     const std::vector<QuantLib::Spread>& spreads,
-                    const std::vector<QuantLib::Rate>& caps) {
+                    const std::vector<QuantLib::Rate>& caps,
+                    bool permanent) : Leg(properties, permanent) {
         leg_ = QuantLib::CmsZeroLeg(nominals,
                                     *schedule,
                                     index,
@@ -376,3 +392,4 @@ namespace QuantLibAddin {
                                     caps, floors);
     }
 }
+

@@ -17,7 +17,6 @@
 */
 
 #include <qlo/settings.hpp>
-
 #include <ql/settings.hpp>
 
 namespace QuantLibAddin {
@@ -30,3 +29,4 @@ namespace QuantLibAddin {
         QuantLib::Settings::instance().enforcesTodaysHistoricFixings() = b;
     }
 }
+

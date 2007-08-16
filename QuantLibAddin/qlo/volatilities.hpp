@@ -32,27 +32,31 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class BlackVolTermStructure : public ObjectHandler::LibraryObject<QuantLib::BlackVolTermStructure> {
-    };
+    OH_LIB_CLASS(BlackVolTermStructure, QuantLib::BlackVolTermStructure)
 
     class BlackConstantVol : public BlackVolTermStructure {
       public:
         BlackConstantVol(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& settlementDate,
             QuantLib::Volatility volatility,
-            const QuantLib::DayCounter& dayCounter);
+            const QuantLib::DayCounter& dayCounter,
+            bool permanent);
     };
 
     class BlackVarianceSurface : public BlackVolTermStructure {
       public:
         BlackVarianceSurface(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& settlementDate,
             const std::vector<QuantLib::Date>& dates,
             const std::vector<QuantLib::Rate>& strikes,
             const QuantLib::Matrix& vols,
-            const QuantLib::DayCounter& dayCounter);
+            const QuantLib::DayCounter& dayCounter,
+            bool permanent);
     };
 
 }
 
 #endif
+

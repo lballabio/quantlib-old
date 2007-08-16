@@ -40,16 +40,19 @@ namespace QuantLibAddin {
     class FixedRateLeg : public Leg {
       public:
         FixedRateLeg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::BusinessDayConvention              paymentConvention,
             const std::vector<QuantLib::Real>&           nominals,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
             const std::vector<QuantLib::Rate>&           couponRates,
-            const QuantLib::DayCounter&                  paymentDayCounter);
+            const QuantLib::DayCounter&                  paymentDayCounter,
+            bool permanent);
     };
 
     class IborLeg : public Leg {
       public:
         IborLeg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::BusinessDayConvention paymentConvention,
             const std::vector<QuantLib::Real>& nominals,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -60,12 +63,14 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& gearings,
             const boost::shared_ptr<QuantLib::IborIndex>& index,
             const std::vector<QuantLib::Spread>& spreads,
-            const std::vector<QuantLib::Rate>& caps);
+            const std::vector<QuantLib::Rate>& caps,
+            bool permanent);
     };
 
     class DigitalIborLeg : public Leg {
       public:
         DigitalIborLeg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::BusinessDayConvention paymentConvention,
             const std::vector<QuantLib::Real>& nominals,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -82,12 +87,14 @@ namespace QuantLibAddin {
             std::string putPositionAndATMInclusion,
             const std::vector<QuantLib::Rate>& putDigitalPayoffs,
             QuantLib::Replication::Type replicationType,
-            QuantLib::Real eps);
+            QuantLib::Real eps,
+            bool permanent);
     };
 
     class CmsLeg : public Leg {
       public:
         CmsLeg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::BusinessDayConvention paymentConvention,
             const std::vector<QuantLib::Real>& nominals,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -98,12 +105,14 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& gearings,
             const boost::shared_ptr<QuantLib::SwapIndex>& index,
             const std::vector<QuantLib::Spread>& spreads,
-            const std::vector<QuantLib::Rate>& caps);
+            const std::vector<QuantLib::Rate>& caps,
+            bool permanent);
     };
 
     class DigitalCmsLeg : public Leg {
       public:
         DigitalCmsLeg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::BusinessDayConvention paymentConvention,
             const std::vector<QuantLib::Real>& nominals,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -120,12 +129,14 @@ namespace QuantLibAddin {
             std::string putPositionAndATMInclusion,
             const std::vector<QuantLib::Rate>& putDigitalPayoffs,
             QuantLib::Replication::Type replicationType,
-            QuantLib::Real eps);
+            QuantLib::Real eps,
+            bool permanent);
     };
 
     class RangeAccrualLeg : public Leg {
       public:
         RangeAccrualLeg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
            QuantLib::BusinessDayConvention paymentConvention,
            const std::vector<QuantLib::Real>& nominals,
            const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -137,12 +148,14 @@ namespace QuantLibAddin {
            const std::vector<QuantLib::Spread>& spreads,
            const std::vector<QuantLib::Rate>& upperTriggers,
            const QuantLib::Period& observationTenor,
-           QuantLib::BusinessDayConvention observationConvention);
+           QuantLib::BusinessDayConvention observationConvention,
+           bool permanent);
     };
 
     class CmsZeroLeg : public Leg {
       public:
         CmsZeroLeg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::BusinessDayConvention paymentConvention,
             const std::vector<QuantLib::Real>& nominals,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -153,21 +166,21 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& gearings,
             const boost::shared_ptr<QuantLib::SwapIndex>& index,
             const std::vector<QuantLib::Spread>& spreads,
-            const std::vector<QuantLib::Rate>& caps);
+            const std::vector<QuantLib::Rate>& caps,
+            bool permanent);
     };
 
-    class FloatingRateCouponPricer : 
-        public ObjectHandler::LibraryObject<QuantLib::FloatingRateCouponPricer> {
-      public:
-          FloatingRateCouponPricer(){};
-    };
+    OH_LIB_CLASS(FloatingRateCouponPricer, QuantLib::FloatingRateCouponPricer)
     
     class IborCouponPricer : public FloatingRateCouponPricer {
       public:
         IborCouponPricer(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& vol,
-            const std::string& typeOfIborCouponPricer);
+            const std::string& typeOfIborCouponPricer,
+            bool permanent);
     };
 }
 
 #endif
+

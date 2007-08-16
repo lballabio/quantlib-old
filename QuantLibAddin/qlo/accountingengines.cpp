@@ -31,9 +31,11 @@
 namespace QuantLibAddin {
     
     AccountingEngine::AccountingEngine(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const boost::shared_ptr<QuantLib::MarketModelEvolver>& evolver,
         const QuantLib::Clone<QuantLib::MarketModelMultiProduct>& product,
-        QuantLib::Real initialNumeraireValue)
+        QuantLib::Real initialNumeraireValue,
+        bool permanent) : ObjectHandler::LibraryObject<QuantLib::AccountingEngine>(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::AccountingEngine>(new
             QuantLib::AccountingEngine(evolver,
@@ -43,3 +45,4 @@ namespace QuantLibAddin {
     }
    
 }
+
