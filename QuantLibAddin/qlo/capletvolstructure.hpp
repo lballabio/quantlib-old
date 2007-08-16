@@ -23,7 +23,7 @@
 
 #include <ql/termstructures/volatilities/interestrate/caplet/capletvolatilitiesstructures.hpp>
 //#include <ql/termstructures/volatilities/interestrate/caplet/genericcapletvolatilitiesstructures.hpp>
-#include <ql/termstructures/volatilities/interestrate/caplet/capflatvolvector.hpp>
+#include <ql/termstructures/volatilities/interestrate/cap/capflatvolvector.hpp>
 
 namespace QuantLib {
     class CapletVolatilityStructure;
