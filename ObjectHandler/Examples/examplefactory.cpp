@@ -73,7 +73,7 @@ namespace ExampleAddin {
         for (i=objectList.begin(); i!=objectList.end(); ++i) {
             boost::shared_ptr<ObjectHandler::Object> object = *i;
             std::string objectID = boost::any_cast<std::string>(
-                object->properties()->getProperty("objectID"));
+                object->properties()->getProperty("ObjectID"));
             if (seen.find(objectID) == seen.end()) {
                 valueObjects.push_back(object->properties());
                 seen.insert(objectID);
@@ -105,13 +105,13 @@ namespace ExampleAddin {
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
                 boost::shared_ptr<ObjectHandler::ValueObject> valueObject = *i;
                 // Code to overwrite the object ID
-                //valueObject->setProperty("objectID", XXX);
+                //valueObject->setProperty("ObjectID", XXX);
                 CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
                 OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
                 Creator creator = j->second;
                 boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
                 std::string objectID =
-                    boost::any_cast<std::string>(valueObject->getProperty("objectID"));
+                    boost::any_cast<std::string>(valueObject->getProperty("ObjectID"));
                 if (overwriteExisting)
                     ObjectHandler::Repository::instance().deleteObject(objectID);
                 ObjectHandler::Repository::instance().storeObject(objectID, object);

@@ -9,7 +9,7 @@
                 valueObject,%(libraryParameters)s));
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(objectID%(suffix)s, object);
+            ObjectHandler::Repository::instance().storeObject(ObjectID%(suffix)s, object);
 
         // convert and return the return value
 

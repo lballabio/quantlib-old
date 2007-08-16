@@ -1,6 +1,6 @@
     const char* %(functionName)s::mPropertyNames[] = {
-        "className",
-        "objectID"%(propertyDeclaration)s
+        "ClassName",
+        "ObjectID"%(propertyDeclaration)s
     };
 
     std::vector<std::string> %(functionName)s::getPropertyNames() const {
@@ -9,19 +9,19 @@
     }
 
     boost::any %(functionName)s::getProperty(const std::string& name) const {
-        if(name == "objectID") return objectID_;
-        else if(name == "className") return className_;
+        if(name == "ObjectID") return objectID_;
+        else if(name == "ClassName") return className_;
 %(propertyGet)s        else
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }
 
     void %(functionName)s::setProperty(const std::string& name, const boost::any& value) {
-        if(name == "objectID") objectID_ = boost::any_cast<std::string>(value);
-        else if(name == "className") className_ = boost::any_cast<std::string>(value);
+        if(name == "ObjectID") objectID_ = boost::any_cast<std::string>(value);
+        else if(name == "ClassName") className_ = boost::any_cast<std::string>(value);
 %(propertySet)s        else
             OH_FAIL("Error: attempt to set non-existent Property: '" + name + "'");
     }
 
     %(functionName)s::%(functionName)s(%(constructorParList)s) :
-        ObjectHandler::ValueObject(objectID, "%(functionName)s", permanent)%(constructorInit)s {}
+        ObjectHandler::ValueObject(ObjectID, "%(functionName)s", Permanent)%(constructorInit)s {}
 

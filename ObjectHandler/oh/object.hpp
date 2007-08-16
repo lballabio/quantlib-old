@@ -144,7 +144,7 @@ namespace ObjectHandler {
             out << "property = " << std::left << std::setw(logColumnWidth_) << propertyName;
             out << " value = " << std::left << std::setw(logColumnWidth_) << propertyValue << std::endl;
         }
-        out << "permanent = " << std::left << std::setw(logColumnWidth_) 
+        out << "Permanent = " << std::left << std::setw(logColumnWidth_) 
             << std::boolalpha << permanent_ << std::endl;
         out << std::endl;
     }

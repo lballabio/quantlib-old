@@ -177,10 +177,9 @@ class ConstructorReturnValue(Value):
 class PermanentFlag(Value):
     """All ctors have a final optional boolean parameter 'permanent'"""
 
-    name_ = 'permanent'
+    name_ = 'Permanent'
     tensorRank_ = common.SCALAR
     type_ = common.BOOL
-    #ignore_ = True
     description_ = 'object permanent/nonpermanent'
     default_ = 'false'
 
@@ -193,7 +192,7 @@ class ConstructorObjectID(Parameter):
     Implicitly used as the first input parameter for all 
     Constructors (where the ID is assigned to the new object)."""
 
-    name_ = 'objectID'
+    name_ = 'ObjectID'
     tensorRank_ = common.SCALAR
     type_ = common.STRING
     superType_ = 'native'
@@ -210,7 +209,7 @@ class MemberObjectID(Parameter):
     Constructors (where the ID is assigned to the new object) and
     Members (where the ID indicates the object to be retrieved)."""
 
-    name_ = 'objectID'
+    name_ = 'ObjectID'
     tensorRank_ = common.SCALAR
     ignore_ = False
 
@@ -243,7 +242,7 @@ class DependencyTrigger(Parameter):
     A dummy parameter used to force dependencies between cells
     in a worksheet."""
 
-    name_ = 'trigger'
+    name_ = 'Trigger'
     type_ = common.ANY
     superType_ = 'native'
     tensorRank_ = common.SCALAR

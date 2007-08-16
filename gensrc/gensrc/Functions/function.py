@@ -45,7 +45,7 @@ class Function(serializable.Serializable):
     generateVOs_ = False
     validatePermanent_ = ''
     VALIDATE_TRIGGER = '''
-        ObjectHandler::validateRange(trigger, "trigger");'''
+        ObjectHandler::validateRange(Trigger, "Trigger");'''
 
     #############################################
     # public interface

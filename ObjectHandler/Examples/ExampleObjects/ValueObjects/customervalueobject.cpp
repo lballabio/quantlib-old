@@ -24,8 +24,8 @@
 namespace AccountExample {
 
     const char* CustomerValueObject::mPropertyNames[] = {
-        "objectID",
-        "className",
+        "ObjectID",
+        "ClassName",
         "Permanent",
         "Name",
         "Age"};
@@ -36,8 +36,8 @@ namespace AccountExample {
     }
 
     boost::any CustomerValueObject::getProperty(const std::string& name) const {
-        if(name == "objectID") return objectID_;
-        else if(name == "className") return className_;
+        if(name == "ObjectID") return objectID_;
+        else if(name == "ClassName") return className_;
         else if(name == "Permanent") return permanent_;
         else if(name == "Name") return name_;
         else if(name == "Age") return age_;
@@ -46,8 +46,8 @@ namespace AccountExample {
     }
 
     void CustomerValueObject::setProperty(const std::string& name, const boost::any& value) {
-        if(name == "objectID") objectID_ = boost::any_cast<std::string>(value);
-        else if(name == "className") className_ = boost::any_cast<std::string>(value);
+        if(name == "ObjectID") objectID_ = boost::any_cast<std::string>(value);
+        else if(name == "ClassName") className_ = boost::any_cast<std::string>(value);
         else if(name == "Permanent") name_ = boost::any_cast<bool>(value);
         else if(name == "Name") name_ = boost::any_cast<std::string>(value);
         else if(name == "Age") age_ = boost::any_cast<long>(value);

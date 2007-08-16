@@ -40,7 +40,7 @@ class Constructor(function.Function):
     generateVOs_ = True
     funcCtorBuffer_ = buffer.loadBuffer('stub.func.constructor')
     validatePermanent_ = '''
-        //ObjectHandler::validateRange(permanent, "permanent");'''
+        //ObjectHandler::validateRange(Permanent, "Permanent");'''
     DESCRIPTION = 'Construct an object of class %s and return its id'
 
     #############################################

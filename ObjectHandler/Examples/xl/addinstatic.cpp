@@ -62,7 +62,7 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x09""ohAccount"),           // function code name
             TempStrNoSize("\x07""CCCNPL#"),              // parameter codes
             TempStrNoSize("\x09""ohAccount"),           // function display name
-            TempStrNoSize("\x26""objectID,type,number,balance,permanent"), // comma-delimited list of parameters
+            TempStrNoSize("\x26""ObjectID,Type,Number,Balance,Permanent"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -70,7 +70,7 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x13""ohAccountSetBalance"), // function code name
             TempStrNoSize("\x04""LCN#"),                // parameter codes
             TempStrNoSize("\x13""ohAccountSetBalance"), // function display name
-            TempStrNoSize("\x10""objectID,balance"),    // comma-delimited list of parameters
+            TempStrNoSize("\x10""ObjectID,Balance"),    // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -78,7 +78,7 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x10""ohAccountBalance"),    // function code name
             TempStrNoSize("\x04""NCP#"),                // parameter codes
             TempStrNoSize("\x10""ohAccountBalance"),    // function display name
-            TempStrNoSize("\x10""objectID,trigger"),    // comma-delimited list of parameters
+            TempStrNoSize("\x10""ObjectID,Trigger"),    // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -86,7 +86,7 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x0D""ohAccountType"),       // function code name
             TempStrNoSize("\x04""CCP#"),                // parameter codes
             TempStrNoSize("\x0D""ohAccountType"),       // function code name
-            TempStrNoSize("\x10""objectID,trigger"),    // comma-delimited list of parameters
+            TempStrNoSize("\x10""ObjectID,Trigger"),    // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -94,7 +94,7 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x05""func1"),               // function code name
             TempStrNoSize("\x04""CCP#"),                // parameter codes
             TempStrNoSize("\x05""func1"),               // function code name
-            TempStrNoSize("\x10""objectID,trigger"),    // comma-delimited list of parameters
+            TempStrNoSize("\x10""ObjectID,Trigger"),    // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 

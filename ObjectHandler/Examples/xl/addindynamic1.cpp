@@ -49,7 +49,7 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x13""addin1CreateAccount"), // function code name
             TempStrNoSize("\x07""CCCNPL#"),             // parameter codes
             TempStrNoSize("\x13""addin1CreateAccount"), // function display name
-            TempStrNoSize("\x26""objectID,type,number,balance,permanent"), // comma-delimited list of parameters
+            TempStrNoSize("\x26""ObjectID,Type,Number,Balance,Permanent"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -57,7 +57,7 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x10""addin1SetBalance"),    // function code name
             TempStrNoSize("\x04""LCN#"),                // parameter codes
             TempStrNoSize("\x10""addin1SetBalance"),    // function display name
-            TempStrNoSize("\x10""objectID,balance"),    // comma-delimited list of parameters
+            TempStrNoSize("\x10""ObjectID,Balance"),    // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -65,7 +65,7 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x05""func1"),               // function code name
             TempStrNoSize("\x04""CCP#"),                // parameter codes
             TempStrNoSize("\x05""func1"),               // function code name
-            TempStrNoSize("\x10""objectID,trigger"),    // comma-delimited list of parameters
+            TempStrNoSize("\x10""ObjectID,Trigger"),    // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 

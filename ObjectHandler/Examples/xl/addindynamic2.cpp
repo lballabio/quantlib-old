@@ -43,7 +43,7 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x10""addin2GetBalance"),// function code name
             TempStrNoSize("\x04""NCP#"),            // parameter codes
             TempStrNoSize("\x10""addin2GetBalance"),// function display name
-            TempStrNoSize("\x10""objectID,trigger"), // comma-delimited list of parameters
+            TempStrNoSize("\x10""ObjectID,Trigger"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
@@ -51,7 +51,7 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x05""func2"),           // function code name
             TempStrNoSize("\x04""CCP#"),            // parameter codes
             TempStrNoSize("\x05""func2"),           // function code name
-            TempStrNoSize("\x10""objectID,trigger"), // comma-delimited list of parameters
+            TempStrNoSize("\x10""ObjectID,Trigger"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
