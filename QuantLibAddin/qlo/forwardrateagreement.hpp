@@ -20,8 +20,8 @@
 #ifndef qla_forwardrateagreement_hpp
 #define qla_forwardrateagreement_hpp
 
-#include <ql/instruments/forwardrateagreement.hpp>
 #include <qlo/baseinstruments.hpp>
+#include <ql/instruments/forwardrateagreement.hpp>
 
 namespace QuantLib {
     class Date;
