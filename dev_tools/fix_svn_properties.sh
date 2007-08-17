@@ -26,7 +26,11 @@ find . -name '*.dev' -o -name '*.sln' \
 # these should have svn:needs-lock
 find . -name '*.png' -o -name '*.jpg' -o -name '*.ico' \
     -o -name '*.xls' -o -name '*.xla' -o -name '*.xll' \
+    -o -name '*.doc' -o -name '*.pdf' \
  | xargs -n 1 svn propset svn:needs-lock 1
+# these should have svn:mime-type application/msword
+find . -name '*.doc' \
+ | xargs -n 1 svn propset svn:mime-type application/msword
 # these should have svn:mime-type application/vnd.ms-excel
 find . -name '*.xla' -o -name '*.xll' -o -name '*.xls' \
  | xargs -n 1 svn propset svn:mime-type application/vnd.ms-excel
