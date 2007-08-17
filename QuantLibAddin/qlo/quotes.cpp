@@ -50,6 +50,10 @@ namespace QuantLibAddin {
         properties()->setProperty("TickValue", tickValue);
     }
 
+    // QuantLibAddin::SimpleQuote::setValue() wraps QuantLib::SimpleQuote::setValue(),
+    // updating the ValueObject.  The "Value" property of the ValueObject is represented
+    // as datatype ObjectHandler::Variant (rather than double), this is necessary for
+    // platform-independent processing of value Null<Real>.
     QuantLib::Real SimpleQuote::setValue(QuantLib::Real value) {
 
         QuantLib::Real result;
@@ -57,16 +61,19 @@ namespace QuantLibAddin {
         try {
             result = simpleQuote_->setValue(value);
         } catch (...) { 
-            // In the event of an exception, ensure that the ValueObject remains
-            // in synch with the simpleQuote_ before rethrowing.
+            // In the event of an exception, ensure that the ValueObject remains in synch with
+            // the simpleQuote_ before rethrowing.  
+            // If QuantLib::SimpleQuote::isValid() is false then QuantLib::SimpleQuote::value() throws,
+            // which here in the catch clause would cause the app to crash, so test for that case.
             if (simpleQuote_->isValid())
-                properties()->setProperty("Value", simpleQuote_->value());
+                properties()->setProperty("Value", ObjectHandler::Variant(simpleQuote_->value()));
             else
-                properties()->setProperty("Value", QuantLib::Null<QuantLib::Real>());
+                properties()->setProperty("Value", 
+                    ObjectHandler::Variant(static_cast<double>(QuantLib::Null<QuantLib::Real>())));
             throw;
         }
 
-        properties()->setProperty("Value", value);
+        properties()->setProperty("Value", ObjectHandler::Variant(value));
         return result;
 
     }

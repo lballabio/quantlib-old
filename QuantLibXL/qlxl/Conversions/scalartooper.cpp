@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,6 +18,7 @@
 
 #include <qlxl/Conversions/scalartooper.hpp>
 #include <ohxl/Conversions/scalartooper.hpp>
+#include <ql/utilities/null.hpp>
 
 namespace ObjectHandler {
 
@@ -33,6 +34,14 @@ namespace ObjectHandler {
         std::ostringstream s;
         s << value;
         scalarToOper(s.str(), xScalar);
+    }
+
+    void scalarToOper2(const QuantLib::Real &value, OPER &xScalar) {
+        if (abs(value) == QuantLib::Null<QuantLib::Real>()) {
+            xScalar.xltype = xltypeErr;
+            xScalar.val.err = xlerrNA;
+        } else
+            scalarToOper(value, xScalar);
     }
 
 }

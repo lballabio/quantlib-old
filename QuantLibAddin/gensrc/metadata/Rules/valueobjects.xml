@@ -6,6 +6,7 @@
     <RuleGroup name='constructorDeclaration' indent='3' delimiter=',&#10;' checkParameterIgnore='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
+        <Rule tensorRank='scalar' type='QuantLib::Real'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true'>%(indent)sconst std::string&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
@@ -29,6 +30,7 @@
     <RuleGroup name='memberDeclaration' indent='2' delimiter=';&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
+        <Rule tensorRank='scalar' type='QuantLib::Real'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
         <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true'>%(indent)sstd::string %(name)s_</Rule>
         <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
@@ -66,6 +68,7 @@
     <RuleGroup name='propertySet' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap/>
       <Rules>
+        <Rule tensorRank='scalar' type='QuantLib::Real' codeID='code67a'/>
         <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code67a'/>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true' codeID='code67b'/>
         <Rule tensorRank='scalar' type='QuantLib::Quote' codeID='code67a'/>

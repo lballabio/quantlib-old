@@ -75,10 +75,6 @@ code29 = '''\
         %(type)s %(name)sLib =
             QuantLibXL::operToQlMatrix(*%(name)s);\n'''
 
-code30 = '''\
-        std::vector<QuantLib::Date> %(name)sLib = 
-            ObjectHandler::operToVector<QuantLib::Date>(*%(name)s, "%(name)s");\n'''
-
 code31 = '''\
         std::vector<%(type)s> %(name)sLib =
             ObjectHandler::operToVector<%(type)s>(*%(name)s, "%(name)s");\n'''
@@ -229,12 +225,12 @@ code59 = '''\
         return &xRet;'''
 
 code60 = '''\
-        return &returnValue;'''
+        static OPER xRet;
+        ObjectHandler::scalarToOper2(returnValue, xRet);
+        return &xRet;'''
 
 code61 = '''\
-        static OPER xRet;
-        ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
-        return &xRet;'''
+        return &returnValue;'''
 
 code62 = '''\
         std::vector<%(nativeType)s> returnValVec = %(namespaceObjects)s::libraryToVector(returnValue);
@@ -249,11 +245,6 @@ code63 = '''\
         return &xRet;'''
 
 code64 = '''\
-        static OPER xRet;
-        ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
-        return &xRet;'''
-
-code65 = '''\
         static OPER xRet;
         ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
         return &xRet;'''
@@ -544,10 +535,6 @@ code123 = '''\
 code124 = '''\
         %(nativeType)s %(name)sCpp = ObjectHandler::ohVariantToScalar<%(nativeType)s>(
             %(name)s, "%(name)s", %(defaultValue)s);\n'''
-
-code130 = '''\
-        std::vector<QuantLib::Date> %(name)sLib = 
-            ObjectHandler::ohVariantToVector<QuantLib::Date>(%(name)s, "%(name)s");\n'''
 
 code131 = '''\
         std::vector<%(type)s> %(name)sLib =

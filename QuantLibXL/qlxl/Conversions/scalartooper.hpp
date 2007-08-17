@@ -25,11 +25,17 @@
 #include <ql/interestrate.hpp>
 
 // Override functions in the ObjectHandler namespace
+
 namespace ObjectHandler {
 
     void scalarToOper(const QuantLib::InterestRate &value, OPER &xScalar, bool dllToFree = true, bool expandVector = true);
     void scalarToOper(const QuantLib::Date &value, OPER &xScalar, bool dllToFree = true, bool expandVector = true);
     void scalarToOper(const QuantLib::Frequency &value, OPER &xScalar, bool dllToFree = true, bool expandVector = true);
+
+    // QuantLib::Real is processed differently than double, but for the compiler the 2 types are synonymous
+    // so we cannot override scalarToOper().  For now we implement scalarToOper2() and customize gensrc accordingly.
+    void scalarToOper2(const QuantLib::Real &value, OPER &xScalar);
+
 }
 
 #endif

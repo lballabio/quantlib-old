@@ -175,6 +175,7 @@
         <DataType nativeType='double'>QuantLib::Matrix</DataType>
         <DataType nativeType='long'>QuantLib::Natural</DataType>
         <DataType nativeType='string'>QuantLib::Period</DataType>
+        <DataType nativeType='double'>QuantLib::Real</DataType>
         <DataType nativeType='long'>QuantLib::Size</DataType>
       </DataTypes>
     </SuperType>
@@ -187,7 +188,6 @@
       <DataTypes>
         <DataType>QuantLib::DiscountFactor</DataType>
         <DataType>QuantLib::Rate</DataType>
-        <DataType>QuantLib::Real</DataType>
         <DataType>QuantLib::Spread</DataType>
         <DataType>QuantLib::Time</DataType>
         <DataType>QuantLib::Volatility</DataType>
