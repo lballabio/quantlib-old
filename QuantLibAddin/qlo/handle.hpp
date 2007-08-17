@@ -49,7 +49,7 @@ namespace QuantLibAddin {
                        << " - input object is null");
             handle_.linkTo(observable);
 
-            //currentLink_ = boost::any_cast<std::string>(object->propertyValue("objectID"));
+            //currentLink_ = boost::any_cast<std::string>(object->propertyValue("ObjectID"));
             currentLink_ = "newDummyID";
         }
         QuantLib::RelinkableHandle<T> getHandle() {
