@@ -28,11 +28,6 @@ LIBRARY:
 **************************
     Trunk
 **************************
-- added Workbooks/Bonds/XS0194140785.xls, XS0195731681.xls, XS0228052402.xls, IT0003766372.xls,IT0003747364.xls,IT0003730626.xls, and IT0001278404.xls. Each workbook replicates one of the following bonds:
-XS0194140785, XS0195731681, XS0228052402, IT0003766372,IT0003747364 ,IT0003730626, and IT0001278404 decomposing it in digital ibor/cms leg.
-- new named pricers created in: \Workbooks\PricingEngines\CmsCouponPricers.xls and IborCouponPricer.xls. This pricers are currently instantiated in the action:Load Bonds. 
-- added Workbooks/Tests/BondvsSwap.xls to tests fixed rate bond's dirty price against fixed leg NPV, with same schedule and cpn of the bond.
-- SabrInterpolatedSmileSection dynamically filters market quotes
 
 ***SERIALIZATION:
 - Serialize index fixings
@@ -41,6 +36,85 @@ XS0194140785, XS0195731681, XS0228052402, IT0003766372,IT0003747364 ,IT000373062
 - ohRange() class to handle matrices in addition to vectors
 - Workbooks/StandaloneExamples/test_deserialize.xls
 - Workbooks/StandaloneExamples/test_serialize.xls
+
+
+
+**************************
+    REV12288
+**************************
+
+Launcher:
+Startup action added to set the evaluation date: user can change the evaluation date and the whole system is built consistently with the user’s choice
+
+QuantLibXL menu:
+Menu actions:
+- “Calibrate All Single Index Cms Market”: new routine for 5 single index calibrations with 1 mean rev (the 10Y one)
+- “Calibrate Single Index Cms Market with 10Y Mean Reversion”: new routine for a single index calibration using the mean reversion of the 10Y index
+- “Open live feed action”: live feed workbooks are now opened and hidden
+- Bond Engines are created at start-up and are set to bonds in “Load Bonds” action
+- Indexes are instantiated at start-up
+Cell menu: 
+- added "LIN ACTACT ISMA" (QuantLib::ActualActual::ISMA) string to DayCounter conventions
+
+Bonds:
+- ??? qlGenericBond()Added Generic Bond constructor which accept bond leg as an input
+- ??? cathing up with new bond's contracutre signature
+
+Various:
+- yield curve parameter has been removed from bond constructors
+- fixed bug in Bond::maturityDate() when bond is initialized with the default constructor
+- handled issue Date in bond default constructor
+- created Workbooks/PricingEngines folder and created new workbooks (CmsCouponPricers.xls and IborCouponPricer.xls for instantiating CMS/Ibor Pricers. Pricers are named: CmsCouponPricer10Y, CmsCouponPricer5Y, CmsCouponPricer2Y, CmsCouponPricer20Y, CmsCouponPricer30Y, IborCouponPricer. Action “Load bonds” has been modified in order to set this named pricers to bonds 
+- added in IT0001278404.xls, IT0003730626.xls and XS0194140785.xls netting leg and bonds' dirty prices
+- added new digital bonds IT0003747364.xls and IT0003766372.xls decomposed as digital ibor legs.
+- added bond's dirty theo price in: Workbooks/Bonds/XS0194140785.xls, XS0195731681.xls, XS0228052402.xls
+
+BondObjects_EUR.xls: 
+-	removed yield curve from because it isn't used anymore by the bonds' constructor
+-  added cms coupon bond (IT0003650998) paying once at maturity and fixing in arrears 
+-  added, validated, and checked against prospectus a new capped floater bond: XS0250578134
+-  added check against prospectus but not validated new bond (Tec10) IT0004011638
+-  added, checked against prospectus and validated new cms bond: IT001346748
+
+SetPricers2Bonds.xls:
+- added new sheet so as to set the Bond Engine to all Bonds instatiated in BondObjects_EUR.xls
+
+???Added LegMethods spreadsheet
+Modified : /trunk/QuantLibAddin/gensrc/metadata/Functions/leg.xml
+
+New functions:
+- qlBondEngine: constructor of the bond engine which takes as input a discounting yield term structure
+- qlPeriodEquivalent: function to return the period equivalent to the input (e.g it returns 1Y3M for 1Y6M-3M, 0M for 1Y-12M, 3W5D for 3W+5D, 2W2D for 3W-5D, etc)
+- caps stripping: added new class 'qlCapTermVolatilityVector' and method 'qlCapTermVolatilityVectorInterpVol' to construct a cap term volatility vector and interpolate along option tenors using cubic spline interpolator. No smile is taken into account.
+- qlSABRInterpolationWeights returns the weights of the SABR fit for the given SABRInterpolation object
+- qlSimpleCashFlowVector to construct a cash flow vector given a set of amounts and a set of dates which may have different size
+
+Renamed functions:
+- ??? replaced qlBondAccrualDate() with qlBondFirstAccrualDate 
+- ??? removed qlBondDayCounter, qlBondPaymentBDC and qlBondFrequency 
+
+Covered Warrants:
+Operations on financial markets with regard to covered warrants on interest rates derivatives are about to kick off. Static data of the instruments are collected and managed in
+Workbooks/CoveredWarrants/CoveredWarrants.xls where isins and feedcodes have been updated to get ready for contribution to ORC. In the same workbooks real-time theoretical prices are calculated and automatically imported to ORC.
+
+Indexes:
+- Indexes are no longer enumerated objects, we're now relying on user-created Indexes (see workbooks in folder Workbooks/Indexes)
+- Historic fixings are loaded by means of qlIndexAddFixings performing size checks and preventing non intentional fixing overwriting
+
+Others:
+- YieldCurveBootstrapping.xls: 6M deposit is now included in the curve bootstrapping
+- Swaption volatility smile: modified calculation of interpolated spreads. Spreads on ATM volatilities in sparse cube are now taken into account. A small error is introduced in the calculation of ATM volatilities in dense cube, negligible in case of good fit
+- The discount curve parameter has been removed from the Swaption constructor and has been moved to the BlackSwaptionEngine constructor
+- qlSabrInterpolatedSmileSection has been modified to filter dynamically market quotes as they become available
+- qlSabrSmileSection is now dependent (observer) of the evaluation date so that when the EvaluationDate changes the SabrSmileSection class is recomputed accordingly
+
+Workbooks:
+- MarketData/ReutersFeed/MMIndicesAddLastFixing.xls: displays before and after fixing forecasts (compared with observed fixing)
+- MainChecks.xls: added Real-Time monitoring
+- Bonds/Z-Spread.xls: added bond engine 
+- Tests/BondvsSwap.xls: added cash-flow analysis comparison
+- Tests/BondvsSwap.xls: compares dirty theoretical price of a fixed rate bond to fixed swap leg market value with valuation date equal to bond settlement date
+
 
 **************************
     REV11940
