@@ -16,7 +16,6 @@
     <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_bonds.hpp</include>
     <include>qlo/bonds.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/schedule.hpp</include>

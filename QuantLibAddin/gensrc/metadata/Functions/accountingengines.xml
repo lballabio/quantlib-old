@@ -10,7 +10,6 @@
     <include>ql/models/marketmodels/accountingengine.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_accountingengines.hpp</include>
     <include>qlo/accountingengines.hpp</include>
     <include>qlo/marketmodelevolvers.hpp</include>
     <include>qlo/products.hpp</include>

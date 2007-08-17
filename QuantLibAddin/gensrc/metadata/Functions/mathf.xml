@@ -11,7 +11,6 @@
     <include>qlo/mathf.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_mathf.hpp</include>
     <include>qlo/mathf.hpp</include>
     <include>ql/math/primenumbers.hpp</include>
     <include>ql/math/matrixutilities/pseudosqrt.hpp</include>

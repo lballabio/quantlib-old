@@ -12,7 +12,6 @@
     <include>ql/models/marketmodels/historicalforwardratesanalysis.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_correlation.hpp</include>
     <include>qlo/correlation.hpp</include>
     <include>qlo/sequencestatistics.hpp</include>
     <include>qlo/curvestate.hpp</include>

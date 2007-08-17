@@ -8,7 +8,6 @@
       <include>ql/indexes/iborindex.hpp</include>
     </addinIncludes>
     <serializationIncludes>
-      <include>qlo/ValueObjects/vo_forwardrateagreement.hpp</include>
       <include>qlo/forwardrateagreement.hpp</include>
       <include>qlo/index.hpp</include>
       <include>ql/indexes/iborindex.hpp</include>

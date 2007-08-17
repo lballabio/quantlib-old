@@ -9,7 +9,6 @@
     <include>ql/models/marketmodels/evolver.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_marketmodelevolvers.hpp</include>
     <include>qlo/marketmodelevolvers.hpp</include>
     <include>qlo/browniangenerators.hpp</include>
     <include>qlo/marketmodels.hpp</include>

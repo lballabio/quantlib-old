@@ -9,7 +9,6 @@
     <include>ql/models/marketmodels/evolutiondescription.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_evolutiondescription.hpp</include>
     <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/products.hpp</include>
     <include>ql/models/marketmodels/multiproduct.hpp</include>

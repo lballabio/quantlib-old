@@ -14,7 +14,6 @@
   </addinIncludes>
   <serializationIncludes>
     <include>ql/exercise.hpp</include>
-    <include>qlo/ValueObjects/vo_swaption.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/swaption.hpp</include>
     <include>qlo/vanillaswap.hpp</include>

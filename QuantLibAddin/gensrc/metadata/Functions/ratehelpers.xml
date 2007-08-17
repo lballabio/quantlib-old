@@ -10,7 +10,6 @@
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_ratehelpers.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/index.hpp</include>

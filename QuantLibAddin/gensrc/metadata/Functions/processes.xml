@@ -7,7 +7,6 @@
     <include>qlo/volatilities.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_processes.hpp</include>
     <include>qlo/processes.hpp</include>
     <include>qlo/volatilities.hpp</include>
   </serializationIncludes>

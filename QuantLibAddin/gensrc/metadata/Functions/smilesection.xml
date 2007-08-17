@@ -10,7 +10,6 @@
     <include>ql/quote.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_smilesection.hpp</include>
     <include>qlo/smilesection.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>ql/termstructures/volatilities/interpolatedsmilesection.hpp</include>

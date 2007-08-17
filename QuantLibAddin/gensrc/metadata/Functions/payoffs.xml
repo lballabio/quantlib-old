@@ -6,7 +6,6 @@
     <include>qlo/stickyratchet.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_payoffs.hpp</include>
     <include>qlo/payoffs.hpp</include>
     <include>qlo/stickyratchet.hpp</include>
   </serializationIncludes>

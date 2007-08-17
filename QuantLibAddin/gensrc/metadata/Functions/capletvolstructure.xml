@@ -13,7 +13,6 @@
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_capletvolstructure.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/quotes.hpp</include>

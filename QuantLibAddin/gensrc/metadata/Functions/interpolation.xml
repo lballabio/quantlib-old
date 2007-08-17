@@ -12,7 +12,6 @@
     <include>ql/math/interpolations/bicubicsplineinterpolation.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_interpolation.hpp</include>
     <include>qlo/interpolation.hpp</include>
     <include>qlo/interpolation2D.hpp</include>
     <include>qlo/optimization.hpp</include>

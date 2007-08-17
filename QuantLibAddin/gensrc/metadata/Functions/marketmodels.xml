@@ -13,7 +13,6 @@
     <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_marketmodels.hpp</include>
     <include>qlo/marketmodels.hpp</include>
     <include>qlo/curvestate.hpp</include>
     <include>qlo/evolutiondescription.hpp</include>

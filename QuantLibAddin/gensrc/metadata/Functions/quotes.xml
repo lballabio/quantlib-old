@@ -13,7 +13,6 @@
     <include>ql/quotes/impliedstddevquote.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_quotes.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/index.hpp</include>
     <include>ql/quotes/simplequote.hpp</include>

@@ -10,7 +10,6 @@
     <include>qlo/volatilities.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_options.hpp</include>
     <include>qlo/options.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/payoffs.hpp</include>

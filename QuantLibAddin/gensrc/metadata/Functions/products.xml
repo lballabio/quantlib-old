@@ -11,7 +11,6 @@
     <include>ql/models/marketmodels/products/multiproductcomposite.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_products.hpp</include>
     <include>qlo/products.hpp</include>
     <include>qlo/payoffs.hpp</include>
     <include>ql/models/marketmodels/products/onestep/onestepforwards.hpp</include>

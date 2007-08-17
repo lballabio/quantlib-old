@@ -14,7 +14,6 @@
     <include>ql/pricingengines/blackscholescalculator.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_pricingengines.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>

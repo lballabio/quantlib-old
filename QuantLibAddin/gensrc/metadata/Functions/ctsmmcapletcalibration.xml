@@ -12,7 +12,6 @@
     <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_ctsmmcapletcalibration.hpp</include>
     <include>qlo/ctsmmcapletcalibration.hpp</include>
     <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/correlation.hpp</include>

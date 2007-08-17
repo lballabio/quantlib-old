@@ -11,7 +11,6 @@
     <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_swaptionvolstructure.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>ql/termstructures/volatilities/interestrate/swaption/swaptionvolcube2.hpp</include>
     <include>qlo/quotes.hpp</include>

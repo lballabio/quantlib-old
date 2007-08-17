@@ -12,7 +12,6 @@
     <include>ql/indexes/interestrateindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_rangeaccrual.hpp</include>
     <include>qlo/rangeaccrual.hpp</include>
     <include>ql/cashflows/rangeaccrual.hpp</include>
     <include>qlo/termstructures.hpp</include>

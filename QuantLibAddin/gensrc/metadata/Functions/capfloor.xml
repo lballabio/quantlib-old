@@ -10,7 +10,6 @@
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_capfloor.hpp</include>
     <include>qlo/capfloor.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/couponvectors.hpp</include>

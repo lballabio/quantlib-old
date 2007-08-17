@@ -14,7 +14,6 @@
     <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_couponvectors.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>

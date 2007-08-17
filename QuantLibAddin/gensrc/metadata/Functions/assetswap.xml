@@ -12,7 +12,6 @@
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/ValueObjects/vo_assetswap.hpp</include>
     <include>qlo/assetswap.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/schedule.hpp</include>
