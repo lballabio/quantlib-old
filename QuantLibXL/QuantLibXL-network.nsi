@@ -136,9 +136,9 @@ Section
     File "QuantLibXL.nsi"
 
     SetOutPath "$INSTDIR\xll"
-    File "xll\QuantLibXLDynamic-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    File "..\ObjectHandler\xll\ObjectHandler-xll-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    File "..\SensitivityAnalysis\saohxll\xll\saohxll-vc*-mt-0_1_9.xll"
+    File "xll\QuantLibXLDynamic-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "..\ObjectHandler\xll\ObjectHandler-xll-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "..\SensitivityAnalysis\saohxll\xll\saohxll-vc80-mt-0_1_9.xll"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r /x Drafts "Workbooks\*.xls"
