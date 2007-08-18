@@ -67,7 +67,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlFunctionCount'>
+    <Procedure name='qlInfoFunctionCount'>
       <description>returns the number of functions in this Addin</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
@@ -82,6 +82,66 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='qlInfoHighestRevisionNumber'>
+      <description>returns the highest commit revision in the source code working copy used to build the addin</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlInfoTimeStamp'>
+      <description>returns the commit date/time (yyyy-mm-dd hh:mm:ss) of the highest commit revision in the source code working copy used to build the addin.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlInfoRevisionRange'>
+      <description>returns the update revision range in the source code used to build the addin</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlInfoLocalModifications'>
+      <description>returns TRUE if there were local modifications in the source code used to build the addin</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+    
     <Procedure name='qlIsInSubset'>
       <description>Looks for elements of a set in a subset. Returns a vector of present/not present booleans, one for each element of the set.</description>
       <alias>QuantLib::isInSubset</alias>

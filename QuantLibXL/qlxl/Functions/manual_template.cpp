@@ -1,5 +1,6 @@
 
 /* 
+ Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -24,7 +25,41 @@
 
 #define XLL_DEC DLLEXPORT
 
-XLL_DEC long *qlFunctionCount() {
+
+XLL_DEC long *qlInfoFunctionCount() {
 	static long returnValue = FUNCTION_COUNT;
 	return &returnValue;
+}
+
+// Repository URL of the working copy:
+// $WCURL$
+
+XLL_DEC long *qlInfoHighestRevisionNumber() {
+	static long returnValue = $WCREV$;
+	return &returnValue;
+}
+
+XLL_DEC char *qlInfoTimeStamp() {
+	char *date = "$WCDATE$";
+	return date;
+}
+
+#define MIXED_REVISIONS $WCMIXED?1:0$
+XLL_DEC char *qlInfoRevisionRange() {
+    #if MIXED_REVISIONS
+    #   pragma message(__FILE__ "() warning: mixed update revisions ($WCRANGE$)")
+    #endif
+	char *revRange = "$WCRANGE$";
+	return revRange;
+}
+
+#define LOCAL_MODIFICATION $WCMODS?1:0$
+XLL_DEC bool *qlInfoLocalModifications() {
+    #if LOCAL_MODIFICATION
+    #   pragma message(__FILE__ "() warning: local modifications have been found")
+	static bool result = true;
+    #else
+	static bool result = false;
+    #endif
+	return &result;
 }

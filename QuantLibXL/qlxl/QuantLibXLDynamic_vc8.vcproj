@@ -26,6 +26,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="Updating revision number and time stamp..."
+				CommandLine="SubWCRev .. Functions\manual_template.cpp Functions\manual.cpp -fe"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -124,6 +126,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="Updating revision number and time stamp..."
+				CommandLine="SubWCRev .. Functions\manual_template.cpp Functions\manual.cpp -fe"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
