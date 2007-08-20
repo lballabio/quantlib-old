@@ -61,7 +61,8 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Updating revision number and time stamp..."
-				CommandLine="SubWCRev .. Functions\manual_template.cpp Functions\manual.cpp -fe"/>
+				CommandLine="SubWCRev .. Functions\manual_template.cpp Functions\manual.cpp -fe"
+				ExcludedFromBuild="TRUE"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
@@ -129,7 +130,8 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Updating revision number and time stamp..."
-				CommandLine="SubWCRev .. Functions\manual_template.cpp Functions\manual.cpp -fe"/>
+				CommandLine="SubWCRev .. Functions\manual_template.cpp Functions\manual.cpp -fe"
+				ExcludedFromBuild="TRUE"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
