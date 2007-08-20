@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>3</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="21" tracking_level="1" version="0" object_id="_1">
+			<ObjectID>EUR3MFutOptionCapletVol</ObjectID>
+			<ClassName>qlRelinkableHandleCapletVolatilityStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="21" object_id="_2">
+			<ObjectID>EUR3MCapletVol</ObjectID>
+			<ClassName>qlRelinkableHandleCapletVolatilityStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="21" object_id="_3">
+			<ObjectID>EUR6MCapletVol</ObjectID>
+			<ClassName>qlRelinkableHandleCapletVolatilityStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
