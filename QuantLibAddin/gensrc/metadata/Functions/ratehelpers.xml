@@ -360,9 +360,11 @@
       <ParameterList>
         <Parameters>
           <Parameter name='RateHelpers'>
+            <!--<type>ObjectHandler::Object</type>
+            <type>RateHelpers</type>-->
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of rate-helpers</description>
+            <description>vector of RateHelper IDs</description>
           </Parameter>
           <Parameter name='Priority'>
             <type>QuantLib::Size</type>
