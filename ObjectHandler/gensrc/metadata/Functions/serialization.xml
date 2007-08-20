@@ -22,14 +22,14 @@
           <Parameter name='ObjectList'>
             <type>ObjectHandler::Object</type>
             <tensorRank>vector</tensorRank>
-            <description>list of objects to be serialized</description>
+            <description>list of object IDs to be serialized</description>
           </Parameter>
-          <Parameter name='Path'>
+          <Parameter name='Filename'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>file to which objects are to be serialized</description>
+            <description>file name to which objects are to be serialized</description>
           </Parameter>
-          <Parameter name='ForceOverwrite' default='false'>
+          <Parameter name='Overwrite' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>overwrite the output file if it exists</description>
@@ -43,19 +43,19 @@
     </Procedure>
 
     <Procedure name='ohObjectLoad'>
-      <description>Deserialize list of objects from given path, return count of objects deserialized</description>
+      <description>Deserialize list of objects from given file, return count of deserialized objects</description>
       <alias>ObjectHandler::Repository::instance().loadObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Path'>
+          <Parameter name='Filename'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>file from which objects are to be deserialized</description>
+            <description>file anme from which objects are to be deserialized. If a folder name is provided all file in that folder are loaded in alphabetical order</description>
           </Parameter>
-          <Parameter name='OverwriteExisting' default='false'>
+          <Parameter name='Overwrite' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Overwrite any existing Object that has the same ID as one being loaded</description>
