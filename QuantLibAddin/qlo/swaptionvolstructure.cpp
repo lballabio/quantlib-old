@@ -29,7 +29,7 @@
 #include <ql/termstructures/volatilities/interestrate/swaption/swaptionvolcube2.hpp>
 #include <ql/termstructures/volatilities/interestrate/swaption/swaptionvolcube1.hpp>
 #include <ql/termstructures/volatilities/interestrate/swaption/swaptionvolmatrix.hpp>
-#include <ql/termstructures/volatilities/interestrate/swaption/spreadedswaptionvolstructure.hpp>
+#include <ql/termstructures/volatilities/interestrate/swaption/spreadedswaptionvol.hpp>
 #include <ql/math/optimization/endcriteria.hpp>
 
 namespace QuantLibAddin {
@@ -137,7 +137,7 @@ namespace QuantLibAddin {
             for (QuantLib::Size j = 0; j<nbColumns; ++j)
                 temp1[i][j]=  volSpreads[i][j];
         }
-        
+
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(parametersGuess.size());
         nbColumns  = parametersGuess.front().size();
         for(QuantLib::Size i = 0; i<temp.size(); ++i){
@@ -153,7 +153,7 @@ namespace QuantLibAddin {
                                        strikeSpreads,
                                        temp1,
                                        swapIndexBase,
-                                       vegaWeightedSmileFit, 
+                                       vegaWeightedSmileFit,
                                        temp,
                                        isParameterFixed,
                                        isAtmCalibrated,
@@ -220,7 +220,7 @@ namespace QuantLibAddin {
             std::vector<boost::any> par(numberOfColumn, std::string("N/A"));
             for(QuantLib::Size j=0; j<sabrParameters.columns()-1; ++j)
             {
-               par[j] = sabrParameters[i][j]; 
+               par[j] = sabrParameters[i][j];
             }
             std::ostringstream endCriteria;
             endCriteria << QuantLib::EndCriteria::Type(static_cast<QuantLib::Integer>(sabrParameters[i][numberOfColumn-1]));
