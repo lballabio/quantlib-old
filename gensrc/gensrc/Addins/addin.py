@@ -87,6 +87,9 @@ class Addin(serializable.Serializable):
     def dataDirectory(self):
         return self.dataDirectory_
 
+    def idStrip(self, parameterList):
+        return ""
+
     #############################################
     # serializer interface
     #############################################

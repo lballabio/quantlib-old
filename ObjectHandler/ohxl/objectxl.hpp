@@ -62,7 +62,7 @@ namespace ObjectHandler {
             This function accepts a string which may be either a normal or full ID,
             if full the suffix is removed, if normal the value is returned unmodified.
         */
-        static std::string ObjectXL::getStub(const std::string &objectID);
+        static DLL_API std::string ObjectXL::getStub(const std::string &objectID);
 
         //! Simple factory for ObjectXL objects.
         /*! This function is only required when ObjectHandler functionality is

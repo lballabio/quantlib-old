@@ -51,11 +51,12 @@ class Constructor(function.Function):
         """Generate source code for function body."""
         return Constructor.funcCtorBuffer_ % {
             'functionName' : self.name_,
+            'idStrip' : addin.idStrip(self.parameterList_),
             'libraryFunction' : self.libraryFunction_,
-            'namespaceObjects' : environment.config().namespaceObjects(),
             'libraryParameters' : self.parameterList_.generate(addin.libraryCall()), 
-            'voParameters' : self.parameterList_.generate(addin.voCall()),
-            'suffix' : addin.objectIdSuffix() }
+            'namespaceObjects' : environment.config().namespaceObjects(),
+            'suffix' : addin.objectIdSuffix(),
+            'voParameters' : self.parameterList_.generate(addin.voCall()) }
 
     def libraryFunction(self):
         return self.libraryFunction_

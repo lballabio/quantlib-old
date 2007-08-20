@@ -74,6 +74,11 @@ class ExcelAddin(addin.Addin):
     XL_WIZARD_CHECK = '''
         if (functionCall->calledByFunctionWizard())
             return 0;\n'''
+            
+    ID_STRIP = '''
+        // Strip the Excel cell update counter suffix from Object IDs
+        
+        std::string ObjectIdStrip = ObjectHandler::ObjectXL::getStub(ObjectID);%s\n'''
 
     #############################################
     # public interface
@@ -311,6 +316,9 @@ class ExcelAddin(addin.Addin):
 
     def loopName(self, param):
         return param.name()
+
+    def idStrip(self, parameterList):
+        return ExcelAddin.ID_STRIP % parameterList.generate(self.idStrip_)
 
     #############################################
     # serializer interface

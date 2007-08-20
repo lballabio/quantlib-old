@@ -17,6 +17,7 @@
 */
 
 #include <ohxl/convert_oper.hpp>
+#include <ohxl/objectxl.hpp>
 
 namespace ObjectHandler {
 
@@ -135,7 +136,13 @@ namespace ObjectHandler {
             if (stringLength)
                 ret.assign(xString->val.str + 1, stringLength);
         }
-        return ret;
+        // FIXME - We have converted an OPER to a std::string.  Certain callers
+        // of this function have passed in an Excel format object ID e.g.
+        // "my_object#00123" and need us to strip off the trailing "#00123", so
+        // we call getStub().  This conversion should be done only when it's
+        // definitely required.
+        //return ret;
+        return ObjectXL::getStub(ret);
     }
 
 }

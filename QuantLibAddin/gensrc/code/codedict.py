@@ -249,6 +249,12 @@ code64 = '''\
         ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
         return &xRet;'''
 
+code65 = '''\
+        std::string %(name)sStrip = ObjectHandler::ObjectXL::getStub(%(name)s);'''
+
+code65b = '''\
+        std::string %(name)sStrip = ObjectHandler::ObjectXL::getStub(%(name)sCpp);'''
+
 ##########################################################################
 # code for C++
 ##########################################################################
@@ -632,4 +638,3 @@ wrap6 = '''
         // perform data conversion for return value of function
 
 %s'''
-

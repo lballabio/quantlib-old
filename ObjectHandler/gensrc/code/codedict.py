@@ -162,10 +162,13 @@ code64 = '''\
         ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
         return &xRet;'''
 
+#code65 = '''\
+#        static OPER xRet;
+#        ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
+#        return &xRet;'''
+
 code65 = '''\
-        static OPER xRet;
-        ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
-        return &xRet;'''
+        std::string %(name)sStrip = ObjectHandler::ObjectXL::getStub(%(name)s);'''
 
 ##########################################################################
 # code for ValueObjects

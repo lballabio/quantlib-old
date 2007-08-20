@@ -227,7 +227,7 @@
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='voCall' checkParameterIgnore='true' indent='4' delimiter=',&#10;'>
+    <RuleGroup name='voCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
@@ -236,9 +236,30 @@
         <Rule tensorRank='scalar' type='QuantLib::Period'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' superType='handleToLib'>%(indent)s%(name)sStrip</Rule>
+        <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sStrip</Rule>
+        <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(name)sStrip</Rule>
+        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sStrip</Rule>
+        <Rule tensorRank='scalar' superType='objectHandle'>%(indent)s%(name)sStrip</Rule>
+        <Rule tensorRank='scalar' superType='underlyingClass'>%(indent)s%(name)sStrip</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)s*%(name)s</Rule>
         <Rule>%(indent)s%(name)sCpp</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='idStrip' checkParameterIgnore='false' indent='4' delimiter='&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote'/>
+        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true'/>
+        <Rule tensorRank='scalar' superType='handleToLib' codeID='code65'/>
+        <Rule tensorRank='scalar' superType='libraryClass' default='true' codeID='code65b'/>
+        <Rule tensorRank='scalar' superType='libraryClass' codeID='code65'/>
+        <Rule tensorRank='scalar' superType='libToHandle' codeID='code65'/>
+        <Rule tensorRank='scalar' superType='objectClass' codeID='code65'/>
+        <Rule tensorRank='scalar' superType='objectHandle' codeID='code65'/>
+        <Rule tensorRank='scalar' superType='underlyingClass' codeID='code65'/>
       </Rules>
     </RuleGroup>
 

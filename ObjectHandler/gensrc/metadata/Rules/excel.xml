@@ -159,15 +159,22 @@
         </Rules>
       </RuleGroup>
 
-      <RuleGroup name='voCall' checkParameterIgnore='true' indent='4' delimiter=',&#10;'>
+      <RuleGroup name='voCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' default='true' nativeType='string'>%(indent)s""</Rule>
-        <!--<Rule tensorRank='scalar' default='true'>%(indent)s0</Rule>-->
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sStrip</Rule>
         <Rule tensorRank='scalar'>%(indent)s*%(name)s</Rule>
         <Rule>%(indent)s%(name)sCpp</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='idStrip' checkParameterIgnore='false' indent='4' delimiter='&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule tensorRank='scalar' superType='objectClass' codeID='code65'/>
       </Rules>
     </RuleGroup>
 
