@@ -100,7 +100,7 @@ namespace QuantLibAddin {
             QuantLib::Euribor365(p, h));
     }
 
-    EURLibor::EURLibor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+    EurLibor::EurLibor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                        const QuantLib::Period& p,
                        const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
                        bool permanent) : IborIndex(properties, permanent)
@@ -146,7 +146,7 @@ namespace QuantLibAddin {
             QuantLib::EuriborSwapFixB(p, h));
     }
 
-    EurliborSwapFixA::EurliborSwapFixA(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+    EurLiborSwapFixA::EurLiborSwapFixA(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                        const QuantLib::Period& p,
                                        const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
                                        bool permanent) : SwapIndex(properties, permanent)
@@ -155,7 +155,7 @@ namespace QuantLibAddin {
             QuantLib::EurliborSwapFixA(p, h));
     }
 
-    EurliborSwapFixB::EurliborSwapFixB(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+    EurLiborSwapFixB::EurLiborSwapFixB(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                        const QuantLib::Period& p,
                                        const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
                                        bool permanent) : SwapIndex(properties, permanent)
@@ -173,7 +173,7 @@ namespace QuantLibAddin {
             QuantLib::EuriborSwapFixIFR(p, h));
     }
 
-    EurliborSwapFixIFR::EurliborSwapFixIFR(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+    EurLiborSwapFixIFR::EurLiborSwapFixIFR(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                            const QuantLib::Period& p,
                                            const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
                                            bool permanent) : SwapIndex(properties, permanent)
@@ -183,4 +183,3 @@ namespace QuantLibAddin {
     }
 
 }
-

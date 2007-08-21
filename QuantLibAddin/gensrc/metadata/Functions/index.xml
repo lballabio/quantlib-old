@@ -492,8 +492,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlEURLibor'>
-      <libraryFunction>EURLibor</libraryFunction>
+    <Constructor name='qlEurLibor'>
+      <libraryFunction>EurLibor</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -678,8 +678,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlEurliborSwapFixA'>
-      <libraryFunction>EurliborSwapFixA</libraryFunction>
+    <Constructor name='qlEurLiborSwapFixA'>
+      <libraryFunction>EurLiborSwapFixA</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -702,8 +702,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlEurliborSwapFixB'>
-      <libraryFunction>EurliborSwapFixB</libraryFunction>
+    <Constructor name='qlEurLiborSwapFixB'>
+      <libraryFunction>EurLiborSwapFixB</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -750,8 +750,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlEurliborSwapFixIFR'>
-      <libraryFunction>EurliborSwapFixIFR</libraryFunction>
+    <Constructor name='qlEurLiborSwapFixIFR'>
+      <libraryFunction>EurLiborSwapFixIFR</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

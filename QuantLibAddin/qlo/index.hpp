@@ -86,9 +86,9 @@ namespace QuantLibAddin {
                    bool permanent);
     };
 
-    class EURLibor : public IborIndex {
+    class EurLibor : public IborIndex {
       public:
-        EURLibor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        EurLibor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                  const QuantLib::Period& p,
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                  bool permanent);
@@ -127,17 +127,17 @@ namespace QuantLibAddin {
                         bool permanent);
     };
 
-    class EurliborSwapFixA : public SwapIndex {
+    class EurLiborSwapFixA : public SwapIndex {
       public:
-        EurliborSwapFixA(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        EurLiborSwapFixA(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                          const QuantLib::Period& p,
                          const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                          bool permanent);
     };
 
-    class EurliborSwapFixB : public SwapIndex {
+    class EurLiborSwapFixB : public SwapIndex {
       public:
-        EurliborSwapFixB(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        EurLiborSwapFixB(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                          const QuantLib::Period& p,
                          const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                          bool permanent);
@@ -151,9 +151,9 @@ namespace QuantLibAddin {
                           bool permanent);
     };
 
-    class EurliborSwapFixIFR : public SwapIndex {
+    class EurLiborSwapFixIFR : public SwapIndex {
       public:
-        EurliborSwapFixIFR(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        EurLiborSwapFixIFR(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                            const QuantLib::Period& p,
                            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                            bool permanent);
