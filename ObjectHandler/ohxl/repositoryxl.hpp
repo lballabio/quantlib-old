@@ -60,6 +60,12 @@ namespace ObjectHandler {
             Repository class.
         */
         virtual void deleteObject(const std::string &objectID);
+
+        //! Wrapper for the deleteObject function in the base class.
+        /*! Convert Excel-format Object IDs into the format recognized by the base
+            Repository class.
+        */
+        virtual void deleteObject(const std::vector<std::string> &objectID);
         //@}
 
         //! \name Error Messages

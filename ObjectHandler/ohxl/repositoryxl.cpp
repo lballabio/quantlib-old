@@ -110,6 +110,12 @@ namespace ObjectHandler {
         Repository::deleteObject(ObjectXL::getStub(objectID));
     }
 
+    void RepositoryXL::deleteObject(const std::vector<std::string> &objectID) {
+        for (std::vector<std::string>::const_iterator i = objectID.begin();
+                i != objectID.end(); ++i)
+            objectMap_.erase(ObjectXL::getStub(*i));
+    }
+
     void RepositoryXL::setError(
             const std::string &message,
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,

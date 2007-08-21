@@ -65,7 +65,7 @@
         <Parameters>
           <Parameter name='ObjectID'>
             <type>string</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>ID of object to be deleted</description>
           </Parameter>
         </Parameters>

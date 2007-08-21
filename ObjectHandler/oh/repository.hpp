@@ -103,10 +103,17 @@ namespace ObjectHandler {
         */
         virtual boost::shared_ptr<Object> retrieveObjectImpl(const std::string &objectID) const;
 
-        //! Delete the Object with the given ID.
-        /*! Take no action if no Object exists with that ID.
+        //! Delete the object with the given ID.
+        /*! Delete the object regardless of whether or not it is permanent.
+            Take no action if no object exists with that ID.
         */
         virtual void deleteObject(const std::string &objectID);
+
+        //! Delete a list of objects with the given IDs.
+        /*! Delete the objects regardless of whether or not they are permanent.
+            Take no action for IDs that do not correspond to valie objects.
+        */
+        virtual void deleteObject(const std::vector<std::string> &objectID);
 
         //! Delete all of the Objects in the Repository.
         /*! Take no action if the Repository is already empty.

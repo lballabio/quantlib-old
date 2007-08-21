@@ -76,6 +76,12 @@ namespace ObjectHandler {
         objectMap_.erase(objectID);
     }
 
+    void Repository::deleteObject(const std::vector<std::string> &objectID) {
+        for (std::vector<std::string>::const_iterator i = objectID.begin();
+                i != objectID.end(); ++i)
+            objectMap_.erase(*i);
+    }
+
     void Repository::deleteAllObjects(const bool &deletePermanent) {
 
         if (deletePermanent) {
