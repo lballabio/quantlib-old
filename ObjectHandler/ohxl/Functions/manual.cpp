@@ -256,7 +256,10 @@ XLL_DEC XLOPER *ohRetrieveError(XLOPER *xRange) {
         XLOPER xTemp;
         Excel(xlCoerce, &xTemp, 1, xRange);
         static XLOPER xRet;
-        Excel(xlUDF, &xRet, 2, TempStrNoSize("\x13""ohRetrieveErrorImpl"), xRange);
+        if (xTemp.xltype & xltypeErr)
+            Excel(xlUDF, &xRet, 2, TempStrNoSize("\x13""ohRetrieveErrorImpl"), xRange);
+        else
+            ObjectHandler::scalarToOper(std::string(), xRet);
         return &xRet;
     } catch (...) {
         return 0;
