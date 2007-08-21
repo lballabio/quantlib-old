@@ -53,7 +53,7 @@
           <Parameter name='Filename'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>file anme from which objects are to be deserialized. If a folder name is provided all file in that folder are loaded in alphabetical order</description>
+            <description>File name from which objects are to be deserialized. If a folder name is provided, all files with extension .xml are loaded recursively.</description>
           </Parameter>
           <Parameter name='Overwrite' default='false'>
             <type>bool</type>

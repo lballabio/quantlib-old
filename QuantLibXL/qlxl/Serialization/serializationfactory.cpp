@@ -115,26 +115,33 @@ namespace QuantLibXL {
             OH_FAIL("Error deserializing file " << path << ": " << e.what());
         }
     }
+ 
+    bool hasXmlExtension(const boost::filesystem::path &path) {
+        std::string extension = boost::filesystem::extension(path);
+        return _stricmp(extension.c_str(), ".XML") == 0;
+    }
 
     int SerializationFactory::loadObject(
         const char *path,
         bool overwriteExisting) const {
 
-        OH_REQUIRE(boost::filesystem::exists(path), "Invalid path : " << path);
+        boost::filesystem::path boostPath(path);
+        OH_REQUIRE(boost::filesystem::exists(boostPath), "Invalid path : " << path);
 
-        if (boost::filesystem::is_directory(path)) {
+        if (boost::filesystem::is_directory(boostPath)) {
 
             int returnValue = 0;
-            for (boost::filesystem::directory_iterator itr(path); 
-                itr!=boost::filesystem::directory_iterator(); ++itr) {
-
-                if (boost::filesystem::is_regular(itr->path().string()))
+            boost::filesystem::recursive_directory_iterator end_itr;
+            for (boost::filesystem::recursive_directory_iterator itr(boostPath); itr != end_itr; ++itr) {
+                if (boost::filesystem::is_regular(itr->status()) && hasXmlExtension(*itr))
                     returnValue += processPath(itr->path().string(), overwriteExisting);
             }
             return returnValue;
 
         } else {
-            return processPath(path, overwriteExisting);
+            //OH_REQUIRE(hasXmlExtension(boostPath),
+            //    "The file '" << boostPath << "' does not have extension '.xml'");
+            return processPath(boostPath.string(), overwriteExisting);
         }
     }
 
