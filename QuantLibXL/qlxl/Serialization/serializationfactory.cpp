@@ -67,6 +67,23 @@ namespace QuantLibXL {
         return valueObjects.size();
     }
 
+    void SerializationFactory::processObject(
+        const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
+        bool overwriteExisting) const {
+
+        // Code to overwrite the object ID
+        //valueObject->setProperty("ObjectID", XXX);
+        CreatorMap::const_iterator i = creatorMap_().find(valueObject->className());
+        OH_REQUIRE(i != creatorMap_().end(), "No creator for class " << valueObject->className());
+        Creator creator = i->second;
+        boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
+        std::string objectID =
+            boost::any_cast<std::string>(valueObject->getProperty("ObjectID"));
+        if (overwriteExisting)
+            ObjectHandler::Repository::instance().deleteObject(objectID);
+        ObjectHandler::Repository::instance().storeObject(objectID, object);
+    }
+
     int SerializationFactory::processPath(
         const std::string &path,
         bool overwriteExisting) const {
@@ -82,19 +99,14 @@ namespace QuantLibXL {
             OH_REQUIRE(valueObjects.size(), "Object list is empty");
 
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
+            int count = 0;
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
-                boost::shared_ptr<ObjectHandler::ValueObject> valueObject = *i;
-                // Code to overwrite the object ID
-                //valueObject->setProperty("ObjectID", XXX);
-                CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
-                OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
-                Creator creator = j->second;
-                boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
-                std::string objectID =
-                    boost::any_cast<std::string>(valueObject->getProperty("ObjectID"));
-                if (overwriteExisting)
-                    ObjectHandler::Repository::instance().deleteObject(objectID);
-                ObjectHandler::Repository::instance().storeObject(objectID, object);
+                try {
+                    processObject(*i, overwriteExisting);
+                    count++;
+                } catch (const std::exception &e) {
+                    OH_FAIL("Error processing item " << count << ": " << e.what());
+                }
             }
 
             return valueObjects.size();

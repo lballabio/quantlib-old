@@ -40,6 +40,9 @@ namespace QuantLibXL {
         int processPath(
             const std::string &path,
             bool overwriteExisting) const;
+        void processObject(
+            const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
+            bool overwriteExisting) const;
     };
 
     // Wrappers for template tpl_register_classes.  Do not call the
