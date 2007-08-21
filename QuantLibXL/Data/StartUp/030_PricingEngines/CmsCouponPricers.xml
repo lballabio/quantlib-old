@@ -57,7 +57,7 @@
 					<value>EURSwaptionMeanReversion2Y_QuoteHandle</value>
 				</variant_>
 			</MeanReversion>
-			<Permanent>0</Permanent>
+			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
@@ -73,7 +73,7 @@
 					<value>EURSwaptionMeanReversion5Y_QuoteHandle</value>
 				</variant_>
 			</MeanReversion>
-			<Permanent>0</Permanent>
+			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
@@ -89,7 +89,7 @@
 					<value>EURSwaptionMeanReversion10Y_QuoteHandle</value>
 				</variant_>
 			</MeanReversion>
-			<Permanent>0</Permanent>
+			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
@@ -105,7 +105,7 @@
 					<value>EURSwaptionMeanReversion20Y_QuoteHandle</value>
 				</variant_>
 			</MeanReversion>
-			<Permanent>0</Permanent>
+			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
@@ -121,7 +121,7 @@
 					<value>EURSwaptionMeanReversion30Y_QuoteHandle</value>
 				</variant_>
 			</MeanReversion>
-			<Permanent>0</Permanent>
+			<Permanent>1</Permanent>
 		</px>
 	</item>
 </object_list>
