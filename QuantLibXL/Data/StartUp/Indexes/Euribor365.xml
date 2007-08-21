@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>15</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="59" tracking_level="1" version="0" object_id="_1">
+			<ObjectID>Euribor365SW</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>1W</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_2">
+			<ObjectID>Euribor3652W</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>2W</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_3">
+			<ObjectID>Euribor3653W</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>3W</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_4">
+			<ObjectID>Euribor3651M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>1M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_5">
+			<ObjectID>Euribor3652M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>2M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_6">
+			<ObjectID>Euribor3653M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>3M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_7">
+			<ObjectID>Euribor3654M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>4M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_8">
+			<ObjectID>Euribor3655M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>5M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_9">
+			<ObjectID>Euribor3656M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>6M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_10">
+			<ObjectID>Euribor3657M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>7M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_11">
+			<ObjectID>Euribor3658M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>8M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_12">
+			<ObjectID>Euribor3659M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>9M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_13">
+			<ObjectID>Euribor36510M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>10M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_14">
+			<ObjectID>Euribor36511M</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>11M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_15">
+			<ObjectID>Euribor3651Y</ObjectID>
+			<ClassName>qlEuribor365</ClassName>
+			<Tenor>1Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>

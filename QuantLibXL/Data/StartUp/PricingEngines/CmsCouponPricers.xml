@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>10</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="128" tracking_level="1" version="0" object_id="_1">
+			<ObjectID>EURSwaptionMeanReversion2Y_QuoteHandle</ObjectID>
+			<ClassName>qlRelinkableHandleQuote</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="128" object_id="_2">
+			<ObjectID>EURSwaptionMeanReversion5Y_QuoteHandle</ObjectID>
+			<ClassName>qlRelinkableHandleQuote</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="128" object_id="_3">
+			<ObjectID>EURSwaptionMeanReversion10Y_QuoteHandle</ObjectID>
+			<ClassName>qlRelinkableHandleQuote</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="128" object_id="_4">
+			<ObjectID>EURSwaptionMeanReversion20Y_QuoteHandle</ObjectID>
+			<ClassName>qlRelinkableHandleQuote</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="128" object_id="_5">
+			<ObjectID>EURSwaptionMeanReversion30Y_QuoteHandle</ObjectID>
+			<ClassName>qlRelinkableHandleQuote</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id="31" tracking_level="1" version="0" object_id="_6">
+			<ObjectID>CmsCouponPricer2Y</ObjectID>
+			<ClassName>qlCmsCouponPricer</ClassName>
+			<Volatility>EURSwaptionVol</Volatility>
+			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
+			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
+			<MeanReversion class_id="180" tracking_level="0" version="0">
+				<variant_ class_id="181" tracking_level="0" version="0">
+					<which>3</which>
+					<value>EURSwaptionMeanReversion2Y_QuoteHandle</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="31" object_id="_7">
+			<ObjectID>CmsCouponPricer5Y</ObjectID>
+			<ClassName>qlCmsCouponPricer</ClassName>
+			<Volatility>EURSwaptionVol</Volatility>
+			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
+			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
+			<MeanReversion>
+				<variant_>
+					<which>3</which>
+					<value>EURSwaptionMeanReversion5Y_QuoteHandle</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="31" object_id="_8">
+			<ObjectID>CmsCouponPricer10Y</ObjectID>
+			<ClassName>qlCmsCouponPricer</ClassName>
+			<Volatility>EURSwaptionVol</Volatility>
+			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
+			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
+			<MeanReversion>
+				<variant_>
+					<which>3</which>
+					<value>EURSwaptionMeanReversion10Y_QuoteHandle</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="31" object_id="_9">
+			<ObjectID>CmsCouponPricer20Y</ObjectID>
+			<ClassName>qlCmsCouponPricer</ClassName>
+			<Volatility>EURSwaptionVol</Volatility>
+			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
+			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
+			<MeanReversion>
+				<variant_>
+					<which>3</which>
+					<value>EURSwaptionMeanReversion20Y_QuoteHandle</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="31" object_id="_10">
+			<ObjectID>CmsCouponPricer30Y</ObjectID>
+			<ClassName>qlCmsCouponPricer</ClassName>
+			<Volatility>EURSwaptionVol</Volatility>
+			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
+			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
+			<MeanReversion>
+				<variant_>
+					<which>3</which>
+					<value>EURSwaptionMeanReversion30Y_QuoteHandle</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
