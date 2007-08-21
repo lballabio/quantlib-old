@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>15</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="57" tracking_level="1" version="0" object_id="_1">
+			<ObjectID>EurLiborSW</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>1W</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_2">
+			<ObjectID>EurLibor2W</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>2W</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_3">
+			<ObjectID>EurLibor3W</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>3W</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_4">
+			<ObjectID>EurLibor1M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>1M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_5">
+			<ObjectID>EurLibor2M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>2M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_6">
+			<ObjectID>EurLibor3M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>3M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_7">
+			<ObjectID>EurLibor4M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>4M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_8">
+			<ObjectID>EurLibor5M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>5M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_9">
+			<ObjectID>EurLibor6M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>6M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_10">
+			<ObjectID>EurLibor7M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>7M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_11">
+			<ObjectID>EurLibor8M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>8M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_12">
+			<ObjectID>EurLibor9M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>9M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_13">
+			<ObjectID>EurLibor10M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>10M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_14">
+			<ObjectID>EurLibor11M</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>11M</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="57" object_id="_15">
+			<ObjectID>EurLibor1Y</ObjectID>
+			<ClassName>qlEurLibor</ClassName>
+			<Tenor>1Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>

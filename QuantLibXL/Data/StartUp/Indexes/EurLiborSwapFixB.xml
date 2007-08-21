@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>15</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="59" tracking_level="1" version="0" object_id="_1">
+			<ObjectID>EurLiborSwapFixB1Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>1Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_2">
+			<ObjectID>EurLiborSwapFixB2Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>2Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_3">
+			<ObjectID>EurLiborSwapFixB3Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>3Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_4">
+			<ObjectID>EurLiborSwapFixB4Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>4Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_5">
+			<ObjectID>EurLiborSwapFixB5Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>5Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_6">
+			<ObjectID>EurLiborSwapFixB6Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>6Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_7">
+			<ObjectID>EurLiborSwapFixB7Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>7Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_8">
+			<ObjectID>EurLiborSwapFixB8Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>8Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_9">
+			<ObjectID>EurLiborSwapFixB9Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>9Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_10">
+			<ObjectID>EurLiborSwapFixB10Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>10Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_11">
+			<ObjectID>EurLiborSwapFixB12Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>12Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_12">
+			<ObjectID>EurLiborSwapFixB15Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>15Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_13">
+			<ObjectID>EurLiborSwapFixB20Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>20Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_14">
+			<ObjectID>EurLiborSwapFixB25Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>25Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="59" object_id="_15">
+			<ObjectID>EurLiborSwapFixB30Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixB</ClassName>
+			<Tenor>30Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>

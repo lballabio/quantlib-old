@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>15</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="60" tracking_level="1" version="0" object_id="_1">
+			<ObjectID>EurLiborSwapFixIFR1Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>1Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_2">
+			<ObjectID>EurLiborSwapFixIFR2Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>2Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_3">
+			<ObjectID>EurLiborSwapFixIFR3Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>3Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_4">
+			<ObjectID>EurLiborSwapFixIFR4Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>4Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_5">
+			<ObjectID>EurLiborSwapFixIFR5Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>5Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_6">
+			<ObjectID>EurLiborSwapFixIFR6Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>6Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_7">
+			<ObjectID>EurLiborSwapFixIFR7Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>7Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_8">
+			<ObjectID>EurLiborSwapFixIFR8Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>8Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_9">
+			<ObjectID>EurLiborSwapFixIFR9Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>9Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_10">
+			<ObjectID>EurLiborSwapFixIFR10Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>10Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_11">
+			<ObjectID>EurLiborSwapFixIFR12Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>12Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_12">
+			<ObjectID>EurLiborSwapFixIFR15Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>15Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_13">
+			<ObjectID>EurLiborSwapFixIFR20Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>20Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_14">
+			<ObjectID>EurLiborSwapFixIFR25Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>25Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="60" object_id="_15">
+			<ObjectID>EurLiborSwapFixIFR30Y</ObjectID>
+			<ClassName>qlEurLiborSwapFixIFR</ClassName>
+			<Tenor>30Y</Tenor>
+			<YieldCurve>EURYC</YieldCurve>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
