@@ -77,8 +77,8 @@ namespace ObjectHandler {
     // parse a whitespace-delimited list of symbols 
     // into a vector of strings
     std::vector<std::string> split(const std::string &line,
-                              const std::string &delim,
-                              bool token_compress) {
+                                   const std::string &delim,
+                                   bool token_compress) {
         std::vector<std::string> ret;
         return boost::algorithm::split(ret, line, is_any_of(delim),
                     token_compress ? token_compress_on : token_compress_off);
