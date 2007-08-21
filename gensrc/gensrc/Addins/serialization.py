@@ -26,7 +26,7 @@ from gensrc.Utilities import common
 from gensrc.Utilities import log
 from gensrc.Categories import category
 from gensrc.Configuration import environment
-import glob
+import os
 import re
 
 class Serialization(addin.Addin):
@@ -194,14 +194,19 @@ def updateData(addin):
     regex = re.compile(pattern, re.M | re.S | re.X)
 
     # Loop through the application data files
-    dataDirectoryPattern = addin.dataDirectory() + '/*.xml'
-    for fileName in glob.glob(dataDirectoryPattern):
-        # Perform the find and replace on each file
-        fileBuffer = open(fileName)
-        bufferIn = fileBuffer.read()
-        fileBuffer.close()
-        bufferOut = regex.sub(findReplace, bufferIn)
-        outputfile.OutputFile(addin, fileName, None, bufferOut, False)
+    for root, dirs, files in os.walk(addin.dataDirectory()):
+        for fileName in files:
+            if re.match('^.*?\.xml$', fileName):
+                # Perform the find and replace on each file
+                fullName = root + '/' + fileName
+                fileBuffer = open(fullName)
+                bufferIn = fileBuffer.read()
+                fileBuffer.close()
+                bufferOut = regex.sub(findReplace, bufferIn)
+                outputfile.OutputFile(addin, fullName, None, bufferOut, False)
+        # Skip folders owned by subversion
+        if '.svn' in dirs:
+            dirs.remove('.svn')
 
 def generateSerialization(addin):
     """Generate source code for serialization factory.
