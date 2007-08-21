@@ -58,6 +58,7 @@ class Enumerations(addin.Addin):
         """generate source code for enumerations."""
 
         self.enumerationList_ = enumerationList
+        self.rootPath_ = environment.config().libFullPath() + 'Enumerations/Register/'
 
         log.Log.instance().logMessage(' begin generating Enumerations ...')
         self.generateEnumeratedTypes()
@@ -79,7 +80,7 @@ class Enumerations(addin.Addin):
         buffer = self.bufferEnumTypes_.text() % {
                 'codeRegister' : codeRegister,
                 'codeUnregister' : codeUnregister }
-        fileName = environment.config().libFullPath() + '/Enumerations/Register/register_types.cpp'
+        fileName = self.rootPath_ + 'register_types.cpp'
         outputfile.OutputFile(self, fileName,
             self.enumerationList_.enumeratedTypeCopyright(), buffer)
 
@@ -104,7 +105,7 @@ class Enumerations(addin.Addin):
             buffer += self.generateEnumeratedClass(enumeratedClassGroup)
         buf = self.bufferEnumClasses_.text() % {
                 'buffer' : buffer }
-        fileName = environment.config().libFullPath() + '/Enumerations/Register/register_classes.cpp'
+        fileName = self.rootPath_ + 'register_classes.cpp'
         outputfile.OutputFile(self, fileName,
             self.enumerationList_.enumeratedClassCopyright(), buf)
 
@@ -129,7 +130,7 @@ class Enumerations(addin.Addin):
             buffer += self.generateEnumeratedPair(enumeratedPairGroup)
         buf = self.bufferEnumPairs_.text() % {
                 'buffer' : buffer }
-        fileName = environment.config().libFullPath() + '/Enumerations/Register/register_pairs.cpp'
+        fileName = self.rootPath_ + 'register_pairs.cpp'
         outputfile.OutputFile(self, fileName,
             self.enumerationList_.enumeratedPairCopyright(), buf)
 
