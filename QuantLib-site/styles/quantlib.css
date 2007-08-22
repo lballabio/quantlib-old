@@ -127,6 +127,23 @@ pre {
     font-family: monospace;
 }
 
+.fragment {
+       font-family: monospace, fixed;
+       font-size: 95%;
+}
+pre.fragment {
+	border: 1px solid #CCCCCC;
+	background-color: #f5f5f5;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	margin-left: 2px;
+	margin-right: 8px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
 span.googlestyle {
     font-family: arial,sans-serif; font-size: 80%
 }
