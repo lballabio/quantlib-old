@@ -9,7 +9,7 @@
 			<ObjectID>Euribor365SW</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>1W</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -18,7 +18,7 @@
 			<ObjectID>Euribor3652W</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>2W</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -27,7 +27,7 @@
 			<ObjectID>Euribor3653W</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>3W</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -36,7 +36,7 @@
 			<ObjectID>Euribor3651M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>1M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -45,7 +45,7 @@
 			<ObjectID>Euribor3652M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>2M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -54,7 +54,7 @@
 			<ObjectID>Euribor3653M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>3M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -63,7 +63,7 @@
 			<ObjectID>Euribor3654M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>4M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -72,7 +72,7 @@
 			<ObjectID>Euribor3655M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>5M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -81,7 +81,7 @@
 			<ObjectID>Euribor3656M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>6M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -90,7 +90,7 @@
 			<ObjectID>Euribor3657M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>7M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -99,7 +99,7 @@
 			<ObjectID>Euribor3658M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>8M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -108,7 +108,7 @@
 			<ObjectID>Euribor3659M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>9M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -117,7 +117,7 @@
 			<ObjectID>Euribor36510M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>10M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -126,7 +126,7 @@
 			<ObjectID>Euribor36511M</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>11M</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -135,7 +135,7 @@
 			<ObjectID>Euribor3651Y</ObjectID>
 			<ClassName>qlEuribor365</ClassName>
 			<Tenor>1Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EuriborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>

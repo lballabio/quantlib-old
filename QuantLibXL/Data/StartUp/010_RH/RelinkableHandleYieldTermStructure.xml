@@ -22,7 +22,7 @@
 	</item>
 	<item>
 		<px class_id_reference="171" object_id="_3">
-			<ObjectID>EURLiborYC</ObjectID>
+			<ObjectID>EurLiborYC</ObjectID>
 			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>

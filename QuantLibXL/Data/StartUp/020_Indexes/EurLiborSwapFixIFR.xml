@@ -9,7 +9,7 @@
 			<ObjectID>EurLiborSwapFixIFR1Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>1Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -18,7 +18,7 @@
 			<ObjectID>EurLiborSwapFixIFR2Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>2Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -27,7 +27,7 @@
 			<ObjectID>EurLiborSwapFixIFR3Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>3Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -36,7 +36,7 @@
 			<ObjectID>EurLiborSwapFixIFR4Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>4Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -45,7 +45,7 @@
 			<ObjectID>EurLiborSwapFixIFR5Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>5Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -54,7 +54,7 @@
 			<ObjectID>EurLiborSwapFixIFR6Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>6Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -63,7 +63,7 @@
 			<ObjectID>EurLiborSwapFixIFR7Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>7Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -72,7 +72,7 @@
 			<ObjectID>EurLiborSwapFixIFR8Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>8Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -81,7 +81,7 @@
 			<ObjectID>EurLiborSwapFixIFR9Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>9Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -90,7 +90,7 @@
 			<ObjectID>EurLiborSwapFixIFR10Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>10Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -99,7 +99,7 @@
 			<ObjectID>EurLiborSwapFixIFR12Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>12Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -108,7 +108,7 @@
 			<ObjectID>EurLiborSwapFixIFR15Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>15Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -117,7 +117,7 @@
 			<ObjectID>EurLiborSwapFixIFR20Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>20Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -126,7 +126,7 @@
 			<ObjectID>EurLiborSwapFixIFR25Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>25Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
@@ -135,7 +135,7 @@
 			<ObjectID>EurLiborSwapFixIFR30Y</ObjectID>
 			<ClassName>qlEurLiborSwapFixIFR</ClassName>
 			<Tenor>30Y</Tenor>
-			<YieldCurve>EURYC</YieldCurve>
+			<YieldCurve>EurLiborYC</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
