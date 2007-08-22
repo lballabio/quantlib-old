@@ -15,7 +15,9 @@ METADATA=metadata\Addins\*.xml \
          metadata\Rules\*.xml \
          metadata\Types\*.xml
 STUBS=stubs\stub.*
-APP_XML_DATA=..\..\QuantLibXL\Data\*.xml
+APP_XML_DATA=..\..\QuantLibXL\Data\StartUp\010_RH\*.xml \
+             ..\..\QuantLibXL\Data\StartUp\020_Indexes\*.xml \
+             ..\..\QuantLibXL\Data\StartUp\030_PricingEngines\*.xml
 
 INPUTS = $(MAKEFILE) $(CORE_DEPENDENCIES) $(CODE) $(CONFIG) $(METADATA) $(STUBS) $(APP_XML_DATA)
 
