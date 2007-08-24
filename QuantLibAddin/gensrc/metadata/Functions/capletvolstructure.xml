@@ -10,6 +10,7 @@
     <include>ql/termstructures/volatilities/interestrate/caplet/capletconstantvol.hpp</include>
     <include>ql/termstructures/volatilities/interestrate/caplet/capstripper.hpp</include>
     <include>ql/termstructures/volatilities/interestrate/cap/capflatvolvector.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/cap/capvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
@@ -514,10 +515,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='OptionTenor' exampleValue ='5y'>
+          <Parameter name='OptionLength' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>option tenor</description>
+            <description>option length</description>
           </Parameter>
           <Parameter name='Strike' exampleValue ='3%' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
             <type>QuantLib::Rate</type>
@@ -550,7 +551,7 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
           </Parameter>
-          <Parameter name='OptionTenors' exampleValue ='5Y, 10Y'>
+          <Parameter name='OptionLengths' exampleValue ='5Y, 10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>option tenors</description>
@@ -566,6 +567,72 @@
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>        
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- SwaptionVolatilityStructure interface-->
+    <Member name='qlCapTermVolatilitySurfaceInterpVol' type='QuantLib::CapVolatilitySurface' superType='handleToLib'>
+      <description>Returns interpolated volatility from the given cap term vols object</description>
+      <libraryFunction>volatility</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionLength' exampleValue ='5y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cap length</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue ='3%' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cap strike</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Constructor name='qlCapTermVolatilitySurface'>
+      <libraryFunction>CapVolatilitySurface</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlementDays' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of settlement days</description>
+          </Parameter>
+          <Parameter name='Calendar'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+          </Parameter>
+          <Parameter name='OptionLenghts' exampleValue ='5Y, 10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>option tenors</description>
+          </Parameter>
+          <Parameter name='CapStrikes'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>cap strikes</description>
+          </Parameter>
+          <Parameter name='Volatilities'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>matrix</tensorRank>
+            <description>vol quotes</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>

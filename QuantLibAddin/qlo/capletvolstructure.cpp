@@ -160,5 +160,27 @@ namespace QuantLibAddin {
                                           dayCounter));
     }
 
+    CapVolatilitySurface::CapVolatilitySurface(
+          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+          QuantLib::Natural settlementDays,
+          const QuantLib::Calendar& calendar,
+          const std::vector<QuantLib::Period>& optionLengths,
+          const std::vector<QuantLib::Rate>& strikes,
+          const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
+          bool permanent) : CapVolatilityStructure(properties, permanent) {
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
+        for(QuantLib::Size i = 0; i<temp.size(); ++i){
+            temp[i].resize(volatilities[0].size());
+            for (QuantLib::Size j=0; j<volatilities[0].size(); ++j)
+            temp[i][j] = volatilities[i][j];
+        }
+        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::CapVolatilitySurface(settlementDays,
+                                           calendar,
+                                           optionLengths,
+                                           strikes,
+                                           temp));
+    }
+
 }
 

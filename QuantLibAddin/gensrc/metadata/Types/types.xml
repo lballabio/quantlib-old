@@ -67,6 +67,7 @@
         <DataType>QuantLib::CapletVolatilityStructure</DataType>
         <DataType>QuantLib::CapVolatilityStructure</DataType>
         <DataType>QuantLib::CapVolatilityVector</DataType>
+        <DataType>QuantLib::CapVolatilitySurface</DataType>
         <DataType>QuantLib::TermStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>

@@ -24,6 +24,8 @@
 #include <ql/termstructures/volatilities/interestrate/caplet/capletvolatilitiesstructures.hpp>
 //#include <ql/termstructures/volatilities/interestrate/caplet/genericcapletvolatilitiesstructures.hpp>
 #include <ql/termstructures/volatilities/interestrate/cap/capflatvolvector.hpp>
+#include <ql/termstructures/volatilities/interestrate/cap/capvolsurface.hpp>
+
 
 namespace QuantLib {
     class CapletVolatilityStructure;
@@ -114,6 +116,18 @@ namespace QuantLibAddin {
           const std::vector<QuantLib::Period>& optionTenors,
           const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& volatilities,
           const QuantLib::DayCounter& dayCounter,
+          bool permanent);
+    };
+
+    class CapVolatilitySurface : public CapVolatilityStructure {
+      public:
+      CapVolatilitySurface(
+          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+          QuantLib::Natural settlementDays,
+          const QuantLib::Calendar& calendar,
+          const std::vector<QuantLib::Period>& optionLengths,
+          const std::vector<QuantLib::Rate>& strikes,
+          const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
           bool permanent);
     };
 }
