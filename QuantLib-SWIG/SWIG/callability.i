@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 StatPro Italia srl
+ Copyright (C) 2006, 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,9 +21,13 @@
 
 %include date.i
 %include vectors.i
+%include common.i
 
 %{
 using QuantLib::Callability;
+using QuantLib::SoftCallability;
+typedef boost::shared_ptr<Callability> CallabilityPtr;
+typedef boost::shared_ptr<Callability> SoftCallabilityPtr;
 typedef Callability::Price CallabilityPrice;
 using QuantLib::CallabilitySchedule;
 %}
@@ -55,6 +59,12 @@ class Callability {
 
 %template(Callability) boost::shared_ptr<Callability>;
 %extend boost::shared_ptr<Callability> {
+    boost::shared_ptr<Callability>(const CallabilityPrice& price,
+                                   Callability::Type type,
+                                   const Date& date) {
+        return new boost::shared_ptr<Callability>(
+                                            new Callability(price,type,date));
+    }
     static const Callability::Type Call = Callability::Call;
     static const Callability::Type Put = Callability::Put;
 }
@@ -81,9 +91,7 @@ class SoftCallabilityPtr : public boost::shared_ptr<Callability> {
 SWIG_STD_VECTOR_SPECIALIZE( Callability, boost::shared_ptr<Callability> )
 #endif
 namespace std {
-    %template(CallabilityVector) vector<boost::shared_ptr<Callability> >;
+    %template(CallabilitySchedule) vector<boost::shared_ptr<Callability> >;
 }
-
-typedef std::vector<boost::shared_ptr<Callability> > CallabilitySchedule;
 
 #endif

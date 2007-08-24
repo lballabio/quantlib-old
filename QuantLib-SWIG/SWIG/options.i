@@ -403,8 +403,7 @@ class BinomialVanillaEnginePtr : public boost::shared_ptr<PricingEngine> {
     %extend {
         BinomialVanillaEnginePtr(const std::string& type,
                                  Size steps) {
-//            std::string s = QuantLib::lowercase(type);
-        std::string s = type;
+        std::string s = boost::algorithm::to_lower_copy(type);
             if (s == "crr" || s == "coxrossrubinstein")
                 return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<CoxRossRubinstein>(steps));
@@ -452,8 +451,7 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                             doubleOrNull requiredTolerance = Null<Real>(),
                             intOrNull maxSamples = Null<Size>(),
                             BigInteger seed = 0) {
-//            std::string s = QuantLib::lowercase(traits);
-        std::string s = traits;
+            std::string s = boost::algorithm::to_lower_copy(traits);
             QL_REQUIRE(Size(timeSteps) != Null<Size>() ||
                        Size(timeStepsPerYear) != Null<Size>(),
                        "number of steps not specified");
@@ -813,8 +811,7 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
                            intOrNull maxSamples = Null<Size>(),
                            bool isBiased = false,
                            BigInteger seed = 0) {
-//            std::string s = QuantLib::lowercase(traits);
-        std::string s = traits;
+            std::string s = boost::algorithm::to_lower_copy(traits);
             if (s == "pseudorandom" || s == "pr")
                 return new MCBarrierEnginePtr(
                          new MCBarrierEngine<PseudoRandom>(timeStepsPerYear,

@@ -40,18 +40,18 @@ class ConvertibleZeroCouponBondPtr : public BondPtr {
   public:
     %extend {
         ConvertibleZeroCouponBondPtr(
-                          const boost::shared_ptr<StochasticProcess>& process,
-                          const boost::shared_ptr<Exercise>& exercise,
-                          const boost::shared_ptr<PricingEngine>& engine,
-                          Real conversionRatio,
-                          const DividendSchedule&  dividends,
-                          const CallabilitySchedule& callability,
-                          const Handle<Quote>& creditSpread,
-                          const Date& issueDate,
-                          Integer settlementDays,
-                          const DayCounter& dayCounter,
-                          const Schedule& schedule,
-                          Real redemption = 100) {
+              const boost::shared_ptr<StochasticProcess>& process,
+              const boost::shared_ptr<Exercise>& exercise,
+              const boost::shared_ptr<PricingEngine>& engine,
+              Real conversionRatio,
+              const std::vector<boost::shared_ptr<Dividend> >& dividends,
+              const std::vector<boost::shared_ptr<Callability> >& callability,
+              const Handle<Quote>& creditSpread,
+              const Date& issueDate,
+              Integer settlementDays,
+              const DayCounter& dayCounter,
+              const Schedule& schedule,
+              Real redemption = 100.0) {
             return new ConvertibleZeroCouponBondPtr(
                      new ConvertibleZeroCouponBond(process, exercise, engine,
                                                    conversionRatio, dividends,
@@ -69,19 +69,19 @@ class ConvertibleFixedCouponBondPtr : public BondPtr {
   public:
     %extend {
         ConvertibleFixedCouponBondPtr(
-                          const boost::shared_ptr<StochasticProcess>& process,
-                          const boost::shared_ptr<Exercise>& exercise,
-                          const boost::shared_ptr<PricingEngine>& engine,
-                          Real conversionRatio,
-                          const DividendSchedule&  dividends,
-                          const CallabilitySchedule& callability,
-                          const Handle<Quote>& creditSpread,
-                          const Date& issueDate,
-                          Integer settlementDays,
-                          const std::vector<Rate>& coupons,
-                          const DayCounter& dayCounter,
-                          const Schedule& schedule,
-                          Real redemption = 100) {
+              const boost::shared_ptr<StochasticProcess>& process,
+              const boost::shared_ptr<Exercise>& exercise,
+              const boost::shared_ptr<PricingEngine>& engine,
+              Real conversionRatio,
+              const std::vector<boost::shared_ptr<Dividend> >& dividends,
+              const std::vector<boost::shared_ptr<Callability> >& callability,
+              const Handle<Quote>& creditSpread,
+              const Date& issueDate,
+              Integer settlementDays,
+              const std::vector<Rate>& coupons,
+              const DayCounter& dayCounter,
+              const Schedule& schedule,
+              Real redemption = 100.0) {
             return new ConvertibleFixedCouponBondPtr(
                     new ConvertibleFixedCouponBond(process, exercise, engine,
                                                    conversionRatio, dividends,
@@ -99,21 +99,21 @@ class ConvertibleFloatingRateBondPtr : public BondPtr {
   public:
     %extend {
         ConvertibleFloatingRateBondPtr(
-                          const boost::shared_ptr<StochasticProcess>& process,
-                          const boost::shared_ptr<Exercise>& exercise,
-                          const boost::shared_ptr<PricingEngine>& engine,
-                          Real conversionRatio,
-                          const DividendSchedule&  dividends,
-                          const CallabilitySchedule& callability,
-                          const Handle<Quote>& creditSpread,
-                          const Date& issueDate,
-                          Integer settlementDays,
-                          const IborIndexPtr& index,
-                          Integer fixingDays,
-                          const std::vector<Spread>& spreads,
-                          const DayCounter& dayCounter,
-                          const Schedule& schedule,
-                          Real redemption = 100) {
+              const boost::shared_ptr<StochasticProcess>& process,
+              const boost::shared_ptr<Exercise>& exercise,
+              const boost::shared_ptr<PricingEngine>& engine,
+              Real conversionRatio,
+              const std::vector<boost::shared_ptr<Dividend> >& dividends,
+              const std::vector<boost::shared_ptr<Callability> >& callability,
+              const Handle<Quote>& creditSpread,
+              const Date& issueDate,
+              Integer settlementDays,
+              const IborIndexPtr& index,
+              Integer fixingDays,
+              const std::vector<Spread>& spreads,
+              const DayCounter& dayCounter,
+              const Schedule& schedule,
+              Real redemption = 100.0) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new ConvertibleFloatingRateBondPtr(
@@ -136,7 +136,7 @@ class BinomialConvertibleEnginePtr : public boost::shared_ptr<PricingEngine> {
     %extend {
         BinomialConvertibleEnginePtr(const std::string& type,
                                      Size steps) {
-            std::string s = type;
+            std::string s = boost::algorithm::to_lower_copy(type);
             if (s == "crr" || s == "coxrossrubinstein")
                 return new BinomialConvertibleEnginePtr(
                     new BinomialConvertibleEngine<CoxRossRubinstein>(steps));

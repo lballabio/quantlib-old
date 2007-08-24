@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003 StatPro Italia srl
+ Copyright (C) 2003, 2007 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -26,6 +26,7 @@ using QuantLib::NormalDistribution;
 using QuantLib::CumulativeNormalDistribution;
 using QuantLib::MoroInverseCumulativeNormal;
 using QuantLib::InverseCumulativeNormal;
+using QuantLib::BivariateCumulativeNormalDistribution;
 %}
 
 class NormalDistribution {
@@ -68,6 +69,17 @@ class MoroInverseCumulativeNormal {
   public:
     MoroInverseCumulativeNormal(Real average = 0.0, Real sigma = 1.0);
     Real operator()(Real x);
+};
+
+
+class BivariateCumulativeNormalDistribution {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) \
+     || defined(SWIGCSHARP) || defined(SWIGPERL)
+    %rename(call) operator();
+    #endif
+  public:
+    BivariateCumulativeNormalDistribution(Real rho);
+    Real operator()(Real x, Real y);
 };
 
 

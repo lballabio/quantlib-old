@@ -43,6 +43,9 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
         Date startDate() {
             return boost::dynamic_pointer_cast<Swap>(*self)->startDate();
         }
+        Date maturityDate() {
+            return boost::dynamic_pointer_cast<Swap>(*self)->maturityDate();
+        }
     }
 };
 

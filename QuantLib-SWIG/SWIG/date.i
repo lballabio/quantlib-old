@@ -153,6 +153,7 @@ class Period {
     explicit Period(Frequency);
     Integer length() const;
     TimeUnit units() const;
+    Frequency frequency() const;
     %extend {
         Period(const std::string& str) {
             return new Period(PeriodParser::parse(str));
@@ -285,8 +286,11 @@ class Date {
         }
         std::string __repr__() {
             std::ostringstream out;
-            out << "Date(" << self->dayOfMonth() << ","
-                << int(self->month()) << "," << self->year() << ")";
+            if (*self == Date())
+                out << "Date()";
+            else
+                out << "Date(" << self->dayOfMonth() << ","
+                    << int(self->month()) << "," << self->year() << ")";
             return out.str();
         }
         std::string ISO() {

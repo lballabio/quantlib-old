@@ -63,6 +63,7 @@ class test(Command):
 
 class my_wrap(Command):
     description = "generate Python wrappers"
+    user_options = []
     def initialize_options(self): pass
     def finalize_options(self): pass
     def run(self):

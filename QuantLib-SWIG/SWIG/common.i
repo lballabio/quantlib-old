@@ -23,6 +23,10 @@
 %include exception.i
 
 %{
+#include <boost/algorithm/string/case_conv.hpp>
+%}
+
+%{
 // generally useful classes
 using QuantLib::Error;
 using QuantLib::Handle;

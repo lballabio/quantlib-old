@@ -90,7 +90,10 @@ class Index {
                             fixings.begin());
     }
     std::string __str__() {
-        return (*self)->name()+" index";
+        if (*self)
+            return (*self)->name()+" index";
+        else
+            return "Null index";
     }
 }
 IsObservable(boost::shared_ptr<Index>);

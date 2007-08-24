@@ -24,51 +24,54 @@
 
 %{
 typedef QuantLib::BoundaryCondition<QuantLib::TridiagonalOperator>
-        BoundaryCondition;
+        DefaultBoundaryCondition;
 %}
 
 #if defined(SWIGJAVA) || defined(SWIGCSHARP)
-%rename(_BoundaryCondition) BoundaryCondition;
+%rename(_BoundaryCondition) DefaultBoundaryCondition;
 #else
-%ignore BoundaryCondition;
+%ignore DefaultBoundaryCondition;
 #endif
-class BoundaryCondition {
+class DefaultBoundaryCondition {
   public:
     enum Side { None, Upper, Lower };
 #if defined(SWIGJAVA) || defined(SWIGCSHARP)
   private:
-    BoundaryCondition();
+    DefaultBoundaryCondition();
 #endif
 };
-%template(BoundaryCondition) boost::shared_ptr<BoundaryCondition>;
-%extend boost::shared_ptr<BoundaryCondition> {
-    static const BoundaryCondition::Side NoSide = BoundaryCondition::None;
-    static const BoundaryCondition::Side Upper = BoundaryCondition::Upper;
-    static const BoundaryCondition::Side Lower = BoundaryCondition::Lower;
+%template(BoundaryCondition) boost::shared_ptr<DefaultBoundaryCondition>;
+%extend boost::shared_ptr<DefaultBoundaryCondition> {
+    static const DefaultBoundaryCondition::Side NoSide =
+        DefaultBoundaryCondition::None;
+    static const DefaultBoundaryCondition::Side Upper =
+        DefaultBoundaryCondition::Upper;
+    static const DefaultBoundaryCondition::Side Lower =
+        DefaultBoundaryCondition::Lower;
 }
 
 %{
 using QuantLib::NeumannBC;
 using QuantLib::DirichletBC;
-typedef boost::shared_ptr<BoundaryCondition> NeumannBCPtr;
-typedef boost::shared_ptr<BoundaryCondition> DirichletBCPtr;
+typedef boost::shared_ptr<DefaultBoundaryCondition> NeumannBCPtr;
+typedef boost::shared_ptr<DefaultBoundaryCondition> DirichletBCPtr;
 %}
 
 %rename(NeumannBC) NeumannBCPtr;
-class NeumannBCPtr: public boost::shared_ptr<BoundaryCondition> {
+class NeumannBCPtr: public boost::shared_ptr<DefaultBoundaryCondition> {
   public:
     %extend {
-        NeumannBCPtr(Real value, BoundaryCondition::Side side) {
+        NeumannBCPtr(Real value, DefaultBoundaryCondition::Side side) {
             return new NeumannBCPtr(new NeumannBC(value, side));
         }
     }
 };
 
 %rename(DirichletBC) DirichletBCPtr;
-class DirichletBCPtr: public boost::shared_ptr<BoundaryCondition> {
+class DirichletBCPtr: public boost::shared_ptr<DefaultBoundaryCondition> {
   public:
     %extend {
-        DirichletBCPtr(Real value, BoundaryCondition::Side side) {
+        DirichletBCPtr(Real value, DefaultBoundaryCondition::Side side) {
             return new DirichletBCPtr(new DirichletBC(value, side));
         }
     }

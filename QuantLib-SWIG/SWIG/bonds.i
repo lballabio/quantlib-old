@@ -70,8 +70,8 @@ class BondPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<Bond>(*self)->cleanPrice();
         }
         Real cleanPrice(Rate yield, const DayCounter &dc,
-	     		Compounding compounding,
-			Frequency frequency, 
+                Compounding compounding,
+            Frequency frequency,
                         const Date& settlement = Date()) {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->cleanPrice(yield,dc, compounding, frequency, settlement);
@@ -81,31 +81,31 @@ class BondPtr : public boost::shared_ptr<Instrument> {
         }
         Real dirtyPrice(Rate yield, const DayCounter &dc,
                         Compounding compounding,
-			Frequency frequency, 
+            Frequency frequency,
                         const Date& settlement = Date()) {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->dirtyPrice(yield,dc, compounding,
-		frequency,
-		settlement);
+        frequency,
+        settlement);
         }
         Real yield(const DayCounter& dc,
                    Compounding compounding,
-		   Frequency freq,
+           Frequency freq,
                    Real accuracy = 1.0e-8,
                    Size maxEvaluations = 100) {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->yield(dc,compounding,freq,accuracy,maxEvaluations);
         }
         Real yield(Real cleanPrice,
-	           const DayCounter& dc,
+               const DayCounter& dc,
                    Compounding compounding,
-		   Frequency freq,
+           Frequency freq,
                    const Date& settlement = Date(),
                    Real accuracy = 1.0e-8,
                    Size maxEvaluations = 100) {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->yield(cleanPrice,dc,compounding,freq,
-			settlement,
+            settlement,
                         accuracy,maxEvaluations);
         }
         Real accruedAmount(const Date& settlement = Date()) {
@@ -131,7 +131,7 @@ class ZeroCouponBondPtr : public BondPtr {
                 const Date& issueDate = Date()) {
             return new ZeroCouponBondPtr(
                 new ZeroCouponBond(settlementDays, calendar, faceAmount,
-                                   maturityDate, 
+                                   maturityDate,
                                    paymentConvention, redemption,
                                    issueDate));
         }
@@ -169,7 +169,7 @@ class FloatingRateBondPtr : public BondPtr {
         FloatingRateBondPtr(Size settlementDays,
                             Real faceAmount,
                             const Schedule& schedule,
-                            const boost::shared_ptr<IborIndex>& index,
+                            const IborIndexPtr& index,
                             const DayCounter& paymentDayCounter,
                             BusinessDayConvention paymentConvention,
                             Size fixingDays,

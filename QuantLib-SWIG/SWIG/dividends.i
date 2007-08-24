@@ -32,7 +32,6 @@ class Dividend : public CashFlow {
 %{
 using QuantLib::FixedDividend;
 using QuantLib::FractionalDividend;
-using QuantLib::DividendSchedule;
 
 typedef boost::shared_ptr<Dividend> FixedDividendPtr;
 typedef boost::shared_ptr<Dividend> FractionalDividendPtr;
@@ -60,5 +59,11 @@ class FractionalDividendPtr : public boost::shared_ptr<Dividend> {
 };
 
 
-typedef std::vector<boost::shared_ptr<Dividend> > DividendSchedule;
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_SPECIALIZE( Dividend, boost::shared_ptr<Dividend> )
+#endif
+namespace std {
+    %template(DividendSchedule) vector<boost::shared_ptr<Dividend> >;
+}
+
 #endif

@@ -960,16 +960,16 @@ class Array {
 
 %{
 typedef QuantLib::LexicographicalView<Array::iterator>
-    LexicographicalView;
+    DefaultLexicographicalView;
 typedef QuantLib::LexicographicalView<Array::iterator>::y_iterator
-    LexicographicalViewColumn;
+    DefaultLexicographicalViewColumn;
 %}
 
 #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
-class LexicographicalViewColumn {
+class DefaultLexicographicalViewColumn {
   private:
     // access control - no constructor exported
-    LexicographicalViewColumn();
+    DefaultLexicographicalViewColumn();
   public:
     %extend {
         Real __getitem__(Size i) {
@@ -982,7 +982,8 @@ class LexicographicalViewColumn {
 };
 #endif
 
-class LexicographicalView {
+%rename(LexicographicalView) DefaultLexicographicalView;
+class DefaultLexicographicalView {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("set!")    set;
     #endif
@@ -990,8 +991,8 @@ class LexicographicalView {
     Size xSize() const;
     Size ySize() const;
     %extend {
-        LexicographicalView(Array& a, Size xSize) {
-            return new LexicographicalView(a.begin(),a.end(),xSize);
+        DefaultLexicographicalView(Array& a, Size xSize) {
+            return new DefaultLexicographicalView(a.begin(),a.end(),xSize);
         }
         std::string __str__() {
             std::ostringstream s;
@@ -1007,7 +1008,7 @@ class LexicographicalView {
             return s.str();
         }
         #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
-        LexicographicalViewColumn __getitem__(Size i) {
+        DefaultLexicographicalViewColumn __getitem__(Size i) {
             return (*self)[i];
         }
         #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)

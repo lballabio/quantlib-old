@@ -24,6 +24,7 @@
 %include termstructures.i
 %include volatilities.i
 %include swap.i
+%include old_volatility.i
 
 %{
 using QuantLib::Swaption;
@@ -65,13 +66,13 @@ class BlackSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
         BlackSwaptionEnginePtr(const Handle<Quote>& vol,
                                const Handle<YieldTermStructure> & discountCurve) {
             return new BlackSwaptionEnginePtr(new
-	    BlackSwaptionEngine(vol, discountCurve));
+        BlackSwaptionEngine(vol, discountCurve));
         }
         BlackSwaptionEnginePtr(const
-			Handle<SwaptionVolatilityStructure>& v,
- 	                              const Handle<YieldTermStructure> & discountCurve) {
+            Handle<SwaptionVolatilityStructure>& v,
+                                  const Handle<YieldTermStructure> & discountCurve) {
             return new BlackSwaptionEnginePtr(new
-	    BlackSwaptionEngine(v, discountCurve));
+        BlackSwaptionEngine(v, discountCurve));
         }
     }
 };
