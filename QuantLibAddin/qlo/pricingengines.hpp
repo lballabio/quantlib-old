@@ -40,7 +40,7 @@ namespace QuantLib {
     class PricingEngine;
     class Quote;
     class YieldTermStructure;
-    class BondEngine;
+    class DiscountingBondEngine;
 }
 
 namespace QuantLibAddin {

@@ -32,7 +32,7 @@
 #include <ql/instruments/bonds/cmsratebond.hpp>
 #include <ql/instruments/bonds/floatingratebond.hpp>
 #include <ql/cashflows/couponpricer.hpp>
-#include <ql/pricingengines/bond/bondengine.hpp>
+#include <ql/pricingengines/bond/discountingbondengine.hpp>
 #include <ql/currency.hpp>
 
 namespace QuantLibAddin {
@@ -82,7 +82,7 @@ namespace QuantLibAddin {
                              const boost::shared_ptr<Leg>& leg,
                              bool permanent) : Bond(properties, permanent)
 
-    {   
+    {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::Bond(settlementDays,
                            calendar,
@@ -164,8 +164,8 @@ namespace QuantLibAddin {
                                     issueDate, stubDate,
                                     fromEnd));
     }
-    
-    
+
+
     FloatingRateBond::FloatingRateBond(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string&,
@@ -193,7 +193,7 @@ namespace QuantLibAddin {
                                        gearings, spreads,
                                        caps, floors,
                                        inArrears,
-                                       redemption, issueDate));        
+                                       redemption, issueDate));
     }
 
     CmsRateBond::CmsRateBond(
@@ -223,7 +223,7 @@ namespace QuantLibAddin {
                                   gearings, spreads,
                                   caps, floors,
                                   inArrears,
-                                  redemption, issueDate));        
+                                  redemption, issueDate));
     }
 
 }
