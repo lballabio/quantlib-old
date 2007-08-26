@@ -43,7 +43,7 @@ class Member(function.Function):
         return self.behavior_.generateBody(addin)
 
     def memberAccess(self):
-        return self.parameterObjectID_.dataType().memberAccess()
+        return self.parameterObjectId_.dataType().memberAccess()
 
     #############################################
     # serializer interface
@@ -62,12 +62,12 @@ class Member(function.Function):
         """Perform post serialization initialization."""
         function.Function.postSerialize(self)
         # implicit in the definition of a Member is that the first parameter
-        # is the objectID of the object to be retrieved
+        # is the objectId of the object to be retrieved
 
-        # FIXME rework so not necessary to retain "self.parameterObjectID"
+        # FIXME rework so not necessary to retain "self.parameterObjectId"
         # as reference to first parameter
-        self.parameterObjectID_ = parameter.MemberObjectID(self.type_, self.superType_)
-        self.parameterList_.prepend(self.parameterObjectID_)
+        self.parameterObjectId_ = parameter.MemberObjectId(self.type_, self.superType_)
+        self.parameterList_.prepend(self.parameterObjectId_)
         # dependency tracking trigger
         if self.dependencyTrigger_:
             self.parameterList_.append(parameter.DependencyTrigger())

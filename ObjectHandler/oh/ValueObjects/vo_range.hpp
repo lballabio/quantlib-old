@@ -47,7 +47,7 @@ namespace ObjectHandler { namespace ValueObjects {
         }
 
         boost::any getProperty(const std::string &name) const {
-            if(name == "ObjectID") return objectID_;
+            if(name == "ObjectId") return objectId_;
             else if(name == "ClassName") return className_;
             else if(name == "Values") return values_;
             else if(name == "Permanent") return permanent_;
@@ -56,7 +56,7 @@ namespace ObjectHandler { namespace ValueObjects {
         }
 
         void setProperty(const std::string& name, const boost::any& value) {
-            if(name == "ObjectID") objectID_ = boost::any_cast<std::string>(value);
+            if(name == "ObjectId") objectId_ = boost::any_cast<std::string>(value);
             else if(name == "ClassName") className_ = boost::any_cast<std::string>(value);
             else if(name == "Values") values_ = boost::any_cast<std::vector<std::vector<double> > >(value);
             else if(name == "Permanent") className_ = boost::any_cast<bool>(value);
@@ -72,7 +72,7 @@ namespace ObjectHandler { namespace ValueObjects {
         template<class Archive>
         void serialize(Archive& ar, const unsigned int) {
         boost::serialization::void_cast_register<ohRange, ObjectHandler::ValueObject>(this, this);
-            ar  & boost::serialization::make_nvp("ObjectID", objectID_)
+            ar  & boost::serialization::make_nvp("ObjectId", objectId_)
                 & boost::serialization::make_nvp("ClassName", className_)
                 & boost::serialization::make_nvp("Values", values_)
                 & boost::serialization::make_nvp("Permanent", permanent_);

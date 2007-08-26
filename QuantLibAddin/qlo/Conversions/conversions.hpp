@@ -40,14 +40,13 @@ namespace QuantLibAddin {
 
     std::vector<long> libraryToVector(const std::vector<QuantLib::Date>&);
     std::vector<std::string> libraryToVector(const std::vector<QuantLib::Period>&);
-    std::vector<long> libraryToVector(const std::vector<QuantLib::Size>&);
 
     void cppToLibrary(const std::string &in, QuantLib::Period &ret);
     void cppToLibrary(const long &in, QuantLib::Size &ret);
 
-    template <class T>
-    std::vector<T> cppToLibrary(const std::vector<long>& v) {
-        return std::vector<T>(v.begin(), v.end());
+    template <class Tin, class Tout>
+    std::vector<Tout> convertVector(const std::vector<Tin>& v) {
+        return std::vector<Tout>(v.begin(), v.end());
     }
 
     QuantLib::Matrix vvToQlMatrix(const std::vector<std::vector<double> > &vv);

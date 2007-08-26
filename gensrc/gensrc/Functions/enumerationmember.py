@@ -49,10 +49,10 @@ class EnumerationMember(member.Member):
         # implicit in the definition of an EnumerationMember is that the first parameter
         # is the ID of the enumeration to be retrieved
 
-        # FIXME rework so not necessary to retain "self.parameterObjectID"
+        # FIXME rework so not necessary to retain "self.parameterObjectId"
         # as reference to first parameter
-        self.parameterObjectID_ = parameter.EnumerationId(self.type_, self.superType_)
-        self.parameterList_.prepend(self.parameterObjectID_)
+        self.parameterObjectId_ = parameter.EnumerationId(self.type_, self.superType_)
+        self.parameterList_.prepend(self.parameterObjectId_)
         # dependency tracking trigger
         if self.dependencyTrigger_:
             self.parameterList_.append(parameter.DependencyTrigger())

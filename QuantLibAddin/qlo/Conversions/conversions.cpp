@@ -62,10 +62,6 @@ namespace QuantLibAddin {
         return ret;
     }
 
-    std::vector<long> libraryToVector(const std::vector<QuantLib::Size>& v) {
-        return std::vector<long>(v.begin(), v.end());
-    }
-
     void cppToLibrary(const std::string &in, QuantLib::Period &ret) {
         ret = QuantLib::PeriodParser::parse(in);
     }

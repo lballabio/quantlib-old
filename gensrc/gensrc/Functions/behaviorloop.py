@@ -134,7 +134,7 @@ class BehaviorMemberLoop(BehaviorLoop):
         BehaviorLoop.__init__(self)
         self.functionCodeName_ = self.func_.type() + '::' + self.func_.libraryFunction()
         self.functionSignature_ = self.func_.name() + 'Signature'
-        self.objectName_ = '\n' + 16 * ' ' + self.func_.parameterObjectID().nameConverted() + ','
+        self.objectName_ = '\n' + 16 * ' ' + self.func_.parameterObjectId().nameConverted() + ','
 
     def functionReference(self):
         return 'boost::shared_ptr<%s>' % self.func_.type()

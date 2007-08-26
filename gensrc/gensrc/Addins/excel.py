@@ -78,7 +78,9 @@ class ExcelAddin(addin.Addin):
     ID_STRIP = '''
         // Strip the Excel cell update counter suffix from Object IDs
         
-        std::string ObjectIdStrip = ObjectHandler::ObjectXL::getStub(ObjectID);%s\n'''
+        std::string ObjectIdStrip = ObjectHandler::ObjectXL::getStub(ObjectId);%s\n'''
+
+    objectIdSuffix_ = 'Strip'
 
     #############################################
     # public interface

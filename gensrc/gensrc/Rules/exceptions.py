@@ -24,7 +24,7 @@ class RuleException(exceptions.GensrcException):
 class RuleCodeInvalidException(RuleException):
 
     INVALID_CODE_ERROR = '''
-The code ID "%(codeID)s" is not defined in file "code.py"'''
+The code ID "%(codeID)s" is not defined in file "codedict.py"'''
 
     def __init__(self, codeID):
         self.value_ = RuleCodeInvalidException.INVALID_CODE_ERROR % {

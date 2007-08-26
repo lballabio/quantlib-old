@@ -56,6 +56,7 @@
     <RuleGroup name='libraryConversions' indent='3' checkParameterIgnore='true' delimiter='&#10;' prefix='&#10;'>
       <Wrap codeID='wrap2'/>
       <Rules>
+        <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Real'/>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Date' default='false' codeID='code200'/>
         <Rule tensorRank='scalar' superType='libraryType' nativeType='string' default='true' codeID='code213'/>
         <Rule tensorRank='scalar' superType='libraryType' nativeType='string' default='false' codeID='code22'/>
@@ -132,6 +133,7 @@
     <RuleGroup name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
+        <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Real'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(name)sLib</Rule>
         <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(name)sLibObj</Rule>
@@ -158,7 +160,7 @@
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='voCall' checkParameterIgnore='true' indent='4' delimiter=',&#10;'>
+    <RuleGroup name='voCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' superType='enumeration' default='true'>%(indent)s%(name)sCpp</Rule>
@@ -171,6 +173,7 @@
       <Rules>
         <Rule tensorRank='scalar' superType='libraryType' codeID='code210'/>
         <Rule tensorRank='scalar' superType='enumeration' codeID='code211'/>
+        <Rule tensorRank='vector' type='QuantLib::Real' codeID='code209b'/>
         <Rule tensorRank='vector' superType='libraryType' codeID='code209'/>
         <Rule>%(indent)sreturn returnValue;</Rule>
       </Rules>

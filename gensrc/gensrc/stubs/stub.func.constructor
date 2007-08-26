@@ -3,7 +3,7 @@
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
             new %(namespaceObjects)s::ValueObjects::%(functionName)s(
-                ObjectIdStrip,%(voParameters)s));
+                ObjectId%(idSuffix)s,%(voParameters)s));
 
         // Construct the Object
         
@@ -14,7 +14,7 @@
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectID%(suffix)s, object);
+            ObjectHandler::Repository::instance().storeObject(ObjectId%(idSuffix)s, object);
 
         // Convert and return the return value
 

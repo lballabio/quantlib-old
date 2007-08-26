@@ -174,7 +174,7 @@ def updateData(addin):
 
 #   The pattern we are searching for looks like this:
 #       <px class_id_reference="114" object_id="_2">
-#           <objectID>EURSwaptionMeanReversion10Y_QuoteHandle</objectID>
+#           <objectId>EURSwaptionMeanReversion10Y_QuoteHandle</objectId>
 #           <className>qlRelinkableHandleQuote</className>
 #           <CurrentLink>EURSwaptionMeanReversion10Y_Quote</CurrentLink>
 #       </px>

@@ -244,6 +244,13 @@ code63 = '''\
         ObjectHandler::vectorToOper(returnValVec, xRet);
         return &xRet;'''
 
+code63b = '''\
+        std::vector<%(nativeType)s> returnValVec =
+            %(namespaceObjects)s::convertVector<%(type)s, %(nativeType)s>(returnValue);
+        static OPER xRet;
+        ObjectHandler::vectorToOper(returnValVec, xRet);
+        return &xRet;'''
+
 code64 = '''\
         static OPER xRet;
         ObjectHandler::%(tensorRank)sToOper(returnValue, xRet);
@@ -293,6 +300,11 @@ code208 = '''\
 
 code209 = '''\
         std::vector<%(nativeType)s> returnValueLib = %(namespaceObjects)s::libraryToVector(returnValue);
+        return returnValueLib;'''
+
+code209b = '''\
+        std::vector<%(nativeType)s> returnValueLib =
+            %(namespaceObjects)s::convertVector<%(type)s, %(nativeType)s>(returnValue);
         return returnValueLib;'''
 
 code210 = '''\
@@ -548,11 +560,11 @@ code131 = '''\
 
 code132 = '''\
         std::vector<%(type)s> %(name)sLib = 
-            QuantLibAddin::cppToLibrary<%(type)s>(%(name)s);\n'''
+            QuantLibAddin::convertVector<%(nativeType)s, %(type)s>(%(name)s);\n'''
 
 code133 = '''\
         std::vector<%(type)s> %(name)sLib = 
-            QuantLibAddin::cppToLibrary<%(type)s>(%(name)sCpp);\n'''
+            QuantLibAddin::convertVector<%(nativeType)s, %(type)s>(%(name)sCpp);\n'''
 
 code135 = '''\
         QuantLib::Matrix %(name)sLib =

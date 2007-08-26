@@ -262,7 +262,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ObjectID'>
+          <Parameter name='ObjectId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be queried</description>
@@ -284,7 +284,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ObjectID'>
+          <Parameter name='ObjectId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be queried</description>
@@ -328,7 +328,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ObjectID' exampleValue='DummyObject'>
+          <Parameter name='ObjectId' exampleValue='DummyObject'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be deleted</description>
@@ -397,7 +397,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ObjectID' exampleValue='DummyObject'>
+          <Parameter name='ObjectId' exampleValue='DummyObject'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be logged</description>
@@ -529,7 +529,7 @@
     </Procedure>
 
     <Procedure name='ohObjectSave'>
-      <description>experimental re-implementation of ohObjectSave</description>
+      <description>Serialize list of objects to given path, return count of objects serialized</description>
       <alias>ObjectHandler::Repository::instance().saveObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp' />
@@ -539,12 +539,17 @@
           <Parameter name='ObjectList'>
             <type>ObjectHandler::Object</type>
             <tensorRank>vector</tensorRank>
-            <description>list of objects to be serialized</description>
+            <description>list of object IDs to be serialized</description>
           </Parameter>
-          <Parameter name='Path'>
+          <Parameter name='Filename'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>file to which objects are to be serialized</description>
+            <description>file name to which objects are to be serialized</description>
+          </Parameter>
+          <Parameter name='Overwrite' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>overwrite the output file if it exists</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -555,19 +560,19 @@
     </Procedure>
 
     <Procedure name='ohObjectLoad'>
-      <description>experimental re-implementation of ohObjectLoad</description>
+      <description>Deserialize list of objects from given file, return count of deserialized objects</description>
       <alias>ObjectHandler::Repository::instance().loadObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Path'>
+          <Parameter name='Filename'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>file from which objects are to be deserialized</description>
+            <description>File name from which objects are to be deserialized. If a folder name is provided, all files with extension .xml are loaded recursively.</description>
           </Parameter>
-          <Parameter name='OverwriteExisting' default='false'>
+          <Parameter name='Overwrite' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Overwrite any existing Object that has the same ID as one being loaded</description>

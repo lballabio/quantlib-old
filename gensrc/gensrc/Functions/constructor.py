@@ -39,8 +39,8 @@ class Constructor(function.Function):
 
     generateVOs_ = True
     funcCtorBuffer_ = buffer.loadBuffer('stub.func.constructor')
-    validatePermanent_ = '''
-        //ObjectHandler::validateRange(Permanent, "Permanent");'''
+    #validatePermanent_ = '''
+    #    //ObjectHandler::validateRange(Permanent, "Permanent");'''
     DESCRIPTION = 'Construct an object of class %s and return its id'
 
     #############################################
@@ -55,7 +55,7 @@ class Constructor(function.Function):
             'libraryFunction' : self.libraryFunction_,
             'libraryParameters' : self.parameterList_.generate(addin.libraryCall()), 
             'namespaceObjects' : environment.config().namespaceObjects(),
-            'suffix' : addin.objectIdSuffix(),
+            'idSuffix' : addin.objectIdSuffix(),
             'voParameters' : self.parameterList_.generate(addin.voCall()) }
 
     def libraryFunction(self):
@@ -75,7 +75,7 @@ class Constructor(function.Function):
         function.Function.postSerialize(self)
         # implicit in the definition of a Constructor is that the first parameter
         # is a string to be used as the objectID of the new object
-        self.parameterList_.prepend(parameter.ConstructorObjectID())
+        self.parameterList_.prepend(parameter.ConstructorObjectId())
         # All ctors have a final optional boolean parameter 'permanent'
         self.parameterList_.append(parameter.PermanentFlag())
         # dependency tracking trigger

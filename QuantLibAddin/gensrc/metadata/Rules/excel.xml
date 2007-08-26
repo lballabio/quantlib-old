@@ -277,6 +277,7 @@
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Real' codeID='code64'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Array' codeID='code59'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Matrix' codeID='code59'/>
+        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Size' codeID='code63b'/>
         <Rule tensorRank='vector' superType='libraryType' nativeType='string' codeID='code63'/>
         <Rule tensorRank='vector' superType='libraryType' codeID='code62'/>
         <Rule tensorRank='vector' codeID='code64'/>

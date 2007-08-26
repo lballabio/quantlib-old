@@ -50,7 +50,7 @@ class BehaviorMember(object):
             'memberAccess' : self.func_.memberAccess(),
             'libraryFunction' : self.func_.libraryFunction(),
             'libraryReturnType' : addin.libraryReturnType().apply(self.func_.returnValue()),
-            'objectID' : self.func_.parameterObjectID().nameConverted(),
+            'objectId' : self.func_.parameterObjectId().nameConverted(),
             'parameterList' : self.func_.parameterList().generate(addin.libraryCall()) }
 
     #############################################

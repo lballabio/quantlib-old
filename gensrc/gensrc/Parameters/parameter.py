@@ -186,13 +186,13 @@ class PermanentFlag(Value):
     def __init__(self):
         self.dataType_ = environment.getType(self.type_)
 
-class ConstructorObjectID(Parameter):
+class ConstructorObjectId(Parameter):
     """ID of an object.
 
     Implicitly used as the first input parameter for all 
     Constructors (where the ID is assigned to the new object)."""
 
-    name_ = 'ObjectID'
+    name_ = 'ObjectId'
     tensorRank_ = common.SCALAR
     type_ = common.STRING
     superType_ = 'native'
@@ -202,14 +202,14 @@ class ConstructorObjectID(Parameter):
     def __init__(self):
         self.dataType_ = environment.getType(self.type_, self.superType_)
 
-class MemberObjectID(Parameter):
+class MemberObjectId(Parameter):
     """ID of an object.
 
     Implicitly used as the first input parameter for all 
     Constructors (where the ID is assigned to the new object) and
     Members (where the ID indicates the object to be retrieved)."""
 
-    name_ = 'ObjectID'
+    name_ = 'ObjectId'
     tensorRank_ = common.SCALAR
     ignore_ = False
 
