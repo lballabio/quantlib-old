@@ -39,7 +39,7 @@ namespace ObjectHandler { namespace ValueObjects {
 
         std::vector<std::string> getPropertyNames() const {
             std::vector<std::string> ret;
-            ret.push_back("ObjectID");
+            ret.push_back("ObjectId");
             ret.push_back("ClassName");
             ret.push_back("Values");
             ret.push_back("Permanent");

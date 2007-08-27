@@ -6,7 +6,7 @@
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="62" tracking_level="1" version="0" object_id="_1">
-			<ObjectID>EuriborSW</ObjectID>
+			<ObjectId>EuriborSW</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>1W</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -15,7 +15,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_2">
-			<ObjectID>Euribor2W</ObjectID>
+			<ObjectId>Euribor2W</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>2W</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -24,7 +24,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_3">
-			<ObjectID>Euribor3W</ObjectID>
+			<ObjectId>Euribor3W</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>3W</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -33,7 +33,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_4">
-			<ObjectID>Euribor1M</ObjectID>
+			<ObjectId>Euribor1M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>1M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -42,7 +42,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_5">
-			<ObjectID>Euribor2M</ObjectID>
+			<ObjectId>Euribor2M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>2M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -51,7 +51,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_6">
-			<ObjectID>Euribor3M</ObjectID>
+			<ObjectId>Euribor3M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>3M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -60,7 +60,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_7">
-			<ObjectID>Euribor4M</ObjectID>
+			<ObjectId>Euribor4M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>4M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -69,7 +69,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_8">
-			<ObjectID>Euribor5M</ObjectID>
+			<ObjectId>Euribor5M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>5M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -78,7 +78,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_9">
-			<ObjectID>Euribor6M</ObjectID>
+			<ObjectId>Euribor6M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>6M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -87,7 +87,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_10">
-			<ObjectID>Euribor7M</ObjectID>
+			<ObjectId>Euribor7M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>7M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -96,7 +96,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_11">
-			<ObjectID>Euribor8M</ObjectID>
+			<ObjectId>Euribor8M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>8M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -105,7 +105,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_12">
-			<ObjectID>Euribor9M</ObjectID>
+			<ObjectId>Euribor9M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>9M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -114,7 +114,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_13">
-			<ObjectID>Euribor10M</ObjectID>
+			<ObjectId>Euribor10M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>10M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -123,7 +123,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_14">
-			<ObjectID>Euribor11M</ObjectID>
+			<ObjectId>Euribor11M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>11M</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -132,7 +132,7 @@
 	</item>
 	<item>
 		<px class_id_reference="62" object_id="_15">
-			<ObjectID>Euribor1Y</ObjectID>
+			<ObjectId>Euribor1Y</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>1Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>

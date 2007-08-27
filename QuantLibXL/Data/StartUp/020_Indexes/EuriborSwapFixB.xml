@@ -6,7 +6,7 @@
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="65" tracking_level="1" version="0" object_id="_1">
-			<ObjectID>EuriborSwapFixB1Y</ObjectID>
+			<ObjectId>EuriborSwapFixB1Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>1Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -15,7 +15,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_2">
-			<ObjectID>EuriborSwapFixB2Y</ObjectID>
+			<ObjectId>EuriborSwapFixB2Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>2Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -24,7 +24,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_3">
-			<ObjectID>EuriborSwapFixB3Y</ObjectID>
+			<ObjectId>EuriborSwapFixB3Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>3Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -33,7 +33,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_4">
-			<ObjectID>EuriborSwapFixB4Y</ObjectID>
+			<ObjectId>EuriborSwapFixB4Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>4Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -42,7 +42,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_5">
-			<ObjectID>EuriborSwapFixB5Y</ObjectID>
+			<ObjectId>EuriborSwapFixB5Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>5Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -51,7 +51,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_6">
-			<ObjectID>EuriborSwapFixB6Y</ObjectID>
+			<ObjectId>EuriborSwapFixB6Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>6Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -60,7 +60,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_7">
-			<ObjectID>EuriborSwapFixB7Y</ObjectID>
+			<ObjectId>EuriborSwapFixB7Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>7Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -69,7 +69,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_8">
-			<ObjectID>EuriborSwapFixB8Y</ObjectID>
+			<ObjectId>EuriborSwapFixB8Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>8Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -78,7 +78,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_9">
-			<ObjectID>EuriborSwapFixB9Y</ObjectID>
+			<ObjectId>EuriborSwapFixB9Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>9Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -87,7 +87,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_10">
-			<ObjectID>EuriborSwapFixB10Y</ObjectID>
+			<ObjectId>EuriborSwapFixB10Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>10Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -96,7 +96,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_11">
-			<ObjectID>EuriborSwapFixB12Y</ObjectID>
+			<ObjectId>EuriborSwapFixB12Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>12Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -105,7 +105,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_12">
-			<ObjectID>EuriborSwapFixB15Y</ObjectID>
+			<ObjectId>EuriborSwapFixB15Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>15Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -114,7 +114,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_13">
-			<ObjectID>EuriborSwapFixB20Y</ObjectID>
+			<ObjectId>EuriborSwapFixB20Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>20Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -123,7 +123,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_14">
-			<ObjectID>EuriborSwapFixB25Y</ObjectID>
+			<ObjectId>EuriborSwapFixB25Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>25Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>
@@ -132,7 +132,7 @@
 	</item>
 	<item>
 		<px class_id_reference="65" object_id="_15">
-			<ObjectID>EuriborSwapFixB30Y</ObjectID>
+			<ObjectId>EuriborSwapFixB30Y</ObjectId>
 			<ClassName>qlEuriborSwapFixB</ClassName>
 			<Tenor>30Y</Tenor>
 			<YieldCurve>EuriborYC</YieldCurve>

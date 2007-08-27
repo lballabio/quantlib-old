@@ -287,7 +287,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ObjectID'>
+          <Parameter name='ObjectId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be queried</description>
@@ -308,7 +308,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ObjectID'>
+          <Parameter name='ObjectId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>ID of object to be queried</description>

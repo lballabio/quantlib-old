@@ -6,7 +6,7 @@
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="129" tracking_level="1" version="0" object_id="_1">
-			<ObjectID>EURSwaptionMeanReversion2Y_QuoteHandle</ObjectID>
+			<ObjectId>EURSwaptionMeanReversion2Y_QuoteHandle</ObjectId>
 			<ClassName>qlRelinkableHandleQuote</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>
@@ -14,7 +14,7 @@
 	</item>
 	<item>
 		<px class_id_reference="129" object_id="_2">
-			<ObjectID>EURSwaptionMeanReversion5Y_QuoteHandle</ObjectID>
+			<ObjectId>EURSwaptionMeanReversion5Y_QuoteHandle</ObjectId>
 			<ClassName>qlRelinkableHandleQuote</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>
@@ -22,7 +22,7 @@
 	</item>
 	<item>
 		<px class_id_reference="129" object_id="_3">
-			<ObjectID>EURSwaptionMeanReversion10Y_QuoteHandle</ObjectID>
+			<ObjectId>EURSwaptionMeanReversion10Y_QuoteHandle</ObjectId>
 			<ClassName>qlRelinkableHandleQuote</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>
@@ -30,7 +30,7 @@
 	</item>
 	<item>
 		<px class_id_reference="129" object_id="_4">
-			<ObjectID>EURSwaptionMeanReversion20Y_QuoteHandle</ObjectID>
+			<ObjectId>EURSwaptionMeanReversion20Y_QuoteHandle</ObjectId>
 			<ClassName>qlRelinkableHandleQuote</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>
@@ -38,7 +38,7 @@
 	</item>
 	<item>
 		<px class_id_reference="129" object_id="_5">
-			<ObjectID>EURSwaptionMeanReversion30Y_QuoteHandle</ObjectID>
+			<ObjectId>EURSwaptionMeanReversion30Y_QuoteHandle</ObjectId>
 			<ClassName>qlRelinkableHandleQuote</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>
@@ -46,7 +46,7 @@
 	</item>
 	<item>
 		<px class_id="32" tracking_level="1" version="0" object_id="_6">
-			<ObjectID>CmsCouponPricer2Y</ObjectID>
+			<ObjectId>CmsCouponPricer2Y</ObjectId>
 			<ClassName>qlCmsCouponPricer</ClassName>
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
@@ -62,7 +62,7 @@
 	</item>
 	<item>
 		<px class_id_reference="32" object_id="_7">
-			<ObjectID>CmsCouponPricer5Y</ObjectID>
+			<ObjectId>CmsCouponPricer5Y</ObjectId>
 			<ClassName>qlCmsCouponPricer</ClassName>
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
@@ -78,7 +78,7 @@
 	</item>
 	<item>
 		<px class_id_reference="32" object_id="_8">
-			<ObjectID>CmsCouponPricer10Y</ObjectID>
+			<ObjectId>CmsCouponPricer10Y</ObjectId>
 			<ClassName>qlCmsCouponPricer</ClassName>
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
@@ -94,7 +94,7 @@
 	</item>
 	<item>
 		<px class_id_reference="32" object_id="_9">
-			<ObjectID>CmsCouponPricer20Y</ObjectID>
+			<ObjectId>CmsCouponPricer20Y</ObjectId>
 			<ClassName>qlCmsCouponPricer</ClassName>
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
@@ -110,7 +110,7 @@
 	</item>
 	<item>
 		<px class_id_reference="32" object_id="_10">
-			<ObjectID>CmsCouponPricer30Y</ObjectID>
+			<ObjectId>CmsCouponPricer30Y</ObjectId>
 			<ClassName>qlCmsCouponPricer</ClassName>
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>

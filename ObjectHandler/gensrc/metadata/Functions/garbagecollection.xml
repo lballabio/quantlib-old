@@ -63,7 +63,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ObjectID'>
+          <Parameter name='ObjectId'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>ID of object to be deleted</description>

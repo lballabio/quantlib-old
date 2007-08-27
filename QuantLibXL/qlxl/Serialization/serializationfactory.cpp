@@ -53,7 +53,7 @@ namespace QuantLibXL {
         for (i=objectList.begin(); i!=objectList.end(); ++i) {
             boost::shared_ptr<ObjectHandler::Object> object = *i;
             std::string objectID = boost::any_cast<std::string>(
-                object->properties()->getProperty("ObjectID"));
+                object->properties()->getProperty("ObjectId"));
             if (seen.find(objectID) == seen.end()) {
                 valueObjects.push_back(object->properties());
                 seen.insert(objectID);
@@ -72,13 +72,13 @@ namespace QuantLibXL {
         bool overwriteExisting) const {
 
         // Code to overwrite the object ID
-        //valueObject->setProperty("ObjectID", XXX);
+        //valueObject->setProperty("ObjectId", XXX);
         CreatorMap::const_iterator i = creatorMap_().find(valueObject->className());
         OH_REQUIRE(i != creatorMap_().end(), "No creator for class " << valueObject->className());
         Creator creator = i->second;
         boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
         std::string objectID =
-            boost::any_cast<std::string>(valueObject->getProperty("ObjectID"));
+            boost::any_cast<std::string>(valueObject->getProperty("ObjectId"));
         if (overwriteExisting)
             ObjectHandler::Repository::instance().deleteObject(objectID);
         ObjectHandler::Repository::instance().storeObject(objectID, object);
