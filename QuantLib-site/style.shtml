@@ -30,40 +30,41 @@ other developers are likely to see your code with the wrong
 indentation.
 
 <div class="fragment"><pre class="fragment">
-#define SOME_MACRO                            // all uppercase
+#define <span class="keyword">SOME_MACRO</span>                            <span class="comment">// all uppercase</span>
 
-typedef double SomeType;                      // camelcase, starting capital
+typedef double <span class="keyword">SomeType</span>;                      <span class="comment">// camelcase, starting capital</span>
 
-class SomeClass {                             // camelcase, starting capital
-  public:
-    typedef Real* iterator;                   // keep consistency with
-    typedef const Real* const_iterator;       // STL conventions
-};
-
-class AnotherClass {
+class <span class="keyword">SomeClass</span> {                             <span class="comment">// camelcase, starting capital</span>
   public:
     void method();
-    Real anotherMethod(Real x, Real y) const; // camelcase, starting lowercase
-    Real member() const;                      // getter, no ``get''
-    void setMember(Real);                     // setter
+    Real <span class="keyword">anotherMethod</span>(Real x,                <span class="comment">// camelcase, starting lowercase</span>
+                       Real y) const;
+    Real <span class="keyword">member</span>() const;                      <span class="comment">// getter, no leading "get"</span>
+    void <span class="keyword">setMember</span>(Real);                     <span class="comment">// setter, leading "set"</span>
   private:
-    Real member_;                             // camelcase, starting lowercase,
-    Integer anotherMember_;                   // trailing underscore
+    Real <span class="keyword">member_</span>;                             <span class="comment">// camelcase, starting lowercase,</span>
+    Integer <span class="keyword">anotherMember_</span>;                   <span class="comment">// trailing underscore</span>
 };
 
 struct SomeStruct {
-    Real foo;                                 // struct members:
-    Integer bar;                              // no trailing underscore
+    Real <span class="keyword">foo</span>;                                 <span class="comment">// struct members:</span>
+    Integer <span class="keyword">bar</span>;                              <span class="comment">// no trailing underscore</span>
 };
 
-Size someFunction(Real parameter,             // one parameter per line,
-                  Real anotherParameter) {    // camelcase, starting lowercase
+class SomeOtherClass {
+  public:
+    typedef Real* <span class="keyword">iterator</span>;                   <span class="comment">// no camelcase for consistency</span>
+    typedef const Real* <span class="keyword">const_iterator</span>;       <span class="comment">// with STL conventions</span>
+};
+
+Size someFunction(Real <span class="keyword">parameter</span>,             <span class="comment">// one parameter per line,</span>
+                  Real <span class="keyword">anotherParameter</span>) {    <span class="comment">// camelcase, starting lowercase</span>
     Real localVariable = 0.0;
-    if (condition) {                          // brackets here...
+    if (condition) <span class="keyword">{</span>                          <span class="comment">// brackets here...</span>
         localVariable += 3.14159;
-    } else {                                  // ...here...
+    <span class="keyword">}</span> else <span class="keyword">{</span>                                  <span class="comment">// ...here...</span>
         localVariable -= 2.71828;
-    }                                         // ...and here.
+    <span class="keyword">}</span>                                         <span class="comment">// ...and here.</span>
     return 42;
 }
 </pre></div>
