@@ -333,6 +333,12 @@ Namespace QuantLibXL
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH8, tempFilePath)
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH9, tempFilePath)
 
+                ' Set environment variables specified in the Variables tab
+
+                For Each listItem As ListViewItem In FormMain.lvVariables.Items
+                    System.Environment.SetEnvironmentVariable(listItem.Text, listItem.SubItems(1).Text)
+                Next
+
                 ' Spawn the subprocess
 
                 Dim commandLine As String

@@ -19,6 +19,7 @@ Partial Class FormMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"NAZCATECH_DIR", "C:\Program Files\Nazcatech-0.1.9"}, -1)
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.btnClose = New System.Windows.Forms.Button
         Me.lblPreconfigured = New System.Windows.Forms.Label
@@ -58,6 +59,7 @@ Partial Class FormMain
         Me.cbBloomberg = New System.Windows.Forms.CheckBox
         Me.cbReuters = New System.Windows.Forms.CheckBox
         Me.tpPaths = New System.Windows.Forms.TabPage
+        Me.cbFrameworkVersion = New System.Windows.Forms.ComboBox
         Me.btnLaunchExcel = New System.Windows.Forms.Button
         Me.txtExcelPath = New System.Windows.Forms.TextBox
         Me.lblExcelPath = New System.Windows.Forms.Label
@@ -87,6 +89,10 @@ Partial Class FormMain
         Me.btnReuters = New System.Windows.Forms.Button
         Me.txtReuters = New System.Windows.Forms.TextBox
         Me.lblReuters = New System.Windows.Forms.Label
+        Me.tpVariables = New System.Windows.Forms.TabPage
+        Me.lvVariables = New System.Windows.Forms.ListView
+        Me.chVariable = New System.Windows.Forms.ColumnHeader
+        Me.chValue = New System.Windows.Forms.ColumnHeader
         Me.tpAbout = New System.Windows.Forms.TabPage
         Me.lblHardDiskValue = New System.Windows.Forms.Label
         Me.lblDomainValue = New System.Windows.Forms.Label
@@ -97,7 +103,6 @@ Partial Class FormMain
         Me.lblUserName = New System.Windows.Forms.Label
         Me.lblVersion = New System.Windows.Forms.Label
         Me.lblBuildNumber = New System.Windows.Forms.Label
-        Me.cbFrameworkVersion = New System.Windows.Forms.ComboBox
         Me.grpEnvironment.SuspendLayout()
         Me.tstEnvironment.SuspendLayout()
         Me.grpStartup.SuspendLayout()
@@ -108,6 +113,7 @@ Partial Class FormMain
         Me.tpAddins.SuspendLayout()
         Me.tstAddins.SuspendLayout()
         Me.tpFeeds.SuspendLayout()
+        Me.tpVariables.SuspendLayout()
         Me.tpAbout.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -205,6 +211,7 @@ Partial Class FormMain
         Me.tstEnvironment.Size = New System.Drawing.Size(118, 25)
         Me.tstEnvironment.TabIndex = 7
         Me.tstEnvironment.Text = "ToolStrip1"
+        Me.tstEnvironment.Visible = False
         '
         'btnNew
         '
@@ -433,6 +440,7 @@ Partial Class FormMain
         Me.tcLauncher.Controls.Add(Me.tpPaths)
         Me.tcLauncher.Controls.Add(Me.tpAddins)
         Me.tcLauncher.Controls.Add(Me.tpFeeds)
+        Me.tcLauncher.Controls.Add(Me.tpVariables)
         Me.tcLauncher.Controls.Add(Me.tpAbout)
         Me.tcLauncher.Location = New System.Drawing.Point(3, 3)
         Me.tcLauncher.Name = "tcLauncher"
@@ -514,6 +522,16 @@ Partial Class FormMain
         Me.tpPaths.TabIndex = 1
         Me.tpPaths.Text = "Paths"
         Me.tpPaths.UseVisualStyleBackColor = True
+        '
+        'cbFrameworkVersion
+        '
+        Me.cbFrameworkVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbFrameworkVersion.FormattingEnabled = True
+        Me.cbFrameworkVersion.Items.AddRange(New Object() {"8", "9"})
+        Me.cbFrameworkVersion.Location = New System.Drawing.Point(161, 59)
+        Me.cbFrameworkVersion.Name = "cbFrameworkVersion"
+        Me.cbFrameworkVersion.Size = New System.Drawing.Size(47, 21)
+        Me.cbFrameworkVersion.TabIndex = 29
         '
         'btnLaunchExcel
         '
@@ -779,6 +797,45 @@ Partial Class FormMain
         Me.lblReuters.TabIndex = 19
         Me.lblReuters.Text = "Reuters"
         '
+        'tpVariables
+        '
+        Me.tpVariables.Controls.Add(Me.lvVariables)
+        Me.tpVariables.Location = New System.Drawing.Point(4, 22)
+        Me.tpVariables.Name = "tpVariables"
+        Me.tpVariables.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpVariables.Size = New System.Drawing.Size(479, 377)
+        Me.tpVariables.TabIndex = 5
+        Me.tpVariables.Text = "Variables"
+        Me.tpVariables.UseVisualStyleBackColor = True
+        '
+        'lvVariables
+        '
+        Me.lvVariables.AutoArrange = False
+        Me.lvVariables.CausesValidation = False
+        Me.lvVariables.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chVariable, Me.chValue})
+        Me.lvVariables.Enabled = False
+        Me.lvVariables.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
+        Me.lvVariables.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
+        Me.lvVariables.LabelWrap = False
+        Me.lvVariables.Location = New System.Drawing.Point(6, 6)
+        Me.lvVariables.MultiSelect = False
+        Me.lvVariables.Name = "lvVariables"
+        Me.lvVariables.Scrollable = False
+        Me.lvVariables.Size = New System.Drawing.Size(467, 198)
+        Me.lvVariables.TabIndex = 0
+        Me.lvVariables.UseCompatibleStateImageBehavior = False
+        Me.lvVariables.View = System.Windows.Forms.View.Details
+        '
+        'chVariable
+        '
+        Me.chVariable.Text = "Variable"
+        Me.chVariable.Width = 150
+        '
+        'chValue
+        '
+        Me.chValue.Text = "Value"
+        Me.chValue.Width = 313
+        '
         'tpAbout
         '
         Me.tpAbout.Controls.Add(Me.lblHardDiskValue)
@@ -882,16 +939,6 @@ Partial Class FormMain
         Me.lblBuildNumber.Text = "version 0.0.0.0"
         Me.lblBuildNumber.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
-        'cbFrameworkVersion
-        '
-        Me.cbFrameworkVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbFrameworkVersion.FormattingEnabled = True
-        Me.cbFrameworkVersion.Items.AddRange(New Object() {"8", "9"})
-        Me.cbFrameworkVersion.Location = New System.Drawing.Point(161, 59)
-        Me.cbFrameworkVersion.Name = "cbFrameworkVersion"
-        Me.cbFrameworkVersion.Size = New System.Drawing.Size(47, 21)
-        Me.cbFrameworkVersion.TabIndex = 29
-        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -923,6 +970,7 @@ Partial Class FormMain
         Me.tstAddins.PerformLayout()
         Me.tpFeeds.ResumeLayout(False)
         Me.tpFeeds.PerformLayout()
+        Me.tpVariables.ResumeLayout(False)
         Me.tpAbout.ResumeLayout(False)
         Me.tpAbout.PerformLayout()
         Me.ResumeLayout(False)
@@ -1007,4 +1055,8 @@ Partial Class FormMain
     Friend WithEvents cbSetEvaluationDate As System.Windows.Forms.CheckBox
     Friend WithEvents dtEvaluationDate As System.Windows.Forms.DateTimePicker
     Friend WithEvents cbFrameworkVersion As System.Windows.Forms.ComboBox
+    Friend WithEvents tpVariables As System.Windows.Forms.TabPage
+    Friend WithEvents lvVariables As System.Windows.Forms.ListView
+    Friend WithEvents chVariable As System.Windows.Forms.ColumnHeader
+    Friend WithEvents chValue As System.Windows.Forms.ColumnHeader
 End Class
