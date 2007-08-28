@@ -9,15 +9,21 @@
     }
 
     boost::any %(functionName)s::getProperty(const std::string& name) const {
-        if(name == "ObjectId") return objectId_;
-        else if(name == "ClassName") return className_;
+        std::string nameUpper = boost::algorithm::to_upper_copy(name);
+        if(strcmp(nameUpper.c_str(), "OBJECTID")==0)
+            return objectId_;
+        else if(strcmp(nameUpper.c_str(), "CLASSNAME")==0)
+            return className_;
 %(propertyGet)s        else
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }
 
     void %(functionName)s::setProperty(const std::string& name, const boost::any& value) {
-        if(name == "ObjectId") objectId_ = boost::any_cast<std::string>(value);
-        else if(name == "ClassName") className_ = boost::any_cast<std::string>(value);
+        std::string nameUpper = boost::algorithm::to_upper_copy(name);
+        if(strcmp(nameUpper.c_str(), "OBJECTID")==0)
+            objectId_ = boost::any_cast<std::string>(value);
+        else if(strcmp(nameUpper.c_str(), "CLASSNAME")==0)
+            className_ = boost::any_cast<std::string>(value);
 %(propertySet)s        else
             OH_FAIL("Error: attempt to set non-existent Property: '" + name + "'");
     }

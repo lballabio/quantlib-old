@@ -159,5 +159,4 @@ namespace ObjectHandler {
             path.c_str(), overwriteExisting);			
     }
 
-
 }

@@ -1,6 +1,8 @@
 #include <oh/ohdefines.hpp>
 #include <%(libRoot)s/%(categoryName)s.hpp>
 #include <%(voDirectory)s/vo_%(categoryName)s.hpp>
+#include <string>
+#include <boost/algorithm/string/case_conv.hpp>
 
 namespace %(namespaceObjects)s { namespace ValueObjects {
 

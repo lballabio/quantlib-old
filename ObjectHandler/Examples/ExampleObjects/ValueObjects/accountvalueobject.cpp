@@ -20,11 +20,13 @@
 #include <ExampleObjects/ValueObjects/accountvalueobject.hpp>
 #include <oh/exception.hpp>
 #include <iostream>
+#include <string>
+#include <boost/algorithm/string/case_conv.hpp>
 
 namespace AccountExample {
 
     const char* AccountValueObject::mPropertyNames[] = {
-        "ObjectID",
+        "ObjectId",
         "ClassName",
         "Permanent",
         "Number",
@@ -37,23 +39,37 @@ namespace AccountExample {
     }
 
     boost::any AccountValueObject::getProperty(const std::string& name) const {
-        if(name == "ObjectID") return objectID_;
-        else if(name == "ClassName") return className_;
-        else if(name == "Permanent") return permanent_;
-        else if(name == "Number") return number_;
-        else if(name == "Type") return type_;
-        else if(name == "Balance") return balance_;
+        std::string nameUpper = boost::algorithm::to_upper_copy(name);
+        if (strcmp(nameUpper.c_str(), "OBJECTID")==0)
+            return objectId_;
+        else if (strcmp(nameUpper.c_str(), "CLASSNAME")==0)
+            return className_;
+        else if (strcmp(nameUpper.c_str(), "PERMANENT")==0)
+            return permanent_;
+        else if (strcmp(nameUpper.c_str(), "NUMBER")==0)
+            return number_;
+        else if (strcmp(nameUpper.c_str(), "TYPE")==0)
+            return type_;
+        else if (strcmp(nameUpper.c_str(), "BALANCE")==0)
+            return balance_;
         else 
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }
 
     void AccountValueObject::setProperty(const std::string& name, const boost::any& value) {
-        if(name == "ObjectID") objectID_ = boost::any_cast<std::string>(value);
-        else if(name == "ClassName") className_ = boost::any_cast<std::string>(value);
-        else if(name == "Permanent") number_ = boost::any_cast<bool>(value);
-        else if(name == "Number") number_ = boost::any_cast<long>(value);
-        else if(name == "Type") type_ = boost::any_cast<std::string>(value);
-        else if(name == "Balance") balance_ = boost::any_cast<ObjectHandler::Variant>(value);
+        std::string nameUpper = boost::algorithm::to_upper_copy(name);
+        if (strcmp(nameUpper.c_str(), "OBJECTID")==0)
+            objectId_= boost::any_cast<std::string>(value);
+        else if (strcmp(nameUpper.c_str(), "CLASSNAME")==0)
+            className_ = boost::any_cast<std::string>(value);
+        else if (strcmp(nameUpper.c_str(), "PERMANENT")==0)
+            permanent_ = boost::any_cast<bool>(value);
+        else if (strcmp(nameUpper.c_str(), "NUMBER")==0)
+            number_ = boost::any_cast<long>(value);
+        else if (strcmp(nameUpper.c_str(), "TYPE")==0)
+            type_ = boost::any_cast<std::string>(value);
+        else if (strcmp(nameUpper.c_str(), "BALANCE")==0)
+            balance_ = boost::any_cast<ObjectHandler::Variant>(value);
         else 
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }

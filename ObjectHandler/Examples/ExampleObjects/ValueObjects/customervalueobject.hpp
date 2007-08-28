@@ -54,7 +54,7 @@ namespace AccountExample {
         template<class Archive>
         void serialize(Archive& ar, const unsigned int) {
             boost::serialization::void_cast_register<CustomerValueObject, ValueObject>(this, this);
-            ar & boost::serialization::make_nvp("ObjectID", objectID_)
+            ar & boost::serialization::make_nvp("ObjectId", objectId_)
                & boost::serialization::make_nvp("ClassName", className_)
                & boost::serialization::make_nvp("Name", name_)
                & boost::serialization::make_nvp("Age", age_)
