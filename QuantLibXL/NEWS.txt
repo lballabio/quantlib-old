@@ -62,8 +62,11 @@ Cell menu:
   conventions
 
 Bonds:
-- ??? qlGenericBond() Generic Bond constructor which accept bond leg as input
-- ??? cathing up with new bond's contracutre signature
+- A new function: qlGenericBond() was created and added. This function is a consturctor of a
+generic bond objects which accepts in input the bond leg
+- changed signatures for: qlFixedRateBond(),qlCmsRateBond(), qlZeroCouponBond(), and qlFloatingRateBond. 
+They don't accept yield curve as an input parameter anymore. The yield curve must be set to the bond object
+using qlInstrumentSetPricingEngine.
 
 Various:
 - yield curve parameter has been removed from bond constructors
@@ -112,8 +115,8 @@ New functions:
 - qlSimpleCashFlowVector to construct a cash flow vector given a set of amounts
   and a set of dates which may have different size
 
-Renamed functions:
-- ??? removed qlBondDayCounter, qlBondPaymentBDC and qlBondFrequency
+Removed functions:
+-The following functions were removed: qlBondDayCounter(), qlBondPaymentBDC(), and qlBondFrequency().
 
 Covered Warrants:
 Operations on financial markets with regard to covered warrants on interest
