@@ -329,6 +329,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\oh\group.hpp"
+				>
+			</File>
+			<File
 				RelativePath="oh\iless.hpp"
 				>
 			</File>
@@ -405,6 +409,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\oh\Conversions\getobjectlist.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\oh\Conversions\ohconvertvariant.hpp"
 				>
 			</File>
@@ -468,6 +476,10 @@
 		<Filter
 			Name="ValueObjects"
 			>
+			<File
+				RelativePath=".\oh\ValueObjects\vo_group.hpp"
+				>
+			</File>
 			<File
 				RelativePath=".\oh\ValueObjects\vo_range.hpp"
 				>

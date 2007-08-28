@@ -16,6 +16,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief class Range - Container for a matrix of doubles
+*/
+
 #ifndef oh_range_hpp
 #define oh_range_hpp
 
@@ -24,6 +28,12 @@
 
 namespace ObjectHandler {
 
+    //! Container for a matrix of doubles
+    /*! This class was implemented to facilitate serialization of a range of cells
+        in Microsoft Excel.  In practice this functionality has not proved necessary -
+        it is more expedient to deal with objects or values of a known type - so this
+        class is not fully implemented.
+    */
     class Range : public Object {
     public:
         Range(

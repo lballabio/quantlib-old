@@ -1,5 +1,6 @@
 
 /*  
+ Copyright (C) 2005, 2006 Plamen Neykov
  Copyright (C) 2007 Eric Ehlers
  
  This file is part of QuantLib, a free-software/open-source library
@@ -16,6 +17,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+// This file was generated automatically by gensrc.py.
+// Editing this file manually is not recommended.
+
 #ifndef oh_vo_range_hpp
 #define oh_vo_range_hpp
 
@@ -23,6 +27,8 @@
 #include <string>
 #include <vector>
 #include <boost/any.hpp>
+#include <string>
+#include <boost/algorithm/string/case_conv.hpp>
 
 namespace ObjectHandler { namespace ValueObjects {
 
@@ -31,11 +37,12 @@ namespace ObjectHandler { namespace ValueObjects {
     public:
         ohRange() {}
         ohRange(
-            const std::string& objectID,
-            const std::vector<std::vector<double> > &values,
-            bool permanent) :
-            ValueObject(objectID, "ohRange", permanent),
-            values_(values) {}
+            const std::string& ObjectId,
+            const std::vector<std::vector <double> >& Values,
+            bool Permanent) :
+        ObjectHandler::ValueObject(ObjectId, "ohRange", Permanent),
+        Values_(Values),
+        Permanent_(Permanent) {}
 
         std::vector<std::string> getPropertyNames() const {
             std::vector<std::string> ret;
@@ -46,38 +53,50 @@ namespace ObjectHandler { namespace ValueObjects {
             return ret;
         }
 
-        boost::any getProperty(const std::string &name) const {
-            if(name == "ObjectId") return objectId_;
-            else if(name == "ClassName") return className_;
-            else if(name == "Values") return values_;
-            else if(name == "Permanent") return permanent_;
+        boost::any getProperty(const std::string& name) const {
+            std::string nameUpper = boost::algorithm::to_upper_copy(name);
+            if(strcmp(nameUpper.c_str(), "OBJECTID")==0)
+                return objectId_;
+            else if(strcmp(nameUpper.c_str(), "CLASSNAME")==0)
+                return className_;
+            else if(strcmp(nameUpper.c_str(), "VALUES")==0)
+                return Values_;
+            else if(strcmp(nameUpper.c_str(), "PERMANENT")==0)
+                return Permanent_;
             else
                 OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
         }
 
         void setProperty(const std::string& name, const boost::any& value) {
-            if(name == "ObjectId") objectId_ = boost::any_cast<std::string>(value);
-            else if(name == "ClassName") className_ = boost::any_cast<std::string>(value);
-            else if(name == "Values") values_ = boost::any_cast<std::vector<std::vector<double> > >(value);
-            else if(name == "Permanent") className_ = boost::any_cast<bool>(value);
+            std::string nameUpper = boost::algorithm::to_upper_copy(name);
+            if(strcmp(nameUpper.c_str(), "OBJECTID")==0)
+                objectId_ = boost::any_cast<std::string>(value);
+            else if(strcmp(nameUpper.c_str(), "CLASSNAME")==0)
+                className_ = boost::any_cast<std::string>(value);
+            else if(strcmp(nameUpper.c_str(), "VALUES")==0)
+                Values_ = boost::any_cast<std::vector<std::vector<double> > >(value);
+            else if(strcmp(nameUpper.c_str(), "PERMANENT")==0)
+                Permanent_ = boost::any_cast<bool>(value);
             else
                 OH_FAIL("Error: attempt to set non-existent Property: '" + name + "'");
         }
 
     protected:
 
-        std::vector<std::vector<double> > values_;
-        bool permanent_;
+        std::vector<std::vector <double> > Values_;
+        bool Permanent_;
         
         template<class Archive>
         void serialize(Archive& ar, const unsigned int) {
         boost::serialization::void_cast_register<ohRange, ObjectHandler::ValueObject>(this, this);
             ar  & boost::serialization::make_nvp("ObjectId", objectId_)
                 & boost::serialization::make_nvp("ClassName", className_)
-                & boost::serialization::make_nvp("Values", values_)
-                & boost::serialization::make_nvp("Permanent", permanent_);
+                & boost::serialization::make_nvp("Values", Values_)
+                & boost::serialization::make_nvp("Permanent", Permanent_);
         }
     };
+
+
 
 } }
 

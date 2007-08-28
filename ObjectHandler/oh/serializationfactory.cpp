@@ -22,6 +22,7 @@
 
 #include <oh/serializationfactory.hpp>
 #include <oh/range.hpp>
+#include <oh/group.hpp>
 
 namespace ObjectHandler {
 
@@ -37,11 +38,24 @@ namespace ObjectHandler {
         return object;
     }
 
+    boost::shared_ptr<Object> createGroup(
+        const boost::shared_ptr<ValueObject> &valueObject) {
+
+        bool permanent = 
+            boost::any_cast<bool>(valueObject->getProperty("Permanent"));
+        std::vector<std::string> list = 
+            boost::any_cast<std::vector<std::string> >(valueObject->getProperty("List"));
+
+        boost::shared_ptr<Object> object(new Group(valueObject, list, permanent));
+        return object;
+    }
+
     SerializationFactory *SerializationFactory::instance_;
 
     SerializationFactory::SerializationFactory() {
         instance_ = this;
         registerCreator("ohRange", createRange);
+        registerCreator("ohGroup", createGroup);
     }
 
     SerializationFactory::~SerializationFactory() {

@@ -73,7 +73,7 @@ namespace ObjectHandler {
                                         const boost::shared_ptr<Object> &object);
 
         //! Template member function to retrieve the Object with given ID.
-        /*! Retrieve the object with the given ID and recast it to the desired type.
+        /*! Retrieve the object with the given ID and downcast it to the desired type.
             Throw an exception if no Object exists with that ID.
             This template passes the work off to function retrieveObjectImpl which
             may be overridden in derived classes.
@@ -90,7 +90,7 @@ namespace ObjectHandler {
 
         //! Override of template function retrieveObject.
         /*! Specialized for the case where the client has requested a reference to
-            class Object and no recast is necessary.
+            class Object and no downcast is necessary.
         */
         void retrieveObject(boost::shared_ptr<Object> &ret,
                             const std::string &id);
@@ -124,12 +124,13 @@ namespace ObjectHandler {
         //! \name Serialization
         //@{
         //! Write the object(s) to the given stream.
-		virtual int saveObject(
+        virtual int saveObject(
             const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
             const std::string &path,
             bool forceOverwrite);
+
         //! Load object(s) from the given stream.
-		virtual int loadObject(
+        virtual int loadObject(
             const std::string &path,
             bool overwriteExisting);
         //@}
@@ -161,9 +162,9 @@ namespace ObjectHandler {
 
         //! Define the type of the structure used to store the Objects.
         /*! The Repository class cannot declare a private data member of type
-            ObjectMap, because std::map cannot be exported across DLL boundaries on
-            the Windows platform.  Instead the map is declared as a static variable
-            in the cpp file.
+            ObjectMap, because std::map cannot be exported across DLL boundaries
+            on the Windows platform.  Instead the map is declared as a static
+            variable in the cpp file.
         */
         typedef std::map<std::string, boost::shared_ptr<Object>, my_iless> ObjectMap;
 
@@ -171,38 +172,6 @@ namespace ObjectHandler {
         //! A pointer to the Repository instance, used to support the Singleton pattern.
         static Repository *instance_;
     };
-
-    //! Convert a vector of strings to a vector of objects.
-    template <class ObjectClass>
-    std::vector<boost::shared_ptr<ObjectClass> > getObjectVector(
-	        const std::vector<std::string> &objectIDs) {
-
-	    std::vector<boost::shared_ptr<ObjectClass> > ret;
-        ret.reserve(objectIDs.size());
-
-	    for (std::vector<std::string>::const_iterator i = objectIDs.begin();
-		        i != objectIDs.end(); ++i) {
-		    OH_GET_OBJECT(objectPointer, *i, ObjectClass);
-		    ret.push_back(objectPointer);
-	    }
-	    return ret;
-    }
-
-    //! Convert a vector of strings to a vector of library objects.
-    template <class ObjectClass, class LibraryClass>
-    std::vector<boost::shared_ptr<LibraryClass> > getLibraryObjectVector(
-	        const std::vector<std::string> &objectIDs) {
-
-	    std::vector<boost::shared_ptr<LibraryClass> > ret;
-        ret.reserve(objectIDs.size());
-
-	    for (std::vector<std::string>::const_iterator i = objectIDs.begin();
-		        i != objectIDs.end(); ++i) {
-		    OH_GET_REFERENCE(objectPointer, *i, ObjectClass, LibraryClass);
-		    ret.push_back(objectPointer);
-	    }
-	    return ret;
-    }
 
 }
 

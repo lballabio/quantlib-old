@@ -22,7 +22,7 @@
           <Parameter name='ObjectList'>
             <type>ObjectHandler::Object</type>
             <tensorRank>vector</tensorRank>
-            <description>list of object IDs to be serialized</description>
+            <description>list of IDs of objects to be serialized</description>
           </Parameter>
           <Parameter name='Filename'>
             <type>string</type>

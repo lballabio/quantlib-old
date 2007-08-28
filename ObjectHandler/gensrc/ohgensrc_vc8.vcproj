@@ -70,6 +70,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\group.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\logging.xml"
 				>
 			</File>

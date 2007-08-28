@@ -37,7 +37,7 @@ Register ObjectHandler classes with boost serialization framework ("BSF" below).
   being centralized within ObjectHandler is that certain BSF functionality
   cannot be split across dynamically linked binaries.
 
-- At present three classes are registered, this value 3 is hard-coded
+- At present three classes are registered, this value 4 is hard-coded
   into gensrc script gensrc/Addins/serialization.py so if you add new classes
   here you also need to change the script.  gensrc uses the value to keep
   track of the IDs which the BSF assigns to each addin class.
@@ -61,6 +61,8 @@ namespace QuantLibAddinCpp {
         ar.register_type<std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > >();
         // class ID 2 in the boost serialization framework
         ar.register_type<ObjectHandler::ValueObjects::ohRange>();
+        // class ID 3 in the boost serialization framework
+        ar.register_type<ObjectHandler::ValueObjects::ohGroup>();
     
     }
     
@@ -72,6 +74,8 @@ namespace QuantLibAddinCpp {
         ar.register_type<std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > >();
         // class ID 2 in the boost serialization framework
         ar.register_type<ObjectHandler::ValueObjects::ohRange>();
+        // class ID 3 in the boost serialization framework
+        ar.register_type<ObjectHandler::ValueObjects::ohGroup>();
 
     }
     

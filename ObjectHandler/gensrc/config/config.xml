@@ -8,6 +8,7 @@
   <categoryNames>
     <categoryName>enumerations</categoryName>
     <categoryName>garbagecollection</categoryName>
+    <categoryName>group</categoryName>
     <categoryName>logging</categoryName>
     <categoryName>ohutils</categoryName>
     <categoryName>range</categoryName>

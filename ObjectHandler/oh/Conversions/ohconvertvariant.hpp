@@ -103,7 +103,7 @@ namespace ObjectHandler {
             }
             return ret;
         } catch (const std::exception &e) {
-            OH_FAIL("ohVariantToVector: unable to convert parameter '" << parameterName 
+            OH_FAIL("ohVariantToObjectVector: unable to convert parameter '" << parameterName 
                 << "' to type '" << typeid(boost::shared_ptr<LibraryClass>).name() << "' - " << e.what());
         }
     }

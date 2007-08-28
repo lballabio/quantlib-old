@@ -72,7 +72,7 @@
     Get a boost shared pointer to a class derived from Object.
 */
 #define OH_GET_OBJECT( NAME, ID, OBJECT_CLASS ) \
-    boost::shared_ptr< OBJECT_CLASS > NAME; \
+    boost::shared_ptr<OBJECT_CLASS> NAME; \
     ObjectHandler::Repository::instance().retrieveObject(NAME, ID);
 
 /*! \def OH_GET_REFERENCE
@@ -112,7 +112,6 @@
 /*! \def OH_LOG_MESSAGE(message)
     Log the given message.
 */
-
 #define OH_LOG_MESSAGE(message) \
 do { \
     std::ostringstream _oh_msg_stream; \
@@ -123,7 +122,6 @@ do { \
 /*! \def OH_LOG_ERROR(message)
     Log the given error message.
 */
-
 #define OH_LOG_ERROR(message) \
 do { \
     std::ostringstream _oh_msg_stream; \
@@ -135,7 +133,6 @@ do { \
     Declaration and implementation of empty constructor
     for a class derived from ObjectHandler::Object.
 */
-
 #define OH_OBJ_CTOR(derived_class, base_class) \
 derived_class( \
 const boost::shared_ptr<ObjectHandler::ValueObject>& properties, \
@@ -146,7 +143,6 @@ bool permanent) \
     Declaration and implementation of empty class
     derived from ObjectHandler::Object.
 */
-    
 #define OH_OBJ_CLASS(derived_class, base_class) \
 class derived_class : \
 public base_class { \
@@ -158,7 +154,6 @@ OH_OBJ_CTOR(derived_class, base_class) \
     Declaration and implementation of empty constructor
     for a class derived from ObjectHandler::LibraryObject.
 */
-
 #define OH_LIB_CTOR(derived_class, base_class) \
 derived_class( \
 const boost::shared_ptr<ObjectHandler::ValueObject>& properties, \
@@ -169,7 +164,6 @@ bool permanent) \
     Declaration and implementation of empty class
     derived from ObjectHandler::LibraryObject.
 */
-    
 #define OH_LIB_CLASS(derived_class, base_class) \
 class derived_class : \
 public ObjectHandler::LibraryObject<base_class> { \
