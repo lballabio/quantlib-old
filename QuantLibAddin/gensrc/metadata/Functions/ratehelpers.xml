@@ -385,6 +385,8 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
+        <!--<type>QuantLibAddin::RateHelper</type>
+        <tensorRank>vector</tensorRank>-->
         <type>string</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>

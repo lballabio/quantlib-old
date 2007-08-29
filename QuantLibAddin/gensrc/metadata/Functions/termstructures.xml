@@ -4,8 +4,14 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
     <include>qlo/termstructures.hpp</include>
+    <include>qlo/ratehelpers.hpp</include>
     <include>ql/interestrate.hpp</include>
   </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/ratehelpers.hpp</include>
+    <include>ql/interestrate.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2006 Ferdinando Ametrano
@@ -354,7 +360,7 @@
             <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate</description>
           </Parameter>
           <Parameter name='RateHelpers' exampleValue ='EUROND,EURTND,EURSND,EURSWD,EUR2WD'>
-            <type>string</type>
+            <type>QuantLib::RateHelper</type>
             <tensorRank>vector</tensorRank>
             <description>vector of rate-helpers</description>
           </Parameter>

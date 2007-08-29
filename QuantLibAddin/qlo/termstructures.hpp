@@ -37,6 +37,7 @@ namespace QuantLib {
     class DayCounter;
     class Date;
     class Quote;
+    class RateHelper;
 }
 
 namespace QuantLibAddin {
@@ -51,7 +52,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
-            const std::vector<std::string>& handlesRateHelper,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& qlrhs,
             const QuantLib::DayCounter& dayCounter,
             const std::string& traitsID,
             const std::string& interpolatorID,

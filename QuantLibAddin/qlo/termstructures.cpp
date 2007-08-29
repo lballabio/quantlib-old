@@ -45,21 +45,13 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
-            const std::vector<std::string>& handlesRateHelper,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& qlrhs,
             const QuantLib::DayCounter& dayCounter,
             const std::string& traitsID, 
             const std::string& interpolatorID,
             QuantLib::Real accuracy,
             bool permanent) : YieldTermStructure(properties, permanent)
     {
-        std::vector<boost::shared_ptr<QuantLib::RateHelper> > rateHelpersQL;
-        rateHelpersQL.reserve(handlesRateHelper.size());
-        std::vector<std::string>::const_iterator i;
-        for (i=handlesRateHelper.begin() ; i!=handlesRateHelper.end() ; ++i) {
-            OH_GET_REFERENCE(rateHelper, *i, RateHelper, QuantLib::RateHelper);
-            rateHelpersQL.push_back(rateHelper);
-        }
-
         //QuantLib::Cubic naturalCubic(
         //    QuantLib::CubicSpline::SecondDerivative, 0.0,
         //    QuantLib::CubicSpline::SecondDerivative, 0.0,
@@ -80,7 +72,7 @@ namespace QuantLibAddin {
                                               interpolatorID,
                                               nDays,
                                               calendar,
-                                              rateHelpersQL,
+                                              qlrhs,
                                               dayCounter,
                                               accuracy);
 
