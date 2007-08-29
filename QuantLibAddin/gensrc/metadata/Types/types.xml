@@ -230,6 +230,7 @@
         <DataType>QuantLibAddin::LMMNormalDriftCalculator</DataType>
         <DataType>QuantLibAddin::SimpleQuote</DataType>
         <DataType>QuantLibAddin::RandomSequenceGenerator</DataType>
+        <DataType>QuantLibAddin::RateHelper</DataType>
         <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
         <DataType>QuantLibAddin::Swap</DataType>

@@ -105,7 +105,7 @@
           <Parameter name='Convention'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>business day convention (e.g. ModifiedFollowing)</description>
+            <description>business day convention (e.g. Modified Following)</description>
           </Parameter>
           <Parameter name='DayCounter'>
             <type>QuantLib::DayCounter</type>
@@ -353,16 +353,12 @@
     <Procedure name='qlRateHelperSelection'>
       <description>selects rate helpers for bootstrapping</description>
       <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
           <Parameter name='RateHelpers'>
-            <!--<type>ObjectHandler::Object</type>
-            <type>RateHelpers</type>-->
-            <type>string</type>
+            <type>QuantLibAddin::RateHelper</type>
             <tensorRank>vector</tensorRank>
             <description>vector of RateHelper IDs</description>
           </Parameter>

@@ -3,7 +3,7 @@
  Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2006 Marco Bianchetti
  Copyright (C) 2005 Aurelien Chanudet
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
@@ -216,37 +216,32 @@ namespace QuantLibAddin {
     }
 
     std::vector<std::string> qlRateHelperSelection(
-        const std::vector<std::string>& instrumentIDs,
+        const std::vector<boost::shared_ptr<QuantLibAddin::RateHelper> >& qlarhs,
         const std::vector<QuantLib::Size>& priority,
         QuantLib::Natural nFutures,
         QuantLib::Natural frontFuturesRollingDays,
         RateHelper::DepoInclusionCriteria depoInclusionCriteria)
     {
         // Checks
-        QL_REQUIRE(!instrumentIDs.empty(), "no instrument given");
-        QuantLib::Size nInstruments = instrumentIDs.size();
+        QL_REQUIRE(!qlarhs.empty(), "no instrument given");
+        QuantLib::Size nInstruments = qlarhs.size();
         QL_REQUIRE(priority.size()==nInstruments,
                    "priority / instruments mismatch");
 
         // RateHelperItem
+        boost::shared_ptr<QuantLibAddin::RateHelper> qlarh;
         boost::shared_ptr<QuantLib::RateHelper> qlrh;
         std::vector<detail::RateHelperItem> rhsAll;
         rhsAll.reserve(nInstruments);
         for (QuantLib::Size i=0; i<nInstruments; ++i) {
-            OH_GET_OBJECT(qlarh, instrumentIDs[i], RateHelper);
-            bool isFutures, isDepo;
-            if (boost::dynamic_pointer_cast<FuturesRateHelper>(qlarh))
-                isFutures = true;
-            else
-                isFutures = false;
-            if (boost::dynamic_pointer_cast<DepositRateHelper>(qlarh))
-                isDepo = true;
-            else
-                isDepo = false;
+            qlarh = qlarhs[i];
             qlarh->getLibraryObject(qlrh);
+            std::string qlarh_id = boost::any_cast<std::string>(qlarh->propertyValue("OBJECTID"));
+            bool isFutures = boost::dynamic_pointer_cast<FuturesRateHelper>(qlarh);
+            bool isDepo = boost::dynamic_pointer_cast<DepositRateHelper>(qlarh);
             rhsAll.push_back(detail::RateHelperItem(isFutures,
                                                     isDepo,
-                                                    instrumentIDs[i],
+                                                    qlarh_id,
                                                     priority[i],
                                                     qlrh->earliestDate(),
                                                     qlrh->latestDate()));

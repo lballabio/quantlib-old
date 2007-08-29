@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
@@ -147,7 +147,7 @@ namespace QuantLibAddin {
     // Processes the set of curve bootstrapping instruments
     // and selects a subset according to the given rules and parameters
     std::vector<std::string> qlRateHelperSelection(
-        const std::vector<std::string>& instrumentIDs,
+        const std::vector<boost::shared_ptr<QuantLibAddin::RateHelper> >& qlarhs,
         const std::vector<QuantLib::Size>& priority,
         QuantLib::Natural nFutures,
         QuantLib::Natural frontFuturesRollingDays,
