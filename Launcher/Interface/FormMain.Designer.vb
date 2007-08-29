@@ -19,7 +19,7 @@ Partial Class FormMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"NAZCATECH_DIR", "C:\Program Files\Nazcatech-0.1.9"}, -1)
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"NAZCATECH_DIR", "X:\Apps\Appsscript\CabotoXL\SensitivityAnalysis"}, -1)
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.btnClose = New System.Windows.Forms.Button
         Me.lblPreconfigured = New System.Windows.Forms.Label
