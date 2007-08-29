@@ -32,12 +32,12 @@
     </Environment>
 
     <Environment name="02 Pre-Production">
-      <Framework>X:\Apps\Appsscript\CabotoXL\Rev11940\framework\QuantLibXL.xla</Framework>
-      <FrameworkVersion>8</FrameworkVersion>
-      <Workbooks>X:\Apps\Appsscript\CabotoXL\Rev11940\Workbooks</Workbooks>
-      <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev11940\Docs</HelpFile>
+      <Framework>X:\Apps\Appsscript\CabotoXL\Rev12288\framework\QuantLibXL.xla</Framework>
+      <FrameworkVersion>9</FrameworkVersion>
+      <Workbooks>X:\Apps\Appsscript\CabotoXL\Rev12288\Workbooks</Workbooks>
+      <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev12288\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\02 users.xml</UserConfigurationFile>
-      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev11940\metadata</FunctionMetadata>
+      <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev12288\metadata</FunctionMetadata>
       <AddinList>
         <Addin>ObjectHandler-xll-vc80-mt-0_9_0.xll</Addin>
         <Addin>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Addin>
@@ -72,7 +72,7 @@
         <Addin>saohxll-vc80-mt-0_1_9.xll</Addin>
       </AddinList>
       <StartupActions>
-        <YieldCurveBootstrap>false</YieldCurveBootstrap>
+        <YieldCurveBootstrap>true</YieldCurveBootstrap>
         <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
         <SwapSmileBootstrap>false</SwapSmileBootstrap>

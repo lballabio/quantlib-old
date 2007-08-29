@@ -31,7 +31,7 @@
     <ProductName>QuantLibXL Launcher</ProductName>
     <PublisherName>QuantLib Developer Team</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>1.7.4.1</ApplicationVersion>
+    <ApplicationVersion>1.7.5.2</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -191,101 +191,101 @@
   <ItemGroup>
     <PublishFile Include="Addins\01 Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\01 Production\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\01 Production\saohxll-vc80-mt-0_1_9.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\02 Pre-Production\saohxll-vc80-mt-0_1_9.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\03 Testing\saohxll-vc80-mt-0_1_9.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="updateLauncherXlls.py">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Users\users.xml">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
