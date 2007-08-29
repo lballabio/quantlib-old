@@ -42,7 +42,15 @@ namespace QuantLibXL {
         const char *path,
         bool forceOverwrite) const {
 
-        OH_REQUIRE(forceOverwrite || !boost::filesystem::exists(path),
+        // Create a boost path object from the char*.
+        boost::filesystem::path boostPath(path);
+
+        // Ensure that the parent directory exists.
+        OH_REQUIRE(boost::filesystem::exists(boostPath.branch_path()),
+            "Invalid path : " << path);
+
+        // If the file itself exists then ensure we can overwrite it.
+        OH_REQUIRE(forceOverwrite || !boost::filesystem::exists(boostPath),
             "Cannot overwrite output file : " << path);
 
         OH_REQUIRE(objectList.size(), "Object list is empty");

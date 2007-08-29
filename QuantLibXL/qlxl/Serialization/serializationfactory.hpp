@@ -54,3 +54,4 @@ namespace QuantLibXL {
 }
 
 #endif
+

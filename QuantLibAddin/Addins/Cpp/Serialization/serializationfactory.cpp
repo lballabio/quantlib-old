@@ -42,7 +42,15 @@ namespace QuantLibAddinCpp {
         const char *path,
         bool forceOverwrite) const {
 
-        OH_REQUIRE(forceOverwrite || !boost::filesystem::exists(path),
+        // Create a boost path object from the char*.
+        boost::filesystem::path boostPath(path);
+
+        // Ensure that the parent directory exists.
+        OH_REQUIRE(boost::filesystem::exists(boostPath.branch_path()),
+            "Invalid path : " << path);
+
+        // If the file itself exists then ensure we can overwrite it.
+        OH_REQUIRE(forceOverwrite || !boost::filesystem::exists(boostPath),
             "Cannot overwrite output file : " << path);
 
         OH_REQUIRE(objectList.size(), "Object list is empty");
@@ -53,7 +61,7 @@ namespace QuantLibAddinCpp {
         for (i=objectList.begin(); i!=objectList.end(); ++i) {
             boost::shared_ptr<ObjectHandler::Object> object = *i;
             std::string objectID = boost::any_cast<std::string>(
-                object->properties()->getProperty("objectID"));
+                object->properties()->getProperty("ObjectId"));
             if (seen.find(objectID) == seen.end()) {
                 valueObjects.push_back(object->properties());
                 seen.insert(objectID);
@@ -65,6 +73,23 @@ namespace QuantLibAddinCpp {
         register_out(oa);
         oa << boost::serialization::make_nvp("object_list", valueObjects);
         return valueObjects.size();
+    }
+
+    void SerializationFactory::processObject(
+        const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
+        bool overwriteExisting) const {
+
+        // Code to overwrite the object ID
+        //valueObject->setProperty("ObjectId", XXX);
+        CreatorMap::const_iterator i = creatorMap_().find(valueObject->className());
+        OH_REQUIRE(i != creatorMap_().end(), "No creator for class " << valueObject->className());
+        Creator creator = i->second;
+        boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
+        std::string objectID =
+            boost::any_cast<std::string>(valueObject->getProperty("ObjectId"));
+        if (overwriteExisting)
+            ObjectHandler::Repository::instance().deleteObject(objectID);
+        ObjectHandler::Repository::instance().storeObject(objectID, object);
     }
 
     int SerializationFactory::processPath(
@@ -82,19 +107,14 @@ namespace QuantLibAddinCpp {
             OH_REQUIRE(valueObjects.size(), "Object list is empty");
 
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
+            int count = 0;
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
-                boost::shared_ptr<ObjectHandler::ValueObject> valueObject = *i;
-                // Code to overwrite the object ID
-                //valueObject->setProperty("objectID", XXX);
-                CreatorMap::const_iterator j = creatorMap_().find(valueObject->className());
-                OH_REQUIRE(j != creatorMap_().end(), "No creator for class " << valueObject->className());
-                Creator creator = j->second;
-                boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
-                std::string objectID =
-                    boost::any_cast<std::string>(valueObject->getProperty("objectID"));
-                if (overwriteExisting)
-                    ObjectHandler::Repository::instance().deleteObject(objectID);
-                ObjectHandler::Repository::instance().storeObject(objectID, object);
+                try {
+                    processObject(*i, overwriteExisting);
+                    count++;
+                } catch (const std::exception &e) {
+                    OH_FAIL("Error processing item " << count << ": " << e.what());
+                }
             }
 
             return valueObjects.size();
@@ -103,26 +123,33 @@ namespace QuantLibAddinCpp {
             OH_FAIL("Error deserializing file " << path << ": " << e.what());
         }
     }
+ 
+    bool hasXmlExtension(const boost::filesystem::path &path) {
+        std::string extension = boost::filesystem::extension(path);
+        return _stricmp(extension.c_str(), ".XML") == 0;
+    }
 
     int SerializationFactory::loadObject(
         const char *path,
         bool overwriteExisting) const {
 
-        OH_REQUIRE(boost::filesystem::exists(path), "Invalid path : " << path);
+        boost::filesystem::path boostPath(path);
+        OH_REQUIRE(boost::filesystem::exists(boostPath), "Invalid path : " << path);
 
-        if (boost::filesystem::is_directory(path)) {
+        if (boost::filesystem::is_directory(boostPath)) {
 
             int returnValue = 0;
-            for (boost::filesystem::directory_iterator itr(path); 
-                itr!=boost::filesystem::directory_iterator(); ++itr) {
-
-                if (boost::filesystem::is_regular(itr->path().string()))
+            boost::filesystem::recursive_directory_iterator end_itr;
+            for (boost::filesystem::recursive_directory_iterator itr(boostPath); itr != end_itr; ++itr) {
+                if (boost::filesystem::is_regular(itr->status()) && hasXmlExtension(*itr))
                     returnValue += processPath(itr->path().string(), overwriteExisting);
             }
             return returnValue;
 
         } else {
-            return processPath(path, overwriteExisting);
+            //OH_REQUIRE(hasXmlExtension(boostPath),
+            //    "The file '" << boostPath << "' does not have extension '.xml'");
+            return processPath(boostPath.string(), overwriteExisting);
         }
     }
 
