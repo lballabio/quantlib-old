@@ -32,6 +32,7 @@
 #  undef BOOST_LIB_DIAGNOSTIC
 #endif
 #include <ostream>
+#include <boost/filesystem.hpp>
 
 using namespace log4cxx;
 
@@ -50,7 +51,14 @@ namespace ObjectHandler {
     void Logger::setLogFile(
             const std::string &logFileName,
             const int &logLevel) {
-        OH_REQUIRE(!logFileName.empty(), "Logger::setLogFile: log file name is null");
+
+        // Create a boost path object from the std::string.
+        boost::filesystem::path path(logFileName);
+
+        // Ensure that the parent directory exists.
+        OH_REQUIRE(boost::filesystem::exists(path.branch_path()),
+            "Invalid path : " << logFileName);
+
         try {
             _logger->removeAppender(_fileAppender);
             _fileAppender = AppenderPtr(new FileAppender(_layout, logFileName));

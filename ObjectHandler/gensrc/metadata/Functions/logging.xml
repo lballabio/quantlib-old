@@ -79,7 +79,7 @@
       <description>begin logging to named file</description>
       <alias>ObjectHandler::setLogFile</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
