@@ -1,3 +1,7 @@
+// Do not call this template directly.  Instead call the register_in /
+// register_out wrappers in serializationfactory.hpp.  This is required for
+// external third party applications which extend the factory.
+
 #include <%(addinDirectory)s/Serialization/serialization_all.hpp>
 
 namespace %(namespaceAddin)s {

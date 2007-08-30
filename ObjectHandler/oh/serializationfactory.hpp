@@ -57,7 +57,7 @@ namespace ObjectHandler {
             const char *path,
             bool forceOverwrite) const = 0;
         //! Deserialize an Object list from the path indicated.
-		virtual int loadObject(
+		virtual std::vector<std::string> loadObject(
             const char *path,
             bool overwriteExisting) const = 0;
         //@}

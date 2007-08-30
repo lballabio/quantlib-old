@@ -151,7 +151,7 @@ namespace ObjectHandler {
             objectList, path.c_str(), forceOverwrite);   
 	}	
 
-	int Repository::loadObject(
+	std::vector<std::string> Repository::loadObject(
         const std::string &path,
         bool overwriteExisting) {
 

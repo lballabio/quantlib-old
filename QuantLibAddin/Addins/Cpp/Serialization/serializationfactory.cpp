@@ -61,7 +61,7 @@ namespace QuantLibAddinCpp {
         for (i=objectList.begin(); i!=objectList.end(); ++i) {
             boost::shared_ptr<ObjectHandler::Object> object = *i;
             std::string objectID = boost::any_cast<std::string>(
-                object->properties()->getProperty("ObjectId"));
+                object->properties()->getProperty("OBJECTID"));
             if (seen.find(objectID) == seen.end()) {
                 valueObjects.push_back(object->properties());
                 seen.insert(objectID);
@@ -75,26 +75,28 @@ namespace QuantLibAddinCpp {
         return valueObjects.size();
     }
 
-    void SerializationFactory::processObject(
+    std::string SerializationFactory::processObject(
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
         bool overwriteExisting) const {
 
         // Code to overwrite the object ID
-        //valueObject->setProperty("ObjectId", XXX);
+        //valueObject->setProperty("OBJECTID", XXX);
         CreatorMap::const_iterator i = creatorMap_().find(valueObject->className());
         OH_REQUIRE(i != creatorMap_().end(), "No creator for class " << valueObject->className());
         Creator creator = i->second;
         boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
         std::string objectID =
-            boost::any_cast<std::string>(valueObject->getProperty("ObjectId"));
+            boost::any_cast<std::string>(valueObject->getProperty("OBJECTID"));
         if (overwriteExisting)
             ObjectHandler::Repository::instance().deleteObject(objectID);
         ObjectHandler::Repository::instance().storeObject(objectID, object);
+        return objectID;
     }
 
-    int SerializationFactory::processPath(
+    void SerializationFactory::processPath(
         const std::string &path,
-        bool overwriteExisting) const {
+        bool overwriteExisting,
+        std::vector<std::string> &processedIDs) const {
 
         try {
 
@@ -110,14 +112,12 @@ namespace QuantLibAddinCpp {
             int count = 0;
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
                 try {
-                    processObject(*i, overwriteExisting);
+                    processedIDs.push_back(processObject(*i, overwriteExisting));
                     count++;
                 } catch (const std::exception &e) {
                     OH_FAIL("Error processing item " << count << ": " << e.what());
                 }
             }
-
-            return valueObjects.size();
 
         } catch (const std::exception &e) {
             OH_FAIL("Error deserializing file " << path << ": " << e.what());
@@ -129,28 +129,30 @@ namespace QuantLibAddinCpp {
         return _stricmp(extension.c_str(), ".XML") == 0;
     }
 
-    int SerializationFactory::loadObject(
+    std::vector<std::string> SerializationFactory::loadObject(
         const char *path,
         bool overwriteExisting) const {
 
         boost::filesystem::path boostPath(path);
         OH_REQUIRE(boost::filesystem::exists(boostPath), "Invalid path : " << path);
 
+        std::vector<std::string> returnValue;
+
         if (boost::filesystem::is_directory(boostPath)) {
 
-            int returnValue = 0;
             boost::filesystem::recursive_directory_iterator end_itr;
             for (boost::filesystem::recursive_directory_iterator itr(boostPath); itr != end_itr; ++itr) {
                 if (boost::filesystem::is_regular(itr->status()) && hasXmlExtension(*itr))
-                    returnValue += processPath(itr->path().string(), overwriteExisting);
+                    processPath(itr->path().string(), overwriteExisting, returnValue);
             }
-            return returnValue;
 
         } else {
             //OH_REQUIRE(hasXmlExtension(boostPath),
             //    "The file '" << boostPath << "' does not have extension '.xml'");
-            return processPath(boostPath.string(), overwriteExisting);
+            processPath(boostPath.string(), overwriteExisting, returnValue);
         }
+
+        return returnValue;
     }
 
     void register_in(boost::archive::xml_iarchive& ia) {

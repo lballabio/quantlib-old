@@ -130,7 +130,7 @@ namespace ObjectHandler {
             bool forceOverwrite);
 
         //! Load object(s) from the given stream.
-        virtual int loadObject(
+        virtual std::vector<std::string> loadObject(
             const std::string &path,
             bool overwriteExisting);
         //@}

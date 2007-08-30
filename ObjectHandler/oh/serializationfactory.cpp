@@ -30,9 +30,9 @@ namespace ObjectHandler {
         const boost::shared_ptr<ValueObject> &valueObject) {
 
         bool permanent = 
-            boost::any_cast<bool>(valueObject->getProperty("Permanent"));
+            boost::any_cast<bool>(valueObject->getProperty("PERMANENT"));
         std::vector<std::vector<double> > values = 
-            boost::any_cast<std::vector<std::vector<double> > >(valueObject->getProperty("Values"));
+            boost::any_cast<std::vector<std::vector<double> > >(valueObject->getProperty("VALUES"));
 
         boost::shared_ptr<Object> object(new Range(valueObject, values, permanent));
         return object;
@@ -42,9 +42,9 @@ namespace ObjectHandler {
         const boost::shared_ptr<ValueObject> &valueObject) {
 
         bool permanent = 
-            boost::any_cast<bool>(valueObject->getProperty("Permanent"));
+            boost::any_cast<bool>(valueObject->getProperty("PERMANENT"));
         std::vector<std::string> list = 
-            boost::any_cast<std::vector<std::string> >(valueObject->getProperty("List"));
+            boost::any_cast<std::vector<std::string> >(valueObject->getProperty("LIST"));
 
         boost::shared_ptr<Object> object(new Group(valueObject, list, permanent));
         return object;

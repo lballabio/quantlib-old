@@ -63,8 +63,8 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Procedure>
 
