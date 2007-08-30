@@ -57,8 +57,16 @@ namespace ObjectHandler {
         for (std::vector<std::string>::const_iterator i = objectIDs.begin();
                 i != objectIDs.end(); ++i) {
 
+            std::string objectId = *i;
+
+            // If the object ID is a null string then silently ignore.
+            // This will be revised to raise an exception in the absence of explicit
+            // indication from the user to do otherwise.
+            if (objectId.empty())
+                continue;
+
             boost::shared_ptr<Object> object;
-            ObjectHandler::Repository::instance().retrieveObject(object, *i);
+            ObjectHandler::Repository::instance().retrieveObject(object, objectId);
 
             boost::shared_ptr<Group> group =
                 boost::dynamic_pointer_cast<Group>(object);
@@ -70,7 +78,7 @@ namespace ObjectHandler {
                 boost::shared_ptr<ObjectClass> objectDerived =
                     boost::dynamic_pointer_cast<ObjectClass>(object);
                 OH_REQUIRE(objectDerived, "Error retrieving object with id '"
-                    << *i << "' - unable to convert reference to type '"
+                    << objectId << "' - unable to convert reference to type '"
                     << typeid(ObjectClass).name() << "'");
                 ret.push_back(objectDerived);
             }
@@ -108,8 +116,16 @@ namespace ObjectHandler {
         for (std::vector<std::string>::const_iterator i = objectIDs.begin();
                 i != objectIDs.end(); ++i) {
 
+            std::string objectId = *i;
+
+            // If the object ID is a null string then silently ignore.
+            // This will be revised to raise an exception in the absence of explicit
+            // indication from the user to do otherwise.
+            if (objectId.empty())
+                continue;
+
             boost::shared_ptr<Object> object;
-            ObjectHandler::Repository::instance().retrieveObject(object, *i);
+            ObjectHandler::Repository::instance().retrieveObject(object, objectId);
 
             boost::shared_ptr<Group> group =
                 boost::dynamic_pointer_cast<Group>(object);
@@ -122,7 +138,7 @@ namespace ObjectHandler {
                 boost::shared_ptr<ObjectClass> objectDerived =
                     boost::dynamic_pointer_cast<ObjectClass>(object);
                 OH_REQUIRE(objectDerived, "Error retrieving object with id '"
-                    << *i << "' - unable to convert reference to type '"
+                    << objectId << "' - unable to convert reference to type '"
                     << typeid(ObjectClass).name() << "'");
 
                 boost::shared_ptr<LibraryClass> libraryObject;
