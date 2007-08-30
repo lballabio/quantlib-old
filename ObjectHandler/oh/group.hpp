@@ -30,7 +30,10 @@ namespace ObjectHandler {
             const boost::shared_ptr<ValueObject>& properties,
             const std::vector<std::string> &list,
             bool permanent)
-            : Object(properties, permanent), list_(list) {}
+            : Object(properties, permanent), list_(list) {
+
+            OH_REQUIRE(!list.empty(), "Input list is empty");
+        }
         const std::vector<std::string> &list() { return list_; }
     private:
         std::vector<std::string> list_;
