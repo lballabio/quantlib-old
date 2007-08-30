@@ -17,7 +17,7 @@
   </serializationIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Aurelien Chanudet
   </copyright>
@@ -385,9 +385,7 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <!--<type>QuantLibAddin::RateHelper</type>
-        <tensorRank>vector</tensorRank>-->
-        <type>string</type>
+        <type>QuantLibAddin::RateHelper</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Procedure>
