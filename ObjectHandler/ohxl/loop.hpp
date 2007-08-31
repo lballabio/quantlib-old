@@ -50,7 +50,6 @@ namespace ObjectHandler {
         OPER xTemp, *xMulti;
         bool excelToFree = false;
         bool xllToFree = false;
-        bool errorInitialized = false;
 
         // If the input is an array then take its address & carry on
         if (xIn->xltype == xltypeMulti) {
@@ -80,6 +79,7 @@ namespace ObjectHandler {
         xOut.val.array.lparray = new XLOPER[numCells]; 
         xOut.xltype = xltypeMulti | xlbitDLLFree;
 
+        bool errorInitialized = false;
         for (int i=0; i<numCells; ++i) {
             try {
                 loopIteration<LoopFunction, InputType, OutputType>(
