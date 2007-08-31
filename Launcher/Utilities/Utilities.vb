@@ -18,7 +18,7 @@ Module Utilities
 
     Private Const QUANTLIBXL_CONFIG_PATH As String = "QUANTLIBXL_CONFIG_PATH"
     Private Const EXCEL_10_PATH As String = "C:\Program Files\Microsoft Office\OFFICE10\EXCEL.EXE"
-    Private Const EXCEL_11_PATH As String = "C:\Program Files\Microsoft Office\OFFICE11\EXCEL.EXE2"
+    Private Const EXCEL_11_PATH As String = "C:\Program Files\Microsoft Office\OFFICE11\EXCEL.EXE"
 
     Function fileExists(ByVal PathName As String) As Boolean
 

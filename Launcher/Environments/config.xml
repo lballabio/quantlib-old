@@ -17,7 +17,6 @@
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
-        <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
         <CalibrateCMS>false</CalibrateCMS>
@@ -28,6 +27,7 @@
         <StaticData>false</StaticData>
         <SetEvaluationDate>false</SetEvaluationDate>
         <EvaluationDate>0</EvaluationDate>
+        <InitSource>Excel</InitSource>
       </StartupActions>
     </Environment>
 
@@ -45,7 +45,6 @@
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
-        <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
         <CalibrateCMS>false</CalibrateCMS>
@@ -56,6 +55,7 @@
         <StaticData>false</StaticData>
         <SetEvaluationDate>false</SetEvaluationDate>
         <EvaluationDate>0</EvaluationDate>
+        <InitSource>Excel</InitSource>
       </StartupActions>
     </Environment>
 
@@ -73,7 +73,6 @@
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>true</YieldCurveBootstrap>
-        <LoadMurexYieldCurve>false</LoadMurexYieldCurve>
         <CapVolBootstrap>false</CapVolBootstrap>
         <SwapSmileBootstrap>false</SwapSmileBootstrap>
         <CalibrateCMS>false</CalibrateCMS>
@@ -84,9 +83,11 @@
         <StaticData>false</StaticData>
         <SetEvaluationDate>false</SetEvaluationDate>
         <EvaluationDate>0</EvaluationDate>
+        <InitSource>Excel</InitSource>
       </StartupActions>
     </Environment>
 
   </Environments>
 
 </Configuration>
+

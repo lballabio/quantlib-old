@@ -486,10 +486,6 @@ Public Class FormMain
         SelectedEnvironment.StartupActions.YieldCurveBootstrap = cbYCBootstrap.Checked
     End Sub
 
-    Private Sub cbLoadMurexYC_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLoadMurexYC.CheckedChanged
-        SelectedEnvironment.StartupActions.LoadMurexYieldCurve = cbLoadMurexYC.Checked
-    End Sub
-
     Private Sub cbCapVolBootstrap_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCapVolBootstrap.CheckedChanged
         SelectedEnvironment.StartupActions.CapVolBootstrap = cbCapVolBootstrap.Checked
     End Sub
@@ -520,6 +516,26 @@ Public Class FormMain
 
     Private Sub cbStaticData_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbStaticData.CheckedChanged
         SelectedEnvironment.StartupActions.StaticData = cbStaticData.Checked
+    End Sub
+
+    ' Initialization Data Source
+
+    Private Sub rbExcel_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbExcel.CheckedChanged
+        Call setInitSource()
+    End Sub
+
+    Private Sub rbXML_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbXML.CheckedChanged
+        Call setInitSource()
+    End Sub
+
+    Private Sub setInitSource()
+        If rbExcel.Checked Then
+            SelectedEnvironment.StartupActions.InitSource = "Excel"
+        ElseIf rbXML.Checked Then
+            SelectedEnvironment.StartupActions.InitSource = "XML"
+        Else
+            Throw New Exception("Unable to determine value for Data Initialization Source")
+        End If
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
@@ -1037,7 +1053,6 @@ Public Class FormMain
         cbSetEvaluationDate.Checked = False
         dtEvaluationDate.Value = System.DateTime.Today
         cbYCBootstrap.Checked = False
-        cbLoadMurexYC.Checked = False
         cbCapVolBootstrap.Checked = False
         cbSwapSmileBootstrap.Checked = False
         cbCalibrateCms.Checked = False
@@ -1046,6 +1061,8 @@ Public Class FormMain
         cbLoadBonds.Checked = False
         cbMainChecks.Checked = False
         cbStaticData.Checked = False
+        ' We must choose a data source so force Excel as the default
+        rbExcel.Checked = True
 
         ' Environment properties
         cbFrameworkVersion.SelectedIndex = -1
@@ -1071,7 +1088,6 @@ Public Class FormMain
         dtEvaluationDate.Enabled = SelectedEnvironment.StartupActions.SetEvaluationDate
         dtEvaluationDate.Value = SelectedEnvironment.StartupActions.EvaluationDate
         cbYCBootstrap.Checked = SelectedEnvironment.StartupActions.YieldCurveBootstrap
-        cbLoadMurexYC.Checked = SelectedEnvironment.StartupActions.LoadMurexYieldCurve
         cbCapVolBootstrap.Checked = SelectedEnvironment.StartupActions.CapVolBootstrap
         cbSwapSmileBootstrap.Checked = SelectedEnvironment.StartupActions.SwapSmileBootstrap
         cbCalibrateCms.Checked = SelectedEnvironment.StartupActions.CalibrateCMS
@@ -1080,6 +1096,16 @@ Public Class FormMain
         cbLoadBonds.Checked = SelectedEnvironment.StartupActions.LoadBonds
         cbMainChecks.Checked = SelectedEnvironment.StartupActions.MainChecks
         cbStaticData.Checked = SelectedEnvironment.StartupActions.StaticData
+
+        ' Initialization Data Source
+        If UCase(SelectedEnvironment.StartupActions.InitSource) = "EXCEL" Then
+            rbExcel.Checked = True
+        ElseIf UCase(SelectedEnvironment.StartupActions.InitSource) = "XML" Then
+            rbXML.Checked = True
+        Else
+            Throw New Exception("Invalid value for initialization source: '" _
+                & SelectedEnvironment.StartupActions.InitSource & "'")
+        End If
 
         ' Environment properties
         Dim frameworkVersion As String = CStr(SelectedEnvironment.FrameworkVersion)

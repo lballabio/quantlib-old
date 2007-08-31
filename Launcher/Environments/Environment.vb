@@ -29,17 +29,12 @@ Namespace QuantLibXL
 
         Private Declare Function GetCurrentProcessId Lib "kernel32" () As Long
 
-        ' Environment variable to inform the Framework of the location
-        ' of the configuration file.
-        ' QUANTLIBXL_LAUNCH2 is for Framework version 6.
-        ' QUANTLIBXL_LAUNCH7 is for Framework version 7.
-        ' QUANTLIBXL_LAUNCH8 is for Framework version 8.
-        ' QUANTLIBXL_LAUNCH9 is for Framework version 9.
+        ' Environment variable QUANTLIBXL_LAUNCHx informs the Framework of the location
+        ' of the configuration file, where x is the Framework version number.
 
-        Private Const QUANTLIBXL_LAUNCH2 As String = "QUANTLIBXL_LAUNCH2"
-        Private Const QUANTLIBXL_LAUNCH7 As String = "QUANTLIBXL_LAUNCH7"
         Private Const QUANTLIBXL_LAUNCH8 As String = "QUANTLIBXL_LAUNCH8"
         Private Const QUANTLIBXL_LAUNCH9 As String = "QUANTLIBXL_LAUNCH9"
+        Private Const QUANTLIBXL_LAUNCH10 As String = "QUANTLIBXL_LAUNCH10"
 
         ' The maximum number of XLLs that the Launcher can instruct the Framework to load.
         ' At present this value is limited to 10 only because the addin names
@@ -170,6 +165,18 @@ Namespace QuantLibXL
 
         End Property
 
+        Public Property StartupActions() As QuantLibXL.StartupActions
+
+            Get
+                StartupActions = startupActions_
+            End Get
+
+            Set(ByVal value As QuantLibXL.StartupActions)
+                startupActions_ = value
+            End Set
+
+        End Property
+
         ''''''''''''''''''''''''''''''''''''''''''
         ' Serializable interface
         ''''''''''''''''''''''''''''''''''''''''''
@@ -189,22 +196,6 @@ Namespace QuantLibXL
             serializer.serializeObject(startupActions_, "StartupActions", versionNumber)
 
         End Sub
-
-        ''''''''''''''''''''''''''''''''''''''''''
-        ' properties - startup actions
-        ''''''''''''''''''''''''''''''''''''''''''
-
-        Public Property StartupActions() As QuantLibXL.StartupActions
-
-            Get
-                StartupActions = startupActions_
-            End Get
-
-            Set(ByVal value As QuantLibXL.StartupActions)
-                startupActions_ = value
-            End Set
-
-        End Property
 
         ''''''''''''''''''''''''''''''''''''''''''
         ' user authentication
@@ -328,10 +319,9 @@ Namespace QuantLibXL
 
                 ' Set the environment variable
 
-                System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH2, tempFilePath)
-                System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH7, tempFilePath)
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH8, tempFilePath)
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH9, tempFilePath)
+                System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH10, tempFilePath)
 
                 ' Set environment variables specified in the Variables tab
 

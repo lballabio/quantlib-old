@@ -29,7 +29,6 @@ Namespace QuantLibXL
         Private setEvaluationDate_ As Boolean
         Private evaluationDateValue_ As Integer
         Private ycBootstrap_ As Boolean
-        Private loadMurexYC_ As Boolean
         Private capVolBootstrap_ As Boolean
         'Private swapVolBootstrap_ As Boolean
         Private swapSmileBootstrap_ As Boolean
@@ -39,13 +38,13 @@ Namespace QuantLibXL
         Private loadBonds_ As Boolean
         Private mainChecks_ As Boolean
         Private staticData_ As Boolean
+        Private initSource_ As String = ""
 
         Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
 
             serializer.serializeProperty(setEvaluationDate_, "SetEvaluationDate")
             serializer.serializeProperty(evaluationDateValue_, "EvaluationDate")
             serializer.serializeProperty(ycBootstrap_, "YieldCurveBootstrap")
-            serializer.serializeProperty(loadMurexYC_, "LoadMurexYieldCurve")
             serializer.serializeProperty(capVolBootstrap_, "CapVolBootstrap")
             serializer.serializeProperty(swapSmileBootstrap_, "SwapSmileBootstrap")
             serializer.serializeProperty(calibrateCMS_, "CalibrateCMS")
@@ -54,6 +53,11 @@ Namespace QuantLibXL
             serializer.serializeProperty(loadBonds_, "LoadBonds")
             serializer.serializeProperty(mainChecks_, "MainChecks")
             serializer.serializeProperty(staticData_, "StaticData")
+            If versionNumber < 10 Then
+                serializer.serializeProperty(False, "LoadMurexYieldCurve")
+            Else
+                serializer.serializeProperty(initSource_, "InitSource")
+            End If
 
         End Sub
 
@@ -118,18 +122,6 @@ Namespace QuantLibXL
 
             Set(ByVal value As Boolean)
                 ycBootstrap_ = value
-            End Set
-
-        End Property
-
-        Public Property LoadMurexYieldCurve() As Boolean
-
-            Get
-                LoadMurexYieldCurve = loadMurexYC_
-            End Get
-
-            Set(ByVal value As Boolean)
-                loadMurexYC_ = value
             End Set
 
         End Property
@@ -225,6 +217,18 @@ Namespace QuantLibXL
 
             Set(ByVal value As Boolean)
                 staticData_ = value
+            End Set
+
+        End Property
+
+        Public Property InitSource() As String
+
+            Get
+                InitSource = initSource_
+            End Get
+
+            Set(ByVal value As String)
+                initSource_ = value
             End Set
 
         End Property

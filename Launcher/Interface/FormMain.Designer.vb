@@ -50,11 +50,13 @@ Partial Class FormMain
         Me.cbSwapSmileBootstrap = New System.Windows.Forms.CheckBox
         Me.cbIndexesTimeSeries = New System.Windows.Forms.CheckBox
         Me.cbCapVolBootstrap = New System.Windows.Forms.CheckBox
-        Me.cbLoadMurexYC = New System.Windows.Forms.CheckBox
         Me.cbYCBootstrap = New System.Windows.Forms.CheckBox
         Me.btnLaunch = New System.Windows.Forms.Button
         Me.tcLauncher = New System.Windows.Forms.TabControl
         Me.tpEnvironments = New System.Windows.Forms.TabPage
+        Me.grpInit = New System.Windows.Forms.GroupBox
+        Me.rbXML = New System.Windows.Forms.RadioButton
+        Me.rbExcel = New System.Windows.Forms.RadioButton
         Me.grpFeeds = New System.Windows.Forms.GroupBox
         Me.cbBloomberg = New System.Windows.Forms.CheckBox
         Me.cbReuters = New System.Windows.Forms.CheckBox
@@ -108,6 +110,7 @@ Partial Class FormMain
         Me.grpStartup.SuspendLayout()
         Me.tcLauncher.SuspendLayout()
         Me.tpEnvironments.SuspendLayout()
+        Me.grpInit.SuspendLayout()
         Me.grpFeeds.SuspendLayout()
         Me.tpPaths.SuspendLayout()
         Me.tpAddins.SuspendLayout()
@@ -211,7 +214,6 @@ Partial Class FormMain
         Me.tstEnvironment.Size = New System.Drawing.Size(118, 25)
         Me.tstEnvironment.TabIndex = 7
         Me.tstEnvironment.Text = "ToolStrip1"
-        Me.tstEnvironment.Visible = False
         '
         'btnNew
         '
@@ -297,7 +299,6 @@ Partial Class FormMain
         Me.grpStartup.Controls.Add(Me.cbSwapSmileBootstrap)
         Me.grpStartup.Controls.Add(Me.cbIndexesTimeSeries)
         Me.grpStartup.Controls.Add(Me.cbCapVolBootstrap)
-        Me.grpStartup.Controls.Add(Me.cbLoadMurexYC)
         Me.grpStartup.Controls.Add(Me.cbYCBootstrap)
         Me.grpStartup.Location = New System.Drawing.Point(244, 6)
         Me.grpStartup.Name = "grpStartup"
@@ -328,7 +329,7 @@ Partial Class FormMain
         'cbCalibrateCms
         '
         Me.cbCalibrateCms.AutoSize = True
-        Me.cbCalibrateCms.Location = New System.Drawing.Point(10, 144)
+        Me.cbCalibrateCms.Location = New System.Drawing.Point(10, 121)
         Me.cbCalibrateCms.Name = "cbCalibrateCms"
         Me.cbCalibrateCms.Size = New System.Drawing.Size(129, 17)
         Me.cbCalibrateCms.TabIndex = 9
@@ -338,7 +339,7 @@ Partial Class FormMain
         'cbStaticData
         '
         Me.cbStaticData.AutoSize = True
-        Me.cbStaticData.Location = New System.Drawing.Point(10, 259)
+        Me.cbStaticData.Location = New System.Drawing.Point(10, 236)
         Me.cbStaticData.Name = "cbStaticData"
         Me.cbStaticData.Size = New System.Drawing.Size(157, 17)
         Me.cbStaticData.TabIndex = 8
@@ -348,7 +349,7 @@ Partial Class FormMain
         'cbFitCMS
         '
         Me.cbFitCMS.AutoSize = True
-        Me.cbFitCMS.Location = New System.Drawing.Point(10, 167)
+        Me.cbFitCMS.Location = New System.Drawing.Point(10, 144)
         Me.cbFitCMS.Name = "cbFitCMS"
         Me.cbFitCMS.Size = New System.Drawing.Size(162, 17)
         Me.cbFitCMS.TabIndex = 7
@@ -358,7 +359,7 @@ Partial Class FormMain
         'cbLoadBonds
         '
         Me.cbLoadBonds.AutoSize = True
-        Me.cbLoadBonds.Location = New System.Drawing.Point(10, 213)
+        Me.cbLoadBonds.Location = New System.Drawing.Point(10, 190)
         Me.cbLoadBonds.Name = "cbLoadBonds"
         Me.cbLoadBonds.Size = New System.Drawing.Size(83, 17)
         Me.cbLoadBonds.TabIndex = 6
@@ -368,7 +369,7 @@ Partial Class FormMain
         'cbMainChecks
         '
         Me.cbMainChecks.AutoSize = True
-        Me.cbMainChecks.Location = New System.Drawing.Point(10, 236)
+        Me.cbMainChecks.Location = New System.Drawing.Point(10, 213)
         Me.cbMainChecks.Name = "cbMainChecks"
         Me.cbMainChecks.Size = New System.Drawing.Size(117, 17)
         Me.cbMainChecks.TabIndex = 6
@@ -378,7 +379,7 @@ Partial Class FormMain
         'cbSwapSmileBootstrap
         '
         Me.cbSwapSmileBootstrap.AutoSize = True
-        Me.cbSwapSmileBootstrap.Location = New System.Drawing.Point(10, 121)
+        Me.cbSwapSmileBootstrap.Location = New System.Drawing.Point(10, 98)
         Me.cbSwapSmileBootstrap.Name = "cbSwapSmileBootstrap"
         Me.cbSwapSmileBootstrap.Size = New System.Drawing.Size(173, 17)
         Me.cbSwapSmileBootstrap.TabIndex = 5
@@ -388,7 +389,7 @@ Partial Class FormMain
         'cbIndexesTimeSeries
         '
         Me.cbIndexesTimeSeries.AutoSize = True
-        Me.cbIndexesTimeSeries.Location = New System.Drawing.Point(10, 190)
+        Me.cbIndexesTimeSeries.Location = New System.Drawing.Point(10, 167)
         Me.cbIndexesTimeSeries.Name = "cbIndexesTimeSeries"
         Me.cbIndexesTimeSeries.Size = New System.Drawing.Size(148, 17)
         Me.cbIndexesTimeSeries.TabIndex = 4
@@ -398,22 +399,12 @@ Partial Class FormMain
         'cbCapVolBootstrap
         '
         Me.cbCapVolBootstrap.AutoSize = True
-        Me.cbCapVolBootstrap.Location = New System.Drawing.Point(10, 98)
+        Me.cbCapVolBootstrap.Location = New System.Drawing.Point(10, 75)
         Me.cbCapVolBootstrap.Name = "cbCapVolBootstrap"
         Me.cbCapVolBootstrap.Size = New System.Drawing.Size(142, 17)
         Me.cbCapVolBootstrap.TabIndex = 2
         Me.cbCapVolBootstrap.Text = "Bootstrap Cap Volatilities"
         Me.cbCapVolBootstrap.UseVisualStyleBackColor = True
-        '
-        'cbLoadMurexYC
-        '
-        Me.cbLoadMurexYC.AutoSize = True
-        Me.cbLoadMurexYC.Location = New System.Drawing.Point(10, 75)
-        Me.cbLoadMurexYC.Name = "cbLoadMurexYC"
-        Me.cbLoadMurexYC.Size = New System.Drawing.Size(160, 17)
-        Me.cbLoadMurexYC.TabIndex = 1
-        Me.cbLoadMurexYC.Text = "Bootstrap Murex Yield Curve"
-        Me.cbLoadMurexYC.UseVisualStyleBackColor = True
         '
         'cbYCBootstrap
         '
@@ -450,6 +441,7 @@ Partial Class FormMain
         '
         'tpEnvironments
         '
+        Me.tpEnvironments.Controls.Add(Me.grpInit)
         Me.tpEnvironments.Controls.Add(Me.grpFeeds)
         Me.tpEnvironments.Controls.Add(Me.grpEnvironment)
         Me.tpEnvironments.Controls.Add(Me.grpStartup)
@@ -461,13 +453,46 @@ Partial Class FormMain
         Me.tpEnvironments.Text = "Environments"
         Me.tpEnvironments.UseVisualStyleBackColor = True
         '
+        'grpInit
+        '
+        Me.grpInit.Controls.Add(Me.rbXML)
+        Me.grpInit.Controls.Add(Me.rbExcel)
+        Me.grpInit.Location = New System.Drawing.Point(362, 293)
+        Me.grpInit.Name = "grpInit"
+        Me.grpInit.Size = New System.Drawing.Size(112, 69)
+        Me.grpInit.TabIndex = 21
+        Me.grpInit.TabStop = False
+        Me.grpInit.Text = "Initialization Data"
+        '
+        'rbXML
+        '
+        Me.rbXML.AutoSize = True
+        Me.rbXML.Location = New System.Drawing.Point(7, 45)
+        Me.rbXML.Name = "rbXML"
+        Me.rbXML.Size = New System.Drawing.Size(71, 17)
+        Me.rbXML.TabIndex = 1
+        Me.rbXML.TabStop = True
+        Me.rbXML.Text = "XML Files"
+        Me.rbXML.UseVisualStyleBackColor = True
+        '
+        'rbExcel
+        '
+        Me.rbExcel.AutoSize = True
+        Me.rbExcel.Location = New System.Drawing.Point(6, 23)
+        Me.rbExcel.Name = "rbExcel"
+        Me.rbExcel.Size = New System.Drawing.Size(84, 17)
+        Me.rbExcel.TabIndex = 0
+        Me.rbExcel.TabStop = True
+        Me.rbExcel.Text = "Excel Books"
+        Me.rbExcel.UseVisualStyleBackColor = True
+        '
         'grpFeeds
         '
         Me.grpFeeds.Controls.Add(Me.cbBloomberg)
         Me.grpFeeds.Controls.Add(Me.cbReuters)
         Me.grpFeeds.Location = New System.Drawing.Point(244, 293)
         Me.grpFeeds.Name = "grpFeeds"
-        Me.grpFeeds.Size = New System.Drawing.Size(230, 69)
+        Me.grpFeeds.Size = New System.Drawing.Size(112, 69)
         Me.grpFeeds.TabIndex = 20
         Me.grpFeeds.TabStop = False
         Me.grpFeeds.Text = "Feeds"
@@ -527,7 +552,7 @@ Partial Class FormMain
         '
         Me.cbFrameworkVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbFrameworkVersion.FormattingEnabled = True
-        Me.cbFrameworkVersion.Items.AddRange(New Object() {"8", "9"})
+        Me.cbFrameworkVersion.Items.AddRange(New Object() {"8", "9", "10"})
         Me.cbFrameworkVersion.Location = New System.Drawing.Point(161, 59)
         Me.cbFrameworkVersion.Name = "cbFrameworkVersion"
         Me.cbFrameworkVersion.Size = New System.Drawing.Size(47, 21)
@@ -943,7 +968,7 @@ Partial Class FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(493, 438)
+        Me.ClientSize = New System.Drawing.Size(491, 438)
         Me.Controls.Add(Me.lblBuildNumber)
         Me.Controls.Add(Me.tcLauncher)
         Me.Controls.Add(Me.btnLaunch)
@@ -960,6 +985,8 @@ Partial Class FormMain
         Me.grpStartup.PerformLayout()
         Me.tcLauncher.ResumeLayout(False)
         Me.tpEnvironments.ResumeLayout(False)
+        Me.grpInit.ResumeLayout(False)
+        Me.grpInit.PerformLayout()
         Me.grpFeeds.ResumeLayout(False)
         Me.grpFeeds.PerformLayout()
         Me.tpPaths.ResumeLayout(False)
@@ -1000,7 +1027,6 @@ Partial Class FormMain
     Friend WithEvents btnLaunch As System.Windows.Forms.Button
     Friend WithEvents cbIndexesTimeSeries As System.Windows.Forms.CheckBox
     Friend WithEvents cbCapVolBootstrap As System.Windows.Forms.CheckBox
-    Friend WithEvents cbLoadMurexYC As System.Windows.Forms.CheckBox
     Friend WithEvents tcLauncher As System.Windows.Forms.TabControl
     Friend WithEvents tpEnvironments As System.Windows.Forms.TabPage
     Friend WithEvents tpPaths As System.Windows.Forms.TabPage
@@ -1059,4 +1085,7 @@ Partial Class FormMain
     Friend WithEvents lvVariables As System.Windows.Forms.ListView
     Friend WithEvents chVariable As System.Windows.Forms.ColumnHeader
     Friend WithEvents chValue As System.Windows.Forms.ColumnHeader
+    Friend WithEvents grpInit As System.Windows.Forms.GroupBox
+    Friend WithEvents rbExcel As System.Windows.Forms.RadioButton
+    Friend WithEvents rbXML As System.Windows.Forms.RadioButton
 End Class
