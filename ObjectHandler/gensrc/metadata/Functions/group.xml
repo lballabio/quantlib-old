@@ -44,6 +44,21 @@
       </ReturnValue>
     </Member>
 
+    <Member name='ohGroupSize' type='ObjectHandler::Group'>
+      <description>Return the number of object IDs contained in a Group object</description>
+      <libraryFunction>size</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
   </Functions>
 
 </Category>

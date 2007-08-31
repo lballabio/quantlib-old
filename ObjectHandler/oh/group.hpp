@@ -35,6 +35,7 @@ namespace ObjectHandler {
             OH_REQUIRE(!list.empty(), "Input list is empty");
         }
         const std::vector<std::string> &list() { return list_; }
+        size_t size() { return list_.size(); }
     private:
         std::vector<std::string> list_;
     };
