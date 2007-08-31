@@ -33,6 +33,7 @@ Namespace QuantLibXL
         Private reutersEnabled_ As Boolean = False
         Private bloombergEnabled_ As Boolean = False
         Private excelPath_ As String = ""
+        Private feedUse_ As String = ""
         Private overrideActions_ As QuantLibXL.StartupActionsList
 
         Public Property Name() As String Implements ISerializable.Name
@@ -165,6 +166,18 @@ Namespace QuantLibXL
 
         End Property
 
+        Public Property FeedUse() As String
+
+            Get
+                Return feedUse_
+            End Get
+
+            Set(ByVal value As String)
+                feedUse_ = value
+            End Set
+
+        End Property
+
         ' Generate a list of feed addins to be loaded by the Framework
         Public ReadOnly Property FeedList() As String()
 
@@ -196,6 +209,7 @@ Namespace QuantLibXL
             serializer.serializeProperty(reutersSelected_, "ReutersSelected")
             serializer.serializeProperty(bloombergSelected_, "BloombergSelected")
             serializer.serializeProperty(excelPath_, "ExcelPath")
+            serializer.serializeProperty(feedUse_, "FeedUse")
             serializer.serializeObject(overrideActions_, "StartupActionsList", versionNumber)
 
         End Sub

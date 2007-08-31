@@ -208,6 +208,13 @@ Public Class FormMain
         cbReuters.Checked = config_.ReutersSelected
         cbBloomberg.Checked = config_.BloombergSelected
         txtExcelPath.Text = config_.ExcelPath
+        If UCase(config_.FeedUse) = "REUTERS" Then
+            rbReuters.Checked = True
+        ElseIf UCase(config_.FeedUse) = "BLOOMBERG" Then
+            rbBloomberg.Checked = True
+        Else
+            Throw New Exception("Invalid value for feed : '" & config_.FeedUse & "'")
+        End If
         setReutersPathEnabled()
         setBloombergPathEnabled()
 
@@ -257,7 +264,7 @@ Public Class FormMain
 
         Try
 
-            SelectedEnvironment.launch(config_.FeedList(), config_.ExcelPath)
+            SelectedEnvironment.launch(config_.FeedList(), config_.ExcelPath, config_.FeedUse)
             saveConfiguration()
 
         Catch ex As Exception
@@ -998,6 +1005,23 @@ Public Class FormMain
         config_.BloombergSelected = cbBloomberg.Checked
     End Sub
 
+    Private Sub rbReuters_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbReuters.CheckedChanged
+        Call setFeedUse()
+    End Sub
+
+    Private Sub rbBloomberg_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbBloomberg.CheckedChanged
+        Call setFeedUse()
+    End Sub
+
+    Private Sub setFeedUse()
+        If rbReuters.Checked Then
+            config_.FeedUse = "Reuters"
+        ElseIf rbBloomberg.Checked Then
+            config_.FeedUse = "Bloomberg"
+        Else
+            Throw New Exception("Error specifying Reuters/Bloomberg.")
+        End If
+    End Sub
     ''''''''''''''''''''''''''''''''''''''''''
     ' Private functions
     ''''''''''''''''''''''''''''''''''''''''''
@@ -1063,6 +1087,8 @@ Public Class FormMain
         cbStaticData.Checked = False
         ' We must choose a data source so force Excel as the default
         rbExcel.Checked = True
+        ' We must choose a feed so force Reuters as the default
+        rbReuters.Checked = True
 
         ' Environment properties
         cbFrameworkVersion.SelectedIndex = -1

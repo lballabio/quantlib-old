@@ -58,8 +58,8 @@ Partial Class FormMain
         Me.rbXML = New System.Windows.Forms.RadioButton
         Me.rbExcel = New System.Windows.Forms.RadioButton
         Me.grpFeeds = New System.Windows.Forms.GroupBox
-        Me.cbBloomberg = New System.Windows.Forms.CheckBox
-        Me.cbReuters = New System.Windows.Forms.CheckBox
+        Me.rbBloomberg = New System.Windows.Forms.RadioButton
+        Me.rbReuters = New System.Windows.Forms.RadioButton
         Me.tpPaths = New System.Windows.Forms.TabPage
         Me.cbFrameworkVersion = New System.Windows.Forms.ComboBox
         Me.btnLaunchExcel = New System.Windows.Forms.Button
@@ -85,6 +85,8 @@ Partial Class FormMain
         Me.btnAddinUp = New System.Windows.Forms.ToolStripButton
         Me.btnAddinDown = New System.Windows.Forms.ToolStripButton
         Me.tpFeeds = New System.Windows.Forms.TabPage
+        Me.cbBloomberg = New System.Windows.Forms.CheckBox
+        Me.cbReuters = New System.Windows.Forms.CheckBox
         Me.txtBloomberg = New System.Windows.Forms.TextBox
         Me.lblBloomberg = New System.Windows.Forms.Label
         Me.btnBloomberg = New System.Windows.Forms.Button
@@ -467,7 +469,7 @@ Partial Class FormMain
         'rbXML
         '
         Me.rbXML.AutoSize = True
-        Me.rbXML.Location = New System.Drawing.Point(7, 45)
+        Me.rbXML.Location = New System.Drawing.Point(10, 45)
         Me.rbXML.Name = "rbXML"
         Me.rbXML.Size = New System.Drawing.Size(71, 17)
         Me.rbXML.TabIndex = 1
@@ -478,7 +480,7 @@ Partial Class FormMain
         'rbExcel
         '
         Me.rbExcel.AutoSize = True
-        Me.rbExcel.Location = New System.Drawing.Point(6, 23)
+        Me.rbExcel.Location = New System.Drawing.Point(10, 23)
         Me.rbExcel.Name = "rbExcel"
         Me.rbExcel.Size = New System.Drawing.Size(84, 17)
         Me.rbExcel.TabIndex = 0
@@ -488,34 +490,36 @@ Partial Class FormMain
         '
         'grpFeeds
         '
-        Me.grpFeeds.Controls.Add(Me.cbBloomberg)
-        Me.grpFeeds.Controls.Add(Me.cbReuters)
+        Me.grpFeeds.Controls.Add(Me.rbBloomberg)
+        Me.grpFeeds.Controls.Add(Me.rbReuters)
         Me.grpFeeds.Location = New System.Drawing.Point(244, 293)
         Me.grpFeeds.Name = "grpFeeds"
         Me.grpFeeds.Size = New System.Drawing.Size(112, 69)
         Me.grpFeeds.TabIndex = 20
         Me.grpFeeds.TabStop = False
-        Me.grpFeeds.Text = "Feeds"
+        Me.grpFeeds.Text = "Feed"
         '
-        'cbBloomberg
+        'rbBloomberg
         '
-        Me.cbBloomberg.AutoSize = True
-        Me.cbBloomberg.Location = New System.Drawing.Point(10, 45)
-        Me.cbBloomberg.Name = "cbBloomberg"
-        Me.cbBloomberg.Size = New System.Drawing.Size(76, 17)
-        Me.cbBloomberg.TabIndex = 2
-        Me.cbBloomberg.Text = "Bloomberg"
-        Me.cbBloomberg.UseVisualStyleBackColor = True
+        Me.rbBloomberg.AutoSize = True
+        Me.rbBloomberg.Location = New System.Drawing.Point(10, 45)
+        Me.rbBloomberg.Name = "rbBloomberg"
+        Me.rbBloomberg.Size = New System.Drawing.Size(75, 17)
+        Me.rbBloomberg.TabIndex = 1
+        Me.rbBloomberg.TabStop = True
+        Me.rbBloomberg.Text = "Bloomberg"
+        Me.rbBloomberg.UseVisualStyleBackColor = True
         '
-        'cbReuters
+        'rbReuters
         '
-        Me.cbReuters.AutoSize = True
-        Me.cbReuters.Location = New System.Drawing.Point(10, 23)
-        Me.cbReuters.Name = "cbReuters"
-        Me.cbReuters.Size = New System.Drawing.Size(63, 17)
-        Me.cbReuters.TabIndex = 1
-        Me.cbReuters.Text = "Reuters"
-        Me.cbReuters.UseVisualStyleBackColor = True
+        Me.rbReuters.AutoSize = True
+        Me.rbReuters.Location = New System.Drawing.Point(10, 23)
+        Me.rbReuters.Name = "rbReuters"
+        Me.rbReuters.Size = New System.Drawing.Size(62, 17)
+        Me.rbReuters.TabIndex = 0
+        Me.rbReuters.TabStop = True
+        Me.rbReuters.Text = "Reuters"
+        Me.rbReuters.UseVisualStyleBackColor = True
         '
         'tpPaths
         '
@@ -758,6 +762,8 @@ Partial Class FormMain
         '
         'tpFeeds
         '
+        Me.tpFeeds.Controls.Add(Me.cbBloomberg)
+        Me.tpFeeds.Controls.Add(Me.cbReuters)
         Me.tpFeeds.Controls.Add(Me.txtBloomberg)
         Me.tpFeeds.Controls.Add(Me.lblBloomberg)
         Me.tpFeeds.Controls.Add(Me.btnBloomberg)
@@ -772,11 +778,31 @@ Partial Class FormMain
         Me.tpFeeds.Text = "Feeds"
         Me.tpFeeds.UseVisualStyleBackColor = True
         '
+        'cbBloomberg
+        '
+        Me.cbBloomberg.AutoSize = True
+        Me.cbBloomberg.Location = New System.Drawing.Point(30, 65)
+        Me.cbBloomberg.Name = "cbBloomberg"
+        Me.cbBloomberg.Size = New System.Drawing.Size(50, 17)
+        Me.cbBloomberg.TabIndex = 26
+        Me.cbBloomberg.Text = "Load"
+        Me.cbBloomberg.UseVisualStyleBackColor = True
+        '
+        'cbReuters
+        '
+        Me.cbReuters.AutoSize = True
+        Me.cbReuters.Location = New System.Drawing.Point(30, 26)
+        Me.cbReuters.Name = "cbReuters"
+        Me.cbReuters.Size = New System.Drawing.Size(50, 17)
+        Me.cbReuters.TabIndex = 25
+        Me.cbReuters.Text = "Load"
+        Me.cbReuters.UseVisualStyleBackColor = True
+        '
         'txtBloomberg
         '
-        Me.txtBloomberg.Location = New System.Drawing.Point(30, 65)
+        Me.txtBloomberg.Location = New System.Drawing.Point(81, 65)
         Me.txtBloomberg.Name = "txtBloomberg"
-        Me.txtBloomberg.Size = New System.Drawing.Size(405, 20)
+        Me.txtBloomberg.Size = New System.Drawing.Size(354, 20)
         Me.txtBloomberg.TabIndex = 24
         '
         'lblBloomberg
@@ -808,9 +834,9 @@ Partial Class FormMain
         '
         'txtReuters
         '
-        Me.txtReuters.Location = New System.Drawing.Point(30, 26)
+        Me.txtReuters.Location = New System.Drawing.Point(81, 26)
         Me.txtReuters.Name = "txtReuters"
-        Me.txtReuters.Size = New System.Drawing.Size(405, 20)
+        Me.txtReuters.Size = New System.Drawing.Size(354, 20)
         Me.txtReuters.TabIndex = 20
         '
         'lblReuters
@@ -1061,8 +1087,6 @@ Partial Class FormMain
     Friend WithEvents txtReuters As System.Windows.Forms.TextBox
     Friend WithEvents lblReuters As System.Windows.Forms.Label
     Friend WithEvents grpFeeds As System.Windows.Forms.GroupBox
-    Friend WithEvents cbReuters As System.Windows.Forms.CheckBox
-    Friend WithEvents cbBloomberg As System.Windows.Forms.CheckBox
     Friend WithEvents lblBuildNumber As System.Windows.Forms.Label
     Friend WithEvents cbCalibrateCms As System.Windows.Forms.CheckBox
     Friend WithEvents txtExcelPath As System.Windows.Forms.TextBox
@@ -1088,4 +1112,8 @@ Partial Class FormMain
     Friend WithEvents grpInit As System.Windows.Forms.GroupBox
     Friend WithEvents rbExcel As System.Windows.Forms.RadioButton
     Friend WithEvents rbXML As System.Windows.Forms.RadioButton
+    Friend WithEvents cbBloomberg As System.Windows.Forms.CheckBox
+    Friend WithEvents cbReuters As System.Windows.Forms.CheckBox
+    Friend WithEvents rbBloomberg As System.Windows.Forms.RadioButton
+    Friend WithEvents rbReuters As System.Windows.Forms.RadioButton
 End Class

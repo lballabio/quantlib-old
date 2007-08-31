@@ -58,6 +58,7 @@ Namespace QuantLibXL
         Private helpPath_ As String = ""
         Private xmlPath_ As String = ""
         Private userConfig_ As String = ""
+        Private feedUse_ As String = ""
 
         ' User authentication
 
@@ -192,6 +193,7 @@ Namespace QuantLibXL
             serializer.serializeProperty(helpPath_, "HelpFile")
             serializer.serializeProperty(xmlPath_, "FunctionMetadata")
             serializer.serializeProperty(userConfig_, "UserConfigurationFile")
+            serializer.serializeProperty(feedUse_, "FeedUse")
             serializer.serializePropertyList(addinList_, "AddinList", "Addin")
             serializer.serializeObject(startupActions_, "StartupActions", versionNumber)
 
@@ -282,10 +284,11 @@ Namespace QuantLibXL
         ' directory, and set environment variable QUANTLIBXL_LAUNCH to
         ' inform the QuantLibXL session of the location of the file.
 
-        Public Sub launch(ByVal feedAddins() As String, ByVal excelPath As String)
+        Public Sub launch(ByVal feedAddins() As String, ByVal excelPath As String, ByVal feedUse As String)
 
             ' Save the original value of addinList_
             Dim keepAddinList() As String = addinList_
+            feedUse_ = feedUse
 
             Try
 

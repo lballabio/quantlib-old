@@ -120,6 +120,9 @@ Module Upgrade
 
         r_.copyKey("QuantLibXL Launcher\LauncherVersion10", "QuantLibXL Launcher\LauncherVersion11")
 
+        r_.createKey("QuantLibXL Launcher\LauncherVersion11\Configuration\FeedUse")
+        r_.setValue("QuantLibXL Launcher\LauncherVersion11\Configuration", "FeedUse", "Reuters")
+
         Dim rootName As String
         rootName = "QuantLibXL Launcher\LauncherVersion11\Configuration\StartupActionsList"
         For Each keyName As String In r_.subKeyNames(rootName)
@@ -132,6 +135,8 @@ Module Upgrade
             r_.deleteKey(rootName & "\" & keyName & "\StartupActions\LoadMurexYieldCurve")
             r_.createKey(rootName & "\" & keyName & "\StartupActions\InitSource")
             r_.setValue(rootName & "\" & keyName & "\StartupActions", "InitSource", "Excel")
+            r_.createKey(rootName & "\" & keyName & "\FeedUse")
+            r_.setValue(rootName & "\" & keyName, "FeedUse", "Reuters")
         Next keyName
 
         registryVersion_ = 11
@@ -207,6 +212,7 @@ Module Upgrade
         r_.setValue(path, "BloombergSelected", False)
         r_.setValue(path, "ExcelPath", deriveDefaultExcelPath())
         r_.setValue(path, "InitSource", "Excel")
+        r_.setValue(path, "FeedUse", "Reuters")
         r_.createKey(path & "\StartupActionsList")
         r_.createKey(path & "\Environments")
 

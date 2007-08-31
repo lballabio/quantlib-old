@@ -10,6 +10,7 @@
       <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev11940\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\01 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev11940\metadata</FunctionMetadata>
+      <FeedUse>THIS_VALUE_OVERWRITTEN_FROM_REGISTRY</FeedUse>
       <AddinList>
         <Addin>ObjectHandler-xll-vc80-mt-0_9_0.xll</Addin>
         <Addin>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Addin>
@@ -38,6 +39,7 @@
       <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev12288\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\02 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev12288\metadata</FunctionMetadata>
+      <FeedUse>THIS_VALUE_OVERWRITTEN_FROM_REGISTRY</FeedUse>
       <AddinList>
         <Addin>ObjectHandler-xll-vc80-mt-0_9_0.xll</Addin>
         <Addin>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Addin>
@@ -66,6 +68,7 @@
       <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev12288\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\03 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev12288\metadata</FunctionMetadata>
+      <FeedUse>THIS_VALUE_OVERWRITTEN_FROM_REGISTRY</FeedUse>
       <AddinList>
         <Addin>ObjectHandler-xll-vc80-mt-0_9_0.xll</Addin>
         <Addin>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Addin>
