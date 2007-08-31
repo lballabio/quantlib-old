@@ -305,29 +305,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlLegSetCouponPricer' type='QuantLibAddin::Leg'>
-      <description>Set the coupon pricer at the given Leg object</description>
-      <libraryFunction>setCouponPricer</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='FloatingRateCouponPricer'>
-            <type>QuantLib::FloatingRateCouponPricer</type>
-            <tensorRank>scalar</tensorRank>
-            <description>FloatingRate coupon pricer object ID</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlLegSetCouponPricers' type='QuantLibAddin::Leg'>
       <description>Set the coupon pricer at the given Leg object</description>
       <libraryFunction>setCouponPricers</libraryFunction>

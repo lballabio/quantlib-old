@@ -61,8 +61,7 @@ namespace QuantLibAddin {
         QuantLib::Real convexity(const QuantLib::InterestRate& y,
                                 QuantLib::Date settlementDate) const;
 
-        void setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
-        void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
+        void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& p);
 
         std::vector<std::vector<boost::any> > analysis() const;
         const QuantLib::Leg& getQuantLibLeg();

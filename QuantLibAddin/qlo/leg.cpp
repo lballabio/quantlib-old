@@ -37,14 +37,19 @@
 
 using QuantLib::earlier_than;
 using QuantLib::CashFlow;
+using QuantLib::Date;
+using QuantLib::YieldTermStructure;
+using std::vector;
+using boost::shared_ptr;
+using QuantLib::FloatingRateCouponPricer;
 
 namespace QuantLibAddin {
 
-    QuantLib::Rate Leg::previousCouponRate(const QuantLib::Date& refDate) const {
+    QuantLib::Rate Leg::previousCouponRate(const Date& refDate) const {
         return QuantLib::CashFlows::previousCouponRate(leg_, refDate);
     }
 
-    QuantLib::Rate Leg::currentCouponRate(const QuantLib::Date& refDate) const {
+    QuantLib::Rate Leg::currentCouponRate(const Date& refDate) const {
         return QuantLib::CashFlows::currentCouponRate(leg_, refDate);
     }
 
@@ -56,15 +61,15 @@ namespace QuantLibAddin {
         return QuantLib::CashFlows::maturityDate(leg_);
     }
 
-    QuantLib::Real Leg::npv(const QuantLib::YieldTermStructure& hYTS) const {
+    QuantLib::Real Leg::npv(const YieldTermStructure& hYTS) const {
         return QuantLib::CashFlows::npv(leg_, hYTS);
     }
 
-    QuantLib::Real Leg::bps(const QuantLib::YieldTermStructure& hYTS) const {
+    QuantLib::Real Leg::bps(const YieldTermStructure& hYTS) const {
         return QuantLib::CashFlows::bps(leg_, hYTS);
     }
 
-    QuantLib::Rate Leg::atmRate(const QuantLib::YieldTermStructure& hYTS) const {
+    QuantLib::Rate Leg::atmRate(const YieldTermStructure& hYTS) const {
         return QuantLib::CashFlows::atmRate(leg_, hYTS);
     }
     QuantLib::Rate Leg::irr(QuantLib::Real marketPrice,
@@ -75,8 +80,10 @@ namespace QuantLibAddin {
                             QuantLib::Real tolerance,
                             QuantLib::Size maxIterations,
                             QuantLib::Rate guess) const {
-        return QuantLib::CashFlows::irr(leg_, marketPrice, dayCounter, compounding,
-                      frequency, settlementDate, tolerance, maxIterations, guess);
+        return QuantLib::CashFlows::irr(leg_, marketPrice, dayCounter,
+                                        compounding, frequency,
+                                        settlementDate, tolerance,
+                                        maxIterations, guess);
     }
     QuantLib::Time Leg::duration(const QuantLib::InterestRate& y,
                         QuantLib::Duration::Type type,
@@ -91,13 +98,8 @@ namespace QuantLibAddin {
         return flowAnalysis(leg_);
     }
 
-    void Leg::setCouponPricer(
-            const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer) {
-        return QuantLib::setCouponPricer(leg_, pricer);
-    }
-
     void Leg::setCouponPricers(
-            const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers) {
+                const vector<shared_ptr<FloatingRateCouponPricer> >& pricers) {
         return QuantLib::setCouponPricers(leg_, pricers);
     }
 
