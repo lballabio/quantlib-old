@@ -43,7 +43,7 @@
     </Procedure>
 
     <Procedure name='ohObjectLoad'>
-      <description>Deserialize list of objects from given file, return count of deserialized objects</description>
+      <description>Deserialize list of objects from given file, return IDs of deserialized objects</description>
       <alias>ObjectHandler::Repository::instance().loadObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
