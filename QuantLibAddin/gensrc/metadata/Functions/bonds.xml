@@ -883,6 +883,11 @@
             <tensorRank>scalar</tensorRank>
             <description>Face nominal amount. If omitted, default = 100.0</description>
           </Parameter>
+          <Parameter name='MaturityDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>maturity date.</description>
+          </Parameter>
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>

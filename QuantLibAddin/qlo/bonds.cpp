@@ -78,6 +78,7 @@ namespace QuantLibAddin {
                              QuantLib::Natural settlementDays,
                              const QuantLib::Calendar& calendar,
                              QuantLib::Real faceAmount,
+                             const QuantLib::Date& maturityDate,
                              const QuantLib::Date& issueDate,
                              const boost::shared_ptr<Leg>& leg,
                              bool permanent) : Bond(properties, permanent)
@@ -87,6 +88,7 @@ namespace QuantLibAddin {
             QuantLib::Bond(settlementDays,
                            calendar,
                            faceAmount,
+                           maturityDate,
                            issueDate,
                            leg->getQuantLibLeg()));
     }
