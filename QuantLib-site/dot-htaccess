@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.quantlib\.org$ [NC]
+RewriteRule ^(.*)$ http://quantlib.org/$1 [R=301,L]
+
+ErrorDocument 404 /notfound.shtml
+
+Redirect 301 /download.html http://quantlib.org/download.shtml
+Redirect 301 /license.html http://quantlib.org/license.shtml
+Redirect 301 /reference/faq.html http://quantlib.org/faq.shtml
+
