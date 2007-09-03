@@ -47,7 +47,8 @@ namespace ObjectHandler {
             an object in another cell with the same ID.
         */
         virtual std::string storeObject(const std::string &objectID,
-                                        const boost::shared_ptr<Object> &object);
+                                        const boost::shared_ptr<Object> &object,
+                                        bool overwrite = false);
         //! Implementation of the retrieveObject function.
         /*! Convert Excel-format Object IDs into the format recognized by the base
             Repository class.  Recast references from Object to ObjectXL.

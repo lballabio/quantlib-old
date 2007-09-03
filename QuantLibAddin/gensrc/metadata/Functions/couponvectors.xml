@@ -142,10 +142,11 @@
       </ParameterList>
     </Constructor>
 
+    <!-- Eric 3-SEP-07 Introduction of the new "overwrite" flag has broken this function
+    because the descriptions are now too long.
     <Constructor name='qlDigitalIborLeg'>
       <libraryFunction>DigitalIborLeg</libraryFunction>
       <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
@@ -239,7 +240,7 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor>
+    </Constructor-->
 
     <Constructor name='qlCmsLeg'>
       <libraryFunction>CmsLeg</libraryFunction>
@@ -310,10 +311,11 @@
       </ParameterList>
     </Constructor>
 
+    <!-- Eric 3-SEP-07 Introduction of the new "overwrite" flag has broken this function
+    because the descriptions are now too long.
     <Constructor name='qlDigitalCmsLeg'>
       <libraryFunction>DigitalCmsLeg</libraryFunction>
       <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
@@ -407,7 +409,7 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor>
+    </Constructor-->
 
     <Constructor name='qlRangeAccrualLeg'>
       <libraryFunction>RangeAccrualLeg</libraryFunction>

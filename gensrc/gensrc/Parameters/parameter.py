@@ -252,3 +252,19 @@ class DependencyTrigger(Parameter):
     def __init__(self):
         self.dataType_ = environment.getType(self.type_, self.superType_)
 
+class OverwriteFlag(Parameter):
+    """dependency tracking trigger.
+
+    A dummy parameter used to force dependencies between cells
+    in a worksheet."""
+
+    name_ = 'Overwrite'
+    type_ = common.BOOL
+    superType_ = 'native'
+    tensorRank_ = common.SCALAR
+    ignore_ = True
+    description_ = 'overwrite flag'
+
+    def __init__(self):
+        self.dataType_ = environment.getType(self.type_, self.superType_)
+

@@ -39,8 +39,6 @@ class Constructor(function.Function):
 
     generateVOs_ = True
     funcCtorBuffer_ = buffer.loadBuffer('stub.func.constructor')
-    #validatePermanent_ = '''
-    #    //ObjectHandler::validateRange(Permanent, "Permanent");'''
     DESCRIPTION = 'Construct an object of class %s and return its id'
 
     #############################################
@@ -76,13 +74,16 @@ class Constructor(function.Function):
         # implicit in the definition of a Constructor is that the first parameter
         # is a string to be used as the objectID of the new object
         self.parameterList_.prepend(parameter.ConstructorObjectId())
-        # All ctors have a final optional boolean parameter 'permanent'
-        self.parameterList_.append(parameter.PermanentFlag())
         # dependency tracking trigger
         if self.dependencyTrigger_:
             self.parameterList_.append(parameter.DependencyTrigger())
+        # All ctors have a final optional boolean parameter 'permanent'
+        self.parameterList_.append(parameter.PermanentFlag())
+        # All ctors have a final optional boolean parameter 'permanent'
+        self.parameterList_.append(parameter.OverwriteFlag())
         self.description_ = Constructor.DESCRIPTION % self.libraryFunction_
-        if not self.longDescription_: self.longDescription_ = self.description_
+        if not self.longDescription_:
+            self.longDescription_ = self.description_
 
     #############################################
     # private member functions

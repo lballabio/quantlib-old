@@ -63,8 +63,10 @@ namespace ObjectHandler {
     }
 
     std::string RepositoryXL::storeObject(
-            const std::string &objectID,
-            const boost::shared_ptr<Object> &object) {
+        const std::string &objectID,
+        const boost::shared_ptr<Object> &object,
+        bool overwrite) {
+
         boost::shared_ptr<ObjectHandler::ObjectXL> objectXL(
             new ObjectHandler::ObjectXL(objectID, object));
 
@@ -74,16 +76,18 @@ namespace ObjectHandler {
             objectXL->setCallingRange(callingRange);
         }
 
-        ObjectMap::const_iterator result = objectMap_.find(objectXL->id());
-        if (result != objectMap_.end()) {
-            boost::shared_ptr<Object> oldObject = result->second;
-            boost::shared_ptr<ObjectXL> oldObjectXL =
-                boost::static_pointer_cast<ObjectXL>(oldObject);
-            OH_REQUIRE(objectXL->callerKey() == oldObjectXL->callerKey(),
-                "Cannot create object with ID '" << objectXL->id() << "' in cell " <<
-                objectXL->callerAddress() <<
-                " because an object with that ID already resides in cell " <<
-                oldObjectXL->callerAddress());
+        if (!overwrite) {
+            ObjectMap::const_iterator result = objectMap_.find(objectXL->id());
+            if (result != objectMap_.end()) {
+                boost::shared_ptr<Object> oldObject = result->second;
+                boost::shared_ptr<ObjectXL> oldObjectXL =
+                    boost::static_pointer_cast<ObjectXL>(oldObject);
+                OH_REQUIRE(objectXL->callerKey() == oldObjectXL->callerKey(),
+                    "Cannot create object with ID '" << objectXL->id() << "' in cell " <<
+                    objectXL->callerAddress() <<
+                    " because an object with that ID already resides in cell " <<
+                    oldObjectXL->callerAddress());
+            }
         }
 
         // Repository::storeObject() results in the old Object (if any) being
