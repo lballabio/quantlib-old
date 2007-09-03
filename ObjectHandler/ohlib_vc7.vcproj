@@ -337,6 +337,9 @@
 				RelativePath="oh\exception.hpp">
 			</File>
 			<File
+				RelativePath=".\oh\group.hpp">
+			</File>
+			<File
 				RelativePath="oh\iless.hpp">
 			</File>
 			<File

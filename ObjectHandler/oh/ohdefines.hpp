@@ -72,7 +72,7 @@
     Get a boost shared pointer to a class derived from Object.
 */
 #define OH_GET_OBJECT( NAME, ID, OBJECT_CLASS ) \
-    boost::shared_ptr<OBJECT_CLASS> NAME; \
+    boost::shared_ptr<OBJECT_CLASS > NAME; \
     ObjectHandler::Repository::instance().retrieveObject(NAME, ID);
 
 /*! \def OH_GET_REFERENCE

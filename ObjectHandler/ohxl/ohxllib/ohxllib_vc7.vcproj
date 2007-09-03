@@ -340,6 +340,9 @@
 					RelativePath="..\..\oh\exception.hpp">
 				</File>
 				<File
+					RelativePath="..\..\oh\group.hpp">
+				</File>
+				<File
 					RelativePath="..\..\oh\iless.hpp">
 				</File>
 				<File
@@ -493,6 +496,9 @@
 					RelativePath="..\Functions\garbagecollection.cpp">
 				</File>
 				<File
+					RelativePath="..\Functions\group.cpp">
+				</File>
+				<File
 					RelativePath="..\Functions\logging.cpp">
 				</File>
 				<File
@@ -580,6 +586,9 @@
 				</File>
 				<File
 					RelativePath="..\Register\register_garbagecollection.cpp">
+				</File>
+				<File
+					RelativePath="..\Register\register_group.cpp">
 				</File>
 				<File
 					RelativePath="..\Register\register_logging.cpp">
