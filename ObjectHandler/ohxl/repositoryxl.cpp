@@ -252,23 +252,34 @@ namespace ObjectHandler {
         }
     }
 
-    std::string RepositoryXL::callerAddress(const std::string &objectID) {
+    std::vector<std::string> RepositoryXL::callerAddress(const std::vector<std::string> &objectList) {
 
-        std::string idStrip = ObjectXL::getStub(objectID);
-        boost::shared_ptr<Object> object = Repository::retrieveObjectImpl(idStrip);
-        boost::shared_ptr<ObjectXL> objectXL = boost::static_pointer_cast<ObjectXL>(object);
-        return objectXL->callerAddress();
+        std::vector<std::string> ret;
 
+        for (std::vector<std::string>::const_iterator i = objectList.begin();
+            i != objectList.end(); ++i) {
+            std::string idStrip = ObjectXL::getStub(*i);
+            boost::shared_ptr<Object> object = Repository::retrieveObjectImpl(idStrip);
+            boost::shared_ptr<ObjectXL> objectXL = boost::static_pointer_cast<ObjectXL>(object);
+            ret.push_back(objectXL->callerAddress());
+        }
+
+        return ret;
     }
 
-    std::string RepositoryXL::callerKey(const std::string &objectID) {
+    std::vector<std::string> RepositoryXL::callerKey(const std::vector<std::string> &objectList) {
 
-        std::string idStrip = ObjectXL::getStub(objectID);
-        boost::shared_ptr<Object> object = Repository::retrieveObjectImpl(idStrip);
-        boost::shared_ptr<ObjectXL> objectXL = boost::static_pointer_cast<ObjectXL>(object);
-        return objectXL->callerKey();
+        std::vector<std::string> ret;
 
+        for (std::vector<std::string>::const_iterator i = objectList.begin();
+            i != objectList.end(); ++i) {
+            std::string idStrip = ObjectXL::getStub(*i);
+            boost::shared_ptr<Object> object = Repository::retrieveObjectImpl(idStrip);
+            boost::shared_ptr<ObjectXL> objectXL = boost::static_pointer_cast<ObjectXL>(object);
+            ret.push_back(objectXL->callerKey());
+        }
 
+        return ret;
     }
 
 }

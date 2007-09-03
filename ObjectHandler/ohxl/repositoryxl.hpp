@@ -113,9 +113,9 @@ namespace ObjectHandler {
         //! \name Calling Ranges
         //@{
         //! Retrieve the address of the cell in which the given object resides.
-        std::string callerAddress(const std::string &objectID);
+        std::vector<std::string> callerAddress(const std::vector<std::string> &objectList);
         //! Retrieve key of CallingRange object associated with the given object.
-        std::string callerKey(const std::string &objectID);
+        std::vector<std::string> callerKey(const std::vector<std::string> &objectList);
         //@}
 
     private:

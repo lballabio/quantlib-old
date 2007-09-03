@@ -264,14 +264,14 @@
         <Parameters>
           <Parameter name='ObjectId'>
             <type>string</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>ID of object to be queried</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>string</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
       </Procedure>
 
@@ -286,14 +286,14 @@
         <Parameters>
           <Parameter name='ObjectId'>
             <type>string</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>ID of object to be queried</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>string</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Procedure>
 
@@ -330,7 +330,7 @@
         <Parameters>
           <Parameter name='ObjectId' exampleValue='DummyObject'>
             <type>string</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>ID of object to be deleted</description>
           </Parameter>
         </Parameters>
