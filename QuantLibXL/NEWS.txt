@@ -156,6 +156,10 @@ Workbooks:
 - Tests/BondvsSwap.xls: compares dirty theoretical price of a fixed rate bond
   to fixed swap leg market value with valuation date equal to bond settlement
   date
+ New Workbooks:
+- MarketData\BloombergFeed\InterestRateQuotesFeed.xls
+- MMIndicesAddLastFixing.xls
+- SwaptionATMVolsQuotesFeed.xls
 
 
 **************************
