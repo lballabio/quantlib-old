@@ -266,6 +266,9 @@
 				Name="ValueObjects"
 				Filter="">
 				<File
+					RelativePath="..\..\oh\ValueObjects\vo_group.hpp">
+				</File>
+				<File
 					RelativePath="..\..\oh\ValueObjects\vo_range.hpp">
 				</File>
 			</Filter>
