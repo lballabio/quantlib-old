@@ -51,7 +51,7 @@ class Constructor(function.Function):
             'functionName' : self.name_,
             'idStrip' : addin.idStrip(self.parameterList_),
             'libraryFunction' : self.libraryFunction_,
-            'libraryParameters' : self.parameterList_.generate(addin.libraryCall()), 
+            'libraryParameters' : self.parameterList_.generate(addin.libraryCall()),
             'namespaceObjects' : environment.config().namespaceObjects(),
             'idSuffix' : addin.objectIdSuffix(),
             'voParameters' : self.parameterList_.generate(addin.voCall()) }
@@ -74,12 +74,12 @@ class Constructor(function.Function):
         # implicit in the definition of a Constructor is that the first parameter
         # is a string to be used as the objectID of the new object
         self.parameterList_.prepend(parameter.ConstructorObjectId())
-        # All ctors have a final optional boolean parameter 'permanent'
-        self.parameterList_.append(parameter.PermanentFlag())        
+        # All ctors have a final optional boolean parameter 'Permanent'
+        self.parameterList_.append(parameter.PermanentFlag())
         # dependency tracking trigger
         if self.dependencyTrigger_:
             self.parameterList_.append(parameter.DependencyTrigger())
-        # All ctors have a final optional boolean parameter 'overwrite'
+        # All ctors have a final optional boolean parameter 'Overwrite'
         self.parameterList_.append(parameter.OverwriteFlag())
         self.description_ = Constructor.DESCRIPTION % self.libraryFunction_
         if not self.longDescription_:
