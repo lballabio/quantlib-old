@@ -140,17 +140,34 @@ namespace QuantLibAddinCpp {
 
         if (boost::filesystem::is_directory(boostPath)) {
 
-            boost::filesystem::recursive_directory_iterator end_itr;
-            for (boost::filesystem::recursive_directory_iterator itr(boostPath); itr != end_itr; ++itr) {
-                if (boost::filesystem::is_regular(itr->status()) && hasXmlExtension(*itr))
+            // Workaround for apparent bug in boost::filesystem version 1.34.1.
+            // If the directory is empty, testing equality between recursive_directory_iterator
+            // and the end iterator returns true when it should return false and subsequent
+            // dereference of the iterator crashes the program.  So we first perform the test with
+            // directory_iterator which correctly returns false for an empty directory.
+            OH_REQUIRE(boost::filesystem::directory_iterator(boostPath) != boost::filesystem::directory_iterator(),
+                "Directory is empty : " << path);
+
+            bool fileFound = false;
+            for (boost::filesystem::recursive_directory_iterator itr(boostPath);
+                itr != boost::filesystem::recursive_directory_iterator(); ++itr) {
+                if (boost::filesystem::is_regular(itr->status()) && hasXmlExtension(*itr)) {
+                    fileFound = true;
                     processPath(itr->path().string(), overwriteExisting, returnValue);
+                }
             }
+
+            OH_REQUIRE(fileFound, "No XML files found in path : " << path);
 
         } else {
             //OH_REQUIRE(hasXmlExtension(boostPath),
             //    "The file '" << boostPath << "' does not have extension '.xml'");
             processPath(boostPath.string(), overwriteExisting, returnValue);
         }
+
+        // processPath() will already have thrown if empty files were detected
+        // so the following is a redundant sanity check.
+        OH_REQUIRE(!returnValue.empty(), "No objects loaded from path : " << path);
 
         return returnValue;
     }
