@@ -70,7 +70,8 @@ namespace ObjectHandler {
             \endcode
         */
         virtual std::string storeObject(const std::string &objectID,
-                                        const boost::shared_ptr<Object> &object);
+                                        const boost::shared_ptr<Object> &object,
+                                        bool overwrite = false);
 
         //! Template member function to retrieve the Object with given ID.
         /*! Retrieve the object with the given ID and downcast it to the desired type.

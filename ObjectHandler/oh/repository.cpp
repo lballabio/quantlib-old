@@ -52,7 +52,14 @@ namespace ObjectHandler {
     // TODO: implement Scott Meyers' "Effective STL" item 24
     std::string Repository::storeObject(
         const std::string &objectID,
-        const boost::shared_ptr<Object> &object) {
+        const boost::shared_ptr<Object> &object,
+        bool overwrite) {
+
+        if (!overwrite) {
+            ObjectMap::const_iterator result = objectMap_.find(objectID);
+            OH_REQUIRE(result == objectMap_.end(), "Cannot store object with ID '"
+                << objectID << "' because an object with that ID already exists");
+        }
 
         objectMap_[objectID] = object;
         return objectID;

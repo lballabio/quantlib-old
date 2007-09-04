@@ -93,7 +93,7 @@ namespace ObjectHandler {
         // Repository::storeObject() results in the old Object (if any) being
         // de-registered with the CallingRange object, the new Object is then
         // registered with the CallingRange object under the same ID.
-        Repository::storeObject(objectXL->id(), objectXL);
+        Repository::storeObject(objectXL->id(), objectXL, true);
         if (FunctionCall::instance().callerType() == CallerType::Cell) {
             callingRange->registerObject(objectXL->id(), objectXL);
         }

@@ -87,9 +87,7 @@ namespace QuantLibAddinCpp {
         boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
         std::string objectID =
             boost::any_cast<std::string>(valueObject->getProperty("OBJECTID"));
-        if (overwriteExisting)
-            ObjectHandler::Repository::instance().deleteObject(objectID);
-        ObjectHandler::Repository::instance().storeObject(objectID, object);
+        ObjectHandler::Repository::instance().storeObject(objectID, object, overwriteExisting);
         return objectID;
     }
 
