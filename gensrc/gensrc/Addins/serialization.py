@@ -216,13 +216,13 @@ def generateSerialization(addin):
     factory.  The code is platform independent.  However, the generated source
     code must be compiled as part of the final Addin binary (not in a static
     library) because of issues related to linking and to template
-    metaprogramming performed by the boost::serialization library. 
+    metaprogramming performed by the boost::serialization library.
     Each Addin that supports serialization must call in to this function."""
     global idMap
 
     allIncludes = ''
     bufferRegister = ''
-    includeGuard = 'addin_' + addin.name().lower()
+    includeGuard = environment.config().prefix() + '_addin_' + addin.name().lower()
     addinDirectory = addin.relativePath()
 
     # Keep track of the ID assigned to each Addin class by
@@ -291,7 +291,7 @@ def generateSerialization(addin):
     bufferFactory = addin.bufferSerializeRegister_.text() % {
         'addinDirectory' : addinDirectory,
         'bufferRegister' : bufferRegister,
-        'namespaceAddin' : addin.namespaceAddin_ } 
+        'namespaceAddin' : addin.namespaceAddin_ }
     #    'libRootDirectory' : environment.config().libRootDirectory(),
     #    'callBaseIn': callBaseIn,
     #    'callBaseOut': callBaseOut}
