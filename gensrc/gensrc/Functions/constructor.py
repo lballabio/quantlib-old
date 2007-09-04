@@ -77,9 +77,8 @@ class Constructor(function.Function):
         # dependency tracking trigger
         if self.dependencyTrigger_:
             self.parameterList_.append(parameter.DependencyTrigger())
-        # All ctors have a final optional boolean parameter 'permanent'
+        # All ctors have a two final boolean parameters 'Permanent' and 'Overwrite'
         self.parameterList_.append(parameter.PermanentFlag())
-        # All ctors have a final optional boolean parameter 'permanent'
         self.parameterList_.append(parameter.OverwriteFlag())
         self.description_ = Constructor.DESCRIPTION % self.libraryFunction_
         if not self.longDescription_:
