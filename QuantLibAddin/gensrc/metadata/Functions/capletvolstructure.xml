@@ -506,7 +506,7 @@
     </Constructor>-->
 
     <!-- SwaptionVolatilityStructure interface-->
-    <Member name='qlCapTermVolatilityVectorInterpVol' type='QuantLib::CapVolatilityVector' superType='handleToLib'>
+    <Member name='qlCapTermVolVectorVolatility' type='QuantLib::CapVolatilityVector' superType='handleToLib'>
       <description>Returns interpolated volatility from the given cap term vols object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -533,7 +533,7 @@
       </ReturnValue>
     </Member>
     
-    <Constructor name='qlCapTermVolatilityVector'>
+    <Constructor name='qlCapTermVolVector'>
       <libraryFunction>CapVolatilityVector</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -572,7 +572,7 @@
     </Constructor>
 
     <!-- SwaptionVolatilityStructure interface-->
-    <Member name='qlCapTermVolatilitySurfaceInterpVol' type='QuantLib::CapVolatilitySurface' superType='handleToLib'>
+    <Member name='qlCapTermVolSurfaceVolatility' type='QuantLib::CapVolatilitySurface' superType='handleToLib'>
       <description>Returns interpolated volatility from the given cap term vols object</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -599,7 +599,7 @@
       </ReturnValue>
     </Member>
     
-    <Constructor name='qlCapTermVolatilitySurface'>
+    <Constructor name='qlCapTermVolSurface'>
       <libraryFunction>CapVolatilitySurface</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -632,6 +632,11 @@
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
             <description>vol quotes</description>
+          </Parameter>
+          <Parameter name='DayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/365)</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -21,10 +21,12 @@
 #endif
 
 #include <qlo/capletvolstructure.hpp>
+
 #include <ql/termstructures/volatilities/interestrate/caplet/capletconstantvol.hpp>
 #include <ql/termstructures/volatilities/interestrate/caplet/capstripper.hpp>
 #include <ql/termstructures/volatilities/interestrate/caplet/spreadedcapletvolstructure.hpp>
-//#include <ql/termstructures/volatilities/interestrate/caplet/genericcapletvolatilitiesstructures.hpp>
+#include <ql/termstructures/volatilities/interestrate/cap/capflatvolvector.hpp>
+#include <ql/termstructures/volatilities/interestrate/cap/capvolsurface.hpp>
 
 namespace QuantLibAddin {
 
@@ -147,7 +149,8 @@ namespace QuantLibAddin {
           const std::vector<QuantLib::Period>& optionTenors,
           const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& volatilities,
           const QuantLib::DayCounter& dayCounter,
-          bool permanent) : CapVolatilityStructure(properties, permanent) {
+          bool permanent) : CapVolatilityStructure(properties, permanent)
+    {
         std::vector<QuantLib::Handle<QuantLib::Quote> > temp(volatilities.size());
         for(QuantLib::Size i = 0; i<temp.size(); ++i){
             temp[i] = volatilities[i];
@@ -167,19 +170,22 @@ namespace QuantLibAddin {
           const std::vector<QuantLib::Period>& optionLengths,
           const std::vector<QuantLib::Rate>& strikes,
           const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
-          bool permanent) : CapVolatilityStructure(properties, permanent) {
+          const QuantLib::DayCounter& dc,
+          bool permanent) : CapVolatilityStructure(properties, permanent)
+    {
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
-        for(QuantLib::Size i = 0; i<temp.size(); ++i){
+        for(QuantLib::Size i = 0; i<temp.size(); ++i) {
             temp[i].resize(volatilities[0].size());
             for (QuantLib::Size j=0; j<volatilities[0].size(); ++j)
-            temp[i][j] = volatilities[i][j];
+                temp[i][j] = volatilities[i][j];
         }
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapVolatilitySurface(settlementDays,
                                            calendar,
                                            optionLengths,
                                            strikes,
-                                           temp));
+                                           temp,
+                                           dc));
     }
 
 }
