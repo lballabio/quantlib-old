@@ -98,6 +98,14 @@ namespace QuantLibAddin {
                     bool permanent);
     };
 
+     class PriceToRateQuote : public Quote {
+      public:
+        PriceToRateQuote(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    const QuantLib::Handle<QuantLib::Quote>& quote,
+                    bool permanent);
+    };
+
 }
 
 #endif
