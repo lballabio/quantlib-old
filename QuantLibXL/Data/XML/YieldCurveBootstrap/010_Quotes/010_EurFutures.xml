@@ -5,13 +5,13 @@
 	<count>120</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="128" tracking_level="1" version="0" object_id="_1">
+		<px class_id="129" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EURFUTU7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value class_id="179" tracking_level="0" version="0">
-				<variant_ class_id="180" tracking_level="0" version="0">
+			<Value class_id="180" tracking_level="0" version="0">
+				<variant_ class_id="181" tracking_level="0" version="0">
 					<which>4</which>
-					<value class_id="181" tracking_level="0" version="0">
+					<value class_id="182" tracking_level="0" version="0">
 						<type_>5</type_>
 					</value>
 				</variant_>
@@ -21,7 +21,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_2">
+		<px class_id_reference="129" object_id="_2">
 			<ObjectId>EURFUTV7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -37,7 +37,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_3">
+		<px class_id_reference="129" object_id="_3">
 			<ObjectId>EURFUTX7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -53,7 +53,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_4">
+		<px class_id_reference="129" object_id="_4">
 			<ObjectId>EURFUTZ7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -69,7 +69,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_5">
+		<px class_id_reference="129" object_id="_5">
 			<ObjectId>EURFUTF8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -85,7 +85,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_6">
+		<px class_id_reference="129" object_id="_6">
 			<ObjectId>EURFUTG8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -101,7 +101,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_7">
+		<px class_id_reference="129" object_id="_7">
 			<ObjectId>EURFUTH8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -117,7 +117,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_8">
+		<px class_id_reference="129" object_id="_8">
 			<ObjectId>EURFUTJ8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -133,7 +133,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_9">
+		<px class_id_reference="129" object_id="_9">
 			<ObjectId>EURFUTK8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -149,7 +149,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_10">
+		<px class_id_reference="129" object_id="_10">
 			<ObjectId>EURFUTM8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -165,7 +165,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_11">
+		<px class_id_reference="129" object_id="_11">
 			<ObjectId>EURFUTN8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -181,7 +181,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_12">
+		<px class_id_reference="129" object_id="_12">
 			<ObjectId>EURFUTQ8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -197,7 +197,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_13">
+		<px class_id_reference="129" object_id="_13">
 			<ObjectId>EURFUTU8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -213,7 +213,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_14">
+		<px class_id_reference="129" object_id="_14">
 			<ObjectId>EURFUTV8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -229,7 +229,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_15">
+		<px class_id_reference="129" object_id="_15">
 			<ObjectId>EURFUTX8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -245,7 +245,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_16">
+		<px class_id_reference="129" object_id="_16">
 			<ObjectId>EURFUTZ8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -261,7 +261,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_17">
+		<px class_id_reference="129" object_id="_17">
 			<ObjectId>EURFUTF9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -277,7 +277,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_18">
+		<px class_id_reference="129" object_id="_18">
 			<ObjectId>EURFUTG9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -293,7 +293,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_19">
+		<px class_id_reference="129" object_id="_19">
 			<ObjectId>EURFUTH9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -309,7 +309,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_20">
+		<px class_id_reference="129" object_id="_20">
 			<ObjectId>EURFUTJ9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -325,7 +325,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_21">
+		<px class_id_reference="129" object_id="_21">
 			<ObjectId>EURFUTK9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -341,7 +341,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_22">
+		<px class_id_reference="129" object_id="_22">
 			<ObjectId>EURFUTM9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -357,7 +357,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_23">
+		<px class_id_reference="129" object_id="_23">
 			<ObjectId>EURFUTN9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -373,7 +373,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_24">
+		<px class_id_reference="129" object_id="_24">
 			<ObjectId>EURFUTQ9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -389,7 +389,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_25">
+		<px class_id_reference="129" object_id="_25">
 			<ObjectId>EURFUTU9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -405,7 +405,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_26">
+		<px class_id_reference="129" object_id="_26">
 			<ObjectId>EURFUTV9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -421,7 +421,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_27">
+		<px class_id_reference="129" object_id="_27">
 			<ObjectId>EURFUTX9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -437,7 +437,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_28">
+		<px class_id_reference="129" object_id="_28">
 			<ObjectId>EURFUTZ9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -453,7 +453,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_29">
+		<px class_id_reference="129" object_id="_29">
 			<ObjectId>EURFUTF0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -469,7 +469,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_30">
+		<px class_id_reference="129" object_id="_30">
 			<ObjectId>EURFUTG0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -485,7 +485,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_31">
+		<px class_id_reference="129" object_id="_31">
 			<ObjectId>EURFUTH0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -501,7 +501,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_32">
+		<px class_id_reference="129" object_id="_32">
 			<ObjectId>EURFUTJ0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -517,7 +517,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_33">
+		<px class_id_reference="129" object_id="_33">
 			<ObjectId>EURFUTK0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -533,7 +533,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_34">
+		<px class_id_reference="129" object_id="_34">
 			<ObjectId>EURFUTM0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -549,7 +549,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_35">
+		<px class_id_reference="129" object_id="_35">
 			<ObjectId>EURFUTN0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -565,7 +565,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_36">
+		<px class_id_reference="129" object_id="_36">
 			<ObjectId>EURFUTQ0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -581,7 +581,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_37">
+		<px class_id_reference="129" object_id="_37">
 			<ObjectId>EURFUTU0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -597,7 +597,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_38">
+		<px class_id_reference="129" object_id="_38">
 			<ObjectId>EURFUTV0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -613,7 +613,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_39">
+		<px class_id_reference="129" object_id="_39">
 			<ObjectId>EURFUTX0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -629,7 +629,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_40">
+		<px class_id_reference="129" object_id="_40">
 			<ObjectId>EURFUTZ0_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -645,7 +645,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_41">
+		<px class_id_reference="129" object_id="_41">
 			<ObjectId>EURFUTF1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -661,7 +661,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_42">
+		<px class_id_reference="129" object_id="_42">
 			<ObjectId>EURFUTG1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -677,7 +677,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_43">
+		<px class_id_reference="129" object_id="_43">
 			<ObjectId>EURFUTH1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -693,7 +693,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_44">
+		<px class_id_reference="129" object_id="_44">
 			<ObjectId>EURFUTJ1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -709,7 +709,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_45">
+		<px class_id_reference="129" object_id="_45">
 			<ObjectId>EURFUTK1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -725,7 +725,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_46">
+		<px class_id_reference="129" object_id="_46">
 			<ObjectId>EURFUTM1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -741,7 +741,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_47">
+		<px class_id_reference="129" object_id="_47">
 			<ObjectId>EURFUTN1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -757,7 +757,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_48">
+		<px class_id_reference="129" object_id="_48">
 			<ObjectId>EURFUTQ1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -773,7 +773,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_49">
+		<px class_id_reference="129" object_id="_49">
 			<ObjectId>EURFUTU1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -789,7 +789,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_50">
+		<px class_id_reference="129" object_id="_50">
 			<ObjectId>EURFUTV1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -805,7 +805,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_51">
+		<px class_id_reference="129" object_id="_51">
 			<ObjectId>EURFUTX1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -821,7 +821,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_52">
+		<px class_id_reference="129" object_id="_52">
 			<ObjectId>EURFUTZ1_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -837,7 +837,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_53">
+		<px class_id_reference="129" object_id="_53">
 			<ObjectId>EURFUTF2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -853,7 +853,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_54">
+		<px class_id_reference="129" object_id="_54">
 			<ObjectId>EURFUTG2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -869,7 +869,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_55">
+		<px class_id_reference="129" object_id="_55">
 			<ObjectId>EURFUTH2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -885,7 +885,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_56">
+		<px class_id_reference="129" object_id="_56">
 			<ObjectId>EURFUTJ2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -901,7 +901,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_57">
+		<px class_id_reference="129" object_id="_57">
 			<ObjectId>EURFUTK2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -917,7 +917,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_58">
+		<px class_id_reference="129" object_id="_58">
 			<ObjectId>EURFUTM2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -933,7 +933,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_59">
+		<px class_id_reference="129" object_id="_59">
 			<ObjectId>EURFUTN2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -949,7 +949,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_60">
+		<px class_id_reference="129" object_id="_60">
 			<ObjectId>EURFUTQ2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -965,7 +965,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_61">
+		<px class_id_reference="129" object_id="_61">
 			<ObjectId>EURFUTU2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -981,7 +981,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_62">
+		<px class_id_reference="129" object_id="_62">
 			<ObjectId>EURFUTV2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -997,7 +997,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_63">
+		<px class_id_reference="129" object_id="_63">
 			<ObjectId>EURFUTX2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1013,7 +1013,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_64">
+		<px class_id_reference="129" object_id="_64">
 			<ObjectId>EURFUTZ2_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1029,7 +1029,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_65">
+		<px class_id_reference="129" object_id="_65">
 			<ObjectId>EURFUTF3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1045,7 +1045,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_66">
+		<px class_id_reference="129" object_id="_66">
 			<ObjectId>EURFUTG3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1061,7 +1061,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_67">
+		<px class_id_reference="129" object_id="_67">
 			<ObjectId>EURFUTH3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1077,7 +1077,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_68">
+		<px class_id_reference="129" object_id="_68">
 			<ObjectId>EURFUTJ3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1093,7 +1093,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_69">
+		<px class_id_reference="129" object_id="_69">
 			<ObjectId>EURFUTK3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1109,7 +1109,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_70">
+		<px class_id_reference="129" object_id="_70">
 			<ObjectId>EURFUTM3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1125,7 +1125,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_71">
+		<px class_id_reference="129" object_id="_71">
 			<ObjectId>EURFUTN3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1141,7 +1141,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_72">
+		<px class_id_reference="129" object_id="_72">
 			<ObjectId>EURFUTQ3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1157,7 +1157,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_73">
+		<px class_id_reference="129" object_id="_73">
 			<ObjectId>EURFUTU3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1173,7 +1173,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_74">
+		<px class_id_reference="129" object_id="_74">
 			<ObjectId>EURFUTV3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1189,7 +1189,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_75">
+		<px class_id_reference="129" object_id="_75">
 			<ObjectId>EURFUTX3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1205,7 +1205,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_76">
+		<px class_id_reference="129" object_id="_76">
 			<ObjectId>EURFUTZ3_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1221,7 +1221,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_77">
+		<px class_id_reference="129" object_id="_77">
 			<ObjectId>EURFUTF4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1237,7 +1237,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_78">
+		<px class_id_reference="129" object_id="_78">
 			<ObjectId>EURFUTG4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1253,7 +1253,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_79">
+		<px class_id_reference="129" object_id="_79">
 			<ObjectId>EURFUTH4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1269,7 +1269,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_80">
+		<px class_id_reference="129" object_id="_80">
 			<ObjectId>EURFUTJ4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1285,7 +1285,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_81">
+		<px class_id_reference="129" object_id="_81">
 			<ObjectId>EURFUTK4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1301,7 +1301,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_82">
+		<px class_id_reference="129" object_id="_82">
 			<ObjectId>EURFUTM4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1317,7 +1317,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_83">
+		<px class_id_reference="129" object_id="_83">
 			<ObjectId>EURFUTN4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1333,7 +1333,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_84">
+		<px class_id_reference="129" object_id="_84">
 			<ObjectId>EURFUTQ4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1349,7 +1349,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_85">
+		<px class_id_reference="129" object_id="_85">
 			<ObjectId>EURFUTU4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1365,7 +1365,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_86">
+		<px class_id_reference="129" object_id="_86">
 			<ObjectId>EURFUTV4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1381,7 +1381,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_87">
+		<px class_id_reference="129" object_id="_87">
 			<ObjectId>EURFUTX4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1397,7 +1397,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_88">
+		<px class_id_reference="129" object_id="_88">
 			<ObjectId>EURFUTZ4_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1413,7 +1413,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_89">
+		<px class_id_reference="129" object_id="_89">
 			<ObjectId>EURFUTF5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1429,7 +1429,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_90">
+		<px class_id_reference="129" object_id="_90">
 			<ObjectId>EURFUTG5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1445,7 +1445,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_91">
+		<px class_id_reference="129" object_id="_91">
 			<ObjectId>EURFUTH5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1461,7 +1461,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_92">
+		<px class_id_reference="129" object_id="_92">
 			<ObjectId>EURFUTJ5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1477,7 +1477,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_93">
+		<px class_id_reference="129" object_id="_93">
 			<ObjectId>EURFUTK5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1493,7 +1493,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_94">
+		<px class_id_reference="129" object_id="_94">
 			<ObjectId>EURFUTM5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1509,7 +1509,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_95">
+		<px class_id_reference="129" object_id="_95">
 			<ObjectId>EURFUTN5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1525,7 +1525,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_96">
+		<px class_id_reference="129" object_id="_96">
 			<ObjectId>EURFUTQ5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1541,7 +1541,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_97">
+		<px class_id_reference="129" object_id="_97">
 			<ObjectId>EURFUTU5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1557,7 +1557,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_98">
+		<px class_id_reference="129" object_id="_98">
 			<ObjectId>EURFUTV5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1573,7 +1573,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_99">
+		<px class_id_reference="129" object_id="_99">
 			<ObjectId>EURFUTX5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1589,7 +1589,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_100">
+		<px class_id_reference="129" object_id="_100">
 			<ObjectId>EURFUTZ5_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1605,7 +1605,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_101">
+		<px class_id_reference="129" object_id="_101">
 			<ObjectId>EURFUTF6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1621,7 +1621,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_102">
+		<px class_id_reference="129" object_id="_102">
 			<ObjectId>EURFUTG6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1637,7 +1637,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_103">
+		<px class_id_reference="129" object_id="_103">
 			<ObjectId>EURFUTH6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1653,7 +1653,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_104">
+		<px class_id_reference="129" object_id="_104">
 			<ObjectId>EURFUTJ6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1669,7 +1669,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_105">
+		<px class_id_reference="129" object_id="_105">
 			<ObjectId>EURFUTK6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1685,7 +1685,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_106">
+		<px class_id_reference="129" object_id="_106">
 			<ObjectId>EURFUTM6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1701,7 +1701,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_107">
+		<px class_id_reference="129" object_id="_107">
 			<ObjectId>EURFUTN6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1717,7 +1717,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_108">
+		<px class_id_reference="129" object_id="_108">
 			<ObjectId>EURFUTQ6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1733,7 +1733,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_109">
+		<px class_id_reference="129" object_id="_109">
 			<ObjectId>EURFUTU6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1749,7 +1749,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_110">
+		<px class_id_reference="129" object_id="_110">
 			<ObjectId>EURFUTV6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1765,7 +1765,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_111">
+		<px class_id_reference="129" object_id="_111">
 			<ObjectId>EURFUTX6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1781,7 +1781,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_112">
+		<px class_id_reference="129" object_id="_112">
 			<ObjectId>EURFUTZ6_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1797,7 +1797,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_113">
+		<px class_id_reference="129" object_id="_113">
 			<ObjectId>EURFUTF7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1813,7 +1813,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_114">
+		<px class_id_reference="129" object_id="_114">
 			<ObjectId>EURFUTG7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1829,7 +1829,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_115">
+		<px class_id_reference="129" object_id="_115">
 			<ObjectId>EURFUTH7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1845,7 +1845,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_116">
+		<px class_id_reference="129" object_id="_116">
 			<ObjectId>EURFUTJ7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1861,7 +1861,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_117">
+		<px class_id_reference="129" object_id="_117">
 			<ObjectId>EURFUTK7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1877,7 +1877,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_118">
+		<px class_id_reference="129" object_id="_118">
 			<ObjectId>EURFUTM7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1893,7 +1893,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_119">
+		<px class_id_reference="129" object_id="_119">
 			<ObjectId>EURFUTN7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -1909,7 +1909,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_120">
+		<px class_id_reference="129" object_id="_120">
 			<ObjectId>EURFUTQ7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>

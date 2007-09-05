@@ -10,8 +10,8 @@
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
 			<ImmCode>U7</ImmCode>
-			<FuturesQuote class_id="179" tracking_level="0" version="0">
-				<variant_ class_id="180" tracking_level="0" version="0">
+			<FuturesQuote class_id="180" tracking_level="0" version="0">
+				<variant_ class_id="181" tracking_level="0" version="0">
 					<which>3</which>
 					<value>EURFUTU7_Quote</value>
 				</variant_>
