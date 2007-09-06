@@ -98,6 +98,37 @@ namespace QuantLibAddin {
             maxEvaluations, smileSectionInterfaces, decoupledInterpolation));
     }
 
+
+ CapsStripper::CapsStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                             const std::vector<QuantLib::Period>& tenors,
+                             const std::vector<QuantLib::Rate>& strikes,
+                             const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
+                             const boost::shared_ptr<QuantLib::IborIndex>& index,
+                             QuantLib::Period timeStep,
+                             const QuantLib::Handle<QuantLib::YieldTermStructure> yts,
+                             const QuantLib::DayCounter& volatilityDayCounter,
+                             QuantLib::Real impliedVolatilityAccuracy,
+                             QuantLib::Size maxEvaluations,
+                             bool allowExtrapolation,
+                             bool decoupleInterpolation,
+                             bool permanent)
+                 : CapletVolatilityStructure(properties, permanent){
+      //bool allowExtrapolation = true;
+     libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::CapsStripper(tenors,
+                                   strikes,
+                                   surface,
+                                   index,
+                                   timeStep,
+                                   yts,
+                                   volatilityDayCounter,
+                                   impliedVolatilityAccuracy,
+                                   maxEvaluations,
+                                   allowExtrapolation,
+                                   decoupleInterpolation));
+    }
+
+
     SmileSectionsVolStructure::SmileSectionsVolStructure(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Date& referenceDate,
