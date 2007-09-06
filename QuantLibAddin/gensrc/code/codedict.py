@@ -89,8 +89,7 @@ code34 = '''\
 
 code35 = '''\
         std::vector<%(type)s> %(name)sEnum =
-            ObjectHandler::operToVectorEnum<%(type)s,
-            ObjectHandler::Create<%(type)s> >(*%(name)s);\n'''
+            ObjectHandler::vectorStringToEnum<%(type)s>(%(name)sCpp, "%(name)s");\n'''
 
 code36a = '''\
         OH_GET_OBJECT(%(name)sObj, %(name)s, %(type)s)\n'''
@@ -610,6 +609,10 @@ code160 = '''\
 code161 = '''\
         OH_GET_REFERENCE_DEFAULT(%(name)sLibObj, %(name)s,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
+
+code162 = '''\
+        std::vector<%(type)s> %(name)sEnum =
+            ObjectHandler::vectorStringToEnum<%(type)s>(%(name)s, "%(name)s");\n'''
 
 ##########################################################################
 # code for C

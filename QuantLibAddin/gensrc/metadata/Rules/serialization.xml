@@ -46,7 +46,7 @@
       <Wrap codeID='wrap3'/>
       <Rules>
         <Rule tensorRank='scalar' superType='enumeration' codeID='code34'/>
-        <Rule tensorRank='vector' superType='enumeration' codeID='code35'/>
+        <Rule tensorRank='vector' superType='enumeration' codeID='code162'/>
       </Rules>
     </RuleGroup>
 

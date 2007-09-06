@@ -62,6 +62,14 @@ namespace ObjectHandler {
                 (ConvertOper(xVector, false), paramName);
     }
 
+    //template <class T>
+    //std::vector<T> operToEnumVector(
+    //    const OPER &xVector, 
+    //    const std::string &paramName) {
+
+    //    return operToVectorImpl<T, Create<T> >(xVector, paramName);
+    //}
+
     //! Convert a value of type ConvertOper to a vector.
     template <class T, class F>
     std::vector<T> operToVectorImpl(
