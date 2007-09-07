@@ -20,6 +20,7 @@
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>ql/termstructures/volatilities/interestrate/caplet/capletconstantvol.hpp</include>
     <include>ql/termstructures/volatilities/interestrate/caplet/capstripper.hpp</include>
+    <include>ql/termstructures/volatilities/interestrate/cap/capvolsurface.hpp</include>    
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <copyright>
@@ -422,13 +423,11 @@
       </ParameterList>
     </Constructor>
 
-      <!--<Constructor name='qlCapsStripper3'>
+      <Constructor name='qlCapsStripper3'>
           <libraryFunction>CapsStripper</libraryFunction>
           <functionCategory>QuantLib</functionCategory>
           <SupportedPlatforms>
-              --><!--SupportedPlatform name='Excel' calcInWizard='false'/--><!--
               <SupportedPlatform name='Excel'/>
-              --><!--SupportedPlatform name='Cpp'/--><!--
           </SupportedPlatforms>
           <ParameterList>
               <Parameters>
@@ -444,7 +443,7 @@
                   </Parameter>
                   <Parameter name='CapVolatilitySurface' >
                       <type>QuantLib::CapVolatilitySurface</type>
-                      <superType>libToHandle</superType>
+                      <superType>handleToLib</superType>
                       <tensorRank>scalar</tensorRank>
                       <description>Cap VolatilitySurface.</description>
                   </Parameter>
@@ -491,7 +490,7 @@
                   </Parameter>
               </Parameters>
           </ParameterList>
-      </Constructor>-->
+      </Constructor>
       
       
     <Constructor name='qlSmileSectionsVolStructure'>
