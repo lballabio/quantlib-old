@@ -5,137 +5,137 @@
 	<count>15</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="58" tracking_level="1" version="0" object_id="_1">
+		<px class_id="59" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EurLiborSwapFixB1Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>1Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_2">
+		<px class_id_reference="59" object_id="_2">
 			<ObjectId>EurLiborSwapFixB2Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>2Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_3">
+		<px class_id_reference="59" object_id="_3">
 			<ObjectId>EurLiborSwapFixB3Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>3Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_4">
+		<px class_id_reference="59" object_id="_4">
 			<ObjectId>EurLiborSwapFixB4Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>4Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_5">
+		<px class_id_reference="59" object_id="_5">
 			<ObjectId>EurLiborSwapFixB5Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>5Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_6">
+		<px class_id_reference="59" object_id="_6">
 			<ObjectId>EurLiborSwapFixB6Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>6Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_7">
+		<px class_id_reference="59" object_id="_7">
 			<ObjectId>EurLiborSwapFixB7Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>7Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_8">
+		<px class_id_reference="59" object_id="_8">
 			<ObjectId>EurLiborSwapFixB8Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>8Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_9">
+		<px class_id_reference="59" object_id="_9">
 			<ObjectId>EurLiborSwapFixB9Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>9Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_10">
+		<px class_id_reference="59" object_id="_10">
 			<ObjectId>EurLiborSwapFixB10Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>10Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_11">
+		<px class_id_reference="59" object_id="_11">
 			<ObjectId>EurLiborSwapFixB12Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>12Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_12">
+		<px class_id_reference="59" object_id="_12">
 			<ObjectId>EurLiborSwapFixB15Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>15Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_13">
+		<px class_id_reference="59" object_id="_13">
 			<ObjectId>EurLiborSwapFixB20Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>20Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_14">
+		<px class_id_reference="59" object_id="_14">
 			<ObjectId>EurLiborSwapFixB25Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>25Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="58" object_id="_15">
+		<px class_id_reference="59" object_id="_15">
 			<ObjectId>EurLiborSwapFixB30Y</ObjectId>
 			<ClassName>qlEurLiborSwapFixB</ClassName>
 			<Tenor>30Y</Tenor>
-			<YieldCurve>EurLiborYC</YieldCurve>
+			<YieldCurve>EurLiborYC6M</YieldCurve>
 			<Permanent>1</Permanent>
 		</px>
 	</item>

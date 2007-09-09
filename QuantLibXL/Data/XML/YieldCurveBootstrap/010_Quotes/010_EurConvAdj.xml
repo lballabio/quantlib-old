@@ -5,13 +5,13 @@
 	<count>2</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="129" tracking_level="1" version="0" object_id="_1">
+		<px class_id="130" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>HW_Volatility_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value class_id="180" tracking_level="0" version="0">
-				<variant_ class_id="181" tracking_level="0" version="0">
+			<Value class_id="181" tracking_level="0" version="0">
+				<variant_ class_id="182" tracking_level="0" version="0">
 					<which>4</which>
-					<value class_id="182" tracking_level="0" version="0">
+					<value class_id="183" tracking_level="0" version="0">
 						<type_>5</type_>
 					</value>
 				</variant_>
@@ -21,7 +21,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="129" object_id="_2">
+		<px class_id_reference="130" object_id="_2">
 			<ObjectId>HW_MeanReversion_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>

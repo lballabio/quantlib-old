@@ -2,10 +2,10 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>3</count>
+	<count>5</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="171" tracking_level="1" version="0" object_id="_1">
+		<px class_id="172" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EURYC</ObjectId>
 			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
 			<CurrentLink></CurrentLink>
@@ -13,16 +13,32 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="171" object_id="_2">
-			<ObjectId>EuriborYC</ObjectId>
+		<px class_id_reference="172" object_id="_2">
+			<ObjectId>EuriborYC3M</ObjectId>
 			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="171" object_id="_3">
-			<ObjectId>EurLiborYC</ObjectId>
+		<px class_id_reference="172" object_id="_3">
+			<ObjectId>EuriborYC6M</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="172" object_id="_4">
+			<ObjectId>EurLiborYC3M</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="172" object_id="_5">
+			<ObjectId>EurLiborYC6M</ObjectId>
 			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>
