@@ -66,6 +66,18 @@ Namespace QuantLibXL
 
         End Sub
 
+        Public Sub serializeObjectCollection2(ByRef serializableCollection As Collection, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObjectCollection2
+
+            serializeObjectCollection(serializableCollection, className, versionNumber)
+
+        End Sub
+
+        Public Sub serializeObjectList(ByRef serializableCollection As Collection, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObjectList
+
+            serializeObjectCollection(serializableCollection, className, versionNumber)
+
+        End Sub
+
         Public Sub serializeAttribute(ByRef attr As String, ByVal tag As String) Implements ISerializer.serializeAttribute
 
             doc_.WriteAttributeString(tag, attr)

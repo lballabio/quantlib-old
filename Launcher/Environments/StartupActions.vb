@@ -30,7 +30,6 @@ Namespace QuantLibXL
         Private evaluationDateValue_ As Integer
         Private ycBootstrap_ As Boolean
         Private capVolBootstrap_ As Boolean
-        'Private swapVolBootstrap_ As Boolean
         Private swapSmileBootstrap_ As Boolean
         Private calibrateCMS_ As Boolean
         Private fitCMS_ As Boolean
@@ -38,7 +37,7 @@ Namespace QuantLibXL
         Private loadBonds_ As Boolean
         Private mainChecks_ As Boolean
         Private staticData_ As Boolean
-        Private initSource_ As String = ""
+        Private initSource_ As String = "Excel"
 
         Public Sub serialize(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize
 
@@ -53,12 +52,14 @@ Namespace QuantLibXL
             serializer.serializeProperty(loadBonds_, "LoadBonds")
             serializer.serializeProperty(mainChecks_, "MainChecks")
             serializer.serializeProperty(staticData_, "StaticData")
+            serializer.serializeProperty(initSource_, "InitSource")
             If versionNumber < 10 Then
                 serializer.serializeProperty(False, "LoadMurexYieldCurve")
-            Else
-                serializer.serializeProperty(initSource_, "InitSource")
             End If
 
+        End Sub
+
+        Public Sub serialize2(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize2
         End Sub
 
         ''''''''''''''''''''''''''''''''''''''''''

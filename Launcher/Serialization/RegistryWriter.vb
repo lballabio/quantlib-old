@@ -60,6 +60,24 @@ Namespace QuantLibXL
 
         End Sub
 
+        Public Sub serializeObjectCollection2(ByRef serializableCollection As Collection, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObjectCollection2
+
+            For Each serializable As ISerializable In serializableCollection
+                serializable.serialize2(Me, versionNumber)
+            Next
+
+        End Sub
+
+        Public Sub serializeObjectList(ByRef serializableCollection As Collection, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObjectList
+
+            Dim i As Integer = 0
+            For Each serializable As ISerializable In serializableCollection
+                serializeObject(serializable, className & CStr(i), versionNumber)
+                i = i + 1
+            Next
+
+        End Sub
+
         Public Sub serializeAttribute(ByRef attr As String, ByVal tag As String) Implements ISerializer.serializeAttribute
 
             SetValue(tag, attr)

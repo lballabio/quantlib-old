@@ -21,6 +21,10 @@ Namespace QuantLibXL
         Public Shared Function make(ByVal className As String) As Object
 
             Select Case className
+                Case "Addin"
+                    make = New Addin()
+                Case "AddinList"
+                    make = New AddinList()
                 Case "Configuration"
                     make = New Configuration()
                 Case "Domain"
@@ -39,6 +43,10 @@ Namespace QuantLibXL
                     make = New User()
                 Case "Users"
                     make = New UserList()
+                Case "Variable"
+                    make = New Variable()
+                Case "Variables"
+                    make = New VariableList()
                 Case Else
                     Throw New Exception("invalid class name: " & className)
             End Select

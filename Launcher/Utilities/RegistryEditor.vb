@@ -168,6 +168,13 @@ Namespace QuantLibXL
 
         End Function
 
+        Public Function valueNames(ByVal keyName As String) As String()
+
+            Dim key As RegistryKey = openKey(keyName)
+            valueNames = key.GetValueNames()
+
+        End Function
+
         Public Sub renameValue(ByVal keyName As String, ByVal oldValName As String, ByVal newValName As String)
 
             Dim key As RegistryKey = openKey(keyName)

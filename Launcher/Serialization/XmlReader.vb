@@ -30,7 +30,7 @@ Namespace QuantLibXL
         Private currentNode_ As XmlNode
 
         ''''''''''''''''''''''''''''''''''''''''''
-        ' properties
+        ' Properties
         ''''''''''''''''''''''''''''''''''''''''''
 
         Private ReadOnly Property NodeHasItem(ByVal tag As String) As Boolean
@@ -73,8 +73,9 @@ Namespace QuantLibXL
 
         Public Sub serializeObjectCollection(ByRef serializableCollection As Collection, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObjectCollection
 
-            Dim node As XmlNode
+            Dim node As XmlNode, currentNode As XmlNode
             Dim serializable As ISerializable
+            currentNode = currentNode_
             For Each node In currentNode_.ChildNodes
 
                 If node.Name <> className Then Continue For
@@ -89,9 +90,38 @@ Namespace QuantLibXL
                 End If
 
                 serializableCollection.Add(serializable, serializable.Name)
-                currentNode_ = currentNode_.ParentNode
 
             Next
+            currentNode_ = currentNode
+
+        End Sub
+
+        Public Sub serializeObjectCollection2(ByRef serializableCollection As Collection, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObjectCollection2
+
+            serializeObjectCollection(serializableCollection, className, versionNumber)
+
+        End Sub
+
+        Public Sub serializeObjectList(ByRef serializableCollection As Collection, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObjectList
+
+            Dim node As XmlNode, currentNode As XmlNode
+            Dim serializable As ISerializable
+            Dim i As Integer = 0
+            currentNode = currentNode_
+            For Each node In currentNode_.ChildNodes
+
+                If node.Name <> className Then Continue For
+
+                serializable = Factory.make(className)
+                currentNode_ = node
+                serializable.serialize(Me, versionNumber)
+
+                serializable.Name = className & CStr(i)
+                i = i + 1
+                serializableCollection.Add(serializable, serializable.Name)
+
+            Next
+            currentNode_ = currentNode
 
         End Sub
 

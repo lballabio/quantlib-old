@@ -1,4 +1,3 @@
-
 <Configuration>
 
   <Environments>
@@ -10,11 +9,25 @@
       <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev11940\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\01 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev11940\metadata</FunctionMetadata>
-      <FeedUse>THIS_VALUE_OVERWRITTEN_FROM_REGISTRY</FeedUse>
+      <!--The FeedUse value is overwritten from the registry, an empty tag is required for XML validation.-->
+      <FeedUse/>
       <AddinList>
-        <Addin>ObjectHandler-xll-vc80-mt-0_9_0.xll</Addin>
-        <Addin>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Addin>
-        <Addin>saohxll-vc80-mt-0_1_9.xll</Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>ObjectHandler-xll-vc80-mt-0_9_0.xll</Path>        
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>saohxll-vc80-mt-0_1_9.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>False</DeliveredByLauncher>
+          <Path>X:\Apps\Appsscript\CabotoXL\Rev11940\CabotoXL.xla</Path>
+        </Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
@@ -30,6 +43,12 @@
         <EvaluationDate>0</EvaluationDate>
         <InitSource>Excel</InitSource>
       </StartupActions>
+      <Variables>
+        <Variable>
+          <Name>NAZCATECH_DIR</Name>
+          <Value>X:\Apps\Appsscript\CabotoXL\SensitivityAnalysis</Value>
+        </Variable>
+      </Variables>
     </Environment>
 
     <Environment name="02 Pre-Production">
@@ -39,11 +58,25 @@
       <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev12288\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\02 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev12288\metadata</FunctionMetadata>
-      <FeedUse>THIS_VALUE_OVERWRITTEN_FROM_REGISTRY</FeedUse>
+      <!--The FeedUse value is overwritten from the registry, an empty tag is required for XML validation.-->
+      <FeedUse/>
       <AddinList>
-        <Addin>ObjectHandler-xll-vc80-mt-0_9_0.xll</Addin>
-        <Addin>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Addin>
-        <Addin>saohxll-vc80-mt-0_1_9.xll</Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>ObjectHandler-xll-vc80-mt-0_9_0.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>saohxll-vc80-mt-0_1_9.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>False</DeliveredByLauncher>
+          <Path>X:\Apps\Appsscript\CabotoXL\Rev12288\CabotoXL.xla</Path>
+        </Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
@@ -59,6 +92,12 @@
         <EvaluationDate>0</EvaluationDate>
         <InitSource>Excel</InitSource>
       </StartupActions>
+      <Variables>
+        <Variable>
+          <Name>NAZCATECH_DIR</Name>
+          <Value>X:\Apps\Appsscript\CabotoXL\SensitivityAnalysis</Value>
+        </Variable>
+      </Variables>
     </Environment>
 
     <Environment name="03 Testing">
@@ -68,11 +107,25 @@
       <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev12288\Docs</HelpFile>
       <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\03 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev12288\metadata</FunctionMetadata>
-      <FeedUse>THIS_VALUE_OVERWRITTEN_FROM_REGISTRY</FeedUse>
+      <!--The FeedUse value is overwritten from the registry, an empty tag is required for XML validation.-->
+      <FeedUse/>
       <AddinList>
-        <Addin>ObjectHandler-xll-vc80-mt-0_9_0.xll</Addin>
-        <Addin>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Addin>
-        <Addin>saohxll-vc80-mt-0_1_9.xll</Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>ObjectHandler-xll-vc80-mt-0_9_0.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>saohxll-vc80-mt-0_1_9.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>False</DeliveredByLauncher>
+          <Path>X:\Apps\Appsscript\CabotoXL\Rev12288\CabotoXL.xla</Path>
+        </Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>true</YieldCurveBootstrap>
@@ -88,9 +141,14 @@
         <EvaluationDate>0</EvaluationDate>
         <InitSource>Excel</InitSource>
       </StartupActions>
+      <Variables>
+        <Variable>
+          <Name>NAZCATECH_DIR</Name>
+          <Value>X:\Apps\Appsscript\CabotoXL\SensitivityAnalysis</Value>
+        </Variable>
+      </Variables>
     </Environment>
 
   </Environments>
 
 </Configuration>
-

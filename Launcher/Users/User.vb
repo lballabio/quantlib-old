@@ -41,6 +41,9 @@ Namespace QuantLibXL
 
         End Sub
 
+        Public Sub serialize2(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize2
+        End Sub
+
         Public Function validate(ByVal serialNumber As String) As Boolean
 
             For Each val As String In serialNumbers_

@@ -48,6 +48,9 @@ Namespace QuantLibXL
 
         End Sub
 
+        Public Sub serialize2(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize2
+        End Sub
+
         Public Sub validate(ByVal environmentName As String)
 
             Dim userName As String = System.Environment.UserName

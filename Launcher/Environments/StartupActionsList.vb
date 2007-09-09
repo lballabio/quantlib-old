@@ -56,6 +56,9 @@ Namespace QuantLibXL
 
         End Sub
 
+        Public Sub serialize2(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize2
+        End Sub
+
         Public Sub clear()
 
             startupActionsList_.Clear()

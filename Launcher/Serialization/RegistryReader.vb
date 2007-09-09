@@ -36,7 +36,7 @@ Namespace QuantLibXL
         Implements ISerializer
 
         ''''''''''''''''''''''''''''''''''''''''''
-        ' properties
+        ' Properties
         ''''''''''''''''''''''''''''''''''''''''''
 
         Private ReadOnly Property CurrentKeyHasValue(ByVal tag As String) As Boolean
@@ -108,12 +108,31 @@ Namespace QuantLibXL
             Dim serializable As ISerializable
             For Each keyName As String In currentKey_.GetSubKeyNames
                 serializable = Factory.make(className)
+                serializable.Name = keyName
                 pushKey(keyName)
                 serializable.serialize(Me, versionNumber)
-                serializable.Name = keyName
-                serializableCollection.Add(serializable, keyName)
                 popKey()
+                serializableCollection.Add(serializable, keyName)
             Next
+
+        End Sub
+
+        Public Sub serializeObjectCollection2(ByRef serializableCollection As Collection, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObjectCollection2
+
+            serializableCollection = New Collection
+            Dim serializable As ISerializable
+            For Each keyName As String In currentKey_.GetValueNames
+                serializable = Factory.make(className)
+                serializable.Name = keyName
+                serializable.serialize2(Me, versionNumber)
+                serializableCollection.Add(serializable, keyName)
+            Next
+
+        End Sub
+
+        Public Sub serializeObjectList(ByRef serializableCollection As Collection, ByVal className As String, ByVal versionNumber As Integer) Implements ISerializer.serializeObjectList
+
+            serializeObjectCollection(serializableCollection, className, versionNumber)
 
         End Sub
 

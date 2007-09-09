@@ -36,37 +36,25 @@ Namespace QuantLibXL
         Private Const QUANTLIBXL_LAUNCH9 As String = "QUANTLIBXL_LAUNCH9"
         Private Const QUANTLIBXL_LAUNCH10 As String = "QUANTLIBXL_LAUNCH10"
 
-        ' The maximum number of XLLs that the Launcher can instruct the Framework to load.
-        ' At present this value is limited to 10 only because the addin names
-        ' are written to registry keys in the format Addin0, Addin1, ..., AddinN
-        ' and this list doesn't sort correctly for values of N greater than 9.
-
-        Public Const MAX_ADDIN_COUNT As Integer = 10
-
         ''''''''''''''''''''''''''''''''''''''''''
         ' members
         ''''''''''''''''''''''''''''''''''''''''''
 
         Private name_ As String
+        Private userAuthenticated_ As Boolean = False
+        Private startupActions_ As StartupActions = New StartupActions
+        Private variableList_ As VariableList = New VariableList
+        Private addinList_ As AddinList = New AddinList
 
         ' paths
 
         Private frameworkName_ As String = ""
         Private frameworkVersion_ As Integer = 0
         Private workbooks_ As String = ""
-        Private addinList_() As String
         Private helpPath_ As String = ""
         Private xmlPath_ As String = ""
         Private userConfig_ As String = ""
         Private feedUse_ As String = ""
-
-        ' User authentication
-
-        Private userAuthenticated_ As Boolean = False
-
-        ' Startup actions
-
-        Private startupActions_ As QuantLibXL.StartupActions = New QuantLibXL.StartupActions
 
         ''''''''''''''''''''''''''''''''''''''''''
         ' Properties
@@ -118,18 +106,6 @@ Namespace QuantLibXL
 
         End Property
 
-        Public Property AddinList() As String()
-
-            Get
-                AddinList = addinList_
-            End Get
-
-            Set(ByVal value() As String)
-                addinList_ = value
-            End Set
-
-        End Property
-
         Public Property HelpPath() As String
 
             Get
@@ -172,8 +148,32 @@ Namespace QuantLibXL
                 StartupActions = startupActions_
             End Get
 
-            Set(ByVal value As QuantLibXL.StartupActions)
+            Set(ByVal value As StartupActions)
                 startupActions_ = value
+            End Set
+
+        End Property
+
+        Public Property VariableList() As VariableList
+
+            Get
+                VariableList = variableList_
+            End Get
+
+            Set(ByVal value As VariableList)
+                variableList_ = value
+            End Set
+
+        End Property
+
+        Public Property AddinList() As AddinList
+
+            Get
+                AddinList = addinList_
+            End Get
+
+            Set(ByVal value As AddinList)
+                addinList_ = value
             End Set
 
         End Property
@@ -194,9 +194,13 @@ Namespace QuantLibXL
             serializer.serializeProperty(xmlPath_, "FunctionMetadata")
             serializer.serializeProperty(userConfig_, "UserConfigurationFile")
             serializer.serializeProperty(feedUse_, "FeedUse")
-            serializer.serializePropertyList(addinList_, "AddinList", "Addin")
+            serializer.serializeObject(addinList_, "AddinList", versionNumber)
             serializer.serializeObject(startupActions_, "StartupActions", versionNumber)
+            serializer.serializeObject(variableList_, "Variables", versionNumber)
 
+        End Sub
+
+        Public Sub serialize2(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize2
         End Sub
 
         ''''''''''''''''''''''''''''''''''''''''''
@@ -273,8 +277,8 @@ Namespace QuantLibXL
             validateFile(frameworkName_, "VBA framework file")
             validateFile(userConfig_, "user configuration file")
 
-            For Each addin As String In addinList_
-                validateFile(addin, "Excel Addin file")
+            For Each addin As Addin In addinList_.Addins
+                validateFile(addin.Path, "Excel Addin file")
             Next
 
         End Sub
@@ -287,7 +291,7 @@ Namespace QuantLibXL
         Public Sub launch(ByVal feedAddins() As String, ByVal excelPath As String, ByVal feedUse As String)
 
             ' Save the original value of addinList_
-            Dim keepAddinList() As String = addinList_
+            Dim keepAddinList As AddinList = addinList_
             feedUse_ = feedUse
 
             Try
@@ -320,16 +324,16 @@ Namespace QuantLibXL
                 xmlWriter.serializeObject(Me, "Environment", frameworkVersion_)
                 xmlWriter.close()
 
-                ' Set the environment variable
+                ' Set the environment variable for the temp file
 
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH8, tempFilePath)
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH9, tempFilePath)
                 System.Environment.SetEnvironmentVariable(QUANTLIBXL_LAUNCH10, tempFilePath)
 
-                ' Set environment variables specified in the Variables tab
+                ' Set any other variables specified for this environment
 
-                For Each listItem As ListViewItem In FormMain.lvVariables.Items
-                    System.Environment.SetEnvironmentVariable(listItem.Text, listItem.SubItems(1).Text)
+                For Each variable As Variable In variableList_.Variables
+                    System.Environment.SetEnvironmentVariable(variable.Name, variable.Value)
                 Next
 
                 ' Spawn the subprocess
@@ -355,6 +359,8 @@ Namespace QuantLibXL
 
             Clone = Me.MemberwiseClone()
             Clone.StartupActions = CType(startupActions_, StartupActions).Clone
+            Clone.VariableList = CType(variableList_, VariableList).Clone
+            Clone.AddinList = CType(addinList_, AddinList).Clone
 
         End Function
 
@@ -367,8 +373,10 @@ Namespace QuantLibXL
                 addinDir = configPath() & "\Addins\" & name_ & "\"
             End If
 
-            For i As Long = 0 To UBound(addinList_)
-                addinList_(i) = addinDir & addinList_(i)
+            For Each addin As Addin In AddinList.Addins
+                If addin.DeliveredByLauncher Then
+                    addin.Path = addinDir & addin.Path
+                End If
             Next
 
         End Sub
@@ -378,11 +386,10 @@ Namespace QuantLibXL
         Private Sub processFeedAddins(ByVal feedAddins() As String)
 
             If feedAddins.Length = 0 Then Exit Sub
-            Dim temp(feedAddins.Length + addinList_.Length - 1) As String
-            feedAddins.CopyTo(temp, 0)
-            addinList_.CopyTo(temp, feedAddins.Length)
-            addinList_ = temp
 
+            For i As Integer = 1 To UBound(feedAddins)
+                addinList_.Addins.Add(New Addin(feedAddins(i)), Before:=1)
+            Next
         End Sub
 
     End Class

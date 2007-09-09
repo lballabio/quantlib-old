@@ -1,5 +1,5 @@
 
-'Copyright (C) 2006 Eric Ehlers
+'Copyright (C) 2006, 2007 Eric Ehlers
 
 'This file is part of QuantLib, a free-software/open-source library
 'for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,6 +20,8 @@ Namespace QuantLibXL
 
         Sub serializeObject(ByRef serializable As ISerializable, ByVal className As String, ByVal versionNumber As Integer)
         Sub serializeObjectCollection(ByRef serializableList As Collection, ByVal className As String, ByVal versionNumber As Integer)
+        Sub serializeObjectCollection2(ByRef serializableList As Collection, ByVal className As String, ByVal versionNumber As Integer)
+        Sub serializeObjectList(ByRef serializableList As Collection, ByVal className As String, ByVal versionNumber As Integer)
         Sub serializeAttribute(ByRef attr As String, ByVal tag As String)
         Sub serializePropertyList(ByRef attr() As String, ByVal listTag As String, ByVal itemTag As String)
         Overloads Sub serializeProperty(ByRef prop As String, ByVal tag As String)

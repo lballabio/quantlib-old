@@ -214,6 +214,9 @@ Namespace QuantLibXL
 
         End Sub
 
+        Public Sub serialize2(ByRef serializer As ISerializer, ByVal versionNumber As Integer) Implements ISerializable.serialize2
+        End Sub
+
         Private Function boolToInt(ByVal b As Boolean) As Integer
             If b Then boolToInt = 1 Else boolToInt = 0
         End Function

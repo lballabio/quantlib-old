@@ -119,24 +119,29 @@ Module Upgrade
     Private Sub upgradeVersion10to11()
 
         r_.copyKey("QuantLibXL Launcher\LauncherVersion10", "QuantLibXL Launcher\LauncherVersion11")
-
-        r_.createKey("QuantLibXL Launcher\LauncherVersion11\Configuration\FeedUse")
         r_.setValue("QuantLibXL Launcher\LauncherVersion11\Configuration", "FeedUse", "Reuters")
 
         Dim rootName As String
         rootName = "QuantLibXL Launcher\LauncherVersion11\Configuration\StartupActionsList"
         For Each keyName As String In r_.subKeyNames(rootName)
-            r_.deleteKey(rootName & "\" & keyName & "\LoadMurexYieldCurve")
-            r_.createKey(rootName & "\" & keyName & "\InitSource")
+            r_.deleteValue(rootName & "\" & keyName, "LoadMurexYieldCurve")
             r_.setValue(rootName & "\" & keyName, "InitSource", "Excel")
         Next keyName
         rootName = "QuantLibXL Launcher\LauncherVersion11\Environments"
         For Each keyName As String In r_.subKeyNames(rootName)
-            r_.deleteKey(rootName & "\" & keyName & "\StartupActions\LoadMurexYieldCurve")
-            r_.createKey(rootName & "\" & keyName & "\StartupActions\InitSource")
-            r_.setValue(rootName & "\" & keyName & "\StartupActions", "InitSource", "Excel")
-            r_.createKey(rootName & "\" & keyName & "\FeedUse")
-            r_.setValue(rootName & "\" & keyName, "FeedUse", "Reuters")
+            Dim subKeyName As String = rootName & "\" & keyName
+            r_.deleteValue(rootName & "\" & keyName & "\StartupActions", "LoadMurexYieldCurve")
+            r_.setValue(subKeyName & "\StartupActions", "InitSource", "Excel")
+            r_.setValue(subKeyName, "FeedUse", "Reuters")
+            r_.createKey(subKeyName & "\Variables")
+            Dim addinKeyName As String = subKeyName & "\AddinList"
+            For Each addinName As String In r_.valueNames(addinKeyName)
+                Dim Path As String = r_.getValue(addinKeyName, addinName)
+                r_.deleteValue(addinKeyName, addinName)
+                r_.createKey(addinKeyName & "\" & addinName)
+                r_.setValue(addinKeyName & "\" & addinName, "Path", Path)
+                r_.setValue(addinKeyName & "\" & addinName, "DeliveredByLauncher", True)
+            Next
         Next keyName
 
         registryVersion_ = 11

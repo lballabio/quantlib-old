@@ -19,6 +19,7 @@ Partial Class FormMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container
         Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"NAZCATECH_DIR", "X:\Apps\Appsscript\CabotoXL\SensitivityAnalysis"}, -1)
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.btnClose = New System.Windows.Forms.Button
@@ -97,6 +98,10 @@ Partial Class FormMain
         Me.lvVariables = New System.Windows.Forms.ListView
         Me.chVariable = New System.Windows.Forms.ColumnHeader
         Me.chValue = New System.Windows.Forms.ColumnHeader
+        Me.cmVariables = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.miVariableInsert = New System.Windows.Forms.ToolStripMenuItem
+        Me.miVariableEdit = New System.Windows.Forms.ToolStripMenuItem
+        Me.miVariableDelete = New System.Windows.Forms.ToolStripMenuItem
         Me.tpAbout = New System.Windows.Forms.TabPage
         Me.lblHardDiskValue = New System.Windows.Forms.Label
         Me.lblDomainValue = New System.Windows.Forms.Label
@@ -119,6 +124,7 @@ Partial Class FormMain
         Me.tstAddins.SuspendLayout()
         Me.tpFeeds.SuspendLayout()
         Me.tpVariables.SuspendLayout()
+        Me.cmVariables.SuspendLayout()
         Me.tpAbout.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -864,7 +870,8 @@ Partial Class FormMain
         Me.lvVariables.AutoArrange = False
         Me.lvVariables.CausesValidation = False
         Me.lvVariables.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chVariable, Me.chValue})
-        Me.lvVariables.Enabled = False
+        Me.lvVariables.ContextMenuStrip = Me.cmVariables
+        Me.lvVariables.FullRowSelect = True
         Me.lvVariables.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
         Me.lvVariables.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
         Me.lvVariables.LabelWrap = False
@@ -872,7 +879,8 @@ Partial Class FormMain
         Me.lvVariables.MultiSelect = False
         Me.lvVariables.Name = "lvVariables"
         Me.lvVariables.Scrollable = False
-        Me.lvVariables.Size = New System.Drawing.Size(467, 198)
+        Me.lvVariables.Size = New System.Drawing.Size(466, 365)
+        Me.lvVariables.Sorting = System.Windows.Forms.SortOrder.Ascending
         Me.lvVariables.TabIndex = 0
         Me.lvVariables.UseCompatibleStateImageBehavior = False
         Me.lvVariables.View = System.Windows.Forms.View.Details
@@ -886,6 +894,30 @@ Partial Class FormMain
         '
         Me.chValue.Text = "Value"
         Me.chValue.Width = 313
+        '
+        'cmVariables
+        '
+        Me.cmVariables.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miVariableInsert, Me.miVariableEdit, Me.miVariableDelete})
+        Me.cmVariables.Name = "cmVariables"
+        Me.cmVariables.Size = New System.Drawing.Size(117, 70)
+        '
+        'miVariableInsert
+        '
+        Me.miVariableInsert.Name = "miVariableInsert"
+        Me.miVariableInsert.Size = New System.Drawing.Size(116, 22)
+        Me.miVariableInsert.Text = "Insert"
+        '
+        'miVariableEdit
+        '
+        Me.miVariableEdit.Name = "miVariableEdit"
+        Me.miVariableEdit.Size = New System.Drawing.Size(116, 22)
+        Me.miVariableEdit.Text = "Edit"
+        '
+        'miVariableDelete
+        '
+        Me.miVariableDelete.Name = "miVariableDelete"
+        Me.miVariableDelete.Size = New System.Drawing.Size(116, 22)
+        Me.miVariableDelete.Text = "Delete"
         '
         'tpAbout
         '
@@ -1024,6 +1056,7 @@ Partial Class FormMain
         Me.tpFeeds.ResumeLayout(False)
         Me.tpFeeds.PerformLayout()
         Me.tpVariables.ResumeLayout(False)
+        Me.cmVariables.ResumeLayout(False)
         Me.tpAbout.ResumeLayout(False)
         Me.tpAbout.PerformLayout()
         Me.ResumeLayout(False)
@@ -1116,4 +1149,8 @@ Partial Class FormMain
     Friend WithEvents cbReuters As System.Windows.Forms.CheckBox
     Friend WithEvents rbBloomberg As System.Windows.Forms.RadioButton
     Friend WithEvents rbReuters As System.Windows.Forms.RadioButton
+    Friend WithEvents cmVariables As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents miVariableInsert As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents miVariableEdit As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents miVariableDelete As System.Windows.Forms.ToolStripMenuItem
 End Class

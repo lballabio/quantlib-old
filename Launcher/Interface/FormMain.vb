@@ -79,6 +79,8 @@ Public Class FormMain
             selectEnvironment()
             initializeAboutTab()
             setToolTips()
+            enableVariableMenu()
+            initializeVariableList()
 
             lblBuildNumber.Text = "version " & buildNumber()
 
@@ -91,6 +93,178 @@ Public Class FormMain
         End Try
 
     End Sub
+
+    ''''''''''''''''''''''''''''''''''''''''''
+    ' Private functions
+    ''''''''''''''''''''''''''''''''''''''''''
+
+    Private Sub setEnabled(ByVal enabled As Boolean)
+
+        ' Environments
+        btnDelete.Enabled = enabled
+        btnClear.Enabled = enabled
+        btnRename.Enabled = enabled
+
+        ' Paths - text boxes
+        btnFrameworkSelect.Enabled = enabled
+        btnWorkbooks.Enabled = enabled
+        btnHelpFile.Enabled = enabled
+        btnXmlPath.Enabled = enabled
+        btnUserConfig.Enabled = enabled
+
+        ' Paths - buttons
+        txtFramework.Enabled = enabled
+        txtWorkbooks.Enabled = enabled
+        txtHelpPath.Enabled = enabled
+        txtXmlPath.Enabled = enabled
+        txtUserConfig.Enabled = enabled
+
+        ' Environment properties
+        cbFrameworkVersion.Enabled = enabled
+
+        ' Addins
+        lbAddins.Enabled = enabled
+        btnAddinInsert.Enabled = enabled
+        If enabled Then
+            Call enableAddinButtons()
+        Else
+            btnAddinUp.Enabled = False
+            btnAddinDown.Enabled = False
+            btnAddinDelete.Enabled = False
+            btnAddinRename.Enabled = False
+        End If
+
+        ' Variables
+        lvVariables.Enabled = enabled
+
+    End Sub
+
+    Private Sub clear()
+
+        ' Paths - text boxes
+        txtFramework.Clear()
+        txtWorkbooks.Clear()
+        txtHelpPath.Clear()
+        txtXmlPath.Clear()
+        txtUserConfig.Clear()
+
+        ' Startup actions
+        cbSetEvaluationDate.Checked = False
+        dtEvaluationDate.Value = System.DateTime.Today
+        cbYCBootstrap.Checked = False
+        cbCapVolBootstrap.Checked = False
+        cbSwapSmileBootstrap.Checked = False
+        cbCalibrateCms.Checked = False
+        cbFitCMS.Checked = False
+        cbIndexesTimeSeries.Checked = False
+        cbLoadBonds.Checked = False
+        cbMainChecks.Checked = False
+        cbStaticData.Checked = False
+        ' We must choose a data source so force Excel as the default
+        rbExcel.Checked = True
+        ' We must choose a feed so force Reuters as the default
+        rbReuters.Checked = True
+
+        ' Environment properties
+        cbFrameworkVersion.SelectedIndex = -1
+
+        ' Addins
+
+    End Sub
+
+    ' After changing the selected environment, call this sub
+    ' to synch up the controls.
+
+    Private Sub resetControls()
+
+        ' Paths - text boxes
+        txtFramework.Text = SelectedEnvironment.FrameworkName
+        txtWorkbooks.Text = SelectedEnvironment.Workbooks
+        txtHelpPath.Text = SelectedEnvironment.HelpPath
+        txtXmlPath.Text = SelectedEnvironment.XmlPath
+        txtUserConfig.Text = SelectedEnvironment.UserConfig
+
+        ' Startup actions
+        cbSetEvaluationDate.Checked = SelectedEnvironment.StartupActions.SetEvaluationDate
+        dtEvaluationDate.Enabled = SelectedEnvironment.StartupActions.SetEvaluationDate
+        dtEvaluationDate.Value = SelectedEnvironment.StartupActions.EvaluationDate
+        cbYCBootstrap.Checked = SelectedEnvironment.StartupActions.YieldCurveBootstrap
+        cbCapVolBootstrap.Checked = SelectedEnvironment.StartupActions.CapVolBootstrap
+        cbSwapSmileBootstrap.Checked = SelectedEnvironment.StartupActions.SwapSmileBootstrap
+        cbCalibrateCms.Checked = SelectedEnvironment.StartupActions.CalibrateCMS
+        cbFitCMS.Checked = SelectedEnvironment.StartupActions.FitCMS
+        cbIndexesTimeSeries.Checked = SelectedEnvironment.StartupActions.IndexesTimeSeries
+        cbLoadBonds.Checked = SelectedEnvironment.StartupActions.LoadBonds
+        cbMainChecks.Checked = SelectedEnvironment.StartupActions.MainChecks
+        cbStaticData.Checked = SelectedEnvironment.StartupActions.StaticData
+
+        ' Initialization Data Source
+        If UCase(SelectedEnvironment.StartupActions.InitSource) = "EXCEL" Then
+            rbExcel.Checked = True
+        ElseIf UCase(SelectedEnvironment.StartupActions.InitSource) = "XML" Then
+            rbXML.Checked = True
+        Else
+            Throw New Exception("Invalid value for initialization source: '" _
+                & SelectedEnvironment.StartupActions.InitSource & "'")
+        End If
+
+        ' Environment properties
+        Dim frameworkVersion As String = CStr(SelectedEnvironment.FrameworkVersion)
+        If cbFrameworkVersion.Items.Contains(frameworkVersion) Then
+            cbFrameworkVersion.Text = frameworkVersion
+        Else
+            cbFrameworkVersion.SelectedIndex = -1
+        End If
+
+        ' Addins
+        initializeAddinList()
+
+        ' Variables
+        initializeVariableList()
+
+    End Sub
+
+    Private Sub initializeAboutTab()
+
+        Me.lblVersionValue.Text = buildNumber()
+        Me.lblUserNameValue.Text = System.Environment.UserName
+        Me.lblDomainValue.Text = System.Environment.UserDomainName
+        Me.lblHardDiskValue.Text = getSerialNumber()
+
+    End Sub
+
+    Private Sub setToolTips()
+
+        Dim toolTip1 As New ToolTip()
+        toolTip1.ShowAlways = True
+        toolTip1.SetToolTip(Me.btnLaunchExcel, "Launch an empty Excel session")
+
+    End Sub
+
+    Private Sub saveConfiguration()
+
+        config_.OverrideActions.clear()
+        For Each environment As QuantLibXL.Environment In envPreconfigured_.Environments
+            config_.OverrideActions.add(environment.StartupActions, environment.Name)
+        Next
+
+        Dim registryWriter As New QuantLibXL.RegistryWriter()
+        registryWriter.deleteKey("Configuration")
+        registryWriter.serializeObject(config_, "Configuration", THIS_VERSION)
+        registryWriter.deleteKey("Environments")
+        registryWriter.serializeObject(envUserconfigured_, "Environments", THIS_VERSION)
+
+    End Sub
+
+    Private Function buildNumber() As String
+
+        If (ApplicationDeployment.IsNetworkDeployed) Then
+            buildNumber = My.Application.Deployment.CurrentVersion.ToString()
+        Else
+            buildNumber = "?.?.? (local build)"
+        End If
+
+    End Function
 
     Private Sub initializeLists()
 
@@ -244,16 +418,20 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' Events - main form
+    ' Events - Main Form
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
 
         Try
+
             saveConfiguration()
+
         Catch ex As Exception
+
             MsgBox("Error while closing launcher:" & vbCrLf & vbCrLf & ex.Message, _
                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "QuantLibXL Error")
+
         End Try
 
         Close()
@@ -279,7 +457,7 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' Events - environment - lists
+    ' Events - Environment - Lists
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub lstPreconfigured_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstPreconfigured.SelectedIndexChanged
@@ -335,25 +513,8 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' Events - environment - buttons
+    ' Events - Environments - Buttons
     ''''''''''''''''''''''''''''''''''''''''''
-
-    Private Function inputEnvironmentName(ByVal initialValue As String) As String
-
-        inputEnvironmentName = initialValue
-        Dim invalidEntry As Boolean = True
-        While invalidEntry
-            inputEnvironmentName = InputBox("Edit Environment Name:", _
-                "Environment Name", inputEnvironmentName)
-            If Len(inputEnvironmentName) < 1 Then Exit Function
-            invalidEntry = envUserconfigured_.nameInUse(inputEnvironmentName)
-            If invalidEntry Then
-                MsgBox("The name '" & inputEnvironmentName & "' is already in use - " _
-                & "please enter a different name.")
-            End If
-        End While
-
-    End Function
 
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
 
@@ -477,7 +638,7 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' Events - startup actions
+    ' Events - Startup Actions
     ''''''''''''''''''''''''''''''''''''''''''
 
     Private Sub cbSetEvaluationDate_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSetEvaluationDate.CheckedChanged
@@ -501,7 +662,7 @@ Public Class FormMain
         SelectedEnvironment.StartupActions.SwapSmileBootstrap = cbSwapSmileBootstrap.Checked
     End Sub
 
-    Private Sub cbCalibrateCMS_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCalibrateCms.CheckedChanged
+    Private Sub cbCalibrateCms_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCalibrateCms.CheckedChanged
         SelectedEnvironment.StartupActions.CalibrateCMS = cbCalibrateCms.Checked
     End Sub
 
@@ -535,61 +696,26 @@ Public Class FormMain
         Call setInitSource()
     End Sub
 
-    Private Sub setInitSource()
-        If rbExcel.Checked Then
-            SelectedEnvironment.StartupActions.InitSource = "Excel"
-        ElseIf rbXML.Checked Then
-            SelectedEnvironment.StartupActions.InitSource = "XML"
-        Else
-            Throw New Exception("Unable to determine value for Data Initialization Source")
-        End If
+    Private Sub rbReuters_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbReuters.CheckedChanged
+        Call setFeedUse()
+    End Sub
+
+    Private Sub rbBloomberg_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbBloomberg.CheckedChanged
+        Call setFeedUse()
+    End Sub
+
+    Private Sub cbReuters_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbReuters.CheckedChanged
+        config_.ReutersSelected = cbReuters.Checked
+    End Sub
+
+    Private Sub txtReuters_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtReuters.TextChanged
+        config_.ReutersPath = txtReuters.Text
+        setReutersPathEnabled()
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' Events - path - buttons
+    ' Events - Paths - Buttons
     ''''''''''''''''''''''''''''''''''''''''''
-
-    Private Function deriveDefaultDir(ByVal testPath As String, ByVal subDir As String) As String
-
-        Try
-
-            If dirExists(testPath) Then
-                deriveDefaultDir = testPath
-            ElseIf dirExists(qlxlDir_ & "\" & subDir) Then
-                deriveDefaultDir = qlxlDir_ & "\" & subDir
-            Else
-                deriveDefaultDir = ""
-            End If
-            Exit Function
-
-        Catch ex As Exception
-
-            deriveDefaultDir = ""
-
-        End Try
-
-    End Function
-
-    Private Function deriveDefaultFile(ByVal testFile As String, Optional ByVal relativePath As String = "") As String
-
-        Try
-
-            If fileExists(testFile) Then
-                deriveDefaultFile = testFile
-            ElseIf relativePath.Length > 0 And dirExists(qlxlDir_ & "\" & relativePath) Then
-                deriveDefaultFile = qlxlDir_ & "\" & relativePath
-            Else
-                deriveDefaultFile = ""
-            End If
-            Exit Function
-
-        Catch ex As Exception
-
-            deriveDefaultFile = ""
-
-        End Try
-
-    End Function
 
     Private Sub btnFrameworkSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFrameworkSelect.Click
 
@@ -612,6 +738,16 @@ Public Class FormMain
                 "QuantLibXL Error")
 
         End Try
+
+    End Sub
+
+    Private Sub cbFrameworkVersion_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbFrameworkVersion.SelectedIndexChanged
+
+        If cbFrameworkVersion.SelectedIndex = -1 Then
+            SelectedEnvironment.FrameworkVersion = 0
+        Else
+            SelectedEnvironment.FrameworkVersion = CInt(cbFrameworkVersion.Text)
+        End If
 
     End Sub
 
@@ -777,151 +913,138 @@ Public Class FormMain
     End Sub
 
     ''''''''''''''''''''''''''''''''''''''''''
-    ' Events - environment properties
-    ''''''''''''''''''''''''''''''''''''''''''
-
-    Private Sub cbFrameworkVersion_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbFrameworkVersion.SelectedIndexChanged
-        If cbFrameworkVersion.SelectedIndex = -1 Then
-            SelectedEnvironment.FrameworkVersion = 0
-        Else
-            SelectedEnvironment.FrameworkVersion = CInt(cbFrameworkVersion.Text)
-        End If
-    End Sub
-
-    ''''''''''''''''''''''''''''''''''''''''''
     ' Events - Addins
     ''''''''''''''''''''''''''''''''''''''''''
 
-    ' Sub enableAddinButtons() - Based on the current selection,
-    ' enable or disable the following buttons: Delete, Rename, Up, Down
-
-    Private Sub enableAddinButtons()
-
-        If lbAddins.SelectedIndex = -1 Then
-            ' Nothing selected - disable all buttons
-            btnAddinDelete.Enabled = False
-            btnAddinRename.Enabled = False
-            btnAddinUp.Enabled = False
-            btnAddinDown.Enabled = False
-            Exit Sub
-        End If
-
-        ' Something is selected, so enable Delete/Rename
-        btnAddinDelete.Enabled = True
-        btnAddinRename.Enabled = True
-
-        If lbAddins.Items.Count <= 1 Then
-            ' Only one item in list - disable Up/Down
-            btnAddinUp.Enabled = False
-            btnAddinDown.Enabled = False
-            Exit Sub
-        End If
-
-        If lbAddins.SelectedIndex = 0 Then
-            ' Top item selected - disable Up, enable Down
-            btnAddinUp.Enabled = False
-            btnAddinDown.Enabled = True
-        ElseIf lbAddins.SelectedIndex = (lbAddins.Items.Count - 1) Then
-            ' Bottom item selected - enable Up, disable Down
-            btnAddinUp.Enabled = True
-            btnAddinDown.Enabled = False
-        Else
-            ' Middle item selected - enable Up & Down
-            btnAddinUp.Enabled = True
-            btnAddinDown.Enabled = True
-        End If
-
-    End Sub
-
-    Private Sub synchAddinList()
-
-        Dim addinList(lbAddins.Items.Count - 1) As String
-        Dim i As Integer = 0
-        For Each item As String In lbAddins.Items
-            addinList(i) = item
-            i = i + 1
-        Next
-        SelectedEnvironment.AddinList = addinList
-
-    End Sub
-
     Private Sub lbAddins_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbAddins.SelectedIndexChanged
-
         Call enableAddinButtons()
-        Call synchAddinList()
-
     End Sub
 
     Private Sub btnAddinInsert_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinInsert.Click
 
-        If lbAddins.Items.Count >= QuantLibXL.Environment.MAX_ADDIN_COUNT Then
-            Throw New Exception("You cannot insert another addin into the list" _
-             & " because the list currently contains " & lbAddins.Items.Count _
-             & " items and the maximum supported by the launcher is " _
-             & QuantLibXL.Environment.MAX_ADDIN_COUNT & ".")
-        End If
+        Try
 
-        Dim dlg As New OpenFileDialog()
-        dlg.InitialDirectory = deriveDefaultFile(lbAddins.SelectedValue, "addin")
-        dlg.FileName = ""
-        dlg.Filter = "Excel Addins (*.xll;*.xla)|*.xll;*.xla"
-        dlg.Title = "Select Addin"
+            Dim dlg As New OpenFileDialog()
+            dlg.InitialDirectory = deriveDefaultFile(lbAddins.SelectedValue, "addin")
+            dlg.FileName = ""
+            dlg.Filter = "Excel Addins (*.xll;*.xla)|*.xll;*.xla"
+            dlg.Title = "Select Addin"
 
-        If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            If lbAddins.SelectedIndex = -1 Then
-                lbAddins.Items.Add(dlg.FileName)
-            Else
-                lbAddins.Items.Insert(lbAddins.SelectedIndex, dlg.FileName)
+            If dlg.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                Dim before As Integer = Math.Max(lbAddins.SelectedIndex, 0)
+                SelectedEnvironment.AddinList.insert(dlg.FileName, before + 1)
+                lbAddins.Items.Insert(before, dlg.FileName)
+                'SelectedEnvironment.AddinList.insert(dlg.FileName, lbAddins.SelectedIndex)
+                'If lbAddins.SelectedIndex = -1 Then
+                '    lbAddins.Items.Add(dlg.FileName)
+                'Else
+                '    lbAddins.Items.Insert(lbAddins.SelectedIndex, dlg.FileName)
+                'End If
+                Call enableAddinButtons()
             End If
-            Call enableAddinButtons()
-            Call synchAddinList()
-        End If
 
-    End Sub
+        Catch ex As Exception
 
-    Private Sub btnAddinRename_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinRename.Click
+            MsgBox("Error inserting addin:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
 
-        Dim newName As String = InputBox("Edit Addin name:", _
-            "Edit Addin Name", lbAddins.SelectedItem)
-        If Len(newName) > 0 Then
-            lbAddins.Items(lbAddins.SelectedIndex) = newName
-        End If
+        End Try
 
     End Sub
 
     Private Sub btnAddinDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinDelete.Click
 
-        If lbAddins.SelectedIndex = -1 Then Exit Sub
-        Dim i As Integer = lbAddins.SelectedIndex
-        lbAddins.Items.RemoveAt(i)
-        lbAddins.SelectedIndex = Math.Min(i, lbAddins.Items.Count - 1)
-        Call enableAddinButtons()
-        Call synchAddinList()
+        Try
+
+            If lbAddins.SelectedIndex = -1 Then Exit Sub
+            SelectedEnvironment.AddinList.delete(lbAddins.SelectedItem.ToString())
+            Dim i As Integer = lbAddins.SelectedIndex
+            lbAddins.Items.RemoveAt(i)
+            lbAddins.SelectedIndex = Math.Min(i, lbAddins.Items.Count - 1)
+            Call enableAddinButtons()
+
+        Catch ex As Exception
+
+            MsgBox("Error deleting addin:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
+
+    End Sub
+
+    Private Sub btnAddinRename_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinRename.Click
+
+        Try
+
+            If lbAddins.SelectedIndex = -1 Then Exit Sub
+            Dim newName As String = InputBox("Edit Addin name:", _
+                "Edit Addin Name", lbAddins.SelectedItem)
+            If Len(newName) > 0 Then
+                SelectedEnvironment.AddinList.update(lbAddins.SelectedItem.ToString(), newName)
+                lbAddins.Items(lbAddins.SelectedIndex) = newName
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("Error renaming addin:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
 
     End Sub
 
     Private Sub btnAddinUp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinUp.Click
 
-        If lbAddins.Items.Count <= 1 Then Exit Sub
-        If lbAddins.SelectedIndex < 1 Then Exit Sub
-        Dim o As Object = lbAddins.SelectedItem
-        Dim i As Integer = lbAddins.SelectedIndex
-        lbAddins.Items.RemoveAt(i)
-        lbAddins.Items.Insert(i - 1, o)
-        lbAddins.SelectedIndex = i - 1
+        Try
+
+            If lbAddins.Items.Count <= 1 Then Exit Sub
+            If lbAddins.SelectedIndex < 1 Then Exit Sub
+            SelectedEnvironment.AddinList.up(lbAddins.SelectedIndex)
+            Dim o As Object = lbAddins.SelectedItem
+            Dim i As Integer = lbAddins.SelectedIndex
+            lbAddins.Items.RemoveAt(i)
+            lbAddins.Items.Insert(i - 1, o)
+            lbAddins.SelectedIndex = i - 1
+
+        Catch ex As Exception
+
+            MsgBox("Error on addin up:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
 
     End Sub
 
     Private Sub btnAddinDown_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddinDown.Click
 
-        If lbAddins.SelectedIndex = -1 Then Exit Sub
-        If lbAddins.Items.Count <= 1 Then Exit Sub
-        If lbAddins.SelectedIndex = (lbAddins.Items.Count - 1) Then Exit Sub
-        Dim o As Object = lbAddins.SelectedItem
-        Dim i As Integer = lbAddins.SelectedIndex
-        lbAddins.Items.RemoveAt(i)
-        lbAddins.Items.Insert(i + 1, o)
-        lbAddins.SelectedIndex = i + 1
+        Try
+
+            If lbAddins.SelectedIndex = -1 Then Exit Sub
+            If lbAddins.Items.Count <= 1 Then Exit Sub
+            If lbAddins.SelectedIndex = (lbAddins.Items.Count - 1) Then Exit Sub
+            SelectedEnvironment.AddinList.down(lbAddins.SelectedIndex)
+            Dim o As Object = lbAddins.SelectedItem
+            Dim i As Integer = lbAddins.SelectedIndex
+            lbAddins.Items.RemoveAt(i)
+            lbAddins.Items.Insert(i + 1, o)
+            lbAddins.SelectedIndex = i + 1
+
+        Catch ex As Exception
+
+            MsgBox("Error on addin down:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
 
     End Sub
 
@@ -952,6 +1075,15 @@ Public Class FormMain
 
     End Sub
 
+    Private Sub cbBloomberg_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbBloomberg.CheckedChanged
+        config_.BloombergSelected = cbBloomberg.Checked
+    End Sub
+
+    Private Sub txtBloomberg_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtBloomberg.TextChanged
+        config_.BloombergPath = txtBloomberg.Text
+        setBloombergPathEnabled()
+    End Sub
+
     Private Sub btnBloomberg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBloomberg.Click
 
         Try
@@ -975,227 +1107,85 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub txtReuters_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtReuters.TextChanged
-        config_.ReutersPath = txtReuters.Text
-        setReutersPathEnabled()
-    End Sub
-
-    Private Sub setReutersPathEnabled()
-        Dim reutersPathValid = fileExists(txtReuters.Text)
-        cbReuters.Enabled = reutersPathValid
-        config_.ReutersEnabled = reutersPathValid
-    End Sub
-
-    Private Sub txtBloomberg_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtBloomberg.TextChanged
-        config_.BloombergPath = txtBloomberg.Text
-        setBloombergPathEnabled()
-    End Sub
-
-    Private Sub setBloombergPathEnabled()
-        Dim bloombergPathValid = fileExists(txtBloomberg.Text)
-        cbBloomberg.Enabled = bloombergPathValid
-        config_.BloombergEnabled = bloombergPathValid
-    End Sub
-
-    Private Sub cbReuters_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbReuters.CheckedChanged
-        config_.ReutersSelected = cbReuters.Checked
-    End Sub
-
-    Private Sub cbBloomberg_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbBloomberg.CheckedChanged
-        config_.BloombergSelected = cbBloomberg.Checked
-    End Sub
-
-    Private Sub rbReuters_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbReuters.CheckedChanged
-        Call setFeedUse()
-    End Sub
-
-    Private Sub rbBloomberg_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbBloomberg.CheckedChanged
-        Call setFeedUse()
-    End Sub
-
-    Private Sub setFeedUse()
-        If rbReuters.Checked Then
-            config_.FeedUse = "Reuters"
-        ElseIf rbBloomberg.Checked Then
-            config_.FeedUse = "Bloomberg"
-        Else
-            Throw New Exception("Error specifying Reuters/Bloomberg.")
-        End If
-    End Sub
     ''''''''''''''''''''''''''''''''''''''''''
-    ' Private functions
+    ' Events - Variables
     ''''''''''''''''''''''''''''''''''''''''''
 
-    Private Sub setEnabled(ByVal enabled As Boolean)
-
-        ' Environments
-        btnDelete.Enabled = enabled
-        btnClear.Enabled = enabled
-        btnRename.Enabled = enabled
-
-        ' Paths - text boxes
-        btnFrameworkSelect.Enabled = enabled
-        btnWorkbooks.Enabled = enabled
-        btnHelpFile.Enabled = enabled
-        btnXmlPath.Enabled = enabled
-        btnUserConfig.Enabled = enabled
-
-        ' Paths - buttons
-        txtFramework.Enabled = enabled
-        txtWorkbooks.Enabled = enabled
-        txtHelpPath.Enabled = enabled
-        txtXmlPath.Enabled = enabled
-        txtUserConfig.Enabled = enabled
-
-        ' Environment properties
-        cbFrameworkVersion.Enabled = enabled
-
-        ' Addins
-        lbAddins.Enabled = enabled
-        btnAddinInsert.Enabled = enabled
-        If enabled Then
-            Call enableAddinButtons()
-        Else
-            btnAddinUp.Enabled = False
-            btnAddinDown.Enabled = False
-            btnAddinDelete.Enabled = False
-            btnAddinRename.Enabled = False
-        End If
-
+    Private Sub lvVariables_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lvVariables.SelectedIndexChanged
+        Call enableVariableMenu()
     End Sub
 
-    Private Sub clear()
+    Private Sub miVariableInsert_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles miVariableInsert.Click
 
-        ' Paths - text boxes
-        txtFramework.Clear()
-        txtWorkbooks.Clear()
-        txtHelpPath.Clear()
-        txtXmlPath.Clear()
-        txtUserConfig.Clear()
+        Try
 
-        ' Startup actions
-        cbSetEvaluationDate.Checked = False
-        dtEvaluationDate.Value = System.DateTime.Today
-        cbYCBootstrap.Checked = False
-        cbCapVolBootstrap.Checked = False
-        cbSwapSmileBootstrap.Checked = False
-        cbCalibrateCms.Checked = False
-        cbFitCMS.Checked = False
-        cbIndexesTimeSeries.Checked = False
-        cbLoadBonds.Checked = False
-        cbMainChecks.Checked = False
-        cbStaticData.Checked = False
-        ' We must choose a data source so force Excel as the default
-        rbExcel.Checked = True
-        ' We must choose a feed so force Reuters as the default
-        rbReuters.Checked = True
+            FormVariableEdit.tbVariable.Text = ""
+            FormVariableEdit.tbValue.Text = ""
 
-        ' Environment properties
-        cbFrameworkVersion.SelectedIndex = -1
-
-        ' Addins
-
-    End Sub
-
-    ' After changing the selected environment, call this sub
-    ' to synch up the controls.
-
-    Private Sub resetControls()
-
-        ' Paths - text boxes
-        txtFramework.Text = SelectedEnvironment.FrameworkName
-        txtWorkbooks.Text = SelectedEnvironment.Workbooks
-        txtHelpPath.Text = SelectedEnvironment.HelpPath
-        txtXmlPath.Text = SelectedEnvironment.XmlPath
-        txtUserConfig.Text = SelectedEnvironment.UserConfig
-
-        ' Startup actions
-        cbSetEvaluationDate.Checked = SelectedEnvironment.StartupActions.SetEvaluationDate
-        dtEvaluationDate.Enabled = SelectedEnvironment.StartupActions.SetEvaluationDate
-        dtEvaluationDate.Value = SelectedEnvironment.StartupActions.EvaluationDate
-        cbYCBootstrap.Checked = SelectedEnvironment.StartupActions.YieldCurveBootstrap
-        cbCapVolBootstrap.Checked = SelectedEnvironment.StartupActions.CapVolBootstrap
-        cbSwapSmileBootstrap.Checked = SelectedEnvironment.StartupActions.SwapSmileBootstrap
-        cbCalibrateCms.Checked = SelectedEnvironment.StartupActions.CalibrateCMS
-        cbFitCMS.Checked = SelectedEnvironment.StartupActions.FitCMS
-        cbIndexesTimeSeries.Checked = SelectedEnvironment.StartupActions.IndexesTimeSeries
-        cbLoadBonds.Checked = SelectedEnvironment.StartupActions.LoadBonds
-        cbMainChecks.Checked = SelectedEnvironment.StartupActions.MainChecks
-        cbStaticData.Checked = SelectedEnvironment.StartupActions.StaticData
-
-        ' Initialization Data Source
-        If UCase(SelectedEnvironment.StartupActions.InitSource) = "EXCEL" Then
-            rbExcel.Checked = True
-        ElseIf UCase(SelectedEnvironment.StartupActions.InitSource) = "XML" Then
-            rbXML.Checked = True
-        Else
-            Throw New Exception("Invalid value for initialization source: '" _
-                & SelectedEnvironment.StartupActions.InitSource & "'")
-        End If
-
-        ' Environment properties
-        Dim frameworkVersion As String = CStr(SelectedEnvironment.FrameworkVersion)
-        If cbFrameworkVersion.Items.Contains(frameworkVersion) Then
-            cbFrameworkVersion.Text = frameworkVersion
-        Else
-            cbFrameworkVersion.SelectedIndex = -1
-        End If
-
-        ' Addins
-        lbAddins.Items.Clear()
-
-        If SelectedEnvironment.AddinList IsNot Nothing Then
-            If SelectedEnvironment.AddinList.Length > 0 Then
-                For i As Integer = 0 To UBound(SelectedEnvironment.AddinList)
-                    lbAddins.Items.Add(SelectedEnvironment.AddinList(i))
-                Next
+            If FormVariableEdit.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                Dim variableName As String = FormVariableEdit.tbVariable.Text
+                Dim variableValue As String = FormVariableEdit.tbValue.Text
+                selectedEnvironment_.VariableList.insert(variableName, variableValue)
+                Dim listItem As New ListViewItem(variableName)
+                listItem.SubItems.Add(variableValue)
+                lvVariables.Items.Add(listItem)
             End If
-        End If
 
-        Call enableAddinButtons()
+        Catch ex As Exception
 
-    End Sub
+            MsgBox("Error inserting new environment variable:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
 
-    Private Sub initializeAboutTab()
-
-        Me.lblVersionValue.Text = buildNumber()
-        Me.lblUserNameValue.Text = System.Environment.UserName
-        Me.lblDomainValue.Text = System.Environment.UserDomainName
-        Me.lblHardDiskValue.Text = getSerialNumber()
+        End Try
 
     End Sub
 
-    Private Sub setToolTips()
+    Private Sub miVariableEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles miVariableEdit.Click
 
-        Dim toolTip1 As New ToolTip()
-        toolTip1.ShowAlways = True
-        toolTip1.SetToolTip(Me.btnLaunchExcel, "Launch an empty Excel session")
+        Try
+
+            Dim variableNameOld As String = lvVariables.SelectedItems(0).Text
+            Dim variableValueOld As String = lvVariables.SelectedItems(0).SubItems(1).Text
+            FormVariableEdit.tbVariable.Text = variableNameOld
+            FormVariableEdit.tbValue.Text = variableValueOld
+
+            If FormVariableEdit.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                Dim variableName As String = FormVariableEdit.tbVariable.Text
+                Dim variableValue As String = FormVariableEdit.tbValue.Text
+                selectedEnvironment_.VariableList.update(variableNameOld, variableName, variableValue)
+                lvVariables.SelectedItems(0).Text = variableName
+                lvVariables.SelectedItems(0).SubItems(1).Text = variableValue
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("Error editing environment variable:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
 
     End Sub
 
-    Private Sub saveConfiguration()
+    Private Sub miVariableDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles miVariableDelete.Click
 
-        config_.OverrideActions.clear()
-        For Each environment As QuantLibXL.Environment In envPreconfigured_.Environments
-            config_.OverrideActions.add(environment.StartupActions, environment.Name)
-        Next
+        Try
 
-        Dim registryWriter As New QuantLibXL.RegistryWriter()
-        registryWriter.deleteKey("Configuration")
-        registryWriter.serializeObject(config_, "Configuration", THIS_VERSION)
-        registryWriter.deleteKey("Environments")
-        registryWriter.serializeObject(envUserconfigured_, "Environments", THIS_VERSION)
+            selectedEnvironment_.VariableList.delete(lvVariables.SelectedItems(0).Text)
+            lvVariables.Items.Remove(lvVariables.SelectedItems(0))
+
+        Catch ex As Exception
+
+            MsgBox("Error deleting environment variable:" _
+                 & vbCrLf & vbCrLf & ex.Message, _
+                 MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, _
+                "QuantLibXL Error")
+
+        End Try
 
     End Sub
-
-    Private Function buildNumber() As String
-
-        If (ApplicationDeployment.IsNetworkDeployed) Then
-            buildNumber = My.Application.Deployment.CurrentVersion.ToString()
-        Else
-            buildNumber = "?.?.? (local build)"
-        End If
-
-    End Function
 
 End Class
