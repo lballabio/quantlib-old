@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>14</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="138" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>EURYC3M_OND</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote class_id="181" tracking_level="0" version="0">
+				<variant_ class_id="182" tracking_level="0" version="0">
+					<which>3</which>
+					<value>EUROND_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>1D</Period>
+			<FixingDays>0</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_2">
+			<ObjectId>EURYC3M_TND</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EURTND_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>1D</Period>
+			<FixingDays>1</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_3">
+			<ObjectId>EURYC3M_SND</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EURSND_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>1D</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_4">
+			<ObjectId>EURYC3M_SWD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EURSWD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>1W</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_5">
+			<ObjectId>EURYC3M_2WD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EUR2WD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>2W</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_6">
+			<ObjectId>EURYC3M_3WD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EUR3WD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>3W</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_7">
+			<ObjectId>EURYC3M_1MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EUR1MD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>1M</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Modified Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_8">
+			<ObjectId>EURYC3M_2MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EUR2MD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>2M</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Modified Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_9">
+			<ObjectId>EURYC3M_3MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EUR3MD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>3M</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Modified Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_10">
+			<ObjectId>EURYC3M_4MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EUR4MD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>4M</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Modified Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_11">
+			<ObjectId>EURYC3M_5MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EUR5MD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>5M</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Modified Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_12">
+			<ObjectId>EURYC3M_6MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EUR6MD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>6M</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Modified Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_13">
+			<ObjectId>EURYC3M_9MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EUR9MD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>9M</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Modified Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_14">
+			<ObjectId>EURYC3M_1YD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EUR1YD_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>1Y</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<Convention>Modified Following</Convention>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
