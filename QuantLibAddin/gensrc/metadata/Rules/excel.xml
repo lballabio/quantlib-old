@@ -29,6 +29,7 @@
       <Rules>
         <Rule default='true'>OPER *</Rule>
         <Rule type='QuantLib::Real'>OPER *</Rule>
+        <Rule type='QuantLib::Matrix'>OPER *</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>short int *</Rule>
         <Rule tensorRank='scalar' nativeType='string'>char *</Rule>
         <Rule tensorRank='scalar' nativeType='any'>OPER *</Rule>
@@ -45,6 +46,7 @@
         <Rule loop='true'>P</Rule>
         <Rule type='QuantLib::Real'>P</Rule>
         <Rule type='QuantLib::Date'>P</Rule>
+        <Rule type='QuantLib::Matrix'>P</Rule>
         <Rule superType='libraryClass' type='QuantLib::Quote'>P</Rule>
         <Rule superType='libToHandle' type='QuantLib::Quote'>P</Rule>
         <Rule tensorRank='scalar' nativeType='long'>N</Rule>
@@ -63,6 +65,7 @@
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule type='QuantLib::Real'>P</Rule>
+        <Rule type='QuantLib::Matrix'>P</Rule>
         <Rule tensorRank='scalar' nativeType='long'>N</Rule>
         <Rule tensorRank='scalar' nativeType='string'>C</Rule>
         <Rule tensorRank='scalar' nativeType='double'>E</Rule>
@@ -267,6 +270,7 @@
       <Wrap codeID='wrap6'/>
       <Rules>
         <Rule loop='true' codeID='code61'/>
+        <Rule tensorRank='scalar' type='QuantLib::Matrix' codeID='code60b'/>
         <Rule tensorRank='scalar' type='QuantLib::Real' codeID='code60'/>
         <Rule tensorRank='scalar' superType='libraryType' nativeType='string' codeID='code56a'/>
         <Rule tensorRank='scalar' superType='libraryType' codeID='code56b'/>

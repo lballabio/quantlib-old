@@ -228,6 +228,11 @@ code60 = '''\
         ObjectHandler::scalarToOper2(returnValue, xRet);
         return &xRet;'''
 
+code60b = '''\
+        static OPER xRet;
+        ObjectHandler::matrixToOper(returnValue, xRet);
+        return &xRet;'''
+
 code61 = '''\
         return &returnValue;'''
 
