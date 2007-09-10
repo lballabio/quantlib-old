@@ -32,6 +32,8 @@ namespace QuantLib {
     class Quote;
     class SimpleQuote;
     class Date;
+    class CapsStripper2;
+    class Period;
 }
 
 namespace QuantLibAddin {
@@ -103,6 +105,16 @@ namespace QuantLibAddin {
         PriceToRateQuote(
                     const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                     const QuantLib::Handle<QuantLib::Quote>& quote,
+                    bool permanent);
+    };
+
+      class CapStripperQuote : public Quote {
+      public:
+        CapStripperQuote(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    const boost::shared_ptr<QuantLib::CapsStripper2>& capsStripper,
+                    QuantLib::Period& tenor,
+                    QuantLib::Real strike,
                     bool permanent);
     };
 

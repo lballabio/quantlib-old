@@ -25,6 +25,7 @@
 #include <ql/quotes/forwardvaluequote.hpp>
 #include <ql/quotes/futuresconvadjustmentquote.hpp>
 #include <ql/quotes/impliedstddevquote.hpp>
+#include <ql/termstructures/volatilities/interestrate/caplet/capstripper2.hpp>
 
 namespace QuantLibAddin {
 
@@ -148,6 +149,16 @@ namespace QuantLibAddin {
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
             QuantLib::DerivedQuote<PriceToRate>(quote, PriceToRate()));
+    }
+
+    CapStripperQuote::CapStripperQuote(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    const boost::shared_ptr<QuantLib::CapsStripper2>& capsStripper,
+                    QuantLib::Period& tenor,
+                    QuantLib::Real strike,
+                    bool permanent): Quote(properties, permanent) {
+        libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
+            QuantLib::CapStripperQuote(capsStripper, tenor, strike));
     }
 
 }
