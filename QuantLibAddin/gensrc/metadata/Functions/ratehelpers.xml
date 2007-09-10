@@ -166,6 +166,12 @@
             <tensorRank>scalar</tensorRank>
             <description>floating leg index object ID</description>
           </Parameter>
+          <Parameter name='Spread'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg spread</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -309,7 +315,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='PriceQuote'  exampleValue='95.9'>
+          <Parameter name='PriceQuote' exampleValue='95.9'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -320,7 +326,7 @@
             <tensorRank>scalar</tensorRank>
             <description>IMM code</description>
           </Parameter>
-          <Parameter name='Months' exampleValue='3'>
+          <Parameter name='Months' default='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>future contract length in months</description>
@@ -340,7 +346,7 @@
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='ConvexityAdjQuote'  exampleValue='0.0'>
+          <Parameter name='ConvexityAdjQuote'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>

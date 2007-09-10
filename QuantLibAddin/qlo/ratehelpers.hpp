@@ -97,6 +97,7 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention fixedConvention,
             const QuantLib::DayCounter& fixedDayCounter,
             const boost::shared_ptr<QuantLib::IborIndex>& index,
+            const QuantLib::Handle<QuantLib::Quote>& spread,
             bool permanent);
     };
 
