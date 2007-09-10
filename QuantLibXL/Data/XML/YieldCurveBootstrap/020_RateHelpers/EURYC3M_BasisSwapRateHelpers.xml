@@ -5,13 +5,13 @@
 	<count>13</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="143" tracking_level="1" version="0" object_id="_1">
-			<ObjectId>EURYC6M_3E6E1YS</ObjectId>
+		<px class_id="142" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>EURYC3M_1YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
-			<Quote class_id="182" tracking_level="0" version="0">
-				<variant_ class_id="183" tracking_level="0" version="0">
+			<Quote class_id="181" tracking_level="0" version="0">
+				<variant_ class_id="182" tracking_level="0" version="0">
 					<which>3</which>
-					<value>EURAB6E1YS_Quote</value>
+					<value>EUR1YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>1Y</Period>
@@ -20,24 +20,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_2">
-			<ObjectId>EURYC6M_3E6E2YS</ObjectId>
+		<px class_id_reference="142" object_id="_2">
+			<ObjectId>EURYC3M_2YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E2YS_Quote</value>
+					<value>EUR2YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>2Y</Period>
@@ -46,24 +40,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_3">
-			<ObjectId>EURYC6M_3E6E3YS</ObjectId>
+		<px class_id_reference="142" object_id="_3">
+			<ObjectId>EURYC3M_3YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E3YS_Quote</value>
+					<value>EUR3YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>3Y</Period>
@@ -72,24 +60,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_4">
-			<ObjectId>EURYC6M_3E6E4YS</ObjectId>
+		<px class_id_reference="142" object_id="_4">
+			<ObjectId>EURYC3M_4YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E4YS_Quote</value>
+					<value>EUR4YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>4Y</Period>
@@ -98,24 +80,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_5">
-			<ObjectId>EURYC6M_3E6E5YS</ObjectId>
+		<px class_id_reference="142" object_id="_5">
+			<ObjectId>EURYC3M_5YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E5YS_Quote</value>
+					<value>EUR5YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>5Y</Period>
@@ -124,24 +100,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_6">
-			<ObjectId>EURYC6M_3E6E6YS</ObjectId>
+		<px class_id_reference="142" object_id="_6">
+			<ObjectId>EURYC3M_6YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E6YS_Quote</value>
+					<value>EUR6YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>6Y</Period>
@@ -150,24 +120,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_7">
-			<ObjectId>EURYC6M_3E6E7YS</ObjectId>
+		<px class_id_reference="142" object_id="_7">
+			<ObjectId>EURYC3M_7YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E7YS_Quote</value>
+					<value>EUR7YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>7Y</Period>
@@ -176,24 +140,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_8">
-			<ObjectId>EURYC6M_3E6E8YS</ObjectId>
+		<px class_id_reference="142" object_id="_8">
+			<ObjectId>EURYC3M_8YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E8YS_Quote</value>
+					<value>EUR8YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>8Y</Period>
@@ -202,24 +160,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_9">
-			<ObjectId>EURYC6M_3E6E9YS</ObjectId>
+		<px class_id_reference="142" object_id="_9">
+			<ObjectId>EURYC3M_9YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E9YS_Quote</value>
+					<value>EUR9YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>9Y</Period>
@@ -228,24 +180,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_10">
-			<ObjectId>EURYC6M_3E6E10YS</ObjectId>
+		<px class_id_reference="142" object_id="_10">
+			<ObjectId>EURYC3M_10YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E10YS_Quote</value>
+					<value>EUR10YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>10Y</Period>
@@ -254,24 +200,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_11">
-			<ObjectId>EURYC6M_3E6E15YS</ObjectId>
+		<px class_id_reference="142" object_id="_11">
+			<ObjectId>EURYC3M_15YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E15YS_Quote</value>
+					<value>EUR15YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>15Y</Period>
@@ -280,24 +220,18 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_12">
-			<ObjectId>EURYC6M_3E6E20YS</ObjectId>
+		<px class_id_reference="142" object_id="_12">
+			<ObjectId>EURYC3M_20YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E20YS_Quote</value>
+					<value>EUR20YBS_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>20Y</Period>
@@ -306,39 +240,27 @@
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="143" object_id="_13">
-			<ObjectId>EURYC6M_3E6E30YS</ObjectId>
+		<px class_id_reference="142" object_id="_13">
+			<ObjectId>EURYC3M_30YBS</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E30YS_Quote</value>
+					<value>EUR30YBS_Quote</value>
 				</variant_>
 			</Quote>
-			<Period>30Y</Period>
+			<Period>60Y</Period>
 			<FixingDays>2</FixingDays>
 			<Calendar>Target</Calendar>
 			<FixedLegFrequency>Annual</FixedLegFrequency>
 			<FixedLegConvention>Unadjusted</FixedLegConvention>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<Index>RH_EURYC6M_IBOR3M</Index>
-			<Spread>
-				<variant_>
-					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
-				</variant_>
-			</Spread>
+			<Index>RH_EURYC3M_IBOR3M</Index>
 			<Permanent>1</Permanent>
 		</px>
 	</item>

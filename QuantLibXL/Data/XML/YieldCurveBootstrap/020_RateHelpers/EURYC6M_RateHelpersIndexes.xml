@@ -5,7 +5,7 @@
 	<count>3</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="172" tracking_level="1" version="0" object_id="_1">
+		<px class_id="173" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>RH_EURYC6M_IBORYTS_HANDLE</ObjectId>
 			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
 			<CurrentLink></CurrentLink>
@@ -13,7 +13,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="61" tracking_level="1" version="0" object_id="_2">
+		<px class_id="62" tracking_level="1" version="0" object_id="_2">
 			<ObjectId>RH_EURYC6M_IBOR3M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>3M</Tenor>
@@ -22,7 +22,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="61" object_id="_3">
+		<px class_id_reference="62" object_id="_3">
 			<ObjectId>RH_EURYC6M_IBOR6M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>6M</Tenor>
