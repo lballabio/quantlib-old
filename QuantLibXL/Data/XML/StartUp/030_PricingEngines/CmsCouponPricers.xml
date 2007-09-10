@@ -5,7 +5,7 @@
 	<count>10</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="130" tracking_level="1" version="0" object_id="_1">
+		<px class_id="131" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EURSwaptionMeanReversion2Y_QuoteHandle</ObjectId>
 			<ClassName>qlRelinkableHandleQuote</ClassName>
 			<CurrentLink></CurrentLink>
@@ -13,7 +13,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="130" object_id="_2">
+		<px class_id_reference="131" object_id="_2">
 			<ObjectId>EURSwaptionMeanReversion5Y_QuoteHandle</ObjectId>
 			<ClassName>qlRelinkableHandleQuote</ClassName>
 			<CurrentLink></CurrentLink>
@@ -21,7 +21,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="130" object_id="_3">
+		<px class_id_reference="131" object_id="_3">
 			<ObjectId>EURSwaptionMeanReversion10Y_QuoteHandle</ObjectId>
 			<ClassName>qlRelinkableHandleQuote</ClassName>
 			<CurrentLink></CurrentLink>
@@ -29,7 +29,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="130" object_id="_4">
+		<px class_id_reference="131" object_id="_4">
 			<ObjectId>EURSwaptionMeanReversion20Y_QuoteHandle</ObjectId>
 			<ClassName>qlRelinkableHandleQuote</ClassName>
 			<CurrentLink></CurrentLink>
@@ -37,7 +37,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="130" object_id="_5">
+		<px class_id_reference="131" object_id="_5">
 			<ObjectId>EURSwaptionMeanReversion30Y_QuoteHandle</ObjectId>
 			<ClassName>qlRelinkableHandleQuote</ClassName>
 			<CurrentLink></CurrentLink>
@@ -51,8 +51,8 @@
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
 			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
-			<MeanReversion class_id="182" tracking_level="0" version="0">
-				<variant_ class_id="183" tracking_level="0" version="0">
+			<MeanReversion class_id="183" tracking_level="0" version="0">
+				<variant_ class_id="184" tracking_level="0" version="0">
 					<which>3</which>
 					<value>EURSwaptionMeanReversion2Y_QuoteHandle</value>
 				</variant_>

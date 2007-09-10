@@ -5,11 +5,11 @@
 	<count>120</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="142" tracking_level="1" version="0" object_id="_1">
+		<px class_id="143" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EURYC3M_FUTU7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
-			<PriceQuote class_id="182" tracking_level="0" version="0">
-				<variant_ class_id="183" tracking_level="0" version="0">
+			<PriceQuote class_id="183" tracking_level="0" version="0">
+				<variant_ class_id="184" tracking_level="0" version="0">
 					<which>3</which>
 					<value>EURFUTU7_Quote</value>
 				</variant_>
@@ -29,7 +29,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_2">
+		<px class_id_reference="143" object_id="_2">
 			<ObjectId>EURYC3M_FUTV7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -53,7 +53,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_3">
+		<px class_id_reference="143" object_id="_3">
 			<ObjectId>EURYC3M_FUTX7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -77,7 +77,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_4">
+		<px class_id_reference="143" object_id="_4">
 			<ObjectId>EURYC3M_FUTZ7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -101,7 +101,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_5">
+		<px class_id_reference="143" object_id="_5">
 			<ObjectId>EURYC3M_FUTF8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -125,7 +125,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_6">
+		<px class_id_reference="143" object_id="_6">
 			<ObjectId>EURYC3M_FUTG8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -149,7 +149,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_7">
+		<px class_id_reference="143" object_id="_7">
 			<ObjectId>EURYC3M_FUTH8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -173,7 +173,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_8">
+		<px class_id_reference="143" object_id="_8">
 			<ObjectId>EURYC3M_FUTJ8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -197,7 +197,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_9">
+		<px class_id_reference="143" object_id="_9">
 			<ObjectId>EURYC3M_FUTK8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -221,7 +221,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_10">
+		<px class_id_reference="143" object_id="_10">
 			<ObjectId>EURYC3M_FUTM8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -245,7 +245,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_11">
+		<px class_id_reference="143" object_id="_11">
 			<ObjectId>EURYC3M_FUTN8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -269,7 +269,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_12">
+		<px class_id_reference="143" object_id="_12">
 			<ObjectId>EURYC3M_FUTQ8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -293,7 +293,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_13">
+		<px class_id_reference="143" object_id="_13">
 			<ObjectId>EURYC3M_FUTU8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -317,7 +317,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_14">
+		<px class_id_reference="143" object_id="_14">
 			<ObjectId>EURYC3M_FUTV8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -341,7 +341,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_15">
+		<px class_id_reference="143" object_id="_15">
 			<ObjectId>EURYC3M_FUTX8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -365,7 +365,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_16">
+		<px class_id_reference="143" object_id="_16">
 			<ObjectId>EURYC3M_FUTZ8</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -389,7 +389,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_17">
+		<px class_id_reference="143" object_id="_17">
 			<ObjectId>EURYC3M_FUTF9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -413,7 +413,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_18">
+		<px class_id_reference="143" object_id="_18">
 			<ObjectId>EURYC3M_FUTG9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -437,7 +437,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_19">
+		<px class_id_reference="143" object_id="_19">
 			<ObjectId>EURYC3M_FUTH9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -461,7 +461,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_20">
+		<px class_id_reference="143" object_id="_20">
 			<ObjectId>EURYC3M_FUTJ9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -485,7 +485,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_21">
+		<px class_id_reference="143" object_id="_21">
 			<ObjectId>EURYC3M_FUTK9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -509,7 +509,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_22">
+		<px class_id_reference="143" object_id="_22">
 			<ObjectId>EURYC3M_FUTM9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -533,7 +533,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_23">
+		<px class_id_reference="143" object_id="_23">
 			<ObjectId>EURYC3M_FUTN9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -557,7 +557,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_24">
+		<px class_id_reference="143" object_id="_24">
 			<ObjectId>EURYC3M_FUTQ9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -581,7 +581,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_25">
+		<px class_id_reference="143" object_id="_25">
 			<ObjectId>EURYC3M_FUTU9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -605,7 +605,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_26">
+		<px class_id_reference="143" object_id="_26">
 			<ObjectId>EURYC3M_FUTV9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -629,7 +629,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_27">
+		<px class_id_reference="143" object_id="_27">
 			<ObjectId>EURYC3M_FUTX9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -653,7 +653,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_28">
+		<px class_id_reference="143" object_id="_28">
 			<ObjectId>EURYC3M_FUTZ9</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -677,7 +677,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_29">
+		<px class_id_reference="143" object_id="_29">
 			<ObjectId>EURYC3M_FUTF0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -701,7 +701,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_30">
+		<px class_id_reference="143" object_id="_30">
 			<ObjectId>EURYC3M_FUTG0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -725,7 +725,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_31">
+		<px class_id_reference="143" object_id="_31">
 			<ObjectId>EURYC3M_FUTH0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -749,7 +749,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_32">
+		<px class_id_reference="143" object_id="_32">
 			<ObjectId>EURYC3M_FUTJ0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -773,7 +773,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_33">
+		<px class_id_reference="143" object_id="_33">
 			<ObjectId>EURYC3M_FUTK0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -797,7 +797,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_34">
+		<px class_id_reference="143" object_id="_34">
 			<ObjectId>EURYC3M_FUTM0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -821,7 +821,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_35">
+		<px class_id_reference="143" object_id="_35">
 			<ObjectId>EURYC3M_FUTN0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -845,7 +845,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_36">
+		<px class_id_reference="143" object_id="_36">
 			<ObjectId>EURYC3M_FUTQ0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -869,7 +869,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_37">
+		<px class_id_reference="143" object_id="_37">
 			<ObjectId>EURYC3M_FUTU0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -893,7 +893,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_38">
+		<px class_id_reference="143" object_id="_38">
 			<ObjectId>EURYC3M_FUTV0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -917,7 +917,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_39">
+		<px class_id_reference="143" object_id="_39">
 			<ObjectId>EURYC3M_FUTX0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -941,7 +941,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_40">
+		<px class_id_reference="143" object_id="_40">
 			<ObjectId>EURYC3M_FUTZ0</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -965,7 +965,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_41">
+		<px class_id_reference="143" object_id="_41">
 			<ObjectId>EURYC3M_FUTF1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -989,7 +989,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_42">
+		<px class_id_reference="143" object_id="_42">
 			<ObjectId>EURYC3M_FUTG1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1013,7 +1013,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_43">
+		<px class_id_reference="143" object_id="_43">
 			<ObjectId>EURYC3M_FUTH1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1037,7 +1037,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_44">
+		<px class_id_reference="143" object_id="_44">
 			<ObjectId>EURYC3M_FUTJ1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1061,7 +1061,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_45">
+		<px class_id_reference="143" object_id="_45">
 			<ObjectId>EURYC3M_FUTK1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1085,7 +1085,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_46">
+		<px class_id_reference="143" object_id="_46">
 			<ObjectId>EURYC3M_FUTM1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1109,7 +1109,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_47">
+		<px class_id_reference="143" object_id="_47">
 			<ObjectId>EURYC3M_FUTN1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1133,7 +1133,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_48">
+		<px class_id_reference="143" object_id="_48">
 			<ObjectId>EURYC3M_FUTQ1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1157,7 +1157,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_49">
+		<px class_id_reference="143" object_id="_49">
 			<ObjectId>EURYC3M_FUTU1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1181,7 +1181,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_50">
+		<px class_id_reference="143" object_id="_50">
 			<ObjectId>EURYC3M_FUTV1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1205,7 +1205,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_51">
+		<px class_id_reference="143" object_id="_51">
 			<ObjectId>EURYC3M_FUTX1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1229,7 +1229,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_52">
+		<px class_id_reference="143" object_id="_52">
 			<ObjectId>EURYC3M_FUTZ1</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1253,7 +1253,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_53">
+		<px class_id_reference="143" object_id="_53">
 			<ObjectId>EURYC3M_FUTF2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1277,7 +1277,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_54">
+		<px class_id_reference="143" object_id="_54">
 			<ObjectId>EURYC3M_FUTG2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1301,7 +1301,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_55">
+		<px class_id_reference="143" object_id="_55">
 			<ObjectId>EURYC3M_FUTH2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1325,7 +1325,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_56">
+		<px class_id_reference="143" object_id="_56">
 			<ObjectId>EURYC3M_FUTJ2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1349,7 +1349,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_57">
+		<px class_id_reference="143" object_id="_57">
 			<ObjectId>EURYC3M_FUTK2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1373,7 +1373,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_58">
+		<px class_id_reference="143" object_id="_58">
 			<ObjectId>EURYC3M_FUTM2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1397,7 +1397,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_59">
+		<px class_id_reference="143" object_id="_59">
 			<ObjectId>EURYC3M_FUTN2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1421,7 +1421,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_60">
+		<px class_id_reference="143" object_id="_60">
 			<ObjectId>EURYC3M_FUTQ2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1445,7 +1445,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_61">
+		<px class_id_reference="143" object_id="_61">
 			<ObjectId>EURYC3M_FUTU2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1469,7 +1469,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_62">
+		<px class_id_reference="143" object_id="_62">
 			<ObjectId>EURYC3M_FUTV2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1493,7 +1493,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_63">
+		<px class_id_reference="143" object_id="_63">
 			<ObjectId>EURYC3M_FUTX2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1517,7 +1517,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_64">
+		<px class_id_reference="143" object_id="_64">
 			<ObjectId>EURYC3M_FUTZ2</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1541,7 +1541,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_65">
+		<px class_id_reference="143" object_id="_65">
 			<ObjectId>EURYC3M_FUTF3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1565,7 +1565,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_66">
+		<px class_id_reference="143" object_id="_66">
 			<ObjectId>EURYC3M_FUTG3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1589,7 +1589,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_67">
+		<px class_id_reference="143" object_id="_67">
 			<ObjectId>EURYC3M_FUTH3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1613,7 +1613,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_68">
+		<px class_id_reference="143" object_id="_68">
 			<ObjectId>EURYC3M_FUTJ3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1637,7 +1637,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_69">
+		<px class_id_reference="143" object_id="_69">
 			<ObjectId>EURYC3M_FUTK3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1661,7 +1661,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_70">
+		<px class_id_reference="143" object_id="_70">
 			<ObjectId>EURYC3M_FUTM3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1685,7 +1685,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_71">
+		<px class_id_reference="143" object_id="_71">
 			<ObjectId>EURYC3M_FUTN3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1709,7 +1709,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_72">
+		<px class_id_reference="143" object_id="_72">
 			<ObjectId>EURYC3M_FUTQ3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1733,7 +1733,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_73">
+		<px class_id_reference="143" object_id="_73">
 			<ObjectId>EURYC3M_FUTU3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1757,7 +1757,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_74">
+		<px class_id_reference="143" object_id="_74">
 			<ObjectId>EURYC3M_FUTV3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1781,7 +1781,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_75">
+		<px class_id_reference="143" object_id="_75">
 			<ObjectId>EURYC3M_FUTX3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1805,7 +1805,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_76">
+		<px class_id_reference="143" object_id="_76">
 			<ObjectId>EURYC3M_FUTZ3</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1829,7 +1829,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_77">
+		<px class_id_reference="143" object_id="_77">
 			<ObjectId>EURYC3M_FUTF4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1853,7 +1853,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_78">
+		<px class_id_reference="143" object_id="_78">
 			<ObjectId>EURYC3M_FUTG4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1877,7 +1877,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_79">
+		<px class_id_reference="143" object_id="_79">
 			<ObjectId>EURYC3M_FUTH4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1901,7 +1901,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_80">
+		<px class_id_reference="143" object_id="_80">
 			<ObjectId>EURYC3M_FUTJ4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1925,7 +1925,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_81">
+		<px class_id_reference="143" object_id="_81">
 			<ObjectId>EURYC3M_FUTK4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1949,7 +1949,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_82">
+		<px class_id_reference="143" object_id="_82">
 			<ObjectId>EURYC3M_FUTM4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1973,7 +1973,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_83">
+		<px class_id_reference="143" object_id="_83">
 			<ObjectId>EURYC3M_FUTN4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -1997,7 +1997,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_84">
+		<px class_id_reference="143" object_id="_84">
 			<ObjectId>EURYC3M_FUTQ4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2021,7 +2021,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_85">
+		<px class_id_reference="143" object_id="_85">
 			<ObjectId>EURYC3M_FUTU4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2045,7 +2045,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_86">
+		<px class_id_reference="143" object_id="_86">
 			<ObjectId>EURYC3M_FUTV4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2069,7 +2069,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_87">
+		<px class_id_reference="143" object_id="_87">
 			<ObjectId>EURYC3M_FUTX4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2093,7 +2093,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_88">
+		<px class_id_reference="143" object_id="_88">
 			<ObjectId>EURYC3M_FUTZ4</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2117,7 +2117,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_89">
+		<px class_id_reference="143" object_id="_89">
 			<ObjectId>EURYC3M_FUTF5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2141,7 +2141,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_90">
+		<px class_id_reference="143" object_id="_90">
 			<ObjectId>EURYC3M_FUTG5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2165,7 +2165,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_91">
+		<px class_id_reference="143" object_id="_91">
 			<ObjectId>EURYC3M_FUTH5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2189,7 +2189,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_92">
+		<px class_id_reference="143" object_id="_92">
 			<ObjectId>EURYC3M_FUTJ5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2213,7 +2213,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_93">
+		<px class_id_reference="143" object_id="_93">
 			<ObjectId>EURYC3M_FUTK5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2237,7 +2237,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_94">
+		<px class_id_reference="143" object_id="_94">
 			<ObjectId>EURYC3M_FUTM5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2261,7 +2261,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_95">
+		<px class_id_reference="143" object_id="_95">
 			<ObjectId>EURYC3M_FUTN5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2285,7 +2285,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_96">
+		<px class_id_reference="143" object_id="_96">
 			<ObjectId>EURYC3M_FUTQ5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2309,7 +2309,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_97">
+		<px class_id_reference="143" object_id="_97">
 			<ObjectId>EURYC3M_FUTU5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2333,7 +2333,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_98">
+		<px class_id_reference="143" object_id="_98">
 			<ObjectId>EURYC3M_FUTV5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2357,7 +2357,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_99">
+		<px class_id_reference="143" object_id="_99">
 			<ObjectId>EURYC3M_FUTX5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2381,7 +2381,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_100">
+		<px class_id_reference="143" object_id="_100">
 			<ObjectId>EURYC3M_FUTZ5</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2405,7 +2405,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_101">
+		<px class_id_reference="143" object_id="_101">
 			<ObjectId>EURYC3M_FUTF6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2429,7 +2429,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_102">
+		<px class_id_reference="143" object_id="_102">
 			<ObjectId>EURYC3M_FUTG6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2453,7 +2453,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_103">
+		<px class_id_reference="143" object_id="_103">
 			<ObjectId>EURYC3M_FUTH6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2477,7 +2477,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_104">
+		<px class_id_reference="143" object_id="_104">
 			<ObjectId>EURYC3M_FUTJ6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2501,7 +2501,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_105">
+		<px class_id_reference="143" object_id="_105">
 			<ObjectId>EURYC3M_FUTK6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2525,7 +2525,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_106">
+		<px class_id_reference="143" object_id="_106">
 			<ObjectId>EURYC3M_FUTM6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2549,7 +2549,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_107">
+		<px class_id_reference="143" object_id="_107">
 			<ObjectId>EURYC3M_FUTN6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2573,7 +2573,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_108">
+		<px class_id_reference="143" object_id="_108">
 			<ObjectId>EURYC3M_FUTQ6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2597,7 +2597,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_109">
+		<px class_id_reference="143" object_id="_109">
 			<ObjectId>EURYC3M_FUTU6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2621,7 +2621,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_110">
+		<px class_id_reference="143" object_id="_110">
 			<ObjectId>EURYC3M_FUTV6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2645,7 +2645,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_111">
+		<px class_id_reference="143" object_id="_111">
 			<ObjectId>EURYC3M_FUTX6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2669,7 +2669,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_112">
+		<px class_id_reference="143" object_id="_112">
 			<ObjectId>EURYC3M_FUTZ6</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2693,7 +2693,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_113">
+		<px class_id_reference="143" object_id="_113">
 			<ObjectId>EURYC3M_FUTF7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2717,7 +2717,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_114">
+		<px class_id_reference="143" object_id="_114">
 			<ObjectId>EURYC3M_FUTG7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2741,7 +2741,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_115">
+		<px class_id_reference="143" object_id="_115">
 			<ObjectId>EURYC3M_FUTH7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2765,7 +2765,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_116">
+		<px class_id_reference="143" object_id="_116">
 			<ObjectId>EURYC3M_FUTJ7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2789,7 +2789,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_117">
+		<px class_id_reference="143" object_id="_117">
 			<ObjectId>EURYC3M_FUTK7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2813,7 +2813,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_118">
+		<px class_id_reference="143" object_id="_118">
 			<ObjectId>EURYC3M_FUTM7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2837,7 +2837,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_119">
+		<px class_id_reference="143" object_id="_119">
 			<ObjectId>EURYC3M_FUTN7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
@@ -2861,7 +2861,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="142" object_id="_120">
+		<px class_id_reference="143" object_id="_120">
 			<ObjectId>EURYC3M_FUTQ7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
 			<PriceQuote>
