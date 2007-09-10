@@ -20,6 +20,7 @@
 #define qla_capletvolstructure_hpp
 
 #include <qlo/termstructures.hpp>
+#include <ql/termstructures/volatilities/interestrate/caplet/capstripper2.hpp>
 
 namespace QuantLib {
     class CapletVolatilityStructure;
@@ -142,6 +143,20 @@ namespace QuantLibAddin {
           const QuantLib::DayCounter& dc,
           bool permanent);
     };
+
+    OH_LIB_CLASS(dummyClass, QuantLib::CapsStripper2)
+
+    class CapsStripper2 : public dummyClass {
+      public:
+        CapsStripper2(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                      const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
+                      const boost::shared_ptr<QuantLib::IborIndex>& index,
+                      QuantLib::Period timeStep,
+                      bool permanent);
+        const QuantLib::Matrix& forwardCapVols() const;
+    };
+    
+
 }
 
 #endif

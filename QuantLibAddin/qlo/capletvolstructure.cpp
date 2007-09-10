@@ -219,5 +219,15 @@ namespace QuantLibAddin {
                                            dc));
     }
 
+    CapsStripper2::CapsStripper2(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                 const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
+                                 const boost::shared_ptr<QuantLib::IborIndex>& index,
+                                 QuantLib::Period timeStep,
+                                 bool permanent) : dummyClass(properties, permanent) {
+        libraryObject_ = boost::shared_ptr<QuantLib::CapsStripper2>(
+            new QuantLib::CapsStripper2(surface,
+                                        index,
+                                        timeStep));
+    }
 }
 
