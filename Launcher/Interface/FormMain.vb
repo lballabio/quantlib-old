@@ -704,15 +704,6 @@ Public Class FormMain
         Call setFeedUse()
     End Sub
 
-    Private Sub cbReuters_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbReuters.CheckedChanged
-        config_.ReutersSelected = cbReuters.Checked
-    End Sub
-
-    Private Sub txtReuters_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtReuters.TextChanged
-        config_.ReutersPath = txtReuters.Text
-        setReutersPathEnabled()
-    End Sub
-
     ''''''''''''''''''''''''''''''''''''''''''
     ' Events - Paths - Buttons
     ''''''''''''''''''''''''''''''''''''''''''
@@ -1052,6 +1043,24 @@ Public Class FormMain
     ' Events - Feeds
     ''''''''''''''''''''''''''''''''''''''''''
 
+    Private Sub cbReuters_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbReuters.CheckedChanged
+        config_.ReutersSelected = cbReuters.Checked
+    End Sub
+
+    Private Sub cbBloomberg_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbBloomberg.CheckedChanged
+        config_.BloombergSelected = cbBloomberg.Checked
+    End Sub
+
+    Private Sub txtBloomberg_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtBloomberg.TextChanged
+        config_.BloombergPath = txtBloomberg.Text
+        setBloombergPathEnabled()
+    End Sub
+
+    Private Sub txtReuters_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtReuters.TextChanged
+        config_.ReutersPath = txtReuters.Text
+        setReutersPathEnabled()
+    End Sub
+
     Private Sub btnReuters_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReuters.Click
 
         Try
@@ -1073,15 +1082,6 @@ Public Class FormMain
 
         End Try
 
-    End Sub
-
-    Private Sub cbBloomberg_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbBloomberg.CheckedChanged
-        config_.BloombergSelected = cbBloomberg.Checked
-    End Sub
-
-    Private Sub txtBloomberg_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtBloomberg.TextChanged
-        config_.BloombergPath = txtBloomberg.Text
-        setBloombergPathEnabled()
     End Sub
 
     Private Sub btnBloomberg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBloomberg.Click

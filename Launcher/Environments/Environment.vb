@@ -291,7 +291,7 @@ Namespace QuantLibXL
         Public Sub launch(ByVal feedAddins() As String, ByVal excelPath As String, ByVal feedUse As String)
 
             ' Save the original value of addinList_
-            Dim keepAddinList As AddinList = addinList_
+            Dim oldAddinList As Collection = keepAddinList()
             feedUse_ = feedUse
 
             Try
@@ -343,12 +343,12 @@ Namespace QuantLibXL
                 Shell(commandLine, AppWinStyle.NormalFocus)
 
                 ' Restore addinList_ to its original value
-                addinList_ = keepAddinList
+                addinList_.Addins = oldAddinList
 
             Catch ex As Exception
 
                 ' Restore addinList_ to its original value before rethrowing
-                addinList_ = keepAddinList
+                addinList_.Addins = oldAddinList
                 Throw
 
             End Try
@@ -387,10 +387,18 @@ Namespace QuantLibXL
 
             If feedAddins.Length = 0 Then Exit Sub
 
-            For i As Integer = 1 To UBound(feedAddins)
+            For i As Integer = 0 To UBound(feedAddins)
                 addinList_.Addins.Add(New Addin(feedAddins(i)), Before:=1)
             Next
         End Sub
+
+        Private Function keepAddinList() As Collection
+            Dim ret As Collection = New Collection
+            For Each addin As Addin In addinList_.Addins
+                ret.Add(New Addin(addin.Path))
+            Next
+            keepAddinList = ret
+        End Function
 
     End Class
 

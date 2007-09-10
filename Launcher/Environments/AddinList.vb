@@ -63,10 +63,16 @@ Namespace QuantLibXL
             End Get
         End Property
 
-        Public ReadOnly Property Addins() As Collection
+        Public Property Addins() As Collection
+
             Get
                 Return addinList_
             End Get
+
+            Set(ByVal value As Collection)
+                addinList_ = value
+            End Set
+
         End Property
 
         ''''''''''''''''''''''''''''''''''''''''''
