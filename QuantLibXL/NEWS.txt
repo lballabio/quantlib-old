@@ -21,7 +21,7 @@ WORKBOOKS
 - Bonds
 added 2 new cms bonds: XS0318729950 and XS0211163943. The latter was validated, the former wasn't validated because 
 prospectus is missing.
-
+- properly handled Bond equivalent for all Reverse Floater bond's.
 
 
 
