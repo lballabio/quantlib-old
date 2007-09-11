@@ -144,20 +144,16 @@ namespace QuantLibAddin {
           bool permanent);
     };
 
-    OH_LIB_CLASS(dummyClass, QuantLib::CapsStripper2)
+    OH_LIB_CLASS(dummyClass, QuantLib::CapletStripper)
 
-    class CapsStripper2 : public dummyClass {
+    class CapletStripper : public dummyClass {
       public:
-        CapsStripper2(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                      const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
-                      const boost::shared_ptr<QuantLib::IborIndex>& index,
-                      QuantLib::Period timeStep,
-                      bool permanent);
-        const QuantLib::Matrix& forwardCapVols() const;
+        CapletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                       const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
+                       const boost::shared_ptr<QuantLib::IborIndex>& index,
+                       bool permanent);
     };
-    
 
 }
 
 #endif
-

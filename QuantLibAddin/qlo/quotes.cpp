@@ -136,30 +136,4 @@ namespace QuantLibAddin {
                                                  meanReversion));
     }
 
-    struct PriceToRate {
-        QuantLib::Real operator ()(QuantLib::Real price) const {
-            return 1-price*.01;
-        }
-    };
-
-    PriceToRateQuote::PriceToRateQuote(
-                               const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                               const QuantLib::Handle<QuantLib::Quote>& quote,
-                               bool permanent) : Quote(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
-            QuantLib::DerivedQuote<PriceToRate>(quote, PriceToRate()));
-    }
-
-    CapStripperQuote::CapStripperQuote(
-                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                    const boost::shared_ptr<QuantLib::CapsStripper2>& capsStripper,
-                    QuantLib::Period& tenor,
-                    QuantLib::Real strike,
-                    bool permanent): Quote(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
-            QuantLib::CapStripperQuote(capsStripper, tenor, strike));
-    }
-
 }
-

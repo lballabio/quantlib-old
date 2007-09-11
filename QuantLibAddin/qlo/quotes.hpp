@@ -100,25 +100,6 @@ namespace QuantLibAddin {
                     bool permanent);
     };
 
-     class PriceToRateQuote : public Quote {
-      public:
-        PriceToRateQuote(
-                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                    const QuantLib::Handle<QuantLib::Quote>& quote,
-                    bool permanent);
-    };
-
-      class CapStripperQuote : public Quote {
-      public:
-        CapStripperQuote(
-                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                    const boost::shared_ptr<QuantLib::CapsStripper2>& capsStripper,
-                    QuantLib::Period& tenor,
-                    QuantLib::Real strike,
-                    bool permanent);
-    };
-
 }
 
 #endif
-

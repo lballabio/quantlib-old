@@ -154,25 +154,6 @@ namespace QuantLibAddin {
                                                             spread));
     }
 
-    //    GenericCapletVolStructure::GenericCapletVolStructure(
-    //    std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& capletVols,
-    //    const std::vector<QuantLib::Rate>& strikes,
-    //    const std::vector<QuantLib::Time>& tenors)
-    //{
-    //    std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(capletVols.size());
-    //    QuantLib::Size nbColumns  = capletVols.front().size();
-    //    for(QuantLib::Size i = 0; i<temp.size(); ++i){
-    //        temp[i].resize(nbColumns);
-    //        for (QuantLib::Size j = 0; j<nbColumns; ++j)
-    //            temp[i][j]=  capletVols[i][j];
-    //    } 
-    //    libraryObject_ =
-    //        boost::shared_ptr<QuantLib::GenericCapletVolStructure>(new
-    //            QuantLib::GenericCapletVolStructure(temp, 
-    //                                                strikes,
-    //                                                tenors));
-    //}
-
     CapVolatilityVector::CapVolatilityVector(
           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
           QuantLib::Natural settlementDays,
@@ -219,15 +200,12 @@ namespace QuantLibAddin {
                                            dc));
     }
 
-    CapsStripper2::CapsStripper2(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                 const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
-                                 const boost::shared_ptr<QuantLib::IborIndex>& index,
-                                 QuantLib::Period timeStep,
-                                 bool permanent) : dummyClass(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::CapsStripper2>(
-            new QuantLib::CapsStripper2(surface,
-                                        index,
-                                        timeStep));
+    CapletStripper::CapletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                   const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
+                                   const boost::shared_ptr<QuantLib::IborIndex>& index,
+                                   bool permanent) : dummyClass(properties, permanent) {
+        libraryObject_ = boost::shared_ptr<QuantLib::CapletStripper>(new
+            QuantLib::CapletStripper(surface, index));
     }
-}
 
+}
