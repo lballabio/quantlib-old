@@ -61,12 +61,13 @@ class CapVolatilityVectorPtr
   public:
     %extend {
        CapVolatilityVectorPtr(const Date& referenceDate,
-                               const std::vector<Period>& lengths,
-                               const std::vector<Volatility>& vols,
-                               const DayCounter& dayCounter) {
+                              const Calendar& calendar,
+                              const std::vector<Period>& lengths,
+                              const std::vector<Volatility>& vols,
+                              const DayCounter& dayCounter) {
             return new CapVolatilityVectorPtr(
-                new CapVolatilityVector(referenceDate,lengths,
-                                        vols,dayCounter));
+                new CapVolatilityVector(referenceDate,calendar,
+                                        lengths,vols,dayCounter));
         }
         CapVolatilityVectorPtr(Integer settlementDays,
                                const Calendar& calendar,
