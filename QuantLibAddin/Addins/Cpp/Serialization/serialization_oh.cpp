@@ -22,6 +22,7 @@
 #endif
 
 #include <Addins/Cpp/Serialization/serialization_oh.hpp>
+#include <oh/ValueObjects/vo_group.hpp>
 #include <oh/ValueObjects/vo_range.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/serialization/variant.hpp>

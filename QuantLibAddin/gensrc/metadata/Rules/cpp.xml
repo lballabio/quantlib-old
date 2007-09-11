@@ -3,7 +3,7 @@
 
   <RuleGroups>
 
-    <RuleGroup name='functionDeclaration' indent='3' delimiter=',&#10;' checkParameterIgnore='true'>
+    <RuleGroup name='functionDeclaration' indent='3' delimiter=',&#10;'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sconst ObjectHandler::Variant &amp;%(name)s</Rule>

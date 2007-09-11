@@ -27,7 +27,6 @@
 #include <string>
 #include <vector>
 #include <boost/any.hpp>
-#include <string>
 #include <boost/algorithm/string/case_conv.hpp>
 
 namespace ObjectHandler { namespace ValueObjects {

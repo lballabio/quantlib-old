@@ -81,6 +81,8 @@ class ExcelAddin(addin.Addin):
         std::string ObjectIdStrip = ObjectHandler::ObjectXL::getStub(ObjectId);%s\n'''
 
     objectIdSuffix_ = 'Strip'
+    repositoryClass_ = 'RepositoryXL'
+    overwriteVariable_ = '*Overwrite'
 
     #############################################
     # public interface

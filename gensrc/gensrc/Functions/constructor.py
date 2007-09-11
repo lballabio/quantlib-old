@@ -50,10 +50,12 @@ class Constructor(function.Function):
         return Constructor.funcCtorBuffer_ % {
             'functionName' : self.name_,
             'idStrip' : addin.idStrip(self.parameterList_),
+            'idSuffix' : addin.objectIdSuffix(),
             'libraryFunction' : self.libraryFunction_,
             'libraryParameters' : self.parameterList_.generate(addin.libraryCall()),
             'namespaceObjects' : environment.config().namespaceObjects(),
-            'idSuffix' : addin.objectIdSuffix(),
+            'overwriteVariable' : addin.overwriteVariable(),
+            'repositoryClass' : addin.repositoryClass(),
             'voParameters' : self.parameterList_.generate(addin.voCall()) }
 
     def libraryFunction(self):

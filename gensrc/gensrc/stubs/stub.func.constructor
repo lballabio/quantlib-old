@@ -14,7 +14,7 @@
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::RepositoryXL::instance().storeObject(ObjectId%(idSuffix)s, object, *Overwrite);
+            ObjectHandler::%(repositoryClass)s::instance().storeObject(ObjectId%(idSuffix)s, object, %(overwriteVariable)s);
 
         // Convert and return the return value
 

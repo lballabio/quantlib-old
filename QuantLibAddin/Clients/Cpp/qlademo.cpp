@@ -31,11 +31,11 @@ int main() {
 
         initializeAddin();
 
-        ohSetLogFile("qlademo.log", 4L);
-        ohSetConsole(1, 4L);
-        ohLogMessage("Begin example program.", 4L);
-        ohLogMessage(qlAddinVersion(), 4L);
-        ohLogMessage(ohVersion(), 4L);
+        ohSetLogFile("qlademo.log", 4L, ObjectHandler::Variant());
+        ohSetConsole(1, 4L, ObjectHandler::Variant());
+        ohLogMessage("Begin example program.", 4L, ObjectHandler::Variant());
+        ohLogMessage(qlAddinVersion(ObjectHandler::Variant()), 4L, ObjectHandler::Variant());
+        ohLogMessage(ohVersion(ObjectHandler::Variant()), 4L, ObjectHandler::Variant());
 
         std::string daycountConvention = "Actual/365 (Fixed)";
         std::string payoffType = "Vanilla";
@@ -51,13 +51,16 @@ int main() {
         long settlementDate = 35932;        // 17 May 1998
         long exerciseDate = 36297;          // 17 May 1999
 
-        qlSettingsSetEvaluationDate(evaluationDate);
+        qlSettingsSetEvaluationDate(evaluationDate, ObjectHandler::Variant());
 
         std::string idBlackConstantVol = qlBlackConstantVol(
             "my_blackconstantvol",
             settlementDate,
             volatility,
-            daycountConvention);
+            daycountConvention,
+            ObjectHandler::Variant(),
+            ObjectHandler::Variant(),
+            false);
 
         std::string idGeneralizedBlackScholesProcess = qlGeneralizedBlackScholesProcess(
             "my_blackscholes",
@@ -66,35 +69,50 @@ int main() {
             daycountConvention,
             settlementDate,
             riskFreeRate,
-            dividendYield);
+            dividendYield,
+            ObjectHandler::Variant(),
+            ObjectHandler::Variant(),
+            false);
 
         std::string idStrikedTypePayoff = qlStrikedTypePayoff(
             "my_payoff",
             payoffType,
             optionType,
             strike,
-            strike);
+            strike,
+            ObjectHandler::Variant(),
+            ObjectHandler::Variant(),
+            false);
 
         std::string idExercise = qlEuropeanExercise(
             "my_exercise",
-            exerciseDate);
+            exerciseDate,
+            ObjectHandler::Variant(),
+            ObjectHandler::Variant(),
+            false);
 
         std::string idPricingEngine = qlPricingEngine(
             "my_engine",
-            engineType);
+            engineType,
+            ObjectHandler::Variant(),
+            ObjectHandler::Variant(),
+            false);
 
         std::string idVanillaOption = qlVanillaOption(
             "my_option",
             idGeneralizedBlackScholesProcess,
             idStrikedTypePayoff,
             idExercise,
-            idPricingEngine);
+            idPricingEngine,
+            ObjectHandler::Variant(),
+            ObjectHandler::Variant(),
+            false);
 
         std::ostringstream s;
-        s << "option NPV() = " << qlInstrumentNPV(idVanillaOption);
-        ohLogMessage(s.str(), 4L);
+        s << "option NPV() = " << qlInstrumentNPV(idVanillaOption,ObjectHandler::Variant());
+        ohLogMessage(s.str(), 4L, ObjectHandler::Variant());
 
-        ohLogObject(idVanillaOption);
+        ohLogObject(idVanillaOption, ObjectHandler::Variant());
 
         std::vector<std::string> idList;
         idList.push_back(idBlackConstantVol);
@@ -103,18 +121,18 @@ int main() {
         idList.push_back(idExercise);
         idList.push_back(idPricingEngine);
         idList.push_back(idVanillaOption);
-        ohObjectSave(idList, xmlFileName);
+        ohObjectSave(idList, xmlFileName, ObjectHandler::Variant(), ObjectHandler::Variant());
 
-        ohLogMessage("End example program.", 4L);
+        ohLogMessage("End example program.", 4L, ObjectHandler::Variant());
 
         return 0;
     } catch (const std::exception &e) {
         std::ostringstream s;
         s << "Error: " << e.what();
-        ohLogMessage(s.str(), 1L);
+        ohLogMessage(s.str(), 1L, ObjectHandler::Variant());
         return 1;
     } catch (...) {
-        ohLogMessage("unknown error", 1L);
+        ohLogMessage("unknown error", 1L, ObjectHandler::Variant());
         return 1;
     }
 

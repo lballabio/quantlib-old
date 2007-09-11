@@ -37,6 +37,10 @@ class Addin(serializable.Serializable):
     #############################################
 
     objectIdSuffix_ = ''
+    # The next two values are required for autogeneration of constructors
+    # and may be overridden for certain platforms
+    repositoryClass_ = 'Repository'
+    overwriteVariable_ = 'Overwrite'
 
     #############################################
     # public interface
@@ -89,6 +93,12 @@ class Addin(serializable.Serializable):
 
     def idStrip(self, parameterList):
         return ""
+
+    def repositoryClass(self):
+        return self.repositoryClass_
+
+    def overwriteVariable(self):
+        return self.overwriteVariable_
 
     #############################################
     # serializer interface
