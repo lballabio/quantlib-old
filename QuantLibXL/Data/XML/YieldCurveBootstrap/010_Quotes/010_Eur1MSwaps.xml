@@ -2,11 +2,11 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>14</count>
+	<count>11</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="130" tracking_level="1" version="0" object_id="_1">
-			<ObjectId>EUROND_Quote</ObjectId>
+			<ObjectId>EUR2X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value class_id="181" tracking_level="0" version="0">
 				<variant_ class_id="182" tracking_level="0" version="0">
@@ -22,7 +22,7 @@
 	</item>
 	<item>
 		<px class_id_reference="130" object_id="_2">
-			<ObjectId>EURTND_Quote</ObjectId>
+			<ObjectId>EUR3X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -38,7 +38,7 @@
 	</item>
 	<item>
 		<px class_id_reference="130" object_id="_3">
-			<ObjectId>EURSND_Quote</ObjectId>
+			<ObjectId>EUR4X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -54,7 +54,7 @@
 	</item>
 	<item>
 		<px class_id_reference="130" object_id="_4">
-			<ObjectId>EURSWD_Quote</ObjectId>
+			<ObjectId>EUR5X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -70,7 +70,7 @@
 	</item>
 	<item>
 		<px class_id_reference="130" object_id="_5">
-			<ObjectId>EUR2WD_Quote</ObjectId>
+			<ObjectId>EUR6X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -86,7 +86,7 @@
 	</item>
 	<item>
 		<px class_id_reference="130" object_id="_6">
-			<ObjectId>EUR3WD_Quote</ObjectId>
+			<ObjectId>EUR7X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -102,7 +102,7 @@
 	</item>
 	<item>
 		<px class_id_reference="130" object_id="_7">
-			<ObjectId>EUR1MD_Quote</ObjectId>
+			<ObjectId>EUR8X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -118,7 +118,7 @@
 	</item>
 	<item>
 		<px class_id_reference="130" object_id="_8">
-			<ObjectId>EUR2MD_Quote</ObjectId>
+			<ObjectId>EUR9X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -134,7 +134,7 @@
 	</item>
 	<item>
 		<px class_id_reference="130" object_id="_9">
-			<ObjectId>EUR3MD_Quote</ObjectId>
+			<ObjectId>EUR10X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -150,7 +150,7 @@
 	</item>
 	<item>
 		<px class_id_reference="130" object_id="_10">
-			<ObjectId>EUR4MD_Quote</ObjectId>
+			<ObjectId>EUR11X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -166,55 +166,7 @@
 	</item>
 	<item>
 		<px class_id_reference="130" object_id="_11">
-			<ObjectId>EUR5MD_Quote</ObjectId>
-			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>4</which>
-					<value>
-						<type_>5</type_>
-					</value>
-				</variant_>
-			</Value>
-			<TickValue>0.0001</TickValue>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="130" object_id="_12">
-			<ObjectId>EUR6MD_Quote</ObjectId>
-			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>4</which>
-					<value>
-						<type_>5</type_>
-					</value>
-				</variant_>
-			</Value>
-			<TickValue>0.0001</TickValue>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="130" object_id="_13">
-			<ObjectId>EUR9MD_Quote</ObjectId>
-			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>4</which>
-					<value>
-						<type_>5</type_>
-					</value>
-				</variant_>
-			</Value>
-			<TickValue>0.0001</TickValue>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="130" object_id="_14">
-			<ObjectId>EUR1YD_Quote</ObjectId>
+			<ObjectId>EUR12X1S_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>

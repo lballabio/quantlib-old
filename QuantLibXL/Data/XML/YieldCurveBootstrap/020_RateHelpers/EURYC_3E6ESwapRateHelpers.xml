@@ -5,13 +5,13 @@
 	<count>13</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="144" tracking_level="1" version="0" object_id="_1">
-			<ObjectId>EURYC_3E6E1YS</ObjectId>
+		<px class_id="142" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>EURYC_AB3EBASIS1Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
-			<Quote class_id="183" tracking_level="0" version="0">
-				<variant_ class_id="184" tracking_level="0" version="0">
+			<Quote class_id="181" tracking_level="0" version="0">
+				<variant_ class_id="182" tracking_level="0" version="0">
 					<which>3</which>
-					<value>EURAB6E1YS_Quote</value>
+					<value>EURAB6E1Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>1Y</Period>
@@ -24,20 +24,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_2">
-			<ObjectId>EURYC_3E6E2YS</ObjectId>
+		<px class_id_reference="142" object_id="_2">
+			<ObjectId>EURYC_AB3EBASIS2Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E2YS_Quote</value>
+					<value>EURAB6E2Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>2Y</Period>
@@ -50,20 +50,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_3">
-			<ObjectId>EURYC_3E6E3YS</ObjectId>
+		<px class_id_reference="142" object_id="_3">
+			<ObjectId>EURYC_AB3EBASIS3Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E3YS_Quote</value>
+					<value>EURAB6E3Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>3Y</Period>
@@ -76,20 +76,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_4">
-			<ObjectId>EURYC_3E6E4YS</ObjectId>
+		<px class_id_reference="142" object_id="_4">
+			<ObjectId>EURYC_AB3EBASIS4Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E4YS_Quote</value>
+					<value>EURAB6E4Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>4Y</Period>
@@ -102,20 +102,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_5">
-			<ObjectId>EURYC_3E6E5YS</ObjectId>
+		<px class_id_reference="142" object_id="_5">
+			<ObjectId>EURYC_AB3EBASIS5Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E5YS_Quote</value>
+					<value>EURAB6E5Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>5Y</Period>
@@ -128,20 +128,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_6">
-			<ObjectId>EURYC_3E6E6YS</ObjectId>
+		<px class_id_reference="142" object_id="_6">
+			<ObjectId>EURYC_AB3EBASIS6Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E6YS_Quote</value>
+					<value>EURAB6E6Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>6Y</Period>
@@ -154,20 +154,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_7">
-			<ObjectId>EURYC_3E6E7YS</ObjectId>
+		<px class_id_reference="142" object_id="_7">
+			<ObjectId>EURYC_AB3EBASIS7Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E7YS_Quote</value>
+					<value>EURAB6E7Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>7Y</Period>
@@ -180,20 +180,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_8">
-			<ObjectId>EURYC_3E6E8YS</ObjectId>
+		<px class_id_reference="142" object_id="_8">
+			<ObjectId>EURYC_AB3EBASIS8Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E8YS_Quote</value>
+					<value>EURAB6E8Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>8Y</Period>
@@ -206,20 +206,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_9">
-			<ObjectId>EURYC_3E6E9YS</ObjectId>
+		<px class_id_reference="142" object_id="_9">
+			<ObjectId>EURYC_AB3EBASIS9Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E9YS_Quote</value>
+					<value>EURAB6E9Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>9Y</Period>
@@ -232,20 +232,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_10">
-			<ObjectId>EURYC_3E6E10YS</ObjectId>
+		<px class_id_reference="142" object_id="_10">
+			<ObjectId>EURYC_AB3EBASIS10Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E10YS_Quote</value>
+					<value>EURAB6E10Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>10Y</Period>
@@ -258,20 +258,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_11">
-			<ObjectId>EURYC_3E6E15YS</ObjectId>
+		<px class_id_reference="142" object_id="_11">
+			<ObjectId>EURYC_AB3EBASIS15Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E15YS_Quote</value>
+					<value>EURAB6E15Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>15Y</Period>
@@ -284,20 +284,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_12">
-			<ObjectId>EURYC_3E6E20YS</ObjectId>
+		<px class_id_reference="142" object_id="_12">
+			<ObjectId>EURYC_AB3EBASIS20Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E20YS_Quote</value>
+					<value>EURAB6E20Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>20Y</Period>
@@ -310,20 +310,20 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="144" object_id="_13">
-			<ObjectId>EURYC_3E6E30YS</ObjectId>
+		<px class_id_reference="142" object_id="_13">
+			<ObjectId>EURYC_AB3EBASIS30Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
 				<variant_>
 					<which>3</which>
-					<value>EURAB6E30YS_Quote</value>
+					<value>EURAB6E30Y_Quote</value>
 				</variant_>
 			</Quote>
 			<Period>30Y</Period>
@@ -336,7 +336,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1YS_Quote</value>
+					<value>EUR3E6E1Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>

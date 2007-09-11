@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>4</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="142" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>EURYC_AB3E1Y</ObjectId>
+			<ClassName>qlSwapRateHelper</ClassName>
+			<Quote class_id="181" tracking_level="0" version="0">
+				<variant_ class_id="182" tracking_level="0" version="0">
+					<which>3</which>
+					<value>EURAB3E1Y_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>1Y</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Unadjusted</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<Index>RH_EURYC_IBOR3M</Index>
+			<Spread>
+				<variant_>
+					<which>1</which>
+					<value>0</value>
+				</variant_>
+			</Spread>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="142" object_id="_2">
+			<ObjectId>EURYC_AB3E15M</ObjectId>
+			<ClassName>qlSwapRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EURAB3E15M_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>15M</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Unadjusted</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<Index>RH_EURYC_IBOR3M</Index>
+			<Spread>
+				<variant_>
+					<which>1</which>
+					<value>0</value>
+				</variant_>
+			</Spread>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="142" object_id="_3">
+			<ObjectId>EURYC_AB3E18M</ObjectId>
+			<ClassName>qlSwapRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EURAB3E18M_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>18M</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Unadjusted</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<Index>RH_EURYC_IBOR3M</Index>
+			<Spread>
+				<variant_>
+					<which>1</which>
+					<value>0</value>
+				</variant_>
+			</Spread>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="142" object_id="_4">
+			<ObjectId>EURYC_AB3E21M</ObjectId>
+			<ClassName>qlSwapRateHelper</ClassName>
+			<Quote>
+				<variant_>
+					<which>3</which>
+					<value>EURAB3E21M_Quote</value>
+				</variant_>
+			</Quote>
+			<Period>21M</Period>
+			<FixingDays>2</FixingDays>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Unadjusted</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<Index>RH_EURYC_IBOR3M</Index>
+			<Spread>
+				<variant_>
+					<which>1</which>
+					<value>0</value>
+				</variant_>
+			</Spread>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
