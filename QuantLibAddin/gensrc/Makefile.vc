@@ -15,11 +15,11 @@ METADATA=metadata\Addins\*.xml \
          metadata\Rules\*.xml \
          metadata\Types\*.xml
 STUBS=stubs\stub.*
-APP_XML_DATA=..\..\QuantLibXL\Data\XML\StartUp\010_RH\*.xml \
-             ..\..\QuantLibXL\Data\XML\StartUp\020_Indexes\*.xml \
-             ..\..\QuantLibXL\Data\XML\StartUp\030_PricingEngines\*.xml \
-             ..\..\QuantLibXL\Data\XML\YieldCurveBootstrap\010_Quotes\*.xml \
-             ..\..\QuantLibXL\Data\XML\YieldCurveBootstrap\020_RateHelpers\*.xml
+APP_XML_DATA=..\..\QuantLibXL\Data\XML\010_StartUp\010_RH\*.xml \
+             ..\..\QuantLibXL\Data\XML\010_StartUp\020_Indexes\*.xml \
+             ..\..\QuantLibXL\Data\XML\010_StartUp\030_PricingEngines\*.xml \
+             ..\..\QuantLibXL\Data\XML\020_YieldCurveBootstrap\010_Quotes\*.xml \
+             ..\..\QuantLibXL\Data\XML\020_YieldCurveBootstrap\020_RateHelpers\*.xml
 
 INPUTS = $(MAKEFILE) $(CORE_DEPENDENCIES) $(CODE) $(CONFIG) $(METADATA) $(STUBS) $(APP_XML_DATA)
 
