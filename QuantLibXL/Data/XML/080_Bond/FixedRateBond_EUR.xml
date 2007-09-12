@@ -1626,7 +1626,7 @@
 			<ObjectId>IT0003644769</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BTPS 4.5 20</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<Calendar>TARGET</Calendar>
 			<FaceAmount>100</FaceAmount>
@@ -1651,7 +1651,7 @@
 			<ObjectId>IT0003644769_bis</ObjectId>
 			<ClassName>qlFixedRateBond</ClassName>
 			<Description>BTPS 4.5 20</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<FaceAmount>100</FaceAmount>
 			<ScheduleID>IT0003644769_Sch</ScheduleID>
