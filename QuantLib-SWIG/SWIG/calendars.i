@@ -134,7 +134,7 @@ namespace QuantLib {
 
     class Brazil : public Calendar {
       public:
-        enum Market { Settlement };
+        enum Market { Settlement, Exchange };
         Brazil(Market m = Settlement);
     };
 
