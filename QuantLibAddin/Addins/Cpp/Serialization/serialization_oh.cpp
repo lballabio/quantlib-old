@@ -63,7 +63,7 @@ namespace QuantLibAddinCpp {
         // class ID 2 in the boost serialization framework
         ar.register_type<ObjectHandler::ValueObjects::ohRange>();
         // class ID 3 in the boost serialization framework
-        ar.register_type<ObjectHandler::ValueObjects::ohGroup>();
+        //ar.register_type<ObjectHandler::ValueObjects::ohGroup>();
     
     }
     
@@ -76,7 +76,7 @@ namespace QuantLibAddinCpp {
         // class ID 2 in the boost serialization framework
         ar.register_type<ObjectHandler::ValueObjects::ohRange>();
         // class ID 3 in the boost serialization framework
-        ar.register_type<ObjectHandler::ValueObjects::ohGroup>();
+        //ar.register_type<ObjectHandler::ValueObjects::ohGroup>();
 
     }
     
