@@ -527,7 +527,7 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Matrix</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
 
@@ -542,7 +542,7 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Matrix</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
 
@@ -557,7 +557,7 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Matrix</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
 
@@ -572,7 +572,7 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Matrix</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
 

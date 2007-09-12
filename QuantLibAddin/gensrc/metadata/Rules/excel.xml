@@ -46,7 +46,6 @@
         <Rule loop='true'>P</Rule>
         <Rule type='QuantLib::Real'>P</Rule>
         <Rule type='QuantLib::Date'>P</Rule>
-        <Rule type='QuantLib::Matrix'>P</Rule>
         <Rule superType='libraryClass' type='QuantLib::Quote'>P</Rule>
         <Rule superType='libToHandle' type='QuantLib::Quote'>P</Rule>
         <Rule tensorRank='scalar' nativeType='long'>N</Rule>
