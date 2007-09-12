@@ -370,6 +370,23 @@ class IntegralEnginePtr : public boost::shared_ptr<PricingEngine> {
 
 
 %{
+using QuantLib::FDBermudanEngine;
+typedef boost::shared_ptr<PricingEngine> FDBermudanEnginePtr;
+%}
+
+%rename(FDBermudanEngine) FDBermudanEnginePtr;
+class FDBermudanEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        FDBermudanEnginePtr(Size timeSteps = 100, Size gridPoints = 100,
+                            bool timeDependent = false) {
+            return new FDBermudanEnginePtr(
+                    new FDBermudanEngine(timeSteps,gridPoints,timeDependent));
+        }
+    }
+};
+
+%{
 using QuantLib::FDEuropeanEngine;
 typedef boost::shared_ptr<PricingEngine> FDEuropeanEnginePtr;
 %}
@@ -394,6 +411,7 @@ using QuantLib::AdditiveEQPBinomialTree;
 using QuantLib::Trigeorgis;
 using QuantLib::Tian;
 using QuantLib::LeisenReimer;
+using QuantLib::Joshi4;
 typedef boost::shared_ptr<PricingEngine> BinomialVanillaEnginePtr;
 %}
 
@@ -410,7 +428,7 @@ class BinomialVanillaEnginePtr : public boost::shared_ptr<PricingEngine> {
             else if (s == "jr" || s == "jarrowrudd")
                 return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<JarrowRudd>(steps));
-            else if (s == "eqp")
+            else if (s == "eqp" || s == "additiveeqpbinomialtree")
                 return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<AdditiveEQPBinomialTree>(steps));
             else if (s == "trigeorgis")
@@ -422,6 +440,9 @@ class BinomialVanillaEnginePtr : public boost::shared_ptr<PricingEngine> {
             else if (s == "lr" || s == "leisenreimer")
                 return new BinomialVanillaEnginePtr(
                     new BinomialVanillaEngine<LeisenReimer>(steps));
+            else if (s == "j4" || s == "joshi4")
+                return new BinomialVanillaEnginePtr(
+                    new BinomialVanillaEngine<Joshi4>(steps));
             else
                 QL_FAIL("unknown binomial engine type: "+s);
         }
