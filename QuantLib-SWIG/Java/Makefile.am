@@ -22,11 +22,11 @@ install-exec-local:
 	cp -p libQuantLibJNI.@JNILIB_EXTENSION@ $(DESTDIR)/$(libdir)/libQuantLibJNI.@JNILIB_EXTENSION@
 	cp -p QuantLib.jar $(DESTDIR)/$(libdir)/QuantLib.jar
 
-check-local: test/Hello.class
-	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" test.Hello
+check-local: test/EquityOptions.class
+	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" test.EquityOptions
 
-test/Hello.class: test/Hello.java QuantLib.jar
-	$(JAVAC) -cp QuantLib.jar test/Hello.java
+test/EquityOptions.class: test/EquityOptions.java QuantLib.jar
+	$(JAVAC) -source 1.5 -cp QuantLib.jar test/EquityOptions.java
 
 endif
 
@@ -47,7 +47,7 @@ dist-hook:
 
 clean-local:
 	rm -rf org 
-	rm -f test/Hello.class
+	rm -f test/*.class
 	rm -f quantlib_wrap.o
 	rm -rf bin
 
