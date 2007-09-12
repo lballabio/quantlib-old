@@ -391,7 +391,7 @@ Partial Class FormMain
         Me.cbSwapSmileBootstrap.Name = "cbSwapSmileBootstrap"
         Me.cbSwapSmileBootstrap.Size = New System.Drawing.Size(173, 17)
         Me.cbSwapSmileBootstrap.TabIndex = 5
-        Me.cbSwapSmileBootstrap.Text = "Create Swaption Smile Volatility"
+        Me.cbSwapSmileBootstrap.Text = "Create Swaption Volatility Cube"
         Me.cbSwapSmileBootstrap.UseVisualStyleBackColor = True
         '
         'cbIndexesTimeSeries
@@ -421,7 +421,7 @@ Partial Class FormMain
         Me.cbYCBootstrap.Name = "cbYCBootstrap"
         Me.cbYCBootstrap.Size = New System.Drawing.Size(174, 17)
         Me.cbYCBootstrap.TabIndex = 0
-        Me.cbYCBootstrap.Text = "Bootstrap QuantLib Yield Curve"
+        Me.cbYCBootstrap.Text = "Bootstrap Yield Curves"
         Me.cbYCBootstrap.UseVisualStyleBackColor = True
         '
         'btnLaunch
