@@ -115,6 +115,7 @@
         <DataType>QuantLib::FloatingRateCouponPricer</DataType>
         <DataType>QuantLib::ForwardRateAgreement</DataType>
         <DataType>QuantLib::FuturesRateHelper</DataType>
+        <DataType>QuantLib::SwapRateHelper</DataType>
         <DataType>QuantLib::GeneralizedBlackScholesProcess</DataType>
         <DataType>QuantLib::HistoricalForwardRatesAnalysis</DataType>
         <DataType>QuantLib::IborIndex</DataType>

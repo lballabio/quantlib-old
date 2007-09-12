@@ -176,6 +176,22 @@
       </ParameterList>
     </Constructor>
 
+    <Member name='qlSwapRateHelperSpread' type='QuantLib::SwapRateHelper'>
+      <description>returns the spread for the given SwapRateHelper object</description>
+      <libraryFunction>spread</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Spread</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Constructor name='qlFraRateHelper'>
       <libraryFunction>FraRateHelper</libraryFunction>
       <SupportedPlatforms>
