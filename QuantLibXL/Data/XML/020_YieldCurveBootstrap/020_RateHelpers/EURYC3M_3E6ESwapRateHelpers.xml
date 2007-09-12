@@ -50,7 +50,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E2Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -76,7 +76,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E3Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -102,7 +102,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E4Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -128,7 +128,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E5Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -154,7 +154,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E6Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -180,7 +180,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E7Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -206,7 +206,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E8Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -232,7 +232,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E9Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -258,7 +258,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E10Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -284,7 +284,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E15Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -310,7 +310,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E20Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
@@ -336,7 +336,7 @@
 			<Spread>
 				<variant_>
 					<which>3</which>
-					<value>EUR3E6E1Y_Quote</value>
+					<value>EUR3E6E30Y_Quote</value>
 				</variant_>
 			</Spread>
 			<Permanent>1</Permanent>
