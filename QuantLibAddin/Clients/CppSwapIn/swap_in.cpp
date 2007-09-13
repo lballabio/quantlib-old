@@ -30,7 +30,7 @@
 using namespace QuantLibAddinCpp;
 
 int main() {
-    std::cout << "xxx" << std::endl;
+
     try {
 
         // Initialize the environment
@@ -49,7 +49,7 @@ int main() {
 
         // Initialize some values
 
-        //std::string yieldCurveID = "EUR_YC";
+        std::string yieldCurveID = "EUR_YC";
 
         // Deserialize the objects
 
@@ -58,9 +58,9 @@ int main() {
 
         // Enable extrapolation for the yield curve
 
-        qlExtrapolatorEnableExtrapolation("EUR_YC", true, OH_NULL);
-        qlRelinkableHandleYieldTermStructureLinkTo("EuriborYC3M", "EUR_YC", OH_NULL);
-        qlRelinkableHandleYieldTermStructureLinkTo("EuriborYC6M", "EUR_YC", OH_NULL);
+        qlExtrapolatorEnableExtrapolation(yieldCurveID, true, OH_NULL);
+        qlRelinkableHandleYieldTermStructureLinkTo("EuriborYC3M", yieldCurveID, OH_NULL);
+        qlRelinkableHandleYieldTermStructureLinkTo("EuriborYC6M", yieldCurveID, OH_NULL);
 
         // Check that the yield curve bootstraps OK
 
