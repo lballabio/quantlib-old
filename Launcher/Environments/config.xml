@@ -24,10 +24,6 @@
           <DeliveredByLauncher>True</DeliveredByLauncher>
           <Path>saohxll-vc80-mt-0_1_9.xll</Path>
         </Addin>
-        <Addin>
-          <DeliveredByLauncher>False</DeliveredByLauncher>
-          <Path>X:\Apps\Appsscript\CabotoXL\Rev11940\CabotoXL.xla</Path>
-        </Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
@@ -43,12 +39,7 @@
         <EvaluationDate>0</EvaluationDate>
         <InitSource>Excel</InitSource>
       </StartupActions>
-      <Variables>
-        <Variable>
-          <Name>NAZCATECH_DIR</Name>
-          <Value>X:\Apps\Appsscript\CabotoXL\SensitivityAnalysis</Value>
-        </Variable>
-      </Variables>
+      <Variables/>
     </Environment>
 
     <Environment name="02 Pre-Production">
@@ -73,10 +64,6 @@
           <DeliveredByLauncher>True</DeliveredByLauncher>
           <Path>saohxll-vc80-mt-0_1_9.xll</Path>
         </Addin>
-        <Addin>
-          <DeliveredByLauncher>False</DeliveredByLauncher>
-          <Path>X:\Apps\Appsscript\CabotoXL\Rev12288\CabotoXL.xla</Path>
-        </Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
@@ -92,12 +79,7 @@
         <EvaluationDate>0</EvaluationDate>
         <InitSource>Excel</InitSource>
       </StartupActions>
-      <Variables>
-        <Variable>
-          <Name>NAZCATECH_DIR</Name>
-          <Value>X:\Apps\Appsscript\CabotoXL\SensitivityAnalysis</Value>
-        </Variable>
-      </Variables>
+      <Variables/>
     </Environment>
 
     <Environment name="03 Testing">
@@ -124,7 +106,7 @@
         </Addin>
         <Addin>
           <DeliveredByLauncher>False</DeliveredByLauncher>
-          <Path>X:\Apps\Appsscript\CabotoXL\Rev12614\CabotoXL.xla</Path>
+          <Path>X:\Apps\Appsscript\CabotoXL\Rev12614\framework\CabotoXL.xla</Path>
         </Addin>
       </AddinList>
       <StartupActions>
