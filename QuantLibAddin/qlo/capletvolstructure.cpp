@@ -200,12 +200,12 @@ namespace QuantLibAddin {
                                            dc));
     }
 
-    CapletStripper::CapletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                   const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
-                                   const boost::shared_ptr<QuantLib::IborIndex>& index,
-                                   bool permanent) : dummyClass(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::CapletStripper>(new
-            QuantLib::CapletStripper(surface, index));
+    OptionletStripper::OptionletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                         const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
+                                         const boost::shared_ptr<QuantLib::IborIndex>& index,
+                                         bool permanent) : dummyClass(properties, permanent) {
+        libraryObject_ = boost::shared_ptr<QuantLib::OptionletStripper>(new
+            QuantLib::OptionletStripper(surface, index));
     }
 
 }

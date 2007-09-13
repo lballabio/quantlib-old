@@ -492,8 +492,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlCapletStripper'>
-      <libraryFunction>CapletStripper</libraryFunction>
+    <Constructor name='qlOptionletStripper'>
+      <libraryFunction>OptionletStripper</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -515,10 +515,10 @@
       </ParameterList>
     </Constructor>
 
-    <!-- CapletStripper interface-->
-    <Member name='qlCapletStripperCapletPrices' type='QuantLib::CapletStripper' superType='handleToLib'>
+    <!-- OptionletStripper interface-->
+    <Member name='qlOptionletStripperOptionletPrices' type='QuantLib::OptionletStripper' superType='handleToLib'>
       <description></description>
-      <libraryFunction>capletPrices</libraryFunction>
+      <libraryFunction>optionletPrices</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -531,9 +531,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletStripperCapletVolatilities' type='QuantLib::CapletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperOptionletVolatilities' type='QuantLib::OptionletStripper' superType='handleToLib'>
       <description></description>
-      <libraryFunction>capletVolatilities</libraryFunction>
+      <libraryFunction>optionletVolatilities</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -546,9 +546,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletStripperCapPrices' type='QuantLib::CapletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperCapFloorPrices' type='QuantLib::OptionletStripper' superType='handleToLib'>
       <description></description>
-      <libraryFunction>capPrices</libraryFunction>
+      <libraryFunction>capfloorPrices</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -561,9 +561,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletStripperCapVolatilities' type='QuantLib::CapletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperCapFloorVolatilities' type='QuantLib::OptionletStripper' superType='handleToLib'>
       <description></description>
-      <libraryFunction>capVolatilities</libraryFunction>
+      <libraryFunction>capfloorVolatilities</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -576,9 +576,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletStripperOptionTenors' type='QuantLib::CapletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperOptionletTenors' type='QuantLib::OptionletStripper' superType='handleToLib'>
       <description></description>
-      <libraryFunction>optionTenors</libraryFunction>
+      <libraryFunction>optionletTenors</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -591,9 +591,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletStripperOptionDates' type='QuantLib::CapletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperOptionletDates' type='QuantLib::OptionletStripper' superType='handleToLib'>
       <description></description>
-      <libraryFunction>optionDates</libraryFunction>
+      <libraryFunction>optionletDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -606,7 +606,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapletStripperStrikes' type='QuantLib::CapletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperStrikes' type='QuantLib::OptionletStripper' superType='handleToLib'>
       <description></description>
       <libraryFunction>strikes</libraryFunction>
       <SupportedPlatforms>
