@@ -16,15 +16,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file
-    \brief Class Factory - xxx
-*/
-
-#ifndef addin_factory_hpp
-#define addin_factory_hpp
+#ifndef example_serialization_factory_hpp
+#define example_serialization_factory_hpp
 
 #include <oh/ohdefines.hpp>
 #include <ExampleObjects/Serialization/examplefactory.hpp>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/archive/xml_oarchive.hpp>
 
 namespace ExampleAddin {
 
@@ -36,14 +34,21 @@ namespace ExampleAddin {
             const std::vector<boost::shared_ptr<ObjectHandler::Object> >&objectList,
             const char *path,
             bool forceOverwrite) const;
-        virtual int loadObject(
+        virtual std::vector<std::string> loadObject(
             const char *path,
             bool overwriteExisting) const;
-        int processPath(
+        void processPath(
             const std::string &path,
+            bool overwriteExisting,
+            std::vector<std::string> &processedIDs) const;
+        std::string processObject(
+            const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
             bool overwriteExisting) const;
     };
 
+    // Wrappers for template tpl_register_classes.
+    void register_in(boost::archive::xml_iarchive&);
+    void register_out(boost::archive::xml_oarchive&);
 
 }
 

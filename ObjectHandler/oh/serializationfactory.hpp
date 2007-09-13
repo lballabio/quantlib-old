@@ -52,27 +52,27 @@ namespace ObjectHandler {
         //! \name Serialization - public interface
         //@{
         //! Serialize the given Object list to the path indicated.
-		virtual int saveObject(
+        virtual int saveObject(
             const std::vector<boost::shared_ptr<Object> >&,
             const char *path,
             bool forceOverwrite) const = 0;
         //! Deserialize an Object list from the path indicated.
-		virtual std::vector<std::string> loadObject(
+        virtual std::vector<std::string> loadObject(
             const char *path,
             bool overwriteExisting) const = 0;
         //@}
 
     protected:
 
-		 //! A pointer to the SerializationFactory instance, used to support the Singleton pattern.
+         //! A pointer to the SerializationFactory instance, used to support the Singleton pattern.
         static SerializationFactory *instance_;
         //! Define the type for a factory creator function.
         typedef boost::shared_ptr<Object> (*Creator)(const boost::shared_ptr<ValueObject>&);
         //! Register a Creator with the Factory.
         void registerCreator(const std::string &className, const Creator &creator);
-		// A map of Creators for each supported class.
+        // A map of Creators for each supported class.
         typedef std::map<std::string, Creator> CreatorMap;
-		// Cannot export std::map across DLL boundaries, so instead of a data member
+        // Cannot export std::map across DLL boundaries, so instead of a data member
         // use a private member function that wraps a reference to a static variable.
         CreatorMap &creatorMap_() const;
     };

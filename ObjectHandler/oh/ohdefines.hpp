@@ -68,6 +68,12 @@
 #pragma warning(disable : 4244)
 #endif
 
+#if defined BOOST_MSVC
+#define STRICMP _stricmp
+#else
+#define STRICMP strcasecmp
+#endif
+
 /*! \def OH_GET_OBJECT
     Get a boost shared pointer to a class derived from Object.
 */

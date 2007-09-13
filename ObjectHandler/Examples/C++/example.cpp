@@ -68,7 +68,7 @@ int main() {
     try {
 
         // Specify log file
-        ObjectHandler::setLogFile("example.log");
+        ObjectHandler::setLogFile("./example.log");
         // Also direct log messages to stdout
         ObjectHandler::setConsole(1);
         OH_LOG_MESSAGE("begin example program");
@@ -119,14 +119,14 @@ int main() {
         std::vector<boost::shared_ptr<ObjectHandler::Object> > objectList;
         objectList.push_back(accountObject2_retrieve);
         ObjectHandler::Repository::instance().saveObject(
-            objectList, "account.xml", true);
+            objectList, "./account.xml", true);
 
         // Delete all objects
         ObjectHandler::Repository::instance().deleteAllObjects();
 
         // Deserialize an object
         ObjectHandler::Repository::instance().loadObject(
-            "account.xml", true);
+            "./account.xml", true);
 
         // Manipulate the deserialized object
         OH_GET_OBJECT(accountObject1_load,
