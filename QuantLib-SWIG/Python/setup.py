@@ -87,37 +87,37 @@ if sys.platform == 'win32':
         library_dirs = []
     libraries = None
 
-    if '--compiler=bcpp' in sys.argv:
-        extra_compile_args = ['-vi-','-w-8057']
-        define_macros = [('__WIN32__', None), ('MSC_CORE_BC_EXT', None)]
-        extra_link_args = None
+   if os.environ.has_key('INCLUDE'):
+       include_dirs.extend([dir for dir in os.environ['INCLUDE'].split(';')])
+   if os.environ.has_key('LIB'):
+       library_dirs.extend([dir for dir in os.environ['LIB'].split(';')])
+
+    extra_compile_args = ['/GR', '/FD', '/Zm250']
+    define_macros = [('__WIN32__', None), ('WIN32', None),
+                     ('NDEBUG', None), ('_WINDOWS', None),
+                     ('NOMINMAX', None)]
+    extra_link_args = ['/subsystem:windows',
+                       '/machine:I386']
+
+    if "--dll" in sys.argv:
+        use_dll = 1
+        for i in range(len(sys.argv)):
+            if sys.argv[i] == "--dll":
+                del sys.argv[i]
+                break
     else:
-        extra_compile_args = ['/GR', '/FD', '/Zm250']
-        define_macros = [('__WIN32__', None), ('WIN32', None),
-                         ('NDEBUG', None), ('_WINDOWS', None),
-                         ('NOMINMAX', None)]
-        extra_link_args = ['/subsystem:windows',
-                           '/machine:I386']
+        use_dll = 0
 
-        if "--dll" in sys.argv:
-            use_dll = 1
-            for i in range(len(sys.argv)):
-                if sys.argv[i] == "--dll":
-                    del sys.argv[i]
-                    break
+    if '--debug' in sys.argv:
+        if use_dll:
+            extra_compile_args.append('/MDd')
         else:
-            use_dll = 0
-
-        if '--debug' in sys.argv:
-            if use_dll:
-                extra_compile_args.append('/MDd')
-            else:
-                extra_compile_args.append('/MTd')
+            extra_compile_args.append('/MTd')
+    else:
+        if use_dll:
+            extra_compile_args.append('/MD')
         else:
-            if use_dll:
-                extra_compile_args.append('/MD')
-            else:
-                extra_compile_args.append('/MT')
+            extra_compile_args.append('/MT')
 
 else:
     from distutils import sysconfig
