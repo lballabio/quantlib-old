@@ -108,6 +108,10 @@
           <DeliveredByLauncher>False</DeliveredByLauncher>
           <Path>X:\Apps\Appsscript\CabotoXL\Rev12614\framework\CabotoXL.xla</Path>
         </Addin>
+        <Addin>
+          <DeliveredByLauncher>False</DeliveredByLauncher>
+          <Path>X:\Apps\Appsscript\CabotoXL\Rev12614\framework\CabotoCmsBookXL.xla</Path>
+        </Addin>
       </AddinList>
       <StartupActions>
         <YieldCurveBootstrap>false</YieldCurveBootstrap>
