@@ -87,10 +87,10 @@ if sys.platform == 'win32':
         library_dirs = []
     libraries = None
 
-   if os.environ.has_key('INCLUDE'):
-       include_dirs.extend([dir for dir in os.environ['INCLUDE'].split(';')])
-   if os.environ.has_key('LIB'):
-       library_dirs.extend([dir for dir in os.environ['LIB'].split(';')])
+    if os.environ.has_key('INCLUDE'):
+        include_dirs.extend([dir for dir in os.environ['INCLUDE'].split(';')])
+    if os.environ.has_key('LIB'):
+        library_dirs.extend([dir for dir in os.environ['LIB'].split(';')])
 
     extra_compile_args = ['/GR', '/FD', '/Zm250']
     define_macros = [('__WIN32__', None), ('WIN32', None),
