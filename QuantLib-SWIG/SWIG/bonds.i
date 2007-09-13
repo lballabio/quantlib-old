@@ -31,11 +31,13 @@ using QuantLib::Bond;
 using QuantLib::ZeroCouponBond;
 using QuantLib::FixedRateBond;
 using QuantLib::FloatingRateBond;
+using QuantLib::DiscountingBondEngine;
 
 typedef boost::shared_ptr<Instrument> BondPtr;
 typedef boost::shared_ptr<Instrument> ZeroCouponBondPtr;
 typedef boost::shared_ptr<Instrument> FixedRateBondPtr;
 typedef boost::shared_ptr<Instrument> FloatingRateBondPtr;
+typedef boost::shared_ptr<PricingEngine> DiscountingBondEnginePtr;
 %}
 
 %rename(Bond) BondPtr;
@@ -197,6 +199,19 @@ class FloatingRateBondPtr : public BondPtr {
                                      inArrears,
                                      redemption,
                                      issueDate));
+        }
+    }
+};
+
+
+%rename(DiscountingBondEngine) DiscountingBondEnginePtr;
+class DiscountingBondEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        DiscountingBondEnginePtr(
+                            const Handle<YieldTermStructure>& discountCurve) {
+            return new DiscountingBondEnginePtr(
+                                    new DiscountingBondEngine(discountCurve));
         }
     }
 };
