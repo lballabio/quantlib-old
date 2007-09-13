@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,6 +26,7 @@
 %include daycounters.i
 %include vectors.i
 %include linearalgebra.i
+%include interpolation.i
 
 
 // eventually the classes exported here will be redesigned or deprecated
@@ -36,7 +38,7 @@ using QuantLib::CapVolatilityStructure;
 %}
 
 %ignore CapVolatilityStructure;
-class CapVolatilityStructure {
+class CapVolatilityStructure : public Extrapolator {
   public:
     Volatility volatility(const Date& end, Rate strike);
     Volatility volatility(Time end, Rate strike);
