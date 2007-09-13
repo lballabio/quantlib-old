@@ -8,7 +8,6 @@ include_HEADERS = \
     all.hpp \
     coercecurve.hpp \
     coercehandle.hpp \
-    coerceindex.hpp \
     coerceobject.hpp \
     coercetermstructure.hpp \
     conversions.hpp \

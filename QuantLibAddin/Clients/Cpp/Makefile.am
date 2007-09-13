@@ -17,6 +17,6 @@ if BUILD_CPP
 noinst_PROGRAMS = cms_in
 else
 #EXTRA_PROGRAMS = QLADemo cms_out test_deserialize
-EXTRA_PROGRAMS = cms_out
+EXTRA_PROGRAMS = cms_in
 endif
 

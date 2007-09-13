@@ -25,6 +25,7 @@ include_HEADERS = \
     cmsmarketcalibration.hpp \
     config.hpp \
     conundrumpricer.hpp \
+    correlation.hpp \
     couponvectors.hpp \
     ctsmmcapletcalibration.hpp \
     curvestate.hpp \

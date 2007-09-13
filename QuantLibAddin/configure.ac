@@ -103,7 +103,7 @@ AC_CONFIG_FILES([
     Addins/Cpp/Makefile
     Addins/Calc/Makefile
     Addins/C/Makefile
-    Clients/Cpp/Makefile
+    Clients/CppSwapIn/Makefile
     Clients/Calc/Makefile
     Clients/C/Makefile
     Docs/Makefile

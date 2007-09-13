@@ -13,7 +13,7 @@ SUBDIRS = \
     Addins/Cpp \
     Addins/Calc \
     Addins/C \
-    Clients/Cpp \
+    Clients/CppSwapIn \
     Clients/Calc \
     Clients/C \
     Docs
