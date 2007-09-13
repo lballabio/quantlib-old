@@ -124,7 +124,7 @@ namespace QuantLibAddinCpp {
  
     bool hasXmlExtension(const boost::filesystem::path &path) {
         std::string extension = boost::filesystem::extension(path);
-        return _stricmp(extension.c_str(), ".XML") == 0;
+        return STRICMP(extension.c_str(), ".XML") == 0;
     }
 
     std::vector<std::string> SerializationFactory::loadObject(
