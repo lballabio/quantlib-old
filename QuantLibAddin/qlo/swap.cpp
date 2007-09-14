@@ -42,11 +42,10 @@ namespace QuantLibAddin {
         std::vector<QuantLib::Leg> legs(legWrappers.size());
         for (QuantLib::Size i = 0; i<legWrappers.size(); ++i)
             legs[i] = legWrappers[i]->getQuantLibLeg();
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
-            new QuantLib::Swap(hYTS, legs, payer));
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::Swap(hYTS, legs, payer));
     }
 
-    // QuantLib::MakeCms
     Swap::Swap(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Period& swapTenor,
@@ -71,4 +70,3 @@ namespace QuantLibAddin {
     }
 
 }
-

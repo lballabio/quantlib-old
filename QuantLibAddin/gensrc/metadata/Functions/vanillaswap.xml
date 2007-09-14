@@ -4,20 +4,24 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
     <include>qlo/index.hpp</include>
+    <include>qlo/ratehelpers.hpp</include>
     <include>qlo/schedule.hpp</include>
-    <include>qlo/vanillaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
+    <include>qlo/vanillaswap.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/termstructures/yieldcurves/ratehelpers.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/vanillaswap.hpp</include>
     <include>qlo/index.hpp</include>
+    <include>qlo/ratehelpers.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/termstructures.hpp</include>
+    <include>qlo/vanillaswap.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
-  </serializationIncludes>
+    <include>ql/termstructures/yieldcurves/ratehelpers.hpp</include>
+    </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
@@ -115,6 +119,23 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlVanillaSwapSwapRateHelper'>
+      <libraryFunction>VanillaSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapRateHelper'>
+            <type>QuantLib::SwapRateHelper</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the SwapRateHelper index object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
     <Constructor name='qlMakeVanillaSwap'>
       <libraryFunction>VanillaSwap</libraryFunction>

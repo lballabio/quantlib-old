@@ -24,6 +24,10 @@
 #include <qlo/swap.hpp>
 #include <ql/instruments/vanillaswap.hpp>
 
+namespace QuantLib {
+    class SwapRateHelper;
+}
+
 namespace QuantLibAddin {
 
     class VanillaSwap : public Swap {
@@ -41,6 +45,7 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& floatDayCounter,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
             bool permanent);
+        // MakeVanillaSwap
         VanillaSwap(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Period& swapTenor, 
@@ -48,10 +53,16 @@ namespace QuantLibAddin {
             QuantLib::Rate fixedRate,
             const QuantLib::Period& forwardStart,
             bool permanent);
+        // SwapIndex->underlyingSwap()
         VanillaSwap(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const boost::shared_ptr<QuantLib::SwapIndex>& index,
+            const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
             const QuantLib::Date& fixingDate,
+            bool permanent);
+        // SwapRateHelper->swap()
+        VanillaSwap(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::SwapRateHelper>& swapRH,
             bool permanent);
         std::vector<std::vector<boost::any> > fixedLegAnalysis();
         std::vector<std::vector<boost::any> > floatingLegAnalysis();
@@ -60,4 +71,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

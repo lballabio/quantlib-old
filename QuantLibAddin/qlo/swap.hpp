@@ -39,7 +39,7 @@ namespace QuantLibAddin {
              const std::vector<bool>& payer,
              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
              bool permanent);
- 
+        // MakeCms
         Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
              const QuantLib::Period& swapTenor,
              const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
@@ -57,4 +57,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-
