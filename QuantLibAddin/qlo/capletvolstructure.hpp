@@ -20,7 +20,7 @@
 #define qla_capletvolstructure_hpp
 
 #include <qlo/termstructures.hpp>
-#include <ql/termstructures/voltermstructures/interestrate/caplet/capstripper2.hpp>
+#include <ql/voltermstructures/interestrate/caplet/capstripper2.hpp>
 
 namespace QuantLib {
     class OptionletVolatilityStructure;

@@ -22,11 +22,11 @@
 
 #include <qlo/capletvolstructure.hpp>
 
-#include <ql/termstructures/voltermstructures/interestrate/caplet/capletconstantvol.hpp>
-#include <ql/termstructures/voltermstructures/interestrate/caplet/capstripper.hpp>
-#include <ql/termstructures/voltermstructures/interestrate/caplet/spreadedcapletvolstructure.hpp>
-#include <ql/termstructures/voltermstructures/interestrate/cap/capflatvolvector.hpp>
-#include <ql/termstructures/voltermstructures/interestrate/cap/capvolsurface.hpp>
+#include <ql/voltermstructures/interestrate/caplet/capletconstantvol.hpp>
+#include <ql/voltermstructures/interestrate/caplet/capstripper.hpp>
+#include <ql/voltermstructures/interestrate/caplet/spreadedcapletvolstructure.hpp>
+#include <ql/voltermstructures/interestrate/cap/capflatvolvector.hpp>
+#include <ql/voltermstructures/interestrate/cap/capvolsurface.hpp>
 
 namespace QuantLibAddin {
 

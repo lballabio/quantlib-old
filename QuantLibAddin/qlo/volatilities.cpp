@@ -23,8 +23,8 @@
 
 #include <qlo/volatilities.hpp>
 
-#include <ql/termstructures/voltermstructures/equityfx/blackconstantvol.hpp>
-#include <ql/termstructures/voltermstructures/equityfx/blackvariancesurface.hpp>
+#include <ql/voltermstructures/equityfx/blackconstantvol.hpp>
+#include <ql/voltermstructures/equityfx/blackvariancesurface.hpp>
 
 namespace QuantLibAddin {
 

@@ -5,8 +5,8 @@
   <addinIncludes>
     <include>qlo/volatilities.hpp</include>
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
-    <include>ql/termstructures/voltermstructures/equityfx/blackconstantvol.hpp</include>
-    <include>ql/termstructures/voltermstructures/equityfx/blackvariancesurface.hpp</include>
+    <include>ql/voltermstructures/equityfx/blackconstantvol.hpp</include>
+    <include>ql/voltermstructures/equityfx/blackvariancesurface.hpp</include>
   </addinIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers

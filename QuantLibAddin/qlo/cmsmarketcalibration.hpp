@@ -22,7 +22,7 @@
 #include <oh/libraryobject.hpp>
 
 // To be removed later
-#include <ql/termstructures/voltermstructures/interestrate/swaption/cmsmarketcalibration.hpp>
+#include <ql/voltermstructures/interestrate/swaption/cmsmarketcalibration.hpp>
 
 #include <ql/types.hpp>
 #include <ql/handle.hpp>

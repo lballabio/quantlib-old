@@ -26,8 +26,8 @@
 
 #include <qlo/ratehelpers.hpp>
 #include <ql/indexes/iborindex.hpp>
-#include <ql/termstructures/yieldtermstructures/ratehelpers.hpp>
-#include <ql/termstructures/yieldtermstructures/bondhelpers.hpp>
+#include <ql/yieldtermstructures/ratehelpers.hpp>
+#include <ql/yieldtermstructures/bondhelpers.hpp>
 #include <ql/time/imm.hpp>
 
 #include <oh/repository.hpp>

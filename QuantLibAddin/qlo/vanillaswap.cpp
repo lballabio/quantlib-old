@@ -27,7 +27,7 @@
 #include <qlo/vanillaswap.hpp>
 #include <ql/instruments/makevanillaswap.hpp>
 #include <ql/indexes/swapindex.hpp>
-#include <ql/termstructures/yieldtermstructures/ratehelpers.hpp>
+#include <ql/yieldtermstructures/ratehelpers.hpp>
 
 namespace QuantLibAddin {
 

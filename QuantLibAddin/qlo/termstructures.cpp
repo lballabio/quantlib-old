@@ -29,12 +29,12 @@
 
 #include <ql/time/date.hpp>
 #include <ql/math/interpolations/cubicspline.hpp>
-#include <ql/termstructures/yieldtermstructures/discountcurve.hpp>
-#include <ql/termstructures/yieldtermstructures/forwardcurve.hpp>
-#include <ql/termstructures/yieldtermstructures/zerocurve.hpp>
-#include <ql/termstructures/yieldtermstructures/impliedtermstructure.hpp>
-#include <ql/termstructures/yieldtermstructures/flatforward.hpp>
-#include <ql/termstructures/yieldtermstructures/forwardspreadedtermstructure.hpp>
+#include <ql/yieldtermstructures/discountcurve.hpp>
+#include <ql/yieldtermstructures/forwardcurve.hpp>
+#include <ql/yieldtermstructures/zerocurve.hpp>
+#include <ql/yieldtermstructures/impliedtermstructure.hpp>
+#include <ql/yieldtermstructures/flatforward.hpp>
+#include <ql/yieldtermstructures/forwardspreadedtermstructure.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 
 #include <oh/repository.hpp>

@@ -24,8 +24,8 @@
 #include <qlo/processes.hpp>
 
 #include <ql/quote.hpp>
-#include <ql/termstructures/yieldtermstructures/flatforward.hpp>
-#include <ql/termstructures/voltermstructures/blackvoltermstructure.hpp>
+#include <ql/yieldtermstructures/flatforward.hpp>
+#include <ql/voltermstructures/blackvoltermstructure.hpp>
 
 namespace QuantLibAddin {
 
