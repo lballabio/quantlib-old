@@ -194,7 +194,7 @@ namespace QuantLibAddin {
 
     IborCouponPricer::IborCouponPricer(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& v,
+            const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& v,
             const std::string& typeOfIborCouponPricer,
             bool permanent) : FloatingRateCouponPricer(properties, permanent) {
         libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::IborCouponPricer> >()

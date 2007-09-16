@@ -122,7 +122,7 @@ namespace QuantLibAddin {
     /* *** IborCouponPricer *** */
     boost::shared_ptr<QuantLib::IborCouponPricer>
         IBOR_BY_BLACK_Pricer(
-            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& capletVol);
+            const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& capletVol);
     /* *** CmsCouponPricer **** */
     boost::shared_ptr<QuantLib::CmsCouponPricer>
         CONUNDRUM_BY_BLACK_Pricer(

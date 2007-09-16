@@ -26,7 +26,7 @@
 namespace ObjectHandler {
 
     typedef boost::shared_ptr<QuantLib::IborCouponPricer>(*IborCouponPricerConstructor)(
-            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& capletVol);
+            const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& capletVol);
 
     template<>
     class Create<boost::shared_ptr<QuantLib::IborCouponPricer> > :
@@ -34,7 +34,7 @@ namespace ObjectHandler {
     public:
         boost::shared_ptr<QuantLib::IborCouponPricer> operator() (
                 const std::string& IborCouponPricerID,
-                const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& capletVol) {
+                const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& capletVol) {
             IborCouponPricerConstructor iborCouponPricerConstructor =
                 reinterpret_cast<IborCouponPricerConstructor>(getType(IborCouponPricerID));
             return iborCouponPricerConstructor(capletVol);

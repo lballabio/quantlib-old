@@ -31,7 +31,7 @@ namespace QuantLib {
     class AffineModel;
     class MarketModelFactory;
     class SwaptionVolatilityStructure;
-    class CapletVolatilityStructure;
+    class OptionletVolatilityStructure;
     class BlackCapFloorEngine;
     class AnalyticCapFloorEngine;
     class MarketModelCapFloorEngine;
@@ -78,7 +78,7 @@ namespace QuantLibAddin {
             bool permanent);
         BlackCapFloorEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>&,
+            const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>&,
             bool permanent);
     };
 

@@ -69,7 +69,7 @@ namespace QuantLibAddin {
 
     BlackCapFloorEngine::BlackCapFloorEngine(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& vol,
+        const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& vol,
         bool permanent) : PricingEngine(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new

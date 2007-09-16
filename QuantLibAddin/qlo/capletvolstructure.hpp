@@ -23,7 +23,7 @@
 #include <ql/termstructures/volatilities/interestrate/caplet/capstripper2.hpp>
 
 namespace QuantLib {
-    class CapletVolatilityStructure;
+    class OptionletVolatilityStructure;
     class Period;
     class SmileSection;
     class IborIndex;
@@ -32,9 +32,9 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
     
-    OH_OBJ_CLASS(CapletVolatilityStructure, TermStructure)
+    OH_OBJ_CLASS(OptionletVolatilityStructure, TermStructure)
 
-    class CapletConstantVolatility : public CapletVolatilityStructure {
+    class CapletConstantVolatility : public OptionletVolatilityStructure {
       public:
       CapletConstantVolatility(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                const QuantLib::Handle<QuantLib::Quote>& volatility,
@@ -42,7 +42,7 @@ namespace QuantLibAddin {
                                bool permanent);
     };
 
-    class CapsStripper : public CapletVolatilityStructure {
+    class CapsStripper : public OptionletVolatilityStructure {
         public:
 
         CapsStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -87,7 +87,7 @@ namespace QuantLibAddin {
 
     };
 
-    class SmileSectionsVolStructure: public CapletVolatilityStructure {
+    class SmileSectionsVolStructure: public OptionletVolatilityStructure {
       public:
         SmileSectionsVolStructure(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -98,17 +98,17 @@ namespace QuantLibAddin {
         
         };
 
-    class SpreadedCapletVolatilityStructure : public CapletVolatilityStructure {
+    class SpreadedCapletVolatilityStructure : public OptionletVolatilityStructure {
       public:
         SpreadedCapletVolatilityStructure(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& underlyingVolStructure,
+            const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& underlyingVolStructure,
             const QuantLib::Handle<QuantLib::Quote>&,
             bool permanent);
 
     };
 
-      class GenericCapletVolStructure : public CapletVolatilityStructure {
+      class GenericCapletVolStructure : public OptionletVolatilityStructure {
       public:
           GenericCapletVolStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                     std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& capletVols,
@@ -117,9 +117,9 @@ namespace QuantLibAddin {
                                     bool permanent);
     };
 
-    OH_OBJ_CLASS(CapVolatilityStructure, TermStructure)
+    OH_OBJ_CLASS(CapFloorVolatilityStructure, TermStructure)
 
-    class CapVolatilityVector : public CapVolatilityStructure {
+    class CapVolatilityVector : public CapFloorVolatilityStructure {
       public:
       CapVolatilityVector(
           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -131,7 +131,7 @@ namespace QuantLibAddin {
           bool permanent);
     };
 
-    class CapVolatilitySurface : public CapVolatilityStructure {
+    class CapVolatilitySurface : public CapFloorVolatilityStructure {
       public:
       CapVolatilitySurface(
           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

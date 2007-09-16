@@ -34,7 +34,7 @@ namespace QuantLibAddin {
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Handle<QuantLib::Quote>& volatility,
         const QuantLib::DayCounter& dayCounter,
-        bool permanent) : CapletVolatilityStructure(properties, permanent)
+        bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapletConstantVolatility(volatility, dayCounter));
@@ -52,7 +52,7 @@ namespace QuantLibAddin {
          QuantLib::Real impliedVolatilityAccuracy,
          QuantLib::Size maxEvaluations,
          bool decoupledInterpolations,
-         bool permanent) : CapletVolatilityStructure(properties, permanent)
+         bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         std::vector<boost::shared_ptr<QuantLib::SmileSection> > dummySmileSections;
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
@@ -83,7 +83,7 @@ namespace QuantLibAddin {
       const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& 
         smileSectionInterfaces,
       bool decoupledInterpolation,
-      bool permanent) : CapletVolatilityStructure(properties, permanent)
+      bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
         QuantLib::Size nbColumns  = volatilities.front().size();
@@ -112,7 +112,7 @@ namespace QuantLibAddin {
                              bool allowExtrapolation,
                              bool decoupleInterpolation,
                              bool permanent)
-                 : CapletVolatilityStructure(properties, permanent){
+                 : OptionletVolatilityStructure(properties, permanent){
       //bool allowExtrapolation = true;
      libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapsStripper(tenors,
@@ -134,7 +134,7 @@ namespace QuantLibAddin {
         const QuantLib::Date& referenceDate,
         const QuantLib::DayCounter& dayCounter,
         const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& smiles,
-        bool permanent) : CapletVolatilityStructure(properties, permanent)
+        bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         libraryObject_ = 
             boost::shared_ptr<QuantLib::SmileSectionsVolStructure>(new
@@ -144,9 +144,9 @@ namespace QuantLibAddin {
 
     SpreadedCapletVolatilityStructure::SpreadedCapletVolatilityStructure(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& baseVol,
+        const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& baseVol,
         const QuantLib::Handle<QuantLib::Quote>& spread,
-        bool permanent) : CapletVolatilityStructure(properties, permanent)
+        bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         libraryObject_ =
             boost::shared_ptr<QuantLib::SpreadedCapletVolatilityStructure>(new
@@ -161,7 +161,7 @@ namespace QuantLibAddin {
           const std::vector<QuantLib::Period>& optionTenors,
           const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& volatilities,
           const QuantLib::DayCounter& dayCounter,
-          bool permanent) : CapVolatilityStructure(properties, permanent)
+          bool permanent) : CapFloorVolatilityStructure(properties, permanent)
     {
         std::vector<QuantLib::Handle<QuantLib::Quote> > temp(volatilities.size());
         for(QuantLib::Size i = 0; i<temp.size(); ++i){
@@ -172,6 +172,7 @@ namespace QuantLibAddin {
                                           calendar,
                                           optionTenors,
                                           temp,
+                                          QuantLib::Following,
                                           dayCounter));
     }
 
@@ -183,7 +184,7 @@ namespace QuantLibAddin {
           const std::vector<QuantLib::Rate>& strikes,
           const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
           const QuantLib::DayCounter& dc,
-          bool permanent) : CapVolatilityStructure(properties, permanent)
+          bool permanent) : CapFloorVolatilityStructure(properties, permanent)
     {
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
         for(QuantLib::Size i = 0; i<temp.size(); ++i) {
@@ -197,6 +198,7 @@ namespace QuantLibAddin {
                                            optionLengths,
                                            strikes,
                                            temp,
+                                          QuantLib::Following,
                                            dc));
     }
 

@@ -32,7 +32,7 @@ namespace QuantLib {
     class IborIndex;
     class DayCounter;
     class SwapIndex;
-    class CapletVolatilityStructure;
+    class OptionletVolatilityStructure;
 }
 
 namespace QuantLibAddin {
@@ -176,7 +176,7 @@ namespace QuantLibAddin {
       public:
         IborCouponPricer(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::CapletVolatilityStructure>& vol,
+            const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& vol,
             const std::string& typeOfIborCouponPricer,
             bool permanent);
     };

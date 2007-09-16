@@ -64,7 +64,7 @@
         <DataType>QuantLib::SwaptionVolatilityCube</DataType>
         <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-        <DataType>QuantLib::CapletVolatilityStructure</DataType>
+        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::CapVolatilityStructure</DataType>
         <DataType>QuantLib::CapVolatilityVector</DataType>
         <DataType>QuantLib::CapVolatilitySurface</DataType>
@@ -92,7 +92,7 @@
         <DataType>QuantLib::BlackVolTermStructure</DataType>
         <DataType>QuantLib::Bond</DataType>
         <DataType>QuantLib::CapFloor</DataType>
-        <DataType>QuantLib::CapletVolatilityStructure</DataType>
+        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::CapsStripper</DataType>
         <DataType>QuantLib::CmsCouponPricer</DataType>
         <DataType>QuantLib::CmsMarket</DataType>
@@ -205,7 +205,7 @@
     -->
     <SuperType name='libToHandle' nativeType='string'>
       <DataTypes>
-        <DataType>QuantLib::CapletVolatilityStructure</DataType>
+        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
@@ -249,7 +249,7 @@
     -->
     <SuperType name='objectHandle' nativeType='string' conversionSuffix='Obj'>
       <DataTypes>
-        <DataType>QuantLib::CapletVolatilityStructure</DataType>
+        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
