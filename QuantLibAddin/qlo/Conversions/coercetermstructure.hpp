@@ -24,8 +24,8 @@
 #include <qlo/handle.hpp>
 #include <qlo/Conversions/coerceobject.hpp>
 #include <qlo/termstructures.hpp>
-#include <ql/termstructures/yieldtermstructure.hpp>
-#include <ql/termstructures/swaptionvolstructure.hpp>
+#include <ql/yieldtermstructure.hpp>
+#include <ql/termstructures/voltermstructures/swaptionvolstructure.hpp>
 
 namespace QuantLibAddin {
 

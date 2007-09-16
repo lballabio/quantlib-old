@@ -25,7 +25,7 @@
 #include <ql/quotes/forwardvaluequote.hpp>
 #include <ql/quotes/futuresconvadjustmentquote.hpp>
 #include <ql/quotes/impliedstddevquote.hpp>
-#include <ql/termstructures/volatilities/interestrate/caplet/capstripper2.hpp>
+#include <ql/termstructures/voltermstructures/interestrate/caplet/capstripper2.hpp>
 
 namespace QuantLibAddin {
 

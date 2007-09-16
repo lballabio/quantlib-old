@@ -23,8 +23,8 @@
 
 #include <ql/types.hpp>
 #include <ql/processes/blackscholesprocess.hpp>
-#include <ql/termstructures/volatilities/equityfx/blackconstantvol.hpp>
-#include <ql/termstructures/volatilities/equityfx/blackvariancesurface.hpp>
+#include <ql/termstructures/voltermstructures/equityfx/blackconstantvol.hpp>
+#include <ql/termstructures/voltermstructures/equityfx/blackvariancesurface.hpp>
 
 namespace QuantLib {
     class GeneralizedBlackScholesProcess;

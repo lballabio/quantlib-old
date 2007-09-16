@@ -6,7 +6,7 @@
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/schedule.hpp</include>
-    <include>ql/termstructures/yieldcurves/ratehelpers.hpp</include>
+    <include>ql/termstructures/yieldtermstructures/ratehelpers.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
