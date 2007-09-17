@@ -7,7 +7,7 @@
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="24" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EUR3MFutOptionVol</ObjectId>
-			<ClassName>qlRelinkableHandleCapletVolatilityStructure</ClassName>
+			<ClassName>qlRelinkableHandleOptionletVolatilityStructure</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>
 		</px>
@@ -15,7 +15,7 @@
 	<item>
 		<px class_id_reference="24" object_id="_2">
 			<ObjectId>EUR3MCapletVol</ObjectId>
-			<ClassName>qlRelinkableHandleCapletVolatilityStructure</ClassName>
+			<ClassName>qlRelinkableHandleOptionletVolatilityStructure</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>
 		</px>
@@ -23,7 +23,7 @@
 	<item>
 		<px class_id_reference="24" object_id="_3">
 			<ObjectId>EUR6MCapletVol</ObjectId>
-			<ClassName>qlRelinkableHandleCapletVolatilityStructure</ClassName>
+			<ClassName>qlRelinkableHandleOptionletVolatilityStructure</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>1</Permanent>
 		</px>
