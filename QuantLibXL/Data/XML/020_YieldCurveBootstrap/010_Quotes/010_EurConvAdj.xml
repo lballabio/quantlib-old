@@ -8,10 +8,10 @@
 		<px class_id="130" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>HW_Volatility_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value class_id="181" tracking_level="0" version="0">
-				<variant_ class_id="182" tracking_level="0" version="0">
+			<Value class_id="182" tracking_level="0" version="0">
+				<variant_ class_id="183" tracking_level="0" version="0">
 					<which>4</which>
-					<value class_id="183" tracking_level="0" version="0">
+					<value class_id="184" tracking_level="0" version="0">
 						<type_>5</type_>
 					</value>
 				</variant_>
