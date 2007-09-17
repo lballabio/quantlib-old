@@ -28,6 +28,8 @@ namespace QuantLib {
     class SmileSection;
     class IborIndex;
     class CapVolatilitySurface;
+    class OptionletStripper;
+    class OptionletStripperAdapter;
 }
 
 namespace QuantLibAddin {
@@ -39,6 +41,13 @@ namespace QuantLibAddin {
       CapletConstantVolatility(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                const QuantLib::Handle<QuantLib::Quote>& volatility,
                                const QuantLib::DayCounter& dayCounter,
+                               bool permanent);
+    };
+      
+    class OptionletStripperAdapter : public OptionletVolatilityStructure {
+      public:
+      OptionletStripperAdapter(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                               const QuantLib::Handle<QuantLib::OptionletStripper>& optionletStripper,
                                bool permanent);
     };
 

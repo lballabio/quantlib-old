@@ -27,6 +27,7 @@
 #include <ql/voltermstructures/interestrate/caplet/spreadedcapletvolstructure.hpp>
 #include <ql/voltermstructures/interestrate/cap/capflatvolvector.hpp>
 #include <ql/voltermstructures/interestrate/cap/capvolsurface.hpp>
+#include <ql/voltermstructures/interestrate/caplet/optionletstripperadapter.hpp>
 
 namespace QuantLibAddin {
 
@@ -38,6 +39,15 @@ namespace QuantLibAddin {
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapletConstantVolatility(volatility, dayCounter));
+    }
+        
+    OptionletStripperAdapter::OptionletStripperAdapter(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        const QuantLib::Handle<QuantLib::OptionletStripper>& optionletStripper,
+        bool permanent) : OptionletVolatilityStructure(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::OptionletStripperAdapter(optionletStripper));
     }
 
     CapsStripper::CapsStripper(
