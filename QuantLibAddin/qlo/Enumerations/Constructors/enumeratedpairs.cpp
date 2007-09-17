@@ -48,6 +48,36 @@ namespace QuantLibAddin {
                                                                   dayCounter,
                                                                   accuracy));
     }
+
+    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> DISCOUNT_BACKWARDFLAT_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::Discount,
+                                                             QuantLib::BackwardFlat>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_FORWARDFLAT_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
@@ -62,6 +92,36 @@ namespace QuantLibAddin {
                                                                  dayCounter,
                                                                  accuracy));
     }
+
+    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> DISCOUNT_FORWARDFLAT_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::Discount,
+                                                            QuantLib::ForwardFlat>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LINEAR_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
@@ -76,6 +136,36 @@ namespace QuantLibAddin {
                                                             dayCounter,
                                                             accuracy));
     }
+
+    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> DISCOUNT_LINEAR_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::Discount,
+                                                            QuantLib::Linear>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LOGLINEAR_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
@@ -90,6 +180,36 @@ namespace QuantLibAddin {
                                                                dayCounter,
                                                                accuracy));
     }
+
+    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> DISCOUNT_LOGLINEAR_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::Discount,
+                                                            QuantLib::LogLinear>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_CUBIC_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
@@ -98,150 +218,6 @@ namespace QuantLibAddin {
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
-                                          QuantLib::Cubic>(nDays,
-                                                           calendar,
-                                                           rateHelpers,
-                                                           dayCounter,
-                                                           accuracy));
-    }
-
-    /* *** ZeroYield based *** */
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_BACKWARDFLAT_PiecewiseYieldCurve(
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::Real accuracy) {
-        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
-            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
-                                          QuantLib::BackwardFlat>(nDays,
-                                                                  calendar,
-                                                                  rateHelpers,
-                                                                  dayCounter,
-                                                                  accuracy));
-    }
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_FORWARDFLAT_PiecewiseYieldCurve(
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::Real accuracy) {
-        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
-            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
-                                          QuantLib::ForwardFlat>(nDays,
-                                                                 calendar,
-                                                                 rateHelpers,
-                                                                 dayCounter,
-                                                                 accuracy));
-    }
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LINEAR_PiecewiseYieldCurve(
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::Real accuracy) {
-        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
-            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
-                                          QuantLib::Linear>(nDays,
-                                                            calendar,
-                                                            rateHelpers,
-                                                            dayCounter,
-                                                            accuracy));
-    }
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LOGLINEAR_PiecewiseYieldCurve(
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::Real accuracy) {
-        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
-            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
-                                          QuantLib::LogLinear>(nDays, 
-                                                               calendar,
-                                                               rateHelpers,
-                                                               dayCounter,
-                                                               accuracy));
-    }
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_CUBIC_PiecewiseYieldCurve(
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::Real accuracy) {
-        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
-            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
-                                          QuantLib::Cubic>(nDays,
-                                                           calendar,
-                                                           rateHelpers,
-                                                           dayCounter,
-                                                           accuracy));
-    }
-
-    /* *** ForwardRate based *** */
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_BACKWARDFLAT_PiecewiseYieldCurve(
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::Real accuracy) {
-        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
-            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-                                          QuantLib::BackwardFlat>(nDays,
-                                                                  calendar,
-                                                                  rateHelpers,
-                                                                  dayCounter,
-                                                                  accuracy));
-    }
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_FORWARDFLAT_PiecewiseYieldCurve(
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::Real accuracy) {
-        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
-            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-                                          QuantLib::ForwardFlat>(nDays,
-                                                                 calendar,
-                                                                 rateHelpers,
-                                                                 dayCounter,
-                                                                 accuracy));
-    }
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LINEAR_PiecewiseYieldCurve(
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::Real accuracy) {
-        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
-            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-                                          QuantLib::Linear>(nDays,
-                                                            calendar,
-                                                            rateHelpers,
-                                                            dayCounter,
-                                                            accuracy));
-    }
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LOGLINEAR_PiecewiseYieldCurve(
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::Real accuracy) {
-        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
-            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-                                          QuantLib::LogLinear>(nDays,
-                                                               calendar,
-                                                               rateHelpers,
-                                                               dayCounter,
-                                                               accuracy));
-    }
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_CUBIC_PiecewiseYieldCurve(
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
-            const QuantLib::DayCounter& dayCounter,
-            QuantLib::Real accuracy) {
-        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
-            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
                                           QuantLib::Cubic>(nDays,
                                                            calendar,
                                                            rateHelpers,
@@ -263,7 +239,7 @@ namespace QuantLibAddin {
         QuantLib::Real yieldCurveAccuracy){
             return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
                 QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::Discount,
-                QuantLib::Cubic>(
+                                                            QuantLib::Cubic>(
                 stats,
                 startDate,
                 endDate,
@@ -274,10 +250,27 @@ namespace QuantLibAddin {
                 iborIndexes,
                 swapIndexes,
                 yieldCurveDayCounter,
-                yieldCurveAccuracy)); 
+                yieldCurveAccuracy));
+
     }
 
-    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> ZEROYIELD_LINEAR_HistoricalForwardRatesAnalysis(
+    /* *** ZeroYield based *** */
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_BACKWARDFLAT_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                                          QuantLib::BackwardFlat>(nDays,
+                                                                  calendar,
+                                                                  rateHelpers,
+                                                                  dayCounter,
+                                                                  accuracy));
+    }
+
+        boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> ZEROYIELD_BACKWARDFLAT_HistoricalForwardRatesAnalysis(
         const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
         const QuantLib::Date& startDate,
         const QuantLib::Date& endDate,
@@ -291,7 +284,404 @@ namespace QuantLibAddin {
         QuantLib::Real yieldCurveAccuracy){
             return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
                 QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ZeroYield,
-                QuantLib::Linear>(
+                                                             QuantLib::BackwardFlat>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_FORWARDFLAT_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                                          QuantLib::ForwardFlat>(nDays,
+                                                                 calendar,
+                                                                 rateHelpers,
+                                                                 dayCounter,
+                                                                 accuracy));
+    }
+
+        boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> ZEROYIELD_FORWARDFLAT_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ZeroYield,
+                                                             QuantLib::ForwardFlat>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LINEAR_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                                          QuantLib::Linear>(nDays,
+                                                            calendar,
+                                                            rateHelpers,
+                                                            dayCounter,
+                                                            accuracy));
+    }
+
+   boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> ZEROYIELD_LINEAR_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ZeroYield,
+                                                             QuantLib::Linear>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LOGLINEAR_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                                          QuantLib::LogLinear>(nDays, 
+                                                               calendar,
+                                                               rateHelpers,
+                                                               dayCounter,
+                                                               accuracy));
+    }
+
+   boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> ZEROYIELD_LOGLINEAR_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ZeroYield,
+                                                             QuantLib::LogLinear>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_CUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                                          QuantLib::Cubic>(nDays,
+                                                           calendar,
+                                                           rateHelpers,
+                                                           dayCounter,
+                                                           accuracy));
+    }
+
+   boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> ZEROYIELD_CUBIC_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ZeroYield,
+                                                             QuantLib::Cubic>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
+    /* *** ForwardRate based *** */
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_BACKWARDFLAT_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+                                          QuantLib::BackwardFlat>(nDays,
+                                                                  calendar,
+                                                                  rateHelpers,
+                                                                  dayCounter,
+                                                                  accuracy));
+    }
+
+       boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> FORWARDRATE_BACKWARDFLAT_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ForwardRate,
+                                                             QuantLib::BackwardFlat>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_FORWARDFLAT_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+                                          QuantLib::ForwardFlat>(nDays,
+                                                                 calendar,
+                                                                 rateHelpers,
+                                                                 dayCounter,
+                                                                 accuracy));
+    }
+
+       boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> FORWARDRATE_FORWARDFLAT_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ForwardRate,
+                                                             QuantLib::ForwardFlat>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LINEAR_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+                                          QuantLib::Linear>(nDays,
+                                                            calendar,
+                                                            rateHelpers,
+                                                            dayCounter,
+                                                            accuracy));
+    }
+
+       boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> FORWARDRATE_LINEAR_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ForwardRate,
+                                                             QuantLib::Linear>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LOGLINEAR_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+                                          QuantLib::LogLinear>(nDays,
+                                                               calendar,
+                                                               rateHelpers,
+                                                               dayCounter,
+                                                               accuracy));
+    }
+
+       boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> FORWARDRATE_LOGLINEAR_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ForwardRate,
+                                                             QuantLib::LogLinear>(
+                stats,
+                startDate,
+                endDate,
+                step,
+                fwdIndex,
+                initialGap,
+                horizon,
+                iborIndexes,
+                swapIndexes,
+                yieldCurveDayCounter,
+                yieldCurveAccuracy));
+
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_CUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+                                          QuantLib::Cubic>(nDays,
+                                                           calendar,
+                                                           rateHelpers,
+                                                           dayCounter,
+                                                           accuracy));
+    }
+
+       boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> FORWARDRATE_CUBIC_HistoricalForwardRatesAnalysis(
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const boost::shared_ptr<QuantLib::InterestRateIndex>& fwdIndex,
+        const QuantLib::Period& initialGap,
+        const QuantLib::Period& horizon,
+        const std::vector<boost::shared_ptr<QuantLib::IborIndex> >& iborIndexes,
+        const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndexes,
+        const QuantLib::DayCounter& yieldCurveDayCounter,
+        QuantLib::Real yieldCurveAccuracy){
+            return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
+                QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ForwardRate,
+                                                             QuantLib::Cubic>(
                 stats,
                 startDate,
                 endDate,

@@ -95,19 +95,87 @@
         </EnumeratedPair>
       </EnumeratedPairs>
     </EnumeratedPairGroup>
-      
+
       <EnumeratedPairGroup class='QuantLib::HistoricalForwardRatesAnalysis'>
           <includeFile/>
           <EnumeratedPairs>
+              <!-- Discount based yield term structures -->
+              <EnumeratedPair>
+                  <id1>Discount</id1>
+                  <id2>BackwardFlat</id2>
+                  <value>DISCOUNT_BACKWARDFLAT_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>Discount</id1>
+                  <id2>ForwardFlat</id2>
+                  <value>DISCOUNT_FORWARDFLAT_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>Discount</id1>
+                  <id2>Linear</id2>
+                  <value>DISCOUNT_LINEAR_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>Discount</id1>
+                  <id2>LogLinear</id2>
+                  <value>DISCOUNT_LOGLINEAR_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
               <EnumeratedPair>
                   <id1>Discount</id1>
                   <id2>Cubic</id2>
                   <value>DISCOUNT_CUBIC_HistoricalForwardRatesAnalysis</value>
               </EnumeratedPair>
+              <!-- ZeroYield based yield term structures -->
+              <EnumeratedPair>
+                  <id1>ZeroYield</id1>
+                  <id2>BackwardFlat</id2>
+                  <value>ZEROYIELD_BACKWARDFLAT_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>ZeroYield</id1>
+                  <id2>ForwardFlat</id2>
+                  <value>ZEROYIELD_FORWARDFLAT_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
               <EnumeratedPair>
                   <id1>ZeroYield</id1>
                   <id2>Linear</id2>
                   <value>ZEROYIELD_LINEAR_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>ZeroYield</id1>
+                  <id2>LogLinear</id2>
+                  <value>ZEROYIELD_LOGLINEAR_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>ZeroYield</id1>
+                  <id2>Cubic</id2>
+                  <value>ZEROYIELD_CUBIC_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <!--ForwardRate based yield term structures-->
+              <EnumeratedPair>
+                  <id1>ForwardRate</id1>
+                  <id2>BackwardFlat</id2>
+                  <value>FORWARDRATE_BACKWARDFLAT_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>ForwardRate</id1>
+                  <id2>ForwardFlat</id2>
+                  <value>FORWARDRATE_FORWARDFLAT_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>ForwardRate</id1>
+                  <id2>Linear</id2>
+                  <value>FORWARDRATE_LINEAR_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>ForwardRate</id1>
+                  <id2>LogLinear</id2>
+                  <value>FORWARDRATE_LOGLINEAR_HistoricalForwardRatesAnalysis</value>
+              </EnumeratedPair>
+              <EnumeratedPair>
+                  <id1>ForwardRate</id1>
+                  <id2>Cubic</id2>
+                  <value>FORWARDRATE_CUBIC_HistoricalForwardRatesAnalysis</value>
               </EnumeratedPair>
           </EnumeratedPairs>
       </EnumeratedPairGroup>
