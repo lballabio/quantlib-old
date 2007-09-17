@@ -66,8 +66,8 @@
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::CapVolatilityStructure</DataType>
-        <DataType>QuantLib::CapVolatilityVector</DataType>
-        <DataType>QuantLib::CapVolatilitySurface</DataType>
+        <DataType>QuantLib::CapFloorTermVolVector</DataType>
+        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
         <DataType>QuantLib::OptionletStripper</DataType>
         <DataType>QuantLib::TermStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>

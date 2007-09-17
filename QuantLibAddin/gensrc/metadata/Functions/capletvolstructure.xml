@@ -10,8 +10,8 @@
     <include>ql/voltermstructures/interestrate/caplet/optionletvolatilitystructure.hpp</include>
     <include>ql/voltermstructures/interestrate/caplet/capletconstantvol.hpp</include>
     <include>ql/voltermstructures/interestrate/caplet/capstripper.hpp</include>
-    <include>ql/voltermstructures/interestrate/cap/capflatvolvector.hpp</include>
-    <include>ql/voltermstructures/interestrate/cap/capvolsurface.hpp</include>
+    <include>ql/voltermstructures/interestrate/cap/capfloortermvolvector.hpp</include>
+    <include>ql/voltermstructures/interestrate/cap/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
@@ -22,7 +22,7 @@
     <include>ql/voltermstructures/interestrate/caplet/optionletvolatilitystructure.hpp</include>
     <include>ql/voltermstructures/interestrate/caplet/capletconstantvol.hpp</include>
     <include>ql/voltermstructures/interestrate/caplet/capstripper.hpp</include>
-    <include>ql/voltermstructures/interestrate/cap/capvolsurface.hpp</include>
+    <include>ql/voltermstructures/interestrate/cap/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <copyright>
@@ -443,8 +443,8 @@
             <tensorRank>vector</tensorRank>
             <description>cap strikes.</description>
           </Parameter>
-          <Parameter name='CapVolatilitySurface' >
-            <type>QuantLib::CapVolatilitySurface</type>
+          <Parameter name='CapFloorTermVolSurface' >
+            <type>QuantLib::CapFloorTermVolSurface</type>
             <superType>handleToLib</superType>
             <tensorRank>scalar</tensorRank>
             <description>Cap VolatilitySurface.</description>
@@ -502,8 +502,8 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='CapVolatilitySurface' >
-            <type>QuantLib::CapVolatilitySurface</type>
+          <Parameter name='CapFloorTermVolSurface' >
+            <type>QuantLib::CapFloorTermVolSurface</type>
             <superType>handleToLib</superType>
             <tensorRank>scalar</tensorRank>
             <description>Cap VolatilitySurface.</description>
@@ -679,7 +679,7 @@
     </Constructor>
 
     <!-- SwaptionVolatilityStructure interface-->
-    <Member name='qlCapTermVolVectorVolatility' type='QuantLib::CapVolatilityVector' superType='handleToLib'>
+    <Member name='qlCapTermVolVectorVolatility' type='QuantLib::CapFloorTermVolVector' superType='handleToLib'>
       <description>Returns interpolated volatility from the given cap term vols object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -707,7 +707,7 @@
     </Member>
 
     <Constructor name='qlCapTermVolVector'>
-      <libraryFunction>CapVolatilityVector</libraryFunction>
+      <libraryFunction>CapFloorTermVolVector</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Cpp'/>
@@ -745,7 +745,7 @@
     </Constructor>
 
     <!-- SwaptionVolatilityStructure interface-->
-    <Member name='qlCapTermVolSurfaceVolatility' type='QuantLib::CapVolatilitySurface' superType='handleToLib'>
+    <Member name='qlCapTermVolSurfaceVolatility' type='QuantLib::CapFloorTermVolSurface' superType='handleToLib'>
       <description>Returns interpolated volatility from the given cap term vols object</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -773,7 +773,7 @@
     </Member>
 
     <Constructor name='qlCapTermVolSurface'>
-      <libraryFunction>CapVolatilitySurface</libraryFunction>
+      <libraryFunction>CapFloorTermVolSurface</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
         <SupportedPlatform name='Cpp'/>

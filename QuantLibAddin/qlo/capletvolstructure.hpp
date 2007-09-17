@@ -27,7 +27,7 @@ namespace QuantLib {
     class Period;
     class SmileSection;
     class IborIndex;
-    class CapVolatilitySurface;
+    class CapFloorTermVolSurface;
     class OptionletStripper;
     class OptionletStripperAdapter;
 }
@@ -57,7 +57,7 @@ namespace QuantLibAddin {
         CapsStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                      const std::vector<QuantLib::Period>& tenors,
                      const std::vector<QuantLib::Rate>& strikes,
-                     const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
+                     const boost::shared_ptr<QuantLib::CapFloorTermVolSurface>& surface,
                      const boost::shared_ptr<QuantLib::IborIndex>& index,
                      QuantLib::Period timeStep,
                      const QuantLib::Handle<QuantLib::YieldTermStructure>,
@@ -128,9 +128,9 @@ namespace QuantLibAddin {
 
     OH_OBJ_CLASS(CapFloorVolatilityStructure, TermStructure)
 
-    class CapVolatilityVector : public CapFloorVolatilityStructure {
+    class CapFloorTermVolVector : public CapFloorVolatilityStructure {
       public:
-      CapVolatilityVector(
+      CapFloorTermVolVector(
           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
@@ -140,9 +140,9 @@ namespace QuantLibAddin {
           bool permanent);
     };
 
-    class CapVolatilitySurface : public CapFloorVolatilityStructure {
+    class CapFloorTermVolSurface : public CapFloorVolatilityStructure {
       public:
-      CapVolatilitySurface(
+      CapFloorTermVolSurface(
           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
@@ -158,7 +158,7 @@ namespace QuantLibAddin {
     class OptionletStripper : public dummyClass {
       public:
         OptionletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                          const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
+                          const boost::shared_ptr<QuantLib::CapFloorTermVolSurface>& surface,
                           const boost::shared_ptr<QuantLib::IborIndex>& index,
                           bool permanent);
     };

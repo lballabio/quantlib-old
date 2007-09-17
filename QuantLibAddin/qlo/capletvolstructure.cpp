@@ -25,8 +25,8 @@
 #include <ql/voltermstructures/interestrate/caplet/capletconstantvol.hpp>
 #include <ql/voltermstructures/interestrate/caplet/capstripper.hpp>
 #include <ql/voltermstructures/interestrate/caplet/spreadedcapletvolstructure.hpp>
-#include <ql/voltermstructures/interestrate/cap/capflatvolvector.hpp>
-#include <ql/voltermstructures/interestrate/cap/capvolsurface.hpp>
+#include <ql/voltermstructures/interestrate/cap/capfloortermvolvector.hpp>
+#include <ql/voltermstructures/interestrate/cap/capfloortermvolsurface.hpp>
 #include <ql/voltermstructures/interestrate/caplet/optionletstripperadapter.hpp>
 
 namespace QuantLibAddin {
@@ -112,7 +112,7 @@ namespace QuantLibAddin {
  CapsStripper::CapsStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                              const std::vector<QuantLib::Period>& tenors,
                              const std::vector<QuantLib::Rate>& strikes,
-                             const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
+                             const boost::shared_ptr<QuantLib::CapFloorTermVolSurface>& surface,
                              const boost::shared_ptr<QuantLib::IborIndex>& index,
                              QuantLib::Period timeStep,
                              const QuantLib::Handle<QuantLib::YieldTermStructure> yts,
@@ -164,7 +164,7 @@ namespace QuantLibAddin {
                                                             spread));
     }
 
-    CapVolatilityVector::CapVolatilityVector(
+    CapFloorTermVolVector::CapFloorTermVolVector(
           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
@@ -178,7 +178,7 @@ namespace QuantLibAddin {
             temp[i] = volatilities[i];
         }
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapVolatilityVector(settlementDays,
+            QuantLib::CapFloorTermVolVector(settlementDays,
                                           calendar,
                                           optionTenors,
                                           temp,
@@ -186,7 +186,7 @@ namespace QuantLibAddin {
                                           dayCounter));
     }
 
-    CapVolatilitySurface::CapVolatilitySurface(
+    CapFloorTermVolSurface::CapFloorTermVolSurface(
           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
@@ -203,7 +203,7 @@ namespace QuantLibAddin {
                 temp[i][j] = volatilities[i][j];
         }
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapVolatilitySurface(settlementDays,
+            QuantLib::CapFloorTermVolSurface(settlementDays,
                                            calendar,
                                            optionLengths,
                                            strikes,
@@ -213,7 +213,7 @@ namespace QuantLibAddin {
     }
 
     OptionletStripper::OptionletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                         const boost::shared_ptr<QuantLib::CapVolatilitySurface>& surface,
+                                         const boost::shared_ptr<QuantLib::CapFloorTermVolSurface>& surface,
                                          const boost::shared_ptr<QuantLib::IborIndex>& index,
                                          bool permanent) : dummyClass(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::OptionletStripper>(new
