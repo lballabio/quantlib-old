@@ -589,7 +589,7 @@
           <Parameter name='Tenor' exampleValue='10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
+            <description>index tenor (e.g. 2D for two days, 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
           <Parameter name='FixingDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
