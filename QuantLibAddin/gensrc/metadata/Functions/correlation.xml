@@ -100,7 +100,7 @@
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
-    
+
     <Member name='qlHistoricalForwardRatesAnalysisFailedDates' type='QuantLib::HistoricalForwardRatesAnalysis'>
       <description>Returns vector of dates for which forward rates could not be calculated.</description>
       <libraryFunction>failedDates</libraryFunction>
@@ -135,103 +135,103 @@
       </ReturnValue>
     </Member>
 
-      <Member name='qlHistoricalForwardRatesAnalysisFixingPeriods' type='QuantLib::HistoricalForwardRatesAnalysis'>
-          <description>Returns the forward rates time grid.</description>
-          <libraryFunction>fixingPeriods</libraryFunction>
-          <SupportedPlatforms>
-              <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-              <SupportedPlatform name='Excel'/>
-              <!--SupportedPlatform name='Cpp'/-->
-          </SupportedPlatforms>
-          <ParameterList>
-              <Parameters/>
-          </ParameterList>
-          <ReturnValue>
-              <type>QuantLib::Period</type>
-              <tensorRank>vector</tensorRank>
-          </ReturnValue>
-      </Member>
+    <Member name='qlHistoricalForwardRatesAnalysisFixingPeriods' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns the forward rates time grid.</description>
+      <libraryFunction>fixingPeriods</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
 
-      <Constructor name='qlHistoricalForwardRatesAnalysis'>
-          <libraryFunction>HistoricalForwardRatesAnalysis</libraryFunction>
-          <functionCategory>QuantLib</functionCategory>
-          <SupportedPlatforms>
-              <SupportedPlatform name='Excel' calcInWizard='false'/>
-              <SupportedPlatform name='Cpp'/>
-          </SupportedPlatforms>
-          <ParameterList>
-              <Parameters>
-                  <Parameter name='SequenceStats'>
-                      <type>QuantLib::SequenceStatistics</type>
-                      <superType>libraryClass</superType>
-                      <tensorRank>scalar</tensorRank>
-                      <description>Sequence Statistics object ID</description>
-                  </Parameter>
-                  <Parameter name='StartDate' exampleValue='37413'>
-                      <type>QuantLib::Date</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>beginning of the time series</description>
-                  </Parameter>
-                  <Parameter name='EndDate' exampleValue='39248'>
-                      <type>QuantLib::Date</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>end of the time series</description>
-                  </Parameter>
-                  <Parameter name='Step' exampleValue='1D'>
-                      <type>QuantLib::Period</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>time series' time step</description>
-                  </Parameter>
-                  <Parameter name='IborIndex'>
-                      <type>QuantLib::IborIndex</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>floating rate index</description>
-                  </Parameter>
-                  <Parameter name='InitialGap' exampleValue='3M'>
-                      <type>QuantLib::Period</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>initialGap</description>
-                  </Parameter>
-                  <Parameter name='Horizon' exampleValue='30Y'>
-                      <type>QuantLib::Period</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>bootstrap horizon</description>
-                  </Parameter>
-                  <Parameter name='IborIndexes'>
-                      <type>QuantLib::IborIndex</type>
-                      <tensorRank>vector</tensorRank>
-                      <description>Ibor indexes</description>
-                  </Parameter>
-                  <Parameter name='SwapIndexes'>
-                      <type>QuantLib::SwapIndex</type>
-                      <tensorRank>vector</tensorRank>
-                      <description>Swap indexes</description>
-                  </Parameter>
-                  <Parameter name='DayCounter' exampleValue='Actual/365 (Fixed)'>
-                      <type>QuantLib::DayCounter</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>yield curve DayCounter</description>
-                  </Parameter>
-                  <Parameter name='TraitsID' default='"Discount"'>
-                      <type>string</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
-                  </Parameter>
-                  <Parameter name='InterpolatorID' default='"Cubic"'>
-                      <type>string</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>Linear, LogLinear, or Cubic. If omitted, default = LogLinear is used.</description>
-                  </Parameter>
-                  <Parameter name='BootstrapAccuracy' default='1.0e-12'>
-                      <type>QuantLib::Real</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>boostrap accuracy</description>
-                  </Parameter>
-              </Parameters>
-          </ParameterList>
-      </Constructor>
+    <Constructor name='qlHistoricalForwardRatesAnalysis'>
+      <libraryFunction>HistoricalForwardRatesAnalysis</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SequenceStats'>
+            <type>QuantLib::SequenceStatistics</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Sequence Statistics object ID</description>
+          </Parameter>
+          <Parameter name='StartDate' exampleValue='37413'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beginning of the time series</description>
+          </Parameter>
+          <Parameter name='EndDate' exampleValue='39248'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end of the time series</description>
+          </Parameter>
+          <Parameter name='Step' exampleValue='1D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time series' time step</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating rate index</description>
+          </Parameter>
+          <Parameter name='InitialGap' exampleValue='3M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initialGap</description>
+          </Parameter>
+          <Parameter name='Horizon' exampleValue='30Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bootstrap horizon</description>
+          </Parameter>
+          <Parameter name='IborIndexes'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Ibor indexes</description>
+          </Parameter>
+          <Parameter name='SwapIndexes'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Swap indexes</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/365 (Fixed)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>yield curve DayCounter</description>
+          </Parameter>
+          <Parameter name='TraitsID' default='"Discount"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
+          </Parameter>
+          <Parameter name='InterpolatorID' default='"Cubic"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Linear, LogLinear, or Cubic. If omitted, default = LogLinear is used.</description>
+          </Parameter>
+          <Parameter name='BootstrapAccuracy' default='1.0e-12'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>boostrap accuracy</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
-      <Constructor name='qlTimeHomogeneousForwardCorrelation'>
+    <Constructor name='qlTimeHomogeneousForwardCorrelation'>
       <libraryFunction>TimeHomogeneousForwardCorrelation</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
