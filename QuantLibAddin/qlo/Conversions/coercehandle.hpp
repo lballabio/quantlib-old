@@ -33,11 +33,12 @@ namespace QuantLibAddin {
 
     template <class LibraryClass>
     bool objectToHandle(
-            const boost::shared_ptr<ObjectHandler::Object> &in,
-            QuantLib::RelinkableHandle<LibraryClass> &out) {
+        const std::string &in,
+        QuantLib::RelinkableHandle<LibraryClass> &out) {
 
+        OH_GET_OBJECT(object, in, ObjectHandler::Object)
         boost::shared_ptr<QuantLibAddin::RelinkableHandle<LibraryClass> > handlePointer =
-            boost::dynamic_pointer_cast<QuantLibAddin::RelinkableHandle<LibraryClass> >(in);
+            boost::dynamic_pointer_cast<QuantLibAddin::RelinkableHandle<LibraryClass> >(object);
         if (handlePointer) {
             out = handlePointer->getHandle();
             return true;
@@ -48,11 +49,15 @@ namespace QuantLibAddin {
 
     template <class ObjectClass, class LibraryClass>
     bool wrapObject(
-            const boost::shared_ptr<ObjectHandler::Object> &in,
-            QuantLib::RelinkableHandle<LibraryClass> &out) {
+        const std::string &in,
+        QuantLib::RelinkableHandle<LibraryClass> &out) {
+
+        // FIXME this same get has already been performed by objectToHandle().
+        // Need to find a way to cache the return value.
+        OH_GET_OBJECT(object, in, ObjectHandler::Object)
 
         boost::shared_ptr<ObjectClass> qloPointer =
-            boost::dynamic_pointer_cast<ObjectClass>(in);
+            boost::dynamic_pointer_cast<ObjectClass>(object);
         if (qloPointer) {
             boost::shared_ptr<LibraryClass> ret;
             qloPointer->getLibraryObject(ret);
@@ -65,11 +70,11 @@ namespace QuantLibAddin {
 
     template <class ObjectClass, class LibraryClass>
     class CoerceHandle : public ObjectHandler::Coerce<
-            boost::shared_ptr<ObjectHandler::Object>, 
-            QuantLib::RelinkableHandle<LibraryClass> > {
+        std::string, 
+        QuantLib::RelinkableHandle<LibraryClass> > {
 
         typedef typename ObjectHandler::Coerce<
-            boost::shared_ptr<ObjectHandler::Object>,
+            std::string,
             QuantLib::RelinkableHandle<LibraryClass> >::Conversion Conversion;
 
         Conversion *getConversions() {
@@ -81,6 +86,7 @@ namespace QuantLibAddin {
             return conversions; 
         };
 
+        virtual bool inputMissing(const std::string &objectID) { return objectID.empty(); }
     };
 }
 

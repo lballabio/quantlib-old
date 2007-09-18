@@ -126,13 +126,19 @@ code43 = '''\
         std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > %(name)sLibObj =
             ObjectHandler::operToVector<QuantLib::RelinkableHandle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
 
-code44 = '''\
-        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
+code44a = '''\
         %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
-                    %(name)sTemp);\n'''
+                    %(name)sCpp, %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s>());\n'''
+
+code44b = '''\
+        %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+            %(namespaceObjects)s::CoerceHandle<
+                %(namespaceObjects)s::%(classname)s,
+                %(namespaceLibrary)s::%(classname)s>()(
+                    %(name)s);\n'''
 
 code45a = '''\
         QuantLib::RelinkableHandle<QuantLib::Quote> %(name)sLibObj = 
@@ -618,6 +624,13 @@ code161 = '''\
 code162 = '''\
         std::vector<%(type)s> %(name)sEnum =
             ObjectHandler::vectorStringToEnum<%(type)s>(%(name)s, "%(name)s");\n'''
+
+code163 = '''\
+        %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+            %(namespaceObjects)s::CoerceHandle<
+                %(namespaceObjects)s::%(classname)s,
+                %(namespaceLibrary)s::%(classname)s>()(
+                    %(name)s, %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s>());\n'''
 
 ##########################################################################
 # code for C

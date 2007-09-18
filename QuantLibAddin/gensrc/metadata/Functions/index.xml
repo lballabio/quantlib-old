@@ -420,7 +420,7 @@
           <Parameter name='BDayConvention'  exampleValue='Modified Following'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>business day convention (e.g. ModifiedFollowing)</description>
+            <description>business day convention (e.g. Modified Following)</description>
           </Parameter>
           <Parameter name='EndOfMonth'  exampleValue='TRUE'>
             <type>bool</type>
@@ -430,11 +430,9 @@
           <Parameter name='DayCounter'  exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual360)</description>
+            <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <!-- NULL REFERENCES NO LONGER SUPPORTED 
-          <Parameter name='YieldCurve' libToHandle='YieldTermStructure' default='""'-->
-          <Parameter name='YieldCurve'   exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>

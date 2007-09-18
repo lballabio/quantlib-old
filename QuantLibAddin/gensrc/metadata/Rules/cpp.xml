@@ -95,7 +95,8 @@
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' codeID='code47'/>
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code38'/>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code214'/>
-        <Rule tensorRank='scalar' superType='libToHandle' codeID='code44'/>
+        <Rule tensorRank='scalar' superType='libToHandle' default='true' codeID='code44a'/>
+        <Rule tensorRank='scalar' superType='libToHandle' codeID='code44b'/>
         <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::TermStructure' codeID='code46'/>
         <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::SwaptionVolatilityDiscrete' codeID='code46b'/>
         <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::SwaptionVolatilityCube' codeID='code46b'/>
