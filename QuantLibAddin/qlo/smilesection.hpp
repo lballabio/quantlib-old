@@ -107,6 +107,30 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dc,
             bool permanent);
     };
+       
+    class SabrInterpolatedSmileSection2: public SabrInterpolatedSmileSection {
+      public:
+        SabrInterpolatedSmileSection2(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Date& optionDate,
+            const std::vector<QuantLib::Rate>& strikeSpreads,
+            QuantLib::RelinkableHandle<QuantLib::Quote> atmVolatility,
+            const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& volSpreads,
+            QuantLib::RelinkableHandle<QuantLib::Quote> forward, 
+            QuantLib::Real alpha, 
+            QuantLib::Real beta,
+            QuantLib::Real nu,
+            QuantLib::Real rho,
+            bool isAlphaFixed,
+            bool isBetaFixed,
+            bool isNuFixed,
+            bool isRhoFixed,
+            bool vegaWeighted,
+            const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
+            const boost::shared_ptr<QuantLib::OptimizationMethod> method,
+            const QuantLib::DayCounter& dc,
+            bool permanent);
+    };
 }
 
 #endif
