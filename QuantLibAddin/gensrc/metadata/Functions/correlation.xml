@@ -10,6 +10,7 @@
     <include>qlo/index.hpp</include>
     <include>ql/models/marketmodels/correlations/expcorrelations.hpp</include>
     <include>ql/models/marketmodels/historicalforwardratesanalysis.hpp</include>
+    <include>ql/models/marketmodels/historicalratesanalysis.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/correlation.hpp</include>
@@ -248,7 +249,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlHistoricalRatesAnalysisSkippedDatesErrorMessage' type='QuantLib::HistoricalForwardRatesAnalysis'>
+    <Member name='qlHistoricalRatesAnalysisSkippedDatesErrorMessage' type='QuantLib::HistoricalRatesAnalysis'>
       <description>Returns vector of error messages for historic dates with missing fixing.</description>
       <libraryFunction>skippedDatesErrorMessage</libraryFunction>
       <SupportedPlatforms>
