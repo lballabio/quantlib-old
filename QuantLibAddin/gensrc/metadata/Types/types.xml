@@ -82,6 +82,7 @@
       <DataTypes>
         <DataType>QuantLib::Abcd</DataType>
         <DataType>QuantLib::AbcdCalibration</DataType>
+        <DataType>QuantLib::AbcdAtmVolCurve</DataType>  
         <DataType>QuantLib::AccountingEngine</DataType>
         <DataType>QuantLib::AffineModel</DataType>
         <DataType>QuantLib::AlphaForm</DataType>

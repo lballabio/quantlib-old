@@ -23,6 +23,8 @@
 
 #include <ql/types.hpp>
 
+#include <ql/voltermstructures/interestrate/abcdatmvolcurve.hpp>
+
 namespace QuantLib {
     class BlackVolTermStructure;
     class Date;
@@ -56,6 +58,18 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
+    class AbcdAtmVolCurve: public ObjectHandler::LibraryObject<QuantLib::AbcdAtmVolCurve> {
+    public:
+      AbcdAtmVolCurve(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Natural settlementDays,
+            const QuantLib::Calendar& cal,
+            const std::vector<QuantLib::Period>& optionTenors,
+            const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > & volatilities,
+            QuantLib::BusinessDayConvention bdc,
+            const QuantLib::DayCounter& dc,
+            bool permanent);
+    };
 }
 
 #endif

@@ -135,5 +135,73 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlAbcdAtmVolCurve'>
+      <libraryFunction>AbcdAtmVolCurve</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlementDays' exampleValue ='2D'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement days.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET)</description>
+          </Parameter>
+          <Parameter name='OptionTenors'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>options tenors.</description>
+          </Parameter>
+          <Parameter name='VolatilitiesQuotes' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>vector</tensorRank>
+            <description>volatilities quotes</description>
+          </Parameter>        
+          <Parameter name='Convention' exampleValue='Following'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business day convention (e.g. Following)</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual365Fixed'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter convention (e.g. Actual365Fixed)</description>
+          </Parameter>          
+        </Parameters>
+      </ParameterList>      
+    </Constructor>
+
+    <Member name='qlAbcdAtmVol' type='QuantLib::AbcdAtmVolCurve'>
+      <description>Returns the Abcd-interpolated at-the-money (no-smile) volatility at a given time</description>
+      <libraryFunction>atmVol</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Time' exampleValue = '2.0'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The time at which the volatility is evaluated</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+  
   </Functions>
 </Category>
