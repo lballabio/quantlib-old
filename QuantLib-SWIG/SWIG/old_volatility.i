@@ -34,51 +34,58 @@
 // cap/floor volatilities
 
 %{
-using QuantLib::CapVolatilityStructure;
+using QuantLib::CapFloorVolatilityStructure;
 %}
 
-%ignore CapVolatilityStructure;
-class CapVolatilityStructure : public Extrapolator {
+%ignore CapFloorVolatilityStructure;
+class CapFloorVolatilityStructure : public Extrapolator {
   public:
     Volatility volatility(const Date& end, Rate strike);
     Volatility volatility(Time end, Rate strike);
 };
 
-%template(CapVolatilityStructure) boost::shared_ptr<CapVolatilityStructure>;
-IsObservable(boost::shared_ptr<CapVolatilityStructure>);
+%template(CapFloorVolatilityStructure)
+boost::shared_ptr<CapFloorVolatilityStructure>;
+IsObservable(boost::shared_ptr<CapFloorVolatilityStructure>);
 
-%template(CapVolatilityStructureHandle) Handle<CapVolatilityStructure>;
-IsObservable(Handle<CapVolatilityStructure>);
-%template(RelinkableCapVolatilityStructureHandle)
-RelinkableHandle<CapVolatilityStructure>;
+%template(CapFloorVolatilityStructureHandle)
+Handle<CapFloorVolatilityStructure>;
+IsObservable(Handle<CapFloorVolatilityStructure>);
+
+%template(RelinkableCapFloorVolatilityStructureHandle)
+RelinkableHandle<CapFloorVolatilityStructure>;
 
 %{
-using QuantLib::CapVolatilityVector;
-typedef boost::shared_ptr<CapVolatilityStructure> CapVolatilityVectorPtr;
+using QuantLib::CapFloorTermVolVector;
+typedef boost::shared_ptr<CapFloorVolatilityStructure> CapFloorTermVolVectorPtr;
 %}
 
-%rename(CapVolatilityVector) CapVolatilityVectorPtr;
-class CapVolatilityVectorPtr
-: public boost::shared_ptr<CapVolatilityStructure> {
+%rename(CapFloorTermVolVector) CapFloorTermVolVectorPtr;
+class CapFloorTermVolVectorPtr
+: public boost::shared_ptr<CapFloorVolatilityStructure> {
   public:
     %extend {
-       CapVolatilityVectorPtr(const Date& referenceDate,
-                              const Calendar& calendar,
-                              const std::vector<Period>& lengths,
-                              const std::vector<Volatility>& vols,
-                              const DayCounter& dayCounter) {
-            return new CapVolatilityVectorPtr(
-                new CapVolatilityVector(referenceDate,calendar,
-                                        lengths,vols,dayCounter));
+       CapFloorTermVolVectorPtr(const Date& referenceDate,
+                                const Calendar& calendar,
+                                const std::vector<Period>& lengths,
+                                const std::vector<Volatility>& vols,
+                                BusinessDayConvention bdc = Following,
+                                const DayCounter& dc =
+                                           QuantLib::Actual365Fixed()) {
+            return new CapFloorTermVolVectorPtr(
+                new CapFloorTermVolVector(referenceDate,calendar,
+                                          lengths,vols,bdc,dc));
         }
-        CapVolatilityVectorPtr(Integer settlementDays,
-                               const Calendar& calendar,
-                               const std::vector<Period>& lengths,
-                               const std::vector<Volatility>& vols,
-                               const DayCounter& dayCounter) {
-            return new CapVolatilityVectorPtr(
-                new CapVolatilityVector(settlementDays,calendar,
-                                        lengths,vols,dayCounter));
+        CapFloorTermVolVectorPtr(Natural settlementDays,
+                                 const Calendar& calendar,
+                                 const std::vector<Period>& lengths,
+                                 const std::vector<Volatility>& vols,
+                                 BusinessDayConvention bdc = Following,
+                                 const DayCounter& dc =
+                                            QuantLib::Actual365Fixed()) {
+            return new CapFloorTermVolVectorPtr(
+                new CapFloorTermVolVector(settlementDays,calendar,
+                                          lengths,vols,bdc,dc));
         }
     }
 };

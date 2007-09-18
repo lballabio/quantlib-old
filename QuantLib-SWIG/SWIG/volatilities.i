@@ -31,7 +31,7 @@
 %{
 using QuantLib::BlackVolTermStructure;
 using QuantLib::LocalVolTermStructure;
-using QuantLib::CapletVolatilityStructure;
+using QuantLib::OptionletVolatilityStructure;
 using QuantLib::SwaptionVolatilityStructure;
 %}
 
@@ -118,8 +118,8 @@ IsObservable(Handle<LocalVolTermStructure>);
 RelinkableHandle<LocalVolTermStructure>;
 
 
-%ignore CapletVolatilityStructure;
-class CapletVolatilityStructure : public Extrapolator {
+%ignore OptionletVolatilityStructure;
+class OptionletVolatilityStructure : public Extrapolator {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("reference-date") referenceDate;
     %rename("day-counter")    dayCounter;
@@ -147,14 +147,16 @@ class CapletVolatilityStructure : public Extrapolator {
                        bool extrapolate = false) const;
 };
 
-%template(CapletVolatilityStructure) boost::shared_ptr<CapletVolatilityStructure>;
-IsObservable(boost::shared_ptr<CapletVolatilityStructure>);
+%template(OptionletVolatilityStructure)
+boost::shared_ptr<OptionletVolatilityStructure>;
+IsObservable(boost::shared_ptr<OptionletVolatilityStructure>);
 
-%template(CapletVolatilityStructureHandle) Handle<CapletVolatilityStructure>;
-IsObservable(Handle<CapletVolatilityStructure>);
-%template(RelinkableCapletVolatilityStructureHandle)
-RelinkableHandle<CapletVolatilityStructure>;
+%template(OptionletVolatilityStructureHandle)
+Handle<OptionletVolatilityStructure>;
+IsObservable(Handle<OptionletVolatilityStructure>);
 
+%template(RelinkableOptionletVolatilityStructureHandle)
+RelinkableHandle<OptionletVolatilityStructure>;
 
 
 %{
@@ -345,13 +347,13 @@ class LocalConstantVolPtr : public boost::shared_ptr<LocalVolTermStructure> {
 // constant caplet constant term structure
 %{
 using QuantLib::CapletConstantVolatility;
-typedef boost::shared_ptr<CapletVolatilityStructure>
+typedef boost::shared_ptr<OptionletVolatilityStructure>
     CapletConstantVolatilityPtr;
 %}
 
 %rename(CapletConstantVolatility) CapletConstantVolatilityPtr;
 class CapletConstantVolatilityPtr
-    : public boost::shared_ptr<CapletVolatilityStructure> {
+    : public boost::shared_ptr<OptionletVolatilityStructure> {
   public:
     %extend {
         CapletConstantVolatilityPtr(

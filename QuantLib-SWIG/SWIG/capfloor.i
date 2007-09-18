@@ -106,7 +106,8 @@ class BlackCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
         BlackCapFloorEnginePtr(const Handle<Quote>& vol) {
             return new BlackCapFloorEnginePtr(new BlackCapFloorEngine(vol));
         }
-        BlackCapFloorEnginePtr(const Handle<CapletVolatilityStructure>& vol) {
+        BlackCapFloorEnginePtr(
+                            const Handle<OptionletVolatilityStructure>& vol) {
             return new BlackCapFloorEnginePtr(new BlackCapFloorEngine(vol));
         }
     }
