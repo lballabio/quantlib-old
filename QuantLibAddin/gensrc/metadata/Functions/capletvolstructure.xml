@@ -513,6 +513,11 @@
             <tensorRank>scalar</tensorRank>
             <description>cap index object ID</description>
           </Parameter>
+          <Parameter name='SwitchStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>switch strikes. If omitted, default = 0.04</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
