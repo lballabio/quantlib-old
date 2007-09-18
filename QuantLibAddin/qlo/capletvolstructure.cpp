@@ -218,12 +218,8 @@ namespace QuantLibAddin {
                                          const std::vector<QuantLib::Rate>& switchStrikes,
                                          bool permanent) : dummyClass(properties, permanent) {
         
-        int dim = surface->optionTenors().size();
-        std::vector<QuantLib::Rate> switchStrikes_ = switchStrikes;
-        if(switchStrikes.size()==1) 
-            switchStrikes_= std::vector<QuantLib::Rate>(dim, switchStrikes[0]);
         libraryObject_ = boost::shared_ptr<QuantLib::OptionletStripper>(new
-            QuantLib::OptionletStripper(surface, index, switchStrikes_));
+            QuantLib::OptionletStripper(surface, index, switchStrikes));
     }
 
 }
