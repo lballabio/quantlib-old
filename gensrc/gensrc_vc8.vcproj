@@ -159,6 +159,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gensrc\Addins\cppexceptions.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\Addins\doxygen.py"
 				>
 			</File>

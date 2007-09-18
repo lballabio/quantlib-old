@@ -151,62 +151,6 @@ class Serialization(addin.Addin):
 # utility functions
 #############################################
 
-# Map class names to the ID numbers from the boost serialization framework.
-# Global because it's shared by generateSerialization() and findReplace().
-idMap = {}
-
-def findReplace(m):
-    """This function is called with a match object containing the 5 groups
-    documented in the regex below.  Group 2 is the old class ID and group 4
-    is the class name.  Use the class name to look up the new class ID in
-    the map, and return the original text with new ID replacing old."""
-    global idMap
-
-    className = m.group(4)
-    if className in idMap:
-        return m.group(1) + str(idMap[className]) + m.group(3) + className + m.group(5)
-    else:
-        raise serializationexceptions.InvalidClassException(className)
-
-def updateData(addin):
-    """Bring application XML data up to date with any changes that may have occurred
-    to the ID numbers that the boost serialization framework assigns to Addin classes."""
-
-#   The pattern we are searching for looks like this:
-#       <px class_id_reference="114" object_id="_2">
-#           <objectId>EURSwaptionMeanReversion10Y_QuoteHandle</objectId>
-#           <className>qlRelinkableHandleQuote</className>
-#           <CurrentLink>EURSwaptionMeanReversion10Y_Quote</CurrentLink>
-#       </px>
-
-#   We chop it into 5 groups:
-    pattern = r'''
-(<px\ (?:(?:class_id)|(?:class_id_reference))=")    # 1) Match either of the following:
-                                                    #       <px class_id="
-                                                    #       <px class_id_reference="
-(\d*)                                               # 2) the class ID number
-(".*?<className>)                                   # 3) everything from endquote " to tag <className>
-(\w*)                                               # 4) the class name
-(</className>.*?</px>)                              # 5) everything else
-'''
-
-    # Compile the regex
-    regex = re.compile(pattern, re.M | re.S | re.X)
-
-    # Loop through the application data files
-    for root, dirs, files in os.walk(addin.dataDirectory()):
-        for fileName in files:
-            if re.match('^.*?\.xml$', fileName):
-                # Perform the find and replace on each file
-                fullName = root + '/' + fileName
-                fileBuffer = open(fullName)
-                bufferIn = fileBuffer.read()
-                fileBuffer.close()
-                bufferOut = regex.sub(findReplace, bufferIn)
-                outputfile.OutputFile(addin, fullName, None, bufferOut, False)
-        # Skip folders owned by subversion
-        if '.svn' in dirs:
-            dirs.remove('.svn')
 
 def generateSerialization(addin):
     """Generate source code for serialization factory.
@@ -218,7 +162,7 @@ def generateSerialization(addin):
     library) because of issues related to linking and to template
     metaprogramming performed by the boost::serialization library.
     Each Addin that supports serialization must call in to this function."""
-    global idMap
+    #global idMap
 
     allIncludes = ''
     bufferRegister = ''
@@ -281,23 +225,77 @@ def generateSerialization(addin):
     allFilename = addin.rootPath_ + 'Serialization/serialization_all.hpp'
     outputfile.OutputFile(addin, allFilename, addin.copyright_, allBuffer)
 
-    #if addin.serializationBase_:
-    #    callBaseIn = "%s::register_in(ia);" % addin.serializationBase_
-    #    callBaseOut = "%s::register_out(oa);" % addin.serializationBase_
-    #else:
-    #    callBaseIn =''
-    #    callBaseOut =''
-
     bufferFactory = addin.bufferSerializeRegister_.text() % {
         'addinDirectory' : addinDirectory,
         'bufferRegister' : bufferRegister,
         'namespaceAddin' : addin.namespaceAddin_ }
-    #    'libRootDirectory' : environment.config().libRootDirectory(),
-    #    'callBaseIn': callBaseIn,
-    #    'callBaseOut': callBaseOut}
     factoryFile = addin.rootPath_ + 'Serialization/serialization_register.hpp'
     outputfile.OutputFile(addin, factoryFile, addin.copyright_, bufferFactory)
 
-    if addin.dataDirectory():
-        updateData(addin)
+    #if addin.dataDirectory():
+    #    updateData(addin)
+
+##
+## After adding/deleting classes in the QuantLibAddin interface you can use
+## the code below to synchronize the class IDs in the Application XML Data
+## with those in the Boost Serialization Framework.  This code is not used
+## at the moment because it's easier to update the XML files from the
+## corresponding spreadsheets.
+##
+### Map class names to the ID numbers from the boost serialization framework.
+### Global because it's shared by generateSerialization() and findReplace().
+##idMap = {}
+##
+##def findReplace(m):
+##    """This function is called with a match object containing the 5 groups
+##    documented in the regex below.  Group 2 is the old class ID and group 4
+##    is the class name.  Use the class name to look up the new class ID in
+##    the map, and return the original text with new ID replacing old."""
+##    global idMap
+##
+##    className = m.group(4)
+##    if className in idMap:
+##        return m.group(1) + str(idMap[className]) + m.group(3) + className + m.group(5)
+##    else:
+##        raise serializationexceptions.InvalidClassException(className)
+##
+##def updateData(addin):
+##    """Bring application XML data up to date with any changes that may have occurred
+##    to the ID numbers that the boost serialization framework assigns to Addin classes."""
+##
+###   The pattern we are searching for looks like this:
+###       <px class_id_reference="114" object_id="_2">
+###           <objectId>EURSwaptionMeanReversion10Y_QuoteHandle</objectId>
+###           <className>qlRelinkableHandleQuote</className>
+###           <CurrentLink>EURSwaptionMeanReversion10Y_Quote</CurrentLink>
+###       </px>
+##
+###   We chop it into 5 groups:
+##    pattern = r'''
+##(<px\ (?:(?:class_id)|(?:class_id_reference))=")    # 1) Match either of the following:
+##                                                    #       <px class_id="
+##                                                    #       <px class_id_reference="
+##(\d*)                                               # 2) the class ID number
+##(".*?<className>)                                   # 3) everything from endquote " to tag <className>
+##(\w*)                                               # 4) the class name
+##(</className>.*?</px>)                              # 5) everything else
+##'''
+##
+##    # Compile the regex
+##    regex = re.compile(pattern, re.M | re.S | re.X)
+##
+##    # Loop through the application data files
+##    for root, dirs, files in os.walk(addin.dataDirectory()):
+##        for fileName in files:
+##            if re.match('^.*?\.xml$', fileName):
+##                # Perform the find and replace on each file
+##                fullName = root + '/' + fileName
+##                fileBuffer = open(fullName)
+##                bufferIn = fileBuffer.read()
+##                fileBuffer.close()
+##                bufferOut = regex.sub(findReplace, bufferIn)
+##                outputfile.OutputFile(addin, fullName, None, bufferOut, False)
+##        # Skip folders owned by subversion
+##        if '.svn' in dirs:
+##            dirs.remove('.svn')
 
