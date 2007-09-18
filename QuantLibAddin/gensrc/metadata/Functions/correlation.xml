@@ -231,6 +231,79 @@
       </ParameterList>
     </Constructor>
 
+    <Member name='qlHistoricalRatesAnalysisSkippedDates' type='QuantLib::HistoricalRatesAnalysis'>
+      <description>Returns vector of historic dates for which some fixing is missing.</description>
+      <libraryFunction>skippedDates</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalRatesAnalysisSkippedDatesErrorMessage' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns vector of error messages for historic dates with missing fixing.</description>
+      <libraryFunction>skippedDatesErrorMessage</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlHistoricalRatesAnalysis'>
+      <libraryFunction>HistoricalRatesAnalysis</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SequenceStats'>
+            <type>QuantLib::SequenceStatistics</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Sequence Statistics object ID</description>
+          </Parameter>
+          <Parameter name='StartDate' exampleValue='37413'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beginning of the time series</description>
+          </Parameter>
+          <Parameter name='EndDate' exampleValue='39248'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end of the time series</description>
+          </Parameter>
+          <Parameter name='Step' exampleValue='1D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time series' time step</description>
+          </Parameter>
+          <Parameter name='InterestRateIndexes'>
+            <type>QuantLib::InterestRateIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>interest rate indexes object IDs</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Constructor name='qlTimeHomogeneousForwardCorrelation'>
       <libraryFunction>TimeHomogeneousForwardCorrelation</libraryFunction>
       <functionCategory>QuantLib</functionCategory>

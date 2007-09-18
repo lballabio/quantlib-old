@@ -31,6 +31,7 @@
 #include <ql/models/marketmodels/correlations/timehomogeneousforwardcorrelation.hpp>
 #include <ql/models/marketmodels/correlations/expcorrelations.hpp>
 #include <ql/models/marketmodels/historicalforwardratesanalysis.hpp>
+#include <ql/models/marketmodels/historicalratesanalysis.hpp>
 #include <qlo/Enumerations/Factories/historicalforwardratesanalysisfactory.hpp>
 
 namespace QuantLibAddin {
@@ -128,5 +129,22 @@ namespace QuantLibAddin {
         
       }
 
+    HistoricalRatesAnalysis::HistoricalRatesAnalysis(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+        const QuantLib::Date& startDate,
+        const QuantLib::Date& endDate,
+        const QuantLib::Period& step,
+        const std::vector<boost::shared_ptr<QuantLib::InterestRateIndex> >& indexes,
+        bool permanent)
+: ObjectHandler::LibraryObject<QuantLib::HistoricalRatesAnalysis>(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::HistoricalRatesAnalysis>(new
+            QuantLib::HistoricalRatesAnalysis(stats,
+                                              startDate,
+                                              endDate,
+                                              step,
+                                              indexes));
+      }
 }
 

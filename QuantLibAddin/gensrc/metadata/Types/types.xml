@@ -118,6 +118,7 @@
         <DataType>QuantLib::SwapRateHelper</DataType>
         <DataType>QuantLib::GeneralizedBlackScholesProcess</DataType>
         <DataType>QuantLib::HistoricalForwardRatesAnalysis</DataType>
+        <DataType>QuantLib::HistoricalRatesAnalysis</DataType>
         <DataType>QuantLib::IborIndex</DataType>
         <DataType>QuantLib::Index</DataType>
         <DataType>QuantLib::Instrument</DataType>
@@ -162,8 +163,8 @@
         <DataType>QuantLib::VanillaSwap</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
         <DataType>QuantLib::TimeHomogeneousForwardCorrelation</DataType>
-      
-    </DataTypes>
+
+      </DataTypes>
     </SuperType>
 
     <!--
@@ -273,7 +274,7 @@
         <DataType>QuantLib::MarketModelMultiProduct</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>
         <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
-        <DataType>QuantLib::MarketModel</DataType> 
+        <DataType>QuantLib::MarketModel</DataType>
         <DataType>QuantLib::Leg</DataType>
         <DataType>QuantLib::Schedule</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>

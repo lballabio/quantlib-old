@@ -41,6 +41,7 @@ namespace QuantLib {
     class SwapIndex;
     class DayCounter;
     class HistoricalForwardRatesAnalysis;
+    class HistoricalRatesAnalysis;
 
     class GeneralStatistics;
 
@@ -130,6 +131,21 @@ namespace QuantLibAddin {
                 QuantLib::Real yieldCurveAccuracy,
                 bool permanent);
     };
+
+    class HistoricalRatesAnalysis : public
+        ObjectHandler::LibraryObject<QuantLib::HistoricalRatesAnalysis> {
+      public:
+        HistoricalRatesAnalysis(
+                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
+                const QuantLib::Date& startDate,
+                const QuantLib::Date& endDate,
+                const QuantLib::Period& step,
+                const std::vector<boost::shared_ptr<QuantLib::InterestRateIndex> >&,
+                bool permanent);
+    };
+
+
 }
 
 #endif
