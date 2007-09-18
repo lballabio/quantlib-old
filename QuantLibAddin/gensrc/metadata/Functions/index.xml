@@ -417,17 +417,17 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='BDayConvention'  exampleValue='Modified Following'>
+          <Parameter name='BDayConvention' exampleValue='Modified Following'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>business day convention (e.g. Modified Following)</description>
           </Parameter>
-          <Parameter name='EndOfMonth'  exampleValue='TRUE'>
+          <Parameter name='EndOfMonth' exampleValue='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the index follow the 'end of month' convention</description>
           </Parameter>
-          <Parameter name='DayCounter'  exampleValue='Actual/360'>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
@@ -456,7 +456,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -480,7 +480,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -504,7 +504,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 3W for three weeks, 6M for six months, 1Y for one year)</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -642,7 +642,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 1Y for one year)</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -666,7 +666,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 1Y for one year)</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -690,7 +690,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 1Y for one year)</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -714,7 +714,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 1Y for one year)</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -738,7 +738,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 1Y for one year)</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -762,7 +762,7 @@
             <tensorRank>scalar</tensorRank>
             <description>index tenor (e.g. 1Y for one year)</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
