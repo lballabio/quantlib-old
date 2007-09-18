@@ -50,8 +50,17 @@ namespace QuantLibAddinCpp {
             "Invalid path : " << path);
 
         // If the file itself exists then ensure we can overwrite it.
-        OH_REQUIRE(forceOverwrite || !boost::filesystem::exists(boostPath),
-            "Cannot overwrite output file : " << path);
+        if (boost::filesystem::exists(boostPath)) {
+            if (forceOverwrite) {
+                try {
+                    boost::filesystem::remove(boostPath);
+                } catch (const boost::filesystem::basic_filesystem_error<boost::filesystem::path>&) {
+                    OH_FAIL("Overwrite=TRUE but overwrite failed for existing file: " << path);
+                }
+            } else {
+                OH_FAIL("Overwrite=FALSE and the specified output file exists: " << path);
+            }
+        }
 
         OH_REQUIRE(objectList.size(), "Object list is empty");
 
