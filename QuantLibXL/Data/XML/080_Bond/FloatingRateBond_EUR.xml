@@ -2,14 +2,14 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>102</count>
+	<count>270</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="143" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>XS0235394037_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
-			<EffectiveDate class_id="181" tracking_level="0" version="0">
-				<variant_ class_id="182" tracking_level="0" version="0">
+			<EffectiveDate class_id="182" tracking_level="0" version="0">
+				<variant_ class_id="183" tracking_level="0" version="0">
 					<which>1</which>
 					<value>38679</value>
 				</variant_>
@@ -29,7 +29,7 @@
 			<FirstDate>
 				<variant_>
 					<which>4</which>
-					<value class_id="183" tracking_level="0" version="0">
+					<value class_id="184" tracking_level="0" version="0">
 						<type_>5</type_>
 					</value>
 				</variant_>
@@ -95,7 +95,7 @@
 				<item_version>0</item_version>
 				<item>100</item>
 			</Amounts>
-			<Dates class_id="186" tracking_level="0" version="0">
+			<Dates class_id="187" tracking_level="0" version="0">
 				<count>1</count>
 				<item_version>0</item_version>
 				<item>
@@ -112,7 +112,7 @@
 		<px class_id="74" tracking_level="1" version="0" object_id="_4">
 			<ObjectId>XS0235394037_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
-			<LegIDs class_id="187" tracking_level="0" version="0">
+			<LegIDs class_id="188" tracking_level="0" version="0">
 				<count>2</count>
 				<item_version>0</item_version>
 				<item>XS0235394037_Cpn</item>
@@ -1607,7 +1607,7 @@
 			<ObjectId>IT0003657381</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>DEXGRP 11/09</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<Calendar>TARGET</Calendar>
 			<FaceAmount>100</FaceAmount>
@@ -1632,7 +1632,7 @@
 			<ObjectId>IT0003657381_bis</ObjectId>
 			<ClassName>qlFixedRateBond</ClassName>
 			<Description>DEXGRP 11/09</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<FaceAmount>100</FaceAmount>
 			<ScheduleID>IT0003657381_Sch</ScheduleID>
@@ -1755,7 +1755,7 @@
 			<ObjectId>IT0001307286</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 4 2/18/19</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<Calendar>TARGET</Calendar>
 			<FaceAmount>100</FaceAmount>
@@ -1780,7 +1780,7 @@
 			<ObjectId>IT0001307286_bis</ObjectId>
 			<ClassName>qlFixedRateBond</ClassName>
 			<Description>ISPIM 4 2/18/19</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<FaceAmount>100</FaceAmount>
 			<ScheduleID>IT0001307286_Sch</ScheduleID>
@@ -1903,7 +1903,7 @@
 			<ObjectId>IT0006521139</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>EIB 0 2/5/13</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<Calendar>TARGET</Calendar>
 			<FaceAmount>100</FaceAmount>
@@ -1928,7 +1928,7 @@
 			<ObjectId>IT0006521139_bis</ObjectId>
 			<ClassName>qlFixedRateBond</ClassName>
 			<Description>EIB 0 2/5/13</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<FaceAmount>100</FaceAmount>
 			<ScheduleID>IT0006521139_Sch</ScheduleID>
@@ -2051,7 +2051,7 @@
 			<ObjectId>IT0001303350</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>DEXGRP 0 1/29/19</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<Calendar>TARGET</Calendar>
 			<FaceAmount>100</FaceAmount>
@@ -2076,7 +2076,7 @@
 			<ObjectId>IT0001303350_bis</ObjectId>
 			<ClassName>qlFixedRateBond</ClassName>
 			<Description>DEXGRP 0 1/29/19</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<FaceAmount>100</FaceAmount>
 			<ScheduleID>IT0001303350_Sch</ScheduleID>
@@ -2199,7 +2199,7 @@
 			<ObjectId>IT0001264792</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>DEXGRP 0 10/15/18</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<Calendar>TARGET</Calendar>
 			<FaceAmount>100</FaceAmount>
@@ -2224,7 +2224,7 @@
 			<ObjectId>IT0001264792_bis</ObjectId>
 			<ClassName>qlFixedRateBond</ClassName>
 			<Description>DEXGRP 0 10/15/18</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<FaceAmount>100</FaceAmount>
 			<ScheduleID>IT0001264792_Sch</ScheduleID>
@@ -2347,7 +2347,7 @@
 			<ObjectId>IT0001271649</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 4.5 11/6/18</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<Calendar>TARGET</Calendar>
 			<FaceAmount>100</FaceAmount>
@@ -2372,7 +2372,7 @@
 			<ObjectId>IT0001271649_bis</ObjectId>
 			<ClassName>qlFixedRateBond</ClassName>
 			<Description>ISPIM 4.5 11/6/18</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<FaceAmount>100</FaceAmount>
 			<ScheduleID>IT0001271649_Sch</ScheduleID>
@@ -2495,7 +2495,7 @@
 			<ObjectId>IT0001203295</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BPIIM 0 2/18/13</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<Calendar>TARGET</Calendar>
 			<FaceAmount>100</FaceAmount>
@@ -2520,7 +2520,7 @@
 			<ObjectId>IT0001203295_bis</ObjectId>
 			<ClassName>qlFixedRateBond</ClassName>
 			<Description>BPIIM 0 2/18/13</Description>
-			<Currency>ITL</Currency>
+			<Currency>EUR</Currency>
 			<SettlementDays>3</SettlementDays>
 			<FaceAmount>100</FaceAmount>
 			<ScheduleID>IT0001203295_Sch</ScheduleID>
@@ -2536,6 +2536,4146 @@
 				<variant_>
 					<which>1</which>
 					<value>35844</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_103">
+			<ObjectId>IT0001235404_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>35977</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>41456</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_104">
+			<ObjectId>IT0001235404_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>IT0001235404_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>Actual/Actual (ISMA)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_105">
+			<ObjectId>IT0001235404_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>41456</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_106">
+			<ObjectId>IT0001235404_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>IT0001235404_Cpn</item>
+				<item>IT0001235404_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_107">
+			<ObjectId>IT0001235404</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>ISPIM 0 6/30/13</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>41456</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35977</value>
+				</variant_>
+			</IssueDate>
+			<LegID>IT0001235404_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_108">
+			<ObjectId>IT0001235404_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>ISPIM 0 6/30/13</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>IT0001235404_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>Actual/Actual (ISMA)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35977</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_109">
+			<ObjectId>XS0235012951_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>38674</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>42326</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>6M</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_110">
+			<ObjectId>XS0235012951_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0235012951_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>Actual/Actual (ISMA)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_111">
+			<ObjectId>XS0235012951_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>42326</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_112">
+			<ObjectId>XS0235012951_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0235012951_Cpn</item>
+				<item>XS0235012951_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_113">
+			<ObjectId>XS0235012951</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>BANVER 0 11/18/15</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>42326</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>38674</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0235012951_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_114">
+			<ObjectId>XS0235012951_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>BANVER 0 11/18/15</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0235012951_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>Actual/Actual (ISMA)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>38674</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_115">
+			<ObjectId>XS0082483388_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>35781</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39433</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_116">
+			<ObjectId>XS0082483388_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0082483388_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_117">
+			<ObjectId>XS0082483388_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39433</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_118">
+			<ObjectId>XS0082483388_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0082483388_Cpn</item>
+				<item>XS0082483388_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_119">
+			<ObjectId>XS0082483388</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>IFC Var 12/17/07</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39433</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35781</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0082483388_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_120">
+			<ObjectId>XS0082483388_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>IFC Var 12/17/07</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0082483388_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35781</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_121">
+			<ObjectId>XS0233447936_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>38672</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>42324</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>6M</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_122">
+			<ObjectId>XS0233447936_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0233447936_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>Actual/Actual (ISMA)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_123">
+			<ObjectId>XS0233447936_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>42324</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_124">
+			<ObjectId>XS0233447936_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0233447936_Cpn</item>
+				<item>XS0233447936_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_125">
+			<ObjectId>XS0233447936</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>RBS Float 11/15</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>42324</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>38672</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0233447936_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_126">
+			<ObjectId>XS0233447936_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>RBS Float 11/15</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0233447936_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>Actual/Actual (ISMA)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>38672</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_127">
+			<ObjectId>XS0250578134_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>38813</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>42466</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_128">
+			<ObjectId>XS0250578134_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0250578134_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_129">
+			<ObjectId>XS0250578134_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>42466</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_130">
+			<ObjectId>XS0250578134_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0250578134_Cpn</item>
+				<item>XS0250578134_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_131">
+			<ObjectId>XS0250578134</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>MER Float 04/16</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>42466</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>38813</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0250578134_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_132">
+			<ObjectId>XS0250578134_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>MER Float 04/16</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0250578134_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>Actual/360</DayCounter>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>38813</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_133">
+			<ObjectId>XS0090566539_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>38254</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>43367</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>6M</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Modified Following</Convention>
+			<TermDateConv>Modified Following</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_134">
+			<ObjectId>XS0090566539_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0090566539_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>Actual/360</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_135">
+			<ObjectId>XS0090566539_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>43367</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_136">
+			<ObjectId>XS0090566539_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0090566539_Cpn</item>
+				<item>XS0090566539_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_137">
+			<ObjectId>XS0090566539</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>COE 0 09/24/18</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>43367</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>38254</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0090566539_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_138">
+			<ObjectId>XS0090566539_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>COE 0 09/24/18</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0090566539_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>Actual/360</DayCounter>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>38254</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_139">
+			<ObjectId>XS0080841579_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36462</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39384</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_140">
+			<ObjectId>XS0080841579_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0080841579_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_141">
+			<ObjectId>XS0080841579_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39384</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_142">
+			<ObjectId>XS0080841579_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0080841579_Cpn</item>
+				<item>XS0080841579_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_143">
+			<ObjectId>XS0080841579</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>LBBER 0 10/29/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39384</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35732</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0080841579_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_144">
+			<ObjectId>XS0080841579_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>LBBER 0 10/29/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0080841579_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35732</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_145">
+			<ObjectId>XS0080973489_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36464</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39386</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_146">
+			<ObjectId>XS0080973489_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0080973489_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_147">
+			<ObjectId>XS0080973489_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39386</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_148">
+			<ObjectId>XS0080973489_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0080973489_Cpn</item>
+				<item>XS0080973489_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_149">
+			<ObjectId>XS0080973489</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>IBRD 0 10/31/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39386</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35734</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0080973489_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_150">
+			<ObjectId>XS0080973489_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>IBRD 0 10/31/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0080973489_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35734</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_151">
+			<ObjectId>XS0081431610_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36478</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39400</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_152">
+			<ObjectId>XS0081431610_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0081431610_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_153">
+			<ObjectId>XS0081431610_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39400</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_154">
+			<ObjectId>XS0081431610_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0081431610_Cpn</item>
+				<item>XS0081431610_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_155">
+			<ObjectId>XS0081431610</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>SNCF 11 11/14/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39400</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35748</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0081431610_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_156">
+			<ObjectId>XS0081431610_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>SNCF 11 11/14/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0081431610_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35748</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_157">
+			<ObjectId>XS0082293506_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36871</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39427</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_158">
+			<ObjectId>XS0082293506_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0082293506_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_159">
+			<ObjectId>XS0082293506_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39427</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_160">
+			<ObjectId>XS0082293506_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0082293506_Cpn</item>
+				<item>XS0082293506_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_161">
+			<ObjectId>XS0082293506</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>BYLAN 0 12/11/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39427</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35775</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0082293506_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_162">
+			<ObjectId>XS0082293506_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>BYLAN 0 12/11/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0082293506_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35775</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_163">
+			<ObjectId>XS0081387531_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36508</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39430</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_164">
+			<ObjectId>XS0081387531_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0081387531_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_165">
+			<ObjectId>XS0081387531_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39430</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_166">
+			<ObjectId>XS0081387531_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0081387531_Cpn</item>
+				<item>XS0081387531_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_167">
+			<ObjectId>XS0081387531</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>EIB 10 1/4 12/14/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39430</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35754</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0081387531_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_168">
+			<ObjectId>XS0081387531_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>EIB 10 1/4 12/14/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0081387531_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35754</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_169">
+			<ObjectId>XS0081980129_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36512</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39434</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_170">
+			<ObjectId>XS0081980129_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0081980129_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_171">
+			<ObjectId>XS0081980129_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39434</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_172">
+			<ObjectId>XS0081980129_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0081980129_Cpn</item>
+				<item>XS0081980129_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_173">
+			<ObjectId>XS0081980129</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>IBRD 0 12/18/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39434</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35782</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0081980129_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_174">
+			<ObjectId>XS0081980129_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>IBRD 0 12/18/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0081980129_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35782</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_175">
+			<ObjectId>XS0082716589_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36879</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39435</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_176">
+			<ObjectId>XS0082716589_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0082716589_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_177">
+			<ObjectId>XS0082716589_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39435</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_178">
+			<ObjectId>XS0082716589_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0082716589_Cpn</item>
+				<item>XS0082716589_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_179">
+			<ObjectId>XS0082716589</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>IADB 7 12/19/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39435</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35765</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0082716589_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_180">
+			<ObjectId>XS0082716589_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>IADB 7 12/19/07</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0082716589_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35765</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_181">
+			<ObjectId>XS0082731463_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36898</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39454</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_182">
+			<ObjectId>XS0082731463_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0082731463_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_183">
+			<ObjectId>XS0082731463_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39454</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_184">
+			<ObjectId>XS0082731463_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0082731463_Cpn</item>
+				<item>XS0082731463_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_185">
+			<ObjectId>XS0082731463</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>MER 0 01/07/08</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39454</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35802</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0082731463_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_186">
+			<ObjectId>XS0082731463_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>MER 0 01/07/08</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0082731463_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35802</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_187">
+			<ObjectId>XS0082435065_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>35803</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39637</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>0</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>1</which>
+					<value>35984</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_188">
+			<ObjectId>XS0082435065_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0082435065_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_189">
+			<ObjectId>XS0082435065_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39637</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_190">
+			<ObjectId>XS0082435065_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0082435065_Cpn</item>
+				<item>XS0082435065_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_191">
+			<ObjectId>XS0082435065</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>IBRD 11.65 07/08/08</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39637</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35803</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0082435065_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_192">
+			<ObjectId>XS0082435065_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>IBRD 11.65 07/08/08</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0082435065_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35803</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_193">
+			<ObjectId>XS0082725739_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>35802</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>39820</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_194">
+			<ObjectId>XS0082725739_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0082725739_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_195">
+			<ObjectId>XS0082725739_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39820</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_196">
+			<ObjectId>XS0082725739_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0082725739_Cpn</item>
+				<item>XS0082725739_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_197">
+			<ObjectId>XS0082725739</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>NIB 0 01/07/09</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>39820</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35802</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0082725739_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_198">
+			<ObjectId>XS0082725739_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>NIB 0 01/07/09</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0082725739_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35802</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_199">
+			<ObjectId>XS0082486050_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>37247</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>40169</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_200">
+			<ObjectId>XS0082486050_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0082486050_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_201">
+			<ObjectId>XS0082486050_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>40169</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_202">
+			<ObjectId>XS0082486050_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0082486050_Cpn</item>
+				<item>XS0082486050_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_203">
+			<ObjectId>XS0082486050</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>EIB 7 1/2 12/22/09</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>40169</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35786</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0082486050_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_204">
+			<ObjectId>XS0082486050_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>EIB 7 1/2 12/22/09</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0082486050_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35786</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_205">
+			<ObjectId>XS0082785808_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>37998</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>40190</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_206">
+			<ObjectId>XS0082785808_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0082785808_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_207">
+			<ObjectId>XS0082785808_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>40190</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_208">
+			<ObjectId>XS0082785808_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0082785808_Cpn</item>
+				<item>XS0082785808_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_209">
+			<ObjectId>XS0082785808</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>IBRD 7 01/12/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>40190</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35807</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0082785808_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_210">
+			<ObjectId>XS0082785808_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>IBRD 7 01/12/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0082785808_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35807</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_211">
+			<ObjectId>XS0082847178_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36172</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>40190</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>1</which>
+					<value>39825</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_212">
+			<ObjectId>XS0082847178_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0082847178_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_213">
+			<ObjectId>XS0082847178_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>40190</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_214">
+			<ObjectId>XS0082847178_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0082847178_Cpn</item>
+				<item>XS0082847178_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_215">
+			<ObjectId>XS0082847178</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>ABBEY 0 01/12/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>40190</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35807</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0082847178_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_216">
+			<ObjectId>XS0082847178_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>ABBEY 0 01/12/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0082847178_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35807</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_217">
+			<ObjectId>XS0083173566_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>35810</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>40193</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_218">
+			<ObjectId>XS0083173566_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0083173566_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_219">
+			<ObjectId>XS0083173566_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>40193</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_220">
+			<ObjectId>XS0083173566_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0083173566_Cpn</item>
+				<item>XS0083173566_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_221">
+			<ObjectId>XS0083173566</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>IADB 7 01/15/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>40193</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35810</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0083173566_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_222">
+			<ObjectId>XS0083173566_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>IADB 7 01/15/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0083173566_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35810</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_223">
+			<ObjectId>XS0082979088_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36917</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>40204</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_224">
+			<ObjectId>XS0082979088_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0082979088_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_225">
+			<ObjectId>XS0082979088_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>40204</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_226">
+			<ObjectId>XS0082979088_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0082979088_Cpn</item>
+				<item>XS0082979088_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_227">
+			<ObjectId>XS0082979088</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>EIB 7 01/26/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>40204</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35821</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0082979088_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_228">
+			<ObjectId>XS0082979088_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>EIB 7 01/26/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0082979088_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35821</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_229">
+			<ObjectId>XS0083741636_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36927</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>40214</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_230">
+			<ObjectId>XS0083741636_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0083741636_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_231">
+			<ObjectId>XS0083741636_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>40214</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_232">
+			<ObjectId>XS0083741636_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0083741636_Cpn</item>
+				<item>XS0083741636_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_233">
+			<ObjectId>XS0083741636</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>MER 7 02/05/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>40214</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35831</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0083741636_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_234">
+			<ObjectId>XS0083741636_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>MER 7 02/05/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0083741636_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35831</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_235">
+			<ObjectId>XS0083562032_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36934</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>40221</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_236">
+			<ObjectId>XS0083562032_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0083562032_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_237">
+			<ObjectId>XS0083562032_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>40221</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_238">
+			<ObjectId>XS0083562032_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0083562032_Cpn</item>
+				<item>XS0083562032_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_239">
+			<ObjectId>XS0083562032</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>IBRD 7 02/12/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>40221</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35838</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0083562032_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_240">
+			<ObjectId>XS0083562032_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>IBRD 7 02/12/10</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0083562032_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35838</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_241">
+			<ObjectId>XS0083830496_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36940</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>41323</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_242">
+			<ObjectId>XS0083830496_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0083830496_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_243">
+			<ObjectId>XS0083830496_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>41323</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_244">
+			<ObjectId>XS0083830496_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0083830496_Cpn</item>
+				<item>XS0083830496_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_245">
+			<ObjectId>XS0083830496</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>EIB 0 02/18/13</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>41323</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35844</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0083830496_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_246">
+			<ObjectId>XS0083830496_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>EIB 0 02/18/13</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0083830496_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Modified Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35844</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_247">
+			<ObjectId>XS0083585595_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>37651</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>43130</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_248">
+			<ObjectId>XS0083585595_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0083585595_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_249">
+			<ObjectId>XS0083585595_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>43130</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_250">
+			<ObjectId>XS0083585595_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0083585595_Cpn</item>
+				<item>XS0083585595_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_251">
+			<ObjectId>XS0083585595</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>DEPFA 7 1/2 01/30/18</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>43130</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35825</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0083585595_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_252">
+			<ObjectId>XS0083585595_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>DEPFA 7 1/2 01/30/18</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0083585595_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35825</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_253">
+			<ObjectId>XS0085468352_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>35894</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>43199</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_254">
+			<ObjectId>XS0085468352_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0085468352_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_255">
+			<ObjectId>XS0085468352_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>43199</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_256">
+			<ObjectId>XS0085468352_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0085468352_Cpn</item>
+				<item>XS0085468352_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_257">
+			<ObjectId>XS0085468352</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>AIG 12 04/09/18</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>43199</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35894</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0085468352_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_258">
+			<ObjectId>XS0085468352_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>AIG 12 04/09/18</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0085468352_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>35894</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_259">
+			<ObjectId>XS0091610153_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36108</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>43413</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_260">
+			<ObjectId>XS0091610153_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>XS0091610153_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_261">
+			<ObjectId>XS0091610153_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>43413</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_262">
+			<ObjectId>XS0091610153_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>XS0091610153_Cpn</item>
+				<item>XS0091610153_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_263">
+			<ObjectId>XS0091610153</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>IADB 4 11/09/18</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>43413</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>36108</value>
+				</variant_>
+			</IssueDate>
+			<LegID>XS0091610153_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_264">
+			<ObjectId>XS0091610153_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>IADB 4 11/09/18</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>XS0091610153_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>36108</value>
+				</variant_>
+			</IssueDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="143" object_id="_265">
+			<ObjectId>IT0006525742_Sch</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>1</which>
+					<value>36106</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>1</which>
+					<value>43410</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<Backward>1</Backward>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="38" object_id="_266">
+			<ObjectId>IT0006525742_Cpn</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Nominals>
+			<ScheduleID>IT0006525742_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="148" object_id="_267">
+			<ObjectId>IT0006525742_Red</ObjectId>
+			<ClassName>qlSimpleCashFlowVector</ClassName>
+			<Amounts>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>100</item>
+			</Amounts>
+			<Dates>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>43410</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="74" object_id="_268">
+			<ObjectId>IT0006525742_Leg</ObjectId>
+			<ClassName>qlMultiPhaseLeg</ClassName>
+			<LegIDs>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>IT0006525742_Cpn</item>
+				<item>IT0006525742_Red</item>
+			</LegIDs>
+			<ToBeSorted>1</ToBeSorted>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="12" object_id="_269">
+			<ObjectId>IT0006525742</ObjectId>
+			<ClassName>qlGenericBond</ClassName>
+			<Description>IADB 11/18</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<MaturityDate>
+				<variant_>
+					<which>1</which>
+					<value>43410</value>
+				</variant_>
+			</MaturityDate>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>36105</value>
+				</variant_>
+			</IssueDate>
+			<LegID>IT0006525742_Leg</LegID>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="10" object_id="_270">
+			<ObjectId>IT0006525742_bis</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>IADB 11/18</Description>
+			<Currency>ITL</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>IT0006525742_Sch</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<variant_>
+					<which>1</which>
+					<value>36105</value>
 				</variant_>
 			</IssueDate>
 			<Permanent>1</Permanent>
