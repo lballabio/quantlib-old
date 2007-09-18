@@ -64,7 +64,6 @@ class Path {
             } else {
                 throw std::out_of_range("path index out of range");
             }
-            QL_DUMMY_RETURN(0.0)
         }
         #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
         Real ref(Size i) {
@@ -73,7 +72,6 @@ class Path {
             } else {
                 throw std::out_of_range("path index out of range");
             }
-            QL_DUMMY_RETURN(0.0)
         }
         #endif
         #if defined(SWIGRUBY)
@@ -148,7 +146,6 @@ class MultiPath {
             } else {
                 throw std::out_of_range("multi-path index out of range");
             }
-            QL_DUMMY_RETURN((*self)[0])
         }
         #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
         Real ref(Size i, Size j) {
@@ -157,7 +154,6 @@ class MultiPath {
             } else {
                 throw std::out_of_range("multi-path index out of range");
             }
-            QL_DUMMY_RETURN(0.0)
         }
         #endif
         #if defined(SWIGRUBY)

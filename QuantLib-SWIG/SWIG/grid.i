@@ -64,7 +64,6 @@ class TimeGrid {
             } else {
                 throw std::out_of_range("time-grid index out of range");
             }
-            QL_DUMMY_RETURN(0.0)
         }
         Time dt(Integer i) const {
             Integer size_ = static_cast<Integer>(self->size());
@@ -75,7 +74,6 @@ class TimeGrid {
             } else {
                 throw std::out_of_range("time-grid index out of range");
             }
-            QL_DUMMY_RETURN(0.0)
         }
         #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGJAVA)
         Time ref(Size i) {
@@ -83,14 +81,12 @@ class TimeGrid {
                 return (*self)[i];
             else
                 throw std::out_of_range("time-grid index out of range");
-            QL_DUMMY_RETURN(0.0)
         }
         Time dt(Size i) {
             if (i<self->size())
                 return self->dt(i);
             else
                 throw std::out_of_range("time-grid index out of range");
-            QL_DUMMY_RETURN(0.0)
         }
         #endif
     }

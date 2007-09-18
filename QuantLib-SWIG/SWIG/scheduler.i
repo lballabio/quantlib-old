@@ -68,7 +68,6 @@ class Schedule {
             } else {
                 throw std::out_of_range("schedule index out of range");
             }
-            QL_DUMMY_RETURN(Date())
         }
         #endif
         #if defined(SWIGRUBY)

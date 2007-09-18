@@ -879,7 +879,6 @@ class Array {
             } else {
                 throw std::out_of_range("array index out of range");
             }
-            QL_DUMMY_RETURN(0.0)
         }
         void __setitem__(Integer i, Real x) {
             Integer size_ = static_cast<Integer>(self->size());
@@ -900,7 +899,6 @@ class Array {
             } else {
                 throw std::out_of_range("array index out of range");
             }
-            QL_DUMMY_RETURN(0.0)
         }
         void __setitem__(Integer i, Real x) {
             Integer size_ = static_cast<Integer>(self->size());
@@ -917,7 +915,6 @@ class Array {
                 return (*self)[i];
             else
                 throw std::out_of_range("array index out of range");
-            QL_DUMMY_RETURN(0.0)
         }
         void set(Size i, Real x) {
             if (i<self->size())
