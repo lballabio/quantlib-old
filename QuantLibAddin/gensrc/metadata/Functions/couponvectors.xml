@@ -153,38 +153,38 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention. If omitted, default = Following.</description>
+            <description>payment business day convention (default = Following)</description>
           </Parameter>
           <Parameter name='Nominals' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>nominal amount vector. If omitted, default = 1000000</description>
+            <description>nominal amount vector</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Schedule object ID</description>
+            <description>schedule object ID</description>
           </Parameter>
           <Parameter name='FixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
             <tensorRank>vector</tensorRank>
-            <description>fixing days. If omitted, default = index natural fixing days</description>
+            <description>fixing days (default = index fixing days)</description>
           </Parameter>
           <Parameter name='IsInArrears' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
+            <description>TRUE if the fixing is in arrears (default = FALSE)</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            <description>payment day counter</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings. If omitted, default = 1.0</description>
+            <description>floating rate gearings (default = 1)</description>
           </Parameter>
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
@@ -194,43 +194,43 @@
           <Parameter name='Spreads' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads. If omitted, default = 0%</description>
+            <description>floating rate spreads (default = 0)</description>
           </Parameter>
           <Parameter name='CallStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>digital call option strikes. If omitted, no call option is assumed.</description>
+            <description>option strikes. If omitted, no call is assumed</description>
           </Parameter>
-          <Parameter name='CallPosition_Inclusion'>
+          <Parameter name='CallSpecs'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>position of the call option and inclusion of ATM .</description>
+            <description>call position (Short, Long) and ATM inclusion</description>
           </Parameter>
           <Parameter name='CallPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>payoff if the call option ends ITM. If omitted, asset-or-nothing digital option is assumed.</description>
+            <description>payoff if the call ends ITM. If omitted, asset-or-nothing option is assumed</description>
           </Parameter>
           <Parameter name='PutStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>digital put option strikes. If omitted, no put option is assumed.</description>
+            <description>option strikes. If omitted, no put is assumed</description>
           </Parameter>
-          <Parameter name='PutPositionAtmInclusion'>
+          <Parameter name='PutSpecs'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>position (Short, Long) of the put option and inclusion of ATM.</description>
+            <description>put position (Short, Long) and ATM inclusion</description>
           </Parameter>
           <Parameter name='PutPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>payoff if the put option ends ITM. If omitted, asset-or-nothing digital option is assumed.</description>
+            <description>payoff if the put ends ITM. If omitted, asset-or-nothing option is assumed.</description>
           </Parameter>
           <Parameter name='Replication'>
             <type>QuantLib::DigitalReplication</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Replication strategy ID</description>
+            <description>replication object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -316,38 +316,38 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention. If omitted, default = Following.</description>
+            <description>payment business day convention (default = Following)</description>
           </Parameter>
           <Parameter name='Nominals' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>nominal amount vector. If omitted, default = 1000000</description>
+            <description>nominal amount vector</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Schedule object ID</description>
+            <description>schedule object ID</description>
           </Parameter>
           <Parameter name='FixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
             <tensorRank>vector</tensorRank>
-            <description>fixing days. If omitted, default = index natural fixing days</description>
+            <description>fixing days (default = index fixing days)</description>
           </Parameter>
           <Parameter name='IsInArrears' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
+            <description>TRUE if the fixing is in arrears (default = FALSE)</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            <description>payment day counter</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings. If omitted, default = 1.0</description>
+            <description>floating rate gearings (default = 1)</description>
           </Parameter>
           <Parameter name='SwapIndex'>
             <type>QuantLib::SwapIndex</type>
@@ -357,43 +357,43 @@
           <Parameter name='Spreads' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads. If omitted, default = 0%</description>
+            <description>floating rate spreads (default = 0)</description>
           </Parameter>
           <Parameter name='CallStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>digital call option strikes. If omitted, no call option is assumed.</description>
+            <description>option strikes. If omitted, no call is assumed</description>
           </Parameter>
-          <Parameter name='CallPosition_Inclusion'>
+          <Parameter name='CallSpecs'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>position of the call option and inclusion of ATM .</description>
+            <description>call position (Short, Long) and ATM inclusion</description>
           </Parameter>
           <Parameter name='CallPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>payoff if the call option ends ITM. If omitted, asset-or-nothing digital option is assumed.</description>
+            <description>payoff if the call ends ITM. If omitted, asset-or-nothing option is assumed</description>
           </Parameter>
           <Parameter name='PutStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>digital put option strikes. If omitted, no put option is assumed.</description>
+            <description>option strikes. If omitted, no put is assumed</description>
           </Parameter>
-          <Parameter name='PutPositionAtmInclusion'>
+          <Parameter name='PutSpecs'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>position (Short, Long) of the put option and inclusion of ATM.</description>
+            <description>put position (Short, Long) and ATM inclusion</description>
           </Parameter>
           <Parameter name='PutPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>payoff if the put option ends ITM. If omitted, asset-or-nothing digital option is assumed.</description>
+            <description>payoff if the put ends ITM. If omitted, asset-or-nothing option is assumed.</description>
           </Parameter>
           <Parameter name='Replication'>
             <type>QuantLib::DigitalReplication</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Replication strategy ID</description>
+            <description>replication object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
