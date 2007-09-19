@@ -819,6 +819,25 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
+    
+    <Constructor name='qlOptionletStripperAdapter'>
+      <libraryFunction>OptionletStripperAdapter</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionletStripper' >
+            <type>QuantLib::OptionletStripper</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Optionlet Stripper object id</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
   </Functions>
 </Category>

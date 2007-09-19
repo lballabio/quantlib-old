@@ -64,11 +64,11 @@
         <DataType>QuantLib::SwaptionVolatilityCube</DataType>
         <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
+        <DataType>QuantLib::OptionletStripper</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::CapVolatilityStructure</DataType>
         <DataType>QuantLib::CapFloorTermVolVector</DataType>
         <DataType>QuantLib::CapFloorTermVolSurface</DataType>
-        <DataType>QuantLib::OptionletStripper</DataType>
         <DataType>QuantLib::TermStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
@@ -207,6 +207,7 @@
     -->
     <SuperType name='libToHandle' nativeType='string'>
       <DataTypes>
+        <DataType>QuantLib::OptionletStripper</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>

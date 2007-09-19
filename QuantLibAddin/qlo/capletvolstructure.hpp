@@ -21,6 +21,7 @@
 
 #include <qlo/termstructures.hpp>
 #include <ql/voltermstructures/interestrate/caplet/optionletstripper.hpp>
+#include <ql/voltermstructures/interestrate/caplet/optionletstripperadapter.hpp>
 
 namespace QuantLib {
     class OptionletVolatilityStructure;
