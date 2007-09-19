@@ -171,13 +171,14 @@ def generateSerialization(addin):
 
     # Keep track of the ID assigned to each Addin class by
     # the boost serialization framework.  This number is initialized to 3
-    # because 0-3 are reserved for ObjectHandler as explained in file
+    # because 0-2 are reserved for ObjectHandler as explained in file
     # QuantLibAddin/Addins/Cpp/Serialization/serialization_oh.cpp
-    classID = 4
+    classID = 3
     # Initialize the global map with the values reserved for ObjectHandler.
     # 0 and 1 refer respectively to ValueObject and vector of ValueObject,
     # but these are omitted because they never occur in app XML data.
-    idMap = { 'ohRange' : 2, 'ohGroup' : 3 }
+    #idMap = { 'ohRange' : 2, 'ohGroup' : 3 }
+    idMap = { 'ohRange' : 2 }
 
     for cat in addin.categoryList_.categories('*'):
 

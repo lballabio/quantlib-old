@@ -17,6 +17,7 @@
 */
 
 #include <qlxl/Serialization/serialization_oh.hpp>
+//#include <oh/ValueObjects/vo_group.hpp>
 #include <oh/ValueObjects/vo_range.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/serialization/variant.hpp>
@@ -56,7 +57,8 @@ namespace QuantLibXL {
         ar.register_type<std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > >();
         // class ID 2 in the boost serialization framework
         ar.register_type<ObjectHandler::ValueObjects::ohRange>();
-    
+        // class ID 3 in the boost serialization framework
+        //ar.register_type<ObjectHandler::ValueObjects::ohGroup>()    
     }
     
     void register_oh(boost::archive::xml_iarchive &ar) {
@@ -67,7 +69,8 @@ namespace QuantLibXL {
         ar.register_type<std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > >();
         // class ID 2 in the boost serialization framework
         ar.register_type<ObjectHandler::ValueObjects::ohRange>();
-
+        // class ID 3 in the boost serialization framework
+        //ar.register_type<ObjectHandler::ValueObjects::ohGroup>()
     }
     
 }
