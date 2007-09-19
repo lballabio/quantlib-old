@@ -38,6 +38,18 @@ using QuantLib::CashFlow;
 
 namespace QuantLibAddin {
 
+    DigitalReplication::DigitalReplication(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    QuantLib::Replication::Type replicationType,
+                    QuantLib::Real eps,
+                    bool permanent): 
+        ObjectHandler::LibraryObject<QuantLib::DigitalReplication>(properties, permanent) {
+		
+            libraryObject_ = 
+			    boost::shared_ptr<QuantLib::DigitalReplication> (new
+			    QuantLib::DigitalReplication(replicationType,eps));   
+    }
+
     FixedRateLeg::FixedRateLeg(
                     const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                     QuantLib::BusinessDayConvention paymentConvention,
@@ -96,8 +108,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Rate>& putStrikes,
             std::string putPositionAndATMInclusion,
             const std::vector<QuantLib::Rate>& putDigitalPayoffs,
-            QuantLib::Replication::Type replicationType,
-            QuantLib::Real eps,
+            const boost::shared_ptr<QuantLib::DigitalReplication>& replication,
             bool permanent) : Leg(properties, permanent) {
 
                 QuantLib::Position::Type callPosition;
@@ -187,8 +198,7 @@ namespace QuantLibAddin {
                                                 putPosition,
                                                 isPutATMIncluded,
                                                 putDigitalPayoffs,
-                                                replicationType,
-                                                eps);
+                                                replication);
     }
 
 
@@ -243,12 +253,11 @@ namespace QuantLibAddin {
                     const std::vector<QuantLib::Rate>& putStrikes,
                     std::string putPositionAndATMInclusion,
                     const std::vector<QuantLib::Rate>& putDigitalPayoffs,
-                    QuantLib::Replication::Type replicationType,
-                    QuantLib::Real eps,
+                    const boost::shared_ptr<QuantLib::DigitalReplication>& replication,
                     bool permanent) : Leg(properties, permanent) {
 
 
-                                        QuantLib::Position::Type callPosition;
+                QuantLib::Position::Type callPosition;
                 QuantLib::Position::Type putPosition;
                 bool isCallATMIncluded;
                 bool isPutATMIncluded;
@@ -334,8 +343,7 @@ namespace QuantLibAddin {
                                                 putPosition,
                                                 isPutATMIncluded,
                                                 putDigitalPayoffs,
-                                                replicationType,
-                                                eps);
+                                                replication);
     }
 
 

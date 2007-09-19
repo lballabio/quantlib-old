@@ -108,6 +108,7 @@
         <DataType>QuantLib::CTSMMCapletOriginalCalibration</DataType>
         <DataType>QuantLib::CTSMMCapletAlphaFormCalibration</DataType>
         <DataType>QuantLib::CTSMMCapletMaxHomogeneityCalibration</DataType>
+        <DataType>QuantLib::DigitalReplication</DataType>
         <DataType>QuantLib::EndCriteria</DataType>
         <DataType>QuantLib::EuropeanExercise</DataType>
         <DataType>QuantLib::EvolutionDescription</DataType>

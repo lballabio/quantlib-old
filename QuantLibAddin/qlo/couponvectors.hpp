@@ -36,6 +36,14 @@ namespace QuantLib {
 }
 
 namespace QuantLibAddin {
+
+    class DigitalReplication : public ObjectHandler::LibraryObject<QuantLib::DigitalReplication>{
+    public:
+        DigitalReplication(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                           QuantLib::Replication::Type replicationType,
+                           QuantLib::Real eps,
+                           bool permanent) ;
+    };
     
     class FixedRateLeg : public Leg {
       public:
@@ -86,8 +94,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Rate>& putStrikes,
             std::string putPositionAndATMInclusion,
             const std::vector<QuantLib::Rate>& putDigitalPayoffs,
-            QuantLib::Replication::Type replicationType,
-            QuantLib::Real eps,
+            const boost::shared_ptr<QuantLib::DigitalReplication>& replication,
             bool permanent);
     };
 
@@ -128,8 +135,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Rate>& putStrikes,
             std::string putPositionAndATMInclusion,
             const std::vector<QuantLib::Rate>& putDigitalPayoffs,
-            QuantLib::Replication::Type replicationType,
-            QuantLib::Real eps,
+            const boost::shared_ptr<QuantLib::DigitalReplication>& replication,
             bool permanent);
     };
 
@@ -183,4 +189,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-
