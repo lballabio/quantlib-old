@@ -55,9 +55,11 @@ namespace ObjectHandler {
         // Create a boost path object from the std::string.
         boost::filesystem::path path(logFileName);
 
-        // Ensure that the parent directory exists.
-        OH_REQUIRE(boost::filesystem::exists(path.branch_path()),
-            "Invalid path : " << logFileName);
+        // If a parent directory has been specified then ensure it exists.
+        if (path.has_branch_path()) {
+            OH_REQUIRE(boost::filesystem::exists(path.branch_path()),
+                "Invalid path : " << logFileName);
+        }
 
         try {
             _logger->removeAppender(_fileAppender);

@@ -45,9 +45,11 @@ namespace QuantLibAddinCpp {
         // Create a boost path object from the char*.
         boost::filesystem::path boostPath(path);
 
-        // Ensure that the parent directory exists.
-        OH_REQUIRE(boost::filesystem::exists(boostPath.branch_path()),
-            "Invalid path : " << path);
+        // If a parent directory has been specified then ensure it exists.
+        if (boostPath.has_branch_path()) {
+            OH_REQUIRE(boost::filesystem::exists(boostPath.branch_path()),
+                "Invalid path : " << path);
+        }
 
         // If the file itself exists then ensure we can overwrite it.
         if (boost::filesystem::exists(boostPath)) {
