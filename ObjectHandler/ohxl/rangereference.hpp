@@ -107,19 +107,11 @@ namespace ObjectHandler {
         //! \name Error Messages
         //@{
         //! Assign an error message to this range.
-        /*! Setting append to true causes the error message to be appended
-            to any message that may already be associated with the range.
-        */
-        void setErrorMessage(const std::string &errorMessage, const bool &append);
+        void setErrorMessage(const std::string &errorMessage);
         //! Retrieve the error message associated with this range.
         /*! This function is wrapped by end user function ohRetrieveError().
         */
         const std::string errorMessage() const { return errorMessage_; }
-        //! Clear the error message associated with this range.
-        /*! To be called on successful completion of a function, to clean up
-            any error messages left be previous failures.
-        */
-        void clearError() { errorMessage_ = ""; }
         //@}
 
     private:

@@ -122,8 +122,7 @@ namespace ObjectHandler {
 
     void RepositoryXL::setError(
             const std::string &message,
-            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
-            const bool &append) {
+            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall) {
 
         functionCall->setError();
 
@@ -135,23 +134,22 @@ namespace ObjectHandler {
         ErrorMessageMap::const_iterator i = errorMessageMap_.find(refStrUpper);
         if (i == errorMessageMap_.end()) {
             boost::shared_ptr<RangeReference> rangeReference(new RangeReference(refStrUpper));
-            rangeReference->setErrorMessage(cellMessage.str(), false);
+            rangeReference->setErrorMessage(cellMessage.str());
             errorMessageMap_[refStrUpper] = rangeReference;
         } else {
-            i->second->setErrorMessage(cellMessage.str(), append);
+            i->second->setErrorMessage(cellMessage.str());
         }
     }
 
     void RepositoryXL::logError(
             const std::string &message,
-            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
-            const bool &append) {
+            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall) {
         // This function is called during error handling and must not throw.
         try {
             if (functionCall) {
                 std::ostringstream fullMessage;
                 if (functionCall->callerType() == CallerType::Cell) {
-                    setError(message, functionCall, append);
+                    setError(message, functionCall);
                     fullMessage << functionCall->addressString() << " - ";
                 }
 

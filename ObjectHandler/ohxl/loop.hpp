@@ -26,6 +26,10 @@
 #include <ohxl/objecthandlerxl.hpp>
 #include <ohxl/Utilities/xlutilities.hpp>
 
+// The max number of failed loop iterations to be logged.  This is for
+// a 0-based array and will be displayed to user as ERROR_LIMIT+1
+#define ERROR_LIMIT 9
+
 namespace ObjectHandler {
 
     template<class LoopFunction, class InputType, class OutputType>
@@ -79,7 +83,8 @@ namespace ObjectHandler {
         xOut.val.array.lparray = new XLOPER[numCells]; 
         xOut.xltype = xltypeMulti | xlbitDLLFree;
 
-        bool errorInitialized = false;
+        int errorCount = 0;
+        std::ostringstream err;
         for (int i=0; i<numCells; ++i) {
             try {
                 loopIteration<LoopFunction, InputType, OutputType>(
@@ -87,21 +92,31 @@ namespace ObjectHandler {
                     xMulti->val.array.lparray[i],
                     xOut.val.array.lparray[i],
                     false);
-            } catch(const std::exception &e) {
-                std::ostringstream err;
-                if (!errorInitialized) {
-                    RepositoryXL::instance().clearError();
-                    err << functionCall->functionName() << " - " 
-                        << functionCall->addressString() 
-                        << std::endl << std::endl;
-                    errorInitialized = true;
-                }
-                err << "iteration #" << i << " - " << e.what();
-                RepositoryXL::instance().logError(err.str(), functionCall, true);
+            } catch (const std::exception &e) {
                 xOut.val.array.lparray[i].xltype = xltypeErr;
                 xOut.val.array.lparray[i].val.err = xlerrNum;
+
+                if (errorCount > ERROR_LIMIT) {
+                    // Limit exceeded.  Take no action.  For performance reasons we test
+                    // this case first since it's most common on big loop w/many errors
+                    ;
+                } else if (errorCount < ERROR_LIMIT) {
+                    err << std::endl << std::endl 
+                        << "iteration #" << i << " - " << e.what();
+                    errorCount++;
+                } else if (errorCount == ERROR_LIMIT) {
+                    err << std::endl << std::endl 
+                        << "iteration #" << i << " - " << e.what()
+                        << std::endl << std::endl 
+                        << "Count of failed iterations in looping function hit "
+                        << "limit of " << ERROR_LIMIT + 1 << " - logging discontinued";
+                    errorCount++;
+                }
             }
         }
+
+        if (errorCount)
+            RepositoryXL::instance().logError(err.str(), functionCall);
 
         // free memory
 

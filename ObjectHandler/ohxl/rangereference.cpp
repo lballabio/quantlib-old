@@ -131,14 +131,8 @@ namespace ObjectHandler {
         }
     }
 
-    void RangeReference::setErrorMessage(const std::string &errorMessage, const bool &append) {
-        if (append) {
-            std::ostringstream err;
-            err << errorMessage_ << std::endl << std::endl << errorMessage;
-            errorMessage_ = err.str();
-        } else {
-            errorMessage_ = errorMessage;
-        }
+    void RangeReference::setErrorMessage(const std::string &errorMessage) {
+        errorMessage_ = errorMessage;
     }
 
     bool RangeReference::operator==(const RangeReference &r) const {
