@@ -95,7 +95,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='SpanningForwards' exampleValue ='5'>
+          <Parameter name='SpanningForwards' exampleValue ='4'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of forwards underlying the CMS</description>

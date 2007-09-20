@@ -509,7 +509,206 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Procedure>
-    
+
+    <Procedure name='qlCoinitialSwapForwardJacobian'>
+      <description>Returns the jacobian between coinitial swap rates and forward rates</description>
+      <alias>QuantLib::SwapForwardMappings::coinitialSwapForwardJacobian</alias>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCoinitialSwapZedMatrix'>
+      <description>Returns the Z matrix to switch base from forward to coinitial swap rates</description>
+      <alias>QuantLib::SwapForwardMappings::coinitialSwapZedMatrix</alias>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCmSwapForwardJacobian'>
+      <description>Returns the jacobian between constant maturity swap rates and forward rates</description>
+      <alias>QuantLib::SwapForwardMappings::cmSwapForwardJacobian</alias>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID</description>
+          </Parameter>
+          <Parameter name='SpanningForwards' exampleValue ='4'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of forwards underlying the CMS</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCmSwapZedMatrix'>
+      <description>Returns the Z matrix to switch base from forward to constant maturity swap rates</description>
+      <alias>QuantLib::SwapForwardMappings::cmSwapZedMatrix</alias>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID</description>
+          </Parameter>
+          <Parameter name='SpanningForwards' exampleValue ='4'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of forwards underlying the CMS</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlAnnuity'>
+      <description>returns annuity of arbitrary swap-rate</description>
+      <alias>QuantLib::SwapForwardMappings::annuity</alias>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID</description>
+          </Parameter>
+          <Parameter name='StartIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start index</description>
+          </Parameter>
+          <Parameter name='EndIndex' exampleValue ='4'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end index</description>
+          </Parameter>
+          <Parameter name='NumeraireIndex' default='0.0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>numeraire index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlSwapDerivative'>
+      <description>returns derivative of swap-rate to underlying forward rate</description>
+      <alias>QuantLib::SwapForwardMappings::swapDerivative</alias>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID</description>
+          </Parameter>
+          <Parameter name='StartIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start index</description>
+          </Parameter>
+          <Parameter name='EndIndex' exampleValue ='4'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end index</description>
+          </Parameter>
+          <Parameter name='FwdRateIndex' default='0.0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward rate index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
 
     <Procedure name='qlRateVolDifferences'>
       <description>Compute the differences between all implied forwards volatilities</description>
