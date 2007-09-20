@@ -8,7 +8,7 @@ if HAVE_JAVA
 all-local: libQuantLibJNI.@JNILIB_EXTENSION@ QuantLib.jar
 
 quantlib_wrap.o: quantlib_wrap.cpp
-	g++ -c quantlib_wrap.cpp $(CXXFLAGS) @JDK_INCLUDE@ @JDK_SYSTEM_INCLUDE@ `quantlib-config --cflags` -o quantlib_wrap.o
+	g++ -c quantlib_wrap.cpp -fno-strict-aliasing $(CXXFLAGS) @JDK_INCLUDE@ @JDK_SYSTEM_INCLUDE@ `quantlib-config --cflags` -o quantlib_wrap.o
 
 libQuantLibJNI.@JNILIB_EXTENSION@: quantlib_wrap.o
 	g++ @SHARED_LIB@ quantlib_wrap.o -Wl -o libQuantLibJNI.@JNILIB_EXTENSION@ `quantlib-config --libs`
@@ -22,11 +22,11 @@ install-exec-local:
 	cp -p libQuantLibJNI.@JNILIB_EXTENSION@ $(DESTDIR)/$(libdir)/libQuantLibJNI.@JNILIB_EXTENSION@
 	cp -p QuantLib.jar $(DESTDIR)/$(libdir)/QuantLib.jar
 
-check-local: test/EquityOptions.class
-	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" test.EquityOptions
+check-local: examples/EquityOptions.class
+	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" examples.EquityOptions
 
-test/EquityOptions.class: test/EquityOptions.java QuantLib.jar
-	$(JAVAC) -source 1.5 -cp QuantLib.jar test/EquityOptions.java
+examples/EquityOptions.class: examples/EquityOptions.java QuantLib.jar
+	$(JAVAC) -source 1.5 -cp QuantLib.jar examples/EquityOptions.java
 
 endif
 
@@ -42,12 +42,12 @@ dist-hook:
 	mkdir -p $(distdir)/org/quantlib
 	cp ./org/quantlib/*.java $(distdir)/org/quantlib
 	touch $(distdir)/quantlib_wrap.cpp
-	mkdir -p $(distdir)/test
-	cp ./test/*.java $(distdir)/test
+	mkdir -p $(distdir)/examples
+	cp ./examples/*.java $(distdir)/examples
 
 clean-local:
 	rm -rf org 
-	rm -f test/*.class
+	rm -f examples/*.class
 	rm -f quantlib_wrap.o
 	rm -rf bin
 

@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-package test;
+package examples;
 
 import org.quantlib.Actual365Fixed;
 import org.quantlib.AmericanExercise;
