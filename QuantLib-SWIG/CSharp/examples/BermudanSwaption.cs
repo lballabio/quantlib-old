@@ -234,7 +234,8 @@ namespace BermudanSwaption
 			Exercise bermudaExercise = new BermudanExercise( bermudanDates );
 
 			Swaption bermudanSwaption =
-                new Swaption( atmSwap, bermudaExercise, rhTermStructure,
+                new Swaption( atmSwap, bermudaExercise);
+            bermudanSwaption.setPricingEngine(
                               new TreeSwaptionEngine(modelHW, 50));
 			Console.WriteLine( "HW: " + bermudanSwaption.NPV() );
 
@@ -242,8 +243,10 @@ namespace BermudanSwaption
                                        new TreeSwaptionEngine(modelHW2, 50));
 			Console.WriteLine( "HW (num): " + bermudanSwaption.NPV() );
 
-			Console.WriteLine( "Press return to exit" );
-			Console.ReadLine();
+			bermudanSwaption.setPricingEngine(
+                                       new TreeSwaptionEngine(modelBK, 50));
+			Console.WriteLine( "BK (num): " + bermudanSwaption.NPV() );
+
 		}
 	}
 }

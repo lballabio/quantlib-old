@@ -1,5 +1,6 @@
 
-CLEANFILES = cpp/quantlib_wrap.* csharp/*.cs libNQuantLibc.so NQuantLib.dll
+CLEANFILES = cpp/quantlib_wrap.* csharp/*.cs *.so *.dll \
+             examples/*.so examples/*.dll examples/*.exe
 
 BUILT_SOURCES = cpp/quantlib_wrap.cpp
 
@@ -15,6 +16,19 @@ cpp/quantlib_wrap.o: $(BUILT_SOURCES)
 
 NQuantLib.dll: $(BUILT_SOURCES)
 	$(MCS) -nologo -target:library -out:NQuantLib.dll csharp/*.cs
+
+check-local: examples/BermudanSwaption.exe \
+             examples/libNQuantLibc.so examples/NQuantLib.dll
+	./examples/BermudanSwaption.exe
+
+examples/%.exe: examples/%.cs
+	$(MCS) -nologo -target:exe -out:$@ -reference:NQuantLib.dll $<
+
+examples/libNQuantLibc.so: libNQuantLibc.so
+	cd examples && ln -sf ../libNQuantLibc.so
+
+examples/NQuantLib.dll: NQuantLib.dll
+	cd examples && ln -sf ../NQuantLib.dll
 
 endif
 
