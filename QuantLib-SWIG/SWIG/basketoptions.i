@@ -117,8 +117,7 @@ class MCBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
                            doubleOrNull requiredTolerance = Null<Real>(),
                            intOrNull maxSamples = Null<Size>(),
                            BigInteger seed = 0) {
-//            std::string s = QuantLib::lowercase(traits);
-        std::string s = traits;
+            std::string s = boost::algorithm::to_lower_copy(traits);
             if (s == "pseudorandom" || s == "pr")
                 return new MCBasketEnginePtr(
                          new MCBasketEngine<PseudoRandom>(timeStepsPerYear,
@@ -165,8 +164,7 @@ class MCAmericanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
                            doubleOrNull requiredTolerance = Null<Real>(),
                            intOrNull maxSamples = Null<Size>(),
                            BigInteger seed = 0) {
-//            std::string s = QuantLib::lowercase(traits);
-        std::string s = traits;
+            std::string s = boost::algorithm::to_lower_copy(traits);
             if (s == "pseudorandom" || s == "pr")
                   return new MCAmericanBasketEnginePtr(
                   new MCAmericanBasketEngine<PseudoRandom>(timeSteps,
