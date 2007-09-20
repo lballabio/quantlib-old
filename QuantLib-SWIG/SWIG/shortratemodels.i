@@ -2,7 +2,8 @@
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2007 StatPro Italia srl
- Copyright (c) 2005 Dominic Thuillier
+ Copyright (C) 2005 Dominic Thuillier
+ Copyright (C) 2007 Luis Cota
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -169,13 +170,33 @@ RelinkableHandle<ShortRateModel>;
 // actual models
 
 %{
-using QuantLib::HullWhite;
-using QuantLib::BlackKarasinski;
-using QuantLib::G2;
-typedef boost::shared_ptr<ShortRateModel> HullWhitePtr;
-typedef boost::shared_ptr<ShortRateModel> BlackKarasinskiPtr;
-typedef boost::shared_ptr<ShortRateModel> G2Ptr;
+    using QuantLib::Vasicek;
+    using QuantLib::HullWhite;
+    using QuantLib::BlackKarasinski;
+    using QuantLib::G2;
+    typedef boost::shared_ptr<ShortRateModel> VasicekPtr;
+    typedef boost::shared_ptr<ShortRateModel> HullWhitePtr;
+    typedef boost::shared_ptr<ShortRateModel> BlackKarasinskiPtr;
+    typedef boost::shared_ptr<ShortRateModel> G2Ptr;
 %}
+
+%rename(Vasicek) VasicekPtr;
+class VasicekPtr : public boost::shared_ptr<ShortRateModel> {
+  public:
+    %extend {
+        VasicekPtr(Rate r0 = 0.05,
+                   Real a = 0.1,
+                   Real b = 0.05,
+                   Real sigma = 0.01,
+                   Real lambda = 0.0) {
+            return new VasicekPtr(new Vasicek(r0, a, b, sigma, lambda));
+        }
+        DiscountFactor discount(Time t) const {
+            return boost::dynamic_pointer_cast<Vasicek>(*self)->discount(t);
+        }
+    }
+};
+
 
 %rename(HullWhite) HullWhitePtr;
 class HullWhitePtr : public boost::shared_ptr<ShortRateModel> {
@@ -185,6 +206,9 @@ class HullWhitePtr : public boost::shared_ptr<ShortRateModel> {
                      Real a = 0.1, Real sigma = 0.01) {
             return new HullWhitePtr(
                 new HullWhite(termStructure, a, sigma));
+        }
+        DiscountFactor discount(Time t) const {
+            return boost::dynamic_pointer_cast<HullWhite>(*self)->discount(t);
         }
     }
 };
@@ -209,6 +233,9 @@ class G2Ptr : public boost::shared_ptr<ShortRateModel> {
               Real a = 0.1, Real sigma = 0.01, Real b = 0.1,
               Real eta = 0.01, Real rho = -0.75) {
             return new G2Ptr(new G2(termStructure, a, sigma, b, eta, rho));
+        }
+        DiscountFactor discount(Time t) const {
+            return boost::dynamic_pointer_cast<G2>(*self)->discount(t);
         }
     }
 };
