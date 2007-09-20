@@ -115,9 +115,5 @@ a
 #endif
 %enddef
 
-template <class T>
-class Disposable : public T {
-      public:
-      Disposable(T& t);
-};
+
 #endif

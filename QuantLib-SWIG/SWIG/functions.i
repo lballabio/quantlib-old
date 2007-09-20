@@ -24,6 +24,7 @@
 
 %{
 using QuantLib::CostFunction;
+using QuantLib::Disposable;
 %}
 
 #if defined(SWIGPYTHON)

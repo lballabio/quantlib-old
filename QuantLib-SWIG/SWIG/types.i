@@ -35,7 +35,6 @@ using QuantLib::Spread;
 using QuantLib::DiscountFactor;
 using QuantLib::Volatility;
 using QuantLib::Size;
-using QuantLib::Disposable;
 %}
 
 typedef int Integer;
