@@ -85,6 +85,15 @@
 %rename(equals)        __eq__;
 %rename(unEquals)      __ne__;
 %rename(toString)      __str__;
+#elif defined(SWIGCSHARP)
+%rename(Add)           operator+;
+%rename(Add)           __add__;
+%rename(Subtract)      operator-;
+%rename(Subtract)      __sub__;
+%rename(Multiply)      operator*;
+%rename(Multiply)      __mul__;
+%rename(Divide)        operator/;
+%rename(Divide)        __div__;
 #endif
 
 

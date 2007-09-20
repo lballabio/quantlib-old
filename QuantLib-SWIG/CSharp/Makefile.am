@@ -18,8 +18,10 @@ NQuantLib.dll: $(BUILT_SOURCES)
 	$(MCS) -nologo -target:library -out:NQuantLib.dll csharp/*.cs
 
 check-local: examples/BermudanSwaption.exe \
+             examples/EquityOption.exe \
              examples/libNQuantLibc.so examples/NQuantLib.dll
 	./examples/BermudanSwaption.exe
+	./examples/EquityOption.exe
 
 examples/%.exe: examples/%.cs
 	$(MCS) -nologo -target:exe -out:$@ -reference:NQuantLib.dll $<

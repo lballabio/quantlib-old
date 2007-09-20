@@ -266,7 +266,8 @@ class Date {
     static bool isEndOfMonth(const Date&);
     static Date nextWeekday(const Date&, Weekday);
     static Date nthWeekday(Size n, Weekday, Month m, Year y);
-    #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA) || defined(SWIGR)
+    #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA) \
+     || defined(SWIGR) || defined(SWIGCSHARP)
     Date operator+(BigInteger days) const;
     Date operator-(BigInteger days) const;
     Date operator+(const Period&) const;
