@@ -67,6 +67,8 @@ namespace BermudanSwaption
 		[STAThread]
 		static void Main(string[] args)
 		{
+            DateTime startTime = DateTime.Now;
+
 			Date todaysDate = new Date(15, Month.February, 2002);
 			Calendar calendar = new TARGET();
 			Date settlementDate = new Date(19, Month.February, 2002);
@@ -247,6 +249,11 @@ namespace BermudanSwaption
                                        new TreeSwaptionEngine(modelBK, 50));
 			Console.WriteLine( "BK (num): " + bermudanSwaption.NPV() );
 
+            DateTime endTime = DateTime.Now;
+            TimeSpan delta = endTime - startTime;
+            Console.WriteLine();
+            Console.WriteLine("Run completed in {0} s", delta.TotalSeconds);
+            Console.WriteLine();
 		}
 	}
 }
