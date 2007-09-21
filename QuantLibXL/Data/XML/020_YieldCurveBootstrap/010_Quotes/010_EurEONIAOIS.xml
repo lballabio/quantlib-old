@@ -5,13 +5,13 @@
 	<count>20</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="131" tracking_level="1" version="0" object_id="_1">
+		<px class_id="135" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EUREONSW_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value class_id="184" tracking_level="0" version="0">
-				<variant_ class_id="185" tracking_level="0" version="0">
+			<Value class_id="189" tracking_level="0" version="0">
+				<variant_ class_id="190" tracking_level="0" version="0">
 					<which>4</which>
-					<value class_id="186" tracking_level="0" version="0">
+					<value class_id="191" tracking_level="0" version="0">
 						<type_>5</type_>
 					</value>
 				</variant_>
@@ -21,7 +21,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_2">
+		<px class_id_reference="135" object_id="_2">
 			<ObjectId>EUREON2W_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -37,7 +37,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_3">
+		<px class_id_reference="135" object_id="_3">
 			<ObjectId>EUREON3W_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -53,7 +53,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_4">
+		<px class_id_reference="135" object_id="_4">
 			<ObjectId>EUREON1M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -69,7 +69,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_5">
+		<px class_id_reference="135" object_id="_5">
 			<ObjectId>EUREON2M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -85,7 +85,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_6">
+		<px class_id_reference="135" object_id="_6">
 			<ObjectId>EUREON3M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -101,7 +101,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_7">
+		<px class_id_reference="135" object_id="_7">
 			<ObjectId>EUREON4M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -117,7 +117,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_8">
+		<px class_id_reference="135" object_id="_8">
 			<ObjectId>EUREON5M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -133,7 +133,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_9">
+		<px class_id_reference="135" object_id="_9">
 			<ObjectId>EUREON6M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -149,7 +149,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_10">
+		<px class_id_reference="135" object_id="_10">
 			<ObjectId>EUREON7M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -165,7 +165,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_11">
+		<px class_id_reference="135" object_id="_11">
 			<ObjectId>EUREON8M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -181,7 +181,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_12">
+		<px class_id_reference="135" object_id="_12">
 			<ObjectId>EUREON9M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -197,7 +197,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_13">
+		<px class_id_reference="135" object_id="_13">
 			<ObjectId>EUREON10M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -213,7 +213,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_14">
+		<px class_id_reference="135" object_id="_14">
 			<ObjectId>EUREON11M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -229,7 +229,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_15">
+		<px class_id_reference="135" object_id="_15">
 			<ObjectId>EUREON1Y_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -245,7 +245,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_16">
+		<px class_id_reference="135" object_id="_16">
 			<ObjectId>EUREON15M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -261,7 +261,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_17">
+		<px class_id_reference="135" object_id="_17">
 			<ObjectId>EUREON18M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -277,7 +277,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_18">
+		<px class_id_reference="135" object_id="_18">
 			<ObjectId>EUREON21M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -293,7 +293,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_19">
+		<px class_id_reference="135" object_id="_19">
 			<ObjectId>EUREON2Y_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -309,7 +309,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="131" object_id="_20">
+		<px class_id_reference="135" object_id="_20">
 			<ObjectId>EUREON3Y_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>

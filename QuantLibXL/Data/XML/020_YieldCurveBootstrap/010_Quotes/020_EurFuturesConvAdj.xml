@@ -5,40 +5,13 @@
 	<count>120</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="128" tracking_level="1" version="0" object_id="_1">
-			<ObjectId>EURFUTU7ConvAdj_Quote</ObjectId>
-			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
-			<Index>Euribor3M</Index>
-			<ImmCode>U7</ImmCode>
-			<FuturesQuote class_id="184" tracking_level="0" version="0">
-				<variant_ class_id="185" tracking_level="0" version="0">
-					<which>3</which>
-					<value>EURFUTU7_Quote</value>
-				</variant_>
-			</FuturesQuote>
-			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_Volatility_Quote</value>
-				</variant_>
-			</Volatility>
-			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_MeanReversion_Quote</value>
-				</variant_>
-			</MeanReversion>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="128" object_id="_2">
+		<px class_id="132" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EURFUTV7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
 			<ImmCode>V7</ImmCode>
-			<FuturesQuote>
-				<variant_>
+			<FuturesQuote class_id="189" tracking_level="0" version="0">
+				<variant_ class_id="190" tracking_level="0" version="0">
 					<which>3</which>
 					<value>EURFUTV7_Quote</value>
 				</variant_>
@@ -59,7 +32,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_3">
+		<px class_id_reference="132" object_id="_2">
 			<ObjectId>EURFUTX7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -86,7 +59,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_4">
+		<px class_id_reference="132" object_id="_3">
 			<ObjectId>EURFUTZ7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -113,7 +86,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_5">
+		<px class_id_reference="132" object_id="_4">
 			<ObjectId>EURFUTF8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -140,7 +113,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_6">
+		<px class_id_reference="132" object_id="_5">
 			<ObjectId>EURFUTG8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -167,7 +140,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_7">
+		<px class_id_reference="132" object_id="_6">
 			<ObjectId>EURFUTH8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -194,7 +167,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_8">
+		<px class_id_reference="132" object_id="_7">
 			<ObjectId>EURFUTJ8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -221,7 +194,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_9">
+		<px class_id_reference="132" object_id="_8">
 			<ObjectId>EURFUTK8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -248,7 +221,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_10">
+		<px class_id_reference="132" object_id="_9">
 			<ObjectId>EURFUTM8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -275,7 +248,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_11">
+		<px class_id_reference="132" object_id="_10">
 			<ObjectId>EURFUTN8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -302,7 +275,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_12">
+		<px class_id_reference="132" object_id="_11">
 			<ObjectId>EURFUTQ8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -329,7 +302,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_13">
+		<px class_id_reference="132" object_id="_12">
 			<ObjectId>EURFUTU8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -356,7 +329,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_14">
+		<px class_id_reference="132" object_id="_13">
 			<ObjectId>EURFUTV8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -383,7 +356,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_15">
+		<px class_id_reference="132" object_id="_14">
 			<ObjectId>EURFUTX8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -410,7 +383,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_16">
+		<px class_id_reference="132" object_id="_15">
 			<ObjectId>EURFUTZ8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -437,7 +410,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_17">
+		<px class_id_reference="132" object_id="_16">
 			<ObjectId>EURFUTF9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -464,7 +437,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_18">
+		<px class_id_reference="132" object_id="_17">
 			<ObjectId>EURFUTG9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -491,7 +464,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_19">
+		<px class_id_reference="132" object_id="_18">
 			<ObjectId>EURFUTH9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -518,7 +491,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_20">
+		<px class_id_reference="132" object_id="_19">
 			<ObjectId>EURFUTJ9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -545,7 +518,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_21">
+		<px class_id_reference="132" object_id="_20">
 			<ObjectId>EURFUTK9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -572,7 +545,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_22">
+		<px class_id_reference="132" object_id="_21">
 			<ObjectId>EURFUTM9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -599,7 +572,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_23">
+		<px class_id_reference="132" object_id="_22">
 			<ObjectId>EURFUTN9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -626,7 +599,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_24">
+		<px class_id_reference="132" object_id="_23">
 			<ObjectId>EURFUTQ9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -653,7 +626,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_25">
+		<px class_id_reference="132" object_id="_24">
 			<ObjectId>EURFUTU9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -680,7 +653,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_26">
+		<px class_id_reference="132" object_id="_25">
 			<ObjectId>EURFUTV9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -707,7 +680,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_27">
+		<px class_id_reference="132" object_id="_26">
 			<ObjectId>EURFUTX9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -734,7 +707,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_28">
+		<px class_id_reference="132" object_id="_27">
 			<ObjectId>EURFUTZ9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -761,7 +734,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_29">
+		<px class_id_reference="132" object_id="_28">
 			<ObjectId>EURFUTF0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -788,7 +761,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_30">
+		<px class_id_reference="132" object_id="_29">
 			<ObjectId>EURFUTG0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -815,7 +788,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_31">
+		<px class_id_reference="132" object_id="_30">
 			<ObjectId>EURFUTH0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -842,7 +815,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_32">
+		<px class_id_reference="132" object_id="_31">
 			<ObjectId>EURFUTJ0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -869,7 +842,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_33">
+		<px class_id_reference="132" object_id="_32">
 			<ObjectId>EURFUTK0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -896,7 +869,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_34">
+		<px class_id_reference="132" object_id="_33">
 			<ObjectId>EURFUTM0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -923,7 +896,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_35">
+		<px class_id_reference="132" object_id="_34">
 			<ObjectId>EURFUTN0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -950,7 +923,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_36">
+		<px class_id_reference="132" object_id="_35">
 			<ObjectId>EURFUTQ0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -977,7 +950,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_37">
+		<px class_id_reference="132" object_id="_36">
 			<ObjectId>EURFUTU0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1004,7 +977,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_38">
+		<px class_id_reference="132" object_id="_37">
 			<ObjectId>EURFUTV0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1031,7 +1004,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_39">
+		<px class_id_reference="132" object_id="_38">
 			<ObjectId>EURFUTX0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1058,7 +1031,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_40">
+		<px class_id_reference="132" object_id="_39">
 			<ObjectId>EURFUTZ0ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1085,7 +1058,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_41">
+		<px class_id_reference="132" object_id="_40">
 			<ObjectId>EURFUTF1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1112,7 +1085,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_42">
+		<px class_id_reference="132" object_id="_41">
 			<ObjectId>EURFUTG1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1139,7 +1112,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_43">
+		<px class_id_reference="132" object_id="_42">
 			<ObjectId>EURFUTH1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1166,7 +1139,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_44">
+		<px class_id_reference="132" object_id="_43">
 			<ObjectId>EURFUTJ1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1193,7 +1166,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_45">
+		<px class_id_reference="132" object_id="_44">
 			<ObjectId>EURFUTK1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1220,7 +1193,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_46">
+		<px class_id_reference="132" object_id="_45">
 			<ObjectId>EURFUTM1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1247,7 +1220,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_47">
+		<px class_id_reference="132" object_id="_46">
 			<ObjectId>EURFUTN1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1274,7 +1247,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_48">
+		<px class_id_reference="132" object_id="_47">
 			<ObjectId>EURFUTQ1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1301,7 +1274,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_49">
+		<px class_id_reference="132" object_id="_48">
 			<ObjectId>EURFUTU1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1328,7 +1301,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_50">
+		<px class_id_reference="132" object_id="_49">
 			<ObjectId>EURFUTV1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1355,7 +1328,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_51">
+		<px class_id_reference="132" object_id="_50">
 			<ObjectId>EURFUTX1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1382,7 +1355,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_52">
+		<px class_id_reference="132" object_id="_51">
 			<ObjectId>EURFUTZ1ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1409,7 +1382,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_53">
+		<px class_id_reference="132" object_id="_52">
 			<ObjectId>EURFUTF2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1436,7 +1409,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_54">
+		<px class_id_reference="132" object_id="_53">
 			<ObjectId>EURFUTG2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1463,7 +1436,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_55">
+		<px class_id_reference="132" object_id="_54">
 			<ObjectId>EURFUTH2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1490,7 +1463,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_56">
+		<px class_id_reference="132" object_id="_55">
 			<ObjectId>EURFUTJ2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1517,7 +1490,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_57">
+		<px class_id_reference="132" object_id="_56">
 			<ObjectId>EURFUTK2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1544,7 +1517,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_58">
+		<px class_id_reference="132" object_id="_57">
 			<ObjectId>EURFUTM2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1571,7 +1544,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_59">
+		<px class_id_reference="132" object_id="_58">
 			<ObjectId>EURFUTN2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1598,7 +1571,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_60">
+		<px class_id_reference="132" object_id="_59">
 			<ObjectId>EURFUTQ2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1625,7 +1598,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_61">
+		<px class_id_reference="132" object_id="_60">
 			<ObjectId>EURFUTU2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1652,7 +1625,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_62">
+		<px class_id_reference="132" object_id="_61">
 			<ObjectId>EURFUTV2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1679,7 +1652,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_63">
+		<px class_id_reference="132" object_id="_62">
 			<ObjectId>EURFUTX2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1706,7 +1679,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_64">
+		<px class_id_reference="132" object_id="_63">
 			<ObjectId>EURFUTZ2ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1733,7 +1706,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_65">
+		<px class_id_reference="132" object_id="_64">
 			<ObjectId>EURFUTF3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1760,7 +1733,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_66">
+		<px class_id_reference="132" object_id="_65">
 			<ObjectId>EURFUTG3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1787,7 +1760,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_67">
+		<px class_id_reference="132" object_id="_66">
 			<ObjectId>EURFUTH3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1814,7 +1787,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_68">
+		<px class_id_reference="132" object_id="_67">
 			<ObjectId>EURFUTJ3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1841,7 +1814,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_69">
+		<px class_id_reference="132" object_id="_68">
 			<ObjectId>EURFUTK3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1868,7 +1841,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_70">
+		<px class_id_reference="132" object_id="_69">
 			<ObjectId>EURFUTM3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1895,7 +1868,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_71">
+		<px class_id_reference="132" object_id="_70">
 			<ObjectId>EURFUTN3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1922,7 +1895,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_72">
+		<px class_id_reference="132" object_id="_71">
 			<ObjectId>EURFUTQ3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1949,7 +1922,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_73">
+		<px class_id_reference="132" object_id="_72">
 			<ObjectId>EURFUTU3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -1976,7 +1949,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_74">
+		<px class_id_reference="132" object_id="_73">
 			<ObjectId>EURFUTV3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2003,7 +1976,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_75">
+		<px class_id_reference="132" object_id="_74">
 			<ObjectId>EURFUTX3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2030,7 +2003,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_76">
+		<px class_id_reference="132" object_id="_75">
 			<ObjectId>EURFUTZ3ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2057,7 +2030,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_77">
+		<px class_id_reference="132" object_id="_76">
 			<ObjectId>EURFUTF4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2084,7 +2057,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_78">
+		<px class_id_reference="132" object_id="_77">
 			<ObjectId>EURFUTG4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2111,7 +2084,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_79">
+		<px class_id_reference="132" object_id="_78">
 			<ObjectId>EURFUTH4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2138,7 +2111,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_80">
+		<px class_id_reference="132" object_id="_79">
 			<ObjectId>EURFUTJ4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2165,7 +2138,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_81">
+		<px class_id_reference="132" object_id="_80">
 			<ObjectId>EURFUTK4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2192,7 +2165,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_82">
+		<px class_id_reference="132" object_id="_81">
 			<ObjectId>EURFUTM4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2219,7 +2192,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_83">
+		<px class_id_reference="132" object_id="_82">
 			<ObjectId>EURFUTN4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2246,7 +2219,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_84">
+		<px class_id_reference="132" object_id="_83">
 			<ObjectId>EURFUTQ4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2273,7 +2246,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_85">
+		<px class_id_reference="132" object_id="_84">
 			<ObjectId>EURFUTU4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2300,7 +2273,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_86">
+		<px class_id_reference="132" object_id="_85">
 			<ObjectId>EURFUTV4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2327,7 +2300,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_87">
+		<px class_id_reference="132" object_id="_86">
 			<ObjectId>EURFUTX4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2354,7 +2327,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_88">
+		<px class_id_reference="132" object_id="_87">
 			<ObjectId>EURFUTZ4ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2381,7 +2354,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_89">
+		<px class_id_reference="132" object_id="_88">
 			<ObjectId>EURFUTF5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2408,7 +2381,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_90">
+		<px class_id_reference="132" object_id="_89">
 			<ObjectId>EURFUTG5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2435,7 +2408,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_91">
+		<px class_id_reference="132" object_id="_90">
 			<ObjectId>EURFUTH5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2462,7 +2435,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_92">
+		<px class_id_reference="132" object_id="_91">
 			<ObjectId>EURFUTJ5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2489,7 +2462,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_93">
+		<px class_id_reference="132" object_id="_92">
 			<ObjectId>EURFUTK5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2516,7 +2489,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_94">
+		<px class_id_reference="132" object_id="_93">
 			<ObjectId>EURFUTM5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2543,7 +2516,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_95">
+		<px class_id_reference="132" object_id="_94">
 			<ObjectId>EURFUTN5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2570,7 +2543,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_96">
+		<px class_id_reference="132" object_id="_95">
 			<ObjectId>EURFUTQ5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2597,7 +2570,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_97">
+		<px class_id_reference="132" object_id="_96">
 			<ObjectId>EURFUTU5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2624,7 +2597,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_98">
+		<px class_id_reference="132" object_id="_97">
 			<ObjectId>EURFUTV5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2651,7 +2624,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_99">
+		<px class_id_reference="132" object_id="_98">
 			<ObjectId>EURFUTX5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2678,7 +2651,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_100">
+		<px class_id_reference="132" object_id="_99">
 			<ObjectId>EURFUTZ5ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2705,7 +2678,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_101">
+		<px class_id_reference="132" object_id="_100">
 			<ObjectId>EURFUTF6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2732,7 +2705,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_102">
+		<px class_id_reference="132" object_id="_101">
 			<ObjectId>EURFUTG6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2759,7 +2732,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_103">
+		<px class_id_reference="132" object_id="_102">
 			<ObjectId>EURFUTH6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2786,7 +2759,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_104">
+		<px class_id_reference="132" object_id="_103">
 			<ObjectId>EURFUTJ6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2813,7 +2786,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_105">
+		<px class_id_reference="132" object_id="_104">
 			<ObjectId>EURFUTK6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2840,7 +2813,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_106">
+		<px class_id_reference="132" object_id="_105">
 			<ObjectId>EURFUTM6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2867,7 +2840,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_107">
+		<px class_id_reference="132" object_id="_106">
 			<ObjectId>EURFUTN6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2894,7 +2867,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_108">
+		<px class_id_reference="132" object_id="_107">
 			<ObjectId>EURFUTQ6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2921,7 +2894,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_109">
+		<px class_id_reference="132" object_id="_108">
 			<ObjectId>EURFUTU6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2948,7 +2921,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_110">
+		<px class_id_reference="132" object_id="_109">
 			<ObjectId>EURFUTV6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -2975,7 +2948,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_111">
+		<px class_id_reference="132" object_id="_110">
 			<ObjectId>EURFUTX6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -3002,7 +2975,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_112">
+		<px class_id_reference="132" object_id="_111">
 			<ObjectId>EURFUTZ6ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -3029,7 +3002,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_113">
+		<px class_id_reference="132" object_id="_112">
 			<ObjectId>EURFUTF7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -3056,7 +3029,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_114">
+		<px class_id_reference="132" object_id="_113">
 			<ObjectId>EURFUTG7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -3083,7 +3056,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_115">
+		<px class_id_reference="132" object_id="_114">
 			<ObjectId>EURFUTH7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -3110,7 +3083,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_116">
+		<px class_id_reference="132" object_id="_115">
 			<ObjectId>EURFUTJ7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -3137,7 +3110,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_117">
+		<px class_id_reference="132" object_id="_116">
 			<ObjectId>EURFUTK7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -3164,7 +3137,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_118">
+		<px class_id_reference="132" object_id="_117">
 			<ObjectId>EURFUTM7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -3191,7 +3164,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_119">
+		<px class_id_reference="132" object_id="_118">
 			<ObjectId>EURFUTN7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -3218,7 +3191,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="128" object_id="_120">
+		<px class_id_reference="132" object_id="_119">
 			<ObjectId>EURFUTQ7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<Index>Euribor3M</Index>
@@ -3227,6 +3200,33 @@
 				<variant_>
 					<which>3</which>
 					<value>EURFUTQ7_Quote</value>
+				</variant_>
+			</FuturesQuote>
+			<Volatility>
+				<variant_>
+					<which>3</which>
+					<value>HW_Volatility_Quote</value>
+				</variant_>
+			</Volatility>
+			<MeanReversion>
+				<variant_>
+					<which>3</which>
+					<value>HW_MeanReversion_Quote</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="132" object_id="_120">
+			<ObjectId>EURFUTU7ConvAdj_Quote</ObjectId>
+			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
+			<Index>Euribor3M</Index>
+			<ImmCode>U7</ImmCode>
+			<FuturesQuote>
+				<variant_>
+					<which>3</which>
+					<value>EURFUTU7_Quote</value>
 				</variant_>
 			</FuturesQuote>
 			<Volatility>
