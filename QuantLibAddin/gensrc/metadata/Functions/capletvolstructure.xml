@@ -600,7 +600,7 @@
 
     <Member name='qlOptionletStripperOptionletDates' type='QuantLib::OptionletStripper' superType='handleToLib'>
       <description></description>
-      <libraryFunction>optionletDates</libraryFunction>
+      <libraryFunction>optionletFixingDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>

@@ -118,22 +118,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorLastFixingDate' type='QuantLib::CapFloor'>
-      <description>Returns the last fixing date for the given CapFloor object</description>
-      <libraryFunction>lastFixingDate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlCapFloorLastAccrualPeriod' type='QuantLib::CapFloor'>
       <description>Returns the last accrual period for the given CapFloor object</description>
       <libraryFunction>lastAccrualPeriod</libraryFunction>
