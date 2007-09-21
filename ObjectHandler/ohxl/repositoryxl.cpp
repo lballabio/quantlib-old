@@ -114,10 +114,11 @@ namespace ObjectHandler {
         Repository::deleteObject(ObjectXL::getStub(objectID));
     }
 
-    void RepositoryXL::deleteObject(const std::vector<std::string> &objectID) {
-        for (std::vector<std::string>::const_iterator i = objectID.begin();
-                i != objectID.end(); ++i)
-            objectMap_.erase(ObjectXL::getStub(*i));
+    void RepositoryXL::deleteObject(const std::vector<std::string> &objectIDs) {
+        OH_REQUIRE(!objectIDs.empty(), "List of Object IDs for deletion is empty");
+        for (std::vector<std::string>::const_iterator i = objectIDs.begin();
+                i != objectIDs.end(); ++i)
+            Repository::deleteObject(ObjectXL::getStub(*i));
     }
 
     void RepositoryXL::setError(

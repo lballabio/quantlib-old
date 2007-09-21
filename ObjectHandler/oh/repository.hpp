@@ -114,7 +114,7 @@ namespace ObjectHandler {
         /*! Delete the objects regardless of whether or not they are permanent.
             Take no action for IDs that do not correspond to valie objects.
         */
-        virtual void deleteObject(const std::vector<std::string> &objectID);
+        virtual void deleteObject(const std::vector<std::string> &objectIDs);
 
         //! Delete all of the Objects in the Repository.
         /*! Take no action if the Repository is already empty.
@@ -159,6 +159,9 @@ namespace ObjectHandler {
         */
         virtual const std::vector<std::string> listObjectIDs(
             const std::string &regex = "");
+
+        //! Indicate whether an Object with the given ID is found in the Repository.
+        bool objectExists(const std::string &objectID) const;
         //@}
 
         //! Define the type of the structure used to store the Objects.

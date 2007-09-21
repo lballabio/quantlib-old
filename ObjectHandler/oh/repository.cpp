@@ -55,18 +55,15 @@ namespace ObjectHandler {
         const boost::shared_ptr<Object> &object,
         bool overwrite) {
 
-        if (!overwrite) {
-            ObjectMap::const_iterator result = objectMap_.find(objectID);
-            OH_REQUIRE(result == objectMap_.end(), "Cannot store object with ID '"
-                << objectID << "' because an object with that ID already exists");
-        }
+        OH_REQUIRE(overwrite || !objectExists(objectID), "Cannot store object with ID '"
+            << objectID << "' because an object with that ID already exists");
 
         objectMap_[objectID] = object;
         return objectID;
     }
 
     void Repository::retrieveObject(boost::shared_ptr<Object> &ret,
-                        const std::string &id) {
+        const std::string &id) {
         ret = retrieveObjectImpl(id);
     }
 
@@ -80,13 +77,16 @@ namespace ObjectHandler {
     }
 
     void Repository::deleteObject(const std::string &objectID) {
+        OH_REQUIRE(objectExists(objectID), "Cannot delete Object with ID '" << objectID
+            << "' because no Object with that ID is present in the Repository");
         objectMap_.erase(objectID);
     }
 
-    void Repository::deleteObject(const std::vector<std::string> &objectID) {
-        for (std::vector<std::string>::const_iterator i = objectID.begin();
-                i != objectID.end(); ++i)
-            objectMap_.erase(*i);
+    void Repository::deleteObject(const std::vector<std::string> &objectIDs) {
+        OH_REQUIRE(!objectIDs.empty(), "List of Object IDs for deletion is empty");
+        for (std::vector<std::string>::const_iterator i = objectIDs.begin();
+                i != objectIDs.end(); ++i)
+            deleteObject(*i);
     }
 
     void Repository::deleteAllObjects(const bool &deletePermanent) {
@@ -166,4 +166,7 @@ namespace ObjectHandler {
             path.c_str(), overwriteExisting);			
     }
 
+    bool Repository::objectExists(const std::string &objectID) const {
+        return objectMap_.find(objectID) != objectMap_.end();
+    }
 }
