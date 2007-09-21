@@ -43,10 +43,6 @@
 			Name="pages"
 			>
 			<File
-				RelativePath="pages\build.tutorial.docs"
-				>
-			</File>
-			<File
 				RelativePath="pages\calc.docs"
 				>
 			</File>

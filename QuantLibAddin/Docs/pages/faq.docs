@@ -160,8 +160,8 @@ You can also
 \li If you want an installer delivering a compiled QuantLibXL Addin and
 documentation for use with Microsoft Excel, visit
 <a href="http://www.quantlibxl.org">www.quantlibxl.org</a>.
-\li If you want to compile QuantLibXL from source code, visit
-<a href="http://www.quantlibaddin.org/build_tutorial.html">http://www.quantlibaddin.org/build_tutorial.html</a>.
+\li If you want to compile QuantLibXL from source code, refer to the
+<a href="http://www.nazcatech.be/book/technical/html-singlepage/root.html#SECTION08100000000000000000">Build Tutorial</a>.
 \li If you want to build QuantLibAddin for use on platforms other than
 Microsoft Excel, visit
 <a href="http://www.quantlibaddin.org/installation.html">http://www.quantlibaddin.org/installation.html</a>.
