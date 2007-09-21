@@ -419,6 +419,11 @@
             <tensorRank>scalar</tensorRank>
             <description>numerical tolerance for non symmetric matrix. If omitted, default = 1.0e12 is used.</description>
           </Parameter>
+          <Parameter name='SalvagingAlgorithm'>
+            <type>QuantLib::SalvagingAlgorithm::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Salvaging algorithm for symmetric matrix not positive semi-definite (None, Spectral)</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
