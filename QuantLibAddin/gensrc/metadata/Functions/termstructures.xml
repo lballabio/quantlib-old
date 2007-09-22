@@ -20,6 +20,38 @@
   <Functions>
 
     <!-- TermStructure interface -->
+    <Member name='qlTermStructureDayCounter' type='QuantLib::TermStructure'>
+      <description>Returns the DayCounter used by the given TermStructure object</description>
+      <libraryFunction>dayCounter</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::DayCounter</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTermStructureMaxDate' type='QuantLib::TermStructure'>
+      <description>Returns the max date for the given TermStructure object</description>
+      <libraryFunction>maxDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlTermStructureReferenceDate' type='QuantLib::TermStructure'>
       <description>Returns the reference date for the given TermStructure object</description>
       <libraryFunction>referenceDate</libraryFunction>
@@ -52,9 +84,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTermStructureMaxDate' type='QuantLib::TermStructure'>
-      <description>Returns the max date for the given TermStructure object</description>
-      <libraryFunction>maxDate</libraryFunction>
+    <Member name='qlTermStructureSettlementDays' type='QuantLib::TermStructure'>
+      <description>Returns the number of settlement days for the given TermStructure object</description>
+      <libraryFunction>settlementDays</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
@@ -63,23 +95,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlTermStructureDayCounter' type='QuantLib::TermStructure'>
-      <description>Returns the DayCounter used by the given TermStructure object</description>
-      <libraryFunction>dayCounter</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::DayCounter</type>
+        <type>QuantLib::Natural</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
