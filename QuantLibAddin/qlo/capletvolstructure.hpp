@@ -37,12 +37,13 @@ namespace QuantLibAddin {
     
     OH_OBJ_CLASS(OptionletVolatilityStructure, TermStructure)
 
-    class CapletConstantVolatility : public OptionletVolatilityStructure {
+    class ConstantOptionletVol : public OptionletVolatilityStructure {
       public:
-      CapletConstantVolatility(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                               const QuantLib::Handle<QuantLib::Quote>& volatility,
-                               const QuantLib::DayCounter& dayCounter,
-                               bool permanent);
+        ConstantOptionletVol(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                             const QuantLib::Handle<QuantLib::Quote>& volatility,
+                             const QuantLib::Calendar& cal,
+                             const QuantLib::DayCounter& dayCounter,
+                             bool permanent);
     };
       
     class OptionletStripperAdapter : public OptionletVolatilityStructure {
@@ -108,9 +109,9 @@ namespace QuantLibAddin {
         
         };
 
-    class SpreadedCapletVolatilityStructure : public OptionletVolatilityStructure {
+    class SpreadedOptionletVol : public OptionletVolatilityStructure {
       public:
-        SpreadedCapletVolatilityStructure(
+        SpreadedOptionletVol(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& underlyingVolStructure,
             const QuantLib::Handle<QuantLib::Quote>&,
@@ -127,11 +128,11 @@ namespace QuantLibAddin {
                                     bool permanent);
     };
 
-    OH_OBJ_CLASS(CapFloorVolatilityStructure, TermStructure)
+    OH_OBJ_CLASS(CapFloorTermVolatilityStructure, TermStructure)
 
-    class CapFloorTermVolVector : public CapFloorVolatilityStructure {
+    class CapFloorTermVolCurve : public CapFloorTermVolatilityStructure {
       public:
-      CapFloorTermVolVector(
+      CapFloorTermVolCurve(
           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
@@ -141,7 +142,7 @@ namespace QuantLibAddin {
           bool permanent);
     };
 
-    class CapFloorTermVolSurface : public CapFloorVolatilityStructure {
+    class CapFloorTermVolSurface : public CapFloorTermVolatilityStructure {
       public:
       CapFloorTermVolSurface(
           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

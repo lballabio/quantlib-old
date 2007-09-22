@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Eric Ehlers
 
@@ -25,12 +26,14 @@
 
 #include <ql/voltermstructures/equityfx/blackconstantvol.hpp>
 #include <ql/voltermstructures/equityfx/blackvariancesurface.hpp>
+#include <ql/voltermstructures/interestrate/abcdatmvolcurve.hpp>
 
 namespace QuantLibAddin {
 
     BlackConstantVol::BlackConstantVol(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& settlementDate,
+            const QuantLib::Calendar& cal,
             QuantLib::Volatility volatility,
             const QuantLib::DayCounter& dayCounter,
             bool permanent) : BlackVolTermStructure(properties, permanent)
@@ -38,6 +41,7 @@ namespace QuantLibAddin {
         libraryObject_ =
             boost::shared_ptr<QuantLib::BlackVolTermStructure>(new
                 QuantLib::BlackConstantVol(settlementDate,
+                                           cal,
                                            volatility,
                                            dayCounter));
     }
@@ -45,6 +49,7 @@ namespace QuantLibAddin {
     BlackVarianceSurface::BlackVarianceSurface(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& settlementDate,
+            const QuantLib::Calendar& cal,
             const std::vector<QuantLib::Date>& dates,
             const std::vector<QuantLib::Rate>& strikes,
             const QuantLib::Matrix& vols,
@@ -54,6 +59,7 @@ namespace QuantLibAddin {
         libraryObject_ =
             boost::shared_ptr<QuantLib::BlackVolTermStructure>(new
                 QuantLib::BlackVarianceSurface(settlementDate,
+                                               cal,
                                                dates,
                                                strikes,
                                                vols,
@@ -68,12 +74,11 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > & volatilities,
             QuantLib::BusinessDayConvention bdc,
             const QuantLib::DayCounter& dc,
-            bool permanent) :
-       ObjectHandler::LibraryObject<QuantLib::AbcdAtmVolCurve>(properties, permanent)
+            bool permanent)
+    : BlackAtmVolCurve(properties, permanent)
     {
-		
         std::vector<QuantLib::Handle<QuantLib::Quote> > temp(volatilities.size());
-        for(QuantLib::Size i = 0; i<temp.size(); ++i)
+        for (QuantLib::Size i=0; i<temp.size(); ++i)
             temp[i] = volatilities[i];
 
         libraryObject_ =
@@ -84,8 +89,6 @@ namespace QuantLibAddin {
                                           temp,
                                           bdc,
                                           dc));
-
     }
 
 }
-

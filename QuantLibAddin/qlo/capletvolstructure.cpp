@@ -22,23 +22,24 @@
 
 #include <qlo/capletvolstructure.hpp>
 
-#include <ql/voltermstructures/interestrate/caplet/capletconstantvol.hpp>
+#include <ql/voltermstructures/interestrate/caplet/constantoptionletvol.hpp>
 #include <ql/voltermstructures/interestrate/caplet/capstripper.hpp>
-#include <ql/voltermstructures/interestrate/caplet/spreadedcapletvolstructure.hpp>
+#include <ql/voltermstructures/interestrate/caplet/spreadedoptionletvol.hpp>
 #include <ql/voltermstructures/interestrate/cap/capfloortermvolvector.hpp>
 #include <ql/voltermstructures/interestrate/cap/capfloortermvolsurface.hpp>
 #include <ql/voltermstructures/interestrate/caplet/optionletstripperadapter.hpp>
 
 namespace QuantLibAddin {
 
-    CapletConstantVolatility::CapletConstantVolatility(
+    ConstantOptionletVol::ConstantOptionletVol(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Handle<QuantLib::Quote>& volatility,
+        const QuantLib::Calendar& cal,
         const QuantLib::DayCounter& dayCounter,
         bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapletConstantVolatility(volatility, dayCounter));
+            QuantLib::ConstantOptionletVol(volatility, cal, dayCounter));
     }
         
     OptionletStripperAdapter::OptionletStripperAdapter(
@@ -152,33 +153,33 @@ namespace QuantLibAddin {
                                                     dayCounter, smiles));
     }
 
-    SpreadedCapletVolatilityStructure::SpreadedCapletVolatilityStructure(
+    SpreadedOptionletVol::SpreadedOptionletVol(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& baseVol,
         const QuantLib::Handle<QuantLib::Quote>& spread,
         bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         libraryObject_ =
-            boost::shared_ptr<QuantLib::SpreadedCapletVolatilityStructure>(new
-                QuantLib::SpreadedCapletVolatilityStructure(baseVol,
+            boost::shared_ptr<QuantLib::SpreadedOptionletVol>(new
+                QuantLib::SpreadedOptionletVol(baseVol,
                                                             spread));
     }
 
-    CapFloorTermVolVector::CapFloorTermVolVector(
+    CapFloorTermVolCurve::CapFloorTermVolCurve(
           const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
           const std::vector<QuantLib::Period>& optionTenors,
           const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& volatilities,
           const QuantLib::DayCounter& dayCounter,
-          bool permanent) : CapFloorVolatilityStructure(properties, permanent)
+          bool permanent) : CapFloorTermVolatilityStructure(properties, permanent)
     {
         std::vector<QuantLib::Handle<QuantLib::Quote> > temp(volatilities.size());
         for(QuantLib::Size i = 0; i<temp.size(); ++i){
             temp[i] = volatilities[i];
         }
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapFloorTermVolVector(settlementDays,
+            QuantLib::CapFloorTermVolCurve(settlementDays,
                                           calendar,
                                           optionTenors,
                                           temp,
@@ -194,7 +195,7 @@ namespace QuantLibAddin {
           const std::vector<QuantLib::Rate>& strikes,
           const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
           const QuantLib::DayCounter& dc,
-          bool permanent) : CapFloorVolatilityStructure(properties, permanent)
+          bool permanent) : CapFloorTermVolatilityStructure(properties, permanent)
     {
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
         for(QuantLib::Size i = 0; i<temp.size(); ++i) {

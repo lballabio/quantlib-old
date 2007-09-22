@@ -1,5 +1,6 @@
 
 /*
+ Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -19,17 +20,17 @@
 #ifndef qla_volatilities_hpp
 #define qla_volatilities_hpp
 
-#include <oh/libraryobject.hpp>
+#include <qlo/termstructures.hpp>
 
+#include <ql/time/businessdayconvention.hpp>
 #include <ql/types.hpp>
-
-#include <ql/voltermstructures/interestrate/abcdatmvolcurve.hpp>
 
 namespace QuantLib {
     class BlackVolTermStructure;
     class Date;
     class DayCounter;
     class Matrix;
+    class Period;
 }
 
 namespace QuantLibAddin {
@@ -41,6 +42,7 @@ namespace QuantLibAddin {
         BlackConstantVol(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& settlementDate,
+            const QuantLib::Calendar& cal,
             QuantLib::Volatility volatility,
             const QuantLib::DayCounter& dayCounter,
             bool permanent);
@@ -51,6 +53,7 @@ namespace QuantLibAddin {
         BlackVarianceSurface(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& settlementDate,
+            const QuantLib::Calendar& cal,
             const std::vector<QuantLib::Date>& dates,
             const std::vector<QuantLib::Rate>& strikes,
             const QuantLib::Matrix& vols,
@@ -58,7 +61,11 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
-    class AbcdAtmVolCurve: public ObjectHandler::LibraryObject<QuantLib::AbcdAtmVolCurve> {
+    OH_OBJ_CLASS(VolatilityTermStructure, TermStructure)
+
+    OH_OBJ_CLASS(BlackAtmVolCurve, VolatilityTermStructure)
+
+    class AbcdAtmVolCurve: public BlackAtmVolCurve {
     public:
       AbcdAtmVolCurve(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

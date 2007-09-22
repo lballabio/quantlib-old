@@ -2,10 +2,7 @@
 
   <SuperTypes>
 
-    <!--
-    SuperType "native" - C++ datatypes and other datatypes directly recognized
-    by the compiler.
-    -->
+    <!-- C++ datatypes and other datatypes directly recognized by the compiler -->
     <SuperType name='native'>
       <DataTypes>
         <DataType nativeType='any'>any</DataType>
@@ -18,10 +15,7 @@
       </DataTypes>
     </SuperType>
 
-    <!--
-    SuperType "enumerations" - strings identifying enumerated
-    types or classes.
-    -->
+    <!-- strings identifying enumerated types or classes -->
     <SuperType name='enumeration' nativeType='string' conversionSuffix='Enum' memberAccess='.'>
       <DataTypes>
         <DataType>QuantLib::Average::Type</DataType>
@@ -50,14 +44,15 @@
       </DataTypes>
     </SuperType>
 
-    <!--
-    SuperType "handleToLib" - values which, if necessary, are automatically coerced from the form
-        boost::shared_ptr<QuantLibAddin::RelinkableHandle<QuantLib::xxx> >
-    to the required form
-        boost::shared_ptr<QuantLib::xxx>
-    -->
+    <!-- coerced from shared_ptr<QuantLibAddin::RelinkableHandle<QuantLib::xxx> > to shared_ptr<QuantLib::xxx> -->
     <SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
+        <DataType>QuantLib::AbcdAtmVolCurve</DataType>
+        <DataType>QuantLib::BlackAtmVolCurve</DataType>
+        <DataType>QuantLib::BlackAtmVolSurface</DataType>
+        <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
+        <DataType>QuantLib::CapFloorTermVolCurve</DataType>
+        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
         <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SimpleQuote</DataType>
@@ -67,22 +62,18 @@
         <DataType>QuantLib::OptionletStripper</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::CapVolatilityStructure</DataType>
-        <DataType>QuantLib::CapFloorTermVolVector</DataType>
         <DataType>QuantLib::CapFloorTermVolSurface</DataType>
         <DataType>QuantLib::TermStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
+        <DataType>QuantLib::VolatilityTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
-    <!--
-    SuperType "libraryClass" - values stored in the form
-        boost::shared_ptr<QuantLib::xxx>
-    -->
+    <!-- values stored in the form boost::shared_ptr<QuantLib::xxx> -->
     <SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
         <DataType>QuantLib::Abcd</DataType>
         <DataType>QuantLib::AbcdCalibration</DataType>
-        <DataType>QuantLib::AbcdAtmVolCurve</DataType>  
         <DataType>QuantLib::AccountingEngine</DataType>
         <DataType>QuantLib::AffineModel</DataType>
         <DataType>QuantLib::AlphaForm</DataType>
@@ -94,6 +85,7 @@
         <DataType>QuantLib::Bond</DataType>
         <DataType>QuantLib::CapFloor</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
+        <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
         <DataType>QuantLib::CapsStripper</DataType>
         <DataType>QuantLib::CmsCouponPricer</DataType>
         <DataType>QuantLib::CmsMarket</DataType>
@@ -164,15 +156,13 @@
         <DataType>QuantLib::TypePayoff</DataType>
         <DataType>QuantLib::VanillaSwap</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
+        <DataType>QuantLib::VolatilityTermStructure</DataType>
         <DataType>QuantLib::TimeHomogeneousForwardCorrelation</DataType>
 
       </DataTypes>
     </SuperType>
 
-    <!--
-    SuperType "libraryType" - values stored in the form
-        QuantLib::xxx
-    -->
+    <!-- values stored in the form QuantLib::xxx -->
     <SuperType name='libraryType'>
       <DataTypes>
         <DataType nativeType='double'>QuantLib::Array</DataType>
@@ -186,10 +176,7 @@
       </DataTypes>
     </SuperType>
 
-    <!--
-    SuperType "implicitConversion" - values which can be used synonymously
-    with native C++ datatypes.
-    -->
+    <!-- values which can be used synonymously with native C++ datatypes -->
     <SuperType name='implicitConversion' nativeType='double'>
       <DataTypes>
         <DataType>QuantLib::DiscountFactor</DataType>
@@ -200,12 +187,7 @@
       </DataTypes>
     </SuperType>
 
-    <!--
-    SuperType "libToHandle" - values which, if necessary, are automatically coerced from the form
-        boost::shared_ptr<QuantLib::xxx>
-    to the required form
-        QuantLib::RelinkableHandle<QuantLib::xx>
-    -->
+    <!-- coerceable from boost::shared_ptr<QuantLib::xxx> to QuantLib::RelinkableHandle<QuantLib::xx> -->
     <SuperType name='libToHandle' nativeType='string'>
       <DataTypes>
         <DataType>QuantLib::OptionletStripper</DataType>
@@ -213,13 +195,11 @@
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
+        <DataType>QuantLib::VolatilityTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
-    <!--
-    SuperType "objectClass" - values stored in the form
-        boost::shared_ptr<QuantLibAddin::xxx>
-    -->
+    <!-- values stored in the form shared_ptr<QuantLibAddin::xxx> -->
     <SuperType name='objectClass' nativeType='string' conversionSuffix='Obj'>
       <DataTypes>
         <DataType>ObjectHandler::Object</DataType>
@@ -247,24 +227,18 @@
       </DataTypes>
     </SuperType>
 
-    <!--
-    SuperType "objectHandle" - values stored in the form
-        QuantLibAddin::RelinkableHandle<QuantLib::xxx>
-    -->
+    <!-- values stored in the form QuantLibAddin::RelinkableHandle<QuantLib::xxx> -->
     <SuperType name='objectHandle' nativeType='string' conversionSuffix='Obj'>
       <DataTypes>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
+        <DataType>QuantLib::VolatilityTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
-    <!--
-    SuperType "underlyingClass" - values which are retrieved from ObjectHandler
-    and converted to bare QuantLib references in the form
-        QuantLib::xxx
-    -->
+    <!-- values retrieved from ObjectHandler and converted to bare QuantLib::xxx references -->
     <SuperType name='underlyingClass' nativeType='string' conversionSuffix='LibObj' memberAccess='.'>
       <DataTypes>
         <DataType>QuantLib::BrownianGeneratorFactory</DataType>
@@ -281,6 +255,7 @@
         <DataType>QuantLib::Leg</DataType>
         <DataType>QuantLib::Schedule</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
+        <DataType>QuantLib::VolatilityTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
