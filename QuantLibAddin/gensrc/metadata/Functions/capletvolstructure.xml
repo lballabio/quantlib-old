@@ -7,11 +7,11 @@
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>ql/voltermstructures/interestrate/caplet/optionletvolatilitystructure.hpp</include>
-    <include>ql/voltermstructures/interestrate/caplet/constantoptionletvol.hpp</include>
-    <include>ql/voltermstructures/interestrate/caplet/capstripper.hpp</include>
-    <include>ql/voltermstructures/interestrate/cap/capfloortermvolvector.hpp</include>
-    <include>ql/voltermstructures/interestrate/cap/capfloortermvolsurface.hpp</include>
+    <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
+    <include>ql/voltermstructures/interestrate/optionlet/capstripper.hpp</include>
+    <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolvector.hpp</include>
+    <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
@@ -19,10 +19,10 @@
     <include>qlo/index.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>ql/voltermstructures/interestrate/caplet/optionletvolatilitystructure.hpp</include>
-    <include>ql/voltermstructures/interestrate/caplet/constantoptionletvol.hpp</include>
-    <include>ql/voltermstructures/interestrate/caplet/capstripper.hpp</include>
-    <include>ql/voltermstructures/interestrate/cap/capfloortermvolsurface.hpp</include>
+    <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
+    <include>ql/voltermstructures/interestrate/optionlet/capstripper.hpp</include>
+    <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <copyright>
