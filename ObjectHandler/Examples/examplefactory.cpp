@@ -198,6 +198,67 @@ namespace ExampleAddin {
         return returnValue;
     }
 
+    std::string ExampleFactory::saveObjectString(
+        const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
+        bool forceOverwrite) {
+
+        OH_REQUIRE(objectList.size(), "Object list is empty");
+
+        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
+        std::set<std::string> seen;
+        std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
+        for (i=objectList.begin(); i!=objectList.end(); ++i) {
+            boost::shared_ptr<ObjectHandler::Object> object = *i;
+            std::string objectID = boost::any_cast<std::string>(
+                object->properties()->getProperty("OBJECTID"));
+            if (seen.find(objectID) == seen.end()) {
+                valueObjects.push_back(object->properties());
+                seen.insert(objectID);
+            }
+        }
+
+        std::ostringstream os;
+        boost::archive::xml_oarchive oa(os);
+        register_out(oa);
+        oa << boost::serialization::make_nvp("object_list", valueObjects);
+        return os.str();
+    }
+
+    std::vector<std::string> ExampleFactory::loadObjectString(
+        const std::string &xml,
+        bool overwriteExisting) {
+
+        std::vector<std::string> returnValue;
+
+        try {
+            std::istringstream xmlStream(xml);
+            boost::archive::xml_iarchive ia(xmlStream);
+            register_in(ia);
+
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
+            ia >> boost::serialization::make_nvp("object_list", valueObjects);
+            OH_REQUIRE(valueObjects.size(), "Object list is empty");
+
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >::const_iterator i;
+            int count = 0;
+            for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
+                try {
+                    returnValue.push_back(processObject(*i, overwriteExisting));
+                    count++;
+                } catch (const std::exception &e) {
+                    OH_FAIL("Error processing item " << count << ": " << e.what());
+                }
+            }
+
+        } catch (const std::exception &e) {
+            OH_FAIL("Error deserializing xml : " << e.what());
+        }
+
+        OH_REQUIRE(!returnValue.empty(), "No objects loaded from xml");
+
+        return returnValue;
+    }
+
     void register_in(boost::archive::xml_iarchive& ia) {
         tpl_register_classes(ia);
     }
