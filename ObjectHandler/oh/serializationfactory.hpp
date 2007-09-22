@@ -60,6 +60,15 @@ namespace ObjectHandler {
         virtual std::vector<std::string> loadObject(
             const char *path,
             bool overwriteExisting) const = 0;
+
+        //! Write the object(s) to the given string.
+        virtual std::string saveObjectString(
+            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&,
+            bool forceOverwrite) = 0;
+        //! Load object(s) from the given string.
+        virtual std::vector<std::string> loadObjectString(
+            const std::string &xml,
+            bool overwriteExisting) = 0;
         //@}
 
     protected:

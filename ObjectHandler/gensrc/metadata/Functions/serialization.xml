@@ -68,6 +68,58 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='ohObjectSaveString'>
+      <description>Serialize list of objects to given path, return resulting XML</description>
+      <alias>ObjectHandler::Repository::instance().saveObjectString</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectList'>
+            <type>ObjectHandler::Object</type>
+            <tensorRank>vector</tensorRank>
+            <description>list of IDs of objects to be serialized</description>
+          </Parameter>
+          <Parameter name='Overwrite' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>overwrite the output file if it exists</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectLoadString'>
+      <description>Deserialize list of objects from given string, return IDs of deserialized objects</description>
+      <alias>ObjectHandler::Repository::instance().loadObjectString</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Xml'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>XML string from which objects are to be deserialized.</description>
+          </Parameter>
+          <Parameter name='Overwrite' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Overwrite any existing Object that has the same ID as one being loaded</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
   </Functions>
 
 </Category>

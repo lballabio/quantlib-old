@@ -166,6 +166,22 @@ namespace ObjectHandler {
             path.c_str(), overwriteExisting);			
     }
 
+    std::string Repository::saveObjectString(
+        const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
+        bool forceOverwrite) {
+
+		return ObjectHandler::SerializationFactory::instance().saveObjectString(
+            objectList, forceOverwrite);   
+	}	
+
+    std::vector<std::string> Repository::loadObjectString(
+        const std::string &xml,
+        bool overwriteExisting) {
+
+        return ObjectHandler::SerializationFactory::instance().loadObjectString(
+            xml, overwriteExisting);			
+    }
+
     bool Repository::objectExists(const std::string &objectID) const {
         return objectMap_.find(objectID) != objectMap_.end();
     }
