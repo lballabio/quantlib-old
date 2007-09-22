@@ -678,7 +678,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorTermVolSurfaceOptionStrikes' type='QuantLib::CapFloorTermVolSurface' superType='handleToLib'>
+    <Member name='qlCapFloorTermVolSurfaceStrikes' type='QuantLib::CapFloorTermVolSurface' superType='handleToLib'>
       <description></description>
       <libraryFunction>strikes</libraryFunction>
       <SupportedPlatforms>
