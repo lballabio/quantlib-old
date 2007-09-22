@@ -98,6 +98,36 @@ int main() {
         LOG_MESSAGE("SWAP PV = " << qlInstrumentNPV("swap", OH_NULL));
 
         LOG_MESSAGE("End example program.");
+
+        std::string xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?> \
+<!DOCTYPE boost_serialization> \
+<boost_serialization signature=\"serialization::archive\" version=\"4\"> \
+<object_list class_id=\"1\" tracking_level=\"1\" version=\"0\" object_id=\"_0\"> \
+	<count>1</count> \
+	<item_version>1</item_version> \
+	<item class_id=\"0\" tracking_level=\"0\" version=\"1\"> \
+		<px class_id=\"135\" tracking_level=\"1\" version=\"0\" object_id=\"_1\"> \
+			<ObjectId>test_quote</ObjectId> \
+			<ClassName>qlSimpleQuote</ClassName> \
+			<Value class_id=\"189\" tracking_level=\"0\" version=\"0\"> \
+				<variant_ class_id=\"190\" tracking_level=\"0\" version=\"0\"> \
+					<which>1</which> \
+					<value>4.5599999999999996</value> \
+				</variant_> \
+			</Value> \
+			<TickValue>0</TickValue> \
+			<Permanent>0</Permanent> \
+		</px> \
+	</item> \
+</object_list> \
+</boost_serialization";
+
+        std::vector<std::string> idList = ohObjectLoadString(xml, OH_NULL, OH_NULL);
+        ohLogObject(idList[0], OH_NULL);
+
+        std::string xml2 = ohObjectSaveString(idList, OH_NULL, OH_NULL);
+        LOG_MESSAGE("XML = " << xml2);
+
         return 0;
 
     } catch (const std::exception &e) {

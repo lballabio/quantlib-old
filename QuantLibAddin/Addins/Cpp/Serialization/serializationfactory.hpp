@@ -44,6 +44,12 @@ namespace QuantLibAddinCpp {
         std::string processObject(
             const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
             bool overwriteExisting) const;
+        virtual std::string saveObjectString(
+            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&,
+            bool forceOverwrite);
+        virtual std::vector<std::string> loadObjectString(
+            const std::string &xml,
+            bool overwriteExisting);
     };
 
     // Wrappers for template tpl_register_classes.
