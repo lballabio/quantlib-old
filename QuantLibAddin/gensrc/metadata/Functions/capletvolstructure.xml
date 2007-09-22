@@ -10,7 +10,7 @@
     <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/capstripper.hpp</include>
-    <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolvector.hpp</include>
+    <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp</include>
     <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>

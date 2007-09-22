@@ -25,7 +25,7 @@
 #include <ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp>
 #include <ql/voltermstructures/interestrate/optionlet/capstripper.hpp>
 #include <ql/voltermstructures/interestrate/optionlet/spreadedoptionletvol.hpp>
-#include <ql/voltermstructures/interestrate/capfloor/capfloortermvolvector.hpp>
+#include <ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp>
 #include <ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp>
 #include <ql/voltermstructures/interestrate/optionlet/optionletstripperadapter.hpp>
 
