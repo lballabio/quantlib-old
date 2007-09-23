@@ -162,7 +162,7 @@ namespace QuantLibAddin {
         OptionletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                           const boost::shared_ptr<QuantLib::CapFloorTermVolSurface>& surface,
                           const boost::shared_ptr<QuantLib::IborIndex>& index,
-                          const std::vector<QuantLib::Rate>& switchStrikes,
+                          QuantLib::Rate switchStrike,
                           bool permanent);
     };
 
