@@ -192,17 +192,17 @@
 
     <!-- BlackAtmVolCurve -->
     <Member name='qlBlackAtmVolCurveAtmVol' type='QuantLib::BlackAtmVolCurve' superType='handleToLib'>
-      <description>Returns the spot at-the-money (no-smile) volatility at a given option tenor</description>
+      <description>Returns the spot at-the-money (no-smile) volatility at a given option date</description>
       <libraryFunction>atmVol</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='OptionTenor' exampleValue = '1Y'>
-            <type>QuantLib::Time</type>
+          <Parameter name='OptionDate' exampleValue = '1Y'>
+            <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The time at which the volatility is evaluated</description>
+            <description>The date at which the volatility is evaluated</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
@@ -218,17 +218,17 @@
     </Member>
 
     <Member name='qlBlackAtmVolCurveAtmVol2' type='QuantLib::BlackAtmVolCurve' superType='handleToLib'>
-      <description>Returns the spot at-the-money (no-smile) volatility at a given option date</description>
+      <description>Returns the spot at-the-money (no-smile) volatility at a given option tenor</description>
       <libraryFunction>atmVol</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='OptionDate' exampleValue = '1Y'>
-            <type>QuantLib::Date</type>
+          <Parameter name='OptionTenor' exampleValue = '1Y'>
+            <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
-            <description>The date at which the volatility is evaluated</description>
+            <description>The time at which the volatility is evaluated</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
@@ -270,17 +270,17 @@
     </Member>
 
     <Member name='qlBlackAtmVolCurveAtmVariance' type='QuantLib::BlackAtmVolCurve' superType='handleToLib'>
-      <description>Returns the spot at-the-money (no-smile) variance at a given option tenor</description>
+      <description>Returns the spot at-the-money (no-smile) variance at a given option date</description>
       <libraryFunction>atmVariance</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='OptionTenor' exampleValue = '1Y'>
-            <type>QuantLib::Time</type>
+          <Parameter name='OptionDate' exampleValue = '1Y'>
+            <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The time at which the volatility is evaluated</description>
+            <description>The date at which the volatility is evaluated</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
@@ -296,17 +296,17 @@
     </Member>
 
     <Member name='qlBlackAtmVolCurveAtmVariance2' type='QuantLib::BlackAtmVolCurve' superType='handleToLib'>
-      <description>Returns the spot at-the-money (no-smile) variance at a given option date</description>
+      <description>Returns the spot at-the-money (no-smile) variance at a given option tenor</description>
       <libraryFunction>atmVariance</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='OptionDate' exampleValue = '1Y'>
-            <type>QuantLib::Date</type>
+          <Parameter name='OptionTenor' exampleValue = '1Y'>
+            <type>QuantLib::Time</type>
             <tensorRank>scalar</tensorRank>
-            <description>The date at which the volatility is evaluated</description>
+            <description>The time at which the volatility is evaluated</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
