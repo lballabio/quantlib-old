@@ -37,7 +37,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_OBJ_CLASS(SwaptionVolatilityStructure, TermStructure)
+    OH_OBJ_CLASS(SwaptionVolatilityStructure, TermStructure);
 
     class SwaptionConstantVolatility : public SwaptionVolatilityStructure {
       public:
@@ -48,7 +48,7 @@ namespace QuantLibAddin {
                                    bool permanent);
     };
 
-    OH_OBJ_CLASS(SwaptionVolatilityDiscrete, SwaptionVolatilityStructure)
+    OH_OBJ_CLASS(SwaptionVolatilityDiscrete, SwaptionVolatilityStructure);
 
     class SwaptionVolatilityMatrix : public SwaptionVolatilityDiscrete {
       public:
@@ -64,10 +64,10 @@ namespace QuantLibAddin {
                                  const QuantLib::Period& p);
     };
     
-    OH_OBJ_CLASS(SwaptionVolatilityCube, SwaptionVolatilityDiscrete)
+    OH_OBJ_CLASS(SwaptionVolatilityCube, SwaptionVolatilityDiscrete);
     
     class SwaptionVolCube2 : public SwaptionVolatilityCube {
-    public:
+      public:
         SwaptionVolCube2(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& atmVol,
@@ -137,4 +137,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

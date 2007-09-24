@@ -176,7 +176,7 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
-    OH_LIB_CLASS(FloatingRateCouponPricer, QuantLib::FloatingRateCouponPricer)
+    OH_LIB_CLASS(FloatingRateCouponPricer, QuantLib::FloatingRateCouponPricer);
     
     class IborCouponPricer : public FloatingRateCouponPricer {
       public:

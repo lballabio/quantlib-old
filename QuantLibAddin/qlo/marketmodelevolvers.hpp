@@ -35,7 +35,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
     
-    OH_LIB_CLASS(MarketModelEvolver, QuantLib::MarketModelEvolver)
+    OH_LIB_CLASS(MarketModelEvolver, QuantLib::MarketModelEvolver);
 
     class LogNormalFwdRatePc : public MarketModelEvolver {
     public:

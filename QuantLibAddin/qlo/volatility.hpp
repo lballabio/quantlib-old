@@ -35,9 +35,9 @@ namespace QuantLib {
 namespace QuantLibAddin {
         
     // Volatility Model
-    OH_LIB_CLASS(LmVolatilityModel, QuantLib::LmVolatilityModel)
+    OH_LIB_CLASS(LmVolatilityModel, QuantLib::LmVolatilityModel);
 
-    OH_OBJ_CLASS(LmLinearExponentialVolatilityModel, LmVolatilityModel)
+    OH_OBJ_CLASS(LmLinearExponentialVolatilityModel, LmVolatilityModel);
 
     class LmExtLinearExponentialVolModel : public LmLinearExponentialVolatilityModel {
     public:
@@ -51,7 +51,7 @@ namespace QuantLibAddin {
 
     };
 
-    OH_LIB_CLASS(PiecewiseConstantVariance, QuantLib::PiecewiseConstantVariance)
+    OH_LIB_CLASS(PiecewiseConstantVariance, QuantLib::PiecewiseConstantVariance);
 
     class PiecewiseConstantAbcdVariance : public PiecewiseConstantVariance {
       public:

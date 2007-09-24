@@ -33,7 +33,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(BrownianGeneratorFactory, QuantLib::BrownianGeneratorFactory)
+    OH_LIB_CLASS(BrownianGeneratorFactory, QuantLib::BrownianGeneratorFactory);
 
     class MTBrownianGeneratorFactory : public BrownianGeneratorFactory {
     public:

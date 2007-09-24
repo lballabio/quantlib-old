@@ -28,7 +28,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(Exercise, QuantLib::Exercise)
+    OH_LIB_CLASS(Exercise, QuantLib::Exercise);
 
     class AmericanExercise : public Exercise {
     public:

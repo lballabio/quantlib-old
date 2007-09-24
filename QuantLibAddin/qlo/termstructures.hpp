@@ -42,9 +42,9 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
      
-    OH_OBJ_CLASS(TermStructure, Extrapolator)
+    OH_OBJ_CLASS(TermStructure, Extrapolator);
 
-    OH_OBJ_CLASS(YieldTermStructure, TermStructure)
+    OH_OBJ_CLASS(YieldTermStructure, TermStructure);
 
     class PiecewiseYieldCurve : public YieldTermStructure {
       public:

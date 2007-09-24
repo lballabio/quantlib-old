@@ -38,7 +38,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(CTSMMCapletCalibration, QuantLib::CTSMMCapletCalibration)
+    OH_LIB_CLASS(CTSMMCapletCalibration, QuantLib::CTSMMCapletCalibration);
 
     class CTSMMCapletOriginalCalibration : public CTSMMCapletCalibration {
       public:

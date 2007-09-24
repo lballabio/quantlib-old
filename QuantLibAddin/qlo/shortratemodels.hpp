@@ -28,7 +28,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(AffineModel, QuantLib::AffineModel)
+    OH_LIB_CLASS(AffineModel, QuantLib::AffineModel);
 
     class Vasicek : public AffineModel {
       public:

@@ -39,7 +39,6 @@ namespace QuantLibAddin {
 
     class Leg : public ObjectHandler::Object {
       public:
-        OH_OBJ_CTOR(Leg, ObjectHandler::Object)
         QuantLib::Rate previousCouponRate(const QuantLib::Date& refDate) const;
         QuantLib::Rate currentCouponRate(const QuantLib::Date& refDate) const;
         QuantLib::Date startDate() const;
@@ -66,6 +65,7 @@ namespace QuantLibAddin {
         std::vector<std::vector<boost::any> > analysis() const;
         const QuantLib::Leg& getQuantLibLeg();
       protected:
+        OH_OBJ_CTOR(Leg, ObjectHandler::Object);
         // copy or shared_ptr?
         QuantLib::Leg leg_;
     };

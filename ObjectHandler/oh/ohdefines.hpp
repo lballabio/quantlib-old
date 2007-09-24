@@ -152,9 +152,9 @@ bool permanent) \
 #define OH_OBJ_CLASS(derived_class, base_class) \
 class derived_class : \
 public base_class { \
-public: \
+protected: \
 OH_OBJ_CTOR(derived_class, base_class) \
-};
+}
 
 /*! \def OH_LIB_CTOR(derived_class, base_class)
     Declaration and implementation of empty constructor
@@ -173,9 +173,9 @@ bool permanent) \
 #define OH_LIB_CLASS(derived_class, base_class) \
 class derived_class : \
 public ObjectHandler::LibraryObject<base_class> { \
-public: \
+protected: \
 OH_LIB_CTOR(derived_class, base_class) \
-};
+}
 
 #endif
 

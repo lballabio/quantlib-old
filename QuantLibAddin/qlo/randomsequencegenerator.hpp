@@ -38,9 +38,10 @@ namespace QuantLibAddin {
 
     class RandomSequenceGenerator : public ObjectHandler::Object {
       public:
-        OH_OBJ_CTOR(RandomSequenceGenerator, ObjectHandler::Object)
         std::vector<std::vector<double> > variates(long samples);
         virtual std::vector<double> nextSequence() const = 0;
+      protected:
+        OH_OBJ_CTOR(RandomSequenceGenerator, ObjectHandler::Object);
     };
 
     // Pseudo Random Sequences

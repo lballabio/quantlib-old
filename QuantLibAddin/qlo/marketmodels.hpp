@@ -41,7 +41,7 @@ namespace QuantLib {
 namespace QuantLibAddin {
 
     // MarketModels
-    OH_LIB_CLASS(MarketModel, QuantLib::MarketModel)
+    OH_LIB_CLASS(MarketModel, QuantLib::MarketModel);
 
     class FlatVol : public MarketModel {
     public:
@@ -110,7 +110,7 @@ namespace QuantLibAddin {
     };
 
     // MarketModelFactories
-    OH_LIB_CLASS(MarketModelFactory, QuantLib::MarketModelFactory)
+    OH_LIB_CLASS(MarketModelFactory, QuantLib::MarketModelFactory);
 
     class FlatVolFactory : public MarketModelFactory {
     public:

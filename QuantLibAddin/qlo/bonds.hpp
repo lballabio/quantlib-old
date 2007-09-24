@@ -48,13 +48,14 @@ namespace QuantLibAddin {
 
     class Bond : public Instrument {
       public:
-        OH_OBJ_CTOR(Bond, Instrument)
         std::vector<std::vector<boost::any> > flowAnalysis();
         std::string description();
         //QuantLib::Currency currency();
         std::string currency();
         void setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
+      protected:
+        OH_OBJ_CTOR(Bond, Instrument);
     };
 
     class GenericBond : public Bond {

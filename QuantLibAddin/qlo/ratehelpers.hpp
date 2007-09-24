@@ -45,14 +45,13 @@ namespace QuantLibAddin {
 
     class RateHelper : public ObjectHandler::LibraryObject<QuantLib::RateHelper> {
       public:
-         enum DepoInclusionCriteria {
-                        AllDepos,
-                        DeposBeforeFirstFuturesStartDate,
-                        DeposBeforeFirstFuturesStartDatePlusOne,
-                        DeposBeforeFirstFuturesExpiryDate
-         };
+        enum DepoInclusionCriteria {AllDepos,
+                                    DeposBeforeFirstFuturesStartDate,
+                                    DeposBeforeFirstFuturesStartDatePlusOne,
+                                    DeposBeforeFirstFuturesExpiryDate
+        };
       protected:
-         OH_LIB_CTOR(RateHelper, QuantLib::RateHelper)
+        OH_LIB_CTOR(RateHelper, QuantLib::RateHelper);
     };
 
     class DepositRateHelper : public RateHelper {

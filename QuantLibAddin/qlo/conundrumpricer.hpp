@@ -30,7 +30,6 @@ namespace QuantLibAddin {
 
     class CmsCouponPricer : public FloatingRateCouponPricer {
       public:
-        OH_OBJ_CTOR(CmsCouponPricer, FloatingRateCouponPricer)
         CmsCouponPricer(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,
@@ -38,6 +37,8 @@ namespace QuantLibAddin {
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
             const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             bool permanent);
+      protected:
+        OH_OBJ_CTOR(CmsCouponPricer, FloatingRateCouponPricer);
     };
 
 	class ConundrumPricerByNumericalIntegration: public CmsCouponPricer{

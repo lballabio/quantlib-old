@@ -54,7 +54,7 @@ namespace QuantLibAddin {
                     bool permanent);
     };
 
-    OH_LIB_CLASS(OptimizationMethod, QuantLib::OptimizationMethod)
+    OH_LIB_CLASS(OptimizationMethod, QuantLib::OptimizationMethod);
 
     class Simplex : public OptimizationMethod {
       public:
@@ -73,7 +73,7 @@ namespace QuantLibAddin {
                            bool permanent);
     };
    
-    OH_LIB_CLASS(LineSearch, QuantLib::LineSearch)
+    OH_LIB_CLASS(LineSearch, QuantLib::LineSearch);
 
     class ArmijoLineSearch : public LineSearch {
       public:
@@ -84,7 +84,7 @@ namespace QuantLibAddin {
                          bool permanent);
     };
 
-    OH_OBJ_CLASS(LineSearchBasedMethod, OptimizationMethod)
+    OH_OBJ_CLASS(LineSearchBasedMethod, OptimizationMethod);
 
     class ConjugateGradient : public LineSearchBasedMethod {
       public:

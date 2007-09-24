@@ -27,9 +27,7 @@ namespace QuantLibAddin {
 
     class DoubleStickyRatchetPayoff : public Payoff {
       public:
-          //DoubleStickyRatchetPayoff() {}
-          OH_OBJ_CTOR(DoubleStickyRatchetPayoff, Payoff)
-          DoubleStickyRatchetPayoff(
+        DoubleStickyRatchetPayoff(
               const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const QuantLib::Real type1,
               const QuantLib::Real type2,
@@ -43,6 +41,8 @@ namespace QuantLibAddin {
               const QuantLib::Real initialValue2,
               const QuantLib::Real accrualFactor,
               bool permanent);
+      protected:
+        OH_OBJ_CTOR(DoubleStickyRatchetPayoff, Payoff);
     };
 
     class RatchetPayoff : public DoubleStickyRatchetPayoff {

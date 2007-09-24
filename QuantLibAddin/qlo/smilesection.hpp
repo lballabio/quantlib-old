@@ -35,7 +35,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
     
-    OH_LIB_CLASS(SmileSection, QuantLib::SmileSection)
+    OH_LIB_CLASS(SmileSection, QuantLib::SmileSection);
 
     class FlatSmileSection : public SmileSection {
       public:

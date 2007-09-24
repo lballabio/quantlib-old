@@ -45,13 +45,14 @@ namespace QuantLibAddin {
 
     class Index : public ObjectHandler::LibraryObject<QuantLib::Index> {
       public:
-          OH_LIB_CTOR(Index, QuantLib::Index)
-          void addFixings(const std::vector<QuantLib::Date>& dates,
-			              const std::vector<QuantLib::Real>& values,
-                          bool forceOverwrite);
-	};
+        void addFixings(const std::vector<QuantLib::Date>& dates,
+                        const std::vector<QuantLib::Real>& values,
+                        bool forceOverwrite);
+      public:
+        OH_LIB_CTOR(Index, QuantLib::Index);
+    };
 
-    OH_OBJ_CLASS(InterestRateIndex, Index)
+    OH_OBJ_CLASS(InterestRateIndex, Index);
 
     class IborIndex : public InterestRateIndex {
       public:
@@ -67,7 +68,7 @@ namespace QuantLibAddin {
                   const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                   bool permanent);
       protected:
-        OH_OBJ_CTOR(IborIndex, InterestRateIndex)
+        OH_OBJ_CTOR(IborIndex, InterestRateIndex);
     };
 
     class Euribor : public IborIndex {
@@ -108,7 +109,7 @@ namespace QuantLibAddin {
                   const boost::shared_ptr<QuantLib::IborIndex>& index,
                   bool permanent);
       protected:
-        OH_OBJ_CTOR(SwapIndex, InterestRateIndex)
+        OH_OBJ_CTOR(SwapIndex, InterestRateIndex);
     };
 
     class EuriborSwapFixA : public SwapIndex {

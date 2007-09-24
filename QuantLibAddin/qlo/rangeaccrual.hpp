@@ -56,7 +56,7 @@ namespace QuantLibAddin {
                 bool permanent);
     };  
 
-    OH_OBJ_CLASS(RangeAccrualPricer, FloatingRateCouponPricer)
+    OH_OBJ_CLASS(RangeAccrualPricer, FloatingRateCouponPricer);
 
     class RangeAccrualPricerByBgm: public RangeAccrualPricer{
 	 public:

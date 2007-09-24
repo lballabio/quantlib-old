@@ -57,7 +57,7 @@ namespace QuantLibAddin {
             const long& timeSteps,
             bool permanent);
       protected:
-        OH_LIB_CTOR(PricingEngine, QuantLib::PricingEngine)
+        OH_LIB_CTOR(PricingEngine, QuantLib::PricingEngine);
         //PricingEngine() {}
     };
 
@@ -109,7 +109,7 @@ namespace QuantLibAddin {
             bool permanent);
       protected:
         //BlackCalculator() {}
-        OH_LIB_CTOR(BlackCalculator, QuantLib::BlackCalculator)
+        OH_LIB_CTOR(BlackCalculator, QuantLib::BlackCalculator);
     };
 
     class BlackScholesCalculator : public BlackCalculator {

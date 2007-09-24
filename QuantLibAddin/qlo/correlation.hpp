@@ -65,7 +65,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(LmCorrelationModel, QuantLib::LmCorrelationModel)
+    OH_LIB_CLASS(LmCorrelationModel, QuantLib::LmCorrelationModel);
 
     class LmLinearExponentialCorrelationModel : public LmCorrelationModel {
      public:
@@ -78,7 +78,7 @@ namespace QuantLibAddin {
 
     };
 
-    OH_LIB_CLASS(PiecewiseConstantCorrelation, QuantLib::PiecewiseConstantCorrelation)
+    OH_LIB_CLASS(PiecewiseConstantCorrelation, QuantLib::PiecewiseConstantCorrelation);
 
     class TimeHomogeneousForwardCorrelation : public PiecewiseConstantCorrelation {
       public:

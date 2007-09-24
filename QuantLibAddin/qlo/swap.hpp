@@ -51,7 +51,7 @@ namespace QuantLibAddin {
         std::vector<std::vector<boost::any> > legAnalysis(QuantLib::Size i);
 
       protected:
-        OH_OBJ_CTOR(Swap, Instrument)
+        OH_OBJ_CTOR(Swap, Instrument);
     };
     
 }

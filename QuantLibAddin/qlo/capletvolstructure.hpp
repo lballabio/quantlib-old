@@ -35,7 +35,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
     
-    OH_OBJ_CLASS(OptionletVolatilityStructure, TermStructure)
+    OH_OBJ_CLASS(OptionletVolatilityStructure, TermStructure);
 
     class ConstantOptionletVol : public OptionletVolatilityStructure {
       public:
@@ -128,7 +128,7 @@ namespace QuantLibAddin {
                                     bool permanent);
     };
 
-    OH_OBJ_CLASS(CapFloorTermVolatilityStructure, TermStructure)
+    OH_OBJ_CLASS(CapFloorTermVolatilityStructure, TermStructure);
 
     class CapFloorTermVolCurve : public CapFloorTermVolatilityStructure {
       public:
@@ -155,7 +155,7 @@ namespace QuantLibAddin {
           bool permanent);
     };
 
-    OH_LIB_CLASS(dummyClass, QuantLib::OptionletStripper)
+    OH_LIB_CLASS(dummyClass, QuantLib::OptionletStripper);
 
     class OptionletStripper : public dummyClass {
       public:

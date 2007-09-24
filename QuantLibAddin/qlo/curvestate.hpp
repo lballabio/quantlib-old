@@ -33,7 +33,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(CurveState, QuantLib::CurveState)
+    OH_LIB_CLASS(CurveState, QuantLib::CurveState);
 
     class CMSwapCurveState : public CurveState {
       public:

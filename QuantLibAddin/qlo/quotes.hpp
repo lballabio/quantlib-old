@@ -38,7 +38,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(Quote, QuantLib::Quote)
+    OH_LIB_CLASS(Quote, QuantLib::Quote);
 
     class SimpleQuote : public Quote {
       public:

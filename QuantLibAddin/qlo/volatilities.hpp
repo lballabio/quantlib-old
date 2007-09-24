@@ -35,7 +35,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(BlackVolTermStructure, QuantLib::BlackVolTermStructure)
+    OH_LIB_CLASS(BlackVolTermStructure, QuantLib::BlackVolTermStructure);
 
     class BlackConstantVol : public BlackVolTermStructure {
       public:
@@ -61,9 +61,9 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
-    OH_OBJ_CLASS(VolatilityTermStructure, TermStructure)
+    OH_OBJ_CLASS(VolatilityTermStructure, TermStructure);
 
-    OH_OBJ_CLASS(BlackAtmVolCurve, VolatilityTermStructure)
+    OH_OBJ_CLASS(BlackAtmVolCurve, VolatilityTermStructure);
 
     class AbcdAtmVolCurve: public BlackAtmVolCurve {
     public:

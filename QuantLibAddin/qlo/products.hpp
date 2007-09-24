@@ -35,12 +35,13 @@ namespace QuantLib {
 namespace QuantLibAddin {
 
     class MarketModelMultiProduct : public ObjectHandler::LibraryObject<QuantLib::MarketModelMultiProduct> {
-    public:
-        OH_LIB_CTOR(MarketModelMultiProduct, QuantLib::MarketModelMultiProduct)
+      public:
         std::string evolution() const;
+      protected:
+        OH_LIB_CTOR(MarketModelMultiProduct, QuantLib::MarketModelMultiProduct);
     };
 
-    OH_OBJ_CLASS(MarketModelComposite, MarketModelMultiProduct)
+    OH_OBJ_CLASS(MarketModelComposite, MarketModelMultiProduct);
 
     class MultiProductComposite : public MarketModelComposite {
       public:

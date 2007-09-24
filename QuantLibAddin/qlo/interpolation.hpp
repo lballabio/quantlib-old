@@ -31,7 +31,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(Extrapolator, QuantLib::Extrapolator)
+    OH_LIB_CLASS(Extrapolator, QuantLib::Extrapolator);
 
     class Interpolation : public Extrapolator {
       public:

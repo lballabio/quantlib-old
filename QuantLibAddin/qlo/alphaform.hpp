@@ -29,7 +29,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(AlphaForm, QuantLib::AlphaForm)
+    OH_LIB_CLASS(AlphaForm, QuantLib::AlphaForm);
 
     class AlphaFormInverseLinear : public AlphaForm {
       public:
