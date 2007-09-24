@@ -226,7 +226,7 @@
       <ParameterList>
         <Parameters>
           <Parameter name='OptionTenor' exampleValue = '1Y'>
-            <type>QuantLib::Time</type>
+            <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>The time at which the volatility is evaluated</description>
           </Parameter>
@@ -349,7 +349,7 @@
 
     <!-- AbcdAtmVolCurve -->
     <Member name='qlAbcdAtmVolCurveOptionTenors' type='QuantLib::AbcdAtmVolCurve' superType='handleToLib'>
-      <description></description>
+      <description>Returns the options tenors of the atm volatility curve</description>
       <libraryFunction>optionTenors</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -364,7 +364,7 @@
     </Member>
 
     <Member name='qlAbcdAtmVolCurveOptionDates' type='QuantLib::AbcdAtmVolCurve' superType='handleToLib'>
-      <description></description>
+      <description>Returns the options dates of the atm volatility curve</description>
       <libraryFunction>optionDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -379,7 +379,7 @@
     </Member>
 
     <Member name='qlAbcdAtmVolCurveOptionTimes' type='QuantLib::AbcdAtmVolCurve' superType='handleToLib'>
-      <description></description>
+      <description>Returns the options times to maturity of the atm volatility curve</description>
       <libraryFunction>optionTimes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
