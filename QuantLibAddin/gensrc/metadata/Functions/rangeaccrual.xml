@@ -9,7 +9,7 @@
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/schedule.hpp</include>
-    <include>ql/indexes/interestrateindex.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/rangeaccrual.hpp</include>
@@ -18,7 +18,7 @@
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/schedule.hpp</include>
-    <include>ql/indexes/interestrateindex.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Giorgio Facchinetti
@@ -48,9 +48,9 @@
 					<description>payment Date</description>
 				</Parameter>
 				<Parameter name='IndexID'>
-					<type>QuantLib::InterestRateIndex</type>
+					<type>QuantLib::IborIndex</type>
 					<tensorRank>scalar</tensorRank>
-					<description>underlying xibor index</description>
+					<description>underlying ibor index</description>
 				</Parameter>
 				<Parameter name='StartDate'>
 					<type>QuantLib::Date</type>

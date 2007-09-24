@@ -30,7 +30,7 @@ namespace QuantLibAddin {
                 const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                 QuantLib::Real nominal,
                 const QuantLib::Date& paymentDate,
-                const boost::shared_ptr<QuantLib::InterestRateIndex>& index,
+                const boost::shared_ptr<QuantLib::IborIndex>& index,
                 const QuantLib::Date& startDate,                                  
                 const QuantLib::Date& endDate,                                   
                 QuantLib::Integer fixingDays,
