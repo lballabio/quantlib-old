@@ -43,6 +43,61 @@ LIBRARY:
 
 
 **************************
+    REV12614
+**************************
+
+Bonds:
+- added explicit maturity date to Bond constructor 
+- handled correctly bond equivalent adjustment for reverse floater bonds in BondObjects_EUR.xls
+- added two new cms bonds XS0318729950 and XS0211163943 (the latter was validated) as requested by the trader
+- properly handled reference rate adjusted to a bond equivalent rate for the following reverse floater bonds: 
+XS0080841579, XS0080973489, XS0081431610, XS0082293506, XS0081387531, XS0081980129, XS0082716589, XS0082731463, XS0082435065, XS0082725739, XS0082486050, XS0082785808, XS0082847178, XS0082979088
+- serialization: added new workbook Data/XML/080_Bond/FloatingRateBond_EUR.xml, CMSRateBond_EUR.xml, FixedRateBond_EUR.xml, ZeroCpnBond_EUR.xml
+
+Bug fixing:
+- fixed bug: corrected wrong 3E6E spread in AB3EBASIS SwapRateHelpers
+- fixed bug: cash flow generation: in ref dates calculation the business day convention to use is the one used for the schedule calculation
+
+Serialization:
+Relinkable handles, indexes, pricing engines (bond, cms, ibor), yield curve boostrapping objects.
+
+Yield Curve:
+- introduced EURYC3M and EURYC6M forecasting curves in addition to the discounting curve EURYC
+- added curve/index monitors: Workbooks/Tests/ IndexFixingsMonitor.xls, YieldCurveMonitor3M.xls, YieldCurveMonitor6M.xls
+- extended EURYC3M/EURYC6M bootstrapping to FRA
+- added spread in order to deal with basis swap
+- changed default contributor for deposits (KLIEM is now used)
+- YieldCurveBootstrapping.xls using deposit up to first futures, serial futures included
+- added selected RateHelpers group 
+
+New functions:
+- 'qlVanillaSwapSwapRateHelper' as a spread inspector to SwapRateHelper
+- ohGroupSize() returns the number of object IDs contained in a Group object
+- ohObjectLoad() returns a list of IDs of objects loaded
+
+Launcher:
+- Add support for loading third party addins - identified by their network URL - in
+  addition to the existing functionality for loading core addins delivered by the Launcher
+- "Load Reuters/Bloomberg" moved from Environments tab to Feeds tab
+- "Use Reuters/Bloomberg" added to Environments tab
+- Add support for Initialization Data Source = Excel/XML
+- Loading CabotoXL.xla addin which allows:
+- bootstrapping Mx curve
+- loading single IRS CMS and CAP/FLOOR CMS books (VOLTRAD_CMS_10Y_CF.xls, VOLTRAD_CMS_10Y_IRS.xls, VOLTRAD_CMS_30Y_IRS.xls, VOLTRAD_CMS_5Y_IRS.xls, CF-CMS-10Y-MxBook.xls)
+
+CABOTOXL
+new menu item 
+Revision: 12448
+Author: giorfa
+Date: 4:18:16 PM, Thursday, August 30, 2007
+Message:
+trunk merge
+----
+Added : /branches/swaptionBondRefactoring/Launcher
+
+
+
+**************************
     REV12288
 **************************
 
