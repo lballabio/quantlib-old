@@ -431,6 +431,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Functions\timeseries.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Functions\utilities.cpp"
 				>
 			</File>

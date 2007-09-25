@@ -1,7 +1,7 @@
 <Category name='timeseries'>
   <description>functions to construct and use TimeSeries objects</description>
   <displayName>TimeSeries</displayName>
-  <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
     <include>qlo/timeseries.hpp</include>
   </addinIncludes>
