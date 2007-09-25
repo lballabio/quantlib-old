@@ -99,8 +99,8 @@ class IborCouponPtr : public boost::shared_ptr<CashFlow> {
                      const Date& refPeriodStart = Date(),
                      const Date& refPeriodEnd = Date(),
                      const DayCounter& dayCounter = DayCounter()) {
-            const boost::shared_ptr<InterestRateIndex> iri =
-                boost::dynamic_pointer_cast<InterestRateIndex>(index);
+            const boost::shared_ptr<IborIndex> iri =
+                boost::dynamic_pointer_cast<IborIndex>(index);
             return new IborCouponPtr(
                 new IborCoupon(paymentDate, nominal, startDate, endDate,
                               fixingDays, iri, gearing, spread,

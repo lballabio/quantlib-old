@@ -34,57 +34,61 @@
 // cap/floor volatilities
 
 %{
-using QuantLib::CapFloorVolatilityStructure;
+using QuantLib::CapFloorTermVolatilityStructure;
 %}
 
-%ignore CapFloorVolatilityStructure;
-class CapFloorVolatilityStructure : public Extrapolator {
+%ignore CapFloorTermVolatilityStructure;
+class CapFloorTermVolatilityStructure : public Extrapolator {
   public:
-    Volatility volatility(const Date& end, Rate strike);
-    Volatility volatility(Time end, Rate strike);
+    Volatility volatility(const Period& length, Rate strike,
+    	       		bool extrapolate = false);
+    Volatility volatility(const Date& end, Rate strike,
+    	       		bool extrapolate = false);
+    Volatility volatility(Time end, Rate strike,
+                        bool extrapolate = false);
 };
 
-%template(CapFloorVolatilityStructure)
-boost::shared_ptr<CapFloorVolatilityStructure>;
-IsObservable(boost::shared_ptr<CapFloorVolatilityStructure>);
+%template(CapFloorTermVolatilityStructure)
+boost::shared_ptr<CapFloorTermVolatilityStructure>;
+IsObservable(boost::shared_ptr<CapFloorTermVolatilityStructure>);
 
-%template(CapFloorVolatilityStructureHandle)
-Handle<CapFloorVolatilityStructure>;
-IsObservable(Handle<CapFloorVolatilityStructure>);
+%template(CapFloorTermVolatilityStructureHandle)
+Handle<CapFloorTermVolatilityStructure>;
+IsObservable(Handle<CapFloorTermVolatilityStructure>);
 
-%template(RelinkableCapFloorVolatilityStructureHandle)
-RelinkableHandle<CapFloorVolatilityStructure>;
+%template(RelinkableCapFloorTermVolatilityStructureHandle)
+RelinkableHandle<CapFloorTermVolatilityStructure>;
 
 %{
-using QuantLib::CapFloorTermVolVector;
-typedef boost::shared_ptr<CapFloorVolatilityStructure> CapFloorTermVolVectorPtr;
+using QuantLib::CapFloorTermVolCurve;
+typedef boost::shared_ptr<CapFloorTermVolatilityStructure> CapFloorTermVolCurvePtr;
 %}
 
-%rename(CapFloorTermVolVector) CapFloorTermVolVectorPtr;
-class CapFloorTermVolVectorPtr
-: public boost::shared_ptr<CapFloorVolatilityStructure> {
+%rename(CapFloorTermVolCurve) CapFloorTermVolCurvePtr;
+class CapFloorTermVolCurvePtr
+: public boost::shared_ptr<CapFloorTermVolatilityStructure> {
   public:
     %extend {
-       CapFloorTermVolVectorPtr(const Date& referenceDate,
+       CapFloorTermVolCurvePtr(const Date& referenceDate,
                                 const Calendar& calendar,
                                 const std::vector<Period>& lengths,
                                 const std::vector<Volatility>& vols,
                                 BusinessDayConvention bdc = Following,
                                 const DayCounter& dc =
                                            QuantLib::Actual365Fixed()) {
-            return new CapFloorTermVolVectorPtr(
-                new CapFloorTermVolVector(referenceDate,calendar,
+            return new CapFloorTermVolCurvePtr(
+                new CapFloorTermVolCurve(referenceDate,calendar,
                                           lengths,vols,bdc,dc));
         }
-        CapFloorTermVolVectorPtr(Natural settlementDays,
+        CapFloorTermVolCurvePtr(Natural settlementDays,
                                  const Calendar& calendar,
                                  const std::vector<Period>& lengths,
                                  const std::vector<Volatility>& vols,
                                  BusinessDayConvention bdc = Following,
                                  const DayCounter& dc =
                                             QuantLib::Actual365Fixed()) {
-            return new CapFloorTermVolVectorPtr(
-                new CapFloorTermVolVector(settlementDays,calendar,
+            return new CapFloorTermVolCurvePtr(
+                new CapFloorTermVolCurve(settlementDays,calendar,
                                           lengths,vols,bdc,dc));
         }
     }
