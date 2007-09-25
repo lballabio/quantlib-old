@@ -39,7 +39,9 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Real>& y,
         bool permanent)
     : Extrapolator(properties, permanent), x_(x), y_(y) {
-        QL_REQUIRE(x.size()==y.size(), "unmatched x/y");
+        QL_REQUIRE(x.size()==y.size(),
+                  "unmatched size between x (" << x.size() <<
+                  ") and y(" << y.size() << ")");
     }
 
     LinearInterpolation::LinearInterpolation(
