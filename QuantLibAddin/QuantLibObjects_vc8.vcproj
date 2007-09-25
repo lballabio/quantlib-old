@@ -774,6 +774,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_timeseries.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_timeseries.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\ValueObjects\vo_vanillaswap.cpp"
 				>
 			</File>
