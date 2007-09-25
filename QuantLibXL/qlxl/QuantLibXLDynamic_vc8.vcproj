@@ -663,6 +663,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Register\register_timeseries.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Register\register_utilities.cpp"
 				>
 			</File>
@@ -1092,6 +1096,14 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_termstructures.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_timeseries.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_timeseries.hpp"
 				>
 			</File>
 			<File

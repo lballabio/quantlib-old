@@ -1,0 +1,37 @@
+<Category name='timeseries'>
+  <description>functions to construct and use TimeSeries objects</description>
+  <displayName>TimeSeries</displayName>
+  <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/timeseries.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2007 Ferdinando Ametrano
+  </copyright>
+  <Functions>
+
+    <Constructor name='qlTimeSeries'>
+      <libraryFunction>TimeSeries</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dates'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>dates</description>
+          </Parameter>
+          <Parameter name='Values'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>values</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

@@ -1746,6 +1746,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\Serialization\create_timeseries.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Serialization\create_timeseries.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\Serialization\create_vanillaswap.cpp"
 				>
 			</File>
@@ -1848,6 +1856,14 @@
 		</File>
 		<File
 			RelativePath=".\qlo\settings.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\timeseries.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\timeseries.hpp"
 			>
 		</File>
 		<File

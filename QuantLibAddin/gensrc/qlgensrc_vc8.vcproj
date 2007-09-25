@@ -259,6 +259,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\timeseries.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\utilities.xml"
 				>
 			</File>

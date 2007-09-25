@@ -59,6 +59,7 @@
     <categoryName>swaption</categoryName>
     <categoryName>swaptionvolstructure</categoryName>
     <categoryName>termstructures</categoryName>
+    <categoryName>timeseries</categoryName>
     <categoryName>utilities</categoryName>
     <categoryName>vanillaswap</categoryName>
     <categoryName>volatilities</categoryName>
