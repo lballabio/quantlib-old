@@ -120,7 +120,7 @@ namespace QuantLibAddin {
     public:
         RelinkableHandleYieldTermStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
            const std::string &objectId,
-           bool permanent) : RelinkableHandleImpl(properties, objectId, permanent) {}
+           bool permanent) : RelinkableHandleImpl<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure>(properties, objectId, permanent) {}
     };
 
 }
