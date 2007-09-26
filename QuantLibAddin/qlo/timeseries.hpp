@@ -16,8 +16,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_schedule_hpp
-#define qla_schedule_hpp
+#ifndef qla_timeseries_hpp
+#define qla_timeseries_hpp
 
 #include <oh/libraryobject.hpp>
 #include <ql/timeseries.hpp>
@@ -35,4 +35,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-
