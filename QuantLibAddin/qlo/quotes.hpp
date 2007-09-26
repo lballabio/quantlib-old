@@ -105,7 +105,7 @@ namespace QuantLibAddin {
     public:
         RelinkableHandleQuote(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
            const std::string &objectId,
-           bool permanent) : RelinkableHandleImpl(properties, objectId, permanent) {}
+           bool permanent) : RelinkableHandleImpl<QuantLibAddin::Quote, QuantLib::Quote>(properties, objectId, permanent) {}
     };
 
 }

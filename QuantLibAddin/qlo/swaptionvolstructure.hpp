@@ -141,7 +141,7 @@ namespace QuantLibAddin {
     public:
         RelinkableHandleSwaptionVolatilityStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
            const std::string &objectId,
-           bool permanent) : RelinkableHandleImpl(properties, objectId, permanent) {}
+           bool permanent) : RelinkableHandleImpl<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>(properties, objectId, permanent) {}
     };
         
 }
