@@ -50,22 +50,22 @@
         <DataType>QuantLib::AbcdAtmVolCurve</DataType>
         <DataType>QuantLib::BlackAtmVolCurve</DataType>
         <DataType>QuantLib::BlackAtmVolSurface</DataType>
-        <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
         <DataType>QuantLib::CapFloorTermVolCurve</DataType>
         <DataType>QuantLib::CapFloorTermVolSurface</DataType>
+        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
+        <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
+        <DataType>QuantLib::CapVolatilityStructure</DataType>
         <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
+        <DataType>QuantLib::OptionletStripper</DataType>
+        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SimpleQuote</DataType>
         <DataType>QuantLib::SwaptionVolatilityCube</DataType>
         <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-        <DataType>QuantLib::OptionletStripper</DataType>
-        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
-        <DataType>QuantLib::CapVolatilityStructure</DataType>
-        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
         <DataType>QuantLib::TermStructure</DataType>
-        <DataType>QuantLib::YieldTermStructure</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
@@ -83,23 +83,21 @@
         <DataType>QuantLib::BlackSwaptionEngine</DataType>
         <DataType>QuantLib::BlackVolTermStructure</DataType>
         <DataType>QuantLib::Bond</DataType>
+        <DataType>QuantLib::CMSwapCurveState</DataType>
+        <DataType>QuantLib::CTSMMCapletAlphaFormCalibration</DataType>
+        <DataType>QuantLib::CTSMMCapletCalibration</DataType>
+        <DataType>QuantLib::CTSMMCapletMaxHomogeneityCalibration</DataType>
+        <DataType>QuantLib::CTSMMCapletOriginalCalibration</DataType>
         <DataType>QuantLib::CapFloor</DataType>
-        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
         <DataType>QuantLib::CapsStripper</DataType>
         <DataType>QuantLib::CmsCouponPricer</DataType>
         <DataType>QuantLib::CmsMarket</DataType>
         <DataType>QuantLib::CmsMarketCalibration</DataType>
-        <DataType>QuantLib::CMSwapCurveState</DataType>
         <DataType>QuantLib::ConundrumPricerByNumericalIntegration</DataType>
         <DataType>QuantLib::CoterminalSwapCurveState</DataType>
         <DataType>QuantLib::CovarianceDecomposition</DataType>
         <DataType>QuantLib::CurveState</DataType>
-        <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
-        <DataType>QuantLib::CTSMMCapletCalibration</DataType>
-        <DataType>QuantLib::CTSMMCapletOriginalCalibration</DataType>
-        <DataType>QuantLib::CTSMMCapletAlphaFormCalibration</DataType>
-        <DataType>QuantLib::CTSMMCapletMaxHomogeneityCalibration</DataType>
         <DataType>QuantLib::DigitalReplication</DataType>
         <DataType>QuantLib::EndCriteria</DataType>
         <DataType>QuantLib::EuropeanExercise</DataType>
@@ -109,7 +107,6 @@
         <DataType>QuantLib::FloatingRateCouponPricer</DataType>
         <DataType>QuantLib::ForwardRateAgreement</DataType>
         <DataType>QuantLib::FuturesRateHelper</DataType>
-        <DataType>QuantLib::SwapRateHelper</DataType>
         <DataType>QuantLib::GeneralizedBlackScholesProcess</DataType>
         <DataType>QuantLib::HistoricalForwardRatesAnalysis</DataType>
         <DataType>QuantLib::HistoricalRatesAnalysis</DataType>
@@ -117,12 +114,12 @@
         <DataType>QuantLib::Index</DataType>
         <DataType>QuantLib::Instrument</DataType>
         <DataType>QuantLib::InterestRateIndex</DataType>
-        <DataType>QuantLib::Interpolation</DataType>
         <DataType>QuantLib::Interpolation2D</DataType>
-        <DataType>QuantLib::LineSearch</DataType>
-        <DataType>QuantLib::LmLinearExponentialCorrelationModel</DataType>
-        <DataType>QuantLib::LmExtLinearExponentialVolModel</DataType>
+        <DataType>QuantLib::Interpolation</DataType>
         <DataType>QuantLib::LMMCurveState</DataType>
+        <DataType>QuantLib::LineSearch</DataType>
+        <DataType>QuantLib::LmExtLinearExponentialVolModel</DataType>
+        <DataType>QuantLib::LmLinearExponentialCorrelationModel</DataType>
         <DataType>QuantLib::MarketModel</DataType>
         <DataType>QuantLib::MarketModelCapFloorEngine</DataType>
         <DataType>QuantLib::MarketModelEvolver</DataType>
@@ -131,8 +128,10 @@
         <DataType>QuantLib::MultiProductComposite</DataType>
         <DataType>QuantLib::OneAssetOption</DataType>
         <DataType>QuantLib::OptimizationMethod</DataType>
+        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Payoff</DataType>
         <DataType>QuantLib::PiecewiseConstantAbcdVariance</DataType>
+        <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
         <DataType>QuantLib::PiecewiseConstantVariance</DataType>
         <DataType>QuantLib::PlainVanillaPayoff</DataType>
         <DataType>QuantLib::PricingEngine</DataType>
@@ -140,8 +139,8 @@
         <DataType>QuantLib::RangeAccrualFloatersCoupon</DataType>
         <DataType>QuantLib::RangeAccrualPricer</DataType>
         <DataType>QuantLib::RateHelper</DataType>
-        <DataType>QuantLib::SabrInterpolatedSmileSection</DataType>
         <DataType>QuantLib::SABRInterpolation</DataType>
+        <DataType>QuantLib::SabrInterpolatedSmileSection</DataType>
         <DataType>QuantLib::Schedule</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>
         <DataType>QuantLib::SmileSection</DataType>
@@ -150,15 +149,16 @@
         <DataType>QuantLib::Swap</DataType>
         <DataType>QuantLib::SwapFromFRACorrelationStructure</DataType>
         <DataType>QuantLib::SwapIndex</DataType>
+        <DataType>QuantLib::SwapRateHelper</DataType>
         <DataType>QuantLib::Swaption</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::SymmetricSchurDecomposition</DataType>
+        <DataType>QuantLib::TimeHomogeneousForwardCorrelation</DataType>
+        <DataType>QuantLib::TimeSeries</DataType>
         <DataType>QuantLib::TypePayoff</DataType>
         <DataType>QuantLib::VanillaSwap</DataType>
-        <DataType>QuantLib::YieldTermStructure</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
-        <DataType>QuantLib::TimeHomogeneousForwardCorrelation</DataType>
-
+        <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
@@ -166,13 +166,13 @@
     <SuperType name='libraryType'>
       <DataTypes>
         <DataType nativeType='double'>QuantLib::Array</DataType>
-        <DataType nativeType='long'>QuantLib::Date</DataType>
         <DataType nativeType='double'>QuantLib::InterestRate</DataType>
         <DataType nativeType='double'>QuantLib::Matrix</DataType>
-        <DataType nativeType='long'>QuantLib::Natural</DataType>
-        <DataType nativeType='string'>QuantLib::Period</DataType>
         <DataType nativeType='double'>QuantLib::Real</DataType>
+        <DataType nativeType='long'>QuantLib::Date</DataType>
+        <DataType nativeType='long'>QuantLib::Natural</DataType>
         <DataType nativeType='long'>QuantLib::Size</DataType>
+        <DataType nativeType='string'>QuantLib::Period</DataType>
       </DataTypes>
     </SuperType>
 
@@ -194,8 +194,8 @@
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-        <DataType>QuantLib::YieldTermStructure</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
@@ -205,25 +205,25 @@
         <DataType>ObjectHandler::Object</DataType>
         <DataType>QuantLibAddin::AssetSwap</DataType>
         <DataType>QuantLibAddin::Bond</DataType>
+        <DataType>QuantLibAddin::CMSMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::CapFloor</DataType>
         <DataType>QuantLibAddin::CmsMarket</DataType>
         <DataType>QuantLibAddin::CmsMarketCalibration</DataType>
-        <DataType>QuantLibAddin::CMSMMDriftCalculator</DataType>
+        <DataType>QuantLibAddin::ConundrumPricerByNumericalIntegration</DataType>
         <DataType>QuantLibAddin::HistoricalForwardRatesAnalysis</DataType>
         <DataType>QuantLibAddin::Index</DataType>
-        <DataType>QuantLibAddin::Leg</DataType>
         <DataType>QuantLibAddin::LMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::LMMNormalDriftCalculator</DataType>
-        <DataType>QuantLibAddin::SimpleQuote</DataType>
+        <DataType>QuantLibAddin::Leg</DataType>
         <DataType>QuantLibAddin::RandomSequenceGenerator</DataType>
         <DataType>QuantLibAddin::RateHelper</DataType>
         <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
+        <DataType>QuantLibAddin::SimpleQuote</DataType>
         <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
         <DataType>QuantLibAddin::Swap</DataType>
-        <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
         <DataType>QuantLibAddin::SwaptionVolCube1</DataType>
+        <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
         <DataType>QuantLibAddin::VanillaSwap</DataType>
-        <DataType>QuantLibAddin::ConundrumPricerByNumericalIntegration</DataType>
       </DataTypes>
     </SuperType>
 
@@ -233,8 +233,8 @@
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-        <DataType>QuantLib::YieldTermStructure</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
@@ -248,14 +248,14 @@
         <DataType>QuantLib::EvolutionDescription</DataType>
         <DataType>QuantLib::InterestRate</DataType>
         <DataType>QuantLib::LMMCurveState</DataType>
-        <DataType>QuantLib::MarketModelMultiProduct</DataType>
-        <DataType>QuantLib::SequenceStatistics</DataType>
-        <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
-        <DataType>QuantLib::MarketModel</DataType>
         <DataType>QuantLib::Leg</DataType>
+        <DataType>QuantLib::MarketModel</DataType>
+        <DataType>QuantLib::MarketModelMultiProduct</DataType>
+        <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
         <DataType>QuantLib::Schedule</DataType>
-        <DataType>QuantLib::YieldTermStructure</DataType>
+        <DataType>QuantLib::SequenceStatistics</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
