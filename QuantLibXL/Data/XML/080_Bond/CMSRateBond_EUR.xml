@@ -2,14 +2,14 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>462</count>
+	<count>385</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="148" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>XS0092725349_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
-			<EffectiveDate class_id="189" tracking_level="0" version="0">
-				<variant_ class_id="190" tracking_level="0" version="0">
+			<EffectiveDate class_id="190" tracking_level="0" version="0">
+				<variant_ class_id="191" tracking_level="0" version="0">
 					<which>1</which>
 					<value>36505</value>
 				</variant_>
@@ -29,7 +29,7 @@
 			<FirstDate>
 				<variant_>
 					<which>4</which>
-					<value class_id="191" tracking_level="0" version="0">
+					<value class_id="192" tracking_level="0" version="0">
 						<type_>5</type_>
 					</value>
 				</variant_>
@@ -95,7 +95,7 @@
 				<item_version>0</item_version>
 				<item>100</item>
 			</Amounts>
-			<Dates class_id="194" tracking_level="0" version="0">
+			<Dates class_id="195" tracking_level="0" version="0">
 				<count>1</count>
 				<item_version>0</item_version>
 				<item>
@@ -112,7 +112,7 @@
 		<px class_id="79" tracking_level="1" version="0" object_id="_4">
 			<ObjectId>XS0092725349_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
-			<LegIDs class_id="195" tracking_level="0" version="0">
+			<LegIDs class_id="196" tracking_level="0" version="0">
 				<count>2</count>
 				<item_version>0</item_version>
 				<item>XS0092725349_Cpn</item>
@@ -148,50 +148,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="9" tracking_level="1" version="0" object_id="_6">
-			<ObjectId>XS0092725349_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>AIG 0 12/11/08</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0092725349_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.80000000000000004</item>
-			</Gearings>
-			<SwapIndex>EurLiborSwapFixB10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36505</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_7">
+		<px class_id_reference="148" object_id="_6">
 			<ObjectId>XS0095552856_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -230,7 +187,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_8">
+		<px class_id_reference="37" object_id="_7">
 			<ObjectId>XS0095552856_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -271,7 +228,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_9">
+		<px class_id_reference="153" object_id="_8">
 			<ObjectId>XS0095552856_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -293,7 +250,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_10">
+		<px class_id_reference="79" object_id="_9">
 			<ObjectId>XS0095552856_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -307,7 +264,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_11">
+		<px class_id_reference="12" object_id="_10">
 			<ObjectId>XS0095552856</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>CMZB 0 03/30/09</Description>
@@ -332,50 +289,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_12">
-			<ObjectId>XS0095552856_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>CMZB 0 03/30/09</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0095552856_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.029999999999999999</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.80000000000000004</item>
-			</Gearings>
-			<SwapIndex>EurLiborSwapFixB10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36248</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_13">
+		<px class_id_reference="148" object_id="_11">
 			<ObjectId>XS0210782552_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -416,7 +330,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_14">
+		<px class_id_reference="37" object_id="_12">
 			<ObjectId>XS0210782552_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -457,7 +371,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_15">
+		<px class_id_reference="153" object_id="_13">
 			<ObjectId>XS0210782552_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -479,7 +393,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_16">
+		<px class_id_reference="79" object_id="_14">
 			<ObjectId>XS0210782552_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -493,7 +407,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_17">
+		<px class_id_reference="12" object_id="_15">
 			<ObjectId>XS0210782552</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>LEH 0 02/01/13</Description>
@@ -518,50 +432,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_18">
-			<ObjectId>XS0210782552_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>LEH 0 02/01/13</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0210782552_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.025000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.80000000000000004</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixB10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38384</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_19">
+		<px class_id_reference="148" object_id="_16">
 			<ObjectId>XS0095933494_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -602,7 +473,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_20">
+		<px class_id_reference="37" object_id="_17">
 			<ObjectId>XS0095933494_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -643,7 +514,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_21">
+		<px class_id_reference="153" object_id="_18">
 			<ObjectId>XS0095933494_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -665,7 +536,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_22">
+		<px class_id_reference="79" object_id="_19">
 			<ObjectId>XS0095933494_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -679,7 +550,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_23">
+		<px class_id_reference="12" object_id="_20">
 			<ObjectId>XS0095933494</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>DB 0 04/15/14</Description>
@@ -704,50 +575,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_24">
-			<ObjectId>XS0095933494_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>DB 0 04/15/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0095933494_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.035000000000000003</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.81999999999999995</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixB10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36265</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_25">
+		<px class_id_reference="148" object_id="_21">
 			<ObjectId>XS0096100226_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -788,7 +616,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_26">
+		<px class_id_reference="37" object_id="_22">
 			<ObjectId>XS0096100226_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -829,7 +657,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_27">
+		<px class_id_reference="153" object_id="_23">
 			<ObjectId>XS0096100226_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -851,7 +679,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_28">
+		<px class_id_reference="79" object_id="_24">
 			<ObjectId>XS0096100226_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -865,7 +693,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_29">
+		<px class_id_reference="12" object_id="_25">
 			<ObjectId>XS0096100226</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>JPM 0 04/15/14</Description>
@@ -890,50 +718,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_30">
-			<ObjectId>XS0096100226_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>JPM 0 04/15/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0096100226_Sch</ScheduleID>
-			<FixingDays>5</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.037499999999999999</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.81999999999999995</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixIFR10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36265</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_31">
+		<px class_id_reference="148" object_id="_26">
 			<ObjectId>XS0096374359_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -974,7 +759,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_32">
+		<px class_id_reference="37" object_id="_27">
 			<ObjectId>XS0096374359_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -1015,7 +800,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_33">
+		<px class_id_reference="153" object_id="_28">
 			<ObjectId>XS0096374359_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -1037,7 +822,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_34">
+		<px class_id_reference="79" object_id="_29">
 			<ObjectId>XS0096374359_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -1051,7 +836,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_35">
+		<px class_id_reference="12" object_id="_30">
 			<ObjectId>XS0096374359</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 04/30/14</Description>
@@ -1076,50 +861,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_36">
-			<ObjectId>XS0096374359_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 04/30/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0096374359_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.81999999999999995</item>
-			</Gearings>
-			<SwapIndex>EurLiborSwapFixB10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36280</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_37">
+		<px class_id_reference="148" object_id="_31">
 			<ObjectId>XS0218952702_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -1160,7 +902,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_38">
+		<px class_id_reference="37" object_id="_32">
 			<ObjectId>XS0218952702_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -1201,7 +943,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_39">
+		<px class_id_reference="153" object_id="_33">
 			<ObjectId>XS0218952702_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -1223,7 +965,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_40">
+		<px class_id_reference="79" object_id="_34">
 			<ObjectId>XS0218952702_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -1237,7 +979,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_41">
+		<px class_id_reference="12" object_id="_35">
 			<ObjectId>XS0218952702</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BACR 4 06/03/15</Description>
@@ -1262,50 +1004,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_42">
-			<ObjectId>XS0218952702_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BACR 4 06/03/15</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0218952702_Sch</ScheduleID>
-			<FixingDays>5</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.022499999999999999</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.75</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38871</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_43">
+		<px class_id_reference="148" object_id="_36">
 			<ObjectId>XS0212843352_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -1346,7 +1045,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_44">
+		<px class_id_reference="37" object_id="_37">
 			<ObjectId>XS0212843352_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -1387,7 +1086,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_45">
+		<px class_id_reference="153" object_id="_38">
 			<ObjectId>XS0212843352_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -1409,7 +1108,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_46">
+		<px class_id_reference="79" object_id="_39">
 			<ObjectId>XS0212843352_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -1423,7 +1122,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_47">
+		<px class_id_reference="12" object_id="_40">
 			<ObjectId>XS0212843352</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>GS 0 03/02/17</Description>
@@ -1448,50 +1147,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_48">
-			<ObjectId>XS0212843352_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>GS 0 03/02/17</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0212843352_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.90000000000000002</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38778</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_49">
+		<px class_id_reference="148" object_id="_41">
 			<ObjectId>XS0217066801_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -1532,7 +1188,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_50">
+		<px class_id_reference="37" object_id="_42">
 			<ObjectId>XS0217066801_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -1573,7 +1229,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_51">
+		<px class_id_reference="153" object_id="_43">
 			<ObjectId>XS0217066801_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -1595,7 +1251,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_52">
+		<px class_id_reference="79" object_id="_44">
 			<ObjectId>XS0217066801_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -1609,7 +1265,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_53">
+		<px class_id_reference="12" object_id="_45">
 			<ObjectId>XS0217066801</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>EIB 0 04/27/17</Description>
@@ -1634,50 +1290,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_54">
-			<ObjectId>XS0217066801_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>EIB 0 04/27/17</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0217066801_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.014999999999999999</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.72999999999999998</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38834</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_55">
+		<px class_id_reference="148" object_id="_46">
 			<ObjectId>XS0094205258_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -1718,7 +1331,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_56">
+		<px class_id_reference="37" object_id="_47">
 			<ObjectId>XS0094205258_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -1759,7 +1372,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_57">
+		<px class_id_reference="153" object_id="_48">
 			<ObjectId>XS0094205258_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -1781,7 +1394,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_58">
+		<px class_id_reference="79" object_id="_49">
 			<ObjectId>XS0094205258_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -1795,7 +1408,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_59">
+		<px class_id_reference="12" object_id="_50">
 			<ObjectId>XS0094205258</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>AIG 0 02/17/17</Description>
@@ -1820,50 +1433,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_60">
-			<ObjectId>XS0094205258_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>AIG 0 02/17/17</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0094205258_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.029999999999999999</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.80000000000000004</item>
-			</Gearings>
-			<SwapIndex>EurLiborSwapFixB10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36573</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_61">
+		<px class_id_reference="148" object_id="_51">
 			<ObjectId>XS0096856421_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -1904,7 +1474,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_62">
+		<px class_id_reference="37" object_id="_52">
 			<ObjectId>XS0096856421_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -1945,7 +1515,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_63">
+		<px class_id_reference="153" object_id="_53">
 			<ObjectId>XS0096856421_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -1967,7 +1537,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_64">
+		<px class_id_reference="79" object_id="_54">
 			<ObjectId>XS0096856421_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -1981,7 +1551,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_65">
+		<px class_id_reference="12" object_id="_55">
 			<ObjectId>XS0096856421</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ITALY 4 05/06/19</Description>
@@ -2006,50 +1576,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_66">
-			<ObjectId>XS0096856421_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ITALY 4 05/06/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0096856421_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.78000000000000003</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36652</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_67">
+		<px class_id_reference="148" object_id="_56">
 			<ObjectId>XS0222944588_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -2090,7 +1617,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_68">
+		<px class_id_reference="37" object_id="_57">
 			<ObjectId>XS0222944588_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -2132,7 +1659,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_69">
+		<px class_id_reference="153" object_id="_58">
 			<ObjectId>XS0222944588_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -2154,7 +1681,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_70">
+		<px class_id_reference="79" object_id="_59">
 			<ObjectId>XS0222944588_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -2168,7 +1695,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_71">
+		<px class_id_reference="12" object_id="_60">
 			<ObjectId>XS0222944588</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 06/29/20</Description>
@@ -2193,51 +1720,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_72">
-			<ObjectId>XS0222944588_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 06/29/20</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0222944588_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.02</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.90000000000000002</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.070000000000000007</item>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38532</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_73">
+		<px class_id_reference="148" object_id="_61">
 			<ObjectId>XS0222189564_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -2278,7 +1761,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_74">
+		<px class_id_reference="37" object_id="_62">
 			<ObjectId>XS0222189564_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -2320,7 +1803,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_75">
+		<px class_id_reference="153" object_id="_63">
 			<ObjectId>XS0222189564_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -2342,7 +1825,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_76">
+		<px class_id_reference="79" object_id="_64">
 			<ObjectId>XS0222189564_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -2356,7 +1839,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_77">
+		<px class_id_reference="12" object_id="_65">
 			<ObjectId>XS0222189564</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ITALY 0 06/15/20</Description>
@@ -2381,51 +1864,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_78">
-			<ObjectId>XS0222189564_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ITALY 0 06/15/20</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0222189564_Sch</ScheduleID>
-			<FixingDays>10</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.02</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.84999999999999998</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.070000000000000007</item>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38518</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_79">
+		<px class_id_reference="148" object_id="_66">
 			<ObjectId>IT0001212908_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -2466,7 +1905,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_80">
+		<px class_id_reference="37" object_id="_67">
 			<ObjectId>IT0001212908_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -2508,7 +1947,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_81">
+		<px class_id_reference="153" object_id="_68">
 			<ObjectId>IT0001212908_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -2530,7 +1969,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_82">
+		<px class_id_reference="79" object_id="_69">
 			<ObjectId>IT0001212908_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -2544,7 +1983,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_83">
+		<px class_id_reference="12" object_id="_70">
 			<ObjectId>IT0001212908</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 03/24/13</Description>
@@ -2569,51 +2008,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_84">
-			<ObjectId>IT0001212908_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 03/24/13</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001212908_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.065000000000000002</item>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>35877</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_85">
+		<px class_id_reference="148" object_id="_71">
 			<ObjectId>DE0003083358_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -2654,7 +2049,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_86">
+		<px class_id_reference="37" object_id="_72">
 			<ObjectId>DE0003083358_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -2695,7 +2090,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_87">
+		<px class_id_reference="153" object_id="_73">
 			<ObjectId>DE0003083358_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -2717,7 +2112,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_88">
+		<px class_id_reference="79" object_id="_74">
 			<ObjectId>DE0003083358_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -2731,7 +2126,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_89">
+		<px class_id_reference="12" object_id="_75">
 			<ObjectId>DE0003083358</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>DB 0 06/04/19</Description>
@@ -2756,50 +2151,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_90">
-			<ObjectId>DE0003083358_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>DB 0 06/04/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>DE0003083358_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.81999999999999995</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36315</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_91">
+		<px class_id_reference="148" object_id="_76">
 			<ObjectId>XS0099472994_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -2840,7 +2192,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_92">
+		<px class_id_reference="37" object_id="_77">
 			<ObjectId>XS0099472994_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -2881,7 +2233,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_93">
+		<px class_id_reference="153" object_id="_78">
 			<ObjectId>XS0099472994_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -2903,7 +2255,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_94">
+		<px class_id_reference="79" object_id="_79">
 			<ObjectId>XS0099472994_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -2917,7 +2269,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_95">
+		<px class_id_reference="12" object_id="_80">
 			<ObjectId>XS0099472994</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>CS 0 07/29/19</Description>
@@ -2942,50 +2294,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_96">
-			<ObjectId>XS0099472994_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>CS 0 07/29/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0099472994_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.050000000000000003</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.81999999999999995</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixB30Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36370</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_97">
+		<px class_id_reference="148" object_id="_81">
 			<ObjectId>XS0100221349_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -3026,7 +2335,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_98">
+		<px class_id_reference="37" object_id="_82">
 			<ObjectId>XS0100221349_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -3067,7 +2376,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_99">
+		<px class_id_reference="153" object_id="_83">
 			<ObjectId>XS0100221349_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -3089,7 +2398,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_100">
+		<px class_id_reference="79" object_id="_84">
 			<ObjectId>XS0100221349_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -3103,7 +2412,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_101">
+		<px class_id_reference="12" object_id="_85">
 			<ObjectId>XS0100221349</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>CMZB 0 08/30/19</Description>
@@ -3128,50 +2437,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_102">
-			<ObjectId>XS0100221349_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>CMZB 0 08/30/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0100221349_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.052499999999999998</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.81999999999999995</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36402</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_103">
+		<px class_id_reference="148" object_id="_86">
 			<ObjectId>XS0102100897_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -3212,7 +2478,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_104">
+		<px class_id_reference="37" object_id="_87">
 			<ObjectId>XS0102100897_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -3253,7 +2519,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_105">
+		<px class_id_reference="153" object_id="_88">
 			<ObjectId>XS0102100897_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -3275,7 +2541,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_106">
+		<px class_id_reference="79" object_id="_89">
 			<ObjectId>XS0102100897_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -3289,7 +2555,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_107">
+		<px class_id_reference="12" object_id="_90">
 			<ObjectId>XS0102100897</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 09/30/19</Description>
@@ -3314,50 +2580,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_108">
-			<ObjectId>XS0102100897_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 09/30/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0102100897_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.89000000000000001</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36433</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_109">
+		<px class_id_reference="148" object_id="_91">
 			<ObjectId>XS0100688190_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -3398,7 +2621,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_110">
+		<px class_id_reference="37" object_id="_92">
 			<ObjectId>XS0100688190_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -3439,7 +2662,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_111">
+		<px class_id_reference="153" object_id="_93">
 			<ObjectId>XS0100688190_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -3461,7 +2684,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_112">
+		<px class_id_reference="79" object_id="_94">
 			<ObjectId>XS0100688190_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -3475,7 +2698,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_113">
+		<px class_id_reference="12" object_id="_95">
 			<ObjectId>XS0100688190</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ITALY 0 08/30/19</Description>
@@ -3500,50 +2723,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_114">
-			<ObjectId>XS0100688190_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ITALY 0 08/30/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0100688190_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>-0.0091000000000000004</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36402</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_115">
+		<px class_id_reference="148" object_id="_96">
 			<ObjectId>XS0101698289_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -3584,7 +2764,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_116">
+		<px class_id_reference="37" object_id="_97">
 			<ObjectId>XS0101698289_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -3625,7 +2805,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_117">
+		<px class_id_reference="153" object_id="_98">
 			<ObjectId>XS0101698289_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -3647,7 +2827,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_118">
+		<px class_id_reference="79" object_id="_99">
 			<ObjectId>XS0101698289_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -3661,7 +2841,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_119">
+		<px class_id_reference="12" object_id="_100">
 			<ObjectId>XS0101698289</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>INTNED 0 10/04/19</Description>
@@ -3686,50 +2866,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_120">
-			<ObjectId>XS0101698289_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>INTNED 0 10/04/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0101698289_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.055</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.81999999999999995</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36437</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_121">
+		<px class_id_reference="148" object_id="_101">
 			<ObjectId>XS0098449456_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -3770,7 +2907,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_122">
+		<px class_id_reference="37" object_id="_102">
 			<ObjectId>XS0098449456_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -3811,7 +2948,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_123">
+		<px class_id_reference="153" object_id="_103">
 			<ObjectId>XS0098449456_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -3833,7 +2970,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_124">
+		<px class_id_reference="79" object_id="_104">
 			<ObjectId>XS0098449456_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -3847,7 +2984,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_125">
+		<px class_id_reference="12" object_id="_105">
 			<ObjectId>XS0098449456</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ITALY 0 06/28/29</Description>
@@ -3872,50 +3009,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_126">
-			<ObjectId>XS0098449456_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ITALY 0 06/28/29</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0098449456_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.042500000000000003</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.80000000000000004</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixIFR30Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36339</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_127">
+		<px class_id_reference="148" object_id="_106">
 			<ObjectId>DE0003088704_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -3956,7 +3050,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_128">
+		<px class_id_reference="37" object_id="_107">
 			<ObjectId>DE0003088704_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -3997,7 +3091,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_129">
+		<px class_id_reference="153" object_id="_108">
 			<ObjectId>DE0003088704_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -4019,7 +3113,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_130">
+		<px class_id_reference="79" object_id="_109">
 			<ObjectId>DE0003088704_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -4033,7 +3127,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_131">
+		<px class_id_reference="12" object_id="_110">
 			<ObjectId>DE0003088704</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>DB 0 07/02/29</Description>
@@ -4058,50 +3152,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_132">
-			<ObjectId>DE0003088704_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>DB 0 07/02/29</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>DE0003088704_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.0465</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.81999999999999995</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36343</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_133">
+		<px class_id_reference="148" object_id="_111">
 			<ObjectId>IT0001336368_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -4142,7 +3193,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_134">
+		<px class_id_reference="37" object_id="_112">
 			<ObjectId>IT0001336368_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -4183,7 +3234,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_135">
+		<px class_id_reference="153" object_id="_113">
 			<ObjectId>IT0001336368_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -4205,7 +3256,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_136">
+		<px class_id_reference="79" object_id="_114">
 			<ObjectId>IT0001336368_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -4219,7 +3270,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_137">
+		<px class_id_reference="12" object_id="_115">
 			<ObjectId>IT0001336368</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 06/03/19</Description>
@@ -4244,50 +3295,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_138">
-			<ObjectId>IT0001336368_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 06/03/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001336368_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixIFR10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36314</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_139">
+		<px class_id_reference="148" object_id="_116">
 			<ObjectId>IT0001292850_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -4328,7 +3336,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_140">
+		<px class_id_reference="37" object_id="_117">
 			<ObjectId>IT0001292850_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -4369,7 +3377,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_141">
+		<px class_id_reference="153" object_id="_118">
 			<ObjectId>IT0001292850_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -4391,7 +3399,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_142">
+		<px class_id_reference="79" object_id="_119">
 			<ObjectId>IT0001292850_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -4405,7 +3413,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_143">
+		<px class_id_reference="12" object_id="_120">
 			<ObjectId>IT0001292850</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 01/15/19</Description>
@@ -4430,50 +3438,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_144">
-			<ObjectId>IT0001292850_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 01/15/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001292850_Sch</ScheduleID>
-			<FixingDays>4</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixIFR10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36175</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_145">
+		<px class_id_reference="148" object_id="_121">
 			<ObjectId>IT0003952386_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -4514,7 +3479,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_146">
+		<px class_id_reference="37" object_id="_122">
 			<ObjectId>IT0003952386_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -4556,7 +3521,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_147">
+		<px class_id_reference="153" object_id="_123">
 			<ObjectId>IT0003952386_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -4578,7 +3543,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_148">
+		<px class_id_reference="79" object_id="_124">
 			<ObjectId>IT0003952386_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -4592,7 +3557,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_149">
+		<px class_id_reference="12" object_id="_125">
 			<ObjectId>IT0003952386</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>CDEP 0 11/30/15</Description>
@@ -4617,51 +3582,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_150">
-			<ObjectId>IT0003952386_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>CDEP 0 11/30/15</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003952386_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.02</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.84999999999999998</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.070000000000000007</item>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38686</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_151">
+		<px class_id_reference="148" object_id="_126">
 			<ObjectId>XS0276505111_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -4702,7 +3623,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_152">
+		<px class_id_reference="37" object_id="_127">
 			<ObjectId>XS0276505111_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -4747,7 +3668,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_153">
+		<px class_id_reference="153" object_id="_128">
 			<ObjectId>XS0276505111_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -4769,7 +3690,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_154">
+		<px class_id_reference="79" object_id="_129">
 			<ObjectId>XS0276505111_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -4783,7 +3704,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_155">
+		<px class_id_reference="12" object_id="_130">
 			<ObjectId>XS0276505111</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM  Var 11/20</Description>
@@ -4808,54 +3729,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_156">
-			<ObjectId>XS0276505111_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM  Var 11/20</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0276505111_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>39050</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_157">
+		<px class_id_reference="148" object_id="_131">
 			<ObjectId>IT0003811343_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -4896,7 +3770,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_158">
+		<px class_id_reference="37" object_id="_132">
 			<ObjectId>IT0003811343_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -4948,7 +3822,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_159">
+		<px class_id_reference="153" object_id="_133">
 			<ObjectId>IT0003811343_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -4970,7 +3844,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_160">
+		<px class_id_reference="79" object_id="_134">
 			<ObjectId>IT0003811343_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -4984,7 +3858,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_161">
+		<px class_id_reference="12" object_id="_135">
 			<ObjectId>IT0003811343</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BANDES Var 03/12</Description>
@@ -5009,61 +3883,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_162">
-			<ObjectId>IT0003811343_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BANDES Var 03/12</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003811343_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>7</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.75</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>7</count>
-				<item_version>0</item_version>
-				<item>0.025000000000000001</item>
-				<item>0.025000000000000001</item>
-				<item>0.0275</item>
-				<item>0.0275</item>
-				<item>0.029999999999999999</item>
-				<item>0.029999999999999999</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38390</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_163">
+		<px class_id_reference="148" object_id="_136">
 			<ObjectId>IT0006525767_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -5104,7 +3924,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_164">
+		<px class_id_reference="37" object_id="_137">
 			<ObjectId>IT0006525767_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -5155,7 +3975,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_165">
+		<px class_id_reference="153" object_id="_138">
 			<ObjectId>IT0006525767_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -5177,7 +3997,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_166">
+		<px class_id_reference="79" object_id="_139">
 			<ObjectId>IT0006525767_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -5191,7 +4011,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_167">
+		<px class_id_reference="12" object_id="_140">
 			<ObjectId>IT0006525767</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>IBRD Var 11/18</Description>
@@ -5216,60 +4036,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_168">
-			<ObjectId>IT0006525767_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>IBRD Var 11/18</Description>
-			<Currency>ITL</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0006525767_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>6</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>-2</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>6</count>
-				<item_version>0</item_version>
-				<item>0.14000000000000001</item>
-				<item>0.065500000000000003</item>
-				<item>0.044999999999999998</item>
-				<item>0.044999999999999998</item>
-				<item>0.044999999999999998</item>
-				<item>0.14499999999999999</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36103</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_169">
+		<px class_id_reference="148" object_id="_141">
 			<ObjectId>FR0000570673_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -5310,7 +4077,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_170">
+		<px class_id_reference="37" object_id="_142">
 			<ObjectId>FR0000570673_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -5350,7 +4117,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_171">
+		<px class_id_reference="153" object_id="_143">
 			<ObjectId>FR0000570673_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -5372,7 +4139,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_172">
+		<px class_id_reference="79" object_id="_144">
 			<ObjectId>FR0000570673_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -5386,7 +4153,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_173">
+		<px class_id_reference="12" object_id="_145">
 			<ObjectId>FR0000570673</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>FRTR 0 1/25/09</Description>
@@ -5411,49 +4178,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_174">
-			<ObjectId>FR0000570673_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>FRTR 0 1/25/09</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>FR0000570673_Sch</ScheduleID>
-			<FixingDays>5</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>-0.012</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>35514</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_175">
+		<px class_id_reference="148" object_id="_146">
 			<ObjectId>IT0001261012_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -5494,7 +4219,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_176">
+		<px class_id_reference="37" object_id="_147">
 			<ObjectId>IT0001261012_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -5544,7 +4269,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_177">
+		<px class_id_reference="153" object_id="_148">
 			<ObjectId>IT0001261012_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -5566,7 +4291,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_178">
+		<px class_id_reference="79" object_id="_149">
 			<ObjectId>IT0001261012_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -5580,7 +4305,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_179">
+		<px class_id_reference="12" object_id="_150">
 			<ObjectId>IT0001261012</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>INTBA 0 10/2/13</Description>
@@ -5605,59 +4330,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_180">
-			<ObjectId>IT0001261012_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>INTBA 0 10/2/13</Description>
-			<Currency>ITL</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001261012_Sch</ScheduleID>
-			<FixingDays>4</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>6</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>-2</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>6</count>
-				<item_version>0</item_version>
-				<item>0.115</item>
-				<item>0.070000000000000007</item>
-				<item>0.065000000000000002</item>
-				<item>0.055</item>
-				<item>0.050000000000000003</item>
-				<item>0.14999999999999999</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36069</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_181">
+		<px class_id_reference="148" object_id="_151">
 			<ObjectId>IT0001287249_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -5698,7 +4371,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_182">
+		<px class_id_reference="37" object_id="_152">
 			<ObjectId>IT0001287249_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -5770,7 +4443,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_183">
+		<px class_id_reference="153" object_id="_153">
 			<ObjectId>IT0001287249_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -5792,7 +4465,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_184">
+		<px class_id_reference="79" object_id="_154">
 			<ObjectId>IT0001287249_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -5806,7 +4479,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_185">
+		<px class_id_reference="12" object_id="_155">
 			<ObjectId>IT0001287249</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>MEDCEN 4 12/24/18</Description>
@@ -5831,81 +4504,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_186">
-			<ObjectId>IT0001287249_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>MEDCEN 4 12/24/18</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001287249_Sch</ScheduleID>
-			<FixingDays>5</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>11</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>11</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>1</item>
-				<item>0</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>11</count>
-				<item_version>0</item_version>
-				<item>0.10000000000000001</item>
-				<item>0.059999999999999998</item>
-				<item>0.050000000000000003</item>
-				<item>0.050000000000000003</item>
-				<item>0.050000000000000003</item>
-				<item>0.050000000000000003</item>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Caps>
-			<Redemption>150</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36152</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_187">
+		<px class_id_reference="148" object_id="_156">
 			<ObjectId>IT0001300992_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -5946,7 +4545,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_188">
+		<px class_id_reference="37" object_id="_157">
 			<ObjectId>IT0001300992_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -5996,7 +4595,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_189">
+		<px class_id_reference="153" object_id="_158">
 			<ObjectId>IT0001300992_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -6018,7 +4617,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_190">
+		<px class_id_reference="79" object_id="_159">
 			<ObjectId>IT0001300992_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -6032,7 +4631,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_191">
+		<px class_id_reference="12" object_id="_160">
 			<ObjectId>IT0001300992</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BPUIM 0 1/22/19</Description>
@@ -6057,59 +4656,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_192">
-			<ObjectId>IT0001300992_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BPUIM 0 1/22/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001300992_Sch</ScheduleID>
-			<FixingDays>4</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>6</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>6</count>
-				<item_version>0</item_version>
-				<item>0.10000000000000001</item>
-				<item>0.055</item>
-				<item>0.042500000000000003</item>
-				<item>0.042500000000000003</item>
-				<item>0.042500000000000003</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36182</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_193">
+		<px class_id_reference="148" object_id="_161">
 			<ObjectId>IT0001301560_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -6150,7 +4697,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_194">
+		<px class_id_reference="37" object_id="_162">
 			<ObjectId>IT0001301560_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -6196,7 +4743,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_195">
+		<px class_id_reference="153" object_id="_163">
 			<ObjectId>IT0001301560_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -6218,7 +4765,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_196">
+		<px class_id_reference="79" object_id="_164">
 			<ObjectId>IT0001301560_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -6232,7 +4779,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_197">
+		<px class_id_reference="12" object_id="_165">
 			<ObjectId>IT0001301560</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 1/29/14</Description>
@@ -6257,55 +4804,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_198">
-			<ObjectId>IT0001301560_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 1/29/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001301560_Sch</ScheduleID>
-			<FixingDays>4</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>4</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.65000000000000002</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>4</count>
-				<item_version>0</item_version>
-				<item>0.080000000000000002</item>
-				<item>0.055</item>
-				<item>0.044999999999999998</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36189</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_199">
+		<px class_id_reference="148" object_id="_166">
 			<ObjectId>IT0001309423_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -6346,7 +4845,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_200">
+		<px class_id_reference="37" object_id="_167">
 			<ObjectId>IT0001309423_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -6392,7 +4891,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_201">
+		<px class_id_reference="153" object_id="_168">
 			<ObjectId>IT0001309423_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -6414,7 +4913,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_202">
+		<px class_id_reference="79" object_id="_169">
 			<ObjectId>IT0001309423_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -6428,7 +4927,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_203">
+		<px class_id_reference="12" object_id="_170">
 			<ObjectId>IT0001309423</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 3/9/14</Description>
@@ -6453,55 +4952,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_204">
-			<ObjectId>IT0001309423_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 3/9/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001309423_Sch</ScheduleID>
-			<FixingDays>4</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>4</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>4</count>
-				<item_version>0</item_version>
-				<item>0.080000000000000002</item>
-				<item>0.050000000000000003</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36228</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_205">
+		<px class_id_reference="148" object_id="_171">
 			<ObjectId>IT0001310793_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -6542,7 +4993,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_206">
+		<px class_id_reference="37" object_id="_172">
 			<ObjectId>IT0001310793_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -6582,7 +5033,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_207">
+		<px class_id_reference="153" object_id="_173">
 			<ObjectId>IT0001310793_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -6604,7 +5055,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_208">
+		<px class_id_reference="79" object_id="_174">
 			<ObjectId>IT0001310793_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -6618,7 +5069,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_209">
+		<px class_id_reference="12" object_id="_175">
 			<ObjectId>IT0001310793</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BPIIM 0 3/3/14</Description>
@@ -6643,49 +5094,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_210">
-			<ObjectId>IT0001310793_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BPIIM 0 3/3/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001310793_Sch</ScheduleID>
-			<FixingDays>4</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36222</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_211">
+		<px class_id_reference="148" object_id="_176">
 			<ObjectId>IT0001355194_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -6726,7 +5135,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_212">
+		<px class_id_reference="37" object_id="_177">
 			<ObjectId>IT0001355194_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -6767,7 +5176,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_213">
+		<px class_id_reference="153" object_id="_178">
 			<ObjectId>IT0001355194_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -6789,7 +5198,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_214">
+		<px class_id_reference="79" object_id="_179">
 			<ObjectId>IT0001355194_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -6803,7 +5212,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_215">
+		<px class_id_reference="12" object_id="_180">
 			<ObjectId>IT0001355194</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>DEXGRP 0 7/30/14</Description>
@@ -6828,50 +5237,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_216">
-			<ObjectId>IT0001355194_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>DEXGRP 0 7/30/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001355194_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.047500000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.80000000000000004</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixB30Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36371</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_217">
+		<px class_id_reference="148" object_id="_181">
 			<ObjectId>IT0001358750_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -6912,7 +5278,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_218">
+		<px class_id_reference="37" object_id="_182">
 			<ObjectId>IT0001358750_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -6962,7 +5328,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_219">
+		<px class_id_reference="153" object_id="_183">
 			<ObjectId>IT0001358750_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -6984,7 +5350,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_220">
+		<px class_id_reference="79" object_id="_184">
 			<ObjectId>IT0001358750_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -6998,7 +5364,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_221">
+		<px class_id_reference="12" object_id="_185">
 			<ObjectId>IT0001358750</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 8/20/14</Description>
@@ -7023,59 +5389,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_222">
-			<ObjectId>IT0001358750_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 8/20/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001358750_Sch</ScheduleID>
-			<FixingDays>4</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>4</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>4</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.67000000000000004</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>4</count>
-				<item_version>0</item_version>
-				<item>0.074999999999999997</item>
-				<item>0.055</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36392</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_223">
+		<px class_id_reference="148" object_id="_186">
 			<ObjectId>IT0003252001_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -7116,7 +5430,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_224">
+		<px class_id_reference="37" object_id="_187">
 			<ObjectId>IT0003252001_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -7157,7 +5471,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_225">
+		<px class_id_reference="153" object_id="_188">
 			<ObjectId>IT0003252001_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -7179,7 +5493,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_226">
+		<px class_id_reference="79" object_id="_189">
 			<ObjectId>IT0003252001_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -7193,7 +5507,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_227">
+		<px class_id_reference="12" object_id="_190">
 			<ObjectId>IT0003252001</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BANDES 0 3/15/07</Description>
@@ -7218,50 +5532,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_228">
-			<ObjectId>IT0003252001_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BANDES 0 3/15/07</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003252001_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>37330</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_229">
+		<px class_id_reference="148" object_id="_191">
 			<ObjectId>IT0003515597_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -7302,7 +5573,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_230">
+		<px class_id_reference="37" object_id="_192">
 			<ObjectId>IT0003515597_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -7346,7 +5617,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_231">
+		<px class_id_reference="153" object_id="_193">
 			<ObjectId>IT0003515597_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -7368,7 +5639,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_232">
+		<px class_id_reference="79" object_id="_194">
 			<ObjectId>IT0003515597_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -7382,7 +5653,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_233">
+		<px class_id_reference="12" object_id="_195">
 			<ObjectId>IT0003515597</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>VICEN 0 8/18/08</Description>
@@ -7407,53 +5678,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_234">
-			<ObjectId>IT0003515597_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>VICEN 0 8/18/08</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003515597_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0.51000000000000001</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>37851</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_235">
+		<px class_id_reference="148" object_id="_196">
 			<ObjectId>IT0003532469_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -7494,7 +5719,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_236">
+		<px class_id_reference="37" object_id="_197">
 			<ObjectId>IT0003532469_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -7538,7 +5763,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_237">
+		<px class_id_reference="153" object_id="_198">
 			<ObjectId>IT0003532469_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -7560,7 +5785,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_238">
+		<px class_id_reference="79" object_id="_199">
 			<ObjectId>IT0003532469_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -7574,7 +5799,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_239">
+		<px class_id_reference="12" object_id="_200">
 			<ObjectId>IT0003532469</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>VICEN 0 9/19/08</Description>
@@ -7599,53 +5824,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_240">
-			<ObjectId>IT0003532469_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>VICEN 0 9/19/08</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003532469_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0.51000000000000001</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>37883</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_241">
+		<px class_id_reference="148" object_id="_201">
 			<ObjectId>IT0003547038_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -7686,7 +5865,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_242">
+		<px class_id_reference="37" object_id="_202">
 			<ObjectId>IT0003547038_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -7730,7 +5909,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_243">
+		<px class_id_reference="153" object_id="_203">
 			<ObjectId>IT0003547038_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -7752,7 +5931,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_244">
+		<px class_id_reference="79" object_id="_204">
 			<ObjectId>IT0003547038_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -7766,7 +5945,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_245">
+		<px class_id_reference="12" object_id="_205">
 			<ObjectId>IT0003547038</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>VICEN 0 10/24/08</Description>
@@ -7791,53 +5970,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_246">
-			<ObjectId>IT0003547038_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>VICEN 0 10/24/08</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003547038_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0.51000000000000001</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>37918</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_247">
+		<px class_id_reference="148" object_id="_206">
 			<ObjectId>IT0003569867_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -7878,7 +6011,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_248">
+		<px class_id_reference="37" object_id="_207">
 			<ObjectId>IT0003569867_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -7922,7 +6055,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_249">
+		<px class_id_reference="153" object_id="_208">
 			<ObjectId>IT0003569867_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -7944,7 +6077,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_250">
+		<px class_id_reference="79" object_id="_209">
 			<ObjectId>IT0003569867_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -7958,7 +6091,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_251">
+		<px class_id_reference="12" object_id="_210">
 			<ObjectId>IT0003569867</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>VICEN 0 12/15/08</Description>
@@ -7983,53 +6116,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_252">
-			<ObjectId>IT0003569867_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>VICEN 0 12/15/08</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003569867_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0.51000000000000001</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>37918</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_253">
+		<px class_id_reference="148" object_id="_211">
 			<ObjectId>IT0003614176_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -8070,7 +6157,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_254">
+		<px class_id_reference="37" object_id="_212">
 			<ObjectId>IT0003614176_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -8111,7 +6198,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_255">
+		<px class_id_reference="153" object_id="_213">
 			<ObjectId>IT0003614176_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -8133,7 +6220,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_256">
+		<px class_id_reference="79" object_id="_214">
 			<ObjectId>IT0003614176_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -8147,7 +6234,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_257">
+		<px class_id_reference="12" object_id="_215">
 			<ObjectId>IT0003614176</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BANDES 0 2/2/09</Description>
@@ -8172,50 +6259,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_258">
-			<ObjectId>IT0003614176_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BANDES 0 2/2/09</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003614176_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.025000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.65000000000000002</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38019</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_259">
+		<px class_id_reference="148" object_id="_216">
 			<ObjectId>IT0003693832_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -8256,7 +6300,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_260">
+		<px class_id_reference="37" object_id="_217">
 			<ObjectId>IT0003693832_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -8300,7 +6344,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_261">
+		<px class_id_reference="153" object_id="_218">
 			<ObjectId>IT0003693832_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -8322,7 +6366,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_262">
+		<px class_id_reference="79" object_id="_219">
 			<ObjectId>IT0003693832_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -8336,7 +6380,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_263">
+		<px class_id_reference="12" object_id="_220">
 			<ObjectId>IT0003693832</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BANDLS 0 7/26/07</Description>
@@ -8361,53 +6405,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_264">
-			<ObjectId>IT0003693832_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BANDLS 0 7/26/07</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003693832_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0.65000000000000002</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0.029999999999999999</item>
-				<item>0.029999999999999999</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38194</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_265">
+		<px class_id_reference="148" object_id="_221">
 			<ObjectId>IT0003728216_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -8448,7 +6446,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_266">
+		<px class_id_reference="37" object_id="_222">
 			<ObjectId>IT0003728216_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -8496,7 +6494,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_267">
+		<px class_id_reference="153" object_id="_223">
 			<ObjectId>IT0003728216_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -8518,7 +6516,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_268">
+		<px class_id_reference="79" object_id="_224">
 			<ObjectId>IT0003728216_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -8532,7 +6530,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_269">
+		<px class_id_reference="12" object_id="_225">
 			<ObjectId>IT0003728216</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BANDES 0 10/1/09</Description>
@@ -8557,57 +6555,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_270">
-			<ObjectId>IT0003728216_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BANDES 0 10/1/09</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003728216_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>5</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>5</count>
-				<item_version>0</item_version>
-				<item>0.029999999999999999</item>
-				<item>0.029999999999999999</item>
-				<item>0.029999999999999999</item>
-				<item>0.029999999999999999</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38261</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_271">
+		<px class_id_reference="148" object_id="_226">
 			<ObjectId>IT0003792238_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -8648,7 +6596,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_272">
+		<px class_id_reference="37" object_id="_227">
 			<ObjectId>IT0003792238_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -8696,7 +6644,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_273">
+		<px class_id_reference="153" object_id="_228">
 			<ObjectId>IT0003792238_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -8718,7 +6666,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_274">
+		<px class_id_reference="79" object_id="_229">
 			<ObjectId>IT0003792238_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -8732,7 +6680,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_275">
+		<px class_id_reference="12" object_id="_230">
 			<ObjectId>IT0003792238</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BANDES 0 1/17/10</Description>
@@ -8757,57 +6705,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_276">
-			<ObjectId>IT0003792238_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BANDES 0 1/17/10</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003792238_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>5</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>5</count>
-				<item_version>0</item_version>
-				<item>0.029999999999999999</item>
-				<item>0.029999999999999999</item>
-				<item>0.029999999999999999</item>
-				<item>0.029999999999999999</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38369</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_277">
+		<px class_id_reference="148" object_id="_231">
 			<ObjectId>IT0003844500_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -8848,7 +6746,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_278">
+		<px class_id_reference="37" object_id="_232">
 			<ObjectId>IT0003844500_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -8895,7 +6793,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_279">
+		<px class_id_reference="153" object_id="_233">
 			<ObjectId>IT0003844500_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -8917,7 +6815,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_280">
+		<px class_id_reference="79" object_id="_234">
 			<ObjectId>IT0003844500_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -8931,7 +6829,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_281">
+		<px class_id_reference="12" object_id="_235">
 			<ObjectId>IT0003844500</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>MEDFVG 0 5/16/10</Description>
@@ -8956,56 +6854,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_282">
-			<ObjectId>IT0003844500_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>MEDFVG 0 5/16/10</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003844500_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0.02</item>
-			</Floors>
-			<Gearings>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0.55000000000000004</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>3</count>
-				<item_version>0</item_version>
-				<item>0.021499999999999998</item>
-				<item>0.025000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38488</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_283">
+		<px class_id_reference="148" object_id="_236">
 			<ObjectId>IT0003853071_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -9046,7 +6895,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_284">
+		<px class_id_reference="37" object_id="_237">
 			<ObjectId>IT0003853071_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -9094,7 +6943,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_285">
+		<px class_id_reference="153" object_id="_238">
 			<ObjectId>IT0003853071_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -9116,7 +6965,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_286">
+		<px class_id_reference="79" object_id="_239">
 			<ObjectId>IT0003853071_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -9130,7 +6979,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_287">
+		<px class_id_reference="12" object_id="_240">
 			<ObjectId>IT0003853071</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BANDES 0 6/1/09</Description>
@@ -9155,57 +7004,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_288">
-			<ObjectId>IT0003853071_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BANDES 0 6/1/09</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003853071_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>5</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.65000000000000002</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>5</count>
-				<item_version>0</item_version>
-				<item>0.024</item>
-				<item>0.024</item>
-				<item>0.025000000000000001</item>
-				<item>0.025000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38504</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_289">
+		<px class_id_reference="148" object_id="_241">
 			<ObjectId>IT0003925796_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -9246,7 +7045,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_290">
+		<px class_id_reference="37" object_id="_242">
 			<ObjectId>IT0003925796_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -9288,7 +7087,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_291">
+		<px class_id_reference="153" object_id="_243">
 			<ObjectId>IT0003925796_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -9310,7 +7109,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_292">
+		<px class_id_reference="79" object_id="_244">
 			<ObjectId>IT0003925796_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -9324,7 +7123,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_293">
+		<px class_id_reference="12" object_id="_245">
 			<ObjectId>IT0003925796</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>CDEP 0 9/30/20</Description>
@@ -9349,51 +7148,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_294">
-			<ObjectId>IT0003925796_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>CDEP 0 9/30/20</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003925796_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.02</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>-0.0054999999999999997</item>
-			</Spreads>
-			<Caps>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.070000000000000007</item>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38625</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_295">
+		<px class_id_reference="148" object_id="_246">
 			<ObjectId>IT0003929525_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -9434,7 +7189,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_296">
+		<px class_id_reference="37" object_id="_247">
 			<ObjectId>IT0003929525_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -9475,7 +7230,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_297">
+		<px class_id_reference="153" object_id="_248">
 			<ObjectId>IT0003929525_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -9497,7 +7252,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_298">
+		<px class_id_reference="79" object_id="_249">
 			<ObjectId>IT0003929525_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -9511,7 +7266,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_299">
+		<px class_id_reference="12" object_id="_250">
 			<ObjectId>IT0003929525</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BANITL 0 10/19/15</Description>
@@ -9536,50 +7291,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_300">
-			<ObjectId>IT0003929525_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BANITL 0 10/19/15</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003929525_Sch</ScheduleID>
-			<FixingDays>5</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.0235</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.80000000000000004</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38644</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_301">
+		<px class_id_reference="148" object_id="_251">
 			<ObjectId>IT0003964803_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -9620,7 +7332,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_302">
+		<px class_id_reference="37" object_id="_252">
 			<ObjectId>IT0003964803_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -9661,7 +7373,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_303">
+		<px class_id_reference="153" object_id="_253">
 			<ObjectId>IT0003964803_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -9683,7 +7395,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_304">
+		<px class_id_reference="79" object_id="_254">
 			<ObjectId>IT0003964803_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -9697,7 +7409,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_305">
+		<px class_id_reference="12" object_id="_255">
 			<ObjectId>IT0003964803</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BANDES 0 12/19/10</Description>
@@ -9722,50 +7434,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_306">
-			<ObjectId>IT0003964803_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BANDES 0 12/19/10</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003964803_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.0275</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.68000000000000005</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38705</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_307">
+		<px class_id_reference="148" object_id="_256">
 			<ObjectId>XS0097596463_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -9806,7 +7475,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_308">
+		<px class_id_reference="37" object_id="_257">
 			<ObjectId>XS0097596463_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -9847,7 +7516,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_309">
+		<px class_id_reference="153" object_id="_258">
 			<ObjectId>XS0097596463_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -9869,7 +7538,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_310">
+		<px class_id_reference="79" object_id="_259">
 			<ObjectId>XS0097596463_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -9883,7 +7552,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_311">
+		<px class_id_reference="12" object_id="_260">
 			<ObjectId>XS0097596463</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>GREECE 0 5/21/14</Description>
@@ -9908,50 +7577,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_312">
-			<ObjectId>XS0097596463_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>GREECE 0 5/21/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0097596463_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.84999999999999998</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36301</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_313">
+		<px class_id_reference="148" object_id="_261">
 			<ObjectId>XS0171795510_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -9992,7 +7618,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_314">
+		<px class_id_reference="37" object_id="_262">
 			<ObjectId>XS0171795510_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -10033,7 +7659,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_315">
+		<px class_id_reference="153" object_id="_263">
 			<ObjectId>XS0171795510_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -10055,7 +7681,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_316">
+		<px class_id_reference="79" object_id="_264">
 			<ObjectId>XS0171795510_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -10069,7 +7695,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_317">
+		<px class_id_reference="12" object_id="_265">
 			<ObjectId>XS0171795510</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 7/11/13</Description>
@@ -10094,50 +7720,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_318">
-			<ObjectId>XS0171795510_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 7/11/13</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0171795510_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.025000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>37813</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_319">
+		<px class_id_reference="148" object_id="_266">
 			<ObjectId>XS0215079202_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -10178,7 +7761,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_320">
+		<px class_id_reference="37" object_id="_267">
 			<ObjectId>XS0215079202_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -10222,7 +7805,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_321">
+		<px class_id_reference="153" object_id="_268">
 			<ObjectId>XS0215079202_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -10244,7 +7827,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_322">
+		<px class_id_reference="79" object_id="_269">
 			<ObjectId>XS0215079202_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -10258,7 +7841,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_323">
+		<px class_id_reference="12" object_id="_270">
 			<ObjectId>XS0215079202</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>MONTE 0 4/1/15</Description>
@@ -10283,53 +7866,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_324">
-			<ObjectId>XS0215079202_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>MONTE 0 4/1/15</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0215079202_Sch</ScheduleID>
-			<FixingDays>4</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0.02</item>
-			</Floors>
-			<Gearings>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0.80000000000000004</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0.037499999999999999</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38443</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_325">
+		<px class_id_reference="148" object_id="_271">
 			<ObjectId>XS0215963702_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -10370,7 +7907,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_326">
+		<px class_id_reference="37" object_id="_272">
 			<ObjectId>XS0215963702_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -10412,7 +7949,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_327">
+		<px class_id_reference="153" object_id="_273">
 			<ObjectId>XS0215963702_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -10434,7 +7971,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_328">
+		<px class_id_reference="79" object_id="_274">
 			<ObjectId>XS0215963702_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -10448,7 +7985,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_329">
+		<px class_id_reference="12" object_id="_275">
 			<ObjectId>XS0215963702</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>MER 4 4/6/20</Description>
@@ -10473,51 +8010,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_330">
-			<ObjectId>XS0215963702_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>MER 4 4/6/20</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0215963702_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0.84999999999999998</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38448</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_331">
+		<px class_id_reference="148" object_id="_276">
 			<ObjectId>XS0218766664_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -10558,7 +8051,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_332">
+		<px class_id_reference="37" object_id="_277">
 			<ObjectId>XS0218766664_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -10598,7 +8091,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_333">
+		<px class_id_reference="153" object_id="_278">
 			<ObjectId>XS0218766664_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -10620,7 +8113,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_334">
+		<px class_id_reference="79" object_id="_279">
 			<ObjectId>XS0218766664_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -10634,7 +8127,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_335">
+		<px class_id_reference="12" object_id="_280">
 			<ObjectId>XS0218766664</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 5/6/15</Description>
@@ -10659,49 +8152,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_336">
-			<ObjectId>XS0218766664_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 5/6/15</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0218766664_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.83999999999999997</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38478</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_337">
+		<px class_id_reference="148" object_id="_281">
 			<ObjectId>XS0223116541_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -10742,7 +8193,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_338">
+		<px class_id_reference="37" object_id="_282">
 			<ObjectId>XS0223116541_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -10784,7 +8235,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_339">
+		<px class_id_reference="153" object_id="_283">
 			<ObjectId>XS0223116541_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -10806,7 +8257,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_340">
+		<px class_id_reference="79" object_id="_284">
 			<ObjectId>XS0223116541_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -10820,7 +8271,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_341">
+		<px class_id_reference="12" object_id="_285">
 			<ObjectId>XS0223116541</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>GS 0 6/28/20</Description>
@@ -10845,51 +8296,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_342">
-			<ObjectId>XS0223116541_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>GS 0 6/28/20</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0223116541_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.02</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.070000000000000007</item>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38531</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_343">
+		<px class_id_reference="148" object_id="_286">
 			<ObjectId>XS0223451500_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -10930,7 +8337,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_344">
+		<px class_id_reference="37" object_id="_287">
 			<ObjectId>XS0223451500_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -10971,7 +8378,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_345">
+		<px class_id_reference="153" object_id="_288">
 			<ObjectId>XS0223451500_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -10993,7 +8400,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_346">
+		<px class_id_reference="79" object_id="_289">
 			<ObjectId>XS0223451500_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -11007,7 +8414,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_347">
+		<px class_id_reference="12" object_id="_290">
 			<ObjectId>XS0223451500</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>GS 0 6/30/25</Description>
@@ -11032,50 +8439,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_348">
-			<ObjectId>XS0223451500_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>GS 0 6/30/25</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0223451500_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.070000000000000007</item>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38533</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_349">
+		<px class_id_reference="148" object_id="_291">
 			<ObjectId>XS0226191798_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -11116,7 +8480,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_350">
+		<px class_id_reference="37" object_id="_292">
 			<ObjectId>XS0226191798_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -11158,7 +8522,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_351">
+		<px class_id_reference="153" object_id="_293">
 			<ObjectId>XS0226191798_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -11180,7 +8544,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_352">
+		<px class_id_reference="79" object_id="_294">
 			<ObjectId>XS0226191798_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -11194,7 +8558,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_353">
+		<px class_id_reference="12" object_id="_295">
 			<ObjectId>XS0226191798</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>CRDIT 0 8/26/20</Description>
@@ -11219,51 +8583,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_354">
-			<ObjectId>XS0226191798_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>CRDIT 0 8/26/20</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0226191798_Sch</ScheduleID>
-			<FixingDays>5</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.02</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>-0.0047999999999999996</item>
-			</Spreads>
-			<Caps>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.070000000000000007</item>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38590</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_355">
+		<px class_id_reference="148" object_id="_296">
 			<ObjectId>XS0238509078_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -11304,7 +8624,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_356">
+		<px class_id_reference="37" object_id="_297">
 			<ObjectId>XS0238509078_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -11345,7 +8665,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_357">
+		<px class_id_reference="153" object_id="_298">
 			<ObjectId>XS0238509078_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -11367,7 +8687,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_358">
+		<px class_id_reference="79" object_id="_299">
 			<ObjectId>XS0238509078_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -11381,7 +8701,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_359">
+		<px class_id_reference="12" object_id="_300">
 			<ObjectId>XS0238509078</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BSC 0 1/19/14</Description>
@@ -11406,50 +8726,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_360">
-			<ObjectId>XS0238509078_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BSC 0 1/19/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0238509078_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.025000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.81999999999999995</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38736</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_361">
+		<px class_id_reference="148" object_id="_301">
 			<ObjectId>XS0273633429_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -11490,7 +8767,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_362">
+		<px class_id_reference="37" object_id="_302">
 			<ObjectId>XS0273633429_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -11530,7 +8807,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_363">
+		<px class_id_reference="153" object_id="_303">
 			<ObjectId>XS0273633429_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -11552,7 +8829,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_364">
+		<px class_id_reference="79" object_id="_304">
 			<ObjectId>XS0273633429_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -11566,7 +8843,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_365">
+		<px class_id_reference="12" object_id="_305">
 			<ObjectId>XS0273633429</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BACRED 0 11/28/13</Description>
@@ -11591,49 +8868,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_366">
-			<ObjectId>XS0273633429_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BACRED 0 11/28/13</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0273633429_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.91000000000000003</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA2Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>39049</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_367">
+		<px class_id_reference="148" object_id="_306">
 			<ObjectId>XS0281902550_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -11674,7 +8909,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_368">
+		<px class_id_reference="37" object_id="_307">
 			<ObjectId>XS0281902550_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -11715,7 +8950,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_369">
+		<px class_id_reference="153" object_id="_308">
 			<ObjectId>XS0281902550_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -11737,7 +8972,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_370">
+		<px class_id_reference="79" object_id="_309">
 			<ObjectId>XS0281902550_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -11751,7 +8986,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_371">
+		<px class_id_reference="12" object_id="_310">
 			<ObjectId>XS0281902550</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>MER 0 1/30/17</Description>
@@ -11776,50 +9011,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_372">
-			<ObjectId>XS0281902550_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>MER 0 1/30/17</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0281902550_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA2Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>39112</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_373">
+		<px class_id_reference="148" object_id="_311">
 			<ObjectId>IT0001302659_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -11860,7 +9052,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_374">
+		<px class_id_reference="37" object_id="_312">
 			<ObjectId>IT0001302659_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -11904,7 +9096,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_375">
+		<px class_id_reference="153" object_id="_313">
 			<ObjectId>IT0001302659_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -11926,7 +9118,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_376">
+		<px class_id_reference="79" object_id="_314">
 			<ObjectId>IT0001302659_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -11940,7 +9132,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_377">
+		<px class_id_reference="12" object_id="_315">
 			<ObjectId>IT0001302659</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 01/25/19</Description>
@@ -11965,53 +9157,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_378">
-			<ObjectId>IT0001302659_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 01/25/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001302659_Sch</ScheduleID>
-			<FixingDays>3</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0.032500000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0.75</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0.050000000000000003</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36185</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_379">
+		<px class_id_reference="148" object_id="_316">
 			<ObjectId>IT0001239042_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -12052,7 +9198,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_380">
+		<px class_id_reference="37" object_id="_317">
 			<ObjectId>IT0001239042_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -12093,7 +9239,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_381">
+		<px class_id_reference="153" object_id="_318">
 			<ObjectId>IT0001239042_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -12115,7 +9261,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_382">
+		<px class_id_reference="79" object_id="_319">
 			<ObjectId>IT0001239042_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -12129,7 +9275,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_383">
+		<px class_id_reference="12" object_id="_320">
 			<ObjectId>IT0001239042</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>MONTE 07/01/08</Description>
@@ -12154,50 +9300,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_384">
-			<ObjectId>IT0001239042_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>MONTE 07/01/08</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001239042_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>-0.0085000000000000006</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>35977</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_385">
+		<px class_id_reference="148" object_id="_321">
 			<ObjectId>IT0001339586_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -12238,7 +9341,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_386">
+		<px class_id_reference="37" object_id="_322">
 			<ObjectId>IT0001339586_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -12288,7 +9391,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_387">
+		<px class_id_reference="153" object_id="_323">
 			<ObjectId>IT0001339586_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -12310,7 +9413,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_388">
+		<px class_id_reference="79" object_id="_324">
 			<ObjectId>IT0001339586_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -12324,7 +9427,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_389">
+		<px class_id_reference="12" object_id="_325">
 			<ObjectId>IT0001339586</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BACRED 06/25/19</Description>
@@ -12349,59 +9452,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_390">
-			<ObjectId>IT0001339586_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BACRED 06/25/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001339586_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>6</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.67000000000000004</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
-			<Spreads>
-				<count>6</count>
-				<item_version>0</item_version>
-				<item>0.10000000000000001</item>
-				<item>0.059999999999999998</item>
-				<item>0.050000000000000003</item>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36336</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_391">
+		<px class_id_reference="148" object_id="_326">
 			<ObjectId>IT0001324851_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -12442,7 +9493,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_392">
+		<px class_id_reference="37" object_id="_327">
 			<ObjectId>IT0001324851_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -12493,7 +9544,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_393">
+		<px class_id_reference="153" object_id="_328">
 			<ObjectId>IT0001324851_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -12515,7 +9566,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_394">
+		<px class_id_reference="79" object_id="_329">
 			<ObjectId>IT0001324851_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -12529,7 +9580,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_395">
+		<px class_id_reference="12" object_id="_330">
 			<ObjectId>IT0001324851</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>MEDCEN 0 04/09/09</Description>
@@ -12554,60 +9605,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_396">
-			<ObjectId>IT0001324851_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>MEDCEN 0 04/09/09</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001324851_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>6</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.80000000000000004</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>6</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36259</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_397">
+		<px class_id_reference="148" object_id="_331">
 			<ObjectId>IT0001311247_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -12648,7 +9646,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_398">
+		<px class_id_reference="37" object_id="_332">
 			<ObjectId>IT0001311247_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -12689,7 +9687,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_399">
+		<px class_id_reference="153" object_id="_333">
 			<ObjectId>IT0001311247_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -12711,7 +9709,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_400">
+		<px class_id_reference="79" object_id="_334">
 			<ObjectId>IT0001311247_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -12725,7 +9723,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_401">
+		<px class_id_reference="12" object_id="_335">
 			<ObjectId>IT0001311247</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>INTBA 0 03/01/19</Description>
@@ -12750,50 +9748,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_402">
-			<ObjectId>IT0001311247_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>INTBA 0 03/01/19</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001311247_Sch</ScheduleID>
-			<FixingDays>4</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1.2</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>-0.057000000000000002</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36220</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_403">
+		<px class_id_reference="148" object_id="_336">
 			<ObjectId>IT0001254330_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -12834,7 +9789,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_404">
+		<px class_id_reference="37" object_id="_337">
 			<ObjectId>IT0001254330_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -12878,7 +9833,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_405">
+		<px class_id_reference="153" object_id="_338">
 			<ObjectId>IT0001254330_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -12900,7 +9855,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_406">
+		<px class_id_reference="79" object_id="_339">
 			<ObjectId>IT0001254330_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -12914,7 +9869,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_407">
+		<px class_id_reference="12" object_id="_340">
 			<ObjectId>IT0001254330</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>BPUIM 0 09/01/08</Description>
@@ -12939,53 +9894,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_408">
-			<ObjectId>IT0001254330_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>BPUIM 0 09/01/08</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001254330_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0.82999999999999996</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>2</count>
-				<item_version>0</item_version>
-				<item>0.050000000000000003</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36039</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_409">
+		<px class_id_reference="148" object_id="_341">
 			<ObjectId>XS0283497005_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -13026,7 +9935,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_410">
+		<px class_id_reference="37" object_id="_342">
 			<ObjectId>XS0283497005_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -13067,7 +9976,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_411">
+		<px class_id_reference="153" object_id="_343">
 			<ObjectId>XS0283497005_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -13089,7 +9998,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_412">
+		<px class_id_reference="79" object_id="_344">
 			<ObjectId>XS0283497005_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -13103,7 +10012,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_413">
+		<px class_id_reference="12" object_id="_345">
 			<ObjectId>XS0283497005</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>LEH Var 01/31/17</Description>
@@ -13128,50 +10037,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_414">
-			<ObjectId>XS0283497005_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>LEH Var 01/31/17</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0283497005_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1.01</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>39113</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_415">
+		<px class_id_reference="148" object_id="_346">
 			<ObjectId>XS0098379810_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -13212,7 +10078,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_416">
+		<px class_id_reference="37" object_id="_347">
 			<ObjectId>XS0098379810_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -13253,7 +10119,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_417">
+		<px class_id_reference="153" object_id="_348">
 			<ObjectId>XS0098379810_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -13275,7 +10141,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_418">
+		<px class_id_reference="79" object_id="_349">
 			<ObjectId>XS0098379810_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -13289,7 +10155,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_419">
+		<px class_id_reference="12" object_id="_350">
 			<ObjectId>XS0098379810</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>WESTLB Float 14</Description>
@@ -13314,50 +10180,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_420">
-			<ObjectId>XS0098379810_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>WESTLB Float 14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Modified Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0098379810_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.040000000000000001</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.86499999999999999</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36329</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_421">
+		<px class_id_reference="148" object_id="_351">
 			<ObjectId>XS0091349489_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -13398,7 +10221,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_422">
+		<px class_id_reference="37" object_id="_352">
 			<ObjectId>XS0091349489_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -13439,7 +10262,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_423">
+		<px class_id_reference="153" object_id="_353">
 			<ObjectId>XS0091349489_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -13461,7 +10284,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_424">
+		<px class_id_reference="79" object_id="_354">
 			<ObjectId>XS0091349489_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -13475,7 +10298,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_425">
+		<px class_id_reference="12" object_id="_355">
 			<ObjectId>XS0091349489</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ITALY 15/10/18 TEC10</Description>
@@ -13500,50 +10323,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_426">
-			<ObjectId>XS0091349489_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ITALY 15/10/18 TEC10</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0091349489_Sch</ScheduleID>
-			<FixingDays>5</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.029669999999999998</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.85999999999999999</item>
-			</Gearings>
-			<SwapIndex>EurLiborSwapFixB10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>-0.0020999999999999999</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36083</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_427">
+		<px class_id_reference="148" object_id="_356">
 			<ObjectId>IT0003650998_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -13584,7 +10364,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_428">
+		<px class_id_reference="37" object_id="_357">
 			<ObjectId>IT0003650998_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -13625,7 +10405,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_429">
+		<px class_id_reference="153" object_id="_358">
 			<ObjectId>IT0003650998_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -13647,7 +10427,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_430">
+		<px class_id_reference="79" object_id="_359">
 			<ObjectId>IT0003650998_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -13661,7 +10441,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_431">
+		<px class_id_reference="12" object_id="_360">
 			<ObjectId>IT0003650998</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM 0 09</Description>
@@ -13686,50 +10466,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_432">
-			<ObjectId>IT0003650998_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM 0 09</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0003650998_Sch</ScheduleID>
-			<FixingDays>9</FixingDays>
-			<IsInArrears>1</IsInArrears>
-			<DayCounter>1/1</DayCounter>
-			<Floors>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.125</item>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>2.5</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixIFR10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38119</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_433">
+		<px class_id_reference="148" object_id="_361">
 			<ObjectId>IT0001296133_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -13770,7 +10507,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_434">
+		<px class_id_reference="37" object_id="_362">
 			<ObjectId>IT0001296133_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -13823,7 +10560,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_435">
+		<px class_id_reference="153" object_id="_363">
 			<ObjectId>IT0001296133_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -13845,7 +10582,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_436">
+		<px class_id_reference="79" object_id="_364">
 			<ObjectId>IT0001296133_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -13859,7 +10596,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_437">
+		<px class_id_reference="12" object_id="_365">
 			<ObjectId>IT0001296133</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>MONTE 0 1/4/14</Description>
@@ -13884,62 +10621,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_438">
-			<ObjectId>IT0001296133_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>MONTE 0 1/4/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001296133_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>5</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.029999999999999999</item>
-			</Floors>
-			<Gearings>
-				<count>5</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.69999999999999996</item>
-			</Gearings>
-			<SwapIndex>EurLiborSwapFixIFR10Y</SwapIndex>
-			<Spreads>
-				<count>5</count>
-				<item_version>0</item_version>
-				<item>0.059999999999999998</item>
-				<item>0.050000000000000003</item>
-				<item>0.040000000000000001</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36164</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_439">
+		<px class_id_reference="148" object_id="_366">
 			<ObjectId>IT0004011638_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -13980,7 +10662,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_440">
+		<px class_id_reference="37" object_id="_367">
 			<ObjectId>IT0004011638_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -14020,7 +10702,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_441">
+		<px class_id_reference="153" object_id="_368">
 			<ObjectId>IT0004011638_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -14042,7 +10724,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_442">
+		<px class_id_reference="79" object_id="_369">
 			<ObjectId>IT0004011638_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -14056,7 +10738,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_443">
+		<px class_id_reference="12" object_id="_370">
 			<ObjectId>IT0004011638</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIMFloat 03/11</Description>
@@ -14081,49 +10763,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_444">
-			<ObjectId>IT0004011638_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIMFloat 03/11</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0004011638_Sch</ScheduleID>
-			<FixingDays>5</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EurLiborSwapFixB10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>-0.0094999999999999998</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38792</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_445">
+		<px class_id_reference="148" object_id="_371">
 			<ObjectId>IT0001346748_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -14164,7 +10804,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_446">
+		<px class_id_reference="37" object_id="_372">
 			<ObjectId>IT0001346748_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -14210,7 +10850,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_447">
+		<px class_id_reference="153" object_id="_373">
 			<ObjectId>IT0001346748_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -14232,7 +10872,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_448">
+		<px class_id_reference="79" object_id="_374">
 			<ObjectId>IT0001346748_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -14246,7 +10886,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_449">
+		<px class_id_reference="12" object_id="_375">
 			<ObjectId>IT0001346748</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>ISPIM Var 07/14</Description>
@@ -14271,55 +10911,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_450">
-			<ObjectId>IT0001346748_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>ISPIM Var 07/14</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>IT0001346748_Sch</ScheduleID>
-			<FixingDays>4</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>4</count>
-				<item_version>0</item_version>
-				<item>0</item>
-				<item>0</item>
-				<item>0</item>
-				<item>0.65000000000000002</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixIFR10Y</SwapIndex>
-			<Spreads>
-				<count>4</count>
-				<item_version>0</item_version>
-				<item>0.080000000000000002</item>
-				<item>0.055</item>
-				<item>0.040000000000000001</item>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>36356</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_451">
+		<px class_id_reference="148" object_id="_376">
 			<ObjectId>XS0318729950_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -14360,7 +10952,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_452">
+		<px class_id_reference="37" object_id="_377">
 			<ObjectId>XS0318729950_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -14400,7 +10992,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_453">
+		<px class_id_reference="153" object_id="_378">
 			<ObjectId>XS0318729950_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -14422,7 +11014,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_454">
+		<px class_id_reference="79" object_id="_379">
 			<ObjectId>XS0318729950_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -14436,7 +11028,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_455">
+		<px class_id_reference="12" object_id="_380">
 			<ObjectId>XS0318729950</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>DBFloat 09/05/22</Description>
@@ -14461,49 +11053,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="9" object_id="_456">
-			<ObjectId>XS0318729950_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>DBFloat 09/05/22</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0318729950_Sch</ScheduleID>
-			<FixingDays>2</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.0035000000000000001</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>39330</value>
-				</variant_>
-			</IssueDate>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="148" object_id="_457">
+		<px class_id_reference="148" object_id="_381">
 			<ObjectId>XS0211163943_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -14544,7 +11094,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="37" object_id="_458">
+		<px class_id_reference="37" object_id="_382">
 			<ObjectId>XS0211163943_Cpn</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -14584,7 +11134,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_459">
+		<px class_id_reference="153" object_id="_383">
 			<ObjectId>XS0211163943_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -14606,7 +11156,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="79" object_id="_460">
+		<px class_id_reference="79" object_id="_384">
 			<ObjectId>XS0211163943_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs>
@@ -14620,7 +11170,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="12" object_id="_461">
+		<px class_id_reference="12" object_id="_385">
 			<ObjectId>XS0211163943</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>MS Var 02/10/20</Description>
@@ -14641,48 +11191,6 @@
 				</variant_>
 			</IssueDate>
 			<LegID>XS0211163943_Leg</LegID>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="9" object_id="_462">
-			<ObjectId>XS0211163943_bis</ObjectId>
-			<ClassName>qlCmsRateBond</ClassName>
-			<Description>MS Var 02/10/20</Description>
-			<Currency>EUR</Currency>
-			<SettlementDays>3</SettlementDays>
-			<PaymentBDC>Following</PaymentBDC>
-			<FaceAmount>100</FaceAmount>
-			<ScheduleID>XS0211163943_Sch</ScheduleID>
-			<FixingDays>5</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Floors>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Floors>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.83999999999999997</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA20Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<Caps>
-				<count>0</count>
-				<item_version>0</item_version>
-			</Caps>
-			<Redemption>100</Redemption>
-			<IssueDate>
-				<variant_>
-					<which>1</which>
-					<value>38393</value>
-				</variant_>
-			</IssueDate>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
