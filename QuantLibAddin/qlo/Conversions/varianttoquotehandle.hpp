@@ -26,12 +26,12 @@
 namespace ObjectHandler {
 
     template <class V>
-    struct VariantToScalar<V, QuantLib::RelinkableHandle<QuantLib::Quote> > {
-        QuantLib::RelinkableHandle<QuantLib::Quote> operator()(const V &variant) {
+    struct VariantToScalar<V, QuantLib::Handle<QuantLib::Quote> > {
+        QuantLib::Handle<QuantLib::Quote> operator()(const V &variant) {
 
             if (variant.type() == ObjectHandler::Double || variant.type() == ObjectHandler::Long) {
-                QuantLib::RelinkableHandle<QuantLib::Quote> ret;
-                ret.linkTo(boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(variant)));
+                QuantLib::Handle<QuantLib::Quote> ret(
+                    boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(variant)));
                 return ret;
             } else if (variant.type() == ObjectHandler::String) {
                 return QuantLibAddin::CoerceHandle<QuantLibAddin::Quote, QuantLib::Quote>()(variant);

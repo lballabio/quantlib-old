@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -73,7 +74,7 @@ namespace QuantLibAddin {
         CapsStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                      const std::vector<QuantLib::Period>& tenors,
                      const std::vector<QuantLib::Rate>& strikes,
-                     const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
+                     const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volatilities,
                      const boost::shared_ptr<QuantLib::IborIndex>& index,
                      const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
                      const QuantLib::DayCounter& dayCounter,
@@ -85,7 +86,7 @@ namespace QuantLibAddin {
          CapsStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                       const std::vector<QuantLib::Period>& tenors,
                       const std::vector<QuantLib::Rate>& strikes,
-                      const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
+                      const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volatilities,
                       const boost::shared_ptr<QuantLib::IborIndex>& index,
                       const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
                       const QuantLib::DayCounter& dayCounter,
@@ -122,7 +123,7 @@ namespace QuantLibAddin {
       class GenericCapletVolStructure : public OptionletVolatilityStructure {
       public:
           GenericCapletVolStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                    std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& capletVols,
+                                    std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& capletVols,
                                     const std::vector<QuantLib::Rate>& strikes,
                                     const std::vector<QuantLib::Time>& tenors,
                                     bool permanent);
@@ -137,7 +138,7 @@ namespace QuantLibAddin {
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
           const std::vector<QuantLib::Period>& optionTenors,
-          const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& volatilities,
+          const std::vector<QuantLib::Handle<QuantLib::Quote> >& volatilities,
           const QuantLib::DayCounter& dayCounter,
           bool permanent);
     };
@@ -150,7 +151,7 @@ namespace QuantLibAddin {
           const QuantLib::Calendar& calendar,
           const std::vector<QuantLib::Period>& optionTenors,
           const std::vector<QuantLib::Rate>& strikes,
-          const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
+          const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volatilities,
           const QuantLib::DayCounter& dc,
           bool permanent);
     };
@@ -164,6 +165,14 @@ namespace QuantLibAddin {
                           const boost::shared_ptr<QuantLib::IborIndex>& index,
                           QuantLib::Rate switchStrike,
                           bool permanent);
+    };
+
+    class RelinkableHandleOptionletVolatilityStructure : 
+        public RelinkableHandleImpl<QuantLibAddin::OptionletVolatilityStructure, QuantLib::OptionletVolatilityStructure> {
+    public:
+        RelinkableHandleOptionletVolatilityStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+           const std::string &objectId,
+           bool permanent) : RelinkableHandleImpl(properties, objectId, permanent) {}
     };
 
 }

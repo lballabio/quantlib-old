@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
@@ -23,17 +23,15 @@
 #define qla_termstructures_hpp
 
 #include <qlo/interpolation.hpp>
-
 #include <oh/libraryobject.hpp>
-
-#include <ql/handle.hpp>
-
+#include <qlo/handle.hpp>             // FIXME this line to be removed shortly - Eric
 #include <ql/time/frequency.hpp>
 #include <ql/compounding.hpp>
+#include <ql/yieldtermstructure.hpp>  // FIXME this line to be removed shortly - Eric
 
 namespace QuantLib {
     class Calendar;
-    class YieldTermStructure;
+    //class YieldTermStructure;  // FIXME this line to be uncommented shortly - Eric
     class DayCounter;
     class Date;
     class Quote;
@@ -116,6 +114,13 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
             const QuantLib::Date& referenceDate,
             bool permanent);
+    };
+
+    class RelinkableHandleYieldTermStructure : public RelinkableHandleImpl<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure> {
+    public:
+        RelinkableHandleYieldTermStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+           const std::string &objectId,
+           bool permanent) : RelinkableHandleImpl(properties, objectId, permanent) {}
     };
 
 }

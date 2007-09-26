@@ -53,8 +53,7 @@
     <RuleGroup name='objectConversions' indent='2' delimiter='&#10;'>
       <Wrap codeID='wrap4'/>
       <Rules>
-        <Rule tensorRank='scalar' superType='objectClass' codeID='code36a'/>
-        <Rule tensorRank='scalar' superType='objectHandle' codeID='code36b'/>
+        <Rule tensorRank='scalar' superType='objectClass' codeID='code36'/>
         <Rule tensorRank='vector' superType='objectClass' codeID='code160'/>
       </Rules>
     </RuleGroup>

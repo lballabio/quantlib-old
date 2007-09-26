@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,49 +19,59 @@
 #ifndef qla_handle_hpp
 #define qla_handle_hpp
 
-#include <oh/object.hpp>
+#include <oh/repository.hpp>
 #include <ql/handle.hpp>
 
 namespace QuantLibAddin {
 
-    template <class T>
-    class RelinkableHandle : public ObjectHandler::Object {
-      public:
-        RelinkableHandle(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const boost::shared_ptr<T> &observable,
-            bool permanent) : ObjectHandler::Object(properties, permanent) {
-
-            if (observable) {
-                handle_.linkTo(observable);
-                //currentLink_ = boost::any_cast<std::string>(propertyValue("currentLink"));
-                currentLink_ = "dummyID";
-            }
-        }
-        void linkTo(const boost::shared_ptr<T> &observable) {
-        //void linkTo(const boost::shared_ptr<ObjectHandler::Object> &object) {
-
-            //boost::shared_ptr<T> observable;
-            //object->getLibraryObject(observable);
-
-            QL_REQUIRE(observable,
-                       "Error relinking handle of type " << typeid(this).name()
-                       << " - input object is null");
-            handle_.linkTo(observable);
-
-            //currentLink_ = boost::any_cast<std::string>(object->propertyValue("ObjectId"));
-            currentLink_ = "newDummyID";
-        }
-        QuantLib::RelinkableHandle<T> getHandle() {
-            return handle_;
-        }
+    class Handle : public ObjectHandler::Object {
+    public:
         std::string currentLink() {
-            //return boost::any_cast<std::string>(propertyValue("currentLink"));
-            return currentLink_;
+            return boost::any_cast<std::string>(propertyValue("CurrentLink"));
         }
-      private:
-        QuantLib::RelinkableHandle<T> handle_;
-        std::string currentLink_;
+        virtual bool empty() const = 0;
+    protected:
+        Handle(const boost::shared_ptr<ObjectHandler::ValueObject> &properties,
+           const std::string &objectId,
+           bool permanent) : ObjectHandler::Object(properties, permanent) {}
+    };
+
+    class RelinkableHandle : public Handle {
+    public:
+        virtual void linkTo(const std::string &objectID) = 0;
+    protected:
+        RelinkableHandle(const boost::shared_ptr<ObjectHandler::ValueObject> &properties,
+           const std::string &objectId,
+           bool permanent) : Handle(properties, objectId, permanent) {}
+    };
+
+    template <class ObjectClass, class LibraryClass>
+    class RelinkableHandleImpl : public RelinkableHandle {
+
+    public:
+
+        QuantLib::RelinkableHandle<LibraryClass> &getHandle() { return relinkableHandle_; }
+
+    protected:
+
+        RelinkableHandleImpl(const boost::shared_ptr<ObjectHandler::ValueObject> &properties,
+            const std::string &objectId,
+            bool permanent) : RelinkableHandle(properties, objectId, permanent) {
+
+            linkTo(objectId);
+        }
+
+    private:
+
+        void linkTo(const std::string &objectId) {
+            OH_GET_REFERENCE_DEFAULT(observable, objectId, ObjectClass, LibraryClass)
+            relinkableHandle_.linkTo(observable);
+            properties()->setProperty("CurrentLink", objectId);
+        }
+
+        bool empty() const { return relinkableHandle_.empty(); }
+
+        QuantLib::RelinkableHandle<LibraryClass> relinkableHandle_;
     };
 
 }

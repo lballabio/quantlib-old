@@ -26,14 +26,15 @@
 
 namespace QuantLibAddin {
 
-    template <class HandleClass, class LibraryClass>
+    // FIXME could this be consolidated with curveFromHandle
+    template <class ObjectClass, class LibraryClass, class HandleClass>
     bool curveFromHandle2(
             const boost::shared_ptr<ObjectHandler::Object> &in,
             boost::shared_ptr<LibraryClass> &out) {
 
-        boost::shared_ptr<QuantLibAddin::RelinkableHandle<HandleClass> > 
+        boost::shared_ptr<QuantLibAddin::RelinkableHandleImpl<ObjectClass, LibraryClass> > 
             handleCurve = boost::dynamic_pointer_cast<
-                QuantLibAddin::RelinkableHandle<HandleClass> >(in);
+                QuantLibAddin::RelinkableHandleImpl<ObjectClass, LibraryClass> >(in);
 
         if (!handleCurve)
             return false;
@@ -63,7 +64,7 @@ namespace QuantLibAddin {
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToReference<ObjectClass, LibraryClass>,
-                curveFromHandle2<HandleClass, LibraryClass>, 
+                curveFromHandle2<ObjectClass, LibraryClass, HandleClass>, 
                 0
             };
             return conversions; 

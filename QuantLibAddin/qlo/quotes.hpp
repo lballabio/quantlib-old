@@ -3,6 +3,7 @@
  Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2006 François du Vignaud
  Copyright (C) 2006 Giorgio Facchinetti
+ Copyright (C) 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,14 +23,14 @@
 #define qla_quotes_hpp
 
 #include <oh/libraryobject.hpp>
-
-#include <ql/handle.hpp>
+#include <qlo/handle.hpp>  // FIXME this line to be removed shortly - Eric
 #include <ql/option.hpp>
 #include <ql/types.hpp>
+#include <ql/quote.hpp>    // FIXME this line to be removed shortly - Eric
 
 namespace QuantLib {
     class IborIndex;
-    class Quote;
+//    class Quote;  // FIXME this line to be uncommented shortly - Eric
     class SimpleQuote;
     class Date;
     class CapsStripper2;
@@ -98,6 +99,13 @@ namespace QuantLibAddin {
                     const QuantLib::Handle<QuantLib::Quote>& volatility,
                     const QuantLib::Handle<QuantLib::Quote>& meanReversion,
                     bool permanent);
+    };
+
+    class RelinkableHandleQuote : public RelinkableHandleImpl<QuantLibAddin::Quote, QuantLib::Quote> {
+    public:
+        RelinkableHandleQuote(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+           const std::string &objectId,
+           bool permanent) : RelinkableHandleImpl(properties, objectId, permanent) {}
     };
 
 }

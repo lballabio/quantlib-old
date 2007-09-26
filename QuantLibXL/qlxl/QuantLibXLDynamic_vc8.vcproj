@@ -311,6 +311,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Functions\handles.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Functions\index.cpp"
 				>
 			</File>
@@ -548,6 +552,10 @@
 			</File>
 			<File
 				RelativePath="Register\register_forwardrateagreement.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_handles.cpp"
 				>
 			</File>
 			<File

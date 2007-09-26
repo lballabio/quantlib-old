@@ -31,14 +31,14 @@ namespace QuantLibAddin {
     // 3) If the Object is of class QuantLibAddin::ObjectClass then convert it to a QuantLib::RelinkableHandle<LibraryClass>
     // 4) Otherwise the Object is of an unexpected class so raise an exception
 
-    template <class LibraryClass>
+    template <class ObjectClass, class LibraryClass>
     bool objectToHandle(
         const std::string &in,
-        QuantLib::RelinkableHandle<LibraryClass> &out) {
+        QuantLib::Handle<LibraryClass> &out) {
 
         OH_GET_OBJECT(object, in, ObjectHandler::Object)
-        boost::shared_ptr<QuantLibAddin::RelinkableHandle<LibraryClass> > handlePointer =
-            boost::dynamic_pointer_cast<QuantLibAddin::RelinkableHandle<LibraryClass> >(object);
+        boost::shared_ptr<RelinkableHandleImpl<ObjectClass, LibraryClass> > handlePointer =
+            boost::dynamic_pointer_cast<RelinkableHandleImpl<ObjectClass, LibraryClass> >(object);
         if (handlePointer) {
             out = handlePointer->getHandle();
             return true;
@@ -50,7 +50,7 @@ namespace QuantLibAddin {
     template <class ObjectClass, class LibraryClass>
     bool wrapObject(
         const std::string &in,
-        QuantLib::RelinkableHandle<LibraryClass> &out) {
+        QuantLib::Handle<LibraryClass> &out) {
 
         // FIXME this same get has already been performed by objectToHandle().
         // Need to find a way to cache the return value.
@@ -61,7 +61,8 @@ namespace QuantLibAddin {
         if (qloPointer) {
             boost::shared_ptr<LibraryClass> ret;
             qloPointer->getLibraryObject(ret);
-            out.linkTo(ret);
+            //out.linkTo(ret);
+            out = QuantLib::Handle<LibraryClass>(ret);
             return true;
         } else {
             return false;
@@ -71,15 +72,15 @@ namespace QuantLibAddin {
     template <class ObjectClass, class LibraryClass>
     class CoerceHandle : public ObjectHandler::Coerce<
         std::string, 
-        QuantLib::RelinkableHandle<LibraryClass> > {
+        QuantLib::Handle<LibraryClass> > {
 
         typedef typename ObjectHandler::Coerce<
             std::string,
-            QuantLib::RelinkableHandle<LibraryClass> >::Conversion Conversion;
+            QuantLib::Handle<LibraryClass> >::Conversion Conversion;
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                objectToHandle<LibraryClass>, 
+                objectToHandle<ObjectClass, LibraryClass>, 
                 wrapObject<ObjectClass, LibraryClass>, 
                 0
             };

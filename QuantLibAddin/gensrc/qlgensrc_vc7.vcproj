@@ -35,7 +35,7 @@
 				RelativePath="metadata\Addins\calc.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Addins\cpp.xml">
+				RelativePath="metadata\Addins\cpp.xml">
 			</File>
 			<File
 				RelativePath="metadata\Addins\doxygen.xml">
@@ -53,7 +53,7 @@
 				RelativePath="metadata\Addins\loop.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Addins\serialization.xml">
+				RelativePath="metadata\Addins\serialization.xml">
 			</File>
 			<File
 				RelativePath="metadata\Addins\valueobjects.xml">
@@ -76,13 +76,13 @@
 			Name="Functions"
 			Filter="">
 			<File
-				RelativePath=".\metadata\Functions\abcd.xml">
+				RelativePath="metadata\Functions\abcd.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\accountingengines.xml">
+				RelativePath="metadata\Functions\accountingengines.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\alphaform.xml">
+				RelativePath="metadata\Functions\alphaform.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\assetswap.xml">
@@ -91,7 +91,7 @@
 				RelativePath="metadata\Functions\bonds.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\browniangenerators.xml">
+				RelativePath="metadata\Functions\browniangenerators.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\calendar.xml">
@@ -106,19 +106,19 @@
 				RelativePath="metadata\Functions\cmsmarket.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\cmsmarketcalibration.xml">
+				RelativePath="metadata\Functions\cmsmarketcalibration.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\correlation.xml">
+				RelativePath="metadata\Functions\correlation.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\couponvectors.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\ctsmmcapletcalibration.xml">
+				RelativePath="metadata\Functions\ctsmmcapletcalibration.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\curvestate.xml">
+				RelativePath="metadata\Functions\curvestate.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\date.xml">
@@ -127,16 +127,19 @@
 				RelativePath="metadata\Functions\daycounter.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\driftcalculators.xml">
+				RelativePath="metadata\Functions\driftcalculators.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\evolutiondescription.xml">
+				RelativePath="metadata\Functions\evolutiondescription.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\exercise.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\forwardrateagreement.xml">
+			</File>
+			<File
+				RelativePath="metadata\Functions\handles.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\index.xml">
@@ -148,10 +151,10 @@
 				RelativePath="metadata\Functions\interpolation.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\leg.xml">
+				RelativePath="metadata\Functions\leg.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\marketmodelevolvers.xml">
+				RelativePath="metadata\Functions\marketmodelevolvers.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\marketmodels.xml">
@@ -181,16 +184,16 @@
 				RelativePath="metadata\Functions\processes.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\products.xml">
+				RelativePath="metadata\Functions\products.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\quotes.xml">
+				RelativePath="metadata\Functions\quotes.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\randomsequencegenerator.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\rangeaccrual.xml">
+				RelativePath="metadata\Functions\rangeaccrual.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\ratehelpers.xml">
@@ -238,7 +241,7 @@
 				RelativePath="metadata\Functions\volatilities.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\volatility.xml">
+				RelativePath="metadata\Functions\volatility.xml">
 			</File>
 		</Filter>
 		<Filter
@@ -263,7 +266,7 @@
 				RelativePath="metadata\Rules\loop.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Rules\serialization.xml">
+				RelativePath="metadata\Rules\serialization.xml">
 			</File>
 			<File
 				RelativePath="metadata\Rules\valueobjects.xml">
@@ -297,7 +300,7 @@
 				RelativePath="stubs\stub.copyright">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.cpp.body">
+				RelativePath="stubs\stub.cpp.body">
 			</File>
 			<File
 				RelativePath="stubs\stub.doxygen.enums">
@@ -315,7 +318,7 @@
 				RelativePath="stubs\stub.excel.includes">
 			</File>
 			<File
-				RelativePath=".\stubs\stub.serialization.includes">
+				RelativePath="stubs\stub.serialization.includes">
 			</File>
 		</Filter>
 		<File

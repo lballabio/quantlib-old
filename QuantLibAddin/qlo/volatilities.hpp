@@ -72,7 +72,7 @@ namespace QuantLibAddin {
             QuantLib::Natural settlementDays,
             const QuantLib::Calendar& cal,
             const std::vector<QuantLib::Period>& optionTenors,
-            const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > & volatilities,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> > & volatilities,
             QuantLib::BusinessDayConvention bdc,
             const QuantLib::DayCounter& dc,
             bool permanent);

@@ -55,7 +55,7 @@ namespace QuantLibAddin {
          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
          const std::vector<QuantLib::Period>& tenors,
          const std::vector<QuantLib::Rate>& strikes,
-         const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& 
+         const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& 
          volatilities,
          const boost::shared_ptr<QuantLib::IborIndex>& index,
          const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
@@ -85,7 +85,7 @@ namespace QuantLibAddin {
       const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
       const std::vector<QuantLib::Period>& tenors,
       const std::vector<QuantLib::Rate>& strikes,
-      const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
+      const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volatilities,
       const boost::shared_ptr<QuantLib::IborIndex>& index,
       const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
       const QuantLib::DayCounter& dayCounter,
@@ -170,7 +170,7 @@ namespace QuantLibAddin {
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
           const std::vector<QuantLib::Period>& optionTenors,
-          const std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> >& volatilities,
+          const std::vector<QuantLib::Handle<QuantLib::Quote> >& volatilities,
           const QuantLib::DayCounter& dayCounter,
           bool permanent) : CapFloorTermVolatilityStructure(properties, permanent)
     {
@@ -193,7 +193,7 @@ namespace QuantLibAddin {
           const QuantLib::Calendar& calendar,
           const std::vector<QuantLib::Period>& optionLengths,
           const std::vector<QuantLib::Rate>& strikes,
-          const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volatilities,
+          const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volatilities,
           const QuantLib::DayCounter& dc,
           bool permanent) : CapFloorTermVolatilityStructure(properties, permanent)
     {

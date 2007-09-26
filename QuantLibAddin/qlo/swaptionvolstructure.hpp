@@ -4,6 +4,7 @@
  Copyright (C) 2006 Silvia Frasson
  Copyright (C) 2006 Mario Pucci
  Copyright (C) 2006, 2007 Giorgio Facchinetti
+ Copyright (C) 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,11 +25,12 @@
 
 #include <qlo/termstructures.hpp>
 #include <qlo/smilesection.hpp>
-
 #include <ql/time/businessdayconvention.hpp>
+// FIXME line below to be removed shortly - Eric
+#include <ql/voltermstructures/interestrate/swaption/swaptionvolstructure.hpp>
 
 namespace QuantLib {
-    class SwaptionVolatilityStructure;
+    //class SwaptionVolatilityStructure;  // FIXME this line to be uncommented shortly - Eric
     class SwaptionVolatilityCube;
     class SwapIndex;
     class Matrix;
@@ -56,7 +58,7 @@ namespace QuantLibAddin {
                                  const QuantLib::Calendar& calendar,
                                  const std::vector<QuantLib::Period>& optionTenors,
                                  const std::vector<QuantLib::Period>& tenors,
-                                 const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& vols,
+                                 const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& vols,
                                  const QuantLib::DayCounter& dayCounter,
                                  const QuantLib::BusinessDayConvention bdc,
                                  bool permanent);
@@ -74,7 +76,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Period>& optionTenors,
             const std::vector<QuantLib::Period>& swapTenors,
             const std::vector<QuantLib::Spread>& strikeSpreads,
-            const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volSpreads,
+            const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndexBase,
             bool vegaWeightedSmileFit,
             bool permanent);
@@ -93,10 +95,10 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Period>& optionTenors,
             const std::vector<QuantLib::Period>& swapTenors,
             const std::vector<QuantLib::Spread>& strikeSpreads,
-            const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& volSpreads,
+            const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndexBase,
             bool vegaWeightedSmileFit,
-            const std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > >& parametersGuess,
+            const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& parametersGuess,
             const std::vector<bool>& isParameterFixed,
             bool isAtmCalibrated,
             const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
@@ -132,6 +134,14 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
             const QuantLib::Handle<QuantLib::Quote>&,
             bool permanent);
+    };
+
+    class RelinkableHandleSwaptionVolatilityStructure
+        : public RelinkableHandleImpl<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure> {
+    public:
+        RelinkableHandleSwaptionVolatilityStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+           const std::string &objectId,
+           bool permanent) : RelinkableHandleImpl(properties, objectId, permanent) {}
     };
         
 }

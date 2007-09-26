@@ -35,6 +35,7 @@ GENSRC_METADATA :=  metadata/Addins/calc.xml \
                     metadata/Functions/evolutiondescription.xml \
                     metadata/Functions/exercise.xml \
                     metadata/Functions/forwardrateagreement.xml \
+                    metadata/Functions/handles.xml \
                     metadata/Functions/index.xml \
                     metadata/Functions/instruments.xml \
                     metadata/Functions/interpolation.xml \

@@ -196,42 +196,16 @@
     </Member>
 
     <!-- RelinkableHandle<OptionletVolatilityStructure> -->
-    <Member name='qlRelinkableHandleOptionletVolatilityStructureLinkTo' type='QuantLib::OptionletVolatilityStructure' superType='objectHandle'>
-      <libraryFunction>linkTo</libraryFunction>
-      <description>relink handle</description>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='CurrentLink' >
-            <type>QuantLib::OptionletVolatilityStructure</type>
-            <superType>libraryClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>OptionletVolatilityStructure object ID</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Constructor name='qlRelinkableHandleOptionletVolatilityStructure'>
-      <libraryFunction>RelinkableHandle&lt;QuantLib::OptionletVolatilityStructure&gt;</libraryFunction>
+      <libraryFunction>RelinkableHandleOptionletVolatilityStructure</libraryFunction>
       <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
           <Parameter name='CurrentLink' default='""'>
-            <type>QuantLib::OptionletVolatilityStructure</type>
-            <superType>libraryClass</superType>
+            <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>OptionletVolatilityStructure object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
           </Parameter>

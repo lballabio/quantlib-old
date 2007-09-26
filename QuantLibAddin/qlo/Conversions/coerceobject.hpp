@@ -26,13 +26,14 @@
 namespace QuantLibAddin {
 
     // Accept an id of an Object in the Repository and return a boost::shared_ptr<LibraryClass>.
-    // 1) If the Object is of class QuantLibAddin::RelinkableHandle then return the contained boost::shared_ptr<LibraryClass>
-    // 2) If the Object is of class QuantLibAddin::ObjectClass then return the contained boost::shared_ptr<LibraryClass>
+    // 1) If the Object is of class QuantLibAddin::ObjectClass then return the contained boost::shared_ptr<LibraryClass>
+    // 2) If the Object is of class QuantLibAddin::Handle then return the contained boost::shared_ptr<LibraryClass>
     // 3) Otherwise the Object is of an unexpected class so raise an exception
 
     template <class ObjectClass, class LibraryClass>
-    bool objectToReference(const boost::shared_ptr<ObjectHandler::Object> &in,
-                           boost::shared_ptr<LibraryClass> &out) {
+    bool objectToReference(
+        const boost::shared_ptr<ObjectHandler::Object> &in,
+        boost::shared_ptr<LibraryClass> &out) {
 
         boost::shared_ptr<ObjectClass> qloPointer = 
             boost::dynamic_pointer_cast<ObjectClass>(in);
@@ -43,36 +44,37 @@ namespace QuantLibAddin {
             return false;
         }
     }
+    
+    template <class ObjectClass, class LibraryClass>
+    bool handleToReference(
+        const boost::shared_ptr<ObjectHandler::Object> &in,
+        boost::shared_ptr<LibraryClass> &out) {
 
-    template <class LibraryClass>
-    bool handleToReference(const boost::shared_ptr<ObjectHandler::Object> &in,
-                           boost::shared_ptr<LibraryClass> &out) {
+        boost::shared_ptr<RelinkableHandleImpl<ObjectClass, LibraryClass> > handlePointer =
+            boost::dynamic_pointer_cast<RelinkableHandleImpl<ObjectClass, LibraryClass> >(in);
 
-        boost::shared_ptr<RelinkableHandle<LibraryClass> > handlePointer =
-            boost::dynamic_pointer_cast<RelinkableHandle<LibraryClass> >(in);
-
-        if (!handlePointer)
+        if (handlePointer) {
+            out = handlePointer->getHandle().currentLink();
+            OH_REQUIRE(out, "unable to retrieve reference contained in handle");
+            return true;
+        } else {
             return false;
-
-        out = handlePointer->getHandle().currentLink();
-        OH_REQUIRE(out, "unable to retrieve reference contained in handle");
-
-        return true;
+        }
     }
 
     template <class ObjectClass, class LibraryClass>
     class CoerceObject : public ObjectHandler::Coerce<
-            boost::shared_ptr<ObjectHandler::Object>, 
-            boost::shared_ptr<LibraryClass> > {
+        boost::shared_ptr<ObjectHandler::Object>, 
+        boost::shared_ptr<LibraryClass> > {
 
         typedef typename ObjectHandler::Coerce<
             boost::shared_ptr<ObjectHandler::Object>,
             boost::shared_ptr<LibraryClass> >::Conversion Conversion;
-
+ 
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToReference<ObjectClass, LibraryClass>,
-                handleToReference<LibraryClass>,
+                handleToReference<ObjectClass, LibraryClass>,
                 0
             };
             return conversions; 

@@ -151,6 +151,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\handles.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\index.xml"
 				>
 			</File>

@@ -91,11 +91,8 @@ code35 = '''\
         std::vector<%(type)s> %(name)sEnum =
             ObjectHandler::vectorStringToEnum<%(type)s>(%(name)sCpp, "%(name)s");\n'''
 
-code36a = '''\
+code36 = '''\
         OH_GET_OBJECT(%(name)sObj, %(name)s, %(type)s)\n'''
-
-code36b = '''\
-        OH_GET_OBJECT(%(name)sObj, %(name)s, QuantLibAddin::RelinkableHandle<%(type)s>)\n'''
 
 code37 = '''\
         std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(name)sObj =
@@ -123,26 +120,26 @@ code42 = '''\
             *%(name)s, "%(name)s");\n'''
 
 code43 = '''\
-        std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > %(name)sLibObj =
-            ObjectHandler::operToVector<QuantLib::RelinkableHandle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
+        std::vector<QuantLib::Handle<QuantLib::Quote> > %(name)sLibObj =
+            ObjectHandler::operToVector<QuantLib::Handle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
 
 code44a = '''\
-        %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
-                    %(name)sCpp, %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s>());\n'''
+                    %(name)sCpp, %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s>());\n'''
 
 code44b = '''\
-        %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)s);\n'''
 
 code45a = '''\
-        QuantLib::RelinkableHandle<QuantLib::Quote> %(name)sLibObj = 
-            ObjectHandler::operToScalar<QuantLib::RelinkableHandle<QuantLib::Quote> >(
+        QuantLib::Handle<QuantLib::Quote> %(name)sLibObj = 
+            ObjectHandler::operToScalar<QuantLib::Handle<QuantLib::Quote> >(
                 *%(name)s, "%(name)s");\n'''
 
 code45b = '''\
@@ -181,8 +178,8 @@ code49 = '''\
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code50 = '''\
-        std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > > %(name)sLibObj =
-            ObjectHandler::operToMatrix<QuantLib::RelinkableHandle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(name)sLibObj =
+            ObjectHandler::operToMatrix<QuantLib::Handle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
 
 code51 = '''\
 std::vector<std::vector<std::string> > returnValue = '''
@@ -331,17 +328,17 @@ code213 = '''\
             %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code214 = '''\
-        QuantLib::RelinkableHandle<QuantLib::Quote> %(name)sLibObj = 
-            ObjectHandler::ohVariantToScalar<QuantLib::RelinkableHandle<QuantLib::Quote> >(
+        QuantLib::Handle<QuantLib::Quote> %(name)sLibObj = 
+            ObjectHandler::ohVariantToScalar<QuantLib::Handle<QuantLib::Quote> >(
                 %(name)s, "%(name)s");\n'''
 
 code215 = '''\
-        std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > > %(name)sLibObj =
-            ObjectHandler::ohVariantToMatrix<QuantLib::RelinkableHandle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(name)sLibObj =
+            ObjectHandler::ohVariantToMatrix<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 code218 = '''\
-        std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > %(name)sLibObj =
-            ObjectHandler::ohVariantToVector<QuantLib::RelinkableHandle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
+        std::vector<QuantLib::Handle<QuantLib::Quote> > %(name)sLibObj =
+            ObjectHandler::ohVariantToVector<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 ##########################################################################
 # code for Calc
@@ -591,17 +588,17 @@ code135 = '''\
             QuantLibAddin::vvToQlMatrix(%(name)s);\n'''
 
 code140 = '''\
-        QuantLib::RelinkableHandle<QuantLib::Quote> %(name)sLibObj = 
-            ObjectHandler::ohVariantToScalar<QuantLib::RelinkableHandle<QuantLib::Quote> >(
+        QuantLib::Handle<QuantLib::Quote> %(name)sLibObj = 
+            ObjectHandler::ohVariantToScalar<QuantLib::Handle<QuantLib::Quote> >(
                 %(name)s, "%(name)s");\n'''
 
 code150 = '''\
-        std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > %(name)sLibObj =
-            ObjectHandler::ohVariantToVector<QuantLib::RelinkableHandle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
+        std::vector<QuantLib::Handle<QuantLib::Quote> > %(name)sLibObj =
+            ObjectHandler::ohVariantToVector<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 code151 = '''\
-        std::vector<std::vector<QuantLib::RelinkableHandle<QuantLib::Quote> > > %(name)sLibObj =
-            ObjectHandler::ohVariantToMatrix<QuantLib::RelinkableHandle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(name)sLibObj =
+            ObjectHandler::ohVariantToMatrix<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 code152 = '''\
         boost::shared_ptr<QuantLib::Quote> %(name)sLibObj =
@@ -626,11 +623,11 @@ code162 = '''\
             ObjectHandler::vectorStringToEnum<%(type)s>(%(name)s, "%(name)s");\n'''
 
 code163 = '''\
-        %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
-                    %(name)s, %(namespaceLibrary)s::RelinkableHandle<%(namespaceLibrary)s::%(classname)s>());\n'''
+                    %(name)s, %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s>());\n'''
 
 ##########################################################################
 # code for C
