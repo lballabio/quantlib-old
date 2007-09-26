@@ -125,27 +125,24 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dc,
             bool permanent) : SmileSection(properties, permanent)
     {
-       std::vector<QuantLib::Handle<QuantLib::Quote> > temp(stdDevHandles.size());
-       for(QuantLib::Size i = 0; i<temp.size(); ++i)
-            temp[i] = stdDevHandles[i];
-       libraryObject_ = 
-           boost::shared_ptr<QuantLib::SabrInterpolatedSmileSection>(
-            new QuantLib::SabrInterpolatedSmileSection(optionDate,
-                                                   strikes,
-                                                   temp,
-                                                   forward,
-                                                   alpha,
-                                                   beta,
-                                                   nu,
-                                                   rho,
-                                                   isAlphaFixed,
-                                                   isBetaFixed,
-                                                   isNuFixed,
-                                                   isRhoFixed,
-                                                   vegaWeighted,
-                                                   endCriteria,
-                                                   method,
-                                                   dc));
+        libraryObject_ = 
+            boost::shared_ptr<QuantLib::SabrInterpolatedSmileSection>(new
+                QuantLib::SabrInterpolatedSmileSection(optionDate,
+                                                       strikes,
+                                                       stdDevHandles,
+                                                       forward,
+                                                       alpha,
+                                                       beta,
+                                                       nu,
+                                                       rho,
+                                                       isAlphaFixed,
+                                                       isBetaFixed,
+                                                       isNuFixed,
+                                                       isRhoFixed,
+                                                       vegaWeighted,
+                                                       endCriteria,
+                                                       method,
+                                                       dc));
     }
         
     SabrInterpolatedSmileSection2::SabrInterpolatedSmileSection2(

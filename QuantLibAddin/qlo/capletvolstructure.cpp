@@ -55,8 +55,7 @@ namespace QuantLibAddin {
          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
          const std::vector<QuantLib::Period>& tenors,
          const std::vector<QuantLib::Rate>& strikes,
-         const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& 
-         volatilities,
+         const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& vols,
          const boost::shared_ptr<QuantLib::IborIndex>& index,
          const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
          const QuantLib::DayCounter& dayCounter,
@@ -66,18 +65,12 @@ namespace QuantLibAddin {
          bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         std::vector<boost::shared_ptr<QuantLib::SmileSection> > dummySmileSections;
-        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
-        QuantLib::Size nbColumns  = volatilities.front().size();
-        for(QuantLib::Size i = 0; i<temp.size(); ++i){
-            temp[i].resize(nbColumns);
-            for (QuantLib::Size j = 0; j<nbColumns; ++j)
-                temp[i][j]=  volatilities[i][j];
-        }
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapsStripper(tenors, strikes, temp, 
-            index, yieldTermStructure, dayCounter, impliedVolatilityAccuracy, 
-                maxEvaluations, dummySmileSections, true, 
-                decoupledInterpolations));
+            QuantLib::CapsStripper(tenors, strikes, vols, 
+                                   index, yieldTermStructure, dayCounter,
+                                   impliedVolatilityAccuracy, 
+                                   maxEvaluations, dummySmileSections, true, 
+                                   decoupledInterpolations));
     }
 
     
@@ -85,7 +78,7 @@ namespace QuantLibAddin {
       const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
       const std::vector<QuantLib::Period>& tenors,
       const std::vector<QuantLib::Rate>& strikes,
-      const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volatilities,
+      const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& vols,
       const boost::shared_ptr<QuantLib::IborIndex>& index,
       const QuantLib::Handle<QuantLib::YieldTermStructure> yieldTermStructure,
       const QuantLib::DayCounter& dayCounter,
@@ -96,21 +89,16 @@ namespace QuantLibAddin {
       bool decoupledInterpolation,
       bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
-        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
-        QuantLib::Size nbColumns  = volatilities.front().size();
-        for(QuantLib::Size i = 0; i<temp.size(); ++i){
-            temp[i].resize(nbColumns);
-            for (QuantLib::Size j = 0; j<nbColumns; ++j)
-                temp[i][j]=  volatilities[i][j];
-        }
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapsStripper(tenors, strikes, temp, 
-            index, yieldTermStructure, dayCounter, impliedVolatilityAccuracy, 
-            maxEvaluations, smileSectionInterfaces, decoupledInterpolation));
+            QuantLib::CapsStripper(tenors, strikes, vols, 
+                                   index, yieldTermStructure, dayCounter,
+                                   impliedVolatilityAccuracy, 
+                                   maxEvaluations, smileSectionInterfaces,
+                                   decoupledInterpolation));
     }
 
 
- CapsStripper::CapsStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+  CapsStripper::CapsStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                              const std::vector<QuantLib::Period>& tenors,
                              const std::vector<QuantLib::Rate>& strikes,
                              const boost::shared_ptr<QuantLib::CapFloorTermVolSurface>& surface,
@@ -170,21 +158,17 @@ namespace QuantLibAddin {
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
           const std::vector<QuantLib::Period>& optionTenors,
-          const std::vector<QuantLib::Handle<QuantLib::Quote> >& volatilities,
+          const std::vector<QuantLib::Handle<QuantLib::Quote> >& vols,
           const QuantLib::DayCounter& dayCounter,
           bool permanent) : CapFloorTermVolatilityStructure(properties, permanent)
     {
-        std::vector<QuantLib::Handle<QuantLib::Quote> > temp(volatilities.size());
-        for(QuantLib::Size i = 0; i<temp.size(); ++i){
-            temp[i] = volatilities[i];
-        }
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapFloorTermVolCurve(settlementDays,
-                                          calendar,
-                                          optionTenors,
-                                          temp,
-                                          QuantLib::Following,
-                                          dayCounter));
+                                           calendar,
+                                           optionTenors,
+                                           vols,
+                                           QuantLib::Following,
+                                           dayCounter));
     }
 
     CapFloorTermVolSurface::CapFloorTermVolSurface(
@@ -193,24 +177,18 @@ namespace QuantLibAddin {
           const QuantLib::Calendar& calendar,
           const std::vector<QuantLib::Period>& optionLengths,
           const std::vector<QuantLib::Rate>& strikes,
-          const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volatilities,
+          const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& vols,
           const QuantLib::DayCounter& dc,
           bool permanent) : CapFloorTermVolatilityStructure(properties, permanent)
     {
-        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volatilities.size());
-        for(QuantLib::Size i = 0; i<temp.size(); ++i) {
-            temp[i].resize(volatilities[0].size());
-            for (QuantLib::Size j=0; j<volatilities[0].size(); ++j)
-                temp[i][j] = volatilities[i][j];
-        }
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapFloorTermVolSurface(settlementDays,
-                                           calendar,
-                                           optionLengths,
-                                           strikes,
-                                           temp,
-                                          QuantLib::Following,
-                                           dc));
+                                             calendar,
+                                             optionLengths,
+                                             strikes,
+                                             vols,
+                                             QuantLib::Following,
+                                             dc));
     }
 
     OptionletStripper::OptionletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

@@ -71,24 +71,19 @@ namespace QuantLibAddin {
             QuantLib::Natural settlementDays,
             const QuantLib::Calendar& cal,
             const std::vector<QuantLib::Period>& optionTenors,
-            const std::vector<QuantLib::Handle<QuantLib::Quote> > & volatilities,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> > & vols,
             QuantLib::BusinessDayConvention bdc,
             const QuantLib::DayCounter& dc,
             bool permanent)
     : BlackAtmVolCurve(properties, permanent)
     {
-        std::vector<QuantLib::Handle<QuantLib::Quote> > temp(volatilities.size());
-        for (QuantLib::Size i=0; i<temp.size(); ++i)
-            temp[i] = volatilities[i];
-
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::AbcdAtmVolCurve>(new
-                QuantLib::AbcdAtmVolCurve(settlementDays,
-                                          cal,
-                                          optionTenors,
-                                          temp,
-                                          bdc,
-                                          dc));
+        libraryObject_ = boost::shared_ptr<QuantLib::AbcdAtmVolCurve>(new
+            QuantLib::AbcdAtmVolCurve(settlementDays,
+                                      cal,
+                                      optionTenors,
+                                      vols,
+                                      bdc,
+                                      dc));
     }
 
 }

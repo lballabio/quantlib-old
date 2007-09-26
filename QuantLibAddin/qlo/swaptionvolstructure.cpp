@@ -93,24 +93,17 @@ namespace QuantLibAddin {
         const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
         const boost::shared_ptr<QuantLib::SwapIndex>& swapIndexBase,
         bool vegaWeightedSmileFit,
-        bool permanent) : SwaptionVolatilityCube(properties, permanent) {
-
-        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(volSpreads.size());
-        QuantLib::Size nbColumns  = volSpreads.front().size();
-        for(QuantLib::Size i = 0; i<temp.size(); ++i){
-            temp[i].resize(nbColumns);
-            for (QuantLib::Size j = 0; j<nbColumns; ++j)
-                temp[i][j]=  volSpreads[i][j];
-        }
+        bool permanent) : SwaptionVolatilityCube(properties, permanent)
+    {
         QL_REQUIRE(!atmVol.empty(), "atm vol handle not linked to anything");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SwaptionVolCube2(atmVol,
-                                                     optionTenors,
-                                                     swapTenors,
-                                                     strikeSpreads,
-                                                     temp,
-                                                     swapIndexBase,
-                                                     vegaWeightedSmileFit));
+                                       optionTenors,
+                                       swapTenors,
+                                       strikeSpreads,
+                                       volSpreads,
+                                       swapIndexBase,
+                                       vegaWeightedSmileFit));
     }
 
     SwaptionVolCube1::SwaptionVolCube1(
@@ -128,33 +121,18 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
         QuantLib::Real maxErrorTolerance,
         const boost::shared_ptr<QuantLib::OptimizationMethod>& optMethod,
-        bool permanent) : SwaptionVolatilityCube(properties, permanent) {
-
-        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp1(volSpreads.size());
-        QuantLib::Size nbColumns  = volSpreads.front().size();
-        for(QuantLib::Size i = 0; i<temp1.size(); ++i){
-            temp1[i].resize(nbColumns);
-            for (QuantLib::Size j = 0; j<nbColumns; ++j)
-                temp1[i][j]=  volSpreads[i][j];
-        }
-
-        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > temp(parametersGuess.size());
-        nbColumns  = parametersGuess.front().size();
-        for(QuantLib::Size i = 0; i<temp.size(); ++i){
-            temp[i].resize(nbColumns);
-            for (QuantLib::Size j = 0; j<nbColumns; ++j)
-                temp[i][j]=  parametersGuess[i][j];
-        }
+        bool permanent) : SwaptionVolatilityCube(properties, permanent)
+    {
         QL_REQUIRE(!atmVol.empty(), "atm vol handle not linked to anything");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SwaptionVolCube1(atmVol,
                                        optionTenors,
                                        swapTenors,
                                        strikeSpreads,
-                                       temp1,
+                                       volSpreads,
                                        swapIndexBase,
                                        vegaWeightedSmileFit,
-                                       temp,
+                                       parametersGuess,
                                        isParameterFixed,
                                        isAtmCalibrated,
                                        endCriteria,
