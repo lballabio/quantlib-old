@@ -140,11 +140,11 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlIndexAddFixings2' type='QuantLibAddin::Index'>
+    <!--<Member name='qlIndexAddFixings2' type='QuantLib::Index'>
       <description>Adds fixings for the given Index object</description>
       <libraryFunction>addFixings</libraryFunction>
       <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        --><!--SupportedPlatform name='Excel' calcInWizard='false'/--><!--
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
@@ -167,7 +167,7 @@
         <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Member>-->
 
     <Member name='qlIndexClearFixings' type='QuantLib::Index'>
       <description>Clear all fixings for the given Index object</description>
