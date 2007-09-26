@@ -20,25 +20,39 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/timeseries.hpp>
+#include <ql/timeseries.hpp>
 #include <ql/errors.hpp>
 
 namespace QuantLibAddin {
 
    TimeSeries::TimeSeries(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const std::vector<QuantLib::Date>& d,
-        const std::vector<QuantLib::Real>& x,
+        const std::vector<QuantLib::Date>& dates,
+        const std::vector<QuantLib::Real>& values,
         bool permanent)
    : ObjectHandler::LibraryObject<QuantLib::TimeSeries<QuantLib::Real> >(properties, permanent)
    {
-        QL_REQUIRE(x.size()==d.size(),
-                  "unmatched size between dates (" << d.size() <<
-                  ") and values(" << x.size() << ")");
+        QL_REQUIRE(values.size()==dates.size(),
+                  "unmatched size between dates (" << dates.size() <<
+                  ") and values(" << values.size() << ")");
+
+        std::vector<QuantLib::Date> d;
+        std::vector<QuantLib::Real> v;
+        for (QuantLib::Size i=0; i<values.size(); ++i) {
+            // skip null fixings
+            if (values[i]!=0.0 && values[i]!=QuantLib::Null<QuantLib::Real>()) {
+                QL_REQUIRE(values[i]>0.0,
+                           "non positive fixing (" << values[i] <<
+                           ") at date " << dates[i] << " not allowed");
+                d.push_back(dates[i]);
+                v.push_back(values[i]);
+            }
+        }
 
         libraryObject_ =
             boost::shared_ptr<QuantLib::TimeSeries<QuantLib::Real> >(new
                 QuantLib::TimeSeries<QuantLib::Real>(d.begin(),
                                                      d.end(),
-                                                     x.begin()));
+                                                     v.begin()));
     }
 }

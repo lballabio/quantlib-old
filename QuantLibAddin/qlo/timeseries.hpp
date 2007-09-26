@@ -20,16 +20,25 @@
 #define qla_timeseries_hpp
 
 #include <oh/libraryobject.hpp>
-#include <ql/timeseries.hpp>
+#include <ql/types.hpp>
+#include <map>
+
+namespace QuantLib {
+    class Date;
+
+    template <class T, class Container>
+    class TimeSeries;
+}
 
 namespace QuantLibAddin {
 
-    class TimeSeries : public ObjectHandler::LibraryObject<QuantLib::TimeSeries<QuantLib::Real> > {
+    class TimeSeries : public ObjectHandler::LibraryObject<
+                            QuantLib::TimeSeries<QuantLib::Real, std::map<QuantLib::Date, QuantLib::Real> > > {
       public:
         TimeSeries(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::vector<QuantLib::Date>& d,
-            const std::vector<QuantLib::Real>& x,
+            const std::vector<QuantLib::Date>& dates,
+            const std::vector<QuantLib::Real>& values,
             bool permanent);
     };
 }
