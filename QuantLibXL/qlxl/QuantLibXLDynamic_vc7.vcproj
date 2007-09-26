@@ -316,6 +316,9 @@
 				RelativePath="Register\register_termstructures.cpp">
 			</File>
 			<File
+				RelativePath=".\Register\register_timeseries.cpp">
+			</File>
+			<File
 				RelativePath="Register\register_utilities.cpp">
 			</File>
 			<File
@@ -486,6 +489,9 @@
 			</File>
 			<File
 				RelativePath="Functions\termstructures.cpp">
+			</File>
+			<File
+				RelativePath=".\Functions\timeseries.cpp">
 			</File>
 			<File
 				RelativePath="Functions\utilities.cpp">
@@ -812,6 +818,12 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_termstructures.hpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_timeseries.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_timeseries.hpp">
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_vanillaswap.cpp">
