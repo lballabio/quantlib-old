@@ -59,8 +59,8 @@ int main() {
         // Enable extrapolation for the yield curve
 
         qlExtrapolatorEnableExtrapolation(yieldCurveID, true, OH_NULL);
-        qlRelinkableHandleYieldTermStructureLinkTo("EuriborYC3M", yieldCurveID, OH_NULL);
-        qlRelinkableHandleYieldTermStructureLinkTo("EuriborYC6M", yieldCurveID, OH_NULL);
+        qlRelinkableHandleLinkTo("EuriborYC3M", yieldCurveID, OH_NULL);
+        qlRelinkableHandleLinkTo("EuriborYC6M", yieldCurveID, OH_NULL);
 
         // Check that the yield curve bootstraps OK
 
