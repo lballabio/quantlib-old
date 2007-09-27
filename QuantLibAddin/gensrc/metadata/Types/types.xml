@@ -123,7 +123,6 @@
         <DataType>QuantLib::CTSMMCapletMaxHomogeneityCalibration</DataType>
         <DataType>QuantLib::CTSMMCapletOriginalCalibration</DataType>
         <DataType>QuantLib::CapFloor</DataType>
-        <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
         <DataType>QuantLib::CmsCouponPricer</DataType>
         <DataType>QuantLib::CmsMarket</DataType>
         <DataType>QuantLib::CmsMarketCalibration</DataType>
@@ -161,7 +160,6 @@
         <DataType>QuantLib::MultiProductComposite</DataType>
         <DataType>QuantLib::OneAssetOption</DataType>
         <DataType>QuantLib::OptimizationMethod</DataType>
-        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Payoff</DataType>
         <DataType>QuantLib::PiecewiseConstantAbcdVariance</DataType>
         <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
@@ -184,14 +182,11 @@
         <DataType>QuantLib::SwapIndex</DataType>
         <DataType>QuantLib::SwapRateHelper</DataType>
         <DataType>QuantLib::Swaption</DataType>
-        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::SymmetricSchurDecomposition</DataType>
         <DataType>QuantLib::TimeHomogeneousForwardCorrelation</DataType>
         <DataType>QuantLib::TimeSeries</DataType>
         <DataType>QuantLib::TypePayoff</DataType>
         <DataType>QuantLib::VanillaSwap</DataType>
-        <DataType>QuantLib::VolatilityTermStructure</DataType>
-        <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
