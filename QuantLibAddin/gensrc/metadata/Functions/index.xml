@@ -5,6 +5,7 @@
   <addinIncludes>
     <include>qlo/index.hpp</include>
     <include>qlo/termstructures.hpp</include>
+    <include>qlo/timeseries.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
@@ -144,13 +145,12 @@
       <description>Adds fixings for the given Index object</description>
       <libraryFunction>addFixings</libraryFunction>
       <SupportedPlatforms>
-        --><!--SupportedPlatform name='Excel' calcInWizard='false'/--><!--
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='TimeSeriesID' libraryType='QuantLib::TimeSeries'>
+          <Parameter name='TimeSeriesID'>
             <type>QuantLib::TimeSeries</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
