@@ -205,11 +205,10 @@ namespace QuantLibAddin {
     OptionletStripper2::OptionletStripper2(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                            const QuantLib::Handle<QuantLib::OptionletStripper>& optionletStripper,
                                            const QuantLib::Handle<QuantLib::CapFloorTermVolCurve>& atmCapFloorTermVolCurve,
-                                           const std::vector<QuantLib::Rate>& atmStrikes,
                                            bool permanent) : dummyClass1(properties, permanent) {
         
         libraryObject_ = boost::shared_ptr<QuantLib::OptionletStripper2>(new
-            QuantLib::OptionletStripper2(optionletStripper, atmCapFloorTermVolCurve, atmStrikes));
+            QuantLib::OptionletStripper2(optionletStripper, atmCapFloorTermVolCurve));
     }
 
 

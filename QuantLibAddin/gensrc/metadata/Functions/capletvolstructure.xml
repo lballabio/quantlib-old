@@ -476,11 +476,6 @@
             <tensorRank>scalar</tensorRank>
             <description>Cap VolatilityCurve.</description>
           </Parameter>
-          <Parameter name='Atmstrikes' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
-            <type>QuantLib::Rate</type>
-            <tensorRank>vector</tensorRank>
-            <description>atm strikes.</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -502,7 +497,22 @@
     
     <Member name='qlOptionletStripper2AtmOptionPrice' type='QuantLib::OptionletStripper2' superType='handleToLib'>
       <description></description>
-      <libraryFunction>atmOptionPrice</libraryFunction>
+      <libraryFunction>atmOptionPrices</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlOptionletStripper2AtmOptionStrikes' type='QuantLib::OptionletStripper2' superType='handleToLib'>
+      <description></description>
+      <libraryFunction>atmOptionStrikes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
