@@ -5,6 +5,7 @@
   <addinIncludes>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
+    <include>qlo/handleimpl.hpp</include>
     <include>ql/interestrate.hpp</include>
   </addinIncludes>
   <serializationIncludes>
@@ -311,7 +312,7 @@
 
     <!-- RelinkableHandle<YieldTermStructure> -->
     <Constructor name='qlRelinkableHandleYieldTermStructure'>
-      <libraryFunction>RelinkableHandleYieldTermStructure</libraryFunction>
+      <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>

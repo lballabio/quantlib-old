@@ -8,6 +8,7 @@
     <include>qlo/optimization.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/index.hpp</include>
+    <include>qlo/handleimpl.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
@@ -270,7 +271,7 @@
 
     <!-- RelinkableHandle<SwaptionVolatilityStructure> -->
     <Constructor name='qlRelinkableHandleSwaptionVolatilityStructure'>
-      <libraryFunction>RelinkableHandleSwaptionVolatilityStructure</libraryFunction>
+      <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>

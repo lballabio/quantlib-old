@@ -40,6 +40,7 @@ include_HEADERS = \
     forwardvanillaoption.hpp \
     getcovariance.hpp \
     handle.hpp \
+    handleimpl.hpp \
     index.hpp \
     interpolation2D.hpp \
     interpolation.hpp \

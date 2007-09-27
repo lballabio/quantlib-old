@@ -23,14 +23,13 @@
 #define qla_quotes_hpp
 
 #include <oh/libraryobject.hpp>
-#include <qlo/handle.hpp>  // FIXME this line to be removed shortly - Eric
+#include <ql/handle.hpp>
 #include <ql/option.hpp>
 #include <ql/types.hpp>
-#include <ql/quote.hpp>    // FIXME this line to be removed shortly - Eric
 
 namespace QuantLib {
     class IborIndex;
-//    class Quote;  // FIXME this line to be uncommented shortly - Eric
+    class Quote;
     class SimpleQuote;
     class Date;
     class CapsStripper2;
@@ -99,13 +98,6 @@ namespace QuantLibAddin {
                     const QuantLib::Handle<QuantLib::Quote>& volatility,
                     const QuantLib::Handle<QuantLib::Quote>& meanReversion,
                     bool permanent);
-    };
-
-    class RelinkableHandleQuote : public RelinkableHandleImpl<QuantLibAddin::Quote, QuantLib::Quote> {
-    public:
-        RelinkableHandleQuote(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-           const std::string &objectId,
-           bool permanent) : RelinkableHandleImpl<QuantLibAddin::Quote, QuantLib::Quote>(properties, objectId, permanent) {}
     };
 
 }

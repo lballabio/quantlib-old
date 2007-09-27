@@ -19,14 +19,13 @@
 #ifndef qla_handle_hpp
 #define qla_handle_hpp
 
-#include <oh/repository.hpp>
-#include <ql/handle.hpp>
+#include <oh/object.hpp>
 
 namespace QuantLibAddin {
 
     class Handle : public ObjectHandler::Object {
     public:
-        std::string currentLink() {
+        std::string currentLink() const {
             return boost::any_cast<std::string>(propertyValue("CurrentLink"));
         }
         virtual bool empty() const = 0;
@@ -43,35 +42,6 @@ namespace QuantLibAddin {
         RelinkableHandle(const boost::shared_ptr<ObjectHandler::ValueObject> &properties,
            const std::string &objectId,
            bool permanent) : Handle(properties, objectId, permanent) {}
-    };
-
-    template <class ObjectClass, class LibraryClass>
-    class RelinkableHandleImpl : public RelinkableHandle {
-
-    public:
-
-        QuantLib::RelinkableHandle<LibraryClass> &getHandle() { return relinkableHandle_; }
-
-    protected:
-
-        RelinkableHandleImpl(const boost::shared_ptr<ObjectHandler::ValueObject> &properties,
-            const std::string &objectId,
-            bool permanent) : RelinkableHandle(properties, objectId, permanent) {
-
-            linkTo(objectId);
-        }
-
-    private:
-
-        void linkTo(const std::string &objectId) {
-            OH_GET_REFERENCE_DEFAULT(observable, objectId, ObjectClass, LibraryClass)
-            relinkableHandle_.linkTo(observable);
-            properties()->setProperty("CurrentLink", objectId);
-        }
-
-        bool empty() const { return relinkableHandle_.empty(); }
-
-        QuantLib::RelinkableHandle<LibraryClass> relinkableHandle_;
     };
 
 }

@@ -7,6 +7,7 @@
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/handleimpl.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/capstripper.hpp</include>
@@ -200,7 +201,7 @@
 
     <!-- RelinkableHandle<OptionletVolatilityStructure> -->
     <Constructor name='qlRelinkableHandleOptionletVolatilityStructure'>
-      <libraryFunction>RelinkableHandleOptionletVolatilityStructure</libraryFunction>
+      <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::OptionletVolatilityStructure, QuantLib::OptionletVolatilityStructure&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>

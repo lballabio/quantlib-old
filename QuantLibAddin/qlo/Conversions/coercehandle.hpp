@@ -21,7 +21,7 @@
 
 #include <oh/Conversions/coerce.hpp>
 #include <oh/exception.hpp>
-#include <qlo/handle.hpp>
+#include <qlo/handleimpl.hpp>
 
 namespace QuantLibAddin {
 

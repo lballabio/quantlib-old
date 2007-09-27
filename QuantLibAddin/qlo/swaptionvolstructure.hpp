@@ -26,11 +26,9 @@
 #include <qlo/termstructures.hpp>
 #include <qlo/smilesection.hpp>
 #include <ql/time/businessdayconvention.hpp>
-// FIXME line below to be removed shortly - Eric
-#include <ql/voltermstructures/interestrate/swaption/swaptionvolstructure.hpp>
 
 namespace QuantLib {
-    //class SwaptionVolatilityStructure;  // FIXME this line to be uncommented shortly - Eric
+    class SwaptionVolatilityStructure;  // FIXME this line to be uncommented shortly - Eric
     class SwaptionVolatilityCube;
     class SwapIndex;
     class Matrix;
@@ -134,14 +132,6 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
             const QuantLib::Handle<QuantLib::Quote>&,
             bool permanent);
-    };
-
-    class RelinkableHandleSwaptionVolatilityStructure
-        : public RelinkableHandleImpl<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure> {
-    public:
-        RelinkableHandleSwaptionVolatilityStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-           const std::string &objectId,
-           bool permanent) : RelinkableHandleImpl<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>(properties, objectId, permanent) {}
     };
         
 }

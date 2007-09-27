@@ -24,14 +24,13 @@
 
 #include <qlo/interpolation.hpp>
 #include <oh/libraryobject.hpp>
-#include <qlo/handle.hpp>             // FIXME this line to be removed shortly - Eric
+#include <ql/handle.hpp>
 #include <ql/time/frequency.hpp>
 #include <ql/compounding.hpp>
-#include <ql/yieldtermstructure.hpp>  // FIXME this line to be removed shortly - Eric
 
 namespace QuantLib {
     class Calendar;
-    //class YieldTermStructure;  // FIXME this line to be uncommented shortly - Eric
+    class YieldTermStructure;
     class DayCounter;
     class Date;
     class Quote;
@@ -114,13 +113,6 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
             const QuantLib::Date& referenceDate,
             bool permanent);
-    };
-
-    class RelinkableHandleYieldTermStructure : public RelinkableHandleImpl<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure> {
-    public:
-        RelinkableHandleYieldTermStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-           const std::string &objectId,
-           bool permanent) : RelinkableHandleImpl<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure>(properties, objectId, permanent) {}
     };
 
 }

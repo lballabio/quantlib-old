@@ -5,6 +5,7 @@
   <addinIncludes>
     <include>qlo/quotes.hpp</include>
     <include>qlo/index.hpp</include>
+    <include>qlo/handleimpl.hpp</include>
     <include>ql/quotes/simplequote.hpp</include>
     <include>ql/quotes/derivedquote.hpp</include>
     <include>ql/quotes/eurodollarfuturesquote.hpp</include>
@@ -166,7 +167,7 @@
     </Member>
 
     <Constructor name='qlRelinkableHandleQuote'>
-      <libraryFunction>RelinkableHandleQuote</libraryFunction>
+      <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::Quote, QuantLib::Quote&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>

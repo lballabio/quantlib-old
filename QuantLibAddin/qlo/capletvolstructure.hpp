@@ -180,14 +180,6 @@ namespace QuantLibAddin {
                            bool permanent);
     };
 
-    class RelinkableHandleOptionletVolatilityStructure : 
-        public RelinkableHandleImpl<QuantLibAddin::OptionletVolatilityStructure, QuantLib::OptionletVolatilityStructure> {
-    public:
-        RelinkableHandleOptionletVolatilityStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-           const std::string &objectId,
-           bool permanent) : RelinkableHandleImpl<QuantLibAddin::OptionletVolatilityStructure, QuantLib::OptionletVolatilityStructure>(properties, objectId, permanent) {}
-    };
-
 }
 
 #endif

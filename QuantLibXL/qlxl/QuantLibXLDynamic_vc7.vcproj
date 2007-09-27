@@ -160,10 +160,10 @@
 				RelativePath="Register\addin.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_abcd.cpp">
+				RelativePath="Register\register_abcd.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_accountingengines.cpp">
+				RelativePath="Register\register_accountingengines.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_all.cpp">
@@ -172,7 +172,7 @@
 				RelativePath="Register\register_all.hpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_alphaform.cpp">
+				RelativePath="Register\register_alphaform.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_assetswap.cpp">
@@ -181,7 +181,7 @@
 				RelativePath="Register\register_bonds.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_browniangenerators.cpp">
+				RelativePath="Register\register_browniangenerators.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_calendar.cpp">
@@ -196,19 +196,19 @@
 				RelativePath="Register\register_cmsmarket.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_cmsmarketcalibration.cpp">
+				RelativePath="Register\register_cmsmarketcalibration.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_correlation.cpp">
+				RelativePath="Register\register_correlation.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_couponvectors.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_ctsmmcapletcalibration.cpp">
+				RelativePath="Register\register_ctsmmcapletcalibration.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_curvestate.cpp">
+				RelativePath="Register\register_curvestate.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_date.cpp">
@@ -217,16 +217,19 @@
 				RelativePath="Register\register_daycounter.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_driftcalculators.cpp">
+				RelativePath="Register\register_driftcalculators.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_evolutiondescription.cpp">
+				RelativePath="Register\register_evolutiondescription.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_exercise.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_forwardrateagreement.cpp">
+			</File>
+			<File
+				RelativePath="Register\register_handles.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_index.cpp">
@@ -238,10 +241,10 @@
 				RelativePath="Register\register_interpolation.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_leg.cpp">
+				RelativePath="Register\register_leg.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_marketmodelevolvers.cpp">
+				RelativePath="Register\register_marketmodelevolvers.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_marketmodels.cpp">
@@ -268,7 +271,7 @@
 				RelativePath="Register\register_processes.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_products.cpp">
+				RelativePath="Register\register_products.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_quotes.cpp">
@@ -316,7 +319,7 @@
 				RelativePath="Register\register_termstructures.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_timeseries.cpp">
+				RelativePath="Register\register_timeseries.cpp">
 			</File>
 			<File
 				RelativePath="Register\register_utilities.cpp">
@@ -328,20 +331,20 @@
 				RelativePath="Register\register_volatilities.cpp">
 			</File>
 			<File
-				RelativePath=".\Register\register_volatility.cpp">
+				RelativePath="Register\register_volatility.cpp">
 			</File>
 		</Filter>
 		<Filter
 			Name="Functions"
 			Filter="">
 			<File
-				RelativePath=".\Functions\abcd.cpp">
+				RelativePath="Functions\abcd.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\accountingengines.cpp">
+				RelativePath="Functions\accountingengines.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\alphaform.cpp">
+				RelativePath="Functions\alphaform.cpp">
 			</File>
 			<File
 				RelativePath="Functions\assetswap.cpp">
@@ -350,7 +353,7 @@
 				RelativePath="Functions\bonds.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\browniangenerators.cpp">
+				RelativePath="Functions\browniangenerators.cpp">
 			</File>
 			<File
 				RelativePath="Functions\calendar.cpp">
@@ -365,19 +368,19 @@
 				RelativePath="Functions\cmsmarket.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\cmsmarketcalibration.cpp">
+				RelativePath="Functions\cmsmarketcalibration.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\correlation.cpp">
+				RelativePath="Functions\correlation.cpp">
 			</File>
 			<File
 				RelativePath="Functions\couponvectors.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\ctsmmcapletcalibration.cpp">
+				RelativePath="Functions\ctsmmcapletcalibration.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\curvestate.cpp">
+				RelativePath="Functions\curvestate.cpp">
 			</File>
 			<File
 				RelativePath="Functions\date.cpp">
@@ -386,10 +389,10 @@
 				RelativePath="Functions\daycounter.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\driftcalculators.cpp">
+				RelativePath="Functions\driftcalculators.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\evolutiondescription.cpp">
+				RelativePath="Functions\evolutiondescription.cpp">
 			</File>
 			<File
 				RelativePath="Functions\exercise.cpp">
@@ -401,6 +404,9 @@
 				RelativePath="Functions\functioncount.hpp">
 			</File>
 			<File
+				RelativePath="Functions\handles.cpp">
+			</File>
+			<File
 				RelativePath="Functions\index.cpp">
 			</File>
 			<File
@@ -410,13 +416,13 @@
 				RelativePath="Functions\interpolation.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\leg.cpp">
+				RelativePath="Functions\leg.cpp">
 			</File>
 			<File
 				RelativePath="Functions\manual.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\marketmodelevolvers.cpp">
+				RelativePath="Functions\marketmodelevolvers.cpp">
 			</File>
 			<File
 				RelativePath="Functions\marketmodels.cpp">
@@ -443,7 +449,7 @@
 				RelativePath="Functions\processes.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\products.cpp">
+				RelativePath="Functions\products.cpp">
 			</File>
 			<File
 				RelativePath="Functions\quotes.cpp">
@@ -491,7 +497,7 @@
 				RelativePath="Functions\termstructures.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\timeseries.cpp">
+				RelativePath="Functions\timeseries.cpp">
 			</File>
 			<File
 				RelativePath="Functions\utilities.cpp">
@@ -503,351 +509,351 @@
 				RelativePath="Functions\volatilities.cpp">
 			</File>
 			<File
-				RelativePath=".\Functions\volatility.cpp">
+				RelativePath="Functions\volatility.cpp">
 			</File>
 		</Filter>
 		<Filter
 			Name="Conversions"
 			Filter="">
 			<File
-				RelativePath=".\Conversions\all.hpp">
+				RelativePath="Conversions\all.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\matrixtooper.cpp">
+				RelativePath="Conversions\matrixtooper.cpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\matrixtooper.hpp">
+				RelativePath="Conversions\matrixtooper.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\opertomatrix.cpp">
+				RelativePath="Conversions\opertomatrix.cpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\opertomatrix.hpp">
+				RelativePath="Conversions\opertomatrix.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\opertovector.cpp">
+				RelativePath="Conversions\opertovector.cpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\opertovector.hpp">
+				RelativePath="Conversions\opertovector.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\scalartooper.cpp">
+				RelativePath="Conversions\scalartooper.cpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\scalartooper.hpp">
+				RelativePath="Conversions\scalartooper.hpp">
 			</File>
 			<File
-				RelativePath=".\Conversions\vectortooper.hpp">
+				RelativePath="Conversions\vectortooper.hpp">
 			</File>
 		</Filter>
 		<Filter
 			Name="Serialization"
 			Filter="">
 			<File
-				RelativePath=".\Serialization\serialization_abcd.cpp">
+				RelativePath="Serialization\serialization_abcd.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_abcd.hpp">
+				RelativePath="Serialization\serialization_abcd.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_accountingengines.cpp">
+				RelativePath="Serialization\serialization_accountingengines.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_accountingengines.hpp">
+				RelativePath="Serialization\serialization_accountingengines.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_all.hpp">
+				RelativePath="Serialization\serialization_all.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_alphaform.cpp">
+				RelativePath="Serialization\serialization_alphaform.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_alphaform.hpp">
+				RelativePath="Serialization\serialization_alphaform.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_assetswap.cpp">
+				RelativePath="Serialization\serialization_assetswap.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_assetswap.hpp">
+				RelativePath="Serialization\serialization_assetswap.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_bonds.cpp">
+				RelativePath="Serialization\serialization_bonds.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_bonds.hpp">
+				RelativePath="Serialization\serialization_bonds.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_browniangenerators.cpp">
+				RelativePath="Serialization\serialization_browniangenerators.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_browniangenerators.hpp">
+				RelativePath="Serialization\serialization_browniangenerators.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_capfloor.cpp">
+				RelativePath="Serialization\serialization_capfloor.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_capfloor.hpp">
+				RelativePath="Serialization\serialization_capfloor.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_capletvolstructure.cpp">
+				RelativePath="Serialization\serialization_capletvolstructure.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_capletvolstructure.hpp">
+				RelativePath="Serialization\serialization_capletvolstructure.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_cmsmarket.cpp">
+				RelativePath="Serialization\serialization_cmsmarket.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_cmsmarket.hpp">
+				RelativePath="Serialization\serialization_cmsmarket.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_cmsmarketcalibration.cpp">
+				RelativePath="Serialization\serialization_cmsmarketcalibration.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_cmsmarketcalibration.hpp">
+				RelativePath="Serialization\serialization_cmsmarketcalibration.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_correlation.cpp">
+				RelativePath="Serialization\serialization_correlation.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_correlation.hpp">
+				RelativePath="Serialization\serialization_correlation.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_couponvectors.cpp">
+				RelativePath="Serialization\serialization_couponvectors.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_couponvectors.hpp">
+				RelativePath="Serialization\serialization_couponvectors.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_ctsmmcapletcalibration.cpp">
+				RelativePath="Serialization\serialization_ctsmmcapletcalibration.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_ctsmmcapletcalibration.hpp">
+				RelativePath="Serialization\serialization_ctsmmcapletcalibration.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_curvestate.cpp">
+				RelativePath="Serialization\serialization_curvestate.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_curvestate.hpp">
+				RelativePath="Serialization\serialization_curvestate.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_driftcalculators.cpp">
+				RelativePath="Serialization\serialization_driftcalculators.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_driftcalculators.hpp">
+				RelativePath="Serialization\serialization_driftcalculators.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_evolutiondescription.cpp">
+				RelativePath="Serialization\serialization_evolutiondescription.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_evolutiondescription.hpp">
+				RelativePath="Serialization\serialization_evolutiondescription.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_exercise.cpp">
+				RelativePath="Serialization\serialization_exercise.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_exercise.hpp">
+				RelativePath="Serialization\serialization_exercise.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_forwardrateagreement.cpp">
+				RelativePath="Serialization\serialization_forwardrateagreement.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_forwardrateagreement.hpp">
+				RelativePath="Serialization\serialization_forwardrateagreement.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_index.cpp">
+				RelativePath="Serialization\serialization_index.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_index.hpp">
+				RelativePath="Serialization\serialization_index.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_interpolation.cpp">
+				RelativePath="Serialization\serialization_interpolation.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_interpolation.hpp">
+				RelativePath="Serialization\serialization_interpolation.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_leg.cpp">
+				RelativePath="Serialization\serialization_leg.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_leg.hpp">
+				RelativePath="Serialization\serialization_leg.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_marketmodelevolvers.cpp">
+				RelativePath="Serialization\serialization_marketmodelevolvers.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_marketmodelevolvers.hpp">
+				RelativePath="Serialization\serialization_marketmodelevolvers.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_marketmodels.cpp">
+				RelativePath="Serialization\serialization_marketmodels.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_marketmodels.hpp">
+				RelativePath="Serialization\serialization_marketmodels.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_mathf.cpp">
+				RelativePath="Serialization\serialization_mathf.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_mathf.hpp">
+				RelativePath="Serialization\serialization_mathf.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_oh.cpp">
+				RelativePath="Serialization\serialization_oh.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_oh.hpp">
+				RelativePath="Serialization\serialization_oh.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_optimization.cpp">
+				RelativePath="Serialization\serialization_optimization.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_optimization.hpp">
+				RelativePath="Serialization\serialization_optimization.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_options.cpp">
+				RelativePath="Serialization\serialization_options.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_options.hpp">
+				RelativePath="Serialization\serialization_options.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_payoffs.cpp">
+				RelativePath="Serialization\serialization_payoffs.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_payoffs.hpp">
+				RelativePath="Serialization\serialization_payoffs.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_pricingengines.cpp">
+				RelativePath="Serialization\serialization_pricingengines.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_pricingengines.hpp">
+				RelativePath="Serialization\serialization_pricingengines.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_processes.cpp">
+				RelativePath="Serialization\serialization_processes.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_processes.hpp">
+				RelativePath="Serialization\serialization_processes.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_products.cpp">
+				RelativePath="Serialization\serialization_products.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_products.hpp">
+				RelativePath="Serialization\serialization_products.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_quotes.cpp">
+				RelativePath="Serialization\serialization_quotes.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_quotes.hpp">
+				RelativePath="Serialization\serialization_quotes.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_randomsequencegenerator.cpp">
+				RelativePath="Serialization\serialization_randomsequencegenerator.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_randomsequencegenerator.hpp">
+				RelativePath="Serialization\serialization_randomsequencegenerator.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_rangeaccrual.cpp">
+				RelativePath="Serialization\serialization_rangeaccrual.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_rangeaccrual.hpp">
+				RelativePath="Serialization\serialization_rangeaccrual.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_ratehelpers.cpp">
+				RelativePath="Serialization\serialization_ratehelpers.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_ratehelpers.hpp">
+				RelativePath="Serialization\serialization_ratehelpers.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_register.hpp">
+				RelativePath="Serialization\serialization_register.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_schedule.cpp">
+				RelativePath="Serialization\serialization_schedule.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_schedule.hpp">
+				RelativePath="Serialization\serialization_schedule.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_sequencestatistics.cpp">
+				RelativePath="Serialization\serialization_sequencestatistics.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_sequencestatistics.hpp">
+				RelativePath="Serialization\serialization_sequencestatistics.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_shortratemodels.cpp">
+				RelativePath="Serialization\serialization_shortratemodels.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_shortratemodels.hpp">
+				RelativePath="Serialization\serialization_shortratemodels.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_simplecashflow.cpp">
+				RelativePath="Serialization\serialization_simplecashflow.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_simplecashflow.hpp">
+				RelativePath="Serialization\serialization_simplecashflow.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_smilesection.cpp">
+				RelativePath="Serialization\serialization_smilesection.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_smilesection.hpp">
+				RelativePath="Serialization\serialization_smilesection.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_statistics.cpp">
+				RelativePath="Serialization\serialization_statistics.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_statistics.hpp">
+				RelativePath="Serialization\serialization_statistics.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_swap.cpp">
+				RelativePath="Serialization\serialization_swap.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_swap.hpp">
+				RelativePath="Serialization\serialization_swap.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_swaption.cpp">
+				RelativePath="Serialization\serialization_swaption.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_swaption.hpp">
+				RelativePath="Serialization\serialization_swaption.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_swaptionvolstructure.cpp">
+				RelativePath="Serialization\serialization_swaptionvolstructure.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_swaptionvolstructure.hpp">
+				RelativePath="Serialization\serialization_swaptionvolstructure.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_termstructures.cpp">
+				RelativePath="Serialization\serialization_termstructures.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_termstructures.hpp">
+				RelativePath="Serialization\serialization_termstructures.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_timeseries.cpp">
+				RelativePath="Serialization\serialization_timeseries.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_timeseries.hpp">
+				RelativePath="Serialization\serialization_timeseries.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_vanillaswap.cpp">
+				RelativePath="Serialization\serialization_vanillaswap.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_vanillaswap.hpp">
+				RelativePath="Serialization\serialization_vanillaswap.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_volatilities.cpp">
+				RelativePath="Serialization\serialization_volatilities.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_volatilities.hpp">
+				RelativePath="Serialization\serialization_volatilities.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_volatility.cpp">
+				RelativePath="Serialization\serialization_volatility.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serialization_volatility.hpp">
+				RelativePath="Serialization\serialization_volatility.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serializationfactory.cpp">
+				RelativePath="Serialization\serializationfactory.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\serializationfactory.hpp">
+				RelativePath="Serialization\serializationfactory.hpp">
 			</File>
 		</Filter>
 		<File

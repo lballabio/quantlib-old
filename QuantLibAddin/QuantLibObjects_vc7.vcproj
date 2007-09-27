@@ -1471,6 +1471,9 @@
 			RelativePath="qlo\handle.hpp">
 		</File>
 		<File
+			RelativePath="qlo\handleimpl.hpp">
+		</File>
+		<File
 			RelativePath="qlo\index.cpp">
 		</File>
 		<File
