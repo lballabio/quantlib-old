@@ -8,8 +8,8 @@
 		<px class_id="146" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EURYC6M_FUTV7</ObjectId>
 			<ClassName>qlFuturesRateHelper</ClassName>
-			<PriceQuote class_id="189" tracking_level="0" version="0">
-				<variant_ class_id="190" tracking_level="0" version="0">
+			<PriceQuote class_id="190" tracking_level="0" version="0">
+				<variant_ class_id="191" tracking_level="0" version="0">
 					<which>3</which>
 					<value>EURFUTV7_Quote</value>
 				</variant_>
