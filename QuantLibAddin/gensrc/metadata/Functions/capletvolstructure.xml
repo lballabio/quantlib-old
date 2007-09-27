@@ -835,7 +835,7 @@
     </Constructor>
 
     <!-- CapsStripper interface-->
-    <Member name='qlCapsStripperStrikes' type='QuantLib::CapsStripper'>
+    <Member name='qlCapsStripperStrikes' type='QuantLib::CapsStripper' superType='handleToLib'>
       <description>Returns the vector of cap strikes underlying the given ObjectID.</description>
       <libraryFunction>strikes</libraryFunction>
       <SupportedPlatforms>
@@ -851,7 +851,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapsStripperTenors' type='QuantLib::CapsStripper'>
+    <Member name='qlCapsStripperTenors' type='QuantLib::CapsStripper' superType='handleToLib'>
       <description>Returns the vector of cap tenors underlying the given ObjectID.</description>
       <libraryFunction>tenors</libraryFunction>
       <SupportedPlatforms>
