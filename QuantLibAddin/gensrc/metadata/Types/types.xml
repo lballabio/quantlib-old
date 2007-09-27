@@ -15,6 +15,31 @@
       </DataTypes>
     </SuperType>
 
+    <!-- values which can be used synonymously with native C++ datatypes -->
+    <SuperType name='implicitConversion' nativeType='double'>
+      <DataTypes>
+        <DataType>QuantLib::DiscountFactor</DataType>
+        <DataType>QuantLib::Rate</DataType>
+        <DataType>QuantLib::Spread</DataType>
+        <DataType>QuantLib::Time</DataType>
+        <DataType>QuantLib::Volatility</DataType>
+      </DataTypes>
+    </SuperType>
+
+    <!-- values stored in the form QuantLib::xxx -->
+    <SuperType name='libraryType'>
+      <DataTypes>
+        <DataType nativeType='double'>QuantLib::Array</DataType>
+        <DataType nativeType='double'>QuantLib::InterestRate</DataType>
+        <DataType nativeType='double'>QuantLib::Matrix</DataType>
+        <DataType nativeType='double'>QuantLib::Real</DataType>
+        <DataType nativeType='long'>QuantLib::Date</DataType>
+        <DataType nativeType='long'>QuantLib::Natural</DataType>
+        <DataType nativeType='long'>QuantLib::Size</DataType>
+        <DataType nativeType='string'>QuantLib::Period</DataType>
+      </DataTypes>
+    </SuperType>
+
     <!-- strings identifying enumerated types or classes -->
     <SuperType name='enumeration' nativeType='string' conversionSuffix='Enum' memberAccess='.'>
       <DataTypes>
@@ -44,29 +69,33 @@
       </DataTypes>
     </SuperType>
 
-    <!-- coerced from shared_ptr<QuantLibAddin::RelinkableHandle<QuantLib::xxx> > to shared_ptr<QuantLib::xxx> -->
-    <SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObj'>
+    <!-- values stored in the form shared_ptr<QuantLibAddin::xxx> -->
+    <SuperType name='objectClass' nativeType='string' conversionSuffix='Obj'>
       <DataTypes>
-        <DataType>QuantLib::AbcdAtmVolCurve</DataType>
-        <DataType>QuantLib::BlackAtmVolCurve</DataType>
-        <DataType>QuantLib::BlackAtmVolSurface</DataType>
-        <DataType>QuantLib::CapFloorTermVolCurve</DataType>
-        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
-        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
-        <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
-        <DataType>QuantLib::CapVolatilityStructure</DataType>
-        <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
-        <DataType>QuantLib::OptionletStripper</DataType>
-        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
-        <DataType>QuantLib::Quote</DataType>
-        <DataType>QuantLib::SimpleQuote</DataType>
-        <DataType>QuantLib::SwaptionVolatilityCube</DataType>
-        <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
-        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-        <DataType>QuantLib::OptionletStripper2</DataType>
-        <DataType>QuantLib::TermStructure</DataType>
-        <DataType>QuantLib::VolatilityTermStructure</DataType>
-        <DataType>QuantLib::YieldTermStructure</DataType>
+        <DataType>ObjectHandler::Object</DataType>
+        <DataType>QuantLibAddin::AssetSwap</DataType>
+        <DataType>QuantLibAddin::Bond</DataType>
+        <DataType>QuantLibAddin::CMSMMDriftCalculator</DataType>
+        <DataType>QuantLibAddin::CapFloor</DataType>
+        <DataType>QuantLibAddin::CmsMarket</DataType>
+        <DataType>QuantLibAddin::CmsMarketCalibration</DataType>
+        <DataType>QuantLibAddin::ConundrumPricerByNumericalIntegration</DataType>
+        <DataType>QuantLibAddin::Handle</DataType>
+        <DataType>QuantLibAddin::HistoricalForwardRatesAnalysis</DataType>
+        <DataType>QuantLibAddin::Index</DataType>
+        <DataType>QuantLibAddin::LMMDriftCalculator</DataType>
+        <DataType>QuantLibAddin::LMMNormalDriftCalculator</DataType>
+        <DataType>QuantLibAddin::Leg</DataType>
+        <DataType>QuantLibAddin::RandomSequenceGenerator</DataType>
+        <DataType>QuantLibAddin::RateHelper</DataType>
+        <DataType>QuantLibAddin::RelinkableHandle</DataType>
+        <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
+        <DataType>QuantLibAddin::SimpleQuote</DataType>
+        <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
+        <DataType>QuantLibAddin::Swap</DataType>
+        <DataType>QuantLibAddin::SwaptionVolCube1</DataType>
+        <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
+        <DataType>QuantLibAddin::VanillaSwap</DataType>
       </DataTypes>
     </SuperType>
 
@@ -163,74 +192,6 @@
       </DataTypes>
     </SuperType>
 
-    <!-- values stored in the form QuantLib::xxx -->
-    <SuperType name='libraryType'>
-      <DataTypes>
-        <DataType nativeType='double'>QuantLib::Array</DataType>
-        <DataType nativeType='double'>QuantLib::InterestRate</DataType>
-        <DataType nativeType='double'>QuantLib::Matrix</DataType>
-        <DataType nativeType='double'>QuantLib::Real</DataType>
-        <DataType nativeType='long'>QuantLib::Date</DataType>
-        <DataType nativeType='long'>QuantLib::Natural</DataType>
-        <DataType nativeType='long'>QuantLib::Size</DataType>
-        <DataType nativeType='string'>QuantLib::Period</DataType>
-      </DataTypes>
-    </SuperType>
-
-    <!-- values which can be used synonymously with native C++ datatypes -->
-    <SuperType name='implicitConversion' nativeType='double'>
-      <DataTypes>
-        <DataType>QuantLib::DiscountFactor</DataType>
-        <DataType>QuantLib::Rate</DataType>
-        <DataType>QuantLib::Spread</DataType>
-        <DataType>QuantLib::Time</DataType>
-        <DataType>QuantLib::Volatility</DataType>
-      </DataTypes>
-    </SuperType>
-
-    <!-- coerceable from boost::shared_ptr<QuantLib::xxx> to QuantLib::RelinkableHandle<QuantLib::xx> -->
-    <SuperType name='libToHandle' nativeType='string'>
-      <DataTypes>
-        <DataType>QuantLib::OptionletStripper</DataType>
-        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
-        <DataType>QuantLib::Quote</DataType>
-        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-        <DataType>QuantLib::VolatilityTermStructure</DataType>
-        <DataType>QuantLib::CapFloorTermVolCurve</DataType>
-        <DataType>QuantLib::YieldTermStructure</DataType>
-      </DataTypes>
-    </SuperType>
-
-    <!-- values stored in the form shared_ptr<QuantLibAddin::xxx> -->
-    <SuperType name='objectClass' nativeType='string' conversionSuffix='Obj'>
-      <DataTypes>
-        <DataType>ObjectHandler::Object</DataType>
-        <DataType>QuantLibAddin::AssetSwap</DataType>
-        <DataType>QuantLibAddin::Bond</DataType>
-        <DataType>QuantLibAddin::CMSMMDriftCalculator</DataType>
-        <DataType>QuantLibAddin::CapFloor</DataType>
-        <DataType>QuantLibAddin::CmsMarket</DataType>
-        <DataType>QuantLibAddin::CmsMarketCalibration</DataType>
-        <DataType>QuantLibAddin::ConundrumPricerByNumericalIntegration</DataType>
-        <DataType>QuantLibAddin::Handle</DataType>
-        <DataType>QuantLibAddin::HistoricalForwardRatesAnalysis</DataType>
-        <DataType>QuantLibAddin::Index</DataType>
-        <DataType>QuantLibAddin::LMMDriftCalculator</DataType>
-        <DataType>QuantLibAddin::LMMNormalDriftCalculator</DataType>
-        <DataType>QuantLibAddin::Leg</DataType>
-        <DataType>QuantLibAddin::RandomSequenceGenerator</DataType>
-        <DataType>QuantLibAddin::RateHelper</DataType>
-        <DataType>QuantLibAddin::RelinkableHandle</DataType>
-        <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
-        <DataType>QuantLibAddin::SimpleQuote</DataType>
-        <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
-        <DataType>QuantLibAddin::Swap</DataType>
-        <DataType>QuantLibAddin::SwaptionVolCube1</DataType>
-        <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
-        <DataType>QuantLibAddin::VanillaSwap</DataType>
-      </DataTypes>
-    </SuperType>
-
     <!-- values retrieved from ObjectHandler and converted to bare QuantLib::xxx references -->
     <SuperType name='underlyingClass' nativeType='string' conversionSuffix='LibObj' memberAccess='.'>
       <DataTypes>
@@ -248,6 +209,45 @@
         <DataType>QuantLib::Schedule</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
+      </DataTypes>
+    </SuperType>
+
+    <!-- coerced from shared_ptr<QuantLibAddin::RelinkableHandle<QuantLib::xxx> > to shared_ptr<QuantLib::xxx> -->
+    <SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObj'>
+      <DataTypes>
+        <DataType>QuantLib::AbcdAtmVolCurve</DataType>
+        <DataType>QuantLib::BlackAtmVolCurve</DataType>
+        <DataType>QuantLib::BlackAtmVolSurface</DataType>
+        <DataType>QuantLib::CapFloorTermVolCurve</DataType>
+        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
+        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
+        <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
+        <DataType>QuantLib::CapVolatilityStructure</DataType>
+        <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
+        <DataType>QuantLib::OptionletStripper</DataType>
+        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
+        <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::SimpleQuote</DataType>
+        <DataType>QuantLib::SwaptionVolatilityCube</DataType>
+        <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
+        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
+        <DataType>QuantLib::OptionletStripper2</DataType>
+        <DataType>QuantLib::TermStructure</DataType>
+        <DataType>QuantLib::VolatilityTermStructure</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
+      </DataTypes>
+    </SuperType>
+
+    <!-- coerceable from boost::shared_ptr<QuantLib::xxx> to QuantLib::RelinkableHandle<QuantLib::xx> -->
+    <SuperType name='libToHandle' nativeType='string'>
+      <DataTypes>
+        <DataType>QuantLib::OptionletStripper</DataType>
+        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
+        <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
+        <DataType>QuantLib::VolatilityTermStructure</DataType>
+        <DataType>QuantLib::CapFloorTermVolCurve</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>
