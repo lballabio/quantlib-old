@@ -63,6 +63,7 @@
         <DataType>QuantLib::SwaptionVolatilityCube</DataType>
         <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
+        <DataType>QuantLib::OptionletStripper2</DataType>
         <DataType>QuantLib::TermStructure</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
@@ -195,6 +196,7 @@
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
+        <DataType>QuantLib::CapFloorTermVolCurve</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>

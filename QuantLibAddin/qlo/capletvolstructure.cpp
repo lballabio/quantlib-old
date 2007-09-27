@@ -28,6 +28,7 @@
 #include <ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp>
 #include <ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp>
 #include <ql/voltermstructures/interestrate/optionlet/optionletstripperadapter.hpp>
+#include <ql/voltermstructures/interestrate/optionlet/optionletstripper2.hpp>
 
 namespace QuantLibAddin {
 
@@ -200,5 +201,16 @@ namespace QuantLibAddin {
         libraryObject_ = boost::shared_ptr<QuantLib::OptionletStripper>(new
             QuantLib::OptionletStripper(surface, index, switchStrike));
     }
+
+    OptionletStripper2::OptionletStripper2(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                           const QuantLib::Handle<QuantLib::OptionletStripper>& optionletStripper,
+                                           const QuantLib::Handle<QuantLib::CapFloorTermVolCurve>& atmCapFloorTermVolCurve,
+                                           const std::vector<QuantLib::Rate>& atmStrikes,
+                                           bool permanent) : dummyClass1(properties, permanent) {
+        
+        libraryObject_ = boost::shared_ptr<QuantLib::OptionletStripper2>(new
+            QuantLib::OptionletStripper2(optionletStripper, atmCapFloorTermVolCurve, atmStrikes));
+    }
+
 
 }

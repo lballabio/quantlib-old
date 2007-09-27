@@ -30,7 +30,9 @@ namespace QuantLib {
     class SmileSection;
     class IborIndex;
     class CapFloorTermVolSurface;
+    class CapFloorTermVolCurve;
     class OptionletStripper;
+    class OptionletStripper2;
     class OptionletStripperAdapter;
 }
 
@@ -165,6 +167,18 @@ namespace QuantLibAddin {
                           const boost::shared_ptr<QuantLib::IborIndex>& index,
                           QuantLib::Rate switchStrike,
                           bool permanent);
+    };
+
+
+    OH_LIB_CLASS(dummyClass1, QuantLib::OptionletStripper2);
+
+    class OptionletStripper2 : public dummyClass1 {
+      public:
+        OptionletStripper2(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                           const QuantLib::Handle<QuantLib::OptionletStripper>& optionletStripper,
+                           const QuantLib::Handle<QuantLib::CapFloorTermVolCurve>& atmCapFloorTermVolCurve,
+                           const std::vector<QuantLib::Rate>& atmStrikes,
+                           bool permanent);
     };
 
     class RelinkableHandleOptionletVolatilityStructure : 

@@ -10,6 +10,7 @@
     <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/capstripper.hpp</include>
+    <include>ql/voltermstructures/interestrate/optionlet/optionletstripper2.hpp</include>
     <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp</include>
     <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
@@ -22,6 +23,8 @@
     <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/capstripper.hpp</include>
+    <include>ql/voltermstructures/interestrate/optionlet/optionletstripper2.hpp</include>
+    <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp</include>
     <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
@@ -452,7 +455,87 @@
         </Parameters>
       </ParameterList>
     </Constructor>
+    
+    <Constructor name='qlOptionletStripper2'>
+      <libraryFunction>OptionletStripper2</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionletStripper' >
+            <type>QuantLib::OptionletStripper</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Optionlet Stripper object id</description>
+          </Parameter>
+          <Parameter name='CapFloorTermVolCurve' >
+            <type>QuantLib::CapFloorTermVolCurve</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Cap VolatilityCurve.</description>
+          </Parameter>
+          <Parameter name='Atmstrikes' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>atm strikes.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
+    <Member name='qlOptionletStripper2SpreadsVol' type='QuantLib::OptionletStripper2' superType='handleToLib'>
+      <description></description>
+      <libraryFunction>spreadsVol</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlOptionletStripper2AtmOptionPrice' type='QuantLib::OptionletStripper2' superType='handleToLib'>
+      <description></description>
+      <libraryFunction>atmOptionPrice</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlOptionletStripper2MdlOptionletVols' type='QuantLib::OptionletStripper2' superType='handleToLib'>
+      <description></description>
+      <libraryFunction>mdlOptionletVols</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+       <Parameters>
+        <Parameter name='Index'>
+          <type>QuantLib::Size</type>
+          <tensorRank>scalar</tensorRank>
+          <description>index</description>
+        </Parameter>
+       </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>  
+    
     <!-- CapFloorTermVolStructure -->
     <Member name='qlCapFloorTermVTSVolatility' type='QuantLib::CapFloorTermVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
       <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
