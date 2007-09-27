@@ -31,7 +31,7 @@ namespace QuantLib {
 
     typedef GenericGaussianStatistics<GeneralStatistics> GaussianStatistics;
 
-    template <class S>
+    template<class S>
     class GenericRiskStatistics;
 
     typedef GenericRiskStatistics<GaussianStatistics> RiskStatistics;
