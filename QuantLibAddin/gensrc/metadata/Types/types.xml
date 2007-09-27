@@ -166,7 +166,6 @@
         <DataType>QuantLib::PiecewiseConstantVariance</DataType>
         <DataType>QuantLib::PlainVanillaPayoff</DataType>
         <DataType>QuantLib::PricingEngine</DataType>
-        <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::RangeAccrualFloatersCoupon</DataType>
         <DataType>QuantLib::RangeAccrualPricer</DataType>
         <DataType>QuantLib::RateHelper</DataType>
@@ -197,7 +196,6 @@
         <DataType>QuantLib::BlackAtmVolCurve</DataType>
         <DataType>QuantLib::BlackAtmVolSurface</DataType>
         <DataType>QuantLib::CapFloorTermVolCurve</DataType>
-        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
         <DataType>QuantLib::CapFloorTermVolSurface</DataType>
         <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
         <DataType>QuantLib::CapVolatilityStructure</DataType>
