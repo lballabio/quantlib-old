@@ -182,7 +182,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSMaxStrike' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass'>
+    <Member name='qlOptionletVTSMaxStrike' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib'>
       <description>Returns the maximum strike for which the given OptionletVolatilityStructure can return vols.</description>
       <libraryFunction>maxStrike</libraryFunction>
       <SupportedPlatforms>
@@ -629,7 +629,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorTermVTSMaxStrike' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass'>
+    <Member name='qlCapFloorTermVTSMaxStrike' type='QuantLib::CapFloorTermVolatilityStructure' superType='handleToLib'>
       <description>Returns the maximum strike for which the given OptionletVolatilityStructure can return vols.</description>
       <libraryFunction>maxStrike</libraryFunction>
       <SupportedPlatforms>
