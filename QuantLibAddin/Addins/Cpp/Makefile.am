@@ -32,6 +32,7 @@ noinst_HEADERS = \
     evolutiondescription.hpp \
     exercise.hpp \
     forwardrateagreement.hpp \
+    handles.hpp \
     index.hpp \
     init.hpp \
     instruments.hpp \
@@ -86,6 +87,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     evolutiondescription.cpp \
     exercise.cpp \
     forwardrateagreement.cpp \
+    handles.cpp \
     index.cpp \
     init.cpp \
     instruments.cpp \
