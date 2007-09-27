@@ -294,8 +294,8 @@ code205 = '''\
             ObjectHandler::ohVariantToVector<%(type)s>(%(name)s, "%(name)s");\n'''
 
 code206 = '''\
-        /*%(type)s %(name)sLib =
-            QuantLibXL::operToQlMatrix(%(name)s);*/\n'''
+        %(type)s %(name)sLib =
+            QuantLibAddin::vvToQlMatrix(%(name)s);\n'''
 
 code207 = '''\
         std::string %(name)sCpp = ObjectHandler::ohVariantToScalar<std::string>(
