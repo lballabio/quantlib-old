@@ -200,9 +200,10 @@
         <DataType>QuantLib::CapFloorTermVolSurface</DataType>
         <DataType>QuantLib::CapFloorTermVolSurface</DataType>
         <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
-        <DataType>QuantLib::CapsStripper</DataType>
         <DataType>QuantLib::CapVolatilityStructure</DataType>
+        <DataType>QuantLib::CapsStripper</DataType>
         <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
+        <DataType>QuantLib::OptionletStripper2</DataType>
         <DataType>QuantLib::OptionletStripper</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
@@ -210,7 +211,6 @@
         <DataType>QuantLib::SwaptionVolatilityCube</DataType>
         <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-        <DataType>QuantLib::OptionletStripper2</DataType>
         <DataType>QuantLib::TermStructure</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
