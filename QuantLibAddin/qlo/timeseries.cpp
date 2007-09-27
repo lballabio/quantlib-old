@@ -25,22 +25,30 @@
 
 namespace QuantLibAddin {
 
-   TimeSeries::TimeSeries(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const std::vector<QuantLib::Date>& dates,
-        const std::vector<QuantLib::Real>& values,
-        bool permanent)
-   : ObjectHandler::LibraryObject<QuantLib::TimeSeries<QuantLib::Real> >(properties, permanent)
+    using QuantLib::Real;
+    using QuantLib::Date;
+    using QuantLib::Size;
+    using std::map;
+    using std::vector;
+    using boost::shared_ptr;
+    using ObjectHandler::LibraryObject;
+    using ObjectHandler::ValueObject;
+
+   TimeSeries::TimeSeries(const shared_ptr<ValueObject>& prop,
+                          const vector<Date>& dates,
+                          const vector<Real>& values,
+                          bool perm)
+   : LibraryObject<QuantLib::TimeSeries<Real, map<Date, Real> > >(prop, perm)
    {
         QL_REQUIRE(values.size()==dates.size(),
-                  "unmatched size between dates (" << dates.size() <<
-                  ") and values(" << values.size() << ")");
+                   "unmatched size between dates (" << dates.size() <<
+                   ") and values(" << values.size() << ")");
 
-        std::vector<QuantLib::Date> d;
-        std::vector<QuantLib::Real> v;
-        for (QuantLib::Size i=0; i<values.size(); ++i) {
+        vector<Date> d;
+        vector<Real> v;
+        for (Size i=0; i<values.size(); ++i) {
             // skip null fixings
-            if (values[i]!=0.0 && values[i]!=QuantLib::Null<QuantLib::Real>()) {
+            if (values[i]!=0.0 && values[i]!=QuantLib::Null<Real>()) {
                 QL_REQUIRE(values[i]>0.0,
                            "non positive fixing (" << values[i] <<
                            ") at date " << dates[i] << " not allowed");
@@ -50,9 +58,9 @@ namespace QuantLibAddin {
         }
 
         libraryObject_ =
-            boost::shared_ptr<QuantLib::TimeSeries<QuantLib::Real> >(new
-                QuantLib::TimeSeries<QuantLib::Real>(d.begin(),
-                                                     d.end(),
-                                                     v.begin()));
+            shared_ptr<QuantLib::TimeSeries<Real, map<Date, Real> > >(new
+                QuantLib::TimeSeries<Real, map<Date, Real> >(d.begin(),
+                                                             d.end(),
+                                                             v.begin()));
     }
 }

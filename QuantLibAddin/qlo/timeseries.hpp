@@ -26,7 +26,7 @@
 namespace QuantLib {
     class Date;
 
-    template <class T, class Container>
+    template<class T, class Container>
     class TimeSeries;
 }
 
