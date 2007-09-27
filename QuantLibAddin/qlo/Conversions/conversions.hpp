@@ -43,6 +43,7 @@ namespace QuantLibAddin {
 
     void cppToLibrary(const std::string &in, QuantLib::Period &ret);
     void cppToLibrary(const long &in, QuantLib::Size &ret);
+    void cppToLibrary(const long &in, QuantLib::Natural &ret);
 
     template <class Tin, class Tout>
     std::vector<Tout> convertVector(const std::vector<Tin>& v) {

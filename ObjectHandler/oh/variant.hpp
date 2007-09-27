@@ -69,6 +69,8 @@ namespace ObjectHandler {
         //! \name Conversion Operators
         //@{
         //! Convert the variant to a long.
+        operator unsigned int() const;
+        //! Convert the variant to a long.
         operator long() const;
         //! Convert the variant to a double.
         operator double() const;
@@ -117,6 +119,13 @@ namespace ObjectHandler {
         VariantToLong variantToLong(ret);
         boost::apply_visitor(variantToLong, variant_);
         return ret;
+    }
+
+    inline Variant::operator unsigned int() const {
+        long ret;
+        VariantToLong variantToLong(ret);
+        boost::apply_visitor(variantToLong, variant_);
+        return static_cast<unsigned int>(ret);
     }
 
     inline Variant::operator double() const {

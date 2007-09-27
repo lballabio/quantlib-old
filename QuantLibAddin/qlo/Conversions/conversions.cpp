@@ -70,6 +70,10 @@ namespace QuantLibAddin {
         ret = QuantLib::Size(in);
     }
 
+    void cppToLibrary(const long &in, QuantLib::Natural &ret) {
+        ret = QuantLib::Natural(in);
+    }
+
     QuantLib::Matrix vvToQlMatrix(const std::vector<std::vector<double> > &vv) {
         int rows = vv.size();
         int cols = rows ? vv[0].size() : 0;
