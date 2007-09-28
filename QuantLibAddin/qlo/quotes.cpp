@@ -44,11 +44,11 @@ namespace QuantLibAddin {
     }
 
     QuantLib::Real SimpleQuote::tickValue() const {
-        return boost::any_cast<double>(propertyValue("TickValue"));
+        return boost::any_cast<double>(propertyValue("TICKVALUE"));
     }
 
     void SimpleQuote::setTickValue(QuantLib::Real tickValue) {
-        properties()->setProperty("TickValue", tickValue);
+        properties()->setProperty("TICKVALUE", tickValue);
     }
 
     // QuantLibAddin::SimpleQuote::setValue() wraps QuantLib::SimpleQuote::setValue(),
@@ -67,14 +67,14 @@ namespace QuantLibAddin {
             // If QuantLib::SimpleQuote::isValid() is false then QuantLib::SimpleQuote::value() throws,
             // which here in the catch clause would cause the app to crash, so test for that case.
             if (simpleQuote_->isValid())
-                properties()->setProperty("Value", ObjectHandler::Variant(simpleQuote_->value()));
+                properties()->setProperty("VALUE", ObjectHandler::Variant(simpleQuote_->value()));
             else
-                properties()->setProperty("Value", 
+                properties()->setProperty("VALUE", 
                     ObjectHandler::Variant(static_cast<double>(QuantLib::Null<QuantLib::Real>())));
             throw;
         }
 
-        properties()->setProperty("Value", ObjectHandler::Variant(value));
+        properties()->setProperty("VALUE", ObjectHandler::Variant(value));
         return result;
 
     }
