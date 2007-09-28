@@ -3,17 +3,22 @@
   <displayName>Volatilities</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
+    <include>qlo/index.hpp</include>
     <include>qlo/volatilities.hpp</include>
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
     <include>ql/voltermstructures/equityfx/blackconstantvol.hpp</include>
     <include>ql/voltermstructures/equityfx/blackvariancesurface.hpp</include>
     <include>ql/voltermstructures/interestrate/abcdatmvolcurve.hpp</include>
+    <include>ql/voltermstructures/interestrate/sabrvolsurface.hpp</include>
   </addinIncludes>
   <serializationIncludes>
+    <include>qlo/index.hpp</include>
     <include>qlo/volatilities.hpp</include>
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
     <include>ql/voltermstructures/equityfx/blackconstantvol.hpp</include>
     <include>ql/voltermstructures/equityfx/blackvariancesurface.hpp</include>
+    <include>ql/voltermstructures/interestrate/abcdatmvolcurve.hpp</include>
+    <include>ql/voltermstructures/interestrate/sabrvolsurface.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2007 Ferdinando Ametrano
@@ -304,9 +309,9 @@
       <ParameterList>
         <Parameters>
           <Parameter name='OptionTenor' exampleValue = '1Y'>
-            <type>QuantLib::Time</type>
+            <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>The time at which the volatility is evaluated</description>
+            <description>The tenor at which the volatility is evaluated</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
@@ -435,5 +440,91 @@
       </ParameterList>
     </Constructor>
 
+
+    <!-- SabrVolSurface -->
+    <Constructor name='qlSabrVolSurface'>
+      <libraryFunction>SabrVolSurface</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='InterestRateIndex'>
+            <type>QuantLib::InterestRateIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>interest rate index object ID</description>
+          </Parameter>
+          <Parameter name='BlackAtmVolCurve'>
+            <type>QuantLib::BlackAtmVolCurve</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>the atm volatility curve</description>
+          </Parameter>
+          <Parameter name='OptionTenors'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>options tenors</description>
+          </Parameter>
+          <Parameter name='AtmRateSpreads'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>vector</tensorRank>
+            <description>spreads</description>
+          </Parameter>
+          <Parameter name='VolatilitiesQuotes' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>matrix</tensorRank>
+            <description>volatilities quotes</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlVolatilitySpreads' type='QuantLib::SabrVolSurface' superType='handleToLib'>
+      <description>Returns the volatilities spread at a given date</description>
+      <libraryFunction>volatilitySpreads</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionDate' exampleValue = '1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The date at which the volatility is evaluated</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- SmileSectionInteface constructors -->
+    <Constructor name='qlSabrSmileSectionImpl'>
+      <libraryFunction>SabrSmileSectionImpl</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SabrVolSurface'>
+            <type>QuantLib::SabrVolSurface</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>SabrVolSurface object ID</description>
+          </Parameter>
+          <Parameter name='OptionTime'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>smile's expiry as date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
+    
   </Functions>
 </Category>

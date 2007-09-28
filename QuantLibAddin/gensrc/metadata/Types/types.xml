@@ -175,6 +175,7 @@
         <DataType>QuantLib::RateHelper</DataType>
         <DataType>QuantLib::SABRInterpolation</DataType>
         <DataType>QuantLib::SabrInterpolatedSmileSection</DataType>
+        <DataType>QuantLib::SabrVolSurface</DataType>
         <DataType>QuantLib::Schedule</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>
         <DataType>QuantLib::SmileSection</DataType>
@@ -207,6 +208,7 @@
         <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::SabrVolSurface</DataType>        
         <DataType>QuantLib::SimpleQuote</DataType>
         <DataType>QuantLib::SwaptionVolatilityCube</DataType>
         <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
@@ -247,6 +249,8 @@
         <DataType>QuantLib::OptionletStripper</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::BlackAtmVolCurve</DataType>
+        <DataType>QuantLib::SabrVolSurface</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
         <DataType>QuantLib::CapFloorTermVolCurve</DataType>

@@ -27,6 +27,7 @@
 #include <ql/voltermstructures/equityfx/blackconstantvol.hpp>
 #include <ql/voltermstructures/equityfx/blackvariancesurface.hpp>
 #include <ql/voltermstructures/interestrate/abcdatmvolcurve.hpp>
+#include <ql/voltermstructures/interestrate/sabrvolsurface.hpp>
 
 namespace QuantLibAddin {
 
@@ -86,4 +87,29 @@ namespace QuantLibAddin {
                                       dc));
     }
 
+    SabrVolSurface::SabrVolSurface(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::InterestRateIndex>& index,
+            const QuantLib::Handle<QuantLib::BlackAtmVolCurve>& blackAtmCurve,
+            const std::vector<QuantLib::Period>& optionTenors,
+            const std::vector<QuantLib::Spread>& atmRateSpreads,
+            const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
+            bool permanent)
+    : InterestRateVolSurface(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::SabrVolSurface>(new
+            QuantLib::SabrVolSurface(index,
+                                      blackAtmCurve,
+                                      optionTenors,
+                                      atmRateSpreads,
+                                      volSpreads));
+    }
+
+    SabrSmileSectionImpl::SabrSmileSectionImpl(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::SabrVolSurface>& sabrVol,
+            const QuantLib::Time& time,
+            bool permanent) : SmileSection(properties, permanent) {
+             libraryObject_ = sabrVol->smileSectionImpl(time);
+    }
 }

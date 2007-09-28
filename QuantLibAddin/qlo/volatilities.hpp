@@ -21,16 +21,19 @@
 #define qla_volatilities_hpp
 
 #include <qlo/termstructures.hpp>
-
+#include <qlo/smilesection.hpp>
 #include <ql/time/businessdayconvention.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {
+    class BlackAtmVolCurve;
     class BlackVolTermStructure;
     class Date;
     class DayCounter;
+    class InterestRateIndex;
     class Matrix;
     class Period;
+    class SabrVolSurface;
 }
 
 namespace QuantLibAddin {
@@ -65,6 +68,11 @@ namespace QuantLibAddin {
 
     OH_OBJ_CLASS(BlackAtmVolCurve, VolatilityTermStructure);
 
+ /*   class BlackAtmVolCurve : public VolatilityTermStructure {
+    public:
+        BlackAtmVolCurve() {};
+    }*/
+
     class AbcdAtmVolCurve: public BlackAtmVolCurve {
     public:
       AbcdAtmVolCurve(
@@ -75,6 +83,31 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Handle<QuantLib::Quote> > & volatilities,
             QuantLib::BusinessDayConvention bdc,
             const QuantLib::DayCounter& dc,
+            bool permanent);
+    };
+
+    OH_OBJ_CLASS(BlackVolSurface, BlackAtmVolCurve);
+
+    OH_OBJ_CLASS(InterestRateVolSurface, BlackVolSurface);
+
+    class SabrVolSurface : public InterestRateVolSurface {
+      public:
+        SabrVolSurface(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::InterestRateIndex>& index,
+            const QuantLib::Handle<QuantLib::BlackAtmVolCurve>& blackAtmCurve,
+            const std::vector<QuantLib::Period>& optionTenors,
+            const std::vector<QuantLib::Spread>& atmRateSpreads,
+            const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
+            bool permanent);
+    };
+
+    class SabrSmileSectionImpl : public SmileSection {
+      public:
+        SabrSmileSectionImpl(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::SabrVolSurface>& sabrVol,
+            const QuantLib::Time& time,
             bool permanent);
     };
 }
