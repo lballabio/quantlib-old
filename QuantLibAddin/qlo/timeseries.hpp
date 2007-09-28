@@ -28,14 +28,15 @@ namespace QuantLib {
 
     template<class T, class Container>
     class TimeSeries;
+
+    typedef TimeSeries<QuantLib::Real, std::map<QuantLib::Date, QuantLib::Real> > TimeSeriesDef;
 }
 
 namespace QuantLibAddin {
 
-    class TimeSeries : public ObjectHandler::LibraryObject<
-                            QuantLib::TimeSeries<QuantLib::Real, std::map<QuantLib::Date, QuantLib::Real> > > {
+    class TimeSeriesDef : public ObjectHandler::LibraryObject<QuantLib::TimeSeriesDef> {
       public:
-        TimeSeries(
+        TimeSeriesDef(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Date>& dates,
             const std::vector<QuantLib::Real>& values,

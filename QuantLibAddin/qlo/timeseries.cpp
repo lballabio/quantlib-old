@@ -28,17 +28,16 @@ namespace QuantLibAddin {
     using QuantLib::Real;
     using QuantLib::Date;
     using QuantLib::Size;
-    using std::map;
     using std::vector;
     using boost::shared_ptr;
     using ObjectHandler::LibraryObject;
     using ObjectHandler::ValueObject;
 
-   TimeSeries::TimeSeries(const shared_ptr<ValueObject>& prop,
-                          const vector<Date>& dates,
-                          const vector<Real>& values,
-                          bool perm)
-   : LibraryObject<QuantLib::TimeSeries<Real, map<Date, Real> > >(prop, perm)
+   TimeSeriesDef::TimeSeriesDef(const shared_ptr<ValueObject>& prop,
+                                const vector<Date>& dates,
+                                const vector<Real>& values,
+                                bool perm)
+   : LibraryObject<QuantLib::TimeSeriesDef>(prop, perm)
    {
         QL_REQUIRE(values.size()==dates.size(),
                    "unmatched size between dates (" << dates.size() <<
@@ -57,10 +56,9 @@ namespace QuantLibAddin {
             }
         }
 
-        libraryObject_ =
-            shared_ptr<QuantLib::TimeSeries<Real, map<Date, Real> > >(new
-                QuantLib::TimeSeries<Real, map<Date, Real> >(d.begin(),
-                                                             d.end(),
-                                                             v.begin()));
+        libraryObject_ = shared_ptr<QuantLib::TimeSeriesDef>(new
+            QuantLib::TimeSeriesDef(d.begin(),
+                                    d.end(),
+                                    v.begin()));
     }
 }
