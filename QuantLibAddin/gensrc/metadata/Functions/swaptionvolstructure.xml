@@ -20,7 +20,7 @@
     <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
   <copyright>
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006 Silvia Frasson
     Copyright (C) 2006 Mario Pucci
     Copyright (C) 2006, 2007 Giorgio Facchinetti
@@ -362,7 +362,7 @@
     </Constructor>
 
     <!-- SwaptionVolatilityDiscrete interface -->
-    <Member name='qlSwaptionVTSMatrixOptionDates' type='QuantLib::SwaptionVolatilityDiscrete'>
+    <Member name='qlSwaptionVTSMatrixOptionDates' type='QuantLib::SwaptionVolatilityDiscrete' superType='handleToLib'>
       <description>Returns the vector of swaption exercise dates for the given SwaptionVolatilityDiscrete object.</description>
       <libraryFunction>optionDates</libraryFunction>
       <SupportedPlatforms>
@@ -378,7 +378,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionVTSMatrixOptionTenors' type='QuantLib::SwaptionVolatilityDiscrete'>
+    <Member name='qlSwaptionVTSMatrixOptionTenors' type='QuantLib::SwaptionVolatilityDiscrete' superType='handleToLib'>
       <description>Returns the vector of swaption exercise tenors for the given SwaptionVolatilityDiscrete object.</description>
       <libraryFunction>optionTenors</libraryFunction>
       <SupportedPlatforms>
@@ -394,7 +394,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionVTSMatrixSwapTenors' type='QuantLib::SwaptionVolatilityDiscrete'>
+    <Member name='qlSwaptionVTSMatrixSwapTenors' type='QuantLib::SwaptionVolatilityDiscrete' superType='handleToLib'>
       <description>Returns the vector of underlying swap tenors for the given SwaptionVolatilityDiscrete object.</description>
       <libraryFunction>swapTenors</libraryFunction>
       <SupportedPlatforms>
@@ -494,7 +494,7 @@
     </Constructor>
 
     <!-- SwaptionVolatilityCube interface -->
-    <Member name='qlSwaptionVTSatmStrike' type='QuantLib::SwaptionVolatilityCube' loopParameter='OptionDate'>
+    <Member name='qlSwaptionVTSatmStrike' type='QuantLib::SwaptionVolatilityCube' superType='handleToLib' loopParameter='OptionDate'>
       <description>Returns the at-the-money swaption strike, for a given exercise date and underlying swap length, for the given SwaptionVolatilityCube object.</description>
       <libraryFunction>atmStrike</libraryFunction>
       <SupportedPlatforms>
@@ -522,7 +522,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionVTSatmStrike2' type='QuantLib::SwaptionVolatilityCube' loopParameter='OptionTenor'>
+    <Member name='qlSwaptionVTSatmStrike2' type='QuantLib::SwaptionVolatilityCube' superType='handleToLib' loopParameter='OptionTenor'>
       <description>Returns the at-the-money swaption strike, for a given option tenor and underlying swap length, for the given SwaptionVolatilityCube object.</description>
       <libraryFunction>atmStrike</libraryFunction>
       <SupportedPlatforms>

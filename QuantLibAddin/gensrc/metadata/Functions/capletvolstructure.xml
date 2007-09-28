@@ -30,7 +30,7 @@
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <copyright>
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
   </copyright>
   <Functions>
 
@@ -293,8 +293,8 @@
       </ParameterList>
     </Constructor>
 
-    <!-- OptionletStripper -->
-    <Member name='qlOptionletStripperCapFloorPrices' type='QuantLib::OptionletStripper' superType='handleToLib'>
+    <!-- OptionletStripper interface and constructor -->
+    <Member name='qlOptionletStripperCapFloorPrices' type='QuantLib::OptionletStripper' superType='libraryClass'>
       <description></description>
       <libraryFunction>capFloorPrices</libraryFunction>
       <SupportedPlatforms>
@@ -309,7 +309,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperCapFloorVolatilities' type='QuantLib::OptionletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperCapFloorVolatilities' type='QuantLib::OptionletStripper' superType='libraryClass'>
       <description></description>
       <libraryFunction>capFloorVolatilities</libraryFunction>
       <SupportedPlatforms>
@@ -324,7 +324,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperOptionletPrices' type='QuantLib::OptionletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperOptionletPrices' type='QuantLib::OptionletStripper' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionletPrices</libraryFunction>
       <SupportedPlatforms>
@@ -339,7 +339,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperOptionletVolatilities' type='QuantLib::OptionletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperOptionletVolatilities' type='QuantLib::OptionletStripper' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionletVolatilities</libraryFunction>
       <SupportedPlatforms>
@@ -354,7 +354,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperStrikes' type='QuantLib::OptionletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperStrikes' type='QuantLib::OptionletStripper' superType='libraryClass'>
       <description></description>
       <libraryFunction>strikes</libraryFunction>
       <SupportedPlatforms>
@@ -369,7 +369,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperOptionletTenors' type='QuantLib::OptionletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperOptionletTenors' type='QuantLib::OptionletStripper' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionletTenors</libraryFunction>
       <SupportedPlatforms>
@@ -384,7 +384,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperOptionletDates' type='QuantLib::OptionletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperOptionletDates' type='QuantLib::OptionletStripper' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionletDates</libraryFunction>
       <SupportedPlatforms>
@@ -399,7 +399,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperOptionletTimes' type='QuantLib::OptionletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperOptionletTimes' type='QuantLib::OptionletStripper' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionletTimes</libraryFunction>
       <SupportedPlatforms>
@@ -414,7 +414,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperOptionletPaymentDates' type='QuantLib::OptionletStripper' superType='handleToLib'>
+    <Member name='qlOptionletStripperOptionletPaymentDates' type='QuantLib::OptionletStripper' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionletPaymentDates</libraryFunction>
       <SupportedPlatforms>
@@ -456,7 +456,74 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-    
+
+    <!-- OptionletStripper2 interface and constructor -->
+    <Member name='qlOptionletStripper2SpreadsVol' type='QuantLib::OptionletStripper2' superType='libraryClass'>
+      <description></description>
+      <libraryFunction>spreadsVol</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlOptionletStripper2AtmOptionPrice' type='QuantLib::OptionletStripper2' superType='libraryClass'>
+      <description></description>
+      <libraryFunction>atmOptionPrices</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlOptionletStripper2AtmOptionStrikes' type='QuantLib::OptionletStripper2' superType='libraryClass'>
+      <description></description>
+      <libraryFunction>atmOptionStrikes</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlOptionletStripper2MdlOptionletVols' type='QuantLib::OptionletStripper2' superType='libraryClass'>
+      <description></description>
+      <libraryFunction>mdlOptionletVols</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Constructor name='qlOptionletStripper2'>
       <libraryFunction>OptionletStripper2</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
@@ -481,73 +548,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlOptionletStripper2SpreadsVol' type='QuantLib::OptionletStripper2' superType='handleToLib'>
-      <description></description>
-      <libraryFunction>spreadsVol</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-    
-    <Member name='qlOptionletStripper2AtmOptionPrice' type='QuantLib::OptionletStripper2' superType='handleToLib'>
-      <description></description>
-      <libraryFunction>atmOptionPrices</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-    
-    <Member name='qlOptionletStripper2AtmOptionStrikes' type='QuantLib::OptionletStripper2' superType='handleToLib'>
-      <description></description>
-      <libraryFunction>atmOptionStrikes</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-    
-    <Member name='qlOptionletStripper2MdlOptionletVols' type='QuantLib::OptionletStripper2' superType='handleToLib'>
-      <description></description>
-      <libraryFunction>mdlOptionletVols</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-       <Parameters>
-        <Parameter name='Index'>
-          <type>QuantLib::Size</type>
-          <tensorRank>scalar</tensorRank>
-          <description>index</description>
-        </Parameter>
-       </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>  
-    
-    <!-- CapFloorTermVolStructure -->
+    <!-- CapFloorTermVolStructure interface -->
     <Member name='qlCapFloorTermVTSVolatility' type='QuantLib::CapFloorTermVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
       <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
@@ -646,7 +647,7 @@
       </ReturnValue>
     </Member>
 
-    <!-- CapFloorTermVolCurve -->
+    <!-- CapFloorTermVolCurve interface and constructor -->
     <Member name='qlCapFloorTermVolVectorOptionTenors' type='QuantLib::CapFloorTermVolCurve' superType='handleToLib'>
       <description></description>
       <libraryFunction>optionTenors</libraryFunction>
@@ -715,7 +716,7 @@
       </ParameterList>
     </Constructor>
 
-    <!-- CapFloorTermVolSurface -->
+    <!-- CapFloorTermVolSurface interface and constructor -->
     <Member name='qlCapFloorTermVolSurfaceOptionTenors' type='QuantLib::CapFloorTermVolSurface' superType='handleToLib'>
       <description></description>
       <libraryFunction>optionTenors</libraryFunction>
@@ -835,7 +836,7 @@
       </ParameterList>
     </Constructor>
 
-    <!-- CapsStripper interface-->
+    <!-- CapsStripper interface and constructors -->
     <Member name='qlCapsStripperStrikes' type='QuantLib::CapsStripper' superType='handleToLib'>
       <description>Returns the vector of cap strikes underlying the given ObjectID.</description>
       <libraryFunction>strikes</libraryFunction>

@@ -141,7 +141,7 @@
       </ReturnValue>
     </Member>
 
-    <!--<Member name='qlIndexAddFixings2' type='QuantLib::Index'>
+    <Member name='qlIndexAddFixings2' type='QuantLib::Index'>
       <description>Adds fixings for the given Index object</description>
       <libraryFunction>addFixings</libraryFunction>
       <SupportedPlatforms>
@@ -151,8 +151,8 @@
       <ParameterList>
         <Parameters>
           <Parameter name='TimeSeriesID'>
-            <type>QuantLib::TimeSeries</type>
-            <superType>libraryClass</superType>
+            <type>QuantLib::TimeSeriesDef</type>
+            <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>TimeSeries object ID</description>
           </Parameter>
@@ -167,7 +167,7 @@
         <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>-->
+    </Member>
 
     <Member name='qlIndexClearFixings' type='QuantLib::Index'>
       <description>Clear all fixings for the given Index object</description>

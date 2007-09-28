@@ -163,6 +163,8 @@
         <DataType>QuantLib::OneAssetOption</DataType>
         <DataType>QuantLib::OptimizationMethod</DataType>
         <DataType>QuantLib::Payoff</DataType>
+        <DataType>QuantLib::OptionletStripper</DataType>
+        <DataType>QuantLib::OptionletStripper2</DataType>
         <DataType>QuantLib::PiecewiseConstantAbcdVariance</DataType>
         <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
         <DataType>QuantLib::PiecewiseConstantVariance</DataType>
@@ -185,7 +187,6 @@
         <DataType>QuantLib::Swaption</DataType>
         <DataType>QuantLib::SymmetricSchurDecomposition</DataType>
         <DataType>QuantLib::TimeHomogeneousForwardCorrelation</DataType>
-        <DataType>QuantLib::TimeSeries</DataType>
         <DataType>QuantLib::TypePayoff</DataType>
         <DataType>QuantLib::VanillaSwap</DataType>
       </DataTypes>
@@ -204,8 +205,6 @@
         <DataType>QuantLib::CapVolatilityStructure</DataType>
         <DataType>QuantLib::CapsStripper</DataType>
         <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
-        <DataType>QuantLib::OptionletStripper2</DataType>
-        <DataType>QuantLib::OptionletStripper</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SimpleQuote</DataType>
@@ -234,6 +233,7 @@
         <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
         <DataType>QuantLib::Schedule</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>
+        <DataType>QuantLib::TimeSeriesDef</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>

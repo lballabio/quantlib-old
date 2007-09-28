@@ -11,11 +11,9 @@
   <Functions>
 
     <Constructor name='qlTimeSeries'>
-      <libraryFunction>TimeSeries</libraryFunction>
+      <libraryFunction>TimeSeriesDef</libraryFunction>
       <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <!--<SupportedPlatform name='Cpp'/>-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

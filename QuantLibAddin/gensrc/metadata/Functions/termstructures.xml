@@ -14,14 +14,14 @@
   </serializationIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Aurelien Chanudet
   </copyright>
   <Functions>
 
     <!-- TermStructure interface -->
-    <Member name='qlTermStructureDayCounter' type='QuantLib::TermStructure'>
+    <Member name='qlTermStructureDayCounter' type='QuantLib::TermStructure' superType='handleToLib'>
       <description>Returns the DayCounter used by the given TermStructure object</description>
       <libraryFunction>dayCounter</libraryFunction>
       <SupportedPlatforms>
@@ -37,7 +37,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTermStructureMaxDate' type='QuantLib::TermStructure'>
+    <Member name='qlTermStructureMaxDate' type='QuantLib::TermStructure' superType='handleToLib'>
       <description>Returns the max date for the given TermStructure object</description>
       <libraryFunction>maxDate</libraryFunction>
       <SupportedPlatforms>
@@ -53,7 +53,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTermStructureReferenceDate' type='QuantLib::TermStructure'>
+    <Member name='qlTermStructureReferenceDate' type='QuantLib::TermStructure' superType='handleToLib'>
       <description>Returns the reference date for the given TermStructure object</description>
       <libraryFunction>referenceDate</libraryFunction>
       <SupportedPlatforms>
@@ -69,7 +69,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTermStructureCalendar' type='QuantLib::TermStructure'>
+    <Member name='qlTermStructureCalendar' type='QuantLib::TermStructure' superType='handleToLib'>
       <description>Returns the calendar used by the given TermStructure object</description>
       <libraryFunction>calendar</libraryFunction>
       <SupportedPlatforms>
@@ -85,7 +85,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTermStructureSettlementDays' type='QuantLib::TermStructure'>
+    <Member name='qlTermStructureSettlementDays' type='QuantLib::TermStructure' superType='handleToLib'>
       <description>Returns the number of settlement days for the given TermStructure object</description>
       <libraryFunction>settlementDays</libraryFunction>
       <SupportedPlatforms>

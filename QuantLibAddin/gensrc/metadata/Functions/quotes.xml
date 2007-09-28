@@ -26,12 +26,13 @@
     <include>qlo/capletvolstructure.hpp</include>
   </serializationIncludes>
   <copyright>
+    Copyright (C) 2007 Ferdinando Ametrano
     Copyright (C) 2006 Francois du Vignaud
     Copyright (C) 2006 Giorgio Facchinetti
   </copyright>
   <Functions>
 
-    <!-- Quote,  SimpleQuote, and HandleQuote -->
+    <!-- Quote base class interface -->
     <Member name='qlQuoteValue' type='QuantLib::Quote' superType='handleToLib'>
       <description>Returns the current value of the given Quote object</description>
       <libraryFunction>value</libraryFunction>
@@ -64,6 +65,86 @@
       </ReturnValue>
     </Member>
 
+    <!-- SimpleQuote interface and constructor -->
+    <Member name='qlSimpleQuoteReset' type='QuantLib::SimpleQuote' superType='handleToLib'>
+      <description>resets the given SimpleQuote object to the uninitialized state</description>
+      <libraryFunction>reset</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- Use a QuantLibAddin::SimpleQuote rather than a QuantLib::SimpleQuote. 
+         Note that we lose the automatic coercion from RelinkableHandle.
+    <Member name='qlSimpleQuoteSetValue' type='QuantLib::SimpleQuote'>-->
+    <Member name='qlSimpleQuoteSetValue' type='QuantLibAddin::SimpleQuote' superType='objectClass'>
+      <description>sets a new value to the given SimpleQuote object and returns the difference with the previous value</description>
+      <libraryFunction>setValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Value' default='QuantLib::Null&lt;QuantLib::Real&gt;()' errorValue='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the new value</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimpleQuoteSetTickValue' type='QuantLibAddin::SimpleQuote' superType='objectClass'>
+      <description>sets the tick value of the given SimpleQuote object</description>
+      <libraryFunction>setTickValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Value' exampleValue='0.0001'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the new tick value</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimpleQuoteTickValue' type='QuantLibAddin::SimpleQuote' superType='objectClass'>
+      <description>returns the tick value of the given SimpleQuote object</description>
+      <libraryFunction>tickValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Constructor name='qlSimpleQuote'>
       <libraryFunction>SimpleQuote</libraryFunction>
       <SupportedPlatforms>
@@ -87,101 +168,7 @@
       </ParameterList>
     </Constructor>
 
-    <!-- Use a QuantLibAddin::SimpleQuote rather than a QuantLib::SimpleQuote. 
-         Note that we lose the automatic coercion from RelinkableHandle.
-    <Member name='qlSimpleQuoteSetValue' type='QuantLib::SimpleQuote'>-->
-    <Member name='qlSimpleQuoteSetValue' type='QuantLibAddin::SimpleQuote'>
-        <description>sets a new value to the given SimpleQuote object and returns the difference with the previous value</description>
-      <libraryFunction>setValue</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Value' default='QuantLib::Null&lt;QuantLib::Real&gt;()' errorValue='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>the new value</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlSimpleQuoteReset' type='QuantLib::SimpleQuote'>
-      <description>resets the given SimpleQuote object to the uninitialized state</description>
-      <libraryFunction>reset</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlSimpleQuoteSetTickValue' type='QuantLibAddin::SimpleQuote'>
-      <description>sets the tick value of the given SimpleQuote object</description>
-      <libraryFunction>setTickValue</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Value' exampleValue='0.0001'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>the new tick value</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlSimpleQuoteTickValue' type='QuantLibAddin::SimpleQuote'>
-      <description>returns the tick value of the given SimpleQuote object</description>
-      <libraryFunction>tickValue</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Constructor name='qlRelinkableHandleQuote'>
-      <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::Quote, QuantLib::Quote&gt;</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='CurrentLink' default='""'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Quote object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
+    <!-- other Quote constructors -->
 
     <Constructor name='qlForwardValueQuote'>
       <libraryFunction>ForwardValueQuote</libraryFunction>
@@ -297,6 +284,7 @@
       </ParameterList>
     </Constructor>
 
+    <!-- FuturesConvAdjustmentQuote interface and constructor -->
     <Constructor name='qlFuturesConvAdjustmentQuote'>
       <libraryFunction>FuturesConvAdjustmentQuote</libraryFunction>
       <SupportedPlatforms>
@@ -338,39 +326,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlFuturesConvAdjustmentQuoteImmDate' type='QuantLib::FuturesConvAdjustmentQuote'>
-      <description>Return the IMM date of futures</description>
-      <libraryFunction>immDate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlFuturesConvAdjustmentQuoteUnderlying' type='QuantLib::FuturesConvAdjustmentQuote'>
-      <description>Return the value of futures underlying</description>
-      <libraryFunction>futuresValue</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlFuturesConvAdjustmentQuoteVolatility' type='QuantLib::FuturesConvAdjustmentQuote'>
+    <Member name='qlFuturesConvAdjustmentQuoteVolatility' type='QuantLib::FuturesConvAdjustmentQuote' superType='handleToLib'>
       <description>Return the value of HW volatility</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -386,7 +342,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlFuturesConvAdjustmentQuoteMeanReversion' type='QuantLib::FuturesConvAdjustmentQuote'>
+    <Member name='qlFuturesConvAdjustmentQuoteMeanReversion' type='QuantLib::FuturesConvAdjustmentQuote' superType='handleToLib'>
       <description>Return the value of HW mean reversion</description>
       <libraryFunction>meanReversion</libraryFunction>
       <SupportedPlatforms>
@@ -402,6 +358,55 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlFuturesConvAdjustmentQuoteImmDate' type='QuantLib::FuturesConvAdjustmentQuote' superType='handleToLib'>
+      <description>Return the IMM date of futures</description>
+      <libraryFunction>immDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFuturesConvAdjustmentQuoteFuturesValue' type='QuantLib::FuturesConvAdjustmentQuote' superType='handleToLib'>
+      <description>Return the value of futures underlying</description>
+      <libraryFunction>futuresValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- RelinkableHandle constructor -->
+    <Constructor name='qlRelinkableHandleQuote'>
+      <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::Quote, QuantLib::Quote&gt;</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurrentLink' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Quote object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
   </Functions>
 </Category>
-
