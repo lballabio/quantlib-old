@@ -4,11 +4,126 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
     <include>qlo/timeseries.hpp</include>
+    <include>ql/timeseries.hpp</include>
   </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/timeseries.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2007 Ferdinando Ametrano
   </copyright>
   <Functions>
+
+    <Member name='qlTimeSeriesFirstDate' type='QuantLib::TimeSeriesDef' superType='libraryClass'>
+      <description>Returns the first date for which a historical datum exists</description>
+      <libraryFunction>firstDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTimeSeriesLastDate' type='QuantLib::TimeSeriesDef' superType='libraryClass'>
+      <description>Returns the last date for which a historical datum exists</description>
+      <libraryFunction>lastDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTimeSeriesSize' type='QuantLib::TimeSeriesDef' superType='libraryClass'>
+      <description>Returns the first date for which a historical datum exists</description>
+      <libraryFunction>size</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTimeSeriesEmpty' type='QuantLib::TimeSeriesDef' superType='libraryClass'>
+      <description>Returns whether the series contains any data</description>
+      <libraryFunction>empty</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTimeSeriesDates' type='QuantLib::TimeSeriesDef' superType='libraryClass'>
+      <description>Returns the dates for which historical data exist</description>
+      <libraryFunction>dates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTimeSeriesValues' type='QuantLib::TimeSeriesDef' superType='libraryClass'>
+      <description>Returns the historical data</description>
+      <libraryFunction>values</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTimeSeriesValue' type='QuantLib::TimeSeriesDef' superType='libraryClass' loopParameter='Dates'>
+      <description>Returns returns the data corresponding to the given dates</description>
+      <libraryFunction>operator[]</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dates' exampleValue='02-Jan-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing date(s)</description>
+          </Parameter>
+        </Parameters>
+          </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
 
     <Constructor name='qlTimeSeries'>
       <libraryFunction>TimeSeriesDef</libraryFunction>
