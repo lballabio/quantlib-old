@@ -81,6 +81,15 @@
     boost::shared_ptr<OBJECT_CLASS > NAME; \
     ObjectHandler::Repository::instance().retrieveObject(NAME, ID);
 
+/*! \def OH_GET_OBJECT_DEFAULT
+    Like OH_GET_OBJECT but only attempt retrieval if id supplied.
+*/
+#define OH_GET_OBJECT_DEFAULT( NAME, ID, OBJECT_CLASS ) \
+    boost::shared_ptr<OBJECT_CLASS > NAME; \
+    if (!ID.empty()) { \
+        ObjectHandler::Repository::instance().retrieveObject(NAME, ID); \
+    }
+
 /*! \def OH_GET_REFERENCE
     Get a boost shared pointer to the client library object referenced by an
     ObjectHandler::Object.

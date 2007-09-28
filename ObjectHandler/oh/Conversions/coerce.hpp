@@ -49,7 +49,9 @@ namespace ObjectHandler {
         */
         TypeOut operator()(const TypeIn &in) {
 
-            //OH_REQUIRE(!inputMissing(in), "invalid input");
+            OH_REQUIRE(!inputMissing(in), "Unable to coerce value from type '"
+                << typeid(TypeIn).name() << "' to type '" << typeid(TypeOut).name()
+                << "' - the input value is null");
 
             TypeOut out;
             for (Conversion *conversion = getConversions();
@@ -58,8 +60,8 @@ namespace ObjectHandler {
                     return out;
             }
 
-            OH_FAIL("Unable to coerce value to type " 
-                << typeid(TypeOut).name());
+            OH_FAIL("Unable to coerce value from type '" << typeid(TypeIn).name()
+                << "' to type '" << typeid(TypeOut).name() << "' - all conversions failed");
         }
 
         //! Override for operator () - special case where user has provided a default value.

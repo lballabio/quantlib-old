@@ -124,18 +124,20 @@ code43 = '''\
             ObjectHandler::operToVector<QuantLib::Handle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
 
 code44a = '''\
+        OH_GET_OBJECT_DEFAULT(%(name)sCoerce, %(name)sCpp, ObjectHandler::Object)
         %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
-                    %(name)sCpp, %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s>());\n'''
+                    %(name)sCoerce, %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s>());\n'''
 
 code44b = '''\
+        OH_GET_OBJECT(%(name)sCoerce, %(name)s, ObjectHandler::Object)
         %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
-                    %(name)s);\n'''
+                    %(name)sCoerce);\n'''
 
 code45a = '''\
         QuantLib::Handle<QuantLib::Quote> %(name)sLibObj = 
@@ -454,12 +456,12 @@ code92 = '''\
         return returnValueCalc;\n'''
 
 code93 = '''\
-        OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjectHandler::Object)
+        OH_GET_OBJECT(%(name)sCoerce, %(name)sTemp, ObjectHandler::Object)
         %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
-                    %(name)sTemp);\n'''
+                    %(name)sCoerce);\n'''
 
 code94 = '''\
         %(type)s %(name)sLib = calcToQlMatrix(%(name)s);\n'''
@@ -623,11 +625,12 @@ code162 = '''\
             ObjectHandler::vectorStringToEnum<%(type)s>(%(name)s, "%(name)s");\n'''
 
 code163 = '''\
+        OH_GET_OBJECT_DEFAULT(%(name)sCoerce, %(name)s, ObjectHandler::Object)
         %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
-                    %(name)s, %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s>());\n'''
+                    %(name)sCoerce, %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s>());\n'''
 
 ##########################################################################
 # code for C

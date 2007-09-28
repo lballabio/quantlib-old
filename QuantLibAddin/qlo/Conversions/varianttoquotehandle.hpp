@@ -34,7 +34,8 @@ namespace ObjectHandler {
                     boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(variant)));
                 return ret;
             } else if (variant.type() == ObjectHandler::String) {
-                return QuantLibAddin::CoerceHandle<QuantLibAddin::Quote, QuantLib::Quote>()(variant);
+                OH_GET_OBJECT(object, variant, ObjectHandler::Object)
+                return QuantLibAddin::CoerceHandle<QuantLibAddin::Quote, QuantLib::Quote>()(object);
             } else {
                 OH_FAIL("unable to convert input value to QuantLib::RelinkableHandle<QuantLib::Quote>");
             }
