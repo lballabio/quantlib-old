@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -39,8 +39,6 @@ namespace QuantLibAddin {
                       const std::vector<QuantLib::Real>& x,
                       const std::vector<QuantLib::Real>& y,
                       bool permanent);
-      protected:
-        std::vector<QuantLib::Real> x_, y_;
     };
 
     class LinearInterpolation : public Interpolation {

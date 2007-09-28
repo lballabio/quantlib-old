@@ -34,12 +34,8 @@ namespace QuantLibAddin {
                         const std::vector<double>& y,
                         const QuantLib::Matrix& dataMatrix,
                         bool permanent);
-      private:
-        std::vector<QuantLib::Real> x_, y_;
-        QuantLib::Matrix dataMatrix_;
     };
     
 }
 
 #endif
-

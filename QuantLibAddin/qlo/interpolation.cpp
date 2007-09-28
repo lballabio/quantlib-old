@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -38,7 +38,7 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Real>& x,
         const std::vector<QuantLib::Real>& y,
         bool permanent)
-    : Extrapolator(properties, permanent), x_(x), y_(y) {
+    : Extrapolator(properties, permanent) {
         QL_REQUIRE(x.size()==y.size(),
                   "unmatched size between x (" << x.size() <<
                   ") and y(" << y.size() << ")");
@@ -50,7 +50,12 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Real>& x,
         const std::vector<QuantLib::Real>& y,
         bool permanent)
-    : Interpolation(properties, x, y, permanent) {
+    : Interpolation(properties, x, y, permanent)
+    {
+        const std::vector<QuantLib::Real>& x_ =
+            boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("XARRAY"));
+        const std::vector<QuantLib::Real>& y_ =
+            boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("YARRAY"));
         libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::Interpolation> >()
             (linearInterpolationType, x_.begin(), x_.end(), y_.begin());
         boost::dynamic_pointer_cast<QuantLib::Interpolation>(
@@ -67,7 +72,12 @@ namespace QuantLibAddin {
         double rightConditionValue,
         bool monotonicityConstraint,
         bool permanent)
-    : Interpolation(properties, x, y, permanent) {
+    : Interpolation(properties, x, y, permanent)
+    {
+        const std::vector<QuantLib::Real>& x_ =
+            boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("XARRAY"));
+        const std::vector<QuantLib::Real>& y_ =
+            boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("YARRAY"));
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CubicSpline(x_.begin(), x_.end(), y_.begin(),
                                   leftCondition, leftConditionValue,
@@ -95,8 +105,12 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::EndCriteria>& ec,
         const boost::shared_ptr<QuantLib::OptimizationMethod>& om,
         bool permanent)
-    : Interpolation(properties, x, y, permanent), forward_(forward) {
-
+    : Interpolation(properties, x, y, permanent), forward_(forward)
+    {
+        const std::vector<QuantLib::Real>& x_ =
+            boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("XARRAY"));
+        const std::vector<QuantLib::Real>& y_ =
+            boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("YARRAY"));
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SABRInterpolation(x_.begin(), x_.end(), y_.begin(),
                                         t, forward_, alpha, beta, nu, rho,
@@ -108,4 +122,3 @@ namespace QuantLibAddin {
     }
    
 }
-
