@@ -70,9 +70,11 @@ namespace QuantLibAddin {
         ret = QuantLib::Size(in);
     }
 
+#ifndef BOOST_MSVC
     void cppToLibrary(const long &in, QuantLib::Natural &ret) {
         ret = QuantLib::Natural(in);
     }
+#endif
 
     QuantLib::Matrix vvToQlMatrix(const std::vector<std::vector<double> > &vv) {
         int rows = vv.size();

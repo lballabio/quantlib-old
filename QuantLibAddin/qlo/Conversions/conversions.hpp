@@ -43,7 +43,13 @@ namespace QuantLibAddin {
 
     void cppToLibrary(const std::string &in, QuantLib::Period &ret);
     void cppToLibrary(const long &in, QuantLib::Size &ret);
+
+    // Function below required on 64-bit systems but on 32-bit systems it
+    // conflicts with QuantLib::Size override.
+    // FIXME Need a #define that specifically distinguishes 32/64-bit
+#ifndef BOOST_MSVC
     void cppToLibrary(const long &in, QuantLib::Natural &ret);
+#endif
 
     template <class Tin, class Tout>
     std::vector<Tout> convertVector(const std::vector<Tin>& v) {
