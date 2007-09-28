@@ -21,8 +21,6 @@
 
 #include <oh/libraryobject.hpp>
 
-#include <ql/handle.hpp>
-
 #include <ql/voltermstructures/interestrate/swaption/cmsmarketcalibration.hpp>
 #include <ql/types.hpp>
 

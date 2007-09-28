@@ -23,7 +23,7 @@
 #define qla_quotes_hpp
 
 #include <oh/libraryobject.hpp>
-#include <ql/handle.hpp>
+
 #include <ql/option.hpp>
 #include <ql/types.hpp>
 
@@ -34,6 +34,9 @@ namespace QuantLib {
     class Date;
     class CapsStripper2;
     class Period;
+
+    template <class T>
+    class Handle;
 }
 
 namespace QuantLibAddin {

@@ -26,7 +26,6 @@
 #include <qlo/baseinstruments.hpp>
 #include <qlo/leg.hpp>
 
-#include <ql/handle.hpp>
 #include <ql/time/businessdayconvention.hpp>
 #include <ql/types.hpp>
 

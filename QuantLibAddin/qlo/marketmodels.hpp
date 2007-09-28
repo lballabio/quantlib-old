@@ -25,8 +25,6 @@
 
 #include <oh/libraryobject.hpp>
 
-#include <ql/handle.hpp>
-
 #include <ql/types.hpp>
 
 namespace QuantLib {
@@ -36,6 +34,9 @@ namespace QuantLib {
     class CTSMMCapletCalibration;
     class YieldTermStructure;
     class MarketModelFactory;
+
+    template <class T>
+    class Handle;
 }
 
 namespace QuantLibAddin {

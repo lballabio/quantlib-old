@@ -24,7 +24,6 @@
 #define qla_abcd_hpp
 
 #include <oh/libraryobject.hpp>
-#include <ql/handle.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {

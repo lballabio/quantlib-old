@@ -20,8 +20,6 @@
 
 #include <oh/libraryobject.hpp>
 
-#include <ql/handle.hpp>
-
 #include <ql/types.hpp>
 
 namespace QuantLib {
@@ -31,6 +29,9 @@ namespace QuantLib {
     class EndCriteria;
     class Quote;
     class OptimizationMethod;
+
+    template <class T>
+    class Handle;
 }
 
 namespace QuantLibAddin {

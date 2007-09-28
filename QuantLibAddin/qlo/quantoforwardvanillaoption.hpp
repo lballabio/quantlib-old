@@ -20,7 +20,6 @@
 #define qla_quantoforwardvanillaoption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <ql/handle.hpp>
 
 namespace QuantLib {
     class YieldTermStructure;
@@ -30,6 +29,9 @@ namespace QuantLib {
     class Exercise;
     class Date;
     class PricingEngine;
+
+    template <class T>
+    class Handle;
 }
 
 namespace QuantLibAddin {

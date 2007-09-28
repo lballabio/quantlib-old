@@ -33,6 +33,9 @@ namespace QuantLib {
     class DayCounter;
     class SwapIndex;
     class OptionletVolatilityStructure;
+
+    template <class T>
+    class Handle;
 }
 
 namespace QuantLibAddin {

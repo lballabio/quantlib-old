@@ -24,8 +24,6 @@
 
 #include <oh/libraryobject.hpp>
 
-#include <ql/handle.hpp>
-
 #include <ql/types.hpp>
 #include <ql/time/businessdayconvention.hpp>
 #include <ql/time/frequency.hpp>
@@ -39,6 +37,9 @@ namespace QuantLib {
     class IborIndex;
     class Schedule;
     class Date;
+
+    template <class T>
+    class Handle;
 }
 
 namespace QuantLibAddin {
@@ -79,9 +80,6 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& convAdj,
             bool permanent);
-
-      protected:
-        QuantLib::Handle<QuantLib::Quote> convAdjHandle_;
     };
 
     class SwapRateHelper : public RateHelper {

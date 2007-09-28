@@ -24,8 +24,6 @@
 
 #include <oh/libraryobject.hpp>
 
-#include <ql/handle.hpp>
-
 #include <ql/types.hpp>
 #include <ql/cashflow.hpp>
 #include <ql/compounding.hpp>

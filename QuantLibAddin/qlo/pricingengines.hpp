@@ -22,8 +22,6 @@
 
 #include <oh/libraryobject.hpp>
 
-#include <ql/handle.hpp>
-
 #include <ql/types.hpp>
 
 namespace QuantLib {
@@ -41,6 +39,9 @@ namespace QuantLib {
     class Quote;
     class YieldTermStructure;
     class DiscountingBondEngine;
+
+    template <class T>
+    class Handle;
 }
 
 namespace QuantLibAddin {
@@ -58,7 +59,6 @@ namespace QuantLibAddin {
             bool permanent);
       protected:
         OH_LIB_CTOR(PricingEngine, QuantLib::PricingEngine);
-        //PricingEngine() {}
     };
 
     class BlackSwaptionEngine : public PricingEngine {

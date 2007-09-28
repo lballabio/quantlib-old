@@ -24,7 +24,7 @@
 
 #include <qlo/interpolation.hpp>
 #include <oh/libraryobject.hpp>
-#include <ql/handle.hpp>
+
 #include <ql/time/frequency.hpp>
 #include <ql/compounding.hpp>
 
@@ -35,6 +35,8 @@ namespace QuantLib {
     class Date;
     class Quote;
     class RateHelper;
+    template <class T>
+    class Handle;
 }
 
 namespace QuantLibAddin {

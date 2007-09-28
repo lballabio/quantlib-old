@@ -19,8 +19,10 @@
 #ifndef qla_handleimpl_hpp
 #define qla_handleimpl_hpp
 
-#include <oh/repository.hpp>
 #include <qlo/handle.hpp>
+
+#include <oh/repository.hpp>
+
 #include <ql/handle.hpp>
 
 namespace QuantLibAddin {
@@ -55,4 +57,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

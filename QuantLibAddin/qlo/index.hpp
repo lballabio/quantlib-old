@@ -25,7 +25,6 @@
 #include <oh/libraryobject.hpp>
 
 #include <ql/time/businessdayconvention.hpp>
-#include <ql/handle.hpp>
 #include <ql/types.hpp>
 
 #include <string>
@@ -39,6 +38,9 @@ namespace QuantLib {
     class DayCounter;
     class IborIndex;
     class YieldTermStructure;
+
+    template <class T>
+    class Handle;
 }
 
 namespace QuantLibAddin {
