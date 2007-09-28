@@ -5,13 +5,13 @@
 	<count>4</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="135" tracking_level="1" version="0" object_id="_1">
+		<px class_id="136" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EURAB3E1Y_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value class_id="190" tracking_level="0" version="0">
-				<variant_ class_id="191" tracking_level="0" version="0">
+			<Value class_id="191" tracking_level="0" version="0">
+				<variant_ class_id="192" tracking_level="0" version="0">
 					<which>4</which>
-					<value class_id="192" tracking_level="0" version="0">
+					<value class_id="193" tracking_level="0" version="0">
 						<type_>5</type_>
 					</value>
 				</variant_>
@@ -21,7 +21,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_2">
+		<px class_id_reference="136" object_id="_2">
 			<ObjectId>EURAB3E15M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -37,7 +37,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_3">
+		<px class_id_reference="136" object_id="_3">
 			<ObjectId>EURAB3E18M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
@@ -53,7 +53,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_4">
+		<px class_id_reference="136" object_id="_4">
 			<ObjectId>EURAB3E21M_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>

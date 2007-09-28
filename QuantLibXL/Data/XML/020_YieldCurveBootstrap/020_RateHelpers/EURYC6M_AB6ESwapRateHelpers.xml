@@ -5,11 +5,11 @@
 	<count>37</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="147" tracking_level="1" version="0" object_id="_1">
+		<px class_id="148" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EURYC6M_AB6E1Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
-			<Quote class_id="190" tracking_level="0" version="0">
-				<variant_ class_id="191" tracking_level="0" version="0">
+			<Quote class_id="191" tracking_level="0" version="0">
+				<variant_ class_id="192" tracking_level="0" version="0">
 					<which>3</which>
 					<value>EURAB6E1Y_Quote</value>
 				</variant_>
@@ -31,7 +31,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_2">
+		<px class_id_reference="148" object_id="_2">
 			<ObjectId>EURYC6M_AB6E15M</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -57,7 +57,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_3">
+		<px class_id_reference="148" object_id="_3">
 			<ObjectId>EURYC6M_AB6E18M</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -83,7 +83,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_4">
+		<px class_id_reference="148" object_id="_4">
 			<ObjectId>EURYC6M_AB6E21M</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -109,7 +109,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_5">
+		<px class_id_reference="148" object_id="_5">
 			<ObjectId>EURYC6M_AB6E2Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -135,7 +135,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_6">
+		<px class_id_reference="148" object_id="_6">
 			<ObjectId>EURYC6M_AB6E3Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -161,7 +161,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_7">
+		<px class_id_reference="148" object_id="_7">
 			<ObjectId>EURYC6M_AB6E4Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -187,7 +187,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_8">
+		<px class_id_reference="148" object_id="_8">
 			<ObjectId>EURYC6M_AB6E5Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -213,7 +213,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_9">
+		<px class_id_reference="148" object_id="_9">
 			<ObjectId>EURYC6M_AB6E6Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -239,7 +239,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_10">
+		<px class_id_reference="148" object_id="_10">
 			<ObjectId>EURYC6M_AB6E7Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -265,7 +265,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_11">
+		<px class_id_reference="148" object_id="_11">
 			<ObjectId>EURYC6M_AB6E8Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -291,7 +291,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_12">
+		<px class_id_reference="148" object_id="_12">
 			<ObjectId>EURYC6M_AB6E9Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -317,7 +317,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_13">
+		<px class_id_reference="148" object_id="_13">
 			<ObjectId>EURYC6M_AB6E10Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -343,7 +343,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_14">
+		<px class_id_reference="148" object_id="_14">
 			<ObjectId>EURYC6M_AB6E11Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -369,7 +369,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_15">
+		<px class_id_reference="148" object_id="_15">
 			<ObjectId>EURYC6M_AB6E12Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -395,7 +395,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_16">
+		<px class_id_reference="148" object_id="_16">
 			<ObjectId>EURYC6M_AB6E13Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -421,7 +421,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_17">
+		<px class_id_reference="148" object_id="_17">
 			<ObjectId>EURYC6M_AB6E14Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -447,7 +447,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_18">
+		<px class_id_reference="148" object_id="_18">
 			<ObjectId>EURYC6M_AB6E15Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -473,7 +473,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_19">
+		<px class_id_reference="148" object_id="_19">
 			<ObjectId>EURYC6M_AB6E16Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -499,7 +499,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_20">
+		<px class_id_reference="148" object_id="_20">
 			<ObjectId>EURYC6M_AB6E17Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -525,7 +525,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_21">
+		<px class_id_reference="148" object_id="_21">
 			<ObjectId>EURYC6M_AB6E18Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -551,7 +551,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_22">
+		<px class_id_reference="148" object_id="_22">
 			<ObjectId>EURYC6M_AB6E19Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -577,7 +577,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_23">
+		<px class_id_reference="148" object_id="_23">
 			<ObjectId>EURYC6M_AB6E20Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -603,7 +603,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_24">
+		<px class_id_reference="148" object_id="_24">
 			<ObjectId>EURYC6M_AB6E21Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -629,7 +629,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_25">
+		<px class_id_reference="148" object_id="_25">
 			<ObjectId>EURYC6M_AB6E22Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -655,7 +655,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_26">
+		<px class_id_reference="148" object_id="_26">
 			<ObjectId>EURYC6M_AB6E23Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -681,7 +681,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_27">
+		<px class_id_reference="148" object_id="_27">
 			<ObjectId>EURYC6M_AB6E24Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -707,7 +707,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_28">
+		<px class_id_reference="148" object_id="_28">
 			<ObjectId>EURYC6M_AB6E25Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -733,7 +733,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_29">
+		<px class_id_reference="148" object_id="_29">
 			<ObjectId>EURYC6M_AB6E26Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -759,7 +759,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_30">
+		<px class_id_reference="148" object_id="_30">
 			<ObjectId>EURYC6M_AB6E27Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -785,7 +785,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_31">
+		<px class_id_reference="148" object_id="_31">
 			<ObjectId>EURYC6M_AB6E28Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -811,7 +811,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_32">
+		<px class_id_reference="148" object_id="_32">
 			<ObjectId>EURYC6M_AB6E29Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -837,7 +837,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_33">
+		<px class_id_reference="148" object_id="_33">
 			<ObjectId>EURYC6M_AB6E30Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -863,7 +863,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_34">
+		<px class_id_reference="148" object_id="_34">
 			<ObjectId>EURYC6M_AB6E35Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -889,7 +889,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_35">
+		<px class_id_reference="148" object_id="_35">
 			<ObjectId>EURYC6M_AB6E40Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -915,7 +915,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_36">
+		<px class_id_reference="148" object_id="_36">
 			<ObjectId>EURYC6M_AB6E50Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>
@@ -941,7 +941,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_37">
+		<px class_id_reference="148" object_id="_37">
 			<ObjectId>EURYC6M_AB6E60Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
 			<Quote>

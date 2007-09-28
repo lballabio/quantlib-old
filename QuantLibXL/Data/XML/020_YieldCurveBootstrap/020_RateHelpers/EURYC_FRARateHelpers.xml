@@ -5,11 +5,11 @@
 	<count>15</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="145" tracking_level="1" version="0" object_id="_1">
+		<px class_id="146" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EURYC_1X4F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
-			<Quote class_id="190" tracking_level="0" version="0">
-				<variant_ class_id="191" tracking_level="0" version="0">
+			<Quote class_id="191" tracking_level="0" version="0">
+				<variant_ class_id="192" tracking_level="0" version="0">
 					<which>3</which>
 					<value>EUR1X4F_Quote</value>
 				</variant_>
@@ -26,7 +26,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_2">
+		<px class_id_reference="146" object_id="_2">
 			<ObjectId>EURYC_2X5F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -47,7 +47,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_3">
+		<px class_id_reference="146" object_id="_3">
 			<ObjectId>EURYC_3X6F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -68,7 +68,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_4">
+		<px class_id_reference="146" object_id="_4">
 			<ObjectId>EURYC_4X7F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -89,7 +89,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_5">
+		<px class_id_reference="146" object_id="_5">
 			<ObjectId>EURYC_5X8F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -110,7 +110,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_6">
+		<px class_id_reference="146" object_id="_6">
 			<ObjectId>EURYC_6X9F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -131,7 +131,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_7">
+		<px class_id_reference="146" object_id="_7">
 			<ObjectId>EURYC_1X7F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -152,7 +152,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_8">
+		<px class_id_reference="146" object_id="_8">
 			<ObjectId>EURYC_2X8F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -173,7 +173,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_9">
+		<px class_id_reference="146" object_id="_9">
 			<ObjectId>EURYC_3X9F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -194,7 +194,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_10">
+		<px class_id_reference="146" object_id="_10">
 			<ObjectId>EURYC_4X10F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -215,7 +215,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_11">
+		<px class_id_reference="146" object_id="_11">
 			<ObjectId>EURYC_5X11F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -236,7 +236,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_12">
+		<px class_id_reference="146" object_id="_12">
 			<ObjectId>EURYC_6X12F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -257,7 +257,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_13">
+		<px class_id_reference="146" object_id="_13">
 			<ObjectId>EURYC_12X18F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -278,7 +278,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_14">
+		<px class_id_reference="146" object_id="_14">
 			<ObjectId>EURYC_18X24F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>
@@ -299,7 +299,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="145" object_id="_15">
+		<px class_id_reference="146" object_id="_15">
 			<ObjectId>EURYC_12X24F</ObjectId>
 			<ClassName>qlFraRateHelper</ClassName>
 			<Quote>

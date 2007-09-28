@@ -5,11 +5,11 @@
 	<count>10</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="148" tracking_level="1" version="0" object_id="_1">
+		<px class_id="149" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>IT0001278404_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
-			<EffectiveDate class_id="190" tracking_level="0" version="0">
-				<variant_ class_id="191" tracking_level="0" version="0">
+			<EffectiveDate class_id="191" tracking_level="0" version="0">
+				<variant_ class_id="192" tracking_level="0" version="0">
 					<which>1</which>
 					<value>37958</value>
 				</variant_>
@@ -29,7 +29,7 @@
 			<FirstDate>
 				<variant_>
 					<which>4</which>
-					<value class_id="192" tracking_level="0" version="0">
+					<value class_id="193" tracking_level="0" version="0">
 						<type_>5</type_>
 					</value>
 				</variant_>
@@ -46,7 +46,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="42" tracking_level="1" version="0" object_id="_2">
+		<px class_id="43" tracking_level="1" version="0" object_id="_2">
 			<ObjectId>IT0001278404_Replication</ObjectId>
 			<ClassName>qlDigitalReplication</ClassName>
 			<Replication>Central</Replication>
@@ -60,7 +60,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="41" tracking_level="1" version="0" object_id="_3">
+		<px class_id="42" tracking_level="1" version="0" object_id="_3">
 			<ObjectId>IT0001278404_1stCpn</ObjectId>
 			<ClassName>qlDigitalIborLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -113,7 +113,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="41" object_id="_4">
+		<px class_id_reference="42" object_id="_4">
 			<ObjectId>IT0001278404_2ndCpn</ObjectId>
 			<ClassName>qlDigitalIborLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -165,7 +165,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="41" object_id="_5">
+		<px class_id_reference="42" object_id="_5">
 			<ObjectId>IT0001278404_3rdCpn</ObjectId>
 			<ClassName>qlDigitalIborLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -217,7 +217,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="41" object_id="_6">
+		<px class_id_reference="42" object_id="_6">
 			<ObjectId>IT0001278404_4thCpn</ObjectId>
 			<ClassName>qlDigitalIborLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -270,7 +270,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="45" tracking_level="1" version="0" object_id="_7">
+		<px class_id="46" tracking_level="1" version="0" object_id="_7">
 			<ObjectId>IT0001278404_Netting</ObjectId>
 			<ClassName>qlIborLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -310,7 +310,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="153" tracking_level="1" version="0" object_id="_8">
+		<px class_id="154" tracking_level="1" version="0" object_id="_8">
 			<ObjectId>IT0001278404_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -318,7 +318,7 @@
 				<item_version>0</item_version>
 				<item>100</item>
 			</Amounts>
-			<Dates class_id="195" tracking_level="0" version="0">
+			<Dates class_id="196" tracking_level="0" version="0">
 				<count>1</count>
 				<item_version>0</item_version>
 				<item>
@@ -332,10 +332,10 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="79" tracking_level="1" version="0" object_id="_9">
+		<px class_id="80" tracking_level="1" version="0" object_id="_9">
 			<ObjectId>IT0001278404_MultiLeg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
-			<LegIDs class_id="196" tracking_level="0" version="0">
+			<LegIDs class_id="197" tracking_level="0" version="0">
 				<count>6</count>
 				<item_version>0</item_version>
 				<item>IT0001278404_1stCpn</item>
