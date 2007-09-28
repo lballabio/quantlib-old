@@ -441,7 +441,7 @@
     </Constructor>
 
 
-    <!-- SabrVolSurface -->
+    <!-- SabrVolSurface interface and constructor -->
     <Constructor name='qlSabrVolSurface'>
       <libraryFunction>SabrVolSurface</libraryFunction>
       <SupportedPlatforms>
@@ -492,6 +492,27 @@
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>The date at which the volatility is evaluated</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVolatilitySpreads2' type='QuantLib::SabrVolSurface' superType='handleToLib'>
+      <description>Returns the volatilities spread at a given date</description>
+      <libraryFunction>volatilitySpreads</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionTenor' exampleValue = '1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The tenor at which the volatility is evaluated</description>
           </Parameter>
         </Parameters>
       </ParameterList>
