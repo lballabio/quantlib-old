@@ -51,7 +51,7 @@ namespace QuantLibAddin {
     }
 
     //QuantLib::Currency Bond::currency() {
-    //    return boost::any_cast<QuantLib::Currency>(propertyValue("Currency"));
+    //    return boost::any_cast<QuantLib::Currency>(propertyValue("CURRENCY"));
     //}
 
     std::string Bond::currency() {

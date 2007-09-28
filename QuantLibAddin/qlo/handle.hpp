@@ -26,7 +26,7 @@ namespace QuantLibAddin {
     class Handle : public ObjectHandler::Object {
     public:
         std::string currentLink() const {
-            return boost::any_cast<std::string>(propertyValue("CurrentLink"));
+            return boost::any_cast<std::string>(propertyValue("CURRENTLINK"));
         }
         virtual bool empty() const = 0;
     protected:
