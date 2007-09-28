@@ -104,7 +104,7 @@
       </DataTypes>
     </SuperType>
 
-    <!-- to shared_ptr<QuantLib::xx> -->
+    <!-- to shared_ptr<QuantLib::xx>, even from Handle -->
     <!--<SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObjPtr'>-->
     <SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
@@ -175,7 +175,6 @@
         <DataType>QuantLib::RateHelper</DataType>
         <DataType>QuantLib::SABRInterpolation</DataType>
         <DataType>QuantLib::SabrInterpolatedSmileSection</DataType>
-        <DataType>QuantLib::SabrVolSurface</DataType>
         <DataType>QuantLib::Schedule</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>
         <DataType>QuantLib::SmileSection</DataType>
@@ -188,12 +187,13 @@
         <DataType>QuantLib::Swaption</DataType>
         <DataType>QuantLib::SymmetricSchurDecomposition</DataType>
         <DataType>QuantLib::TimeHomogeneousForwardCorrelation</DataType>
+        <DataType>QuantLib::TimeSeriesDef</DataType>
         <DataType>QuantLib::TypePayoff</DataType>
         <DataType>QuantLib::VanillaSwap</DataType>
       </DataTypes>
     </SuperType>
 
-    <!-- from shared_ptr<QuantLibAddin::Handle<QuantLib::xx> > to shared_ptr<QuantLib::xx> -->
+    <!-- to shared_ptr<QuantLib::xx> -->
     <!--<SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObjPtr'>-->
     <SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
@@ -219,7 +219,7 @@
       </DataTypes>
     </SuperType>
 
-    <!-- from ObjectHandler::Object to QuantLib::xx -->
+    <!-- from ObjectHandler::Object to const QuantLib::xx & -->
     <SuperType name='underlyingClass' nativeType='string' conversionSuffix='LibObj' memberAccess='.'>
       <DataTypes>
         <DataType>QuantLib::BrownianGeneratorFactory</DataType>
