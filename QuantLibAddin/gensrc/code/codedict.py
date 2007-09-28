@@ -161,9 +161,10 @@ code46b = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
             %(namespaceObjects)s::CoerceCurve<
+                %(namespaceObjects)s::SwaptionVolatilityStructure,
+                %(namespaceLibrary)s::SwaptionVolatilityStructure,
                 %(namespaceObjects)s::%(classname)s,
-                %(namespaceLibrary)s::%(classname)s,
-                QuantLib::SwaptionVolatilityStructure>()(
+                %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);\n'''
 
 code47 = '''\

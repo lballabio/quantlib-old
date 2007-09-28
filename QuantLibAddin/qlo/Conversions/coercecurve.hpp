@@ -26,48 +26,46 @@
 
 namespace QuantLibAddin {
 
-    // FIXME could this be consolidated with curveFromHandle
-    template <class ObjectClass, class LibraryClass, class HandleClass>
-    bool curveFromHandle2(
-            const boost::shared_ptr<ObjectHandler::Object> &in,
-            boost::shared_ptr<LibraryClass> &out) {
+    template <class ObjectFrom, class LibraryFrom, class LibraryTo>
+    bool curveFromHandle(
+        const boost::shared_ptr<ObjectHandler::Object> &in,
+        boost::shared_ptr<LibraryTo> &out) {
 
-        typedef RelinkableHandleImpl<ObjectClass, LibraryClass> ObjectHandle;
-        boost::shared_ptr<ObjectHandle> handleCurve =
-            boost::dynamic_pointer_cast<ObjectHandle>(in);
+        typedef RelinkableHandleImpl<ObjectFrom, LibraryFrom> HandleClass;
+        boost::shared_ptr<HandleClass> handleCurve =
+            boost::dynamic_pointer_cast<HandleClass>(in);
 
-        if (!handleCurve)
-            return false;
+        if (!handleCurve) return false;
 
-        boost::shared_ptr<HandleClass> pointerCurve = 
+        boost::shared_ptr<LibraryFrom> pointerCurve =
             handleCurve->getHandle().currentLink();
-        OH_REQUIRE(pointerCurve, "unable to retrieve reference"
-                << " contained in handle");
+        OH_REQUIRE(pointerCurve, "unable to retrieve reference "
+            "contained in handle");
 
-        out = boost::dynamic_pointer_cast<LibraryClass>(pointerCurve);
-        OH_REQUIRE(out, "unable to convert reference from " 
-            << typeid(HandleClass).name()<< " to "
-            << typeid(LibraryClass).name());
+        out = boost::dynamic_pointer_cast<LibraryTo>(pointerCurve);
+        OH_REQUIRE(out, "unable to convert reference from class '"
+            << typeid(LibraryFrom).name()<< "' to class '"
+            << typeid(LibraryTo).name() << "'");
 
         return true;
     }
 
-    template <class ObjectClass, class LibraryClass, class HandleClass>
+    template <class ObjectFrom, class LibraryFrom, class ObjectTo, class LibraryTo>
     class CoerceCurve : public ObjectHandler::Coerce<
-            boost::shared_ptr<ObjectHandler::Object>, 
-            boost::shared_ptr<LibraryClass> > {
+        boost::shared_ptr<ObjectHandler::Object>,
+        boost::shared_ptr<LibraryTo> > {
 
         typedef typename ObjectHandler::Coerce<
             boost::shared_ptr<ObjectHandler::Object>,
-            boost::shared_ptr<LibraryClass> >::Conversion Conversion;
+            boost::shared_ptr<LibraryTo> >::Conversion Conversion;
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                objectToReference<ObjectClass, LibraryClass>,
-                curveFromHandle2<ObjectClass, LibraryClass, HandleClass>, 
+                objectToReference<ObjectTo, LibraryTo>,
+                curveFromHandle<ObjectFrom, LibraryFrom, LibraryTo>,
                 0
             };
-            return conversions; 
+            return conversions;
         };
     };
 

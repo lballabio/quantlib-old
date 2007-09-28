@@ -23,6 +23,7 @@
 #include <oh/exception.hpp>
 #include <qlo/handle.hpp>
 #include <qlo/Conversions/coerceobject.hpp>
+#include <qlo/Conversions/coercecurve.hpp>
 #include <qlo/termstructures.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 #include <ql/yieldtermstructure.hpp>
@@ -30,41 +31,18 @@
 
 namespace QuantLibAddin {
 
-    template <class ObjectClass, class LibraryClass>
-    bool curveFromHandle(
-            const boost::shared_ptr<ObjectHandler::Object> &in,
-            boost::shared_ptr<QuantLib::TermStructure> &out) {
-
-        typedef RelinkableHandleImpl<ObjectClass, LibraryClass> HandleClass;
-        boost::shared_ptr<HandleClass> handleCurve =
-            boost::dynamic_pointer_cast<HandleClass>(in);
-
-        if (!handleCurve) return false;
-
-        boost::shared_ptr<LibraryClass> pointerCurve = 
-            handleCurve->getHandle().currentLink();
-        OH_REQUIRE(pointerCurve, "unable to retrieve reference contained in handle");
-
-        out = boost::dynamic_pointer_cast<QuantLib::TermStructure>(pointerCurve);
-        OH_REQUIRE(out, "unable to convert reference from " 
-            << typeid(LibraryClass).name()
-            << " to QuantLib::TermStructure");
-
-        return true;
-    }
-
     class CoerceTermStructure : public ObjectHandler::Coerce<
-            boost::shared_ptr<ObjectHandler::Object>, 
-            boost::shared_ptr<QuantLib::TermStructure> > {
+        boost::shared_ptr<ObjectHandler::Object>,
+        boost::shared_ptr<QuantLib::TermStructure> > {
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToReference<TermStructure, QuantLib::TermStructure>,
-                curveFromHandle<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure>, 
-                curveFromHandle<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>, 
+                curveFromHandle<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure, QuantLib::TermStructure>,
+                curveFromHandle<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, QuantLib::TermStructure>,
                 0
             };
-            return conversions; 
+            return conversions;
         };
     };
 
