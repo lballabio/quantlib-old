@@ -522,6 +522,21 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlAtmCurve' type='QuantLibAddin::SabrVolSurface'>
+      <description>Returns the Atm volatility curve</description>
+      <libraryFunction>atmCurve</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <!-- SmileSectionInteface constructors -->
     <Constructor name='qlSabrSmileSectionImpl'>
       <libraryFunction>SabrSmileSectionImpl</libraryFunction>

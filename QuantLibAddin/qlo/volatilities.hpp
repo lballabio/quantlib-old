@@ -100,6 +100,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Spread>& atmRateSpreads,
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
             bool permanent);
+        std::string atmCurve();
     };
 
     class SabrSmileSectionImpl : public SmileSection {

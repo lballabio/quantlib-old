@@ -94,6 +94,7 @@
         <DataType>QuantLibAddin::RandomSequenceGenerator</DataType>
         <DataType>QuantLibAddin::RateHelper</DataType>
         <DataType>QuantLibAddin::RelinkableHandle</DataType>
+        <DataType>QuantLibAddin::SabrVolSurface</DataType>
         <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::SimpleQuote</DataType>
         <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
