@@ -429,6 +429,21 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlOptionletStripperSwitchStrike' type='QuantLib::OptionletStripper' superType='libraryClass'>
+      <description></description>
+      <libraryFunction>switchStrike</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Constructor name='qlOptionletStripper'>
       <libraryFunction>OptionletStripper</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
