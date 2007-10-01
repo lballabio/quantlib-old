@@ -50,6 +50,7 @@ include_HEADERS = \
     vo_swaption.hpp \
     vo_swaptionvolstructure.hpp \
     vo_termstructures.hpp \
+    vo_timeseries.hpp \
     vo_vanillaswap.hpp \
     vo_volatilities.hpp \
     vo_volatility.hpp
@@ -99,6 +100,7 @@ libValueObjects_la_SOURCES = \
     vo_swaption.cpp \
     vo_swaptionvolstructure.cpp \
     vo_termstructures.cpp \
+    vo_timeseries.cpp \
     vo_vanillaswap.cpp \
     vo_volatilities.cpp \
     vo_volatility.cpp
