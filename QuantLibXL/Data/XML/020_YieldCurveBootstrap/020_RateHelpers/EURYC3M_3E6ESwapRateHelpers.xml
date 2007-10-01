@@ -8,8 +8,8 @@
 		<px class_id="148" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EURYC3M_AB3EBASIS1Y</ObjectId>
 			<ClassName>qlSwapRateHelper</ClassName>
-			<Quote class_id="191" tracking_level="0" version="0">
-				<variant_ class_id="192" tracking_level="0" version="0">
+			<Quote class_id="193" tracking_level="0" version="0">
+				<variant_ class_id="194" tracking_level="0" version="0">
 					<which>3</which>
 					<value>EURAB6E1Y_Quote</value>
 				</variant_>

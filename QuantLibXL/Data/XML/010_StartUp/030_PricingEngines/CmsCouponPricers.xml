@@ -51,8 +51,8 @@
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
 			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
-			<MeanReversion class_id="191" tracking_level="0" version="0">
-				<variant_ class_id="192" tracking_level="0" version="0">
+			<MeanReversion class_id="193" tracking_level="0" version="0">
+				<variant_ class_id="194" tracking_level="0" version="0">
 					<which>3</which>
 					<value>EURSwaptionMeanReversion2Y_QuoteHandle</value>
 				</variant_>

@@ -8,8 +8,8 @@
 		<px class_id="149" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>XS0235394037_Sch</ObjectId>
 			<ClassName>qlSchedule</ClassName>
-			<EffectiveDate class_id="191" tracking_level="0" version="0">
-				<variant_ class_id="192" tracking_level="0" version="0">
+			<EffectiveDate class_id="193" tracking_level="0" version="0">
+				<variant_ class_id="194" tracking_level="0" version="0">
 					<which>1</which>
 					<value>38679</value>
 				</variant_>
@@ -29,7 +29,7 @@
 			<FirstDate>
 				<variant_>
 					<which>4</which>
-					<value class_id="193" tracking_level="0" version="0">
+					<value class_id="195" tracking_level="0" version="0">
 						<type_>5</type_>
 					</value>
 				</variant_>
@@ -95,7 +95,7 @@
 				<item_version>0</item_version>
 				<item>100</item>
 			</Amounts>
-			<Dates class_id="196" tracking_level="0" version="0">
+			<Dates class_id="198" tracking_level="0" version="0">
 				<count>1</count>
 				<item_version>0</item_version>
 				<item>
@@ -112,7 +112,7 @@
 		<px class_id="80" tracking_level="1" version="0" object_id="_4">
 			<ObjectId>XS0235394037_Leg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
-			<LegIDs class_id="197" tracking_level="0" version="0">
+			<LegIDs class_id="199" tracking_level="0" version="0">
 				<count>2</count>
 				<item_version>0</item_version>
 				<item>XS0235394037_Cpn</item>
