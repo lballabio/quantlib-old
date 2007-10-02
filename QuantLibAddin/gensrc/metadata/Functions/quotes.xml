@@ -13,6 +13,7 @@
     <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
     <include>ql/quotes/impliedstddevquote.hpp</include>
+    <include>qlo/Conversions/coercequote.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/quotes.hpp</include>
@@ -24,6 +25,7 @@
     <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
     <include>ql/quotes/impliedstddevquote.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/Conversions/coercequote.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2007 Eric Ehlers

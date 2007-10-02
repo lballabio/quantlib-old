@@ -22,6 +22,7 @@
 #include <oh/types.hpp>
 #include <oh/Conversions/varianttoscalar.hpp>
 #include <ql/utilities/dataparsers.hpp>
+#include <ql/settings.hpp>
 
 namespace ObjectHandler {
 

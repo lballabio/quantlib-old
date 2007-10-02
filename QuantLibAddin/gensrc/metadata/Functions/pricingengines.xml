@@ -13,6 +13,7 @@
     <include>ql/pricingengines/blackformula.hpp</include>
     <include>ql/pricingengines/blackscholescalculator.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/voltermstructures/interestrate/swaption/swaptionvolstructure.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/pricingengines.hpp</include>
@@ -25,6 +26,7 @@
     <include>ql/pricingengines/blackformula.hpp</include>
     <include>ql/pricingengines/blackscholescalculator.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/voltermstructures/interestrate/swaption/swaptionvolstructure.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano

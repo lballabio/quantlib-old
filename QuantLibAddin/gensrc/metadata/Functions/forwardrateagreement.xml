@@ -3,13 +3,15 @@
     <displayName>Forward Rate Agreement</displayName>
     <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
     <addinIncludes>
-        <include>qlo/forwardrateagreement.hpp</include>
-        <include>qlo/index.hpp</include>
+      <include>qlo/forwardrateagreement.hpp</include>
+      <include>qlo/index.hpp</include>
+      <include>qlo/termstructures.hpp</include>
       <include>ql/indexes/iborindex.hpp</include>
     </addinIncludes>
     <serializationIncludes>
       <include>qlo/forwardrateagreement.hpp</include>
       <include>qlo/index.hpp</include>
+      <include>qlo/termstructures.hpp</include>
       <include>ql/indexes/iborindex.hpp</include>
     </serializationIncludes>
     <copyright>

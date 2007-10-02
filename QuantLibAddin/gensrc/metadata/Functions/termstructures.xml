@@ -7,10 +7,12 @@
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/handleimpl.hpp</include>
     <include>ql/interestrate.hpp</include>
+    <include>qlo/Conversions/coercetermstructure.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
+    <include>qlo/Conversions/coercetermstructure.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers

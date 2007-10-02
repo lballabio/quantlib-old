@@ -10,6 +10,7 @@
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/yieldtermstructure.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/cmsmarket.hpp</include>
@@ -19,6 +20,7 @@
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/yieldtermstructure.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006 Giorgio Facchinetti

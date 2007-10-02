@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="qlgensrc"
 	ProjectGUID="{C8A6BB98-75CA-4EB9-A750-8BA3B3AA5969}"
 	RootNamespace="gensrc"
@@ -80,22 +80,6 @@
 			</File>
 			<File
 				RelativePath="metadata\Addins\valueobjects.xml"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Enumerations"
-			>
-			<File
-				RelativePath="metadata\Enumerations\enumeratedclasses.xml"
-				>
-			</File>
-			<File
-				RelativePath="metadata\Enumerations\enumeratedpairs.xml"
-				>
-			</File>
-			<File
-				RelativePath="metadata\Enumerations\enumeratedtypes.xml"
 				>
 			</File>
 		</Filter>
@@ -331,6 +315,22 @@
 				</File>
 				<File
 					RelativePath=".\metadata\Functions\volatility.xml"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Enumerations"
+				>
+				<File
+					RelativePath="metadata\Enumerations\enumeratedclasses.xml"
+					>
+				</File>
+				<File
+					RelativePath="metadata\Enumerations\enumeratedpairs.xml"
+					>
+				</File>
+				<File
+					RelativePath="metadata\Enumerations\enumeratedtypes.xml"
 					>
 				</File>
 			</Filter>

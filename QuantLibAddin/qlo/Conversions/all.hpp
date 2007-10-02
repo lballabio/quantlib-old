@@ -26,8 +26,8 @@
 #include <qlo/Conversions/coercelibrarydifferent.hpp>
 #include <qlo/Conversions/coercelibrarysame.hpp>
 #include <qlo/Conversions/coerceobject.hpp>
-#include <qlo/Conversions/coercequote.hpp>
-#include <qlo/Conversions/coercetermstructure.hpp>
+//#include <qlo/Conversions/coercequote.hpp>
+//#include <qlo/Conversions/coercetermstructure.hpp>
 #include <qlo/Conversions/varianttodate.hpp>
 #include <qlo/Conversions/varianttoperiod.hpp>
 #include <qlo/Conversions/varianttoquote.hpp>

@@ -6,7 +6,14 @@
     <include>qlo/shortratemodels.hpp</include>
     <include>ql/models/shortrate/onefactormodels/vasicek.hpp</include>
     <include>ql/models/shortrate/onefactormodels/hullwhite.hpp</include>
+    <include>ql/yieldtermstructure.hpp</include>
   </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/shortratemodels.hpp</include>
+    <include>ql/models/shortrate/onefactormodels/vasicek.hpp</include>
+    <include>ql/models/shortrate/onefactormodels/hullwhite.hpp</include>
+    <include>ql/yieldtermstructure.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet
