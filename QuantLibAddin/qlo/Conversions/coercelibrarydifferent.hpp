@@ -26,8 +26,8 @@
 
 namespace QuantLibAddin {
 
-    // CoerceLibraryDifferent: Accept an id of an Object in the Repository
-    // and return a boost::shared_ptr<LibraryClass>.
+    // CoerceLibraryDifferent: Accept a boost::shared_ptr<Object> and attempt to
+    // downcast it to a boost::shared_ptr<LibraryClass>.
     //
     // The term "Different" refers to the fact that the class required is not
     // the same as the class that is used to wrap this object in a handle, e.g.

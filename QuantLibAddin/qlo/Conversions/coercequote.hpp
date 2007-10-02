@@ -61,6 +61,29 @@ namespace QuantLibAddin {
         };
     };
 
+    // CoerceQuoteObject: A substitute for CoerceObject which hard-codes
+    // those template parameters that are specific to Handle<Quote>.
+    //
+    // The difference between CoerceQuote and CoerceQuoteObject is that
+    // the former returns boost::shared_ptr<QuantLib::T> while
+    // the latter returns boost::shared_ptr<QuantLibAddin::T>
+    // where in either case T inherits from Quote.
+
+    template <class ObjectQuote>
+    class CoerceQuoteObject : public ObjectHandler::Coerce<
+        boost::shared_ptr<ObjectHandler::Object>,
+        boost::shared_ptr<ObjectQuote> > {
+
+        Conversion *getConversions() {
+            static Conversion conversions[] = {
+                objectToObject<ObjectQuote>,
+                handleToObject<QuantLibAddin::Quote, QuantLib::Quote, ObjectQuote>,
+                0
+            };
+            return conversions;
+        };
+    };
+
 }
 
 #endif

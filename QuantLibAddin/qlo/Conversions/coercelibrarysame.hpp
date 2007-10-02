@@ -25,10 +25,10 @@
 
 namespace QuantLibAddin {
 
-    // CoerceLibrarySame: Accept an id of an Object in the Repository
-    // and return a boost::shared_ptr<LibraryClass>.
+    // CoerceLibrarySame: Accept a boost::shared_ptr<Object> and attempt to
+    // downcast it to a boost::shared_ptr<LibraryClass>.
     //
-    // The term "same" refers to the fact that the class required is the same
+    // The term "Same" refers to the fact that the class required is the same
     // as the class that is used to wrap this object in a handle, e.g.
     //   Handle<T>  ->  T
     // Compare to CoerceLibraryDifferent where an additional cast is required.

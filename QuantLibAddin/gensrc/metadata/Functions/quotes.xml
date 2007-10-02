@@ -86,7 +86,7 @@
     <!-- Use a QuantLibAddin::SimpleQuote rather than a QuantLib::SimpleQuote.
          Note that if necessary the required reference is extracted automatically
          from a Handle<Quote>.-->
-    <Member name='qlSimpleQuoteSetValue' type='QuantLibAddin::SimpleQuote' superType='objectClass'>
+    <Member name='qlSimpleQuoteSetValue' type='QuantLibAddin::SimpleQuote' superType='objectQuote'>
       <description>sets a new value to the given SimpleQuote object and returns the difference with the previous value</description>
       <libraryFunction>setValue</libraryFunction>
       <SupportedPlatforms>
@@ -108,7 +108,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSimpleQuoteSetTickValue' type='QuantLibAddin::SimpleQuote' superType='objectClass'>
+    <Member name='qlSimpleQuoteSetTickValue' type='QuantLibAddin::SimpleQuote' superType='objectQuote'>
       <description>sets the tick value of the given SimpleQuote object</description>
       <libraryFunction>setTickValue</libraryFunction>
       <SupportedPlatforms>
@@ -130,7 +130,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSimpleQuoteTickValue' type='QuantLibAddin::SimpleQuote' superType='objectClass'>
+    <Member name='qlSimpleQuoteTickValue' type='QuantLibAddin::SimpleQuote' superType='objectQuote'>
       <description>returns the tick value of the given SimpleQuote object</description>
       <libraryFunction>tickValue</libraryFunction>
       <SupportedPlatforms>

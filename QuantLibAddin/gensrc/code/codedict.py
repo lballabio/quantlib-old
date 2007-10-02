@@ -96,12 +96,9 @@ code36 = '''\
 
 code36b = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
-        boost::shared_ptr<%(namespaceObjects)s::%(classname)s> %(name)sObj =
-            %(namespaceObjects)s::CoerceObject<
-                QuantLibAddin::Quote,
-                QuantLib::Quote,
-                %(namespaceObjects)s::%(classname)s>()(
-                    %(name)sTemp);\n'''
+        boost::shared_ptr<%(type)s> %(name)sObj =
+            %(namespaceObjects)s::CoerceQuoteObject<%(type)s>()(
+                %(name)sTemp);\n'''
 
 code37 = '''\
         std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(name)sObj =

@@ -144,7 +144,7 @@
     <RuleGroup name='objectConversions' indent='2' delimiter='&#10;'>
       <Wrap codeID='wrap4'/>
       <Rules>
-        <Rule tensorRank='scalar' superType='objectClass' type='QuantLibAddin::SimpleQuote' codeID='code36b'/>
+        <Rule tensorRank='scalar' superType='objectQuote' codeID='code36b'/>
         <Rule tensorRank='scalar' superType='objectClass' codeID='code36'/>
         <Rule tensorRank='vector' superType='objectClass' codeID='code37'/>
       </Rules>
@@ -205,6 +205,7 @@
         <Rule tensorRank='scalar' superType='handleToLib'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='underlyingClass'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sObj</Rule>
+        <Rule tensorRank='scalar' superType='objectQuote'>%(indent)s%(name)sObj</Rule>
         <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(name)sEnum</Rule>
         <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='long'>%(indent)s*%(name)s</Rule>
@@ -219,6 +220,7 @@
         <Rule superType='libToHandle'>%(indent)s%(name)sLibObj</Rule>
         <Rule superType='libraryClass'>%(indent)s%(name)sLibObj</Rule>
         <Rule superType='objectClass'>%(indent)s%(name)sObj</Rule>
+        <Rule superType='objectQuote'>%(indent)s%(name)sObj</Rule>
         <Rule superType='enumeration'>%(indent)s%(name)sEnum</Rule>
         <Rule vectorIterator='begin'>%(indent)s%(name)sCpp.begin()</Rule>
         <Rule vectorIterator='end'>%(indent)s%(name)sCpp.end()</Rule>
@@ -239,6 +241,7 @@
         <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sStrip</Rule>
         <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(name)sStrip</Rule>
         <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sStrip</Rule>
+        <Rule tensorRank='scalar' superType='objectQuote'>%(indent)s%(name)sStrip</Rule>
         <Rule tensorRank='scalar' superType='underlyingClass'>%(indent)s%(name)sStrip</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)s*%(name)s</Rule>
@@ -256,6 +259,7 @@
         <Rule tensorRank='scalar' superType='libToHandle' default='true' codeID='code65b'/>
         <Rule tensorRank='scalar' superType='libToHandle' codeID='code65'/>
         <Rule tensorRank='scalar' superType='objectClass' codeID='code65'/>
+        <Rule tensorRank='scalar' superType='objectQuote' codeID='code65'/>
         <Rule tensorRank='scalar' superType='underlyingClass' codeID='code65'/>
       </Rules>
     </RuleGroup>

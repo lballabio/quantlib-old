@@ -96,12 +96,19 @@
         <DataType>QuantLibAddin::RelinkableHandle</DataType>
         <DataType>QuantLibAddin::SabrVolSurface</DataType>
         <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
-        <DataType>QuantLibAddin::SimpleQuote</DataType>
         <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
         <DataType>QuantLibAddin::Swap</DataType>
         <DataType>QuantLibAddin::SwaptionVolCube1</DataType>
         <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
         <DataType>QuantLibAddin::VanillaSwap</DataType>
+      </DataTypes>
+    </SuperType>
+
+    <!-- to shared_ptr<QuantLibAddin::T> where T inherits from Quote -->
+    <!--<SuperType name='objectClass' nativeType='string' conversionSuffix='ObjPtr'>-->
+    <SuperType name='objectQuote' nativeType='string' conversionSuffix='Obj'>
+      <DataTypes>
+        <DataType>QuantLibAddin::SimpleQuote</DataType>
       </DataTypes>
     </SuperType>
 
@@ -217,7 +224,7 @@
       </DataTypes>
     </SuperType>
 
-    <!-- to shared_ptr<QuantLib::xx> where xxx inherits from Quote -->
+    <!-- to shared_ptr<QuantLib::T> where T inherits from Quote -->
     <!--<SuperType name='libraryQuote' nativeType='string' conversionSuffix='LibObjPtr'>-->
     <SuperType name='libraryQuote' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
