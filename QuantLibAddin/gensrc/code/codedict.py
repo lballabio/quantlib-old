@@ -94,6 +94,15 @@ code35 = '''\
 code36 = '''\
         OH_GET_OBJECT(%(name)sObj, %(name)s, %(type)s)\n'''
 
+code36b = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
+        boost::shared_ptr<%(namespaceObjects)s::%(classname)s> %(name)sObj =
+            %(namespaceObjects)s::CoerceObject<
+                QuantLibAddin::Quote,
+                QuantLib::Quote,
+                %(namespaceObjects)s::%(classname)s>()(
+                    %(name)sTemp);\n'''
+
 code37 = '''\
         std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(name)sObj =
             ObjectHandler::getObjectVector<%(namespaceObjects)s::%(classname)s>(%(name)sCpp);\n'''
@@ -147,7 +156,15 @@ code45a = '''\
 code45b = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            %(namespaceObjects)s::CoerceObject<
+            %(namespaceObjects)s::CoerceLibrarySame<
+                %(namespaceObjects)s::%(classname)s,
+                %(namespaceLibrary)s::%(classname)s>()(
+                    %(name)sTemp);\n'''
+
+code45c = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
+        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+            %(namespaceObjects)s::CoerceQuote<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);\n'''
@@ -160,7 +177,7 @@ code46 = '''\
 code46b = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            %(namespaceObjects)s::CoerceCurve<
+            %(namespaceObjects)s::CoerceLibraryDifferent<
                 %(namespaceObjects)s::SwaptionVolatilityStructure,
                 %(namespaceLibrary)s::SwaptionVolatilityStructure,
                 %(namespaceObjects)s::%(classname)s,

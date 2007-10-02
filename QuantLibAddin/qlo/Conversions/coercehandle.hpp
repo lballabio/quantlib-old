@@ -25,8 +25,8 @@
 
 namespace QuantLibAddin {
 
-    // Accept an ID of an Object in the Repository and return a 
-    // QuantLib::Handle<LibraryClass>.
+    // CoerceHandle: Accept an ID of an Object in the Repository 
+    // and return a QuantLib::Handle<LibraryClass>.
     // 1) If the ID is an empty string then return an empty handle
     // 2) If the Object is of class 
     //    QuantLibAddin::RelinkableHandleImpl<ObjectClass, LibraryClass>
@@ -44,7 +44,7 @@ namespace QuantLibAddin {
         boost::shared_ptr<HandleClass> handlePointer =
             boost::dynamic_pointer_cast<HandleClass>(object);
         if (handlePointer) {
-            out = handlePointer->getHandle();
+            out = handlePointer->handle();
             return true;
         } else {
             return false;

@@ -6,9 +6,11 @@ noinst_LTLIBRARIES = libConversions.la
 
 include_HEADERS = \
     all.hpp \
-    coercecurve.hpp \
     coercehandle.hpp \
+    coercelibrarydifferent.hpp \
+    coercelibrarysame.hpp \
     coerceobject.hpp \
+    coercequote.hpp \
     coercetermstructure.hpp \
     conversions.hpp \
     varianttodate.hpp \

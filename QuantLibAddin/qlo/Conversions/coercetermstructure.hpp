@@ -22,8 +22,7 @@
 #include <oh/Conversions/coerce.hpp>
 #include <oh/exception.hpp>
 #include <qlo/handle.hpp>
-#include <qlo/Conversions/coerceobject.hpp>
-#include <qlo/Conversions/coercecurve.hpp>
+#include <qlo/Conversions/coercelibrarydifferent.hpp>
 #include <qlo/termstructures.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 #include <ql/yieldtermstructure.hpp>
@@ -31,15 +30,18 @@
 
 namespace QuantLibAddin {
 
+    // CoerceTermStructure: A wrapper for CoerceLibraryDifferent which hard-codes
+    // those template parameters that are specific to Handle<TermStructure>
+
     class CoerceTermStructure : public ObjectHandler::Coerce<
         boost::shared_ptr<ObjectHandler::Object>,
         boost::shared_ptr<QuantLib::TermStructure> > {
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                objectToReference<TermStructure, QuantLib::TermStructure>,
-                curveFromHandle<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure, QuantLib::TermStructure>,
-                curveFromHandle<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, QuantLib::TermStructure>,
+                objectToLibrary<QuantLibAddin::TermStructure, QuantLib::TermStructure>,
+                handleToLibraryDifferent<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure, QuantLib::TermStructure>,
+                handleToLibraryDifferent<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, QuantLib::TermStructure>,
                 0
             };
             return conversions;
@@ -49,3 +51,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

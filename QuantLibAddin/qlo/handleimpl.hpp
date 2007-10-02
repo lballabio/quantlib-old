@@ -20,9 +20,7 @@
 #define qla_handleimpl_hpp
 
 #include <qlo/handle.hpp>
-
 #include <oh/repository.hpp>
-
 #include <ql/handle.hpp>
 
 namespace QuantLibAddin {
@@ -39,19 +37,33 @@ namespace QuantLibAddin {
             linkTo(objectId);
         }
 
-        const QuantLib::RelinkableHandle<LibraryClass> &getHandle() const { return relinkableHandle_; }
+        const boost::shared_ptr<ObjectClass> &object() const {
+            OH_REQUIRE(object_, "Attempt to retrieve null object reference");
+            return object_;
+        }
+
+        const QuantLib::RelinkableHandle<LibraryClass> &handle() const {
+            return handle_;
+        }
 
     private:
 
         void linkTo(const std::string &objectId) {
-            OH_GET_REFERENCE_DEFAULT(observable, objectId, ObjectClass, LibraryClass)
-            relinkableHandle_.linkTo(observable);
+
+            if (!objectId.empty()) {
+                ObjectHandler::Repository::instance().retrieveObject(object_, objectId);
+                boost::shared_ptr<LibraryClass> observable;
+                object_->getLibraryObject(observable);
+                handle_.linkTo(observable);
+            }
+
             properties()->setProperty("CurrentLink", objectId);
         }
 
-        bool empty() const { return relinkableHandle_.empty(); }
+        bool empty() const { return handle_.empty(); }
 
-        QuantLib::RelinkableHandle<LibraryClass> relinkableHandle_;
+        boost::shared_ptr<ObjectClass> object_;
+        QuantLib::RelinkableHandle<LibraryClass> handle_;
     };
 
 }
