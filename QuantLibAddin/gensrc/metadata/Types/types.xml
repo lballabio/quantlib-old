@@ -206,17 +206,24 @@
         <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
         <DataType>QuantLib::CapVolatilityStructure</DataType>
         <DataType>QuantLib::CapsStripper</DataType>
-        <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
-        <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::SabrVolSurface</DataType>        
-        <DataType>QuantLib::SimpleQuote</DataType>
         <DataType>QuantLib::SwaptionVolatilityCube</DataType>
         <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
         <DataType>QuantLib::TermStructure</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
         <DataType>QuantLib::YieldTermStructure</DataType>
+      </DataTypes>
+    </SuperType>
+
+    <!-- to shared_ptr<QuantLib::xx> where xxx inherits from Quote -->
+    <!--<SuperType name='libraryQuote' nativeType='string' conversionSuffix='LibObjPtr'>-->
+    <SuperType name='libraryQuote' nativeType='string' conversionSuffix='LibObj'>
+      <DataTypes>
+        <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
+        <DataType>QuantLib::SimpleQuote</DataType>
+        <DataType>QuantLib::Quote</DataType>
       </DataTypes>
     </SuperType>
 

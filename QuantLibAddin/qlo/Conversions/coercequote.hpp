@@ -24,7 +24,7 @@
 
 namespace QuantLibAddin {
 
-    // CoerceQuote: A wrapper for CoerceLibraryDifferent which hard-codes
+    // CoerceQuote: A wrapper for handleToLibraryDifferent<> which hard-codes
     // those template parameters that are specific to Handle<Quote>
 
     template <class ObjectQuote, class LibraryQuote>
@@ -36,6 +36,25 @@ namespace QuantLibAddin {
             static Conversion conversions[] = {
                 objectToLibrary<ObjectQuote, LibraryQuote>,
                 handleToLibraryDifferent<QuantLibAddin::Quote, QuantLib::Quote, LibraryQuote>,
+                0
+            };
+            return conversions;
+        };
+    };
+
+    // CoerceQuote: Specialization for QuantLib::Quote - wrap
+    // handleToLibrarySame<> instead of handleToLibraryDifferent<>
+
+    template <>
+    class CoerceQuote<QuantLibAddin::Quote, QuantLib::Quote>
+        : public ObjectHandler::Coerce<
+        boost::shared_ptr<ObjectHandler::Object>,
+        boost::shared_ptr<QuantLib::Quote> > {
+
+        Conversion *getConversions() {
+            static Conversion conversions[] = {
+                objectToLibrary<QuantLibAddin::Quote, QuantLib::Quote>,
+                handleToLibrarySame<QuantLibAddin::Quote, QuantLib::Quote>,
                 0
             };
             return conversions;

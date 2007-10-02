@@ -92,7 +92,7 @@
         <Rule loop='true'/>
         <Rule tensorRank='scalar' type='QuantLib::Real' codeID='code12b'/>
         <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code12b'/>
-        <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::Quote'/>
+        <Rule tensorRank='scalar' superType='libraryQuote' type='QuantLib::Quote'/>
         <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code11'/>
         <Rule tensorRank='scalar' type='QuantLib::Quote' codeID='code12b'/>
         <Rule tensorRank='scalar' default='true' codeID='code12'/>
@@ -158,11 +158,10 @@
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code45a'/>
         <Rule tensorRank='scalar' superType='libToHandle' default='true' codeID='code44a'/>
         <Rule tensorRank='scalar' superType='libToHandle' codeID='code44b'/>
+        <Rule tensorRank='scalar' superType='libraryQuote' codeID='code45c'/>
         <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::TermStructure' codeID='code46'/>
         <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::SwaptionVolatilityDiscrete' codeID='code46b'/>
         <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::SwaptionVolatilityCube' codeID='code46b'/>
-        <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::SimpleQuote' codeID='code45c'/>
-        <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::FuturesConvAdjustmentQuote' codeID='code45c'/>
         <Rule tensorRank='scalar' superType='handleToLib' codeID='code45b'/>
         <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='code49'/>
         <Rule tensorRank='scalar' superType='underlyingClass' codeID='code48'/>

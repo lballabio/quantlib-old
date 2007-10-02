@@ -34,7 +34,7 @@
   <Functions>
 
     <!-- Quote base class interface -->
-    <Member name='qlQuoteValue' type='QuantLib::Quote' superType='handleToLib'>
+    <Member name='qlQuoteValue' type='QuantLib::Quote' superType='libraryQuote'>
       <description>Returns the current value of the given Quote object</description>
       <libraryFunction>value</libraryFunction>
       <SupportedPlatforms>
@@ -50,7 +50,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlQuoteIsValid' type='QuantLib::Quote' superType='handleToLib'>
+    <Member name='qlQuoteIsValid' type='QuantLib::Quote' superType='libraryQuote'>
       <description>Returns TRUE if the given Quote object has a valid value</description>
       <libraryFunction>isValid</libraryFunction>
       <SupportedPlatforms>
@@ -67,7 +67,7 @@
     </Member>
 
     <!-- SimpleQuote interface and constructor -->
-    <Member name='qlSimpleQuoteReset' type='QuantLib::SimpleQuote' superType='handleToLib'>
+    <Member name='qlSimpleQuoteReset' type='QuantLib::SimpleQuote' superType='libraryQuote'>
       <description>resets the given SimpleQuote object to the uninitialized state</description>
       <libraryFunction>reset</libraryFunction>
       <SupportedPlatforms>
@@ -327,7 +327,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlFuturesConvAdjustmentQuoteVolatility' type='QuantLib::FuturesConvAdjustmentQuote' superType='handleToLib'>
+    <Member name='qlFuturesConvAdjustmentQuoteVolatility' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
       <description>Return the value of HW volatility</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -343,7 +343,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlFuturesConvAdjustmentQuoteMeanReversion' type='QuantLib::FuturesConvAdjustmentQuote' superType='handleToLib'>
+    <Member name='qlFuturesConvAdjustmentQuoteMeanReversion' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
       <description>Return the value of HW mean reversion</description>
       <libraryFunction>meanReversion</libraryFunction>
       <SupportedPlatforms>
@@ -359,7 +359,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlFuturesConvAdjustmentQuoteImmDate' type='QuantLib::FuturesConvAdjustmentQuote' superType='handleToLib'>
+    <Member name='qlFuturesConvAdjustmentQuoteImmDate' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
       <description>Return the IMM date of futures</description>
       <libraryFunction>immDate</libraryFunction>
       <SupportedPlatforms>
@@ -375,7 +375,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlFuturesConvAdjustmentQuoteFuturesValue' type='QuantLib::FuturesConvAdjustmentQuote' superType='handleToLib'>
+    <Member name='qlFuturesConvAdjustmentQuoteFuturesValue' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
       <description>Return the value of futures underlying</description>
       <libraryFunction>futuresValue</libraryFunction>
       <SupportedPlatforms>
