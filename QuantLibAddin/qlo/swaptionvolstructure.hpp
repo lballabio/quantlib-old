@@ -28,7 +28,7 @@
 #include <ql/time/businessdayconvention.hpp>
 
 namespace QuantLib {
-    class SwaptionVolatilityStructure;  // FIXME this line to be uncommented shortly - Eric
+    class SwaptionVolatilityStructure;
     class SwaptionVolatilityCube;
     class SwapIndex;
     class Matrix;
