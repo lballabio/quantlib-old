@@ -104,9 +104,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTimeSeriesValue' type='QuantLib::TimeSeriesDef' superType='libraryClass' loopParameter='Dates'>
+    <Member name='qlTimeSeriesValue' type='QuantLibAddin::TimeSeriesDef' superType='objectClass' loopParameter='Dates'>
       <description>Returns returns the data corresponding to the given dates</description>
-      <libraryFunction>operator[]</libraryFunction>
+      <libraryFunction>subscriptWrapper</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>

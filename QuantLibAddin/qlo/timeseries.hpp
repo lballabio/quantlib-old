@@ -41,6 +41,10 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Date>& dates,
             const std::vector<QuantLib::Real>& values,
             bool permanent);
+        // Workaround for VC7.  Addin function qlTimeSeriesValue() requires an address
+        // of QuantLib::TimeSeries::operator[] but VC7 doesn't support the address of
+        // an operator so here we wrap [] and let VC7 use the adddress of the wrappper.
+        QuantLib::Real subscriptWrapper(const QuantLib::Date& d);
     };
 }
 

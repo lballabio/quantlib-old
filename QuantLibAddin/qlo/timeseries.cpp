@@ -61,4 +61,9 @@ namespace QuantLibAddin {
                                     d.end(),
                                     v.begin()));
     }
+
+    QuantLib::Real TimeSeriesDef::subscriptWrapper(const QuantLib::Date& d) {
+        return libraryObject_->operator[](d);
+    }
+
 }

@@ -98,6 +98,7 @@
         <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
         <DataType>QuantLibAddin::Swap</DataType>
+        <DataType>QuantLibAddin::TimeSeriesDef</DataType>
         <DataType>QuantLibAddin::VanillaSwap</DataType>
       </DataTypes>
     </SuperType>
