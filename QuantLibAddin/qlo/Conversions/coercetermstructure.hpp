@@ -105,7 +105,8 @@ namespace QuantLibAddin {
             static Conversion conversions[] = {
                 objectToObject<ObjectTermStructure>,
                 handleToObject<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, ObjectTermStructure>,
-                // At present CoerceTermStructureObject is not required for any classes derived from YieldTermStructure
+                // At present CoerceTermStructureObject is not required for any classes derived from YieldTermStructure.
+                // See file QuantLibAddin/gensrc/metadata/Types/types.xml, supertype "objectTermStructure"
                 //handleToObject<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure, ObjectTermStructure>,
                 0
             };
