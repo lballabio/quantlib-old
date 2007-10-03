@@ -135,6 +135,7 @@
       <Rules>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Real'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(name)sLib</Rule>
+        <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='libraryQuote'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='libraryTermStructure'>%(indent)s%(name)sLibObj</Rule>
