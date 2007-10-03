@@ -158,9 +158,7 @@ namespace QuantLibAddin {
           bool permanent);
     };
 
-    OH_LIB_CLASS(dummyClass, QuantLib::OptionletStripper);
-
-    class OptionletStripper : public dummyClass {
+    class OptionletStripper : public ObjectHandler::LibraryObject<QuantLib::OptionletStripper> {
       public:
         OptionletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                           const boost::shared_ptr<QuantLib::CapFloorTermVolSurface>& surface,
@@ -170,9 +168,7 @@ namespace QuantLibAddin {
     };
 
 
-    OH_LIB_CLASS(dummyClass1, QuantLib::OptionletStripper2);
-
-    class OptionletStripper2 : public dummyClass1 {
+    class OptionletStripper2 : public ObjectHandler::LibraryObject<QuantLib::OptionletStripper2> {
       public:
         OptionletStripper2(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                            const QuantLib::Handle<QuantLib::OptionletStripper>& optionletStripper,
