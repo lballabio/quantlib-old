@@ -98,13 +98,11 @@
         <DataType>QuantLibAddin::SMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::StrikedTypePayoff</DataType>
         <DataType>QuantLibAddin::Swap</DataType>
-        <DataType>QuantLibAddin::SwaptionVolCube1</DataType>
-        <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
         <DataType>QuantLibAddin::VanillaSwap</DataType>
       </DataTypes>
     </SuperType>
 
-    <!-- to shared_ptr<QuantLibAddin::T> where T inherits from Quote -->
+    <!-- to shared_ptr<QuantLibAddin::T> including from Handle<Quote> -->
     <!--<SuperType name='objectClass' nativeType='string' conversionSuffix='ObjPtr'>-->
     <SuperType name='objectQuote' nativeType='string' conversionSuffix='Obj'>
       <DataTypes>
@@ -112,33 +110,48 @@
       </DataTypes>
     </SuperType>
 
-    <!-- to shared_ptr<QuantLib::xx>, even from Handle -->
+    <!-- to shared_ptr<QuantLibAddin::T> including from Handle<SwaptionVolatilityStructure> -->
+    <!--<SuperType name='objectTermStructure' nativeType='string' conversionSuffix='ObjPtr'>-->
+    <SuperType name='objectTermStructure' nativeType='string' conversionSuffix='Obj'>
+      <DataTypes>
+        <DataType>QuantLibAddin::SwaptionVolCube1</DataType>
+        <DataType>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
+      </DataTypes>
+    </SuperType>
+
+    <!-- to shared_ptr<QuantLib::xx> -->
     <!--<SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObjPtr'>-->
     <SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
         <DataType>QuantLib::Abcd</DataType>
+        <DataType>QuantLib::AbcdAtmVolCurve</DataType>
         <DataType>QuantLib::AbcdCalibration</DataType>
         <DataType>QuantLib::AccountingEngine</DataType>
         <DataType>QuantLib::AffineModel</DataType>
         <DataType>QuantLib::AlphaForm</DataType>
         <DataType>QuantLib::AssetSwap</DataType>
+        <DataType>QuantLib::BlackAtmVolCurve</DataType>
         <DataType>QuantLib::BlackCalculator</DataType>
         <DataType>QuantLib::BlackScholesCalculator</DataType>
         <DataType>QuantLib::BlackSwaptionEngine</DataType>
         <DataType>QuantLib::BlackVolTermStructure</DataType>
         <DataType>QuantLib::Bond</DataType>
+        <DataType>QuantLib::CapFloor</DataType>
+        <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
+        <DataType>QuantLib::CapFloorTermVolCurve</DataType>
+        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
+        <DataType>QuantLib::CapsStripper</DataType>
+        <DataType>QuantLib::CmsCouponPricer</DataType>
+        <DataType>QuantLib::CmsMarket</DataType>
+        <DataType>QuantLib::CmsMarketCalibration</DataType>
         <DataType>QuantLib::CMSwapCurveState</DataType>
+        <DataType>QuantLib::ConundrumPricerByNumericalIntegration</DataType>
+        <DataType>QuantLib::CoterminalSwapCurveState</DataType>
+        <DataType>QuantLib::CovarianceDecomposition</DataType>
         <DataType>QuantLib::CTSMMCapletAlphaFormCalibration</DataType>
         <DataType>QuantLib::CTSMMCapletCalibration</DataType>
         <DataType>QuantLib::CTSMMCapletMaxHomogeneityCalibration</DataType>
         <DataType>QuantLib::CTSMMCapletOriginalCalibration</DataType>
-        <DataType>QuantLib::CapFloor</DataType>
-        <DataType>QuantLib::CmsCouponPricer</DataType>
-        <DataType>QuantLib::CmsMarket</DataType>
-        <DataType>QuantLib::CmsMarketCalibration</DataType>
-        <DataType>QuantLib::ConundrumPricerByNumericalIntegration</DataType>
-        <DataType>QuantLib::CoterminalSwapCurveState</DataType>
-        <DataType>QuantLib::CovarianceDecomposition</DataType>
         <DataType>QuantLib::CurveState</DataType>
         <DataType>QuantLib::DigitalReplication</DataType>
         <DataType>QuantLib::EndCriteria</DataType>
@@ -156,12 +169,12 @@
         <DataType>QuantLib::Index</DataType>
         <DataType>QuantLib::Instrument</DataType>
         <DataType>QuantLib::InterestRateIndex</DataType>
-        <DataType>QuantLib::Interpolation2D</DataType>
         <DataType>QuantLib::Interpolation</DataType>
-        <DataType>QuantLib::LMMCurveState</DataType>
+        <DataType>QuantLib::Interpolation2D</DataType>
         <DataType>QuantLib::LineSearch</DataType>
         <DataType>QuantLib::LmExtLinearExponentialVolModel</DataType>
         <DataType>QuantLib::LmLinearExponentialCorrelationModel</DataType>
+        <DataType>QuantLib::LMMCurveState</DataType>
         <DataType>QuantLib::MarketModel</DataType>
         <DataType>QuantLib::MarketModelCapFloorEngine</DataType>
         <DataType>QuantLib::MarketModelEvolver</DataType>
@@ -170,9 +183,10 @@
         <DataType>QuantLib::MultiProductComposite</DataType>
         <DataType>QuantLib::OneAssetOption</DataType>
         <DataType>QuantLib::OptimizationMethod</DataType>
-        <DataType>QuantLib::Payoff</DataType>
         <DataType>QuantLib::OptionletStripper</DataType>
         <DataType>QuantLib::OptionletStripper2</DataType>
+        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
+        <DataType>QuantLib::Payoff</DataType>
         <DataType>QuantLib::PiecewiseConstantAbcdVariance</DataType>
         <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
         <DataType>QuantLib::PiecewiseConstantVariance</DataType>
@@ -181,8 +195,9 @@
         <DataType>QuantLib::RangeAccrualFloatersCoupon</DataType>
         <DataType>QuantLib::RangeAccrualPricer</DataType>
         <DataType>QuantLib::RateHelper</DataType>
-        <DataType>QuantLib::SABRInterpolation</DataType>
         <DataType>QuantLib::SabrInterpolatedSmileSection</DataType>
+        <DataType>QuantLib::SABRInterpolation</DataType>
+        <DataType>QuantLib::SabrVolSurface</DataType>
         <DataType>QuantLib::Schedule</DataType>
         <DataType>QuantLib::SequenceStatistics</DataType>
         <DataType>QuantLib::SmileSection</DataType>
@@ -198,39 +213,29 @@
         <DataType>QuantLib::TimeSeriesDef</DataType>
         <DataType>QuantLib::TypePayoff</DataType>
         <DataType>QuantLib::VanillaSwap</DataType>
-      </DataTypes>
-    </SuperType>
-
-    <!-- to shared_ptr<QuantLib::xx> -->
-    <!--<SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObjPtr'>-->
-    <SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObj'>
-      <DataTypes>
-        <DataType>QuantLib::AbcdAtmVolCurve</DataType>
-        <DataType>QuantLib::BlackAtmVolCurve</DataType>
-        <DataType>QuantLib::BlackAtmVolSurface</DataType>
-        <DataType>QuantLib::CapFloorTermVolCurve</DataType>
-        <DataType>QuantLib::CapFloorTermVolSurface</DataType>
-        <DataType>QuantLib::CapFloorTermVolatilityStructure</DataType>
-        <DataType>QuantLib::CapVolatilityStructure</DataType>
-        <DataType>QuantLib::CapsStripper</DataType>
-        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
-        <DataType>QuantLib::SabrVolSurface</DataType>        
-        <DataType>QuantLib::SwaptionVolatilityCube</DataType>
-        <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
-        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
-        <DataType>QuantLib::TermStructure</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
-        <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>
 
-    <!-- to shared_ptr<QuantLib::T> where T inherits from Quote -->
+    <!-- to shared_ptr<QuantLib::T> including from Handle<Quote> -->
     <!--<SuperType name='libraryQuote' nativeType='string' conversionSuffix='LibObjPtr'>-->
     <SuperType name='libraryQuote' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
         <DataType>QuantLib::FuturesConvAdjustmentQuote</DataType>
         <DataType>QuantLib::SimpleQuote</DataType>
         <DataType>QuantLib::Quote</DataType>
+      </DataTypes>
+    </SuperType>
+
+    <!-- to shared_ptr<QuantLib::T> including from Handle<YieldTermStructure> / Handle<SwaptionVolatilityStructure> -->
+    <!--<SuperType name='libraryTermStructure' nativeType='string' conversionSuffix='LibObjPtr'>-->
+    <SuperType name='libraryTermStructure' nativeType='string' conversionSuffix='LibObj'>
+      <DataTypes>
+        <DataType>QuantLib::SwaptionVolatilityCube</DataType>
+        <DataType>QuantLib::SwaptionVolatilityDiscrete</DataType>
+        <DataType>QuantLib::SwaptionVolatilityStructure</DataType>
+        <DataType>QuantLib::TermStructure</DataType>
+        <DataType>QuantLib::YieldTermStructure</DataType>
       </DataTypes>
     </SuperType>
 

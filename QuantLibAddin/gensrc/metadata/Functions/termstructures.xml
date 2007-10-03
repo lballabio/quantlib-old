@@ -23,7 +23,7 @@
   <Functions>
 
     <!-- TermStructure interface -->
-    <Member name='qlTermStructureDayCounter' type='QuantLib::TermStructure' superType='handleToLib'>
+    <Member name='qlTermStructureDayCounter' type='QuantLib::TermStructure' superType='libraryTermStructure'>
       <description>Returns the DayCounter used by the given TermStructure object</description>
       <libraryFunction>dayCounter</libraryFunction>
       <SupportedPlatforms>
@@ -39,7 +39,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTermStructureMaxDate' type='QuantLib::TermStructure' superType='handleToLib'>
+    <Member name='qlTermStructureMaxDate' type='QuantLib::TermStructure' superType='libraryTermStructure'>
       <description>Returns the max date for the given TermStructure object</description>
       <libraryFunction>maxDate</libraryFunction>
       <SupportedPlatforms>
@@ -55,7 +55,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTermStructureReferenceDate' type='QuantLib::TermStructure' superType='handleToLib'>
+    <Member name='qlTermStructureReferenceDate' type='QuantLib::TermStructure' superType='libraryTermStructure'>
       <description>Returns the reference date for the given TermStructure object</description>
       <libraryFunction>referenceDate</libraryFunction>
       <SupportedPlatforms>
@@ -71,7 +71,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTermStructureCalendar' type='QuantLib::TermStructure' superType='handleToLib'>
+    <Member name='qlTermStructureCalendar' type='QuantLib::TermStructure' superType='libraryTermStructure'>
       <description>Returns the calendar used by the given TermStructure object</description>
       <libraryFunction>calendar</libraryFunction>
       <SupportedPlatforms>
@@ -87,7 +87,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlTermStructureSettlementDays' type='QuantLib::TermStructure' superType='handleToLib'>
+    <Member name='qlTermStructureSettlementDays' type='QuantLib::TermStructure' superType='libraryTermStructure'>
       <description>Returns the number of settlement days for the given TermStructure object</description>
       <libraryFunction>settlementDays</libraryFunction>
       <SupportedPlatforms>
@@ -104,7 +104,7 @@
     </Member>
 
     <!-- YieldTermStructure interface -->
-    <Member name='qlYieldTSDiscount' type='QuantLib::YieldTermStructure' superType='handleToLib' loopParameter='DfDates'>
+    <Member name='qlYieldTSDiscount' type='QuantLib::YieldTermStructure' superType='libraryTermStructure' loopParameter='DfDates'>
       <description>Returns a discount factor from the given YieldTermStructure object</description>
       <libraryFunction>discount</libraryFunction>
       <SupportedPlatforms>
@@ -132,7 +132,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlYieldTSForwardRate' type='QuantLib::YieldTermStructure' superType='handleToLib' loopParameter='D2'>
+    <Member name='qlYieldTSForwardRate' type='QuantLib::YieldTermStructure' superType='libraryTermStructure' loopParameter='D2'>
       <description>Returns the forward interest rate from the given YieldTermStructure object</description>
       <libraryFunction>forwardRate</libraryFunction>
       <SupportedPlatforms>
@@ -181,7 +181,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlYieldTSForwardRate2' type='QuantLib::YieldTermStructure' superType='handleToLib' loopParameter='Date'>
+    <Member name='qlYieldTSForwardRate2' type='QuantLib::YieldTermStructure' superType='libraryTermStructure' loopParameter='Date'>
       <description>Returns the forward interest rate from the given YieldTermStructure object</description>
       <libraryFunction>forwardRate</libraryFunction>
       <SupportedPlatforms>
@@ -230,7 +230,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlYieldTSZeroRate' type='QuantLib::YieldTermStructure' superType='handleToLib' loopParameter='Dates'>
+    <Member name='qlYieldTSZeroRate' type='QuantLib::YieldTermStructure' superType='libraryTermStructure' loopParameter='Dates'>
       <description>Returns the zero interest rate from the given YieldTermStructure object</description>
       <libraryFunction>zeroRate</libraryFunction>
       <SupportedPlatforms>
@@ -274,7 +274,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlYieldTSParRate' type='QuantLib::YieldTermStructure' superType='handleToLib'>
+    <Member name='qlYieldTSParRate' type='QuantLib::YieldTermStructure' superType='libraryTermStructure'>
       <description>Returns the par interest rate from the given YieldTermStructure object</description>
       <libraryFunction>parRate</libraryFunction>
       <SupportedPlatforms>

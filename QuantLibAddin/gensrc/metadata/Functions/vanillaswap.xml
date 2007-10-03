@@ -21,7 +21,7 @@
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
     <include>ql/yieldtermstructures/ratehelpers.hpp</include>
-    </serializationIncludes>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers

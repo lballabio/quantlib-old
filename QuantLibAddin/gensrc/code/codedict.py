@@ -100,6 +100,12 @@ code36b = '''\
             %(namespaceObjects)s::CoerceQuoteObject<%(type)s>()(
                 %(name)sTemp);\n'''
 
+code36c = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
+        boost::shared_ptr<%(type)s> %(name)sObj =
+            %(namespaceObjects)s::CoerceTermStructureObject<%(type)s>()(
+                %(name)sTemp);\n'''
+
 code37 = '''\
         std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(name)sObj =
             ObjectHandler::getObjectVector<%(namespaceObjects)s::%(classname)s>(%(name)sCpp);\n'''
@@ -150,14 +156,6 @@ code45a = '''\
             ObjectHandler::operToScalar<QuantLib::Handle<QuantLib::Quote> >(
                 *%(name)s, "%(name)s");\n'''
 
-code45b = '''\
-        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
-        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            %(namespaceObjects)s::CoerceLibrarySame<
-                %(namespaceObjects)s::%(classname)s,
-                %(namespaceLibrary)s::%(classname)s>()(
-                    %(name)sTemp);\n'''
-
 code45c = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
@@ -169,14 +167,7 @@ code45c = '''\
 code46 = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            %(namespaceObjects)s::CoerceTermStructure()(%(name)sTemp);\n'''
-
-code46b = '''\
-        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
-        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
-            %(namespaceObjects)s::CoerceLibraryDifferent<
-                %(namespaceObjects)s::SwaptionVolatilityStructure,
-                %(namespaceLibrary)s::SwaptionVolatilityStructure,
+            %(namespaceObjects)s::CoerceTermStructure<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);\n'''

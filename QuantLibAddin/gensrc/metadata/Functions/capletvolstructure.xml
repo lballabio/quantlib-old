@@ -36,7 +36,7 @@
   <Functions>
 
     <!-- OptionletVolatilityStructure interface-->
-    <Member name='qlOptionletVTSVolatility' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
+    <Member name='qlOptionletVTSVolatility' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass' loopParameter='Strike'>
       <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -69,7 +69,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSVolatility2' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
+    <Member name='qlOptionletVTSVolatility2' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass' loopParameter='Strike'>
       <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -102,7 +102,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSBlackVariance' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib' loopParameter='OptionDate'>
+    <Member name='qlOptionletVTSBlackVariance' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass' loopParameter='OptionDate'>
       <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
@@ -135,7 +135,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSBlackVariance2' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib' loopParameter='OptionTenor'>
+    <Member name='qlOptionletVTSBlackVariance2' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass' loopParameter='OptionTenor'>
       <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
@@ -168,7 +168,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSMinStrike' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib'>
+    <Member name='qlOptionletVTSMinStrike' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass'>
       <description>Returns the minimum strike for which the given OptionletVolatilityStructure can return vols.</description>
       <libraryFunction>minStrike</libraryFunction>
       <SupportedPlatforms>
@@ -184,7 +184,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSMaxStrike' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib'>
+    <Member name='qlOptionletVTSMaxStrike' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass'>
       <description>Returns the maximum strike for which the given OptionletVolatilityStructure can return vols.</description>
       <libraryFunction>maxStrike</libraryFunction>
       <SupportedPlatforms>
@@ -455,7 +455,7 @@
         <Parameters>
           <Parameter name='CapFloorTermVolSurface' >
             <type>QuantLib::CapFloorTermVolSurface</type>
-            <superType>handleToLib</superType>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Cap VolatilitySurface.</description>
           </Parameter>
@@ -545,7 +545,7 @@
    
   
     <!-- CapFloorTermVolStructure interface -->
-    <Member name='qlCapFloorTermVTSVolatility' type='QuantLib::CapFloorTermVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
+    <Member name='qlCapFloorTermVTSVolatility' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass' loopParameter='Strike'>
       <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -578,7 +578,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorTermVTSVolatility2' type='QuantLib::CapFloorTermVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
+    <Member name='qlCapFloorTermVTSVolatility2' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass' loopParameter='Strike'>
       <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -611,7 +611,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorTermVTSMinStrike' type='QuantLib::CapFloorTermVolatilityStructure' superType='handleToLib'>
+    <Member name='qlCapFloorTermVTSMinStrike' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass'>
       <description>Returns the minimum strike for which the given OptionletVolatilityStructure can return vols.</description>
       <libraryFunction>minStrike</libraryFunction>
       <SupportedPlatforms>
@@ -627,7 +627,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorTermVTSMaxStrike' type='QuantLib::CapFloorTermVolatilityStructure' superType='handleToLib'>
+    <Member name='qlCapFloorTermVTSMaxStrike' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass'>
       <description>Returns the maximum strike for which the given OptionletVolatilityStructure can return vols.</description>
       <libraryFunction>maxStrike</libraryFunction>
       <SupportedPlatforms>
@@ -644,7 +644,7 @@
     </Member>
 
     <!-- CapFloorTermVolCurve interface and constructor -->
-    <Member name='qlCapFloorTermVolVectorOptionTenors' type='QuantLib::CapFloorTermVolCurve' superType='handleToLib'>
+    <Member name='qlCapFloorTermVolVectorOptionTenors' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionTenors</libraryFunction>
       <SupportedPlatforms>
@@ -659,7 +659,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorTermVolVectorOptionDates' type='QuantLib::CapFloorTermVolCurve' superType='handleToLib'>
+    <Member name='qlCapFloorTermVolVectorOptionDates' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionDates</libraryFunction>
       <SupportedPlatforms>
@@ -713,7 +713,7 @@
     </Constructor>
 
     <!-- CapFloorTermVolSurface interface and constructor -->
-    <Member name='qlCapFloorTermVolSurfaceOptionTenors' type='QuantLib::CapFloorTermVolSurface' superType='handleToLib'>
+    <Member name='qlCapFloorTermVolSurfaceOptionTenors' type='QuantLib::CapFloorTermVolSurface' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionTenors</libraryFunction>
       <SupportedPlatforms>
@@ -728,7 +728,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorTermVolSurfaceOptionDates' type='QuantLib::CapFloorTermVolSurface' superType='handleToLib'>
+    <Member name='qlCapFloorTermVolSurfaceOptionDates' type='QuantLib::CapFloorTermVolSurface' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionDates</libraryFunction>
       <SupportedPlatforms>
@@ -743,7 +743,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorTermVolSurfaceStrikes' type='QuantLib::CapFloorTermVolSurface' superType='handleToLib'>
+    <Member name='qlCapFloorTermVolSurfaceStrikes' type='QuantLib::CapFloorTermVolSurface' superType='libraryClass'>
       <description></description>
       <libraryFunction>strikes</libraryFunction>
       <SupportedPlatforms>
@@ -833,7 +833,7 @@
     </Constructor>
 
     <!-- CapsStripper interface and constructors -->
-    <Member name='qlCapsStripperStrikes' type='QuantLib::CapsStripper' superType='handleToLib'>
+    <Member name='qlCapsStripperStrikes' type='QuantLib::CapsStripper' superType='libraryClass'>
       <description>Returns the vector of cap strikes underlying the given ObjectID.</description>
       <libraryFunction>strikes</libraryFunction>
       <SupportedPlatforms>
@@ -849,7 +849,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapsStripperTenors' type='QuantLib::CapsStripper' superType='handleToLib'>
+    <Member name='qlCapsStripperTenors' type='QuantLib::CapsStripper' superType='libraryClass'>
       <description>Returns the vector of cap tenors underlying the given ObjectID.</description>
       <libraryFunction>tenors</libraryFunction>
       <SupportedPlatforms>
@@ -1012,7 +1012,7 @@
           </Parameter>
           <Parameter name='CapFloorTermVolSurface' >
             <type>QuantLib::CapFloorTermVolSurface</type>
-            <superType>handleToLib</superType>
+            <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Cap VolatilitySurface.</description>
           </Parameter>

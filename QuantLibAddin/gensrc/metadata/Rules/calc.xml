@@ -169,7 +169,7 @@
         <Rule tensorRank='scalar' superType='objectClass' codeID='code95'/>
         <Rule tensorRank='scalar' superType='libToHandle' codeID='code93'/>
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code80'/>
-        <Rule tensorRank='scalar' superType='handleToLib' codeID='code81'/>
+        <Rule tensorRank='scalar' superType='libraryClass' codeID='code81'/>
     </Rules>
   </RuleGroup>
 

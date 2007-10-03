@@ -10,7 +10,6 @@
         <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code110'/>
         <Rule tensorRank='scalar' nativeType='string' default='true' codeID='code111'/>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code110'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' codeID='code110'/>
         <Rule tensorRank='scalar' nativeType='string' codeID='code111'/>
         <Rule tensorRank='scalar' codeID='code112'/>
         <Rule tensorRank='vector' type='QuantLib::Real' codeID='code114'/>
@@ -62,15 +61,14 @@
       <Wrap codeID='wrap5'/>
       <Rules>
         <Rule tensorRank='scalar' superType='libraryClass' default='true' codeID='code161'/>
-        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' codeID='code152'/>
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code38'/>
+        <Rule tensorRank='scalar' superType='libraryQuote' default='true' codeID='code161'/>
+        <Rule tensorRank='scalar' superType='libraryQuote' type='QuantLib::Quote' codeID='code152'/>
+        <Rule tensorRank='scalar' superType='libraryQuote' codeID='code38'/>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code140'/>
         <Rule tensorRank='scalar' superType='libToHandle' default='true' codeID='code163'/>
         <Rule tensorRank='scalar' superType='libToHandle' codeID='code44b'/>
-        <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::TermStructure' codeID='code46'/>
-        <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::SwaptionVolatilityDiscrete' codeID='code46b'/>
-        <Rule tensorRank='scalar' superType='handleToLib' type='QuantLib::SwaptionVolatilityCube' codeID='code46b'/>
-        <Rule tensorRank='scalar' superType='handleToLib' codeID='code45b'/>
+        <Rule tensorRank='scalar' superType='libraryTermStructure' codeID='code46'/>
         <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='code49'/>
         <Rule tensorRank='scalar' superType='underlyingClass' codeID='code48'/>        
         <Rule tensorRank='vector' superType='libraryClass' codeID='code37c'/>
@@ -86,11 +84,14 @@
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Natural'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Size'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(name)sLib</Rule>
-        <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(name)sLibObj</Rule>
-        <Rule tensorRank='scalar' superType='handleToLib'>%(indent)s%(name)sLibObj</Rule>
+        <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sLibObj</Rule>
+        <Rule tensorRank='scalar' superType='libraryQuote'>%(indent)s%(name)sLibObj</Rule>
+        <Rule tensorRank='scalar' superType='libraryTermStructure'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='underlyingClass'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sObj</Rule>
+        <Rule tensorRank='scalar' superType='objectQuote'>%(indent)s%(name)sObj</Rule>
+        <Rule tensorRank='scalar' superType='objectTermStructure'>%(indent)s%(name)sObj</Rule>
         <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(name)sEnum</Rule>
         <Rule tensorRank='scalar' nativeType='any'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
@@ -100,7 +101,11 @@
         <Rule superType='libraryType'>%(indent)s%(name)sLib</Rule>
         <Rule superType='libToHandle'>%(indent)s%(name)sLibObj</Rule>
         <Rule superType='libraryClass'>%(indent)s%(name)sLibObj</Rule>
+        <Rule superType='libraryQuote'>%(indent)s%(name)sLibObj</Rule>
+        <Rule superType='libraryTermStructure'>%(indent)s%(name)sLibObj</Rule>
         <Rule superType='objectClass'>%(indent)s%(name)sObj</Rule>
+        <Rule superType='objectQuote'>%(indent)s%(name)sObj</Rule>
+        <Rule superType='objectTermStructure'>%(indent)s%(name)sObj</Rule>
         <Rule superType='enumeration'>%(indent)s%(name)sEnum</Rule>
         <Rule vectorIterator='begin'>%(indent)s%(name)sCpp.begin()</Rule>
         <Rule vectorIterator='end'>%(indent)s%(name)sCpp.end()</Rule>

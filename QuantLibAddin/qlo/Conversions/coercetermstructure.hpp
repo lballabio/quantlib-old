@@ -30,18 +30,83 @@
 
 namespace QuantLibAddin {
 
-    // CoerceTermStructure: A wrapper for CoerceLibraryDifferent which hard-codes
+    // CoerceTermStructure: A wrapper for handleToLibraryDifferent<> which hard-codes
     // those template parameters that are specific to Handle<TermStructure>
 
+    template <class ObjectTermStructure, class LibraryTermStructure>
     class CoerceTermStructure : public ObjectHandler::Coerce<
         boost::shared_ptr<ObjectHandler::Object>,
-        boost::shared_ptr<QuantLib::TermStructure> > {
+        boost::shared_ptr<LibraryTermStructure> > {
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                objectToLibrary<QuantLibAddin::TermStructure, QuantLib::TermStructure>,
-                handleToLibraryDifferent<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure, QuantLib::TermStructure>,
-                handleToLibraryDifferent<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, QuantLib::TermStructure>,
+                objectToLibrary<ObjectTermStructure, LibraryTermStructure>,
+                handleToLibraryDifferent<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure, LibraryTermStructure>,
+                handleToLibraryDifferent<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, LibraryTermStructure>,
+                0
+            };
+            return conversions;
+        };
+    };
+
+    // CoerceTermStructure: Specialization for QuantLib::YieldTermStructure -
+    // wrap handleToLibrarySame<> instead of handleToLibraryDifferent<>
+
+    template <>
+    class CoerceTermStructure<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure>
+        : public ObjectHandler::Coerce<
+        boost::shared_ptr<ObjectHandler::Object>,
+        boost::shared_ptr<QuantLib::YieldTermStructure> > {
+
+        Conversion *getConversions() {
+            static Conversion conversions[] = {
+                objectToLibrary<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure>,
+                handleToLibrarySame<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure>,
+                0
+            };
+            return conversions;
+        };
+    };
+
+    // CoerceTermStructure: Specialization for QuantLib::SwaptionVolatilityStructure -
+    // wrap handleToLibrarySame<> instead of handleToLibraryDifferent<>
+
+    template <>
+    class CoerceTermStructure<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>
+        : public ObjectHandler::Coerce<
+        boost::shared_ptr<ObjectHandler::Object>,
+        boost::shared_ptr<QuantLib::SwaptionVolatilityStructure> > {
+
+        Conversion *getConversions() {
+            static Conversion conversions[] = {
+                objectToLibrary<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>,
+                handleToLibrarySame<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>,
+                0
+            };
+            return conversions;
+        };
+    };
+
+    // CoerceTermStructureObject: A substitute for CoerceObject which hard-codes
+    // those template parameters that are specific to Handle<TermStructure>.
+    //
+    // The difference between CoerceTermStructure and CoerceTermStructureObject is that
+    // the former returns boost::shared_ptr<QuantLib::T> while
+    // the latter returns boost::shared_ptr<QuantLibAddin::T>
+    // where in either case T might be extracted from 
+    // Handle<YieldTermStructure> or Handle<SwaptionVolatilityStructure>.
+
+    template <class ObjectTermStructure>
+    class CoerceTermStructureObject : public ObjectHandler::Coerce<
+        boost::shared_ptr<ObjectHandler::Object>,
+        boost::shared_ptr<ObjectTermStructure> > {
+
+        Conversion *getConversions() {
+            static Conversion conversions[] = {
+                objectToObject<ObjectTermStructure>,
+                handleToObject<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, ObjectTermStructure>,
+                // At present CoerceTermStructureObject is not required for any classes derived from YieldTermStructure
+                //handleToObject<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure, ObjectTermStructure>,
                 0
             };
             return conversions;
