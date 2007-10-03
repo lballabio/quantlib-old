@@ -12,7 +12,6 @@
     <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/capstripper.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletstripper2.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/optionletstripper3.hpp</include>
     <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp</include>
     <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
