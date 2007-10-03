@@ -12,6 +12,7 @@
     <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/capstripper.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletstripper2.hpp</include>
+    <include>ql/voltermstructures/interestrate/optionlet/optionletstripper3.hpp</include>
     <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp</include>
     <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
@@ -518,27 +519,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripper2MdlOptionletVols' type='QuantLib::OptionletStripper2' superType='libraryClass'>
-      <description></description>
-      <libraryFunction>mdlOptionletVols</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Index'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>index</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Constructor name='qlOptionletStripper2'>
       <libraryFunction>OptionletStripper2</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
@@ -562,7 +542,8 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
+   
+  
     <!-- CapFloorTermVolStructure interface -->
     <Member name='qlCapFloorTermVTSVolatility' type='QuantLib::CapFloorTermVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
       <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
