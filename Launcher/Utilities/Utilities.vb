@@ -58,6 +58,17 @@ Module Utilities
             "=C:\projects\trunk\Launcher")
         End If
 
+        If Not dirExists(configPath) Then
+            Throw New Exception("Error: environment variable " & _
+            QUANTLIBXL_CONFIG_PATH & " has the following value:" & _
+            vbCrLf & vbCrLf & configPath & vbCrLf & vbCrLf & _
+            "This is not a valid path.  Please set QUANTLIBXL_CONFIG_PATH " & _
+            "equal to" & vbCrLf & vbCrLf & "the location of the " & _
+            "development environment for the QuantLibXL launcher, e.g:" & _
+            vbCrLf & vbCrLf & QUANTLIBXL_CONFIG_PATH & _
+            "=C:\path\to\trunk\Launcher")
+        End If
+
     End Function
 
     Function deriveDefaultExcelPath() As String
