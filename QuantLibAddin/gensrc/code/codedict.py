@@ -156,6 +156,14 @@ code45a = '''\
             ObjectHandler::operToScalar<QuantLib::Handle<QuantLib::Quote> >(
                 *%(name)s, "%(name)s");\n'''
 
+code45b = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
+        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+            %(namespaceObjects)s::CoerceLibrarySame<
+                %(namespaceObjects)s::%(classname)s,
+                %(namespaceLibrary)s::%(classname)s>()(
+                    %(name)sTemp);\n'''
+
 code45c = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
         boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =

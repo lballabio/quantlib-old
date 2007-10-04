@@ -186,7 +186,6 @@
         <DataType>QuantLib::OptimizationMethod</DataType>
         <DataType>QuantLib::OptionletStripper</DataType>
         <DataType>QuantLib::OptionletStripper2</DataType>
-        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Payoff</DataType>
         <DataType>QuantLib::PiecewiseConstantAbcdVariance</DataType>
         <DataType>QuantLib::PiecewiseConstantCorrelation</DataType>
@@ -215,6 +214,14 @@
         <DataType>QuantLib::TypePayoff</DataType>
         <DataType>QuantLib::VanillaSwap</DataType>
         <DataType>QuantLib::VolatilityTermStructure</DataType>
+      </DataTypes>
+    </SuperType>
+
+    <!-- to shared_ptr<QuantLib::T> including generic coercion from Handle<T> to T -->
+    <!--<SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObjPtr'>-->
+    <SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObj'>
+      <DataTypes>
+        <DataType>QuantLib::OptionletVolatilityStructure</DataType>
       </DataTypes>
     </SuperType>
 

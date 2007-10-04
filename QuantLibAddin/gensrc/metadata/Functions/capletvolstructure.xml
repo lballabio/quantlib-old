@@ -35,7 +35,7 @@
   <Functions>
 
     <!-- OptionletVolatilityStructure interface-->
-    <Member name='qlOptionletVTSVolatility' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass' loopParameter='Strike'>
+    <Member name='qlOptionletVTSVolatility' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
       <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -68,7 +68,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSVolatility2' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass' loopParameter='Strike'>
+    <Member name='qlOptionletVTSVolatility2' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib' loopParameter='Strike'>
       <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
@@ -101,7 +101,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSBlackVariance' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass' loopParameter='OptionDate'>
+    <Member name='qlOptionletVTSBlackVariance' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib' loopParameter='OptionDate'>
       <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
@@ -134,7 +134,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSBlackVariance2' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass' loopParameter='OptionTenor'>
+    <Member name='qlOptionletVTSBlackVariance2' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib' loopParameter='OptionTenor'>
       <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
@@ -167,7 +167,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSMinStrike' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass'>
+    <Member name='qlOptionletVTSMinStrike' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib'>
       <description>Returns the minimum strike for which the given OptionletVolatilityStructure can return vols.</description>
       <libraryFunction>minStrike</libraryFunction>
       <SupportedPlatforms>
@@ -183,7 +183,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSMaxStrike' type='QuantLib::OptionletVolatilityStructure' superType='libraryClass'>
+    <Member name='qlOptionletVTSMaxStrike' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib'>
       <description>Returns the maximum strike for which the given OptionletVolatilityStructure can return vols.</description>
       <libraryFunction>maxStrike</libraryFunction>
       <SupportedPlatforms>

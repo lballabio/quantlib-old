@@ -159,6 +159,7 @@
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code45a'/>
         <Rule tensorRank='scalar' superType='libToHandle' default='true' codeID='code44a'/>
         <Rule tensorRank='scalar' superType='libToHandle' codeID='code44b'/>
+        <Rule tensorRank='scalar' superType='handleToLib' codeID='code45b'/>
         <Rule tensorRank='scalar' superType='libraryQuote' codeID='code45c'/>
         <Rule tensorRank='scalar' superType='libraryTermStructure' codeID='code46'/>
         <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='code49'/>
@@ -199,6 +200,7 @@
       <Rules>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(name)sLib</Rule>
         <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sLibObj</Rule>
+        <Rule tensorRank='scalar' superType='handleToLib'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='libraryQuote'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='libraryTermStructure'>%(indent)s%(name)sLibObj</Rule>
         <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(name)sLibObj</Rule>
@@ -219,6 +221,7 @@
         <Rule superType='libraryType'>%(indent)s%(name)sLib</Rule>
         <Rule superType='libToHandle'>%(indent)s%(name)sLibObj</Rule>
         <Rule superType='libraryClass'>%(indent)s%(name)sLibObj</Rule>
+        <Rule superType='handleToLib'>%(indent)s%(name)sLibObj</Rule>
         <Rule superType='libraryQuote'>%(indent)s%(name)sLibObj</Rule>
         <Rule superType='libraryTermStructure'>%(indent)s%(name)sLibObj</Rule>
         <Rule superType='objectClass'>%(indent)s%(name)sObj</Rule>
@@ -241,6 +244,7 @@
         <Rule tensorRank='scalar' type='QuantLib::Period'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sStrip</Rule>
+        <Rule tensorRank='scalar' superType='handleToLib'>%(indent)s%(name)sStrip</Rule>
         <Rule tensorRank='scalar' superType='libraryQuote'>%(indent)s%(name)sStrip</Rule>
         <Rule tensorRank='scalar' superType='libraryTermStructure'>%(indent)s%(name)sStrip</Rule>
         <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(name)sStrip</Rule>
@@ -260,6 +264,8 @@
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote'/>
         <Rule tensorRank='scalar' superType='libraryClass' default='true' codeID='code65b'/>
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code65'/>
+        <Rule tensorRank='scalar' superType='handleToLib' default='true' codeID='code65b'/>
+        <Rule tensorRank='scalar' superType='handleToLib' codeID='code65'/>
         <Rule tensorRank='scalar' superType='libraryQuote' default='true' codeID='code65b'/>
         <Rule tensorRank='scalar' superType='libraryQuote' codeID='code65'/>
         <Rule tensorRank='scalar' superType='libraryTermStructure' default='true' codeID='code65b'/>
