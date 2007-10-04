@@ -4,7 +4,7 @@ includedir = $(prefix)/include/oh/Conversions
 include_HEADERS = \
     anytostream.hpp \
     coerce.hpp \
-    getobjectlist.hpp \
+    getobjectvector.hpp \
     ohconvertvariant.hpp \
     varianttoscalar.hpp
 

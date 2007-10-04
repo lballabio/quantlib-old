@@ -337,7 +337,7 @@
 				RelativePath="oh\exception.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\group.hpp">
+				RelativePath="oh\group.hpp">
 			</File>
 			<File
 				RelativePath="oh\iless.hpp">
@@ -355,10 +355,10 @@
 				RelativePath="oh\ohdefines.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\other.hpp">
+				RelativePath="oh\other.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\range.hpp">
+				RelativePath="oh\range.hpp">
 			</File>
 			<File
 				RelativePath="oh\repository.cpp">
@@ -367,25 +367,25 @@
 				RelativePath="oh\repository.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\serializationfactory.cpp">
+				RelativePath="oh\serializationfactory.cpp">
 			</File>
 			<File
-				RelativePath=".\oh\serializationfactory.hpp">
+				RelativePath="oh\serializationfactory.hpp">
 			</File>
 			<File
 				RelativePath="oh\singleton.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\types.hpp">
+				RelativePath="oh\types.hpp">
 			</File>
 			<File
 				RelativePath="oh\valueobject.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\variant.hpp">
+				RelativePath="oh\variant.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\variantvisitors.hpp">
+				RelativePath="oh\variantvisitors.hpp">
 			</File>
 		</Filter>
 		<Filter
@@ -398,10 +398,13 @@
 				RelativePath="oh\Conversions\coerce.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\Conversions\ohconvertvariant.hpp">
+				RelativePath="oh\Conversions\getobjectvector.hpp">
 			</File>
 			<File
-				RelativePath=".\oh\Conversions\varianttoscalar.hpp">
+				RelativePath="oh\Conversions\ohconvertvariant.hpp">
+			</File>
+			<File
+				RelativePath="oh\Conversions\varianttoscalar.hpp">
 			</File>
 		</Filter>
 		<Filter
@@ -443,14 +446,14 @@
 			Name="Loop"
 			Filter="">
 			<File
-				RelativePath=".\oh\Loop\loop_valueobjects.hpp">
+				RelativePath="oh\Loop\loop_valueobjects.hpp">
 			</File>
 		</Filter>
 		<Filter
 			Name="ValueObjects"
 			Filter="">
 			<File
-				RelativePath=".\oh\ValueObjects\vo_range.hpp">
+				RelativePath="oh\ValueObjects\vo_range.hpp">
 			</File>
 		</Filter>
 	</Files>

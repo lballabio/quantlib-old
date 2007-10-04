@@ -401,6 +401,9 @@
 					RelativePath="..\..\oh\Conversions\coerce.hpp">
 				</File>
 				<File
+					RelativePath="..\..\oh\Conversions\getobjectvector.hpp">
+				</File>
+				<File
 					RelativePath="..\..\oh\Conversions\ohvarianttoscalar.hpp">
 				</File>
 				<File
