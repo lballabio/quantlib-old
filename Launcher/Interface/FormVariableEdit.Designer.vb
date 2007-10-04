@@ -88,6 +88,7 @@ Partial Class FormVariableEdit
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.tbVariable)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "FormVariableEdit"
         Me.Text = "Edit Variable"
         Me.ResumeLayout(False)
