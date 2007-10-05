@@ -47,7 +47,7 @@ namespace QuantLibAddin {
     // Function below required on 64-bit systems but on 32-bit systems it
     // conflicts with QuantLib::Size override.
     // FIXME Need a #define that specifically distinguishes 32/64-bit
-#ifndef BOOST_MSVC
+#if defined(__GNUC__) && defined(__x86_64__)
     void cppToLibrary(const long &in, QuantLib::Natural &ret);
 #endif
 

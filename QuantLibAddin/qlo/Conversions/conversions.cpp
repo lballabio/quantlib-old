@@ -70,7 +70,7 @@ namespace QuantLibAddin {
         ret = QuantLib::Size(in);
     }
 
-#ifndef BOOST_MSVC
+#if defined(__GNUC__) && defined(__x86_64__)
     void cppToLibrary(const long &in, QuantLib::Natural &ret) {
         ret = QuantLib::Natural(in);
     }
