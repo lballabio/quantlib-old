@@ -141,9 +141,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlIndexAddFixings2' type='QuantLib::Index'>
+    <Member name='qlIndexAddFixings2' type='QuantLibAddin::Index' loopParameter='TimeSeriesID'>
       <description>Adds fixings for the given Index object</description>
-      <libraryFunction>addFixings</libraryFunction>
+      <libraryFunction>addFixings2</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
@@ -151,9 +151,10 @@
       <ParameterList>
         <Parameters>
           <Parameter name='TimeSeriesID'>
-            <type>QuantLib::TimeSeriesDef</type>
-            <superType>underlyingClass</superType>
-            <tensorRank>scalar</tensorRank>
+            <!--<type>QuantLib::TimeSeriesDef</type>-->
+            <!--<superType>underlyingClass</superType>-->
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
             <description>TimeSeries object ID</description>
           </Parameter>
           <Parameter name='ForceOverwrite' default='0' const='False'>
@@ -164,8 +165,8 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 

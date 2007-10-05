@@ -13,6 +13,7 @@
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Real'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
@@ -36,7 +37,8 @@
         <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string %(name)s_</Rule>
         <Rule tensorRank='scalar' nativeType='any'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
-        <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s_</Rule>       
+        <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s_</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Real'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
         <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
         <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
         <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
@@ -75,6 +77,7 @@
         <Rule tensorRank='scalar' nativeType='string' codeID='code67b'/>
         <Rule tensorRank='scalar' nativeType='any' codeID='code67a'/>
         <Rule tensorRank='scalar' codeID='code67c'/>
+        <Rule tensorRank='vector' type='QuantLib::Real' codeID='code67d'/>
         <Rule tensorRank='vector' type='QuantLib::Date' codeID='code67d'/>
         <Rule tensorRank='vector' type='QuantLib::Period' codeID='code67d'/>
         <Rule tensorRank='vector' type='QuantLib::Quote' codeID='code67d'/>

@@ -36,6 +36,8 @@
 #include <ql/indexes/swap/eurliborswapfixb.hpp>
 #include <ql/indexes/swap/eurliborswapfixifr.hpp>
 
+#include <oh/repository.hpp>
+
 namespace QuantLibAddin {
 
     void Index::addFixings(const std::vector<QuantLib::Date>& dates,
@@ -58,6 +60,15 @@ namespace QuantLibAddin {
         }
         libraryObject_->addFixings(d.begin(), d.end(),
                                    v.begin(), forceOverwrite);
+    }
+
+    //bool Index::addFixings2(const QuantLib::TimeSeriesDef& t,
+    bool Index::addFixings2(const std::string& timeSeriesDefId,
+        bool forceOverwrite) {
+
+        OH_GET_UNDERLYING(t, timeSeriesDefId, QuantLibAddin::TimeSeriesDef, QuantLib::TimeSeriesDef)
+        libraryObject_->addFixings(t, forceOverwrite);
+        return true;
     }
 
     IborIndex::IborIndex(

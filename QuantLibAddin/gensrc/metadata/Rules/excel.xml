@@ -97,6 +97,7 @@
         <Rule tensorRank='scalar' type='QuantLib::Quote' codeID='code12b'/>
         <Rule tensorRank='scalar' default='true' codeID='code12'/>
         <Rule tensorRank='scalar'/>
+        <Rule tensorRank='vector' type='QuantLib::Real' codeID='code14'/>
         <Rule tensorRank='vector' type='QuantLib::Date' codeID='code14'/>
         <Rule tensorRank='vector' type='QuantLib::Period' codeID='code14'/>
         <Rule tensorRank='vector' type='QuantLib::Quote' codeID='code14'/>
