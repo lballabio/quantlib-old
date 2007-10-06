@@ -67,7 +67,11 @@
 				>
 			</File>
 			<File
-				RelativePath="pages\extending.docs"
+				RelativePath="pages\extend.tutorial.docs"
+				>
+			</File>
+			<File
+				RelativePath="pages\tutorials.docs"
 				>
 			</File>
 			<File
