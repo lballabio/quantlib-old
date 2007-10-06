@@ -31,8 +31,7 @@ e.g. Linux.
 \li For a precompiled binary installation of the Excel addin, please
     visit <a href="http://www.quantlibxl.org">http://www.quantlibxl.org</a>.
 \li For a walk through of all steps required to build the Excel addin
-    and dependent projects, please refer instead to the
-<a href="http://www.nazcatech.be/book/technical/html-singlepage/root.html#SECTION08100000000000000000">Build Tutorial</a>.
+    and dependent projects, please refer instead to the \ref build_tutorial.
 \li For additional notes regarding the installation of the Calc addin please
     refer to the document \ref calc.
 
