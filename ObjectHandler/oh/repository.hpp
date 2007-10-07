@@ -86,7 +86,7 @@ namespace ObjectHandler {
             ret = boost::dynamic_pointer_cast<T>(object);
             OH_REQUIRE(ret, "Error retrieving object with id '"
                 << id << "' - unable to convert reference to type '"
-                << typeid(T).name() << "'");
+                << typeid(T).name() << "' found instead '" << typeid(*object).name() << "'");
         }
 
         //! Override of template function retrieveObject.
