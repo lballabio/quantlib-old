@@ -16,6 +16,7 @@
         <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Real'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>
@@ -64,6 +65,7 @@
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Array' codeID='code203'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Date' codeID='code204'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Period' codeID='code205'/>
+        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Real' codeID='code205'/>
         <Rule tensorRank='vector' superType='libraryType' codeID='code132'/>
         <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Matrix' codeID='code206'/>
       </Rules>
@@ -148,6 +150,7 @@
         <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='vector' type='QuantLib::Natural'>%(indent)s%(name)sLib</Rule>
         <Rule tensorRank='vector' type='QuantLib::Size'>%(indent)s%(name)sLib</Rule>
+        <!--<Rule tensorRank='vector' type='QuantLib::Real'>%(indent)s%(name)sLib</Rule>-->
         <Rule superType='libraryType' vectorIterator='begin'>%(indent)s%(name)sLib.begin()</Rule>
         <Rule superType='libraryType' vectorIterator='end'>%(indent)s%(name)sLib.end()</Rule>
         <Rule superType='libraryType' vectorIterator='beginAndEnd' codeID='code54'/>
