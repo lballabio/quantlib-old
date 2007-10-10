@@ -9,10 +9,22 @@
 			<ObjectId>TS_EuriborSwapFixA10Y_YTD</ObjectId>
 			<ClassName>qlTimeSeries</ClassName>
 			<Dates class_id="193" tracking_level="0" version="0">
-				<count>258</count>
+				<count>259</count>
 				<item_version>0</item_version>
 				<item class_id="194" tracking_level="0" version="0">
 					<variant_ class_id="195" tracking_level="0" version="0">
+						<which>1</which>
+						<value>39365</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39364</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
 						<which>1</which>
 						<value>39363</value>
 					</variant_>
@@ -1550,19 +1562,25 @@
 				<item>
 					<variant_>
 						<which>1</which>
-						<value>38994</value>
+						<value>39230</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Values>
+				<count>259</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.046589999999999999</value>
 					</variant_>
 				</item>
 				<item>
 					<variant_>
 						<which>1</which>
-						<value>38993</value>
+						<value>0.046669999999999996</value>
 					</variant_>
 				</item>
-			</Dates>
-			<Values>
-				<count>258</count>
-				<item_version>0</item_version>
 				<item>
 					<variant_>
 						<which>1</which>
@@ -3102,13 +3120,7 @@
 				<item>
 					<variant_>
 						<which>1</which>
-						<value>0.039800000000000002</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.039420000000000004</value>
+						<value>0.046489999999999997</value>
 					</variant_>
 				</item>
 			</Values>
