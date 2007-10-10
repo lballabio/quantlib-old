@@ -9,7 +9,7 @@
 			<ObjectId>TS_Eurlibor1Y_2006</ObjectId>
 			<ClassName>qlTimeSeries</ClassName>
 			<Dates class_id="193" tracking_level="0" version="0">
-				<count>254</count>
+				<count>255</count>
 				<item_version>0</item_version>
 				<item class_id="194" tracking_level="0" version="0">
 					<variant_ class_id="195" tracking_level="0" version="0">
@@ -1535,9 +1535,15 @@
 						<value>38720</value>
 					</variant_>
 				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>38883</value>
+					</variant_>
+				</item>
 			</Dates>
 			<Values>
-				<count>254</count>
+				<count>255</count>
 				<item_version>0</item_version>
 				<item>
 					<variant_>
@@ -3061,6 +3067,12 @@
 					<variant_>
 						<which>1</which>
 						<value>0.028575</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.033512500000000001</value>
 					</variant_>
 				</item>
 			</Values>
