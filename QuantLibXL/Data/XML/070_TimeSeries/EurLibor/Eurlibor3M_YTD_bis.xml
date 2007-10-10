@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>1</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="181" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>TS_Eurlibor3M_YTD_bis</ObjectId>
+			<ClassName>qlTimeSeries</ClassName>
+			<Dates class_id="193" tracking_level="0" version="0">
+				<count>1</count>
+				<item_version>0</item_version>
+				<item class_id="194" tracking_level="0" version="0">
+					<variant_ class_id="195" tracking_level="0" version="0">
+						<which>1</which>
+						<value>38883</value>
+					</variant_>
+				</item>
+			</Dates>
+			<Values>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<variant_>
+						<which>4</which>
+						<value class_id="196" tracking_level="0" version="0">
+							<type_>5</type_>
+						</value>
+					</variant_>
+				</item>
+			</Values>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
