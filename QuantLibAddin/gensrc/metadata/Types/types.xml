@@ -185,6 +185,7 @@
         <DataType>QuantLib::OneAssetOption</DataType>
         <DataType>QuantLib::OptimizationMethod</DataType>
         <DataType>QuantLib::OptionletStripper</DataType>
+        <DataType>QuantLib::OptionletStripper1</DataType>
         <DataType>QuantLib::OptionletStripper2</DataType>
         <DataType>QuantLib::Payoff</DataType>
         <DataType>QuantLib::PiecewiseConstantAbcdVariance</DataType>
@@ -275,6 +276,7 @@
     <SuperType name='libToHandle' nativeType='string'>
       <DataTypes>
         <DataType>QuantLib::OptionletStripper</DataType>
+        <DataType>QuantLib::OptionletStripper1</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
         <DataType>QuantLib::BlackAtmVolCurve</DataType>

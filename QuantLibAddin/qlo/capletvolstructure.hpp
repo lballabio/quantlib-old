@@ -21,6 +21,7 @@
 #define qla_capletvolstructure_hpp
 
 #include <qlo/termstructures.hpp>
+#include <ql/yieldtermstructure.hpp>
 #include <ql/voltermstructures/interestrate/optionlet/optionletstripper.hpp>
 #include <ql/voltermstructures/interestrate/optionlet/optionletstripperadapter.hpp>
 
@@ -31,7 +32,7 @@ namespace QuantLib {
     class IborIndex;
     class CapFloorTermVolSurface;
     class CapFloorTermVolCurve;
-    class OptionletStripper;
+    class OptionletStripper1;
     class OptionletStripper2;
     class OptionletStripperAdapter;
 }
@@ -52,7 +53,7 @@ namespace QuantLibAddin {
     class OptionletStripperAdapter : public OptionletVolatilityStructure {
       public:
       OptionletStripperAdapter(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                               const QuantLib::Handle<QuantLib::OptionletStripper>& optionletStripper,
+                               const boost::shared_ptr<QuantLib::OptionletStripper>& optionletStripper,
                                bool permanent);
     };
 
@@ -161,17 +162,22 @@ namespace QuantLibAddin {
     class OptionletStripper : public ObjectHandler::LibraryObject<QuantLib::OptionletStripper> {
       public:
         OptionletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                          bool permanent);
+    };
+
+    class OptionletStripper1 : public OptionletStripper {
+      public:
+        OptionletStripper1(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                           const boost::shared_ptr<QuantLib::CapFloorTermVolSurface>& surface,
                           const boost::shared_ptr<QuantLib::IborIndex>& index,
                           QuantLib::Rate switchStrike,
                           bool permanent);
     };
 
-
-    class OptionletStripper2 : public ObjectHandler::LibraryObject<QuantLib::OptionletStripper2> {
+    class OptionletStripper2 : public OptionletStripper {
       public:
         OptionletStripper2(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                           const QuantLib::Handle<QuantLib::OptionletStripper>& optionletStripper,
+                           const boost::shared_ptr<QuantLib::OptionletStripper1>& optionletStripper1,
                            const QuantLib::Handle<QuantLib::CapFloorTermVolCurve>& atmCapFloorTermVolCurve,
                            bool permanent);
     };
