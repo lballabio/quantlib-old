@@ -60,9 +60,9 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="42" tracking_level="1" version="0" object_id="_3">
+		<px class_id="44" tracking_level="1" version="0" object_id="_3">
 			<ObjectId>IT0003747364_1stCpn</ObjectId>
-			<ClassName>qlDigitalIborLeg</ClassName>
+			<ClassName>qlFixedRateLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
 			<Nominals>
 				<count>1</count>
@@ -70,53 +70,20 @@
 				<item>100</item>
 			</Nominals>
 			<ScheduleID>IT0003747364_Sch</ScheduleID>
-			<FixingDays>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>4</item>
-			</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>Actual/Actual (ISMA)</DayCounter>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<IborIndex>Euribor6M</IborIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<CallStrikes>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallStrikes>
-			<CallSpecs>Short - ATM excluded</CallSpecs>
-			<CallPayoff>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallPayoff>
-			<PutStrikes>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.042999999999999997</item>
-			</PutStrikes>
-			<PutSpecs>Long - ATM excluded</PutSpecs>
-			<PutPayoff>
+			<Coupons>
 				<count>4</count>
 				<item_version>0</item_version>
 				<item>0.033000000000000002</item>
 				<item>0.035999999999999997</item>
 				<item>0.041000000000000002</item>
 				<item>0.042999999999999997</item>
-			</PutPayoff>
-			<Replication>IT0003747364_Replication</Replication>
+			</Coupons>
+			<DayCounter>Actual/Actual (ISMA)</DayCounter>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="42" object_id="_4">
+		<px class_id="42" tracking_level="1" version="0" object_id="_4">
 			<ObjectId>IT0003747364_2ndCpn</ObjectId>
 			<ClassName>qlDigitalIborLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -149,11 +116,14 @@
 				<item_version>0</item_version>
 				<item>0.042999999999999997</item>
 			</CallStrikes>
-			<CallSpecs>Long - ATM included</CallSpecs>
+			<CallSpecs>Short - ATM included</CallSpecs>
 			<CallPayoff>
-				<count>1</count>
+				<count>4</count>
 				<item_version>0</item_version>
-				<item>0.0089999999999999993</item>
+				<item>0.024</item>
+				<item>0.027</item>
+				<item>0.032000000000000001</item>
+				<item>0.034000000000000002</item>
 			</CallPayoff>
 			<PutStrikes>
 				<count>0</count>
@@ -193,7 +163,7 @@
 			<Gearings>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>-2</item>
+				<item>-1</item>
 			</Gearings>
 			<IborIndex>Euribor6M</IborIndex>
 			<Spreads>

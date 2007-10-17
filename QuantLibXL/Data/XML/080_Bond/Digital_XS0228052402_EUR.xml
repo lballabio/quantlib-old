@@ -2,7 +2,7 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>10</count>
+	<count>8</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="149" tracking_level="1" version="0" object_id="_1">
@@ -60,9 +60,9 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="41" tracking_level="1" version="0" object_id="_3">
+		<px class_id="38" tracking_level="1" version="0" object_id="_3">
 			<ObjectId>XS0228052402_1stCpn</ObjectId>
-			<ClassName>qlDigitalCmsLeg</ClassName>
+			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
 			<Nominals>
 				<count>1</count>
@@ -77,6 +77,11 @@
 			</FixingDays>
 			<IsInArrears>0</IsInArrears>
 			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Floors>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0.025000000000000001</item>
+			</Floors>
 			<Gearings>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -88,32 +93,16 @@
 				<item_version>0</item_version>
 				<item>0</item>
 			</Spreads>
-			<CallStrikes>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallStrikes>
-			<CallSpecs>Short - ATM excluded</CallSpecs>
-			<CallPayoff>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallPayoff>
-			<PutStrikes>
+			<Caps>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>0.025000000000000001</item>
-			</PutStrikes>
-			<PutSpecs>Long - ATM excluded</PutSpecs>
-			<PutPayoff>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.025000000000000001</item>
-			</PutPayoff>
-			<Replication>XS0228052402_Replication</Replication>
+				<item>0.055</item>
+			</Caps>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="41" object_id="_4">
+		<px class_id="41" tracking_level="1" version="0" object_id="_4">
 			<ObjectId>XS0228052402_2ndCpn</ObjectId>
 			<ClassName>qlDigitalCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -142,18 +131,19 @@
 				<item>0</item>
 			</Spreads>
 			<CallStrikes>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallStrikes>
-			<CallSpecs>Short - ATM excluded</CallSpecs>
-			<CallPayoff>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallPayoff>
-			<PutStrikes>
 				<count>1</count>
 				<item_version>0</item_version>
 				<item>0.055</item>
+			</CallStrikes>
+			<CallSpecs>Short - ATM excluded</CallSpecs>
+			<CallPayoff>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0.029999999999999999</item>
+			</CallPayoff>
+			<PutStrikes>
+				<count>0</count>
+				<item_version>0</item_version>
 			</PutStrikes>
 			<PutSpecs>Long - ATM included</PutSpecs>
 			<PutPayoff>
@@ -165,112 +155,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="41" object_id="_5">
-			<ObjectId>XS0228052402_3rdCpn</ObjectId>
-			<ClassName>qlDigitalCmsLeg</ClassName>
-			<PaymentBDC>Following</PaymentBDC>
-			<Nominals>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>100</item>
-			</Nominals>
-			<ScheduleID>XS0228052402_Sch</ScheduleID>
-			<FixingDays>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>2</item>
-			</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<CallStrikes>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallStrikes>
-			<CallSpecs>Long - ATM excluded</CallSpecs>
-			<CallPayoff>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallPayoff>
-			<PutStrikes>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.025000000000000001</item>
-			</PutStrikes>
-			<PutSpecs>Short - ATM included</PutSpecs>
-			<PutPayoff>
-				<count>0</count>
-				<item_version>0</item_version>
-			</PutPayoff>
-			<Replication>XS0228052402_Replication</Replication>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="41" object_id="_6">
-			<ObjectId>XS0228052402_4thCpn</ObjectId>
-			<ClassName>qlDigitalCmsLeg</ClassName>
-			<PaymentBDC>Following</PaymentBDC>
-			<Nominals>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>100</item>
-			</Nominals>
-			<ScheduleID>XS0228052402_Sch</ScheduleID>
-			<FixingDays>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>2</item>
-			</FixingDays>
-			<IsInArrears>0</IsInArrears>
-			<DayCounter>30/360 (Bond Basis)</DayCounter>
-			<Gearings>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>1</item>
-			</Gearings>
-			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
-			<Spreads>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0</item>
-			</Spreads>
-			<CallStrikes>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.055</item>
-			</CallStrikes>
-			<CallSpecs>Long - ATM excluded</CallSpecs>
-			<CallPayoff>
-				<count>1</count>
-				<item_version>0</item_version>
-				<item>0.025000000000000001</item>
-			</CallPayoff>
-			<PutStrikes>
-				<count>0</count>
-				<item_version>0</item_version>
-			</PutStrikes>
-			<PutSpecs>Short - ATM excluded</PutSpecs>
-			<PutPayoff>
-				<count>0</count>
-				<item_version>0</item_version>
-			</PutPayoff>
-			<Replication>XS0228052402_Replication</Replication>
-			<Permanent>1</Permanent>
-		</px>
-	</item>
-	<item>
-		<px class_id="38" tracking_level="1" version="0" object_id="_7">
+		<px class_id_reference="38" object_id="_5">
 			<ObjectId>XS0228052402_Netting</ObjectId>
 			<ClassName>qlCmsLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -294,7 +179,7 @@
 			<Gearings>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>-4</item>
+				<item>-1</item>
 			</Gearings>
 			<SwapIndex>EuriborSwapFixA10Y</SwapIndex>
 			<Spreads>
@@ -310,7 +195,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="154" tracking_level="1" version="0" object_id="_8">
+		<px class_id="154" tracking_level="1" version="0" object_id="_6">
 			<ObjectId>XS0228052402_Red</ObjectId>
 			<ClassName>qlSimpleCashFlowVector</ClassName>
 			<Amounts>
@@ -332,16 +217,14 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="80" tracking_level="1" version="0" object_id="_9">
+		<px class_id="80" tracking_level="1" version="0" object_id="_7">
 			<ObjectId>XS0228052402_MultiLeg</ObjectId>
 			<ClassName>qlMultiPhaseLeg</ClassName>
 			<LegIDs class_id="199" tracking_level="0" version="0">
-				<count>6</count>
+				<count>4</count>
 				<item_version>0</item_version>
 				<item>XS0228052402_1stCpn</item>
 				<item>XS0228052402_2ndCpn</item>
-				<item>XS0228052402_3rdCpn</item>
-				<item>XS0228052402_4thCpn</item>
 				<item>XS0228052402_Netting</item>
 				<item>XS0228052402_Red</item>
 			</LegIDs>
@@ -350,7 +233,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="12" tracking_level="1" version="0" object_id="_10">
+		<px class_id="12" tracking_level="1" version="0" object_id="_8">
 			<ObjectId>XS0228052402</ObjectId>
 			<ClassName>qlGenericBond</ClassName>
 			<Description>CRDIT 0 8/22/20</Description>

@@ -60,9 +60,9 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="42" tracking_level="1" version="0" object_id="_3">
+		<px class_id="46" tracking_level="1" version="0" object_id="_3">
 			<ObjectId>XS0194140785_1stCpn</ObjectId>
-			<ClassName>qlDigitalIborLeg</ClassName>
+			<ClassName>qlIborLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
 			<Nominals>
 				<count>1</count>
@@ -77,6 +77,11 @@
 			</FixingDays>
 			<IsInArrears>0</IsInArrears>
 			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Floors>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0.017500000000000002</item>
+			</Floors>
 			<Gearings>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -86,33 +91,18 @@
 			<Spreads>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>0</item>
+				<item>0.0050000000000000001</item>
 			</Spreads>
-			<CallStrikes>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallStrikes>
-			<CallSpecs>Long - ATM included</CallSpecs>
-			<CallPayoff>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallPayoff>
-			<PutStrikes>
+			<Caps>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>0.012500000000000001</item>
-			</PutStrikes>
-			<PutSpecs>Short - ATM excluded</PutSpecs>
-			<PutPayoff>
-				<count>0</count>
-				<item_version>0</item_version>
-			</PutPayoff>
-			<Replication>XS0194140785_Replication</Replication>
+				<item>0.057500000000000002</item>
+			</Caps>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="42" object_id="_4">
+		<px class_id="42" tracking_level="1" version="0" object_id="_4">
 			<ObjectId>XS0194140785_2ndCpn</ObjectId>
 			<ClassName>qlDigitalIborLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -141,18 +131,19 @@
 				<item>0</item>
 			</Spreads>
 			<CallStrikes>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallStrikes>
-			<CallSpecs>Short - ATM included</CallSpecs>
-			<CallPayoff>
-				<count>0</count>
-				<item_version>0</item_version>
-			</CallPayoff>
-			<PutStrikes>
 				<count>1</count>
 				<item_version>0</item_version>
 				<item>0.052499999999999998</item>
+			</CallStrikes>
+			<CallSpecs>Short - ATM included</CallSpecs>
+			<CallPayoff>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0.052499999999999998</item>
+			</CallPayoff>
+			<PutStrikes>
+				<count>0</count>
+				<item_version>0</item_version>
 			</PutStrikes>
 			<PutSpecs>Long - ATM excluded</PutSpecs>
 			<PutPayoff>
@@ -164,9 +155,9 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="44" tracking_level="1" version="0" object_id="_5">
-			<ObjectId>XS0194140785_Fixed</ObjectId>
-			<ClassName>qlFixedRateLeg</ClassName>
+		<px class_id_reference="42" object_id="_5">
+			<ObjectId>XS0194140785_3rdCpn</ObjectId>
+			<ClassName>qlDigitalIborLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
 			<Nominals>
 				<count>1</count>
@@ -174,17 +165,50 @@
 				<item>100</item>
 			</Nominals>
 			<ScheduleID>XS0194140785_Sch</ScheduleID>
-			<Coupons>
+			<FixingDays>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>0.0050000000000000001</item>
-			</Coupons>
+				<item>2</item>
+			</FixingDays>
+			<IsInArrears>0</IsInArrears>
 			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Gearings>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>1</item>
+			</Gearings>
+			<IborIndex>Euribor6M</IborIndex>
+			<Spreads>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0</item>
+			</Spreads>
+			<CallStrikes>
+				<count>0</count>
+				<item_version>0</item_version>
+			</CallStrikes>
+			<CallSpecs>Long - ATM excluded</CallSpecs>
+			<CallPayoff>
+				<count>0</count>
+				<item_version>0</item_version>
+			</CallPayoff>
+			<PutStrikes>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0.012500000000000001</item>
+			</PutStrikes>
+			<PutSpecs>Short - ATM included</PutSpecs>
+			<PutPayoff>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0.012500000000000001</item>
+			</PutPayoff>
+			<Replication>XS0194140785_Replication</Replication>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id="46" tracking_level="1" version="0" object_id="_6">
+		<px class_id_reference="46" object_id="_6">
 			<ObjectId>XS0194140785_Netting</ObjectId>
 			<ClassName>qlIborLeg</ClassName>
 			<PaymentBDC>Modified Following</PaymentBDC>
@@ -254,7 +278,7 @@
 				<item_version>0</item_version>
 				<item>XS0194140785_1stCpn</item>
 				<item>XS0194140785_2ndCpn</item>
-				<item>XS0194140785_Fixed</item>
+				<item>XS0194140785_3rdCpn</item>
 				<item>XS0194140785_Netting</item>
 				<item>XS0194140785_Red</item>
 			</LegIDs>
