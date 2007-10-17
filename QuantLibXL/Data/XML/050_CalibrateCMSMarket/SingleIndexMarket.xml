@@ -2,17 +2,97 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>5</count>
+	<count>10</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="29" tracking_level="1" version="0" object_id="_1">
+		<px class_id="37" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>CMS_Pricer_Single_1</ObjectId>
+			<ClassName>qlCmsCouponPricer</ClassName>
+			<Volatility>EURSwaptionVol</Volatility>
+			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
+			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
+			<MeanReversion class_id="193" tracking_level="0" version="0">
+				<variant_ class_id="194" tracking_level="0" version="0">
+					<which>3</which>
+					<value>EURSwaptionMeanReversion2Y_Quote</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="37" object_id="_2">
+			<ObjectId>CMS_Pricer_Single_2</ObjectId>
+			<ClassName>qlCmsCouponPricer</ClassName>
+			<Volatility>EURSwaptionVol</Volatility>
+			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
+			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
+			<MeanReversion>
+				<variant_>
+					<which>3</which>
+					<value>EURSwaptionMeanReversion5Y_Quote</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="37" object_id="_3">
+			<ObjectId>CMS_Pricer_Single_3</ObjectId>
+			<ClassName>qlCmsCouponPricer</ClassName>
+			<Volatility>EURSwaptionVol</Volatility>
+			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
+			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
+			<MeanReversion>
+				<variant_>
+					<which>3</which>
+					<value>EURSwaptionMeanReversion10Y_Quote</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="37" object_id="_4">
+			<ObjectId>CMS_Pricer_Single_4</ObjectId>
+			<ClassName>qlCmsCouponPricer</ClassName>
+			<Volatility>EURSwaptionVol</Volatility>
+			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
+			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
+			<MeanReversion>
+				<variant_>
+					<which>3</which>
+					<value>EURSwaptionMeanReversion20Y_Quote</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="37" object_id="_5">
+			<ObjectId>CMS_Pricer_Single_5</ObjectId>
+			<ClassName>qlCmsCouponPricer</ClassName>
+			<Volatility>EURSwaptionVol</Volatility>
+			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
+			<ModelOfYieldCurve>NonParallelShifts</ModelOfYieldCurve>
+			<MeanReversion>
+				<variant_>
+					<which>3</which>
+					<value>EURSwaptionMeanReversion30Y_Quote</value>
+				</variant_>
+			</MeanReversion>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id="29" tracking_level="1" version="0" object_id="_6">
 			<ObjectId>2YCmsMarket</ObjectId>
 			<ClassName>qlCmsMarket</ClassName>
-			<Expiries class_id="193" tracking_level="0" version="0">
+			<Expiries class_id="195" tracking_level="0" version="0">
 				<count>5</count>
 				<item_version>0</item_version>
-				<item class_id="194" tracking_level="0" version="0">
-					<variant_ class_id="195" tracking_level="0" version="0">
+				<item>
+					<variant_>
 						<which>3</which>
 						<value>5Y</value>
 					</variant_>
@@ -135,13 +215,13 @@
 			<CmsCouponPricer>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>CMS_pricer_0</item>
+				<item>CMS_Pricer_Single_1</item>
 			</CmsCouponPricer>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="29" object_id="_2">
+		<px class_id_reference="29" object_id="_7">
 			<ObjectId>5YCmsMarket</ObjectId>
 			<ClassName>qlCmsMarket</ClassName>
 			<Expiries>
@@ -271,13 +351,13 @@
 			<CmsCouponPricer>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>CMS_pricer_1</item>
+				<item>CMS_Pricer_Single_2</item>
 			</CmsCouponPricer>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="29" object_id="_3">
+		<px class_id_reference="29" object_id="_8">
 			<ObjectId>10YCmsMarket</ObjectId>
 			<ClassName>qlCmsMarket</ClassName>
 			<Expiries>
@@ -407,13 +487,13 @@
 			<CmsCouponPricer>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>CMS_pricer_2</item>
+				<item>CMS_Pricer_Single_3</item>
 			</CmsCouponPricer>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="29" object_id="_4">
+		<px class_id_reference="29" object_id="_9">
 			<ObjectId>20YCmsMarket</ObjectId>
 			<ClassName>qlCmsMarket</ClassName>
 			<Expiries>
@@ -543,13 +623,13 @@
 			<CmsCouponPricer>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>CMS_pricer_3</item>
+				<item>CMS_Pricer_Single_4</item>
 			</CmsCouponPricer>
 			<Permanent>1</Permanent>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="29" object_id="_5">
+		<px class_id_reference="29" object_id="_10">
 			<ObjectId>30YCmsMarket</ObjectId>
 			<ClassName>qlCmsMarket</ClassName>
 			<Expiries>
@@ -679,7 +759,7 @@
 			<CmsCouponPricer>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>CMS_pricer_4</item>
+				<item>CMS_Pricer_Single_5</item>
 			</CmsCouponPricer>
 			<Permanent>1</Permanent>
 		</px>
