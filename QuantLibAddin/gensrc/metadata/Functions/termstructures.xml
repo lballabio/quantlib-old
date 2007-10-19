@@ -330,7 +330,7 @@
       </ParameterList>
     </Constructor>
 
-    <!-- YieldTermStructure constructors -->
+    <!-- PiecewiseYieldCurve interface and constructor -->
     <Constructor name='qlPiecewiseYieldCurve'>
       <libraryFunction>PiecewiseYieldCurve</libraryFunction>
       <SupportedPlatforms>
@@ -361,15 +361,15 @@
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360)</description>
           </Parameter>
-          <Parameter name='TraitsID' default='"ForwardRate"'>
+          <Parameter name='TraitsID' default='"Discount"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
           </Parameter>
-          <Parameter name='InterpolatorID' default='"Cubic"'>
+          <Parameter name='InterpolatorID' default='"LogLinear"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Linear, LogLinear, or Cubic. If omitted, default = LogLinear is used.</description>
+            <description>BackwardFlat, ForwardFlat, Linear, LogLinear, Cubic, or LogCubic. If omitted, default = LogLinear is used.</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-12'>
             <type>QuantLib::Real</type>
@@ -380,6 +380,7 @@
       </ParameterList>
     </Constructor>
 
+    <!-- YieldTermStructure constructors -->
     <Constructor name='qlDiscountCurve'>
       <libraryFunction>DiscountCurve</libraryFunction>
       <SupportedPlatforms>
