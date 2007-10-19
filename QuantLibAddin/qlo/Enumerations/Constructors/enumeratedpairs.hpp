@@ -58,6 +58,12 @@ namespace QuantLibAddin {
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
             QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_CUBIC_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
@@ -90,6 +96,12 @@ namespace QuantLibAddin {
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
             QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_CUBIC_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
@@ -117,6 +129,12 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dayCounter,
             QuantLib::Real accuracy);
     boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LOGLINEAR_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LOGCUBIC_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,

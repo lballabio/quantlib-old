@@ -38,7 +38,7 @@
 #include <ql/math/interpolations/bilinearinterpolation.hpp>
 #include <ql/math/interpolations/bicubicsplineinterpolation.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
-#include <ql/math/interpolations/loglinearinterpolation.hpp>
+#include <ql/math/interpolations/loginterpolation.hpp>
 
 namespace QuantLibAddin {
 

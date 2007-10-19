@@ -210,6 +210,21 @@ namespace QuantLibAddin {
 
     }
 
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
+                                          QuantLib::LogCubic>(nDays,
+                                                              calendar,
+                                                              rateHelpers,
+                                                              dayCounter,
+                                                              accuracy));
+    }
+
     boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_CUBIC_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
@@ -429,6 +444,21 @@ namespace QuantLibAddin {
                 yieldCurveDayCounter,
                 yieldCurveAccuracy));
 
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                                          QuantLib::LogCubic>(nDays,
+                                                              calendar,
+                                                              rateHelpers,
+                                                              dayCounter,
+                                                              accuracy));
     }
 
     boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_CUBIC_PiecewiseYieldCurve(
@@ -665,6 +695,21 @@ namespace QuantLibAddin {
                                                            rateHelpers,
                                                            dayCounter,
                                                            accuracy));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+                                          QuantLib::LogCubic>(nDays,
+                                                              calendar,
+                                                              rateHelpers,
+                                                              dayCounter,
+                                                              accuracy));
     }
 
        boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> FORWARDRATE_CUBIC_HistoricalForwardRatesAnalysis(
