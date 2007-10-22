@@ -86,6 +86,7 @@
         <Rule tensorRank='scalar' superType='objectClass' codeID='code36'/>
         <Rule tensorRank='scalar' superType='objectQuote' codeID='code36b'/>
         <Rule tensorRank='scalar' superType='objectTermStructure' codeID='code36c'/>
+        <Rule tensorRank='vector' superType='objectClass' type='ObjectHandler::Object' codeID='code159'/>
         <Rule tensorRank='vector' superType='objectClass' codeID='code160'/>
       </Rules>
     </RuleGroup>

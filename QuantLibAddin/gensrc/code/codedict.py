@@ -626,6 +626,10 @@ code153 = '''\
             ObjectHandler::ohVariantToObjectVector<%(namespaceLibrary)s::%(classname)s, %(namespaceObjects)s::%(classname)s>(
             %(name)s, "%(name)s");\n'''
 
+code159 = '''\
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > %(name)sObj =
+            ObjectHandler::getObjectVector<ObjectHandler::Object>(%(name)s);\n'''
+
 code160 = '''\
         std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(name)sObj =
             ObjectHandler::getObjectVector<%(namespaceObjects)s::%(classname)s>(%(name)s);\n'''
