@@ -14,24 +14,6 @@
 				<item class_id="194" tracking_level="0" version="0">
 					<variant_ class_id="195" tracking_level="0" version="0">
 						<which>1</which>
-						<value>39002</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39003</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39006</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
 						<value>39007</value>
 					</variant_>
 				</item>
@@ -1547,28 +1529,28 @@
 						<value>39366</value>
 					</variant_>
 				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39367</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39370</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39371</value>
+					</variant_>
+				</item>
 			</Dates>
 			<Values>
 				<count>256</count>
 				<item_version>0</item_version>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.038108799999999998</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.037929999999999998</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.038001299999999995</value>
-					</variant_>
-				</item>
 				<item>
 					<variant_>
 						<which>1</which>
@@ -3085,6 +3067,24 @@
 					<variant_>
 						<which>1</which>
 						<value>0.046793800000000003</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.046500000000000007</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.046693800000000001</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.046593799999999998</value>
 					</variant_>
 				</item>
 			</Values>
