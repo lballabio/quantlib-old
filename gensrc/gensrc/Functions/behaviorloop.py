@@ -107,7 +107,10 @@ class BehaviorMemberLoop(BehaviorLoop):
 
     def bindPointer(self, inputTypes, returnType):
         """Return source code for a boost::bind declaration."""
-        const = 'c' if self.func_.const() else ''
+        if self.func_.const():
+            const = 'c'
+        else:
+            const = ''
         return BehaviorMemberLoop.BIND_POINTER % {
             'cmfCount' : self.func_.parameterList().underlyingCount(),
             'const' : const,

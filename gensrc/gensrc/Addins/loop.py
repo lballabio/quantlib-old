@@ -79,7 +79,10 @@ namespace %(namespace)s {
             'functionName' : func.name(),
             'returnType' : returnType }
         if func.behavior().functionSignature_:
-            const = ' const' if func.const() else ''
+            if func.const():
+                const = ' const'
+            else:
+                const = ''
             functionSignature = Loop.FUNC_SIG % {
                 'const' : const,
                 'functionSignature' : func.behavior().functionSignature_,
