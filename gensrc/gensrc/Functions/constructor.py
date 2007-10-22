@@ -69,6 +69,7 @@ class Constructor(function.Function):
         """Load/unload class state to/from serializer object."""
         super(Constructor, self).serialize(serializer)
         serializer.serializeProperty(self, common.LIBRARY_FUNCTION)
+        serializer.serializeAttributeBoolean(self, common.CONST, False)
 
     def postSerialize(self):
         """Perform post serialization initialization."""

@@ -321,6 +321,7 @@
       <Rules>
         <Rule superType='libraryType'>%(type)s</Rule>
         <Rule superType='enumeration'>%(type)s</Rule>
+        <Rule superType='underlyingClass'>%(type)s</Rule>
         <Rule nativeType='string'>std::string</Rule>
         <Rule nativeType='any'>boost::any</Rule>
         <Rule>%(nativeType)s</Rule>

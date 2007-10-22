@@ -51,12 +51,6 @@ namespace QuantLibAddin {
         void addFixings(const std::vector<QuantLib::Date>& dates,
                         const std::vector<QuantLib::Real>& values,
                         bool forceOverwrite);
-        // FIXME addin function qlIndexAddFixings2() wants to wrap QuantLib::Index::addFixings()
-        // as a loop function but loop functions returning void are not supported so we provide
-        // this wrapper returning a dummy boolean.
-        //bool addFixings2(const QuantLib::TimeSeriesDef& t,
-        bool addFixings2(const std::string& timeSeriesDefId,
-                        bool forceOverwrite = false);
       public:
         OH_LIB_CTOR(Index, QuantLib::Index);
     };

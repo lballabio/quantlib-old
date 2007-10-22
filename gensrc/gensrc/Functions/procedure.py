@@ -51,6 +51,7 @@ class Procedure(function.Function):
         super(Procedure, self).serialize(serializer)
         serializer.serializeObject(self, parameter.ReturnValue)
         serializer.serializeAttribute(self, common.LOOP_PARAMETER)
+        serializer.serializeAttributeBoolean(self, common.CONST, False)
 
     def postSerialize(self):
         """Perform post serialization initialization."""

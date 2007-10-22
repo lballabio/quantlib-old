@@ -111,6 +111,9 @@ class Function(serializable.Serializable):
     def visible(self):
         return self.visible_
 
+    def const(self):
+        return self.const_
+
     #############################################
     # serializer interface
     #############################################

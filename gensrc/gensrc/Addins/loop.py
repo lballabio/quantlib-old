@@ -79,8 +79,9 @@ namespace %(namespace)s {
             'functionName' : func.name(),
             'returnType' : returnType }
         if func.behavior().functionSignature_:
+            const = ' const' if func.const() else ''
             functionSignature = Loop.FUNC_SIG % {
-                'const' : func.behavior().const(),
+                'const' : const,
                 'functionSignature' : func.behavior().functionSignature_,
                 'functionType' : func.type(),
                 'inputTypes3' : func.parameterList().generate(self.inputTypes3_),

@@ -62,15 +62,6 @@ namespace QuantLibAddin {
                                    v.begin(), forceOverwrite);
     }
 
-    //bool Index::addFixings2(const QuantLib::TimeSeriesDef& t,
-    bool Index::addFixings2(const std::string& timeSeriesDefId,
-        bool forceOverwrite) {
-
-        OH_GET_UNDERLYING(t, timeSeriesDefId, QuantLibAddin::TimeSeriesDef, QuantLib::TimeSeriesDef)
-        libraryObject_->addFixings(t, forceOverwrite);
-        return true;
-    }
-
     IborIndex::IborIndex(
                  const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                  const std::string& indexName,

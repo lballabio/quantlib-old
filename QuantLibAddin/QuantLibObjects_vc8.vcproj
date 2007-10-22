@@ -1385,6 +1385,10 @@
 				RelativePath="qlo\Conversions\varianttosize.hpp"
 				>
 			</File>
+			<File
+				RelativePath=".\qlo\Conversions\varianttotimeseries.hpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Optimization"

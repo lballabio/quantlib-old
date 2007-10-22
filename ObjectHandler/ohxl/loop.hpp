@@ -32,16 +32,33 @@
 
 namespace ObjectHandler {
 
+    // Execute one iteration of the loop function
     template<class LoopFunction, class InputType, class OutputType>
-    void loopIteration(
-            LoopFunction &loopFunction, 
-            XLOPER &xIn, 
-            XLOPER &xOut,
-            bool expandVector) {
-        InputType inputItem = ObjectHandler::operToScalar<InputType>(xIn);
-        OutputType returnItem = loopFunction(inputItem);
-        scalarToOper(returnItem, xOut, true, expandVector);
-    }
+    struct LoopIteration {
+        void operator()(
+                LoopFunction &loopFunction, 
+                XLOPER &xIn, 
+                XLOPER &xOut,
+                bool expandVector) {
+            InputType inputItem = ObjectHandler::operToScalar<InputType>(xIn);
+            OutputType returnItem = loopFunction(inputItem);
+            scalarToOper(returnItem, xOut, true, expandVector);
+        }
+    };
+
+    // Partial specialization for LoopIteration where return type is void
+    template<class LoopFunction, class InputType>
+    struct LoopIteration<LoopFunction, InputType, void> {
+        void operator()(
+                LoopFunction &loopFunction, 
+                XLOPER &xIn, 
+                XLOPER &xOut,
+                bool expandVector) {
+            InputType inputItem = ObjectHandler::operToScalar<InputType>(xIn);
+            loopFunction(inputItem);
+            scalarToOper(true, xOut, true, expandVector);
+        }
+    };
 
     template<class LoopFunction, class InputType, class OutputType>
     void loop(
@@ -67,7 +84,7 @@ namespace ObjectHandler {
         } else if (xIn->xltype == xltypeNum
         ||  xIn->xltype == xltypeBool
         ||  xIn->xltype == xltypeStr) {
-            loopIteration<LoopFunction, InputType, OutputType>(
+            LoopIteration<LoopFunction, InputType, OutputType>()(
                 loopFunction, *xIn, xOut, true);
             return;
         // Some other input (e.g. a reference) - try to convert to an array
@@ -85,10 +102,10 @@ namespace ObjectHandler {
 
         int errorCount = 0;
         std::ostringstream err;
+        LoopIteration<LoopFunction, InputType, OutputType> loopIteration;
         for (int i=0; i<numCells; ++i) {
             try {
-                loopIteration<LoopFunction, InputType, OutputType>(
-                    loopFunction, 
+                loopIteration(loopFunction, 
                     xMulti->val.array.lparray[i],
                     xOut.val.array.lparray[i],
                     false);
@@ -127,6 +144,7 @@ namespace ObjectHandler {
         }
 
     }
+
 }
 
 #endif

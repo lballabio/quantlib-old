@@ -17,7 +17,8 @@ include_HEADERS = \
     varianttoperiod.hpp \
     varianttoquotehandle.hpp \
     varianttoquote.hpp \
-    varianttosize.hpp
+    varianttosize.hpp \
+    varianttotimeseries.hpp
 
 libConversions_la_SOURCES = \
     conversions.cpp

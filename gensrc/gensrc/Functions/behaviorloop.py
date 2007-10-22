@@ -55,9 +55,6 @@ class BehaviorLoop(object):
             'objectName' : self.objectName_,
             'returnType' : addin.loopReturnType().apply(self.func_.returnValue()) }
 
-    def const(self):
-        return self.const_
-
     #############################################
     # private member functions
     #############################################
@@ -98,12 +95,11 @@ class BehaviorMemberLoop(BehaviorLoop):
     # class variables
     #############################################
 
-    BIND_POINTER = """boost::_mfi::cmf%(cmfCount)d<
+    BIND_POINTER = """boost::_mfi::%(const)smf%(cmfCount)d<
                     %(returnType)s,
                     %(functionType)s,%(inputTypes)s>"""
     BIND_LIST = """boost::_bi::list%(listCount)d<
                     boost::_bi::value<%(functionReference)s >,%(inputTypes)s > >"""
-    const_ = ' const'
 
     #############################################
     # public interface
@@ -111,8 +107,10 @@ class BehaviorMemberLoop(BehaviorLoop):
 
     def bindPointer(self, inputTypes, returnType):
         """Return source code for a boost::bind declaration."""
+        const = 'c' if self.func_.const() else ''
         return BehaviorMemberLoop.BIND_POINTER % {
             'cmfCount' : self.func_.parameterList().underlyingCount(),
+            'const' : const,
             'inputTypes' : self.func_.parameterList().generate(inputTypes),
             'functionType' : self.func_.type(),
             'returnType' : returnType }
@@ -160,7 +158,6 @@ class BehaviorProcedureLoop(BehaviorLoop):
     BIND_POINTER = '%(returnType)s (__cdecl*)(%(inputTypes)s)'
     BIND_LIST = 'boost::_bi::list%(listCount)d<%(inputTypes)s > >'
     objectName_ = ''
-    const_ = ''
 
     #############################################
     # public interface

@@ -57,6 +57,7 @@ class Member(function.Function):
         serializer.serializeAttribute(self, common.SUPER_TYPE)
         serializer.serializeAttribute(self, common.LOOP_PARAMETER)
         serializer.serializeObject(self, parameter.ReturnValue)
+        serializer.serializeAttributeBoolean(self, common.CONST, True)
 
     def postSerialize(self):
         """Perform post serialization initialization."""
