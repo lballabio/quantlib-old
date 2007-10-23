@@ -108,10 +108,6 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-      <ReturnValue>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
     </Constructor>
     
     <Member name='qlSwaptionType' type='QuantLib::Swaption'>
