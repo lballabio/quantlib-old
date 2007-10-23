@@ -6,7 +6,7 @@
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="37" tracking_level="1" version="0" object_id="_1">
-			<ObjectId>CMS_Pricer_Multi_1</ObjectId>
+			<ObjectId>CMS_Pricer_Multi_-1</ObjectId>
 			<ClassName>qlCmsCouponPricer</ClassName>
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
@@ -22,7 +22,7 @@
 	</item>
 	<item>
 		<px class_id_reference="37" object_id="_2">
-			<ObjectId>CMS_Pricer_Multi_2</ObjectId>
+			<ObjectId>CMS_Pricer_Multi_0</ObjectId>
 			<ClassName>qlCmsCouponPricer</ClassName>
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
@@ -38,7 +38,7 @@
 	</item>
 	<item>
 		<px class_id_reference="37" object_id="_3">
-			<ObjectId>CMS_Pricer_Multi_3</ObjectId>
+			<ObjectId>CMS_Pricer_Multi_1</ObjectId>
 			<ClassName>qlCmsCouponPricer</ClassName>
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
@@ -54,7 +54,7 @@
 	</item>
 	<item>
 		<px class_id_reference="37" object_id="_4">
-			<ObjectId>CMS_Pricer_Multi_4</ObjectId>
+			<ObjectId>CMS_Pricer_Multi_2</ObjectId>
 			<ClassName>qlCmsCouponPricer</ClassName>
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
@@ -70,7 +70,7 @@
 	</item>
 	<item>
 		<px class_id_reference="37" object_id="_5">
-			<ObjectId>CMS_Pricer_Multi_5</ObjectId>
+			<ObjectId>CMS_Pricer_Multi_3</ObjectId>
 			<ClassName>qlCmsCouponPricer</ClassName>
 			<Volatility>EURSwaptionVol</Volatility>
 			<CmsCouponPricerType>ConundrumByNumericalIntegration</CmsCouponPricerType>
@@ -459,11 +459,11 @@
 			<CmsCouponPricer>
 				<count>5</count>
 				<item_version>0</item_version>
+				<item>CMS_Pricer_Multi_-1</item>
+				<item>CMS_Pricer_Multi_0</item>
 				<item>CMS_Pricer_Multi_1</item>
 				<item>CMS_Pricer_Multi_2</item>
 				<item>CMS_Pricer_Multi_3</item>
-				<item>CMS_Pricer_Multi_4</item>
-				<item>CMS_Pricer_Multi_5</item>
 			</CmsCouponPricer>
 			<Permanent>1</Permanent>
 		</px>
