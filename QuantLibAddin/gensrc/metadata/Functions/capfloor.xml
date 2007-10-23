@@ -242,10 +242,6 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-      <ReturnValue>
-        <type>string</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
     </Constructor>
 
   </Functions>
