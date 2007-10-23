@@ -119,7 +119,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlVanillaSwapSwapRateHelper'>
+    <Constructor name='qlVanillaSwapFromSwapRateHelper'>
       <libraryFunction>VanillaSwap</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->

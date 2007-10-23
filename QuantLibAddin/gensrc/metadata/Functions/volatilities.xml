@@ -398,6 +398,111 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlAbcdAtmVolCurveError' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the root mean squared error between the abcd implied Black vols and the given Black vols vector.</description>
+      <libraryFunction>error</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveMaxError' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the max error between the abcd implied Black vols and the given Black vols vector.</description>
+      <libraryFunction>maxError</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlAbcdAtmVolCurveA' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the a coefficient in the abcd vol parametrization.</description>
+      <libraryFunction>a</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlAbcdAtmVolCurveB' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the b coefficient in the abcd vol parametrization.</description>
+      <libraryFunction>b</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveC' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the c coefficient in the abcd vol parametrization.</description>
+      <libraryFunction>c</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveD' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the d coefficient in the abcd vol parametrization.</description>
+      <libraryFunction>d</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlAbcdAtmVolCurveK' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the k adjustments factors needed to match the input Black vols.</description>
+      <libraryFunction>k</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
     <Constructor name='qlAbcdAtmVolCurve'>
       <libraryFunction>AbcdAtmVolCurve</libraryFunction>
       <SupportedPlatforms>
