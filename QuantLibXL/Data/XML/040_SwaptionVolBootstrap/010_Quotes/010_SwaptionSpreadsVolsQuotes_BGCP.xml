@@ -2,11 +2,11 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>180</count>
+	<count>270</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="136" tracking_level="1" version="0" object_id="_1">
-			<ObjectId>BGCP5Y2Y_-200bp</ObjectId>
+			<ObjectId>BGCP3M2Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value class_id="193" tracking_level="0" version="0">
 				<variant_ class_id="194" tracking_level="0" version="0">
@@ -22,7 +22,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_2">
-			<ObjectId>BGCP5Y2Y_-100bp</ObjectId>
+			<ObjectId>BGCP3M2Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -38,7 +38,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_3">
-			<ObjectId>BGCP5Y2Y_-50bp</ObjectId>
+			<ObjectId>BGCP3M2Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -54,7 +54,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_4">
-			<ObjectId>BGCP5Y2Y_-25bp</ObjectId>
+			<ObjectId>BGCP3M2Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -70,7 +70,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_5">
-			<ObjectId>BGCP5Y2Y_ATM</ObjectId>
+			<ObjectId>BGCP3M2Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -86,7 +86,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_6">
-			<ObjectId>BGCP5Y2Y_25bp</ObjectId>
+			<ObjectId>BGCP3M2Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -102,7 +102,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_7">
-			<ObjectId>BGCP5Y2Y_50bp</ObjectId>
+			<ObjectId>BGCP3M2Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -118,7 +118,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_8">
-			<ObjectId>BGCP5Y2Y_100bp</ObjectId>
+			<ObjectId>BGCP3M2Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -134,7 +134,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_9">
-			<ObjectId>BGCP5Y2Y_200bp</ObjectId>
+			<ObjectId>BGCP3M2Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -150,7 +150,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_10">
-			<ObjectId>BGCP5Y5Y_-200bp</ObjectId>
+			<ObjectId>BGCP3M5Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -166,7 +166,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_11">
-			<ObjectId>BGCP5Y5Y_-100bp</ObjectId>
+			<ObjectId>BGCP3M5Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -182,7 +182,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_12">
-			<ObjectId>BGCP5Y5Y_-50bp</ObjectId>
+			<ObjectId>BGCP3M5Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -198,7 +198,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_13">
-			<ObjectId>BGCP5Y5Y_-25bp</ObjectId>
+			<ObjectId>BGCP3M5Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -214,7 +214,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_14">
-			<ObjectId>BGCP5Y5Y_ATM</ObjectId>
+			<ObjectId>BGCP3M5Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -230,7 +230,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_15">
-			<ObjectId>BGCP5Y5Y_25bp</ObjectId>
+			<ObjectId>BGCP3M5Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -246,7 +246,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_16">
-			<ObjectId>BGCP5Y5Y_50bp</ObjectId>
+			<ObjectId>BGCP3M5Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -262,7 +262,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_17">
-			<ObjectId>BGCP5Y5Y_100bp</ObjectId>
+			<ObjectId>BGCP3M5Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -278,7 +278,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_18">
-			<ObjectId>BGCP5Y5Y_200bp</ObjectId>
+			<ObjectId>BGCP3M5Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -294,7 +294,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_19">
-			<ObjectId>BGCP5Y10Y_-200bp</ObjectId>
+			<ObjectId>BGCP3M10Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -310,7 +310,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_20">
-			<ObjectId>BGCP5Y10Y_-100bp</ObjectId>
+			<ObjectId>BGCP3M10Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -326,7 +326,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_21">
-			<ObjectId>BGCP5Y10Y_-50bp</ObjectId>
+			<ObjectId>BGCP3M10Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -342,7 +342,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_22">
-			<ObjectId>BGCP5Y10Y_-25bp</ObjectId>
+			<ObjectId>BGCP3M10Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -358,7 +358,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_23">
-			<ObjectId>BGCP5Y10Y_ATM</ObjectId>
+			<ObjectId>BGCP3M10Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -374,7 +374,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_24">
-			<ObjectId>BGCP5Y10Y_25bp</ObjectId>
+			<ObjectId>BGCP3M10Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -390,7 +390,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_25">
-			<ObjectId>BGCP5Y10Y_50bp</ObjectId>
+			<ObjectId>BGCP3M10Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -406,7 +406,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_26">
-			<ObjectId>BGCP5Y10Y_100bp</ObjectId>
+			<ObjectId>BGCP3M10Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -422,7 +422,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_27">
-			<ObjectId>BGCP5Y10Y_200bp</ObjectId>
+			<ObjectId>BGCP3M10Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -438,7 +438,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_28">
-			<ObjectId>BGCP5Y20Y_-200bp</ObjectId>
+			<ObjectId>BGCP3M20Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -454,7 +454,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_29">
-			<ObjectId>BGCP5Y20Y_-100bp</ObjectId>
+			<ObjectId>BGCP3M20Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -470,7 +470,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_30">
-			<ObjectId>BGCP5Y20Y_-50bp</ObjectId>
+			<ObjectId>BGCP3M20Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -486,7 +486,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_31">
-			<ObjectId>BGCP5Y20Y_-25bp</ObjectId>
+			<ObjectId>BGCP3M20Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -502,7 +502,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_32">
-			<ObjectId>BGCP5Y20Y_ATM</ObjectId>
+			<ObjectId>BGCP3M20Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -518,7 +518,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_33">
-			<ObjectId>BGCP5Y20Y_25bp</ObjectId>
+			<ObjectId>BGCP3M20Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -534,7 +534,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_34">
-			<ObjectId>BGCP5Y20Y_50bp</ObjectId>
+			<ObjectId>BGCP3M20Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -550,7 +550,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_35">
-			<ObjectId>BGCP5Y20Y_100bp</ObjectId>
+			<ObjectId>BGCP3M20Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -566,7 +566,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_36">
-			<ObjectId>BGCP5Y20Y_200bp</ObjectId>
+			<ObjectId>BGCP3M20Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -582,7 +582,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_37">
-			<ObjectId>BGCP5Y30Y_-200bp</ObjectId>
+			<ObjectId>BGCP3M30Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -598,7 +598,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_38">
-			<ObjectId>BGCP5Y30Y_-100bp</ObjectId>
+			<ObjectId>BGCP3M30Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -614,7 +614,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_39">
-			<ObjectId>BGCP5Y30Y_-50bp</ObjectId>
+			<ObjectId>BGCP3M30Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -630,7 +630,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_40">
-			<ObjectId>BGCP5Y30Y_-25bp</ObjectId>
+			<ObjectId>BGCP3M30Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -646,7 +646,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_41">
-			<ObjectId>BGCP5Y30Y_ATM</ObjectId>
+			<ObjectId>BGCP3M30Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -662,7 +662,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_42">
-			<ObjectId>BGCP5Y30Y_25bp</ObjectId>
+			<ObjectId>BGCP3M30Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -678,7 +678,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_43">
-			<ObjectId>BGCP5Y30Y_50bp</ObjectId>
+			<ObjectId>BGCP3M30Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -694,7 +694,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_44">
-			<ObjectId>BGCP5Y30Y_100bp</ObjectId>
+			<ObjectId>BGCP3M30Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -710,7 +710,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_45">
-			<ObjectId>BGCP5Y30Y_200bp</ObjectId>
+			<ObjectId>BGCP3M30Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -726,7 +726,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_46">
-			<ObjectId>BGCP10Y2Y_-200bp</ObjectId>
+			<ObjectId>BGCP1Y2Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -742,7 +742,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_47">
-			<ObjectId>BGCP10Y2Y_-100bp</ObjectId>
+			<ObjectId>BGCP1Y2Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -758,7 +758,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_48">
-			<ObjectId>BGCP10Y2Y_-50bp</ObjectId>
+			<ObjectId>BGCP1Y2Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -774,7 +774,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_49">
-			<ObjectId>BGCP10Y2Y_-25bp</ObjectId>
+			<ObjectId>BGCP1Y2Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -790,7 +790,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_50">
-			<ObjectId>BGCP10Y2Y_ATM</ObjectId>
+			<ObjectId>BGCP1Y2Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -806,7 +806,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_51">
-			<ObjectId>BGCP10Y2Y_25bp</ObjectId>
+			<ObjectId>BGCP1Y2Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -822,7 +822,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_52">
-			<ObjectId>BGCP10Y2Y_50bp</ObjectId>
+			<ObjectId>BGCP1Y2Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -838,7 +838,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_53">
-			<ObjectId>BGCP10Y2Y_100bp</ObjectId>
+			<ObjectId>BGCP1Y2Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -854,7 +854,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_54">
-			<ObjectId>BGCP10Y2Y_200bp</ObjectId>
+			<ObjectId>BGCP1Y2Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -870,7 +870,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_55">
-			<ObjectId>BGCP10Y5Y_-200bp</ObjectId>
+			<ObjectId>BGCP1Y5Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -886,7 +886,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_56">
-			<ObjectId>BGCP10Y5Y_-100bp</ObjectId>
+			<ObjectId>BGCP1Y5Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -902,7 +902,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_57">
-			<ObjectId>BGCP10Y5Y_-50bp</ObjectId>
+			<ObjectId>BGCP1Y5Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -918,7 +918,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_58">
-			<ObjectId>BGCP10Y5Y_-25bp</ObjectId>
+			<ObjectId>BGCP1Y5Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -934,7 +934,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_59">
-			<ObjectId>BGCP10Y5Y_ATM</ObjectId>
+			<ObjectId>BGCP1Y5Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -950,7 +950,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_60">
-			<ObjectId>BGCP10Y5Y_25bp</ObjectId>
+			<ObjectId>BGCP1Y5Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -966,7 +966,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_61">
-			<ObjectId>BGCP10Y5Y_50bp</ObjectId>
+			<ObjectId>BGCP1Y5Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -982,7 +982,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_62">
-			<ObjectId>BGCP10Y5Y_100bp</ObjectId>
+			<ObjectId>BGCP1Y5Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -998,7 +998,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_63">
-			<ObjectId>BGCP10Y5Y_200bp</ObjectId>
+			<ObjectId>BGCP1Y5Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1014,7 +1014,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_64">
-			<ObjectId>BGCP10Y10Y_-200bp</ObjectId>
+			<ObjectId>BGCP1Y10Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1030,7 +1030,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_65">
-			<ObjectId>BGCP10Y10Y_-100bp</ObjectId>
+			<ObjectId>BGCP1Y10Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1046,7 +1046,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_66">
-			<ObjectId>BGCP10Y10Y_-50bp</ObjectId>
+			<ObjectId>BGCP1Y10Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1062,7 +1062,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_67">
-			<ObjectId>BGCP10Y10Y_-25bp</ObjectId>
+			<ObjectId>BGCP1Y10Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1078,7 +1078,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_68">
-			<ObjectId>BGCP10Y10Y_ATM</ObjectId>
+			<ObjectId>BGCP1Y10Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1094,7 +1094,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_69">
-			<ObjectId>BGCP10Y10Y_25bp</ObjectId>
+			<ObjectId>BGCP1Y10Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1110,7 +1110,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_70">
-			<ObjectId>BGCP10Y10Y_50bp</ObjectId>
+			<ObjectId>BGCP1Y10Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1126,7 +1126,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_71">
-			<ObjectId>BGCP10Y10Y_100bp</ObjectId>
+			<ObjectId>BGCP1Y10Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1142,7 +1142,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_72">
-			<ObjectId>BGCP10Y10Y_200bp</ObjectId>
+			<ObjectId>BGCP1Y10Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1158,7 +1158,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_73">
-			<ObjectId>BGCP10Y20Y_-200bp</ObjectId>
+			<ObjectId>BGCP1Y20Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1174,7 +1174,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_74">
-			<ObjectId>BGCP10Y20Y_-100bp</ObjectId>
+			<ObjectId>BGCP1Y20Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1190,7 +1190,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_75">
-			<ObjectId>BGCP10Y20Y_-50bp</ObjectId>
+			<ObjectId>BGCP1Y20Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1206,7 +1206,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_76">
-			<ObjectId>BGCP10Y20Y_-25bp</ObjectId>
+			<ObjectId>BGCP1Y20Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1222,7 +1222,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_77">
-			<ObjectId>BGCP10Y20Y_ATM</ObjectId>
+			<ObjectId>BGCP1Y20Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1238,7 +1238,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_78">
-			<ObjectId>BGCP10Y20Y_25bp</ObjectId>
+			<ObjectId>BGCP1Y20Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1254,7 +1254,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_79">
-			<ObjectId>BGCP10Y20Y_50bp</ObjectId>
+			<ObjectId>BGCP1Y20Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1270,7 +1270,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_80">
-			<ObjectId>BGCP10Y20Y_100bp</ObjectId>
+			<ObjectId>BGCP1Y20Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1286,7 +1286,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_81">
-			<ObjectId>BGCP10Y20Y_200bp</ObjectId>
+			<ObjectId>BGCP1Y20Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1302,7 +1302,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_82">
-			<ObjectId>BGCP10Y30Y_-200bp</ObjectId>
+			<ObjectId>BGCP1Y30Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1318,7 +1318,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_83">
-			<ObjectId>BGCP10Y30Y_-100bp</ObjectId>
+			<ObjectId>BGCP1Y30Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1334,7 +1334,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_84">
-			<ObjectId>BGCP10Y30Y_-50bp</ObjectId>
+			<ObjectId>BGCP1Y30Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1350,7 +1350,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_85">
-			<ObjectId>BGCP10Y30Y_-25bp</ObjectId>
+			<ObjectId>BGCP1Y30Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1366,7 +1366,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_86">
-			<ObjectId>BGCP10Y30Y_ATM</ObjectId>
+			<ObjectId>BGCP1Y30Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1382,7 +1382,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_87">
-			<ObjectId>BGCP10Y30Y_25bp</ObjectId>
+			<ObjectId>BGCP1Y30Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1398,7 +1398,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_88">
-			<ObjectId>BGCP10Y30Y_50bp</ObjectId>
+			<ObjectId>BGCP1Y30Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1414,7 +1414,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_89">
-			<ObjectId>BGCP10Y30Y_100bp</ObjectId>
+			<ObjectId>BGCP1Y30Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1430,7 +1430,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_90">
-			<ObjectId>BGCP10Y30Y_200bp</ObjectId>
+			<ObjectId>BGCP1Y30Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1446,7 +1446,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_91">
-			<ObjectId>BGCP20Y2Y_-200bp</ObjectId>
+			<ObjectId>BGCP5Y2Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1462,7 +1462,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_92">
-			<ObjectId>BGCP20Y2Y_-100bp</ObjectId>
+			<ObjectId>BGCP5Y2Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1478,7 +1478,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_93">
-			<ObjectId>BGCP20Y2Y_-50bp</ObjectId>
+			<ObjectId>BGCP5Y2Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1494,7 +1494,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_94">
-			<ObjectId>BGCP20Y2Y_-25bp</ObjectId>
+			<ObjectId>BGCP5Y2Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1510,7 +1510,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_95">
-			<ObjectId>BGCP20Y2Y_ATM</ObjectId>
+			<ObjectId>BGCP5Y2Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1526,7 +1526,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_96">
-			<ObjectId>BGCP20Y2Y_25bp</ObjectId>
+			<ObjectId>BGCP5Y2Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1542,7 +1542,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_97">
-			<ObjectId>BGCP20Y2Y_50bp</ObjectId>
+			<ObjectId>BGCP5Y2Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1558,7 +1558,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_98">
-			<ObjectId>BGCP20Y2Y_100bp</ObjectId>
+			<ObjectId>BGCP5Y2Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1574,7 +1574,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_99">
-			<ObjectId>BGCP20Y2Y_200bp</ObjectId>
+			<ObjectId>BGCP5Y2Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1590,7 +1590,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_100">
-			<ObjectId>BGCP20Y5Y_-200bp</ObjectId>
+			<ObjectId>BGCP5Y5Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1606,7 +1606,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_101">
-			<ObjectId>BGCP20Y5Y_-100bp</ObjectId>
+			<ObjectId>BGCP5Y5Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1622,7 +1622,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_102">
-			<ObjectId>BGCP20Y5Y_-50bp</ObjectId>
+			<ObjectId>BGCP5Y5Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1638,7 +1638,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_103">
-			<ObjectId>BGCP20Y5Y_-25bp</ObjectId>
+			<ObjectId>BGCP5Y5Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1654,7 +1654,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_104">
-			<ObjectId>BGCP20Y5Y_ATM</ObjectId>
+			<ObjectId>BGCP5Y5Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1670,7 +1670,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_105">
-			<ObjectId>BGCP20Y5Y_25bp</ObjectId>
+			<ObjectId>BGCP5Y5Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1686,7 +1686,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_106">
-			<ObjectId>BGCP20Y5Y_50bp</ObjectId>
+			<ObjectId>BGCP5Y5Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1702,7 +1702,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_107">
-			<ObjectId>BGCP20Y5Y_100bp</ObjectId>
+			<ObjectId>BGCP5Y5Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1718,7 +1718,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_108">
-			<ObjectId>BGCP20Y5Y_200bp</ObjectId>
+			<ObjectId>BGCP5Y5Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1734,7 +1734,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_109">
-			<ObjectId>BGCP20Y10Y_-200bp</ObjectId>
+			<ObjectId>BGCP5Y10Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1750,7 +1750,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_110">
-			<ObjectId>BGCP20Y10Y_-100bp</ObjectId>
+			<ObjectId>BGCP5Y10Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1766,7 +1766,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_111">
-			<ObjectId>BGCP20Y10Y_-50bp</ObjectId>
+			<ObjectId>BGCP5Y10Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1782,7 +1782,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_112">
-			<ObjectId>BGCP20Y10Y_-25bp</ObjectId>
+			<ObjectId>BGCP5Y10Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1798,7 +1798,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_113">
-			<ObjectId>BGCP20Y10Y_ATM</ObjectId>
+			<ObjectId>BGCP5Y10Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1814,7 +1814,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_114">
-			<ObjectId>BGCP20Y10Y_25bp</ObjectId>
+			<ObjectId>BGCP5Y10Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1830,7 +1830,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_115">
-			<ObjectId>BGCP20Y10Y_50bp</ObjectId>
+			<ObjectId>BGCP5Y10Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1846,7 +1846,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_116">
-			<ObjectId>BGCP20Y10Y_100bp</ObjectId>
+			<ObjectId>BGCP5Y10Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1862,7 +1862,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_117">
-			<ObjectId>BGCP20Y10Y_200bp</ObjectId>
+			<ObjectId>BGCP5Y10Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1878,7 +1878,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_118">
-			<ObjectId>BGCP20Y20Y_-200bp</ObjectId>
+			<ObjectId>BGCP5Y20Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1894,7 +1894,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_119">
-			<ObjectId>BGCP20Y20Y_-100bp</ObjectId>
+			<ObjectId>BGCP5Y20Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1910,7 +1910,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_120">
-			<ObjectId>BGCP20Y20Y_-50bp</ObjectId>
+			<ObjectId>BGCP5Y20Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1926,7 +1926,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_121">
-			<ObjectId>BGCP20Y20Y_-25bp</ObjectId>
+			<ObjectId>BGCP5Y20Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1942,7 +1942,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_122">
-			<ObjectId>BGCP20Y20Y_ATM</ObjectId>
+			<ObjectId>BGCP5Y20Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1958,7 +1958,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_123">
-			<ObjectId>BGCP20Y20Y_25bp</ObjectId>
+			<ObjectId>BGCP5Y20Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1974,7 +1974,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_124">
-			<ObjectId>BGCP20Y20Y_50bp</ObjectId>
+			<ObjectId>BGCP5Y20Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -1990,7 +1990,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_125">
-			<ObjectId>BGCP20Y20Y_100bp</ObjectId>
+			<ObjectId>BGCP5Y20Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2006,7 +2006,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_126">
-			<ObjectId>BGCP20Y20Y_200bp</ObjectId>
+			<ObjectId>BGCP5Y20Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2022,7 +2022,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_127">
-			<ObjectId>BGCP20Y30Y_-200bp</ObjectId>
+			<ObjectId>BGCP5Y30Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2038,7 +2038,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_128">
-			<ObjectId>BGCP20Y30Y_-100bp</ObjectId>
+			<ObjectId>BGCP5Y30Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2054,7 +2054,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_129">
-			<ObjectId>BGCP20Y30Y_-50bp</ObjectId>
+			<ObjectId>BGCP5Y30Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2070,7 +2070,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_130">
-			<ObjectId>BGCP20Y30Y_-25bp</ObjectId>
+			<ObjectId>BGCP5Y30Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2086,7 +2086,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_131">
-			<ObjectId>BGCP20Y30Y_ATM</ObjectId>
+			<ObjectId>BGCP5Y30Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2102,7 +2102,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_132">
-			<ObjectId>BGCP20Y30Y_25bp</ObjectId>
+			<ObjectId>BGCP5Y30Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2118,7 +2118,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_133">
-			<ObjectId>BGCP20Y30Y_50bp</ObjectId>
+			<ObjectId>BGCP5Y30Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2134,7 +2134,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_134">
-			<ObjectId>BGCP20Y30Y_100bp</ObjectId>
+			<ObjectId>BGCP5Y30Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2150,7 +2150,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_135">
-			<ObjectId>BGCP20Y30Y_200bp</ObjectId>
+			<ObjectId>BGCP5Y30Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2166,7 +2166,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_136">
-			<ObjectId>BGCP30Y2Y_-200bp</ObjectId>
+			<ObjectId>BGCP10Y2Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2182,7 +2182,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_137">
-			<ObjectId>BGCP30Y2Y_-100bp</ObjectId>
+			<ObjectId>BGCP10Y2Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2198,7 +2198,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_138">
-			<ObjectId>BGCP30Y2Y_-50bp</ObjectId>
+			<ObjectId>BGCP10Y2Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2214,7 +2214,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_139">
-			<ObjectId>BGCP30Y2Y_-25bp</ObjectId>
+			<ObjectId>BGCP10Y2Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2230,7 +2230,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_140">
-			<ObjectId>BGCP30Y2Y_ATM</ObjectId>
+			<ObjectId>BGCP10Y2Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2246,7 +2246,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_141">
-			<ObjectId>BGCP30Y2Y_25bp</ObjectId>
+			<ObjectId>BGCP10Y2Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2262,7 +2262,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_142">
-			<ObjectId>BGCP30Y2Y_50bp</ObjectId>
+			<ObjectId>BGCP10Y2Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2278,7 +2278,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_143">
-			<ObjectId>BGCP30Y2Y_100bp</ObjectId>
+			<ObjectId>BGCP10Y2Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2294,7 +2294,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_144">
-			<ObjectId>BGCP30Y2Y_200bp</ObjectId>
+			<ObjectId>BGCP10Y2Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2310,7 +2310,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_145">
-			<ObjectId>BGCP30Y5Y_-200bp</ObjectId>
+			<ObjectId>BGCP10Y5Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2326,7 +2326,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_146">
-			<ObjectId>BGCP30Y5Y_-100bp</ObjectId>
+			<ObjectId>BGCP10Y5Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2342,7 +2342,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_147">
-			<ObjectId>BGCP30Y5Y_-50bp</ObjectId>
+			<ObjectId>BGCP10Y5Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2358,7 +2358,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_148">
-			<ObjectId>BGCP30Y5Y_-25bp</ObjectId>
+			<ObjectId>BGCP10Y5Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2374,7 +2374,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_149">
-			<ObjectId>BGCP30Y5Y_ATM</ObjectId>
+			<ObjectId>BGCP10Y5Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2390,7 +2390,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_150">
-			<ObjectId>BGCP30Y5Y_25bp</ObjectId>
+			<ObjectId>BGCP10Y5Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2406,7 +2406,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_151">
-			<ObjectId>BGCP30Y5Y_50bp</ObjectId>
+			<ObjectId>BGCP10Y5Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2422,7 +2422,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_152">
-			<ObjectId>BGCP30Y5Y_100bp</ObjectId>
+			<ObjectId>BGCP10Y5Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2438,7 +2438,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_153">
-			<ObjectId>BGCP30Y5Y_200bp</ObjectId>
+			<ObjectId>BGCP10Y5Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2454,7 +2454,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_154">
-			<ObjectId>BGCP30Y10Y_-200bp</ObjectId>
+			<ObjectId>BGCP10Y10Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2470,7 +2470,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_155">
-			<ObjectId>BGCP30Y10Y_-100bp</ObjectId>
+			<ObjectId>BGCP10Y10Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2486,7 +2486,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_156">
-			<ObjectId>BGCP30Y10Y_-50bp</ObjectId>
+			<ObjectId>BGCP10Y10Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2502,7 +2502,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_157">
-			<ObjectId>BGCP30Y10Y_-25bp</ObjectId>
+			<ObjectId>BGCP10Y10Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2518,7 +2518,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_158">
-			<ObjectId>BGCP30Y10Y_ATM</ObjectId>
+			<ObjectId>BGCP10Y10Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2534,7 +2534,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_159">
-			<ObjectId>BGCP30Y10Y_25bp</ObjectId>
+			<ObjectId>BGCP10Y10Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2550,7 +2550,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_160">
-			<ObjectId>BGCP30Y10Y_50bp</ObjectId>
+			<ObjectId>BGCP10Y10Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2566,7 +2566,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_161">
-			<ObjectId>BGCP30Y10Y_100bp</ObjectId>
+			<ObjectId>BGCP10Y10Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2582,7 +2582,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_162">
-			<ObjectId>BGCP30Y10Y_200bp</ObjectId>
+			<ObjectId>BGCP10Y10Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2598,7 +2598,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_163">
-			<ObjectId>BGCP30Y20Y_-200bp</ObjectId>
+			<ObjectId>BGCP10Y20Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2614,7 +2614,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_164">
-			<ObjectId>BGCP30Y20Y_-100bp</ObjectId>
+			<ObjectId>BGCP10Y20Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2630,7 +2630,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_165">
-			<ObjectId>BGCP30Y20Y_-50bp</ObjectId>
+			<ObjectId>BGCP10Y20Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2646,7 +2646,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_166">
-			<ObjectId>BGCP30Y20Y_-25bp</ObjectId>
+			<ObjectId>BGCP10Y20Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2662,7 +2662,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_167">
-			<ObjectId>BGCP30Y20Y_ATM</ObjectId>
+			<ObjectId>BGCP10Y20Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2678,7 +2678,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_168">
-			<ObjectId>BGCP30Y20Y_25bp</ObjectId>
+			<ObjectId>BGCP10Y20Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2694,7 +2694,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_169">
-			<ObjectId>BGCP30Y20Y_50bp</ObjectId>
+			<ObjectId>BGCP10Y20Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2710,7 +2710,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_170">
-			<ObjectId>BGCP30Y20Y_100bp</ObjectId>
+			<ObjectId>BGCP10Y20Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2726,7 +2726,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_171">
-			<ObjectId>BGCP30Y20Y_200bp</ObjectId>
+			<ObjectId>BGCP10Y20Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2742,7 +2742,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_172">
-			<ObjectId>BGCP30Y30Y_-200bp</ObjectId>
+			<ObjectId>BGCP10Y30Y_-200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2758,7 +2758,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_173">
-			<ObjectId>BGCP30Y30Y_-100bp</ObjectId>
+			<ObjectId>BGCP10Y30Y_-100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2774,7 +2774,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_174">
-			<ObjectId>BGCP30Y30Y_-50bp</ObjectId>
+			<ObjectId>BGCP10Y30Y_-50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2790,7 +2790,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_175">
-			<ObjectId>BGCP30Y30Y_-25bp</ObjectId>
+			<ObjectId>BGCP10Y30Y_-25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2806,7 +2806,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_176">
-			<ObjectId>BGCP30Y30Y_ATM</ObjectId>
+			<ObjectId>BGCP10Y30Y_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2822,7 +2822,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_177">
-			<ObjectId>BGCP30Y30Y_25bp</ObjectId>
+			<ObjectId>BGCP10Y30Y_25bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2838,7 +2838,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_178">
-			<ObjectId>BGCP30Y30Y_50bp</ObjectId>
+			<ObjectId>BGCP10Y30Y_50bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2854,7 +2854,7 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_179">
-			<ObjectId>BGCP30Y30Y_100bp</ObjectId>
+			<ObjectId>BGCP10Y30Y_100bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
 				<variant_>
@@ -2870,6 +2870,1446 @@
 	</item>
 	<item>
 		<px class_id_reference="136" object_id="_180">
+			<ObjectId>BGCP10Y30Y_200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_181">
+			<ObjectId>BGCP20Y2Y_-200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_182">
+			<ObjectId>BGCP20Y2Y_-100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_183">
+			<ObjectId>BGCP20Y2Y_-50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_184">
+			<ObjectId>BGCP20Y2Y_-25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_185">
+			<ObjectId>BGCP20Y2Y_ATM</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_186">
+			<ObjectId>BGCP20Y2Y_25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_187">
+			<ObjectId>BGCP20Y2Y_50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_188">
+			<ObjectId>BGCP20Y2Y_100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_189">
+			<ObjectId>BGCP20Y2Y_200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_190">
+			<ObjectId>BGCP20Y5Y_-200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_191">
+			<ObjectId>BGCP20Y5Y_-100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_192">
+			<ObjectId>BGCP20Y5Y_-50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_193">
+			<ObjectId>BGCP20Y5Y_-25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_194">
+			<ObjectId>BGCP20Y5Y_ATM</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_195">
+			<ObjectId>BGCP20Y5Y_25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_196">
+			<ObjectId>BGCP20Y5Y_50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_197">
+			<ObjectId>BGCP20Y5Y_100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_198">
+			<ObjectId>BGCP20Y5Y_200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_199">
+			<ObjectId>BGCP20Y10Y_-200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_200">
+			<ObjectId>BGCP20Y10Y_-100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_201">
+			<ObjectId>BGCP20Y10Y_-50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_202">
+			<ObjectId>BGCP20Y10Y_-25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_203">
+			<ObjectId>BGCP20Y10Y_ATM</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_204">
+			<ObjectId>BGCP20Y10Y_25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_205">
+			<ObjectId>BGCP20Y10Y_50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_206">
+			<ObjectId>BGCP20Y10Y_100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_207">
+			<ObjectId>BGCP20Y10Y_200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_208">
+			<ObjectId>BGCP20Y20Y_-200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_209">
+			<ObjectId>BGCP20Y20Y_-100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_210">
+			<ObjectId>BGCP20Y20Y_-50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_211">
+			<ObjectId>BGCP20Y20Y_-25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_212">
+			<ObjectId>BGCP20Y20Y_ATM</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_213">
+			<ObjectId>BGCP20Y20Y_25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_214">
+			<ObjectId>BGCP20Y20Y_50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_215">
+			<ObjectId>BGCP20Y20Y_100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_216">
+			<ObjectId>BGCP20Y20Y_200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_217">
+			<ObjectId>BGCP20Y30Y_-200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_218">
+			<ObjectId>BGCP20Y30Y_-100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_219">
+			<ObjectId>BGCP20Y30Y_-50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_220">
+			<ObjectId>BGCP20Y30Y_-25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_221">
+			<ObjectId>BGCP20Y30Y_ATM</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_222">
+			<ObjectId>BGCP20Y30Y_25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_223">
+			<ObjectId>BGCP20Y30Y_50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_224">
+			<ObjectId>BGCP20Y30Y_100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_225">
+			<ObjectId>BGCP20Y30Y_200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_226">
+			<ObjectId>BGCP30Y2Y_-200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_227">
+			<ObjectId>BGCP30Y2Y_-100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_228">
+			<ObjectId>BGCP30Y2Y_-50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_229">
+			<ObjectId>BGCP30Y2Y_-25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_230">
+			<ObjectId>BGCP30Y2Y_ATM</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_231">
+			<ObjectId>BGCP30Y2Y_25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_232">
+			<ObjectId>BGCP30Y2Y_50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_233">
+			<ObjectId>BGCP30Y2Y_100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_234">
+			<ObjectId>BGCP30Y2Y_200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_235">
+			<ObjectId>BGCP30Y5Y_-200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_236">
+			<ObjectId>BGCP30Y5Y_-100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_237">
+			<ObjectId>BGCP30Y5Y_-50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_238">
+			<ObjectId>BGCP30Y5Y_-25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_239">
+			<ObjectId>BGCP30Y5Y_ATM</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_240">
+			<ObjectId>BGCP30Y5Y_25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_241">
+			<ObjectId>BGCP30Y5Y_50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_242">
+			<ObjectId>BGCP30Y5Y_100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_243">
+			<ObjectId>BGCP30Y5Y_200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_244">
+			<ObjectId>BGCP30Y10Y_-200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_245">
+			<ObjectId>BGCP30Y10Y_-100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_246">
+			<ObjectId>BGCP30Y10Y_-50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_247">
+			<ObjectId>BGCP30Y10Y_-25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_248">
+			<ObjectId>BGCP30Y10Y_ATM</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_249">
+			<ObjectId>BGCP30Y10Y_25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_250">
+			<ObjectId>BGCP30Y10Y_50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_251">
+			<ObjectId>BGCP30Y10Y_100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_252">
+			<ObjectId>BGCP30Y10Y_200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_253">
+			<ObjectId>BGCP30Y20Y_-200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_254">
+			<ObjectId>BGCP30Y20Y_-100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_255">
+			<ObjectId>BGCP30Y20Y_-50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_256">
+			<ObjectId>BGCP30Y20Y_-25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_257">
+			<ObjectId>BGCP30Y20Y_ATM</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_258">
+			<ObjectId>BGCP30Y20Y_25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_259">
+			<ObjectId>BGCP30Y20Y_50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_260">
+			<ObjectId>BGCP30Y20Y_100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_261">
+			<ObjectId>BGCP30Y20Y_200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_262">
+			<ObjectId>BGCP30Y30Y_-200bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_263">
+			<ObjectId>BGCP30Y30Y_-100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_264">
+			<ObjectId>BGCP30Y30Y_-50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_265">
+			<ObjectId>BGCP30Y30Y_-25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_266">
+			<ObjectId>BGCP30Y30Y_ATM</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_267">
+			<ObjectId>BGCP30Y30Y_25bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_268">
+			<ObjectId>BGCP30Y30Y_50bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_269">
+			<ObjectId>BGCP30Y30Y_100bp</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="136" object_id="_270">
 			<ObjectId>BGCP30Y30Y_200bp</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>
