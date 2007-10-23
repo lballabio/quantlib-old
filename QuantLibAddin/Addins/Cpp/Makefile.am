@@ -1,23 +1,23 @@
  
 AM_CPPFLAGS = -I${top_srcdir}
 AM_LDFLAGS = -release $(PACKAGE_VERSION)
-includedir = $(prefix)/include/qlo/Addins/C++
+includedir = $(prefix)/include/qlo/Addins/Cpp
 
 EXTRA_DIST = \
     AddinCpp_vc8.vcproj
 
 if BUILD_CPP
-noinst_LTLIBRARIES = libQuantLibAddinCpp.la
+lib_LTLIBRARIES = libQuantLibAddinCpp.la
 else
 EXTRA_LTLIBRARIES = libQuantLibAddinCpp.la
 endif
 
 if BUILD_CPP
-noinst_HEADERS = \
-    abcd.hpp \
-    accountingengines.hpp \
+include_HEADERS = \
     addincpp.hpp \
     addincppdefines.hpp \
+    abcd.hpp \
+    accountingengines.hpp \
     alphaform.hpp \
     assetswap.hpp \
     bonds.hpp \
