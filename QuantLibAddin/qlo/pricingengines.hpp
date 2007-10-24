@@ -40,6 +40,7 @@ namespace QuantLib {
     class YieldTermStructure;
     class DayCounter;
     class DiscountingBondEngine;
+    class DiscountingSwapEngine;
 
     template <class T>
     class Handle;
@@ -60,6 +61,14 @@ namespace QuantLibAddin {
             bool permanent);
       protected:
         OH_LIB_CTOR(PricingEngine, QuantLib::PricingEngine);
+    };
+
+    class DiscountingSwapEngine : public PricingEngine {
+      public:
+        DiscountingSwapEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
+            bool permanent);
     };
 
     class BlackSwaptionEngine : public PricingEngine {

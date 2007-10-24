@@ -25,6 +25,7 @@
 #include <ql/pricingengines/capfloor/analyticcapfloorengine.hpp>
 #include <ql/pricingengines/capfloor/blackcapfloorengine.hpp>
 #include <ql/pricingengines/capfloor/marketmodelcapfloorengine.hpp>
+#include <ql/pricingengines/swap/discountingswapengine.hpp>
 #include <ql/pricingengines/bond/discountingbondengine.hpp>
 
 namespace QuantLibAddin {
@@ -46,6 +47,16 @@ namespace QuantLibAddin {
     {
         libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
             QuantLib::PricingEngine> >()(engineID, 1);
+    }
+
+
+    DiscountingSwapEngine::DiscountingSwapEngine(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+        bool permanent) : PricingEngine(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
+            QuantLib::DiscountingSwapEngine(hYTS));
     }
 
     BlackSwaptionEngine::BlackSwaptionEngine(
