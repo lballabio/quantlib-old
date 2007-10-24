@@ -46,6 +46,8 @@ namespace EquityOptionTest
             Date settlementDate = new Date(17, Month.May, 1998);
             Date maturityDate = new Date(17, Month.May, 1999);
 
+            Calendar calendar = new TARGET();
+
             DateVector exerciseDates = new DateVector(4);
             for (int i = 1; i <= 4; i++) {
                 Period forwardPeriod = new Period(3 * i, TimeUnit.Months);
@@ -73,8 +75,8 @@ namespace EquityOptionTest
                                                 dayCounter));
             BlackVolTermStructureHandle flatVolTSH =
                 new BlackVolTermStructureHandle(
-                              new BlackConstantVol(settlementDate, volatility,
-                                                   dayCounter));
+                                new BlackConstantVol(settlementDate, calendar,
+                                                     volatility, dayCounter));
 
             QuoteHandle underlyingQuoteH =
                 new QuoteHandle(new SimpleQuote(underlyingPrice));

@@ -130,10 +130,20 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Price' exampleValue = '.01454'>
-            <type>double</type>
+          <Parameter name='Price' exampleValue ='0.2'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Price used to infer the implied volatility</description>
+          </Parameter>
+          <Parameter name='Accuracy' >
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+          <Parameter name='MaxIter' >
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max iterations</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -190,11 +200,6 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='CapFloorEngine'>
-            <type>QuantLib::PricingEngine</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Cap floor pricing engine object ID</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -235,11 +240,6 @@
             <description>as period (e.g. '2Y'). The default is '0D'. If '0D' the first caplet is removed.</description>
           </Parameter>
           <!--<Parameter name='CapFloorEngineID' libraryClass='PricingEngine' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
-          <Parameter name='CapFloorEngine'>
-            <type>QuantLib::PricingEngine</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Cap floor pricing engine object ID</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>

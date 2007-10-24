@@ -42,7 +42,6 @@ namespace QuantLibAddin {
                  const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
                  QuantLib::Rate strike,
                  const QuantLib::Period& optionTenor,
-                 const boost::shared_ptr<QuantLib::PricingEngine>& engine,
                  bool permanent);
 
         std::string underlyingSwap() {
@@ -54,4 +53,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

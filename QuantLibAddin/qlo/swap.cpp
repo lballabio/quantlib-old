@@ -36,14 +36,13 @@ namespace QuantLibAddin {
     Swap::Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                const std::vector<boost::shared_ptr<Leg> >& legWrappers,
                const std::vector<bool>& payer,
-               const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                bool permanent) : Instrument(properties, permanent) {
 
         std::vector<QuantLib::Leg> legs(legWrappers.size());
         for (QuantLib::Size i = 0; i<legWrappers.size(); ++i)
             legs[i] = legWrappers[i]->getQuantLibLeg();
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
-            QuantLib::Swap(hYTS, legs, payer));
+            QuantLib::Swap(legs, payer));
     }
 
     Swap::Swap(

@@ -171,6 +171,8 @@
 
 ; swaps to be priced
 
+(define swap-engine (new-DiscountingSwapEngine discount-term-structure))
+
 (define nominal 1000000)
 (define length 5)
 (define maturity (Calendar-advance calendar settlement-date length (Years)))
@@ -195,8 +197,8 @@
 (define spot (new-VanillaSwap pay-fixed nominal
                               fixed-schedule fixed-rate fixed-leg-day-counter
                               floating-schedule index spread
-                              floating-leg-day-counter
-                              discount-term-structure))
+                              floating-leg-day-counter))
+(Instrument-pricing-engine-set! spot swap-engine)
 
 (define forward-start (Calendar-advance calendar settlement-date 1 (Years)))
 (define forward-end (Calendar-advance calendar forward-start length (Years)))
@@ -215,8 +217,8 @@
                                  fixed-leg-day-counter
                                  floating-fwd-schedule
                                  index spread
-                                 floating-leg-day-counter
-                                 discount-term-structure))
+                                 floating-leg-day-counter))
+(Instrument-pricing-engine-set! forward swap-engine)
 
 ; display results
 

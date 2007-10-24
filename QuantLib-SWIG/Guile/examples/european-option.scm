@@ -38,8 +38,8 @@
 
 ; market data
 (define underlying (new-SimpleQuote 7.0))
-(define volatility (new-BlackConstantVol todays-date 0.10
-                                         (new-Actual365Fixed)))
+(define volatility (new-BlackConstantVol todays-date (new-TARGET)
+                                         0.10 (new-Actual365Fixed)))
 (define dividend-yield (new-FlatForward settlement-date 0.05
                                         (new-Actual365Fixed)))
 

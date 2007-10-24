@@ -40,8 +40,7 @@ namespace QuantLib {
         AnalyticCapFloorEngine(const boost::shared_ptr<AffineModel>& model)
         : GenericModelEngine<AffineModel,
                              CapFloor::arguments,
-                             CapFloor::results >(model)
-        {}
+                             CapFloor::results >(model) {}
         void calculate() const;
     };
 

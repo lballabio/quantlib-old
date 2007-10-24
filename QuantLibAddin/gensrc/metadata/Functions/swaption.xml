@@ -101,11 +101,6 @@
             <tensorRank>scalar</tensorRank>
             <description>as period (e.g. '2Y') </description>
           </Parameter>
-           <Parameter name='Engine'>
-            <type>QuantLib::PricingEngine</type>
-            <tensorRank>scalar</tensorRank>
-            <description>pricing engine object ID</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -155,9 +150,25 @@
       <ParameterList>
         <Parameters>
           <Parameter name='Price' exampleValue ='0.2'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Price used to infer the implied volatility</description>
+          </Parameter>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+          <Parameter name='Accuracy' >
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description></description>
+          </Parameter>
+          <Parameter name='MaxIter' >
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max iterations</description>
           </Parameter>
         </Parameters>
       </ParameterList>

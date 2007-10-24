@@ -37,7 +37,6 @@ namespace QuantLibAddin {
         Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
              const std::vector<boost::shared_ptr<Leg> >& legWrappers,
              const std::vector<bool>& payer,
-             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
              bool permanent);
         // MakeCms
         Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

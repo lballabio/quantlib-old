@@ -28,7 +28,7 @@ payoff = PlainVanillaPayoff(Option.Call, 8.0)
 
 # market data
 underlying = SimpleQuote(7.0)
-volatility = BlackConstantVol(todaysDate, 0.10, Actual365Fixed())
+volatility = BlackConstantVol(todaysDate, TARGET(), 0.10, Actual365Fixed())
 dividendYield = FlatForward(settlementDate, 0.05, Actual365Fixed())
 
 # report

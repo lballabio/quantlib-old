@@ -28,7 +28,7 @@ payoff = PlainVanillaPayoff(Option.Put, 40.0)
 
 # market data
 underlying = SimpleQuote(36.0)
-volatility = BlackConstantVol(todaysDate, 0.20, Actual365Fixed())
+volatility = BlackConstantVol(todaysDate, TARGET(), 0.20, Actual365Fixed())
 dividendYield = FlatForward(settlementDate, 0.00, Actual365Fixed())
 
 # report

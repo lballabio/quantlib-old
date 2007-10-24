@@ -28,24 +28,20 @@ namespace QuantLib {
         registerWith(discountCurve_);
     }
 
-    void DiscountingBondEngine::update() {
-        notifyObservers();
-    }
-
     Handle<YieldTermStructure> DiscountingBondEngine::discountCurve() const {
         return discountCurve_;
     }
 
     void DiscountingBondEngine::calculate() const {
-
         const Leg& cashflows = arguments_.cashflows;
         const Date& settlementDate = arguments_.settlementDate;
 
-        QL_REQUIRE(!discountCurve_.empty(),
+        QL_REQUIRE(!discountCurve().empty(),
                    "no discounting term structure set");
         results_.value = CashFlows::npv(cashflows,
-                                        **discountCurve_,
+                                        **discountCurve(),
                                         settlementDate, settlementDate);
     }
 
 }
+

@@ -29,7 +29,8 @@ payoff = PlainVanillaPayoff.new(Option::Put, 40.0)
 
 # market data
 underlying = SimpleQuote.new(36.0)
-volatility = BlackConstantVol.new(todaysDate, 0.20, Actual365Fixed.new)
+volatility = BlackConstantVol.new(todaysDate, TARGET.new,
+                                  0.20, Actual365Fixed.new)
 dividendYield = FlatForward.new(settlementDate, 0.00, Actual365Fixed.new)
 
 # report

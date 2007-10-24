@@ -32,7 +32,9 @@ namespace QuantLib {
 
     class DiscretizedCapFloor : public DiscretizedAsset {
       public:
-        DiscretizedCapFloor(const CapFloor::arguments& args)
+        DiscretizedCapFloor(const CapFloor::arguments& args,
+                            const Date& referenceDate,
+                            const DayCounter& dayCounter)
         : arguments_(args) {}
 
         void reset(Size size) {

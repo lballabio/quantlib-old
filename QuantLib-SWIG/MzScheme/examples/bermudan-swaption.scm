@@ -119,6 +119,8 @@
 
 ; define the ATM/OTM/ITM swaps
 
+(define swap-engine (new-DiscountingSwapEngine term-structure))
+
 (define fixed-leg-frequency (Annual))
 (define fixed-leg-tenor (new-Period 1 (Years)))
 (define fixed-leg-convention (Unadjusted))
@@ -148,26 +150,30 @@
                                         floating-leg-convention
                                         #f #f))
 
-(define atm-rate (VanillaSwap-fair-rate
-                  (new-VanillaSwap pay-fixed 100.0 fixed-schedule 0.0
-                                   fixed-leg-day-counter floating-schedule
-                                   index 0.0
-                                   floating-leg-day-counter term-structure)))
+(define dummy (new-VanillaSwap pay-fixed 100.0 fixed-schedule 0.0
+                               fixed-leg-day-counter floating-schedule
+                               index 0.0
+                               floating-leg-day-counter))
+(Instrument-pricing-engine-set! dummy swap-engine)
+(define atm-rate (VanillaSwap-fair-rate dummy))
 
 (define atm-swap (new-VanillaSwap pay-fixed 1000.0 fixed-schedule atm-rate
                                   fixed-leg-day-counter floating-schedule
                                   index 0.0
-                                  floating-leg-day-counter term-structure))
+                                  floating-leg-day-counter))
 (define otm-swap (new-VanillaSwap pay-fixed 1000.0 fixed-schedule
                                   (* 1.2 atm-rate)
                                   fixed-leg-day-counter floating-schedule
                                   index 0.0
-                                  floating-leg-day-counter term-structure))
+                                  floating-leg-day-counter))
 (define itm-swap (new-VanillaSwap pay-fixed 1000.0 fixed-schedule
                                   (* 0.8 atm-rate)
                                   fixed-leg-day-counter floating-schedule
                                   index 0.0
-                                  floating-leg-day-counter term-structure))
+                                  floating-leg-day-counter))
+(Instrument-pricing-engine-set! atm-swap swap-engine)
+(Instrument-pricing-engine-set! otm-swap swap-engine)
+(Instrument-pricing-engine-set! itm-swap swap-engine)
 
 (define helpers
   (map (lambda (swaption-data)
@@ -233,12 +239,16 @@
 (display header) (newline)
 (display rule) (newline)
 
-(define atm-swaption (new-Swaption atm-swap exercise term-structure
-                                   (new-TreeSwaptionEngine G2 50)))
-(define otm-swaption (new-Swaption otm-swap exercise term-structure
-                                   (new-TreeSwaptionEngine G2 50)))
-(define itm-swaption (new-Swaption itm-swap exercise term-structure
-                                   (new-TreeSwaptionEngine G2 50)))
+(define atm-swaption (new-Swaption atm-swap exercise))
+(define otm-swaption (new-Swaption otm-swap exercise))
+(define itm-swaption (new-Swaption itm-swap exercise))
+
+(Instrument-pricing-engine-set! atm-swaption
+                                (new-TreeSwaptionEngine G2 50))
+(Instrument-pricing-engine-set! otm-swaption
+                                (new-TreeSwaptionEngine G2 50))
+(Instrument-pricing-engine-set! itm-swaption
+                                (new-TreeSwaptionEngine G2 50))
 
 (display (tabulate fmt sep
                    "G2 analytic"

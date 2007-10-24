@@ -1145,17 +1145,47 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
           <Parameter name='Vol' >
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>SwaptionVolatilityStructure object ID</description>
           </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBlackSwaptionEngine2'>
+      <libraryFunction>BlackSwaptionEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
           <Parameter name='YieldCurve' >
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
+          </Parameter>
+          <Parameter name='Vol'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>cap/floor term volatility</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. 'Actual/365')</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1170,6 +1200,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
           <Parameter name='Vol' >
             <type>QuantLib::OptionletVolatilityStructure</type>
             <superType>libToHandle</superType>
@@ -1180,7 +1216,6 @@
       </ParameterList>
     </Constructor>
 
-    <!-- coercion should/might make this constructor redundant -->
     <Constructor name='qlBlackCapFloorEngine2'>
       <libraryFunction>BlackCapFloorEngine</libraryFunction>
       <SupportedPlatforms>
@@ -1190,11 +1225,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
           <Parameter name='Vol'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>cap/floor term volatility</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. 'Actual/365')</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1231,6 +1277,12 @@
             <type>QuantLib::MarketModelFactory</type>
             <tensorRank>scalar</tensorRank>
             <description>Market Model Factory object ID</description>
+          </Parameter>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

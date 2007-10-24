@@ -38,6 +38,7 @@ namespace QuantLib {
     class PricingEngine;
     class Quote;
     class YieldTermStructure;
+    class DayCounter;
     class DiscountingBondEngine;
 
     template <class T>
@@ -65,8 +66,14 @@ namespace QuantLibAddin {
       public:
           BlackSwaptionEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>&,
             const QuantLib::Handle<QuantLib::YieldTermStructure>&,
+            const QuantLib::Handle<QuantLib::Quote>& vol,
+            const QuantLib::DayCounter& dayCounter,
+            bool permanent);
+          BlackSwaptionEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
+            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>&,
             bool permanent);
     };
 
@@ -74,10 +81,13 @@ namespace QuantLibAddin {
       public:
         BlackCapFloorEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             const QuantLib::Handle<QuantLib::Quote>& vol,
+            const QuantLib::DayCounter& dayCounter,
             bool permanent);
         BlackCapFloorEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>&,
             bool permanent);
     };
@@ -95,6 +105,7 @@ namespace QuantLibAddin {
         MarketModelCapFloorEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::MarketModelFactory>&,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             bool permanent);
     };
 

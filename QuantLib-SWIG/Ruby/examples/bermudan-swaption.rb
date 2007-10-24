@@ -88,6 +88,9 @@ termStructure = YieldTermStructureHandle.new(
                       FlatForward.new(settlementDate,rate,Actual365Fixed.new))
 
 # define the ATM/OTM/ITM swaps
+
+swapEngine = DiscountingSwapEngine.new(termStructure)
+
 fixedLegFrequency = Annual
 fixedLegTenor = Period.new(1,Years)
 fixedLegConvention = Unadjusted
@@ -113,23 +116,28 @@ floatingSchedule = Schedule.new(swapStart, swapEnd,
                                 floatingLegConvention, floatingLegConvention,
                                 false, false)
 
-atmRate = VanillaSwap.new(payFixed, 100.0,
-                          fixedSchedule, 0.0, fixedLegDayCounter,
-                          floatingSchedule, index, 0.0,
-                          floatingLegDayCounter, termStructure).fairRate
+dummy = VanillaSwap.new(payFixed, 100.0,
+                        fixedSchedule, 0.0, fixedLegDayCounter,
+                        floatingSchedule, index, 0.0,
+                        floatingLegDayCounter)
+dummy.pricingEngine = swapEngine
+atmRate = dummy.fairRate
 
 atmSwap = VanillaSwap.new(payFixed, 1000.0,
                           fixedSchedule, atmRate, fixedLegDayCounter,
                           floatingSchedule, index, 0.0,
-                          floatingLegDayCounter, termStructure)
+                          floatingLegDayCounter)
 otmSwap = VanillaSwap.new(payFixed, 1000.0,
                           fixedSchedule, atmRate*1.2, fixedLegDayCounter,
                           floatingSchedule, index, 0.0,
-                          floatingLegDayCounter, termStructure)
+                          floatingLegDayCounter)
 itmSwap = VanillaSwap.new(payFixed, 1000.0,
                           fixedSchedule, atmRate*0.8, fixedLegDayCounter,
                           floatingSchedule, index, 0.0,
-                          floatingLegDayCounter, termStructure)
+                          floatingLegDayCounter)
+atmSwap.pricingEngine = swapEngine
+itmSwap.pricingEngine = swapEngine
+otmSwap.pricingEngine = swapEngine
 
 helpers = SwaptionVols.map { |maturity, length, vol|
   SwaptionHelper.new(maturity, length,
@@ -192,12 +200,13 @@ puts rule
 puts header
 puts rule
 
-atmSwaption = Swaption.new(atmSwap, exercise, termStructure,
-                           TreeSwaptionEngine.new(G2model, 50))
-otmSwaption = Swaption.new(otmSwap, exercise, termStructure,
-                           TreeSwaptionEngine.new(G2model, 50))
-itmSwaption = Swaption.new(itmSwap, exercise, termStructure,
-                           TreeSwaptionEngine.new(G2model, 50))
+atmSwaption = Swaption.new(atmSwap, exercise)
+otmSwaption = Swaption.new(otmSwap, exercise)
+itmSwaption = Swaption.new(itmSwap, exercise)
+
+atmSwaption.pricingEngine = TreeSwaptionEngine.new(G2model, 50)
+otmSwaption.pricingEngine = TreeSwaptionEngine.new(G2model, 50)
+itmSwaption.pricingEngine = TreeSwaptionEngine.new(G2model, 50)
 
 puts sprintf(format,'G2 analytic', formatPrice(itmSwaption.NPV),
              formatPrice(atmSwaption.NPV), formatPrice(otmSwaption.NPV))

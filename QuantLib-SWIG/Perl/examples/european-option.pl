@@ -16,6 +16,7 @@ my($payoff) = new QuantLib::PlainVanillaPayoff($QuantLib::Option::Put, 8.0);
 
 my($underlying) = new QuantLib::SimpleQuote(7.0);
 my($volatility) = new QuantLib::BlackConstantVol($todaysDate,
+                                                 new QuantLib::TARGET,
                                                  0.10,
                                                  new QuantLib::Actual365Fixed);
 my($dividendYield) = new QuantLib::FlatForward($settlementDate,

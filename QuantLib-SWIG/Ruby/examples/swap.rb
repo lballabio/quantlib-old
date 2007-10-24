@@ -108,6 +108,8 @@ depoFraSwapCurve = PiecewiseFlatForward.new(settlementDate,
 
 # swaps to be priced
 
+swapEngine = DiscountingSwapEngine.new(discountTermStructure)
+
 nominal = 1000000
 length = 5
 maturity = calendar.advance(settlementDate,length,Years)
@@ -139,7 +141,8 @@ floatingSchedule = Schedule.new(settlementDate, maturity,
 spot = VanillaSwap.new(payFixed, nominal,
                        fixedSchedule, fixedRate, fixedLegDayCounter,
                        floatingSchedule, index, spread,
-                       floatingLegDayCounter, discountTermStructure)
+                       floatingLegDayCounter)
+spot.pricingEngine = swapEngine
 
 forwardStart = calendar.advance(settlementDate,1,Years)
 forwardEnd = calendar.advance(forwardStart,length,Years)
@@ -155,7 +158,8 @@ floatingSchedule = Schedule.new(forwardStart, forwardEnd,
 forward = VanillaSwap.new(payFixed, nominal,
                           fixedSchedule, fixedRate, fixedLegDayCounter,
                           floatingSchedule, index, spread,
-                          floatingLegDayCounter, discountTermStructure)
+                          floatingLegDayCounter)
+forward.pricingEngine = swapEngine
 
 # price on the bootstrapped curves
 

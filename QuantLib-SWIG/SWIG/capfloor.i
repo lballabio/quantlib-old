@@ -103,12 +103,17 @@ typedef boost::shared_ptr<PricingEngine> BlackCapFloorEnginePtr;
 class BlackCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BlackCapFloorEnginePtr(const Handle<Quote>& vol) {
-            return new BlackCapFloorEnginePtr(new BlackCapFloorEngine(vol));
+        BlackCapFloorEnginePtr(
+                           const Handle<YieldTermStructure>& termStructure,
+                           const Handle<Quote>& vol) {
+            return new BlackCapFloorEnginePtr(
+                                  new BlackCapFloorEngine(termStructure,vol));
         }
         BlackCapFloorEnginePtr(
-                            const Handle<OptionletVolatilityStructure>& vol) {
-            return new BlackCapFloorEnginePtr(new BlackCapFloorEngine(vol));
+                           const Handle<YieldTermStructure>& termStructure,
+                           const Handle<OptionletVolatilityStructure>& vol) {
+            return new BlackCapFloorEnginePtr(
+                                  new BlackCapFloorEngine(termStructure,vol));
         }
     }
 };

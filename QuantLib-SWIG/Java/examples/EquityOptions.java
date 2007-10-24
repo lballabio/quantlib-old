@@ -30,6 +30,7 @@ import org.quantlib.BlackConstantVol;
 import org.quantlib.BlackScholesMertonProcess;
 import org.quantlib.BlackVolTermStructure;
 import org.quantlib.BlackVolTermStructureHandle;
+import org.quantlib.Calendar;
 import org.quantlib.Date;
 import org.quantlib.DateVector;
 import org.quantlib.DayCounter;
@@ -51,6 +52,7 @@ import org.quantlib.QuoteHandle;
 import org.quantlib.Settings;
 import org.quantlib.SimpleQuote;
 import org.quantlib.StochasticProcess;
+import org.quantlib.TARGET;
 import org.quantlib.TimeUnit;
 import org.quantlib.VanillaOption;
 import org.quantlib.YieldTermStructure;
@@ -94,8 +96,8 @@ public class EquityOptions {
 
         Date maturity = new Date(17, Month.May, 1999);
         DayCounter dayCounter = new Actual365Fixed();
-
-
+        Calendar calendar = new TARGET();
+        
         // write column headings
         String fmt = "\n%-35s %-14s %-14s %-14s\n";
         System.out.printf(fmt, "Method", "European", "Bermudan", "American");
@@ -124,7 +126,7 @@ public class EquityOptions {
                                   settlementDate, dividendYield, dayCounter));
         BlackVolTermStructureHandle flatVolatility =
             new BlackVolTermStructureHandle(new BlackConstantVol(
-                                  settlementDate, volatility, dayCounter));
+                           settlementDate, calendar, volatility, dayCounter));
 
         StochasticProcess stochasticProcess =
             new BlackScholesMertonProcess(underlyingH,

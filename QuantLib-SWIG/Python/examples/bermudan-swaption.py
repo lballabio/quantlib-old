@@ -81,6 +81,8 @@ termStructure = YieldTermStructureHandle(
 
 # define the ATM/OTM/ITM swaps
 
+swapEngine = DiscountingSwapEngine(termStructure)
+
 fixedLegFrequency = Annual
 fixedLegTenor = Period(1,Years)
 fixedLegConvention = Unadjusted
@@ -106,23 +108,28 @@ floatingSchedule = Schedule(swapStart, swapEnd,
                             floatingLegConvention, floatingLegConvention,
                             False, False)
 
-atmRate = VanillaSwap(payFixed, 100.0,
-                      fixedSchedule, 0.0, fixedLegDayCounter,
-                      floatingSchedule, index, 0.0,
-                      floatingLegDayCounter, termStructure).fairRate()
+dummy = VanillaSwap(payFixed, 100.0,
+                    fixedSchedule, 0.0, fixedLegDayCounter,
+                    floatingSchedule, index, 0.0,
+                    floatingLegDayCounter)
+dummy.setPricingEngine(swapEngine)
+atmRate = dummy.fairRate()
 
 atmSwap = VanillaSwap(payFixed, 1000.0,
                       fixedSchedule, atmRate, fixedLegDayCounter,
                       floatingSchedule, index, 0.0,
-                      floatingLegDayCounter, termStructure)
+                      floatingLegDayCounter)
 otmSwap = VanillaSwap(payFixed, 1000.0,
                       fixedSchedule, atmRate*1.2, fixedLegDayCounter,
                       floatingSchedule, index, 0.0,
-                      floatingLegDayCounter, termStructure)
+                      floatingLegDayCounter)
 itmSwap = VanillaSwap(payFixed, 1000.0,
                       fixedSchedule, atmRate*0.8, fixedLegDayCounter,
                       floatingSchedule, index, 0.0,
-                      floatingLegDayCounter, termStructure)
+                      floatingLegDayCounter)
+atmSwap.setPricingEngine(swapEngine)
+otmSwap.setPricingEngine(swapEngine)
+itmSwap.setPricingEngine(swapEngine)
 
 helpers = [ SwaptionHelper(maturity, length,
                            QuoteHandle(SimpleQuote(vol)),

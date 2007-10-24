@@ -37,7 +37,6 @@ namespace QuantLibAddin {
                  const boost::shared_ptr<Leg>& floatingLegWrapper,
                  const std::vector<QuantLib::Rate>& strikes,
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& termStructure,
-                 const boost::shared_ptr<QuantLib::PricingEngine>& engine,
                  bool permanent);
         CapFloor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                  QuantLib::CapFloor::Type capFloorType,
@@ -45,7 +44,6 @@ namespace QuantLibAddin {
                  const boost::shared_ptr<QuantLib::IborIndex>& index,
                  QuantLib::Rate strike,
                  const QuantLib::Period& forwardStart,
-                 const boost::shared_ptr<QuantLib::PricingEngine>& engine,
                  bool permanent);
         std::vector<std::vector<boost::any> > legAnalysis();
     };
@@ -53,4 +51,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

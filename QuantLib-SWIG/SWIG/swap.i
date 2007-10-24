@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -27,18 +28,20 @@
 %{
 using QuantLib::Swap;
 using QuantLib::VanillaSwap;
+using QuantLib::DiscountingSwapEngine;
+
 typedef boost::shared_ptr<Instrument> SwapPtr;
 typedef boost::shared_ptr<Instrument> VanillaSwapPtr;
+typedef boost::shared_ptr<PricingEngine> DiscountingSwapEnginePtr;
 %}
 
 %rename(Swap) SwapPtr;
 class SwapPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
-        SwapPtr(const Handle<YieldTermStructure>& termStructure,
-                const std::vector<boost::shared_ptr<CashFlow> >& firstLeg,
+        SwapPtr(const std::vector<boost::shared_ptr<CashFlow> >& firstLeg,
                 const std::vector<boost::shared_ptr<CashFlow> >& secondLeg) {
-            return new SwapPtr(new Swap(termStructure, firstLeg, secondLeg));
+            return new SwapPtr(new Swap(firstLeg, secondLeg));
         }
         Date startDate() {
             return boost::dynamic_pointer_cast<Swap>(*self)->startDate();
@@ -82,14 +85,13 @@ class VanillaSwapPtr : public SwapPtr {
                        const Schedule& floatSchedule,
                        const IborIndexPtr& index,
                        Spread spread,
-                       const DayCounter& floatingDayCount,
-                       const Handle<YieldTermStructure>& termStructure) {
+                       const DayCounter& floatingDayCount) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new VanillaSwapPtr(
                     new VanillaSwap(type, nominal,fixedSchedule,fixedRate,
                                     fixedDayCount,floatSchedule,libor,
-                                    spread, floatingDayCount, termStructure));
+                                    spread, floatingDayCount));
         }
         Rate fairRate() {
             return boost::dynamic_pointer_cast<VanillaSwap>(*self)->fairRate();
@@ -108,6 +110,20 @@ class VanillaSwapPtr : public SwapPtr {
         }
     }
 };
+
+
+%rename(DiscountingSwapEngine) DiscountingSwapEnginePtr;
+class DiscountingSwapEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        DiscountingSwapEnginePtr(
+                            const Handle<YieldTermStructure>& discountCurve) {
+            return new DiscountingSwapEnginePtr(
+                                    new DiscountingSwapEngine(discountCurve));
+        }
+    }
+};
+
 
 
 #endif

@@ -49,12 +49,6 @@
             <tensorRank>vector</tensorRank>
             <description>TRUE for payed leg</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting YieldTermStructure object ID</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>

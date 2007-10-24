@@ -25,21 +25,42 @@ namespace QuantLib {
 
     TreeCapFloorEngine::TreeCapFloorEngine(
                                const boost::shared_ptr<ShortRateModel>& model,
-                               Size timeSteps)
+                               Size timeSteps,
+                               const Handle<YieldTermStructure>& termStructure)
     : LatticeShortRateModelEngine<CapFloor::arguments,
-                                  CapFloor::results >(model,timeSteps){}
+                                  CapFloor::results >(model, timeSteps),
+      termStructure_(termStructure) {
+        registerWith(termStructure_);
+    }
 
     TreeCapFloorEngine::TreeCapFloorEngine(
                                const boost::shared_ptr<ShortRateModel>& model,
-                               const TimeGrid& timeGrid)
+                               const TimeGrid& timeGrid,
+                               const Handle<YieldTermStructure>& termStructure)
     : LatticeShortRateModelEngine<CapFloor::arguments,
-                                  CapFloor::results>(model,timeGrid) {}
+                                  CapFloor::results>(model, timeGrid),
+      termStructure_(termStructure) {
+        registerWith(termStructure_);
+    }
 
     void TreeCapFloorEngine::calculate() const {
 
         QL_REQUIRE(model_, "no model specified");
 
-        DiscretizedCapFloor capfloor(arguments_);
+        Date referenceDate;
+        DayCounter dayCounter;
+
+        boost::shared_ptr<TermStructureConsistentModel> tsmodel =
+            boost::dynamic_pointer_cast<TermStructureConsistentModel>(model_);
+        if (tsmodel) {
+            referenceDate = tsmodel->termStructure()->referenceDate();
+            dayCounter = tsmodel->termStructure()->dayCounter();
+        } else {
+            referenceDate = termStructure_->referenceDate();
+            dayCounter = termStructure_->dayCounter();
+        }
+
+        DiscretizedCapFloor capfloor(arguments_, referenceDate, dayCounter);
         boost::shared_ptr<Lattice> lattice;
 
         if (lattice_) {
