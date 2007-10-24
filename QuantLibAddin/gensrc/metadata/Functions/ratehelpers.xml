@@ -251,8 +251,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlFixedCouponBondHelper'>
-      <libraryFunction>FixedCouponBondHelper</libraryFunction>
+    <Constructor name='qlFixedRateBondHelper'>
+      <libraryFunction>FixedRateBondHelper</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

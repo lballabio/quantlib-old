@@ -152,7 +152,7 @@ namespace QuantLibAddin {
                                   dayCounter));
     }
 
-    FixedCouponBondHelper::FixedCouponBondHelper(
+    FixedRateBondHelper::FixedRateBondHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
             QuantLib::Natural settlementDays,
@@ -165,7 +165,7 @@ namespace QuantLibAddin {
             bool permanent) : RateHelper(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::FixedCouponBondHelper(cleanPrice,
+            QuantLib::FixedRateBondHelper(cleanPrice,
                       settlementDays,
                       schedule,
                       coupons,
