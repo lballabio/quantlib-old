@@ -5,26 +5,14 @@
 	<count>1</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="181" tracking_level="1" version="0" object_id="_1">
+		<px class_id="183" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>TS_EurliborSwapFixB7Y_YTD</ObjectId>
 			<ClassName>qlTimeSeries</ClassName>
-			<Dates class_id="193" tracking_level="0" version="0">
+			<Dates class_id="195" tracking_level="0" version="0">
 				<count>256</count>
 				<item_version>0</item_version>
-				<item class_id="194" tracking_level="0" version="0">
-					<variant_ class_id="195" tracking_level="0" version="0">
-						<which>1</which>
-						<value>39007</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39008</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
+				<item class_id="196" tracking_level="0" version="0">
+					<variant_ class_id="197" tracking_level="0" version="0">
 						<which>1</which>
 						<value>39009</value>
 					</variant_>
@@ -1547,22 +1535,22 @@
 						<value>39377</value>
 					</variant_>
 				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39378</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39379</value>
+					</variant_>
+				</item>
 			</Dates>
 			<Values>
 				<count>256</count>
 				<item_version>0</item_version>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.039649999999999998</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.039710000000000002</value>
-					</variant_>
-				</item>
 				<item>
 					<variant_>
 						<which>1</which>
@@ -3085,6 +3073,18 @@
 					<variant_>
 						<which>1</which>
 						<value>0.044770000000000004</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.044819999999999999</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.044589999999999998</value>
 					</variant_>
 				</item>
 			</Values>
