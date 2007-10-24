@@ -40,26 +40,88 @@ LIBRARY:
 - Workbooks/StandaloneExamples/test_deserialize.xls
 - Workbooks/StandaloneExamples/test_serialize.xls
 
+**************************
+    REV13059
+**************************
+
+QuantLibXL menu:
+- "Update Indexes Time Series" among QLXL menu actions to retrieve YTD fixings from Reuters & update .xml files
+- "Load Indexes Time Series" modified to load serialized time series objects only
+- "Update Indexes Time Series" to retrieve YTD fixings and serialize them
+
+Workbooks:
+- Added Workbooks/MarketMetaData/QL_MX_caps_EUR.xls prototype to contribute cap volatilities to Murex
+- Workbooks/Tests/CapFloorTermVol6MTest.xls extended to test EUR6MCapFloorAtmVol
+
+Cap volatilities:
+- new optionletStripper including ATM cap term vols 
+
+Swaption Volatilities:
+- sabr vol surfaces based on abcd interpolated atm swaption volatilities
+- new Workbooks/MarketMetaData/SwaptionVolsSabrVolSurface.xls
+- new Workbooks/Tests/SwaptionSabrVolSurfacesChecks.xls
+
+Bonds:
+-added and serialized 4 new digital euribor bonds:
+    IT0003730626, IT0003747364, IT0003766372, XS0194140785 and XS0195731681
+    These bonds were checked against prospectus and are loaded and serialized automatically 
+    with the start up action load bonds
+-added new digital euribor bond XS0003730626
+ this bond was validated and checked against its prospectus
+-added digital cms bond: XS0228052402
 
 
 **************************
-    REV12614
+    REV12939
 **************************
+Launcher:
+- Add support for loading third party addins - identified by their network URL - 
+  in addition to the existing functionality for loading core addins delivered by the Launcher
+- "Load Reuters/Bloomberg" moved from Environments tab to Feeds tab
+- "Use Reuters/Bloomberg" added to Environments tab
+- Add support for Initialization Data Source = Excel/XML
+- Loading CabotoXL.xla addin which allows:
+  a.bootstrapping Mx curve
+  b.loading single IRS CMS and CAP/FLOOR CMS books (VOLTRAD_CMS_10Y_CF.xls, VOLTRAD_CMS_10Y_IRS.xls, VOLTRAD_CMS_30Y_IRS.xls, VOLTRAD_CMS_5Y_IRS.xls, CF-CMS-10Y-MxBook.xls)
+
+New Functions:
+-qlVanillaSwapSwapRateHelper' as a spread inspector to SwapRateHelper
+-ohGroupSize returns the number of object IDs contained in a Group object
+-ohObjectLoad returns a list of IDs of objects loaded
+-qlOptionletStripperSwitchStrike: returns the switch strike used in the optionlet stripper
+-qlAtmCurve: returning the ID of the atm volatility curve in SabrVolSurface
+-qlTimeSeries: exported TimeSeries to Excel, Dates and values
+-qlTimeSeriesFirstDate: returns the first date for which a historical datum exists
+-qlTimeSeriesLastDate: returns the last date for which a historical datum exists
+-qlTimeSeriesSize: returns the first date for which a historical datum exists
+-qlTimeSeriesEmpty: returns whether the series contains any data
+-qlTimeSeriesDates: returns the dates for which historical data exist
+-qlTimeSeriesValues: returns the historical data
+-qlTimeSeriesValue: returns the data corresponding to the given dates
+-qlVolatilitySpreads: Returns the volatilities spread at a given date
+-qlVolatilitySpreads2: Returns the volatilities spread for a given period in a sabr vol surface
+-qlSabrVolSurface: exported SabrVolSurface constructor
 
 Bonds:
 - added explicit maturity date to Bond constructor 
 - handled correctly bond equivalent adjustment for reverse floater bonds in BondObjects_EUR.xls
 - added two new cms bonds XS0318729950 and XS0211163943 (the latter was validated) as requested by the trader
 - properly handled reference rate adjusted to a bond equivalent rate for the following reverse floater bonds: 
-XS0080841579, XS0080973489, XS0081431610, XS0082293506, XS0081387531, XS0081980129, XS0082716589, XS0082731463, XS0082435065, XS0082725739, XS0082486050, XS0082785808, XS0082847178, XS0082979088
+  XS0080841579, XS0080973489, XS0081431610, XS0082293506, XS0081387531, XS0081980129, XS0082716589, XS0082731463, XS0082435065, XS0082725739, XS0082486050, XS0082785808, XS0082847178, XS0082979088
 - serialization: added new workbook Data/XML/080_Bond/FloatingRateBond_EUR.xml, CMSRateBond_EUR.xml, FixedRateBond_EUR.xml, ZeroCpnBond_EUR.xml
+- digital bonds:
+     added /trunk/QuantLibXL/Data/XLS/080_Bond/Digital_IT0001278404_EUR.xls
+     added /trunk/QuantLibXL/Data/XML/080_Bond/Digital_IT0001278404_EUR.xml
+     added IT0001278404. This bond has been created validated and checked against prospectus
+- added digital bond to MainChecks.xls
+- added bond: IT0001278404 to BondMonitor_EUR.xls
 
 Bug fixing:
 - fixed bug: corrected wrong 3E6E spread in AB3EBASIS SwapRateHelpers
 - fixed bug: cash flow generation: in ref dates calculation the business day convention to use is the one used for the schedule calculation
 
 Serialization:
-Relinkable handles, indexes, pricing engines (bond, cms, ibor), yield curve boostrapping objects.
+- Relinkable handles, indexes, pricing engines (bond, cms, ibor), yield curve boostrapping objects.
 
 Yield Curve:
 - introduced EURYC3M and EURYC6M forecasting curves in addition to the discounting curve EURYC
@@ -69,32 +131,6 @@ Yield Curve:
 - changed default contributor for deposits (KLIEM is now used)
 - YieldCurveBootstrapping.xls using deposit up to first futures, serial futures included
 - added selected RateHelpers group 
-
-New functions:
-- 'qlVanillaSwapSwapRateHelper' as a spread inspector to SwapRateHelper
-- ohGroupSize() returns the number of object IDs contained in a Group object
-- ohObjectLoad() returns a list of IDs of objects loaded
-
-Launcher:
-- Add support for loading third party addins - identified by their network URL - in
-  addition to the existing functionality for loading core addins delivered by the Launcher
-- "Load Reuters/Bloomberg" moved from Environments tab to Feeds tab
-- "Use Reuters/Bloomberg" added to Environments tab
-- Add support for Initialization Data Source = Excel/XML
-- Loading CabotoXL.xla addin which allows:
-- bootstrapping Mx curve
-- loading single IRS CMS and CAP/FLOOR CMS books (VOLTRAD_CMS_10Y_CF.xls, VOLTRAD_CMS_10Y_IRS.xls, VOLTRAD_CMS_30Y_IRS.xls, VOLTRAD_CMS_5Y_IRS.xls, CF-CMS-10Y-MxBook.xls)
-
-CABOTOXL
-new menu item 
-Revision: 12448
-Author: giorfa
-Date: 4:18:16 PM, Thursday, August 30, 2007
-Message:
-trunk merge
-----
-Added : /branches/swaptionBondRefactoring/Launcher
-
 
 
 **************************
