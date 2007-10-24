@@ -2,7 +2,7 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>3</count>
+	<count>4</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="95" tracking_level="1" version="0" object_id="_1">
@@ -17,7 +17,17 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="97" tracking_level="1" version="0" object_id="_2">
+		<px class_id="96" tracking_level="1" version="0" object_id="_2">
+			<ObjectId>EURSwaptionVol1LevenbergMarquardt</ObjectId>
+			<ClassName>qlLevenbergMarquardt</ClassName>
+			<Epsfcn>1e-008</Epsfcn>
+			<Xtol>1e-008</Xtol>
+			<Gtol>1e-008</Gtol>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id="97" tracking_level="1" version="0" object_id="_3">
 			<ObjectId>EURSwaptionVol1Simplex</ObjectId>
 			<ClassName>qlSimplex</ClassName>
 			<Lambda>0.01</Lambda>
@@ -25,7 +35,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="171" tracking_level="1" version="0" object_id="_3">
+		<px class_id="171" tracking_level="1" version="0" object_id="_4">
 			<ObjectId>EURSwaptionVol1</ObjectId>
 			<ClassName>qlSwaptionVolCube1</ClassName>
 			<AtmVolStructure>EURSwaptionATMVol</AtmVolStructure>
