@@ -149,39 +149,6 @@ namespace ObjectHandler {
         return objectIDs;
     }
 
-	int Repository::saveObject(
-        const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
-        const std::string &path,
-        bool forceOverwrite) {
-
-		return ObjectHandler::SerializationFactory::instance().saveObject(
-            objectList, path.c_str(), forceOverwrite);   
-	}	
-
-	std::vector<std::string> Repository::loadObject(
-        const std::string &path,
-        bool overwriteExisting) {
-
-        return ObjectHandler::SerializationFactory::instance().loadObject(
-            path.c_str(), overwriteExisting);			
-    }
-
-    std::string Repository::saveObjectString(
-        const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
-        bool forceOverwrite) {
-
-		return ObjectHandler::SerializationFactory::instance().saveObjectString(
-            objectList, forceOverwrite);   
-	}	
-
-    std::vector<std::string> Repository::loadObjectString(
-        const std::string &xml,
-        bool overwriteExisting) {
-
-        return ObjectHandler::SerializationFactory::instance().loadObjectString(
-            xml, overwriteExisting);			
-    }
-
     bool Repository::objectExists(const std::string &objectID) const {
         return objectMap_.find(objectID) != objectMap_.end();
     }

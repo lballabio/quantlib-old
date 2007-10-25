@@ -54,11 +54,13 @@ namespace ObjectHandler {
         //! Serialize the given Object list to the path indicated.
         virtual int saveObject(
             const std::vector<boost::shared_ptr<Object> >&,
-            const char *path,
+            const std::string &path,
             bool forceOverwrite) const = 0;
         //! Deserialize an Object list from the path indicated.
         virtual std::vector<std::string> loadObject(
-            const char *path,
+            const std::string &directory,
+            const std::string &pattern,
+            bool recurse,
             bool overwriteExisting) const = 0;
 
         //! Write the object(s) to the given string.

@@ -530,7 +530,7 @@
 
     <Procedure name='ohObjectSave'>
       <description>Serialize list of objects to given path, return count of objects serialized</description>
-      <alias>ObjectHandler::Repository::instance().saveObject</alias>
+      <alias>ObjectHandler::SerializationFactory::instance().saveObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>
@@ -561,16 +561,26 @@
 
     <Procedure name='ohObjectLoad'>
       <description>Deserialize list of objects from given file, return count of deserialized objects</description>
-      <alias>ObjectHandler::Repository::instance().loadObject</alias>
+      <alias>ObjectHandler::SerializationFactory::instance().loadObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Filename'>
+          <Parameter name='Directory'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>File name from which objects are to be deserialized. If a folder name is provided, all files with extension .xml are loaded recursively.</description>
+            <description>Directory from which objects are to be deserialized.</description>
+          </Parameter>
+          <Parameter name='Pattern'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Name of XML file from which objects are to be deserialized, or a pattern in UNIX format (wildcard is .*).</description>
+          </Parameter>
+          <Parameter name='Recurse'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Recurse subdirectories of Directory when searching for filenames matching Pattern</description>
           </Parameter>
           <Parameter name='Overwrite' default='false'>
             <type>bool</type>
@@ -587,7 +597,7 @@
 
     <Procedure name='ohObjectSaveString'>
       <description>Serialize list of objects to given path, return resulting XML</description>
-      <alias>ObjectHandler::Repository::instance().saveObjectString</alias>
+      <alias>ObjectHandler::SerializationFactory::instance().saveObjectString</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>
@@ -613,7 +623,7 @@
 
     <Procedure name='ohObjectLoadString'>
       <description>Deserialize list of objects from given string, return IDs of deserialized objects</description>
-      <alias>ObjectHandler::Repository::instance().loadObjectString</alias>
+      <alias>ObjectHandler::SerializationFactory::instance().loadObjectString</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>

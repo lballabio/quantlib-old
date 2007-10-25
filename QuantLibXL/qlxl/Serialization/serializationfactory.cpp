@@ -16,6 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <oh/ohdefines.hpp>
 #include <fstream>
 #include <set>
 #include <boost/archive/xml_iarchive.hpp>
@@ -26,6 +27,7 @@
 #include <qlxl/Serialization/serialization_register.hpp>
 #include <oh/repository.hpp>
 #include <boost/filesystem.hpp>
+#include <boost/regex.hpp>
 
 namespace QuantLibXL {
 
@@ -39,7 +41,7 @@ namespace QuantLibXL {
 
     int SerializationFactory::saveObject(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
-        const char *path,
+        const std::string &path,
         bool forceOverwrite) const {
 
         // Create a boost path object from the char*.
@@ -79,7 +81,7 @@ namespace QuantLibXL {
             }
         }
 
-        std::ofstream ofs(path);
+        std::ofstream ofs(path.c_str());
         boost::archive::xml_oarchive oa(ofs);
         register_out(oa);
         oa << boost::serialization::make_nvp("object_list", valueObjects);
@@ -132,51 +134,49 @@ namespace QuantLibXL {
             OH_FAIL("Error deserializing file " << path << ": " << e.what());
         }
     }
- 
-    bool hasXmlExtension(const boost::filesystem::path &path) {
-        std::string extension = boost::filesystem::extension(path);
-        return STRICMP(extension.c_str(), ".XML") == 0;
-    }
 
     std::vector<std::string> SerializationFactory::loadObject(
-        const char *path,
+        const std::string &directory,
+        const std::string &pattern,
+        bool recurse,
         bool overwriteExisting) const {
 
-        boost::filesystem::path boostPath(path);
-        OH_REQUIRE(boost::filesystem::exists(boostPath), "Invalid path : " << path);
+        boost::filesystem::path boostPath(directory);
+        OH_REQUIRE(boost::filesystem::exists(boostPath) && boost::filesystem::is_directory(boostPath),
+            "The specified directory is not valid : " << directory);
 
         std::vector<std::string> returnValue;
+        bool fileFound = false;
+        boost::regex r(pattern, boost::regex::perl | boost::regex::icase);
 
-        if (boost::filesystem::is_directory(boostPath)) {
+        if (recurse) {
 
-            // Workaround for apparent bug in boost::filesystem version 1.34.1.
-            // If the directory is empty, testing equality between recursive_directory_iterator
-            // and the end iterator returns true when it should return false and subsequent
-            // dereference of the iterator crashes the program.  So we first perform the test with
-            // directory_iterator which correctly returns false for an empty directory.
-            OH_REQUIRE(boost::filesystem::directory_iterator(boostPath) != boost::filesystem::directory_iterator(),
-                "Directory is empty : " << path);
-
-            bool fileFound = false;
             for (boost::filesystem::recursive_directory_iterator itr(boostPath);
                 itr != boost::filesystem::recursive_directory_iterator(); ++itr) {
-                if (boost::filesystem::is_regular(itr->status()) && hasXmlExtension(*itr)) {
+                if (regex_match(itr->path().leaf(), r) && boost::filesystem::is_regular(itr->status())) {
                     fileFound = true;
                     processPath(itr->path().string(), overwriteExisting, returnValue);
                 }
             }
 
-            OH_REQUIRE(fileFound, "No XML files found in path : " << path);
-
         } else {
-            //OH_REQUIRE(hasXmlExtension(boostPath),
-            //    "The file '" << boostPath << "' does not have extension '.xml'");
-            processPath(boostPath.string(), overwriteExisting, returnValue);
+
+            for (boost::filesystem::directory_iterator itr(boostPath);
+                itr != boost::filesystem::directory_iterator(); ++itr) {
+                if (regex_match(itr->path().leaf(), r) && boost::filesystem::is_regular(itr->status())) {
+                    fileFound = true;
+                    processPath(itr->path().string(), overwriteExisting, returnValue);
+                }
+            }
+
         }
+
+        OH_REQUIRE(fileFound, "Found no files matching pattern '" << pattern << "' in directory '"
+            << directory << "' with recursion = " << std::boolalpha << recurse);
 
         // processPath() will already have thrown if empty files were detected
         // so the following is a redundant sanity check.
-        OH_REQUIRE(!returnValue.empty(), "No objects loaded from path : " << path);
+        OH_REQUIRE(!returnValue.empty(), "No objects loaded from directory : " << directory);
 
         return returnValue;
     }
