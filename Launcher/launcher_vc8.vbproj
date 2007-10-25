@@ -11,13 +11,13 @@
     <RootNamespace>launcher</RootNamespace>
     <AssemblyName>QuantLibXL Launcher</AssemblyName>
     <MyType>WindowsForms</MyType>
-    <ManifestCertificateThumbprint>8E2A56879D6AEE1CD4D10779F38202EA745EDC7B</ManifestCertificateThumbprint>
-    <ManifestKeyFile>launcher_vc8_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>69DE755CACC61E2A48062E487CA23D23C528596A</ManifestCertificateThumbprint>
+    <ManifestKeyFile>launcher_vc8_2_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>images\favicon.ico</ApplicationIcon>
-    <PublishUrl>\\srv0001\risorse\Apps\Appsscript\CabotoXL\Launcher\</PublishUrl>
+    <PublishUrl>\\private\risorse\Private1\ametrf1a\CabotoXL\Launcher\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -31,7 +31,7 @@
     <ProductName>QuantLibXL Launcher</ProductName>
     <PublisherName>QuantLib Developer Team</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>1.7.7.0</ApplicationVersion>
+    <ApplicationVersion>1.7.8.3</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -209,6 +209,8 @@
     <None Include="images\launch.bmp" />
     <None Include="images\delete.bmp" />
     <None Include="images\copy.bmp" />
+    <None Include="launcher_vc8_1_TemporaryKey.pfx" />
+    <None Include="launcher_vc8_2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -220,101 +222,101 @@
   <ItemGroup>
     <PublishFile Include="Addins\01 Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\01 Production\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\01 Production\saohxll-vc80-mt-0_1_9.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\02 Pre-Production\saohxll-vc80-mt-0_1_9.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Addins\03 Testing\saohxll-vc80-mt-0_1_9.xll">
       <Visible>False</Visible>
+      <PublishState>DataFile</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="updateLauncherXlls.py">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Users\users.xml">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
