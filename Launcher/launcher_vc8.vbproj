@@ -17,7 +17,7 @@
     <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>images\favicon.ico</ApplicationIcon>
-    <PublishUrl>\\private\risorse\Private1\ametrf1a\CabotoXL\Launcher\</PublishUrl>
+    <PublishUrl>\\srv0001\risorse\Apps\Appsscript\CabotoXL\Launcher\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
