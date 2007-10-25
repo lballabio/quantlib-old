@@ -109,15 +109,6 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
-    class MarketModelCapFloorEngine : public PricingEngine  {
-      public:
-        MarketModelCapFloorEngine(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const boost::shared_ptr<QuantLib::MarketModelFactory>&,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
-            bool permanent);
-    };
-
     class BlackCalculator : public ObjectHandler::LibraryObject<QuantLib::BlackCalculator> {
       public:
         BlackCalculator(
