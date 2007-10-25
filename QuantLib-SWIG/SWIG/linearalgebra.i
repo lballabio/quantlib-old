@@ -890,8 +890,7 @@ class Array {
                 throw std::out_of_range("array index out of range");
             }
         }
-        #endif
-        #if defined(SWIGR)
+        #elif defined(SWIGR)
         Real __getitem__(Integer i) {
             Integer size_ = static_cast<Integer>(self->size());
             if (i>=0 && i<size_) {
@@ -908,9 +907,21 @@ class Array {
                 throw std::out_of_range("array index out of range");
             }
         }
-        #endif
-        #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+        #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
         Real ref(Size i) {
+            if (i<self->size())
+                return (*self)[i];
+            else
+                throw std::out_of_range("array index out of range");
+        }
+        void set(Size i, Real x) {
+            if (i<self->size())
+                (*self)[i] = x;
+            else
+                throw std::out_of_range("array index out of range");
+        }
+        #elif defined(SWIGCSHARP) || defined(SWIGJAVA)
+        Real get(Size i) {
             if (i<self->size())
                 return (*self)[i];
             else
@@ -1092,19 +1103,26 @@ class Matrix {
         void setitem(Size i, Size j, Real x) {
             (*self)[i][j] = x;
         }
+        #elif defined(SWIGCSHARP) || defined(SWIGJAVA)
+        Real get(Size i, Size j) {
+            return (*self)[i][j];
+        }
+        void set(Size i, Size j, Real x) {
+            (*self)[i][j] = x;
+        }
         #endif
-    #if defined(SWIGR)
-    Array dataVector() {
-    Size nrows = self->rows();
-    Size ncols = self->columns();
-    Size nelems = nrows * ncols;
-    Array a(nelems);
-    for (int i=0; i < nrows; i++)
-    for (int j=0; j < ncols; j++)
-        a[j*nrows+i] = (*self)[i][j];
-    return a;
-    }
-    #endif
+        #if defined(SWIGR)
+        Array dataVector() {
+            Size nrows = self->rows();
+            Size ncols = self->columns();
+            Size nelems = nrows * ncols;
+            Array a(nelems);
+            for (int i=0; i < nrows; i++)
+                for (int j=0; j < ncols; j++)
+                    a[j*nrows+i] = (*self)[i][j];
+            return a;
+        }
+        #endif
         #if defined(SWIGPYTHON)
         Matrix __rmul__(Real x) {
             return x*(*self);
