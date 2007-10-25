@@ -5,14 +5,14 @@
 	<count>1</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="183" tracking_level="1" version="0" object_id="_1">
+		<px class_id="182" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>TS_Euribor9M_2004</ObjectId>
 			<ClassName>qlTimeSeries</ClassName>
-			<Dates class_id="195" tracking_level="0" version="0">
+			<Dates class_id="194" tracking_level="0" version="0">
 				<count>259</count>
 				<item_version>0</item_version>
-				<item class_id="196" tracking_level="0" version="0">
-					<variant_ class_id="197" tracking_level="0" version="0">
+				<item class_id="195" tracking_level="0" version="0">
+					<variant_ class_id="196" tracking_level="0" version="0">
 						<which>1</which>
 						<value>38352</value>
 					</variant_>
