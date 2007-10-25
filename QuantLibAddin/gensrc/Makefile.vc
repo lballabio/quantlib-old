@@ -15,8 +15,10 @@ METADATA=metadata\Addins\*.xml \
          metadata\Rules\*.xml \
          metadata\Types\*.xml
 STUBS=stubs\stub.*
+APP_XML_DATA=..\..\QuantLibXL\Data\XML\070_TimeSeries\History\Euribor\*.xml \
+		..\..\QuantLibXL\Data\XML\070_TimeSeries\History\Euribor365\*.xml
 
-INPUTS = $(MAKEFILE) $(CORE_DEPENDENCIES) $(CODE) $(CONFIG) $(METADATA) $(STUBS)
+INPUTS = $(MAKEFILE) $(CORE_DEPENDENCIES) $(CODE) $(CONFIG) $(METADATA) $(STUBS) $(APP_XML_DATA)
 
 ALL : $(BUILDFLAG)
 
