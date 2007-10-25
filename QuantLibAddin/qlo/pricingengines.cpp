@@ -24,7 +24,8 @@
 #include <ql/pricingengines/blackscholescalculator.hpp>
 #include <ql/pricingengines/capfloor/analyticcapfloorengine.hpp>
 #include <ql/pricingengines/capfloor/blackcapfloorengine.hpp>
-#include <ql/pricingengines/capfloor/marketmodelcapfloorengine.hpp>
+// This doesn't compile
+//#include <ql/pricingengines/capfloor/marketmodelcapfloorengine.hpp>
 #include <ql/pricingengines/swap/discountingswapengine.hpp>
 #include <ql/pricingengines/bond/discountingbondengine.hpp>
 
@@ -116,8 +117,9 @@ namespace QuantLibAddin {
         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
         bool permanent) : PricingEngine(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
-            QuantLib::MarketModelCapFloorEngine(factory, hYTS));
+        // This doesn't compile
+        //libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
+        //    QuantLib::MarketModelCapFloorEngine(factory, hYTS));
     }
 
     BlackCalculator::BlackCalculator(
