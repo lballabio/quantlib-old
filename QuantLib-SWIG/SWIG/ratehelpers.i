@@ -32,12 +32,12 @@ using QuantLib::DepositRateHelper;
 using QuantLib::FraRateHelper;
 using QuantLib::FuturesRateHelper;
 using QuantLib::SwapRateHelper;
-using QuantLib::FixedCouponBondHelper;
+using QuantLib::FixedRateBondHelper;
 typedef boost::shared_ptr<RateHelper> DepositRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FraRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FuturesRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> SwapRateHelperPtr;
-typedef boost::shared_ptr<RateHelper> FixedCouponBondHelperPtr;
+typedef boost::shared_ptr<RateHelper> FixedRateBondHelperPtr;
 %}
 
 // rate helpers for curve bootstrapping
@@ -192,11 +192,11 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
     }
 };
 
-%rename(FixedCouponBondHelper) FixedCouponBondHelperPtr;
-class FixedCouponBondHelperPtr : public boost::shared_ptr<RateHelper> {
+%rename(FixedRateBondHelper) FixedRateBondHelperPtr;
+class FixedRateBondHelperPtr : public boost::shared_ptr<RateHelper> {
   public:
     %extend {
-        FixedCouponBondHelperPtr(
+        FixedRateBondHelperPtr(
                       const Handle<Quote>& cleanPrice,
                       Size settlementDays,
                       const Schedule& schedule,
@@ -205,11 +205,11 @@ class FixedCouponBondHelperPtr : public boost::shared_ptr<RateHelper> {
                       BusinessDayConvention paymentConvention = Following,
                       Real redemption = 100.0,
                       const Date& issueDate = Date()) {
-            return new FixedCouponBondHelperPtr(
-                new FixedCouponBondHelper(cleanPrice, settlementDays,
-                                          schedule, coupons, paymentDayCounter,
-                                          paymentConvention, redemption,
-                                          issueDate));
+            return new FixedRateBondHelperPtr(
+                new FixedRateBondHelper(cleanPrice, settlementDays,
+                                        schedule, coupons, paymentDayCounter,
+                                        paymentConvention, redemption,
+                                        issueDate));
         }
     }
 };

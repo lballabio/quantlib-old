@@ -63,16 +63,17 @@ typedef boost::shared_ptr<PricingEngine> BlackSwaptionEnginePtr;
 class BlackSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BlackSwaptionEnginePtr(const Handle<Quote>& vol,
-                               const Handle<YieldTermStructure> & discountCurve) {
-            return new BlackSwaptionEnginePtr(new
-        BlackSwaptionEngine(vol, discountCurve));
+        BlackSwaptionEnginePtr(
+                           const Handle<YieldTermStructure> & discountCurve,
+                           const Handle<Quote>& vol) {
+            return new BlackSwaptionEnginePtr(
+                                 new BlackSwaptionEngine(discountCurve, vol));
         }
-        BlackSwaptionEnginePtr(const
-            Handle<SwaptionVolatilityStructure>& v,
-                                  const Handle<YieldTermStructure> & discountCurve) {
-            return new BlackSwaptionEnginePtr(new
-        BlackSwaptionEngine(v, discountCurve));
+        BlackSwaptionEnginePtr(
+                           const Handle<YieldTermStructure> & discountCurve,
+                           const Handle<SwaptionVolatilityStructure>& v) {
+            return new BlackSwaptionEnginePtr(
+                                   new BlackSwaptionEngine(discountCurve, v));
         }
     }
 };
