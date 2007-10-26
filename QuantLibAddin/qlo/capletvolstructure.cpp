@@ -23,7 +23,6 @@
 #include <qlo/capletvolstructure.hpp>
 
 #include <ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp>
-#include <ql/voltermstructures/interestrate/optionlet/capstripper.hpp>
 #include <ql/voltermstructures/interestrate/optionlet/spreadedoptionletvol.hpp>
 #include <ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp>
 #include <ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp>
@@ -43,7 +42,7 @@ namespace QuantLibAddin {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::ConstantOptionletVol(volatility, cal, dayCounter));
     }
-        
+
     OptionletStripperAdapter::OptionletStripperAdapter(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const boost::shared_ptr<QuantLib::OptionletStripper>& optionletStripper,
@@ -68,14 +67,14 @@ namespace QuantLibAddin {
     {
         std::vector<boost::shared_ptr<QuantLib::SmileSection> > dummySmileSections;
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapsStripper(tenors, strikes, vols, 
+            QuantLib::CapsStripper(tenors, strikes, vols,
                                    index, yieldTermStructure, dayCounter,
-                                   impliedVolatilityAccuracy, 
-                                   maxEvaluations, dummySmileSections, true, 
+                                   impliedVolatilityAccuracy,
+                                   maxEvaluations, dummySmileSections, true,
                                    decoupledInterpolations));
     }
 
-    
+
  CapsStripper::CapsStripper(
       const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
       const std::vector<QuantLib::Period>& tenors,
@@ -86,15 +85,15 @@ namespace QuantLibAddin {
       const QuantLib::DayCounter& dayCounter,
       QuantLib::Real impliedVolatilityAccuracy,
       QuantLib::Size maxEvaluations,
-      const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& 
+      const std::vector<boost::shared_ptr<QuantLib::SmileSection> >&
         smileSectionInterfaces,
       bool decoupledInterpolation,
       bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CapsStripper(tenors, strikes, vols, 
+            QuantLib::CapsStripper(tenors, strikes, vols,
                                    index, yieldTermStructure, dayCounter,
-                                   impliedVolatilityAccuracy, 
+                                   impliedVolatilityAccuracy,
                                    maxEvaluations, smileSectionInterfaces,
                                    decoupledInterpolation));
     }
@@ -137,7 +136,7 @@ namespace QuantLibAddin {
         const std::vector<boost::shared_ptr<QuantLib::SmileSection> >& smiles,
         bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
-        libraryObject_ = 
+        libraryObject_ =
             boost::shared_ptr<QuantLib::SmileSectionsVolStructure>(new
                 QuantLib::SmileSectionsVolStructure(referenceDate,
                                                     dayCounter, smiles));
@@ -202,7 +201,7 @@ namespace QuantLibAddin {
                                          const boost::shared_ptr<QuantLib::IborIndex>& index,
                                          QuantLib::Rate switchStrike,
                                          bool permanent) : OptionletStripper(properties, permanent) {
-        
+
         libraryObject_ = boost::shared_ptr<QuantLib::OptionletStripper1>(new
             QuantLib::OptionletStripper1(surface, index, switchStrike));
     }
@@ -211,7 +210,7 @@ namespace QuantLibAddin {
                                            const boost::shared_ptr<QuantLib::OptionletStripper1>& optionletStripper1,
                                            const QuantLib::Handle<QuantLib::CapFloorTermVolCurve>& atmCapFloorTermVolCurve,
                                            bool permanent) : OptionletStripper(properties, permanent) {
-        
+
         libraryObject_ = boost::shared_ptr<QuantLib::OptionletStripper2>(new
             QuantLib::OptionletStripper2(optionletStripper1, atmCapFloorTermVolCurve));
     }

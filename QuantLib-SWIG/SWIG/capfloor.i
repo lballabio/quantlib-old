@@ -41,12 +41,13 @@ class CapFloorPtr : public boost::shared_ptr<Instrument> {
   public:
      %extend {
         Volatility impliedVolatility(Real price,
+                                     const Handle<YieldTermStructure>& curve,
                                      Real accuracy = 1.0e-4,
                                      Size maxEvaluations = 100,
                                      Volatility minVol = 1.0e-7,
                                      Volatility maxVol = 4.0) const {
             return boost::dynamic_pointer_cast<CapFloor>(*self)->
-                impliedVolatility(price, accuracy, maxEvaluations,
+                impliedVolatility(price, curve, accuracy, maxEvaluations,
                                   minVol, maxVol);
         }
     }
@@ -59,9 +60,8 @@ class CapPtr : public CapFloorPtr {
   public:
     %extend {
         CapPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
-               const std::vector<Rate>& capRates,
-               const Handle<YieldTermStructure>& h) {
-            return new CapPtr(new Cap(leg,capRates,h));
+               const std::vector<Rate>& capRates) {
+            return new CapPtr(new Cap(leg,capRates));
         }
     }
 };
@@ -71,9 +71,8 @@ class FloorPtr : public CapFloorPtr {
   public:
     %extend {
         FloorPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
-                 const std::vector<Rate>& floorRates,
-                 const Handle<YieldTermStructure>& h) {
-            return new FloorPtr(new Floor(leg,floorRates,h));
+                 const std::vector<Rate>& floorRates) {
+            return new FloorPtr(new Floor(leg,floorRates));
         }
     }
 };
@@ -84,9 +83,8 @@ class CollarPtr : public CapFloorPtr {
     %extend {
         CollarPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
                   const std::vector<Rate>& capRates,
-                  const std::vector<Rate>& floorRates,
-                  const Handle<YieldTermStructure>& h) {
-            return new CollarPtr(new Collar(leg,capRates,floorRates,h));
+                  const std::vector<Rate>& floorRates) {
+            return new CollarPtr(new Collar(leg,capRates,floorRates));
         }
     }
 };

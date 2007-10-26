@@ -80,7 +80,14 @@
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
-        <Parameters/>
+        <Parameters>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
+          </Parameter>
+        </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Rate</type>
@@ -134,6 +141,12 @@
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Price used to infer the implied volatility</description>
+          </Parameter>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID</description>
           </Parameter>
           <Parameter name='Accuracy' >
             <type>QuantLib::Real</type>
@@ -193,12 +206,6 @@
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
-          </Parameter>
-          <Parameter name='YieldCurve' >
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

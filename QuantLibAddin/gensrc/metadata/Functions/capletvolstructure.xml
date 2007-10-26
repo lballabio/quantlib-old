@@ -10,7 +10,6 @@
     <include>qlo/handleimpl.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/capstripper.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletstripper1.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletstripper2.hpp</include>
     <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp</include>
@@ -24,7 +23,6 @@
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/capstripper.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletstripper1.hpp</include>
     <include>ql/voltermstructures/interestrate/optionlet/optionletstripper2.hpp</include>
     <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp</include>
@@ -340,7 +338,7 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
-    
+
     <Member name='qlOptionletStripperSwitchStrike' type='QuantLib::OptionletStripper1' superType='libraryClass'>
       <description></description>
       <libraryFunction>switchStrike</libraryFunction>
@@ -355,7 +353,7 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
- 
+
     <Member name='qlOptionletStripperOptionletVolatility' type='QuantLib::OptionletStripper' superType='libraryClass'>
       <description></description>
       <libraryFunction>optionletVolatilities</libraryFunction>
@@ -557,8 +555,8 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-   
-  
+
+
     <!-- CapFloorTermVolStructure interface -->
     <Member name='qlCapFloorTermVTSVolatility' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass' loopParameter='Strike'>
       <description>Returns volatility from the given OptionletVolatilityStructure object.</description>

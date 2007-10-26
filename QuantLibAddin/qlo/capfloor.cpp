@@ -34,17 +34,16 @@ namespace QuantLibAddin {
                  QuantLib::CapFloor::Type type,
                  const boost::shared_ptr<Leg>& floatingLeg,
                  const std::vector<QuantLib::Rate>& strikes,
-                 const QuantLib::Handle<QuantLib::YieldTermStructure>& termStructure,
                  bool permanent) : Instrument(properties, permanent)
     {
         const QuantLib::Leg& leg = floatingLeg->getQuantLibLeg();
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
-            QuantLib::CapFloor(type, leg, strikes, termStructure));
+            QuantLib::CapFloor(type, leg, strikes));
     }
 
     CapFloor::CapFloor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                        QuantLib::CapFloor::Type capFloorType,
-                       const QuantLib::Period& capFloorTenor, 
+                       const QuantLib::Period& capFloorTenor,
                        const boost::shared_ptr<QuantLib::IborIndex>& index,
                        QuantLib::Rate strike,
                        const QuantLib::Period& forwardStart,

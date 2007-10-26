@@ -260,13 +260,15 @@ class JamshidianSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
         JamshidianSwaptionEnginePtr(
-                             const boost::shared_ptr<ShortRateModel>& model) {
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
             using QuantLib::OneFactorAffineModel;
             boost::shared_ptr<OneFactorAffineModel> m =
                  boost::dynamic_pointer_cast<OneFactorAffineModel>(model);
             QL_REQUIRE(model, "affine model required");
             return new JamshidianSwaptionEnginePtr(
-                                             new JamshidianSwaptionEngine(m));
+                               new JamshidianSwaptionEngine(m,termStructure));
         }
     }
 };
@@ -275,15 +277,21 @@ class JamshidianSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
 class TreeSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        TreeSwaptionEnginePtr(const boost::shared_ptr<ShortRateModel>& model,
-                              Size timeSteps) {
+        TreeSwaptionEnginePtr(
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         Size timeSteps,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
             return new TreeSwaptionEnginePtr(
-                                     new TreeSwaptionEngine(model,timeSteps));
+                       new TreeSwaptionEngine(model,timeSteps,termStructure));
         }
-        TreeSwaptionEnginePtr(const boost::shared_ptr<ShortRateModel>& model,
-                              const TimeGrid& grid) {
+        TreeSwaptionEnginePtr(
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         const TimeGrid& grid,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
             return new TreeSwaptionEnginePtr(
-                                     new TreeSwaptionEngine(model,grid));
+                            new TreeSwaptionEngine(model,grid,termStructure));
         }
     }
 };
@@ -293,13 +301,15 @@ class AnalyticCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
         AnalyticCapFloorEnginePtr(
-                             const boost::shared_ptr<ShortRateModel>& model) {
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
             using QuantLib::OneFactorAffineModel;
             boost::shared_ptr<OneFactorAffineModel> m =
                  boost::dynamic_pointer_cast<OneFactorAffineModel>(model);
             QL_REQUIRE(model, "affine model required");
             return new AnalyticCapFloorEnginePtr(
-                                           new AnalyticCapFloorEngine(m));
+                                 new AnalyticCapFloorEngine(m,termStructure));
         }
     }
 };
@@ -308,15 +318,21 @@ class AnalyticCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
 class TreeCapFloorEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        TreeCapFloorEnginePtr(const boost::shared_ptr<ShortRateModel>& model,
-                              Size timeSteps) {
+        TreeCapFloorEnginePtr(
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         Size timeSteps,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
             return new TreeCapFloorEnginePtr(
-                                     new TreeCapFloorEngine(model,timeSteps));
+                       new TreeCapFloorEngine(model,timeSteps,termStructure));
         }
-        TreeCapFloorEnginePtr(const boost::shared_ptr<ShortRateModel>& model,
-                              const TimeGrid& grid) {
+        TreeCapFloorEnginePtr(
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         const TimeGrid& grid,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
             return new TreeCapFloorEnginePtr(
-                                     new TreeCapFloorEngine(model,grid));
+                            new TreeCapFloorEngine(model,grid,termStructure));
         }
     }
 };
