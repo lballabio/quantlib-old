@@ -125,8 +125,6 @@ namespace ObjectHandler {
             const std::string &message,
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall) {
 
-        functionCall->setError();
-
         std::ostringstream logMessage, cellMessage;
         cellMessage << functionCall->functionName() << " - " << message;
 
@@ -145,20 +143,30 @@ namespace ObjectHandler {
     void RepositoryXL::logError(
             const std::string &message,
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall) {
+
         // This function is called during error handling and must not throw.
+
         try {
+
             if (functionCall) {
+
+                functionCall->setError();
                 std::ostringstream fullMessage;
                 if (functionCall->callerType() == CallerType::Cell) {
                     setError(message, functionCall);
                     fullMessage << functionCall->addressString() << " - ";
+                } else if (functionCall->callerType() == CallerType::VBA) {
+                    vbaError_ = message;
+                    fullMessage << "VBA - ";
                 }
 
                 fullMessage << functionCall->functionName() << " - " << message;
                 logMessage(fullMessage.str(), 2);
+
             } else {
                 logMessage(message, 2);
             }
+
         } catch(...) {}
     }
 
@@ -253,6 +261,19 @@ namespace ObjectHandler {
                 out << i->second;
             }
         }
+
+        out << std::endl << "Error messages:";
+        if (errorMessageMap_.empty()) {
+            out << " none." << std::endl;
+        } else {
+            out << std::endl << std::endl;
+            for (ErrorMessageMap::const_iterator i = errorMessageMap_.begin();
+                    i != errorMessageMap_.end(); ++i) {
+                out << std::left << std::setw(50) << i->first << i->second->errorMessage() << std::endl;
+            }
+        }
+
+        out << std::endl << std::endl << "VBA error message: " << vbaError_ << std::endl;
     }
 
     std::vector<std::string> RepositoryXL::callerAddress(const std::vector<std::string> &objectList) {

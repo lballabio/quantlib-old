@@ -36,7 +36,7 @@ namespace ObjectHandler {
     };
 
     struct CallerType {
-        enum Type { Uninitialized, Cell, /* Menu, VBA, */ Unknown };
+        enum Type { Cell, VBA, /* Menu, */ Unknown };
     };
 
     //! Singleton encapsulating state relating to Excel function call.
@@ -69,9 +69,9 @@ namespace ObjectHandler {
         //! \name Excel API Wrappers
         //@{
         //! Reference to the caller as returned by Excel function xlfCaller.
-        const XLOPER *callerReference();
+        const XLOPER *callerReference() { return &xCaller_; }
         //! Address of the caller as returned by Excel function xlfReftext.
-        const XLOPER *callerAddress();
+        const XLOPER *callerAddress() { return &xReftext_; }
         //! Calling range, coerced to type xltypeMulti.
         /*! If the caller is not an Excel range then this function returns
             an XLOPER with xltype initialized to zero.
@@ -106,7 +106,7 @@ namespace ObjectHandler {
             this could be extended to distinguish calls from Excel VBA, and from Excel
             menu items.
         */
-        CallerType::Type callerType();
+        CallerType::Type callerType() { return callerType_; }
         //@}
 
         //! \name Error Messages

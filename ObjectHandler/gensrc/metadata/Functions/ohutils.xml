@@ -1,3 +1,18 @@
+<!--
+Owing to a limitation in the design of gensrc, The XML definitions of ObjectHandler functions
+appear in two places:
+
+1) ObjectHandler\gensrc\metadata\Functions\*.xml
+   - Functions for Excel
+2) QuantLibAddin\gensrc\metadata\Functions\ohfunctions.xml
+   - Functions for non-Excel platforms and documentation
+   
+This is necessary because on the Excel platform, OH functions must appear in the OH binary,
+while on other platforms OH functions must appear in the client binary.
+
+gensrc will be enhanced to better cope with this problem.
+-->
+
 <Category name='ohutils'>
   <description>objecthandler utilities</description>
   <displayName>ObjectHandler Utilities</displayName>
@@ -6,7 +21,7 @@
 
   <copyright>
     Copyright (C) 2004, 2005, 2006, 2007 Ferdinando Ametrano
-    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+    Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
     Copyright (C) 2005, 2006 Plamen Neykov
     Copyright (C) 2004 StatPro Italia srl
   </copyright>
@@ -119,7 +134,7 @@
       <description>#/objects in repository</description>
       <alias>ObjectHandler::RepositoryXL::instance().objectCount</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -249,11 +264,26 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='ohVbaError'>
+      <description>Retrieve error message associated with VBA code</description>
+      <alias>ObjectHandler::RepositoryXL::instance().vbaError</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
     <Procedure name='ohBoostVersion'>
       <description>returns the version number of Boost</description>
       <alias>ObjectHandler::boostVersion</alias>
       <SupportedPlatforms>
-        <SupportedPlatform name='Excel' />
+        <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>

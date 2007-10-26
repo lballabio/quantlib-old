@@ -31,34 +31,39 @@ namespace ObjectHandler {
     FunctionCall::FunctionCall(const std::string functionName) :
             functionName_(functionName), 
             callerDimensions_(CallerDimensions::Uninitialized),
-            callerType_(CallerType::Uninitialized), 
             error_(false) {
         OH_REQUIRE(!instance_, "Multiple attempts to initialize global FunctionCall object");
         instance_ = this;
+
         Excel(xlfCaller, &xCaller_, 0);
         if (xCaller_->xltype == xltypeRef || xCaller_->xltype == xltypeSRef) {
             Excel(xlfReftext, &xReftext_, 1, &xCaller_);
             refStr_ = ConvertOper(xReftext_());
+            callerType_ = CallerType::Cell;
+        } else if (xCaller_->xltype & xltypeErr) {
+            callerType_ = CallerType::VBA;
+        // Another possible value, so far not required:
+        //} else if (xCaller_->xltype == xltypeMulti) {
+        //    callerType_ = CallerType::Menu;
+        } else {
+            callerType_ = CallerType::Unknown;
         }
     }
 
     FunctionCall::~FunctionCall() {
-        if (!error_ && !(xCaller_->xltype & xltypeErr)) 
-            RepositoryXL::instance().clearError();
+        if (!error_) {
+            if (callerType_ == CallerType::Cell) {
+                RepositoryXL::instance().clearError();
+            } else if (callerType_ == CallerType::VBA) {
+                RepositoryXL::instance().clearVbaError();
+            }
+        }
         instance_ = 0;
     }
 
     FunctionCall &FunctionCall::instance() {
         OH_REQUIRE(instance_, "Attempt to reference uninitialized FunctionCall object");
         return *instance_;
-    }
-
-    const XLOPER *FunctionCall::callerReference() {
-        return &xCaller_;
-    }
-
-    const XLOPER *FunctionCall::callerAddress() {
-        return &xReftext_;
     }
 
     const XLOPER *FunctionCall::callerArray() {
@@ -76,9 +81,9 @@ namespace ObjectHandler {
     }
 
     CallerDimensions::Type FunctionCall::callerDimensions() {
-        // determine dimensions of calling range
-        // at present we're only interested in row vs column
-        // this could be extended to detect scalar / matrix
+        // Determine dimensions of calling range.
+        // At present we're only interested in row vs. column,
+        // this could be extended to detect scalar / matrix.
         if (callerDimensions_ == CallerDimensions::Uninitialized) {
             const XLOPER *xMulti = callerArray();
             if (xMulti->val.array.rows == 1 && xMulti->val.array.columns > 1)
@@ -87,20 +92,6 @@ namespace ObjectHandler {
                 callerDimensions_ = CallerDimensions::Column;
         }
         return callerDimensions_;
-    }
-
-    CallerType::Type FunctionCall::callerType() {
-        if (callerType_ == CallerType::Uninitialized) {
-            if (xCaller_->xltype == xltypeRef || xCaller_->xltype == xltypeSRef)
-                callerType_ = CallerType::Cell;
-            //else if (xCaller->xltype == xltypeMulti)
-            //    callerType_ = CallerType::Menu;
-            //else if (xCaller->xltype & xltypeErr)
-            //    callerType_ = CallerType::VBA;
-            else
-                callerType_ = CallerType::Unknown;
-        }
-        return callerType_;
     }
 
     // Code to determine whether we've been called from the Excel function wizard.

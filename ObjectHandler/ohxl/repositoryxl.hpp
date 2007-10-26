@@ -85,6 +85,10 @@ namespace ObjectHandler {
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall);
         //! Retrieve the error associated with the given range.
         std::string retrieveError(const XLOPER *range);
+        //! Retrieve the error associated with VBA.
+        std::string vbaError() { return vbaError_; }
+        //! Clear any error associated with VBA.
+        void clearVbaError() { vbaError_ = ""; }
         //! Clear any error associated with the current range.
         void clearError();
         //@}
@@ -125,6 +129,8 @@ namespace ObjectHandler {
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall);
         // Retrieve a reference to the CallingRange object associated to the active cell.
         boost::shared_ptr<CallingRange> getCallingRange();
+        // Error associated with VBA
+        std::string vbaError_;
 
     };
 
