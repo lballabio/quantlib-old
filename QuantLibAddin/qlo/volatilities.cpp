@@ -24,10 +24,10 @@
 
 #include <qlo/volatilities.hpp>
 
-#include <ql/voltermstructures/equityfx/blackconstantvol.hpp>
-#include <ql/voltermstructures/equityfx/blackvariancesurface.hpp>
-#include <ql/voltermstructures/interestrate/abcdatmvolcurve.hpp>
-#include <ql/voltermstructures/interestrate/sabrvolsurface.hpp>
+#include <ql/termstructures/volatility/equityfx/blackconstantvol.hpp>
+#include <ql/termstructures/volatility/equityfx/blackvariancesurface.hpp>
+#include <ql/termstructures/volatility/interestrate/abcdatmvolcurve.hpp>
+#include <ql/termstructures/volatility/interestrate/sabrvolsurface.hpp>
 
 namespace QuantLibAddin {
 

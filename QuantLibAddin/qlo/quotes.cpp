@@ -25,7 +25,7 @@
 #include <ql/quotes/forwardvaluequote.hpp>
 #include <ql/quotes/futuresconvadjustmentquote.hpp>
 #include <ql/quotes/impliedstddevquote.hpp>
-#include <ql/voltermstructures/interestrate/optionlet/optionletstripper.hpp>
+#include <ql/termstructures/volatility/interestrate/optionlet/optionletstripper.hpp>
 
 namespace QuantLibAddin {
 

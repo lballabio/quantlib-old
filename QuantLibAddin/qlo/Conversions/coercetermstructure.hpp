@@ -26,7 +26,7 @@
 #include <qlo/termstructures.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 #include <ql/yieldtermstructure.hpp>
-#include <ql/voltermstructures/interestrate/swaption/swaptionvolstructure.hpp>
+#include <ql/termstructures/volatility/interestrate/swaption/swaptionvolstructure.hpp>
 
 namespace QuantLibAddin {
 

@@ -24,8 +24,8 @@
 #include <qlo/processes.hpp>
 
 #include <ql/quote.hpp>
-#include <ql/yieldtermstructures/flatforward.hpp>
-#include <ql/voltermstructures/equityfx/blackvoltermstructure.hpp>
+#include <ql/termstructures/yield/flatforward.hpp>
+#include <ql/termstructures/volatility/equityfx/blackvoltermstructure.hpp>
 
 namespace QuantLibAddin {
 
@@ -40,7 +40,7 @@ namespace QuantLibAddin {
             bool permanent)
         : ObjectHandler::LibraryObject<QuantLib::GeneralizedBlackScholesProcess>(properties, permanent) {
 
-        QuantLib::Handle<QuantLib::Quote> underlyingH( 
+        QuantLib::Handle<QuantLib::Quote> underlyingH(
             boost::shared_ptr<QuantLib::Quote>(
             new QuantLib::SimpleQuote(underlying)));
         QuantLib::Handle<QuantLib::YieldTermStructure> flatTermStructure(
@@ -50,7 +50,7 @@ namespace QuantLibAddin {
             boost::shared_ptr<QuantLib::YieldTermStructure>(
             new QuantLib::FlatForward(settlementDate, dividendYield, dayCounter)));
 
-        QuantLib::Handle<QuantLib::BlackVolTermStructure> 
+        QuantLib::Handle<QuantLib::BlackVolTermStructure>
             blackVolTermStructureH(blackVolTermStructureP);
 
         libraryObject_ = boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess> (

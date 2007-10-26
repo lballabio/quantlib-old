@@ -29,12 +29,12 @@
 
 #include <ql/time/date.hpp>
 #include <ql/math/interpolations/cubicspline.hpp>
-#include <ql/yieldtermstructures/discountcurve.hpp>
-#include <ql/yieldtermstructures/forwardcurve.hpp>
-#include <ql/yieldtermstructures/zerocurve.hpp>
-#include <ql/yieldtermstructures/impliedtermstructure.hpp>
-#include <ql/yieldtermstructures/flatforward.hpp>
-#include <ql/yieldtermstructures/forwardspreadedtermstructure.hpp>
+#include <ql/termstructures/yield/discountcurve.hpp>
+#include <ql/termstructures/yield/forwardcurve.hpp>
+#include <ql/termstructures/yield/zerocurve.hpp>
+#include <ql/termstructures/yield/impliedtermstructure.hpp>
+#include <ql/termstructures/yield/flatforward.hpp>
+#include <ql/termstructures/yield/forwardspreadedtermstructure.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 
 #include <oh/repository.hpp>
@@ -47,7 +47,7 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& qlrhs,
             const QuantLib::DayCounter& dayCounter,
-            const std::string& traitsID, 
+            const std::string& traitsID,
             const std::string& interpolatorID,
             QuantLib::Real accuracy,
             bool permanent) : YieldTermStructure(properties, permanent)
@@ -122,7 +122,7 @@ namespace QuantLibAddin {
     }
 
     FlatForward::FlatForward(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                             QuantLib::Size nDays, 
+                             QuantLib::Size nDays,
                              const QuantLib::Calendar& calendar,
                              QuantLib::Rate forward,
                              const QuantLib::DayCounter& dayCounter,

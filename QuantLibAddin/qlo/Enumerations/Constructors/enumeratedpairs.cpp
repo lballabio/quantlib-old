@@ -25,7 +25,7 @@
 #include <qlo/Enumerations/Constructors/enumeratedpairs.hpp>
 #include <qlo/Conversions/conversions.hpp>
 #include <qlo/termstructures.hpp>
-#include <ql/yieldtermstructures/piecewiseyieldcurve.hpp>
+#include <ql/termstructures/yield/piecewiseyieldcurve.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 
@@ -410,7 +410,7 @@ namespace QuantLibAddin {
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
-                                          QuantLib::LogLinear>(nDays, 
+                                          QuantLib::LogLinear>(nDays,
                                                                calendar,
                                                                rateHelpers,
                                                                dayCounter,

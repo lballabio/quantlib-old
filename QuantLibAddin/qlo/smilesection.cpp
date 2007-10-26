@@ -21,11 +21,11 @@
 
 #include <qlo/smilesection.hpp>
 
-#include <ql/voltermstructures/interpolatedsmilesection.hpp>
-#include <ql/voltermstructures/sabrinterpolatedsmilesection.hpp>
-#include <ql/voltermstructures/sabrinterpolatedsmilesection2.hpp>
+#include <ql/termstructures/volatility/interpolatedsmilesection.hpp>
+#include <ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp>
+#include <ql/termstructures/volatility/sabrinterpolatedsmilesection2.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
-#include <ql/voltermstructures/smilesection.hpp>
+#include <ql/termstructures/volatility/smilesection.hpp>
 #include <ql/quotes/simplequote.hpp>
 
 namespace QuantLibAddin {

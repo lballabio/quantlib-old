@@ -10,7 +10,7 @@
     <include>qlo/vanillaswap.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
-    <include>ql/yieldtermstructures/ratehelpers.hpp</include>
+    <include>ql/termstructures/yield/ratehelpers.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/index.hpp</include>
@@ -20,7 +20,7 @@
     <include>qlo/vanillaswap.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
-    <include>ql/yieldtermstructures/ratehelpers.hpp</include>
+    <include>ql/termstructures/yield/ratehelpers.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano

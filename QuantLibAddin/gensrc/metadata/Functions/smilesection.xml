@@ -5,15 +5,15 @@
   <addinIncludes>
     <include>qlo/smilesection.hpp</include>
     <include>qlo/optimization.hpp</include>
-    <include>ql/voltermstructures/interpolatedsmilesection.hpp</include>
-    <include>ql/voltermstructures/sabrinterpolatedsmilesection.hpp</include>
+    <include>ql/termstructures/volatility/interpolatedsmilesection.hpp</include>
+    <include>ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp</include>
     <include>ql/quote.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/smilesection.hpp</include>
     <include>qlo/optimization.hpp</include>
-    <include>ql/voltermstructures/interpolatedsmilesection.hpp</include>
-    <include>ql/voltermstructures/sabrinterpolatedsmilesection.hpp</include>
+    <include>ql/termstructures/volatility/interpolatedsmilesection.hpp</include>
+    <include>ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp</include>
     <include>ql/quote.hpp</include>
   </serializationIncludes>
   <copyright>

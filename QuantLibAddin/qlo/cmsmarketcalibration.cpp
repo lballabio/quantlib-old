@@ -24,7 +24,7 @@
 #include <qlo/cmsmarket.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 
-#include <ql/voltermstructures/interestrate/swaption/cmsmarket.hpp>
+#include <ql/termstructures/volatility/interestrate/swaption/cmsmarket.hpp>
 
 #include <boost/timer.hpp>
 

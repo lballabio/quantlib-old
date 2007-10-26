@@ -25,11 +25,11 @@
 
 #include <qlo/swaptionvolstructure.hpp>
 
-#include <ql/voltermstructures/interestrate/swaption/swaptionconstantvol.hpp>
-#include <ql/voltermstructures/interestrate/swaption/swaptionvolcube2.hpp>
-#include <ql/voltermstructures/interestrate/swaption/swaptionvolcube1.hpp>
-#include <ql/voltermstructures/interestrate/swaption/swaptionvolmatrix.hpp>
-#include <ql/voltermstructures/interestrate/swaption/spreadedswaptionvol.hpp>
+#include <ql/termstructures/volatility/interestrate/swaption/swaptionconstantvol.hpp>
+#include <ql/termstructures/volatility/interestrate/swaption/swaptionvolcube2.hpp>
+#include <ql/termstructures/volatility/interestrate/swaption/swaptionvolcube1.hpp>
+#include <ql/termstructures/volatility/interestrate/swaption/swaptionvolmatrix.hpp>
+#include <ql/termstructures/volatility/interestrate/swaption/spreadedswaptionvol.hpp>
 #include <ql/math/optimization/endcriteria.hpp>
 
 namespace QuantLibAddin {

@@ -6,19 +6,19 @@
     <include>qlo/index.hpp</include>
     <include>qlo/volatilities.hpp</include>
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
-    <include>ql/voltermstructures/equityfx/blackconstantvol.hpp</include>
-    <include>ql/voltermstructures/equityfx/blackvariancesurface.hpp</include>
-    <include>ql/voltermstructures/interestrate/abcdatmvolcurve.hpp</include>
-    <include>ql/voltermstructures/interestrate/sabrvolsurface.hpp</include>
+    <include>ql/termstructures/volatility/equityfx/blackconstantvol.hpp</include>
+    <include>ql/termstructures/volatility/equityfx/blackvariancesurface.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/abcdatmvolcurve.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/sabrvolsurface.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/index.hpp</include>
     <include>qlo/volatilities.hpp</include>
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
-    <include>ql/voltermstructures/equityfx/blackconstantvol.hpp</include>
-    <include>ql/voltermstructures/equityfx/blackvariancesurface.hpp</include>
-    <include>ql/voltermstructures/interestrate/abcdatmvolcurve.hpp</include>
-    <include>ql/voltermstructures/interestrate/sabrvolsurface.hpp</include>
+    <include>ql/termstructures/volatility/equityfx/blackconstantvol.hpp</include>
+    <include>ql/termstructures/volatility/equityfx/blackvariancesurface.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/abcdatmvolcurve.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/sabrvolsurface.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2007 Ferdinando Ametrano

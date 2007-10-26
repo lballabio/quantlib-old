@@ -8,12 +8,12 @@
     <include>qlo/quotes.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/handleimpl.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/optionletstripper1.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/optionletstripper2.hpp</include>
-    <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp</include>
-    <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/optionlet/constantoptionletvol.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/optionlet/optionletstripper1.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/optionlet/optionletstripper2.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/capfloor/capfloortermvolcurve.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/capfloor/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
@@ -21,12 +21,12 @@
     <include>qlo/index.hpp</include>
     <include>qlo/quotes.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/constantoptionletvol.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/optionletstripper1.hpp</include>
-    <include>ql/voltermstructures/interestrate/optionlet/optionletstripper2.hpp</include>
-    <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolcurve.hpp</include>
-    <include>ql/voltermstructures/interestrate/capfloor/capfloortermvolsurface.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/optionlet/constantoptionletvol.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/optionlet/optionletstripper1.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/optionlet/optionletstripper2.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/capfloor/capfloortermvolcurve.hpp</include>
+    <include>ql/termstructures/volatility/interestrate/capfloor/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <copyright>

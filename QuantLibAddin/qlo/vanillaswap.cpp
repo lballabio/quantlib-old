@@ -27,7 +27,7 @@
 #include <qlo/vanillaswap.hpp>
 #include <ql/instruments/makevanillaswap.hpp>
 #include <ql/indexes/swapindex.hpp>
-#include <ql/yieldtermstructures/ratehelpers.hpp>
+#include <ql/termstructures/yield/ratehelpers.hpp>
 
 namespace QuantLibAddin {
 
@@ -59,7 +59,7 @@ namespace QuantLibAddin {
 
     VanillaSwap::VanillaSwap(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Period& swapTenor, 
+            const QuantLib::Period& swapTenor,
             const boost::shared_ptr<QuantLib::IborIndex>& index,
             QuantLib::Rate fixedRate,
             const QuantLib::Period& forwardStart,
