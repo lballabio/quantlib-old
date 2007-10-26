@@ -22,13 +22,13 @@
 
 #include <qlo/capletvolstructure.hpp>
 
-#include <ql/termstructures/volatility/interestrate/optionlet/constantoptionletvol.hpp>
-#include <ql/termstructures/volatility/interestrate/optionlet/spreadedoptionletvol.hpp>
-#include <ql/termstructures/volatility/interestrate/capfloor/capfloortermvolcurve.hpp>
-#include <ql/termstructures/volatility/interestrate/capfloor/capfloortermvolsurface.hpp>
-#include <ql/termstructures/volatility/interestrate/optionlet/optionletstripperadapter.hpp>
-#include <ql/termstructures/volatility/interestrate/optionlet/optionletstripper1.hpp>
-#include <ql/termstructures/volatility/interestrate/optionlet/optionletstripper2.hpp>
+#include <ql/termstructures/volatility/optionlet/constantoptionletvol.hpp>
+#include <ql/termstructures/volatility/optionlet/spreadedoptionletvol.hpp>
+#include <ql/termstructures/volatility/capfloor/capfloortermvolcurve.hpp>
+#include <ql/termstructures/volatility/capfloor/capfloortermvolsurface.hpp>
+#include <ql/termstructures/volatility/optionlet/optionletstripperadapter.hpp>
+#include <ql/termstructures/volatility/optionlet/optionletstripper1.hpp>
+#include <ql/termstructures/volatility/optionlet/optionletstripper2.hpp>
 
 namespace QuantLibAddin {
 

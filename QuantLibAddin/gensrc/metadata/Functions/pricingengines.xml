@@ -12,8 +12,8 @@
     <include>qlo/marketmodels.hpp</include>
     <include>ql/pricingengines/blackformula.hpp</include>
     <include>ql/pricingengines/blackscholescalculator.hpp</include>
-    <include>ql/termstructures/volatility/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
-    <include>ql/termstructures/volatility/interestrate/swaption/swaptionvolstructure.hpp</include>
+    <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/termstructures/volatility/swaption/swaptionvolstructure.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/pricingengines.hpp</include>
@@ -25,8 +25,8 @@
     <include>qlo/marketmodels.hpp</include>
     <include>ql/pricingengines/blackformula.hpp</include>
     <include>ql/pricingengines/blackscholescalculator.hpp</include>
-    <include>ql/termstructures/volatility/interestrate/optionlet/optionletvolatilitystructure.hpp</include>
-    <include>ql/termstructures/volatility/interestrate/swaption/swaptionvolstructure.hpp</include>
+    <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/termstructures/volatility/swaption/swaptionvolstructure.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano

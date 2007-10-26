@@ -22,8 +22,8 @@
 
 #include <qlo/termstructures.hpp>
 #include <ql/yieldtermstructure.hpp>
-#include <ql/termstructures/volatility/interestrate/optionlet/optionletstripper.hpp>
-#include <ql/termstructures/volatility/interestrate/optionlet/optionletstripperadapter.hpp>
+#include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
+#include <ql/termstructures/volatility/optionlet/optionletstripperadapter.hpp>
 
 namespace QuantLib {
     class OptionletVolatilityStructure;

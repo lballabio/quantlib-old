@@ -21,7 +21,7 @@
 
 #include <oh/libraryobject.hpp>
 
-#include <ql/termstructures/volatility/interestrate/swaption/cmsmarketcalibration.hpp>
+#include <ql/termstructures/volatility/swaption/cmsmarketcalibration.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {
