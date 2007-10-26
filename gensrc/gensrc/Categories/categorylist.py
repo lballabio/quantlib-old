@@ -58,5 +58,5 @@ class CategoryList(object):
             cat = utilities.serializeObject(category.Category, 'metadata/Functions/' + categoryName)
             if self.categoryDict_.has_key(cat.name()):
                 raise exceptions.DuplicateNameException(cat.name())
-            self.categoryDict_[categoryName] = cat
+            self.categoryDict_[cat.name()] = cat
 
