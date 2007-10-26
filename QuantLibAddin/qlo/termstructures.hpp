@@ -45,20 +45,6 @@ namespace QuantLibAddin {
 
     OH_OBJ_CLASS(YieldTermStructure, TermStructure);
 
-    class PiecewiseYieldCurve : public YieldTermStructure {
-      public:
-        PiecewiseYieldCurve(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& qlrhs,
-            const QuantLib::DayCounter& dayCounter,
-            const std::string& traitsID,
-            const std::string& interpolatorID,
-            QuantLib::Real accuracy,
-            bool permanent);
-    };
-
     class DiscountCurve : public YieldTermStructure {
       public:
         DiscountCurve(

@@ -42,6 +42,7 @@
     <categoryName>optimization</categoryName>
     <categoryName>options</categoryName>
     <categoryName>payoffs</categoryName>
+    <categoryName>piecewiseyieldcurve</categoryName>
     <categoryName>prices</categoryName>
     <categoryName>pricingengines</categoryName>
     <categoryName>processes</categoryName>

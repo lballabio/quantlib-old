@@ -23,6 +23,7 @@
 #include <qlo/interpolation.hpp>
 #include <qlo/interpolation2D.hpp>
 #include <qlo/ratehelpers.hpp>
+#include <qlo/piecewiseyieldcurve.hpp>
 
 namespace QuantLibAddin {
 

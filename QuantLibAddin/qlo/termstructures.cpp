@@ -41,52 +41,6 @@
 
 namespace QuantLibAddin {
 
-    PiecewiseYieldCurve::PiecewiseYieldCurve(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::Natural nDays,
-            const QuantLib::Calendar& calendar,
-            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& qlrhs,
-            const QuantLib::DayCounter& dayCounter,
-            const std::string& traitsID,
-            const std::string& interpolatorID,
-            QuantLib::Real accuracy,
-            bool permanent) : YieldTermStructure(properties, permanent)
-    {
-        //QuantLib::Cubic naturalCubic(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    false);
-
-        //QuantLib::Cubic cubic1(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::FirstDerivative, 0.0,
-        //    false);
-
-        //QuantLib::Cubic monotoneCubic(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::FirstDerivative, 0.0,
-        //    true);
-
-        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
-            QuantLib::YieldTermStructure> >()(traitsID,
-                                              interpolatorID,
-                                              nDays,
-                                              calendar,
-                                              qlrhs,
-                                              dayCounter,
-                                              accuracy);
-
-        //libraryObject_ = boost::shared_ptr<QuantLib::YieldTermStructure>(new
-        //    QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-        //                                  QuantLib::Cubic>(nDays,
-        //                                                   calendar,
-        //                                                   rateHelpersQL,
-        //                                                   dayCounter,
-        //                                                   accuracy,
-        //                                                   monotoneCubic));
-
-    }
-
     DiscountCurve::DiscountCurve(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::vector<QuantLib::Date>& dates,

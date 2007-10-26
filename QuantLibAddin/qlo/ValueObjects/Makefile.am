@@ -33,6 +33,7 @@ include_HEADERS = \
     vo_optimization.hpp \
     vo_options.hpp \
     vo_payoffs.hpp \
+    vo_piecewiseyieldcurve.hpp \
     vo_pricingengines.hpp \
     vo_processes.hpp \
     vo_products.hpp \
@@ -83,6 +84,7 @@ libValueObjects_la_SOURCES = \
     vo_optimization.cpp \
     vo_options.cpp \
     vo_payoffs.cpp \
+    vo_piecewiseyieldcurve.cpp \
     vo_pricingengines.cpp \
     vo_processes.cpp \
     vo_products.cpp \

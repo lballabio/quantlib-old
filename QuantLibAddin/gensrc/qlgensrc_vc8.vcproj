@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="qlgensrc"
 	ProjectGUID="{C8A6BB98-75CA-4EB9-A750-8BA3B3AA5969}"
 	RootNamespace="gensrc"
@@ -51,7 +51,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Addins\cpp.xml"
+				RelativePath="metadata\Addins\cpp.xml"
 				>
 			</File>
 			<File
@@ -75,11 +75,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Addins\serialization.xml"
+				RelativePath="metadata\Addins\serialization.xml"
 				>
 			</File>
 			<File
 				RelativePath="metadata\Addins\valueobjects.xml"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Enumerations"
+			>
+			<File
+				RelativePath="metadata\Enumerations\enumeratedclasses.xml"
+				>
+			</File>
+			<File
+				RelativePath="metadata\Enumerations\enumeratedpairs.xml"
+				>
+			</File>
+			<File
+				RelativePath="metadata\Enumerations\enumeratedtypes.xml"
 				>
 			</File>
 		</Filter>
@@ -111,7 +127,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\cmsmarketcalibration.xml"
+				RelativePath="metadata\Functions\cmsmarketcalibration.xml"
 				>
 			</File>
 			<File
@@ -135,7 +151,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\handles.xml"
+				RelativePath="metadata\Functions\handles.xml"
 				>
 			</File>
 			<File
@@ -151,7 +167,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\leg.xml"
+				RelativePath="metadata\Functions\leg.xml"
 				>
 			</File>
 			<File
@@ -175,6 +191,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\piecewiseyieldcurve.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\Functions\prices.xml"
 				>
 			</File>
@@ -195,7 +215,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\rangeaccrual.xml"
+				RelativePath="metadata\Functions\rangeaccrual.xml"
 				>
 			</File>
 			<File
@@ -247,7 +267,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\timeseries.xml"
+				RelativePath="metadata\Functions\timeseries.xml"
 				>
 			</File>
 			<File
@@ -266,43 +286,43 @@
 				Name="marketmodels"
 				>
 				<File
-					RelativePath=".\metadata\Functions\abcd.xml"
+					RelativePath="metadata\Functions\abcd.xml"
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\accountingengines.xml"
+					RelativePath="metadata\Functions\accountingengines.xml"
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\alphaform.xml"
+					RelativePath="metadata\Functions\alphaform.xml"
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\browniangenerators.xml"
+					RelativePath="metadata\Functions\browniangenerators.xml"
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\correlation.xml"
+					RelativePath="metadata\Functions\correlation.xml"
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\ctsmmcapletcalibration.xml"
+					RelativePath="metadata\Functions\ctsmmcapletcalibration.xml"
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\curvestate.xml"
+					RelativePath="metadata\Functions\curvestate.xml"
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\driftcalculators.xml"
+					RelativePath="metadata\Functions\driftcalculators.xml"
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\evolutiondescription.xml"
+					RelativePath="metadata\Functions\evolutiondescription.xml"
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\marketmodelevolvers.xml"
+					RelativePath="metadata\Functions\marketmodelevolvers.xml"
 					>
 				</File>
 				<File
@@ -310,27 +330,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\products.xml"
+					RelativePath="metadata\Functions\products.xml"
 					>
 				</File>
 				<File
-					RelativePath=".\metadata\Functions\volatility.xml"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Enumerations"
-				>
-				<File
-					RelativePath="metadata\Enumerations\enumeratedclasses.xml"
-					>
-				</File>
-				<File
-					RelativePath="metadata\Enumerations\enumeratedpairs.xml"
-					>
-				</File>
-				<File
-					RelativePath="metadata\Enumerations\enumeratedtypes.xml"
+					RelativePath="metadata\Functions\volatility.xml"
 					>
 				</File>
 			</Filter>
@@ -347,7 +351,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Rules\cpp.xml"
+				RelativePath="metadata\Rules\cpp.xml"
 				>
 			</File>
 			<File
@@ -367,7 +371,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Rules\serialization.xml"
+				RelativePath="metadata\Rules\serialization.xml"
 				>
 			</File>
 			<File
@@ -407,7 +411,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\stubs\stub.cpp.body"
+				RelativePath="stubs\stub.cpp.body"
 				>
 			</File>
 			<File
@@ -431,7 +435,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\stubs\stub.serialization.includes"
+				RelativePath="stubs\stub.serialization.includes"
 				>
 			</File>
 		</Filter>

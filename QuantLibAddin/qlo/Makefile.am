@@ -51,6 +51,7 @@ include_HEADERS = \
     optimization.hpp \
     options.hpp \
     payoffs.hpp \
+    piecewiseyieldcurve.hpp \
     pricingengines.hpp \
     processes.hpp \
     products.hpp \
@@ -120,6 +121,7 @@ libQuantLibAddin_la_SOURCES = \
     marketmodels.cpp \
     optimization.cpp \
     payoffs.cpp \
+    piecewiseyieldcurve.cpp \
     pricingengines.cpp \
     processes.cpp \
     products.cpp \

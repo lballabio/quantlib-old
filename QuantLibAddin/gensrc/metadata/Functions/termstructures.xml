@@ -330,56 +330,6 @@
       </ParameterList>
     </Constructor>
 
-    <!-- PiecewiseYieldCurve interface and constructor -->
-    <Constructor name='qlPiecewiseYieldCurve'>
-      <libraryFunction>PiecewiseYieldCurve</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='NDays' default='0'>
-            <type>QuantLib::Natural</type>
-            <tensorRank>scalar</tensorRank>
-            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. If omitted, default = 0 is used.</description>
-          </Parameter>
-          <Parameter name='Calendar'>
-            <type>QuantLib::Calendar</type>
-            <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate</description>
-          </Parameter>
-          <Parameter name='RateHelpers' exampleValue ='EUROND,EURTND,EURSND,EURSWD,EUR2WD'>
-            <type>QuantLib::RateHelper</type>
-            <tensorRank>vector</tensorRank>
-            <description>vector of rate-helpers</description>
-          </Parameter>
-          <Parameter name='DayCounter'>
-            <type>QuantLib::DayCounter</type>
-            <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
-          </Parameter>
-          <Parameter name='TraitsID' default='"Discount"'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
-          </Parameter>
-          <Parameter name='InterpolatorID' default='"LogLinear"'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>BackwardFlat, ForwardFlat, Linear, LogLinear, Cubic, or LogCubic. If omitted, default = LogLinear is used.</description>
-          </Parameter>
-          <Parameter name='Accuracy' default='1.0e-12'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Bootstrappin accuracy.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
     <!-- YieldTermStructure constructors -->
     <Constructor name='qlDiscountCurve'>
       <libraryFunction>DiscountCurve</libraryFunction>

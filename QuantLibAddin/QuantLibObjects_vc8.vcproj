@@ -638,6 +638,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\ValueObjects\vo_piecewiseyieldcurve.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\ValueObjects\vo_piecewiseyieldcurve.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\ValueObjects\vo_pricingengines.cpp"
 				>
 			</File>
@@ -809,6 +817,14 @@
 		<Filter
 			Name="TermStructures"
 			>
+			<File
+				RelativePath=".\qlo\piecewiseyieldcurve.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\piecewiseyieldcurve.hpp"
+				>
+			</File>
 			<File
 				RelativePath="qlo\ratehelpers.cpp"
 				>
@@ -1623,6 +1639,14 @@
 			</File>
 			<File
 				RelativePath="qlo\Serialization\create_payoffs.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Serialization\create_piecewiseyieldcurve.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\Serialization\create_piecewiseyieldcurve.hpp"
 				>
 			</File>
 			<File

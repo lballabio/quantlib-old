@@ -359,6 +359,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Functions\piecewiseyieldcurve.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Functions\prices.cpp"
 				>
 			</File>
@@ -596,6 +600,10 @@
 			</File>
 			<File
 				RelativePath="Register\register_payoffs.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Register\register_piecewiseyieldcurve.cpp"
 				>
 			</File>
 			<File
@@ -968,6 +976,14 @@
 			</File>
 			<File
 				RelativePath=".\Serialization\serialization_payoffs.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_piecewiseyieldcurve.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_piecewiseyieldcurve.hpp"
 				>
 			</File>
 			<File

@@ -33,6 +33,7 @@ include_HEADERS = \
     create_optimization.hpp \
     create_options.hpp \
     create_payoffs.hpp \
+    create_piecewiseyieldcurve.hpp \
     create_pricingengines.hpp \
     create_processes.hpp \
     create_products.hpp \
@@ -84,6 +85,7 @@ libSerialization_la_SOURCES = \
     create_optimization.cpp \
     create_options.cpp \
     create_payoffs.cpp \
+    create_piecewiseyieldcurve.cpp \
     create_pricingengines.cpp \
     create_processes.cpp \
     create_products.cpp \

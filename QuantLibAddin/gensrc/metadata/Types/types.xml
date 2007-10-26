@@ -68,6 +68,8 @@
         <DataType>QuantLib::VanillaSwap::Type</DataType>
         <DataType>QuantLib::Weekday</DataType>
         <DataType>QuantLibAddin::RateHelper::DepoInclusionCriteria</DataType>
+        <DataType>QuantLibAddin::Token::Traits</DataType>
+        <DataType>QuantLibAddin::Token::Interpolator</DataType>       
       </DataTypes>
     </SuperType>
 
@@ -91,6 +93,7 @@
         <DataType>QuantLibAddin::LMMDriftCalculator</DataType>
         <DataType>QuantLibAddin::LMMNormalDriftCalculator</DataType>
         <DataType>QuantLibAddin::Leg</DataType>
+        <DataType>QuantLibAddin::PiecewiseYieldCurve</DataType>
         <DataType>QuantLibAddin::RandomSequenceGenerator</DataType>
         <DataType>QuantLibAddin::RateHelper</DataType>
         <DataType>QuantLibAddin::RelinkableHandle</DataType>

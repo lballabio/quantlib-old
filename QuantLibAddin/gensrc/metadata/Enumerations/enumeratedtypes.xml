@@ -1310,6 +1310,56 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
+    <EnumeratedTypeGroup type='QuantLibAddin::Token::Traits'>
+      <includeFile>qlo/piecewiseyieldcurve.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Discount</string>
+          <value>QuantLibAddin::Token::Discount</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ForwardRate</string>
+          <value>QuantLibAddin::Token::ForwardRate</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ZeroYield</string>
+          <value>QuantLibAddin::Token::ZeroYield</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLibAddin::Token::Interpolator'>
+      <includeFile>qlo/piecewiseyieldcurve.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>BackwardFlat</string>
+          <value>QuantLibAddin::Token::BackwardFlat</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Cubic</string>
+          <value>QuantLibAddin::Token::Cubic</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ForwardFlat</string>
+          <value>QuantLibAddin::Token::ForwardFlat</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Linear</string>
+          <value>QuantLibAddin::Token::Linear</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>LogCubic</string>
+          <value>QuantLibAddin::Token::LogCubic</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>LogLinear</string>
+          <value>QuantLibAddin::Token::LogLinear</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
   </EnumeratedTypeGroups>
 
 </root>
