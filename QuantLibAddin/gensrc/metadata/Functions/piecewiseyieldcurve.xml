@@ -64,7 +64,7 @@
           <Parameter name='Accuracy' default='1.0e-12'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Bootstrappin accuracy.</description>
+            <description>Bootstrapping accuracy.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
