@@ -150,6 +150,58 @@
       </ReturnValue>
     </Member>
 
+      <Member name='qlPiecewiseYieldCurveImprovements' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
+          <description>Retrieve improvements for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;</description>
+          <libraryFunction>improvements</libraryFunction>
+          <SupportedPlatforms>
+              <SupportedPlatform name='Excel'/>
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters>
+                  <Parameter name='Traits'>
+                      <type>QuantLibAddin::Token::Traits</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description></description>
+                  </Parameter>
+                  <Parameter name='Interpolator'>
+                      <type>QuantLibAddin::Token::Interpolator</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description></description>
+                  </Parameter>
+              </Parameters>
+          </ParameterList>
+          <ReturnValue>
+              <type>QuantLib::Real</type>
+              <tensorRank>vector</tensorRank>
+          </ReturnValue>
+      </Member>
+
+      <Member name='qlPiecewiseYieldCurveIterations' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
+          <description>Retrieve Iterations for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;</description>
+          <libraryFunction>iterations</libraryFunction>
+          <SupportedPlatforms>
+              <SupportedPlatform name='Excel'/>
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters>
+                  <Parameter name='Traits'>
+                      <type>QuantLibAddin::Token::Traits</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description></description>
+                  </Parameter>
+                  <Parameter name='Interpolator'>
+                      <type>QuantLibAddin::Token::Interpolator</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description></description>
+                  </Parameter>
+              </Parameters>
+          </ParameterList>
+          <ReturnValue>
+              <type>QuantLib::Size</type>
+              <tensorRank>scalar</tensorRank>
+          </ReturnValue>
+      </Member>
+
   </Functions>
   
 </Category>

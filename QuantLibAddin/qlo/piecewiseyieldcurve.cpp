@@ -96,6 +96,8 @@ namespace QuantLibAddin {
         virtual const std::vector<QuantLib::Time>& times(extrapolatorPtr extrapolator) const = 0;
         virtual const std::vector<QuantLib::Date>& dates(extrapolatorPtr extrapolator) const = 0;
         virtual const std::vector<QuantLib::Real>& data(extrapolatorPtr extrapolator) const = 0;
+        virtual const std::vector<QuantLib::Real>& improvements(extrapolatorPtr extrapolator) const = 0;
+        virtual QuantLib::Size iterations(extrapolatorPtr extrapolator) const = 0;
     };
 
     // Concrete base class to wrap member functions of PiecewiseYieldCurve<Traits, Interpolator>.
@@ -126,6 +128,14 @@ namespace QuantLibAddin {
 
         virtual const std::vector<QuantLib::Real>& data(extrapolatorPtr extrapolator) const {
             return get(extrapolator)->data();
+        }
+
+        virtual const std::vector<QuantLib::Real>& improvements(extrapolatorPtr extrapolator) const {
+            return get(extrapolator)->improvements();
+        }
+
+        virtual QuantLib::Size iterations(extrapolatorPtr extrapolator) const {
+            return get(extrapolator)->iterations();
         }
 
     };
@@ -260,6 +270,14 @@ namespace QuantLibAddin {
             return getCaller(tokenPair)->data(extrapolator);
         }
 
+        const std::vector<QuantLib::Real>& improvements(TokenPair tokenPair, extrapolatorPtr extrapolator) const {
+            return getCaller(tokenPair)->improvements(extrapolator);
+        }
+
+        QuantLib::Size iterations(TokenPair tokenPair, extrapolatorPtr extrapolator) const {
+            return getCaller(tokenPair)->iterations(extrapolator);
+        }
+
     };
 
     // Basic Singleton behavior for the CallerFactory
@@ -290,5 +308,14 @@ namespace QuantLibAddin {
         return Call::callerFactory().data(Call::TokenPair(traits, interpolator), libraryObject_);
     }
 
-}
+    const std::vector<QuantLib::Real>& PiecewiseYieldCurve::improvements(
+        Token::Traits traits, Token::Interpolator interpolator) const {
+        return Call::callerFactory().improvements(Call::TokenPair(traits, interpolator), libraryObject_);
+    }
 
+    QuantLib::Size PiecewiseYieldCurve::iterations(
+        Token::Traits traits, Token::Interpolator interpolator) const {
+        return Call::callerFactory().iterations(Call::TokenPair(traits, interpolator), libraryObject_);
+    }
+
+}
