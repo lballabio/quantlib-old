@@ -23,7 +23,7 @@
 #include <oh/exception.hpp>
 #include <qlo/handle.hpp>
 #include <qlo/Conversions/coercelibrarydifferent.hpp>
-#include <qlo/termstructures.hpp>
+#include <qlo/yieldtermstructures.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 #include <ql/yieldtermstructure.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>

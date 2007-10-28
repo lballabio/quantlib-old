@@ -7,7 +7,7 @@
     <include>qlo/capfloor.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/pricingengines.hpp</include>
-    <include>qlo/termstructures.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <serializationIncludes>
@@ -15,7 +15,7 @@
     <include>qlo/index.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/pricingengines.hpp</include>
-    <include>qlo/termstructures.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <copyright>

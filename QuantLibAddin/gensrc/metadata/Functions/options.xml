@@ -8,6 +8,7 @@
     <include>qlo/payoffs.hpp</include>
     <include>qlo/exercise.hpp</include>
     <include>qlo/volatilities.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/options.hpp</include>
@@ -15,6 +16,7 @@
     <include>qlo/payoffs.hpp</include>
     <include>qlo/exercise.hpp</include>
     <include>qlo/volatilities.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers

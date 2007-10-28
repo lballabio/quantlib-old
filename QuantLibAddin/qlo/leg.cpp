@@ -26,7 +26,7 @@
 
 #include <qlo/leg.hpp>
 #include <qlo/flowanalysis.hpp>
-//#include <qlo/termstructures.hpp>
+//#include <qlo/yieldtermstructures.hpp>
 #include <qlo/Enumerations/Factories/iborcouponpricersfactory.hpp>
 
 #include <ql/cashflow.hpp>

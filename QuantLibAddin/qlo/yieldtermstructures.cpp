@@ -23,7 +23,7 @@
 #include <qlo/config.hpp>
 #endif
 
-#include <qlo/termstructures.hpp>
+#include <qlo/yieldtermstructures.hpp>
 #include <qlo/ratehelpers.hpp>
 #include <qlo/Enumerations/Factories/termstructuresfactory.hpp>
 

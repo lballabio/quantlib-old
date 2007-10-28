@@ -24,7 +24,7 @@
 
 #include <qlo/Enumerations/Constructors/enumeratedpairs.hpp>
 #include <qlo/Conversions/conversions.hpp>
-#include <qlo/termstructures.hpp>
+#include <qlo/yieldtermstructures.hpp>
 #include <ql/termstructures/yield/piecewiseyieldcurve.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
@@ -233,7 +233,7 @@ namespace QuantLibAddin {
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
-                                          QuantLib::Cubic>(nDays,
+                                          QuantLib::CubicSpline>(nDays,
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
@@ -254,7 +254,7 @@ namespace QuantLibAddin {
         QuantLib::Real yieldCurveAccuracy){
             return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
                 QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::Discount,
-                                                            QuantLib::Cubic>(
+                                                            QuantLib::CubicSpline>(
                 stats,
                 startDate,
                 endDate,
@@ -469,7 +469,7 @@ namespace QuantLibAddin {
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
-                                          QuantLib::Cubic>(nDays,
+                                          QuantLib::CubicSpline>(nDays,
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
@@ -490,7 +490,7 @@ namespace QuantLibAddin {
         QuantLib::Real yieldCurveAccuracy){
             return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
                 QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ZeroYield,
-                                                             QuantLib::Cubic>(
+                                                             QuantLib::CubicSpline>(
                 stats,
                 startDate,
                 endDate,
@@ -690,7 +690,7 @@ namespace QuantLibAddin {
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-                                          QuantLib::Cubic>(nDays,
+                                          QuantLib::CubicSpline>(nDays,
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
@@ -726,7 +726,7 @@ namespace QuantLibAddin {
         QuantLib::Real yieldCurveAccuracy){
             return boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis>(new
                 QuantLib::HistoricalForwardRatesAnalysisImpl<QuantLib::ForwardRate,
-                                                             QuantLib::Cubic>(
+                                                             QuantLib::CubicSpline>(
                 stats,
                 startDate,
                 endDate,

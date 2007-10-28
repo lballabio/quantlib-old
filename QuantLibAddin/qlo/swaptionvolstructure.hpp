@@ -28,6 +28,7 @@
 #include <ql/time/businessdayconvention.hpp>
 
 namespace QuantLib {
+    class Calendar;
     class SwaptionVolatilityStructure;
     class SwaptionVolatilityCube;
     class SwapIndex;

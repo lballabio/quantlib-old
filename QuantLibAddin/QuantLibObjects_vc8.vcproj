@@ -834,17 +834,21 @@
 				>
 			</File>
 			<File
-				RelativePath="qlo\termstructures.cpp"
+				RelativePath=".\qlo\yieldtermstructures.cpp"
 				>
 			</File>
 			<File
-				RelativePath="qlo\termstructures.hpp"
+				RelativePath=".\qlo\yieldtermstructures.hpp"
 				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Math"
 			>
+			<File
+				RelativePath=".\qlo\extrapolator.hpp"
+				>
+			</File>
 			<File
 				RelativePath="qlo\getcovariance.cpp"
 				>
@@ -1900,6 +1904,10 @@
 		</File>
 		<File
 			RelativePath="qlo\settings.hpp"
+			>
+		</File>
+		<File
+			RelativePath="qlo\termstructures.hpp"
 			>
 		</File>
 		<File

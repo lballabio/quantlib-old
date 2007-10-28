@@ -25,9 +25,9 @@
 #include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
+#include <ql/math/interpolations/cubicspline.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/math/interpolations/abcdinterpolation.hpp>
-//#include <ql/math/optimization/method.hpp>
 
 namespace QuantLibAddin {
 
@@ -64,9 +64,9 @@ namespace QuantLibAddin {
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::vector<QuantLib::Real>& x,
         const std::vector<QuantLib::Real>& y,
-        QuantLib::CubicSpline::BoundaryCondition leftCondition,
+        QuantLib::CubicSplineInterpolation::BoundaryCondition leftCondition,
         double leftConditionValue,
-        QuantLib::CubicSpline::BoundaryCondition rightCondition,
+        QuantLib::CubicSplineInterpolation::BoundaryCondition rightCondition,
         double rightConditionValue,
         bool monotonicityConstraint,
         bool permanent)
@@ -77,7 +77,7 @@ namespace QuantLibAddin {
         //const std::vector<QuantLib::Real>& y_ =
         //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("YARRAY"));
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CubicSpline(x_.begin(), x_.end(), y_.begin(),
+            QuantLib::CubicSplineInterpolation(x_.begin(), x_.end(), y_.begin(),
                                   leftCondition, leftConditionValue,
                                   rightCondition, rightConditionValue,
                                   monotonicityConstraint));

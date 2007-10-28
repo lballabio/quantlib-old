@@ -19,7 +19,8 @@
 #ifndef qla_interpolation_hpp
 #define qla_interpolation_hpp
 
-#include <oh/libraryobject.hpp>
+#include <qlo/extrapolator.hpp>
+// needed for the enumerative types
 #include <ql/math/interpolations/cubicspline.hpp>
 #include <ql/types.hpp>
 
@@ -30,8 +31,6 @@ namespace QuantLib {
 }
 
 namespace QuantLibAddin {
-
-    OH_LIB_CLASS(Extrapolator, QuantLib::Extrapolator);
 
     class Interpolation : public Extrapolator {
       public:
@@ -58,9 +57,9 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Real>& x,
             const std::vector<QuantLib::Real>& y,
-            QuantLib::CubicSpline::BoundaryCondition leftCondition,
+            QuantLib::CubicSplineInterpolation::BoundaryCondition leftCondition,
             QuantLib::Real leftConditionValue,
-            QuantLib::CubicSpline::BoundaryCondition rightCondition,
+            QuantLib::CubicSplineInterpolation::BoundaryCondition rightCondition,
             QuantLib::Real rightConditionValue,
             bool monotonicityConstraint,
             bool permanent);

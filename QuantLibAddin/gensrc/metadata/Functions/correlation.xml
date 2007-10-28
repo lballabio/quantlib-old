@@ -218,10 +218,10 @@
             <tensorRank>scalar</tensorRank>
             <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
           </Parameter>
-          <Parameter name='InterpolatorID' default='"Cubic"'>
+          <Parameter name='InterpolatorID' default='"CubicSpline"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Linear, LogLinear, or Cubic. If omitted, default = LogLinear is used.</description>
+            <description>Linear, LogLinear, or CubicSpline. If omitted, default = LogLinear is used.</description>
           </Parameter>
           <Parameter name='BootstrapAccuracy' default='1.0e-12'>
             <type>QuantLib::Real</type>

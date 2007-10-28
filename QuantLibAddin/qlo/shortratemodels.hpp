@@ -20,7 +20,7 @@
 #ifndef qla_shortratemodels_hpp
 #define qla_shortratemodels_hpp
 
-#include <qlo/termstructures.hpp>
+#include <qlo/yieldtermstructures.hpp>
 
 namespace QuantLib {
     class AffineModel;

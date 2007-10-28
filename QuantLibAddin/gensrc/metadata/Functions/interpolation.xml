@@ -6,22 +6,17 @@
         <include>qlo/interpolation.hpp</include>
         <include>qlo/interpolation2D.hpp</include>
         <include>qlo/optimization.hpp</include>
-        <include>ql/math/optimization/method.hpp</include>
         <include>ql/math/interpolations/sabrinterpolation.hpp</include>
-        <include>ql/math/interpolations/bilinearinterpolation.hpp</include>
-        <include>ql/math/interpolations/bicubicsplineinterpolation.hpp</include>
+        <include>ql/math/interpolations/abcdinterpolation.hpp</include>
+        <include>ql/math/interpolations/interpolation2d.hpp</include>
     </addinIncludes>
     <serializationIncludes>
         <include>qlo/interpolation.hpp</include>
         <include>qlo/interpolation2D.hpp</include>
         <include>qlo/optimization.hpp</include>
-        <include>ql/math/optimization/method.hpp</include>
-        <include>ql/math/interpolations/sabrinterpolation.hpp</include>
-        <include>ql/math/interpolations/bilinearinterpolation.hpp</include>
-        <include>ql/math/interpolations/bicubicsplineinterpolation.hpp</include>
     </serializationIncludes>
     <copyright>
-        Copyright (C) 2006 Ferdinando Ametrano
+        Copyright (C) 2006, 2007 Ferdinando Ametrano
     </copyright>
     <Functions>
 
@@ -69,7 +64,7 @@
             <ParameterList>
                 <Parameters>
                     <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>x values</description>
                     </Parameter>
@@ -81,7 +76,7 @@
                 </Parameters>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>vector</tensorRank>
             </ReturnValue>
         </Member>
@@ -97,7 +92,7 @@
             <ParameterList>
                 <Parameters>
                     <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>x values</description>
                     </Parameter>
@@ -109,7 +104,7 @@
                 </Parameters>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>vector</tensorRank>
             </ReturnValue>
         </Member>
@@ -125,7 +120,7 @@
             <ParameterList>
                 <Parameters>
                     <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>x values</description>
                     </Parameter>
@@ -137,7 +132,7 @@
                 </Parameters>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>vector</tensorRank>
             </ReturnValue>
         </Member>
@@ -153,7 +148,7 @@
             <ParameterList>
                 <Parameters>
                     <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>x values</description>
                     </Parameter>
@@ -165,7 +160,7 @@
                 </Parameters>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>vector</tensorRank>
             </ReturnValue>
         </Member>
@@ -181,7 +176,7 @@
             <ParameterList>
                 <Parameters>
                     <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>x values</description>
                     </Parameter>
@@ -192,38 +187,6 @@
                 <tensorRank>vector</tensorRank>
             </ReturnValue>
         </Member>
-
-        <!--<Member name='qlInterpolationXvalues' type='QuantLib::Interpolation'>
-      <description>Returns the x array values for the given Interpolation object</description>
-      <libraryFunction>xValues</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlInterpolationYvalues' type='QuantLib::Interpolation'>
-      <description>Returns the y array values for the given Interpolation object</description>
-      <libraryFunction>yValues</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>-->
 
         <Member name='qlInterpolationXmin' type='QuantLib::Interpolation'>
             <description>Returns the minimum value of the x array for the given Interpolation object</description>
@@ -236,7 +199,7 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>scalar</tensorRank>
             </ReturnValue>
         </Member>
@@ -252,7 +215,7 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>scalar</tensorRank>
             </ReturnValue>
         </Member>
@@ -274,18 +237,20 @@
                         <description>linear interpolation type (e.g Linear, BackwardFlat, ForwardFlat)</description>
                     </Parameter>
                     <Parameter name='XArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>x array</description>
                     </Parameter>
                     <Parameter name='YArray' exampleValue ='2.0,4.0,6.0,8.0,10.0,12.0'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>y array</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
         </Constructor>
+
+        <!-- CubicSplineInterpolation constructor and interface -->
 
         <Constructor name='qlCubicSplineInterpolation'>
             <libraryFunction>CubicSplineInterpolation</libraryFunction>
@@ -302,27 +267,27 @@
                         <description>x array</description>
                     </Parameter>
                     <Parameter name='YArray' exampleValue ='1.0,8.0,27.0,64.0,125.0' >
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>y array</description>
                     </Parameter>
                     <Parameter name='LeftConditionType'>
-                        <type>QuantLib::CubicSpline::BoundaryCondition</type>
+                        <type>QuantLib::CubicSplineInterpolation::BoundaryCondition</type>
                         <tensorRank>scalar</tensorRank>
                         <description>left boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
                     </Parameter>
                     <Parameter name='LeftConditionValue' exampleValue='0'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
                         <description>left condition value.</description>
                     </Parameter>
                     <Parameter name='RightConditionType'>
-                        <type>QuantLib::CubicSpline::BoundaryCondition</type>
+                        <type>QuantLib::CubicSplineInterpolation::BoundaryCondition</type>
                         <tensorRank>scalar</tensorRank>
                         <description>right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
                     </Parameter>
                     <Parameter name='RightConditionValue' exampleValue='0'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
                         <description>right condition value.</description>
                     </Parameter>
@@ -334,6 +299,72 @@
                 </Parameters>
             </ParameterList>
         </Constructor>
+
+        <Member name='qlCubicSplineInterpolationPrimitiveConstants' type='QuantLib::CubicSplineInterpolation'>
+            <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object</description>
+            <libraryFunction>primitiveConstants</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>vector</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlCubicSplineInterpolationACoefficients' type='QuantLib::CubicSplineInterpolation'>
+            <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object</description>
+            <libraryFunction>aCoefficients</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>vector</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlCubicSplineInterpolationBCoefficients' type='QuantLib::CubicSplineInterpolation'>
+            <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object</description>
+            <libraryFunction>bCoefficients</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>vector</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlCubicSplineInterpolationCCoefficients' type='QuantLib::CubicSplineInterpolation'>
+            <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object</description>
+            <libraryFunction>cCoefficients</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>vector</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <!-- AbcdInterpolation constructor and interface -->
 
         <Constructor name='qlAbcdInterpolation'>
             <libraryFunction>AbcdInterpolation</libraryFunction>
@@ -413,6 +444,120 @@
             </ParameterList>
         </Constructor>
 
+        <Member name='qlAbcdInterpolationA' type='QuantLib::AbcdInterpolation'>
+            <description>Returns the A of the Abcd fit for the given AbcdInterpolation object</description>
+            <libraryFunction>a</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlAbcdInterpolationB' type='QuantLib::AbcdInterpolation'>
+            <description>Returns the B of the Abcd fit for the given AbcdInterpolation object</description>
+            <libraryFunction>b</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlAbcdInterpolationC' type='QuantLib::AbcdInterpolation'>
+            <description>Returns the C of the Abcd fit for the given AbcdInterpolation object</description>
+            <libraryFunction>c</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlAbcdInterpolationD' type='QuantLib::AbcdInterpolation'>
+            <description>Returns the D of the Abcd fit for the given AbcdInterpolation object</description>
+            <libraryFunction>d</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlAbcdInterpolationRmsError' type='QuantLib::AbcdInterpolation'>
+            <description>Returns the error of the SABR fit for the given SABRInterpolation object</description>
+            <libraryFunction>rmsError</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlAbcdInterpolationMaxError' type='QuantLib::AbcdInterpolation'>
+            <description>Returns the max error of the SABR fit for the given SABRInterpolation object</description>
+            <libraryFunction>maxError</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlAbcdInterpolationEndCriteria' type='QuantLib::AbcdInterpolation'>
+            <description>Returns the optimization end criteria of the SABR fit for the given SABRInterpolation object</description>
+            <libraryFunction>endCriteria</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::EndCriteria::Type</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <!-- SABRInterpolation constructor and interface -->
+
         <Constructor name='qlSABRInterpolation'>
             <libraryFunction>SABRInterpolation</libraryFunction>
             <SupportedPlatforms>
@@ -423,12 +568,12 @@
             <ParameterList>
                 <Parameters>
                     <Parameter name='XArray' exampleValue='0.0300,0.0400,0.0500,0.0700'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>x array</description>
                     </Parameter>
                     <Parameter name='YArray' exampleValue='0.0850,0.0733,0.0844,0.1082'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>y array</description>
                     </Parameter>
@@ -443,22 +588,22 @@
                         <description>forward</description>
                     </Parameter>
                     <Parameter name='Alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
                         <description>alpha (fixed value or guess)</description>
                     </Parameter>
                     <Parameter name='Beta' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
                         <description>beta (fixed value or guess)</description>
                     </Parameter>
                     <Parameter name='Nu' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
                         <description>nu (fixed value or guess)</description>
                     </Parameter>
                     <Parameter name='Rho' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
                         <description>rho (fixed value or guess)</description>
                     </Parameter>
@@ -501,72 +646,6 @@
             </ParameterList>
         </Constructor>
 
-        <!-- SABRInterpolation interface -->
-
-        <Member name='qlSABRInterpolationAlpha' type='QuantLib::SABRInterpolation'>
-            <description>Returns the alpha of the SABR fit for the given SABRInterpolation object</description>
-            <libraryFunction>alpha</libraryFunction>
-            <SupportedPlatforms>
-                <SupportedPlatform name='Excel'/>
-                <!--SupportedPlatform name='Cpp'/-->
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
-
-        <Member name='qlSABRInterpolationBeta' type='QuantLib::SABRInterpolation'>
-            <description>Returns the beta of the SABR fit</description>
-            <libraryFunction>beta</libraryFunction>
-            <SupportedPlatforms>
-                <SupportedPlatform name='Excel'/>
-                <!--SupportedPlatform name='Cpp'/-->
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
-
-        <Member name='qlSABRInterpolationNu' type='QuantLib::SABRInterpolation'>
-            <description>Returns the nu of the SABR fit for the given SABRInterpolation object</description>
-            <libraryFunction>nu</libraryFunction>
-            <SupportedPlatforms>
-                <SupportedPlatform name='Excel'/>
-                <!--SupportedPlatform name='Cpp'/-->
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
-
-        <Member name='qlSABRInterpolationRho' type='QuantLib::SABRInterpolation'>
-            <description>Returns the rho of the SABR fit for the given SABRInterpolation object</description>
-            <libraryFunction>rho</libraryFunction>
-            <SupportedPlatforms>
-                <SupportedPlatform name='Excel'/>
-                <!--SupportedPlatform name='Cpp'/-->
-            </SupportedPlatforms>
-            <ParameterList>
-                <Parameters/>
-            </ParameterList>
-            <ReturnValue>
-                <type>double</type>
-                <tensorRank>scalar</tensorRank>
-            </ReturnValue>
-        </Member>
-
         <Member name='qlSABRInterpolationExpiry' type='QuantLib::SABRInterpolation'>
             <description>Returns the expiry time in years for the given SABRInterpolation object</description>
             <libraryFunction>expiry</libraryFunction>
@@ -594,14 +673,14 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>scalar</tensorRank>
             </ReturnValue>
         </Member>
 
-        <Member name='qlSABRInterpolationError' type='QuantLib::SABRInterpolation'>
-            <description>Returns the error of the SABR fit for the given SABRInterpolation object</description>
-            <libraryFunction>interpolationError</libraryFunction>
+        <Member name='qlSABRInterpolationAlpha' type='QuantLib::SABRInterpolation'>
+            <description>Returns the alpha of the SABR fit for the given SABRInterpolation object</description>
+            <libraryFunction>alpha</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
@@ -610,14 +689,78 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlSABRInterpolationBeta' type='QuantLib::SABRInterpolation'>
+            <description>Returns the alpha of the SABR fit for the given SABRInterpolation object</description>
+            <libraryFunction>beta</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlSABRInterpolationNu' type='QuantLib::SABRInterpolation'>
+            <description>Returns the nu of the SABR fit for the given SABRInterpolation object</description>
+            <libraryFunction>nu</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlSABRInterpolationRho' type='QuantLib::SABRInterpolation'>
+            <description>Returns the rho of the SABR fit for the given SABRInterpolation object</description>
+            <libraryFunction>rho</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>
+
+        <Member name='qlSABRInterpolationRmsError' type='QuantLib::SABRInterpolation'>
+            <description>Returns the error of the SABR fit for the given SABRInterpolation object</description>
+            <libraryFunction>rmsError</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>QuantLib::Real</type>
                 <tensorRank>scalar</tensorRank>
             </ReturnValue>
         </Member>
 
         <Member name='qlSABRInterpolationMaxError' type='QuantLib::SABRInterpolation'>
             <description>Returns the max error of the SABR fit for the given SABRInterpolation object</description>
-            <libraryFunction>interpolationMaxError</libraryFunction>
+            <libraryFunction>maxError</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel'/>
                 <!--SupportedPlatform name='Cpp'/-->
@@ -626,7 +769,7 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>scalar</tensorRank>
             </ReturnValue>
         </Member>
@@ -676,7 +819,7 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>scalar</tensorRank>
             </ReturnValue>
         </Member>
@@ -692,7 +835,7 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>scalar</tensorRank>
             </ReturnValue>
         </Member>
@@ -708,7 +851,7 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>vector</tensorRank>
             </ReturnValue>
         </Member>
@@ -724,7 +867,7 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>scalar</tensorRank>
             </ReturnValue>
         </Member>
@@ -740,7 +883,7 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>scalar</tensorRank>
             </ReturnValue>
         </Member>
@@ -756,7 +899,7 @@
                 <Parameters/>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>vector</tensorRank>
             </ReturnValue>
         </Member>
@@ -788,12 +931,12 @@
             <ParameterList>
                 <Parameters>
                     <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
                         <description>x values</description>
                     </Parameter>
                     <Parameter name='YValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
                         <description>y value</description>
                     </Parameter>
@@ -817,12 +960,12 @@
             <ParameterList>
                 <Parameters>
                     <Parameter name='XValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>x value(s)</description>
                     </Parameter>
                     <Parameter name='YValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
                         <description>y value</description>
                     </Parameter>
@@ -834,7 +977,7 @@
                 </Parameters>
             </ParameterList>
             <ReturnValue>
-                <type>double</type>
+                <type>QuantLib::Real</type>
                 <tensorRank>vector</tensorRank>
             </ReturnValue>
         </Member>
@@ -856,12 +999,12 @@
                         <description>2D-interpolation type (e.g BiLinear, BiCubic)</description>
                     </Parameter>
                     <Parameter name='XArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>x array</description>
                     </Parameter>
                     <Parameter name='YArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
-                        <type>double</type>
+                        <type>QuantLib::Real</type>
                         <tensorRank>vector</tensorRank>
                         <description>y array</description>
                     </Parameter>

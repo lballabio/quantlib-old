@@ -38,7 +38,7 @@
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>Discount</id1>
-          <id2>Cubic</id2>
+          <id2>CubicSpline</id2>
           <value>DISCOUNT_CUBIC_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
@@ -69,7 +69,7 @@
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ZeroYield</id1>
-          <id2>Cubic</id2>
+          <id2>CubicSpline</id2>
           <value>ZEROYIELD_CUBIC_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
@@ -100,7 +100,7 @@
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ForwardRate</id1>
-          <id2>Cubic</id2>
+          <id2>CubicSpline</id2>
           <value>FORWARDRATE_CUBIC_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
@@ -137,7 +137,7 @@
               </EnumeratedPair>
               <EnumeratedPair>
                   <id1>Discount</id1>
-                  <id2>Cubic</id2>
+                  <id2>CubicSpline</id2>
                   <value>DISCOUNT_CUBIC_HistoricalForwardRatesAnalysis</value>
               </EnumeratedPair>
               <!-- ZeroYield based yield term structures -->
@@ -163,7 +163,7 @@
               </EnumeratedPair>
               <EnumeratedPair>
                   <id1>ZeroYield</id1>
-                  <id2>Cubic</id2>
+                  <id2>CubicSpline</id2>
                   <value>ZEROYIELD_CUBIC_HistoricalForwardRatesAnalysis</value>
               </EnumeratedPair>
               <!--ForwardRate based yield term structures-->
@@ -189,7 +189,7 @@
               </EnumeratedPair>
               <EnumeratedPair>
                   <id1>ForwardRate</id1>
-                  <id2>Cubic</id2>
+                  <id2>CubicSpline</id2>
                   <value>FORWARDRATE_CUBIC_HistoricalForwardRatesAnalysis</value>
               </EnumeratedPair>
           </EnumeratedPairs>

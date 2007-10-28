@@ -28,6 +28,7 @@
 namespace QuantLib {
     class BlackAtmVolCurve;
     class BlackVolTermStructure;
+    class Calendar;
     class Date;
     class DayCounter;
     class InterestRateIndex;

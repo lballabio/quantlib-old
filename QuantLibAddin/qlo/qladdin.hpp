@@ -72,7 +72,7 @@
 #include <qlo/swaption.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 #include <qlo/symmetricschurdecomposition.hpp>
-#include <qlo/termstructures.hpp>
+#include <qlo/yieldtermstructures.hpp>
 #include <qlo/utilities.hpp>
 #include <qlo/vanillaoption.hpp>
 #include <qlo/vanillaswap.hpp>

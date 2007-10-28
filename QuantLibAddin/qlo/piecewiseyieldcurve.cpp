@@ -42,17 +42,17 @@ namespace QuantLibAddin {
             QuantLib::Real accuracy,
             bool permanent) : YieldTermStructure(properties, permanent)
     {
-        //QuantLib::Cubic naturalCubic(
+        //QuantLib::CubicSpline naturalCubic(
         //    QuantLib::CubicSpline::SecondDerivative, 0.0,
         //    QuantLib::CubicSpline::SecondDerivative, 0.0,
         //    false);
 
-        //QuantLib::Cubic cubic1(
+        //QuantLib::CubicSpline cubic1(
         //    QuantLib::CubicSpline::SecondDerivative, 0.0,
         //    QuantLib::CubicSpline::FirstDerivative, 0.0,
         //    false);
 
-        //QuantLib::Cubic monotoneCubic(
+        //QuantLib::CubicSpline monotoneCubic(
         //    QuantLib::CubicSpline::SecondDerivative, 0.0,
         //    QuantLib::CubicSpline::FirstDerivative, 0.0,
         //    true);
@@ -68,7 +68,7 @@ namespace QuantLibAddin {
 
         //libraryObject_ = boost::shared_ptr<QuantLib::YieldTermStructure>(new
         //    QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-        //                                  QuantLib::Cubic>(nDays,
+        //                                  QuantLib::CubicSpline>(nDays,
         //                                                   calendar,
         //                                                   rateHelpersQL,
         //                                                   dayCounter,
@@ -167,8 +167,8 @@ namespace QuantLibAddin {
             case Token::BackwardFlat:
                 out << "BackwardFlat>";
                 break;
-            case Token::Cubic:
-                out << "Cubic>";
+            case Token::CubicSpline:
+                out << "CubicSpline>";
                 break;
             case Token::ForwardFlat:
                 out << "ForwardFlat>";
@@ -217,7 +217,7 @@ namespace QuantLibAddin {
 
             // Discount
             init<QuantLib::Discount, QuantLib::BackwardFlat>(TokenPair(Token::Discount, Token::BackwardFlat));
-            init<QuantLib::Discount, QuantLib::Cubic>(TokenPair(Token::Discount, Token::Cubic));
+            init<QuantLib::Discount, QuantLib::CubicSpline>(TokenPair(Token::Discount, Token::CubicSpline));
             init<QuantLib::Discount, QuantLib::ForwardFlat>(TokenPair(Token::Discount, Token::ForwardFlat));
             init<QuantLib::Discount, QuantLib::Linear>(TokenPair(Token::Discount, Token::Linear));
             init<QuantLib::Discount, QuantLib::LogCubic>(TokenPair(Token::Discount, Token::LogCubic));
@@ -225,7 +225,7 @@ namespace QuantLibAddin {
 
             // ForwardRate
             init<QuantLib::ForwardRate, QuantLib::BackwardFlat>(TokenPair(Token::ForwardRate, Token::BackwardFlat));
-            init<QuantLib::ForwardRate, QuantLib::Cubic>(TokenPair(Token::ForwardRate, Token::Cubic));
+            init<QuantLib::ForwardRate, QuantLib::CubicSpline>(TokenPair(Token::ForwardRate, Token::CubicSpline));
             init<QuantLib::ForwardRate, QuantLib::ForwardFlat>(TokenPair(Token::ForwardRate, Token::ForwardFlat));
             init<QuantLib::ForwardRate, QuantLib::Linear>(TokenPair(Token::ForwardRate, Token::Linear));
             init<QuantLib::ForwardRate, QuantLib::LogCubic>(TokenPair(Token::ForwardRate, Token::LogCubic));
@@ -233,7 +233,7 @@ namespace QuantLibAddin {
 
             // ZeroYield
             init<QuantLib::ZeroYield, QuantLib::BackwardFlat>(TokenPair(Token::ZeroYield, Token::BackwardFlat));
-            init<QuantLib::ZeroYield, QuantLib::Cubic>(TokenPair(Token::ZeroYield, Token::Cubic));
+            init<QuantLib::ZeroYield, QuantLib::CubicSpline>(TokenPair(Token::ZeroYield, Token::CubicSpline));
             init<QuantLib::ZeroYield, QuantLib::ForwardFlat>(TokenPair(Token::ZeroYield, Token::ForwardFlat));
             init<QuantLib::ZeroYield, QuantLib::Linear>(TokenPair(Token::ZeroYield, Token::Linear));
             init<QuantLib::ZeroYield, QuantLib::LogCubic>(TokenPair(Token::ZeroYield, Token::LogCubic));

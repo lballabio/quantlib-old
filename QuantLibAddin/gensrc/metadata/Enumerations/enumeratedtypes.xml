@@ -1199,29 +1199,29 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLib::CubicSpline::BoundaryCondition'>
+    <EnumeratedTypeGroup type='QuantLib::CubicSplineInterpolation::BoundaryCondition'>
       <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
       <constructor>false</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
           <string>NotAKnot</string>
-          <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::NotAKnot)</value>
+          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::NotAKnot)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>FirstDerivative</string>
-          <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::FirstDerivative)</value>
+          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::FirstDerivative)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>SecondDerivative</string>
-          <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::SecondDerivative)</value>
+          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::SecondDerivative)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Periodic</string>
-          <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::Periodic)</value>
+          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::Periodic)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Lagrange</string>
-          <value>QuantLib::CubicSpline::BoundaryCondition(QuantLib::CubicSpline::Lagrange)</value>
+          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::Lagrange)</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
@@ -1338,8 +1338,8 @@
           <value>QuantLibAddin::Token::BackwardFlat</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>Cubic</string>
-          <value>QuantLibAddin::Token::Cubic</value>
+          <string>CubicSpline</string>
+          <value>QuantLibAddin::Token::CubicSpline</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>ForwardFlat</string>

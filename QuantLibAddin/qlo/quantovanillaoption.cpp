@@ -21,7 +21,7 @@
 #endif
 #include <qlo/quantovanillaoption.hpp>
 #include <qlo/exercise.hpp>
-#include <qlo/termstructures.hpp>
+#include <qlo/yieldtermstructures.hpp>
 #include <qlo/volatilities.hpp>
 
 namespace QuantLibAddin {

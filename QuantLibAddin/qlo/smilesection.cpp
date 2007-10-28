@@ -56,8 +56,8 @@ namespace QuantLibAddin {
         for(QuantLib::Size i = 0; i<temp.size(); ++i)
             temp[i] = stdDevs[i];
         libraryObject_ = boost::shared_ptr<QuantLib::SmileSection>(new
-            QuantLib::InterpolatedSmileSection<>(optionDate, s,
-                                                 temp, atmLevel, dc));
+            QuantLib::InterpolatedSmileSection<QuantLib::Linear>(
+                                    optionDate, s, temp, atmLevel, dc));
     }
 
     SabrSmileSection::SabrSmileSection(
@@ -88,9 +88,10 @@ namespace QuantLibAddin {
         if (!endCriteria)
             QuantLib::EndCriteria endCriteria(60000, 100, 1e-8, 1e-8, 1e-8);
 
-        QuantLib::SABR sabrInterpolationFactory(expiry, forward->value(), alpha, beta,
-            nu, rho, isAlphaFixed, isBetaFixed, isNuFixed, 
-            isRhoFixed, vegaWeighted, endCriteria, method);
+        QuantLib::SABR sabr(
+                                expiry, forward->value(), alpha, beta,
+                                nu, rho, isAlphaFixed, isBetaFixed, isNuFixed, 
+                                isRhoFixed, vegaWeighted, endCriteria, method);
         
         std::vector<QuantLib::Handle<QuantLib::Quote> > temp(stdDevs.size());
         for(QuantLib::Size i = 0; i<temp.size(); ++i)
@@ -98,7 +99,7 @@ namespace QuantLibAddin {
         QuantLib::InterpolatedSmileSection<QuantLib::SABR>* 
             genericInterpolatedSmileSection = new
                 QuantLib::InterpolatedSmileSection<QuantLib::SABR>(
-                    expiry, strikes, temp, forward, sabrInterpolationFactory);
+                    expiry, strikes, temp, forward, sabr);
 
         libraryObject_ = boost::shared_ptr<
             QuantLib::InterpolatedSmileSection<QuantLib::SABR> >(

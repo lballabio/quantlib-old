@@ -5,13 +5,13 @@
     <addinIncludes>
       <include>qlo/forwardrateagreement.hpp</include>
       <include>qlo/index.hpp</include>
-      <include>qlo/termstructures.hpp</include>
+      <include>qlo/yieldtermstructures.hpp</include>
       <include>ql/indexes/iborindex.hpp</include>
     </addinIncludes>
     <serializationIncludes>
       <include>qlo/forwardrateagreement.hpp</include>
       <include>qlo/index.hpp</include>
-      <include>qlo/termstructures.hpp</include>
+      <include>qlo/yieldtermstructures.hpp</include>
       <include>ql/indexes/iborindex.hpp</include>
     </serializationIncludes>
     <copyright>

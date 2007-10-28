@@ -60,7 +60,7 @@
                     <Parameter name='InterpolatorID' default='"LogLinear"'>
                         <type>string</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>BackwardFlat, ForwardFlat, Linear, LogLinear, Cubic, or LogCubic. If omitted, default = LogLinear is used.</description>
+                        <description>BackwardFlat, ForwardFlat, Linear, LogLinear, CubicSpline, or LogCubic. If omitted, default = LogLinear is used.</description>
                     </Parameter>
                     <Parameter name='Accuracy' default='1.0e-12'>
                         <type>QuantLib::Real</type>

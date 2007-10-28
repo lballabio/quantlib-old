@@ -20,7 +20,7 @@
 #ifndef qla_piecewiseyieldcurve_hpp
 #define qla_piecewiseyieldcurve_hpp
 
-#include <qlo/termstructures.hpp>
+#include <qlo/yieldtermstructures.hpp>
 
 namespace QuantLibAddin {
 
@@ -28,7 +28,7 @@ namespace QuantLibAddin {
     // QuantLib types of the same name.
     struct Token {
         enum Traits { Discount, ForwardRate, ZeroYield };
-        enum Interpolator { BackwardFlat, Cubic, ForwardFlat, Linear, LogCubic, LogLinear };
+        enum Interpolator { BackwardFlat, CubicSpline, ForwardFlat, Linear, LogCubic, LogLinear };
     };
 
     // A wrapper for QuantLib template class PiecewiseYieldCurve<Traits, Interpolator>.

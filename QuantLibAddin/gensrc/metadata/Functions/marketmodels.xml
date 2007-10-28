@@ -8,7 +8,7 @@
     <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/correlation.hpp</include>
     <include>qlo/ctsmmcapletcalibration.hpp</include>
-    <include>qlo/termstructures.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/models/marketmodels/models/fwdperiodadapter.hpp</include>
     <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
     <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
@@ -20,7 +20,7 @@
     <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/correlation.hpp</include>
     <include>qlo/ctsmmcapletcalibration.hpp</include>
-    <include>qlo/termstructures.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/models/marketmodels/models/fwdperiodadapter.hpp</include>
     <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
     <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
