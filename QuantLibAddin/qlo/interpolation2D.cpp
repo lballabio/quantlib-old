@@ -29,11 +29,12 @@ namespace QuantLibAddin {
     Interpolation2D::Interpolation2D(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const std::string &interpolation2DType, 
-        const std::vector<double>& x,
-        const std::vector<double>& y,
+        const std::vector<QuantLib::Real>& x,
+        const std::vector<QuantLib::Real>& y,
         const QuantLib::Matrix& dataMatrix,
         bool permanent)
-    : Extrapolator(properties, permanent)
+    : Extrapolator(properties, permanent),
+      x_(x), y_(y), dataMatrix_(dataMatrix)
     {
         QL_REQUIRE(y.size()==dataMatrix.rows(),
             "y size (" << y.size() <<
@@ -43,12 +44,12 @@ namespace QuantLibAddin {
             "x size (" << x.size() <<
             ") does not match number of columns in the data matrix ("
             << dataMatrix.columns() << ")");
-        const std::vector<QuantLib::Real>& x_ =
-            boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("XARRAY"));
-        const std::vector<QuantLib::Real>& y_ =
-            boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("YARRAY"));
-        const QuantLib::Matrix& dataMatrix_ =
-            boost::any_cast<QuantLib::Matrix>(propertyValue("ZMATRIX"));
+        //const std::vector<QuantLib::Real>& x_ =
+        //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("XARRAY"));
+        //const std::vector<QuantLib::Real>& y_ =
+        //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("YARRAY"));
+        //const QuantLib::Matrix& dataMatrix_ =
+        //    boost::any_cast<QuantLib::Matrix>(propertyValue("ZMATRIX"));
         libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::Interpolation2D> >()
             (interpolation2DType, x_.begin(), x_.end(), y_.begin(), y_.end(), dataMatrix_);
 

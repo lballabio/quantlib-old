@@ -39,6 +39,8 @@ namespace QuantLibAddin {
                       const std::vector<QuantLib::Real>& x,
                       const std::vector<QuantLib::Real>& y,
                       bool permanent);
+      protected:
+        std::vector<QuantLib::Real> x_, y_;
     };
 
     class LinearInterpolation : public Interpolation {
@@ -76,10 +78,10 @@ namespace QuantLibAddin {
             QuantLib::Real beta,
             QuantLib::Real nu,
             QuantLib::Real rho,
-            bool isAlphaFixed,
-            bool isBetaFixed,
-            bool isNuFixed,
-            bool isRhoFixed,
+            bool alphaIsFixed,
+            bool betaIsFixed,
+            bool nuIsFixed,
+            bool rhoIsFixed,
             bool vegaWeighted,
             const boost::shared_ptr<QuantLib::EndCriteria>& ec,
             const boost::shared_ptr<QuantLib::OptimizationMethod>& om,
@@ -88,7 +90,26 @@ namespace QuantLibAddin {
         QuantLib::Real forward_;
     };
 
+    class AbcdInterpolation : public Interpolation {
+      public:
+        AbcdInterpolation(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Real>& x,
+            const std::vector<QuantLib::Real>& y,
+            QuantLib::Real a,
+            QuantLib::Real b,
+            QuantLib::Real c,
+            QuantLib::Real d,
+            bool aIsFixed,
+            bool bIsFixed,
+            bool cIsFixed,
+            bool dIsFixed,
+            bool vegaWeighted,
+            const boost::shared_ptr<QuantLib::EndCriteria>& ec,
+            const boost::shared_ptr<QuantLib::OptimizationMethod>& om,
+            bool permanent);
+    };
+
 }
 
 #endif
-
