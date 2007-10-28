@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -80,16 +81,16 @@ namespace QuantLibAddin {
     // the underlying QuantLib template class PiecewiseYieldCurve<Traits, Interpolator>.
     // This logic is placed in namespace Call.
 
-    // TODO 1) This code overlaps somewhat with logic in the Enumeration Registry, consolidate?
-    //      2) Generalize this logic to expose any template class to the Addin interface
+    // TODO 1) This code overlaps somewhat with logic in the Enumeration Registry - consolidate?
+    //      2) Generalize this functionality to expose any template class to the Addin interface
 
     namespace Call {
 
     typedef const boost::shared_ptr<QuantLib::Extrapolator>& extrapolatorPtr;
 
     // A nontemplate abstract base class to hold wrappers for member functions of
-    // PiecewiseYieldCurve<Traits, Interpolator>.  One concrete subclass will be provided
-    // for each combination of Traits / Interpolator.
+    // PiecewiseYieldCurve<Traits, Interpolator>.  A template subclass allows for
+    // one concrete instantiation of each combination of Traits / Interpolator.
     
     class CallerBase {
     public:
@@ -100,7 +101,7 @@ namespace QuantLibAddin {
         virtual QuantLib::Size iterations(extrapolatorPtr extrapolator) const = 0;
     };
 
-    // Concrete base class to wrap member functions of PiecewiseYieldCurve<Traits, Interpolator>.
+    // Concrete derived class to wrap member functions of PiecewiseYieldCurve<Traits, Interpolator>.
     // Given a value of type boost::shared_ptr<QuantLib::Extrapolator>, this class downcasts
     // to PiecewiseYieldCurve<Traits, Interpolator> and calls the given member function.
 
@@ -142,8 +143,6 @@ namespace QuantLibAddin {
 
     // "TokenPair" - A pair of Tokens indicating a combination of Traits / Interpolator.
     typedef std::pair<Token::Traits, Token::Interpolator> TokenPair;
-    // CallerMap - Holds a pointer to Caller for each combination of Traits / Interpolator.
-    typedef std::map<TokenPair, boost::shared_ptr<CallerBase> > CallerMap;
 
     // Stream operator to write a TokenPair to a stream - for logging / error handling.
     std::ostream &operator<<(std::ostream &out, TokenPair tokenPair) {
@@ -190,11 +189,19 @@ namespace QuantLibAddin {
         return out;
     }
 
-    // Class CallerFactory wraps the CallerMap and provides logic around the Caller pointers.
+    // Class CallerFactory stores a map of pointers to Caller objects
 
     class CallerFactory {
 
+        // CallerMap - Holds a pointer to Caller for each combination of Traits / Interpolator.
+        typedef std::map<TokenPair, boost::shared_ptr<CallerBase> > CallerMap;
         CallerMap callerMap_;
+
+        // Add an entry to the caller map.
+        template <class Traits, class Interpolator>
+        void init(TokenPair tokenPair) {
+            callerMap_[tokenPair] = boost::shared_ptr<CallerBase>(new Caller<Traits, Interpolator>);
+        }
 
         // Retrieve the Caller pointer corresponding to a given TokenPair
         boost::shared_ptr<CallerBase> getCaller(TokenPair tokenPair) const {
@@ -209,46 +216,28 @@ namespace QuantLibAddin {
         CallerFactory() {
 
             // Discount
-            callerMap_[TokenPair(Token::Discount, Token::BackwardFlat)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::Discount, QuantLib::BackwardFlat>);
-            callerMap_[TokenPair(Token::Discount, Token::Cubic)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::Discount, QuantLib::Cubic>);
-            callerMap_[TokenPair(Token::Discount, Token::ForwardFlat)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::Discount, QuantLib::ForwardFlat>);
-            callerMap_[TokenPair(Token::Discount, Token::Linear)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::Discount, QuantLib::Linear>);
-            callerMap_[TokenPair(Token::Discount, Token::LogCubic)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::Discount, QuantLib::LogCubic>);
-            callerMap_[TokenPair(Token::Discount, Token::LogLinear)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::Discount, QuantLib::LogLinear>);
+            init<QuantLib::Discount, QuantLib::BackwardFlat>(TokenPair(Token::Discount, Token::BackwardFlat));
+            init<QuantLib::Discount, QuantLib::Cubic>(TokenPair(Token::Discount, Token::Cubic));
+            init<QuantLib::Discount, QuantLib::ForwardFlat>(TokenPair(Token::Discount, Token::ForwardFlat));
+            init<QuantLib::Discount, QuantLib::Linear>(TokenPair(Token::Discount, Token::Linear));
+            init<QuantLib::Discount, QuantLib::LogCubic>(TokenPair(Token::Discount, Token::LogCubic));
+            init<QuantLib::Discount, QuantLib::LogLinear>(TokenPair(Token::Discount, Token::LogLinear));
 
             // ForwardRate
-            callerMap_[TokenPair(Token::ForwardRate, Token::BackwardFlat)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ForwardRate, QuantLib::BackwardFlat>);
-            callerMap_[TokenPair(Token::ForwardRate, Token::Cubic)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ForwardRate, QuantLib::Cubic>);
-            callerMap_[TokenPair(Token::ForwardRate, Token::ForwardFlat)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ForwardRate, QuantLib::ForwardFlat>);
-            callerMap_[TokenPair(Token::ForwardRate, Token::Linear)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ForwardRate, QuantLib::Linear>);
-            callerMap_[TokenPair(Token::ForwardRate, Token::LogCubic)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ForwardRate, QuantLib::LogCubic>);
-            callerMap_[TokenPair(Token::ForwardRate, Token::LogLinear)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ForwardRate, QuantLib::LogLinear>);
+            init<QuantLib::ForwardRate, QuantLib::BackwardFlat>(TokenPair(Token::ForwardRate, Token::BackwardFlat));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(TokenPair(Token::ForwardRate, Token::Cubic));
+            init<QuantLib::ForwardRate, QuantLib::ForwardFlat>(TokenPair(Token::ForwardRate, Token::ForwardFlat));
+            init<QuantLib::ForwardRate, QuantLib::Linear>(TokenPair(Token::ForwardRate, Token::Linear));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(TokenPair(Token::ForwardRate, Token::LogCubic));
+            init<QuantLib::ForwardRate, QuantLib::LogLinear>(TokenPair(Token::ForwardRate, Token::LogLinear));
 
             // ZeroYield
-            callerMap_[TokenPair(Token::ZeroYield, Token::BackwardFlat)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ZeroYield, QuantLib::BackwardFlat>);
-            callerMap_[TokenPair(Token::ZeroYield, Token::Cubic)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ZeroYield, QuantLib::Cubic>);
-            callerMap_[TokenPair(Token::ZeroYield, Token::ForwardFlat)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ZeroYield, QuantLib::ForwardFlat>);
-            callerMap_[TokenPair(Token::ZeroYield, Token::Linear)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ZeroYield, QuantLib::Linear>);
-            callerMap_[TokenPair(Token::ZeroYield, Token::LogCubic)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ZeroYield, QuantLib::LogCubic>);
-            callerMap_[TokenPair(Token::ZeroYield, Token::LogLinear)]
-                = boost::shared_ptr<CallerBase>(new Caller<QuantLib::ZeroYield, QuantLib::LogLinear>);
+            init<QuantLib::ZeroYield, QuantLib::BackwardFlat>(TokenPair(Token::ZeroYield, Token::BackwardFlat));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(TokenPair(Token::ZeroYield, Token::Cubic));
+            init<QuantLib::ZeroYield, QuantLib::ForwardFlat>(TokenPair(Token::ZeroYield, Token::ForwardFlat));
+            init<QuantLib::ZeroYield, QuantLib::Linear>(TokenPair(Token::ZeroYield, Token::Linear));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(TokenPair(Token::ZeroYield, Token::LogCubic));
+            init<QuantLib::ZeroYield, QuantLib::LogLinear>(TokenPair(Token::ZeroYield, Token::LogLinear));
 
         }
 
