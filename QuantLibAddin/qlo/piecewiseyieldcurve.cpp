@@ -94,11 +94,12 @@ namespace QuantLibAddin {
     
     class CallerBase {
     public:
-        virtual const std::vector<QuantLib::Time>& times(extrapolatorPtr extrapolator) const = 0;
-        virtual const std::vector<QuantLib::Date>& dates(extrapolatorPtr extrapolator) const = 0;
-        virtual const std::vector<QuantLib::Real>& data(extrapolatorPtr extrapolator) const = 0;
-        virtual const std::vector<QuantLib::Real>& improvements(extrapolatorPtr extrapolator) const = 0;
-        virtual QuantLib::Size iterations(extrapolatorPtr extrapolator) const = 0;
+        virtual const std::vector<QuantLib::Time>& times(QuantLib::Extrapolator *extrapolator) const = 0;
+        virtual const std::vector<QuantLib::Date>& dates(QuantLib::Extrapolator *extrapolator) const = 0;
+        virtual const std::vector<QuantLib::Real>& data(QuantLib::Extrapolator *extrapolator) const = 0;
+        virtual const std::vector<QuantLib::Real>& improvements(QuantLib::Extrapolator *extrapolator) const = 0;
+        virtual QuantLib::Size iterations(QuantLib::Extrapolator *extrapolator) const = 0;
+        virtual ~CallerBase() {}
     };
 
     // Concrete derived class to wrap member functions of PiecewiseYieldCurve<Traits, Interpolator>.
@@ -110,32 +111,31 @@ namespace QuantLibAddin {
 
         typedef QuantLib::PiecewiseYieldCurve<Traits, Interpolator> CurveClass;
 
-        boost::shared_ptr<CurveClass> get(extrapolatorPtr extrapolator) const {
+        CurveClass *get(QuantLib::Extrapolator *extrapolator) const {
 
-            boost::shared_ptr<CurveClass> ret =
-                boost::dynamic_pointer_cast<CurveClass>(extrapolator);
+            CurveClass *ret = dynamic_cast<CurveClass*>(extrapolator);
             OH_REQUIRE(ret, "Unable to convert from type " << typeid(extrapolator).name()
                 << " to type " << typeid(CurveClass).name());
             return ret;
         }
 
-        virtual const std::vector<QuantLib::Time>& times(extrapolatorPtr extrapolator) const {
+        virtual const std::vector<QuantLib::Time>& times(QuantLib::Extrapolator *extrapolator) const {
             return get(extrapolator)->times();
         }
 
-        virtual const std::vector<QuantLib::Date>& dates(extrapolatorPtr extrapolator) const {
+        virtual const std::vector<QuantLib::Date>& dates(QuantLib::Extrapolator *extrapolator) const {
             return get(extrapolator)->dates();
         }
 
-        virtual const std::vector<QuantLib::Real>& data(extrapolatorPtr extrapolator) const {
+        virtual const std::vector<QuantLib::Real>& data(QuantLib::Extrapolator *extrapolator) const {
             return get(extrapolator)->data();
         }
 
-        virtual const std::vector<QuantLib::Real>& improvements(extrapolatorPtr extrapolator) const {
+        virtual const std::vector<QuantLib::Real>& improvements(QuantLib::Extrapolator *extrapolator) const {
             return get(extrapolator)->improvements();
         }
 
-        virtual QuantLib::Size iterations(extrapolatorPtr extrapolator) const {
+        virtual QuantLib::Size iterations(QuantLib::Extrapolator *extrapolator) const {
             return get(extrapolator)->iterations();
         }
 
@@ -194,17 +194,17 @@ namespace QuantLibAddin {
     class CallerFactory {
 
         // CallerMap - Holds a pointer to Caller for each combination of Traits / Interpolator.
-        typedef std::map<TokenPair, boost::shared_ptr<CallerBase> > CallerMap;
+        typedef std::map<TokenPair, CallerBase*> CallerMap;
         CallerMap callerMap_;
 
         // Add an entry to the caller map.
         template <class Traits, class Interpolator>
         void init(TokenPair tokenPair) {
-            callerMap_[tokenPair] = boost::shared_ptr<CallerBase>(new Caller<Traits, Interpolator>);
+            callerMap_[tokenPair] = new Caller<Traits, Interpolator>;
         }
 
         // Retrieve the Caller pointer corresponding to a given TokenPair
-        boost::shared_ptr<CallerBase> getCaller(TokenPair tokenPair) const {
+        CallerBase *getCaller(TokenPair tokenPair) const {
             CallerMap::const_iterator i = callerMap_.find(tokenPair);
             OH_REQUIRE(i!=callerMap_.end(), "Unable to retrieve caller for type " << tokenPair);
             return i->second;
@@ -241,29 +241,35 @@ namespace QuantLibAddin {
 
         }
 
+        // Destructor - deallocate the CallerMap.
+        ~CallerFactory() {
+            for (CallerMap::const_iterator i = callerMap_.begin(); i != callerMap_.end(); i++)
+                delete i->second;
+        }
+
         // Wrappers for member functions of PiecewiseYieldCurve<Traits, Interpolator>.  These functions
         // accept a TokenPair (Traits / Interpolator) and a reference to a QuantLib::Extrapolator.
         // The functions call getCaller() to retrieve the Caller pointer corresponding to the TokenPair,
         // then pass the QuantLib::Extrapolator reference to the Caller which downcasts to the appropriate
         // instantiation of PiecewiseYieldCurve<Traits, Interpolator> and calls the given member function.
 
-        const std::vector<QuantLib::Time>& times(TokenPair tokenPair, extrapolatorPtr extrapolator) const {
+        const std::vector<QuantLib::Time>& times(TokenPair tokenPair, QuantLib::Extrapolator *extrapolator) const {
             return getCaller(tokenPair)->times(extrapolator);
         }
 
-        const std::vector<QuantLib::Date>& dates(TokenPair tokenPair, extrapolatorPtr extrapolator) const {
+        const std::vector<QuantLib::Date>& dates(TokenPair tokenPair, QuantLib::Extrapolator *extrapolator) const {
             return getCaller(tokenPair)->dates(extrapolator);
         }
 
-        const std::vector<QuantLib::Real>& data(TokenPair tokenPair, extrapolatorPtr extrapolator) const {
+        const std::vector<QuantLib::Real>& data(TokenPair tokenPair, QuantLib::Extrapolator *extrapolator) const {
             return getCaller(tokenPair)->data(extrapolator);
         }
 
-        const std::vector<QuantLib::Real>& improvements(TokenPair tokenPair, extrapolatorPtr extrapolator) const {
+        const std::vector<QuantLib::Real>& improvements(TokenPair tokenPair, QuantLib::Extrapolator *extrapolator) const {
             return getCaller(tokenPair)->improvements(extrapolator);
         }
 
-        QuantLib::Size iterations(TokenPair tokenPair, extrapolatorPtr extrapolator) const {
+        QuantLib::Size iterations(TokenPair tokenPair, QuantLib::Extrapolator *extrapolator) const {
             return getCaller(tokenPair)->iterations(extrapolator);
         }
 
@@ -284,27 +290,27 @@ namespace QuantLibAddin {
 
     const std::vector<QuantLib::Time>& PiecewiseYieldCurve::times(
         Token::Traits traits, Token::Interpolator interpolator) const {
-        return Call::callerFactory().times(Call::TokenPair(traits, interpolator), libraryObject_);
+        return Call::callerFactory().times(Call::TokenPair(traits, interpolator), libraryObject_.get());
     }
 
     const std::vector<QuantLib::Date>& PiecewiseYieldCurve::dates(
         Token::Traits traits, Token::Interpolator interpolator) const {
-        return Call::callerFactory().dates(Call::TokenPair(traits, interpolator), libraryObject_);
+        return Call::callerFactory().dates(Call::TokenPair(traits, interpolator), libraryObject_.get());
     }
 
     const std::vector<QuantLib::Real>& PiecewiseYieldCurve::data(
         Token::Traits traits, Token::Interpolator interpolator) const {
-        return Call::callerFactory().data(Call::TokenPair(traits, interpolator), libraryObject_);
+        return Call::callerFactory().data(Call::TokenPair(traits, interpolator), libraryObject_.get());
     }
 
     const std::vector<QuantLib::Real>& PiecewiseYieldCurve::improvements(
         Token::Traits traits, Token::Interpolator interpolator) const {
-        return Call::callerFactory().improvements(Call::TokenPair(traits, interpolator), libraryObject_);
+        return Call::callerFactory().improvements(Call::TokenPair(traits, interpolator), libraryObject_.get());
     }
 
     QuantLib::Size PiecewiseYieldCurve::iterations(
         Token::Traits traits, Token::Interpolator interpolator) const {
-        return Call::callerFactory().iterations(Call::TokenPair(traits, interpolator), libraryObject_);
+        return Call::callerFactory().iterations(Call::TokenPair(traits, interpolator), libraryObject_.get());
     }
 
 }
