@@ -27,7 +27,7 @@
 #include <ql/types.hpp>
 
 namespace QuantLib {
-    class Abcd;
+    class AbcdFunction;
     class AbcdCalibration;
     class Quote;
     class EndCriteria;
@@ -35,17 +35,20 @@ namespace QuantLib {
 }
 
 namespace QuantLibAddin {
-    class Abcd : public ObjectHandler::LibraryObject<QuantLib::Abcd> {
+    class AbcdFunction :
+            public ObjectHandler::LibraryObject<QuantLib::AbcdFunction> {
       public:
-        Abcd(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-             QuantLib::Real a,
-             QuantLib::Real b,
-             QuantLib::Real c,
-             QuantLib::Real d,
-             bool permanent);
+        AbcdFunction(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Real a,
+            QuantLib::Real b,
+            QuantLib::Real c,
+            QuantLib::Real d,
+            bool permanent);
     };
 
-    class AbcdCalibration : public ObjectHandler::LibraryObject<QuantLib::AbcdCalibration> {
+    class AbcdCalibration :
+            public ObjectHandler::LibraryObject<QuantLib::AbcdCalibration> {
       public:
         AbcdCalibration(
              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -69,4 +72,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

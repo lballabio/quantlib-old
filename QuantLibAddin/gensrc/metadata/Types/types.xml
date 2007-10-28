@@ -127,7 +127,7 @@
     <!--<SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObjPtr'>-->
     <SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObj'>
       <DataTypes>
-        <DataType>QuantLib::Abcd</DataType>
+        <DataType>QuantLib::AbcdFunction</DataType>
         <DataType>QuantLib::AbcdAtmVolCurve</DataType>
         <DataType>QuantLib::AbcdCalibration</DataType>
         <DataType>QuantLib::AccountingEngine</DataType>

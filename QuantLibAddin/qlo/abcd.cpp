@@ -30,14 +30,16 @@
 
 namespace QuantLibAddin {
    
-    Abcd::Abcd(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-               QuantLib::Real a, 
-               QuantLib::Real b,
-               QuantLib::Real c, 
-               QuantLib::Real d,
-               bool permanent) : ObjectHandler::LibraryObject<QuantLib::Abcd>(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::Abcd>(
-            new QuantLib::Abcd(a, b, c, d));
+    AbcdFunction::AbcdFunction(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Real a, 
+            QuantLib::Real b,
+            QuantLib::Real c, 
+            QuantLib::Real d,
+            bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::AbcdFunction>(properties, permanent) {
+        libraryObject_ = boost::shared_ptr<QuantLib::AbcdFunction>(new
+            QuantLib::AbcdFunction(a, b, c, d));
     }   
 
     AbcdCalibration::AbcdCalibration(
@@ -51,12 +53,13 @@ namespace QuantLibAddin {
                bool vegaWeighted,
                const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
                const boost::shared_ptr<QuantLib::OptimizationMethod> method,
-               bool permanent) : ObjectHandler::LibraryObject<QuantLib::AbcdCalibration>(properties, permanent) {
+               bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::AbcdCalibration>(properties, permanent) {
 
-        libraryObject_ = boost::shared_ptr<QuantLib::AbcdCalibration>(
-            new QuantLib::AbcdCalibration(times, blackVols, a, b, c, d,
-                               aIsFixed, bIsFixed, cIsFixed, dIsFixed,
-                               vegaWeighted, endCriteria, method));
+        libraryObject_ = boost::shared_ptr<QuantLib::AbcdCalibration>(new
+            QuantLib::AbcdCalibration(times, blackVols, a, b, c, d,
+                                      aIsFixed, bIsFixed, cIsFixed, dIsFixed,
+                                      vegaWeighted, endCriteria, method));
     }
-}
 
+}
