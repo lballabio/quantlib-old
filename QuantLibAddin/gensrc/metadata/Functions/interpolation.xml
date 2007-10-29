@@ -364,7 +364,23 @@
             </ReturnValue>
         </Member>
 
-        <!-- AbcdInterpolation constructor and interface -->
+      <Member name='qlCubicSplineInterpolationMonotonicityAdjustments' type='QuantLib::CubicSplineInterpolation'>
+        <description>Returns a vector of bool (one per cubic) indicating if there has been a monotonicity adjustments</description>
+        <libraryFunction>monotonicityAdjustments</libraryFunction>
+        <SupportedPlatforms>
+          <SupportedPlatform name='Excel'/>
+          <!--SupportedPlatform name='Cpp'/-->
+        </SupportedPlatforms>
+        <ParameterList>
+          <Parameters/>
+        </ParameterList>
+        <ReturnValue>
+          <type>bool</type>
+          <tensorRank>vector</tensorRank>
+        </ReturnValue>
+      </Member>
+
+      <!-- AbcdInterpolation constructor and interface -->
 
         <Constructor name='qlAbcdInterpolation'>
             <libraryFunction>AbcdInterpolation</libraryFunction>

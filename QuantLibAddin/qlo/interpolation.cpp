@@ -65,9 +65,9 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Real>& x,
         const std::vector<QuantLib::Real>& y,
         QuantLib::CubicSplineInterpolation::BoundaryCondition leftCondition,
-        double leftConditionValue,
+        QuantLib::Real leftConditionValue,
         QuantLib::CubicSplineInterpolation::BoundaryCondition rightCondition,
-        double rightConditionValue,
+        QuantLib::Real rightConditionValue,
         bool monotonicityConstraint,
         bool permanent)
     : Interpolation(properties, x, y, permanent)
