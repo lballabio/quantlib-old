@@ -25,7 +25,7 @@
 #include <qlo/Conversions/coercelibrarydifferent.hpp>
 #include <qlo/yieldtermstructures.hpp>
 #include <qlo/swaptionvolstructure.hpp>
-#include <ql/yieldtermstructure.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 
 namespace QuantLibAddin {

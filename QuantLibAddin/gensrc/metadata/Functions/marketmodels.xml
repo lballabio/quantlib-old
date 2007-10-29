@@ -12,7 +12,7 @@
     <include>ql/models/marketmodels/models/fwdperiodadapter.hpp</include>
     <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
     <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
-    <include>ql/yieldtermstructure.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/marketmodels.hpp</include>
@@ -24,7 +24,7 @@
     <include>ql/models/marketmodels/models/fwdperiodadapter.hpp</include>
     <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
     <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
-    <include>ql/yieldtermstructure.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
   </serializationIncludes>
 
   <copyright>

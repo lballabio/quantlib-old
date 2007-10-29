@@ -10,7 +10,7 @@
     <include>qlo/index.hpp</include>
     <include>ql/instruments/swap.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
-    <include>ql/yieldtermstructure.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/swap.hpp</include>
@@ -19,7 +19,7 @@
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
-    <include>ql/yieldtermstructure.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2005 Eric Ehlers

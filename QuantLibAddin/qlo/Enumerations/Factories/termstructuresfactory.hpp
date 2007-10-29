@@ -22,7 +22,7 @@
 
 #include <oh/Enumerations/typefactory.hpp>
 #include <ql/types.hpp>
-#include <ql/yieldtermstructure.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
     class Calendar;

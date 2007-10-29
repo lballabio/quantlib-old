@@ -21,7 +21,7 @@
 #define qla_capletvolstructure_hpp
 
 #include <qlo/termstructures.hpp>
-#include <ql/yieldtermstructure.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripperadapter.hpp>
 

@@ -27,7 +27,7 @@
 #include <qlo/handle.hpp>             // FIXME this line to be removed shortly - Eric
 #include <ql/time/frequency.hpp>
 #include <ql/compounding.hpp>
-#include <ql/yieldtermstructure.hpp>  // FIXME this line to be removed shortly - Eric
+#include <ql/termstructures/yieldtermstructure.hpp>  // FIXME this line to be removed shortly - Eric
 
 namespace QuantLib {
     class Calendar;
