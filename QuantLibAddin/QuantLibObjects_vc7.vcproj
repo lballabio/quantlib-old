@@ -708,6 +708,9 @@
 			Name="Math"
 			Filter="">
 			<File
+				RelativePath=".\qlo\extrapolator.hpp">
+			</File>
+			<File
 				RelativePath="qlo\getcovariance.cpp">
 			</File>
 			<File
@@ -1070,10 +1073,10 @@
 				RelativePath="qlo\ratehelpers.hpp">
 			</File>
 			<File
-				RelativePath="qlo\termstructures.cpp">
+				RelativePath=".\qlo\yieldtermstructures.cpp">
 			</File>
 			<File
-				RelativePath="qlo\termstructures.hpp">
+				RelativePath=".\qlo\yieldtermstructures.hpp">
 			</File>
 		</Filter>
 		<Filter

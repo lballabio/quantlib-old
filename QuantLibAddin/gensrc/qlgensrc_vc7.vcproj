@@ -175,6 +175,9 @@
 				RelativePath="metadata\Functions\payoffs.xml">
 			</File>
 			<File
+				RelativePath=".\metadata\Functions\piecewiseyieldcurve.xml">
+			</File>
+			<File
 				RelativePath="metadata\Functions\prices.xml">
 			</File>
 			<File
@@ -230,6 +233,9 @@
 			</File>
 			<File
 				RelativePath="metadata\Functions\termstructures.xml">
+			</File>
+			<File
+				RelativePath=".\metadata\Functions\timeseries.xml">
 			</File>
 			<File
 				RelativePath="metadata\Functions\utilities.xml">
