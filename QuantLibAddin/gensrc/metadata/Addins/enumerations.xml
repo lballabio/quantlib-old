@@ -1,6 +1,8 @@
 <Addin name='Enumerations'>
 
   <loadRules>false</loadRules>
+  <coreCategories>false</coreCategories>
+  <addinCategories>true</addinCategories>
 
   <Buffers>
     <Buffer name='bufferEnumTypes' fileName='stub.enum.types' local='true'/>

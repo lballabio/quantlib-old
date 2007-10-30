@@ -65,7 +65,7 @@ namespace %(namespace)s {
         """Generate source code for Loops."""
 
         log.Log.instance().logMessage(' begin generating Loops ...')
-        for cat in categoryList.categories('*'):
+        for cat in categoryList.categories('*', self.coreCategories_, self.addinCategories_):
             if cat.containsLoopFunction():
                 self.generateLoops(cat)
         log.Log.instance().logMessage(' done generating Loops.')

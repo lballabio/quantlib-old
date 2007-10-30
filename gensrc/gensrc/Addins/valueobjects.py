@@ -47,7 +47,7 @@ class ValueObjects(addin.Addin):
 
         log.Log.instance().logMessage(' begin generating ValueObjects ...')
         
-        for cat in self.categoryList_.categories('*'):
+        for cat in self.categoryList_.categories('*', self.coreCategories_, self.addinCategories_):
             if cat.generateVOs():
                 allIncludes += ValueObjects.VO_INCLUDE % {
                     'categoryName' : cat.name(),

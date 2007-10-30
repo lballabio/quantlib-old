@@ -122,7 +122,7 @@ class Doxygen(addin.Addin):
         # ensure list of links is sorted alphabetically by display name
         dispNmToCatNm = {}
         displayNames = []
-        for cat in self.categoryList_.categories('*'):
+        for cat in self.categoryList_.categories('*', self.coreCategories_, self.addinCategories_):
             dispNmToCatNm[cat.displayName()] = cat.name()
             displayNames.append(cat.displayName())
         displayNames.sort()
@@ -151,7 +151,7 @@ class Doxygen(addin.Addin):
     def generateDocs(self):
         """Generate doxygen documentation files."""
         allFuncs = []
-        for cat in self.categoryList_.categories('*'):
+        for cat in self.categoryList_.categories('*', self.coreCategories_, self.addinCategories_):
             bufLink = ''
             bufDoc = ''
             for func in cat.functions('*'): 

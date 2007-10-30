@@ -518,6 +518,9 @@
 				RelativePath="qlo\ValueObjects\vo_forwardrateagreement.hpp">
 			</File>
 			<File
+				RelativePath="qlo\ValueObjects\vo_group.hpp">
+			</File>
+			<File
 				RelativePath="qlo\ValueObjects\vo_index.cpp">
 			</File>
 			<File
@@ -606,6 +609,9 @@
 			</File>
 			<File
 				RelativePath="qlo\ValueObjects\vo_randomsequencegenerator.hpp">
+			</File>
+			<File
+				RelativePath="qlo\ValueObjects\vo_range.hpp">
 			</File>
 			<File
 				RelativePath="qlo\ValueObjects\vo_rangeaccrual.cpp">

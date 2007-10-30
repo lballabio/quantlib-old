@@ -1,6 +1,8 @@
 <Addin name='ValueObjects'>
   
   <rootDirectory>qlo/ValueObjects</rootDirectory>
+  <coreCategories>false</coreCategories>
+  <addinCategories>true</addinCategories>
 
   <copyright>
     Copyright (C) 2005, 2006 Plamen Neykov

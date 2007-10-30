@@ -296,6 +296,9 @@
 			Name="config"
 			Filter="">
 			<File
+				RelativePath="config\categories.xml">
+			</File>
+			<File
 				RelativePath="config\config.xml">
 			</File>
 		</Filter>

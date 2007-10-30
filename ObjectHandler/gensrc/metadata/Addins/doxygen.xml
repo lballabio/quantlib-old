@@ -1,6 +1,8 @@
 <Addin name='Doxygen'>
 
   <rootDirectory>Docs/auto.pages</rootDirectory>
+  <coreCategories>true</coreCategories>
+  <addinCategories>false</addinCategories>
 
   <copyright>
     Copyright (C) 2004, 2005, 2006 Eric Ehlers

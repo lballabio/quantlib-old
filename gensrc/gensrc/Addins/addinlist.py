@@ -109,8 +109,8 @@ addin           unchanged   updated     created     total'''
 
     def printDebug(self):
 
-        for cat in self.categoryList_.categories('*'):
-            cat.printDebug()
+        #for cat in self.categoryList_.categories('*'):
+        #    cat.printDebug()
 
         for addin in self.addins_:
             addin.printDebug()

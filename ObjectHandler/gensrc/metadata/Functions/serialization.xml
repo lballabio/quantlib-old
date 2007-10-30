@@ -1,17 +1,3 @@
-<!--
-Owing to a limitation in the design of gensrc, The XML definitions of ObjectHandler functions
-appear in two places:
-
-1) ObjectHandler\gensrc\metadata\Functions\*.xml
-   - Functions for Excel
-2) QuantLibAddin\gensrc\metadata\Functions\ohfunctions.xml
-   - Functions for non-Excel platforms and documentation
-   
-This is necessary because on the Excel platform, OH functions must appear in the OH binary,
-while on other platforms OH functions must appear in the client binary.
-
-gensrc will be enhanced to better cope with this problem.
--->
 
 <Category name='serialization'>
   <description>serialization</description>
@@ -33,6 +19,7 @@ gensrc will be enhanced to better cope with this problem.
       <alias>ObjectHandler::SerializationFactory::instance().saveObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -64,6 +51,7 @@ gensrc will be enhanced to better cope with this problem.
       <alias>ObjectHandler::SerializationFactory::instance().loadObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -100,6 +88,7 @@ gensrc will be enhanced to better cope with this problem.
       <alias>ObjectHandler::SerializationFactory::instance().saveObjectString</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -126,6 +115,7 @@ gensrc will be enhanced to better cope with this problem.
       <alias>ObjectHandler::SerializationFactory::instance().loadObjectString</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

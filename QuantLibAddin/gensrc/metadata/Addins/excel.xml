@@ -5,6 +5,8 @@
   <dataDirectory>../../QuantLibXL/Data</dataDirectory>
   <exportSymbols>false</exportSymbols>
   <namespaceAddin>QuantLibXL</namespaceAddin>
+  <coreCategories>false</coreCategories>
+  <addinCategories>true</addinCategories>
 
   <copyright>
     Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers

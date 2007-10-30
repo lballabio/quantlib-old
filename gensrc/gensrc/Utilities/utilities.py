@@ -31,3 +31,12 @@ def serializeObject(objectClass, fileName = None):
     objectInstance.postSerialize()
     return objectInstance
 
+def serializeList(path, caller, listName, itemName):
+    """instantiate an xml reader and load requested list."""
+    if not path: 
+        setattr(caller, listName+'_', [])
+        return
+    serializer = xmlreader.XmlReader(path)
+    serializer.serializeList(caller, listName, itemName)
+
+

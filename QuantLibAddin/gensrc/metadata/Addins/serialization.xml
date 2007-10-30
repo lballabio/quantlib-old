@@ -2,6 +2,8 @@
 <Addin name='Serialization'>
   
   <rootDirectory>qlo/Serialization</rootDirectory>
+  <coreCategories>false</coreCategories>
+  <addinCategories>true</addinCategories>
 
   <copyright>
     Copyright (C) 2007 Eric Ehlers

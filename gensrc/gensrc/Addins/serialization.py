@@ -70,7 +70,7 @@ class Serialization(addin.Addin):
 
         bufferCreators = ''
 
-        for cat in self.categoryList_.categories('*'):
+        for cat in self.categoryList_.categories('*', self.coreCategories_, self.addinCategories_):
             if not cat.generateVOs(): continue
 
             bufferCreators += '\n        // %s\n\n' % cat.displayName()
@@ -93,7 +93,7 @@ class Serialization(addin.Addin):
 
         bufferAll = ''
 
-        for cat in self.categoryList_.categories('*'):
+        for cat in self.categoryList_.categories('*', self.coreCategories_, self.addinCategories_):
             if not cat.generateVOs(): continue
 
             bufferDeclarations = ''
@@ -151,7 +151,6 @@ class Serialization(addin.Addin):
 # utility functions
 #############################################
 
-
 def generateSerialization(addin):
     """Generate source code for serialization factory.
 
@@ -170,17 +169,17 @@ def generateSerialization(addin):
     addinDirectory = addin.relativePath()
 
     # Keep track of the ID assigned to each Addin class by
-    # the boost serialization framework.  This number is initialized to 3
-    # because 0-2 are reserved for ObjectHandler as explained in file
+    # the boost serialization framework.  This number is initialized to 4
+    # because 0-3 are reserved for ObjectHandler as explained in file
     # QuantLibAddin/Addins/Cpp/Serialization/serialization_oh.cpp
-    classID = 3
+    classID = 4
     # Initialize the global map with the values reserved for ObjectHandler.
     # 0 and 1 refer respectively to ValueObject and vector of ValueObject,
     # but these are omitted because they never occur in app XML data.
-    #idMap = { 'ohRange' : 2, 'ohGroup' : 3 }
-    idMap = { 'ohRange' : 2 }
+    #idMap = { 'ohRange' : 2 }
+    idMap = { 'ohRange' : 2, 'ohGroup' : 3 }
 
-    for cat in addin.categoryList_.categories('*'):
+    for cat in addin.categoryList_.categories('*', addin.coreCategories_, addin.addinCategories_):
 
         if not cat.generateVOs(): continue
 

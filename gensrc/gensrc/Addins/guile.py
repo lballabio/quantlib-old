@@ -69,8 +69,8 @@ class GuileAddin(addin.Addin):
             i += 1
             headers += '#include <' + cat.name() + '.h>\n'
             registrations += self.generateRegistrations(cat)
-            if i < len(self.categoryList_.categoryNames()):
-                registrations += '\n'
+            #if i < len(self.categoryList_.categoryNames()):
+            #    registrations += '\n'
         buf = self.bufferInitFunc.text % (headers, registrations)
         fileName = self.rootPath + environment.config().prefix + 'addin.c'
         outputfile.OutputFile(self, fileName, self.copyright, buf, False)

@@ -19,6 +19,7 @@
 """global configuration state for gensrc application."""
 
 from gensrc.Utilities import common
+from gensrc.Utilities import utilities
 from gensrc.Serialization import serializable
 
 class Configuration(serializable.Serializable):
@@ -27,8 +28,11 @@ class Configuration(serializable.Serializable):
     # public interface
     #############################################
 
-    def categoryNames(self):
-        return self.categoryNames_
+    def coreCategoryNames(self):
+        return self.coreCategoryNames_
+
+    def addinCategoryNames(self):
+        return self.addinCategoryNames_
 
     def voRootDirectory(self):
         return self.voRootDirectory_
@@ -60,6 +64,18 @@ class Configuration(serializable.Serializable):
     def prefixExcel(self):
         return self.prefixExcel_
 
+    def coreCategoryPath(self):
+        return self.coreCategoryPath_
+
+    def coreFunctions(self):
+        return self.coreFunctions_
+
+    def addinCategoryPath(self):
+        return self.addinCategoryPath_
+
+    def addinFunctions(self):
+        return self.addinFunctions_
+
     #############################################
     # serializer interface
     #############################################
@@ -67,7 +83,6 @@ class Configuration(serializable.Serializable):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
 
-        serializer.serializeList(self, 'categoryNames', 'categoryName')
         serializer.serializeProperty(self, 'libRootDirectory')
         serializer.serializeProperty(self, common.NAMESPACE_OBJ)
         serializer.serializeProperty(self, common.NAMESPACE_LIB)
@@ -75,12 +90,20 @@ class Configuration(serializable.Serializable):
         serializer.serializeProperty(self, 'prefixExcel')
         serializer.serializeBoolean(self, 'usingEnumerations')
         serializer.serializeBoolean(self, 'usingSerialization')
+        serializer.serializeProperty(self, 'coreCategoryPath')
+        serializer.serializeProperty(self, 'coreFunctions')
+        serializer.serializeProperty(self, 'addinCategoryPath')
+        serializer.serializeProperty(self, 'addinFunctions')
 
     def postSerialize(self):
         """Perform post serialization initialization."""
         self.voRootDirectory_ = self.libRootDirectory_ + '/ValueObjects'
         self.loopRootDirectory_ = self.libRootDirectory_ + '/Loop'
         self.libFullPath_ = '../' + self.libRootDirectory_ + '/'
+        
+        utilities.serializeList(self.coreCategoryPath_, self, 'coreCategoryNames', 'categoryName')
+        utilities.serializeList(self.addinCategoryPath_, self, 'addinCategoryNames', 'categoryName')
+        
 
     #############################################
     # private member functions

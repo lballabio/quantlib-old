@@ -1,17 +1,3 @@
-<!--
-Owing to a limitation in the design of gensrc, The XML definitions of ObjectHandler functions
-appear in two places:
-
-1) ObjectHandler\gensrc\metadata\Functions\*.xml
-   - Functions for Excel
-2) QuantLibAddin\gensrc\metadata\Functions\ohfunctions.xml
-   - Functions for non-Excel platforms and documentation
-   
-This is necessary because on the Excel platform, OH functions must appear in the OH binary,
-while on other platforms OH functions must appear in the client binary.
-
-gensrc will be enhanced to better cope with this problem.
--->
 
 <Category name='garbagecollection'>
   <description>garbage collection</description>

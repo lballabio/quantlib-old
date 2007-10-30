@@ -17,9 +17,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// This file was generated automatically by gensrc.py.
-// Editing this file manually is not recommended.
-
 #ifndef oh_vo_range_hpp
 #define oh_vo_range_hpp
 

@@ -1,0 +1,14 @@
+<root>
+  
+  <coreCategoryNames>
+    <categoryName>enumerations</categoryName>
+    <categoryName>garbagecollection</categoryName>
+    <categoryName>group</categoryName>
+    <categoryName>logging</categoryName>
+    <categoryName>ohutils</categoryName>
+    <categoryName>range</categoryName>
+    <categoryName>serialization</categoryName>
+    <categoryName>valueobjects</categoryName>
+  </coreCategoryNames>
+
+</root>

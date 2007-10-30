@@ -4,16 +4,7 @@
   <namespaceObjects>ObjectHandler</namespaceObjects>
   <namespaceLibrary>ObjectHandler</namespaceLibrary>
   <libRootDirectory>oh</libRootDirectory>
-
-  <categoryNames>
-    <categoryName>enumerations</categoryName>
-    <categoryName>garbagecollection</categoryName>
-    <categoryName>group</categoryName>
-    <categoryName>logging</categoryName>
-    <categoryName>ohutils</categoryName>
-    <categoryName>range</categoryName>
-    <categoryName>serialization</categoryName>
-    <categoryName>valueobjects</categoryName>
-  </categoryNames>
+  <coreCategoryPath>config/categories</coreCategoryPath>
+  <coreFunctions>metadata/Functions/</coreFunctions>
 
 </Config>

@@ -103,6 +103,7 @@
                 <DataType>QuantLibAddin::Swap</DataType>
                 <DataType>QuantLibAddin::TimeSeriesDef</DataType>
                 <DataType>QuantLibAddin::VanillaSwap</DataType>
+              <DataType>ObjectHandler::Group</DataType>
             </DataTypes>
         </SuperType>
 

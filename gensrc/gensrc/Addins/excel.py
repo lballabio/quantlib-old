@@ -105,7 +105,7 @@ class ExcelAddin(addin.Addin):
 
     def generateFunctions(self):
         """Generate source code for all functions in all categories."""
-        for cat in self.categoryList_.categories(self.name_):
+        for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_):
             categoryIncludes = cat.includeList(LOOP_INCLUDES)
             buf = self.bufferIncludes_.text() % {
                 'categoryIncludes' : categoryIncludes }
@@ -245,7 +245,7 @@ class ExcelAddin(addin.Addin):
         registerDeclarations = ''
         unregisterDeclarations = ''
         self.functionCount_ = 0
-        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_, supportedplatform.MANUAL):
             categoryName = cat.name().capitalize()
             registerCalls += 8 * ' ' + 'register' + categoryName + '(xDll);\n'
             unregisterCalls += 8 * ' ' + 'unregister' + categoryName + '(xDll);\n'
@@ -266,7 +266,7 @@ class ExcelAddin(addin.Addin):
         """Generate directives that cause exported symbols to be available to
         clients of this Addin."""
         exportSymbols = ''
-        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_, supportedplatform.MANUAL):
             for func in cat.functions(self.name_, supportedplatform.MANUAL):
                 exportSymbols += '#pragma comment (linker, "/export:_%s")\n' % func.name()
         buf = self.exportStub_.text() % exportSymbols
@@ -332,5 +332,4 @@ class ExcelAddin(addin.Addin):
         """load/unload class state to/from serializer object."""
         super(ExcelAddin, self).serialize(serializer)
         serializer.serializeBoolean(self, 'exportSymbols')
-        #serializer.serializeProperty(self, 'serializationBase')
 

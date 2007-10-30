@@ -427,6 +427,12 @@
 				RelativePath="Serialization\serialization_forwardrateagreement.hpp">
 			</File>
 			<File
+				RelativePath=".\Serialization\serialization_group.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_group.hpp">
+			</File>
+			<File
 				RelativePath="Serialization\serialization_index.cpp">
 			</File>
 			<File
@@ -521,6 +527,12 @@
 			</File>
 			<File
 				RelativePath="Serialization\serialization_randomsequencegenerator.hpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_range.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_range.hpp">
 			</File>
 			<File
 				RelativePath="Serialization\serialization_rangeaccrual.cpp">
@@ -767,6 +779,12 @@
 			RelativePath="leg.hpp">
 		</File>
 		<File
+			RelativePath=".\logging.cpp">
+		</File>
+		<File
+			RelativePath=".\logging.hpp">
+		</File>
+		<File
 			RelativePath="marketmodelevolvers.cpp">
 		</File>
 		<File
@@ -785,6 +803,12 @@
 			RelativePath="ohfunctions.hpp">
 		</File>
 		<File
+			RelativePath=".\ohutils.cpp">
+		</File>
+		<File
+			RelativePath=".\ohutils.hpp">
+		</File>
+		<File
 			RelativePath="optimization.cpp">
 		</File>
 		<File
@@ -801,6 +825,12 @@
 		</File>
 		<File
 			RelativePath="payoffs.hpp">
+		</File>
+		<File
+			RelativePath=".\piecewiseyieldcurve.cpp">
+		</File>
+		<File
+			RelativePath=".\piecewiseyieldcurve.hpp">
 		</File>
 		<File
 			RelativePath="pricingengines.cpp">
@@ -855,6 +885,12 @@
 		</File>
 		<File
 			RelativePath="sequencestatistics.hpp">
+		</File>
+		<File
+			RelativePath=".\serialization.cpp">
+		</File>
+		<File
+			RelativePath=".\serialization.hpp">
 		</File>
 		<File
 			RelativePath="settings.cpp">

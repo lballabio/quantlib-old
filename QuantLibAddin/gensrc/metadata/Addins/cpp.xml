@@ -4,6 +4,8 @@
   <relativePath>Addins/Cpp</relativePath>
   <rootDirectory>Addins/Cpp</rootDirectory>
   <namespaceAddin>QuantLibAddinCpp</namespaceAddin>
+  <coreCategories>true</coreCategories>
+  <addinCategories>true</addinCategories>
 
   <copyright>
     Copyright (C) 2007 Eric Ehlers

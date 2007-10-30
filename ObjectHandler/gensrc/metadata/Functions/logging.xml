@@ -1,23 +1,11 @@
-<!--
-Owing to a limitation in the design of gensrc, The XML definitions of ObjectHandler functions
-appear in two places:
-
-1) ObjectHandler\gensrc\metadata\Functions\*.xml
-   - Functions for Excel
-2) QuantLibAddin\gensrc\metadata\Functions\ohfunctions.xml
-   - Functions for non-Excel platforms and documentation
-   
-This is necessary because on the Excel platform, OH functions must appear in the OH binary,
-while on other platforms OH functions must appear in the client binary.
-
-gensrc will be enhanced to better cope with this problem.
--->
 
 <Category name='logging'>
   <description>logging functions</description>
   <displayName>Logging Functions</displayName>
   <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
-  <addinIncludes/>
+  <addinIncludes>
+    <include>oh/utilities.hpp</include>
+  </addinIncludes>
 
   <copyright>
     Copyright (C) 2004, 2005 Ferdinando Ametrano
@@ -48,6 +36,7 @@ gensrc will be enhanced to better cope with this problem.
       <alias>ObjectHandler::logMessage</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -74,6 +63,7 @@ gensrc will be enhanced to better cope with this problem.
       <alias>ObjectHandler::logObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -95,6 +85,7 @@ gensrc will be enhanced to better cope with this problem.
       <alias>ObjectHandler::setLogFile</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -135,6 +126,32 @@ gensrc will be enhanced to better cope with this problem.
         <type>void</type>
         <tensorRank>scalar</tensorRank>
         <description>returns new logging threshold</description>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohSetConsole'>
+      <description>fork output to stdout</description>
+      <alias>ObjectHandler::setConsole</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Console'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>1 (enable) / 0 (disable)</description>
+          </Parameter>
+          <Parameter name='LogLevel' default='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
 

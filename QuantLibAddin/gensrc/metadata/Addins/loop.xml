@@ -1,6 +1,8 @@
 <Addin name='Loop'>
   
   <rootDirectory>qlo/Loop</rootDirectory>
+  <coreCategories>false</coreCategories>
+  <addinCategories>true</addinCategories>
 
   <copyright>
     Copyright (C) 2006, 2007 Eric Ehlers

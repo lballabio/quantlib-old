@@ -30,15 +30,18 @@ class CategoryList(object):
     # public interface
     #############################################
 
-    def categoryNames(self):
-        return self.categoryNames_
-
-    def categories(self, platformName, implementation = supportedplatform.AUTO):
+    def categories(self, platformName, coreCategories, addinCategories, implementation = supportedplatform.AUTO):
         """serve up function category objects alphabetically by name."""
-        for categoryName in self.categoryNames_:
-            cat = self.categoryDict_[categoryName]
-            if platformName == '*' or cat.platformSupported(platformName, implementation):
-                yield cat
+        if coreCategories:
+            for categoryName in self.coreCategoryNames_:
+                cat = self.categoryDict_[categoryName]
+                if platformName == '*' or cat.platformSupported(platformName, implementation):
+                    yield cat
+        if addinCategories:
+            for categoryName in self.addinCategoryNames_:
+                cat = self.categoryDict_[categoryName]
+                if platformName == '*' or cat.platformSupported(platformName, implementation):
+                    yield cat
 
     def init(self, enumerationList):
         for cat in self.categoryDict_.values():
@@ -48,15 +51,22 @@ class CategoryList(object):
     # private member functions
     #############################################
 
-    def __init__(self):
-
-        self.categoryNames_ = environment.config().categoryNames()
-        self.categoryNames_.sort()
-
-        self.categoryDict_ = {}
-        for categoryName in self.categoryNames_:
-            cat = utilities.serializeObject(category.Category, 'metadata/Functions/' + categoryName)
+    def loadCategories(self, catList, catDir):
+        if not catDir: return
+        for categoryName in catList:
+            cat = utilities.serializeObject(category.Category, catDir + categoryName)
             if self.categoryDict_.has_key(cat.name()):
                 raise exceptions.DuplicateNameException(cat.name())
             self.categoryDict_[cat.name()] = cat
+    
+    def __init__(self):
 
+        self.coreCategoryNames_ = environment.config().coreCategoryNames()
+        self.coreCategoryNames_.sort()
+
+        self.addinCategoryNames_ = environment.config().addinCategoryNames()
+        self.addinCategoryNames_.sort()
+
+        self.categoryDict_ = {}
+        self.loadCategories(self.coreCategoryNames_, environment.config().coreFunctions())
+        self.loadCategories(self.addinCategoryNames_, environment.config().addinFunctions())

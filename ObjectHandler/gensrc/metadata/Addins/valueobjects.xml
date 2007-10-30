@@ -1,6 +1,8 @@
 <Addin name='ValueObjects'>
 
   <rootDirectory>oh/ValueObjects</rootDirectory>
+  <coreCategories>true</coreCategories>
+  <addinCategories>false</addinCategories>
 
   <copyright>
     Copyright (C) 2005, 2006 Plamen Neykov

@@ -1,6 +1,8 @@
 <Addin name='Loop'>
 
   <rootDirectory>oh/Loop</rootDirectory>
+  <coreCategories>true</coreCategories>
+  <addinCategories>false</addinCategories>
 
   <copyright>
     Copyright (C) 2006 Eric Ehlers

@@ -2,6 +2,8 @@
 
   <rootDirectory>ohxl</rootDirectory>
   <exportSymbols>true</exportSymbols>
+  <coreCategories>true</coreCategories>
+  <addinCategories>false</addinCategories>
 
   <copyright>
     Copyright (C) 2004, 2005, 2006 Eric Ehlers
