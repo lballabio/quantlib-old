@@ -487,6 +487,12 @@
 				RelativePath="Serialization\serialization_payoffs.hpp">
 			</File>
 			<File
+				RelativePath=".\Serialization\serialization_piecewiseyieldcurve.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_piecewiseyieldcurve.hpp">
+			</File>
+			<File
 				RelativePath="Serialization\serialization_pricingengines.cpp">
 			</File>
 			<File
@@ -590,6 +596,12 @@
 			</File>
 			<File
 				RelativePath="Serialization\serialization_termstructures.hpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_timeseries.cpp">
+			</File>
+			<File
+				RelativePath=".\Serialization\serialization_timeseries.hpp">
 			</File>
 			<File
 				RelativePath="Serialization\serialization_vanillaswap.cpp">

@@ -88,16 +88,15 @@ int main() {
         //std::vector<double> fixing2 = qlIndexFixing("EURIBOR6M", fixingDates2, OH_NULL);
         //LOG_MESSAGE("EURIBOR6M         16-May-2006 " << fixing2[0]);
 
-        // Set the pricers for the legs of the deal
+        // Set the pricing engine
 
-        //qlLegSetCouponPricer("leg0", "cms_pricer");
-        //qlLegSetCouponPricer("leg1", "ibor_pricer");
+        qlInstrumentSetPricingEngine("swap", "engine", OH_NULL);
 
         // Output the PV of the deal
 
         LOG_MESSAGE("SWAP PV = " << qlInstrumentNPV("swap", OH_NULL));
 
-        LOG_MESSAGE("End example program.");
+        LOG_MESSAGE("Example of serializing to/from a buffer:");
 
         // example of serializing to/from a buffer
         qlSimpleQuote("quote1", 1.23, 0, false, OH_NULL, false);
@@ -108,6 +107,8 @@ int main() {
 
         std::vector<std::string> idList2 = ohObjectLoadString(xml, true, OH_NULL);
         ohLogObject(idList2[0], OH_NULL);
+
+        LOG_MESSAGE("End example program.");
 
         return 0;
 
