@@ -101,8 +101,8 @@ namespace QuantLibAddin {
     };
 
     // Concrete derived class to wrap member functions of PiecewiseYieldCurve<Traits, Interpolator>.
-    // Given a value of type boost::shared_ptr<QuantLib::Extrapolator>, this class downcasts
-    // to PiecewiseYieldCurve<Traits, Interpolator> and calls the given member function.
+    // Given a pointer to QuantLib::Extrapolator, this class downcasts to
+    // PiecewiseYieldCurve<Traits, Interpolator>* and calls the given member function.
 
     template <class Traits, class Interpolator>
     class Caller : public CallerBase {
@@ -246,9 +246,9 @@ namespace QuantLibAddin {
         }
 
         // Wrappers for member functions of PiecewiseYieldCurve<Traits, Interpolator>.  These functions
-        // accept a TokenPair (Traits / Interpolator) and a reference to a QuantLib::Extrapolator.
+        // accept a TokenPair (Traits / Interpolator) and a pointer to a QuantLib::Extrapolator.
         // The functions call getCaller() to retrieve the Caller pointer corresponding to the TokenPair,
-        // then pass the QuantLib::Extrapolator reference to the Caller which downcasts to the appropriate
+        // then pass the QuantLib::Extrapolator pointer to the Caller which downcasts to the appropriate
         // instantiation of PiecewiseYieldCurve<Traits, Interpolator> and calls the given member function.
 
         const std::vector<QuantLib::Time>& times(TokenPair tokenPair, const QuantLib::Extrapolator *extrapolator) const {
@@ -312,3 +312,4 @@ namespace QuantLibAddin {
     }
 
 }
+
