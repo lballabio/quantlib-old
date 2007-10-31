@@ -67,7 +67,7 @@ namespace QuantLibAddin {
     : Swap(properties, permanent)
     {
         libraryObject_ = QuantLib::MakeVanillaSwap(swapTenor, index,
-            fixedRate, forwardStart).operator
+            fixedRate, forwardStart).withFloatingLegSpread(0.0).operator
                 boost::shared_ptr<QuantLib::VanillaSwap>();
     }
 
