@@ -4,7 +4,14 @@ RewriteRule ^(.*)$ http://quantlib.org/$1 [R=301,L]
 
 ErrorDocument 404 /notfound.shtml
 
+Redirect 301 /cvs.html http://quantlib.org/cvs.shtml
 Redirect 301 /download.html http://quantlib.org/download.shtml
+Redirect 301 /extensions.html http://quantlib.org/extensions.shtml
+Redirect 301 /FAQ.html http://quantlib.org/faq.shtml
 Redirect 301 /license.html http://quantlib.org/license.shtml
+Redirect 301 /lists.html http://quantlib.org/mailinglists.shtml
+Redirect 301 /mailinglists.html http://quantlib.org/mailinglists.shtml
+Redirect 301 /quep.html http://quantlib.org/quep.shtml
+Redirect 301 /style.html http://quantlib.org/style.shtml
 Redirect 301 /reference/faq.html http://quantlib.org/faq.shtml
-
+Redirect 301 /html/ http://quantlib.org/reference/
