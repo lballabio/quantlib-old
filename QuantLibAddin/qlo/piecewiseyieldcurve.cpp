@@ -201,13 +201,6 @@ namespace QuantLibAddin {
             callerMap_[tokenPair] = new Caller<Traits, Interpolator>;
         }
 
-        // Retrieve the Caller pointer corresponding to a given TokenPair
-        CallerBase *getCaller(TokenPair tokenPair) const {
-            CallerMap::const_iterator i = callerMap_.find(tokenPair);
-            OH_REQUIRE(i!=callerMap_.end(), "Unable to retrieve caller for type " << tokenPair);
-            return i->second;
-        }
-
     public:
 
         // Constructor - populate the CallerMap.
@@ -245,30 +238,11 @@ namespace QuantLibAddin {
                 delete i->second;
         }
 
-        // Wrappers for member functions of PiecewiseYieldCurve<Traits, Interpolator>.  These functions
-        // accept a TokenPair (Traits / Interpolator) and a pointer to a QuantLib::Extrapolator.
-        // The functions call getCaller() to retrieve the Caller pointer corresponding to the TokenPair,
-        // then pass the QuantLib::Extrapolator pointer to the Caller which downcasts to the appropriate
-        // instantiation of PiecewiseYieldCurve<Traits, Interpolator> and calls the given member function.
-
-        const std::vector<QuantLib::Time>& times(TokenPair tokenPair, const QuantLib::Extrapolator *extrapolator) const {
-            return getCaller(tokenPair)->times(extrapolator);
-        }
-
-        const std::vector<QuantLib::Date>& dates(TokenPair tokenPair, const QuantLib::Extrapolator *extrapolator) const {
-            return getCaller(tokenPair)->dates(extrapolator);
-        }
-
-        const std::vector<QuantLib::Real>& data(TokenPair tokenPair, const QuantLib::Extrapolator *extrapolator) const {
-            return getCaller(tokenPair)->data(extrapolator);
-        }
-
-        const std::vector<QuantLib::Real>& improvements(TokenPair tokenPair, const QuantLib::Extrapolator *extrapolator) const {
-            return getCaller(tokenPair)->improvements(extrapolator);
-        }
-
-        QuantLib::Size iterations(TokenPair tokenPair, const QuantLib::Extrapolator *extrapolator) const {
-            return getCaller(tokenPair)->iterations(extrapolator);
+        // Retrieve the Caller pointer corresponding to a given TokenPair
+        const CallerBase *getCaller(TokenPair tokenPair) const {
+            CallerMap::const_iterator i = callerMap_.find(tokenPair);
+            OH_REQUIRE(i!=callerMap_.end(), "Unable to retrieve caller for type " << tokenPair);
+            return i->second;
         }
 
     };
@@ -282,33 +256,36 @@ namespace QuantLibAddin {
 
     } // namespace Call
 
-    // QuantLibAddin wrappers for member functions of QuantLib class PiecewiseYieldCurve<Traits, Interpolator>.
-    // Invocation of the member function is passed off to the CallerFactory which hides the details
-    // of the template class.
+    // QuantLibAddin wrappers for member functions of QuantLib class
+    // PiecewiseYieldCurve<Traits, Interpolator>. Invocation of the member function is
+    // passed off to the CallerFactory which hides the details of the template class.
+
+#define CALL(FUNC) \
+Call::callerFactory().getCaller(Call::TokenPair(traits, interpolator))->FUNC(libraryObject_.get())
 
     const std::vector<QuantLib::Time>& PiecewiseYieldCurve::times(
         Token::Traits traits, Token::Interpolator interpolator) const {
-        return Call::callerFactory().times(Call::TokenPair(traits, interpolator), libraryObject_.get());
+        return CALL(times);
     }
 
     const std::vector<QuantLib::Date>& PiecewiseYieldCurve::dates(
         Token::Traits traits, Token::Interpolator interpolator) const {
-        return Call::callerFactory().dates(Call::TokenPair(traits, interpolator), libraryObject_.get());
+        return CALL(dates);
     }
 
     const std::vector<QuantLib::Real>& PiecewiseYieldCurve::data(
         Token::Traits traits, Token::Interpolator interpolator) const {
-        return Call::callerFactory().data(Call::TokenPair(traits, interpolator), libraryObject_.get());
+        return CALL(data);
     }
 
     const std::vector<QuantLib::Real>& PiecewiseYieldCurve::improvements(
         Token::Traits traits, Token::Interpolator interpolator) const {
-        return Call::callerFactory().improvements(Call::TokenPair(traits, interpolator), libraryObject_.get());
+        return CALL(improvements);
     }
 
     QuantLib::Size PiecewiseYieldCurve::iterations(
         Token::Traits traits, Token::Interpolator interpolator) const {
-        return Call::callerFactory().iterations(Call::TokenPair(traits, interpolator), libraryObject_.get());
+        return CALL(iterations);
     }
 
 }
