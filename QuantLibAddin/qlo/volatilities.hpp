@@ -82,6 +82,7 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& cal,
             const std::vector<QuantLib::Period>& optionTenors,
             const std::vector<QuantLib::Handle<QuantLib::Quote> > & volatilities,
+            const std::vector<bool> inclusionInInterpolationFlag,
             QuantLib::BusinessDayConvention bdc,
             const QuantLib::DayCounter& dc,
             bool permanent);
