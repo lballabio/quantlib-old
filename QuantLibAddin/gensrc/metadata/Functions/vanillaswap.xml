@@ -153,13 +153,18 @@
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate</description>
+            <description>the fixed rate. If omitted, default = null</description>
           </Parameter>
           <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
           <Parameter name='ForwardStart' exampleValue='0D'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period</description>
+          </Parameter>
+          <Parameter name='FloatingLegSpread' default='QuantLib::Null&lt;QuantLib::Spread&gt;()'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the spread in the floating leg rate. If omitted, default = null</description>
           </Parameter>
         </Parameters>
       </ParameterList>

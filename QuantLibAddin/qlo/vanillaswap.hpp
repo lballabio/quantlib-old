@@ -51,6 +51,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::IborIndex>& index,
             QuantLib::Rate fixedRate,
             const QuantLib::Period& forwardStart,
+            QuantLib::Spread floatingLegSpread,
             bool permanent);
         // SwapIndex->underlyingSwap()
         VanillaSwap(
