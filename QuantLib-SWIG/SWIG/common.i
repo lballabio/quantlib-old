@@ -26,6 +26,15 @@
 #include <boost/algorithm/string/case_conv.hpp>
 %}
 
+#if defined(SWIGRUBY)
+%{
+#ifndef SWIG_FLOAT_P
+#define SWIG_FLOAT_P(x) ((TYPE(x) == T_FLOAT) || FIXNUM_P(x))
+#define SWIG_NUM2DBL(x) (FIXNUM_P(x) ? FIX2INT(x) : NUM2DBL(x))
+#endif
+%}
+#endif
+
 %{
 // generally useful classes
 using QuantLib::Error;

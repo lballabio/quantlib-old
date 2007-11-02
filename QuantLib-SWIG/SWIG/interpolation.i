@@ -82,7 +82,7 @@ make_safe_interpolation(LinearInterpolation,LinearInterpolation);
 make_safe_interpolation(LogLinearInterpolation,LogLinearInterpolation);
 make_safe_interpolation(BackwardFlatInterpolation,BackwardFlatInterpolation);
 make_safe_interpolation(ForwardFlatInterpolation,ForwardFlatInterpolation);
-make_safe_interpolation(NaturalCubicSpline,CubicSpline);
+make_safe_interpolation(NaturalCubicSpline,CubicSplineInterpolation);
 make_safe_interpolation(NaturalMonotonicCubicSpline,MonotonicCubicSpline);
 
 %define extend_spline(T)
@@ -143,14 +143,14 @@ using QuantLib::BackwardFlat;
 using QuantLib::ForwardFlat;
 using QuantLib::Linear;
 using QuantLib::LogLinear;
-using QuantLib::Cubic;
+using QuantLib::CubicSpline;
 %}
 
 struct BackwardFlat {};
 struct ForwardFlat {};
 struct Linear {};
 struct LogLinear {};
-struct Cubic {};
+struct CubicSpline {};
 
 
 #endif
