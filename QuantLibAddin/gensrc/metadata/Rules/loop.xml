@@ -12,7 +12,8 @@
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string&amp;</Rule>
         <Rule tensorRank='scalar' const='true'>%(indent)sconst %(nativeType)s&amp;</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s</Rule>
-        <Rule tensorRank='vector' loop='true' superType='libraryType'>%(indent)sconst %(type)s&amp;</Rule>
+        <Rule tensorRank='vector' loop='true' superType='libraryType' const='true'>%(indent)sconst %(type)s&amp;</Rule>
+        <Rule tensorRank='vector' loop='true' superType='libraryType'>%(indent)s%(type)s</Rule>
         <Rule tensorRank='vector' loop='true' superType='underlyingClass'>%(indent)sconst %(type)s&amp;</Rule>
         <Rule tensorRank='vector' loop='true' nativeType='long'>%(indent)sint</Rule>
         <Rule tensorRank='vector' loop='true' nativeType='string' const='true'>%(indent)sconst std::string&amp;</Rule>
@@ -55,7 +56,8 @@
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string&amp;</Rule>
         <Rule tensorRank='scalar' const='true'>%(indent)sconst %(nativeType)s&amp;</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s</Rule>
-        <Rule tensorRank='vector' loop='true' superType='libraryType'>%(indent)sconst %(type)s&amp;</Rule>
+        <Rule tensorRank='vector' loop='true' superType='libraryType' const='true'>%(indent)sconst %(type)s&amp;</Rule>
+        <Rule tensorRank='vector' loop='true' superType='libraryType'>%(indent)s%(type)s</Rule>
         <Rule tensorRank='vector' loop='true' superType='underlyingClass'>%(indent)sconst %(type)s&amp;</Rule>
         <Rule tensorRank='vector' loop='true' nativeType='long'>%(indent)sint</Rule>
         <Rule tensorRank='vector' loop='true' nativeType='string' const='true'>%(indent)sconst std::string&amp;</Rule>

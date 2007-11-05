@@ -47,7 +47,7 @@
 
     <!-- Interpolation interface -->
 
-    <Member name='qlInterpolationInterpolate' type='QuantLib::Interpolation'>
+    <Member name='qlInterpolationInterpolate' type='QuantLib::Interpolation' loopParameter='XValues' const='true'>
       <description>Returns interpolated values using the given Interpolation object</description>
       <longDescription>
         this is an example of long description.
@@ -65,7 +65,7 @@
         <Parameters>
           <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
             <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' default='0' const='False'>
@@ -77,7 +77,7 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 

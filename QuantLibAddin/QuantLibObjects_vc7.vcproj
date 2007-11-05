@@ -1118,6 +1118,9 @@
 			<File
 				RelativePath="qlo\Loop\loop_termstructures.hpp">
 			</File>
+			<File
+				RelativePath=".\qlo\Loop\loop_timeseries.hpp">
+			</File>
 		</Filter>
 		<Filter
 			Name="Conversions"
