@@ -949,7 +949,7 @@
         <Parameters>
           <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
             <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
           <Parameter name='YValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
@@ -961,7 +961,7 @@
       </ParameterList>
       <ReturnValue>
         <type>bool</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
