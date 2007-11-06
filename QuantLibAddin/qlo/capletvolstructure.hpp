@@ -115,6 +115,7 @@ namespace QuantLibAddin {
                           const boost::shared_ptr<QuantLib::CapFloorTermVolSurface>& surface,
                           const boost::shared_ptr<QuantLib::IborIndex>& index,
                           QuantLib::Rate switchStrike,
+                          QuantLib::Real accuracy,
                           bool permanent);
     };
 

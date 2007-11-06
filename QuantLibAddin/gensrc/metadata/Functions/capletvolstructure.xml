@@ -482,6 +482,11 @@
             <tensorRank>scalar</tensorRank>
             <description>switch strike. If omitted, internal default is used</description>
           </Parameter>
+          <Parameter name='Accuracy' default='1.0e-6'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>accuracy. If omitted, 1.0e-6 is used</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
