@@ -35,8 +35,14 @@ namespace ObjectHandler {
         enum Type { Uninitialized, Row, Column /*, Matrix, Scalar */ };
     };
 
+    //! The environment which called the function that is currently running.
+    /*! Classes FunctionCall and RepositoryXL presently treat VBA and Menu
+        the same, which is a valid assumption given existing usage.
+        The assumption would not hold in the case where this XLL is invoked
+        from an Excel menu owned by a non-VBA process e.g. an XLL in C/C++.
+    */
     struct CallerType {
-        enum Type { Cell, VBA, /* Menu, */ Unknown };
+        enum Type { Cell, VBA, Menu, Unknown };
     };
 
     //! Singleton encapsulating state relating to Excel function call.
@@ -102,10 +108,6 @@ namespace ObjectHandler {
         */
         CallerDimensions::Type callerDimensions();
         //! The type of the caller.
-        /*! Presently this function only differentiates between Cell and Other,
-            this could be extended to distinguish calls from Excel VBA, and from Excel
-            menu items.
-        */
         CallerType::Type callerType() { return callerType_; }
         //@}
 

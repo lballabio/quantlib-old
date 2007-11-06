@@ -42,9 +42,8 @@ namespace ObjectHandler {
             callerType_ = CallerType::Cell;
         } else if (xCaller_->xltype & xltypeErr) {
             callerType_ = CallerType::VBA;
-        // Another possible value, so far not required:
-        //} else if (xCaller_->xltype == xltypeMulti) {
-        //    callerType_ = CallerType::Menu;
+        } else if (xCaller_->xltype == xltypeMulti) {
+            callerType_ = CallerType::Menu;
         } else {
             callerType_ = CallerType::Unknown;
         }
@@ -54,7 +53,7 @@ namespace ObjectHandler {
         if (!error_) {
             if (callerType_ == CallerType::Cell) {
                 RepositoryXL::instance().clearError();
-            } else if (callerType_ == CallerType::VBA) {
+            } else if (callerType_ == CallerType::VBA || callerType_ == CallerType::Menu) {
                 RepositoryXL::instance().clearVbaError();
             }
         }

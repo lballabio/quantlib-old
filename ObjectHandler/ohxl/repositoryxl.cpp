@@ -155,7 +155,7 @@ namespace ObjectHandler {
                 if (functionCall->callerType() == CallerType::Cell) {
                     setError(message, functionCall);
                     fullMessage << functionCall->addressString() << " - ";
-                } else if (functionCall->callerType() == CallerType::VBA) {
+                } else if (functionCall->callerType() == CallerType::VBA || functionCall->callerType() == CallerType::Menu) {
                     vbaError_ = message;
                     fullMessage << "VBA - ";
                 }
