@@ -7,7 +7,7 @@
       <include>qlo/optimization.hpp</include>
       <include>qlo/volatilities.hpp</include>
       <include>ql/termstructures/volatility/interpolatedsmilesection.hpp</include>
-      <include>ql/termstructures/volatility/sabrinterpolatedsmilesectionnew.hpp</include>
+      <include>ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp</include>
       <include>ql/termstructures/volatility/sabrvolsurface.hpp</include>
       <include>ql/quote.hpp</include>
     </addinIncludes>
@@ -15,7 +15,7 @@
       <include>qlo/smilesection.hpp</include>
       <include>qlo/optimization.hpp</include>
       <include>ql/termstructures/volatility/interpolatedsmilesection.hpp</include>
-      <include>ql/termstructures/volatility/sabrinterpolatedsmilesectionnew.hpp</include>
+      <include>ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp</include>
       <include>ql/termstructures/volatility/sabrvolsurface.hpp</include>
       <include>ql/quote.hpp</include>
       <include>qlo/volatilities.hpp</include>

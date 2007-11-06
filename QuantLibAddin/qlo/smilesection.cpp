@@ -1,4 +1,5 @@
 /*
+ Copyright (C) 2007 Cristina Duminuco
  Copyright (C) 2006 François du Vignaud
 
  This file is part of QuantLib, a free-software/open-source library
@@ -22,7 +23,7 @@
 #include <qlo/smilesection.hpp>
 
 #include <ql/termstructures/volatility/interpolatedsmilesection.hpp>
-#include <ql/termstructures/volatility/sabrinterpolatedsmilesectionNew.hpp>
+#include <ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp>
 #include <ql/termstructures/volatility/sabrvolsurface.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/termstructures/volatility/smilesection.hpp>
