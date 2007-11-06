@@ -17,6 +17,7 @@
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2007 Eric Ehlers
   </copyright>
   <Functions>
 
@@ -63,12 +64,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='AllowExtrapolation' default='0' const='False'>
+          <Parameter name='AllowExtrapolation' default='0' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag</description>
@@ -81,7 +82,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationDerivative' type='QuantLib::Interpolation'>
+    <Member name='qlInterpolationDerivative' type='QuantLib::Interpolation' loopParameter='XValues' const='true'>
       <description>Returns the first derivative function values using the given Interpolation object</description>
       <libraryFunction>derivative</libraryFunction>
       <SupportedPlatforms>
@@ -91,12 +92,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
             <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='AllowExtrapolation' default='0' const='False'>
+          <Parameter name='AllowExtrapolation' default='0' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag</description>
@@ -105,11 +106,11 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationSecondDerivative' type='QuantLib::Interpolation'>
+    <Member name='qlInterpolationSecondDerivative' type='QuantLib::Interpolation' loopParameter='XValues' const='true'>
       <description>Returns the second derivative function values using the given Interpolation object</description>
       <libraryFunction>secondDerivative</libraryFunction>
       <SupportedPlatforms>
@@ -119,12 +120,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
             <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='AllowExtrapolation' default='0' const='False'>
+          <Parameter name='AllowExtrapolation' default='0' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag</description>
@@ -133,11 +134,11 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationPrimitive' type='QuantLib::Interpolation'>
+    <Member name='qlInterpolationPrimitive' type='QuantLib::Interpolation' loopParameter='XValues' const='true'>
       <description>Returns the primitive function values using the given Interpolation object</description>
       <libraryFunction>primitive</libraryFunction>
       <SupportedPlatforms>
@@ -147,12 +148,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
             <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='AllowExtrapolation' default='0' const='False'>
+          <Parameter name='AllowExtrapolation' default='0' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag</description>
@@ -161,11 +162,11 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationIsInRange' type='QuantLib::Interpolation'>
+    <Member name='qlInterpolationIsInRange' type='QuantLib::Interpolation' loopParameter='XValues' const='true'>
       <description>Returns TRUE if the input value is in the allowed interpolation range for the given Interpolation object</description>
       <libraryFunction>isInRange</libraryFunction>
       <SupportedPlatforms>
@@ -175,16 +176,16 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
             <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>x values</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>bool</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
@@ -936,7 +937,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolation2DIsInRange' type='QuantLib::Interpolation2D'>
+    <Member name='qlInterpolation2DIsInRange' type='QuantLib::Interpolation2D' loopParameter='XValues' const='true'>
       <description>Returns TRUE if the (x,y) input value is in the allowed interpolation range for the given Interpolation2D object</description>
       <libraryFunction>isInRange</libraryFunction>
       <SupportedPlatforms>
@@ -946,12 +947,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValues' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>x values</description>
           </Parameter>
-          <Parameter name='YValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='YValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>y value</description>
@@ -965,7 +966,7 @@
     </Member>
 
     <!-- should loop on both parameters -->
-    <Member name='qlInterpolation2DInterpolate' type='QuantLib::Interpolation2D' loopParameter='XValue'>
+    <Member name='qlInterpolation2DInterpolate' type='QuantLib::Interpolation2D' loopParameter='XValue' const='true'>
       <description>Returns interpolated values for the (x,y) input for the given Interpolation2D object</description>
       <libraryFunction>operator()</libraryFunction>
       <SupportedPlatforms>
@@ -975,17 +976,17 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='XValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='XValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>x value(s)</description>
           </Parameter>
-          <Parameter name='YValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='False'>
+          <Parameter name='YValue' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0' const='false'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>y value</description>
           </Parameter>
-          <Parameter name='AllowExtrapolation' default='0' const='False'>
+          <Parameter name='AllowExtrapolation' default='0' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag</description>
