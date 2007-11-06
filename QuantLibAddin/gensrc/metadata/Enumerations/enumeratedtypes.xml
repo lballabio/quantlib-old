@@ -30,8 +30,12 @@
           <value>QuantLib::Brazil()</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>Canada</string>
-          <value>QuantLib::Canada()</value>
+          <string>Canada::Settlement</string>
+          <value>QuantLib::Canada(QuantLib::Canada::Settlement)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Canada::TSX</string>
+          <value>QuantLib::Canada(QuantLib::Canada::TSX)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>China</string>
