@@ -696,32 +696,7 @@
         <type>string</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
-
-    <!-- SmileSectionInteface constructors -->
-    <Constructor name='qlSabrSmileSectionImpl'>
-      <libraryFunction>SabrSmileSectionImpl</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='SabrVolSurface'>
-            <type>QuantLib::SabrVolSurface</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>SabrVolSurface object ID</description>
-          </Parameter>
-          <Parameter name='OptionTime'>
-            <type>QuantLib::Time</type>
-            <tensorRank>scalar</tensorRank>
-            <description>smile's expiry as date</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-    
+    </Member>   
     
   </Functions>
 </Category>

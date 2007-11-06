@@ -22,8 +22,8 @@
 #include <qlo/smilesection.hpp>
 
 #include <ql/termstructures/volatility/interpolatedsmilesection.hpp>
-#include <ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp>
-#include <ql/termstructures/volatility/sabrinterpolatedsmilesection2.hpp>
+#include <ql/termstructures/volatility/sabrinterpolatedsmilesectionNew.hpp>
+#include <ql/termstructures/volatility/sabrvolsurface.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/termstructures/volatility/smilesection.hpp>
 #include <ql/quotes/simplequote.hpp>
@@ -106,94 +106,37 @@ namespace QuantLibAddin {
                 genericInterpolatedSmileSection);
     }
 
+    
     SabrInterpolatedSmileSection::SabrInterpolatedSmileSection(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Date& optionDate,
-            const std::vector<QuantLib::Rate>& strikes,
-            const std::vector<QuantLib::Handle<QuantLib::Quote> >& stdDevHandles,
-            QuantLib::Handle<QuantLib::Quote> forward, 
-            QuantLib::Real alpha, 
-            QuantLib::Real beta,
-            QuantLib::Real nu,
-            QuantLib::Real rho,
-            bool isAlphaFixed,
-            bool isBetaFixed,
-            bool isNuFixed,
-            bool isRhoFixed,
-            bool vegaWeighted,
-            const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
-            const boost::shared_ptr<QuantLib::OptimizationMethod> method,
-            const QuantLib::DayCounter& dc,
-            bool permanent) : SmileSection(properties, permanent)
+                           const QuantLib::Date& optionDate,
+                           const QuantLib::Rate& forward,
+                           const std::vector<QuantLib::Rate>& strikes,
+                           bool hasFloatingStrikes,
+                           const QuantLib::Volatility& atmVolatility,
+                           const std::vector<QuantLib::Volatility>& vols,
+                           QuantLib::Real alpha,
+                           QuantLib::Real beta,
+                           QuantLib::Real nu,
+                           QuantLib::Real rho,
+                           bool isAlphaFixed,
+                           bool isBetaFixed,
+                           bool isNuFixed,
+                           bool isRhoFixed,
+                           bool vegaWeighted,
+                           const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
+                           const boost::shared_ptr<QuantLib::OptimizationMethod> method,
+                           const QuantLib::DayCounter& dc,
+                           bool permanent): SmileSection(properties, permanent)
     {
-        libraryObject_ = 
-            boost::shared_ptr<QuantLib::SabrInterpolatedSmileSection>(new
-                QuantLib::SabrInterpolatedSmileSection(optionDate,
-                                                       strikes,
-                                                       stdDevHandles,
-                                                       forward,
-                                                       alpha,
-                                                       beta,
-                                                       nu,
-                                                       rho,
-                                                       isAlphaFixed,
-                                                       isBetaFixed,
-                                                       isNuFixed,
-                                                       isRhoFixed,
-                                                       vegaWeighted,
-                                                       endCriteria,
-                                                       method,
-                                                       dc));
-    }
-        
-    SabrInterpolatedSmileSection2::SabrInterpolatedSmileSection2(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Date& optionDate,
-            const std::vector<QuantLib::Rate>& strikes,
-            QuantLib::Handle<QuantLib::Quote> atmVolatility,
-            const std::vector<QuantLib::Handle<QuantLib::Quote> >& stdDevHandles,
-            QuantLib::Handle<QuantLib::Quote> forward, 
-            QuantLib::Real alpha, 
-            QuantLib::Real beta,
-            QuantLib::Real nu,
-            QuantLib::Real rho,
-            bool isAlphaFixed,
-            bool isBetaFixed,
-            bool isNuFixed,
-            bool isRhoFixed,
-            bool vegaWeighted,
-            const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
-            const boost::shared_ptr<QuantLib::OptimizationMethod> method,
-            const QuantLib::DayCounter& dc,
-            bool permanent) : SabrInterpolatedSmileSection(properties,
-                                                   optionDate,
-                                                   strikes,
-                                                   stdDevHandles,
+           libraryObject_ = 
+           boost::shared_ptr<QuantLib::SabrInterpolatedSmileSection>(
+            new QuantLib::SabrInterpolatedSmileSection(optionDate,
                                                    forward,
-                                                   alpha,
-                                                   beta,
-                                                   nu,
-                                                   rho,
-                                                   isAlphaFixed,
-                                                   isBetaFixed,
-                                                   isNuFixed,
-                                                   isRhoFixed,
-                                                   vegaWeighted,
-                                                   endCriteria,
-                                                   method,
-                                                   dc,
-                                                   permanent)
-    {
-       std::vector<QuantLib::Handle<QuantLib::Quote> > temp(stdDevHandles.size());
-       for(QuantLib::Size i = 0; i<temp.size(); ++i)
-            temp[i] = stdDevHandles[i];
-       libraryObject_ = 
-           boost::shared_ptr<QuantLib::SabrInterpolatedSmileSection2>(
-            new QuantLib::SabrInterpolatedSmileSection2(optionDate,
                                                    strikes,
+                                                   hasFloatingStrikes,
                                                    atmVolatility,
-                                                   temp,
-                                                   forward,
+                                                   vols,
                                                    alpha,
                                                    beta,
                                                    nu,
@@ -207,6 +150,62 @@ namespace QuantLibAddin {
                                                    method,
                                                    dc));
     }
-    
+
+    SabrInterpolatedSmileSection::SabrInterpolatedSmileSection(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Date& optionDate,
+            const QuantLib::Handle<QuantLib::Quote>& forward,
+            const std::vector<QuantLib::Rate>& strikes,
+            bool hasFloatingStrikes,
+            const QuantLib::Handle<QuantLib::Quote>& atmVolatility,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& volHandles,
+            QuantLib::Real alpha,
+            QuantLib::Real beta,
+            QuantLib::Real nu,
+            QuantLib::Real rho,
+            bool isAlphaFixed,
+            bool isBetaFixed,
+            bool isNuFixed,
+            bool isRhoFixed,
+            bool vegaWeighted,
+            const boost::shared_ptr<QuantLib::EndCriteria> endCriteria,
+            const boost::shared_ptr<QuantLib::OptimizationMethod> method,
+            const QuantLib::DayCounter& dc,
+            bool permanent): SmileSection(properties, permanent) {
+
+           std::vector<QuantLib::Handle<QuantLib::Quote> > temp(volHandles.size());
+           for(QuantLib::Size i = 0; i<temp.size(); ++i)
+                temp[i] = volHandles[i];
+
+           libraryObject_ = 
+           boost::shared_ptr<QuantLib::SabrInterpolatedSmileSection>(
+            new QuantLib::SabrInterpolatedSmileSection(optionDate,
+                                                   forward,
+                                                   strikes,
+                                                   hasFloatingStrikes,
+                                                   atmVolatility,
+                                                   temp,
+                                                   alpha,
+                                                   beta,
+                                                   nu,
+                                                   rho,
+                                                   isAlphaFixed,
+                                                   isBetaFixed,
+                                                   isNuFixed,
+                                                   isRhoFixed,
+                                                   vegaWeighted,
+                                                   endCriteria,
+                                                   method,
+                                                   dc));    
+    }
+
+    SmileSectionFromSabrVolSurface::SmileSectionFromSabrVolSurface(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::SabrVolSurface>& sabrVol,
+            const QuantLib::Time& time,
+            bool permanent): SmileSection(properties, permanent) {
+           
+             libraryObject_ = sabrVol->smileSection(time,true);  
+    }
 }
 
