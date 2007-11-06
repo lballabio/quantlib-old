@@ -161,7 +161,7 @@
             <tensorRank>scalar</tensorRank>
             <description>forward start period</description>
           </Parameter>
-          <Parameter name='FloatingLegSpread' default='QuantLib::Null&lt;QuantLib::Spread&gt;()'>
+          <Parameter name='FloatingLegSpread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>the spread in the floating leg rate. If omitted, default = null</description>
