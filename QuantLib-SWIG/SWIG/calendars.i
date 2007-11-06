@@ -138,7 +138,12 @@ namespace QuantLib {
         Brazil(Market m = Settlement);
     };
 
-    class Canada : public Calendar {};
+    class Canada : public Calendar {
+      public:
+        enum Market { Settlement, TSX };
+        Canada(Market m = Settlement);
+    };
+
     class China : public Calendar {};
 
     class CzechRepublic : public Calendar {
