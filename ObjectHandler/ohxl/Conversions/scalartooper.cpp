@@ -146,6 +146,11 @@ namespace ObjectHandler {
                 wrapVectorToOper<boost::any>(value, xAny);
             else
                 setVectorString(xAny);
+        } else if (value.type() == typeid(std::vector<ObjectHandler::Variant>)) {
+            if (expandVector)
+                wrapVectorToOper<ObjectHandler::Variant>(value, xAny);
+            else
+                setVectorString(xAny);
         } else if (value.type() == typeid(std::vector<std::vector<long> >)) {
             if (expandVector)
                 wrapMatrixToOper<long>(value, xAny);            
@@ -169,6 +174,11 @@ namespace ObjectHandler {
         } else if (value.type() == typeid(std::vector<std::vector<boost::any> >)) {
             if (expandVector)
                 wrapMatrixToOper<boost::any>(value, xAny);            
+            else
+                setMatrixString(xAny);
+        } else if (value.type() == typeid(std::vector<std::vector<ObjectHandler::Variant> >)) {
+            if (expandVector)
+                wrapMatrixToOper<ObjectHandler::Variant>(value, xAny);            
             else
                 setMatrixString(xAny);
         } else {
