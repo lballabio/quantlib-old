@@ -5,7 +5,7 @@ riskFreeRate <- FlatForward(settlementDate, 0.05, Actual365Fixed())
 exercise <- EuropeanExercise(Date(17, "May", 1999))
 payoff <- PlainVanillaPayoff("Call", 8.0)
 underlying <- SimpleQuote(7.0)
-volatility <- BlackConstantVol(todaysDate, 0.10, Actual365Fixed())
+volatility <- BlackConstantVol(todaysDate, TARGET(), 0.10, Actual365Fixed())
 dividendYield <- FlatForward(settlementDate, 0.05, Actual365Fixed())
 process <- BlackScholesMertonProcess(QuoteHandle(underlying),
 		YieldTermStructureHandle(dividendYield),

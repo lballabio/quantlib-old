@@ -1,16 +1,21 @@
 
-BUILT_SOURCES = QuantLib_wrap.cpp QuantLib_wrap.R
+BUILT_SOURCES = QuantLib_wrap.cpp QuantLib.R
 
 CLEANFILES = $(BUILT_SOURCES) .build-stamp
+
+QUANTLIB_R_ROOT = QuantLib
+
+
+#QUANTLIB_R_ROOT = QuantLib_wrap # for swig 1.3.31. or before
 
 if HAVE_R
 
 all-local: .build-stamp
 
-.build-stamp: QuantLib_wrap.RData QuantLib_wrap.so
+.build-stamp: $(QUANTLIB_R_ROOT).RData QuantLib_wrap.so
 	touch .build-stamp
 
-QuantLib_wrap.RData: QuantLib_wrap.R
+$(QUANTLIB_R_ROOT).RData: $(QUANTLIB_R_ROOT).R
 	R CMD BATCH makeRData.R
 
 QuantLib_wrap.so: $(BUILT_SOURCES)
@@ -24,7 +29,7 @@ check-local: .build-stamp
 install-exec-local: .build-stamp
 
 clean-local:
-	rm -rf $(BUILT_SOURCES) QuantLib_wrap.cpp *.so *.o QuantLib_wrap.RData *.Rout
+	rm -rf $(BUILT_SOURCES) QuantLib_wrap.cpp *.so *.o $(QUANTLIB_R_ROOT).RData *.Rout
 
 $(BUILT_SOURCES): ../SWIG/*.i
 	$(SWIG) -r -c++ -I../SWIG -o QuantLib_wrap.cpp quantlib.i

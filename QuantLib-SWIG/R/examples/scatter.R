@@ -14,7 +14,7 @@ dividendYield <- FlatForward(settlementDate, 0.05, Actual365Fixed())
 underlying <- SimpleQuote(10.0)
 engine <- AnalyticEuropeanEngine()
 volatilityQuote <- SimpleQuote(0.05)
-volatility <- BlackConstantVol(todaysDate,
+volatility <- BlackConstantVol(todaysDate, TARGET(), 
 	   QuoteHandle(volatilityQuote), 
 	      Actual365Fixed())
 process <- BlackScholesMertonProcess(QuoteHandle(underlying),
