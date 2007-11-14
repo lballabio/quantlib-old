@@ -151,7 +151,7 @@
             </ReturnValue>
         </Member>
 
-        <Member name='qlPiecewiseYieldCurveImprovements' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
+        <!--<Member name='qlPiecewiseYieldCurveImprovements' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
             <description>Retrieve improvements for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;</description>
             <libraryFunction>improvements</libraryFunction>
             <SupportedPlatforms>
@@ -175,9 +175,9 @@
                 <type>QuantLib::Real</type>
                 <tensorRank>vector</tensorRank>
             </ReturnValue>
-        </Member>
+        </Member>-->
 
-        <Member name='qlPiecewiseYieldCurveIterations' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
+        <!--<Member name='qlPiecewiseYieldCurveIterations' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
             <description>Retrieve Iterations for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;</description>
             <libraryFunction>iterations</libraryFunction>
             <SupportedPlatforms>
@@ -201,7 +201,7 @@
                 <type>QuantLib::Size</type>
                 <tensorRank>scalar</tensorRank>
             </ReturnValue>
-        </Member>
+        </Member>-->
 
     </Functions>
 

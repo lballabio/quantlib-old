@@ -95,8 +95,8 @@ namespace QuantLibAddin {
         virtual const std::vector<QuantLib::Time>& times(const QuantLib::Extrapolator *extrapolator) const = 0;
         virtual const std::vector<QuantLib::Date>& dates(const QuantLib::Extrapolator *extrapolator) const = 0;
         virtual const std::vector<QuantLib::Real>& data(const QuantLib::Extrapolator *extrapolator) const = 0;
-        virtual const std::vector<QuantLib::Real>& improvements(const QuantLib::Extrapolator *extrapolator) const = 0;
-        virtual QuantLib::Size iterations(const QuantLib::Extrapolator *extrapolator) const = 0;
+        //virtual const std::vector<QuantLib::Real>& improvements(const QuantLib::Extrapolator *extrapolator) const = 0;
+        //virtual QuantLib::Size iterations(const QuantLib::Extrapolator *extrapolator) const = 0;
         virtual ~CallerBase() {}
     };
 
@@ -129,13 +129,13 @@ namespace QuantLibAddin {
             return get(extrapolator)->data();
         }
 
-        virtual const std::vector<QuantLib::Real>& improvements(const QuantLib::Extrapolator *extrapolator) const {
-            return get(extrapolator)->improvements();
-        }
+        //virtual const std::vector<QuantLib::Real>& improvements(const QuantLib::Extrapolator *extrapolator) const {
+        //    return get(extrapolator)->improvements();
+        //}
 
-        virtual QuantLib::Size iterations(const QuantLib::Extrapolator *extrapolator) const {
-            return get(extrapolator)->iterations();
-        }
+        //virtual QuantLib::Size iterations(const QuantLib::Extrapolator *extrapolator) const {
+        //    return get(extrapolator)->iterations();
+        //}
 
     };
 
@@ -278,15 +278,15 @@ Call::callerFactory().getCaller(Call::TokenPair(traits, interpolator))->FUNC(lib
         return CALL(data);
     }
 
-    const std::vector<QuantLib::Real>& PiecewiseYieldCurve::improvements(
-        Token::Traits traits, Token::Interpolator interpolator) const {
-        return CALL(improvements);
-    }
+    //const std::vector<QuantLib::Real>& PiecewiseYieldCurve::improvements(
+    //    Token::Traits traits, Token::Interpolator interpolator) const {
+    //    return CALL(improvements);
+    //}
 
-    QuantLib::Size PiecewiseYieldCurve::iterations(
-        Token::Traits traits, Token::Interpolator interpolator) const {
-        return CALL(iterations);
-    }
+    //QuantLib::Size PiecewiseYieldCurve::iterations(
+    //    Token::Traits traits, Token::Interpolator interpolator) const {
+    //    return CALL(iterations);
+    //}
 
 }
 
