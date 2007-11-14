@@ -26,7 +26,12 @@
 namespace QuantLib {
     class Calendar;
     class DayCounter;
-    class RateHelper;
+    class YieldTermStructure;
+
+    template<class TS>
+    class BootstrapHelper;
+
+    typedef BootstrapHelper<YieldTermStructure> RateHelper;
 }
 
 namespace ObjectHandler {

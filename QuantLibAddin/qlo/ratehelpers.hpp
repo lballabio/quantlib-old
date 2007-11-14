@@ -29,7 +29,13 @@
 #include <ql/time/frequency.hpp>
 
 namespace QuantLib {
-    class RateHelper;
+    class YieldTermStructure;
+
+    template<class TS>
+    class BootstrapHelper;
+
+    typedef BootstrapHelper<YieldTermStructure> RateHelper;
+
     class Quote;
     class Period;
     class Calendar;
