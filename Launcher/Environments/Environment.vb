@@ -310,7 +310,7 @@ Namespace QuantLibXL
                 ' and yyy is the current time in subseconds.
 
                 Dim tempFilePath As String = System.IO.Path.GetTempPath() _
-                    & "QuantLibXL Launcher\"
+                    & "QuantLibXL Launcher 2008\"
 
                 System.IO.Directory.CreateDirectory(tempFilePath)
 

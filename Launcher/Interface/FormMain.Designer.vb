@@ -1007,7 +1007,7 @@ Partial Class FormMain
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(90, 13)
         Me.lblVersion.TabIndex = 0
-        Me.lblVersion.Text = "Launcher Version"
+        Me.lblVersion.Text = "Launcher 2008 Version"
         '
         'lblBuildNumber
         '
@@ -1034,7 +1034,7 @@ Partial Class FormMain
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormMain"
-        Me.Text = "QuantLibXL Launcher"
+        Me.Text = "QuantLibXL Launcher 2008"
         Me.grpEnvironment.ResumeLayout(False)
         Me.grpEnvironment.PerformLayout()
         Me.tstEnvironment.ResumeLayout(False)
