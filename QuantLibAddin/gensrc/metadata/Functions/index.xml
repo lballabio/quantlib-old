@@ -268,29 +268,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterestRateIndexForecastFixing' type='QuantLib::InterestRateIndex' loopParameter='FixingDate'>
-      <description>Returns the forecasted fixing for the given InterestRateIndex object. Today's fixing is forecasted even if the actual one is available in the time series.</description>
-      <libraryFunction>forecastFixing</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='FixingDate' exampleValue='02-Jan-2007'>
-            <type>QuantLib::Date</type>
-            <tensorRank>vector</tensorRank>
-            <description>fixing date(s)</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlInterestRateIndexValueDate' type='QuantLib::InterestRateIndex' loopParameter='FixingDate'>
       <description>Returns the value date for the given fixing date for the given InterestRateIndex object</description>
       <libraryFunction>valueDate</libraryFunction>

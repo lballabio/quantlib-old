@@ -139,10 +139,6 @@ class InterestRateIndexPtr : public boost::shared_ptr<Index> {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->dayCounter();
         }
-        Rate forecastFixing(const Date& fixingDate) {
-            return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
-                ->forecastFixing(fixingDate);
-        }
         Handle<YieldTermStructure> termStructure() {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->termStructure();
