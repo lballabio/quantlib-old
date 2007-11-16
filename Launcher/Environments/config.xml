@@ -7,7 +7,7 @@
       <FrameworkVersion>9</FrameworkVersion>
       <Workbooks>X:\Apps\Appsscript\CabotoXL\Rev12288\Workbooks</Workbooks>
       <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev12288\Docs</HelpFile>
-      <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\01 users.xml</UserConfigurationFile>
+      <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users2008\01 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev12288\metadata</FunctionMetadata>
       <!--The FeedUse value is overwritten from the registry, an empty tag is required for XML validation.-->
       <FeedUse/>
@@ -47,7 +47,7 @@
       <FrameworkVersion>10</FrameworkVersion>
       <Workbooks>X:\Apps\Appsscript\CabotoXL\Rev12939\Workbooks</Workbooks>
       <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev12939\Docs</HelpFile>
-      <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\02 users.xml</UserConfigurationFile>
+      <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users2008\02 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev12939\metadata</FunctionMetadata>
       <!--The FeedUse value is overwritten from the registry, an empty tag is required for XML validation.-->
       <FeedUse/>
@@ -100,7 +100,7 @@
       <FrameworkVersion>10</FrameworkVersion>
       <Workbooks>X:\Apps\Appsscript\CabotoXL\Rev13059\Workbooks</Workbooks>
       <HelpFile>X:\Apps\Appsscript\CabotoXL\Rev13059\Docs</HelpFile>
-      <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users\03 users.xml</UserConfigurationFile>
+      <UserConfigurationFile>X:\Apps\Appsscript\CabotoXL\Users2008\03 users.xml</UserConfigurationFile>
       <FunctionMetadata>X:\Apps\Appsscript\CabotoXL\Rev13059\metadata</FunctionMetadata>
       <!--The FeedUse value is overwritten from the registry, an empty tag is required for XML validation.-->
       <FeedUse/>
