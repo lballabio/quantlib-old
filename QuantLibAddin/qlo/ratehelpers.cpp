@@ -26,6 +26,7 @@
 
 #include <qlo/ratehelpers.hpp>
 #include <ql/indexes/iborindex.hpp>
+#include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/yield/ratehelpers.hpp>
 #include <ql/termstructures/yield/bondhelpers.hpp>
 #include <ql/time/imm.hpp>
@@ -78,7 +79,7 @@ namespace QuantLibAddin {
                                         convAdj));
     }
 
-    SwapRateHelper::SwapRateHelper(
+	SwapRateHelper::SwapRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
@@ -87,7 +88,7 @@ namespace QuantLibAddin {
             const QuantLib::Frequency& fixedFrequency,
             QuantLib::BusinessDayConvention fixedConvention,
             const QuantLib::DayCounter& fixedDayCounter,
-            const boost::shared_ptr<QuantLib::IborIndex>& index,
+            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             const QuantLib::Handle<QuantLib::Quote>& spread,
             bool permanent) : RateHelper(properties, permanent)
     {
@@ -99,7 +100,20 @@ namespace QuantLibAddin {
                                      fixedFrequency,
                                      fixedConvention,
                                      fixedDayCounter,
-                                     index,
+                                     iborIndex,
+                                     spread));
+    }
+
+    SwapRateHelper::SwapRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& quote,
+            const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
+            const QuantLib::Handle<QuantLib::Quote>& spread,
+            bool permanent) : RateHelper(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::SwapRateHelper(quote,
+                                     swapIndex,
                                      spread));
     }
 

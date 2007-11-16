@@ -1,7 +1,8 @@
 
 /*
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006,2007 Ferdinando Ametrano
+ Copyright (C) 2007 Marco Bianchetti
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -41,6 +42,7 @@ namespace QuantLib {
     class Calendar;
     class DayCounter;
     class IborIndex;
+    class SwapIndex;
     class Schedule;
     class Date;
 
@@ -99,10 +101,16 @@ namespace QuantLibAddin {
             const QuantLib::Frequency& fixedFrequency,
             QuantLib::BusinessDayConvention fixedConvention,
             const QuantLib::DayCounter& fixedDayCounter,
-            const boost::shared_ptr<QuantLib::IborIndex>& index,
+            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             const QuantLib::Handle<QuantLib::Quote>& spread,
             bool permanent);
-    };
+        SwapRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& quote,
+            const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
+            const QuantLib::Handle<QuantLib::Quote>& spread,
+            bool permanent);
+     };
 
     class FraRateHelper : public RateHelper {
       public:
