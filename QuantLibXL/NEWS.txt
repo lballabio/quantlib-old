@@ -124,12 +124,11 @@ Serialization:
 - Relinkable handles, indexes, pricing engines (bond, cms, ibor), yield curve boostrapping objects.
 
 Yield Curve:
-- introduced EURYC3M and EURYC6M forecasting curves in addition to the discounting curve EURYC
+- introduced early beta version (not used yet) of EURYC3M and EURYC6M forecasting curves in addition to the discounting curve EURYC
 - added curve/index monitors: Workbooks/Tests/ IndexFixingsMonitor.xls, YieldCurveMonitor3M.xls, YieldCurveMonitor6M.xls
 - extended EURYC3M/EURYC6M bootstrapping to FRA
 - added spread in order to deal with basis swap
 - changed default contributor for deposits (KLIEM is now used)
-- YieldCurveBootstrapping.xls using deposit up to first futures, serial futures included
 - added selected RateHelpers group 
 
 
