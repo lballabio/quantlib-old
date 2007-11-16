@@ -389,12 +389,17 @@
             <tensorRank>vector</tensorRank>
             <description>vector of priority integers (higher number for higher priority)</description>
           </Parameter>
-          <Parameter name='NFutures'>
+          <Parameter name='NImmFutures'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>max number of Futures to be included</description>
+            <description>max number of IMM (March, June, September, December) Futures to be included</description>
           </Parameter>
-          <Parameter name='FrontFuturesRollingDays' default='0'>
+          <Parameter name='NSerialFutures'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max number of Serial (January, February, April, May, July, August, October, November) Futures to be included</description>
+          </Parameter>
+          <Parameter name='FrontFuturesRollingDays' default='2'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>discard the front Futures the given number of days before its expiry (e.g zero implies the use of the front Futures during its expiry day)</description>
