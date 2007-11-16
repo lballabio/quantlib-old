@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -161,6 +161,15 @@ namespace QuantLibAddin {
                            const QuantLib::Period& p,
                            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                            bool permanent);
+    };
+
+    class BMAIndex : public InterestRateIndex {
+      public:
+        BMAIndex(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                 bool permanent);
+      protected:
+        OH_OBJ_CTOR(BMAIndex, InterestRateIndex);
     };
 
 }

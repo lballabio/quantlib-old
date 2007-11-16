@@ -778,5 +778,26 @@
       </ParameterList>
     </Constructor>
 
+    <!-- BMAIndex constructor -->
+
+    <Constructor name='qlBMAIndex'>
+      <libraryFunction>BMAIndex</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' exampleValue='USDYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting yield term structure</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
   </Functions>
 </Category>

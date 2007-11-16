@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -24,6 +24,8 @@
 #endif
 
 #include <qlo/index.hpp>
+
+#include <ql/indexes/bmaindex.hpp>
 
 #include <ql/indexes/ibor/euribor.hpp>
 #include <ql/indexes/ibor/eurlibor.hpp>
@@ -82,7 +84,6 @@ namespace QuantLibAddin {
                                 fltBDC, endOfMonth, fltDayCounter,
                                 hYTS));
     }
-
 
     Euribor::Euribor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                      const QuantLib::Period& p,
@@ -182,6 +183,15 @@ namespace QuantLibAddin {
     {
         libraryObject_ = boost::shared_ptr<QuantLib::EurliborSwapFixIFR>(new
             QuantLib::EurliborSwapFixIFR(p, h));
+    }
+
+    BMAIndex::BMAIndex(
+                 const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                 bool permanent) : InterestRateIndex(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::BMAIndex>(new
+            QuantLib::BMAIndex(hYTS));
     }
 
 }
