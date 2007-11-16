@@ -354,7 +354,7 @@
         </Member>
 
         <Member name='qlAbcdFunctionB' type='QuantLib::AbcdFunction'>
-            <description>Returns the a coefficient in the abcd vol parametrization</description>
+            <description>Returns the b coefficient in the abcd vol parametrization</description>
             <libraryFunction>b</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel'/>
@@ -370,7 +370,7 @@
         </Member>
 
         <Member name='qlAbcdFunctionC' type='QuantLib::AbcdFunction'>
-            <description>Returns the a coefficient in the abcd vol parametrization</description>
+            <description>Returns the c coefficient in the abcd vol parametrization</description>
             <libraryFunction>c</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel'/>
@@ -385,6 +385,22 @@
             </ReturnValue>
         </Member>
 
+        <Member name='qlAbcdFunctionD' type='QuantLib::AbcdFunction'>
+            <description>Returns the d coefficient in the abcd vol parametrization</description>
+            <libraryFunction>d</libraryFunction>
+            <SupportedPlatforms>
+                <SupportedPlatform name='Excel'/>
+                <!--SupportedPlatform name='Cpp'/-->
+            </SupportedPlatforms>
+            <ParameterList>
+                <Parameters/>
+            </ParameterList>
+            <ReturnValue>
+                <type>double</type>
+                <tensorRank>scalar</tensorRank>
+            </ReturnValue>
+        </Member>      
+      
         <Member name='qlAbcdDFunction' type='QuantLib::AbcdFunction'>
             <description>Returns the a coefficient in the abcd vol parametrization</description>
             <libraryFunction>d</libraryFunction>
