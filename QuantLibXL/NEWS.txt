@@ -128,6 +128,8 @@ Bonds:
      IT0001278404. validated and checked against prospectus
 - added digital bond to MainChecks.xls
 - added bond: IT0001278404 to BondMonitor_EUR.xls
+- Digital bonds: please note that fixing in arrears digital bonds have not been validated yet
+     and qlBondCurrentCoupon() is not available
 
 Bug fixing:
 - fixed bug: corrected wrong 3E6E spread in AB3EBASIS SwapRateHelpers
