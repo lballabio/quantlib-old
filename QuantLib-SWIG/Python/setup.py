@@ -20,6 +20,7 @@
 import os, sys, string
 from distutils.cmd import Command
 from distutils.command.build_ext import build_ext
+from distutils.command.build import build
 from distutils.command.install_data import install_data
 from distutils.command.install import install
 from distutils.file_util import copy_file
@@ -76,16 +77,31 @@ class my_wrap(Command):
                   '-outdir QuantLib -o QuantLib/quantlib_wrap.cpp ' +
                   'quantlib.i')
 
+class my_build(build):
+    user_options = build.user_options + [
+        ('dll', None,
+         "link against CRTDLL libraries on Windows")
+    ]
+    boolean_options = build.boolean_options + ['dll']
+    def initialize_options(self):
+        build.initialize_options(self)
+        self.dll = None
+    def finalize_options(self):
+        build.finalize_options(self)
+
+
 class my_build_ext(build_ext):
     user_options = build_ext.user_options + [
         ('dll', None,
          "link against CRTDLL libraries on Windows")
     ]
+    boolean_options = build.boolean_options + ['dll']
     def initialize_options(self):
         build_ext.initialize_options(self)
-        self.use_dll = None
+        self.dll = None
     def finalize_options(self):
         build_ext.finalize_options(self)
+        self.set_undefined_options('build', ('dll','dll'))
 
         self.include_dirs = self.include_dirs or []
         self.library_dirs = self.library_dirs or []
@@ -98,7 +114,6 @@ class my_build_ext(build_ext):
         compiler = self.compiler or get_default_compiler()
 
         if compiler == 'msvc':
-            print 'compiler =', 'MSVC'
             try:
                 QL_INSTALL_DIR = os.environ['QL_DIR']
                 self.include_dirs += [QL_INSTALL_DIR]
@@ -120,18 +135,17 @@ class my_build_ext(build_ext):
             extra_link_args = ['/subsystem:windows', '/machine:I386']
 
             if self.debug:
-                if self.use_dll:
+                if self.dll:
                     extra_compile_args.append('/MDd')
                 else:
                     extra_compile_args.append('/MTd')
             else:
-                if self.use_dll:
+                if self.dll:
                     extra_compile_args.append('/MD')
                 else:
                     extra_compile_args.append('/MT')
 
         elif compiler == 'unix':
-            print 'compiler =', 'Unix'
             ql_compile_args = \
                 os.popen('quantlib-config --cflags').read()[:-1].split()
             ql_link_args = \
@@ -157,7 +171,6 @@ class my_build_ext(build_ext):
                                 if not arg.startswith('-l') ]
 
         else:
-            print 'compiler =', self.compiler
             pass
 
         for ext in self.extensions:
@@ -225,6 +238,7 @@ framework for quantitative finance.
       data_files       = datafiles,
       cmdclass         = {'test': test,
                           'wrap': my_wrap,
+                          'build': my_build,
                           'build_ext': my_build_ext
                           }
       )
