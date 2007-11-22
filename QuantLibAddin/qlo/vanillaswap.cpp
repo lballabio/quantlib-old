@@ -33,14 +33,14 @@ namespace QuantLibAddin {
 
     VanillaSwap::VanillaSwap(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::VanillaSwap::Type type,
-            const QuantLib::Real nominal,
+            QuantLib::VanillaSwap::Type type,
+            QuantLib::Real nominal,
             const boost::shared_ptr<QuantLib::Schedule>& fixedSchedule,
-            const QuantLib::Rate fixRate,
+            QuantLib::Rate fixRate,
             const QuantLib::DayCounter& fixDayCounter,
             const boost::shared_ptr<QuantLib::Schedule>& floatSchedule,
             const boost::shared_ptr<QuantLib::IborIndex>& index,
-            const QuantLib::Spread spread,
+            QuantLib::Spread spread,
             const QuantLib::DayCounter& floatDayCounter,
             bool permanent)
     : Swap(properties, permanent)
@@ -59,17 +59,20 @@ namespace QuantLibAddin {
 
     VanillaSwap::VanillaSwap(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Period& swapTenor,
-            const boost::shared_ptr<QuantLib::IborIndex>& index,
+            const QuantLib::Period& fwdStart,
+            const QuantLib::Period& swapTenor, 
             QuantLib::Rate fixedRate,
-            const QuantLib::Period& forwardStart,
+            const QuantLib::DayCounter& fixDayCounter,
+            const boost::shared_ptr<QuantLib::IborIndex>& index,
             QuantLib::Spread floatingLegSpread,
             bool permanent)
     : Swap(properties, permanent)
     {
-        libraryObject_ = QuantLib::MakeVanillaSwap(swapTenor, index,
-            fixedRate, forwardStart).withFloatingLegSpread(floatingLegSpread).operator
-                boost::shared_ptr<QuantLib::VanillaSwap>();
+        libraryObject_ =
+            QuantLib::MakeVanillaSwap(swapTenor, index, fixedRate, fwdStart)
+                .withFloatingLegSpread(floatingLegSpread)
+                .withFixedLegDayCount(fixDayCounter)
+                .operator boost::shared_ptr<QuantLib::VanillaSwap>();
     }
 
     VanillaSwap::VanillaSwap(

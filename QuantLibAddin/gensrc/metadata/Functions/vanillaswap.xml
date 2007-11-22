@@ -2,16 +2,6 @@
   <description>functions to construct and use VanillaSwap objects</description>
   <displayName>Vanilla Swap</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/index.hpp</include>
-    <include>qlo/ratehelpers.hpp</include>
-    <include>qlo/schedule.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
-    <include>qlo/vanillaswap.hpp</include>
-    <include>ql/indexes/iborindex.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
-    <include>ql/termstructures/yield/ratehelpers.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/index.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
@@ -22,6 +12,16 @@
     <include>ql/indexes/swapindex.hpp</include>
     <include>ql/termstructures/yield/ratehelpers.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/index.hpp</include>
+    <include>qlo/ratehelpers.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/vanillaswap.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/termstructures/yield/ratehelpers.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
@@ -140,32 +140,37 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ForwardStart' exampleValue='0D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward start period</description>
+          </Parameter>
           <Parameter name='SwapTenor' exampleValue='1Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>swap tenor period</description>
-          </Parameter>
-          <Parameter name='Index'>
-            <type>QuantLib::IborIndex</type>
-            <tensorRank>scalar</tensorRank>
-            <description>floating IborIndex index object ID</description>
           </Parameter>
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>the fixed rate. If omitted, default = null</description>
           </Parameter>
-          <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
-          <Parameter name='ForwardStart' exampleValue='0D'>
-            <type>QuantLib::Period</type>
+          <Parameter name='FixedLegDayCounter' default='"30/360 (Bond Basis)"'>
+            <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>forward start period</description>
+            <description>fixed leg day counter (default is 30/360 Bond Basis)</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating IborIndex object ID</description>
           </Parameter>
           <Parameter name='FloatingLegSpread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>the spread in the floating leg rate. If omitted, default = null</description>
           </Parameter>
+          <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
         </Parameters>
       </ParameterList>
     </Constructor>
