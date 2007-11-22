@@ -123,24 +123,19 @@ namespace ObjectHandler {
     }
 
     std::string ConvertOper::strConv(const OPER *xString) {
-
-        //if (xString->val.str && xString->val.str[0])
-        //    ret.assign(xString->val.str + 1, xString->val.str[0]);
-
         std::string ret;
         if (xString->val.str) {
-            int stringLength = xString->val.str[0];
-            // Experimental workaround for apparent bug in Excel API
-            // where the value for the string length wraps around the byte
-            if (stringLength < 0) stringLength += 256;
-            if (stringLength)
-                ret.assign(xString->val.str + 1, stringLength);
+            // Must use type unsigned char (BYTE) to inspect the 0th byte of Excel byte-counted string
+            unsigned char len = xString->val.str[0];
+            if (len)
+                ret.assign(xString->val.str + 1, len);
         }
+
         // FIXME - We have converted an OPER to a std::string.  Certain callers
         // of this function have passed in an Excel format object ID e.g.
-        // "my_object#00123" and need us to strip off the trailing "#00123", so
-        // we call getStub().  This conversion should be done only when it's
-        // definitely required.
+        // "my_object#00123" and need us to strip off the trailing "#00123",
+        // so we call getStub().  This conversion should be done only when
+        // it's definitely required.
         //return ret;
         return ObjectXL::getStub(ret);
     }

@@ -35,7 +35,8 @@ DLL_API void freeOper(XLOPER *px) {
 }
 DLL_API bool isList(const OPER *xValue) {
     if (xValue->xltype == xltypeStr) {
-        for (int i=1; i<=xValue->val.str[0]; i++) {
+        // Must use type unsigned char (BYTE) to process the 0th byte of Excel byte-counted string
+        for (unsigned char i=1; i<=xValue->val.str[0]; i++) {
             if (xValue->val.str[i] == ',' || xValue->val.str[i] == ';')
                 return true;
         }

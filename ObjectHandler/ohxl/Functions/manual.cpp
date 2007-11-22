@@ -37,7 +37,8 @@ void operToOper(OPER *xTarget, const OPER *xSource) {
         xTarget->val.num = xSource->val.num;
         return;
     } else if (xSource->xltype == xltypeStr) {
-        int len = xSource->val.str[0];
+        // Must use type unsigned char (BYTE) to process the 0th byte of Excel byte-counted string
+        unsigned char len = xSource->val.str[0];
         xTarget->val.str = new char[ len + 1 ];
         xTarget->xltype = xltypeStr | xlbitDLLFree;
         xTarget->val.str[0] = len;

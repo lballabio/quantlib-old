@@ -27,7 +27,7 @@
 
 #define VECTOR "<VECTOR>"
 #define MATRIX "<MATRIX>"
-#define XL_MAX_STR_LEN 255
+#define XL_MAX_STR_LEN 256
 
 // parameters registered with Excel as OPER (P) are declared as XLOPER
 #define OPER XLOPER

@@ -39,8 +39,9 @@ namespace ObjectHandler {
     }
 
     DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree, bool expandVector) {
-        int len = __min(XL_MAX_STR_LEN, value.length());
-        xString.val.str = new char[ len + 1 ];
+        // Must use type unsigned char (BYTE) to process the 0th byte of Excel byte-counted string
+        unsigned char len = __min(XL_MAX_STR_LEN - 1, value.length());
+        xString.val.str = new char[len + 1];
         xString.xltype = xltypeStr;
         if (dllToFree)
             xString.xltype |= xlbitDLLFree;
