@@ -8,8 +8,8 @@
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
     <include>ql/termstructures/volatility/equityfx/blackconstantvol.hpp</include>
     <include>ql/termstructures/volatility/equityfx/blackvariancesurface.hpp</include>
-    <include>ql/termstructures/volatility/abcdatmvolcurve.hpp</include>
-    <include>ql/termstructures/volatility/sabrvolsurface.hpp</include>
+    <include>ql/experimental/abcdatmvolcurve.hpp</include>
+    <include>ql/experimental/sabrvolsurface.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/index.hpp</include>
@@ -17,8 +17,8 @@
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
     <include>ql/termstructures/volatility/equityfx/blackconstantvol.hpp</include>
     <include>ql/termstructures/volatility/equityfx/blackvariancesurface.hpp</include>
-    <include>ql/termstructures/volatility/abcdatmvolcurve.hpp</include>
-    <include>ql/termstructures/volatility/sabrvolsurface.hpp</include>
+    <include>ql/experimental/abcdatmvolcurve.hpp</include>
+    <include>ql/experimental/sabrvolsurface.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2007 Ferdinando Ametrano
