@@ -2,6 +2,11 @@
   <description>functions to construct and use TermStructure objects</description>
   <displayName>Term Structures</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/ratehelpers.hpp</include>
+    <include>qlo/Conversions/coercetermstructure.hpp</include>
+  </serializationIncludes>
   <addinIncludes>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
@@ -9,11 +14,6 @@
     <include>qlo/Conversions/coercetermstructure.hpp</include>
     <include>ql/interestrate.hpp</include>
   </addinIncludes>
-  <serializationIncludes>
-    <include>qlo/yieldtermstructures.hpp</include>
-    <include>qlo/ratehelpers.hpp</include>
-    <include>qlo/Conversions/coercetermstructure.hpp</include>
-  </serializationIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2006, 2007 Ferdinando Ametrano

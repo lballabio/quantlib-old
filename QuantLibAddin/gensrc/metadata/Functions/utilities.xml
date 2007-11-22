@@ -86,7 +86,9 @@
       <description>returns the highest commit revision in the source code working copy used to build the addin</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
-        --><!--SupportedPlatform name='Cpp'/--><!--
+        -->
+    <!--SupportedPlatform name='Cpp'/-->
+    <!--
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -101,7 +103,9 @@
       <description>returns the commit date/time (yyyy-mm-dd hh:mm:ss) of the highest commit revision in the source code working copy used to build the addin.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
-        --><!--SupportedPlatform name='Cpp'/--><!--
+        -->
+    <!--SupportedPlatform name='Cpp'/-->
+    <!--
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -116,7 +120,9 @@
       <description>returns the update revision range in the source code used to build the addin</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
-        --><!--SupportedPlatform name='Cpp'/--><!--
+        -->
+    <!--SupportedPlatform name='Cpp'/-->
+    <!--
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -131,7 +137,9 @@
       <description>returns TRUE if there were local modifications in the source code used to build the addin</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
-        --><!--SupportedPlatform name='Cpp'/--><!--
+        -->
+    <!--SupportedPlatform name='Cpp'/-->
+    <!--
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -141,7 +149,7 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>-->
-    
+
     <Procedure name='qlIsInSubset'>
       <description>Looks for elements of a set in a subset. Returns a vector of present/not present booleans, one for each element of the set.</description>
       <alias>QuantLib::isInSubset</alias>

@@ -2,15 +2,6 @@
   <description>functions to construct and use SmileSection objects</description>
   <displayName>Smile Section Structures</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <serializationIncludes>
-    <include>qlo/smilesection.hpp</include>
-    <include>qlo/optimization.hpp</include>
-    <include>qlo/volatilities.hpp</include>
-    <include>ql/termstructures/volatility/interpolatedsmilesection.hpp</include>
-    <include>ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp</include>
-    <include>ql/experimental/sabrvolsurface.hpp</include>
-    <include>ql/quote.hpp</include>
-  </serializationIncludes>
   <addinIncludes>
     <include>qlo/smilesection.hpp</include>
     <include>qlo/optimization.hpp</include>
@@ -20,6 +11,15 @@
     <include>ql/experimental/sabrvolsurface.hpp</include>
     <include>ql/quote.hpp</include>
   </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/smilesection.hpp</include>
+    <include>qlo/optimization.hpp</include>
+    <include>qlo/volatilities.hpp</include>
+    <include>ql/termstructures/volatility/interpolatedsmilesection.hpp</include>
+    <include>ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp</include>
+    <include>ql/experimental/sabrvolsurface.hpp</include>
+    <include>ql/quote.hpp</include>
+  </serializationIncludes>
   <copyright>
     Copyright (C) 2007 Cristina Duminuco
     Copyright (C) 2006 Ferdinando Ametrano

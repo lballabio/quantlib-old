@@ -15,7 +15,7 @@
     Copyright (C) 2006, 2007 Giorgio Facchinetti
   </copyright>
   <Functions>
-   
+
     <!-- PiecewiseConstantAbcdVariance methods -->
     <Member name='qlPiecewiseConstantVarianceVariances' type='QuantLib::PiecewiseConstantVariance'>
       <description>Returns the piecewise constant variances.</description>
@@ -203,7 +203,7 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-    
+
     <!-- LmExtLinearExponentialVolModel constructor  -->
     <Constructor name='qlMarketModelLmExtLinearExponentialVolModel'>
       <libraryFunction>LmExtLinearExponentialVolModel</libraryFunction>
@@ -242,7 +242,7 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor> 
-    
+    </Constructor>
+
   </Functions>
 </Category>

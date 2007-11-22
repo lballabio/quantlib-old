@@ -2,12 +2,12 @@
   <description>functions to construct and use CashFlow objects</description>
   <displayName>SimpleCashFlow</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/couponvectors.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/couponvectors.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/couponvectors.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Cristina Duminuco
   </copyright>

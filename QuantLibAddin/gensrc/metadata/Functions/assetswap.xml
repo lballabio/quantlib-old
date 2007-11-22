@@ -2,15 +2,6 @@
   <description>functions to construct and use AssetSwap objects</description>
   <displayName>Asset Swap</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/index.hpp</include>
-    <include>qlo/schedule.hpp</include>
-    <include>qlo/assetswap.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
-    <include>qlo/bonds.hpp</include>
-    <include>ql/instruments/assetswap.hpp</include>
-    <include>ql/indexes/iborindex.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/assetswap.hpp</include>
     <include>qlo/index.hpp</include>
@@ -20,6 +11,15 @@
     <include>ql/instruments/assetswap.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/index.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/assetswap.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/bonds.hpp</include>
+    <include>ql/instruments/assetswap.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Chiara Fornarola
   </copyright>

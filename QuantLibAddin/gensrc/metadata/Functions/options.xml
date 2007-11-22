@@ -2,17 +2,17 @@
   <description>functions to construct and use Option objects</description>
   <displayName>Options</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/options.hpp</include>
+    <include>qlo/payoffs.hpp</include>
+    <include>qlo/exercise.hpp</include>
+  </serializationIncludes>
   <addinIncludes>
     <include>qlo/options.hpp</include>
     <include>qlo/payoffs.hpp</include>
     <include>qlo/exercise.hpp</include>
     <include>ql/instruments/oneassetoption.hpp</include>
   </addinIncludes>
-  <serializationIncludes>
-    <include>qlo/options.hpp</include>
-    <include>qlo/payoffs.hpp</include>
-    <include>qlo/exercise.hpp</include>
-  </serializationIncludes>
   <copyright>
     Copyright (C) 2007 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers

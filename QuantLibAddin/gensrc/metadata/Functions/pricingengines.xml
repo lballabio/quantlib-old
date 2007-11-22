@@ -2,20 +2,6 @@
   <description>functions to construct and use PricingEngine objects</description>
   <displayName>Pricing Engines</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/pricingengines.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
-    <include>qlo/swaptionvolstructure.hpp</include>
-    <include>qlo/capletvolstructure.hpp</include>
-    <include>qlo/shortratemodels.hpp</include>
-    <include>qlo/payoffs.hpp</include>
-    <include>qlo/marketmodels.hpp</include>
-    <include>qlo/processes.hpp</include>
-    <include>ql/pricingengines/blackformula.hpp</include>
-    <include>ql/pricingengines/blackscholescalculator.hpp</include>
-    <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
-    <include>ql/termstructures/volatility/swaption/swaptionvolstructure.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
@@ -30,6 +16,20 @@
     <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
     <include>ql/termstructures/volatility/swaption/swaptionvolstructure.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/pricingengines.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/shortratemodels.hpp</include>
+    <include>qlo/payoffs.hpp</include>
+    <include>qlo/marketmodels.hpp</include>
+    <include>qlo/processes.hpp</include>
+    <include>ql/pricingengines/blackformula.hpp</include>
+    <include>ql/pricingengines/blackscholescalculator.hpp</include>
+    <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/termstructures/volatility/swaption/swaptionvolstructure.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
     Copyright (C) 2007 Eric Ehlers
@@ -274,7 +274,7 @@
         <type>double</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Procedure>    
+    </Procedure>
 
     <Procedure name='qlBachelierBlackFormula'>
       <description>Black style formula when forward is normal rather than log-normal, i.e. essentially the model of Bachelier.</description>
@@ -1138,8 +1138,8 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor>    
-    
+    </Constructor>
+
     <Constructor name='qlBinomialPricingEngine'>
       <libraryFunction>PricingEngine</libraryFunction>
       <SupportedPlatforms>
@@ -1316,6 +1316,6 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-    
+
   </Functions>
 </Category>

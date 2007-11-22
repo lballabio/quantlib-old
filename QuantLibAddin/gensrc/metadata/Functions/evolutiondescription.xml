@@ -2,18 +2,18 @@
   <description>functions to construct and use evolution description related objects</description>
   <displayName>Evolution Description</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/evolutiondescription.hpp</include>
-    <include>qlo/products.hpp</include>
-    <include>ql/models/marketmodels/multiproduct.hpp</include>
-    <include>ql/models/marketmodels/evolutiondescription.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/evolutiondescription.hpp</include>
     <include>qlo/products.hpp</include>
     <include>ql/models/marketmodels/multiproduct.hpp</include>
     <include>ql/models/marketmodels/evolutiondescription.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/products.hpp</include>
+    <include>ql/models/marketmodels/multiproduct.hpp</include>
+    <include>ql/models/marketmodels/evolutiondescription.hpp</include>
+  </addinIncludes>
 
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
@@ -351,5 +351,5 @@
       </ReturnValue>
     </Procedure>
 
-   </Functions>
+  </Functions>
 </Category>

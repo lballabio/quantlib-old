@@ -2,14 +2,6 @@
   <description>functions to construct and use CapFloor objects</description>
   <displayName>Caps/Floors</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/index.hpp</include>
-    <include>qlo/capfloor.hpp</include>
-    <include>qlo/couponvectors.hpp</include>
-    <include>qlo/pricingengines.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
-    <include>ql/indexes/iborindex.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/capfloor.hpp</include>
     <include>qlo/index.hpp</include>
@@ -18,6 +10,14 @@
     <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/index.hpp</include>
+    <include>qlo/capfloor.hpp</include>
+    <include>qlo/couponvectors.hpp</include>
+    <include>qlo/pricingengines.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet

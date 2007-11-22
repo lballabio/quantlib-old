@@ -2,6 +2,15 @@
   <description>functions to construct and use SwaptionVolatilityStructure objects</description>
   <displayName>Swaption Volatility Term Structures</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>ql/termstructures/volatility/swaption/swaptionvolcube2.hpp</include>
+    <include>qlo/quotes.hpp</include>
+    <include>qlo/optimization.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+    <include>qlo/Conversions/coercetermstructure.hpp</include>
+  </serializationIncludes>
   <addinIncludes>
     <include>ql/termstructures/volatility/swaption/swaptionvolcube2.hpp</include>
     <include>qlo/quotes.hpp</include>
@@ -12,15 +21,6 @@
     <include>ql/indexes/swapindex.hpp</include>
     <include>qlo/Conversions/coercetermstructure.hpp</include>
   </addinIncludes>
-  <serializationIncludes>
-    <include>qlo/swaptionvolstructure.hpp</include>
-    <include>ql/termstructures/volatility/swaption/swaptionvolcube2.hpp</include>
-    <include>qlo/quotes.hpp</include>
-    <include>qlo/optimization.hpp</include>
-    <include>qlo/index.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
-    <include>qlo/Conversions/coercetermstructure.hpp</include>
-  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006 Silvia Frasson

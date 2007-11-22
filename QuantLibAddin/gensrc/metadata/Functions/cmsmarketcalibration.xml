@@ -2,18 +2,18 @@
   <description>functions to construct and use CmsMarketCalibration objects</description>
   <displayName>Cms Market Calibration</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/cmsmarketcalibration.hpp</include>
-    <include>qlo/cmsmarket.hpp</include>
-    <include>qlo/swaptionvolstructure.hpp</include>
-    <include>qlo/optimization.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/cmsmarketcalibration.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/optimization.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/cmsmarketcalibration.hpp</include>
+    <include>qlo/cmsmarket.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/optimization.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006 Giorgio Facchinetti
   </copyright>

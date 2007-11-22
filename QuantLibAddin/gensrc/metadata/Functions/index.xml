@@ -2,6 +2,12 @@
   <description>functions to construct and use Index objects</description>
   <displayName>Indices</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/index.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+  </serializationIncludes>
   <addinIncludes>
     <include>qlo/index.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
@@ -9,12 +15,6 @@
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
-  <serializationIncludes>
-    <include>qlo/index.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
-    <include>ql/indexes/iborindex.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
-  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006 Katiuscia Manzoni

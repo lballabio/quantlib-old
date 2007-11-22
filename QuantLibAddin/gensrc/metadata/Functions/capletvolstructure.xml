@@ -2,6 +2,19 @@
   <description>functions to construct and use OptionletVolatilityStructure objects</description>
   <displayName>Caplet Volatility Term Structures</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>qlo/quotes.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/termstructures/volatility/optionlet/constantoptionletvol.hpp</include>
+    <include>ql/termstructures/volatility/optionlet/optionletstripper1.hpp</include>
+    <include>ql/termstructures/volatility/optionlet/optionletstripper2.hpp</include>
+    <include>ql/termstructures/volatility/capfloor/capfloortermvolcurve.hpp</include>
+    <include>ql/termstructures/volatility/capfloor/capfloortermvolsurface.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+  </serializationIncludes>
   <addinIncludes>
     <include>qlo/index.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
@@ -16,19 +29,6 @@
     <include>ql/termstructures/volatility/capfloor/capfloortermvolsurface.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
-  <serializationIncludes>
-    <include>qlo/capletvolstructure.hpp</include>
-    <include>qlo/index.hpp</include>
-    <include>qlo/quotes.hpp</include>
-    <include>qlo/swaptionvolstructure.hpp</include>
-    <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
-    <include>ql/termstructures/volatility/optionlet/constantoptionletvol.hpp</include>
-    <include>ql/termstructures/volatility/optionlet/optionletstripper1.hpp</include>
-    <include>ql/termstructures/volatility/optionlet/optionletstripper2.hpp</include>
-    <include>ql/termstructures/volatility/capfloor/capfloortermvolcurve.hpp</include>
-    <include>ql/termstructures/volatility/capfloor/capfloortermvolsurface.hpp</include>
-    <include>ql/indexes/iborindex.hpp</include>
-  </serializationIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
   </copyright>

@@ -2,18 +2,18 @@
   <description>functions to construct and use Market Model Evolvers objects</description>
   <displayName>Market Model Evolvers</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/marketmodelevolvers.hpp</include>
-    <include>qlo/browniangenerators.hpp</include>
-    <include>qlo/marketmodels.hpp</include>
-    <include>ql/models/marketmodels/evolver.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/marketmodelevolvers.hpp</include>
     <include>qlo/browniangenerators.hpp</include>
     <include>qlo/marketmodels.hpp</include>
     <include>ql/models/marketmodels/evolver.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/marketmodelevolvers.hpp</include>
+    <include>qlo/browniangenerators.hpp</include>
+    <include>qlo/marketmodels.hpp</include>
+    <include>ql/models/marketmodels/evolver.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2007 Chiara Fornarola
@@ -22,7 +22,7 @@
     Copyright (C) 2006, 2007 Giorgio Facchinetti
   </copyright>
   <Functions>
-    
+
     <!-- MarketModelEvolver derived classes constructors  -->
     <Constructor name='qlForwardRatePc'>
       <libraryFunction>LogNormalFwdRatePc</libraryFunction>
@@ -182,6 +182,6 @@
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
-    
+
   </Functions>
 </Category>

@@ -2,18 +2,6 @@
   <description>functions to construct and use Market Models related objects</description>
   <displayName>MarketModels</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/marketmodels.hpp</include>
-    <include>qlo/curvestate.hpp</include>
-    <include>qlo/evolutiondescription.hpp</include>
-    <include>qlo/correlation.hpp</include>
-    <include>qlo/ctsmmcapletcalibration.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
-    <include>ql/models/marketmodels/models/fwdperiodadapter.hpp</include>
-    <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
-    <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
-    <include>ql/termstructures/yieldtermstructure.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/marketmodels.hpp</include>
     <include>qlo/curvestate.hpp</include>
@@ -26,6 +14,18 @@
     <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
     <include>ql/termstructures/yieldtermstructure.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/marketmodels.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/ctsmmcapletcalibration.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>ql/models/marketmodels/models/fwdperiodadapter.hpp</include>
+    <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
+    <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+  </addinIncludes>
 
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
@@ -34,7 +34,7 @@
     Copyright (C) 2006, 2007 Cristina Duminuco
     Copyright (C) 2006, 2007 Giorgio Facchinetti
   </copyright>
-  
+
   <Functions>
 
     <!-- MarketModel base class interfaces -->
@@ -186,7 +186,7 @@
         <tensorRank>matrix</tensorRank>
       </ReturnValue>
     </Member>
-    
+
     <Member name='qlMarketModelTimeDependentVolatility' type='QuantLib::MarketModel' superType='libraryClass'>
       <description>Returns the time dependent vol for rate i.</description>
       <libraryFunction>timeDependentVolatility</libraryFunction>

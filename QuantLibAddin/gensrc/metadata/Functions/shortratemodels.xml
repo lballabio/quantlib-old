@@ -2,18 +2,18 @@
   <description>functions to construct and use short-rate model objects</description>
   <displayName>Short Rate Models</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/shortratemodels.hpp</include>
-    <include>ql/models/shortrate/onefactormodels/vasicek.hpp</include>
-    <include>ql/models/shortrate/onefactormodels/hullwhite.hpp</include>
-    <include>ql/termstructures/yieldtermstructure.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/shortratemodels.hpp</include>
     <include>ql/models/shortrate/onefactormodels/vasicek.hpp</include>
     <include>ql/models/shortrate/onefactormodels/hullwhite.hpp</include>
     <include>ql/termstructures/yieldtermstructure.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/shortratemodels.hpp</include>
+    <include>ql/models/shortrate/onefactormodels/vasicek.hpp</include>
+    <include>ql/models/shortrate/onefactormodels/hullwhite.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet

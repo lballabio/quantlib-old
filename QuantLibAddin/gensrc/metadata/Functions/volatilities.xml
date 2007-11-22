@@ -2,15 +2,6 @@
   <description>functions to construct and use volatility objects</description>
   <displayName>Volatilities</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/index.hpp</include>
-    <include>qlo/volatilities.hpp</include>
-    <include>ql/math/interpolations/sabrinterpolation.hpp</include>
-    <include>ql/termstructures/volatility/equityfx/blackconstantvol.hpp</include>
-    <include>ql/termstructures/volatility/equityfx/blackvariancesurface.hpp</include>
-    <include>ql/experimental/abcdatmvolcurve.hpp</include>
-    <include>ql/experimental/sabrvolsurface.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/index.hpp</include>
     <include>qlo/volatilities.hpp</include>
@@ -20,6 +11,15 @@
     <include>ql/experimental/abcdatmvolcurve.hpp</include>
     <include>ql/experimental/sabrvolsurface.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/index.hpp</include>
+    <include>qlo/volatilities.hpp</include>
+    <include>ql/math/interpolations/sabrinterpolation.hpp</include>
+    <include>ql/termstructures/volatility/equityfx/blackconstantvol.hpp</include>
+    <include>ql/termstructures/volatility/equityfx/blackvariancesurface.hpp</include>
+    <include>ql/experimental/abcdatmvolcurve.hpp</include>
+    <include>ql/experimental/sabrvolsurface.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2007 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
@@ -187,8 +187,8 @@
             <tensorRank>scalar</tensorRank>
             <description>option tenor</description>
           </Parameter>
-          </Parameters>
-        </ParameterList>
+        </Parameters>
+      </ParameterList>
       <ReturnValue>
         <type>QuantLib::Date</type>
         <tensorRank>scalar</tensorRank>
@@ -456,8 +456,8 @@
         <type>QuantLib::EndCriteria::Type</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>-->    
-    
+    </Member>-->
+
     <Member name='qlAbcdAtmVolCurveA' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
       <description>Returns the a coefficient in the abcd vol parametrization.</description>
       <libraryFunction>a</libraryFunction>
@@ -472,7 +472,7 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
-    
+
     <Member name='qlAbcdAtmVolCurveB' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
       <description>Returns the b coefficient in the abcd vol parametrization.</description>
       <libraryFunction>b</libraryFunction>
@@ -517,7 +517,7 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
-    
+
     <Member name='qlAbcdAtmVolCurveKatOptionTenors' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
       <description>Returns the k adjustments factors needed to match the input Black vols.</description>
       <libraryFunction>k</libraryFunction>
@@ -553,7 +553,7 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
-  
+
     <Constructor name='qlAbcdAtmVolCurve'>
       <libraryFunction>AbcdAtmVolCurve</libraryFunction>
       <SupportedPlatforms>
@@ -586,7 +586,7 @@
             <type>bool</type>
             <tensorRank>vector</tensorRank>
             <description>inclusion flags. If omitted, all volatilities are interpolated.</description>
-          </Parameter>          
+          </Parameter>
           <Parameter name='Convention' exampleValue='Following'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
@@ -696,7 +696,7 @@
         <type>string</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>   
-    
+    </Member>
+
   </Functions>
 </Category>

@@ -2,6 +2,13 @@
   <description>functions to construct and use RateHelper objects</description>
   <displayName>RateHelper</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/ratehelpers.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+  </serializationIncludes>
   <addinIncludes>
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/index.hpp</include>
@@ -10,13 +17,6 @@
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
-  <serializationIncludes>
-    <include>qlo/ratehelpers.hpp</include>
-    <include>qlo/index.hpp</include>
-    <include>qlo/schedule.hpp</include>
-    <include>ql/indexes/iborindex.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
-  </serializationIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2006, 2007 Ferdinando Ametrano

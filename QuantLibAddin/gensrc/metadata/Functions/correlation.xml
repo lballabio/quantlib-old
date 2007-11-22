@@ -2,6 +2,15 @@
   <description>functions to construct and use Correlation objects</description>
   <displayName>correlation</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/sequencestatistics.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>ql/models/marketmodels/correlations/expcorrelations.hpp</include>
+    <include>ql/models/marketmodels/historicalforwardratesanalysis.hpp</include>
+  </serializationIncludes>
   <addinIncludes>
     <include>qlo/sequencestatistics.hpp</include>
     <include>qlo/correlation.hpp</include>
@@ -12,15 +21,6 @@
     <include>ql/models/marketmodels/historicalforwardratesanalysis.hpp</include>
     <include>ql/models/marketmodels/historicalratesanalysis.hpp</include>
   </addinIncludes>
-  <serializationIncludes>
-    <include>qlo/correlation.hpp</include>
-    <include>qlo/sequencestatistics.hpp</include>
-    <include>qlo/curvestate.hpp</include>
-    <include>qlo/evolutiondescription.hpp</include>
-    <include>qlo/index.hpp</include>
-    <include>ql/models/marketmodels/correlations/expcorrelations.hpp</include>
-    <include>ql/models/marketmodels/historicalforwardratesanalysis.hpp</include>
-  </serializationIncludes>
 
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano

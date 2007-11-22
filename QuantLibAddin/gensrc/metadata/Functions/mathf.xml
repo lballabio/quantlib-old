@@ -2,14 +2,6 @@
   <description>Math utility functions</description>
   <displayName>Math</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>ql/math/primenumbers.hpp</include>
-    <include>ql/math/matrixutilities/pseudosqrt.hpp</include>
-    <include>ql/math/matrixutilities/choleskydecomposition.hpp</include>
-    <include>qlo/symmetricschurdecomposition.hpp</include>
-    <include>qlo/getcovariance.hpp</include>
-    <include>qlo/mathf.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/mathf.hpp</include>
     <include>ql/math/primenumbers.hpp</include>
@@ -18,6 +10,14 @@
     <include>qlo/symmetricschurdecomposition.hpp</include>
     <include>qlo/getcovariance.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>ql/math/primenumbers.hpp</include>
+    <include>ql/math/matrixutilities/pseudosqrt.hpp</include>
+    <include>ql/math/matrixutilities/choleskydecomposition.hpp</include>
+    <include>qlo/symmetricschurdecomposition.hpp</include>
+    <include>qlo/getcovariance.hpp</include>
+    <include>qlo/mathf.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
   </copyright>

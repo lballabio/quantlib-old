@@ -2,14 +2,14 @@
   <description>functions to construct and use Process objects</description>
   <displayName>Processes</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/processes.hpp</include>
-    <include>qlo/volatilities.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/processes.hpp</include>
     <include>qlo/volatilities.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/processes.hpp</include>
+    <include>qlo/volatilities.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2004, 2005 Eric Ehlers
   </copyright>

@@ -2,15 +2,6 @@
   <description>functions to construct and use ctsmmcapletcalibration objects</description>
   <displayName>Ctsmmcapletcalibration</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/ctsmmcapletcalibration.hpp</include>
-    <include>qlo/evolutiondescription.hpp</include>
-    <include>qlo/correlation.hpp</include>
-    <include>qlo/curvestate.hpp</include>
-    <include>qlo/volatility.hpp</include>
-    <include>qlo/alphaform.hpp</include>
-    <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/ctsmmcapletcalibration.hpp</include>
     <include>qlo/evolutiondescription.hpp</include>
@@ -20,6 +11,15 @@
     <include>qlo/alphaform.hpp</include>
     <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/ctsmmcapletcalibration.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/volatility.hpp</include>
+    <include>qlo/alphaform.hpp</include>
+    <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2007 Chiara Fornarola
@@ -511,6 +511,6 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-    
-   </Functions>
+
+  </Functions>
 </Category>

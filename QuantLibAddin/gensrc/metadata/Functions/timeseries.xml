@@ -2,13 +2,13 @@
   <description>functions to construct and use TimeSeries objects</description>
   <displayName>TimeSeries</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/timeseries.hpp</include>
+  </serializationIncludes>
   <addinIncludes>
     <include>qlo/timeseries.hpp</include>
     <include>ql/timeseries.hpp</include>
   </addinIncludes>
-  <serializationIncludes>
-    <include>qlo/timeseries.hpp</include>
-  </serializationIncludes>
   <copyright>
     Copyright (C) 2007 Ferdinando Ametrano
     Copyright (C) 2007 Eric Ehlers
@@ -123,7 +123,7 @@
             <description>fixing date(s)</description>
           </Parameter>
         </Parameters>
-          </ParameterList>
+      </ParameterList>
       <ReturnValue>
         <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>

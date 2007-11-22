@@ -2,6 +2,18 @@
   <description>quotes objects</description>
   <displayName>Quotes</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/quotes.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>ql/quotes/simplequote.hpp</include>
+    <include>ql/quotes/derivedquote.hpp</include>
+    <include>ql/quotes/eurodollarfuturesquote.hpp</include>
+    <include>ql/quotes/forwardvaluequote.hpp</include>
+    <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
+    <include>ql/quotes/impliedstddevquote.hpp</include>
+    <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/Conversions/coercequote.hpp</include>
+  </serializationIncludes>
   <addinIncludes>
     <include>qlo/quotes.hpp</include>
     <include>qlo/index.hpp</include>
@@ -15,18 +27,6 @@
     <include>ql/quotes/impliedstddevquote.hpp</include>
     <include>qlo/Conversions/coercequote.hpp</include>
   </addinIncludes>
-  <serializationIncludes>
-    <include>qlo/quotes.hpp</include>
-    <include>qlo/index.hpp</include>
-    <include>ql/quotes/simplequote.hpp</include>
-    <include>ql/quotes/derivedquote.hpp</include>
-    <include>ql/quotes/eurodollarfuturesquote.hpp</include>
-    <include>ql/quotes/forwardvaluequote.hpp</include>
-    <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
-    <include>ql/quotes/impliedstddevquote.hpp</include>
-    <include>qlo/capletvolstructure.hpp</include>
-    <include>qlo/Conversions/coercequote.hpp</include>
-  </serializationIncludes>
   <copyright>
     Copyright (C) 2007 Eric Ehlers
     Copyright (C) 2007 Ferdinando Ametrano

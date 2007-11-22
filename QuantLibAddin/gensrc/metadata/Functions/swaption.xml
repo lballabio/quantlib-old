@@ -2,16 +2,6 @@
   <description>functions to construct and use Swaption objects</description>
   <displayName>Swaption</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>ql/exercise.hpp</include>
-    <include>qlo/swaption.hpp</include>
-    <include>qlo/index.hpp</include>
-    <include>qlo/vanillaswap.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
-    <include>qlo/pricingengines.hpp</include>
-    <include>qlo/exercise.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>ql/exercise.hpp</include>
     <include>qlo/index.hpp</include>
@@ -22,6 +12,16 @@
     <include>qlo/exercise.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>ql/exercise.hpp</include>
+    <include>qlo/swaption.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>qlo/vanillaswap.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/pricingengines.hpp</include>
+    <include>qlo/exercise.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
     Copyright (C) 2006 Cristina Duminuco
@@ -104,7 +104,7 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-    
+
     <Member name='qlSwaptionType' type='QuantLib::Swaption'>
       <description>returns the type (Payer or Receiver) for the given Swaption object</description>
       <libraryFunction>type</libraryFunction>

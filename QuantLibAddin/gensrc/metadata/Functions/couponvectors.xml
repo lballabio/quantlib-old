@@ -2,17 +2,6 @@
   <description>functions to construct and use Leg objects</description>
   <displayName>Coupon Vectors</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
-  <addinIncludes>
-    <include>qlo/couponvectors.hpp</include>
-    <include>qlo/schedule.hpp</include>
-    <include>qlo/conundrumpricer.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
-    <include>qlo/swaptionvolstructure.hpp</include>
-    <include>qlo/capletvolstructure.hpp</include>
-    <include>qlo/index.hpp</include>
-    <include>ql/indexes/iborindex.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
-  </addinIncludes>
   <serializationIncludes>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/schedule.hpp</include>
@@ -24,6 +13,17 @@
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/couponvectors.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/conundrumpricer.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/index.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+  </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2006, 2007 Cristina Duminuco
@@ -684,7 +684,7 @@
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor>    
+    </Constructor>
 
   </Functions>
 
