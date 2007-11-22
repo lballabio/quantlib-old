@@ -26,8 +26,8 @@
 
 #include <ql/termstructures/volatility/equityfx/blackconstantvol.hpp>
 #include <ql/termstructures/volatility/equityfx/blackvariancesurface.hpp>
-#include <ql/termstructures/volatility/abcdatmvolcurve.hpp>
-#include <ql/termstructures/volatility/sabrvolsurface.hpp>
+#include <ql/experimental/abcdatmvolcurve.hpp>
+#include <ql/experimental/sabrvolsurface.hpp>
 
 namespace QuantLibAddin {
 
