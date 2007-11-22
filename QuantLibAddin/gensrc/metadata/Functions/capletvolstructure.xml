@@ -274,7 +274,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlOptionletStripperAdapter'>
+    <Constructor name='qlStrippedOptionletAdapter'>
       <libraryFunction>StrippedOptionletAdapter</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
