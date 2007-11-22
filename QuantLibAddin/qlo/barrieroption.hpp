@@ -20,11 +20,14 @@
 #define qla_barrieroption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <ql/instruments/barrieroption.hpp>
+
+#include <ql/instruments/barriertype.hpp>
+#include <ql/types.hpp>
 
 namespace QuantLib {
-    class GeneralizedBlackScholesProcess;
-}
+    class StrikedTypePayoff;
+    class Exercise;
+}   
 
 namespace QuantLibAddin {
 
@@ -32,17 +35,14 @@ namespace QuantLibAddin {
     public:
         BarrierOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Barrier::Type &barrierType,
-            const double &barrier,
-            const double &rebate,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            QuantLib::Barrier::Type barrierType,
+            QuantLib::Real barrier,
+            QuantLib::Real rebate,
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::Exercise>& exercise,
             bool permanent);
     };
 
 }
 
 #endif
-

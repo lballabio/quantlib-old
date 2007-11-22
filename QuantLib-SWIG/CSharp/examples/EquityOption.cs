@@ -91,11 +91,11 @@ namespace EquityOptionTest
 
             // options
             VanillaOption europeanOption =
-                new VanillaOption(stochasticProcess, payoff, europeanExercise);
+                new VanillaOption(payoff, europeanExercise);
             VanillaOption bermudanOption =
-                new VanillaOption(stochasticProcess, payoff, bermudanExercise);
+                new VanillaOption(payoff, bermudanExercise);
             VanillaOption americanOption =
-                new VanillaOption(stochasticProcess, payoff, americanExercise);
+                new VanillaOption(payoff, americanExercise);
 
             // report the parameters we are using
             ReportParameters(optionType, underlyingPrice, strikePrice,
@@ -109,7 +109,8 @@ namespace EquityOptionTest
 
             // Black-Scholes for European
             try {
-                europeanOption.setPricingEngine(new AnalyticEuropeanEngine());
+                europeanOption.setPricingEngine(
+                               new AnalyticEuropeanEngine(stochasticProcess));
                 ReportResults("Black-Scholes",
                               europeanOption.NPV(), null, null);
             }
@@ -119,7 +120,8 @@ namespace EquityOptionTest
 
             // Barone-Adesi and Whaley approximation for American
             try {
-                americanOption.setPricingEngine(new BaroneAdesiWhaleyEngine());
+                americanOption.setPricingEngine(
+                              new BaroneAdesiWhaleyEngine(stochasticProcess));
                 ReportResults("Barone-Adesi/Whaley",
                               null, null, americanOption.NPV());
             }
@@ -129,7 +131,8 @@ namespace EquityOptionTest
 
             // Bjerksund and Stensland approximation for American
             try {
-                americanOption.setPricingEngine(new BjerksundStenslandEngine());
+                americanOption.setPricingEngine(
+                             new BjerksundStenslandEngine(stochasticProcess));
                 ReportResults("Bjerksund/Stensland",
                               null, null, americanOption.NPV());
             }
@@ -139,7 +142,8 @@ namespace EquityOptionTest
 
             // Integral
             try {
-                europeanOption.setPricingEngine(new IntegralEngine());
+                europeanOption.setPricingEngine(
+                                       new IntegralEngine(stochasticProcess));
                 ReportResults("Integral",
                               europeanOption.NPV(), null, null);
             }
@@ -152,11 +156,14 @@ namespace EquityOptionTest
             // Finite differences
             try {
                 europeanOption.setPricingEngine(
-                              new FDEuropeanEngine(timeSteps, timeSteps - 1));
+                              new FDEuropeanEngine(stochasticProcess,
+                                                   timeSteps, timeSteps - 1));
                 bermudanOption.setPricingEngine(
-                              new FDBermudanEngine(timeSteps, timeSteps - 1));
+                              new FDBermudanEngine(stochasticProcess,
+                                                   timeSteps, timeSteps - 1));
                 americanOption.setPricingEngine(
-                              new FDAmericanEngine(timeSteps, timeSteps - 1));
+                              new FDAmericanEngine(stochasticProcess,
+                                                   timeSteps, timeSteps - 1));
                 ReportResults("Finite differences",
                               europeanOption.NPV(),
                               bermudanOption.NPV(),
@@ -173,11 +180,14 @@ namespace EquityOptionTest
             // Binomial Jarrow-Rudd
             try {
                 europeanOption.setPricingEngine(
-                          new BinomialVanillaEngine("jarrowrudd", timeSteps));
+                          new BinomialVanillaEngine(stochasticProcess,
+                                                    "jarrowrudd", timeSteps));
                 bermudanOption.setPricingEngine(
-                          new BinomialVanillaEngine("jarrowrudd", timeSteps));
+                          new BinomialVanillaEngine(stochasticProcess,
+                                                    "jarrowrudd", timeSteps));
                 americanOption.setPricingEngine(
-                          new BinomialVanillaEngine("jarrowrudd", timeSteps));
+                          new BinomialVanillaEngine(stochasticProcess,
+                                                    "jarrowrudd", timeSteps));
                 ReportResults("Binomial Jarrow-Rudd",
                               europeanOption.NPV(),
                               bermudanOption.NPV(),
@@ -190,11 +200,14 @@ namespace EquityOptionTest
             // Binomial Cox-Ross-Rubinstein
             try {
                 europeanOption.setPricingEngine(
-                   new BinomialVanillaEngine("coxrossrubinstein", timeSteps));
+                   new BinomialVanillaEngine(stochasticProcess,
+                                             "coxrossrubinstein", timeSteps));
                 bermudanOption.setPricingEngine(
-                   new BinomialVanillaEngine("coxrossrubinstein", timeSteps));
+                   new BinomialVanillaEngine(stochasticProcess,
+                                             "coxrossrubinstein", timeSteps));
                 americanOption.setPricingEngine(
-                   new BinomialVanillaEngine("coxrossrubinstein", timeSteps));
+                   new BinomialVanillaEngine(stochasticProcess,
+                                             "coxrossrubinstein", timeSteps));
                 ReportResults("Binomial Cox-Ross-Rubinstein",
                               europeanOption.NPV(),
                               bermudanOption.NPV(),
@@ -207,11 +220,14 @@ namespace EquityOptionTest
             // Additive Equiprobabilities
             try {
                 europeanOption.setPricingEngine(
-                                 new BinomialVanillaEngine("eqp", timeSteps));
+                                 new BinomialVanillaEngine(stochasticProcess,
+                                                           "eqp", timeSteps));
                 bermudanOption.setPricingEngine(
-                                 new BinomialVanillaEngine("eqp", timeSteps));
+                                 new BinomialVanillaEngine(stochasticProcess,
+                                                           "eqp", timeSteps));
                 americanOption.setPricingEngine(
-                                 new BinomialVanillaEngine("eqp", timeSteps));
+                                 new BinomialVanillaEngine(stochasticProcess,
+                                                           "eqp", timeSteps));
                 ReportResults("Additive Equiprobabilities",
                               europeanOption.NPV(),
                               bermudanOption.NPV(),
@@ -224,11 +240,14 @@ namespace EquityOptionTest
             // Binomial Trigeorgis
             try {
                 europeanOption.setPricingEngine(
-                          new BinomialVanillaEngine("trigeorgis", timeSteps));
+                          new BinomialVanillaEngine(stochasticProcess,
+                                                    "trigeorgis", timeSteps));
                 bermudanOption.setPricingEngine(
-                          new BinomialVanillaEngine("trigeorgis", timeSteps));
+                          new BinomialVanillaEngine(stochasticProcess,
+                                                    "trigeorgis", timeSteps));
                 americanOption.setPricingEngine(
-                          new BinomialVanillaEngine("trigeorgis", timeSteps));
+                          new BinomialVanillaEngine(stochasticProcess,
+                                                    "trigeorgis", timeSteps));
                 ReportResults("Binomial Trigeorgis",
                               europeanOption.NPV(),
                               bermudanOption.NPV(),
@@ -241,11 +260,14 @@ namespace EquityOptionTest
             // Binomial Tian
             try {
                 europeanOption.setPricingEngine(
-                                new BinomialVanillaEngine("tian", timeSteps));
+                                new BinomialVanillaEngine(stochasticProcess,
+                                                          "tian", timeSteps));
                 bermudanOption.setPricingEngine(
-                                new BinomialVanillaEngine("tian", timeSteps));
+                                new BinomialVanillaEngine(stochasticProcess,
+                                                          "tian", timeSteps));
                 americanOption.setPricingEngine(
-                                new BinomialVanillaEngine("tian", timeSteps));
+                                new BinomialVanillaEngine(stochasticProcess,
+                                                          "tian", timeSteps));
                 ReportResults("Binomial Tian",
                               europeanOption.NPV(),
                               bermudanOption.NPV(),
@@ -258,11 +280,14 @@ namespace EquityOptionTest
             // Binomial Leisen-Reimer
             try {
                 europeanOption.setPricingEngine(
-                        new BinomialVanillaEngine("leisenreimer", timeSteps));
+                        new BinomialVanillaEngine(stochasticProcess,
+                                                  "leisenreimer", timeSteps));
                 bermudanOption.setPricingEngine(
-                        new BinomialVanillaEngine("leisenreimer", timeSteps));
+                        new BinomialVanillaEngine(stochasticProcess,
+                                                  "leisenreimer", timeSteps));
                 americanOption.setPricingEngine(
-                        new BinomialVanillaEngine("leisenreimer", timeSteps));
+                        new BinomialVanillaEngine(stochasticProcess,
+                                                  "leisenreimer", timeSteps));
                 ReportResults("Binomial Leisen-Reimer",
                               europeanOption.NPV(),
                               bermudanOption.NPV(),
@@ -275,11 +300,14 @@ namespace EquityOptionTest
             // Binomial Joshi
             try {
                 europeanOption.setPricingEngine(
-                              new BinomialVanillaEngine("joshi4", timeSteps));
+                              new BinomialVanillaEngine(stochasticProcess,
+                                                        "joshi4", timeSteps));
                 bermudanOption.setPricingEngine(
-                              new BinomialVanillaEngine("joshi4", timeSteps));
+                              new BinomialVanillaEngine(stochasticProcess,
+                                                        "joshi4", timeSteps));
                 americanOption.setPricingEngine(
-                              new BinomialVanillaEngine("joshi4", timeSteps));
+                              new BinomialVanillaEngine(stochasticProcess,
+                                                        "joshi4", timeSteps));
                 ReportResults("Binomial Joshi",
                               europeanOption.NPV(),
                               bermudanOption.NPV(),
@@ -308,7 +336,8 @@ namespace EquityOptionTest
                 int maxSamples = int.MaxValue;
                 int seed = 42;
                 europeanOption.setPricingEngine(
-                    new MCEuropeanEngine(traits, mcTimeSteps,
+                    new MCEuropeanEngine(stochasticProcess,
+                                         traits, mcTimeSteps,
                                          timeStepsPerYear,
                                          brownianBridge,
                                          antitheticVariate,
@@ -335,7 +364,8 @@ namespace EquityOptionTest
                 int maxSamples = int.MaxValue;
                 int seed = 0;
                 europeanOption.setPricingEngine(
-                    new MCEuropeanEngine(traits, mcTimeSteps,
+                    new MCEuropeanEngine(stochasticProcess,
+                                         traits, mcTimeSteps,
                                          timeStepsPerYear,
                                          brownianBridge,
                                          antitheticVariate,

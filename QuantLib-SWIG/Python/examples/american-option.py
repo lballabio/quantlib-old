@@ -1,5 +1,5 @@
 
-# Copyright (C) 2004, 2005, 2006 StatPro Italia srl
+# Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -58,43 +58,43 @@ process = BlackScholesMertonProcess(QuoteHandle(underlying),
                                     YieldTermStructureHandle(riskFreeRate),
                                     BlackVolTermStructureHandle(volatility))
 
-option = VanillaOption(process, payoff, exercise)
+option = VanillaOption(payoff, exercise)
 
 refValue = 4.48667344
 report('reference value',refValue)
 
 # method: analytic
 
-option.setPricingEngine(BaroneAdesiWhaleyEngine())
+option.setPricingEngine(BaroneAdesiWhaleyEngine(process))
 report('Barone-Adesi-Whaley',option.NPV())
 
-option.setPricingEngine(BjerksundStenslandEngine())
+option.setPricingEngine(BjerksundStenslandEngine(process))
 report('Bjerksund-Stensland',option.NPV())
 
 # method: finite differences
 timeSteps = 801
 gridPoints = 800
 
-option.setPricingEngine(FDAmericanEngine(timeSteps,gridPoints))
+option.setPricingEngine(FDAmericanEngine(process,timeSteps,gridPoints))
 report('finite differences',option.NPV())
 
 # method: binomial
 timeSteps = 801
 
-option.setPricingEngine(BinomialVanillaEngine('jr',timeSteps))
+option.setPricingEngine(BinomialVanillaEngine(process,'jr',timeSteps))
 report('binomial (JR)',option.NPV())
 
-option.setPricingEngine(BinomialVanillaEngine('crr',timeSteps))
+option.setPricingEngine(BinomialVanillaEngine(process,'crr',timeSteps))
 report('binomial (CRR)',option.NPV())
 
-option.setPricingEngine(BinomialVanillaEngine('eqp',timeSteps))
+option.setPricingEngine(BinomialVanillaEngine(process,'eqp',timeSteps))
 report('binomial (EQP)',option.NPV())
 
-option.setPricingEngine(BinomialVanillaEngine('trigeorgis',timeSteps))
+option.setPricingEngine(BinomialVanillaEngine(process,'trigeorgis',timeSteps))
 report('bin. (Trigeorgis)',option.NPV())
 
-option.setPricingEngine(BinomialVanillaEngine('tian',timeSteps))
+option.setPricingEngine(BinomialVanillaEngine(process,'tian',timeSteps))
 report('binomial (Tian)',option.NPV())
 
-option.setPricingEngine(BinomialVanillaEngine('lr',timeSteps))
+option.setPricingEngine(BinomialVanillaEngine(process,'lr',timeSteps))
 report('binomial (LR)',option.NPV())

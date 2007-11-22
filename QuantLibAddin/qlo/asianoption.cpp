@@ -24,25 +24,20 @@
 #include <qlo/asianoption.hpp>
 
 #include <ql/instruments/asianoption.hpp>
-#include <ql/processes/blackscholesprocess.hpp>
 
 namespace QuantLibAddin {
 
     ContinuousAveragingAsianOption::ContinuousAveragingAsianOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Average::Type averageType,
-            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
             const boost::shared_ptr<QuantLib::Exercise>& exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine,
             bool permanent) : OneAssetOption(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::ContinuousAveragingAsianOption(averageType,
-                                                     blackScholesProcess, 
                                                      payoff, 
-                                                     exercise, 
-                                                     pricingEngine));
+                                                     exercise));
      }
 
     DiscreteAveragingAsianOption::DiscreteAveragingAsianOption(
@@ -51,10 +46,8 @@ namespace QuantLibAddin {
             QuantLib::Real runningAccumulator,
             QuantLib::Size pastFixings,
             const std::vector<QuantLib::Date>& fixingDates,
-            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
             const boost::shared_ptr<QuantLib::Exercise>& exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine,
             bool permanent) : OneAssetOption(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
@@ -62,11 +55,8 @@ namespace QuantLibAddin {
                                                    runningAccumulator,
                                                    pastFixings,
                                                    fixingDates,
-                                                   blackScholesProcess, 
                                                    payoff, 
-                                                   exercise, 
-                                                   pricingEngine));
+                                                   exercise));
     }
 
 }
-

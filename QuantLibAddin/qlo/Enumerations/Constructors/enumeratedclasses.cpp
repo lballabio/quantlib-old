@@ -39,6 +39,8 @@
 #include <ql/math/interpolations/bicubicsplineinterpolation.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/math/interpolations/loginterpolation.hpp>
+#include <ql/processes/blackscholesprocess.hpp>
+#include <ql/instruments/vanillaoption.hpp>
 
 namespace QuantLibAddin {
 
@@ -95,131 +97,159 @@ namespace QuantLibAddin {
             new QuantLib::SuperSharePayoff(strike, secondStrike, cashPayoff));
     }
 
-    /* *** PricingEngines *** */
-    /* *** Timesteps ignored *** */
-    boost::shared_ptr<QuantLib::PricingEngine> AB_Engine(const long& timeSteps) {
+    /* *** PricingEngines - without timesteps *** */
+    boost::shared_ptr<QuantLib::PricingEngine> AB_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::AnalyticBarrierEngine);
+            new QuantLib::AnalyticBarrierEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> AC_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> AC_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::AnalyticCliquetEngine);
+            new QuantLib::AnalyticCliquetEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> ACGAPA_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> ACGAPA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::AnalyticContinuousGeometricAveragePriceAsianEngine);
+            new QuantLib::AnalyticContinuousGeometricAveragePriceAsianEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> ADA_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> ADA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::AnalyticDigitalAmericanEngine);
+            new QuantLib::AnalyticDigitalAmericanEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> ADGAPA_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> ADE_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::AnalyticDiscreteGeometricAveragePriceAsianEngine);
+            new QuantLib::AnalyticDividendEuropeanEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> ADE_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> ADGAPA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::AnalyticDividendEuropeanEngine);
+            new QuantLib::AnalyticDiscreteGeometricAveragePriceAsianEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> AE_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> AE_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::AnalyticEuropeanEngine);
+            new QuantLib::AnalyticEuropeanEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> AP_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> AP_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::AnalyticPerformanceEngine);
+            new QuantLib::AnalyticPerformanceEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> BAWA_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> BAWA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::BaroneAdesiWhaleyApproximationEngine);
+            new QuantLib::BaroneAdesiWhaleyApproximationEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> I_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> BSA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::IntegralEngine);
+            new QuantLib::BjerksundStenslandApproximationEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> BSA_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> I_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::BjerksundStenslandApproximationEngine);
+            new QuantLib::IntegralEngine(process));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> PE_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> PE_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine>();
     }
-    boost::shared_ptr<QuantLib::PricingEngine> SE_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> SE_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::StulzEngine);
+            new QuantLib::StulzEngine(process, process, 0));//FIXME dummy inputs
     }
-    boost::shared_ptr<QuantLib::PricingEngine> FE_Engine(const long& timeSteps) {
-        boost::shared_ptr<QuantLib::VanillaOption::engine>
-            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);
+    // FIXME these seem not to work following pricing engines redesign?
+    //boost::shared_ptr<QuantLib::PricingEngine> FE_Engine(
+    //    const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
+    //    boost::shared_ptr<QuantLib::VanillaOption::engine>
+    //        underlyingEngine(new QuantLib::AnalyticEuropeanEngine(process));
+    //    return boost::shared_ptr<QuantLib::PricingEngine> (
+    //        new QuantLib::ForwardEngine<QuantLib::VanillaOption::arguments,
+    //            QuantLib::VanillaOption::results>(underlyingEngine));
+    //}
+    //boost::shared_ptr<QuantLib::PricingEngine> FPE_Engine(
+    //    const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
+    //    boost::shared_ptr<QuantLib::VanillaOption::engine>
+    //        underlyingEngine(new QuantLib::AnalyticEuropeanEngine(process));
+    //    return boost::shared_ptr<QuantLib::PricingEngine> (
+    //        new QuantLib::ForwardPerformanceEngine
+    //            <QuantLib::VanillaOption::arguments,
+    //            QuantLib::VanillaOption::results>(underlyingEngine));
+    //}
+    //boost::shared_ptr<QuantLib::PricingEngine> QE_Engine(
+    //    const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
+    //    boost::shared_ptr<QuantLib::VanillaOption::engine>
+    //        underlyingEngine(new QuantLib::AnalyticEuropeanEngine(process));
+    //    return boost::shared_ptr<QuantLib::PricingEngine> (
+    //        new QuantLib::QuantoEngine<QuantLib::VanillaOption,
+    //            QuantLib::PricingEngine>(underlyingEngine));
+    //}
+    //boost::shared_ptr<QuantLib::PricingEngine> QFE_Engine(
+    //    const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
+    //    boost::shared_ptr<QuantLib::VanillaOption::engine>
+    //        underlyingEngine(new QuantLib::AnalyticEuropeanEngine(process));
+    //    boost::shared_ptr<QuantLib::ForwardVanillaOption::engine> forwardEngine(
+    //            new QuantLib::ForwardEngine<QuantLib::VanillaOption::arguments,
+    //            QuantLib::VanillaOption::results>(underlyingEngine));
+    //    return boost::shared_ptr<QuantLib::PricingEngine> (
+    //        new QuantLib::QuantoEngine<QuantLib::ForwardVanillaOption::arguments,
+    //            QuantLib::ForwardVanillaOption::results>(forwardEngine));
+    //}
+
+    /* *** PricingEngines - with timesteps *** */
+    boost::shared_ptr<QuantLib::PricingEngine> AEQPB_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::ForwardEngine<QuantLib::VanillaOption::arguments,
-                QuantLib::VanillaOption::results>(underlyingEngine));
+            new QuantLib::BinomialVanillaEngine<QuantLib::AdditiveEQPBinomialTree>(process, timeSteps));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> FPE_Engine(const long& timeSteps) {
-        boost::shared_ptr<QuantLib::VanillaOption::engine>
-            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);
+    boost::shared_ptr<QuantLib::PricingEngine> CRR_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::ForwardPerformanceEngine
-                <QuantLib::VanillaOption::arguments,
-                QuantLib::VanillaOption::results>(underlyingEngine));
+            new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(process, timeSteps));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> QE_Engine(const long& timeSteps) {
-        boost::shared_ptr<QuantLib::VanillaOption::engine>
-            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);
+    boost::shared_ptr<QuantLib::PricingEngine> FDA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::QuantoEngine<QuantLib::VanillaOption::arguments,
-                QuantLib::VanillaOption::results>(underlyingEngine));
+            new QuantLib::FDAmericanEngine(process, timeSteps, timeSteps-1));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> QFE_Engine(const long& timeSteps) {
-        boost::shared_ptr<QuantLib::VanillaOption::engine>
-            underlyingEngine(new QuantLib::AnalyticEuropeanEngine);
-        boost::shared_ptr<QuantLib::ForwardVanillaOption::engine> forwardEngine(
-                new QuantLib::ForwardEngine<QuantLib::VanillaOption::arguments,
-                QuantLib::VanillaOption::results>(underlyingEngine));
+    boost::shared_ptr<QuantLib::PricingEngine> FDB_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::QuantoEngine<QuantLib::ForwardVanillaOption::arguments,
-                QuantLib::ForwardVanillaOption::results>(forwardEngine));
+            new QuantLib::FDBermudanEngine(process, timeSteps, timeSteps-1));
     }
-    /* *** Timesteps required *** */
-    boost::shared_ptr<QuantLib::PricingEngine> AEQPB_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> FDE_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::BinomialVanillaEngine<QuantLib::AdditiveEQPBinomialTree>(timeSteps));
+            new QuantLib::FDEuropeanEngine(process, timeSteps, timeSteps-1));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> CRR_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> JOSHI_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::BinomialVanillaEngine<QuantLib::CoxRossRubinstein>(timeSteps));
+            new QuantLib::BinomialVanillaEngine<QuantLib::Joshi4>(process, timeSteps));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> FDA_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> JR_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::FDAmericanEngine(timeSteps, timeSteps-1));
+            new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(process, timeSteps));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> FDE_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> LR_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::FDEuropeanEngine(timeSteps, timeSteps-1));
+            new QuantLib::BinomialVanillaEngine<QuantLib::LeisenReimer>(process, timeSteps));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> FDB_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> TIAN_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::FDBermudanEngine(timeSteps, timeSteps-1));
+            new QuantLib::BinomialVanillaEngine<QuantLib::Tian>(process, timeSteps));
     }
-    boost::shared_ptr<QuantLib::PricingEngine> JR_Engine(const long& timeSteps) {
+    boost::shared_ptr<QuantLib::PricingEngine> TRI_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::BinomialVanillaEngine<QuantLib::JarrowRudd>(timeSteps));
-    }
-    boost::shared_ptr<QuantLib::PricingEngine> LR_Engine(const long& timeSteps) {
-        return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::BinomialVanillaEngine<QuantLib::LeisenReimer>(timeSteps));
-    }
-    boost::shared_ptr<QuantLib::PricingEngine> JOSHI_Engine(const long& timeSteps) {
-        return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::BinomialVanillaEngine<QuantLib::Joshi4>(timeSteps));
-    }
-    boost::shared_ptr<QuantLib::PricingEngine> TIAN_Engine(const long& timeSteps) {
-        return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::BinomialVanillaEngine<QuantLib::Tian>(timeSteps));
-    }
-    boost::shared_ptr<QuantLib::PricingEngine> TRI_Engine(const long& timeSteps) {
-        return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::BinomialVanillaEngine<QuantLib::Trigeorgis>(timeSteps));
+            new QuantLib::BinomialVanillaEngine<QuantLib::Trigeorgis>(process, timeSteps));
     }
 
     /* *** Linear 1D Interpolation *** */

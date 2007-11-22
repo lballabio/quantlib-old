@@ -2,6 +2,7 @@
 /*
  Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2006 Cristina Duminuco
+ Copyright (C) 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -41,6 +42,7 @@ namespace QuantLib {
     class DayCounter;
     class DiscountingBondEngine;
     class DiscountingSwapEngine;
+    class GeneralizedBlackScholesProcess;
 
     template <class T>
     class Handle;
@@ -50,13 +52,17 @@ namespace QuantLibAddin {
 
     class PricingEngine : public ObjectHandler::LibraryObject<QuantLib::PricingEngine> {
       public:
+        // PricingEngines - without timesteps
         PricingEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string& engineID,
+            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process,
             bool permanent);
+        // PricingEngines - with timesteps
         PricingEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string& engineID,
+            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process,
             const long& timeSteps,
             bool permanent);
       protected:

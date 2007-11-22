@@ -21,23 +21,17 @@
 #endif
 #include <qlo/europeanoption.hpp>
 #include <ql/instruments/europeanoption.hpp>
-#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 
     EuropeanOption::EuropeanOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
             const boost::shared_ptr<QuantLib::Exercise>& exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine,
             bool permanent) : OneAssetOption(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
-            new QuantLib::EuropeanOption(
-                blackScholesProcess,
-                payoff,
-                exercise,
-                pricingEngine));
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::EuropeanOption(payoff,
+                                     exercise));
     }
 
 }

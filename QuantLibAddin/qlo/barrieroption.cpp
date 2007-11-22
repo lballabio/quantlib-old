@@ -19,32 +19,27 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/barrieroption.hpp>
-#include <qlo/processes.hpp>
+#include <ql/instruments/barrieroption.hpp>
 
 namespace QuantLibAddin {
 
     BarrierOption::BarrierOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Barrier::Type &barrierType,
-            const double &barrier,
-            const double &rebate,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            QuantLib::Barrier::Type barrierType,
+            QuantLib::Real barrier,
+            QuantLib::Real rebate,
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::Exercise>& exercise,
             bool permanent) : OneAssetOption(properties, permanent) {
 
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
-            new QuantLib::BarrierOption(
-                barrierType,
-                barrier,
-                rebate,
-                blackScholesProcess, 
-                payoff, 
-                exercise, 
-                pricingEngine));
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::BarrierOption(barrierType,
+                                    barrier,
+                                    rebate,
+                                    payoff, 
+                                    exercise));
     }
 
 }
-

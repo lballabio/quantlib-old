@@ -10,6 +10,7 @@
     <include>qlo/shortratemodels.hpp</include>
     <include>qlo/payoffs.hpp</include>
     <include>qlo/marketmodels.hpp</include>
+    <include>qlo/processes.hpp</include>
     <include>ql/pricingengines/blackformula.hpp</include>
     <include>ql/pricingengines/blackscholescalculator.hpp</include>
     <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
@@ -23,6 +24,7 @@
     <include>qlo/shortratemodels.hpp</include>
     <include>qlo/payoffs.hpp</include>
     <include>qlo/marketmodels.hpp</include>
+    <include>qlo/processes.hpp</include>
     <include>ql/pricingengines/blackformula.hpp</include>
     <include>ql/pricingengines/blackscholescalculator.hpp</include>
     <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
@@ -30,6 +32,7 @@
   </serializationIncludes>
   <copyright>
     Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2007 Eric Ehlers
   </copyright>
   <Functions>
 
@@ -1108,6 +1111,12 @@
             <tensorRank>scalar</tensorRank>
             <description>engine type</description>
           </Parameter>
+          <Parameter name='ProcessID' >
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -1145,6 +1154,12 @@
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>engine type</description>
+          </Parameter>
+          <Parameter name='ProcessID' >
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID</description>
           </Parameter>
           <Parameter name='TimeSteps'>
             <type>long</type>

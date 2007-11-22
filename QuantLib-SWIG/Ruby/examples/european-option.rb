@@ -1,5 +1,5 @@
 
-# Copyright (C) 2004, 2005, 2006 StatPro Italia srl
+# Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
 #
 # This file is part of QuantLib, a free-software/open-source library
 # for financial quantitative analysts and developers - http://quantlib.org/
@@ -61,55 +61,56 @@ process = BlackScholesMertonProcess.new(
                                   YieldTermStructureHandle.new(riskFreeRate),
                                   BlackVolTermStructureHandle.new(volatility))
 
-option = VanillaOption.new(process, payoff, exercise)
+option = VanillaOption.new(payoff, exercise)
 
 # method: analytic
-option.pricingEngine = AnalyticEuropeanEngine.new
+option.pricingEngine = AnalyticEuropeanEngine.new(process)
 value = option.NPV
 RefValue = value
 report('analytic',value)
 
 # method: integral
-option.pricingEngine = IntegralEngine.new
+option.pricingEngine = IntegralEngine.new(process)
 report('integral',option.NPV)
 
 # method: finite differences
 timeSteps = 801
 gridPoints = 800
 
-option.pricingEngine = FDEuropeanEngine.new(timeSteps,gridPoints)
+option.pricingEngine = FDEuropeanEngine.new(process,timeSteps,gridPoints)
 report('finite diff.',option.NPV)
 
 # method: binomial
 timeSteps = 801
 
-option.pricingEngine = BinomialVanillaEngine.new('jr',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new(process,'jr',timeSteps)
 report('binomial (JR)',option.NPV)
 
-option.pricingEngine = BinomialVanillaEngine.new('crr',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new(process,'crr',timeSteps)
 report('binomial (CRR)',option.NPV)
 
-option.pricingEngine = BinomialVanillaEngine.new('eqp',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new(process,'eqp',timeSteps)
 report('binomial (EQP)',option.NPV)
 
-option.pricingEngine = BinomialVanillaEngine.new('trigeorgis',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new(process,'trigeorgis',timeSteps)
 report('bin. (Trigeorgis)',option.NPV)
 
-option.pricingEngine = BinomialVanillaEngine.new('tian',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new(process,'tian',timeSteps)
 report('binomial (Tian)',option.NPV)
 
-option.pricingEngine = BinomialVanillaEngine.new('lr',timeSteps)
+option.pricingEngine = BinomialVanillaEngine.new(process,'lr',timeSteps)
 report('binomial (LR)',option.NPV)
 
 # method: finite differences
 # not yet implemented
 
 # method: Monte Carlo
-option.pricingEngine = MCEuropeanEngine.new('pseudorandom', 1, nil, false,
+option.pricingEngine = MCEuropeanEngine.new(process,'pseudorandom',
+                                            1, nil, false,
                                             false, false, nil, 0.02, nil, 42)
 report('MC (crude)', option.NPV, option.errorEstimate)
 
-option.pricingEngine = MCEuropeanEngine.new('lowdiscrepancy', 
+option.pricingEngine = MCEuropeanEngine.new(process,'lowdiscrepancy', 
                                             1, nil, false, false, false, 32768)
 report('MC (Sobol)', option.NPV)
 

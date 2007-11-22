@@ -21,7 +21,11 @@
 
 #include <qlo/baseinstruments.hpp>
 #include <qlo/processes.hpp>
-#include <ql/instruments/quantovanillaoption.hpp>
+
+namespace QuantLib {
+    class StrikedTypePayoff;
+    class Exercise;
+}
 
 namespace QuantLibAddin {
 
@@ -29,17 +33,11 @@ namespace QuantLibAddin {
     public:
         QuantoVanillaOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const boost::shared_ptr<QuantLib::BlackVolTermStructure> &blackVolTermStructure,
-            const double &correlation,
-            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess> &blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
             const boost::shared_ptr<QuantLib::Exercise> &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
             bool permanent);
     };
 
 }
 
 #endif
-

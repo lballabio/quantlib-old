@@ -81,7 +81,8 @@
       </EnumeratedClasses>
     </EnumeratedClassGroup>
 
-    <EnumeratedClassGroup class='QuantLib::PricingEngine'>
+    <!-- PricingEngines without timesteps -->
+    <EnumeratedClassGroup class='ObjectHandler::PricingEngineConstructor1'>
       <includeFile>qlo/Enumerations/Factories/pricingenginesfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>
@@ -105,14 +106,14 @@
           <libraryClass>QuantLib::AnalyticDigitalAmericanEngine</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
-          <string>ADGAPA</string>
-          <value>ADGAPA_Engine</value>
-          <libraryClass>QuantLib::AnalyticDiscreteGeometricAveragePriceAsianEngine</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
           <string>ADE</string>
           <value>ADE_Engine</value>
           <libraryClass>QuantLib::AnalyticDividendEuropeanEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>ADGAPA</string>
+          <value>ADGAPA_Engine</value>
+          <libraryClass>QuantLib::AnalyticDiscreteGeometricAveragePriceAsianEngine</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
           <string>AE</string>
@@ -130,64 +131,14 @@
           <libraryClass>QuantLib::BaroneAdesiWhaleyApproximationEngine</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
-          <string>AEQPB</string>
-          <value>AEQPB_Engine</value>
-          <libraryClass>QuantLib::AdditiveEQPBinomialTree</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>CRR</string>
-          <value>CRR_Engine</value>
-          <libraryClass>QuantLib::CoxRossRubinstein</libraryClass>
+          <string>BSA</string>
+          <value>BSA_Engine</value>
+          <libraryClass>QuantLib::BjerksundStenslandApproximationEngine</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
           <string>I</string>
           <value>I_Engine</value>
           <libraryClass>QuantLib::IntegralEngine</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>FDA</string>
-          <value>FDA_Engine</value>
-          <libraryClass>QuantLib::FDAmericanEngine</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>FDE</string>
-          <value>FDE_Engine</value>
-          <libraryClass>QuantLib::FDEuropeanEngine</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>FDB</string>
-          <value>FDB_Engine</value>
-          <libraryClass>QuantLib::FDBermudanEngine</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>JR</string>
-          <value>JR_Engine</value>
-          <libraryClass>QuantLib::JarrowRudd</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>LR</string>
-          <value>LR_Engine</value>
-          <libraryClass>QuantLib::LeisenReimer</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>JOSHI</string>
-          <value>JOSHI_Engine</value>
-          <libraryClass>QuantLib::Joshi4</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>TIAN</string>
-          <value>TIAN_Engine</value>
-          <libraryClass>QuantLib::Tian</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>TRI</string>
-          <value>TRI_Engine</value>
-          <libraryClass>QuantLib::Trigeorgis</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>BSA</string>
-          <value>BSA_Engine</value>
-          <libraryClass>QuantLib::BjerksundStenslandApproximationEngine</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
           <string>PE</string>
@@ -199,7 +150,7 @@
           <value>SE_Engine</value>
           <libraryClass>QuantLib::StulzEngine</libraryClass>
         </EnumeratedClass>
-        <EnumeratedClass>
+        <!--<EnumeratedClass>
           <string>FE</string>
           <value>FE_Engine</value>
           <libraryClass>QuantLib::ForwardEngine</libraryClass>
@@ -218,6 +169,63 @@
           <string>QFE</string>
           <value>QFE_Engine</value>
           <libraryClass>QuantLib::QuantoForwardEngine</libraryClass>
+        </EnumeratedClass>-->
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
+
+    <!-- PricingEngines with timesteps -->
+    <EnumeratedClassGroup class='ObjectHandler::PricingEngineConstructor2'>
+      <includeFile>qlo/Enumerations/Factories/pricingenginesfactory.hpp</includeFile>
+      <EnumeratedClasses>
+        <EnumeratedClass>
+          <string>AEQPB</string>
+          <value>AEQPB_Engine</value>
+          <libraryClass>QuantLib::AdditiveEQPBinomialTree</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>CRR</string>
+          <value>CRR_Engine</value>
+          <libraryClass>QuantLib::CoxRossRubinstein</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>FDA</string>
+          <value>FDA_Engine</value>
+          <libraryClass>QuantLib::FDAmericanEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>FDB</string>
+          <value>FDB_Engine</value>
+          <libraryClass>QuantLib::FDBermudanEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>FDE</string>
+          <value>FDE_Engine</value>
+          <libraryClass>QuantLib::FDEuropeanEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>JOSHI</string>
+          <value>JOSHI_Engine</value>
+          <libraryClass>QuantLib::Joshi4</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>JR</string>
+          <value>JR_Engine</value>
+          <libraryClass>QuantLib::JarrowRudd</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>LR</string>
+          <value>LR_Engine</value>
+          <libraryClass>QuantLib::LeisenReimer</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>TIAN</string>
+          <value>TIAN_Engine</value>
+          <libraryClass>QuantLib::Tian</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>TRI</string>
+          <value>TRI_Engine</value>
+          <libraryClass>QuantLib::Trigeorgis</libraryClass>
         </EnumeratedClass>
       </EnumeratedClasses>
     </EnumeratedClassGroup>

@@ -69,36 +69,64 @@ namespace QuantLibAddin {
             const double secondStrike,
             const double cashPayoff);
 
-    /* *** PricingEngines *** */
-    /* *** Timesteps ignored *** */
-    boost::shared_ptr<QuantLib::PricingEngine> AB_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> AC_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> ACGAPA_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> ADA_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> ADGAPA_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> ADE_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> AE_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> AP_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> BAWA_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> I_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> BSA_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> PE_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> SE_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> FE_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> FPE_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> QE_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> QFE_Engine(const long& timeSteps);
-    /* *** Timesteps required *** */
-    boost::shared_ptr<QuantLib::PricingEngine> AEQPB_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> CRR_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> FDA_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> FDE_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> FDB_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> JR_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> LR_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> JOSHI_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> TIAN_Engine(const long& timeSteps);
-    boost::shared_ptr<QuantLib::PricingEngine> TRI_Engine(const long& timeSteps);
+    /* *** PricingEngines - without timesteps *** */
+    boost::shared_ptr<QuantLib::PricingEngine> AB_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> AC_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> ACGAPA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> ADA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> ADE_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> ADGAPA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> AE_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> AP_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> BAWA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> BSA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> I_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> PE_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    boost::shared_ptr<QuantLib::PricingEngine> SE_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    // FIXME these seem not to work following pricing engines redesign?
+    //boost::shared_ptr<QuantLib::PricingEngine> FE_Engine(
+    //    const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    //boost::shared_ptr<QuantLib::PricingEngine> FPE_Engine(
+    //    const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    //boost::shared_ptr<QuantLib::PricingEngine> QE_Engine(
+    //    const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+    //boost::shared_ptr<QuantLib::PricingEngine> QFE_Engine(
+    //    const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process);
+
+    /* *** PricingEngines - with timesteps *** */
+    boost::shared_ptr<QuantLib::PricingEngine> AEQPB_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
+    boost::shared_ptr<QuantLib::PricingEngine> CRR_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
+    boost::shared_ptr<QuantLib::PricingEngine> FDA_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
+    boost::shared_ptr<QuantLib::PricingEngine> FDB_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
+    boost::shared_ptr<QuantLib::PricingEngine> FDE_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
+    boost::shared_ptr<QuantLib::PricingEngine> JOSHI_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
+    boost::shared_ptr<QuantLib::PricingEngine> JR_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
+    boost::shared_ptr<QuantLib::PricingEngine> LR_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
+    boost::shared_ptr<QuantLib::PricingEngine> TIAN_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
+    boost::shared_ptr<QuantLib::PricingEngine> TRI_Engine(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
 
     /* *** Linear 1D Interpolation *** */
     boost::shared_ptr<QuantLib::Interpolation> LINEAR_Interpolation(

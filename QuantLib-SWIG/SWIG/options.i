@@ -110,16 +110,12 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         VanillaOptionPtr(
-                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
-                const boost::shared_ptr<Exercise>& exercise,
-                const boost::shared_ptr<PricingEngine>& engine
-                   = boost::shared_ptr<PricingEngine>()) {
+                const boost::shared_ptr<Exercise>& exercise) {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
-            return new VanillaOptionPtr(
-                         new VanillaOption(process,stPayoff,exercise,engine));
+            return new VanillaOptionPtr(new VanillaOption(stPayoff,exercise));
         }
         Real delta() {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)->delta();
@@ -152,14 +148,20 @@ class VanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
                 ->result<SampledCurve>("priceCurve");
         }
-        Volatility impliedVolatility(Real targetValue,
-                                     Real accuracy = 1.0e-4,
-                                     Size maxEvaluations = 100,
-                                     Volatility minVol = 1.0e-4,
-                                     Volatility maxVol = 4.0) {
+        Volatility impliedVolatility(
+                             Real targetValue,
+                             const GeneralizedBlackScholesProcessPtr& process,
+                             Real accuracy = 1.0e-4,
+                             Size maxEvaluations = 100,
+                             Volatility minVol = 1.0e-4,
+                             Volatility maxVol = 4.0) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return boost::dynamic_pointer_cast<VanillaOption>(*self)
-                 ->impliedVolatility(targetValue,accuracy,maxEvaluations,
-                                     minVol,maxVol);
+                ->impliedVolatility(targetValue, bsProcess, accuracy,
+                                    maxEvaluations, minVol, maxVol);
         }
     }
 };
@@ -176,16 +178,12 @@ class EuropeanOptionPtr : public VanillaOptionPtr {
   public:
     %extend {
         EuropeanOptionPtr(
-                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
-                const boost::shared_ptr<Exercise>& exercise,
-                const boost::shared_ptr<PricingEngine>& engine
-                   = boost::shared_ptr<PricingEngine>()) {
+                const boost::shared_ptr<Exercise>& exercise) {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
-            return new EuropeanOptionPtr(
-                        new EuropeanOption(process,stPayoff,exercise,engine));
+            return new EuropeanOptionPtr(new EuropeanOption(stPayoff,exercise));
         }
     }
 };
@@ -204,17 +202,14 @@ class ForwardVanillaOptionPtr : public VanillaOptionPtr {
         ForwardVanillaOptionPtr(
                 Real moneyness,
                 Date resetDate,
-                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
-                const boost::shared_ptr<Exercise>& exercise,
-                const boost::shared_ptr<PricingEngine>& engine
-                                       = boost::shared_ptr<PricingEngine>()) {
+                const boost::shared_ptr<Exercise>& exercise) {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
             return new ForwardVanillaOptionPtr(
-                       new ForwardVanillaOption(moneyness, resetDate, process,
-                                                stPayoff, exercise, engine));
+                                new ForwardVanillaOption(moneyness, resetDate,
+                                                         stPayoff, exercise));
         }
     }
 };
@@ -231,25 +226,13 @@ class QuantoVanillaOptionPtr : public VanillaOptionPtr {
   public:
     %extend {
         QuantoVanillaOptionPtr(
-                const Handle<YieldTermStructure>& foreignRiskFreeTS,
-                const Handle<BlackVolTermStructure>& exchRateVolTS,
-                const Handle<Quote>& correlation,
-                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
-                const boost::shared_ptr<Exercise>& exercise,
-                const boost::shared_ptr<PricingEngine>& engine
-                                       = boost::shared_ptr<PricingEngine>()) {
+                const boost::shared_ptr<Exercise>& exercise) {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
             return new QuantoVanillaOptionPtr(
-                                    new QuantoVanillaOption(foreignRiskFreeTS,
-                                                            exchRateVolTS,
-                                                            correlation,
-                                                            process,
-                                                            stPayoff,
-                                                            exercise,
-                                                            engine));
+                                 new QuantoVanillaOption(stPayoff, exercise));
         }
         Real qvega() {
             return boost::dynamic_pointer_cast<QuantoVanillaOption>(*self)
@@ -276,29 +259,16 @@ class QuantoForwardVanillaOptionPtr : public QuantoVanillaOptionPtr {
   public:
     %extend {
         QuantoForwardVanillaOptionPtr(
-                const Handle<YieldTermStructure>& foreignRiskFreeTS,
-                const Handle<BlackVolTermStructure>& exchRateVolTS,
-                const Handle<Quote>& correlation,
                 Real moneyness,
                 Date resetDate,
-                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
-                const boost::shared_ptr<Exercise>& exercise,
-                const boost::shared_ptr<PricingEngine>& engine
-                                       = boost::shared_ptr<PricingEngine>()) {
+                const boost::shared_ptr<Exercise>& exercise) {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
             return new QuantoForwardVanillaOptionPtr(
-                             new QuantoForwardVanillaOption(foreignRiskFreeTS,
-                                                            exchRateVolTS,
-                                                            correlation,
-                                                            moneyness,
-                                                            resetDate,
-                                                            process,
-                                                            stPayoff,
-                                                            exercise,
-                                                            engine));
+                          new QuantoForwardVanillaOption(moneyness, resetDate,
+                                                         stPayoff, exercise));
         }
     }
 };
@@ -346,8 +316,14 @@ typedef boost::shared_ptr<PricingEngine> AnalyticEuropeanEnginePtr;
 class AnalyticEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        AnalyticEuropeanEnginePtr() {
-            return new AnalyticEuropeanEnginePtr(new AnalyticEuropeanEngine);
+        AnalyticEuropeanEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new AnalyticEuropeanEnginePtr(
+                                       new AnalyticEuropeanEngine(bsProcess));
         }
     }
 };
@@ -362,8 +338,12 @@ typedef boost::shared_ptr<PricingEngine> IntegralEnginePtr;
 class IntegralEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        IntegralEnginePtr() {
-            return new IntegralEnginePtr(new IntegralEngine);
+        IntegralEnginePtr(const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new IntegralEnginePtr(new IntegralEngine(bsProcess));
         }
     }
 };
@@ -378,10 +358,16 @@ typedef boost::shared_ptr<PricingEngine> FDBermudanEnginePtr;
 class FDBermudanEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        FDBermudanEnginePtr(Size timeSteps = 100, Size gridPoints = 100,
+        FDBermudanEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
+                            Size timeSteps = 100, Size gridPoints = 100,
                             bool timeDependent = false) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDBermudanEnginePtr(
-                    new FDBermudanEngine(timeSteps,gridPoints,timeDependent));
+                              new FDBermudanEngine(bsProcess,timeSteps,
+                                                   gridPoints,timeDependent));
         }
     }
 };
@@ -395,10 +381,16 @@ typedef boost::shared_ptr<PricingEngine> FDEuropeanEnginePtr;
 class FDEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        FDEuropeanEnginePtr(Size timeSteps = 100, Size gridPoints = 100,
+        FDEuropeanEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
+                            Size timeSteps = 100, Size gridPoints = 100,
                             bool timeDependent = false) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDEuropeanEnginePtr(
-                    new FDEuropeanEngine(timeSteps,gridPoints,timeDependent));
+                              new FDEuropeanEngine(bsProcess,timeSteps,
+                                                   gridPoints,timeDependent));
         }
     }
 };
@@ -419,30 +411,38 @@ typedef boost::shared_ptr<PricingEngine> BinomialVanillaEnginePtr;
 class BinomialVanillaEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BinomialVanillaEnginePtr(const std::string& type,
-                                 Size steps) {
-        std::string s = boost::algorithm::to_lower_copy(type);
+        BinomialVanillaEnginePtr(
+                             const GeneralizedBlackScholesProcessPtr& process,
+                             const std::string& type,
+                             Size steps) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            std::string s = boost::algorithm::to_lower_copy(type);
             if (s == "crr" || s == "coxrossrubinstein")
                 return new BinomialVanillaEnginePtr(
-                    new BinomialVanillaEngine<CoxRossRubinstein>(steps));
+                    new BinomialVanillaEngine<CoxRossRubinstein>(
+                                                            bsProcess,steps));
             else if (s == "jr" || s == "jarrowrudd")
                 return new BinomialVanillaEnginePtr(
-                    new BinomialVanillaEngine<JarrowRudd>(steps));
+                    new BinomialVanillaEngine<JarrowRudd>(bsProcess,steps));
             else if (s == "eqp" || s == "additiveeqpbinomialtree")
                 return new BinomialVanillaEnginePtr(
-                    new BinomialVanillaEngine<AdditiveEQPBinomialTree>(steps));
+                    new BinomialVanillaEngine<AdditiveEQPBinomialTree>(
+                                                            bsProcess,steps));
             else if (s == "trigeorgis")
                 return new BinomialVanillaEnginePtr(
-                    new BinomialVanillaEngine<Trigeorgis>(steps));
+                    new BinomialVanillaEngine<Trigeorgis>(bsProcess,steps));
             else if (s == "tian")
                 return new BinomialVanillaEnginePtr(
-                    new BinomialVanillaEngine<Tian>(steps));
+                    new BinomialVanillaEngine<Tian>(bsProcess,steps));
             else if (s == "lr" || s == "leisenreimer")
                 return new BinomialVanillaEnginePtr(
-                    new BinomialVanillaEngine<LeisenReimer>(steps));
+                    new BinomialVanillaEngine<LeisenReimer>(bsProcess,steps));
             else if (s == "j4" || s == "joshi4")
                 return new BinomialVanillaEnginePtr(
-                    new BinomialVanillaEngine<Joshi4>(steps));
+                    new BinomialVanillaEngine<Joshi4>(bsProcess,steps));
             else
                 QL_FAIL("unknown binomial engine type: "+s);
         }
@@ -462,7 +462,8 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
     %feature("kwargs") MCEuropeanEnginePtr;
   public:
     %extend {
-        MCEuropeanEnginePtr(const std::string& traits,
+        MCEuropeanEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
+                            const std::string& traits,
                             intOrNull timeSteps = Null<Size>(),
                             intOrNull timeStepsPerYear = Null<Size>(),
                             bool brownianBridge = false,
@@ -472,13 +473,18 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                             doubleOrNull requiredTolerance = Null<Real>(),
                             intOrNull maxSamples = Null<Size>(),
                             BigInteger seed = 0) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             std::string s = boost::algorithm::to_lower_copy(traits);
             QL_REQUIRE(Size(timeSteps) != Null<Size>() ||
                        Size(timeStepsPerYear) != Null<Size>(),
                        "number of steps not specified");
             if (s == "pseudorandom" || s == "pr")
                 return new MCEuropeanEnginePtr(
-                         new MCEuropeanEngine<PseudoRandom>(timeSteps,
+                         new MCEuropeanEngine<PseudoRandom>(bsProcess,
+                                                            timeSteps,
                                                             timeStepsPerYear,
                                                             brownianBridge,
                                                             antitheticVariate,
@@ -489,7 +495,8 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                             seed));
             else if (s == "lowdiscrepancy" || s == "ld")
                 return new MCEuropeanEnginePtr(
-                       new MCEuropeanEngine<LowDiscrepancy>(timeSteps,
+                       new MCEuropeanEngine<LowDiscrepancy>(bsProcess,
+                                                            timeSteps,
                                                             timeStepsPerYear,
                                                             brownianBridge,
                                                             antitheticVariate,
@@ -518,10 +525,16 @@ typedef boost::shared_ptr<PricingEngine> FDShoutEnginePtr;
 class FDAmericanEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        FDAmericanEnginePtr(Size timeSteps = 100, Size gridPoints = 100,
+        FDAmericanEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
+                            Size timeSteps = 100, Size gridPoints = 100,
                             bool timeDependent = false) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDAmericanEnginePtr(
-                    new FDAmericanEngine(timeSteps,gridPoints,timeDependent));
+                              new FDAmericanEngine(bsProcess,timeSteps,
+                                                   gridPoints,timeDependent));
         }
     }
 };
@@ -530,10 +543,16 @@ class FDAmericanEnginePtr : public boost::shared_ptr<PricingEngine> {
 class FDShoutEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        FDShoutEnginePtr(Size timeSteps = 100, Size gridPoints = 100,
+        FDShoutEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
+                         Size timeSteps = 100, Size gridPoints = 100,
                          bool timeDependent = false) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDShoutEnginePtr(
-                       new FDShoutEngine(timeSteps,gridPoints,timeDependent));
+                                 new FDShoutEngine(bsProcess,timeSteps,
+                                                   gridPoints,timeDependent));
         }
     }
 };
@@ -550,9 +569,14 @@ class BaroneAdesiWhaleyApproximationEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BaroneAdesiWhaleyApproximationEnginePtr() {
+        BaroneAdesiWhaleyApproximationEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new BaroneAdesiWhaleyApproximationEnginePtr(
-                new BaroneAdesiWhaleyApproximationEngine);
+                         new BaroneAdesiWhaleyApproximationEngine(bsProcess));
         }
     }
 };
@@ -569,9 +593,14 @@ class BjerksundStenslandApproximationEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BjerksundStenslandApproximationEnginePtr() {
+        BjerksundStenslandApproximationEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new BjerksundStenslandApproximationEnginePtr(
-                new BjerksundStenslandApproximationEngine);
+                        new BjerksundStenslandApproximationEngine(bsProcess));
         }
     }
 };
@@ -586,9 +615,14 @@ class AnalyticDigitalAmericanEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        AnalyticDigitalAmericanEnginePtr() {
+        AnalyticDigitalAmericanEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new AnalyticDigitalAmericanEnginePtr(
-                new AnalyticDigitalAmericanEngine);
+                                new AnalyticDigitalAmericanEngine(bsProcess));
         }
     }
 };
@@ -611,19 +645,16 @@ class DividendVanillaOptionPtr : public boost::shared_ptr<Instrument> {
   public:
     %extend {
         DividendVanillaOptionPtr(
-                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
                 const boost::shared_ptr<Exercise>& exercise,
                 const std::vector<Date>& dividendDates,
-                const std::vector<Real>& dividends,
-                const boost::shared_ptr<PricingEngine>& engine
-                   = boost::shared_ptr<PricingEngine>()) {
+                const std::vector<Real>& dividends) {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
             return new DividendVanillaOptionPtr(
-                   new DividendVanillaOption(process,stPayoff,exercise,
-                                             dividendDates,dividends,engine));
+                          new DividendVanillaOption(stPayoff,exercise,
+                                                    dividendDates,dividends));
         }
         Real delta() {
             return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
@@ -657,14 +688,20 @@ class DividendVanillaOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
                 ->result<SampledCurve>("priceCurve");
         }
-        Volatility impliedVolatility(Real targetValue,
-                                     Real accuracy = 1.0e-4,
-                                     Size maxEvaluations = 100,
-                                     Volatility minVol = 1.0e-4,
-                                     Volatility maxVol = 4.0) {
+        Volatility impliedVolatility(
+                             Real targetValue,
+                             const GeneralizedBlackScholesProcessPtr& process,
+                             Real accuracy = 1.0e-4,
+                             Size maxEvaluations = 100,
+                             Volatility minVol = 1.0e-4,
+                             Volatility maxVol = 4.0) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return boost::dynamic_pointer_cast<DividendVanillaOption>(*self)
-                 ->impliedVolatility(targetValue,accuracy,maxEvaluations,
-                                     minVol,maxVol);
+                ->impliedVolatility(targetValue, bsProcess, accuracy,
+                                    maxEvaluations, minVol, maxVol);
         }
     }
 };
@@ -679,9 +716,14 @@ class AnalyticDividendEuropeanEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        AnalyticDividendEuropeanEnginePtr() {
+        AnalyticDividendEuropeanEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new AnalyticDividendEuropeanEnginePtr(
-                new AnalyticDividendEuropeanEngine);
+                               new AnalyticDividendEuropeanEngine(bsProcess));
         }
     }
 };
@@ -698,12 +740,18 @@ class FDDividendEuropeanEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        FDDividendEuropeanEnginePtr(Size timeSteps = 100,
-                                    Size gridPoints = 100,
-                                    bool timeDependent = false) {
+        FDDividendEuropeanEnginePtr(
+                             const GeneralizedBlackScholesProcessPtr& process,
+                             Size timeSteps = 100,
+                             Size gridPoints = 100,
+                             bool timeDependent = false) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDDividendEuropeanEnginePtr(
-                new FDDividendEuropeanEngine(timeSteps,gridPoints,
-                                             timeDependent));
+                     new FDDividendEuropeanEngine(bsProcess,timeSteps,
+                                                  gridPoints, timeDependent));
         }
     }
 };
@@ -713,12 +761,18 @@ class FDDividendAmericanEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        FDDividendAmericanEnginePtr(Size timeSteps = 100,
-                                    Size gridPoints = 100,
-                                    bool timeDependent = false) {
+        FDDividendAmericanEnginePtr(
+                             const GeneralizedBlackScholesProcessPtr& process,
+                             Size timeSteps = 100,
+                             Size gridPoints = 100,
+                             bool timeDependent = false) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDDividendAmericanEnginePtr(
-                new FDDividendAmericanEngine(timeSteps,gridPoints,
-                                             timeDependent));
+                     new FDDividendAmericanEngine(bsProcess,timeSteps,
+                                                  gridPoints, timeDependent));
         }
     }
 };
@@ -743,17 +797,14 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
                    Barrier::Type barrierType,
                    Real barrier,
                    Real rebate,
-                   const boost::shared_ptr<StochasticProcess>& process,
                    const boost::shared_ptr<Payoff>& payoff,
-                   const boost::shared_ptr<Exercise>& exercise,
-                   const boost::shared_ptr<PricingEngine>& engine
-                                     = boost::shared_ptr<PricingEngine>()) {
+                   const boost::shared_ptr<Exercise>& exercise) {
             boost::shared_ptr<StrikedTypePayoff> stPayoff =
                  boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
             return new BarrierOptionPtr(
-                         new BarrierOption(barrierType, barrier, rebate,
-                                           process,stPayoff,exercise,engine));
+                               new BarrierOption(barrierType, barrier, rebate,
+                                                 stPayoff,exercise));
         }
         Real delta() {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)->delta();
@@ -782,14 +833,20 @@ class BarrierOptionPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<BarrierOption>(*self)
                 ->result<SampledCurve>("priceCurve");
         }
-        Volatility impliedVolatility(Real targetValue,
-                                     Real accuracy = 1.0e-4,
-                                     Size maxEvaluations = 100,
-                                     Volatility minVol = 1.0e-4,
-                                     Volatility maxVol = 4.0) {
+        Volatility impliedVolatility(
+                             Real targetValue,
+                             const GeneralizedBlackScholesProcessPtr& process,
+                             Real accuracy = 1.0e-4,
+                             Size maxEvaluations = 100,
+                             Volatility minVol = 1.0e-4,
+                             Volatility maxVol = 4.0) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return boost::dynamic_pointer_cast<BarrierOption>(*self)
-                 ->impliedVolatility(targetValue,accuracy,maxEvaluations,
-                                     minVol,maxVol);
+                 ->impliedVolatility(targetValue, bsProcess, accuracy,
+                                     maxEvaluations, minVol, maxVol);
         }
     }
 };
@@ -806,8 +863,14 @@ class AnalyticBarrierEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        AnalyticBarrierEnginePtr() {
-            return new AnalyticBarrierEnginePtr(new AnalyticBarrierEngine);
+        AnalyticBarrierEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new AnalyticBarrierEnginePtr(
+                                        new AnalyticBarrierEngine(bsProcess));
         }
     }
 };
@@ -822,7 +885,8 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
     %feature("kwargs") MCBarrierEnginePtr;
   public:
     %extend {
-        MCBarrierEnginePtr(const std::string& traits,
+        MCBarrierEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
+                           const std::string& traits,
                            Size timeStepsPerYear = Null<Size>(),
                            bool brownianBridge = false,
                            bool antitheticVariate = false,
@@ -832,10 +896,15 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
                            intOrNull maxSamples = Null<Size>(),
                            bool isBiased = false,
                            BigInteger seed = 0) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             std::string s = boost::algorithm::to_lower_copy(traits);
             if (s == "pseudorandom" || s == "pr")
                 return new MCBarrierEnginePtr(
-                         new MCBarrierEngine<PseudoRandom>(timeStepsPerYear,
+                         new MCBarrierEngine<PseudoRandom>(bsProcess,
+                                                           timeStepsPerYear,
                                                            brownianBridge,
                                                            antitheticVariate,
                                                            controlVariate,
@@ -846,7 +915,8 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                            seed));
             else if (s == "lowdiscrepancy" || s == "ld")
                 return new MCBarrierEnginePtr(
-                       new MCBarrierEngine<LowDiscrepancy>(timeStepsPerYear,
+                       new MCBarrierEngine<LowDiscrepancy>(bsProcess,
+                                                           timeStepsPerYear,
                                                            brownianBridge,
                                                            antitheticVariate,
                                                            controlVariate,
@@ -863,51 +933,72 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
 
 %{
 using QuantLib::QuantoEngine;
-using QuantLib::ForwardEngine;
-typedef boost::shared_ptr<PricingEngine> ForwardVanillaEnginePtr;
-typedef boost::shared_ptr<PricingEngine> QuantoVanillaEnginePtr;
-typedef boost::shared_ptr<PricingEngine> QuantoForwardVanillaEnginePtr;
+using QuantLib::ForwardVanillaEngine;
+typedef boost::shared_ptr<PricingEngine> ForwardEuropeanEnginePtr;
+typedef boost::shared_ptr<PricingEngine> QuantoEuropeanEnginePtr;
+typedef boost::shared_ptr<PricingEngine> QuantoForwardEuropeanEnginePtr;
 %}
 
 
-%rename(ForwardVanillaEngine) ForwardVanillaEnginePtr;
-class ForwardVanillaEnginePtr: public boost::shared_ptr<PricingEngine> {
+%rename(ForwardEuropeanEngine) ForwardEuropeanEnginePtr;
+class ForwardEuropeanEnginePtr: public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        ForwardVanillaEnginePtr(boost::shared_ptr<PricingEngine> engine) {
-            boost::shared_ptr<VanillaOption::engine> uengine =
-                boost::dynamic_pointer_cast<VanillaOption::engine>(engine);
-            return new ForwardVanillaEnginePtr(
-                                   new ForwardVanillaOption::engine(uengine));
+        ForwardEuropeanEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new ForwardEuropeanEnginePtr(
+                 new ForwardVanillaEngine<AnalyticEuropeanEngine>(bsProcess));
         }
     }
 };
 
 
-%rename(QuantoVanillaEngine) QuantoVanillaEnginePtr;
-class QuantoVanillaEnginePtr: public boost::shared_ptr<PricingEngine> {
+%rename(QuantoEuropeanEngine) QuantoEuropeanEnginePtr;
+class QuantoEuropeanEnginePtr: public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        QuantoVanillaEnginePtr(boost::shared_ptr<PricingEngine> engine) {
-            boost::shared_ptr<VanillaOption::engine> uengine =
-                boost::dynamic_pointer_cast<VanillaOption::engine>(engine);
-            return new QuantoVanillaEnginePtr(
-                                    new QuantoVanillaOption::engine(uengine));
+        QuantoEuropeanEnginePtr(
+                  const GeneralizedBlackScholesProcessPtr& process,
+                  const Handle<YieldTermStructure>& foreignRiskFreeRate,
+                  const Handle<BlackVolTermStructure>& exchangeRateVolatility,
+                  const Handle<Quote>& correlation) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new QuantoEuropeanEnginePtr(
+                new QuantoEngine<VanillaOption,AnalyticEuropeanEngine>(
+                                                       bsProcess,
+                                                       foreignRiskFreeRate,
+                                                       exchangeRateVolatility,
+                                                       correlation));
         }
     }
 };
 
-%rename(QuantoForwardVanillaEngine) QuantoForwardVanillaEnginePtr;
-class QuantoForwardVanillaEnginePtr: public boost::shared_ptr<PricingEngine> {
+%rename(QuantoForwardEuropeanEngine) QuantoForwardEuropeanEnginePtr;
+class QuantoForwardEuropeanEnginePtr: public boost::shared_ptr<PricingEngine> {
 public:
     %extend {
-        QuantoForwardVanillaEnginePtr(boost::shared_ptr<PricingEngine> engine) {
-            boost::shared_ptr<VanillaOption::engine> vengine =
-                boost::dynamic_pointer_cast<VanillaOption::engine>(vengine);
-            boost::shared_ptr<ForwardVanillaOption::engine>
-                fengine(new ForwardVanillaOption::engine(vengine));
-            return new QuantoForwardVanillaEnginePtr(
-                             new QuantoForwardVanillaOption::engine(fengine));
+        QuantoForwardEuropeanEnginePtr(
+                  const GeneralizedBlackScholesProcessPtr& process,
+                  const Handle<YieldTermStructure>& foreignRiskFreeRate,
+                  const Handle<BlackVolTermStructure>& exchangeRateVolatility,
+                  const Handle<Quote>& correlation) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new QuantoForwardEuropeanEnginePtr(
+                new QuantoEngine<ForwardVanillaOption,AnalyticEuropeanEngine>(
+                                                       bsProcess,
+                                                       foreignRiskFreeRate,
+                                                       exchangeRateVolatility,
+                                                       correlation));
         }
     }
 };

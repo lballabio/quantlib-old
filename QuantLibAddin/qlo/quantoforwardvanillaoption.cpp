@@ -20,42 +20,24 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/quantoforwardvanillaoption.hpp>
+
 #include <ql/instruments/quantoforwardvanillaoption.hpp>
-#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 
     QuantoForwardVanillaOption::QuantoForwardVanillaOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const boost::shared_ptr < QuantLib::BlackVolTermStructure > &blackVolTermStructure,
-            const double &correlation,
-            const double &moneyness,
-            QuantLib::Date resetDate,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
-            bool permanent) : OneAssetOption(properties, permanent) {
-        QuantLib::Handle<QuantLib::BlackVolTermStructure>
-            blackVolTermStructureH(blackVolTermStructure);
-
-        QuantLib::Handle<QuantLib::Quote> correlationH(
-            boost::shared_ptr<QuantLib::Quote>(
-            new QuantLib::SimpleQuote(correlation)));
-
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
-            new QuantLib::QuantoForwardVanillaOption(
-                hYTS,
-                blackVolTermStructureH,
-                correlationH,
-                moneyness,
-                QuantLib::Date(resetDate),
-                blackScholesProcess,
-                payoff,
-                exercise,
-                pricingEngine));
+            QuantLib::Real moneyness,
+            const QuantLib::Date& resetDate,
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::Exercise>& exercise,
+            bool permanent) : OneAssetOption(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::QuantoForwardVanillaOption(moneyness,
+                                                 resetDate,
+                                                 payoff,
+                                                 exercise));
     }
 
 }
-

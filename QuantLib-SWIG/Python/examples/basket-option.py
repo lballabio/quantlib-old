@@ -45,7 +45,7 @@ process2 = BlackScholesMertonProcess(QuoteHandle(underlying2),
                                     YieldTermStructureHandle(riskFreeRate),
                                     BlackVolTermStructureHandle(volatility2))
 
-procs = StochasticProcessVector();
+procs = StochasticProcessVector()
 procs.push_back(process1)
 procs.push_back(process2)
 
@@ -56,27 +56,27 @@ matrix[0][1] = 0.5
 matrix[1][0] = 0.5
 
 process = StochasticProcessArray(procs, matrix)
-basketoption = BasketOption(process, MaxBasketPayoff(payoff),
-                            exercise)
-basketoption.setPricingEngine(MCBasketEngine('pseudorandom',
-                                         timeStepsPerYear = 1,
-                                         requiredTolerance = 0.02,
-                                         seed = 42))
+basketoption = BasketOption(MaxBasketPayoff(payoff), exercise)
+basketoption.setPricingEngine(MCBasketEngine(process,
+                                             'pseudorandom',
+                                             timeStepsPerYear = 1,
+                                             requiredTolerance = 0.02,
+                                             seed = 42))
 print basketoption.NPV()
 
-basketoption = BasketOption(process, MinBasketPayoff(payoff),
-                            exercise)
-basketoption.setPricingEngine(MCBasketEngine('pseudorandom',
-                                         timeStepsPerYear = 1,
-                                         requiredTolerance = 0.02,
-                                         seed = 42))
+basketoption = BasketOption(MinBasketPayoff(payoff), exercise)
+basketoption.setPricingEngine(MCBasketEngine(process,
+                                             'pseudorandom',
+                                             timeStepsPerYear = 1,
+                                             requiredTolerance = 0.02,
+                                             seed = 42))
 print basketoption.NPV()
 
-basketoption = BasketOption(process,
-                            AverageBasketPayoff(payoff, 2),
-                            exercise)
-basketoption.setPricingEngine(MCBasketEngine('pseudorandom',
-                                         timeStepsPerYear = 1,
-                                         requiredTolerance = 0.02,
-                                         seed = 42))
+basketoption = BasketOption(AverageBasketPayoff(payoff, 2), exercise)
+basketoption.setPricingEngine(MCBasketEngine(process,
+                                             'pseudorandom',
+                                             timeStepsPerYear = 1,
+                                             requiredTolerance = 0.02,
+                                             seed = 42))
 print basketoption.NPV()
+

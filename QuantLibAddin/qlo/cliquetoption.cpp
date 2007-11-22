@@ -20,29 +20,22 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/cliquetoption.hpp>
-#include <qlo/exercise.hpp>
 #include <ql/instruments/cliquetoption.hpp>
-#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 
     CliquetOption::CliquetOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::PercentageStrikePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::EuropeanExercise > &exercise,
-            const std::vector < QuantLib::Date > &resetDates,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            const boost::shared_ptr<QuantLib::PercentageStrikePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::EuropeanExercise>& exercise,
+            const std::vector<QuantLib::Date>& resetDates,
             bool permanent) : OneAssetOption(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
-            new QuantLib::CliquetOption(
-                blackScholesProcess, 
-                payoff, 
-                exercise, 
-                resetDates,
-                pricingEngine));
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::CliquetOption(payoff, 
+                                    exercise, 
+                                    resetDates));
     }
 
 }
-

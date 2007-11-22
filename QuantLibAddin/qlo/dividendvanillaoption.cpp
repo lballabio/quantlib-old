@@ -19,30 +19,25 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/dividendvanillaoption.hpp>
 #include <ql/instruments/dividendvanillaoption.hpp>
-#include <qlo/processes.hpp>
 
 namespace QuantLibAddin {
 
     DividendVanillaOption::DividendVanillaOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const std::vector < QuantLib::Date > &dividendDates,
-            const std::vector < double > &dividends,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
-            bool permanent) : OneAssetOption(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::DividendVanillaOption>(
-            new QuantLib::DividendVanillaOption(
-                blackScholesProcess,
-                payoff,
-                exercise,
-                dividendDates,
-                dividends,
-                pricingEngine));
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::Exercise>& exercise,
+            const std::vector<QuantLib::Date>& dividendDates,
+            const std::vector<QuantLib::Real>& dividends,
+            bool permanent) : OneAssetOption(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::DividendVanillaOption(payoff,
+                                            exercise,
+                                            dividendDates,
+                                            dividends));
     }
 
 }
-

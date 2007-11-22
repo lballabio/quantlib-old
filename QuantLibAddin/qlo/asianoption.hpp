@@ -25,10 +25,8 @@
 #include <ql/types.hpp>
 
 namespace QuantLib {
-    class GeneralizedBlackScholesProcess;
     class StrikedTypePayoff;
     class Exercise;
-    class PricingEngine;
     class Date;
 }   
 
@@ -39,10 +37,8 @@ namespace QuantLibAddin {
         ContinuousAveragingAsianOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Average::Type averageType,
-            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess >& blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
             const boost::shared_ptr<QuantLib::Exercise>& exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine,
             bool permanent);
     };
 
@@ -54,14 +50,11 @@ namespace QuantLibAddin {
             QuantLib::Real runningAccumulator,
             QuantLib::Size pastFixings,
             const std::vector<QuantLib::Date>& fixingDates,
-            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess >& blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
             const boost::shared_ptr<QuantLib::Exercise>& exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine>& pricingEngine,
             bool permanent);
     };
 
 }
 
 #endif
-

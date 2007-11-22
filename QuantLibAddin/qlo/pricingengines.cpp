@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,7 +17,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-
 #include <qlo/pricingengines.hpp>
 #include <qlo/swaption.hpp>
 #include <qlo/Enumerations/Factories/pricingenginesfactory.hpp>
@@ -26,28 +26,30 @@
 #include <ql/pricingengines/capfloor/blackcapfloorengine.hpp>
 #include <ql/pricingengines/swap/discountingswapengine.hpp>
 #include <ql/pricingengines/bond/discountingbondengine.hpp>
+#include <ql/processes/blackscholesprocess.hpp>
 
 namespace QuantLibAddin {
 
+    // PricingEngines - without timesteps
     PricingEngine::PricingEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string& engineID,
+            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process,
+            bool permanent) : ObjectHandler::LibraryObject<QuantLib::PricingEngine>(properties, permanent)
+    {
+        libraryObject_ = ObjectHandler::createPricingEngine(engineID, process);
+    }
+
+    // PricingEngines - with timesteps
+    PricingEngine::PricingEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& engineID,
+            const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process,
             const long& timeSteps,
             bool permanent) : ObjectHandler::LibraryObject<QuantLib::PricingEngine>(properties, permanent)
     {
-        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
-            QuantLib::PricingEngine> >()(engineID, timeSteps);
+        libraryObject_ = ObjectHandler::createPricingEngine(engineID, process, timeSteps);
     }
-
-    PricingEngine::PricingEngine(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::string& engineID,
-            bool permanent) : ObjectHandler::LibraryObject<QuantLib::PricingEngine>(properties, permanent)
-    {
-        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
-            QuantLib::PricingEngine> >()(engineID, 1);
-    }
-
 
     DiscountingSwapEngine::DiscountingSwapEngine(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

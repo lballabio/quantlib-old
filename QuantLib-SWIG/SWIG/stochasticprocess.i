@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 StatPro Italia srl
+ Copyright (C) 2004, 2005, 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -73,7 +73,7 @@ typedef boost::shared_ptr<StochasticProcess> BlackScholesProcessPtr;
 %}
 
 %rename(BlackScholesProcess) BlackScholesProcessPtr;
-class BlackScholesProcessPtr : public StochasticProcess1DPtr {
+class BlackScholesProcessPtr : public GeneralizedBlackScholesProcessPtr {
   public:
     %extend {
       BlackScholesProcessPtr(const Handle<Quote>& s0,
@@ -91,7 +91,7 @@ typedef boost::shared_ptr<StochasticProcess> BlackScholesMertonProcessPtr;
 %}
 
 %rename(BlackScholesMertonProcess) BlackScholesMertonProcessPtr;
-class BlackScholesMertonProcessPtr : public StochasticProcess1DPtr {
+class BlackScholesMertonProcessPtr : public GeneralizedBlackScholesProcessPtr {
   public:
     %extend {
       BlackScholesMertonProcessPtr(
@@ -112,7 +112,7 @@ typedef boost::shared_ptr<StochasticProcess> BlackProcessPtr;
 %}
 
 %rename(BlackProcess) BlackProcessPtr;
-class BlackProcessPtr : public StochasticProcess1DPtr {
+class BlackProcessPtr : public GeneralizedBlackScholesProcessPtr {
   public:
     %extend {
       BlackProcessPtr(const Handle<Quote>& s0,
@@ -129,7 +129,7 @@ typedef boost::shared_ptr<StochasticProcess> GarmanKohlagenProcessPtr;
 %}
 
 %rename(GarmanKohlagenProcess) GarmanKohlagenProcessPtr;
-class GarmanKohlagenProcessPtr : public StochasticProcess1DPtr {
+class GarmanKohlagenProcessPtr : public GeneralizedBlackScholesProcessPtr {
   public:
     %extend {
       GarmanKohlagenProcessPtr(

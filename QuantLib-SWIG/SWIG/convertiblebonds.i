@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 StatPro Italia srl
+ Copyright (C) 2006, 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -40,9 +40,7 @@ class ConvertibleZeroCouponBondPtr : public BondPtr {
   public:
     %extend {
         ConvertibleZeroCouponBondPtr(
-              const boost::shared_ptr<StochasticProcess>& process,
               const boost::shared_ptr<Exercise>& exercise,
-              const boost::shared_ptr<PricingEngine>& engine,
               Real conversionRatio,
               const std::vector<boost::shared_ptr<Dividend> >& dividends,
               const std::vector<boost::shared_ptr<Callability> >& callability,
@@ -53,9 +51,9 @@ class ConvertibleZeroCouponBondPtr : public BondPtr {
               const Schedule& schedule,
               Real redemption = 100.0) {
             return new ConvertibleZeroCouponBondPtr(
-                     new ConvertibleZeroCouponBond(process, exercise, engine,
-                                                   conversionRatio, dividends,
-                                                   callability, creditSpread,
+                     new ConvertibleZeroCouponBond(exercise, conversionRatio,
+                                                   dividends, callability,
+                                                   creditSpread,
                                                    issueDate, settlementDays,
                                                    dayCounter, schedule,
                                                    redemption));
@@ -69,9 +67,7 @@ class ConvertibleFixedCouponBondPtr : public BondPtr {
   public:
     %extend {
         ConvertibleFixedCouponBondPtr(
-              const boost::shared_ptr<StochasticProcess>& process,
               const boost::shared_ptr<Exercise>& exercise,
-              const boost::shared_ptr<PricingEngine>& engine,
               Real conversionRatio,
               const std::vector<boost::shared_ptr<Dividend> >& dividends,
               const std::vector<boost::shared_ptr<Callability> >& callability,
@@ -83,9 +79,9 @@ class ConvertibleFixedCouponBondPtr : public BondPtr {
               const Schedule& schedule,
               Real redemption = 100.0) {
             return new ConvertibleFixedCouponBondPtr(
-                    new ConvertibleFixedCouponBond(process, exercise, engine,
-                                                   conversionRatio, dividends,
-                                                   callability, creditSpread,
+                    new ConvertibleFixedCouponBond(exercise, conversionRatio,
+                                                   dividends, callability,
+                                                   creditSpread,
                                                    issueDate, settlementDays,
                                                    coupons, dayCounter,
                                                    schedule, redemption));
@@ -99,9 +95,7 @@ class ConvertibleFloatingRateBondPtr : public BondPtr {
   public:
     %extend {
         ConvertibleFloatingRateBondPtr(
-              const boost::shared_ptr<StochasticProcess>& process,
               const boost::shared_ptr<Exercise>& exercise,
-              const boost::shared_ptr<PricingEngine>& engine,
               Real conversionRatio,
               const std::vector<boost::shared_ptr<Dividend> >& dividends,
               const std::vector<boost::shared_ptr<Callability> >& callability,
@@ -117,9 +111,9 @@ class ConvertibleFloatingRateBondPtr : public BondPtr {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new ConvertibleFloatingRateBondPtr(
-                   new ConvertibleFloatingRateBond(process, exercise, engine,
-                                                   conversionRatio, dividends,
-                                                   callability, creditSpread,
+                   new ConvertibleFloatingRateBond(exercise, conversionRatio,
+                                                   dividends, callability,
+                                                   creditSpread,
                                                    issueDate, settlementDays,
                                                    libor, fixingDays, spreads,
                                                    dayCounter, schedule,
@@ -134,28 +128,41 @@ class ConvertibleFloatingRateBondPtr : public BondPtr {
 class BinomialConvertibleEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        BinomialConvertibleEnginePtr(const std::string& type,
-                                     Size steps) {
+        BinomialConvertibleEnginePtr(
+                             const GeneralizedBlackScholesProcessPtr& process,
+                             const std::string& type,
+                             Size steps) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
             std::string s = boost::algorithm::to_lower_copy(type);
             if (s == "crr" || s == "coxrossrubinstein")
                 return new BinomialConvertibleEnginePtr(
-                    new BinomialConvertibleEngine<CoxRossRubinstein>(steps));
+                    new BinomialConvertibleEngine<CoxRossRubinstein>(
+                                                            bsProcess,steps));
             else if (s == "jr" || s == "jarrowrudd")
                 return new BinomialConvertibleEnginePtr(
-                    new BinomialConvertibleEngine<JarrowRudd>(steps));
+                    new BinomialConvertibleEngine<JarrowRudd>(
+                                                            bsProcess,steps));
             else if (s == "eqp")
                 return new BinomialConvertibleEnginePtr(
                     new BinomialConvertibleEngine<AdditiveEQPBinomialTree>(
-                                                                      steps));
+                                                            bsProcess,steps));
             else if (s == "trigeorgis")
                 return new BinomialConvertibleEnginePtr(
-                    new BinomialConvertibleEngine<Trigeorgis>(steps));
+                    new BinomialConvertibleEngine<Trigeorgis>(
+                                                            bsProcess,steps));
             else if (s == "tian")
                 return new BinomialConvertibleEnginePtr(
-                    new BinomialConvertibleEngine<Tian>(steps));
+                    new BinomialConvertibleEngine<Tian>(bsProcess,steps));
             else if (s == "lr" || s == "leisenreimer")
                 return new BinomialConvertibleEnginePtr(
-                    new BinomialConvertibleEngine<LeisenReimer>(steps));
+                    new BinomialConvertibleEngine<LeisenReimer>(
+                                                            bsProcess,steps));
+            else if (s == "j4" || s == "joshi4")
+                return new BinomialConvertibleEnginePtr(
+                    new BinomialConvertibleEngine<Joshi4>(bsProcess,steps));
             else
                 QL_FAIL("unknown binomial engine type: "+s);
         }

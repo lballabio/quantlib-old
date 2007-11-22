@@ -20,39 +20,19 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/quantovanillaoption.hpp>
-#include <qlo/exercise.hpp>
-#include <qlo/yieldtermstructures.hpp>
-#include <qlo/volatilities.hpp>
+
+#include <ql/instruments/quantovanillaoption.hpp>
 
 namespace QuantLibAddin {
 
     QuantoVanillaOption::QuantoVanillaOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-            const boost::shared_ptr < QuantLib::BlackVolTermStructure > &blackVolTermStructure,
-            const double &correlation,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
             const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
             bool permanent) : OneAssetOption(properties, permanent) {
-        QuantLib::Handle<QuantLib::BlackVolTermStructure>
-            blackVolTermStructureH(blackVolTermStructure);
-
-        QuantLib::Handle<QuantLib::Quote> correlationH(
-            boost::shared_ptr<QuantLib::Quote>(
-            new QuantLib::SimpleQuote(correlation)));
-
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
-            new QuantLib::QuantoVanillaOption(
-                hYTS,
-                blackVolTermStructureH,
-                correlationH,
-                blackScholesProcess,
-                payoff,
-                exercise,
-                pricingEngine));
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::QuantoVanillaOption(payoff,
+                                          exercise));
     }
 
 }
-

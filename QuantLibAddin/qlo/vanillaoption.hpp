@@ -20,8 +20,12 @@
 #define qla_vanillaoption_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <ql/instruments/vanillaoption.hpp>
 #include <qlo/processes.hpp>
+
+namespace QuantLib {
+    class StrikedTypePayoff;
+    class Exercise;
+}
 
 namespace QuantLibAddin {
 
@@ -29,14 +33,11 @@ namespace QuantLibAddin {
     public:
         VanillaOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::Exercise>& exercise,
             bool permanent);
     };
 
 }
 
 #endif
-

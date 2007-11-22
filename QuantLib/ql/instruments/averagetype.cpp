@@ -1,6 +1,9 @@
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2003, 2004 Neil Firth
+ Copyright (C) 2003, 2004, 2007 Ferdinando Ametrano
+ Copyright (C) 2003, 2004, 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,31 +19,22 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_quantoforwardvanillaoption_hpp
-#define qla_quantoforwardvanillaoption_hpp
-
-#include <qlo/baseinstruments.hpp>
+#include <ql/instruments/averagetype.hpp>
 #include <ql/types.hpp>
+#include <ql/errors.hpp>
 
 namespace QuantLib {
-    class StrikedTypePayoff;
-    class Exercise;
-    class Date;
-}
 
-namespace QuantLibAddin {
-
-    class QuantoForwardVanillaOption : public OneAssetOption {
-    public:
-        QuantoForwardVanillaOption(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::Real moneyness,
-            const QuantLib::Date& resetDate,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
-            const boost::shared_ptr<QuantLib::Exercise>& exercise,
-            bool permanent);
-    };
+    std::ostream& operator<<(std::ostream& out,
+                             Average::Type type) {
+        switch (type) {
+          case Average::Arithmetic:
+            return out << "Arithmetic";
+          case Average::Geometric:
+            return out << "Geometric";
+          default:
+            QL_FAIL("unknown Average::Type (" << Integer(type) << ")");
+        }
+    }
 
 }
-
-#endif

@@ -26,25 +26,63 @@
 
 namespace ObjectHandler {
 
-    typedef boost::shared_ptr<QuantLib::PricingEngine>(*PricingEngineConstructor)(
-        const long&);
+    // This factory uses a slightly different design than the others.  Usually Create
+    // - retrieves the constructor
+    // - calls the constructor
+    // - returns the constructed object
+    // In this case Create simply returns the constructor, and the caller must invoke
+    // it.  This approach is required to allow two different Create<> class template
+    // specializations for the same type (QuantLib::PricingEngine).  One specialization
+    // is for PricingEngines that do not require the timesteps parameter and the other
+    // specialization is for PricingEngines that do require the timesteps parameter.
 
+    // A function to construct a PricingEngine - without timesteps
+    typedef boost::shared_ptr<QuantLib::PricingEngine>(*PricingEngineConstructor1)(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>&);
+
+    // A function to construct a PricingEngine - with timesteps
+    typedef boost::shared_ptr<QuantLib::PricingEngine>(*PricingEngineConstructor2)(
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>&, const long&);
+
+    // Create class template specialization for PricingEngine - without timesteps
     template<>
-    class Create<boost::shared_ptr<QuantLib::PricingEngine> > :
-        private RegistryManager<QuantLib::PricingEngine, EnumClassRegistry> {
+    class Create<PricingEngineConstructor1> :
+        private RegistryManager<PricingEngineConstructor1, EnumClassRegistry> {
     public:
-        boost::shared_ptr<QuantLib::PricingEngine> operator()(const std::string& engineID,
-                                                              const long& timeSteps) {
-            // FIXME move this validation into QL
-            OH_REQUIRE(timeSteps>0, "timeSteps must be positive");
-            PricingEngineConstructor pricingEngineConstructor =
-                reinterpret_cast<PricingEngineConstructor>(getType(engineID));
-            return pricingEngineConstructor(timeSteps);
+        PricingEngineConstructor1 operator()(const std::string& engineID) {
+            return reinterpret_cast<PricingEngineConstructor1>(getType(engineID));
         }
-        using RegistryManager<QuantLib::PricingEngine, EnumClassRegistry>::registerType;
+        using RegistryManager<PricingEngineConstructor1, EnumClassRegistry>::registerType;
     };
+
+    // Create class template specialization for PricingEngine - with timesteps
+    template<>
+    class Create<PricingEngineConstructor2> :
+        private RegistryManager<PricingEngineConstructor2, EnumClassRegistry> {
+    public:
+        PricingEngineConstructor2 operator()(const std::string& engineID) {
+            return reinterpret_cast<PricingEngineConstructor2>(getType(engineID));
+        }
+        using RegistryManager<PricingEngineConstructor2, EnumClassRegistry>::registerType;
+    };
+
+    // A wrapper for Create - without timesteps
+    inline boost::shared_ptr<QuantLib::PricingEngine> createPricingEngine(
+        const std::string& engineID,
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process) {
+
+        return Create<PricingEngineConstructor1>()(engineID)(process);
+    }
+
+    // A wrapper for Create - with timesteps
+    inline boost::shared_ptr<QuantLib::PricingEngine> createPricingEngine(
+        const std::string& engineID,
+        const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process,
+        const long& timeSteps) {
+
+        return Create<PricingEngineConstructor2>()(engineID)(process, timeSteps);
+    }
 
  }
 
 #endif
-

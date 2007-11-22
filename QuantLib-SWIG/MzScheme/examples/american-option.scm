@@ -1,5 +1,5 @@
 
-; Copyright (C) 2004, 2005, 2006 StatPro Italia srl
+; Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -66,44 +66,50 @@
                  (new-YieldTermStructureHandle risk-free-rate)
                  (new-BlackVolTermStructureHandle volatility)))
 
-(define option (new-VanillaOption process payoff exercise))
+(define option (new-VanillaOption payoff exercise))
 
 (report "reference value" ref-value)
 
 ; method: analytic
 
-(with-pricing-engine (option (new-BaroneAdesiWhaleyEngine))
+(with-pricing-engine (option (new-BaroneAdesiWhaleyEngine process))
   (report "Barone-Adesi-Whaley" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BjerksundStenslandEngine))
+(with-pricing-engine (option (new-BjerksundStenslandEngine process))
   (report "Bjerksund-Stensland" (Instrument-NPV option)))
 
 ; method: finite differences
 (define timeSteps 801)
 (define gridPoints 801)
 
-(with-pricing-engine (option (new-FDAmericanEngine timeSteps gridPoints #f))
+(with-pricing-engine (option (new-FDAmericanEngine
+                              process timeSteps gridPoints #f))
   (report "finite differences" (Instrument-NPV option)))
 
 ; method: binomial
 (define timeSteps 801)
 
-(with-pricing-engine (option (new-BinomialVanillaEngine "jr" timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine
+                              process "jr" timeSteps))
   (report "binomial (JR)" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BinomialVanillaEngine "crr" timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine
+                              process "crr" timeSteps))
   (report "binomial (CRR)" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BinomialVanillaEngine "eqp" timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine
+                              process "eqp" timeSteps))
   (report "binomial (EQP)" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BinomialVanillaEngine "trigeorgis"
-                                                        timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine
+                              process "trigeorgis" timeSteps))
   (report "bin. (Trigeorgis)" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BinomialVanillaEngine "tian" timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine
+                              process "tian" timeSteps))
   (report "binomial (Tian)" (Instrument-NPV option)))
 
-(with-pricing-engine (option (new-BinomialVanillaEngine "lr" timeSteps))
+(with-pricing-engine (option (new-BinomialVanillaEngine
+                              process "lr" timeSteps))
   (report "binomial (LR)" (Instrument-NPV option)))
 

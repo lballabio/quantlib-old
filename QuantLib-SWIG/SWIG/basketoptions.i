@@ -83,16 +83,12 @@ class BasketOptionPtr : public MultiAssetOptionPtr {
   public:
     %extend {
         BasketOptionPtr(
-                const boost::shared_ptr<StochasticProcess>& process,
                 const boost::shared_ptr<Payoff>& payoff,
-                const boost::shared_ptr<Exercise>& exercise,
-                const boost::shared_ptr<PricingEngine>& engine
-                   = boost::shared_ptr<PricingEngine>()) {
+                const boost::shared_ptr<Exercise>& exercise) {
             boost::shared_ptr<BasketPayoff> stPayoff =
                  boost::dynamic_pointer_cast<BasketPayoff>(payoff);
             QL_REQUIRE(stPayoff, "wrong payoff given");
-            return new BasketOptionPtr(
-                          new BasketOption(process,stPayoff,exercise,engine));
+            return new BasketOptionPtr(new BasketOption(stPayoff,exercise));
         }
     }
 };
@@ -108,36 +104,42 @@ class MCBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
     %feature("kwargs") MCBasketEnginePtr;
   public:
     %extend {
-        MCBasketEnginePtr(const std::string& traits,
-                           Size timeStepsPerYear = Null<Size>(),
-                           bool brownianBridge = false,
-                           bool antitheticVariate = false,
-                           bool controlVariate = false,
-                           intOrNull requiredSamples = Null<Size>(),
-                           doubleOrNull requiredTolerance = Null<Real>(),
-                           intOrNull maxSamples = Null<Size>(),
-                           BigInteger seed = 0) {
+        MCBasketEnginePtr(const StochasticProcessArrayPtr& process,
+                          const std::string& traits,
+                          Size timeStepsPerYear = Null<Size>(),
+                          bool brownianBridge = false,
+                          bool antitheticVariate = false,
+                          bool controlVariate = false,
+                          intOrNull requiredSamples = Null<Size>(),
+                          doubleOrNull requiredTolerance = Null<Real>(),
+                          intOrNull maxSamples = Null<Size>(),
+                          BigInteger seed = 0) {
+            boost::shared_ptr<StochasticProcessArray> processes =
+                 boost::dynamic_pointer_cast<StochasticProcessArray>(process);
+            QL_REQUIRE(processes, "stochastic-process array required");
             std::string s = boost::algorithm::to_lower_copy(traits);
             if (s == "pseudorandom" || s == "pr")
                 return new MCBasketEnginePtr(
-                         new MCBasketEngine<PseudoRandom>(timeStepsPerYear,
-                                                           brownianBridge,
-                                                           antitheticVariate,
-                                                           controlVariate,
-                                                           requiredSamples,
-                                                           requiredTolerance,
-                                                           maxSamples,
-                                                           seed));
+                         new MCBasketEngine<PseudoRandom>(processes,
+                                                          timeStepsPerYear,
+                                                          brownianBridge,
+                                                          antitheticVariate,
+                                                          controlVariate,
+                                                          requiredSamples,
+                                                          requiredTolerance,
+                                                          maxSamples,
+                                                          seed));
             else if (s == "lowdiscrepancy" || s == "ld")
                 return new MCBasketEnginePtr(
-                       new MCBasketEngine<LowDiscrepancy>(timeStepsPerYear,
-                                                           brownianBridge,
-                                                           antitheticVariate,
-                                                           controlVariate,
-                                                           requiredSamples,
-                                                           requiredTolerance,
-                                                           maxSamples,
-                                                           seed));
+                       new MCBasketEngine<LowDiscrepancy>(processes,
+                                                          timeStepsPerYear,
+                                                          brownianBridge,
+                                                          antitheticVariate,
+                                                          controlVariate,
+                                                          requiredSamples,
+                                                          requiredTolerance,
+                                                          maxSamples,
+                                                          seed));
             else
                 QL_FAIL("unknown Monte Carlo engine type: "+s);
         }
@@ -154,20 +156,25 @@ class MCAmericanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
     %feature("kwargs") MCAmericanBasketEnginePtr;
   public:
     %extend {
-        MCAmericanBasketEnginePtr(const std::string& traits,
-                           Size timeSteps = Null<Size>(),
-                           Size timeStepsPerYear = Null<Size>(),
-                           bool brownianBridge = false,
-                           bool antitheticVariate = false,
-                           bool controlVariate = false,
-                           intOrNull requiredSamples = Null<Size>(),
-                           doubleOrNull requiredTolerance = Null<Real>(),
-                           intOrNull maxSamples = Null<Size>(),
-                           BigInteger seed = 0) {
+        MCAmericanBasketEnginePtr(const StochasticProcessArrayPtr& process,
+                                  const std::string& traits,
+                                  Size timeSteps = Null<Size>(),
+                                  Size timeStepsPerYear = Null<Size>(),
+                                  bool brownianBridge = false,
+                                  bool antitheticVariate = false,
+                                  bool controlVariate = false,
+                                  intOrNull requiredSamples = Null<Size>(),
+                                  doubleOrNull requiredTolerance = Null<Real>(),
+                                  intOrNull maxSamples = Null<Size>(),
+                                  BigInteger seed = 0) {
+            boost::shared_ptr<StochasticProcessArray> processes =
+                 boost::dynamic_pointer_cast<StochasticProcessArray>(process);
+            QL_REQUIRE(processes, "stochastic-process array required");
             std::string s = boost::algorithm::to_lower_copy(traits);
             if (s == "pseudorandom" || s == "pr")
                   return new MCAmericanBasketEnginePtr(
-                  new MCAmericanBasketEngine<PseudoRandom>(timeSteps,
+                  new MCAmericanBasketEngine<PseudoRandom>(processes,
+                                                           timeSteps,
                                                            timeStepsPerYear,
                                                            brownianBridge,
                                                            antitheticVariate,
@@ -178,7 +185,8 @@ class MCAmericanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                            seed));
             else if (s == "lowdiscrepancy" || s == "ld")
                 return new MCAmericanBasketEnginePtr(
-                new MCAmericanBasketEngine<LowDiscrepancy>(timeSteps,
+                new MCAmericanBasketEngine<LowDiscrepancy>(processes,
+                                                           timeSteps,
                                                            timeStepsPerYear,
                                                            brownianBridge,
                                                            antitheticVariate,
@@ -204,10 +212,22 @@ class StulzEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        StulzEnginePtr() {
-            return new StulzEnginePtr(new StulzEngine);
+        StulzEnginePtr(const GeneralizedBlackScholesProcessPtr& process1,
+                       const GeneralizedBlackScholesProcessPtr& process2,
+                       Real correlation) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess1 =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                    process1);
+            QL_REQUIRE(bsProcess1, "Black-Scholes process required");
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess2 =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                    process2);
+            QL_REQUIRE(bsProcess2, "Black-Scholes process required");
+            return new StulzEnginePtr(
+                          new StulzEngine(bsProcess1,bsProcess2,correlation));
         }
     }
 };
+
 
 #endif

@@ -20,13 +20,12 @@
 #define qla_dividendvanillaoption_hpp
 
 #include <qlo/baseinstruments.hpp>
+#include <ql/types.hpp>
 
 namespace QuantLib {
-    class GeneralizedBlackScholesProcess;
     class StrikedTypePayoff;
     class Exercise;
     class Date;
-    class PricingEngine;
 }
 
 namespace QuantLibAddin {
@@ -35,16 +34,13 @@ namespace QuantLibAddin {
     public:
         DividendVanillaOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const boost::shared_ptr < QuantLib::GeneralizedBlackScholesProcess > &blackScholesProcess,
-            const boost::shared_ptr<QuantLib::StrikedTypePayoff> &payoff,
-            const boost::shared_ptr < QuantLib::Exercise > &exercise,
-            const std::vector < QuantLib::Date > &dividendDates,
-            const std::vector < double > &dividends,
-            const boost::shared_ptr<QuantLib::PricingEngine> &pricingEngine,
+            const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
+            const boost::shared_ptr<QuantLib::Exercise>& exercise,
+            const std::vector<QuantLib::Date>& dividendDates,
+            const std::vector<QuantLib::Real>& dividends,
             bool permanent);
     };
 
 }
 
 #endif
-
