@@ -83,25 +83,25 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
-            QuantLib::Natural settlementDays,
             const QuantLib::Calendar& calendar,
             const QuantLib::Frequency& fixedFrequency,
             QuantLib::BusinessDayConvention fixedConvention,
             const QuantLib::DayCounter& fixedDayCounter,
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             const QuantLib::Handle<QuantLib::Quote>& spread,
+            const QuantLib::Period& forwardStart,
             bool permanent) : RateHelper(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
             QuantLib::SwapRateHelper(quote,
                                      p,
-                                     settlementDays,
                                      calendar,
                                      fixedFrequency,
                                      fixedConvention,
                                      fixedDayCounter,
                                      iborIndex,
-                                     spread));
+                                     spread,
+                                     forwardStart));
     }
 
     SwapRateHelper::SwapRateHelper(
@@ -109,12 +109,14 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
             const QuantLib::Handle<QuantLib::Quote>& spread,
+            const QuantLib::Period& forwardStart,
             bool permanent) : RateHelper(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
             QuantLib::SwapRateHelper(quote,
                                      swapIndex,
-                                     spread));
+                                     spread,
+                                     forwardStart));
     }
 
     FraRateHelper::FraRateHelper(
