@@ -23,7 +23,7 @@
 #include <qlo/termstructures.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
-#include <ql/termstructures/volatility/optionlet/optionletstripperadapter.hpp>
+#include <ql/termstructures/volatility/optionlet/strippedoptionletadapter.hpp>
 
 namespace QuantLib {
     class OptionletVolatilityStructure;
@@ -34,7 +34,7 @@ namespace QuantLib {
     class CapFloorTermVolCurve;
     class OptionletStripper1;
     class OptionletStripper2;
-    class OptionletStripperAdapter;
+    class StrippedOptionletAdapter;
 }
 
 namespace QuantLibAddin {
@@ -50,9 +50,9 @@ namespace QuantLibAddin {
                              bool permanent);
     };
       
-    class OptionletStripperAdapter : public OptionletVolatilityStructure {
+    class StrippedOptionletAdapter : public OptionletVolatilityStructure {
       public:
-      OptionletStripperAdapter(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+      StrippedOptionletAdapter(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                const boost::shared_ptr<QuantLib::OptionletStripper>& optionletStripper,
                                bool permanent);
     };

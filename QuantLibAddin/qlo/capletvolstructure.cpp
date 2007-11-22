@@ -26,7 +26,7 @@
 #include <ql/termstructures/volatility/optionlet/spreadedoptionletvol.hpp>
 #include <ql/termstructures/volatility/capfloor/capfloortermvolcurve.hpp>
 #include <ql/termstructures/volatility/capfloor/capfloortermvolsurface.hpp>
-#include <ql/termstructures/volatility/optionlet/optionletstripperadapter.hpp>
+#include <ql/termstructures/volatility/optionlet/strippedoptionletadapter.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper1.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper2.hpp>
 
@@ -43,13 +43,13 @@ namespace QuantLibAddin {
             QuantLib::ConstantOptionletVol(volatility, cal, dayCounter));
     }
 
-    OptionletStripperAdapter::OptionletStripperAdapter(
+    StrippedOptionletAdapter::StrippedOptionletAdapter(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const boost::shared_ptr<QuantLib::OptionletStripper>& optionletStripper,
         bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::OptionletStripperAdapter(optionletStripper));
+            QuantLib::StrippedOptionletAdapter(optionletStripper));
     }
 
 

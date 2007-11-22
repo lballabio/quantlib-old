@@ -275,7 +275,7 @@
     </Constructor>
 
     <Constructor name='qlOptionletStripperAdapter'>
-      <libraryFunction>OptionletStripperAdapter</libraryFunction>
+      <libraryFunction>StrippedOptionletAdapter</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
