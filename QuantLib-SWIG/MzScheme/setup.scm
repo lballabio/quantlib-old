@@ -91,11 +91,15 @@
                   (append
                    (current-extension-compiler-flags)
                    (string-split c++-flags #\space))))
-           (current-extension-linker-flags
-            (append
-             (current-extension-linker-flags)
-             (list "-L/usr/local/lib" "-lstdc++" "-lgcc"
-                   (string-append "-lQuantLib-" version))))))
+             (current-extension-compiler-flags
+                  (append
+                   (current-extension-compiler-flags)
+                   (list "-Wno-return-type")))
+             (current-extension-linker-flags
+              (append
+               (current-extension-linker-flags)
+               (list "-L/usr/local/lib" "-lstdc++" "-lgcc"
+                     (string-append "-lQuantLib-" version))))))
           ((eqv? platform 'windows)
            (let ((ql-dir (getenv "QL_DIR")))
              (if ql-dir
