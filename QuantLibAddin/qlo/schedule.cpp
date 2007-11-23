@@ -33,7 +33,7 @@ namespace QuantLibAddin {
         const QuantLib::Calendar& calendar,
         QuantLib::BusinessDayConvention convention,
         QuantLib::BusinessDayConvention terminationDateConvention,
-        bool backward,
+        QuantLib::DateGeneration::Rule rule,
         bool endOfMonth,
         const QuantLib::Date& firstDate,
         const QuantLib::Date& nextToLastDate,
@@ -46,11 +46,10 @@ namespace QuantLibAddin {
                                calendar,
                                convention,
                                terminationDateConvention,
-                               backward,
+                               rule,
                                endOfMonth,
                                firstDate,
                                nextToLastDate));
     }
 
 }
-

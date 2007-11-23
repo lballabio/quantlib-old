@@ -154,7 +154,7 @@ namespace QuantLibAddin {
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
             const QuantLib::Date& stubDate,
-            bool fromEnd,
+            QuantLib::DateGeneration::Rule rule,
             bool permanent) : Bond(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
@@ -164,7 +164,7 @@ namespace QuantLibAddin {
                                     accrualConvention, paymentConvention,
                                     redemption,
                                     issueDate, stubDate,
-                                    fromEnd));
+                                    rule));
     }
 
 

@@ -232,13 +232,13 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlScheduleBackward' type='QuantLib::Schedule' superType='libraryClass'>
+    <!--<Member name='qlScheduleBackward' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns TRUE if backward calculation has been used to calculate the given Schedule object</description>
       <libraryFunction>backward</libraryFunction>
       <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        --><!--SupportedPlatform name='Excel' calcInWizard='false'/--><!--
         <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
+        --><!--SupportedPlatform name='Cpp'/--><!--
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -248,7 +248,7 @@
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Member>-->
 
     <Member name='qlScheduleEndOfMonth' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns TRUE if end-of-month convention has been used to calculate the given Schedule object</description>
@@ -307,10 +307,10 @@
             <tensorRank>scalar</tensorRank>
             <description>termination date business day convention</description>
           </Parameter>
-          <Parameter name='Backward' default='true'>
-            <type>bool</type>
+          <Parameter name='GenRule' exampleValue='Backward'>
+            <type>QuantLib::DateGeneration::Rule</type>
             <tensorRank>scalar</tensorRank>
-            <description>backward generation of the schedule. TRUE by default.</description>
+            <description>Date generation rule (Backward, Forward, ThirdWednesday, Zero)</description>
           </Parameter>
           <Parameter name='EndOfMonth' default='false'>
             <type>bool</type>

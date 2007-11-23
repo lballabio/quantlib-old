@@ -27,6 +27,7 @@
 #include <qlo/leg.hpp>
 
 #include <ql/time/businessdayconvention.hpp>
+#include <ql/time/dategenerationrule.hpp>
 #include <ql/types.hpp>
 
 #include <string>
@@ -119,7 +120,7 @@ namespace QuantLibAddin {
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
             const QuantLib::Date& stubDate,
-            bool fromEnd,
+            QuantLib::DateGeneration::Rule rule,
             bool permanent);
     };
 

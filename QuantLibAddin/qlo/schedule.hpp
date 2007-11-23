@@ -22,6 +22,7 @@
 #include <oh/libraryobject.hpp>
 
 #include <ql/time/businessdayconvention.hpp>
+#include <ql/time/dategenerationrule.hpp>
 
 namespace QuantLib {
     class Schedule;
@@ -42,7 +43,7 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
             QuantLib::BusinessDayConvention terminationDateConvention,
-            bool backward,
+            QuantLib::DateGeneration::Rule rule,
             bool endOfMonth,
             const QuantLib::Date& firstDate,
             const QuantLib::Date& nextToLastDate,
