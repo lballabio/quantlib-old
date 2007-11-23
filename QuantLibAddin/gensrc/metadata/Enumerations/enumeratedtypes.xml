@@ -1364,6 +1364,28 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
+    <EnumeratedTypeGroup type='QuantLib::DateGeneration::Rule'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Backward</string>
+          <value>QuantLib::DateGeneration::Backward</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Forward</string>
+          <value>QuantLib::DateGeneration::Forward</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Zero</string>
+          <value>QuantLib::DateGeneration::Zero</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ThirdWednesday</string>
+          <value>QuantLib::DateGeneration::ThirdWednesday</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
   </EnumeratedTypeGroups>
 
 </root>

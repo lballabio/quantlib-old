@@ -55,6 +55,7 @@
         <DataType>QuantLib::CubicSplineInterpolation::BoundaryCondition</DataType>
         <DataType>QuantLib::Currency</DataType>
         <DataType>QuantLib::DayCounter</DataType>
+        <DataType>QuantLib::DateGeneration::Rule</DataType>
         <DataType>QuantLib::Duration::Type</DataType>
         <DataType>QuantLib::EndCriteria::Type</DataType>
         <DataType>QuantLib::Frequency</DataType>
