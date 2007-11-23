@@ -1,5 +1,6 @@
 """
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -44,9 +45,8 @@ class TermStructureTest(unittest.TestCase):
         swaps = [
             SwapRateHelper(
                 QuoteHandle(SimpleQuote(rate/100)),
-                Period(years, Years), self.settlementDays,
-                self.calendar, Annual, Unadjusted, Thirty360(),
-                Euribor6M())
+                Period(years, Years), self.calendar,
+                Annual, Unadjusted, Thirty360(), Euribor6M())
             for (years,rate) in [ ( 1, 4.54),
                                   ( 5, 4.99),
                                   (10, 5.47),

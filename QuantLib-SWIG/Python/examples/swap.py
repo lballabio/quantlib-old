@@ -94,7 +94,7 @@ floatingLegFrequency = Semiannual
 floatingLegTenor = Period(6,Months)
 floatingLegAdjustment = ModifiedFollowing
 swapHelpers = [ SwapRateHelper(QuoteHandle(swaps[(n,unit)]),
-                               Period(n,unit), settlementDays, calendar,
+                               Period(n,unit), calendar,
                                fixedLegFrequency, fixedLegAdjustment,
                                fixedLegDayCounter, Euribor6M())
                 for n, unit in swaps.keys() ]

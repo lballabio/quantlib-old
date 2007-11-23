@@ -86,7 +86,7 @@ floatingLegFrequency = Semiannual
 floatingLegAdjustment = ModifiedFollowing
 swapHelpers = swaps.map {|(n,unit),v|
   SwapRateHelper.new(QuoteHandle.new(v),
-                     Period.new(n,unit), settlementDays,
+                     Period.new(n,unit),
                      calendar, fixedLegFrequency, fixedLegAdjustment,
                      fixedLegDayCounter, Euribor6M.new)
 }

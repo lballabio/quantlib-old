@@ -1,5 +1,6 @@
 =begin
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -58,9 +59,8 @@ class TermStructureTest < Test::Unit::TestCase
     ]
     swaps = swapData.map { |years,rate|
       SwapRateHelper.new(QuoteHandle.new(SimpleQuote.new(rate/100)),
-                         Period.new(years, Years), @settlementDays, 
-                         @calendar, 1, Unadjusted, Thirty360.new,
-                         Euribor6M.new)
+                         Period.new(years, Years), @calendar,
+                         1, Unadjusted, Thirty360.new, Euribor6M.new)
     }
     @termStructure = PiecewiseFlatForward.new(settlement,
                                               deposits+swaps,

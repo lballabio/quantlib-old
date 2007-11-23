@@ -1,4 +1,5 @@
 ; Copyright (C) 2002, 2003 RiskMap srl
+; Copyright (C) 2007 StatPro Italia srl
 ;
 ; This file is part of QuantLib, a free-software/open-source library
 ; for financial quantitative analysts and developers - http://quantlib.org/
@@ -56,9 +57,8 @@
                        (let-at-once ((length rate) datum)
                          (new-SwapRateHelper
                           (new-QuoteHandle (new-SimpleQuote (/ rate 100)))
-                          (new-Period length (Years)) settlement-days
-                          calendar 1 (Unadjusted) day-counter-2
-                          (new-Euribor6M))))
+                          (new-Period length (Years)) calendar
+                          1 (Unadjusted) day-counter-2 (new-Euribor6M))))
                      swap-data))
              (term-structure (new-PiecewiseFlatForward
                               settlement

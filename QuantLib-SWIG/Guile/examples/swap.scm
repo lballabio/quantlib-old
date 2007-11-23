@@ -126,7 +126,6 @@
                 datum))
        futures-data))
 
-(define swap-settlement-days 2)
 (define fixed-leg-frequency (Annual))
 (define fixed-leg-tenor (new-Period 1 (Years)))
 (define fixed-leg-adjustment (Unadjusted))
@@ -140,7 +139,7 @@
          (apply (lambda (n units quote)
                   (new-SwapRateHelper (new-QuoteHandle quote)
                                       (new-Period n units)
-                                      swap-settlement-days calendar
+                                      calendar
                                       fixed-leg-frequency fixed-leg-adjustment
                                       fixed-leg-day-counter euribor6m))
                 datum))

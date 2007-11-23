@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 StatPro Italia srl
+ Copyright (C) 2005, 2006, 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -161,7 +161,7 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
     %extend {
         SwapRateHelperPtr(
                 const Handle<Quote>& rate,
-                const Period& tenor, Natural settlementDays,
+                const Period& tenor,
                 const Calendar& calendar,
                 Frequency fixedFrequency,
                 BusinessDayConvention fixedConvention,
@@ -170,13 +170,13 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwapRateHelperPtr(
-                new SwapRateHelper(rate, tenor, settlementDays,
-                                   calendar, fixedFrequency, fixedConvention,
+                new SwapRateHelper(rate, tenor, calendar,
+                                   fixedFrequency, fixedConvention,
                                    fixedDayCount, libor));
         }
         SwapRateHelperPtr(
                 Rate rate,
-                const Period& tenor, Natural settlementDays,
+                const Period& tenor,
                 const Calendar& calendar,
                 Frequency fixedFrequency,
                 BusinessDayConvention fixedConvention,
@@ -185,8 +185,8 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwapRateHelperPtr(
-                new SwapRateHelper(rate, tenor, settlementDays,
-                                   calendar, fixedFrequency, fixedConvention,
+                new SwapRateHelper(rate, tenor, calendar,
+                                   fixedFrequency, fixedConvention,
                                    fixedDayCount, libor));
         }
     }
