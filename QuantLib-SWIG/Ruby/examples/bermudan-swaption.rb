@@ -110,11 +110,11 @@ swapEnd = calendar.advance(swapStart,5,Years,floatingLegConvention)
 fixedSchedule = Schedule.new(swapStart, swapEnd,
                              fixedLegTenor, calendar,
                              fixedLegConvention, fixedLegConvention,
-                             false, false)
+                             DateGeneration::Forward, false)
 floatingSchedule = Schedule.new(swapStart, swapEnd,
                                 floatingLegTenor, calendar,
                                 floatingLegConvention, floatingLegConvention,
-                                false, false)
+                                DateGeneration::Forward, false)
 
 dummy = VanillaSwap.new(payFixed, 100.0,
                         fixedSchedule, 0.0, fixedLegDayCounter,

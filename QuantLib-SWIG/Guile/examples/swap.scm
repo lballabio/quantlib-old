@@ -186,12 +186,12 @@
 (define fixed-schedule (new-Schedule settlement-date maturity
                                      fixed-leg-tenor calendar
                                      fixed-leg-adjustment fixed-leg-adjustment
-                                     #f #f))
+                                     (DateGeneration-Forward) #f))
 (define floating-schedule (new-Schedule settlement-date maturity
                                         floating-leg-tenor calendar
                                         floating-leg-adjustment
                                         floating-leg-adjustment
-                                        #f #f))
+                                        (DateGeneration-Forward) #f))
 
 (define spot (new-VanillaSwap pay-fixed nominal
                               fixed-schedule fixed-rate fixed-leg-day-counter
@@ -205,12 +205,12 @@
                                          fixed-leg-tenor calendar
                                          fixed-leg-adjustment
                                          fixed-leg-adjustment
-                                         #f #f))
+                                         (DateGeneration-Forward) #f))
 (define floating-fwd-schedule (new-Schedule forward-start forward-end
                                             floating-leg-tenor calendar
                                             floating-leg-adjustment
                                             floating-leg-adjustment
-                                            #f #f))
+                                            (DateGeneration-Forward) #f))
 (define forward (new-VanillaSwap pay-fixed nominal
                                  fixed-fwd-schedule fixed-rate
                                  fixed-leg-day-counter

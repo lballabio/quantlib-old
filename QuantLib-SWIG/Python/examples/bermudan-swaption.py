@@ -102,11 +102,11 @@ swapEnd = calendar.advance(swapStart,5,Years,floatingLegConvention)
 fixedSchedule = Schedule(swapStart, swapEnd,
                          fixedLegTenor, calendar,
                          fixedLegConvention, fixedLegConvention,
-                         False, False)
+                         DateGeneration.Forward, False)
 floatingSchedule = Schedule(swapStart, swapEnd,
                             floatingLegTenor, calendar,
                             floatingLegConvention, floatingLegConvention,
-                            False, False)
+                            DateGeneration.Forward, False)
 
 dummy = VanillaSwap(payFixed, 100.0,
                     fixedSchedule, 0.0, fixedLegDayCounter,

@@ -132,11 +132,11 @@ floatingLegDayCounter = index.dayCounter
 fixedSchedule = Schedule.new(settlementDate, maturity,
                              fixedLegTenor, calendar,
                              fixedLegAdjustment, fixedLegAdjustment,
-                             false, false)
+                             DateGeneration::Forward, false)
 floatingSchedule = Schedule.new(settlementDate, maturity,
                                 floatingLegTenor, calendar,
                                 floatingLegAdjustment, floatingLegAdjustment,
-                                false, false)
+                                DateGeneration::Forward, false)
 
 spot = VanillaSwap.new(payFixed, nominal,
                        fixedSchedule, fixedRate, fixedLegDayCounter,
@@ -149,11 +149,11 @@ forwardEnd = calendar.advance(forwardStart,length,Years)
 fixedSchedule = Schedule.new(forwardStart, forwardEnd,
                              fixedLegTenor, calendar,
                              fixedLegAdjustment, fixedLegAdjustment,
-                             false, false)
+                             DateGeneration::Forward, false)
 floatingSchedule = Schedule.new(forwardStart, forwardEnd,
                                 floatingLegTenor, calendar,
                                 floatingLegAdjustment, floatingLegAdjustment,
-                                false, false)
+                                DateGeneration::Forward, false)
 
 forward = VanillaSwap.new(payFixed, nominal,
                           fixedSchedule, fixedRate, fixedLegDayCounter,

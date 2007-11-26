@@ -143,12 +143,12 @@
                                      fixed-leg-tenor calendar
                                      fixed-leg-convention
                                      fixed-leg-convention
-                                     #f #f))
+                                     (DateGeneration-Forward) #f))
 (define floating-schedule (new-Schedule swap-start swap-end
                                         floating-leg-tenor calendar
                                         floating-leg-convention
                                         floating-leg-convention
-                                        #f #f))
+                                        (DateGeneration-Forward) #f))
 
 (define dummy (new-VanillaSwap pay-fixed 100.0 fixed-schedule 0.0
                                fixed-leg-day-counter floating-schedule

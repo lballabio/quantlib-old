@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2007 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,7 +26,12 @@
 
 %{
 using QuantLib::Schedule;
+using QuantLib::DateGeneration;
 %}
+
+struct DateGeneration {
+    enum Rule { Backward, Forward, Zero, ThirdWednesday };
+};
 
 #if defined(SWIGRUBY)
 %mixin Schedule "Enumerable";
@@ -50,7 +56,7 @@ class Schedule {
              const Calendar& calendar,
              BusinessDayConvention convention,
              BusinessDayConvention terminationDateConvention,
-             bool backward,
+             DateGeneration::Rule rule,
              bool endOfMonth,
              const Date& firstDate = Date(),
              const Date& nextToLastDate = Date());

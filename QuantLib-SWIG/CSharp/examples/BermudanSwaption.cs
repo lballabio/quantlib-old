@@ -102,10 +102,10 @@ namespace BermudanSwaption
                 floatingLegConvention);
             Schedule fixedSchedule = new Schedule(startDate,maturity,
                 fixedLegTenor,calendar,fixedLegConvention,fixedLegConvention,
-                false,false);
+                DateGeneration.Rule.Forward,false);
             Schedule floatSchedule = new Schedule(startDate,maturity,
                 floatingLegTenor,calendar,floatingLegConvention,
-                floatingLegConvention,false,false);
+                floatingLegConvention,DateGeneration.Rule.Forward,false);
             VanillaSwap swap = new VanillaSwap(
                        VanillaSwap.Payer, 1000.0,
                        fixedSchedule, dummyFixedRate, fixedLegDayCounter,
@@ -231,8 +231,10 @@ namespace BermudanSwaption
 
             DateVector bermudanDates = new DateVector();
             Schedule schedule = new Schedule(startDate,maturity,
-                new Period(3,TimeUnit.Months),calendar,BusinessDayConvention.Following,
-                BusinessDayConvention.Following,false,false);
+                new Period(3,TimeUnit.Months),calendar,
+                BusinessDayConvention.Following,
+                BusinessDayConvention.Following,
+                DateGeneration.Rule.Forward,false);
 
             for (uint i=0; i<schedule.size(); i++)
                 bermudanDates.Add( schedule.date( i ) );

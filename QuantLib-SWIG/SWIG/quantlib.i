@@ -102,19 +102,6 @@ const char* __version__;
 %}
 #endif
 
-#if defined(SWIGPERL)
-%{
-#ifndef PERL_OBJECT
-#ifdef __GNUC__
-#ifdef SWIGCLASS_STATIC
-#undef SWIGCLASS_STATIC
-#define SWIGCLASS_STATIC extern "C" SWIGUNUSED
-#endif
-#endif
-#endif
-%}
-#endif
-
 
 //#if defined(SWIGPYTHON)
 //%feature("autodoc");

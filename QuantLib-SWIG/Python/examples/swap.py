@@ -137,11 +137,11 @@ floatingLegDayCounter = index.dayCounter()
 fixedSchedule = Schedule(settlementDate, maturity,
                          fixedLegTenor, calendar,
                          fixedLegAdjustment, fixedLegAdjustment,
-                         False, False)
+                         DateGeneration.Forward, False)
 floatingSchedule = Schedule(settlementDate, maturity,
                             floatingLegTenor, calendar,
                             floatingLegAdjustment, floatingLegAdjustment,
-                            False, False)
+                            DateGeneration.Forward, False)
 
 spot = VanillaSwap(VanillaSwap.Payer, nominal,
                    fixedSchedule, fixedRate, fixedLegDayCounter,
@@ -154,11 +154,11 @@ forwardEnd = calendar.advance(forwardStart,length,Years)
 fixedSchedule = Schedule(forwardStart, forwardEnd,
                          fixedLegTenor, calendar,
                          fixedLegAdjustment, fixedLegAdjustment,
-                         False, False)
+                         DateGeneration.Forward, False)
 floatingSchedule = Schedule(forwardStart, forwardEnd,
                             floatingLegTenor, calendar,
                             floatingLegAdjustment, floatingLegAdjustment,
-                            False, False)
+                            DateGeneration.Forward, False)
 
 forward = VanillaSwap(VanillaSwap.Payer, nominal,
                       fixedSchedule, fixedRate, fixedLegDayCounter,
