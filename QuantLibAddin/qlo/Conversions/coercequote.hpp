@@ -19,6 +19,7 @@
 #ifndef qlo_conversions_coercequote_hpp
 #define qlo_conversions_coercequote_hpp
 
+#include <qlo/Conversions/coerceobject.hpp>
 #include <qlo/Conversions/coercelibrarydifferent.hpp>
 #include <qlo/quotes.hpp>
 
@@ -31,6 +32,10 @@ namespace QuantLibAddin {
     class CoerceQuote : public ObjectHandler::Coerce<
         boost::shared_ptr<ObjectHandler::Object>,
         boost::shared_ptr<LibraryQuote> > {
+
+        typedef typename ObjectHandler::Coerce<
+            boost::shared_ptr<ObjectHandler::Object>,
+            boost::shared_ptr<LibraryQuote> >::Conversion Conversion;
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
@@ -73,6 +78,10 @@ namespace QuantLibAddin {
     class CoerceQuoteObject : public ObjectHandler::Coerce<
         boost::shared_ptr<ObjectHandler::Object>,
         boost::shared_ptr<ObjectQuote> > {
+
+        typedef typename ObjectHandler::Coerce<
+            boost::shared_ptr<ObjectHandler::Object>,
+            boost::shared_ptr<ObjectQuote> >::Conversion Conversion;
 
         Conversion *getConversions() {
             static Conversion conversions[] = {

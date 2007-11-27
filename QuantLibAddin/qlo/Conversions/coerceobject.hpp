@@ -22,6 +22,7 @@
 #include <oh/Conversions/coerce.hpp>
 #include <oh/exception.hpp>
 #include <qlo/handle.hpp>
+#include <qlo/handleimpl.hpp>
 #include <qlo/Conversions/coerceobject.hpp>
 
 namespace QuantLibAddin {
@@ -53,9 +54,12 @@ namespace QuantLibAddin {
         const boost::shared_ptr<ObjectHandler::Object> &in,
         boost::shared_ptr<ObjectTo> &out) {
 
-        typedef RelinkableHandleImpl<ObjectFrom, LibraryFrom> HandleClass;
-        boost::shared_ptr<HandleClass> handle =
-            boost::dynamic_pointer_cast<HandleClass>(in);
+        // FIXME gcc doesn't like this typedef
+        //typedef RelinkableHandleImpl<ObjectFrom, LibraryFrom> HandleClass;
+        //boost::shared_ptr<HandleClass> handle =
+        //    boost::dynamic_pointer_cast<HandleClass>(in);
+        boost::shared_ptr<RelinkableHandleImpl<ObjectFrom, LibraryFrom> > handle =
+            boost::dynamic_pointer_cast<RelinkableHandleImpl<ObjectFrom, LibraryFrom> >(in);
 
         if (!handle) return false;
 

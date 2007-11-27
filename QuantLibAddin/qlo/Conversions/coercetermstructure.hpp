@@ -22,6 +22,7 @@
 #include <oh/Conversions/coerce.hpp>
 #include <oh/exception.hpp>
 #include <qlo/handle.hpp>
+#include <qlo/Conversions/coerceobject.hpp>
 #include <qlo/Conversions/coercelibrarydifferent.hpp>
 #include <qlo/yieldtermstructures.hpp>
 #include <qlo/swaptionvolstructure.hpp>
@@ -37,6 +38,10 @@ namespace QuantLibAddin {
     class CoerceTermStructure : public ObjectHandler::Coerce<
         boost::shared_ptr<ObjectHandler::Object>,
         boost::shared_ptr<LibraryTermStructure> > {
+
+        typedef typename ObjectHandler::Coerce<
+            boost::shared_ptr<ObjectHandler::Object>,
+            boost::shared_ptr<LibraryTermStructure> >::Conversion Conversion;
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
@@ -100,6 +105,10 @@ namespace QuantLibAddin {
     class CoerceTermStructureObject : public ObjectHandler::Coerce<
         boost::shared_ptr<ObjectHandler::Object>,
         boost::shared_ptr<ObjectTermStructure> > {
+
+        typedef typename ObjectHandler::Coerce<
+            boost::shared_ptr<ObjectHandler::Object>,
+            boost::shared_ptr<ObjectTermStructure> >::Conversion Conversion;
 
         Conversion *getConversions() {
             static Conversion conversions[] = {

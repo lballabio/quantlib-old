@@ -30,6 +30,7 @@ noinst_HEADERS = \
     serialization_exercise.hpp \
     serializationfactory.hpp \
     serialization_forwardrateagreement.hpp \
+    serialization_group.hpp \
     serialization_index.hpp \
     serialization_interpolation.hpp \
     serialization_leg.hpp \
@@ -40,12 +41,14 @@ noinst_HEADERS = \
     serialization_optimization.hpp \
     serialization_options.hpp \
     serialization_payoffs.hpp \
+    serialization_piecewiseyieldcurve.hpp \
     serialization_pricingengines.hpp \
     serialization_processes.hpp \
     serialization_products.hpp \
     serialization_quotes.hpp \
     serialization_randomsequencegenerator.hpp \
     serialization_rangeaccrual.hpp \
+    serialization_range.hpp \
     serialization_ratehelpers.hpp \
     serialization_register.hpp \
     serialization_schedule.hpp \
@@ -85,6 +88,7 @@ libSerialization_la_SOURCES = \
     serialization_exercise.cpp \
     serializationfactory.cpp \
     serialization_forwardrateagreement.cpp \
+    serialization_group.cpp \
     serialization_index.cpp \
     serialization_interpolation.cpp \
     serialization_leg.cpp \
@@ -95,12 +99,14 @@ libSerialization_la_SOURCES = \
     serialization_optimization.cpp \
     serialization_options.cpp \
     serialization_payoffs.cpp \
+    serialization_piecewiseyieldcurve.cpp \
     serialization_pricingengines.cpp \
     serialization_processes.cpp \
     serialization_products.cpp \
     serialization_quotes.cpp \
     serialization_randomsequencegenerator.cpp \
     serialization_rangeaccrual.cpp \
+    serialization_range.cpp \
     serialization_ratehelpers.cpp \
     serialization_schedule.cpp \
     serialization_sequencestatistics.cpp \

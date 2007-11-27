@@ -38,13 +38,15 @@ include_HEADERS = \
     instruments.hpp \
     interpolation.hpp \
     leg.hpp \
+    logging.hpp \
     loop.hpp \
     marketmodelevolvers.hpp \
     marketmodels.hpp \
-    ohfunctions.hpp \
+    ohutils.hpp \
     optimization.hpp \
     options.hpp \
     payoffs.hpp \
+    piecewiseyieldcurve.hpp \
     pricingengines.hpp \
     processes.hpp \
     products.hpp \
@@ -54,6 +56,7 @@ include_HEADERS = \
     ratehelpers.hpp \
     schedule.hpp \
     sequencestatistics.hpp \
+    serialization.hpp \
     settings.hpp \
     shortratemodels.hpp \
     simplecashflow.hpp \
@@ -93,12 +96,14 @@ libQuantLibAddinCpp_la_SOURCES = \
     instruments.cpp \
     interpolation.cpp \
     leg.cpp \
+    logging.cpp \
     marketmodelevolvers.cpp \
     marketmodels.cpp \
-    ohfunctions.cpp \
+    ohutils.cpp \
     optimization.cpp \
     options.cpp \
     payoffs.cpp \
+    piecewiseyieldcurve.cpp \
     pricingengines.cpp \
     processes.cpp \
     products.cpp \
@@ -108,6 +113,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     ratehelpers.cpp \
     schedule.cpp \
     sequencestatistics.cpp \
+    serialization.cpp \
     settings.cpp \
     shortratemodels.cpp \
     simplecashflow.cpp \

@@ -10,7 +10,7 @@ include_HEADERS = \
     loop_daycounter.hpp \
     loop_index.hpp \
     loop_interpolation.hpp \
-    loop_ohfunctions.hpp \
     loop_swaptionvolstructure.hpp \
-    loop_termstructures.hpp
+    loop_termstructures.hpp \
+    loop_timeseries.hpp
 

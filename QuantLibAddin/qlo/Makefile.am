@@ -21,8 +21,8 @@ include_HEADERS = \
     capfloor.hpp \
     capletvolstructure.hpp \
     cliquetoption.hpp \
-    cmsmarket.hpp \
     cmsmarketcalibration.hpp \
+    cmsmarket.hpp \
     config.hpp \
     conundrumpricer.hpp \
     correlation.hpp \
@@ -35,6 +35,7 @@ include_HEADERS = \
     europeanoption.hpp \
     evolutiondescription.hpp \
     exercise.hpp \
+    extrapolator.hpp \
     flowanalysis.hpp \
     forwardrateagreement.hpp \
     forwardvanillaoption.hpp \
@@ -63,6 +64,7 @@ include_HEADERS = \
     randomsequencegenerator.hpp \
     rangeaccrual.hpp \
     ratehelpers.hpp \
+    relinkablehandles.hpp \
     schedule.hpp \
     sequencestatistics.hpp \
     settings.hpp \
@@ -82,7 +84,8 @@ include_HEADERS = \
     vanillaswap.hpp \
     vcconfig.hpp \
     volatilities.hpp \
-    volatility.hpp
+    volatility.hpp \
+    yieldtermstructures.hpp
 
 libQuantLibAddin_la_SOURCES = \
     abcd.cpp \
@@ -96,8 +99,8 @@ libQuantLibAddin_la_SOURCES = \
     capfloor.cpp \
     capletvolstructure.cpp \
     cliquetoption.cpp \
-    cmsmarket.cpp \
     cmsmarketcalibration.cpp \
+    cmsmarket.cpp \
     conundrumpricer.cpp \
     correlation.cpp \
     couponvectors.cpp \
@@ -142,13 +145,13 @@ libQuantLibAddin_la_SOURCES = \
     swaption.cpp \
     swaptionvolstructure.cpp \
     symmetricschurdecomposition.cpp \
-    termstructures.cpp \
     timeseries.cpp \
     utilities.cpp \
     vanillaoption.cpp \
     vanillaswap.cpp \
     volatilities.cpp \
-    volatility.cpp
+    volatility.cpp \
+    yieldtermstructures.cpp
 
 libQuantLibAddin_la_LIBADD = \
     Conversions/libConversions.la \
