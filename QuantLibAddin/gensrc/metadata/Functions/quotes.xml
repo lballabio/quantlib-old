@@ -212,7 +212,7 @@
             <tensorRank>scalar</tensorRank>
             <description>floating SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='Spread'>
+          <Parameter name='Spread' exampleValue='0.0'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
