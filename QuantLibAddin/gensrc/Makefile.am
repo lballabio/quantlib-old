@@ -1,3 +1,4 @@
+GENSRC_DIR=../../gensrc
 
 # gensrc.py probably needs to be re-executed if any of these change
 
@@ -43,10 +44,10 @@ GENSRC_METADATA :=  metadata/Addins/calc.xml \
                     metadata/Functions/marketmodelevolvers.xml \
                     metadata/Functions/marketmodels.xml \
                     metadata/Functions/mathf.xml \
-                    metadata/Functions/ohfunctions.xml \
                     metadata/Functions/optimization.xml \
                     metadata/Functions/options.xml \
                     metadata/Functions/payoffs.xml \
+                    metadata/Functions/piecewiseyieldcurve.xml \
                     metadata/Functions/prices.xml \
                     metadata/Functions/pricingengines.xml \
                     metadata/Functions/processes.xml \
@@ -66,6 +67,7 @@ GENSRC_METADATA :=  metadata/Addins/calc.xml \
                     metadata/Functions/swaption.xml \
                     metadata/Functions/swap.xml \
                     metadata/Functions/termstructures.xml \
+                    metadata/Functions/timeseries.xml \
                     metadata/Functions/utilities.xml \
                     metadata/Functions/vanillaswap.xml \
                     metadata/Functions/volatilities.xml \
@@ -82,10 +84,13 @@ GENSRC_METADATA :=  metadata/Addins/calc.xml \
                     metadata/Types/types.xml
 
 GENSRC_STUBS :=     stubs/stub.copyright \
+                    stubs/stub.cpp.body \
                     stubs/stub.doxygen.enums \
                     stubs/stub.enum.classes \
+                    stubs/stub.enum.pairs \
                     stubs/stub.enum.types \
-                    stubs/stub.excel.includes
+                    stubs/stub.excel.includes \
+                    stubs/stub.serialization.includes
 
 GENSRC_CODE :=      code/codedict.py
 
