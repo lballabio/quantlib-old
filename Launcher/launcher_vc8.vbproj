@@ -18,7 +18,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>images\favicon.ico</ApplicationIcon>
     <TargetZone>LocalIntranet</TargetZone>
-    <PublishUrl>\\srv0001\risorse\Apps\Appsscript\CabotoXL\Launcher2008\</PublishUrl>
+    <PublishUrl>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Launcher2008\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -32,7 +32,7 @@
     <ProductName>QuantLibXL Launcher 2008</ProductName>
     <PublisherName>QuantLib Developer Team</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>2.0.2.0</ApplicationVersion>
+    <ApplicationVersion>2.0.2.2</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
