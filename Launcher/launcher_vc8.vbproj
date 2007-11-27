@@ -32,7 +32,7 @@
     <ProductName>QuantLibXL Launcher 2008</ProductName>
     <PublisherName>QuantLib Developer Team</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>2.0.0.4</ApplicationVersion>
+    <ApplicationVersion>2.0.2.0</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -200,9 +200,6 @@
     <None Include="images\excel.ico" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\up.bmp" />
-    <Content Include="update.py" />
-    <Content Include="updateLocal.py" />
-    <Content Include="updateNetwork.py" />
     <Content Include="Users\users.xml" />
     <None Include="images\rename.bmp" />
     <None Include="images\clear.bmp" />
@@ -213,6 +210,7 @@
     <None Include="images\delete.bmp" />
     <None Include="images\copy.bmp" />
     <None Include="launcher_vc8_TemporaryKey.pfx" />
+    <BaseApplicationManifest Include="My Project\app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -301,15 +299,6 @@
       <TargetPath>
       </TargetPath>
       <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="updateLauncherXlls.py">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Users\users.xml">
