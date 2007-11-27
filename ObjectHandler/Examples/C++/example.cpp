@@ -118,15 +118,15 @@ int main() {
         // Serialize an object
         std::vector<boost::shared_ptr<ObjectHandler::Object> > objectList;
         objectList.push_back(accountObject2_retrieve);
-        ObjectHandler::Repository::instance().saveObject(
+        ObjectHandler::SerializationFactory::instance().saveObject(
             objectList, "./account.xml", true);
 
         // Delete all objects
         ObjectHandler::Repository::instance().deleteAllObjects();
 
         // Deserialize an object
-        ObjectHandler::Repository::instance().loadObject(
-            "./account.xml", true);
+        ObjectHandler::SerializationFactory::instance().loadObject(
+            ".", "account.xml", false, true);
 
         // Manipulate the deserialized object
         OH_GET_OBJECT(accountObject1_load,

@@ -31,11 +31,13 @@ namespace ExampleAddin {
         static ExampleFactory &instance();
     private:
         virtual int saveObject(
-            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&objectList,
-            const char *path,
+            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&,
+            const std::string &path,
             bool forceOverwrite) const;
         virtual std::vector<std::string> loadObject(
-            const char *path,
+            const std::string &directory,
+            const std::string &pattern,
+            bool recurse,
             bool overwriteExisting) const;
         void processPath(
             const std::string &path,
