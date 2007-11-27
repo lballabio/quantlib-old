@@ -73,11 +73,13 @@
 				AdditionalIncludeDirectories="$(QL_DIR)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;QUANTLIBWRAPPER_EXPORTS"
 				RuntimeLibrary="0"
+				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="3"/>
+				DebugInformationFormat="3"
+				DisableSpecificWarnings="4244"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
