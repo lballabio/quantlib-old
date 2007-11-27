@@ -295,7 +295,7 @@
 
     <!-- OptionletStripper interface and constructor -->
     <Member name='qlOptionletStripperCapFloorPrices' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>capFloorPrices</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -310,7 +310,7 @@
     </Member>
 
     <Member name='qlOptionletStripperCapFloorVolatilities' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>capFloorVolatilities</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -325,7 +325,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletPrices' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionletPrices</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -340,7 +340,7 @@
     </Member>
 
     <Member name='qlOptionletStripperSwitchStrike' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>switchStrike</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -355,7 +355,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletVolatility' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionletVolatilities</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -376,7 +376,7 @@
     </Member>
 
     <Member name='qlOptionletStripperStrike' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionletStrikes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -397,7 +397,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletTenors' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionletTenors</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -412,7 +412,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletDates' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionletDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -427,7 +427,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletTimes' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionletTimes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -442,7 +442,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletPaymentDates' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionletPaymentDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -493,7 +493,7 @@
 
     <!-- OptionletStripper2 interface and constructor -->
     <Member name='qlOptionletStripper2SpreadsVol' type='QuantLib::OptionletStripper2' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>spreadsVol</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -508,7 +508,7 @@
     </Member>
 
     <Member name='qlOptionletStripper2AtmCapFloorPrice' type='QuantLib::OptionletStripper2' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>atmCapFloorPrices</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -523,7 +523,7 @@
     </Member>
 
     <Member name='qlOptionletStripper2AtmCapFloorStrikes' type='QuantLib::OptionletStripper2' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>atmCapFloorStrikes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -663,7 +663,7 @@
 
     <!-- CapFloorTermVolCurve interface and constructor -->
     <Member name='qlCapFloorTermVolVectorOptionTenors' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionTenors</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -678,7 +678,7 @@
     </Member>
 
     <Member name='qlCapFloorTermVolVectorOptionDates' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -732,7 +732,7 @@
 
     <!-- CapFloorTermVolSurface interface and constructor -->
     <Member name='qlCapFloorTermVolSurfaceOptionTenors' type='QuantLib::CapFloorTermVolSurface' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionTenors</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -747,7 +747,7 @@
     </Member>
 
     <Member name='qlCapFloorTermVolSurfaceOptionDates' type='QuantLib::CapFloorTermVolSurface' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>optionDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -762,7 +762,7 @@
     </Member>
 
     <Member name='qlCapFloorTermVolSurfaceStrikes' type='QuantLib::CapFloorTermVolSurface' superType='libraryClass'>
-      <description></description>
+      <description>.</description>
       <libraryFunction>strikes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
