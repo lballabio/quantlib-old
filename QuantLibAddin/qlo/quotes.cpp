@@ -23,6 +23,7 @@
 #include <ql/quotes/derivedquote.hpp>
 #include <ql/quotes/eurodollarfuturesquote.hpp>
 #include <ql/quotes/forwardvaluequote.hpp>
+#include <ql/quotes/forwardswapquote.hpp>
 #include <ql/quotes/futuresconvadjustmentquote.hpp>
 #include <ql/quotes/impliedstddevquote.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
@@ -90,6 +91,17 @@ namespace QuantLibAddin {
             QuantLib::ForwardValueQuote(index, fixingDate));
     }
     
+    ForwardSwapQuote::ForwardSwapQuote(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
+            const QuantLib::Handle<QuantLib::Quote>& spread,
+            const QuantLib::Period& fwdStart,
+            bool permanent) : Quote(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
+            QuantLib::ForwardSwapQuote(swapIndex, spread, fwdStart));
+    }
+
     ImpliedStdDevQuote::ImpliedStdDevQuote(
                             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                             QuantLib::Option::Type optionType,

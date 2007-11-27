@@ -5,19 +5,21 @@
   <serializationIncludes>
     <include>qlo/quotes.hpp</include>
     <include>qlo/index.hpp</include>
+    <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/Conversions/coercequote.hpp</include>
     <include>ql/quotes/simplequote.hpp</include>
     <include>ql/quotes/derivedquote.hpp</include>
     <include>ql/quotes/eurodollarfuturesquote.hpp</include>
     <include>ql/quotes/forwardvaluequote.hpp</include>
     <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
     <include>ql/quotes/impliedstddevquote.hpp</include>
-    <include>qlo/capletvolstructure.hpp</include>
-    <include>qlo/Conversions/coercequote.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
   <addinIncludes>
     <include>qlo/quotes.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/handleimpl.hpp</include>
+    <include>qlo/Conversions/coercequote.hpp</include>
     <include>ql/quotes/simplequote.hpp</include>
     <include>ql/quotes/derivedquote.hpp</include>
     <include>ql/quotes/eurodollarfuturesquote.hpp</include>
@@ -25,7 +27,7 @@
     <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
     <include>ql/quotes/impliedstddevquote.hpp</include>
-    <include>qlo/Conversions/coercequote.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <copyright>
     Copyright (C) 2007 Eric Ehlers
@@ -182,7 +184,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Index'>
+          <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>floating IborIndex object ID</description>
@@ -191,6 +193,35 @@
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>Fixing Date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlForwardSwapQuote'>
+      <libraryFunction>ForwardSwapQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapIndex'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating SwapIndex object ID</description>
+          </Parameter>
+          <Parameter name='Spread'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg spread</description>
+          </Parameter>
+          <Parameter name='ForwardStart' exampleValue='0D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward start period</description>
           </Parameter>
         </Parameters>
       </ParameterList>

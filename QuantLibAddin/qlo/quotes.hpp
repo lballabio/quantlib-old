@@ -29,6 +29,7 @@
 
 namespace QuantLib {
     class IborIndex;
+    class SwapIndex;
     class Quote;
     class SimpleQuote;
     class Date;
@@ -64,6 +65,15 @@ namespace QuantLibAddin {
                           const boost::shared_ptr<QuantLib::IborIndex>&,
                           const QuantLib::Date& fixingDate,
                           bool permanent);
+    };
+
+    class ForwardSwapQuote : public Quote {
+      public:
+        ForwardSwapQuote(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                         const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
+                         const QuantLib::Handle<QuantLib::Quote>& spread,
+                         const QuantLib::Period& fwdStart,
+                         bool permanent);
     };
 
     class ImpliedStdDevQuote : public Quote {
