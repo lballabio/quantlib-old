@@ -1,3 +1,5 @@
+GENSRC_DIR = ../../gensrc
+
 # gensrc.py probably needs to be re-executed if any of these change
 
 GENSRC_METADATA :=  metadata/Addins/doxygen.xml \
