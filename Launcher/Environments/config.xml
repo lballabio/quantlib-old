@@ -3,51 +3,11 @@
   <Environments>
 
     <Environment name="01 Production">
-      <Framework>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev12288\framework\QuantLibXL.xla</Framework>
-      <FrameworkVersion>9</FrameworkVersion>
-      <Workbooks>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev12288\Workbooks</Workbooks>
-      <HelpFile>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev12288\Docs</HelpFile>
-      <UserConfigurationFile>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Users2008\01 users.xml</UserConfigurationFile>
-      <FunctionMetadata>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev12288\metadata</FunctionMetadata>
-      <!--The FeedUse value is overwritten from the registry, an empty tag is required for XML validation.-->
-      <FeedUse/>
-      <AddinList>
-        <Addin>
-          <DeliveredByLauncher>True</DeliveredByLauncher>
-          <Path>ObjectHandler-xll-vc80-mt-0_9_0.xll</Path>
-        </Addin>
-        <Addin>
-          <DeliveredByLauncher>True</DeliveredByLauncher>
-          <Path>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Path>
-        </Addin>
-        <Addin>
-          <DeliveredByLauncher>True</DeliveredByLauncher>
-          <Path>saohxll-vc80-mt-0_1_9.xll</Path>
-        </Addin>
-      </AddinList>
-      <StartupActions>
-        <YieldCurveBootstrap>false</YieldCurveBootstrap>
-        <CapVolBootstrap>false</CapVolBootstrap>
-        <SwapSmileBootstrap>false</SwapSmileBootstrap>
-        <CalibrateCMS>false</CalibrateCMS>
-        <FitCMS>false</FitCMS>
-        <IndexesTimeSeries>false</IndexesTimeSeries>
-        <LoadBonds>false</LoadBonds>
-        <MainChecks>false</MainChecks>
-        <StaticData>false</StaticData>
-        <SetEvaluationDate>false</SetEvaluationDate>
-        <EvaluationDate>0</EvaluationDate>
-        <InitSource>Excel</InitSource>
-      </StartupActions>
-      <Variables/>
-    </Environment>
-
-    <Environment name="02 Pre-Production">
       <Framework>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev12939\framework\QuantLibXL.xla</Framework>
       <FrameworkVersion>10</FrameworkVersion>
       <Workbooks>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev12939\Workbooks</Workbooks>
       <HelpFile>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev12939\Docs</HelpFile>
-      <UserConfigurationFile>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Users2008\02 users.xml</UserConfigurationFile>
+      <UserConfigurationFile>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Users2008\01 users.xml</UserConfigurationFile>
       <FunctionMetadata>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev12939\metadata</FunctionMetadata>
       <!--The FeedUse value is overwritten from the registry, an empty tag is required for XML validation.-->
       <FeedUse/>
@@ -95,13 +55,66 @@
       </Variables>
     </Environment>
 
-    <Environment name="03 Testing">
+    <Environment name="02 Pre-Production">
       <Framework>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev13059\framework\QuantLibXL.xla</Framework>
       <FrameworkVersion>10</FrameworkVersion>
       <Workbooks>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev13059\Workbooks</Workbooks>
       <HelpFile>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev13059\Docs</HelpFile>
-      <UserConfigurationFile>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Users2008\03 users.xml</UserConfigurationFile>
+      <UserConfigurationFile>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Users2008\02 users.xml</UserConfigurationFile>
       <FunctionMetadata>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev13059\metadata</FunctionMetadata>
+      <!--The FeedUse value is overwritten from the registry, an empty tag is required for XML validation.-->
+      <FeedUse/>
+      <AddinList>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>ObjectHandler-xll-vc80-mt-0_9_0.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>QuantLibXLDynamic-vc80-mt-0_9_0.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>True</DeliveredByLauncher>
+          <Path>saohxll-vc80-mt-0_1_9.xll</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>False</DeliveredByLauncher>
+          <Path>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev13059\framework\CabotoXL.xla</Path>
+        </Addin>
+        <Addin>
+          <DeliveredByLauncher>False</DeliveredByLauncher>
+          <Path>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev13059\framework\CabotoCmsBookXL.xla</Path>
+        </Addin>
+      </AddinList>
+      <StartupActions>
+        <YieldCurveBootstrap>false</YieldCurveBootstrap>
+        <CapVolBootstrap>false</CapVolBootstrap>
+        <SwapSmileBootstrap>false</SwapSmileBootstrap>
+        <CalibrateCMS>false</CalibrateCMS>
+        <FitCMS>false</FitCMS>
+        <IndexesTimeSeries>false</IndexesTimeSeries>
+        <LoadBonds>false</LoadBonds>
+        <MainChecks>false</MainChecks>
+        <StaticData>false</StaticData>
+        <SetEvaluationDate>false</SetEvaluationDate>
+        <EvaluationDate>0</EvaluationDate>
+        <InitSource>Excel</InitSource>
+      </StartupActions>
+      <Variables>
+        <Variable>
+          <Name>NAZCATECH_DIR</Name>
+          <Value>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\SensitivityAnalysis</Value>
+        </Variable>
+      </Variables>
+    </Environment>
+
+    <Environment name="03 Testing">
+      <Framework>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\R000900-branch\framework\QuantLibXL.xla</Framework>
+      <FrameworkVersion>10</FrameworkVersion>
+      <Workbooks>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\R000900-branch\Workbooks</Workbooks>
+      <HelpFile>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\R000900-branch\Docs</HelpFile>
+      <UserConfigurationFile>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Users2008\03 users.xml</UserConfigurationFile>
+      <FunctionMetadata>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\R000900-branch\metadata</FunctionMetadata>
       <!--The FeedUse value is overwritten from the registry, an empty tag is required for XML validation.-->
       <FeedUse/>
       <AddinList>
