@@ -14,7 +14,7 @@ exercise <- EuropeanExercise(Date(17, "May", 1999))
 payoff <- PlainVanillaPayoff("Call", 50.0)
 dividendYield <- FlatForward(settlementDate, 0.05, Actual365Fixed())
 underlying <- SimpleQuote(10.0)
-engine <- AnalyticEuropeanEngine()
+
 volatilityQuote <- SimpleQuote(0.05)
 volatility <- BlackConstantVol(todaysDate, TARGET(),
 	   QuoteHandle(volatilityQuote), 
@@ -23,7 +23,8 @@ process <- BlackScholesMertonProcess(QuoteHandle(underlying),
 		YieldTermStructureHandle(dividendYield),
 		YieldTermStructureHandle(riskFreeRate),
 		BlackVolTermStructureHandle(volatility))
-option <- VanillaOption(process, payoff, exercise)
+engine <- AnalyticEuropeanEngine(process)
+option <- VanillaOption(payoff, exercise)
 option$setPricingEngine(s_arg2=engine)
 		
 t <- mapply(function(x,y) {

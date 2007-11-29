@@ -12,8 +12,8 @@ process <- BlackScholesMertonProcess(QuoteHandle(underlying),
 		YieldTermStructureHandle(dividendYield),
 		YieldTermStructureHandle(riskFreeRate),
 		BlackVolTermStructureHandle(volatility))
-option <- VanillaOption(process, payoff, exercise)
-Instrument_setPricingEngine(option, s_arg2=AnalyticEuropeanEngine())
+option <- VanillaOption(payoff, exercise)
+Instrument_setPricingEngine(option, s_arg2=AnalyticEuropeanEngine(process))
 value <- option$NPV()
 value
 })}
