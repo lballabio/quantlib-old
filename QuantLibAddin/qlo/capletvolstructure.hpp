@@ -35,6 +35,7 @@ namespace QuantLib {
     class OptionletStripper1;
     class OptionletStripper2;
     class StrippedOptionletAdapter;
+    class StrippedOptionlet;
 }
 
 namespace QuantLibAddin {
@@ -53,7 +54,7 @@ namespace QuantLibAddin {
     class StrippedOptionletAdapter : public OptionletVolatilityStructure {
       public:
       StrippedOptionletAdapter(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                               const boost::shared_ptr<QuantLib::OptionletStripper>& optionletStripper,
+                               const boost::shared_ptr<QuantLib::StrippedOptionletBase>& strippedOptionlet,
                                bool permanent);
     };
 
@@ -103,11 +104,29 @@ namespace QuantLibAddin {
           bool permanent);
     };
 
-    class OptionletStripper : public ObjectHandler::LibraryObject<QuantLib::OptionletStripper> {
+        
+    class StrippedOptionletBase : public ObjectHandler::LibraryObject<QuantLib::StrippedOptionletBase> {
       public:
-        OptionletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        StrippedOptionletBase(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                              bool permanent);
+    };
+        
+    class StrippedOptionlet : public StrippedOptionletBase {
+      public:
+        StrippedOptionlet(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                          const QuantLib::Date& referenceDate,
+                          const QuantLib::Calendar& calendar,
+                          QuantLib::Natural settlementDays,
+                          QuantLib::BusinessDayConvention businessDayConvention,
+                          const QuantLib::DayCounter& dc,
+                          const boost::shared_ptr<QuantLib::IborIndex>& index,
+                          const std::vector<QuantLib::Period>& optionletTenors,
+                          const std::vector<QuantLib::Rate>& strikes,
+                          const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& optionletVolQuotes,
                           bool permanent);
     };
+
+    OH_OBJ_CLASS(OptionletStripper, StrippedOptionletBase);
 
     class OptionletStripper1 : public OptionletStripper {
       public:

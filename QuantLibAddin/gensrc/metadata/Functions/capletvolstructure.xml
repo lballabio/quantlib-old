@@ -283,11 +283,69 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='OptionletStripper' >
-            <type>QuantLib::OptionletStripper</type>
+          <Parameter name='StrippedOptionletBase' >
+            <type>QuantLib::StrippedOptionletBase</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Optionlet Stripper object id</description>
+            <description>Stripped Optionlet object id</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlStrippedOptionlet'>
+      <libraryFunction>StrippedOptionlet</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ReferenceDate' exampleValue='3400'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reference date</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+          </Parameter>
+          <Parameter name='SettlementDays' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of settlement days</description>
+          </Parameter>
+          <Parameter name='PaymentBDC' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment business day convention. If omitted, default = Following.</description>
+          </Parameter>
+          <Parameter name='DayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/365)</description>
+          </Parameter>
+          <Parameter name='Index'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cap index object ID</description>
+          </Parameter>
+          <Parameter name='OptionletTenors' exampleValue ='5Y, 10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>optionlet tenors</description>
+          </Parameter>
+          <Parameter name='Strikes'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>strikes</description>
+          </Parameter>
+          <Parameter name='Volatilities'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>matrix</tensorRank>
+            <description>vol quotes</description>
           </Parameter>
         </Parameters>
       </ParameterList>

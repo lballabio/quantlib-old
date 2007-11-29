@@ -29,6 +29,7 @@
 #include <ql/termstructures/volatility/optionlet/strippedoptionletadapter.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper1.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper2.hpp>
+#include <ql/termstructures/volatility/optionlet/strippedoptionlet.hpp>
 
 namespace QuantLibAddin {
 
@@ -45,11 +46,11 @@ namespace QuantLibAddin {
 
     StrippedOptionletAdapter::StrippedOptionletAdapter(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const boost::shared_ptr<QuantLib::OptionletStripper>& optionletStripper,
+        const boost::shared_ptr<QuantLib::StrippedOptionletBase>& strippedOptionlet,
         bool permanent) : OptionletVolatilityStructure(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::StrippedOptionletAdapter(optionletStripper));
+            QuantLib::StrippedOptionletAdapter(strippedOptionlet));
     }
 
 
@@ -103,8 +104,26 @@ namespace QuantLibAddin {
                                              dc));
     }
 
-    OptionletStripper::OptionletStripper(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                         bool permanent) : ObjectHandler::LibraryObject<QuantLib::OptionletStripper>(properties, permanent) {
+    StrippedOptionlet::StrippedOptionlet(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                          const QuantLib::Date& referenceDate,
+                          const QuantLib::Calendar& calendar,
+                          QuantLib::Natural settlementDays,
+                          QuantLib::BusinessDayConvention businessDayConvention,
+                          const QuantLib::DayCounter& dc,
+                          const boost::shared_ptr<QuantLib::IborIndex>& index,
+                          const std::vector<QuantLib::Period>& optionletTenors,
+                          const std::vector<QuantLib::Rate>& strikes,
+                          const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& optionletVolQuotes,
+                          bool permanent): 
+      StrippedOptionletBase(properties, permanent) {
+        libraryObject_ = boost::shared_ptr<QuantLib::StrippedOptionlet>(new
+            QuantLib::StrippedOptionlet(referenceDate, calendar, settlementDays,
+                                        businessDayConvention, dc, index,
+                                        optionletTenors, strikes, optionletVolQuotes));
+    }
+
+    StrippedOptionletBase::StrippedOptionletBase(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                                         bool permanent) : ObjectHandler::LibraryObject<QuantLib::StrippedOptionletBase>(properties, permanent) {
     }
 
     OptionletStripper1::OptionletStripper1(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

@@ -212,6 +212,7 @@
         <DataType>QuantLib::SmileSection</DataType>
         <DataType>QuantLib::Statistics</DataType>
         <DataType>QuantLib::StrikedTypePayoff</DataType>
+        <DataType>QuantLib::StrippedOptionletBase</DataType>
         <DataType>QuantLib::Swap</DataType>
         <DataType>QuantLib::SwapFromFRACorrelationStructure</DataType>
         <DataType>QuantLib::SwapIndex</DataType>
