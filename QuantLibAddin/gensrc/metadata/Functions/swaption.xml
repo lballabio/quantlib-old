@@ -163,12 +163,12 @@
           <Parameter name='Accuracy' >
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>.</description>
+            <description> Solver accuracy</description>
           </Parameter>
           <Parameter name='MaxIter' >
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>max iterations</description>
+            <description>Solver max iterations</description>
           </Parameter>
         </Parameters>
       </ParameterList>
