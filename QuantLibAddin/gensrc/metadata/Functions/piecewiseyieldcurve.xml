@@ -84,12 +84,12 @@
           <Parameter name='Traits'>
             <type>QuantLibAddin::Token::Traits</type>
             <tensorRank>scalar</tensorRank>
-            <description>traits</description>
+            <description>.</description>
           </Parameter>
           <Parameter name='Interpolator'>
             <type>QuantLibAddin::Token::Interpolator</type>
             <tensorRank>scalar</tensorRank>
-            <description>interpolator</description>
+            <description>.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -110,12 +110,12 @@
           <Parameter name='Traits'>
             <type>QuantLibAddin::Token::Traits</type>
             <tensorRank>scalar</tensorRank>
-            <description>traits</description>
+            <description>.</description>
           </Parameter>
           <Parameter name='Interpolator'>
             <type>QuantLibAddin::Token::Interpolator</type>
             <tensorRank>scalar</tensorRank>
-            <description>interpolator</description>
+            <description>.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -136,12 +136,12 @@
           <Parameter name='Traits'>
             <type>QuantLibAddin::Token::Traits</type>
             <tensorRank>scalar</tensorRank>
-            <description>traits</description>
+            <description>.</description>
           </Parameter>
           <Parameter name='Interpolator'>
             <type>QuantLibAddin::Token::Interpolator</type>
             <tensorRank>scalar</tensorRank>
-            <description>interpolator</description>
+            <description>.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -162,12 +162,12 @@
                     <Parameter name='Traits'>
                         <type>QuantLibAddin::Token::Traits</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>traits</description>
+                        <description>.</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
                         <type>QuantLibAddin::Token::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>interpolator</description>
+                        <description>.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
@@ -188,12 +188,12 @@
                     <Parameter name='Traits'>
                         <type>QuantLibAddin::Token::Traits</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>traits</description>
+                        <description>.</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
                         <type>QuantLibAddin::Token::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>interpolator</description>
+                        <description>.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
