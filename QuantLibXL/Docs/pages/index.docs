@@ -48,7 +48,7 @@ The scope of the parent QuantLibAddin project includes:
 
 %QuantLibXL exports QuantLib constructor, member, and utility functions to
 Excel.  Object-orientation is achieved through use of the
-<a href="www.objecthandler.org">ObjectHandler</a> repository - formulas
+<a href="http://www.objecthandler.org">ObjectHandler</a> repository - formulas
 in the spreadsheet allow QuantLib objects to be instantiated, interrogated,
 passed as arguments to other functions, and destructed.
 

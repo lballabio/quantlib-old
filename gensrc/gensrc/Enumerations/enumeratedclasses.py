@@ -96,4 +96,5 @@ class EnumeratedClassGroup(serializable.Serializable):
         serializer.serializeAttribute(self, 'class')
         serializer.serializeObjectDict(self, EnumeratedClass)
         serializer.serializeProperty(self, 'includeFile')
+        serializer.serializeAttributeBoolean(self, 'need_ptr', True)
 

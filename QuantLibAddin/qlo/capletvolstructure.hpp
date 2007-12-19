@@ -68,15 +68,6 @@ namespace QuantLibAddin {
 
     };
 
-      class GenericCapletVolStructure : public OptionletVolatilityStructure {
-      public:
-          GenericCapletVolStructure(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                    std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& capletVols,
-                                    const std::vector<QuantLib::Rate>& strikes,
-                                    const std::vector<QuantLib::Time>& tenors,
-                                    bool permanent);
-    };
-
     OH_OBJ_CLASS(CapFloorTermVolatilityStructure, TermStructure);
 
     class CapFloorTermVolCurve : public CapFloorTermVolatilityStructure {

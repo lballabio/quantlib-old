@@ -1,4 +1,18 @@
 
+Release 0.9.0 - December 2007
+Changes since Release 0.8.0:
+    - in sync with QuantLib 0.9.0
+    - migrated to SWIG 1.3.33
+    - added binomial-Joshi and FD-bermudan engines (thanks to Richard
+      Gomes and Tito Ingargiola)
+    - added equity-option example for Java (thanks to Richard Gomes
+      and Tito Ingargiola)
+    - added Brazilian exchange calendar (thanks to Richard Gomes)
+    - added equity-option example in C# (thanks to Eric Jensen)
+    - exported Vasicek model and more methods (thanks to Luis Cota)
+    - added get and set methods to Matrix and Array in C# and Java
+      (thanks to Paul Gentry)
+
 Release 0.8.0 - May 2007
 Changes since Release 0.4.0:
     - in sync with QuantLib 0.8.0

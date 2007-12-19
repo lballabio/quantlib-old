@@ -53,12 +53,15 @@ int main() {
 
         // Deserialize the objects
 
-        ohObjectLoad(".", "qlxl_demo_market.xml", false, OH_NULL, OH_NULL);
-        ohObjectLoad(".", "qlxl_demo_swap.xml", false, OH_NULL, OH_NULL);
+        ohObjectLoad(std::string("."), std::string("qlxl_demo_market.xml"), false, OH_NULL, OH_NULL);
+        ohObjectLoad(std::string("."), std::string("qlxl_demo_swap.xml"), false, OH_NULL, OH_NULL);
 
         // Enable extrapolation for the yield curve
 
         qlExtrapolatorEnableExtrapolation(yieldCurveID, true, OH_NULL);
+
+        // Attach relinkable handles to term structures
+
         qlRelinkableHandleLinkTo("EuriborYC3M", yieldCurveID, OH_NULL);
         qlRelinkableHandleLinkTo("EuriborYC6M", yieldCurveID, OH_NULL);
 
@@ -96,9 +99,10 @@ int main() {
 
         LOG_MESSAGE("SWAP PV = " << qlInstrumentNPV("swap", OH_NULL));
 
+        // Example of serializing to/from a buffer
+
         LOG_MESSAGE("Example of serializing to/from a buffer:");
 
-        // example of serializing to/from a buffer
         qlSimpleQuote("quote1", 1.23, 0, false, OH_NULL, false);
         std::vector<std::string> idList;
         idList.push_back("quote1");

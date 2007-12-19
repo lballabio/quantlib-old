@@ -12,11 +12,111 @@
 
   <EnumeratedTypeGroups>
 
-    <!-- classes -->
+    <EnumeratedTypeGroup type='QuantLib::DateGeneration::Rule'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Backward</string>
+          <value>QuantLib::DateGeneration::Backward</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Forward</string>
+          <value>QuantLib::DateGeneration::Forward</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Zero</string>
+          <value>QuantLib::DateGeneration::Zero</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ThirdWednesday</string>
+          <value>QuantLib::DateGeneration::ThirdWednesday</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::TimeUnit'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Months</string>
+          <value>QuantLib::Months</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Days</string>
+          <value>QuantLib::Days</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Weeks</string>
+          <value>QuantLib::Weeks</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Years</string>
+          <value>QuantLib::Years</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::Frequency'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Annual</string>
+          <value>QuantLib::Annual</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Semiannual</string>
+          <value>QuantLib::Semiannual</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>EveryFourthMonth</string>
+          <value>QuantLib::EveryFourthMonth</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Quarterly</string>
+          <value>QuantLib::Quarterly</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Bimonthly</string>
+          <value>QuantLib::Bimonthly</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Monthly</string>
+          <value>QuantLib::Monthly</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Biweekly</string>
+          <value>QuantLib::Biweekly</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Weekly</string>
+          <value>QuantLib::Weekly</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Daily</string>
+          <value>QuantLib::Daily</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Once</string>
+          <value>QuantLib::Once</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NoFrequency</string>
+          <value>QuantLib::NoFrequency</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
     <EnumeratedTypeGroup type='QuantLib::Calendar'>
       <includeFile>qlo/Enumerations/Factories/calendarfactory.hpp</includeFile>
       <constructor>false</constructor>
       <EnumeratedTypes>
+        <EnumeratedType>
+          <string>TARGET</string>
+          <value>QuantLib::TARGET()</value>
+        </EnumeratedType>
         <EnumeratedType>
           <string>Argentina::Merval</string>
           <value>QuantLib::Argentina(QuantLib::Argentina::Merval)</value>
@@ -162,10 +262,6 @@
           <value>QuantLib::Taiwan(QuantLib::Taiwan::TSEC)</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>TARGET</string>
-          <value>QuantLib::TARGET()</value>
-        </EnumeratedType>
-        <EnumeratedType>
           <!-- clone of TARGET -->
           <string>EUR</string>
           <value>QuantLib::TARGET()</value>
@@ -219,10 +315,403 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
+    <EnumeratedTypeGroup type='QuantLib::DayCounter'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>false</constructor>
+      <EnumeratedTypes>
+
+        <!-- ISDA 2000 Definition Annex Article 4 Section 4.16 (b) -->
+        <EnumeratedType>
+          <string>Actual/365 (Fixed)</string>
+          <value>QuantLib::Actual365Fixed()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Act/365 (Fixed)</string>
+          <value>QuantLib::Actual365Fixed()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>A/365 (Fixed)</string>
+          <value>QuantLib::Actual365Fixed()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>A/365F</string>
+          <value>QuantLib::Actual365Fixed()</value>
+        </EnumeratedType>
+
+        <!-- ISDA 2000 Definition Annex Article 4 Section 4.16 (a) -->
+        <EnumeratedType>
+          <string>1/1</string>
+          <value>QuantLib::OneDayCounter()</value>
+        </EnumeratedType>
+
+        <!-- ISDA 2000 Definition Annex Article 4 Section 4.16 (c) -->
+        <EnumeratedType>
+          <string>Actual/Actual (ISDA)</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Actual/Actual</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Actual/365</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Act/365</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>A/365</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Act/Act</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+        </EnumeratedType>
+
+        <!-- ISDA 2000 Definition Annex Article 4 Section 4.16 (d) -->
+        <EnumeratedType>
+          <string>Actual/360</string>
+          <value>QuantLib::Actual360()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Act/360</string>
+          <value>QuantLib::Actual360()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>A/360</string>
+          <value>QuantLib::Actual360()</value>
+        </EnumeratedType>
+
+        <!-- ISDA 2000 Definition Annex Article 4 Section 4.16 (e) -->
+        <EnumeratedType>
+          <string>30/360 (Bond Basis)</string>
+          <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Bond Basis</string>
+          <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>30/360</string>
+          <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>360/360</string>
+          <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
+        </EnumeratedType>
+
+        <!-- ISDA 2000 Definition Annex Article 4 Section 4.16 (f) -->
+        <EnumeratedType>
+          <string>30/360 (Eurobond Basis)</string>
+          <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Eurobond Basis</string>
+          <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>30E/360</string>
+          <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>30E/360 (Eurobond Basis)</string>
+          <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
+        </EnumeratedType>
+
+        <!-- NON-ISDA  -->
+        <EnumeratedType>
+          <string>Actual/Actual (ISMA)</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Actual/Actual (Bond)</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
+        </EnumeratedType>
+
+        <!-- NON-ISDA -->
+        <EnumeratedType>
+          <string>Actual/Actual (AFB)</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Actual/Actual (Euro)</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
+        </EnumeratedType>
+
+        <!-- NON-ISDA -->
+        <EnumeratedType>
+          <string>30/360 (Italian)</string>
+          <value>QuantLib::Thirty360(QuantLib::Thirty360::Italian)</value>
+        </EnumeratedType>
+
+        <!-- NON-ISDA QuantLib specific -->
+        <EnumeratedType>
+          <string>Simple</string>
+          <value>QuantLib::SimpleDayCounter()</value>
+        </EnumeratedType>
+
+        <!-- Strings specific for receiving Murex exports-->
+        <EnumeratedType>
+          <string>LIN 30/360</string>
+          <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>LIN ACT/360</string>
+          <value>QuantLib::Actual360()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>LIN ACT/365</string>
+          <value>QuantLib::Actual365Fixed()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>LIN ACT/ACT</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>LIN ACTACT ISDA</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>LIN ACTACT ISMA</string>
+          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
+        </EnumeratedType>
+
+
+        <!-- Other? -->
+        <EnumeratedType>
+          <string>Business252</string>
+          <value>QuantLib::Business252()</value>
+        </EnumeratedType>
+
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::BusinessDayConvention'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Following</string>
+          <value>QuantLib::Following</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>F</string>
+          <value>QuantLib::Following</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Modified Following</string>
+          <value>QuantLib::ModifiedFollowing</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>MF</string>
+          <value>QuantLib::ModifiedFollowing</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Preceding</string>
+          <value>QuantLib::Preceding</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>P</string>
+          <value>QuantLib::Preceding</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Modified Preceding</string>
+          <value>QuantLib::ModifiedPreceding</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>MP</string>
+          <value>QuantLib::ModifiedPreceding</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Unadjusted</string>
+          <value>QuantLib::Unadjusted</value>
+        </EnumeratedType>
+        <!-- For Mgx export only -->
+        <EnumeratedType>
+          <string>Indifferent</string>
+          <value>QuantLib::Unadjusted</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::Month'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>January</string>
+          <value>QuantLib::January</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>February</string>
+          <value>QuantLib::February</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>March</string>
+          <value>QuantLib::March</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>April</string>
+          <value>QuantLib::April</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>May</string>
+          <value>QuantLib::May</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>June</string>
+          <value>QuantLib::June</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>July</string>
+          <value>QuantLib::July</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>August</string>
+          <value>QuantLib::August</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>September</string>
+          <value>QuantLib::September</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>October</string>
+          <value>QuantLib::October</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>November</string>
+          <value>QuantLib::November</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>December</string>
+          <value>QuantLib::December</value>
+        </EnumeratedType>
+
+        <EnumeratedType>
+          <string>Jan</string>
+          <value>QuantLib::Jan</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Feb</string>
+          <value>QuantLib::Feb</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Mar</string>
+          <value>QuantLib::Mar</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Apr</string>
+          <value>QuantLib::Apr</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>May</string>
+          <value>QuantLib::May</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Jun</string>
+          <value>QuantLib::Jun</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Jul</string>
+          <value>QuantLib::Jul</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Aug</string>
+          <value>QuantLib::Aug</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Sep</string>
+          <value>QuantLib::Sep</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Oct</string>
+          <value>QuantLib::Oct</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Nov</string>
+          <value>QuantLib::Nov</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Dec</string>
+          <value>QuantLib::Dec</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::Weekday'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Monday</string>
+          <value>QuantLib::Monday</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Tuesday</string>
+          <value>QuantLib::Tuesday</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Wednesday</string>
+          <value>QuantLib::Wednesday</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Thursday</string>
+          <value>QuantLib::Thursday</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Friday</string>
+          <value>QuantLib::Friday</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Saturday</string>
+          <value>QuantLib::Saturday</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Sunday</string>
+          <value>QuantLib::Sunday</value>
+        </EnumeratedType>
+
+        <EnumeratedType>
+          <string>Mon</string>
+          <value>QuantLib::Mon</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Tue</string>
+          <value>QuantLib::Tue</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Wed</string>
+          <value>QuantLib::Wed</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Thu</string>
+          <value>QuantLib::Thu</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Fri</string>
+          <value>QuantLib::Fri</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Sat</string>
+          <value>QuantLib::Sat</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Sun</string>
+          <value>QuantLib::Sun</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
     <EnumeratedTypeGroup type='QuantLib::Currency'>
       <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
       <constructor>false</constructor>
       <EnumeratedTypes>
+        <EnumeratedType>
+          <string>EUR</string>
+          <value>QuantLib::EURCurrency()</value>
+        </EnumeratedType>
         <EnumeratedType>
           <string>ARS</string>
           <value>QuantLib::ARSCurrency()</value>
@@ -298,10 +787,6 @@
         <EnumeratedType>
           <string>ESP</string>
           <value>QuantLib::ESPCurrency()</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>EUR</string>
-          <value>QuantLib::EURCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>FIM</string>
@@ -470,493 +955,44 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLib::DayCounter'>
+    <EnumeratedTypeGroup type='QuantLib::Compounding'>
       <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>false</constructor>
+      <constructor>true</constructor>
       <EnumeratedTypes>
-        <!-- ISDA 2000 Definition Annex Article 4 Section 4.16-->
-
-        <!-- (a) -->
         <EnumeratedType>
-          <string>1/1</string>
-          <value>QuantLib::OneDayCounter()</value>
+          <string>Continuous</string>
+          <value>QuantLib::Continuous</value>
         </EnumeratedType>
-
-        <!-- (b) -->
-        <EnumeratedType>
-          <string>Actual/Actual (ISDA)</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Actual/Actual</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Actual/365</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Act/365</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>A/365</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Act/Act</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumeratedType>
-
-        <!-- (c) -->
-        <EnumeratedType>
-          <string>Actual/365 (Fixed)</string>
-          <value>QuantLib::Actual365Fixed()</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Act/365 (Fixed)</string>
-          <value>QuantLib::Actual365Fixed()</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>A/365 (Fixed)</string>
-          <value>QuantLib::Actual365Fixed()</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>A/365F</string>
-          <value>QuantLib::Actual365Fixed()</value>
-        </EnumeratedType>
-
-        <!-- (d) -->
-        <EnumeratedType>
-          <string>Actual/360</string>
-          <value>QuantLib::Actual360()</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Act/360</string>
-          <value>QuantLib::Actual360()</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>A/360</string>
-          <value>QuantLib::Actual360()</value>
-        </EnumeratedType>
-
-        <!-- (e) -->
-        <EnumeratedType>
-          <string>30/360 (Bond Basis)</string>
-          <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Bond Basis</string>
-          <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>30/360</string>
-          <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>360/360</string>
-          <value>QuantLib::Thirty360(QuantLib::Thirty360::BondBasis)</value>
-        </EnumeratedType>
-
-        <!-- (f) -->
-        <EnumeratedType>
-          <string>30/360 (Eurobond Basis)</string>
-          <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Eurobond Basis</string>
-          <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>30E/360</string>
-          <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>30E/360 (Eurobond Basis)</string>
-          <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
-        </EnumeratedType>
-
-        <!-- NON-ISDA  -->
-        <EnumeratedType>
-          <string>Actual/Actual (ISMA)</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Actual/Actual (Bond)</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
-        </EnumeratedType>
-
-        <!-- NON-ISDA -->
-        <EnumeratedType>
-          <string>Actual/Actual (AFB)</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Actual/Actual (Euro)</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
-        </EnumeratedType>
-
-        <!-- NON-ISDA -->
-        <EnumeratedType>
-          <string>30/360 (Italian)</string>
-          <value>QuantLib::Thirty360(QuantLib::Thirty360::Italian)</value>
-        </EnumeratedType>
-
-        <!-- NON-ISDA QuantLib specific -->
         <EnumeratedType>
           <string>Simple</string>
-          <value>QuantLib::SimpleDayCounter()</value>
-        </EnumeratedType>
-
-        <!-- Strings specific for receiving Murex exports-->
-        <EnumeratedType>
-          <string>LIN 30/360</string>
-          <value>QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis)</value>
+          <value>QuantLib::Simple</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>LIN ACT/360</string>
-          <value>QuantLib::Actual360()</value>
+          <string>Compounded</string>
+          <value>QuantLib::Compounded</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>LIN ACT/365</string>
-          <value>QuantLib::Actual365Fixed()</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>LIN ACT/ACT</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::AFB)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>LIN ACTACT ISDA</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISDA)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>LIN ACTACT ISMA</string>
-          <value>QuantLib::ActualActual(QuantLib::ActualActual::ISMA)</value>
-        </EnumeratedType>
-
-
-        <!-- Other? -->
-        <EnumeratedType>
-          <string>Business252</string>
-          <value>QuantLib::Business252()</value>
-        </EnumeratedType>
-
-      </EnumeratedTypes>
-    </EnumeratedTypeGroup>
-
-    <!-- enums -->
-    <EnumeratedTypeGroup type='QuantLib::Frequency'>
-      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>true</constructor>
-      <EnumeratedTypes>
-        <EnumeratedType>
-          <string>NoFrequency</string>
-          <value>QuantLib::NoFrequency</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>No-Frequency</string>
-          <value>QuantLib::NoFrequency</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Once</string>
-          <value>QuantLib::Once</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Annual</string>
-          <value>QuantLib::Annual</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Semiannual</string>
-          <value>QuantLib::Semiannual</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Every4Month</string>
-          <value>QuantLib::EveryFourthMonth</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>EveryFourthMonth</string>
-          <value>QuantLib::EveryFourthMonth</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Every-Fourth-Month</string>
-          <value>QuantLib::EveryFourthMonth</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Quarterly</string>
-          <value>QuantLib::Quarterly</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Bimonthly</string>
-          <value>QuantLib::Bimonthly</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Monthly</string>
-          <value>QuantLib::Monthly</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Biweekly</string>
-          <value>QuantLib::Biweekly</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Weekly</string>
-          <value>QuantLib::Weekly</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Daily</string>
-          <value>QuantLib::Daily</value>
+          <string>SimpleThenCompounded</string>
+          <value>QuantLib::SimpleThenCompounded</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLib::TimeUnit'>
+    <EnumeratedTypeGroup type='QuantLib::Duration::Type'>
       <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
-          <string>Days</string>
-          <value>QuantLib::Days</value>
+          <string>Simple</string>
+          <value>QuantLib::Duration::Simple</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>Months</string>
-          <value>QuantLib::Months</value>
+          <string>Macaulay</string>
+          <value>QuantLib::Duration::Macaulay</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>Weeks</string>
-          <value>QuantLib::Weeks</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Years</string>
-          <value>QuantLib::Years</value>
-        </EnumeratedType>
-      </EnumeratedTypes>
-    </EnumeratedTypeGroup>
-
-    <EnumeratedTypeGroup type='QuantLib::Month'>
-      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>true</constructor>
-      <EnumeratedTypes>
-        <EnumeratedType>
-          <string>January</string>
-          <value>QuantLib::January</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>February</string>
-          <value>QuantLib::February</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>March</string>
-          <value>QuantLib::March</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>April</string>
-          <value>QuantLib::April</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>May</string>
-          <value>QuantLib::May</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>June</string>
-          <value>QuantLib::June</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>July</string>
-          <value>QuantLib::July</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>August</string>
-          <value>QuantLib::August</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>September</string>
-          <value>QuantLib::September</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>October</string>
-          <value>QuantLib::October</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>November</string>
-          <value>QuantLib::November</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>December</string>
-          <value>QuantLib::December</value>
-        </EnumeratedType>
-
-        <EnumeratedType>
-          <string>Jan</string>
-          <value>QuantLib::Jan</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Feb</string>
-          <value>QuantLib::Feb</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Mar</string>
-          <value>QuantLib::Mar</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Apr</string>
-          <value>QuantLib::Apr</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>May</string>
-          <value>QuantLib::May</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Jun</string>
-          <value>QuantLib::Jun</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Jul</string>
-          <value>QuantLib::Jul</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Aug</string>
-          <value>QuantLib::Aug</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Sep</string>
-          <value>QuantLib::Sep</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Oct</string>
-          <value>QuantLib::Oct</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Nov</string>
-          <value>QuantLib::Nov</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Dec</string>
-          <value>QuantLib::Dec</value>
-        </EnumeratedType>
-      </EnumeratedTypes>
-    </EnumeratedTypeGroup>
-
-    <EnumeratedTypeGroup type='QuantLib::Weekday'>
-      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>true</constructor>
-      <EnumeratedTypes>
-        <EnumeratedType>
-          <string>Sunday</string>
-          <value>QuantLib::Sunday</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Monday</string>
-          <value>QuantLib::Monday</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Tuesday</string>
-          <value>QuantLib::Tuesday</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Wednesday</string>
-          <value>QuantLib::Wednesday</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Thursday</string>
-          <value>QuantLib::Thursday</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Friday</string>
-          <value>QuantLib::Friday</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Saturday</string>
-          <value>QuantLib::Saturday</value>
-        </EnumeratedType>
-
-        <EnumeratedType>
-          <string>Sun</string>
-          <value>QuantLib::Sun</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Mon</string>
-          <value>QuantLib::Mon</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Tue</string>
-          <value>QuantLib::Tue</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Wed</string>
-          <value>QuantLib::Wed</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Thu</string>
-          <value>QuantLib::Thu</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Fri</string>
-          <value>QuantLib::Fri</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Sat</string>
-          <value>QuantLib::Sat</value>
-        </EnumeratedType>
-      </EnumeratedTypes>
-    </EnumeratedTypeGroup>
-
-    <EnumeratedTypeGroup type='QuantLib::EndCriteria::Type'>
-      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>true</constructor>
-      <EnumeratedTypes>
-        <EnumeratedType>
-          <string>None</string>
-          <value>QuantLib::EndCriteria::None</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>MaxIterations</string>
-          <value>QuantLib::EndCriteria::MaxIterations</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>StationaryPoint</string>
-          <value>QuantLib::EndCriteria::StationaryPoint</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>StationaryFunctionValue</string>
-          <value>QuantLib::EndCriteria::StationaryFunctionValue</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>StationaryFunctionAccuracy</string>
-          <value>QuantLib::EndCriteria::StationaryFunctionAccuracy</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>ZeroGradientNorm</string>
-          <value>QuantLib::EndCriteria::ZeroGradientNorm</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Unknown</string>
-          <value>QuantLib::EndCriteria::Unknown</value>
-        </EnumeratedType>
-      </EnumeratedTypes>
-    </EnumeratedTypeGroup>
-
-    <EnumeratedTypeGroup type='QuantLib::SalvagingAlgorithm::Type'>
-      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>true</constructor>
-      <EnumeratedTypes>
-        <EnumeratedType>
-          <string>None</string>
-          <value>QuantLib::SalvagingAlgorithm::None</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Spectral</string>
-          <value>QuantLib::SalvagingAlgorithm::Spectral</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Hypersphere</string>
-          <value>QuantLib::SalvagingAlgorithm::Hypersphere</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>LowerDiagonal</string>
-          <value>QuantLib::SalvagingAlgorithm::LowerDiagonal</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Higham</string>
-          <value>QuantLib::SalvagingAlgorithm::Higham</value>
+          <string>Modified</string>
+          <value>QuantLib::Duration::Modified</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
@@ -1016,12 +1052,12 @@
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
-          <string>Sub</string>
-          <value>QuantLib::Replication::Sub</value>
-        </EnumeratedType>
-        <EnumeratedType>
           <string>Central</string>
           <value>QuantLib::Replication::Central</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Sub</string>
+          <value>QuantLib::Replication::Sub</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Super</string>
@@ -1068,50 +1104,32 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLib::BusinessDayConvention'>
+    <EnumeratedTypeGroup type='QuantLib::VanillaSwap::Type'>
       <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
-          <string>Following</string>
-          <value>QuantLib::Following</value>
+          <string>Payer</string>
+          <value>QuantLib::VanillaSwap::Payer</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>F</string>
-          <value>QuantLib::Following</value>
+          <string>Receiver</string>
+          <value>QuantLib::VanillaSwap::Receiver</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::Option::Type'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Call</string>
+          <value>QuantLib::Option::Call</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>Modified Following</string>
-          <value>QuantLib::ModifiedFollowing</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>MF</string>
-          <value>QuantLib::ModifiedFollowing</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Preceding</string>
-          <value>QuantLib::Preceding</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>P</string>
-          <value>QuantLib::Preceding</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Modified Preceding</string>
-          <value>QuantLib::ModifiedPreceding</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>MP</string>
-          <value>QuantLib::ModifiedPreceding</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Unadjusted</string>
-          <value>QuantLib::Unadjusted</value>
-        </EnumeratedType>
-        <!-- For Mgx export only -->
-        <EnumeratedType>
-          <string>Indifferent</string>
-          <value>QuantLib::Unadjusted</value>
+          <string>Put</string>
+          <value>QuantLib::Option::Put</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
@@ -1140,92 +1158,12 @@
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
-          <string>Cash</string>
-          <value>QuantLib::Settlement::Cash</value>
-        </EnumeratedType>
-        <EnumeratedType>
           <string>Physical</string>
           <value>QuantLib::Settlement::Physical</value>
         </EnumeratedType>
-      </EnumeratedTypes>
-    </EnumeratedTypeGroup>
-
-    <EnumeratedTypeGroup type='QuantLib::Compounding'>
-      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>true</constructor>
-      <EnumeratedTypes>
         <EnumeratedType>
-          <string>Simple</string>
-          <value>QuantLib::Simple</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Compounded</string>
-          <value>QuantLib::Compounded</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Continuous</string>
-          <value>QuantLib::Continuous</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>SimpleThenCompounded</string>
-          <value>QuantLib::SimpleThenCompounded</value>
-        </EnumeratedType>
-      </EnumeratedTypes>
-    </EnumeratedTypeGroup>
-
-    <EnumeratedTypeGroup type='QuantLib::Option::Type'>
-      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>true</constructor>
-      <EnumeratedTypes>
-        <EnumeratedType>
-          <string>Call</string>
-          <value>QuantLib::Option::Call</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Put</string>
-          <value>QuantLib::Option::Put</value>
-        </EnumeratedType>
-      </EnumeratedTypes>
-    </EnumeratedTypeGroup>
-
-    <EnumeratedTypeGroup type='QuantLib::VanillaSwap::Type'>
-      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>true</constructor>
-      <EnumeratedTypes>
-        <EnumeratedType>
-          <string>Payer</string>
-          <value>QuantLib::VanillaSwap::Payer</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Receiver</string>
-          <value>QuantLib::VanillaSwap::Receiver</value>
-        </EnumeratedType>
-      </EnumeratedTypes>
-    </EnumeratedTypeGroup>
-
-    <EnumeratedTypeGroup type='QuantLib::CubicSplineInterpolation::BoundaryCondition'>
-      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>false</constructor>
-      <EnumeratedTypes>
-        <EnumeratedType>
-          <string>NotAKnot</string>
-          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::NotAKnot)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>FirstDerivative</string>
-          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::FirstDerivative)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>SecondDerivative</string>
-          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::SecondDerivative)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Periodic</string>
-          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::Periodic)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Lagrange</string>
-          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::Lagrange)</value>
+          <string>Cash</string>
+          <value>QuantLib::Settlement::Cash</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
@@ -1234,6 +1172,10 @@
       <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
       <constructor>true</constructor>
       <EnumeratedTypes>
+        <EnumeratedType>
+          <string>NonParallelShifts</string>
+          <value>QuantLib::GFunctionFactory::NonParallelShifts</value>
+        </EnumeratedType>
         <EnumeratedType>
           <string>Standard</string>
           <value>QuantLib::GFunctionFactory::Standard</value>
@@ -1245,10 +1187,6 @@
         <EnumeratedType>
           <string>ParallelShifts</string>
           <value>QuantLib::GFunctionFactory::ParallelShifts</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>NonParallelShifts</string>
-          <value>QuantLib::GFunctionFactory::NonParallelShifts</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
@@ -1295,25 +1233,6 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLib::Duration::Type'>
-      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
-      <constructor>true</constructor>
-      <EnumeratedTypes>
-        <EnumeratedType>
-          <string>Simple</string>
-          <value>QuantLib::Duration::Simple</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Macaulay</string>
-          <value>QuantLib::Duration::Macaulay</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>Modified</string>
-          <value>QuantLib::Duration::Modified</value>
-        </EnumeratedType>
-      </EnumeratedTypes>
-    </EnumeratedTypeGroup>
-
     <EnumeratedTypeGroup type='QuantLibAddin::Token::Traits'>
       <includeFile>qlo/piecewiseyieldcurve.hpp</includeFile>
       <constructor>true</constructor>
@@ -1338,6 +1257,10 @@
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
+          <string>LogCubic</string>
+          <value>QuantLibAddin::Token::LogCubic</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>BackwardFlat</string>
           <value>QuantLibAddin::Token::BackwardFlat</value>
         </EnumeratedType>
@@ -1354,38 +1277,101 @@
           <value>QuantLibAddin::Token::Linear</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>LogCubic</string>
-          <value>QuantLibAddin::Token::LogCubic</value>
-        </EnumeratedType>
-        <EnumeratedType>
           <string>LogLinear</string>
           <value>QuantLibAddin::Token::LogLinear</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLib::DateGeneration::Rule'>
+    <EnumeratedTypeGroup type='QuantLib::EndCriteria::Type'>
       <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
-          <string>Backward</string>
-          <value>QuantLib::DateGeneration::Backward</value>
+          <string>StationaryPoint</string>
+          <value>QuantLib::EndCriteria::StationaryPoint</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>Forward</string>
-          <value>QuantLib::DateGeneration::Forward</value>
+          <string>None</string>
+          <value>QuantLib::EndCriteria::None</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>Zero</string>
-          <value>QuantLib::DateGeneration::Zero</value>
+          <string>MaxIterations</string>
+          <value>QuantLib::EndCriteria::MaxIterations</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>ThirdWednesday</string>
-          <value>QuantLib::DateGeneration::ThirdWednesday</value>
+          <string>StationaryFunctionValue</string>
+          <value>QuantLib::EndCriteria::StationaryFunctionValue</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>StationaryFunctionAccuracy</string>
+          <value>QuantLib::EndCriteria::StationaryFunctionAccuracy</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ZeroGradientNorm</string>
+          <value>QuantLib::EndCriteria::ZeroGradientNorm</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Unknown</string>
+          <value>QuantLib::EndCriteria::Unknown</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::SalvagingAlgorithm::Type'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Spectral</string>
+          <value>QuantLib::SalvagingAlgorithm::Spectral</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>None</string>
+          <value>QuantLib::SalvagingAlgorithm::None</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Hypersphere</string>
+          <value>QuantLib::SalvagingAlgorithm::Hypersphere</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>LowerDiagonal</string>
+          <value>QuantLib::SalvagingAlgorithm::LowerDiagonal</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Higham</string>
+          <value>QuantLib::SalvagingAlgorithm::Higham</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::CubicSplineInterpolation::BoundaryCondition'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>false</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>SecondDerivative</string>
+          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::SecondDerivative)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NotAKnot</string>
+          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::NotAKnot)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>FirstDerivative</string>
+          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::FirstDerivative)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Periodic</string>
+          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::Periodic)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Lagrange</string>
+          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::Lagrange)</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
   </EnumeratedTypeGroups>
 
 </root>

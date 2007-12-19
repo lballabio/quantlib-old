@@ -1,4 +1,3 @@
-
 <Category name='ohutils'>
   <description>objecthandler utilities</description>
   <displayName>ObjectHandler Utilities</displayName>
@@ -17,7 +16,7 @@
   <Functions>
 
     <Procedure name='ohTrigger' dependencyTrigger='false'>
-      <description>forces a dependency between two functions and returns the update counter</description>
+      <description>forces a dependency between multiple ranges and returns the update counter</description>
       <alias>ObjectHandler::dependsOn</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
@@ -70,6 +69,26 @@
             <description>dummy range reference (ignored)</description>
           </Parameter>
           <Parameter name='Dummy9' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='Dummy10' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='Dummy11' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='Dummy12' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored)</description>
+          </Parameter>
+          <Parameter name='Dummy13' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
             <description>dummy range reference (ignored)</description>
@@ -167,10 +186,10 @@
             <tensorRank>scalar</tensorRank>
             <description>string to be parsed</description>
           </Parameter>
-          <Parameter name='Delimiters' default='",;"'>
+          <Parameter name='Delimiters'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>characters used as delimiters: each single character is used as delimiter (default = \";,\")</description>
+            <description>characters used as delimiters: each single character alone is used as delimiter</description>
           </Parameter>
           <Parameter name='ConcatenateDelim' default='false'>
             <type>bool</type>
@@ -317,7 +336,7 @@
         <type>string</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
-      </Procedure>
+    </Procedure>
 
     <Procedure name='ohObjectCallerKey'>
       <description>retrieve unique ID of the CallingRange object associated with the cell in which object resides</description>

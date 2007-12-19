@@ -26,7 +26,6 @@
 
 #include <qlo/leg.hpp>
 #include <qlo/flowanalysis.hpp>
-//#include <qlo/yieldtermstructures.hpp>
 #include <qlo/Enumerations/Factories/iborcouponpricersfactory.hpp>
 
 #include <ql/cashflow.hpp>
@@ -61,17 +60,53 @@ namespace QuantLibAddin {
         return QuantLib::CashFlows::maturityDate(leg_);
     }
 
-    QuantLib::Real Leg::npv(const YieldTermStructure& hYTS) const {
-        return QuantLib::CashFlows::npv(leg_, hYTS);
+    QuantLib::Real Leg::npv(const YieldTermStructure& hYTS,
+                            const QuantLib::Date& settlementDate,
+                            const QuantLib::Date& npvDate,
+                            QuantLib::Integer exDividendDays) const {
+        return QuantLib::CashFlows::npv(leg_, hYTS, settlementDate,
+                                        npvDate, exDividendDays);
     }
 
-    QuantLib::Real Leg::bps(const YieldTermStructure& hYTS) const {
-        return QuantLib::CashFlows::bps(leg_, hYTS);
+    QuantLib::Real Leg::npv(const QuantLib::InterestRate& y,
+                            const QuantLib::Date& settlementDate
+                            //,
+                            //const QuantLib::Date& npvDate,
+                            //QuantLib::Integer exDividendDays
+                            ) const {
+        return QuantLib::CashFlows::npv(leg_, y, settlementDate
+                                        //, npvDate, exDividendDays
+                                        );
     }
 
-    QuantLib::Rate Leg::atmRate(const YieldTermStructure& hYTS) const {
-        return QuantLib::CashFlows::atmRate(leg_, hYTS);
+    QuantLib::Real Leg::bps(const YieldTermStructure& hYTS,
+                            const QuantLib::Date& settlementDate,
+                            const QuantLib::Date& npvDate,
+                            QuantLib::Integer exDividendDays) const {
+        return QuantLib::CashFlows::bps(leg_, hYTS, settlementDate,
+                                        npvDate, exDividendDays);
     }
+
+    QuantLib::Real Leg::bps(const QuantLib::InterestRate& y,
+                            const QuantLib::Date& settlementDate
+                            //,
+                            //const QuantLib::Date& npvDate,
+                            //QuantLib::Integer exDividendDays
+                            ) const {
+        return QuantLib::CashFlows::bps(leg_, y, settlementDate
+                                        //, npvDate, exDividendDays
+                                        );
+    }
+
+    QuantLib::Rate Leg::atmRate(const YieldTermStructure& hYTS,
+                                const QuantLib::Date& settlementDate,
+                                const QuantLib::Date& npvDate,
+                                QuantLib::Integer exDividendDays,
+                                QuantLib::Real npv) const {
+        return QuantLib::CashFlows::atmRate(leg_, hYTS, settlementDate,
+                                            npvDate, exDividendDays, npv);
+    }
+
     QuantLib::Rate Leg::irr(QuantLib::Real marketPrice,
                             const QuantLib::DayCounter& dayCounter,
                             QuantLib::Compounding compounding,
@@ -133,17 +168,17 @@ namespace QuantLibAddin {
                 QuantLib::SimpleCashFlow(amounts[i], dates[i])));
         }
     }
-          
-    InterestRate::InterestRate(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                               QuantLib::Rate r,
-                               const QuantLib::DayCounter& dc,
-                               QuantLib::Compounding comp,
-                               QuantLib::Frequency freq,
-                               bool permanent)
+
+    InterestRate::InterestRate(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Rate r,
+            const QuantLib::DayCounter& dc,
+            QuantLib::Compounding comp,
+            QuantLib::Frequency freq,
+            bool permanent)
     : ObjectHandler::LibraryObject<QuantLib::InterestRate>(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::InterestRate>(new
             QuantLib::InterestRate(r, dc, comp, freq));
     }
 
 }
-

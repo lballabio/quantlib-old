@@ -29,6 +29,8 @@
 #  define OBJHANDLER_LIB_TOOLSET "vc71"
 #elif (_MSC_VER == 1400)
 #  define OBJHANDLER_LIB_TOOLSET "vc80"
+//#elif (_MSC_VER == 1500)
+//#  define OBJHANDLER_LIB_TOOLSET "vc90"
 #else
 #  error "unknown Microsoft compiler"
 #endif

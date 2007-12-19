@@ -4,5 +4,5 @@
 
 find ./ql -name *.hpp \
 | grep -v '/all\.hpp$' | grep -v '/auto_link\.hpp$' | grep -v 'config' \
-| xargs -n 1 ./dev_tools/check_header.py
+| xargs -n 1 ../dev_tools/check_header.py
 

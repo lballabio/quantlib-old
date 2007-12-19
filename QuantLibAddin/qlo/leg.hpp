@@ -41,17 +41,39 @@ namespace QuantLibAddin {
         QuantLib::Rate currentCouponRate(const QuantLib::Date& refDate) const;
         QuantLib::Date startDate() const;
         QuantLib::Date maturityDate() const;
-        QuantLib::Real npv(const QuantLib::YieldTermStructure&) const;
-        QuantLib::Real bps(const QuantLib::YieldTermStructure&) const;
-        QuantLib::Rate atmRate(const QuantLib::YieldTermStructure&) const;
+        QuantLib::Real npv(const QuantLib::YieldTermStructure&,
+                           const QuantLib::Date& settlementDate,
+                           const QuantLib::Date& npvDate,
+                           QuantLib::Integer exDividendDays) const;
+        QuantLib::Real npv(const QuantLib::InterestRate& y,
+                           const QuantLib::Date& settlementDate
+                           //,
+                           //const QuantLib::Date& npvDate,
+                           //QuantLib::Integer exDividendDays
+                           ) const;
+        QuantLib::Real bps(const QuantLib::YieldTermStructure&,
+                           const QuantLib::Date& settlementDate,
+                           const QuantLib::Date& npvDate,
+                           QuantLib::Integer exDividendDays) const;
+        QuantLib::Real bps(const QuantLib::InterestRate& y,
+                           const QuantLib::Date& settlementDate
+                           //,
+                           //const QuantLib::Date& npvDate,
+                           //QuantLib::Integer exDividendDays
+                           ) const;
+        QuantLib::Rate atmRate(const QuantLib::YieldTermStructure&,
+                               const QuantLib::Date& settlementDate,
+                               const QuantLib::Date& npvDate,
+                               QuantLib::Integer exDividendDays,
+                               QuantLib::Real npv) const;
         QuantLib::Rate irr(QuantLib::Real marketPrice,
-                          const QuantLib::DayCounter& dayCounter,
-                          QuantLib::Compounding compounding,
-                          QuantLib::Frequency frequency,
-                          QuantLib::Date settlementDate,
-                          QuantLib::Real tolerance,
-                          QuantLib::Size maxIterations,
-                          QuantLib::Rate guess) const;
+                           const QuantLib::DayCounter& dayCounter,
+                           QuantLib::Compounding compounding,
+                           QuantLib::Frequency frequency,
+                           QuantLib::Date settlementDate,
+                           QuantLib::Real tolerance,
+                           QuantLib::Size maxIterations,
+                           QuantLib::Rate guess) const;
         QuantLib::Time duration(const QuantLib::InterestRate& y,
                                 QuantLib::Duration::Type type,
                                 QuantLib::Date settlementDate) const;
@@ -96,4 +118,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

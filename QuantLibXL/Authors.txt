@@ -1,4 +1,4 @@
-
+﻿
 Ferdinando Ametrano
 Marco Bianchetti
 Aurelien Chanudet
@@ -6,9 +6,6 @@ Cristina Duminuco
 Eric Ehlers (maintainer)
 Giorgio Facchinetti
 Chiara Fornarola
-Silvia Frasson
 Katiuscia Manzoni
 Plamen Neykov
-Mario Pucci
 François du Vignaud
-

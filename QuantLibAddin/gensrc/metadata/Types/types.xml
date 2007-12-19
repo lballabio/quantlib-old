@@ -36,6 +36,7 @@
         <DataType nativeType='double'>QuantLib::Matrix</DataType>
         <DataType nativeType='double'>QuantLib::Real</DataType>
         <DataType nativeType='long'>QuantLib::Date</DataType>
+        <DataType nativeType='long'>QuantLib::Integer</DataType>
         <DataType nativeType='long'>QuantLib::Natural</DataType>
         <DataType nativeType='long'>QuantLib::Size</DataType>
         <DataType nativeType='string'>QuantLib::Period</DataType>
@@ -176,6 +177,7 @@
         <DataType>QuantLib::IborIndex</DataType>
         <DataType>QuantLib::Index</DataType>
         <DataType>QuantLib::Instrument</DataType>
+        <DataType>QuantLib::InterestRate</DataType>
         <DataType>QuantLib::InterestRateIndex</DataType>
         <DataType>QuantLib::Interpolation</DataType>
         <DataType>QuantLib::Interpolation2D</DataType>

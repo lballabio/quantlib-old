@@ -1,0 +1,294 @@
+
+/*
+ Copyright (C) 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page serialization Serialization Demo
+
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
+
+This document explains how to build an environment supporting import/export
+to/from Excel/C++ on Windows/Linux.  As a prerequisite it is assumed that you
+have already compiled QuantLibXL from source code as explained in the document
+\ref build_tutorial.
+
+<dl>
+<dt>\ref serialization_cpp</dt>
+<dd><dl>
+<dt>\ref serialization_windows</dt>
+<dd><dl>
+<dt>\ref serialization_win_build</dt>
+<dt>\ref serialization_win_import</dt>
+<dt>\ref serialization_win_export</dt>
+</dl></dd>
+<dt>\ref serialization_linux</dt>
+<dd><dl>
+<dt>\ref serialization_linux_build</dt>
+<dt>\ref serialization_linux_import</dt>
+<dt>\ref serialization_linux_export</dt>
+</dl></dd>
+</dl></dd>
+<dt>\ref serialization_excel</dt>
+<dd><dl>
+<dt>\ref serialization_excel_build</dt>
+<dt>\ref serialization_excel_export</dt>
+<dt>\ref serialization_excel_import</dt>
+</dl></dd>
+</dl>
+
+\section serialization_cpp 1 C++
+
+\subsection serialization_windows 1.1 Windows
+
+\subsubsection serialization_win_build 1.1.1 Build
+
+Open <tt>QuantLibAddin\\QLA_serialization_vc8.sln</tt>, select configuration
+<tt>Release</tt> and build project <tt>ClientCppSwapIn</tt>.  The output file
+is
+\verbatim
+QuantLibAddin\Clients\CppSwapIn\bin\SwapIn-vc80-mt.exe
+\endverbatim
+
+\subsubsection serialization_win_import 1.1.2 Import
+
+Copy <tt>qlxl_demo_market.xml</tt> and <tt>qlxl_demo_swap.xml</tt> from
+directory <tt>QuantLibAddin\\Clients\\CppSwapIn</tt> to directory
+<tt>QuantLibAddin\\Clients\\CppSwapIn\\bin</tt>.
+
+In directory bin, execute program <tt>SwapIn-vc80-mt.exe</tt>.  The program
+loads the XML files from the current directory.  The output from the program
+should appear similar to the following:
+\verbatim
+INFO - Begin example program.
+INFO - QuantLibAddin version = 0.9.0
+INFO - ObjectHandler version = 0.9.0
+INFO - SWAP PV = 37265.9
+INFO - Example of serializing to/from a buffer:
+INFO - XML = 
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+        <count>1</count>
+        <item_version>1</item_version>
+        <item class_id="0" tracking_level="0" version="1">
+                <px class_id="138" tracking_level="1" version="0" object_id="_1">
+                        <ObjectId>quote1</ObjectId>
+                        <ClassName>qlSimpleQuote</ClassName>
+                        <Value class_id="195" tracking_level="0" version="0">
+                                <variant_ class_id="196" tracking_level="0" version="0">
+                                        <which>1</which>
+                                        <value>1.23</value>
+                                </variant_>
+                        </Value>
+                        <TickValue>0</TickValue>
+                        <Permanent>0</Permanent>
+                </px>
+        </item>
+</object_list>
+
+INFO - log dump of object with ID = quote1
+
+property = ClassName            value = qlSimpleQuote       
+property = ObjectId             value = quote1              
+property = Value                value = 1.23                
+property = TickValue            value = 0                   
+property = Permanent            value = 0                   
+Permanent = false               
+
+
+INFO - End example program.
+\endverbatim
+
+\subsubsection serialization_win_export 1.1.3 Export
+
+QuantLibAddin supports XML export from a Windows C++ program but no example has
+yet been implemented.
+
+\subsection serialization_linux 1.2 Linux
+
+\subsubsection serialization_linux_build 1.2.1 Build
+
+Below is a brief summary of the steps required for the Linux build.  For additional detail,
+refer to the documentation specific to each project.
+
+This example assumes that you do not have root access to your machine, so that the entire
+build and installation environment resides under your home directory.
+
+Download the tarballs from the
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
+Untar the tarballs, creating a directory tree for the build environment such as:
+\verbatim
+/home/erik/build/gensrc
+/home/erik/build/log4cxx
+/home/erik/build/ObjectHandler
+/home/erik/build/QuantLib
+/home/erik/build/QuantLibAddin
+\endverbatim
+
+\li Boost version 1.34.1 is required
+\li build and install QuantLib
+\verbatim
+cd QuantLib
+./configure --prefix=/home/erik/install
+make
+make install
+\endverbatim
+\li build and install log4cxx
+\verbatim
+cd log4cxx
+./autogen.sh
+./configure --prefix=/home/erik/install
+make
+make install
+\endverbatim
+\li build and install ObjectHandler
+\verbatim
+cd ObjectHandler
+./configure --prefix=/home/erik/install CPPFLAGS=-I/home/erik/install/include
+    LDFLAGS=-L/home/erik/install/lib
+make
+make install
+\endverbatim
+\li build QuantLibAddin
+\verbatim
+cd QuantLibAddin
+./configure --prefix=/home/erik/install CPPFLAGS=-I/home/erik/install/include
+    LDFLAGS=-L/home/erik/install/lib --enable-addin-cpp
+make
+\endverbatim
+
+\subsubsection serialization_linux_import 1.2.2 Import
+
+\c cd to directory  <tt>QuantLibAddin/Clients/CppSwapIn</tt> and execute
+program <tt>swap_in</tt>.  The program loads <tt>qlxl_demo_market.xml</tt> and
+<tt>qlxl_demo_swap.xml</tt> from the current directory.  The output from the
+program should appear similar to the following:
+\verbatim
+INFO - Begin example program.
+INFO - QuantLibAddin version = 0.9.0
+INFO - ObjectHandler version = 0.9.0
+INFO - SWAP PV = 37265.9
+INFO - Example of serializing to/from a buffer:
+INFO - XML = 
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+        <count>1</count>
+        <item_version>1</item_version>
+        <item class_id="0" tracking_level="0" version="1">
+                <px class_id="138" tracking_level="1" version="0" object_id="_1">
+                        <ObjectId>quote1</ObjectId>
+                        <ClassName>qlSimpleQuote</ClassName>
+                        <Value class_id="195" tracking_level="0" version="0">
+                                <variant_ class_id="196" tracking_level="0" version="0">
+                                        <which>1</which>
+                                        <value>1.23</value>
+                                </variant_>
+                        </Value>
+                        <TickValue>0</TickValue>
+                        <Permanent>0</Permanent>
+                </px>
+        </item>
+</object_list>
+
+INFO - log dump of object with ID = quote1
+
+property = ClassName            value = qlSimpleQuote       
+property = ObjectId             value = quote1              
+property = Value                value = 1.23                
+property = TickValue            value = 0                   
+property = Permanent            value = 0                   
+Permanent = false               
+
+
+INFO - End example program.
+\endverbatim
+
+\subsubsection serialization_linux_export 1.2.3 Export
+
+QuantLibAddin supports XML export from a Linux C++ program but no example has
+yet been implemented.
+
+\section serialization_excel 2 Excel
+
+\subsection serialization_excel_build 2.1 Build
+
+Open <tt>QuantLibXL\\QuantLibAllDynamic_vc8.sln</tt>, select configuration
+<tt>Release CRTDLL</tt> and build project <tt>QuantLibXLDynamic</tt>.  The
+output files are
+
+\li <tt>ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll</tt>
+\li <tt>QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll</tt>
+
+\subsection serialization_excel_export 2.2 Export
+
+\li Start Excel
+\li Load VBA addin
+<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\serialize_swap.xla</tt>.  The addin
+contains some startup code which should automatically load the following:
+\verbatim
+ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll
+QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll
+QuantLibXL\Workbooks\StandaloneExamples\MarketData.xls
+QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
+\endverbatim
+\li Hit <tt>Ctrl-Alt-F9</tt>
+\li Confirm that a PV (on my machine, 35,057.88) is showing in cell <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
+\li Invoke menu item <tt>QLXL Demo / Export</tt>
+\li The following 2 files are produced:
+\verbatim
+C:\qlxl_demo_market.xml
+C:\qlxl_demo_swap.xml
+\endverbatim
+
+\subsection serialization_excel_import 2.3 Import
+
+\li Start Excel
+\li Load VBA addin
+<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\serialize_swap.xla</tt>.  The addin
+contains some startup code which should automatically load the following:
+\verbatim
+ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll
+QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll
+QuantLibXL\Workbooks\StandaloneExamples\MarketData.xls
+QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
+\endverbatim
+\li Set range <tt>[MarketData.xls]Summary!DataSource</tt> to Import</tt>
+\li Invoke menu item <tt>QLXL Demo / Import</tt>
+\li The following 2 files are loaded:
+\verbatim
+C:\qlxl_demo_market.xml
+C:\qlxl_demo_swap.xml
+\endverbatim
+\li Hit <tt>Ctrl-Alt-F9</tt>
+\li Confirm that a PV (on my machine, 35,057.88) is showing in cell <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
+
+If switching back and forth between import and export during a single Excel
+session you can use the command <tt>QLXL Demo / Delete All Objects</tt> to
+ensure that the ObjectHandler repository is empty.  You can confirm this by
+ensuring that function \c ohObjectCount() returns zero.
+
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
+
+*/
+

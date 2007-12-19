@@ -111,6 +111,60 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
+          <Parameter name='SettlementDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+          <Parameter name='NpvDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>npv date</description>
+          </Parameter>
+          <Parameter name='ExDividendDays' default='0'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ex-dividend days (default is zero)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegNPV2' type='QuantLibAddin::Leg'>
+      <description>Returns the net present value for the given Leg object</description>
+      <libraryFunction>npv</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='InterestRate'>
+            <type>QuantLib::InterestRate</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>interest rate object ID</description>
+          </Parameter>
+          <Parameter name='SettlementDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+          <!--<Parameter name='NpvDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>npv date</description>
+          </Parameter>
+          <Parameter name='ExDividendDays' default='0'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ex-dividend days (default is zero)</description>
+          </Parameter>-->
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -135,6 +189,60 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
+          <Parameter name='SettlementDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+          <Parameter name='NpvDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>npv date</description>
+          </Parameter>
+          <Parameter name='ExDividendDays' default='0'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ex-dividend days (default is zero)</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegBPS2' type='QuantLibAddin::Leg'>
+      <description>Returns the basis point sensitivity for the given Leg object</description>
+      <libraryFunction>bps</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='InterestRate'>
+            <type>QuantLib::InterestRate</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>interest rate object ID</description>
+          </Parameter>
+          <Parameter name='SettlementDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+          <!--<Parameter name='NpvDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>npv date</description>
+          </Parameter>
+          <Parameter name='ExDividendDays' default='0'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ex-dividend days (default is zero)</description>
+          </Parameter>-->
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -157,7 +265,27 @@
             <type>QuantLib::YieldTermStructure</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
+            <description>discounting YieldTermStructure object ID</description>
+          </Parameter>
+          <Parameter name='SettlementDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date</description>
+          </Parameter>
+          <Parameter name='NpvDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>npv date</description>
+          </Parameter>
+          <Parameter name='ExDividendDays' default='0'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ex-dividend days (default is zero)</description>
+          </Parameter>
+          <Parameter name='NPV' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>market Price</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -178,21 +306,21 @@
       <ParameterList>
         <Parameters>
           <Parameter name='MarketPrice'>
-            <type>QuantLib::Rate</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>market Price</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
+          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+            <description>Irr DayCounter ID</description>
           </Parameter>
           <Parameter name='Compounding' exampleValue='Compounded'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
           </Parameter>
-          <Parameter name='Frequency' default='"Semiannual"' const='False'>
+          <Parameter name='Frequency' default='"NoFrequency"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
@@ -202,17 +330,17 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date</description>
           </Parameter>
-          <Parameter name='Tolerance' default='1.0e12'>
-            <type>double</type>
+          <Parameter name='Tolerance' default='1.0e10'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>tolerance. If omitted, default = 1.0e12 is used.</description>
           </Parameter>
-          <Parameter name='MaxIterations' exampleValue='1000'>
-            <type>long</type>
+          <Parameter name='MaxIterations' default='10000'>
+            <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>max number of iterations.</description>
           </Parameter>
-          <Parameter name='Guess'>
+          <Parameter name='Guess' default='0.05'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
             <description>guess</description>
@@ -351,6 +479,74 @@
       </ParameterList>
     </Constructor>
 
+    <Member name='qlInterestRateRate' type='QuantLib::InterestRate' superType='libraryClass'>
+      <description>Returns the rate in the given InterestRate object</description>
+      <libraryFunction>rate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateDayCounter' type='QuantLib::InterestRate' superType='libraryClass'>
+      <description>Returns the DayCounter in the given InterestRate object</description>
+      <libraryFunction>dayCounter</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::DayCounter</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateCompounding' type='QuantLib::InterestRate' superType='libraryClass'>
+      <description>Returns the Compounding in the given InterestRate object</description>
+      <libraryFunction>compounding</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Compounding</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateFrequency' type='QuantLib::InterestRate' superType='libraryClass'>
+      <description>Returns the Frequency in the given InterestRate object</description>
+      <libraryFunction>frequency</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Frequency</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Constructor name='qlInterestRate'>
       <libraryFunction>InterestRate</libraryFunction>
       <SupportedPlatforms>
@@ -360,22 +556,22 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='MarketPrice'>
+          <Parameter name='Rate' exampleValue='0.04'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>market Price</description>
+            <description>rate</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+            <description>Irr DayCounter ID</description>
           </Parameter>
-          <Parameter name='Compounding' exampleValue='Compounded'>
+          <Parameter name='Compounding' defaul='Continuous' const='False'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
           </Parameter>
-          <Parameter name='Frequency' default='"Semiannual"' const='False'>
+          <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>

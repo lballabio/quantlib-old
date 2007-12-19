@@ -208,10 +208,10 @@
             <tensorRank>vector</tensorRank>
             <description>Swap indexes</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='Actual/365 (Fixed)'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>yield curve DayCounter</description>
+            <description>yield curve DayCounter ID</description>
           </Parameter>
           <Parameter name='TraitsID' default='"Discount"'>
             <type>string</type>

@@ -99,20 +99,25 @@
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
           </Parameter>
-          <Parameter name='Calendar'>
+          <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='Convention'>
+          <Parameter name='Convention' exampleValue='ModifiedFollowing'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>business day convention (e.g. Modified Following)</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='EndofMonth' exampleValue='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>End of Month rule (TRUE for end of month to end of month termination date, FALSE otherwise)</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -229,6 +234,22 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlSwapRateHelperForwardStart' type='QuantLib::SwapRateHelper'>
+      <description>returns the forward start period for the given SwapRateHelper object</description>
+      <libraryFunction>forwardStart</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Constructor name='qlFraRateHelper'>
       <libraryFunction>FraRateHelper</libraryFunction>
       <SupportedPlatforms>
@@ -272,17 +293,17 @@
           <Parameter name='EndOfMonth' exampleValue='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>endOfMonth</description>
+            <description>endOfMonth  (TRUE for end of month to end of month termination date, FALSE otherwise)</description>
           </Parameter>
           <Parameter name='FixingDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2)</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -394,10 +415,10 @@
             <tensorRank>scalar</tensorRank>
             <description>Business Day Convention (e.g. ModifiedFollowing)</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
           <Parameter name='ConvexityAdjQuote'>
             <type>QuantLib::Quote</type>

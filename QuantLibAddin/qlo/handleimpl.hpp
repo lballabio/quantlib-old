@@ -57,7 +57,7 @@ namespace QuantLibAddin {
                 handle_.linkTo(observable);
             }
 
-            properties()->setProperty("CurrentLink", objectId);
+            //properties()->setProperty("CurrentLink", objectId);
         }
 
         bool empty() const { return handle_.empty(); }

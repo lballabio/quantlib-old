@@ -116,7 +116,11 @@ class Enumerations(addin.Addin):
             buffer += Enumerations.ENUM_LINE2 % {
                 'string' : enumeratedType.string(),
                 'constructor' : enumeratedType.value() }
-        return Enumerations.ENUM_REGISTER2 % {
+        if enumeratedClassGroup.need_ptr_:
+            template = Enumerations.ENUM_REGISTER2
+        else:
+            template = Enumerations.ENUM_REGISTER
+        return template % {
                 'type' : enumeratedClassGroup.className(),
                 'buffer' : buffer }
 

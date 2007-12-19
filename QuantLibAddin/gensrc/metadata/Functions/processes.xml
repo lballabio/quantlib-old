@@ -37,10 +37,10 @@
             <tensorRank>scalar</tensorRank>
             <description>underlying</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
           <Parameter name='SettlementDate'>
             <type>QuantLib::Date</type>

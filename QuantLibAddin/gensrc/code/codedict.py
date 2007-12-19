@@ -189,6 +189,16 @@ code48 = '''\
         OH_GET_UNDERLYING(%(name)sLibObj, %(name)s,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
+code48b = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
+        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sTemp2 =
+            %(namespaceObjects)s::CoerceLibrarySame<
+                %(namespaceObjects)s::%(classname)s,
+                %(namespaceLibrary)s::%(classname)s>()(
+                    %(name)sTemp);
+        const %(namespaceLibrary)s::%(classname)s &%(name)sLibObj =
+            *(%(name)sTemp2.get());\n'''
+
 code49 = '''\
         OH_GET_UNDERLYING_NONCONST(%(name)sLibObj, %(name)s,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''

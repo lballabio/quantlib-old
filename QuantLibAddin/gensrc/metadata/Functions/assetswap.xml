@@ -153,7 +153,7 @@
     </Member>
 
     <Member name='qlAssetSwapFairPrice' type='QuantLib::AssetSwap'>
-      <description>the fair price of the bond</description>
+      <description>the fair price of the bond in the asset swap</description>
       <libraryFunction>fairPrice</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -163,7 +163,7 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>

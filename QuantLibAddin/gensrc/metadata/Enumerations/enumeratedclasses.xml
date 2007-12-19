@@ -46,6 +46,11 @@
           <value>IBOR_BY_BLACK_Pricer</value>
           <libraryClass>QuantLib::BlackIborCouponPricer</libraryClass>
         </EnumeratedClass>
+        <EnumeratedClass>
+          <string>DummyIborByBlack</string>
+          <value>IBOR_BY_BLACK_Pricer</value>
+          <libraryClass>QuantLib::BlackIborCouponPricer</libraryClass>
+        </EnumeratedClass>
       </EnumeratedClasses>
     </EnumeratedClassGroup>
 
@@ -53,14 +58,14 @@
       <includeFile>qlo/Enumerations/Factories/conundrumpricerfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>
-          <string>ConundrumByBlack</string>
-          <value>CONUNDRUM_BY_BLACK_Pricer</value>
-          <libraryClass>QuantLib::ConundrumPricerByBlack</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
           <string>ConundrumByNumericalIntegration</string>
           <value>CONUNDRUM_BY_NUMERICAL_INTEGRATION_Pricer</value>
           <libraryClass>QuantLib::ConundrumPricerByNumericalIntegration</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>ConundrumByBlack</string>
+          <value>CONUNDRUM_BY_BLACK_Pricer</value>
+          <libraryClass>QuantLib::ConundrumPricerByBlack</libraryClass>
         </EnumeratedClass>
       </EnumeratedClasses>
     </EnumeratedClassGroup>
@@ -82,7 +87,7 @@
     </EnumeratedClassGroup>
 
     <!-- PricingEngines without timesteps -->
-    <EnumeratedClassGroup class='ObjectHandler::PricingEngineConstructor1'>
+    <EnumeratedClassGroup class='ObjectHandler::PricingEngineConstructor1' need_ptr='False'>
       <includeFile>qlo/Enumerations/Factories/pricingenginesfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>
@@ -174,7 +179,7 @@
     </EnumeratedClassGroup>
 
     <!-- PricingEngines with timesteps -->
-    <EnumeratedClassGroup class='ObjectHandler::PricingEngineConstructor2'>
+    <EnumeratedClassGroup class='ObjectHandler::PricingEngineConstructor2' need_ptr='False'>
       <includeFile>qlo/Enumerations/Factories/pricingenginesfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>

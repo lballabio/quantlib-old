@@ -310,10 +310,10 @@
             <tensorRank>scalar</tensorRank>
             <description>vol quotes</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='Actual/365 (Fixed)'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -349,10 +349,10 @@
             <tensorRank>matrix</tensorRank>
             <description>vol quotes</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
           <Parameter name='BusinessDayConvention' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>

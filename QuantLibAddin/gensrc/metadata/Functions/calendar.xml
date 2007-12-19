@@ -107,7 +107,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Date' const='False'>
+          <Parameter name='Date' const='True'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
@@ -224,7 +224,7 @@
           <Parameter name='BusinessDayConvention' const='False' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>rolling convention</description>
+            <description>rolling convention (default is 'Following')</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -257,12 +257,12 @@
           <Parameter name='BusinessDayConvention' const='False' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>rolling convention</description>
+            <description>rolling convention (default is 'Following')</description>
           </Parameter>
-          <Parameter name='EndOfMonth' default='false' const='False'>
+          <Parameter name='EndOfMonth' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>flag to enforce end of month convention</description>
+            <description>flag to enforce end of month convention (default is FALSE)</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -295,12 +295,12 @@
           <Parameter name='IncludeFirst' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>include the first date when counting business days</description>
+            <description>include the first date when counting business days (default is FALSE)</description>
           </Parameter>
           <Parameter name='IncludeLast' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>include the last date when counting business days</description>
+            <description>include the last date when counting business days (default is FALSE)</description>
           </Parameter>
         </Parameters>
       </ParameterList>

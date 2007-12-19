@@ -1,4 +1,4 @@
 
-We gratefully acknowledge contributions from Luigi Ballabio, Marco Marchioro,
-Tim Muller-Seydlitz, Walter Penschke, Lars Schouw.
-
+We gratefully acknowledge contributions from Luigi Ballabio, Silvia Frasson,
+Marco Marchioro, Tim Muller-Seydlitz, Walter Penschke, Mario Pucci, Lars
+Schouw.

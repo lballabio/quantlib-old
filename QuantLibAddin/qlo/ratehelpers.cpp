@@ -42,17 +42,17 @@ namespace QuantLibAddin {
             QuantLib::Natural settlementDays,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
+            bool endOfMonth,
             const QuantLib::DayCounter& dayCounter,
             bool permanent) : RateHelper(properties, permanent)
     {
-        bool endOfMonth = false;
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
             QuantLib::DepositRateHelper(quote,
                                         p,
                                         settlementDays,
                                         calendar,
                                         convention,
-                                        endOfMonth,     // FIXME
+                                        endOfMonth,
                                         settlementDays, // FIXME
                                         dayCounter));
     }

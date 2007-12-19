@@ -72,6 +72,7 @@ namespace QuantLibAddin {
             QuantLib::Natural settlementDays,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
+            bool endOfMonth,
             const QuantLib::DayCounter& dayCounter,
             bool permanent);
     };

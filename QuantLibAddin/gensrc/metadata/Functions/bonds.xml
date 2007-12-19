@@ -187,7 +187,7 @@
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            <description>Yield DayCounter ID</description>
           </Parameter>
           <Parameter name='Compounding' exampleValue='Compounded'>
             <type>QuantLib::Compounding</type>
@@ -272,7 +272,7 @@
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            <description>Yield DayCounter ID</description>
           </Parameter>
           <Parameter name='Compounding' const='False' exampleValue='Compounded'>
             <type>QuantLib::Compounding</type>
@@ -315,7 +315,7 @@
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            <description>Yield DayCounter ID</description>
           </Parameter>
           <Parameter name='Compounding' const='False' exampleValue='Compounded'>
             <type>QuantLib::Compounding</type>
@@ -356,10 +356,10 @@
             <tensorRank>scalar</tensorRank>
             <description>clean price</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
+          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+            <description>Yield DayCounter ID</description>
           </Parameter>
           <Parameter name='Compounding' const='False' exampleValue='Continuous'>
             <type>QuantLib::Compounding</type>
@@ -399,10 +399,10 @@
             <tensorRank>scalar</tensorRank>
             <description>the Z-spread</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
+          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+            <description>Spread DayCounter ID</description>
           </Parameter>
           <Parameter name='Compounding' const='False'>
             <type>QuantLib::Compounding</type>
@@ -442,10 +442,10 @@
             <tensorRank>scalar</tensorRank>
             <description>the Z-spread</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
+          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. '30/360 (Bond Basis)')</description>
+            <description>Spread DayCounter ID</description>
           </Parameter>
           <Parameter name='Compounding' const='False'>
             <type>QuantLib::Compounding</type>
@@ -640,7 +640,7 @@
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            <description>Payment DayCounter ID</description>
           </Parameter>
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
@@ -711,10 +711,10 @@
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='Actual/360'>
+          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            <description>Payment DayCounter ID</description>
           </Parameter>
           <Parameter name='Floors' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
@@ -805,10 +805,10 @@
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='Actual/360'>
+          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment day counter (e.g. 'Actual/Actual (ISMA)')</description>
+            <description>Payment DayCounter ID</description>
           </Parameter>
           <Parameter name='Floors' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>

@@ -23,6 +23,8 @@
 
 /*! \page extend_tutorial Expose Additional QuantLib Functionality to QuantLibXL
 
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
+
 <center><small>last updated \ref extend_revisions "7 October 2007"</small></center>
 
 \ref extend_overview \n
@@ -195,6 +197,8 @@ The table below summarizes the revision history for this document.
 <tr><td>6 October 2007</td><td>Initial draft</td></tr>
 <tr><td>7 October 2007</td><td>Added description of ObjectHandler example project ExampleXllStatic</td></tr>
 </table>
+
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 
 */
 

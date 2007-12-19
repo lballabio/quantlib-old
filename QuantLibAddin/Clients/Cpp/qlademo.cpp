@@ -22,6 +22,7 @@
 #include <oh/auto_link.hpp>
 #endif
 
+#define OH_NULL ObjectHandler::Variant()
 
 using namespace QuantLibAddinCpp;
 
@@ -31,16 +32,17 @@ int main() {
 
         initializeAddin();
 
-        ohSetLogFile("qlademo.log", 4L, ObjectHandler::Variant());
-        ohSetConsole(1, 4L, ObjectHandler::Variant());
-        ohLogMessage("Begin example program.", 4L, ObjectHandler::Variant());
-        ohLogMessage(qlAddinVersion(ObjectHandler::Variant()), 4L, ObjectHandler::Variant());
-        ohLogMessage(ohVersion(ObjectHandler::Variant()), 4L, ObjectHandler::Variant());
+        ohSetLogFile("qlademo.log", 4L, OH_NULL);
+        ohSetConsole(1, 4L, OH_NULL);
+        LOG_MESSAGE("Begin example program.");
+        LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion(OH_NULL));
+        LOG_MESSAGE("ObjectHandler version = " << ohVersion(OH_NULL));
 
         std::string daycountConvention = "Actual/365 (Fixed)";
         std::string payoffType = "Vanilla";
         std::string optionType = "Put";
         std::string engineType = "AE";      // Analytic European
+        std::string calendar = "TARGET";
         std::string xmlFileName = "option_demo.xml";
         double dividendYield = 0.00;
         double riskFreeRate = 0.06;
@@ -51,15 +53,16 @@ int main() {
         long settlementDate = 35932;        // 17 May 1998
         long exerciseDate = 36297;          // 17 May 1999
 
-        qlSettingsSetEvaluationDate(evaluationDate, ObjectHandler::Variant());
+        qlSettingsSetEvaluationDate(evaluationDate, OH_NULL);
 
         std::string idBlackConstantVol = qlBlackConstantVol(
-            "my_blackconstantvol",
+            std::string("my_blackconstantvol"),
             settlementDate,
+            calendar,
             volatility,
             daycountConvention,
-            ObjectHandler::Variant(),
-            ObjectHandler::Variant(),
+            OH_NULL,
+            OH_NULL,
             false);
 
         std::string idGeneralizedBlackScholesProcess = qlGeneralizedBlackScholesProcess(
@@ -70,8 +73,8 @@ int main() {
             settlementDate,
             riskFreeRate,
             dividendYield,
-            ObjectHandler::Variant(),
-            ObjectHandler::Variant(),
+            OH_NULL,
+            OH_NULL,
             false);
 
         std::string idStrikedTypePayoff = qlStrikedTypePayoff(
@@ -80,39 +83,38 @@ int main() {
             optionType,
             strike,
             strike,
-            ObjectHandler::Variant(),
-            ObjectHandler::Variant(),
+            OH_NULL,
+            OH_NULL,
             false);
 
         std::string idExercise = qlEuropeanExercise(
             "my_exercise",
             exerciseDate,
-            ObjectHandler::Variant(),
-            ObjectHandler::Variant(),
+            OH_NULL,
+            OH_NULL,
             false);
 
         std::string idPricingEngine = qlPricingEngine(
             "my_engine",
             engineType,
-            ObjectHandler::Variant(),
-            ObjectHandler::Variant(),
+            idGeneralizedBlackScholesProcess,
+            OH_NULL,
+            OH_NULL,
             false);
 
         std::string idVanillaOption = qlVanillaOption(
             "my_option",
-            idGeneralizedBlackScholesProcess,
             idStrikedTypePayoff,
             idExercise,
-            idPricingEngine,
-            ObjectHandler::Variant(),
-            ObjectHandler::Variant(),
+            OH_NULL,
+            OH_NULL,
             false);
 
-        std::ostringstream s;
-        s << "option NPV() = " << qlInstrumentNPV(idVanillaOption,ObjectHandler::Variant());
-        ohLogMessage(s.str(), 4L, ObjectHandler::Variant());
+        qlInstrumentSetPricingEngine(idVanillaOption, idPricingEngine, OH_NULL);
 
-        ohLogObject(idVanillaOption, ObjectHandler::Variant());
+        LOG_MESSAGE("option PV = " << qlInstrumentNPV(idVanillaOption, OH_NULL));
+
+        ohLogObject(idVanillaOption, OH_NULL);
 
         std::vector<std::string> idList;
         idList.push_back(idBlackConstantVol);
@@ -121,18 +123,16 @@ int main() {
         idList.push_back(idExercise);
         idList.push_back(idPricingEngine);
         idList.push_back(idVanillaOption);
-        ohObjectSave(idList, xmlFileName, ObjectHandler::Variant(), ObjectHandler::Variant());
+        ohObjectSave(idList, xmlFileName, true, OH_NULL);
 
-        ohLogMessage("End example program.", 4L, ObjectHandler::Variant());
+        LOG_MESSAGE("End example program.");
 
         return 0;
     } catch (const std::exception &e) {
-        std::ostringstream s;
-        s << "Error: " << e.what();
-        ohLogMessage(s.str(), 1L, ObjectHandler::Variant());
+        LOG_ERROR("Error: " << e.what());
         return 1;
     } catch (...) {
-        ohLogMessage("unknown error", 1L, ObjectHandler::Variant());
+        LOG_ERROR("Unknown error");
         return 1;
     }
 

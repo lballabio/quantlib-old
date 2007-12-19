@@ -102,7 +102,7 @@
     </Member>
 
     <Member name='qlOptionletVTSBlackVariance' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib' loopParameter='OptionDate'>
-      <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
+      <description>Returns the black variance corresponding to a given strike for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -129,13 +129,13 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
     <Member name='qlOptionletVTSBlackVariance2' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib' loopParameter='OptionTenor'>
-      <description>Returns a vector of black volatilities corresponding to a vector of strikes for a given exercise date.</description>
+      <description>Returns the black variance corresponding to a given strike for a given exercise date.</description>
       <libraryFunction>blackVariance</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -162,7 +162,7 @@
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -239,10 +239,10 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -353,7 +353,7 @@
 
     <!-- OptionletStripper interface and constructor -->
     <Member name='qlOptionletStripperCapFloorPrices' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns option prices matrix from the given OptionletStripper1 object.</description>
       <libraryFunction>capFloorPrices</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -368,7 +368,7 @@
     </Member>
 
     <Member name='qlOptionletStripperCapFloorVolatilities' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns option volatilities matrix from the given OptionletStripper1 object.</description>
       <libraryFunction>capFloorVolatilities</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -383,7 +383,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletPrices' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns optionlet prices matrix from the given OptionletStripper1 object.</description>
       <libraryFunction>optionletPrices</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -398,7 +398,7 @@
     </Member>
 
     <Member name='qlOptionletStripperSwitchStrike' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns option switch strike from the given OptionletStripper1 object.</description>
       <libraryFunction>switchStrike</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -412,8 +412,8 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperOptionletVolatility' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>.</description>
+    <Member name='qlOptionletStripperOptionletVolatilities' type='QuantLib::OptionletStripper' superType='libraryClass'>
+      <description>Returns optionlet volatilities from the given OptionletStripper object.</description>
       <libraryFunction>optionletVolatilities</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -433,8 +433,8 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperStrike' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>.</description>
+    <Member name='qlOptionletStripperStrikes' type='QuantLib::OptionletStripper' superType='libraryClass'>
+      <description>Returns optionlet strike from the given OptionletStripper object.</description>
       <libraryFunction>optionletStrikes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -455,7 +455,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletTenors' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns optionlet tenors from the given OptionletStripper object.</description>
       <libraryFunction>optionletTenors</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -470,7 +470,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletDates' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns optionlet dates from the given OptionletStripper object.</description>
       <libraryFunction>optionletDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -485,7 +485,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletTimes' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns optionlet times from the given OptionletStripper object.</description>
       <libraryFunction>optionletTimes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -500,7 +500,7 @@
     </Member>
 
     <Member name='qlOptionletStripperOptionletPaymentDates' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns optionlet payment dates from the given OptionletStripper object.</description>
       <libraryFunction>optionletPaymentDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -513,8 +513,6 @@
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
-
-
 
     <Constructor name='qlOptionletStripper'>
       <libraryFunction>OptionletStripper1</libraryFunction>
@@ -551,7 +549,7 @@
 
     <!-- OptionletStripper2 interface and constructor -->
     <Member name='qlOptionletStripper2SpreadsVol' type='QuantLib::OptionletStripper2' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns optionlet spread (with respect to ATM) vols from the given OptionletStripper2 object.</description>
       <libraryFunction>spreadsVol</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -560,13 +558,13 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>QuantLib::Rate</type>
+        <type>QuantLib::Spread</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
     <Member name='qlOptionletStripper2AtmCapFloorPrice' type='QuantLib::OptionletStripper2' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns ATM option prices from the given OptionletStripper2 object.</description>
       <libraryFunction>atmCapFloorPrices</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -581,7 +579,7 @@
     </Member>
 
     <Member name='qlOptionletStripper2AtmCapFloorStrikes' type='QuantLib::OptionletStripper2' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns option ATM strikes from the given OptionletStripper2 object.</description>
       <libraryFunction>atmCapFloorStrikes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -622,7 +620,7 @@
 
     <!-- CapFloorTermVolStructure interface -->
     <Member name='qlCapFloorTermVTSVolatility' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass' loopParameter='Strike'>
-      <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
+      <description>Returns volatility from the given CapFloorTermVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -655,7 +653,7 @@
     </Member>
 
     <Member name='qlCapFloorTermVTSVolatility2' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass' loopParameter='Strike'>
-      <description>Returns volatility from the given OptionletVolatilityStructure object.</description>
+      <description>Returns volatility from the given CapFloorTermVolatilityStructure object.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -688,7 +686,7 @@
     </Member>
 
     <Member name='qlCapFloorTermVTSMinStrike' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass'>
-      <description>Returns the minimum strike for which the given OptionletVolatilityStructure can return vols.</description>
+      <description>Returns the minimum strike for which the given CapFloorTermVolatilityStructure can return vols.</description>
       <libraryFunction>minStrike</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -704,7 +702,7 @@
     </Member>
 
     <Member name='qlCapFloorTermVTSMaxStrike' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass'>
-      <description>Returns the maximum strike for which the given OptionletVolatilityStructure can return vols.</description>
+      <description>Returns the maximum strike for which the given CapFloorTermVolatilityStructure can return vols.</description>
       <libraryFunction>maxStrike</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -721,7 +719,7 @@
 
     <!-- CapFloorTermVolCurve interface and constructor -->
     <Member name='qlCapFloorTermVolVectorOptionTenors' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns the option tenors from the given CapFloorTermVolCurve object.</description>
       <libraryFunction>optionTenors</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -736,7 +734,7 @@
     </Member>
 
     <Member name='qlCapFloorTermVolVectorOptionDates' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns the option dates from the given CapFloorTermVolCurve object. </description>
       <libraryFunction>optionDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -779,10 +777,10 @@
             <tensorRank>vector</tensorRank>
             <description>vol quotes</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -790,7 +788,7 @@
 
     <!-- CapFloorTermVolSurface interface and constructor -->
     <Member name='qlCapFloorTermVolSurfaceOptionTenors' type='QuantLib::CapFloorTermVolSurface' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns the option tenors from the given CapFloorTermVolSurface object.</description>
       <libraryFunction>optionTenors</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -805,7 +803,7 @@
     </Member>
 
     <Member name='qlCapFloorTermVolSurfaceOptionDates' type='QuantLib::CapFloorTermVolSurface' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns the option dates from the given CapFloorTermVolSurface object.</description>
       <libraryFunction>optionDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -820,7 +818,7 @@
     </Member>
 
     <Member name='qlCapFloorTermVolSurfaceStrikes' type='QuantLib::CapFloorTermVolSurface' superType='libraryClass'>
-      <description>.</description>
+      <description>Returns the option strikes from the given CapFloorTermVolSurface object.</description>
       <libraryFunction>strikes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -868,10 +866,10 @@
             <tensorRank>matrix</tensorRank>
             <description>vol quotes</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/365)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -350,10 +350,10 @@
             <tensorRank>vector</tensorRank>
             <description>discount factors for the above dates</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -378,10 +378,10 @@
             <tensorRank>vector</tensorRank>
             <description>zero rates for the above dates</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -406,10 +406,10 @@
             <tensorRank>vector</tensorRank>
             <description>forwards rates for the above dates</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -439,10 +439,10 @@
             <tensorRank>scalar</tensorRank>
             <description>the curve level</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue ='Actual/365'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
           <Parameter name='Compounding' exampleValue ='Continuous'>
             <type>QuantLib::Compounding</type>

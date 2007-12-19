@@ -106,10 +106,10 @@
             <tensorRank>scalar</tensorRank>
             <description>volatility</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -149,10 +149,10 @@
             <tensorRank>matrix</tensorRank>
             <description>volatilities</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -592,10 +592,10 @@
             <tensorRank>scalar</tensorRank>
             <description>business day convention (e.g. Following)</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='Actual365Fixed'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter convention (e.g. Actual365Fixed)</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

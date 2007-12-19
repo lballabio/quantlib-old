@@ -338,10 +338,10 @@ esac
 # Create files
 # ----------------------------------------------------------------------------
 
+#docs/Makefile
+#docs/Doxyfile
 AC_CONFIG_FILES([
 Makefile
-docs/Makefile
-docs/Doxyfile
 src/Makefile
 include/Makefile
 include/log4cxx/Makefile

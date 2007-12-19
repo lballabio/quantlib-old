@@ -71,10 +71,10 @@
             <tensorRank>scalar</tensorRank>
             <description>floating leg schedule object ID</description>
           </Parameter>
-          <Parameter name='Index'>
+          <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating leg IborIndex index object ID</description>
+            <description>floating leg IborIndex object ID</description>
           </Parameter>
           <Parameter name='FloatingLegSpread' exampleValue='0%'>
             <type>QuantLib::Spread</type>

@@ -1155,7 +1155,7 @@
             <tensorRank>scalar</tensorRank>
             <description>engine type</description>
           </Parameter>
-          <Parameter name='ProcessID' >
+          <Parameter name='ProcessID'>
             <type>QuantLib::GeneralizedBlackScholesProcess</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
@@ -1185,7 +1185,7 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting yield term structure object ID</description>
           </Parameter>
-          <Parameter name='Vol' >
+          <Parameter name='VolTS'>
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -1219,7 +1219,7 @@
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. 'Actual/365')</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1274,7 +1274,7 @@
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. 'Actual/365')</description>
+            <description>DayCounter ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

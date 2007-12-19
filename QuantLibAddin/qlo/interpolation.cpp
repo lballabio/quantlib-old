@@ -29,17 +29,39 @@
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/math/interpolations/abcdinterpolation.hpp>
 
+using std::pair;
+using std::vector;
+using QuantLib::Real;
+using QuantLib::Size;
+
 namespace QuantLibAddin {
 
     Interpolation::Interpolation(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const std::vector<QuantLib::Real>& x,
-        const std::vector<QuantLib::Real>& y,
+        const vector<Real>& x,
+        const vector<Real>& y,
         bool permanent)
-    : Extrapolator(properties, permanent), x_(x), y_(y) {
-        QL_REQUIRE(x.size()==y.size(),
-                  "unmatched size between x (" << x.size() <<
+    : Extrapolator(properties, permanent) {
+        QL_REQUIRE(!x.empty(), "empty x vector");
+        Size n = x.size();
+        QL_REQUIRE(n==y.size(),
+                  "unmatched size between x (" << n <<
                   ") and y(" << y.size() << ")");
+        vector<pair<Real, Real> > pairs(n);
+        for (Size i=0; i<n; ++i)
+            pairs[i]=std::make_pair<Real, Real>(x[i], y[i]);
+        std::sort(pairs.begin(), pairs.end());
+        vector<pair<Real, Real> >::iterator end = std::unique(pairs.begin(),
+                                                              pairs.end());
+        x_.push_back(pairs[0].first);
+        y_.push_back(pairs[0].second);
+        vector<pair<Real, Real> >::iterator j;
+        for (j=pairs.begin()+1; j<end; ++j) {
+            QL_REQUIRE(x_.back()!=j->first,
+                       "duplicated x value: " << j->first);
+            x_.push_back(j->first);
+            y_.push_back(j->second);
+        }
     }
 
     LinearInterpolation::LinearInterpolation(

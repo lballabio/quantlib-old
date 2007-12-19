@@ -5,6 +5,10 @@ QuantLib-SWIG is
     Copyright (C) 2005 Dominic Thuillier
     Copyright (C) 2005 Johan Witters
     Copyright (C) 2006, 2007 Joseph Wang
+    Copyright (C) 2007 Luis Cota
+    Copyright (C) 2007 Richard Gomes
+    Copyright (C) 2007 Tito Ingargiola
+    Copyright (C) 2007 Eric H. Jensen
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:

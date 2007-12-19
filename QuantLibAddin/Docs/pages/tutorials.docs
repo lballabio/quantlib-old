@@ -23,6 +23,7 @@ from source code.
 
 \ref build_tutorial "Build QuantLibXL from Source Code"\n
 \ref extend_tutorial\n
+\ref serialization\n
 
 */
 

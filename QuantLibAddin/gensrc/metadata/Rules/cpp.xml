@@ -104,6 +104,7 @@
         <Rule tensorRank='scalar' superType='libToHandle' codeID='code44b'/>
         <Rule tensorRank='scalar' superType='libraryTermStructure' codeID='code46'/>
         <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='code49'/>
+        <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::YieldTermStructure' codeID='code48b'/>
         <Rule tensorRank='scalar' superType='underlyingClass' codeID='code48'/>
         <Rule tensorRank='vector' superType='libraryClass' codeID='code37c'/>
         <Rule tensorRank='vector' superType='libToHandle' type='QuantLib::Quote' codeID='code218'/>
@@ -174,7 +175,10 @@
     <RuleGroup name='voCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
-        <Rule tensorRank='scalar' superType='enumeration' default='true'>%(indent)s%(name)sCpp</Rule>
+        <!--<Rule tensorRank='scalar' superType='enumeration' default='true'>%(indent)s%(name)sCpp</Rule>-->
+        <Rule tensorRank='scalar' type='QuantLib::Natural' default='true'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar' type='QuantLib::Date' default='true'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
         <Rule>%(indent)s%(name)s</Rule>
       </Rules>
     </RuleGroup>

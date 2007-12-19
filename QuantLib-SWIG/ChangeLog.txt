@@ -1,13 +1,436 @@
-2007-05-21 09:45  Luigi Ballabio
+2007-12-04 11:44  Luigi Ballabio
 
-	* [r10875] Guile/setup.scm, LICENSE.TXT, MzScheme/setup.scm,
-	  Python/setup.py, Ruby/setup.rb:
+	* [r13663] Makefile.am, SWIG/piecewiseflatforward.i:
 	  
-	  Updated copyrights in license
+	  Removed obsolete file
 
-2007-05-19 12:31  Luigi Ballabio
+2007-11-30 08:47  Luigi Ballabio
 
-	* [r10846] CSharp/examples/BermudanSwaption.cs,
+	* [r13619] LICENSE.TXT:
+	  
+	  Updated license with new copyrights
+
+2007-11-29 09:56  Luigi Ballabio
+
+	* [r13602] SWIG/ql.i, SWIG/vectors.i:
+	  
+	  Ensured correct application of std::vector typemaps
+
+2007-11-27 12:45  Luigi Ballabio
+
+	* [r13573] :
+	  
+	  Created 0.9.0 release branch
+
+2007-11-27 11:24  Luigi Ballabio
+
+	* [r13568] CSharp/cpp/QuantlibWrapper.vcproj,
+	  CSharp/csharp/NQuantLib.csproj:
+	  
+	  VC#7 catching up
+
+2007-11-26 15:31  Luigi Ballabio
+
+	* [r13541] CSharp/examples/EquityOption.cs,
+	  Java/examples/EquityOptions.java:
+	  
+	  Fixed SVN properties
+
+2007-11-26 10:28  Luigi Ballabio
+
+	* [r13533] CSharp/examples/BermudanSwaption.cs,
+	  Guile/examples/bermudan-swaption.scm, Guile/examples/swap.scm,
+	  MzScheme/examples/bermudan-swaption.scm, MzScheme/examples/swap.scm,
+	  Python/examples/bermudan-swaption.py, Python/examples/swap.py,
+	  Ruby/examples/bermudan-swaption.rb, Ruby/examples/swap.rb,
+	  SWIG/quantlib.i, SWIG/scheduler.i:
+	  
+	  Sync with C++ library
+
+2007-11-23 10:06  Luigi Ballabio
+
+	* [r13506] MzScheme/setup.scm:
+	  
+	  Removed gcc warnings
+
+2007-11-23 09:50  Luigi Ballabio
+
+	* [r13505] Guile/examples/swap.scm, Guile/test/termstructures.scm,
+	  MzScheme/examples/swap.scm, MzScheme/test/termstructures.scm,
+	  Python/examples/swap.py, Python/test/termstructures.py,
+	  Ruby/examples/swap.rb, Ruby/test/termstructures.rb,
+	  SWIG/ratehelpers.i:
+	  
+	  Sync with C++ library
+
+2007-11-22 13:54  Luigi Ballabio
+
+	* [r13489] CSharp/examples/EquityOption.cs,
+	  Guile/examples/american-option.scm,
+	  Guile/examples/european-option.scm,
+	  Java/examples/EquityOptions.java,
+	  MzScheme/examples/american-option.scm,
+	  MzScheme/examples/european-option.scm,
+	  Python/examples/american-option.py,
+	  Python/examples/basket-option.py,
+	  Python/examples/european-option.py,
+	  Ruby/examples/american-option.rb, Ruby/examples/european-option.rb,
+	  SWIG/basketoptions.i, SWIG/convertiblebonds.i, SWIG/options.i,
+	  SWIG/stochasticprocess.i:
+	  
+	  Merged engine-refactoring branch (moved underlying process from
+	  options to engines)
+
+2007-11-21 13:54  Luigi Ballabio
+
+	* [r13474] Python/setup.py:
+	  
+	  Fixes for revision 13473
+
+2007-11-21 13:28  Luigi Ballabio
+
+	* [r13473] Python/setup.py:
+	  
+	  Tentative fix for Cygwin/MSYS compilation
+
+2007-11-16 13:28  Luigi Ballabio
+
+	* [r13392] Perl/Makefile.am, SWIG/quantlib.i:
+	  
+	  Upgraded to SWIG 1.3.32
+
+2007-11-16 01:47  Joseph Wang
+
+	* [r13387] R/Makefile.am:
+	  
+	  Sync with swig 1.3.32
+
+2007-11-15 11:38  Luigi Ballabio
+
+	* [r13384] SWIG/indexes.i:
+	  
+	  Made forecastFixing protected (fixing(d,true) does the same job)
+
+2007-11-12 04:17  Joseph Wang
+
+	* [r13359] R/Makefile.am, R/README.txt, R/examples/european-option.R,
+	  R/examples/graph.R, R/examples/scatter.R, R/examples/wireframe.R,
+	  R/makeRData.R:
+	  
+	  Update to upcoming swig 1.3.32
+
+2007-11-09 14:19  Luigi Ballabio
+
+	* [r13350] Java/Makefile.am:
+	  
+	  Fixed dependencies
+
+2007-11-06 12:06  Luigi Ballabio
+
+	* [r13324] SWIG/calendars.i:
+	  
+	  Sync with C++
+
+2007-11-02 12:11  Luigi Ballabio
+
+	* [r13284] SWIG/common.i, SWIG/interpolation.i:
+	  
+	  Sync with C++ library
+
+2007-10-26 12:18  Luigi Ballabio
+
+	* [r13201] SWIG/capfloor.i, SWIG/shortratemodels.i:
+	  
+	  Merged revisions 13187 and 13200 from engine-refactoring branch
+
+2007-10-25 13:14  Luigi Ballabio
+
+	* [r13182] SWIG/linearalgebra.i:
+	  
+	  Added get and set methods to Matrix and Array in C-sharp and Java
+	  (thanks to Paul Gentry)
+
+2007-10-25 12:32  Luigi Ballabio
+
+	* [r13179] SWIG/capfloor.i, SWIG/ratehelpers.i, SWIG/swaption.i:
+	  
+	  Sync with C++ library
+
+2007-10-24 11:08  Ferdinando Ametrano
+
+	* [r13148] CSharp/examples/BermudanSwaption.cs,
+	  CSharp/examples/EquityOption.cs, Guile/examples/american-option.scm,
+	  Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/european-option.scm, Guile/examples/swap.scm,
+	  Java/examples/EquityOptions.java,
+	  MzScheme/examples/american-option.scm,
+	  MzScheme/examples/bermudan-swaption.scm,
+	  MzScheme/examples/european-option.scm, MzScheme/examples/swap.scm,
+	  Perl/examples/european-option.pl,
+	  Python/examples/american-option.py,
+	  Python/examples/basket-option.py,
+	  Python/examples/bermudan-swaption.py,
+	  Python/examples/european-option.py, Python/examples/swap.py,
+	  Ruby/examples/american-option.rb,
+	  Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/european-option.rb, Ruby/examples/swap.rb,
+	  SWIG/capfloor.i, SWIG/swap.i:
+	  
+	  merged engines-refactoring into trunk
+
+2007-10-03 11:10  Luigi Ballabio
+
+	* [r12957] SWIG/old_pricers.i:
+	  
+	  Removed obsolete pricer
+
+2007-09-25 05:15  Joseph Wang
+
+	* [r12854] SWIG/cashflows.i, SWIG/old_volatility.i,
+	  SWIG/volatilities.i:
+	  
+	  sync with quantlib
+
+2007-09-24 15:06  Luigi Ballabio
+
+	* [r12845] SWIG/cashflows.i:
+	  
+	  Reorganized cash-flow vector builders:
+	  - implemented as helper classes to ease skipping default parameters
+	  and single/multiple inputs
+	  - moved together with the corresponding coupon classes
+
+2007-09-20 12:59  Luigi Ballabio
+
+	* [r12746] SWIG/shortratemodels.i:
+	  
+	  Exported Vasicek model and more methods (thanks to Luis Cota)
+
+2007-09-20 11:30  Luigi Ballabio
+
+	* [r12745] CSharp/Makefile.am, CSharp/examples/EquityOption.cs,
+	  SWIG/date.i, SWIG/ql.i:
+	  
+	  Added equity-option example in C# (thanks to Eric Jensen)
+
+2007-09-20 11:24  Luigi Ballabio
+
+	* [r12744] CSharp/examples/BermudanSwaption.cs:
+	  
+	  Added timing
+
+2007-09-20 10:49  Luigi Ballabio
+
+	* [r12743] Java/Makefile.am, Java/examples,
+	  Java/examples/EquityOptions.java, Java/test:
+	  
+	  Moved Java example from tests to examples directory
+
+2007-09-20 10:20  Luigi Ballabio
+
+	* [r12742] CSharp/Makefile.am, CSharp/examples,
+	  CSharp/examples/BermudanSwaption.cs:
+	  
+	  Using existing C# example in make check
+
+2007-09-20 09:14  Luigi Ballabio
+
+	* [r12739] SWIG/common.i, SWIG/functions.i, SWIG/linearalgebra.i,
+	  SWIG/types.i:
+	  
+	  Hidden disposables in target language
+
+2007-09-20 09:13  Luigi Ballabio
+
+	* [r12738] SWIG/basketoptions.i:
+	  
+	  Restored case-insensitive tags
+
+2007-09-18 12:50  Luigi Ballabio
+
+	* [r12686] SWIG/grid.i, SWIG/linearalgebra.i, SWIG/montecarlo.i,
+	  SWIG/scheduler.i:
+	  
+	  Dropped CodeWarrior support
+
+2007-09-18 12:50  Luigi Ballabio
+
+	* [r12685] SWIG/capfloor.i, SWIG/old_volatility.i,
+	  SWIG/volatilities.i:
+	  
+	  Sync with library changes
+
+2007-09-13 10:08  Luigi Ballabio
+
+	* [r12608] SWIG/bonds.i:
+	  
+	  Exported discunting bond engine
+
+2007-09-13 09:54  Luigi Ballabio
+
+	* [r12604] Python/setup.py:
+	  
+	  Fixed indentation
+
+2007-09-13 09:27  Luigi Ballabio
+
+	* [r12602] Python/setup.py:
+	  
+	  Removed legacy support for Borland free compiler; added support for
+	  INCLUDE and LIB environment variables
+
+2007-09-13 08:58  Luigi Ballabio
+
+	* [r12601] SWIG/old_volatility.i:
+	  
+	  Exported extrapolator methods for cap volatility
+
+2007-09-12 13:01  Luigi Ballabio
+
+	* [r12585] SWIG/calendars.i:
+	  
+	  Added Brazilian exchange calendar (thanks to Richard Gomes)
+
+2007-09-12 10:36  Luigi Ballabio
+
+	* [r12580] Java/Makefile.am, Java/test/EquityOptions.java,
+	  Java/test/Hello.java:
+	  
+	  Added equity-option example for Java (thanks to Richard Gomes and
+	  Tito Ingargiola)
+
+2007-09-12 10:35  Luigi Ballabio
+
+	* [r12579] SWIG/options.i:
+	  
+	  Added binomial-Joshi and FD-bermudan engines (thanks to Richard
+	  Gomes and Tito Ingargiola)
+
+2007-09-11 15:10  Luigi Ballabio
+
+	* [r12569] SWIG/old_volatility.i:
+	  
+	  In sync with current C++ interface
+
+2007-08-24 09:56  Luigi Ballabio
+
+	* [r12396] Python/setup.py, SWIG/bonds.i, SWIG/callability.i,
+	  SWIG/common.i, SWIG/convertiblebonds.i, SWIG/date.i,
+	  SWIG/distributions.i, SWIG/dividends.i, SWIG/indexes.i,
+	  SWIG/linearalgebra.i, SWIG/operators.i, SWIG/options.i,
+	  SWIG/piecewiseyieldcurve.i, SWIG/shortratemodels.i, SWIG/swap.i,
+	  SWIG/swaption.i:
+	  
+	  Catch-up with the library, plus a few fixes
+
+2007-08-18 02:45  Ferdinando Ametrano
+
+	* [r12311] ., CSharp, CSharp/cpp, CSharp/csharp, CSharp/examples,
+	  Guile, Guile/examples, Guile/test, Java, Java/test, MzScheme,
+	  MzScheme/examples, MzScheme/quantlib, MzScheme/test, OCaml, Perl,
+	  Perl/examples, Python, Python/QuantLib, Python/examples,
+	  Python/test, R, R/examples, Ruby, Ruby/examples, Ruby/test, SWIG,
+	  dev_tools:
+	  
+	  set tsvn:projectlanguage property equal to 1033 (US English)
+
+2007-08-13 03:26  Joseph Wang
+
+	* [r12261] Python/examples/bermudan-swaption.py:
+	  
+	  Fix python to sync with new swig interfaces
+
+2007-08-13 00:13  Joseph Wang
+
+	* [r12260] SWIG/bonds.i, SWIG/indexes.i, SWIG/swaption.i:
+	  
+	  sync with quantlib changes
+
+2007-08-08 05:15  Joseph Wang
+
+	* [r12197] Python/test/integrals.py:
+	  
+	  Fix sample file to match new quantlib args
+
+2007-07-23 09:29  Luigi Ballabio
+
+	* [r11964] autogen.sh, dev_tools/windistmzscheme.bat,
+	  dev_tools/windistpython.bat, dev_tools/windistruby.bat:
+	  
+	  Fixed svn properties
+
+2007-07-20 05:16  Joseph Wang
+
+	* [r11957] SWIG/cashflows.i:
+	  
+	  Sync SWIG with current quantlib
+
+2007-07-13 08:03  Luigi Ballabio
+
+	* [r11905] SWIG/timeseries.i:
+	  
+	  Added missing inclusion
+
+2007-06-28 15:52  Luigi Ballabio
+
+	* [r11741] CSharp/Makefile.am, CSharp/QuantLib.sln,
+	  CSharp/cpp/QuantlibWrapper.vcproj, CSharp/csharp/NQuantLib.csproj,
+	  CSharp/examples/BermudanSwaption.csproj, CSharp/swig.cmd,
+	  Guile/Makefile.am, Java/Makefile.am, Makefile.am,
+	  MzScheme/Makefile.am, OCaml/Makefile.am, Perl/Makefile.am,
+	  Python/Makefile.am, Python/QuantLib-Python.spec.in, R/Makefile.am,
+	  Ruby/Makefile.am, Ruby/QuantLib-Ruby.spec.in, configure.ac:
+	  
+	  Fixed eol-style properties
+
+2007-06-15 02:27  Joseph Wang
+
+	* [r11477] SWIG/cashflows.i:
+	  
+	  sync with latest quantlib library
+
+2007-06-08 14:29  Luigi Ballabio
+
+	* [r11283] SWIG/stochasticprocess.i:
+	  
+	  Fixed typo in exported name
+
+2007-06-06 00:35  Joseph Wang
+
+	* [r11196] SWIG/linearalgebra.i:
+	  
+	  fix conversion to print out sampled curve
+
+2007-06-05 04:52  Joseph Wang
+
+	* [r11154] SWIG/integrals.i:
+	  
+	  fix integral wrappers
+
+2007-06-04 21:25  Eric Ehlers
+
+	* [r11146] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increment version number from 0.8.0/0.8.1 to 0.9.0
+
+2007-06-04 04:42  Joseph Wang
+
+	* [r11117] R/examples/european-option.R, R/examples/fd-option.R,
+	  R/examples/graph.R, R/examples/scatter.R, R/examples/wireframe.R:
+	  
+	  update examples to latest quantlib version
+
+2007-06-04 04:12  Joseph Wang
+
+	* [r11115] R/README.txt:
+	  
+	  change readme to reflect actual files
+
+2007-05-30 15:57  Luigi Ballabio
+
+	* [r11052] CSharp/csharp/NQuantLib.csproj,
+	  CSharp/examples/BermudanSwaption.cs, ChangeLog.txt,
 	  Guile/examples/american-option.scm,
 	  Guile/examples/bermudan-swaption.scm,
 	  Guile/examples/european-option.scm, Guile/examples/swap.scm,
@@ -15,7 +438,8 @@
 	  Guile/test/integrals.scm, Guile/test/marketelements.scm,
 	  Guile/test/quantlib-test-suite.scm, Guile/test/solvers1d.scm,
 	  Guile/test/termstructures.scm, Guile/test/unittest.scm,
-	  Guile/test/utilities.scm, MzScheme/examples/american-option.scm,
+	  Guile/test/utilities.scm, LICENSE.TXT,
+	  MzScheme/examples/american-option.scm,
 	  MzScheme/examples/bermudan-swaption.scm,
 	  MzScheme/examples/european-option.scm, MzScheme/examples/swap.scm,
 	  MzScheme/quantlib/ql-init.ss, MzScheme/quantlib/quantlib.ss,
@@ -24,7 +448,7 @@
 	  MzScheme/test/marketelements.scm,
 	  MzScheme/test/quantlib-test-suite.scm, MzScheme/test/solvers1d.scm,
 	  MzScheme/test/termstructures.scm, MzScheme/test/unittest.scm,
-	  MzScheme/test/utilities.scm, Python/QuantLib/__init__.py,
+	  MzScheme/test/utilities.scm, News.txt, Python/QuantLib/__init__.py,
 	  Python/examples/american-option.py,
 	  Python/examples/basket-option.py,
 	  Python/examples/bermudan-swaption.py,
@@ -59,97 +483,15 @@
 	  SWIG/swaption.i, SWIG/termstructures.i, SWIG/timebasket.i,
 	  SWIG/timeseries.i, SWIG/types.i, SWIG/vectors.i,
 	  SWIG/volatilities.i, SWIG/volatilitymodels.i, SWIG/zerocurve.i,
-	  configure.ac:
+	  configure.ac, dev_tools/developers:
 	  
-	  More broken links fixed; links now point to the License in the main
-	  pages (thanks to Eric for the heads-up, and to grep, xargs and sed
-	  for support)
+	  Merged R000800-branch into the trunk up to revision 11030
 
-2007-05-18 15:52  Eric Ehlers
+2007-05-04 03:04  Joseph Wang
 
-	* [r10836] CSharp/examples/BermudanSwaption.cs,
-	  Python/QuantLib/__init__.py, Python/setup.py,
-	  Python/test/QuantLibTestSuite.py, Python/test/date.py,
-	  Python/test/instruments.py, Python/test/integrals.py,
-	  Python/test/marketelements.py, Python/test/solvers1d.py,
-	  Python/test/termstructures.py, Ruby/QuantLib.rb, Ruby/setup.rb,
-	  Ruby/test/QuantLibTestSuite.rb, Ruby/test/dates.rb,
-	  Ruby/test/instruments.rb, Ruby/test/integrals.rb,
-	  Ruby/test/marketelements.rb, Ruby/test/solvers1d.rb,
-	  Ruby/test/termstructures.rb, SWIG/basketoptions.i, SWIG/bonds.i,
-	  SWIG/calendars.i, SWIG/callability.i, SWIG/capfloor.i,
-	  SWIG/cashflows.i, SWIG/common.i, SWIG/compoundforward.i,
-	  SWIG/convertiblebonds.i, SWIG/currencies.i, SWIG/date.i,
-	  SWIG/daycounters.i, SWIG/discountcurve.i, SWIG/distributions.i,
-	  SWIG/dividends.i, SWIG/exchangerates.i, SWIG/exercise.i,
-	  SWIG/forwardcurve.i, SWIG/functions.i, SWIG/grid.i, SWIG/indexes.i,
-	  SWIG/instruments.i, SWIG/integrals.i, SWIG/interestrate.i,
-	  SWIG/interpolation.i, SWIG/linearalgebra.i, SWIG/marketelements.i,
-	  SWIG/money.i, SWIG/montecarlo.i, SWIG/null.i, SWIG/observer.i,
-	  SWIG/old_pricers.i, SWIG/old_volatility.i, SWIG/operators.i,
-	  SWIG/optimizers.i, SWIG/options.i, SWIG/payoffs.i,
-	  SWIG/piecewiseflatforward.i, SWIG/piecewiseyieldcurve.i, SWIG/ql.i,
-	  SWIG/quantlib.i, SWIG/randomnumbers.i, SWIG/ratehelpers.i,
-	  SWIG/rounding.i, SWIG/sampledcurve.i, SWIG/scheduler.i,
-	  SWIG/settings.i, SWIG/shortratemodels.i, SWIG/statistics.i,
-	  SWIG/stochasticprocess.i, SWIG/surface.i, SWIG/swap.i,
-	  SWIG/swaption.i, SWIG/termstructures.i, SWIG/timebasket.i,
-	  SWIG/timeseries.i, SWIG/types.i, SWIG/vectors.i,
-	  SWIG/volatilities.i, SWIG/volatilitymodels.i, SWIG/zerocurve.i:
+	* [r10582] SWIG/date.i, SWIG/indexes.i:
 	  
-	  fix broken link to QuantLib license
-
-2007-05-18 10:07  Luigi Ballabio
-
-	* [r10826] SWIG/cashflows.i:
-	  
-	  Restored cashflow-vector builders
-
-2007-05-18 10:05  Luigi Ballabio
-
-	* [r10825] CSharp/csharp/NQuantLib.csproj,
-	  CSharp/examples/BermudanSwaption.cs:
-	  
-	  Updated C# project and example for new interfaces
-
-2007-05-15 10:14  Luigi Ballabio
-
-	* [r10735] SWIG/basketoptions.i:
-	  
-	  Removed old constructor
-
-2007-05-10 10:36  Luigi Ballabio
-
-	* [r10673] SWIG/basketoptions.i, SWIG/bonds.i, SWIG/cashflows.i,
-	  SWIG/compoundforward.i, SWIG/convertiblebonds.i, SWIG/instruments.i,
-	  SWIG/observer.i, SWIG/old_pricers.i, SWIG/optimizers.i,
-	  SWIG/options.i, SWIG/ratehelpers.i, SWIG/shortratemodels.i,
-	  SWIG/stochasticprocess.i, SWIG/volatilitymodels.i:
-	  
-	  Removed hard tabs (they were causing misalignment depending on the
-	  editor)
-
-2007-05-08 12:07  Luigi Ballabio
-
-	* [r10643] SWIG/calendars.i:
-	  
-	  Added holidays for 2007; fixed weekdays for Saudi financial market
-
-2007-05-07 15:52  Luigi Ballabio
-
-	* [r10622] Guile/test/instruments.scm, MzScheme/test/instruments.scm,
-	  Python/test/instruments.py, Ruby/test/instruments.rb, SWIG/date.i,
-	  SWIG/indexes.i:
-	  
-	  - Backported trunk revision 10582 to R000800-branch
-	  - added missing methods and structs
-	  - fixed tests according to new library features
-
-2007-05-03 10:57  Luigi Ballabio
-
-	* [r10556] :
-	  
-	  Created branch for QuantLib 0.8.0 release
+	  sync with quantlib
 
 2007-04-27 12:37  Luigi Ballabio
 

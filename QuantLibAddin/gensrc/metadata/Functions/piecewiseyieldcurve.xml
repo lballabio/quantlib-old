@@ -47,10 +47,10 @@
             <tensorRank>vector</tensorRank>
             <description>vector of rate-helpers</description>
           </Parameter>
-          <Parameter name='DayCounter'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/360)</description>
+            <description>DayCounter ID</description>
           </Parameter>
           <Parameter name='TraitsID' default='"Discount"'>
             <type>string</type>
@@ -84,12 +84,12 @@
           <Parameter name='Traits'>
             <type>QuantLibAddin::Token::Traits</type>
             <tensorRank>scalar</tensorRank>
-            <description>.</description>
+            <description>traits</description>
           </Parameter>
           <Parameter name='Interpolator'>
             <type>QuantLibAddin::Token::Interpolator</type>
             <tensorRank>scalar</tensorRank>
-            <description>.</description>
+            <description>interpolator</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -110,12 +110,12 @@
           <Parameter name='Traits'>
             <type>QuantLibAddin::Token::Traits</type>
             <tensorRank>scalar</tensorRank>
-            <description>.</description>
+            <description>traits</description>
           </Parameter>
           <Parameter name='Interpolator'>
             <type>QuantLibAddin::Token::Interpolator</type>
             <tensorRank>scalar</tensorRank>
-            <description>.</description>
+            <description>interpolator</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -136,12 +136,12 @@
           <Parameter name='Traits'>
             <type>QuantLibAddin::Token::Traits</type>
             <tensorRank>scalar</tensorRank>
-            <description>.</description>
+            <description>traits</description>
           </Parameter>
           <Parameter name='Interpolator'>
             <type>QuantLibAddin::Token::Interpolator</type>
             <tensorRank>scalar</tensorRank>
-            <description>.</description>
+            <description>interpolator</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -162,12 +162,12 @@
                     <Parameter name='Traits'>
                         <type>QuantLibAddin::Token::Traits</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>.</description>
+                        <description>traits</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
                         <type>QuantLibAddin::Token::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>.</description>
+                        <description>interpolator</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
@@ -188,12 +188,12 @@
                     <Parameter name='Traits'>
                         <type>QuantLibAddin::Token::Traits</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>.</description>
+                        <description>traits</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
                         <type>QuantLibAddin::Token::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>.</description>
+                        <description>interpolator</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>

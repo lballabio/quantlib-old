@@ -232,7 +232,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='LinearInterpolationType' exampleValue ='Linear'>
+          <Parameter name='LinearInterpolationType' default ='"Linear"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>linear interpolation type (e.g Linear, BackwardFlat, ForwardFlat)</description>
@@ -272,27 +272,27 @@
             <tensorRank>vector</tensorRank>
             <description>y array</description>
           </Parameter>
-          <Parameter name='LeftConditionType'>
+          <Parameter name='LeftConditionType' default='"SecondDerivative"'>
             <type>QuantLib::CubicSplineInterpolation::BoundaryCondition</type>
             <tensorRank>scalar</tensorRank>
             <description>left boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
           </Parameter>
-          <Parameter name='LeftConditionValue' exampleValue='0'>
+          <Parameter name='LeftConditionValue' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>left condition value.</description>
           </Parameter>
-          <Parameter name='RightConditionType'>
+          <Parameter name='RightConditionType' default='"SecondDerivative"'>
             <type>QuantLib::CubicSplineInterpolation::BoundaryCondition</type>
             <tensorRank>scalar</tensorRank>
             <description>right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
           </Parameter>
-          <Parameter name='RightConditionValue' exampleValue='0'>
+          <Parameter name='RightConditionValue' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>right condition value.</description>
           </Parameter>
-          <Parameter name='MonotonicityConstraint' exampleValue='FALSE'>
+          <Parameter name='MonotonicityConstraint' defaul='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>monotonicity constraint flag</description>
@@ -1010,7 +1010,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='InterpolationType' exampleValue ='BiLinear'>
+          <Parameter name='InterpolationType' default ='"BiLinear"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>2D-interpolation type (e.g BiLinear, BiCubic)</description>

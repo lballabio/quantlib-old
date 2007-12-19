@@ -98,6 +98,7 @@
 
 
 %include common.i
+%include vectors.i
 %include basketoptions.i
 %include bonds.i
 %include calendars.i
@@ -149,7 +150,6 @@
 %include timebasket.i
 %include timeseries.i
 %include types.i
-%include vectors.i
 %include volatilities.i
 %include volatilitymodels.i
 %include zerocurve.i

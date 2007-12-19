@@ -2,12 +2,21 @@
 #
 # 'tgz2zip Foo' converts Foo.tar.gz into Foo.zip converting Unix end-of-line
 # to DOS in the process.
-#
-# bootstrap, configure, depcomp, elisp-comp, install-sh, and missing
-# shouldn't be converted
 
 tar xfz $1.tar.gz
-find $1 | grep -v '\.\(\(bmp\)\|\(jpg\)\|\(ico\)\|\(pdf\)\|\(png\)\|\(gif\)\)$' | grep -v '\.\(\(ac\)\|\(am\)\|\(m4\)\|\(in\)\|\(sh\)\)$' | grep -v '/configure$' | grep -v '/depcomp$' | grep -v '/elisp-comp$' | grep -v '/install-sh$' | grep -v '/missing$' | grep -v '/config\.sub$' | grep -v '/config\.guess$' || xargs todos -o -p
+find $1 -name '*.[hc]pp' -o -name '*.[hc]' \
+     -o -name '*.xhtml' -o -name '*.html' -o -name '*.htm' -o -name '*.css' \
+     -o -name '*.docs' -o -name '*.doxy' -o -name '*.qbk' \
+     -o -name '*.el' -o -name '*.cmake' \
+     -o -name '*.ipp' -o -name '*.jam' -o -name '*.tpp' \
+     -o -iname '*.txt' -o -name '*.tex' -o -name '*.dtd' \
+     -o -name '*.xml' -o -name 'stub.*' -o -name '*.rst' \
+     -o -name '*.i' -o -name '*.py' -o -name '*.rb' -o -name '*.R' \
+     -o -iname '*.pl' -o -name '*.scm' -o -name '*.ss' \
+     -o -name '*.cs' -o -name '*.java' -o -name '*.nsi' \
+     -o -name '*.tpp' -o -name '*.Makefile' -o -name '*.README' \
+     -o -name '*.configure' \
+ | xargs todos -o -p
 zip -q -9 -r $1.zip $1
-rm -r $1
+rm -rf $1
 

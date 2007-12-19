@@ -63,17 +63,17 @@
           <Parameter name='Pattern' default='".*\\.xml"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Name of XML file from which objects are to be deserialized, or a pattern in UNIX format (wildcard is .*).</description>
+            <description>Name of XML file from which objects are to be deserialized, or a pattern in UNIX format (wildcard is .*). Default is '.*\\.xml'</description>
           </Parameter>
           <Parameter name='Recurse' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Recurse subdirectories of Directory when searching for filenames matching Pattern</description>
+            <description>Recurse subdirectories of Directory when searching for filenames matching Pattern. Default is FALSE</description>
           </Parameter>
           <Parameter name='Overwrite' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Overwrite any existing Object that has the same ID as one being loaded</description>
+            <description>Overwrite any existing Object that has the same ID as one being loaded. Default is FALSE</description>
           </Parameter>
         </Parameters>
       </ParameterList>
