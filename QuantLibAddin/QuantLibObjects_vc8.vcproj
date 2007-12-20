@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="QuantLibObjects"
 	ProjectGUID="{CAB8330C-6424-4455-9285-3654587EF71F}"
 	RootNamespace="QuantLibObjects"
@@ -1339,10 +1339,6 @@
 			</File>
 			<File
 				RelativePath="qlo\Loop\loop_interpolation.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qlo\Loop\loop_marketmodels.hpp"
 				>
 			</File>
 			<File
