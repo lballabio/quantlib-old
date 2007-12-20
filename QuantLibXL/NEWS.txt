@@ -3,46 +3,22 @@ http://www.quantlibxl.org/history.html
 
 new or updated in this release:
 
-LAUNCHER
+**************************
+    R000900
+**************************
 
+LAUNCHER
+- updated to distribute other xlls
+- effective usage of XLS/XML switch
 
 FUNCTIONS
-
-
-
-  ...
-
-- Quote and SimpleQuote stuff
-  ...
-
-WORKBOOKS
-
-
-- Bonds
-added 2 new cms bonds: XS0318729950 and XS0211163943. The latter was validated, the former wasn't validated because
-prospectus is missing.
-- properly handled Bond equivalent for all Reverse Floater bond's.
-
-
-
-LIBRARY:
-
-
-**************************
-    Trunk
-**************************
-
-***SERIALIZATION:
-- Serialize index fixings
-- Workbooks/StandaloneExamples/ConstantMaturitySwap.xls
-- Workbooks/StandaloneExamples/MarketData.xls
-- ohRange() class to handle matrices in addition to vectors
-- Workbooks/StandaloneExamples/test_deserialize.xls
-- Workbooks/StandaloneExamples/test_serialize.xls
-
-**************************
-    REV13059
-**************************
+- added new inspector functions for SwapRateHelper
+- introduced ForwardSwapQuote
+- introduce Euribor1M, Euribor3M, Euribor6M, and Euribor1Y yield curves
+  extended up to 60 years. The suggested discounting yield curve EURYC is
+  assumed to be equal to Euribor6M
+- exported Interestrate class and interface
+- removed default delimiters in ohSplit (they were not region-setting neutral)
 
 QuantLibXL menu:
 - "Update Indexes Time Series" among QLXL menu actions to retrieve YTD fixings
@@ -52,8 +28,14 @@ QuantLibXL menu:
 - "Update Indexes Time Series" to retrieve YTD fixings and serialize them
 
 Workbooks:
-- Added Workbooks/MarketMetaData/QL_MX_caps_EUR.xls prototype to contribute cap
-  volatilities to Murex
+- added Workbooks\MarketData\ManualFeed\TurnOfTheYear.xls for estimating turn
+  of the year effect
+- added Workbooks\InterestRateDerivatives\EURSwapABxE_Pricer.xls for real time
+  pricing of all swaps (maturity from 1Y to 60Y including 15M, 18M, 21M,
+  floating leg 1M, 3M, 6M, 1Y)
+- reviewed and cleaned up all pricer wbks in InterestRateDerivatives folder
+- added Workbooks\MarketData\ManualFeed\SynthDepoQuotesFeed.xls for estimating
+  synthetic depos needed by the new yield curves
 - Workbooks/Tests/CapFloorTermVol6MTest.xls extended to test
   EUR6MCapFloorAtmVol
 
@@ -67,9 +49,12 @@ Swaption Volatilities:
 
 Bonds:
 - added and serialized new digital euribor bonds:
-    IT0003730626, IT0003747364, IT0003766372, XS0194140785, XS0195731681,
-    XS0003730626. These bonds were checked against prospectus
+  IT0003730626, IT0003747364, IT0003766372, XS0194140785, XS0195731681,
+  XS0003730626. These bonds were checked against prospectus
 - added digital cms bond: XS0228052402
+- added 2 new cms bonds: XS0318729950 and XS0211163943. The latter was
+  validated, the former wasn't validated because prospectus is missing.
+- properly handled Bond equivalent for all Reverse Floater bond's.
 
 **************************
     REV12939
