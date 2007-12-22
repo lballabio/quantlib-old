@@ -129,7 +129,7 @@
       <ParameterList>
         <Parameters>
           <Parameter name='Index' exampleValue ='0'>
-            <type>long</type>
+            <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>evolution step index</description>
           </Parameter>
@@ -152,7 +152,7 @@
       <ParameterList>
         <Parameters>
           <Parameter name='Index' exampleValue ='0'>
-            <type>long</type>
+            <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>evolution step index</description>
           </Parameter>
@@ -175,7 +175,7 @@
       <ParameterList>
         <Parameters>
           <Parameter name='Index' exampleValue ='0'>
-            <type>long</type>
+            <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>evolution step index</description>
           </Parameter>
@@ -198,7 +198,7 @@
       <ParameterList>
         <Parameters>
           <Parameter name='Index' exampleValue ='0'>
-            <type>long</type>
+            <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>rate index</description>
           </Parameter>

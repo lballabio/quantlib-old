@@ -49,7 +49,7 @@
             <tensorRank>scalar</tensorRank>
             <description>market price of the underlying bond</description>
           </Parameter>
-          <Parameter name='Index'>
+          <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>floating leg Index object ID</description>

@@ -625,7 +625,7 @@
             <tensorRank>scalar</tensorRank>
             <description>day counter of the underlying swap's fixed leg (e.g. 30/360::BondBasis)</description>
           </Parameter>
-          <Parameter name='Index' exampleValue='Euribor6M'>
+          <Parameter name='IborIndex' exampleValue='Euribor6M'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>swap's floating ibor index object ID</description>

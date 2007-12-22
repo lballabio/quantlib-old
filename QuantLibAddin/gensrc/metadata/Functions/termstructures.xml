@@ -71,6 +71,28 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlTermStructureTimeFromReference' type='QuantLib::TermStructure' superType='libraryTermStructure' loopParameter='Date'>
+      <description>Returns the time from the reference date for the given TermStructure object</description>
+      <libraryFunction>referenceDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' exampleValue ="1Y">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of dates</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlTermStructureCalendar' type='QuantLib::TermStructure' superType='libraryTermStructure'>
       <description>Returns the calendar used by the given TermStructure object</description>
       <libraryFunction>calendar</libraryFunction>

@@ -158,17 +158,17 @@
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
+            <description>discounting YieldTermStructure object ID</description>
           </Parameter>
-          <Parameter name='Accuracy' default='0.0001'>
+          <Parameter name='Accuracy' default='1e-4'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description> Solver accuracy</description>
+            <description>Solver accuracy</description>
           </Parameter>
           <Parameter name='MaxIter' default='100'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>Solver max iterations</description>
+            <description>Solver max number of iterations</description>
           </Parameter>
         </Parameters>
       </ParameterList>

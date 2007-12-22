@@ -325,7 +325,7 @@
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
           </Parameter>
-          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+          <Parameter name='SettlementDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement date</description>

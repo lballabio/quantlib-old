@@ -47,7 +47,7 @@
             <tensorRank>scalar</tensorRank>
             <description>payment Date</description>
           </Parameter>
-          <Parameter name='IndexID'>
+          <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying ibor index</description>

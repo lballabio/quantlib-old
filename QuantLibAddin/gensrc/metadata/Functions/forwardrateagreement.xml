@@ -55,7 +55,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Notional amount</description>
           </Parameter>
-          <Parameter name='Index'>
+          <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>Underlying index object ID</description>
