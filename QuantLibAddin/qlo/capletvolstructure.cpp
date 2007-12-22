@@ -110,17 +110,18 @@ namespace QuantLibAddin {
                           const QuantLib::Calendar& calendar,
                           QuantLib::Natural settlementDays,
                           QuantLib::BusinessDayConvention businessDayConvention,
-                          const QuantLib::DayCounter& dc,
                           const boost::shared_ptr<QuantLib::IborIndex>& index,
                           const std::vector<QuantLib::Period>& optionletTenors,
                           const std::vector<QuantLib::Rate>& strikes,
                           const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& optionletVolQuotes,
+                          const QuantLib::DayCounter& dc,
                           bool permanent): 
       StrippedOptionletBase(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::StrippedOptionlet>(new
-            QuantLib::StrippedOptionlet(referenceDate, calendar, settlementDays,
-                                        businessDayConvention, dc, index,
-                                        optionletTenors, strikes, optionletVolQuotes));
+            QuantLib::StrippedOptionlet(referenceDate, calendar,
+                                        settlementDays, businessDayConvention,
+                                        index, optionletTenors, strikes,
+                                        optionletVolQuotes, dc));
     }
 
     StrippedOptionletBase::StrippedOptionletBase(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

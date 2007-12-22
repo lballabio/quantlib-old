@@ -293,6 +293,8 @@
       </ParameterList>
     </Constructor>
 
+    <!-- StrippedOptionlet interface and constructor -->
+    
     <Constructor name='qlStrippedOptionlet'>
       <libraryFunction>StrippedOptionlet</libraryFunction>
       <SupportedPlatforms>
@@ -311,7 +313,7 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
           </Parameter>
-          <Parameter name='SettlementDays' exampleValue ='0'>
+          <Parameter name='SettlementDays' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of settlement days</description>
@@ -321,22 +323,17 @@
             <tensorRank>scalar</tensorRank>
             <description>payment business day convention. If omitted, default = Following.</description>
           </Parameter>
-          <Parameter name='DayCounter'>
-            <type>QuantLib::DayCounter</type>
-            <tensorRank>scalar</tensorRank>
-            <description>day counter (e.g. Actual/365)</description>
-          </Parameter>
-          <Parameter name='Index'>
+          <Parameter name='IborIndex' exampleValue ='Euribor6M'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>cap index object ID</description>
+            <description>IborIndex object ID</description>
           </Parameter>
           <Parameter name='OptionletTenors' exampleValue ='5Y, 10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>optionlet tenors</description>
           </Parameter>
-          <Parameter name='Strikes'>
+          <Parameter name='Strikes' exampleValue ='0.03, 0.04, 0.05'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>strikes</description>
@@ -347,83 +344,50 @@
             <tensorRank>matrix</tensorRank>
             <description>vol quotes</description>
           </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
-    <!-- OptionletStripper interface and constructor -->
-    <Member name='qlOptionletStripperCapFloorPrices' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description>Returns option prices matrix from the given OptionletStripper1 object.</description>
-      <libraryFunction>capFloorPrices</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Matrix</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
+    <!-- StrippedOptionletBase interface -->
 
-    <Member name='qlOptionletStripperCapFloorVolatilities' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description>Returns option volatilities matrix from the given OptionletStripper1 object.</description>
-      <libraryFunction>capFloorVolatilities</libraryFunction>
+    <Member name='qlStrippedOptionletBaseStrikes' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
+      <description>Returns optionlet strike from the given StrippedOptionletBase object.</description>
+      <libraryFunction>optionletStrikes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Matrix</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlOptionletStripperOptionletPrices' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description>Returns optionlet prices matrix from the given OptionletStripper1 object.</description>
-      <libraryFunction>optionletPrices</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Matrix</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlOptionletStripperSwitchStrike' type='QuantLib::OptionletStripper1' superType='libraryClass'>
-      <description>Returns option switch strike from the given OptionletStripper1 object.</description>
-      <libraryFunction>switchStrike</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
+        <Parameters>
+          <Parameter name='Index' exampleValue='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>optionlet index</description>
+          </Parameter>
+        </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperOptionletVolatilities' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>Returns optionlet volatilities from the given OptionletStripper object.</description>
+    <Member name='qlStrippedOptionletBaseOptionletVolatilities' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
+      <description>Returns optionlet volatilities from the given StrippedOptionletBase object.</description>
       <libraryFunction>optionletVolatilities</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Index'>
+          <Parameter name='Index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>index of optionlet</description>
+            <description>optionlet index</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -433,45 +397,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperStrikes' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>Returns optionlet strike from the given OptionletStripper object.</description>
-      <libraryFunction>optionletStrikes</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Index'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>index of optionlet</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlOptionletStripperOptionletTenors' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>Returns optionlet tenors from the given OptionletStripper object.</description>
-      <libraryFunction>optionletTenors</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel' calcInWizard='false' />
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Period</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlOptionletStripperOptionletDates' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>Returns optionlet dates from the given OptionletStripper object.</description>
-      <libraryFunction>optionletDates</libraryFunction>
+    <Member name='qlStrippedOptionletBaseOptionletFixingDates' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
+      <description>Returns optionlet fixing dates from the given StrippedOptionletBase object.</description>
+      <libraryFunction>optionletFixingDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -484,9 +412,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripperOptionletTimes' type='QuantLib::OptionletStripper' superType='libraryClass'>
-      <description>Returns optionlet times from the given OptionletStripper object.</description>
-      <libraryFunction>optionletTimes</libraryFunction>
+    <Member name='qlStrippedOptionletBaseOptionletFixingTimes' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
+      <description>Returns optionlet fixing times from the given StrippedOptionletBase object.</description>
+      <libraryFunction>optionletFixingTimes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
       </SupportedPlatforms>
@@ -495,6 +423,117 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStrippedOptionletBaseAtmOptionletRates' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
+      <description>Returns atm optionlet rates from the given StrippedOptionletBase object.</description>
+      <libraryFunction>atmOptionletRates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStrippedOptionletBaseDayCounter' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
+      <description>Returns the DayCounter used by the given StrippedOptionletBase object</description>
+      <libraryFunction>dayCounter</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::DayCounter</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStrippedOptionletBaseReferenceDate' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
+      <description>Returns the reference date for the given StrippedOptionletBase object</description>
+      <libraryFunction>referenceDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStrippedOptionletBaseCalendar' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
+      <description>Returns the calendar used by the given StrippedOptionletBase object</description>
+      <libraryFunction>calendar</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Calendar</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStrippedOptionletBaseSettlementDays' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
+      <description>Returns the number of settlement days for the given StrippedOptionletBase object</description>
+      <libraryFunction>settlementDays</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Natural</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStrippedOptionletBaseBusinessDayConvention' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
+      <description>Returns the business day convention used in tenor to date conversion</description>
+      <libraryFunction>businessDayConvention</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::BusinessDayConvention</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- OptionletStripper interface -->
+
+    <Member name='qlOptionletStripperOptionletFixingTenors' type='QuantLib::OptionletStripper' superType='libraryClass'>
+      <description>Returns optionlet fixing tenors from the given OptionletStripper object.</description>
+      <libraryFunction>optionletFixingTenors</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>
@@ -514,7 +553,84 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlOptionletStripper'>
+    <Member name='qlOptionletStripperOptionletAccrualPeriods' type='QuantLib::OptionletStripper' superType='libraryClass'>
+      <description>Returns optionlet accrual periods from the given OptionletStripper object.</description>
+      <libraryFunction>optionletAccrualPeriods</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- OptionletStripper1 interface and constructor -->
+    
+    <Member name='qlOptionletStripper1CapFloorPrices' type='QuantLib::OptionletStripper1' superType='libraryClass'>
+      <description>Returns option prices matrix from the given OptionletStripper1 object.</description>
+      <libraryFunction>capFloorPrices</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlOptionletStripper1CapFloorVolatilities' type='QuantLib::OptionletStripper1' superType='libraryClass'>
+      <description>Returns option volatilities matrix from the given OptionletStripper1 object.</description>
+      <libraryFunction>capFloorVolatilities</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlOptionletStripper1OptionletPrices' type='QuantLib::OptionletStripper1' superType='libraryClass'>
+      <description>Returns optionlet prices matrix from the given OptionletStripper1 object.</description>
+      <libraryFunction>optionletPrices</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlOptionletStripper1SwitchStrike' type='QuantLib::OptionletStripper1' superType='libraryClass'>
+      <description>Returns option switch strike from the given OptionletStripper1 object.</description>
+      <libraryFunction>switchStrike</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlOptionletStripper1'>
       <libraryFunction>OptionletStripper1</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -522,13 +638,13 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='CapFloorTermVolSurface' >
+          <Parameter name='TermVolSurface' >
             <type>QuantLib::CapFloorTermVolSurface</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Cap VolatilitySurface.</description>
+            <description>CapFloorTermVolSurface object ID</description>
           </Parameter>
-          <Parameter name='Index'>
+          <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>cap index object ID</description>
@@ -548,6 +664,7 @@
     </Constructor>
 
     <!-- OptionletStripper2 interface and constructor -->
+    
     <Member name='qlOptionletStripper2SpreadsVol' type='QuantLib::OptionletStripper2' superType='libraryClass'>
       <description>Returns optionlet spread (with respect to ATM) vols from the given OptionletStripper2 object.</description>
       <libraryFunction>spreadsVol</libraryFunction>
@@ -563,7 +680,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletStripper2AtmCapFloorPrice' type='QuantLib::OptionletStripper2' superType='libraryClass'>
+    <Member name='qlOptionletStripper2AtmCapFloorPrices' type='QuantLib::OptionletStripper2' superType='libraryClass'>
       <description>Returns ATM option prices from the given OptionletStripper2 object.</description>
       <libraryFunction>atmCapFloorPrices</libraryFunction>
       <SupportedPlatforms>
@@ -601,22 +718,21 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='OptionletStripper' >
+          <Parameter name='OptionletStripper1'>
             <type>QuantLib::OptionletStripper1</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Optionlet Stripper object id</description>
+            <description>OptionletStripper1 object id</description>
           </Parameter>
-          <Parameter name='CapFloorTermVolCurve' >
+          <Parameter name='TermVolCurve'>
             <type>QuantLib::CapFloorTermVolCurve</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Cap VolatilityCurve.</description>
+            <description>CapFloorTermVolCurve object id</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
-
 
     <!-- CapFloorTermVolStructure interface -->
     <Member name='qlCapFloorTermVTSVolatility' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass' loopParameter='Strike'>
@@ -718,7 +834,7 @@
     </Member>
 
     <!-- CapFloorTermVolCurve interface and constructor -->
-    <Member name='qlCapFloorTermVolVectorOptionTenors' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
+    <Member name='qlCapFloorTermVolCurveOptionTenors' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
       <description>Returns the option tenors from the given CapFloorTermVolCurve object.</description>
       <libraryFunction>optionTenors</libraryFunction>
       <SupportedPlatforms>
@@ -733,7 +849,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCapFloorTermVolVectorOptionDates' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
+    <Member name='qlCapFloorTermVolCurveOptionDates' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
       <description>Returns the option dates from the given CapFloorTermVolCurve object. </description>
       <libraryFunction>optionDates</libraryFunction>
       <SupportedPlatforms>
@@ -756,26 +872,26 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='SettlementDays' exampleValue ='0'>
+          <Parameter name='SettlementDays' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of settlement days</description>
           </Parameter>
-          <Parameter name='Calendar'>
+          <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+            <description>holiday calendar used for calculating the exercise dates from the expiries tenor</description>
           </Parameter>
-          <Parameter name='OptionLengths' exampleValue ='5Y, 10Y'>
+          <Parameter name='OptionLenghts' exampleValue ='3Y, 5Y, 7Y, 10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>option tenors</description>
           </Parameter>
-          <Parameter name='Volatilities'>
+          <Parameter name='Volatilities' exampleValue ='0.30, 0.27, 0.25, 0.21'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
-            <description>vol quotes</description>
+            <description>vol quotes vector</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
@@ -848,7 +964,7 @@
           <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+            <description>holiday calendar used for calculating the exercise dates from the expiries tenor</description>
           </Parameter>
           <Parameter name='OptionLenghts' exampleValue ='5Y, 10Y'>
             <type>QuantLib::Period</type>
@@ -864,7 +980,7 @@
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
-            <description>vol quotes</description>
+            <description>vol quotes matrix</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
