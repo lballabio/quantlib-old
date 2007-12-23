@@ -1,0 +1,44 @@
+
+/*
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+/*! \page technical Technical Documentation
+
+\section func_overview Overview
+This section of the documentation provides technical information relating
+to %QuantLibAddin/QuantLibXL source code.
+
+Section <a href="qlo/annotated.html">Classes</a> documents the classes in
+%QuantLibAddin.
+
+Section <a href="qlo/hierarchy.html">Hierarchy</a> shows inheritance relationships
+among %QuantLibAddin classes.
+
+Section <a href="qlo/files.html">Files</a> organizes the %QuantLibAddin technical
+documentation according to source code files.
+
+Section <a href="qlo/examples.html">Examples</a> summarizes some command-line
+examples of %QuantLibAddin functionality.
+
+Section <a href="calc.html">Calc</a> documents the %QuantLibAddin build for
+OpenOffice.org Calc.
+
+Section <a href="tutorials.html">Tutorials</a> explains how to compile various
+builds of %QuantLibAddin.
+
+*/
+

@@ -20,21 +20,12 @@
 <div id="content">
 
 <h1 class="center">Download QuantLib</h1>
-<p>The latest QuantLib release is the 0.8.1 version (June 4th, 2007.)</p>
-<p><b>Debian users</b> will find version 0.8.1 of the different
+<p>The latest QuantLib release is the 0.9.0 version (December 24th, 2007.)</p>
+<p><b>Debian users</b> will find version 0.9.0 of the different
 QuantLib packages in the "unstable" (a.k.a. "Sid") distribution;
 see the <a href=
 "http://packages.debian.org/cgi-bin/search_packages.pl?keywords=quantlib&amp;searchon=names&amp;subword=1&amp;version=unstable&amp;release=all">
 Debian site</a> for a list of available packages.</p>
-<!--<p>For <b>Mac OS X users</b>, Fink packages will be available in the
-"10.3/unstable" tree; for a list of available QuantLib-related files
-see the <a href=
-"http://fink.sourceforge.net/pdb/search.php?summary=quantlib">Package
-Database</a>. To enable the "unstable" tree, please read the <a href=
-"http://fink.sourceforge.net/faq/usage-fink.php#unstable">Fink
-faq</a>. Be sure to run "fink selfupdate" to obtain the latest package
-definitions, and then run "fink install quantlib" to install the main
-library.</p>-->
 <p>Source packages for <b>all platforms</b> are available from the
 SourceForge <a href=
 "http://sourceforge.net/project/showfiles.php?group_id=12740">download
@@ -43,7 +34,7 @@ Debian users not wanting to wait for the library to be packaged, or to
 advanced users wanting to <a href="reference/config.html">configure
 the library</a> with non-default settings.  Compiling QuantLib
 requires a working <a href="http://www.boost.org">Boost</a>
-installation; Boost 1.31 or later is needed, while Boost 1.33.1 is
+installation; Boost 1.31 or later is needed, while Boost 1.34.1 is
 suggested.</p>
 
 </div>

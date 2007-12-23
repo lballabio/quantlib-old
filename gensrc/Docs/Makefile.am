@@ -7,10 +7,12 @@ EXTRA_DIST = \
     gs_header.html \
     gs_headeronline.html \
     Makefile.vc \
-    style.css
+    doxygen.css \
+    tabs.css \
+    ql.css
 
 DOXYGEN_CONFIG := gensrc.doxy
-DOXYGEN_CUSTOM := style.css gs_header.html gs_headeronline.html gs_footer.html
+DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css gs_header.html gs_headeronline.html gs_footer.html
 DOXYGEN_INPUT := $(shell find ${top_srcdir} -name *.py) \
                  $(wildcard pages/*.docs)
 
@@ -27,7 +29,7 @@ DOXYGEN_INPUT := $(shell find ${top_srcdir} -name *.py) \
 dist-hook:
 	mkdir -p $(distdir)/pages $(distdir)/images
 	cp -p $(srcdir)/pages/*.docs $(distdir)/pages
-	cp -p $(srcdir)/images/*.gif $(srcdir)/images/*.ico \
+	cp -p $(srcdir)/images/*.ico \
 	      $(srcdir)/images/*.jpg $(srcdir)/images/*.php \
 	      $(distdir)/images
 
@@ -43,8 +45,9 @@ docs-html: .time-stamp-html
 	       gensrc.doxy > .gensrc.doxy
 	$(DOXYGEN) .gensrc.doxy
 	rm .gensrc.doxy
+	cp tabs.css html
+	cp ql.css html
 	mkdir -p html/images
-	cp images/*.gif html/images
 	cp images/*.ico html/images
 	cp images/*.jpg html/images
 	cp images/*.php html/images
@@ -66,8 +69,9 @@ docs-online: .time-stamp-online
 	       gensrc.doxy > .gensrc.doxy
 	$(DOXYGEN) .gensrc.doxy
 	rm .gensrc.doxy
+	cp tabs.css html-online
+	cp ql.css html-online
 	mkdir -p html-online/images
-	cp images/*.gif html-online/images
 	cp images/*.ico html-online/images
 	cp images/*.jpg html-online/images
 	cp images/*.php html-online/images

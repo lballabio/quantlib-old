@@ -55,5 +55,8 @@ Tim M&uuml;ller-Seydlitz, Walter Penschke, Lars Schouw.
 Unregistration of the Excel addin works around a bug in Excel's xlfUnregister
 function using a technique discovered by Laurent Longre.
 
+The graphics for this project are created by Audrey Schayes and Thomas Wyngaard
+at <a href="http://www.codefrisko.be">Codefrisko</a>.
+
 */
 

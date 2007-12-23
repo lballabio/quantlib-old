@@ -7,10 +7,12 @@ EXTRA_DIST = \
     oh_footer.html \
     oh_header.html \
     oh_headeronline.html \
-    style.css
+    doxygen.css \
+    tabs.css \
+    ql.css
 
 DOXYGEN_CONFIG := objecthandler.doxy
-DOXYGEN_CUSTOM := style.css oh_header.html oh_footer.html
+DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css oh_header.html oh_footer.html
 DOXYGEN_INPUT := $(shell find ${top_srcdir} -name *.hpp) \
                  $(wildcard auto.pages/*.docs) \
                  $(wildcard pages/*.docs)
@@ -29,7 +31,7 @@ dist-hook:
 	mkdir -p $(distdir)/auto.pages $(distdir)/pages $(distdir)/images
 	cp -p $(srcdir)/auto.pages/*.docs $(distdir)/auto.pages
 	cp -p $(srcdir)/pages/*.docs $(distdir)/pages
-	cp -p $(srcdir)/images/*.gif $(srcdir)/images/*.ico \
+	cp -p $(srcdir)/images/*.ico \
 	      $(srcdir)/images/*.jpg $(srcdir)/images/*.png \
 	      $(srcdir)/images/*.php \
 	      $(distdir)/images
@@ -39,8 +41,9 @@ docs-dist: docs-html-dist
 
 docs-html: .time-stamp-html
 .time-stamp-html: .time-stamp
+	cp tabs.css html
+	cp ql.css html
 	mkdir -p html/images
-	cp images/*.gif html/images
 	cp images/*.ico html/images
 	cp images/*.jpg html/images
 	cp images/*.png html/images
@@ -63,8 +66,9 @@ docs-online: .time-stamp-online
            objecthandler.doxy > .objecthandler.doxy
 	$(DOXYGEN) .objecthandler.doxy
 	rm .objecthandler.doxy
+	cp tabs.css html-online
+	cp ql.css html-online
 	mkdir -p html-online/images
-	cp images/*.gif html-online/images
 	cp images/*.ico html-online/images
 	cp images/*.jpg html-online/images
 	cp images/*.png html-online/images

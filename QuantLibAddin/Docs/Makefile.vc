@@ -27,10 +27,22 @@ $(BUILD_DIR) :
 
 $(IMG_DIR) :
     if not exist $(HTML_DIR) mkdir $(HTML_DIR)
+    if not exist $(HTML_DIR)\qlo mkdir $(HTML_DIR)\qlo
+    if not exist $(HTML_DIR)\qlo\images mkdir $(HTML_DIR)\qlo\images
+    if not exist $(HTML_DIR)\auto mkdir $(HTML_DIR)\auto
+    if not exist $(HTML_DIR)\auto\images mkdir $(HTML_DIR)\auto\images
     if not exist $(IMG_DIR) mkdir $(IMG_DIR)
 
 $(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(MAKEFILE)
+    copy /Y tabs.css $(HTML_DIR)
+    copy /Y ql.css $(HTML_DIR)
     copy /Y images\* $(IMG_DIR)
+    copy /Y tabs.css $(HTML_DIR)\qlo
+    copy /Y ql.css $(HTML_DIR)\qlo
+    copy /Y images\* $(HTML_DIR)\qlo\images
+    copy /Y tabs.css $(HTML_DIR)\auto
+    copy /Y ql.css $(HTML_DIR)\auto
+    copy /Y images\* $(HTML_DIR)\auto\images
 	$(DOXYGEN) $(DOXY_CONFIG_AUTO)
 	$(DOXYGEN) $(DOXY_CONFIG_QLO)
 	$(DOXYGEN) $(DOXY_CONFIG_ROOT)
@@ -38,3 +50,4 @@ $(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(MAKEFILE)
 
 CLEAN :
 	-@ if EXIST $(BUILD_DIR)\* del /f /q $(BUILD_DIR)\*
+

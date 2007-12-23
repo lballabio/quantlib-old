@@ -4,15 +4,16 @@ EXTRA_DIST = \
     docs-QuantLibXL.vcproj \
     Makefile.vc \
     qlxl_footer.html \
-    qlxl_footer.subdir.html \
     qlxl_header.html \
     qlxl_header.subdir.html \
     quantlibxl.auto.doxy \
     quantlibxl.root.doxy \
-    style.css
+    doxygen.css \
+    tabs.css \
+    ql.css
 
 DOXYGEN_CONFIG := quantlibxl.auto.doxy
-DOXYGEN_CUSTOM := style.css qlxl_footer.html \
+DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css qlxl_footer.html \
                   qlxl_header.html qlxl_header.subdir.html \
                   qlxl_headeronline.html qlxl_headeronline.subdir.html
 DOXYGEN_INPUT := $(wildcard pages/*.docs) \
@@ -35,7 +36,7 @@ DOXYGEN_INPUT := $(wildcard pages/*.docs) \
 dist-hook:
 	mkdir -p $(distdir)/pages $(distdir)/images
 	cp -fp $(srcdir)/pages/*.docs $(distdir)/pages
-	cp -fp $(srcdir)/images/*.gif $(srcdir)/images/*.ico \
+	cp -fp $(srcdir)/images/*.ico \
 	      $(srcdir)/images/*.jpg $(srcdir)/images/*.png \
 	      $(srcdir)/images/*.php \
 	      $(distdir)/images
@@ -46,11 +47,19 @@ docs-dist: docs-html-dist
 docs-html: .time-stamp-html
 .time-stamp-html: .time-stamp-auto .time-stamp-root
 	mkdir -p html/images
-	cp -f images/*.gif html/images
+	cp -f tabs.css html
+	cp -f ql.css html
 	cp -f images/*.ico html/images
 	cp -f images/*.jpg html/images
 	cp -f images/*.png html/images
 	cp -f images/*.php html/images
+	mkdir -p html/auto/images
+	cp -f tabs.css html/auto
+	cp -f ql.css html/auto
+	cp -f images/*.ico html/auto/images
+	cp -f images/*.jpg html/auto/images
+	cp -f images/*.png html/auto/images
+	cp -f images/*.php html/auto/images
 	touch .time-stamp-html
 
 docs-html-dist: docs-html
@@ -61,11 +70,19 @@ docs-html-dist: docs-html
 docs-online: .time-stamp-html-online
 .time-stamp-html-online: .time-stamp-auto-online .time-stamp-root-online
 	mkdir -p html-online/images
-	cp -f images/*.gif html-online/images
+	cp -f tabs.css html-online
+	cp -f ql.css html-online
 	cp -f images/*.ico html-online/images
 	cp -f images/*.jpg html-online/images
 	cp -f images/*.png html-online/images
 	cp -f images/*.php html-online/images
+	mkdir -p html-online/auto/images
+	cp -f tabs.css html-online/auto
+	cp -f ql.css html-online/auto
+	cp -f images/*.ico html-online/auto/images
+	cp -f images/*.jpg html-online/auto/images
+	cp -f images/*.png html-online/auto/images
+	cp -f images/*.php html-online/auto/images
 	touch .time-stamp-html-online
 
 docs-online-dist: docs-online

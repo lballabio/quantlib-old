@@ -7,15 +7,16 @@ EXTRA_DIST = \
     qladdin.qlo.doxy \
     qladdin.root.doxy \
     qla_footer.html \
-    qla_footer.subdir.html \
     qla_header.html \
     qla_headeronline.html \
     qla_header.subdir.html \
     qla_headeronline.subdir.html \
-    style.css
+    doxygen.css \
+    tabs.css \
+    ql.css
 
 DOXYGEN_CONFIG := qladdin.qlo.doxy
-DOXYGEN_CUSTOM := style.css qla_footer.html qla_footer.subdir.html \
+DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css qla_footer.html \
 	qla_header.html qla_headeronline.html qla_header.subdir.html qla_headeronline.subdir.html
 DOXYGEN_INPUT := $(shell find ${top_srcdir}/qlo -name *.hpp) \
              $(wildcard ../../ObjectHandler/Docs/pages/*.docs) \
@@ -38,7 +39,7 @@ dist-hook:
 	mkdir -p $(distdir)/pages $(distdir)/auto.pages $(distdir)/images
 	cp -fp $(srcdir)/pages/*.docs $(distdir)/pages
 	cp -fp $(srcdir)/auto.pages/*.docs $(distdir)/auto.pages
-	cp -fp $(srcdir)/images/*.gif $(srcdir)/images/*.ico \
+	cp -fp $(srcdir)/images/*.ico \
 	      $(srcdir)/images/*.jpg $(srcdir)/images/*.png \
 	      $(srcdir)/images/*.php \
 	      $(distdir)/images
@@ -48,22 +49,52 @@ docs-dist: docs-html-dist
 
 docs-html: .time-stamp-html
 .time-stamp-html: .time-stamp-auto .time-stamp-qlo .time-stamp-root
+	cp tabs.css html
+	cp ql.css html
 	mkdir -p html/images
-	cp -f images/*.gif html/images
 	cp -f images/*.ico html/images
 	cp -f images/*.jpg html/images
 	cp -f images/*.png html/images
 	cp -f images/*.php html/images
+	cp tabs.css html/qlo
+	cp ql.css html/qlo
+	mkdir -p html/qlo/images
+	cp -f images/*.ico html/qlo/images
+	cp -f images/*.jpg html/qlo/images
+	cp -f images/*.png html/qlo/images
+	cp -f images/*.php html/qlo/images
+	cp tabs.css html/auto
+	cp ql.css html/auto
+	mkdir -p html/auto/images
+	cp -f images/*.ico html/auto/images
+	cp -f images/*.jpg html/auto/images
+	cp -f images/*.png html/auto/images
+	cp -f images/*.php html/auto/images
 	touch .time-stamp-html
 
 docs-online: .time-stamp-html-online
 .time-stamp-html-online: .time-stamp-auto-online .time-stamp-qlo-online .time-stamp-root-online
+	cp tabs.css html-online
+	cp ql.css html-online
 	mkdir -p html-online/images
-	cp -f images/*.gif html-online/images
 	cp -f images/*.ico html-online/images
 	cp -f images/*.jpg html-online/images
 	cp -f images/*.png html-online/images
 	cp -f images/*.php html-online/images
+	cp tabs.css html-online/qlo
+	cp ql.css html-online/qlo
+	mkdir -p html-online/qlo/images
+	cp -f images/*.ico html-online/qlo/images
+	cp -f images/*.jpg html-online/qlo/images
+	cp -f images/*.png html-online/qlo/images
+	cp -f images/*.php html-online/qlo/images
+	cp tabs.css html-online/auto
+	cp ql.css html-online/auto
+	mkdir -p html-online/auto/images
+	cp -f images/*.ico html-online/auto/images
+	cp -f images/*.jpg html-online/auto/images
+	cp -f images/*.png html-online/auto/images
+	cp -f images/*.php html-online/auto/images
 	touch .time-stamp-html-online
 
 docs-html-dist: docs-html

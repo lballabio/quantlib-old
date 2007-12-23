@@ -17,9 +17,12 @@ $(IMG_DIR) :
     if not exist $(IMG_DIR) mkdir $(IMG_DIR)
 
 $(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(DOXY_CONFIG)
+    copy /Y tabs.css $(HTML_DIR)
+    copy /Y ql.css $(HTML_DIR)
     copy /Y images\* $(IMG_DIR)
 	$(DOXYGEN) $(DOXY_CONFIG)
 	echo flagged > $@
 
 CLEAN :
 	-@ if EXIST $(BUILD_DIR)\* del /f /q $(BUILD_DIR)\*
+

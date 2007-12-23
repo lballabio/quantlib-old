@@ -1,0 +1,120 @@
+
+body {
+    margin: 10px;
+}
+
+#header {
+    min-width: 889px;
+    width: expression(document.body.clientWidth < 890? "889px": "auto");
+    float: left;
+    height: 72px;
+    width: 100%;
+    background-repeat: repeat-x;
+    background-image: url('images/header_bg.jpg');
+}
+
+.header-left {
+    float: left;
+}
+
+.header-right {
+    float: right;
+}
+
+#menu {
+    float: left;
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+#version {
+    background-image: url('images/menu_top.jpg');
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    padding: 10px 0px 0px 30px;
+}
+
+.navbar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-link:link {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-link:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-link:hover {
+    color: #CB232A;
+	background-color: transparent;
+    text-decoration: none;
+}
+
+.navbar-header {
+    background-image: url('images/menu_header.jpg');
+    padding: 15px 0px 5px 30px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.navbar-item {
+    background-color: #FF8D92;
+    padding: 3px 0px 3px 30px;
+    border-bottom: 2px solid #FDA1A4;
+}
+
+.block {
+    display: block;
+}
+
+.imglink:focus, .imglink:hover, .imglink:active, .imglink:visited {
+	background-color: transparent; /* override doxygen setting*/
+    outline: none;
+}
+
+#ntlogo {
+    background-color: #FF8D92;
+    width: 182;
+    height: 160;
+    padding: 30px 0px 0px 47px;
+}
+
+#sflogo {
+    background-color: #FF8D92;
+    width: 182;
+    height: 100;
+    padding: 30px 0px 30px 47px;
+}
+
+#content {
+    vertical-align: top;
+    margin: 10px 10px 10px 200px;
+    min-width: 689px;
+    width: expression(document.body.clientWidth < 690? "689px": "auto");
+}
+
+#footer {
+    clear: both;
+    background-repeat: repeat-x;
+    background-image: url('images/footer.jpg');
+    height: 30px;
+    font-family: sans-serif;
+    font-size: 10px;
+    text-align: center;
+    padding-top: 13px;
+    color: #CB232A;
+}
+
+#footer-link:focus, #footer-link:hover, #footer-link:active, #footer-link:visited {
+	background-color: transparent; /* override doxygen setting*/
+    text-decoration: underline;
+}
+

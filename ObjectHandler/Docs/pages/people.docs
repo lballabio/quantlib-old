@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -50,6 +50,9 @@ Excel Add-in Development in C/C++: Applications in Finance</a> by Steve Dalton.
 
 Unregistration of the Excel addin works around a bug in Excel's xlfUnregister
 function using a technique discovered by Laurent Longre.
+
+The graphics for this project are created by Audrey Schayes and Thomas Wyngaard
+at <a href="http://www.codefrisko.be">Codefrisko</a>.
 
 */
 
