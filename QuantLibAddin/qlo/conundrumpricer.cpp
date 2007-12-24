@@ -29,40 +29,43 @@
 #include <qlo/Enumerations/Factories/conundrumpricerfactory.hpp>
 #include <qlo/conundrumpricer.hpp>
 
+using boost::shared_ptr;
 
 namespace QuantLibAddin {
 
    CmsCouponPricer::CmsCouponPricer(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& v,
             const std::string& typeOfCmsCouponPricer,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
             const QuantLib::Handle<QuantLib::Quote>& meanReversion,
-            bool permanent) : FloatingRateCouponPricer(properties, permanent) {
-        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::CmsCouponPricer> >()
+            bool permanent)
+    : FloatingRateCouponPricer(properties, permanent) {
+        libraryObject_ =
+            ObjectHandler::Create<shared_ptr<QuantLib::CmsCouponPricer> >()
             (typeOfCmsCouponPricer, v, modelOfYieldCurve, meanReversion);
     }
 
 
 	ConundrumPricerByNumericalIntegration::ConundrumPricerByNumericalIntegration(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ObjectHandler::ValueObject>& properties,
 			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
 			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             QuantLib::Rate lowerLimit,
             QuantLib::Rate upperLimit,
 			QuantLib::Real precision,
-            bool permanent) : CmsCouponPricer(properties, permanent) {
-				/*QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve
-					= QuantLib::GFunctionFactory::ModelOfYieldCurve(2);*/
-				libraryObject_ = 
-					boost::shared_ptr<QuantLib::ConundrumPricerByNumericalIntegration> (new
-					QuantLib::ConundrumPricerByNumericalIntegration(swaptionVol,
-                                                                    modelOfYieldCurve,
-																	meanReversion,
-																	lowerLimit,
-																	upperLimit,
-																	precision));
+            bool permanent)
+    : CmsCouponPricer(properties, permanent) {
+        //QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve =
+        //    QuantLib::GFunctionFactory::ModelOfYieldCurve(2);
+        libraryObject_ = 
+	        shared_ptr<QuantLib::ConundrumPricerByNumericalIntegration>(new
+    	        QuantLib::ConundrumPricerByNumericalIntegration(swaptionVol,
+                                                                modelOfYieldCurve,
+													            meanReversion,
+													            lowerLimit,
+													            upperLimit,
+													            precision));
 	};
 }
-
