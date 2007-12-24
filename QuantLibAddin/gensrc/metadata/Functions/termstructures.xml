@@ -73,7 +73,7 @@
 
     <Member name='qlTermStructureTimeFromReference' type='QuantLib::TermStructure' superType='libraryTermStructure' loopParameter='Date'>
       <description>Returns the time from the reference date for the given TermStructure object</description>
-      <libraryFunction>referenceDate</libraryFunction>
+      <libraryFunction>timeFromReference</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
