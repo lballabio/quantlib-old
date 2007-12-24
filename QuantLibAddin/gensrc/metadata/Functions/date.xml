@@ -283,7 +283,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Date' exampleValue='21-Mar-2007'>
+          <Parameter name='Date' exampleValue='38791'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>date</description>
@@ -291,7 +291,7 @@
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. Default is TRUE.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -311,15 +311,15 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Code' exampleValue='H9'>
+          <Parameter name='Code' exampleValue='H6'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>2 letter string (e.g. H9)</description>
+            <description>2 letter string (e.g. H6)</description>
           </Parameter>
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. Default is TRUE.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -330,7 +330,7 @@
     </Procedure>
 
     <Procedure name='qlIMMcode' loopParameter='IMMdate'>
-      <description>returns the future code corresponding to a given IMM date (e.g. H6 for March 15th, 2006). It fails if the input date is not an IMM date.</description>
+      <description>returns the code corresponding to a given IMM date (e.g. H6 for Wednesday, March 15th, 2006). It fails if the input date is not an IMM date.</description>
       <alias>QuantLib::IMM::code</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -339,7 +339,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='IMMdate' exampleValue='21-Mar-2007'>
+          <Parameter name='IMMdate' exampleValue='38791'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>IMM date</description>
@@ -353,7 +353,7 @@
     </Procedure>
 
     <Procedure name='qlIMMNextCode'>
-      <description>returns the future code corresponding to a given IMM date (e.g. H6 for March 15th, 2006). It fails if the input date is not an IMM date.</description>
+      <description>returns the code for the first contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <alias>QuantLib::IMM::nextCode</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -362,15 +362,15 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Date' default='QuantLib::Date()'>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the next IMM date is calculated</description>
+            <description>date with respect to which the calculations are performed. Default is the current EvaluationDate.</description>
           </Parameter>
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. Default is TRUE.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -381,7 +381,7 @@
     </Procedure>
 
     <Procedure name='qlIMMNextCodes'>
-      <description>returns the codes for next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
+      <description>returns the codes for the next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -389,15 +389,15 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Date' default='QuantLib::Date()'>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the next IMM codes are calculated</description>
+            <description>date with respect to which the calculations are performed. Default is the current EvaluationDate.</description>
           </Parameter>
           <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
-            <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. If omitted returns the first 40 H, M, U, Z futures</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -408,7 +408,7 @@
     </Procedure>
 
     <Procedure name='qlIMMdate' loopParameter='IMMcode'>
-      <description>returns the IMM date corresponding to the given IMM code (e.g. March 15th, 2006 for H6).</description>
+      <description>returns the IMM date corresponding to the given IMM code (e.g. Wednesday, March 15th, 2006 for H6).</description>
       <alias>QuantLib::IMM::date</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -417,15 +417,15 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='IMMcode' exampleValue='H9'>
+          <Parameter name='IMMcode' exampleValue='H6'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>2 letter IMM code (e.q. \"H9\")</description>
+            <description>2 letter IMM code (e.g. H6)</description>
           </Parameter>
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reference date use to fix the decade (default is the current EvaluationDate)</description>
+            <description>date with respect to which the calculations are performed. Default is the current EvaluationDate.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -436,7 +436,7 @@
     </Procedure>
 
     <Procedure name='qlIMMNextDate'>
-      <description>returns the 1st delivery date for next contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
+      <description>returns the delivery date for the first contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <alias>QuantLib::IMM::nextDate</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -445,15 +445,15 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Date' default='QuantLib::Date()'>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the next IMM date is calculated</description>
+            <description>date with respect to which the calculations are performed. Default is the current EvaluationDate.</description>
           </Parameter>
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. Default is TRUE.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -464,7 +464,7 @@
     </Procedure>
 
     <Procedure name='qlIMMNextDates'>
-      <description>returns the delivery dates for next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
+      <description>returns the delivery dates for the next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -472,15 +472,15 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Date' default='QuantLib::Date()'>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the next IMM dates are calculated</description>
+            <description>date with respect to which the calculations are performed. Default is the current EvaluationDate.</description>
           </Parameter>
           <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
-            <description>FALSE to consider all futures, not just the main H, M, U, Z cycle</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. If omitted returns the first 40 H, M, U, Z futures</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -102,7 +102,7 @@
           <Parameter name='PricingEngine' exampleValue='PricingEngineID'>
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
-            <description>pricing engine object ID</description>
+            <description>PricingEngine object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
