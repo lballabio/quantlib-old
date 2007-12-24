@@ -60,20 +60,20 @@ namespace QuantLibAddin {
 
     VanillaSwap::VanillaSwap(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Period& fwdStart,
             const QuantLib::Period& swapTenor, 
-            QuantLib::Rate fixedRate,
-            const QuantLib::DayCounter& fixDayCounter,
             const boost::shared_ptr<QuantLib::IborIndex>& index,
+            QuantLib::Rate fixedRate,
+            const QuantLib::Period& fwdStart,
+            const QuantLib::DayCounter& fixDayCounter,
             QuantLib::Spread floatingLegSpread,
             bool permanent)
     : Swap(properties, permanent)
     {
-        libraryObject_ =
-            QuantLib::MakeVanillaSwap(swapTenor, index, fixedRate, fwdStart)
-                .withFloatingLegSpread(floatingLegSpread)
-                .withFixedLegDayCount(fixDayCounter)
-                .operator boost::shared_ptr<QuantLib::VanillaSwap>();
+        libraryObject_ = QuantLib::MakeVanillaSwap(swapTenor, index,
+                                                   fixedRate, fwdStart)
+                         .withFixedLegDayCount(fixDayCounter)
+                         .withFloatingLegSpread(floatingLegSpread)
+                         .operator boost::shared_ptr<QuantLib::VanillaSwap>();
     }
 
     VanillaSwap::VanillaSwap(

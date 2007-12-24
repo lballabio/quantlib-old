@@ -140,37 +140,36 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ForwardStart' exampleValue='0D'>
+          <Parameter name='SwapTenor' exampleValue='5Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>forward start period</description>
+            <description>swap tenor period (e.g. 5Y)</description>
           </Parameter>
-          <Parameter name='SwapTenor' exampleValue='1Y'>
-            <type>QuantLib::Period</type>
+          <Parameter name='IborIndex' exampleValue='Euribor6M'>
+            <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>swap tenor period</description>
+            <description>floating IborIndex object ID</description>
           </Parameter>
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate. If omitted, default = null</description>
+            <description>the fixed rate. If omitted, default is ATM rate</description>
+          </Parameter>
+          <Parameter name='ForwardStart' exampleValue='0D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward start period. If omitted, default is spot starting</description>
           </Parameter>
           <Parameter name='FixedLegDayCounter' default='"30/360 (Bond Basis)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter (default is 30/360 Bond Basis)</description>
           </Parameter>
-          <Parameter name='IborIndex'>
-            <type>QuantLib::IborIndex</type>
-            <tensorRank>scalar</tensorRank>
-            <description>floating IborIndex object ID</description>
-          </Parameter>
           <Parameter name='FloatingLegSpread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>the spread in the floating leg rate. If omitted, default = null</description>
           </Parameter>
-          <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
         </Parameters>
       </ParameterList>
     </Constructor>

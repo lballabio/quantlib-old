@@ -43,9 +43,10 @@ namespace QuantLibAddin {
         Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
              const QuantLib::Period& swapTenor,
              const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
-             const QuantLib::Spread iborSpread,
-             const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
+             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+             QuantLib::Spread iborSpread,
              const QuantLib::Period& forwardStart,
+             const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
              bool permanent);
 
         std::vector<std::vector<boost::any> > legAnalysis(QuantLib::Size i);

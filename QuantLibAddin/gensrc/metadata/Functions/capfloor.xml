@@ -220,33 +220,38 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='OptionType'>
+          <Parameter name='OptionType' exampleValue ='Cap'>
             <type>QuantLib::CapFloor::Type</type>
             <tensorRank>scalar</tensorRank>
-            <description>option type (cap or floor)</description>
+            <description>option type (Cap or Floor)</description>
           </Parameter>
-          <Parameter name='Length' exampleValue = '5Y'>
+          <Parameter name='Length' exampleValue='10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>as period (e.g. 2Y)</description>
+            <description>as period (e.g. 10Y)</description>
           </Parameter>
-          <Parameter name='IborIndex'>
+          <Parameter name='IborIndex' exampleValue='Euribor6M'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating index object ID</description>
+            <description>floating IborIndex object ID</description>
           </Parameter>
           <Parameter name='Strike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>strike</description>
+            <description>strike. If omitted, default is ATM rate.</description>
           </Parameter>
           <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
-          <Parameter name='ForwardStart' exampleValue = '0D'>
+          <Parameter name='ForwardStart' exampleValue='0D'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>as period (e.g. '2Y'). The default is '0D'. If '0D' the first caplet is removed.</description>
+            <description>as period (if zero days the first caplet is removed). The default is '0D'.</description>
           </Parameter>
-          <!--<Parameter name='CapFloorEngineID' libraryClass='PricingEngine' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
+          <!--<Parameter name='PricingEngineID' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
+          <Parameter name='PricingEngineID' exampleValue='CapFloorEngineID'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>CapFloor PricingEngine object ID</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>

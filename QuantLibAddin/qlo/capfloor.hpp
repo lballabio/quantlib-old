@@ -44,6 +44,7 @@ namespace QuantLibAddin {
                  const boost::shared_ptr<QuantLib::IborIndex>& index,
                  QuantLib::Rate strike,
                  const QuantLib::Period& forwardStart,
+                 const boost::shared_ptr<QuantLib::PricingEngine>& engine,
                  bool permanent);
         std::vector<std::vector<boost::any> > legAnalysis();
     };

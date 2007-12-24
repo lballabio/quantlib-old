@@ -33,8 +33,9 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::VanillaSwap>& vanillaSwap,
         const boost::shared_ptr<QuantLib::Exercise>& exercise,
         QuantLib::Settlement::Type settlementType,
-        bool permanent) : Instrument(properties, permanent) {
-
+        bool permanent)
+    : Instrument(properties, permanent)
+    {
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::Swaption(vanillaSwap, exercise, settlementType));
     }
@@ -42,13 +43,15 @@ namespace QuantLibAddin {
     Swaption::Swaption(
          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
          const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
-         QuantLib::Rate strike,
          const QuantLib::Period& optionTenor,
-         bool permanent) : Instrument(properties, permanent) {
-
-        libraryObject_ = QuantLib::MakeSwaption(swapIndex, strike,
-                            optionTenor).operator
-                boost::shared_ptr<QuantLib::Swaption>();
+         QuantLib::Rate strike,
+         const boost::shared_ptr<QuantLib::PricingEngine>& engine,
+         bool permanent)
+    : Instrument(properties, permanent)
+    {
+        libraryObject_= QuantLib::MakeSwaption(swapIndex, optionTenor, strike)
+                        .withPricingEngine(engine)
+                        .operator boost::shared_ptr<QuantLib::Swaption>();
     }
 
 }

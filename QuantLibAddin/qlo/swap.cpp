@@ -30,7 +30,6 @@
 
 #include <ql/instruments/swap.hpp>
 #include <ql/instruments/makecms.hpp>
-#include <ql/cashflows/couponpricer.hpp>
 
 namespace QuantLibAddin {
 
@@ -50,16 +49,18 @@ namespace QuantLibAddin {
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Period& swapTenor,
         const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
-        const QuantLib::Spread iborSpread,
-        const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
+        const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+        QuantLib::Spread iborSpread,
         const QuantLib::Period& forwardStart,
-        bool permanent) : Instrument(properties, permanent) {
-
-        boost::shared_ptr<QuantLib::Swap> swap = QuantLib::MakeCms(swapTenor, swapIndex, iborSpread,
-            forwardStart).operator
-                boost::shared_ptr<QuantLib::Swap>();
-        QuantLib::setCouponPricer(swap->leg(0), pricer);
-        libraryObject_ = swap;
+        const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
+        bool permanent)
+    : Instrument(properties, permanent)
+    {
+        libraryObject_ = QuantLib::MakeCms(swapTenor, swapIndex,
+                                           iborIndex, iborSpread,
+                                           forwardStart)
+                         .withCmsCouponPricer(pricer)
+                         .operator boost::shared_ptr<QuantLib::Swap>();
     }
 
     std::vector<std::vector<boost::any> > Swap::legAnalysis(QuantLib::Size i)

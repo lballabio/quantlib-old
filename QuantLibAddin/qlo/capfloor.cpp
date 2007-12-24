@@ -48,10 +48,14 @@ namespace QuantLibAddin {
                        const boost::shared_ptr<QuantLib::IborIndex>& index,
                        QuantLib::Rate strike,
                        const QuantLib::Period& forwardStart,
-                       bool permanent) : Instrument(properties, permanent) {
+                       const boost::shared_ptr<QuantLib::PricingEngine>& engine,
+                       bool permanent)
+    : Instrument(properties, permanent)
+    {
         libraryObject_ = QuantLib::MakeCapFloor(capFloorType, capFloorTenor,
-            index, strike, forwardStart).operator
-                boost::shared_ptr<QuantLib::CapFloor>();
+                                                index, strike, forwardStart)
+                         .withPricingEngine(engine)
+                         .operator boost::shared_ptr<QuantLib::CapFloor>();
     }
 
     std::vector<std::vector<boost::any> > CapFloor::legAnalysis()

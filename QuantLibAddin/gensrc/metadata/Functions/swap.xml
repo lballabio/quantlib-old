@@ -9,6 +9,7 @@
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
     <include>ql/termstructures/yieldtermstructure.hpp</include>
   </serializationIncludes>
   <addinIncludes>
@@ -18,12 +19,13 @@
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>
     <include>ql/instruments/swap.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
     <include>ql/termstructures/yieldtermstructure.hpp</include>
   </addinIncludes>
   <copyright>
     Copyright (C) 2005 Eric Ehlers
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2006 Katiuscia Manzoni
@@ -62,32 +64,36 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='SwapTenor' exampleValue='5Y'>
+          <Parameter name='SwapTenor' exampleValue='10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>swap tenor period</description>
           </Parameter>
-          <Parameter name='SwapIndex'>
+          <Parameter name='SwapIndex' exampleValue='EuriborSwapFixA10Y'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>swap index object ID</description>
+            <description>SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='IborSpread' exampleValue='0%'>
+          <Parameter name='IborIndex' exampleValue='Euribor3M'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>IborIndex object ID</description>
+          </Parameter>
+          <Parameter name='IborSpread' default='QuantLib::Null&lt;QuantLib::Spread&gt;()'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>spread over the ibor leg</description>
           </Parameter>
-          <Parameter name='CmsCouponPricer' exampleValue='CmsCouponPricer'>
-            <type>QuantLib::CmsCouponPricer</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Cms coupon pricer object ID</description>
-          </Parameter>
-          <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='0*QuantLib::Days'>-->
-          <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
           <Parameter name='ForwardStart' exampleValue='0D'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period</description>
+          </Parameter>
+          <!--<Parameter name='CmsCouponPricer' default='boost::shared_ptr&lt;QuantLib::CmsCouponPricer&gt;()'>-->
+          <Parameter name='CmsCouponPricer' exampleValue='CmsCouponPricerID'>
+            <type>QuantLib::CmsCouponPricer</type>
+            <tensorRank>scalar</tensorRank>
+            <description>CmsCouponPricer object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

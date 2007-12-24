@@ -86,20 +86,26 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='SwapIndex'>
+          <Parameter name='SwapIndex' exampleValue='EuriborSwapFixA10Y'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating swapIndex object ID</description>
+            <description>SwapIndex object ID</description>
+          </Parameter>
+          <Parameter name='OptionTenor' exampleValue='5Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option tenor as Period (e.g. '5Y')</description>
           </Parameter>
           <Parameter name='Strike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>strike</description>
+            <description>strike. If omitted, default is at-the-money</description>
           </Parameter>
-          <Parameter name='OptionTenor' exampleValue = '0D'>
-            <type>QuantLib::Period</type>
+          <!--<Parameter name='PricingEngineID' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
+          <Parameter name='PricingEngineID' exampleValue='SwaptionEngineID'>
+            <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
-            <description>as period (e.g. '2Y') </description>
+            <description>Swaption PricingEngine object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
