@@ -25,6 +25,8 @@
 
 \page log_messages Logging and Error Handling
 
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
 \section log_overview Overview
 
 %ObjectHandler allows specification of a log file where information and error

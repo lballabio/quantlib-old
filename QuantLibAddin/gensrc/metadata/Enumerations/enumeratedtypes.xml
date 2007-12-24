@@ -126,8 +126,12 @@
           <value>QuantLib::Australia()</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>Brazil</string>
-          <value>QuantLib::Brazil()</value>
+          <string>Brazil::Settlement</string>
+          <value>QuantLib::Brazil(QuantLib::Brazil::Settlement)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Brazil::Exchange</string>
+          <value>QuantLib::Brazil(QuantLib::Brazil::Exchange)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Canada::Settlement</string>

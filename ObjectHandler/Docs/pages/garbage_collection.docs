@@ -25,6 +25,8 @@
 
 \page garbage_collection Garbage Collection
 
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
 \section gc_overview Overview
 
 The Excel implementation of %ObjectHandler supports function

@@ -23,6 +23,8 @@
 
 /*! \page observer Observer/Observable Design Pattern
 
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
 \section observer_overview Overview
 
 QuantLib implements a mechanism called the Observer/Observable Design Pattern

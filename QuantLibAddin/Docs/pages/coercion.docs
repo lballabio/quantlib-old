@@ -23,6 +23,8 @@
 
 /*! \page coercion Coercion
 
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
 \section coercion_overview Overview
 
 QuantLibXL supports a feature called Coercion in which the arguments to a

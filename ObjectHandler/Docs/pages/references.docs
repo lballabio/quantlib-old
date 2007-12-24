@@ -23,6 +23,8 @@
 
 /*! \page references References, Permanent Objects and Triggers
 
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
 \section ref_overview Overview
 
 \li On the Excel platform, one object may refer to another either by a cell

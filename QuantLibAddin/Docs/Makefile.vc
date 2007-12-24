@@ -16,7 +16,6 @@ DEPENDENCIES = \
 	pages\*.docs \
 	images\*.jpg \
 	images\*.png \
-	images\*.gif \
 	images\*.ico \
 	$(DOXY_CONFIG_AUTO) \
 	$(DOXY_CONFIG_QLO) \

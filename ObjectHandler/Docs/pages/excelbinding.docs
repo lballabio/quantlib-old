@@ -25,6 +25,8 @@
 
 \page excelbinding Excel Binding
 
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
 \section xlbind_overview Overview
 
 %ObjectHandler comprises a core C++ library supplemented with additional

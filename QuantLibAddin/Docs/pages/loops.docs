@@ -23,6 +23,8 @@
 
 /*! \page loops Looping Functions
 
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
 \section loop_overview Overview
 
 Some QuantLibXL functions are configured to loop automatically on one of the
