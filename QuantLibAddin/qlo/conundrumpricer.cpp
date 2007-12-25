@@ -30,22 +30,24 @@
 #include <qlo/conundrumpricer.hpp>
 
 using boost::shared_ptr;
+using ObjectHandler::Create;
 
 namespace QuantLibAddin {
 
    CmsCouponPricer::CmsCouponPricer(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& v,
-            const std::string& typeOfCmsCouponPricer,
+            const std::string& cmsPricerType,
             QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
             const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             bool permanent)
     : FloatingRateCouponPricer(properties, permanent) {
         libraryObject_ =
-            ObjectHandler::Create<shared_ptr<QuantLib::CmsCouponPricer> >()
-            (typeOfCmsCouponPricer, v, modelOfYieldCurve, meanReversion);
+            Create<shared_ptr<QuantLib::CmsCouponPricer> >()(cmsPricerType,
+                                                             v,
+                                                             modelOfYieldCurve,
+                                                             meanReversion);
     }
-
 
 	ConundrumPricerByNumericalIntegration::ConundrumPricerByNumericalIntegration(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
