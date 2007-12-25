@@ -11,6 +11,7 @@
     <include>qlo/index.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
     <include>ql/termstructures/yieldtermstructure.hpp</include>
   </serializationIncludes>
   <addinIncludes>
@@ -22,9 +23,11 @@
     <include>qlo/index.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
     <include>ql/termstructures/yieldtermstructure.hpp</include>
   </addinIncludes>
   <copyright>
+    Copyright (C) 2007 Ferdinando Ametrano
     Copyright (C) 2006 Giorgio Facchinetti
   </copyright>
   <Functions>
@@ -50,6 +53,11 @@
             <type>QuantLib::SwapIndex</type>
             <tensorRank>vector</tensorRank>
             <description>SwapIndex object IDs</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>IborIndex object ID</description>
           </Parameter>
           <Parameter name='BidsAsks' >
             <type>QuantLib::Quote</type>

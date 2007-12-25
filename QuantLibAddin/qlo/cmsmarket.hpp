@@ -1,6 +1,6 @@
-/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
+ Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2006 Giorgio Facchinetti
 
  This file is part of QuantLib, a free-software/open-source library
@@ -31,6 +31,7 @@ namespace QuantLib {
     class CmsMarket;
     class Period;
     class SwapIndex;
+    class IborIndex;
     class Quote;
     class YieldTermStructure;
     class CmsMarketCalibration;
@@ -50,6 +51,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Period>& expiries,
             const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndices,
+            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& bidAskSpreads,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldTermStructure,
             const std::vector<boost::shared_ptr<QuantLib::CmsCouponPricer> >& pricers,
