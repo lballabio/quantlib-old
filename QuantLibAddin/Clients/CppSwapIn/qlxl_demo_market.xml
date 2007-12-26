@@ -1191,6 +1191,7 @@
 			<FixingDays>0</FixingDays>
 			<Calendar>Target</Calendar>
 			<Convention>Following</Convention>
+			<EndofMonth>0</EndofMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
 		</px>
@@ -1209,6 +1210,7 @@
 			<FixingDays>1</FixingDays>
 			<Calendar>Target</Calendar>
 			<Convention>Following</Convention>
+			<EndofMonth>0</EndofMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
 		</px>
@@ -1227,6 +1229,7 @@
 			<FixingDays>2</FixingDays>
 			<Calendar>Target</Calendar>
 			<Convention>Following</Convention>
+			<EndofMonth>0</EndofMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
 		</px>
@@ -1245,6 +1248,7 @@
 			<FixingDays>2</FixingDays>
 			<Calendar>Target</Calendar>
 			<Convention>Following</Convention>
+			<EndofMonth>0</EndofMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
 		</px>
@@ -1263,6 +1267,7 @@
 			<FixingDays>2</FixingDays>
 			<Calendar>Target</Calendar>
 			<Convention>Following</Convention>
+			<EndofMonth>0</EndofMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
 		</px>
@@ -1281,6 +1286,7 @@
 			<FixingDays>2</FixingDays>
 			<Calendar>Target</Calendar>
 			<Convention>Following</Convention>
+			<EndofMonth>0</EndofMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
 		</px>
@@ -1299,6 +1305,7 @@
 			<FixingDays>2</FixingDays>
 			<Calendar>Target</Calendar>
 			<Convention>Modified Following</Convention>
+			<EndofMonth>0</EndofMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
 		</px>
@@ -1317,6 +1324,7 @@
 			<FixingDays>2</FixingDays>
 			<Calendar>Target</Calendar>
 			<Convention>Modified Following</Convention>
+			<EndofMonth>0</EndofMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
 		</px>
@@ -1335,6 +1343,7 @@
 			<FixingDays>2</FixingDays>
 			<Calendar>Target</Calendar>
 			<Convention>Modified Following</Convention>
+			<EndofMonth>0</EndofMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
 		</px>
@@ -1349,7 +1358,7 @@
 					<value>EURFUTU7_Quote</value>
 				</variant_>
 			</PriceQuote>
-			<IMM>M7</IMM>
+			<IMM>U7</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
 			<BDayConvention>Modified Following</BDayConvention>
@@ -1373,7 +1382,7 @@
 					<value>EURFUTV7_Quote</value>
 				</variant_>
 			</PriceQuote>
-			<IMM>N7</IMM>
+			<IMM>V7</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
 			<BDayConvention>Modified Following</BDayConvention>
@@ -1397,7 +1406,7 @@
 					<value>EURFUTX7_Quote</value>
 				</variant_>
 			</PriceQuote>
-			<IMM>Q7</IMM>
+			<IMM>X7</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
 			<BDayConvention>Modified Following</BDayConvention>
@@ -1421,7 +1430,7 @@
 					<value>EURFUTZ7_Quote</value>
 				</variant_>
 			</PriceQuote>
-			<IMM>U7</IMM>
+			<IMM>Z7</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
 			<BDayConvention>Modified Following</BDayConvention>
@@ -1445,7 +1454,7 @@
 					<value>EURFUTH8_Quote</value>
 				</variant_>
 			</PriceQuote>
-			<IMM>Z7</IMM>
+			<IMM>H8</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
 			<BDayConvention>Modified Following</BDayConvention>
@@ -1469,7 +1478,7 @@
 					<value>EURFUTM8_Quote</value>
 				</variant_>
 			</PriceQuote>
-			<IMM>H8</IMM>
+			<IMM>M8</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
 			<BDayConvention>Modified Following</BDayConvention>
@@ -1493,7 +1502,7 @@
 					<value>EURFUTU8_Quote</value>
 				</variant_>
 			</PriceQuote>
-			<IMM>M8</IMM>
+			<IMM>U8</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
 			<BDayConvention>Modified Following</BDayConvention>
@@ -1517,7 +1526,7 @@
 					<value>EURFUTZ8_Quote</value>
 				</variant_>
 			</PriceQuote>
-			<IMM>U8</IMM>
+			<IMM>Z8</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
 			<BDayConvention>Modified Following</BDayConvention>
@@ -1541,7 +1550,7 @@
 					<value>EURFUTH9_Quote</value>
 				</variant_>
 			</PriceQuote>
-			<IMM>Z8</IMM>
+			<IMM>H9</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
 			<BDayConvention>Modified Following</BDayConvention>
@@ -1565,7 +1574,7 @@
 					<value>EURFUTM9_Quote</value>
 				</variant_>
 			</PriceQuote>
-			<IMM>H9</IMM>
+			<IMM>M9</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
 			<BDayConvention>Modified Following</BDayConvention>
