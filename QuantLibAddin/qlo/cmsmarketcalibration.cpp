@@ -25,21 +25,25 @@
 #include <qlo/cmsmarket.hpp>
 #include <qlo/swaptionvolstructure.hpp>
 
-#include <ql/termstructures/volatility/swaption/cmsmarket.hpp>
-
 #include <boost/timer.hpp>
+
+using boost::shared_ptr;
+using ObjectHandler::LibraryObject;
+using QuantLib::EndCriteria;
+using QuantLib::OptimizationMethod;
 
 namespace QuantLibAddin {
 
      CmsMarketCalibration::CmsMarketCalibration(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        const shared_ptr<ObjectHandler::ValueObject>& properties,
         QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& volCube,
-        boost::shared_ptr<QuantLib::CmsMarket>& cmsMarket,
+        shared_ptr<QuantLib::CmsMarket>& cmsMarket,
         const QuantLib::Matrix& weights,
         QuantLib::CmsMarketCalibration::CalibrationType calibrationType,
-        bool permanent) : ObjectHandler::LibraryObject<QuantLib::CmsMarketCalibration>(properties, permanent) {
+        bool permanent)
+    : LibraryObject<QuantLib::CmsMarketCalibration>(properties, permanent) {
         
-        libraryObject_ = boost::shared_ptr<QuantLib::CmsMarketCalibration>(new
+        libraryObject_ = shared_ptr<QuantLib::CmsMarketCalibration>(new
             QuantLib::CmsMarketCalibration(volCube,
                                            cmsMarket,
                                            weights,
@@ -62,8 +66,8 @@ namespace QuantLibAddin {
     }
 
    QuantLib::Array
-   CmsMarketCalibration::compute(const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
-                                 const boost::shared_ptr<QuantLib::OptimizationMethod>& method,
+   CmsMarketCalibration::compute(const shared_ptr<EndCriteria>& endCriteria,
+                                 const shared_ptr<OptimizationMethod>& method,
                                  const QuantLib::Array& guess,
                                  bool isMeanReversionFixed) {
         boost::timer t;
@@ -77,4 +81,3 @@ namespace QuantLibAddin {
    }
 
 }
-

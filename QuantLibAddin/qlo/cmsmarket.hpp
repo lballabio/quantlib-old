@@ -21,29 +21,12 @@
 #define qla_cmsmarket_hpp
 
 #include <oh/libraryobject.hpp>
-
-#include <ql/termstructures/volatility/swaption/cmsmarketcalibration.hpp>
-#include <ql/types.hpp>
-
-namespace QuantLib {
-    class CmsCouponPricer;
-    class Matrix;
-    class CmsMarket;
-    class Period;
-    class SwapIndex;
-    class IborIndex;
-    class Quote;
-    class YieldTermStructure;
-    class CmsMarketCalibration;
-    class SwaptionVolatilityStructure;
-    class EndCriteria;
-    class OptimizationMethod;
-    class Array;
-}
+#include <ql/termstructures/volatility/swaption/cmsmarket.hpp>
 
 namespace QuantLibAddin {
     
-    std::vector<std::vector<boost::any> > browseCmsMarket(QuantLib::Matrix & cmsMarket);
+    std::vector<std::vector<boost::any> > browseCmsMarket(
+        const QuantLib::Matrix& cmsMarket);
     
     class CmsMarket: public ObjectHandler::LibraryObject<QuantLib::CmsMarket>{
       public:
@@ -53,15 +36,14 @@ namespace QuantLibAddin {
             const std::vector<boost::shared_ptr<QuantLib::SwapIndex> >& swapIndices,
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& bidAskSpreads,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldTermStructure,
             const std::vector<boost::shared_ptr<QuantLib::CmsCouponPricer> >& pricers,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discountingTS,
             bool permanent);
         
-        const std::vector<std::vector<boost::any> > getCmsMarket();
+        std::vector<std::vector<boost::any> > getCmsMarket();
 
     };  
 
 }
 
 #endif
-

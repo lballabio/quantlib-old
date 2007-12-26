@@ -22,78 +22,80 @@
 #endif
 
 #include <qlo/cmsmarket.hpp>
-#include <qlo/swaptionvolstructure.hpp>
-#include <ql/termstructures/volatility/swaption/cmsmarket.hpp>
+
+using std::vector;
+using boost::shared_ptr;
+using boost::any;
+using QuantLib::Size;
+using QuantLib::CmsCouponPricer;
+using QuantLib::ConundrumPricer;
+using QuantLib::Matrix;
+using QuantLib::Handle;
+using QuantLib::Quote;
 
 namespace QuantLibAddin {
 
     CmsMarket::CmsMarket(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const std::vector<QuantLib::Period>& expiries,
-        const std::vector< boost::shared_ptr<QuantLib::SwapIndex> >& swapIndices,
-        const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
-        const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& bidAskSpreads,
-        const QuantLib::Handle<QuantLib::YieldTermStructure>& yieldTermStructure,
-        const std::vector< boost::shared_ptr<QuantLib::CmsCouponPricer> >& pricers,
-        bool permanent) : ObjectHandler::LibraryObject<QuantLib::CmsMarket>(properties, permanent)
+        const shared_ptr<ObjectHandler::ValueObject>& properties,
+        const vector<QuantLib::Period>& expiries,
+        const vector<shared_ptr<QuantLib::SwapIndex> >& swapIndices,
+        const shared_ptr<QuantLib::IborIndex>& iborIndex,
+        const vector<vector<Handle<Quote> > >& bidAskSpreads,
+        const vector<shared_ptr<CmsCouponPricer> >& pricers,
+        const Handle<QuantLib::YieldTermStructure>& discountingTS,
+        bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::CmsMarket>(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::CmsMarket>(new
+        Size n = pricers.size();
+        vector<shared_ptr<ConundrumPricer> > p(n);
+        for (Size i=0; i<n; ++i) {
+            p[i] = boost::dynamic_pointer_cast<ConundrumPricer>(pricers[i]);
+            QL_REQUIRE(p[i],
+                       "ConundrumPricer needed, not just a CmsCouponPricer");
+        }
+        libraryObject_ = shared_ptr<QuantLib::CmsMarket>(new
             QuantLib::CmsMarket(expiries,
                                 swapIndices,
                                 iborIndex,
                                 bidAskSpreads,
-                                pricers,
-                                yieldTermStructure));
+                                p,
+                                discountingTS));
     }
 
-    const std::vector<std::vector<boost::any> > CmsMarket::getCmsMarket()
+    vector<vector<any> > CmsMarket::getCmsMarket()
     {
-        QuantLib::Matrix cmsMarket = libraryObject_->browse();
+        Matrix cmsMarket = libraryObject_->browse();
         return browseCmsMarket(cmsMarket);
     }
 
 
-    std::vector<std::vector<boost::any> > browseCmsMarket(QuantLib::Matrix & cmsMarket){
-        std::vector<std::vector<boost::any> > result;
-        QuantLib::Size numberOfColumn = 19;
+    vector<vector<any> > browseCmsMarket(const Matrix& cmsMarket) {
+        Size numberOfColumn = 14;
+        Size numberOfRows = cmsMarket.rows()+1;
+        vector<vector<any> > result(numberOfRows, vector<any>(numberOfColumn));
 
-        std::vector<boost::any> headings(numberOfColumn);
-        headings[0]=std::string("CM Swap Index");
-        headings[1]=std::string("Maturity");
+        result[0][ 0] = std::string("CM Swap Index");
+        result[0][ 1] = std::string("Maturity");
 
-        headings[2]=std::string("Mkt Bid - Spread (bps)");
-        headings[3]=std::string("Mkt Ask - Spread (bps)");
-        headings[4]=std::string("Mkt Mid - Spread (bps)");
-        headings[5]=std::string("Model Mid - Spread (bps)");
-        headings[6]=std::string("Error - Spread (bps)");
-        headings[7]=std::string("Outside bid/ask (bps)");
+        result[0][ 2] = std::string("Mkt Bid - Spread (bps)");
+        result[0][ 3] = std::string("Mkt Ask - Spread (bps)");
+        result[0][ 4] = std::string("Mkt Mid - Spread (bps)");
+        result[0][ 5] = std::string("Model Mid - Spread (bps)");
+        result[0][ 6] = std::string("Error - Spread (bps)");
+        result[0][ 7] = std::string("Outside bid/ask (bps)");
         
-        headings[8]=std::string("Mkt bid - Spot price");
-        headings[9]=std::string("Mkt ask - Spot price");
-        headings[10]=std::string("Mkt mid - Spot price");
-        headings[11]=std::string("Model mid - Spot price");
-        headings[12]=std::string("Error - Spot price");  
+        result[0][ 8] = std::string("Mkt mid - Spot price");
+        result[0][ 9] = std::string("Model mid - Spot price");
+        result[0][10] = std::string("Error - Spot price");  
         
-        headings[13]=std::string("Mkt bid - Fwd price");
-        headings[14]=std::string("Mkt ask - Fwd price");
-        headings[15]=std::string("Mkt mid - Fwd price");
-        headings[16]=std::string("Model mid - Fwd price");
-        headings[17]=std::string("Error - Fwd price"); 
+        result[0][11] = std::string("Mkt mid - Fwd price");
+        result[0][12] = std::string("Model mid - Fwd price");
+        result[0][13] = std::string("Error - Fwd price"); 
         
-        headings[18]=std::string("Mean rev.");
+        for (Size i=0; i<cmsMarket.rows(); ++i)
+            for(Size j=0; j<cmsMarket.columns(); ++j)
+               result[i+1][j] = cmsMarket[i][j];
 
-        result.push_back(headings);
-
-        for(QuantLib::Size i=0; i<cmsMarket.rows(); ++i)
-        {
-            std::vector<boost::any> row(numberOfColumn, std::string("N/A"));
-            for(QuantLib::Size j=0; j<cmsMarket.columns(); ++j)
-            {
-               row[j] = cmsMarket[i][j];
-            }
-            result.push_back(row);
-        }
         return result;
     }
 }
-

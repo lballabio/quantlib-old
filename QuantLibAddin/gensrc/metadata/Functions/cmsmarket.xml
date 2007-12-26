@@ -3,28 +3,22 @@
   <displayName>Cms Market</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
-    <include>qlo/cmsmarket.hpp</include>
     <include>qlo/quotes.hpp</include>
-    <include>qlo/couponvectors.hpp</include>
-    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/cmsmarket.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
-    <include>ql/termstructures/yieldtermstructure.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
   <addinIncludes>
     <include>qlo/quotes.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
-    <include>qlo/couponvectors.hpp</include>
-    <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
-    <include>ql/termstructures/yieldtermstructure.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <copyright>
     Copyright (C) 2007 Ferdinando Ametrano
@@ -44,37 +38,37 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Expiries' exampleValue = '10Y'>
+          <Parameter name='SwapLengths' exampleValue='2Y,5Y,10Y,20Y,30Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
-            <description>cms matrix's expiries as periods</description>
+            <description>vector of swap lengths</description>
           </Parameter>
-          <Parameter name='SwapIndices'>
+          <Parameter name='SwapIndexes' exampleValue='EuriborSwapFixA2Y,EuriborSwapFixA5Y,EuriborSwapFixA10Y,EuriborSwapFixA20Y,EuriborSwapFixA30Y'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>vector</tensorRank>
-            <description>SwapIndex object IDs</description>
+            <description>vector of SwapIndex object IDs</description>
           </Parameter>
-          <Parameter name='IborIndex'>
+          <Parameter name='IborIndex' exampleValue='Euribor3M'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>IborIndex object ID</description>
           </Parameter>
-          <Parameter name='BidsAsks' >
+          <Parameter name='BidAskSpreads'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
-            <description>matrix of bid and ask cms spreads quotes.</description>
+            <description>matrix of bid/ask cms quotes (spread over ibor leg).</description>
           </Parameter>
-          <Parameter name='YieldCurve' >
+          <Parameter name='CmsCouponPricers'>
+            <type>QuantLib::CmsCouponPricer</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of ConundrumPricer object IDs</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
-          </Parameter>
-          <Parameter name='CmsCouponPricer'>
-            <type>QuantLib::CmsCouponPricer</type>
-            <tensorRank>vector</tensorRank>
-            <description>Cms coupon pricer object ID</description>
+            <description>discounting YieldTermStructure object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>
