@@ -55,14 +55,14 @@ namespace QuantLibAddin {
         QuantLib::Spread iborSpread,
         const QuantLib::Period& forwardStart,
         const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
-        bool permanent) : Instrument(properties, permanent) {
-
-        libraryObject_ =
-            QuantLib::MakeCms(swapTenor, swapIndex,
-                              iborIndex, iborSpread,
-                              forwardStart)
-                              .withCmsCouponPricer(pricer)
-                              .operator shared_ptr<QuantLib::Swap>();
+        bool permanent)
+    : Instrument(properties, permanent)
+    {
+        libraryObject_ = QuantLib::MakeCms(swapTenor, swapIndex,
+                                           iborIndex, iborSpread,
+                                           forwardStart)
+                         .withCmsCouponPricer(pricer)
+                         .operator boost::shared_ptr<QuantLib::Swap>();
     }
 
     std::vector<std::vector<boost::any> > Swap::legAnalysis(QuantLib::Size i)
