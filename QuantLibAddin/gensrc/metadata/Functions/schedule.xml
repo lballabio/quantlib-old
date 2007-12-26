@@ -103,10 +103,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Index' exampleValue='0'>
+          <Parameter name='Index' exampleValue='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>zero based period index</description>
+            <description>one based period index</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -125,8 +125,7 @@
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
-        <Parameters>
-        </Parameters>
+        <Parameters/>
       </ParameterList>
       <ReturnValue>
         <type>bool</type>
@@ -143,8 +142,7 @@
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
-        <Parameters>
-        </Parameters>
+        <Parameters/>
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Calendar</type>
@@ -232,23 +230,22 @@
       </ReturnValue>
     </Member>
 
-    <!--<Member name='qlScheduleBackward' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns TRUE if backward calculation has been used to calculate the given Schedule object</description>
-      <libraryFunction>backward</libraryFunction>
+    <Member name='qlScheduleRule' type='QuantLib::Schedule' superType='libraryClass'>
+      <description>returns the DateGeneration::Rule of the given Schedule object</description>
+      <libraryFunction>rule</libraryFunction>
       <SupportedPlatforms>
-        --><!--SupportedPlatform name='Excel' calcInWizard='false'/--><!--
+        SupportedPlatform name='Excel' calcInWizard='false'/
         <SupportedPlatform name='Excel'/>
-        --><!--SupportedPlatform name='Cpp'/--><!--
+        SupportedPlatform name='Cpp'/
       </SupportedPlatforms>
       <ParameterList>
-        <Parameters>
-        </Parameters>
+        <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>bool</type>
+        <type>QuantLib::DateGeneration::Rule</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>-->
+    </Member>
 
     <Member name='qlScheduleEndOfMonth' type='QuantLib::Schedule' superType='libraryClass'>
       <description>returns TRUE if end-of-month convention has been used to calculate the given Schedule object</description>
@@ -259,8 +256,7 @@
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
-        <Parameters>
-        </Parameters>
+        <Parameters/>
       </ParameterList>
       <ReturnValue>
         <type>bool</type>
