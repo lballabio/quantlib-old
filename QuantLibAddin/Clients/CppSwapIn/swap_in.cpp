@@ -17,7 +17,6 @@
 */
 
 #include <Addins/Cpp/addincpp.hpp>
-//#include <Clients/Cpp/set_fixings.hpp>
 #include <ql/qldefines.hpp>
 #if defined BOOST_MSVC
 #include <oh/auto_link.hpp>
@@ -43,9 +42,9 @@ int main() {
         LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion(OH_NULL));
         LOG_MESSAGE("ObjectHandler version = " << ohVersion(OH_NULL));
 
-        // Set the evaluation date to 12 July 2007
+        // Set the evaluation date to 5 December 2007
 
-        qlSettingsSetEvaluationDate(39275L, OH_NULL);
+        qlSettingsSetEvaluationDate(39421L, OH_NULL);
 
         // Initialize some values
 

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>4</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="152" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>sched_fix</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate class_id="195" tracking_level="0" version="0">
+				<variant_ class_id="196" tracking_level="0" version="0">
+					<which>0</which>
+					<value>39423</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>0</which>
+					<value>42793</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>Target</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Modified Following</TermDateConv>
+			<GenRule>Backward</GenRule>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value class_id="197" tracking_level="0" version="0">
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="152" object_id="_2">
+			<ObjectId>sched_flt</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<variant_>
+					<which>0</which>
+					<value>39423</value>
+				</variant_>
+			</EffectiveDate>
+			<TerminationDate>
+				<variant_>
+					<which>0</which>
+					<value>42793</value>
+				</variant_>
+			</TerminationDate>
+			<Tenor>6M</Tenor>
+			<Calendar>Target</Calendar>
+			<Convention>Modified Following</Convention>
+			<TermDateConv>Modified Following</TermDateConv>
+			<GenRule>Backward</GenRule>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</FirstDate>
+			<NextToLastDate>
+				<variant_>
+					<which>4</which>
+					<value>
+						<type_>5</type_>
+					</value>
+				</variant_>
+			</NextToLastDate>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id="125" tracking_level="1" version="0" object_id="_3">
+			<ObjectId>engine</ObjectId>
+			<ClassName>qlDiscountingSwapEngine</ClassName>
+			<YieldCurve>EUR_YC</YieldCurve>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+	<item>
+		<px class_id="186" tracking_level="1" version="0" object_id="_4">
+			<ObjectId>swap</ObjectId>
+			<ClassName>qlVanillaSwap</ClassName>
+			<PayerReceiver>Payer</PayerReceiver>
+			<Nominal>1000000</Nominal>
+			<FixedLegSchedule>sched_fix</FixedLegSchedule>
+			<FixedRate>0.042490062211088024</FixedRate>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<FloatingLegSchedule>sched_flt</FloatingLegSchedule>
+			<IborIndex>EURIBOR6M</IborIndex>
+			<FloatingLegSpread>0</FloatingLegSpread>
+			<FloatingLegDayCounter>Actual/360</FloatingLegDayCounter>
+			<Permanent>0</Permanent>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>

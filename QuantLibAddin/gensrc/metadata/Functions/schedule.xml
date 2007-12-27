@@ -103,7 +103,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Index' exampleValue='1'>
+          <Parameter name='Index' default='1' exampleValue='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>one based period index</description>

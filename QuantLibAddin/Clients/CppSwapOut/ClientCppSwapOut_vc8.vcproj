@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="ClientCppSwapIn"
-	ProjectGUID="{0F2F26E5-0088-40CA-A739-40B15781178F}"
+	Name="ClientCppSwapOut"
+	ProjectGUID="{F1925483-7B6B-421F-A6BB-401956BAF6FD}"
 	>
 	<Platforms>
 		<Platform
@@ -37,7 +37,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapIn.tlb"
+				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapOut.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -49,7 +49,7 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.pch"
+				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapOut.pch"
 				AssemblerListingLocation="build\vc80\$(ConfigurationName)/"
 				ObjectFile="build\vc80\$(ConfigurationName)/"
 				ProgramDataBaseFileName="build\vc80\$(ConfigurationName)/"
@@ -71,12 +71,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\SwapIn-vc80-mt-gd.exe"
+				OutputFile="bin\SwapOut-vc80-mt-gd.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\..\ObjectHandler\lib;..\..\..\QuantLib\lib;..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapIn-vc80-mt-gd.pdb"
+				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapOut-vc80-mt-gd.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -92,7 +92,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.bsc"
+				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapOut.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -131,7 +131,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapIn.tlb"
+				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapOut.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -144,7 +144,7 @@
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.pch"
+				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapOut.pch"
 				AssemblerListingLocation="build\vc80\$(ConfigurationName)/"
 				ObjectFile="build\vc80\$(ConfigurationName)/"
 				ProgramDataBaseFileName="build\vc80\$(ConfigurationName)/"
@@ -165,11 +165,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\SwapIn-vc80-mt-s.exe"
+				OutputFile="bin\SwapOut-vc80-mt-s.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\..\ObjectHandler\lib;..\..\..\QuantLib\lib;..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapIn-vc80-mt-s.pdb"
+				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapOut-vc80-mt-s.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -185,7 +185,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.bsc"
+				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapOut.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -224,7 +224,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapIn.tlb"
+				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapOut.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -237,7 +237,7 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.pch"
+				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapOut.pch"
 				AssemblerListingLocation="build\vc80\$(ConfigurationName)/"
 				ObjectFile="build\vc80\$(ConfigurationName)/"
 				ProgramDataBaseFileName="build\vc80\$(ConfigurationName)/"
@@ -258,11 +258,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\SwapIn-vc80-mt.exe"
+				OutputFile="bin\SwapOut-vc80-mt.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\..\ObjectHandler\lib;..\..\..\QuantLib\lib;..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapIn-vc80-mt.pdb"
+				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapOut-vc80-mt.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -278,7 +278,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.bsc"
+				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapOut.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -317,7 +317,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapIn.tlb"
+				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapOut.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -329,7 +329,7 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.pch"
+				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapOut.pch"
 				AssemblerListingLocation="build\vc80\$(ConfigurationName)/"
 				ObjectFile="build\vc80\$(ConfigurationName)/"
 				ProgramDataBaseFileName="build\vc80\$(ConfigurationName)/"
@@ -351,12 +351,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\SwapIn-vc80-mt-sgd.exe"
+				OutputFile="bin\SwapOut-vc80-mt-sgd.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\..\ObjectHandler\lib;..\..\..\QuantLib\lib;..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapIn-vc80-mt-sgd.pdb"
+				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapOut-vc80-mt-sgd.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -372,7 +372,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.bsc"
+				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapOut.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -392,15 +392,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath=".\qlxl_demo_market.xml"
-			>
-		</File>
-		<File
-			RelativePath=".\qlxl_demo_swap.xml"
-			>
-		</File>
-		<File
-			RelativePath="swap_in.cpp"
+			RelativePath="swap_out.cpp"
 			>
 		</File>
 	</Files>

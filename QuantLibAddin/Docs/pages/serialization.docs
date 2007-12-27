@@ -25,40 +25,126 @@
 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 
-This document explains how to build an environment supporting import/export
-to/from Excel/C++ on Windows/Linux.  As a prerequisite it is assumed that you
+This document explains how to build an environment supporting export/import
+from/to Excel/C++ on Windows/Linux.  As a prerequisite it is assumed that you
 have already compiled QuantLibXL from source code as explained in the document
 \ref build_tutorial.
 
 <dl>
-<dt>\ref serialization_cpp</dt>
-<dd><dl>
 <dt>\ref serialization_windows</dt>
 <dd><dl>
-<dt>\ref serialization_win_build</dt>
-<dt>\ref serialization_win_import</dt>
-<dt>\ref serialization_win_export</dt>
+<dt>\ref serialization_win_excel</dt>
+<dd><dl>
+<dt>\ref serialization_win_excel_build</dt>
+<dt>\ref serialization_win_excel_export</dt>
+<dt>\ref serialization_win_excel_import</dt>
+</dl></dd>
+<dt>\ref serialization_win_cpp</dt>
+<dd><dl>
+<dt>\ref serialization_win_cpp_build</dt>
+<dt>\ref serialization_win_cpp_export</dt>
+<dt>\ref serialization_win_cpp_import</dt>
+</dl></dd>
 </dl></dd>
 <dt>\ref serialization_linux</dt>
 <dd><dl>
-<dt>\ref serialization_linux_build</dt>
-<dt>\ref serialization_linux_import</dt>
-<dt>\ref serialization_linux_export</dt>
-</dl></dd>
-</dl></dd>
-<dt>\ref serialization_excel</dt>
+<dt>\ref serialization_linux_cpp</dt>
 <dd><dl>
-<dt>\ref serialization_excel_build</dt>
-<dt>\ref serialization_excel_export</dt>
-<dt>\ref serialization_excel_import</dt>
+<dt>\ref serialization_linux_cpp_build</dt>
+<dt>\ref serialization_linux_cpp_export</dt>
+<dt>\ref serialization_linux_cpp_import</dt>
+</dl></dd>
 </dl></dd>
 </dl>
 
-\section serialization_cpp 1 C++
+\section serialization_windows 1 Windows
 
-\subsection serialization_windows 1.1 Windows
+\subsection serialization_win_excel 1.1 Excel
 
-\subsubsection serialization_win_build 1.1.1 Build
+\subsubsection serialization_win_excel_build 1.1.1 Build
+
+Open <tt>QuantLibXL\\QuantLibAllDynamic_vc8.sln</tt>, select configuration
+<tt>Release CRTDLL</tt> and build project <tt>QuantLibXLDynamic</tt>.  The
+output files are
+
+\li <tt>ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll</tt>
+\li <tt>QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll</tt>
+
+\subsubsection serialization_win_excel_export 1.1.2 Export
+
+\li Start Excel
+\li Load VBA addin
+<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\serialize_swap.xla</tt>.  The addin
+contains some startup code which should automatically load the following:
+\verbatim
+ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll
+QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll
+QuantLibXL\Workbooks\StandaloneExamples\MarketData.xls
+QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
+\endverbatim
+\li Hit <tt>Ctrl-Alt-F9</tt>
+\li Confirm that a PV (on my machine, 36106.60) is showing in cell <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
+\li Invoke menu item <tt>QLXL Demo / Export</tt>
+\li The following 2 files are produced:
+\verbatim
+C:\qlxl_demo_market.xml
+C:\qlxl_demo_swap.xml
+\endverbatim
+
+\subsubsection serialization_win_excel_import 1.1.3 Import
+
+\li Start Excel
+\li Load VBA addin
+<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\serialize_swap.xla</tt>.  The addin
+contains some startup code which should automatically load the following:
+\verbatim
+ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll
+QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll
+QuantLibXL\Workbooks\StandaloneExamples\MarketData.xls
+QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
+\endverbatim
+\li Set range <tt>[MarketData.xls]Summary!DataSource</tt> to Import</tt>
+\li Invoke menu item <tt>QLXL Demo / Import</tt>
+\li The following 2 files are loaded:
+\verbatim
+C:\qlxl_demo_market.xml
+C:\qlxl_demo_swap.xml
+\endverbatim
+\li Hit <tt>Ctrl-Alt-F9</tt>
+\li Confirm that a PV (on my machine, 36106.60) is showing in cell <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
+
+If switching back and forth between import and export during a single Excel
+session you can use the command <tt>QLXL Demo / Delete All Objects</tt> to
+ensure that the ObjectHandler repository is empty.  You can confirm this by
+ensuring that function \c ohObjectCount() returns zero.
+
+\subsection serialization_win_cpp 1.2 C++
+
+\subsubsection serialization_win_cpp_build 1.2.1 Build
+
+\subsubsection serialization_win_cpp_export 1.2.2 Export
+
+Open <tt>QuantLibAddin\\QLA_serialization_vc8.sln</tt>, select configuration
+<tt>Release</tt> and build project <tt>ClientCppSwapOut</tt>.  The output file
+is
+\verbatim
+QuantLibAddin\Clients\CppSwapOut\bin\SwapOut-vc80-mt.exe
+\endverbatim
+
+In directory bin, execute program <tt>SwapOut-vc80-mt.exe</tt>. The output from
+the program should appear similar to the following:
+\verbatim
+INFO - Begin example program.
+INFO - QuantLibAddin version = 0.9.0
+INFO - ObjectHandler version = 0.9.0
+INFO - SWAP PV = 36106.6
+INFO - End example program.
+\endverbatim
+
+The program should generate the XML export files <tt>qlxl_demo_market.xml</tt>
+and <tt>qlxl_demo_swap.xml</tt> in the current directory.
+
+\subsubsection serialization_win_cpp_import 1.2.3 Import
 
 Open <tt>QuantLibAddin\\QLA_serialization_vc8.sln</tt>, select configuration
 <tt>Release</tt> and build project <tt>ClientCppSwapIn</tt>.  The output file
@@ -66,8 +152,6 @@ is
 \verbatim
 QuantLibAddin\Clients\CppSwapIn\bin\SwapIn-vc80-mt.exe
 \endverbatim
-
-\subsubsection serialization_win_import 1.1.2 Import
 
 Copy <tt>qlxl_demo_market.xml</tt> and <tt>qlxl_demo_swap.xml</tt> from
 directory <tt>QuantLibAddin\\Clients\\CppSwapIn</tt> to directory
@@ -80,7 +164,7 @@ should appear similar to the following:
 INFO - Begin example program.
 INFO - QuantLibAddin version = 0.9.0
 INFO - ObjectHandler version = 0.9.0
-INFO - SWAP PV = 37265.9
+INFO - SWAP PV = 36106.6
 INFO - Example of serializing to/from a buffer:
 INFO - XML = 
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
@@ -118,14 +202,11 @@ Permanent = false
 INFO - End example program.
 \endverbatim
 
-\subsubsection serialization_win_export 1.1.3 Export
+\section serialization_linux 2 Linux
 
-QuantLibAddin supports XML export from a Windows C++ program but no example has
-yet been implemented.
+\subsection serialization_linux_cpp 2.1 C++
 
-\subsection serialization_linux 1.2 Linux
-
-\subsubsection serialization_linux_build 1.2.1 Build
+\subsubsection serialization_linux_cpp_build 2.1.1 Build
 
 Below is a brief summary of the steps required for the Linux build.  For additional detail,
 refer to the documentation specific to each project.
@@ -176,7 +257,23 @@ cd QuantLibAddin
 make
 \endverbatim
 
-\subsubsection serialization_linux_import 1.2.2 Import
+\subsubsection serialization_linux_cpp_export 2.1.2 Export
+
+\c cd to directory  <tt>QuantLibAddin/Clients/CppSwapOut</tt> and execute
+program <tt>swap_out</tt>.  The output from the program should appear similar
+to the following:
+\verbatim
+INFO - Begin example program.
+INFO - QuantLibAddin version = 0.9.0
+INFO - ObjectHandler version = 0.9.0
+INFO - SWAP PV = 36106.6
+INFO - End example program.
+\endverbatim
+
+The program should generate the XML export files <tt>qlxl_demo_market.xml</tt>
+and <tt>qlxl_demo_swap.xml</tt> in the current directory.
+
+\subsubsection serialization_linux_cpp_import 2.1.3 Import
 
 \c cd to directory  <tt>QuantLibAddin/Clients/CppSwapIn</tt> and execute
 program <tt>swap_in</tt>.  The program loads <tt>qlxl_demo_market.xml</tt> and
@@ -186,7 +283,7 @@ program should appear similar to the following:
 INFO - Begin example program.
 INFO - QuantLibAddin version = 0.9.0
 INFO - ObjectHandler version = 0.9.0
-INFO - SWAP PV = 37265.9
+INFO - SWAP PV = 36106.6
 INFO - Example of serializing to/from a buffer:
 INFO - XML = 
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
@@ -223,70 +320,6 @@ Permanent = false
 
 INFO - End example program.
 \endverbatim
-
-\subsubsection serialization_linux_export 1.2.3 Export
-
-QuantLibAddin supports XML export from a Linux C++ program but no example has
-yet been implemented.
-
-\section serialization_excel 2 Excel
-
-\subsection serialization_excel_build 2.1 Build
-
-Open <tt>QuantLibXL\\QuantLibAllDynamic_vc8.sln</tt>, select configuration
-<tt>Release CRTDLL</tt> and build project <tt>QuantLibXLDynamic</tt>.  The
-output files are
-
-\li <tt>ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll</tt>
-\li <tt>QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll</tt>
-
-\subsection serialization_excel_export 2.2 Export
-
-\li Start Excel
-\li Load VBA addin
-<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\serialize_swap.xla</tt>.  The addin
-contains some startup code which should automatically load the following:
-\verbatim
-ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll
-QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll
-QuantLibXL\Workbooks\StandaloneExamples\MarketData.xls
-QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
-\endverbatim
-\li Hit <tt>Ctrl-Alt-F9</tt>
-\li Confirm that a PV (on my machine, 35,057.88) is showing in cell <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
-\li Invoke menu item <tt>QLXL Demo / Export</tt>
-\li The following 2 files are produced:
-\verbatim
-C:\qlxl_demo_market.xml
-C:\qlxl_demo_swap.xml
-\endverbatim
-
-\subsection serialization_excel_import 2.3 Import
-
-\li Start Excel
-\li Load VBA addin
-<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\serialize_swap.xla</tt>.  The addin
-contains some startup code which should automatically load the following:
-\verbatim
-ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll
-QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll
-QuantLibXL\Workbooks\StandaloneExamples\MarketData.xls
-QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
-\endverbatim
-\li Set range <tt>[MarketData.xls]Summary!DataSource</tt> to Import</tt>
-\li Invoke menu item <tt>QLXL Demo / Import</tt>
-\li The following 2 files are loaded:
-\verbatim
-C:\qlxl_demo_market.xml
-C:\qlxl_demo_swap.xml
-\endverbatim
-\li Hit <tt>Ctrl-Alt-F9</tt>
-\li Confirm that a PV (on my machine, 35,057.88) is showing in cell <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
-
-If switching back and forth between import and export during a single Excel
-session you can use the command <tt>QLXL Demo / Delete All Objects</tt> to
-ensure that the ObjectHandler repository is empty.  You can confirm this by
-ensuring that function \c ohObjectCount() returns zero.
 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 

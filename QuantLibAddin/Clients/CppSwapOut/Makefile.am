@@ -1,0 +1,18 @@
+ 
+AM_CPPFLAGS = -I${top_srcdir}
+LDADD = ../../qlo/libQuantLibAddin.la ../../Addins/Cpp/libQuantLibAddinCpp.la
+LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem
+
+EXTRA_DIST = \
+    ClientCppSwapOut_vc8.vcproj \
+    qlxl_demo_market.xml \
+    qlxl_demo_swap.xml
+
+swap_out_SOURCES = swap_out.cpp
+
+if BUILD_CPP
+noinst_PROGRAMS = swap_out
+else
+EXTRA_PROGRAMS = swap_out
+endif
+
