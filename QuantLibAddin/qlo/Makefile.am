@@ -64,7 +64,6 @@ include_HEADERS = \
     randomsequencegenerator.hpp \
     rangeaccrual.hpp \
     ratehelpers.hpp \
-    relinkablehandles.hpp \
     schedule.hpp \
     sequencestatistics.hpp \
     settings.hpp \
