@@ -27,7 +27,7 @@
 #include <ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp>
 #include <ql/experimental/sabrvolsurface.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
-#include <ql/termstructures/volatility/smilesection.hpp>
+#include <ql/termstructures/volatility/flatsmilesection.hpp>
 #include <ql/quotes/simplequote.hpp>
 
 namespace QuantLibAddin {
