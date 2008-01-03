@@ -195,6 +195,36 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlVolatilityTermStructureMinStrike' type='QuantLib::VolatilityTermStructure' superType='libraryClass'>
+      <description>Returns the minimum strike for which the given VolatilityTermStructure can return vols.</description>
+      <libraryFunction>minStrike</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVolatilityTermStructureMaxStrike' type='QuantLib::VolatilityTermStructure' superType='libraryClass'>
+      <description>Returns the maximum strike for which the given VolatilityTermStructure can return vols.</description>
+      <libraryFunction>maxStrike</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <!-- BlackAtmVolCurve -->
     <Member name='qlBlackAtmVolCurveAtmVol' type='QuantLib::BlackAtmVolCurve' superType='libraryClass'>
       <description>Returns the spot at-the-money (no-smile) volatility at a given option date</description>

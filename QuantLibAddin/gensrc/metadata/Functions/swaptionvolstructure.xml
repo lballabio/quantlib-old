@@ -198,38 +198,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionVTSMinStrike' type='QuantLib::SwaptionVolatilityStructure' superType='libraryTermStructure'>
-      <description>Returns the minimum strike for which the given SwaptionVolatilityStructure object can return vols.</description>
-      <libraryFunction>minStrike</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlSwaptionVTSMaxStrike' type='QuantLib::SwaptionVolatilityStructure' superType='libraryTermStructure'>
-      <description>Returns the maximum strike for which the given SwaptionVolatilityStructure object can return vols.</description>
-      <libraryFunction>maxStrike</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlSwaptionVTSBusinessDayConvention' type='QuantLib::SwaptionVolatilityStructure' superType='libraryTermStructure'>
       <description>Returns the business day convention used for option date calculation by the given SwaptionVolatilityStructure object.</description>
       <libraryFunction>businessDayConvention</libraryFunction>

@@ -167,38 +167,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlOptionletVTSMinStrike' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib'>
-      <description>Returns the minimum strike for which the given OptionletVolatilityStructure can return vols.</description>
-      <libraryFunction>minStrike</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlOptionletVTSMaxStrike' type='QuantLib::OptionletVolatilityStructure' superType='handleToLib'>
-      <description>Returns the maximum strike for which the given OptionletVolatilityStructure can return vols.</description>
-      <libraryFunction>maxStrike</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <!-- RelinkableHandle<OptionletVolatilityStructure> -->
     <Constructor name='qlRelinkableHandleOptionletVolatilityStructure'>
       <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::OptionletVolatilityStructure, QuantLib::OptionletVolatilityStructure&gt;</libraryFunction>
@@ -798,38 +766,6 @@
       <ReturnValue>
         <type>QuantLib::Volatility</type>
         <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCapFloorTermVTSMinStrike' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass'>
-      <description>Returns the minimum strike for which the given CapFloorTermVolatilityStructure can return vols.</description>
-      <libraryFunction>minStrike</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlCapFloorTermVTSMaxStrike' type='QuantLib::CapFloorTermVolatilityStructure' superType='libraryClass'>
-      <description>Returns the maximum strike for which the given CapFloorTermVolatilityStructure can return vols.</description>
-      <libraryFunction>maxStrike</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
 
