@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Ferdinando Ametrano
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,9 +20,11 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <qlo/config.hpp>
 #endif
+
 #include <qlo/timeseries.hpp>
+
 #include <ql/timeseries.hpp>
-#include <ql/errors.hpp>
+#include <ql/index.hpp>
 
 namespace QuantLibAddin {
 
@@ -38,8 +40,8 @@ namespace QuantLibAddin {
                                 const vector<Date>& dates,
                                 const vector<Real>& values,
                                 bool perm)
-   : LibraryObject<QuantLib::TimeSeriesDef>(prop, perm)
-   {
+    : LibraryObject<QuantLib::TimeSeriesDef>(prop, perm)
+    {
         QL_REQUIRE(values.size()==dates.size(),
                    "unmatched size between dates (" << dates.size() <<
                    ") and values(" << values.size() << ")");
@@ -61,6 +63,15 @@ namespace QuantLibAddin {
             QuantLib::TimeSeriesDef(d.begin(),
                                     d.end(),
                                     v.begin()));
+    }
+
+   TimeSeriesDef::TimeSeriesDef(const shared_ptr<ValueObject>& prop,
+                                const boost::shared_ptr<QuantLib::Index>& index,
+                                bool perm)
+    : LibraryObject<QuantLib::TimeSeriesDef>(prop, perm)
+    {
+        libraryObject_ = shared_ptr<QuantLib::TimeSeriesDef>(new
+            QuantLib::TimeSeriesDef(index->timeSeries()));
     }
 
     QuantLib::Real TimeSeriesDef::subscriptWrapper(const QuantLib::Date& d) {

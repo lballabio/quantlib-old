@@ -4,13 +4,14 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
     <include>qlo/timeseries.hpp</include>
+    <include>qlo/index.hpp</include>
   </serializationIncludes>
   <addinIncludes>
     <include>qlo/timeseries.hpp</include>
-    <include>ql/timeseries.hpp</include>
+    <include>qlo/index.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2007 Ferdinando Ametrano
+    Copyright (C) 2007, 2008 Ferdinando Ametrano
     Copyright (C) 2007 Eric Ehlers
   </copyright>
   <Functions>
@@ -151,5 +152,20 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlTimeSeriesFromIndex'>
+      <libraryFunction>TimeSeriesDef</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index'>
+            <type>QuantLib::Index</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index object ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
   </Functions>
 </Category>
