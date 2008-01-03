@@ -60,12 +60,12 @@
         <EnumeratedClass>
           <string>ConundrumByNumericalIntegration</string>
           <value>CONUNDRUM_BY_NUMERICAL_INTEGRATION_Pricer</value>
-          <libraryClass>QuantLib::ConundrumPricerByNumericalIntegration</libraryClass>
+          <libraryClass>QuantLib::NumericHaganPricer</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
           <string>ConundrumByBlack</string>
           <value>CONUNDRUM_BY_BLACK_Pricer</value>
-          <libraryClass>QuantLib::ConundrumPricerByBlack</libraryClass>
+          <libraryClass>QuantLib::AnalyticHaganPricer</libraryClass>
         </EnumeratedClass>
       </EnumeratedClasses>
     </EnumeratedClassGroup>

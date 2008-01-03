@@ -28,7 +28,7 @@ using boost::shared_ptr;
 using boost::any;
 using QuantLib::Size;
 using QuantLib::CmsCouponPricer;
-using QuantLib::ConundrumPricer;
+using QuantLib::HaganPricer;
 using QuantLib::Matrix;
 using QuantLib::Handle;
 using QuantLib::Quote;
@@ -47,11 +47,11 @@ namespace QuantLibAddin {
     : ObjectHandler::LibraryObject<QuantLib::CmsMarket>(properties, permanent)
     {
         Size n = pricers.size();
-        vector<shared_ptr<ConundrumPricer> > p(n);
+        vector<shared_ptr<HaganPricer> > p(n);
         for (Size i=0; i<n; ++i) {
-            p[i] = boost::dynamic_pointer_cast<ConundrumPricer>(pricers[i]);
+            p[i] = boost::dynamic_pointer_cast<HaganPricer>(pricers[i]);
             QL_REQUIRE(p[i],
-                       "ConundrumPricer needed, not just a CmsCouponPricer");
+                       "HaganPricer needed, not just a CmsCouponPricer");
         }
         libraryObject_ = shared_ptr<QuantLib::CmsMarket>(new
             QuantLib::CmsMarket(expiries,

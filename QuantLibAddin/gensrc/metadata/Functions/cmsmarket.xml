@@ -62,7 +62,7 @@
           <Parameter name='CmsCouponPricers'>
             <type>QuantLib::CmsCouponPricer</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of ConundrumPricer object IDs</description>
+            <description>vector of HaganPricer object IDs</description>
           </Parameter>
           <Parameter name='YieldCurve' exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>

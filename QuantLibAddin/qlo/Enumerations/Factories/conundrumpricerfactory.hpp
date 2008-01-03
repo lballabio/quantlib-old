@@ -28,7 +28,7 @@ namespace ObjectHandler {
 
     typedef boost::shared_ptr<QuantLib::CmsCouponPricer>(*CmsCouponPricerConstructor)(
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
-            const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
+            const QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve,
             const QuantLib::Handle<QuantLib::Quote>& meanReversion);
 
     template<>
@@ -38,7 +38,7 @@ namespace ObjectHandler {
         boost::shared_ptr<QuantLib::CmsCouponPricer> operator() (
                 const std::string& CmsCouponPricerID,
                 const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
-                const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
+                const QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve,
                 const QuantLib::Handle<QuantLib::Quote>& meanReversion) {
             CmsCouponPricerConstructor cmsCouponPricerConstructor =
                 reinterpret_cast<CmsCouponPricerConstructor>(getType(CmsCouponPricerID));

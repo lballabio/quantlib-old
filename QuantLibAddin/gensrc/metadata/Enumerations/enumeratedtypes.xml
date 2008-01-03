@@ -1172,7 +1172,7 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLib::GFunctionFactory::ModelOfYieldCurve'>
+    <EnumeratedTypeGroup type='QuantLib::GFunctionFactory::YieldCurveModel'>
       <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
       <constructor>true</constructor>
       <EnumeratedTypes>

@@ -305,17 +305,17 @@ namespace QuantLibAddin {
     /* *** CmsCouponPricer **** */
     boost::shared_ptr<QuantLib::CmsCouponPricer> CONUNDRUM_BY_BLACK_Pricer(
         const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
-        const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
+        const QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve,
         const QuantLib::Handle<QuantLib::Quote>& meanReversion){
         return boost::shared_ptr<QuantLib::CmsCouponPricer>(
-            new QuantLib::ConundrumPricerByBlack(swaptionVol, modelOfYieldCurve, meanReversion));
+            new QuantLib::AnalyticHaganPricer(swaptionVol, modelOfYieldCurve, meanReversion));
     };
     boost::shared_ptr<QuantLib::CmsCouponPricer> CONUNDRUM_BY_NUMERICAL_INTEGRATION_Pricer(
         const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
-        const QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
+        const QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve,
         const QuantLib::Handle<QuantLib::Quote>& meanReversion){
         return boost::shared_ptr<QuantLib::CmsCouponPricer>(
-            new QuantLib::ConundrumPricerByNumericalIntegration(swaptionVol, modelOfYieldCurve, meanReversion));
+            new QuantLib::NumericHaganPricer(swaptionVol, modelOfYieldCurve, meanReversion));
     };
 
 }

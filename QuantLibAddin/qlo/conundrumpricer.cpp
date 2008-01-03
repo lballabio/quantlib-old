@@ -38,7 +38,7 @@ namespace QuantLibAddin {
             const shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& v,
             const std::string& cmsPricerType,
-            QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
+            QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve,
             const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             bool permanent)
     : FloatingRateCouponPricer(properties, permanent) {
@@ -49,21 +49,21 @@ namespace QuantLibAddin {
                                                              meanReversion);
     }
 
-	ConundrumPricerByNumericalIntegration::ConundrumPricerByNumericalIntegration(
+	NumericHaganPricer::NumericHaganPricer(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
 			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
-            QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
+            QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve,
 			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             QuantLib::Rate lowerLimit,
             QuantLib::Rate upperLimit,
 			QuantLib::Real precision,
             bool permanent)
     : CmsCouponPricer(properties, permanent) {
-        //QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve =
-        //    QuantLib::GFunctionFactory::ModelOfYieldCurve(2);
+        //QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve =
+        //    QuantLib::GFunctionFactory::YieldCurveModel(2);
         libraryObject_ = 
-	        shared_ptr<QuantLib::ConundrumPricerByNumericalIntegration>(new
-    	        QuantLib::ConundrumPricerByNumericalIntegration(swaptionVol,
+	        shared_ptr<QuantLib::NumericHaganPricer>(new
+    	        QuantLib::NumericHaganPricer(swaptionVol,
                                                                 modelOfYieldCurve,
 													            meanReversion,
 													            lowerLimit,

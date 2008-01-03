@@ -35,19 +35,19 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,
             const std::string& typeOfCmsCouponPricer,
-            QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
+            QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve,
             const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             bool permanent);
       protected:
         OH_OBJ_CTOR(CmsCouponPricer, FloatingRateCouponPricer);
     };
 
-	class ConundrumPricerByNumericalIntegration: public CmsCouponPricer{
+	class NumericHaganPricer: public CmsCouponPricer{
 	public:
-	  ConundrumPricerByNumericalIntegration(
+	  NumericHaganPricer(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
 			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
-            QuantLib::GFunctionFactory::ModelOfYieldCurve modelOfYieldCurve,
+            QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve,
 			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             QuantLib::Rate lowerLimit,
             QuantLib::Rate upperLimit,

@@ -60,7 +60,7 @@
         <DataType>QuantLib::Duration::Type</DataType>
         <DataType>QuantLib::EndCriteria::Type</DataType>
         <DataType>QuantLib::Frequency</DataType>
-        <DataType>QuantLib::GFunctionFactory::ModelOfYieldCurve</DataType>
+        <DataType>QuantLib::GFunctionFactory::YieldCurveModel</DataType>
         <DataType>QuantLib::Month</DataType>
         <DataType>QuantLib::Option::Type</DataType>
         <DataType>QuantLib::Position::Type</DataType>
@@ -88,7 +88,7 @@
         <DataType>QuantLibAddin::CapFloor</DataType>
         <DataType>QuantLibAddin::CmsMarket</DataType>
         <DataType>QuantLibAddin::CmsMarketCalibration</DataType>
-        <DataType>QuantLibAddin::ConundrumPricerByNumericalIntegration</DataType>
+        <DataType>QuantLibAddin::NumericHaganPricer</DataType>
         <DataType>QuantLibAddin::Handle</DataType>
         <DataType>QuantLibAddin::HistoricalForwardRatesAnalysis</DataType>
         <DataType>QuantLibAddin::Index</DataType>
@@ -153,7 +153,7 @@
         <DataType>QuantLib::CmsMarket</DataType>
         <DataType>QuantLib::CmsMarketCalibration</DataType>
         <DataType>QuantLib::CMSwapCurveState</DataType>
-        <DataType>QuantLib::ConundrumPricerByNumericalIntegration</DataType>
+        <DataType>QuantLib::NumericHaganPricer</DataType>
         <DataType>QuantLib::CoterminalSwapCurveState</DataType>
         <DataType>QuantLib::CovarianceDecomposition</DataType>
         <DataType>QuantLib::CTSMMCapletAlphaFormCalibration</DataType>

@@ -587,8 +587,8 @@
             <tensorRank>scalar</tensorRank>
             <description>Cms Coupon Pricer Type (e.g ConundrumByBlack, ConundrumByNumericalIntegration, ClassicalAnaliticalFormula)</description>
           </Parameter>
-          <Parameter name='ModelOfYieldCurve'>
-            <type>QuantLib::GFunctionFactory::ModelOfYieldCurve</type>
+          <Parameter name='YieldCurveModel'>
+            <type>QuantLib::GFunctionFactory::YieldCurveModel</type>
             <tensorRank>scalar</tensorRank>
             <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
           </Parameter>
@@ -603,7 +603,7 @@
     </Constructor>
 
     <Constructor name='qlConundrumPricerByNumericalIntegration'>
-      <libraryFunction>ConundrumPricerByNumericalIntegration</libraryFunction>
+      <libraryFunction>NumericHaganPricer</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -618,8 +618,8 @@
             <tensorRank>scalar</tensorRank>
             <description>Volatility Cube by Sabr</description>
           </Parameter>
-          <Parameter name='ModelOfYieldCurve'>
-            <type>QuantLib::GFunctionFactory::ModelOfYieldCurve</type>
+          <Parameter name='YieldCurveModel'>
+            <type>QuantLib::GFunctionFactory::YieldCurveModel</type>
             <tensorRank>scalar</tensorRank>
             <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
           </Parameter>
@@ -648,7 +648,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlConundrumPricerByNumericalIntegrationUpperLimit' type='QuantLib::ConundrumPricerByNumericalIntegration'>
+    <Member name='qlConundrumPricerByNumericalIntegrationUpperLimit' type='QuantLib::NumericHaganPricer'>
       <description>Returns the upper limit of the integral</description>
       <libraryFunction>upperLimit</libraryFunction>
       <SupportedPlatforms>
