@@ -39,8 +39,6 @@
 #include <ql/indexes/swap/eurliborswapfixb.hpp>
 #include <ql/indexes/swap/eurliborswapfixifr.hpp>
 
-#include <oh/repository.hpp>
-
 namespace QuantLibAddin {
 
     void Index::addFixings(const std::vector<QuantLib::Date>& dates,

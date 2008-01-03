@@ -6,7 +6,6 @@
     <include>qlo/index.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
   <addinIncludes>
     <include>qlo/index.hpp</include>

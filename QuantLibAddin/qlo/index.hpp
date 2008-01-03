@@ -28,9 +28,6 @@
 #include <ql/time/businessdayconvention.hpp>
 #include <ql/types.hpp>
 
-#include <string>
-#include <qlo/timeseries.hpp>
-
 namespace QuantLib {
     class Date;
     class Period;
