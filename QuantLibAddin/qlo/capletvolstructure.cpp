@@ -47,9 +47,9 @@ namespace QuantLibAddin {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::ConstantOptionletVol(settlDays,
                                            volatility,
+                                           dayCounter,
                                            cal,
-                                           bdc,
-                                           dayCounter));
+                                           bdc));
     }
 
     StrippedOptionletAdapter::StrippedOptionletAdapter(

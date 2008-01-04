@@ -258,8 +258,8 @@
     </Constructor>
 
     <!-- SwaptionVolatilityStructure constructors -->
-    <Constructor name='qlSwaptionVTSConstant'>
-      <libraryFunction>SwaptionConstantVolatility</libraryFunction>
+    <Constructor name='qlConstantSwaptionVol'>
+      <libraryFunction>ConstantSwaptionVol</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -282,6 +282,32 @@
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSpreadedSwaptionVol'>
+      <libraryFunction>SpreadedSwaptionVol</libraryFunction>
+      <functionCategory>QuantLib</functionCategory>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwaptionVolatilityStructure' >
+            <type>QuantLib::SwaptionVolatilityStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Swaption volatility structure object ID</description>
+          </Parameter>
+          <Parameter name='Spread' exampleValue='0.0'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>spread</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -722,32 +748,6 @@
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>smile's underlying swap length</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlSpreadedSwaptionVolatilityStructure'>
-      <libraryFunction>SpreadedSwaptionVolatilityStructure</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='SwaptionVolatilityStructure' >
-            <type>QuantLib::SwaptionVolatilityStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>Swaption volatility structure object ID</description>
-          </Parameter>
-          <Parameter name='Spread' exampleValue='0.0'>
-            <type>QuantLib::Quote</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>spread</description>
           </Parameter>
         </Parameters>
       </ParameterList>
