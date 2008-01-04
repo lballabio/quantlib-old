@@ -41,8 +41,9 @@ namespace QuantLibAddin {
         const QuantLib::Date& referenceDate,
         const QuantLib::Handle<QuantLib::Quote>& vol,
         const QuantLib::DayCounter& dayCounter,
-        bool permanent) : SwaptionVolatilityStructure(properties, permanent) {
-
+        bool permanent)
+    : SwaptionVolatilityStructure(properties, permanent)
+    {
         QuantLib::Calendar cal = QuantLib::NullCalendar();  // FIXME
         QuantLib::BusinessDayConvention bdc = QuantLib::Following;  // FIXME
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
@@ -51,6 +52,18 @@ namespace QuantLibAddin {
                                           dayCounter,
                                           cal,
                                           bdc));
+    }
+
+    SpreadedSwaptionVol::SpreadedSwaptionVol(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
+            const QuantLib::Handle<QuantLib::Quote>& spread,
+            bool permanent)
+    : SwaptionVolatilityStructure(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::SpreadedSwaptionVol(underlyingVolStructure,
+                                          spread));
     }
 
     SwaptionVolatilityMatrix::SwaptionVolatilityMatrix(
@@ -259,15 +272,4 @@ namespace QuantLibAddin {
              libraryObject_ = cube->smileSection(optionDate,swapTenors);
     }
 
-    SpreadedSwaptionVol::SpreadedSwaptionVol(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
-            const QuantLib::Handle<QuantLib::Quote>& spread,
-            bool permanent) : SwaptionVolatilityStructure(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::SpreadedSwaptionVol>(new
-            QuantLib::SpreadedSwaptionVol(underlyingVolStructure,
-                                                          spread));
-    }
-
 }
-
