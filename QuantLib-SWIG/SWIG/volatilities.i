@@ -364,35 +364,48 @@ class ConstantOptionletVolPtr
   public:
     %extend {
         ConstantOptionletVolPtr(
-                const Date& referenceDate, Volatility volatility,
+                const Date& referenceDate, 
+		Volatility volatility,
+		const DayCounter& dayCounter,	
 		const Calendar &cal,
-                const DayCounter& dayCounter) {
+		BusinessDayConvention bdc = Following
+                ) {
             return new ConstantOptionletVolPtr(
-                new ConstantOptionletVol(referenceDate, volatility,cal,
-                                             dayCounter));
+                new ConstantOptionletVol(referenceDate, volatility,
+                                             dayCounter, cal, bdc));
         }
         ConstantOptionletVolPtr(
                 const Date& referenceDate,
                 const Handle<Quote>& volatility,
-		const Calendar& cal,
-                const DayCounter& dayCounter) {
+		const DayCounter& dayCounter,	
+		const Calendar &cal,
+		BusinessDayConvention bdc = Following
+                ) {
             return new ConstantOptionletVolPtr(
                 new ConstantOptionletVol(referenceDate, volatility,
-                                    	cal, dayCounter));
+		                          dayCounter, cal, bdc));	
         }
         ConstantOptionletVolPtr(
+		Natural settlementDays,
                 Volatility volatility,
-                const Calendar &cal,
-                const DayCounter& dayCounter) {
+		const DayCounter& dayCounter,	
+		const Calendar &cal,
+		BusinessDayConvention bdc = Following
+                ) {
             return new ConstantOptionletVolPtr(
-                new ConstantOptionletVol(volatility, cal, dayCounter));
+                new ConstantOptionletVol(settlementDays,
+		volatility, dayCounter, cal, bdc));
         }
         ConstantOptionletVolPtr(
+		Natural settlementDays,
                 const Handle<Quote>& volatility,
+		const DayCounter& dayCounter,	
 		const Calendar &cal,
-                const DayCounter& dayCounter) {
+		BusinessDayConvention bdc = Following
+                ) {
             return new ConstantOptionletVolPtr(
-                new ConstantOptionletVol(volatility, cal, dayCounter));
+                new ConstantOptionletVol(settlementDays, 
+		volatility, dayCounter, cal, bdc));
         }
     }
 };
