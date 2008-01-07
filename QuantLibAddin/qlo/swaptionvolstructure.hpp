@@ -41,15 +41,27 @@ namespace QuantLibAddin {
 
     OH_OBJ_CLASS(SwaptionVolatilityStructure, TermStructure);
 
-    class ConstantSwaptionVol : public SwaptionVolatilityStructure {
+    class ConstantSwaptionVolatility : public SwaptionVolatilityStructure {
       public:
-        ConstantSwaptionVol(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                            const QuantLib::Date& referenceDate,
-                            const QuantLib::Handle<QuantLib::Quote>&,
-                            const QuantLib::DayCounter& dayCounter,
-                            bool permanent);
+        ConstantSwaptionVolatility(
+                        const boost::shared_ptr<ObjectHandler::ValueObject>&,
+                        QuantLib::Natural settlementDays,
+                        const QuantLib::Handle<QuantLib::Quote>& vol,
+                        const QuantLib::DayCounter& dayCounter,
+                        const QuantLib::Calendar& cal,
+                        QuantLib::BusinessDayConvention bdc,
+                        bool permanent);
     };
 
+    class SpreadedSwaptionVolatility : public SwaptionVolatilityStructure {
+      public:
+        SpreadedSwaptionVolatility(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
+            const QuantLib::Handle<QuantLib::Quote>&,
+            bool permanent);
+    };
+        
     OH_OBJ_CLASS(SwaptionVolatilityDiscrete, SwaptionVolatilityStructure);
 
     class SwaptionVolatilityMatrix : public SwaptionVolatilityDiscrete {
@@ -127,15 +139,6 @@ namespace QuantLibAddin {
             bool permanent);
     };
     
-    class SpreadedSwaptionVol : public SwaptionVolatilityStructure {
-      public:
-        SpreadedSwaptionVol(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
-            const QuantLib::Handle<QuantLib::Quote>&,
-            bool permanent);
-    };
-        
 }
 
 #endif

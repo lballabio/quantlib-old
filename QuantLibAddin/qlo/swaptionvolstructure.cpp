@@ -36,25 +36,25 @@
 
 namespace QuantLibAddin {
 
-    ConstantSwaptionVol::ConstantSwaptionVol(
+    ConstantSwaptionVolatility::ConstantSwaptionVolatility(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const QuantLib::Date& referenceDate,
+        QuantLib::Natural settlementDays,
         const QuantLib::Handle<QuantLib::Quote>& vol,
         const QuantLib::DayCounter& dayCounter,
+        const QuantLib::Calendar& cal,
+        QuantLib::BusinessDayConvention bdc,
         bool permanent)
     : SwaptionVolatilityStructure(properties, permanent)
     {
-        QuantLib::Calendar cal = QuantLib::NullCalendar();  // FIXME
-        QuantLib::BusinessDayConvention bdc = QuantLib::Following;  // FIXME
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::ConstantSwaptionVol(referenceDate,
-                                          vol,
-                                          dayCounter,
-                                          cal,
-                                          bdc));
+            QuantLib::ConstantSwaptionVolatility(settlementDays,
+                                                 vol,
+                                                 dayCounter,
+                                                 cal,
+                                                 bdc));
     }
 
-    SpreadedSwaptionVol::SpreadedSwaptionVol(
+    SpreadedSwaptionVolatility::SpreadedSwaptionVolatility(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& underlyingVolStructure,
             const QuantLib::Handle<QuantLib::Quote>& spread,
@@ -62,8 +62,8 @@ namespace QuantLibAddin {
     : SwaptionVolatilityStructure(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::SpreadedSwaptionVol(underlyingVolStructure,
-                                          spread));
+            QuantLib::SpreadedSwaptionVolatility(underlyingVolStructure,
+                                                  spread));
     }
 
     SwaptionVolatilityMatrix::SwaptionVolatilityMatrix(

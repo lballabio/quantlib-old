@@ -30,7 +30,7 @@
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
   </copyright>
   <Functions>
 
@@ -186,8 +186,8 @@
     </Constructor>
 
     <!-- OptionletVolatilityStructure constructors -->
-    <Constructor name='qlConstantOptionletVol'>
-      <libraryFunction>ConstantOptionletVol</libraryFunction>
+    <Constructor name='qlConstantOptionletVolatility'>
+      <libraryFunction>ConstantOptionletVolatility</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -196,28 +196,38 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Volatility' >
+          <Parameter name='NDays' default='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of days to advance from EvaluationDate: it fixes the date at which the variance = 0.0. If omitted, default = 0 is used.</description>
+          </Parameter>
+          <Parameter name='Volatility' examplevalue='0.20'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>cap/floor constant volatility Quote</description>
-          </Parameter>
-          <Parameter name='Calendar' exampleValue='TARGET'>
-            <type>QuantLib::Calendar</type>
-            <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID</description>
           </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+          </Parameter>
+          <Parameter name='BusinessDayConvention' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Business day convention used for calculating the exercise dates from the expiries</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlSpreadedOptionletVol'>
-      <libraryFunction>SpreadedOptionletVol</libraryFunction>
+    <Constructor name='qlSpreadedOptionletVolatility'>
+      <libraryFunction>SpreadedOptionletVolatility</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -226,13 +236,13 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='OptionletVolatilityStructure' >
+          <Parameter name='BaseVolStructure'>
             <type>QuantLib::OptionletVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Caplet volatility structure object ID</description>
+            <description>Base OptionletVolatilityStructure object ID</description>
           </Parameter>
-          <Parameter name='Spread'>
+          <Parameter name='Spread' exampleValue='0.01'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -262,7 +272,7 @@
     </Constructor>
 
     <!-- StrippedOptionlet interface and constructor -->
-    
+
     <Constructor name='qlStrippedOptionlet'>
       <libraryFunction>StrippedOptionlet</libraryFunction>
       <SupportedPlatforms>
@@ -537,7 +547,7 @@
     </Member>
 
     <!-- OptionletStripper1 interface and constructor -->
-    
+
     <Member name='qlOptionletStripper1CapFloorPrices' type='QuantLib::OptionletStripper1' superType='libraryClass'>
       <description>Returns option prices matrix from the given OptionletStripper1 object.</description>
       <libraryFunction>capFloorPrices</libraryFunction>
@@ -632,7 +642,7 @@
     </Constructor>
 
     <!-- OptionletStripper2 interface and constructor -->
-    
+
     <Member name='qlOptionletStripper2SpreadsVol' type='QuantLib::OptionletStripper2' superType='libraryClass'>
       <description>Returns optionlet spread (with respect to ATM) vols from the given OptionletStripper2 object.</description>
       <libraryFunction>spreadsVol</libraryFunction>

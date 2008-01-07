@@ -32,60 +32,70 @@
 #include <ql/termstructures/volatility/optionlet/optionletstripper2.hpp>
 #include <ql/termstructures/volatility/optionlet/strippedoptionlet.hpp>
 
+using std::vector;
+using QuantLib::Handle;
+using QuantLib::Quote;
+using BusinessDayConvention;
+using boost::shared_ptr;
+using Objecthandler::ValueObject;
+using LibraryObject;
+
 namespace QuantLibAddin {
 
-    ConstantOptionletVol::ConstantOptionletVol(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const QuantLib::Handle<QuantLib::Quote>& volatility,
-        const QuantLib::Calendar& cal,
-        const QuantLib::DayCounter& dayCounter,
-        bool permanent)
+    ConstantOptionletVolatility::ConstantOptionletVolatility(
+                                    const shared_ptr<ValueObject>& properties,
+                                    QuantLib::Natural settlementDays,
+                                    const Handle<Quote>& volatility,
+                                    const QuantLib::DayCounter& dayCounter,
+                                    const QuantLib::Calendar& cal,
+                                    BusinessDayConvention bdc,
+                                    bool permanent)
     : OptionletVolatilityStructure(properties, permanent)
     {
         QuantLib::Natural settlDays = 0;  // FIXME
-        QuantLib::BusinessDayConvention bdc = QuantLib::Following;  // FIXME
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::ConstantOptionletVol(settlDays,
-                                           volatility,
-                                           dayCounter,
-                                           cal,
-                                           bdc));
+        BusinessDayConvention bdc = QuantLib::Following;  // FIXME
+        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::ConstantOptionletVolatility(settlDays,
+                                                  volatility,
+                                                  dayCounter,
+                                                  cal,
+                                                  bdc));
+    }
+
+    SpreadedOptionletVolatility::SpreadedOptionletVolatility(
+                const shared_ptr<ValueObject>& properties,
+                const Handle<QuantLib::OptionletVolatilityStructure>& baseVol,
+                const Handle<Quote>& spread,
+                bool permanent)
+    : OptionletVolatilityStructure(properties, permanent)
+    {
+        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::SpreadedOptionletVolatility(baseVol,
+                                                  spread));
     }
 
     StrippedOptionletAdapter::StrippedOptionletAdapter(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const boost::shared_ptr<QuantLib::StrippedOptionletBase>& strippedOptionlet,
-        bool permanent)
+                        const shared_ptr<ValueObject>& properties,
+                        const shared_ptr<QuantLib::StrippedOptionletBase>& v,
+                        bool permanent)
     : OptionletVolatilityStructure(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::StrippedOptionletAdapter(strippedOptionlet));
-    }
-
-    SpreadedOptionletVol::SpreadedOptionletVol(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& baseVol,
-        const QuantLib::Handle<QuantLib::Quote>& spread,
-        bool permanent)
-    : OptionletVolatilityStructure(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::SpreadedOptionletVol(baseVol,
-                                           spread));
+        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::StrippedOptionletAdapter(v));
     }
 
     CapFloorTermVolCurve::CapFloorTermVolCurve(
-          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-          QuantLib::Natural settlementDays,
-          const QuantLib::Calendar& calendar,
-          const std::vector<QuantLib::Period>& optionTenors,
-          const std::vector<QuantLib::Handle<QuantLib::Quote> >& vols,
-          const QuantLib::DayCounter& dayCounter,
-          bool permanent)
+                                const shared_ptr<ValueObject>& properties,
+                                QuantLib::Natural settlementDays,
+                                const QuantLib::Calendar& calendar,
+                                const vector<QuantLib::Period>& optionTenors,
+                                const vector<Handle<Quote> >& vols,
+                                const QuantLib::DayCounter& dayCounter,
+                                bool permanent)
     : CapFloorTermVolatilityStructure(properties, permanent)
     {
-        QuantLib::BusinessDayConvention bdc = QuantLib::Following;  // FIXME
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+        BusinessDayConvention bdc = QuantLib::Following;  // FIXME
+        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapFloorTermVolCurve(settlementDays,
                                            calendar,
                                            optionTenors,
@@ -95,18 +105,18 @@ namespace QuantLibAddin {
     }
 
     CapFloorTermVolSurface::CapFloorTermVolSurface(
-          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-          QuantLib::Natural settlementDays,
-          const QuantLib::Calendar& calendar,
-          const std::vector<QuantLib::Period>& optionLengths,
-          const std::vector<QuantLib::Rate>& strikes,
-          const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& vols,
-          const QuantLib::DayCounter& dc,
-          bool permanent)
+                                const shared_ptr<ValueObject>& properties,
+                                QuantLib::Natural settlementDays,
+                                const QuantLib::Calendar& calendar,
+                                const vector<QuantLib::Period>& optionLengths,
+                                const vector<QuantLib::Rate>& strikes,
+                                const vector<vector<Handle<Quote> > >& vols,
+                                const QuantLib::DayCounter& dc,
+                                bool permanent)
     : CapFloorTermVolatilityStructure(properties, permanent)
     {
-        QuantLib::BusinessDayConvention bdc = QuantLib::Following;  // FIXME
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+        BusinessDayConvention bdc = QuantLib::Following;  // FIXME
+        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapFloorTermVolSurface(settlementDays,
                                              calendar,
                                              optionLengths,
@@ -117,64 +127,62 @@ namespace QuantLibAddin {
     }
 
     StrippedOptionlet::StrippedOptionlet(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Date& referenceDate,
-            const QuantLib::Calendar& calendar,
-            QuantLib::Natural settlementDays,
-            QuantLib::BusinessDayConvention businessDayConvention,
-            const boost::shared_ptr<QuantLib::IborIndex>& index,
-            const std::vector<QuantLib::Period>& optionletTenors,
-            const std::vector<QuantLib::Rate>& strikes,
-            const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& optionletVolQuotes,
-            const QuantLib::DayCounter& dc,
-            bool permanent)
+                                const shared_ptr<ValueObject>& properties,
+                                const QuantLib::Date& referenceDate,
+                                const QuantLib::Calendar& calendar,
+                                QuantLib::Natural settlementDays,
+                                BusinessDayConvention businessDayConvention,
+                                const shared_ptr<QuantLib::IborIndex>& index,
+                                const vector<QuantLib::Period>& optionletTenors,
+                                const vector<QuantLib::Rate>& strikes,
+                                const vector<vector<Handle<Quote> > >& vols,
+                                const QuantLib::DayCounter& dc,
+                                bool permanent)
     : StrippedOptionletBase(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::StrippedOptionlet>(new
+        libraryObject_ = shared_ptr<QuantLib::StrippedOptionlet>(new
             QuantLib::StrippedOptionlet(referenceDate,
                                         settlementDays,
                                         index,
                                         optionletTenors,
                                         strikes,
-                                        optionletVolQuotes,
+                                        vols,
                                         calendar,
                                         businessDayConvention,
                                         dc));
     }
 
     StrippedOptionletBase::StrippedOptionletBase(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            bool permanent)
-    : ObjectHandler::LibraryObject<QuantLib::StrippedOptionletBase>(properties, permanent)
-    {
-    }
+                                const shared_ptr<ValueObject>& properties,
+                                bool permanent)
+    : LibraryObject<QuantLib::StrippedOptionletBase>(properties, permanent) {}
 
     OptionletStripper1::OptionletStripper1(
-                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                    const boost::shared_ptr<QuantLib::CapFloorTermVolSurface>& surface,
-                    const boost::shared_ptr<QuantLib::IborIndex>& index,
-                    QuantLib::Rate switchStrike,
-                    QuantLib::Real accuracy,
-                    bool permanent)
+                        const shared_ptr<ValueObject>& properties,
+                        const shared_ptr<QuantLib::CapFloorTermVolSurface>& s,
+                        const shared_ptr<QuantLib::IborIndex>& index,
+                        QuantLib::Rate switchStrike,
+                        QuantLib::Real accuracy,
+                        bool permanent)
     : OptionletStripper(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::OptionletStripper1>(new
-            QuantLib::OptionletStripper1(surface,
+        libraryObject_ = shared_ptr<QuantLib::OptionletStripper1>(new
+            QuantLib::OptionletStripper1(s,
                                          index,
                                          switchStrike,
                                          accuracy));
     }
 
     OptionletStripper2::OptionletStripper2(
-                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                    const boost::shared_ptr<QuantLib::OptionletStripper1>& optionletStripper1,
-                    const QuantLib::Handle<QuantLib::CapFloorTermVolCurve>& atmCapFloorTermVolCurve,
+                    const shared_ptr<ValueObject>& properties,
+                    const shared_ptr<QuantLib::OptionletStripper1>& o,
+                    const Handle<QuantLib::CapFloorTermVolCurve>& atmV,
                     bool permanent)
     : OptionletStripper(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::OptionletStripper2>(new
-            QuantLib::OptionletStripper2(optionletStripper1,
-                                         atmCapFloorTermVolCurve));
+        libraryObject_ = shared_ptr<QuantLib::OptionletStripper2>(new
+            QuantLib::OptionletStripper2(o,
+                                         atmV));
     }
 
 }

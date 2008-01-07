@@ -22,7 +22,7 @@
     <include>qlo/Conversions/coercetermstructure.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
     Copyright (C) 2006 Silvia Frasson
     Copyright (C) 2006 Mario Pucci
     Copyright (C) 2006, 2007 Giorgio Facchinetti
@@ -258,8 +258,8 @@
     </Constructor>
 
     <!-- SwaptionVolatilityStructure constructors -->
-    <Constructor name='qlConstantSwaptionVol'>
-      <libraryFunction>ConstantSwaptionVol</libraryFunction>
+    <Constructor name='qlConstantSwaptionVolatility'>
+      <libraryFunction>ConstantSwaptionVolatility</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -267,28 +267,38 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ReferenceDate' exampleValue='=qlSettingsEvaluationDate()'>
-            <type>QuantLib::Date</type>
+          <Parameter name='NDays' default='0'>
+            <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>reference date</description>
+            <description>number of days to advance from EvaluationDate: it fixes the date at which the variance = 0.0. If omitted, default = 0 is used.</description>
           </Parameter>
-          <Parameter name='Volatility'  exampleValue='12.5%'>
+          <Parameter name='Volatility' examplevalue='0.20'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>vol quotes</description>
+            <description>cap/floor constant volatility Quote</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID</description>
           </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+          </Parameter>
+          <Parameter name='BusinessDayConvention' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Business day convention used for calculating the exercise dates from the expiries</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlSpreadedSwaptionVol'>
-      <libraryFunction>SpreadedSwaptionVol</libraryFunction>
+    <Constructor name='qlSpreadedSwaptionVolatility'>
+      <libraryFunction>SpreadedSwaptionVolatility</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -297,13 +307,13 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='SwaptionVolatilityStructure' >
+          <Parameter name='BaseVolStructure'>
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Swaption volatility structure object ID</description>
+            <description>Base SwaptionVolatilityStructure object ID</description>
           </Parameter>
-          <Parameter name='Spread' exampleValue='0.0'>
+          <Parameter name='Spread' exampleValue='0.01'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
