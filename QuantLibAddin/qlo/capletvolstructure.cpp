@@ -35,10 +35,10 @@
 using std::vector;
 using QuantLib::Handle;
 using QuantLib::Quote;
-using BusinessDayConvention;
+using QuantLib::BusinessDayConvention;
 using boost::shared_ptr;
-using Objecthandler::ValueObject;
-using LibraryObject;
+using ObjectHandler::ValueObject;
+using ObjectHandler::LibraryObject;
 
 namespace QuantLibAddin {
 
