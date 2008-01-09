@@ -389,7 +389,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='PriceQuote' exampleValue='95.9'>
+          <Parameter name='PriceQuote' exampleValue='95.92'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
