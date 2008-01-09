@@ -204,13 +204,14 @@ namespace QuantLibAddin {
             QuantLib::Date earliestDate;
             QuantLib::Date latestDate;
             RateHelperItem(bool isImmFutures,
-						   bool isSerialFutures,
+                           bool isSerialFutures,
                            bool isDepo,
                            const std::string& objectID,
                            const long& priority,
                            const QuantLib::Date& earliestDate,
                            const QuantLib::Date& latestDate)
-            : isImmFutures(isImmFutures), isSerialFutures(isSerialFutures), isDepo(isDepo), objectID(objectID),
+            : isImmFutures(isImmFutures), isSerialFutures(isSerialFutures),
+              isDepo(isDepo), objectID(objectID),
               priority(priority),
               earliestDate(earliestDate), latestDate(latestDate) {}
         };
@@ -385,4 +386,3 @@ namespace QuantLibAddin {
     }
 
 }
-
