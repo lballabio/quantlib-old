@@ -62,10 +62,10 @@
             <tensorRank>scalar</tensorRank>
             <description>BackwardFlat, ForwardFlat, Linear, LogLinear, CubicSpline, or LogCubic. If omitted, default = LogLinear is used.</description>
           </Parameter>
-          <Parameter name='Accuracy' default='1.0e-12'>
+          <Parameter name='Accuracy' default='1.0e-7'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Bootstrapping accuracy.</description>
+            <description>Bootstrapping accuracy. If missing default = 1.0e-7.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
