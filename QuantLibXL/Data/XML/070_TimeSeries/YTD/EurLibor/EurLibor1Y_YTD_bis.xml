@@ -8,41 +8,11 @@
 		<px class_id="185" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>TS_EurLibor1Y_YTD_bis</ObjectId>
 			<ClassName>qlTimeSeries</ClassName>
-			<Dates class_id="196" tracking_level="0" version="0">
+			<Dates class_id="197" tracking_level="0" version="0">
 				<count>256</count>
 				<item_version>0</item_version>
-				<item class_id="197" tracking_level="0" version="0">
-					<variant_ class_id="198" tracking_level="0" version="0">
-						<which>1</which>
-						<value>39078</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39079</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39080</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39084</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39085</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
+				<item class_id="198" tracking_level="0" version="0">
+					<variant_ class_id="199" tracking_level="0" version="0">
 						<which>1</which>
 						<value>39086</value>
 					</variant_>
@@ -1547,40 +1517,40 @@
 						<value>39440</value>
 					</variant_>
 				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39443</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39444</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39447</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39449</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39450</value>
+					</variant_>
+				</item>
 			</Dates>
 			<Values>
 				<count>256</count>
 				<item_version>0</item_version>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.040003799999999999</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.040196300000000004</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.040247499999999999</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.040281299999999999</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.040286299999999997</value>
-					</variant_>
-				</item>
 				<item>
 					<variant_>
 						<which>1</which>
@@ -3085,6 +3055,36 @@
 					<variant_>
 						<which>1</which>
 						<value>0.047743799999999996</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.047837500000000005</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.047537500000000003</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.047468799999999998</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.047350000000000003</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.046981299999999997</value>
 					</variant_>
 				</item>
 			</Values>
