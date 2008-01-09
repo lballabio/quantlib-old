@@ -347,7 +347,7 @@
             <tensorRank>vector</tensorRank>
             <description>underlying swap lengths</description>
           </Parameter>
-          <Parameter name='Volatilities' >
+          <Parameter name='Volatilities'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
