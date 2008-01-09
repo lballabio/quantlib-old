@@ -828,7 +828,7 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar used for calculating the exercise dates from the expiries tenor</description>
           </Parameter>
-          <Parameter name='OptionLenghts' exampleValue ='3Y, 5Y, 7Y, 10Y'>
+          <Parameter name='OptionTenors' exampleValue ='3Y, 5Y, 7Y, 10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>option tenors</description>
@@ -838,6 +838,11 @@
             <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
             <description>vol quotes vector</description>
+          </Parameter>
+          <Parameter name='BusinessDayConvention' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Business day convention used for calculating the exercise dates from the expiries</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
@@ -912,12 +917,12 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar used for calculating the exercise dates from the expiries tenor</description>
           </Parameter>
-          <Parameter name='OptionLenghts' exampleValue ='5Y, 10Y'>
+          <Parameter name='OptionTenors' exampleValue ='5Y, 10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
             <description>option tenors</description>
           </Parameter>
-          <Parameter name='CapStrikes'>
+          <Parameter name='Strikes'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>cap strikes</description>
@@ -927,6 +932,11 @@
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
             <description>vol quotes matrix</description>
+          </Parameter>
+          <Parameter name='BusinessDayConvention' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Business day convention used for calculating the exercise dates from the expiries</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>

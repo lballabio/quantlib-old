@@ -83,6 +83,7 @@ namespace QuantLibAddin {
                       const QuantLib::Calendar& calendar,
                       const std::vector<QuantLib::Period>& optionTenors,
                       const std::vector<QuantLib::Handle<QuantLib::Quote> >&,
+                      QuantLib::BusinessDayConvention bdc,
                       const QuantLib::DayCounter& dayCounter,
                       bool permanent);
     };
@@ -96,6 +97,7 @@ namespace QuantLibAddin {
           const std::vector<QuantLib::Period>& optionTenors,
           const std::vector<QuantLib::Rate>& strikes,
           const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >&,
+          QuantLib::BusinessDayConvention bdc,
           const QuantLib::DayCounter& dc,
           bool permanent);
     };

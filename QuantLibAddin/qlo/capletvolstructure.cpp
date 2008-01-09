@@ -52,10 +52,8 @@ namespace QuantLibAddin {
                                     bool permanent)
     : OptionletVolatilityStructure(properties, permanent)
     {
-        QuantLib::Natural settlDays = 0;  // FIXME
-        BusinessDayConvention bdc = QuantLib::Following;  // FIXME
         libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::ConstantOptionletVolatility(settlDays,
+            QuantLib::ConstantOptionletVolatility(settlementDays,
                                                   volatility,
                                                   dayCounter,
                                                   cal,
@@ -90,18 +88,18 @@ namespace QuantLibAddin {
                                 const QuantLib::Calendar& calendar,
                                 const vector<QuantLib::Period>& optionTenors,
                                 const vector<Handle<Quote> >& vols,
-                                const QuantLib::DayCounter& dayCounter,
+                                BusinessDayConvention bdc,
+                                const QuantLib::DayCounter& dc,
                                 bool permanent)
     : CapFloorTermVolatilityStructure(properties, permanent)
     {
-        BusinessDayConvention bdc = QuantLib::Following;  // FIXME
-        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+       libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapFloorTermVolCurve(settlementDays,
                                            calendar,
                                            optionTenors,
                                            vols,
                                            bdc,
-                                           dayCounter));
+                                           dc));
     }
 
     CapFloorTermVolSurface::CapFloorTermVolSurface(
@@ -111,11 +109,11 @@ namespace QuantLibAddin {
                                 const vector<QuantLib::Period>& optionLengths,
                                 const vector<QuantLib::Rate>& strikes,
                                 const vector<vector<Handle<Quote> > >& vols,
+                                BusinessDayConvention bdc,
                                 const QuantLib::DayCounter& dc,
                                 bool permanent)
     : CapFloorTermVolatilityStructure(properties, permanent)
     {
-        BusinessDayConvention bdc = QuantLib::Following;  // FIXME
         libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapFloorTermVolSurface(settlementDays,
                                              calendar,
