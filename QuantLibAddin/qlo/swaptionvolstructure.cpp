@@ -74,7 +74,9 @@ namespace QuantLibAddin {
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& vols,
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::BusinessDayConvention bdc,
-            bool permanent) : SwaptionVolatilityDiscrete(properties, permanent) {
+            bool permanent)
+    : SwaptionVolatilityDiscrete(properties, permanent)
+    {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SwaptionVolatilityMatrix(calendar,
                                                optionTenors,
@@ -107,7 +109,6 @@ namespace QuantLibAddin {
         bool vegaWeightedSmileFit,
         bool permanent) : SwaptionVolatilityCube(properties, permanent)
     {
-        QL_REQUIRE(!atmVol.empty(), "atm vol handle not linked to anything");
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SwaptionVolCube2(atmVol,
                                        optionTenors,
