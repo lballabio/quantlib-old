@@ -4,7 +4,7 @@
 
 <li class="navlink"><a href="/reference/overview.html">Project Overview</a></li>
 
-<li class="navlink"><a href="/extensions.shtml">Extensions</a></li>
+<li class="navlink"><a href="/extensions.shtml">Other languages</a></li>
 
 <li class="navlink"><a href="/reference/examples.html">Examples</a></li>
 
