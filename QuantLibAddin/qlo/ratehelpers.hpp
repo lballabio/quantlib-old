@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
- Copyright (C) 2006,2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2007 Marco Bianchetti
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
@@ -46,7 +46,7 @@ namespace QuantLib {
     class SwapIndex;
     class Schedule;
     class Date;
-
+    class FixedRateBond;
     template <class T>
     class Handle;
 }
@@ -68,13 +68,8 @@ namespace QuantLibAddin {
       public:
         DepositRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::Quote>& quote,
-            const QuantLib::Period& p,
-            QuantLib::Natural settlementDays,
-            const QuantLib::Calendar& calendar,
-            QuantLib::BusinessDayConvention convention,
-            bool endOfMonth,
-            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& rate,
+            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             bool permanent);
     };
 
@@ -84,10 +79,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
             const std::string& immDateID,
-            QuantLib::Size months,
-            const QuantLib::Calendar& calendar,
-            QuantLib::BusinessDayConvention bDayConvention,
-            const QuantLib::DayCounter& dayCounter,
+            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             const QuantLib::Handle<QuantLib::Quote>& convAdj,
             bool permanent);
     };
@@ -121,25 +113,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
             QuantLib::Natural monthsToStart,
-            QuantLib::Natural monthsToEnd,
-            QuantLib::Natural settlementDays,
-            const QuantLib::Calendar& calendar,
-            QuantLib::BusinessDayConvention convention,
-            bool endOfMonth,
-            QuantLib::Natural fixingDays,
-            const QuantLib::DayCounter& dayCounter,
-            bool permanent);
-        FraRateHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::Rate rate,
-            QuantLib::Natural monthsToStart,
-            QuantLib::Natural monthsToEnd,
-            QuantLib::Natural settlementDays,
-            const QuantLib::Calendar& calendar,
-            QuantLib::BusinessDayConvention convention,
-            bool endOfMonth,
-            QuantLib::Natural fixingDays,
-            const QuantLib::DayCounter& dayCounter,
+            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             bool permanent);
     };
 
@@ -148,13 +122,7 @@ namespace QuantLibAddin {
         FixedRateBondHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
-            QuantLib::Natural settlementDays,
-            const QuantLib::Schedule& schedule,
-            const std::vector<QuantLib::Rate>& coupons,
-            const QuantLib::DayCounter& paymentDayCounter,
-            QuantLib::BusinessDayConvention paymentConvention,
-            QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
+            const boost::shared_ptr<QuantLib::FixedRateBond>& fixedBond,
             bool permanent);
     };
             
