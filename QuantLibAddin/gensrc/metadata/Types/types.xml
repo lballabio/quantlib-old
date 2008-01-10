@@ -168,6 +168,7 @@
         <DataType>QuantLib::EvolutionDescription</DataType>
         <DataType>QuantLib::Exercise</DataType>
         <DataType>QuantLib::Extrapolator</DataType>
+        <DataType>QuantLib::FixedRateBond</DataType>
         <DataType>QuantLib::FloatingRateCouponPricer</DataType>
         <DataType>QuantLib::ForwardRateAgreement</DataType>
         <DataType>QuantLib::FuturesRateHelper</DataType>
