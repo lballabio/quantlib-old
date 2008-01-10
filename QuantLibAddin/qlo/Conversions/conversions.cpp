@@ -65,6 +65,7 @@ namespace QuantLibAddin {
 
     void cppToLibrary(const std::string &in, QuantLib::Period &ret) {
         ret = QuantLib::PeriodParser::parse(in);
+        ret.normalize();
     }
 
     void cppToLibrary(const long &in, QuantLib::Size &ret) {
