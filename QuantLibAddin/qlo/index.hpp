@@ -75,7 +75,7 @@ namespace QuantLibAddin {
     class Euribor : public IborIndex {
       public:
         Euribor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                const QuantLib::Period& p,
+            const std::string& p,
                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                 bool permanent);
     };
@@ -83,7 +83,7 @@ namespace QuantLibAddin {
     class Euribor365 : public IborIndex {
       public:
         Euribor365(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                   const QuantLib::Period& p,
+                   const std::string& p,
                    const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                    bool permanent);
     };
@@ -91,7 +91,7 @@ namespace QuantLibAddin {
     class EurLibor : public IborIndex {
       public:
         EurLibor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                 const QuantLib::Period& p,
+                 const std::string& p,
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                  bool permanent);
     };

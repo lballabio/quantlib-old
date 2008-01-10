@@ -39,6 +39,12 @@
 #include <ql/indexes/swap/eurliborswapfixb.hpp>
 #include <ql/indexes/swap/eurliborswapfixifr.hpp>
 
+#include <ql/utilities/dataparsers.hpp>
+
+#include <boost/algorithm/string/case_conv.hpp>
+
+using boost::algorithm::to_upper_copy;
+
 namespace QuantLibAddin {
 
     void Index::addFixings(const std::vector<QuantLib::Date>& dates,
@@ -85,30 +91,84 @@ namespace QuantLibAddin {
     }
 
     Euribor::Euribor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                     const QuantLib::Period& p,
+                     const std::string& p,
                      const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
                      bool permanent) : IborIndex(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Euribor>(new
-            QuantLib::Euribor(p, h));
+        if (to_upper_copy(p)=="ON")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::DailyTenorEuribor(0, h));
+        else if (to_upper_copy(p)=="1D")
+            QL_FAIL("1D is ambigous: please specify ON, TN, or SN");
+        else if (to_upper_copy(p)=="TN")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::DailyTenorEuribor(1, h));
+        else if (to_upper_copy(p)=="SN")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::DailyTenorEuribor(2, h));
+        else if (to_upper_copy(p)=="SW")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+            QuantLib::Euribor(1*QuantLib::Weeks, h));
+        else {
+            QuantLib::Period pp = QuantLib::PeriodParser::parse(p);
+            pp.normalize();
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::Euribor(pp, h));
+        }
     }
 
     Euribor365::Euribor365(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                           const QuantLib::Period& p,
+                           const std::string& p,
                            const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
                            bool permanent) : IborIndex(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Euribor365>(new
-            QuantLib::Euribor365(p, h));
+        if (to_upper_copy(p)=="ON")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::DailyTenorEuribor365(0, h));
+        else if (to_upper_copy(p)=="1D")
+            QL_FAIL("1D is ambigous: please specify ON, TN, or SN");
+        else if (to_upper_copy(p)=="TN")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::DailyTenorEuribor365(1, h));
+        else if (to_upper_copy(p)=="SN")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::DailyTenorEuribor365(2, h));
+        else if (to_upper_copy(p)=="SW")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::Euribor365(1*QuantLib::Weeks, h));
+        else {
+            QuantLib::Period pp = QuantLib::PeriodParser::parse(p);
+            pp.normalize();
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::Euribor365(pp, h));
+        }
     }
 
     EurLibor::EurLibor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                       const QuantLib::Period& p,
+                       const std::string& p,
                        const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
                        bool permanent) : IborIndex(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::EURLibor>(new
-            QuantLib::EURLibor(p, h));
+        if (to_upper_copy(p)=="ON")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::DailyTenorEURLibor(0, h));
+        else if (to_upper_copy(p)=="1D")
+            QL_FAIL("1D is ambigous: please specify ON, TN, or SN");
+        else if (to_upper_copy(p)=="TN")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::DailyTenorEURLibor(1, h));
+        else if (to_upper_copy(p)=="SN")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::DailyTenorEURLibor(2, h));
+        else if (to_upper_copy(p)=="SW")
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::EURLibor(1*QuantLib::Weeks, h));
+        else {
+            QuantLib::Period pp = QuantLib::PeriodParser::parse(p);
+            pp.normalize();
+            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
+                QuantLib::EURLibor(pp, h));
+        }
     }
 
     SwapIndex::SwapIndex(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
