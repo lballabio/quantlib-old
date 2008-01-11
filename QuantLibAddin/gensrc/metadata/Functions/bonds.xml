@@ -611,7 +611,7 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string. If omitted, default = 'no description available'</description>
           </Parameter>
-          <Parameter name='Currency'>
+          <Parameter name='Currency' examplevalue='EUR'>
             <type>QuantLib::Currency</type>
             <tensorRank>scalar</tensorRank>
             <description>bond Currency</description>
@@ -647,7 +647,7 @@
             <tensorRank>scalar</tensorRank>
             <description>payment business day convention. If omitted, default = Following.</description>
           </Parameter>
-          <Parameter name='Redemption' default='100'>
+          <Parameter name='Redemption' default='100.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>redemption value. If omitted, default = 100</description>
