@@ -74,7 +74,7 @@ namespace QuantLibAddin {
         Size numberOfRows = cmsMarket.rows()+1;
         vector<vector<any> > result(numberOfRows, vector<any>(numberOfColumn));
 
-        result[0][ 0] = std::string("CM Swap Index");
+        result[0][ 0] = std::string("SwapIndex");
         result[0][ 1] = std::string("Maturity");
 
         result[0][ 2] = std::string("Mkt Bid - Spread (bps)");
