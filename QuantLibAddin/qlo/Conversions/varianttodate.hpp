@@ -1,6 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
+ Copyright (C) 2008 Ferdinando Ametrano
  Copyright (C) 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -23,6 +24,7 @@
 #include <oh/types.hpp>
 #include <oh/Conversions/varianttoscalar.hpp>
 #include <ql/utilities/dataparsers.hpp>
+#include <ql/time/imm.hpp>
 #include <ql/settings.hpp>
 
 namespace ObjectHandler {
@@ -34,8 +36,10 @@ namespace ObjectHandler {
             if (variant.type() == ObjectHandler::Double || variant.type() == ObjectHandler::Long) {
                 return QuantLib::Date(variant);
             } else if (variant.type() == ObjectHandler::String) {
-                QuantLib::Date d = QuantLib::Settings::instance().evaluationDate();
+                if (QuantLib::IMM::isIMMcode(variant, false))
+                    return QuantLib::IMM::date(variant);
                 QuantLib::Period p = QuantLib::PeriodParser::parse(variant);
+                QuantLib::Date d = QuantLib::Settings::instance().evaluationDate();
                 return d + p;
             } else {
                 OH_FAIL("invalid conversion");
