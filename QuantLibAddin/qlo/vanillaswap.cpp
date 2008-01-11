@@ -29,6 +29,7 @@
 #include <ql/instruments/makevanillaswap.hpp>
 #include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/yield/ratehelpers.hpp>
+#include <ql/time/imm.hpp>
 
 namespace QuantLibAddin {
 
@@ -71,6 +72,37 @@ namespace QuantLibAddin {
     {
         libraryObject_ = QuantLib::MakeVanillaSwap(swapTenor, index,
                                                    fixedRate, fwdStart)
+                         .withFixedLegDayCount(fixDayCounter)
+                         .withFloatingLegSpread(floatingLegSpread)
+                         .operator boost::shared_ptr<QuantLib::VanillaSwap>();
+    }
+
+    VanillaSwap::VanillaSwap(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Period& swapTenor, 
+            const boost::shared_ptr<QuantLib::IborIndex>& index,
+            QuantLib::Rate fixedRate,
+            const QuantLib::Date& immDate,
+            const QuantLib::DayCounter& fixDayCounter,
+            QuantLib::Spread floatingLegSpread,
+            bool permanent)
+    : Swap(properties, permanent)
+    {
+        QuantLib::Date effectiveDate = immDate;
+        if (effectiveDate==QuantLib::Date())
+            effectiveDate = QuantLib::IMM::nextDate();
+
+        QuantLib::Date terminationDate = effectiveDate+swapTenor;
+        terminationDate = QuantLib::Date::nthWeekday(3,
+                                                     QuantLib::Wednesday,
+                                                     terminationDate.month(),
+                                                     terminationDate.year());
+
+        libraryObject_ = QuantLib::MakeVanillaSwap(swapTenor, index,
+                                                   fixedRate)
+                         .withEffectiveDate(effectiveDate)
+                         .withTerminationDate(terminationDate)
+                         .withRule(QuantLib::DateGeneration::ThirdWednesday)
                          .withFixedLegDayCount(fixDayCounter)
                          .withFloatingLegSpread(floatingLegSpread)
                          .operator boost::shared_ptr<QuantLib::VanillaSwap>();

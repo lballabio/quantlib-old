@@ -174,6 +174,49 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlMakeIMMSwap'>
+      <libraryFunction>VanillaSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapTenor' exampleValue='2Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap tenor period (e.g. 2Y)</description>
+          </Parameter>
+          <Parameter name='IborIndex' exampleValue='Euribor3M'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating IborIndex object ID</description>
+          </Parameter>
+          <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the fixed rate. If omitted, default is ATM rate</description>
+          </Parameter>
+          <Parameter name='FirstImmDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>First (IMM) date. If omitted, default is firt IMM date</description>
+          </Parameter>
+          <Parameter name='FixedLegDayCounter' default='"30/360 (Bond Basis)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixed leg day counter (default is 30/360 Bond Basis)</description>
+          </Parameter>
+          <Parameter name='FloatingLegSpread' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the spread in the floating leg rate. If omitted, default = null</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Member name='qlVanillaSwapFixedLegBPS' type='QuantLib::VanillaSwap'>
       <description>returns the BPS of the fixed rate leg for the given VanillaSwap object</description>
       <libraryFunction>fixedLegBPS</libraryFunction>
