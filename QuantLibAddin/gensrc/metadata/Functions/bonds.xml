@@ -287,7 +287,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>The current bond settlement is used if no date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -330,7 +330,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>The current bond settlement is used if no date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -374,7 +374,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>The current bond settlement is used if no date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -417,7 +417,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>The current bond settlement is used if no date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -460,7 +460,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>The current bond settlement is used if no date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -483,7 +483,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>The current bond settlement is used if no date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -494,7 +494,7 @@
     </Member>
 
     <Member name='qlBondPreviousCoupon' type='QuantLib::Bond'>
-      <description>Returns the previous period's coupon paid for the given bond. The default bond settlement is used if no date is given.</description>
+      <description>Returns the previous coupon. Depending on (the Bond and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the last paid one.</description>
       <libraryFunction>previousCoupon</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -506,19 +506,19 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>The current bond settlement is used if no date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Rate</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondCurrentCoupon' type='QuantLib::Bond'>
-      <description>Returns the current coupon for the given bond. The default bond settlement is used if no date is given.</description>
-      <libraryFunction>currentCoupon</libraryFunction>
+    <Member name='qlBondNextCoupon' type='QuantLib::Bond'>
+      <description>Returns the next coupon. Depending on (the Bond and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the already-fixed not-yet-paid one.</description>
+      <libraryFunction>nextCoupon</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -529,12 +529,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>The current bond settlement is used if no date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Rate</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>

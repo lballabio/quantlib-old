@@ -39,7 +39,7 @@ namespace QuantLibAddin {
     class Leg : public ObjectHandler::Object {
       public:
         QuantLib::Rate previousCouponRate(const QuantLib::Date& refDate) const;
-        QuantLib::Rate currentCouponRate(const QuantLib::Date& refDate) const;
+        QuantLib::Rate nextCouponRate(const QuantLib::Date& refDate) const;
         QuantLib::Date startDate() const;
         QuantLib::Date maturityDate() const;
         QuantLib::Real npv(const QuantLib::YieldTermStructure&,

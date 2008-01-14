@@ -49,8 +49,8 @@ namespace QuantLibAddin {
         return QuantLib::CashFlows::previousCouponRate(leg_, refDate);
     }
 
-    QuantLib::Rate Leg::currentCouponRate(const Date& refDate) const {
-        return QuantLib::CashFlows::currentCouponRate(leg_, refDate);
+    QuantLib::Rate Leg::nextCouponRate(const Date& refDate) const {
+        return QuantLib::CashFlows::nextCouponRate(leg_, refDate);
     }
 
     QuantLib::Date Leg::startDate() const {

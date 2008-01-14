@@ -20,7 +20,7 @@
 
     <!-- Leg interface -->
     <Member name='qlLegPreviousCouponRate' type='QuantLibAddin::Leg'>
-      <description>Returns the previous coupon rate paid (if any) for the given Leg object</description>
+      <description>Returns the previous coupon. Depending on (the Leg and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the last paid one.</description>
       <libraryFunction>previousCouponRate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -41,9 +41,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlLegCurrentCouponRate' type='QuantLibAddin::Leg'>
-      <description>Returns the current coupon rate (if any) for the given Leg object</description>
-      <libraryFunction>currentCouponRate</libraryFunction>
+    <Member name='qlLegNextCouponRate' type='QuantLibAddin::Leg'>
+      <description>Returns the next coupon. Depending on (the Leg and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the already-fixed not-yet-paid one.</description>
+      <libraryFunction>nextCouponRate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
