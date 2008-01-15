@@ -8,11 +8,11 @@
 		<px class_id="189" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>TS_EuriborSwapFixIFR5Y_2005</ObjectId>
 			<ClassName>qlTimeSeries</ClassName>
-			<Dates class_id="201" tracking_level="0" version="0">
+			<Dates class_id="202" tracking_level="0" version="0">
 				<count>191</count>
 				<item_version>0</item_version>
-				<item class_id="202" tracking_level="0" version="0">
-					<variant_ class_id="203" tracking_level="0" version="0">
+				<item class_id="203" tracking_level="0" version="0">
+					<variant_ class_id="204" tracking_level="0" version="0">
 						<which>1</which>
 						<value>38440</value>
 					</variant_>
