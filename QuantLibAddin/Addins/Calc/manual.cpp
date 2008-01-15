@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,7 +17,7 @@
 */
 
 #include <qlo/qladdindefines.hpp>
-#include <qlo/typefactory.hpp>
+#include <qlo/Enumerations/Factories/all.hpp>
 #include <qlo/Conversions/all.hpp>
 #include <oh/objecthandler.hpp>
 
@@ -25,6 +25,7 @@
 #include <Addins/Calc/calcutils.hpp>
 #include <Addins/Calc/conversions.hpp>
 
+/*
 sal_Int32 SAL_CALL QLAddin::ohTrigger(
         const ANY &dummy0,
         const ANY &dummy1,
@@ -60,8 +61,6 @@ SEQSEQ(STRING) SAL_CALL QLAddin::ohPropertyNames(
 
         // convert and return the return value
 
-
-/* no VO - not a constructor*/
         SEQSEQ(STRING) returnValueCalc;
         vectorToCalc(returnValueCalc, returnValue);
         return returnValueCalc;
@@ -95,8 +94,6 @@ ANY SAL_CALL QLAddin::ohPropertyValue(
 
         // convert and return the return value
 
-
-/* no VO - not a constructor*/
         ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
         return returnValueCalc;
@@ -106,4 +103,5 @@ ANY SAL_CALL QLAddin::ohPropertyValue(
         THROW_RTE;
     }
 }
+*/
 

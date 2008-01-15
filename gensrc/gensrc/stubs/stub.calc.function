@@ -4,7 +4,7 @@
 %(functionValueObject)s
 %(convertReturnType)s
     } catch (const std::exception &e) {
-        ObjectHandler::logMessage(std::string("ERROR: %(functionName)s: ") + e.what(), 2);
+        OH_LOG_MESSAGE("ERROR: %(functionName)s: " << e.what());
         THROW_RTE;
     }
 }

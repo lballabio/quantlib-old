@@ -51,35 +51,35 @@
             <tensorRank>scalar</tensorRank>
             <description>option type (i.e. Call or Put)</description>
           </Parameter>
-          <Parameter name='Strike'>
-            <type>double</type>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='StdDev'>
-            <type>double</type>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='Deflator' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -99,30 +99,30 @@
             <tensorRank>scalar</tensorRank>
             <description>option type (i.e. Call or Put)</description>
           </Parameter>
-          <Parameter name='Strike'>
-            <type>double</type>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='StdDev'>
-            <type>double</type>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -142,35 +142,35 @@
             <tensorRank>scalar</tensorRank>
             <description>option type (i.e. Call or Put)</description>
           </Parameter>
-          <Parameter name='Strike'>
-            <type>double</type>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='OptionPrice'>
-            <type>double</type>
+          <Parameter name='OptionPrice' exampleValue='7.97'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>option price</description>
           </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='Deflator' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -190,45 +190,45 @@
             <tensorRank>scalar</tensorRank>
             <description>option type (i.e. Call or Put)</description>
           </Parameter>
-          <Parameter name='Strike'>
-            <type>double</type>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='OptionPrice'>
-            <type>double</type>
+          <Parameter name='OptionPrice' exampleValue='7.97'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>option price</description>
           </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='Deflator' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
           <Parameter name='Guess' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation guess</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-6'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation accuracy</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -243,35 +243,35 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Strike'>
-            <type>double</type>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='StdDev'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>standard deviation, i.e. annualized volatility times the square root of time to option expiry</description>
-          </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='StdDev' exampleValue='0.20'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -291,30 +291,30 @@
             <tensorRank>scalar</tensorRank>
             <description>option type (i.e. Call or Put)</description>
           </Parameter>
-          <Parameter name='Strike'>
-            <type>double</type>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>option strike</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='StdDev'>
-            <type>double</type>
+          <Parameter name='StdDev' exampleValue='20.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized ABSOLUTE volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='Deflator' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -334,30 +334,30 @@
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff object ID</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='StdDev'>
-            <type>double</type>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='Deflator' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -377,25 +377,25 @@
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff  object ID</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='StdDev'>
-            <type>double</type>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -415,30 +415,30 @@
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff object ID</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='OptionPrice'>
-            <type>double</type>
+          <Parameter name='OptionPrice' exampleValue='7.97'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>option price</description>
           </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='Deflator' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -458,44 +458,43 @@
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff object ID</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='OptionPrice'>
-            <type>double</type>
+          <Parameter name='OptionPrice' exampleValue='7.97'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>option price</description>
           </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='Deflator' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
           <Parameter name='Guess' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation guess</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-6'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation accuracy</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
-
 
     <Procedure name='qlBlackFormulaStdDevDerivative2'>
       <description>Black 1976 formula for the derivative with respect to the standard deviation (annualized percentage volatility times the square root of time to option expiry). It uses a PlainVanillaPayoff object as input</description>
@@ -512,30 +511,30 @@
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff object ID</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='StdDev'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
-            <description>standard deviation, i.e. annualized volatility times the square root of time to option expiry</description>
-          </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='StdDev' exampleValue='0.20'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -555,29 +554,28 @@
             <tensorRank>scalar</tensorRank>
             <description>PlainVanillaPayoff object ID</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='StdDev'>
-            <type>double</type>
+          <Parameter name='StdDev' exampleValue='20.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized ABSOLUTE volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='Deflator' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
-
 
     <!-- BlackCalculator interface and constructor -->
     <Member name='qlBlackCalculatorValue' type='QuantLib::BlackCalculator'>
@@ -941,20 +939,20 @@
             <tensorRank>scalar</tensorRank>
             <description>payoff ID</description>
           </Parameter>
-          <Parameter name='AtmForwardValue'>
-            <type>double</type>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying asset at-the-money forward value</description>
           </Parameter>
-          <Parameter name='StdDev'>
+          <Parameter name='StdDev' exampleValue='0.20'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='Deflator' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1069,7 +1067,7 @@
             <tensorRank>scalar</tensorRank>
             <description>payoff ID</description>
           </Parameter>
-          <Parameter name='Spot'>
+          <Parameter name='Spot' exampleValue='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>spot value</description>
@@ -1079,15 +1077,15 @@
             <tensorRank>scalar</tensorRank>
             <description>growth discount factor</description>
           </Parameter>
-          <Parameter name='StdDev'>
+          <Parameter name='StdDev' exampleValue='0.20'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry</description>
           </Parameter>
-          <Parameter name='Discount' default='1.0'>
+          <Parameter name='Deflator' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>discount factor</description>
+            <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -1097,7 +1095,6 @@
     <Constructor name='qlPricingEngine'>
       <libraryFunction>PricingEngine</libraryFunction>
       <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='C'/>
         <SupportedPlatform name='Calc'/>
@@ -1145,7 +1142,6 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>

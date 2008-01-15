@@ -1,6 +1,6 @@
 <Category name='correlation'>
   <description>functions to construct and use Correlation objects</description>
-  <displayName>correlation</displayName>
+  <displayName>Correlation</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
     <include>qlo/correlation.hpp</include>

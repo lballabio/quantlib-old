@@ -195,7 +195,7 @@
             <tensorRank>scalar</tensorRank>
             <description>option type</description>
           </Parameter>
-          <Parameter name='Strike' exampleValue ='0.01'>
+          <Parameter name='Strike' exampleValue ='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>strike</description>

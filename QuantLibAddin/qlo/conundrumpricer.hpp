@@ -4,7 +4,7 @@
  Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2006, 2007 Cristina Duminuco
  Copyright (C) 2006 Giorgio Facchinetti
- Copyright (C) 2006 François du Vignaud
+ Copyright (C) 2006 Francois du Vignaud
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/

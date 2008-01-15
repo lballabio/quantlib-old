@@ -3,7 +3,7 @@
 
 !define APP "ObjectHandler"
 !define VER_NUMBER "0.9.0"
-!define DEFAULT_PATH "c:\build_ql_0_9_0"
+!define DEFAULT_PATH "C:\build_ql_0_9_0"
 
 # Compiler Flags
 
@@ -35,7 +35,7 @@ Section
 
     File "*.txt"
     File "*.TXT"
-    File "*.nsi"
+    File "ObjectHandler.nsi"
     File /r "*.vcproj"
     File /r "*.hpp"
     File /r "*.cpp"
@@ -60,13 +60,15 @@ Section
     File "Docs\oh_header.html"
     File "Docs\oh_headeronline.html"
     File "Docs\Makefile.vc"
-    File "Docs\style.css"
+    File "Docs\doxygen.css"
+    File "Docs\ql.css"
+    File "Docs\tabs.css"
 
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
     File "Docs\images\*.png"
-    File "Docs\images\*.gif"
+    File "Docs\images\*.php"
 
     SetOutPath "$INSTDIR\Docs\pages"
     File "Docs\pages\*.docs"

@@ -1,7 +1,13 @@
 <Addin name='Calc'>
   
-  <rootDirectory>Addins/Calc</rootDirectory>
   <addinClassName>QLAddin::QLAddin</addinClassName>
+  <rootDirectory>Addins/Calc</rootDirectory>
+  <coreCategories>true</coreCategories>
+  <addinCategories>true</addinCategories>
+
+  <copyright>
+    Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
+  </copyright>
 
   <Buffers>
     <Buffer name='bufferFunction' fileName='stub.calc.function'/>
@@ -13,7 +19,6 @@
     <Buffer name='bufferCategory' fileName='stub.calc.category'/>
     <Buffer name='bufferLoop' fileName='stub.calc.loop'/>
   </Buffers>
-
 
 </Addin>
 

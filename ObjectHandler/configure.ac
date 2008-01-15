@@ -60,6 +60,7 @@ AC_CONFIG_FILES([
     Examples/ExampleObjects/Serialization/Makefile
     Examples/ExampleObjects/ValueObjects/Makefile
     Examples/ExampleObjects/Makefile
+    Examples/Makefile
     Examples/C++/Makefile
     Examples/xl/Makefile
     gensrc/Makefile

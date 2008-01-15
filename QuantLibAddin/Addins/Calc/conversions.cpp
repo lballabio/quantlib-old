@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,7 +20,7 @@
 #include <Addins/Calc/conversions.hpp>
 #include <Addins/Calc/calcutils.hpp>
 //#include <qlo/calendar.hpp>
-#include <qlo/typefactory.hpp>
+#include <qlo/Enumerations/Factories/all.hpp>
 #include <oh/objecthandler.hpp>
 
 void calcToScalar(QuantLib::Date &ret, const sal_Int32 &date) {
@@ -31,6 +31,29 @@ void calcToScalar(QuantLib::Date &ret, const ANY &date) {
 	long dateLong;
 	calcToScalar(dateLong, date);
 	ret = QuantLib::Date(dateLong);
+}
+
+void calcToScalar(ObjectHandler::Variant &ret, const ANY &value) {
+    STRING t = value.getValueTypeName();
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("VOID"))) {
+        ret = ObjectHandler::Variant();
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("LONG"))) {
+        long temp;
+        value >>= temp;
+        ret = ObjectHandler::Variant(temp);
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double temp;
+        value >>= temp;
+        ret = ObjectHandler::Variant(temp);
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("STRING"))) {
+        STRING temp;
+        value >>= temp;
+        ret = ObjectHandler::Variant(ouStringToStlString(temp));
+    /*} else if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
+        ret = std::string("<MATRIX>");*/
+    } else {
+        OH_FAIL("unrecognized type: " << ouStringToStlString(t));
+    }
 }
 
 //void calcToScalar(QuantLib::Calendar &ret, const STRING &id2) {
@@ -103,6 +126,15 @@ QuantLib::Matrix calcToQlMatrix(const SEQSEQ(double) &in) {
 void scalarToCalc(sal_Int32 &ret, const QuantLib::Date &in) {
     ret = in.serialNumber();
 }
+
+// Function below required on 64-bit systems but on 32-bit systems it
+// conflicts with sal_Int32 override.
+// FIXME Need a #define that specifically distinguishes 32/64-bit
+#if defined(__GNUC__) && defined(__x86_64__)
+void scalarToCalc(long &ret, const QuantLib::Date &in) {
+    ret = in.serialNumber();
+}
+#endif
 
 void scalarToCalc(double &ret, const QuantLib::Real &in) {
     ret = in;

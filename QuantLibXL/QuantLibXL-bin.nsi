@@ -20,7 +20,7 @@ LicenseText "${APP} is released under the following license:"
 Name "${APP}"
 OutFile "..\${APP}-bin-${VER_NUMBER}.exe"
 UninstallIcon "Docs\images\favicon.ico"
-UninstallText "This will uninstall QuantLibXL. Hit next to continue."
+UninstallText "This will uninstall ${APP}. Hit next to continue."
 
 ComponentText \
 "By default the installer will install the QuantLibXL Addin (XLL) and basic example workbooks." \
@@ -52,9 +52,14 @@ Section
 
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
     File "Workbooks\StandaloneExamples\README.txt"
-    File /x "BlackFormula.xls" \
-         /x "capfloors.xls" \
-            "Workbooks\StandaloneExamples\*.xls"
+    File "Workbooks\StandaloneExamples\MarketData.xls"
+    File "Workbooks\StandaloneExamples\Option.xls"
+    File "Workbooks\StandaloneExamples\Swap.xls"
+    File "Workbooks\StandaloneExamples\Swaption.xls"
+    File "Workbooks\StandaloneExamples\VanillaSwap.xls"
+    File "Workbooks\StandaloneExamples\serialize_swap.xla"
+    File "Workbooks\StandaloneExamples\serialize_utils.xla"
+    File "Workbooks\StandaloneExamples\YC_SwapDemo.xls"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,13 +28,13 @@
 #include <osl/interlck.h>
 #include <osl/mutex.hxx>
 #include <rtl/uuid.h>
- 
-#include <oh/objecthandler.hpp> 
 
+#include <boost/config.hpp>
 #ifdef BOOST_MSVC
 #  define BOOST_LIB_DIAGNOSTIC
 #  include <ql/qldefines.hpp>
 #  include <ql/auto_link.hpp>
+#  include <oh/ohdefines.hpp>
 #  include <oh/auto_link.hpp>
 #  include <qlo/qladdindefines.hpp>
 #  include <qlo/auto_link.hpp>
@@ -47,9 +47,6 @@
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
-
-// instantiate the objecthandler singleton
-ObjectHandler::Repository oh;
 
 REF( uno::XInterface ) SAL_CALL QL_CreateInstance(
     REF( uno::XComponentContext ) const & xContext ) SAL_THROW( () ) {

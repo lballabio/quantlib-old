@@ -5,9 +5,12 @@ HTML_DIR=html
 IMG_DIR=html\images
 BUILDFLAG=$(BUILD_DIR)\buildflag
 DOXYGEN=doxygen.exe
-DOXY_CONFIG_AUTO=qladdin.auto.doxy
-DOXY_CONFIG_QLO=qladdin.qlo.doxy
 DOXY_CONFIG_ROOT=qladdin.root.doxy
+DOXY_CONFIG_QLO=qladdin.qlo.doxy
+DOXY_CONFIG_AUTO=qladdin.auto.doxy
+DOXY_CONFIG_ROOT_TEMP=.qladdin.root.doxy
+DOXY_CONFIG_QLO_TEMP=.qladdin.qlo.doxy
+DOXY_CONFIG_AUTO_TEMP=.qladdin.auto.doxy
 MAKEFILE=Makefile.vc
 
 ALL : $(BUILDFLAG)
@@ -17,9 +20,9 @@ DEPENDENCIES = \
 	images\*.jpg \
 	images\*.png \
 	images\*.ico \
-	$(DOXY_CONFIG_AUTO) \
+	$(DOXY_CONFIG_ROOT) \
 	$(DOXY_CONFIG_QLO) \
-	$(DOXY_CONFIG_ROOT)
+	$(DOXY_CONFIG_AUTO)
 	
 $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
@@ -42,9 +45,15 @@ $(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(MAKEFILE)
     copy /Y tabs.css $(HTML_DIR)\auto
     copy /Y ql.css $(HTML_DIR)\auto
     copy /Y images\* $(HTML_DIR)\auto\images
-	$(DOXYGEN) $(DOXY_CONFIG_AUTO)
-	$(DOXYGEN) $(DOXY_CONFIG_QLO)
-	$(DOXYGEN) $(DOXY_CONFIG_ROOT)
+    ..\..\ObjectHandler\dev_tools\preprocess_doxyfile.py $(DOXY_CONFIG_ROOT) $(DOXY_CONFIG_ROOT_TEMP)
+    ..\..\ObjectHandler\dev_tools\preprocess_doxyfile.py $(DOXY_CONFIG_QLO) $(DOXY_CONFIG_QLO_TEMP)
+    ..\..\ObjectHandler\dev_tools\preprocess_doxyfile.py $(DOXY_CONFIG_AUTO) $(DOXY_CONFIG_AUTO_TEMP)
+	$(DOXYGEN) $(DOXY_CONFIG_ROOT_TEMP)
+	$(DOXYGEN) $(DOXY_CONFIG_QLO_TEMP)
+	$(DOXYGEN) $(DOXY_CONFIG_AUTO_TEMP)
+    del $(DOXY_CONFIG_ROOT_TEMP)
+    del $(DOXY_CONFIG_QLO_TEMP)
+    del $(DOXY_CONFIG_AUTO_TEMP)
 	echo flagged > $@
 
 CLEAN :

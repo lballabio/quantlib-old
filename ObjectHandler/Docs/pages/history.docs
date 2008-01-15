@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,6 +22,39 @@
 */
 
 /*! \page history Version History
+
+<strong>Release 0.9.0 - January 2008</strong>
+
+DESIGN
+
+- Support for serialization
+- Port Enumeration Registry from QuantLibAddin to %ObjectHandler, allowing a
+  single global registry to be shared by multiple client applications
+- Instantiate instances of class Object with a single call to the ctor.
+  Previously, objects were initialized in 3 steps - a call to the constructor,
+  followed by 2 additional calls to set various object properties.
+- Implement new parameter Overwrite for all constructors, a boolean flag
+  allowing user to specify that new object should overwrite old one
+- Extend ohDeleteObject() to accept a list of object IDs
+- Introduce new class Group which stores a list of object IDs
+- ohObjectCallerAddress(), ohObjectCallerKey() - accept/return vector<string>
+  instead of string
+- Optimize error handling for looping functions.  Previously, an exception in a
+  loop with many iterations caused a big performance hit.
+- Introduce basic support for caching of error messages originating from VBA
+  addins.
+
+LOG4CXX
+
+- A couple of minor fixes to makefiles
+- Repackaged as version 0.9.7e (see below for explanation of
+  log4cxx version numbers)
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.9.7e
+- gensrc version 0.9.0
 
 <strong>Release 0.8.0 - May 2007</strong>
 
@@ -69,7 +102,7 @@ LOG4CXX
 REQUIRED PACKAGES
 
 - Boost version 1.31.0 or later
-- log4cxx version 0.9.7.d
+- log4cxx version 0.9.7d
 - gensrc version 0.8.0
 
 <strong>Release 0.2.0 - February 2007</strong>
@@ -87,7 +120,7 @@ LOG4CXX
 REQUIRED PACKAGES
 
 - Boost version 1.31.0 or later
-- log4cxx version 0.9.7.c
+- log4cxx version 0.9.7c
 - gensrc version 0.2.0
 
 <strong>Release 0.1.5 - December 2006</strong>
@@ -106,7 +139,7 @@ LOG4CXX
 REQUIRED PACKAGES
 
 - Boost version 1.31.0 or later
-- log4cxx version 0.9.7.b
+- log4cxx version 0.9.7b
 - gensrc version 0.1.5
 
 <strong>Release 0.1.4 - August 2006</strong>
@@ -126,7 +159,7 @@ QuantLib downloads page.
 REQUIRED PACKAGES
 
 - Boost version 1.31.0 or later
-- log4cxx version 0.9.7.a
+- log4cxx version 0.9.7a
 - gensrc version 0.1.4
 
 <strong>Release 0.1.3 - March 2006</strong>

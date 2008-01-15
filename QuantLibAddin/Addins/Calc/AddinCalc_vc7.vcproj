@@ -44,13 +44,16 @@
 				RelativePath=".\funcdef.cpp">
 			</File>
 			<File
+				RelativePath=".\init.cpp">
+			</File>
+			<File
 				RelativePath=".\instruments.cpp">
 			</File>
 			<File
-				RelativePath=".\manual.cpp">
+				RelativePath=".\logging.cpp">
 			</File>
 			<File
-				RelativePath=".\ohfunctions.cpp">
+				RelativePath=".\manual.cpp">
 			</File>
 			<File
 				RelativePath=".\options.cpp">
@@ -68,16 +71,10 @@
 				RelativePath=".\qladdin.cpp">
 			</File>
 			<File
-				RelativePath=".\ratehelpers.cpp">
-			</File>
-			<File
 				RelativePath=".\session.cpp">
 			</File>
 			<File
 				RelativePath=".\settings.cpp">
-			</File>
-			<File
-				RelativePath=".\termstructures.cpp">
 			</File>
 			<File
 				RelativePath=".\utilities.cpp">
@@ -99,13 +96,16 @@
 				RelativePath=".\exercise.hpp">
 			</File>
 			<File
+				RelativePath=".\init.hpp">
+			</File>
+			<File
 				RelativePath=".\instruments.hpp">
 			</File>
 			<File
-				RelativePath=".\loop.hpp">
+				RelativePath=".\logging.hpp">
 			</File>
 			<File
-				RelativePath=".\ohfunctions.hpp">
+				RelativePath=".\loop.hpp">
 			</File>
 			<File
 				RelativePath=".\options.hpp">
@@ -120,22 +120,16 @@
 				RelativePath=".\processes.hpp">
 			</File>
 			<File
-				RelativePath=".\qlo_all.hpp">
-			</File>
-			<File
 				RelativePath=".\qladdin.hpp">
 			</File>
 			<File
 				RelativePath=".\qldefs.hpp">
 			</File>
 			<File
-				RelativePath=".\ratehelpers.hpp">
+				RelativePath=".\qlo_all.hpp">
 			</File>
 			<File
 				RelativePath=".\settings.hpp">
-			</File>
-			<File
-				RelativePath=".\termstructures.hpp">
 			</File>
 			<File
 				RelativePath=".\utilities.hpp">

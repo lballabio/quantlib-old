@@ -29,6 +29,9 @@
 			Name="pages"
 			Filter="">
 			<File
+				RelativePath=".\pages\force_links.docs">
+			</File>
+			<File
 				RelativePath=".\pages\history.docs">
 			</File>
 			<File
@@ -40,7 +43,13 @@
 			<File
 				RelativePath=".\pages\license.docs">
 			</File>
+			<File
+				RelativePath=".\pages\technical.docs">
+			</File>
 		</Filter>
+		<File
+			RelativePath=".\doxygen.css">
+		</File>
 		<File
 			RelativePath=".\gensrc.doxy">
 		</File>
@@ -57,7 +66,10 @@
 			RelativePath=".\Makefile.vc">
 		</File>
 		<File
-			RelativePath=".\style.css">
+			RelativePath=".\ql.css">
+		</File>
+		<File
+			RelativePath=".\tabs.css">
 		</File>
 	</Files>
 	<Globals>

@@ -24,7 +24,6 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -63,7 +62,6 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -91,8 +89,6 @@
       <libraryFunction>CliquetOption</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -120,7 +116,6 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -164,7 +159,6 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -198,7 +192,6 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -258,7 +251,6 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -282,7 +274,6 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -306,7 +297,6 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -340,7 +330,6 @@
       <libraryFunction>delta</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -357,8 +346,6 @@
       <libraryFunction>deltaForward</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -374,8 +361,6 @@
       <libraryFunction>elasticity</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -391,8 +376,6 @@
       <libraryFunction>gamma</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -408,8 +391,6 @@
       <libraryFunction>theta</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -425,8 +406,6 @@
       <libraryFunction>thetaPerDay</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -442,8 +421,6 @@
       <libraryFunction>vega</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -459,8 +436,6 @@
       <libraryFunction>rho</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -476,8 +451,6 @@
       <libraryFunction>dividendRho</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -493,8 +466,6 @@
       <libraryFunction>itmCashProbability</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>

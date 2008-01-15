@@ -25,7 +25,12 @@
 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 
-\ref extend_overview \n
+This document explains how to expose additional QuantLib functionality to
+Excel.  As a prerequisite it is assumed that you have already compiled
+QuantLibXL from source code as explained in the document \ref build_tutorial.
+
+In this example, the QuantLib class Stock is exposed to Excel.
+
 \ref extend_wrap \n
 \ref extend_category \n
 \ref extend_autogenerate \n
@@ -33,15 +38,7 @@
 \ref extend_test \n
 \ref extend_notes \n
 
-\section extend_overview Overview
-
-This document explains how to expose additional QuantLib functionality to
-Excel.  As a prerequisite it is assumed that you have already compiled
-QuantLibXL from source code as explained in the document \ref build_tutorial.
-
-In this example we expose the QuantLib class Stock to Excel.
-
-\section extend_wrap Wrap the QuantLib class in a QuantLibAddin class
+\section extend_wrap Wrap the QuantLib Class in a QuantLibAddin Class
 
 In order to store a reference to a QuantLib::Stock in the ObjectHandler repository, we implement class QuantLibAddin::Stock which derives from ObjectHandler::Object and holds a pointer to QuantLib::Stock.  In fact, rather than inherit directly from ObjectHandler::Object, we derive our QuantLibAddin::Stock class from QuantLibAddin::Instrument.  This allows us to invoke the Instrument interface on objects of class Stock.
 

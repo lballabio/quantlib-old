@@ -71,7 +71,7 @@ class CalcAddin(addin.Addin):
     def generateFuncMap(self):
         """Generate help text for function wizard."""
         buf = ''
-        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_):
             buf += '    // %s\n\n' % cat.displayName()
             for func in cat.functions(self.name_, supportedplatform.MANUAL): 
                 buf += '    // %s\n\n' % func.name()
@@ -86,18 +86,18 @@ class CalcAddin(addin.Addin):
             'addinClassName' : 'QLAddin',
             'buffer' : buf }
         fileName = self.rootPath_ + MAPFILE
-        outputfile.OutputFile(self, fileName, None, buf2, False)
+        outputfile.OutputFile(self, fileName, self.copyright_, buf2, True)
 
     def generateAutoHeader(self):
         """Generate header file that lists all other headers."""
         bufHeader = ''
-        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_):
             bufHeader += '#include <Addins/Calc/%s.hpp>\n' % cat.name()
         buf = self.bufferHeader_.text() % { 
             'prefix' : environment.config().prefix(),
             'buffer' : bufHeader }
         fileName = self.rootPath_ + environment.config().libRootDirectory() + '_all.hpp'
-        outputfile.OutputFile(self, fileName, None, buf, False)
+        outputfile.OutputFile(self, fileName, self.copyright_, buf, True)
 
     def generateHeader(self, func, declaration = True):
         """Generate implementation for given function."""
@@ -115,7 +115,7 @@ class CalcAddin(addin.Addin):
 
     def generateHeaders(self):
         """Generate source for function prototypes."""
-        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_):
             buf = ''
             for func in cat.functions(self.name_, supportedplatform.MANUAL): 
                 buf += self.generateHeader(func)
@@ -124,7 +124,7 @@ class CalcAddin(addin.Addin):
                 'categoryName' : cat.name(),
                 'buffer' : buf }
             fileName = self.rootPath_ + cat.name() + '.hpp'
-            outputfile.OutputFile(self, fileName, None, buf2, False)
+            outputfile.OutputFile(self, fileName, cat.copyright(), buf2, True)
 
     def generateFunction(self, func):
         """Generate source code for a given function"""
@@ -146,7 +146,7 @@ class CalcAddin(addin.Addin):
 
     def generateFunctions(self):
         """Generate source for function implementations."""
-        for cat in self.categoryList_.categories(self.name_):
+        for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_):
             buf = ''
             for func in cat.functions(self.name_): 
                 buf += self.generateFunction(func)
@@ -157,12 +157,12 @@ class CalcAddin(addin.Addin):
                 'libRoot' : environment.config().libRootDirectory(),
                 'buffer' : buf }
             fileName = self.rootPath_ + cat.name() + '.cpp'
-            outputfile.OutputFile(self, fileName, None, buf2, False)
+            outputfile.OutputFile(self, fileName, cat.copyright(), buf2, True)
     
     def generateIDL(self):
         """Generate the IDL file for the addin."""
         buf = ''
-        for cat in self.categoryList_.categories(self.name_, supportedplatform.MANUAL):
+        for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_):
             buf += '                // %s\n\n' % cat.name()
             for func in cat.functions(self.name_, supportedplatform.MANUAL): 
                 parameterList = func.parameterList().generate(self.ruleIDL_)
@@ -172,7 +172,7 @@ class CalcAddin(addin.Addin):
         buf2 = self.bufferIdlHeader_.text() % { 'buffer' : buf }
         idlFile = environment.config().namespaceLibrary() + 'AddinCalc.idl'
         fileName = self.rootPath_ + idlFile
-        outputfile.OutputFile(self, fileName, None, buf2, False)
+        outputfile.OutputFile(self, fileName, self.copyright_, buf2, True)
 
     #############################################
     # serializer interface

@@ -9,21 +9,21 @@ AC_PREREQ(2.50)
 AM_INIT_AUTOMAKE([foreign])
 
 AC_COPYRIGHT([
-Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
+Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
 Copyright (C) 2004, 2005, 2006, 2007 Ferdinando Ametrano
 
-Copyright (C) 2006, 2007 Marco Bianchetti
+Copyright (C) 2004, 2005, 2006 StatPro Italia srl
 Copyright (C) 2005, 2006 Aurelien Chanudet
-Copyright (C) 2006, 2007 Cristina Duminuco
-Copyright (C) 2006, 2007 Giorgio Facchinetti
-Copyright (C) 2006, 2007 Chiara Fornarola
-Copyright (C) 2006 Silvia Frasson
-Copyright (C) 2006, 2007 Katiuscia Manzoni
 Copyright (C) 2005, 2006 Plamen Neykov
 Copyright (C) 2005 Walter Penschke
+Copyright (C) 2006, 2007 Chiara Fornarola
+Copyright (C) 2006, 2007 Cristina Duminuco
+Copyright (C) 2006, 2007 Francois du Vignaud
+Copyright (C) 2006, 2007 Giorgio Facchinetti
+Copyright (C) 2006, 2007 Katiuscia Manzoni
+Copyright (C) 2006, 2007 Marco Bianchetti
 Copyright (C) 2006 Mario Pucci
-Copyright (C) 2004, 2005, 2006 StatPro Italia srl
-Copyright (C) 2006, 2007 François du Vignaud
+Copyright (C) 2006 Silvia Frasson
 
 This file is part of QuantLib, a free-software/open-source library
 for financial quantitative analysts and developers - http://quantlib.org/

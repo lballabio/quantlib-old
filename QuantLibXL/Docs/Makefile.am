@@ -6,8 +6,8 @@ EXTRA_DIST = \
     qlxl_footer.html \
     qlxl_header.html \
     qlxl_header.subdir.html \
-    quantlibxl.auto.doxy \
     quantlibxl.root.doxy \
+    quantlibxl.auto.doxy \
     doxygen.css \
     tabs.css \
     ql.css
@@ -29,8 +29,8 @@ DOXYGEN_INPUT := $(wildcard pages/*.docs) \
 	rm $<
 
 .PHONY: docs-all docs-html docs-clean
-.PHONY: docs-auto docs-root
-.PHONY: docs-auto-online docs-root-online 
+.PHONY: docs-root docs-auto
+.PHONY: docs-root-online  docs-auto-online
 .PHONY: docs-dist docs-html-dist 
 
 dist-hook:
@@ -45,7 +45,7 @@ docs-all: docs-html
 docs-dist: docs-html-dist
 
 docs-html: .time-stamp-html
-.time-stamp-html: .time-stamp-auto .time-stamp-root
+.time-stamp-html: .time-stamp-root .time-stamp-auto
 	mkdir -p html/images
 	cp -f tabs.css html
 	cp -f ql.css html
@@ -68,7 +68,7 @@ docs-html-dist: docs-html
 	rm QuantLibXL-docs-$(VERSION)-html
 
 docs-online: .time-stamp-html-online
-.time-stamp-html-online: .time-stamp-auto-online .time-stamp-root-online
+.time-stamp-html-online: .time-stamp-root-online .time-stamp-auto-online
 	mkdir -p html-online/images
 	cp -f tabs.css html-online
 	cp -f ql.css html-online
@@ -90,57 +90,33 @@ docs-online-dist: docs-online
 	tar czfvh QuantLibXL-docs-online-$(VERSION)-html.tar.gz quantlibxl
 	rm quantlibxl
 
-docs-auto: .time-stamp-auto
-.time-stamp-auto: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	mkdir -p html
-	$(SED) -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-           -e "s|qlxl_basepath|${BASEPATH}/|" \
-           -e "s|qlxl_version|$(VERSION)|" \
-           quantlibxl.auto.doxy > .quantlibxl.auto.doxy
-	$(DOXYGEN) .quantlibxl.auto.doxy
-	rm .quantlibxl.auto.doxy
-	touch .time-stamp-auto
-
 docs-root: .time-stamp-root
 .time-stamp-root: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	mkdir -p html
-	$(SED) -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-           -e "s|qlxl_basepath|${BASEPATH}/|" \
-           -e "s|qlxl_version|$(VERSION)|" \
-           quantlibxl.root.doxy > .quantlibxl.root.doxy
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py quantlibxl.root.doxy .quantlibxl.root.doxy
 	$(DOXYGEN) .quantlibxl.root.doxy
 	rm .quantlibxl.root.doxy
 	touch .time-stamp-root
 
-docs-auto-online: .time-stamp-auto-online
-.time-stamp-auto-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	mkdir -p html-online
-	$(SED) -e "s/qlxl_header/qlxl_headeronline/" \
-           -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-           -e "s/HTML_OUTPUT            = html/HTML_OUTPUT            = html-online/" \
-           -e "s|qlxl_basepath|${BASEPATH}/|" \
-           -e "s|qlxl_version|$(VERSION)|" \
-           quantlibxl.auto.doxy > .quantlibxl.auto.doxy
+docs-auto: .time-stamp-auto
+.time-stamp-auto: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py quantlibxl.auto.doxy .quantlibxl.auto.doxy
 	$(DOXYGEN) .quantlibxl.auto.doxy
 	rm .quantlibxl.auto.doxy
-	touch .time-stamp-auto-online
+	touch .time-stamp-auto
 
 docs-root-online: .time-stamp-root-online
 .time-stamp-root-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	mkdir -p html-online
-	$(SED) -e "s/qlxl_header/qlxl_headeronline/" \
-           -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-           -e "s/HTML_OUTPUT            = html/HTML_OUTPUT            = html-online/" \
-           -e "s|qlxl_basepath|${BASEPATH}/|" \
-           -e "s|qlxl_version|$(VERSION)|" \
-           quantlibxl.root.doxy > .quantlibxl.root.doxy
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py -o quantlibxl.root.doxy .quantlibxl.root.doxy
 	$(DOXYGEN) .quantlibxl.root.doxy
 	rm .quantlibxl.root.doxy
 	touch .time-stamp-root-online
+
+docs-auto-online: .time-stamp-auto-online
+.time-stamp-auto-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py -o quantlibxl.auto.doxy .quantlibxl.auto.doxy
+	$(DOXYGEN) .quantlibxl.auto.doxy
+	rm .quantlibxl.auto.doxy
+	touch .time-stamp-auto-online
 
 docs-clean:
 	rm -Rf html-online html

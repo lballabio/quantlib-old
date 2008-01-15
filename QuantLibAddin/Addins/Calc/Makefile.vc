@@ -1,13 +1,13 @@
-# makefile for Calc Addin
-# this makefile supports only one build environment:
+# Makefile for Calc Addin
+# This makefile supports only one build environment:
 # VC7 (Visual Studio 2003), configuration "Release CRTDLL"
-# for further info: http://www.quantlibaddin.org/calc.html
+# For further info: http://www.quantlibaddin.org/calc.html
 
 QL_DIR=..\..\..\QuantLib
 OBJECT_HANDLER_DIR=..\..\..\ObjectHandler
 LOG4CXX_DIR=..\..\..\log4cxx
-OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org 2.2\program
-OFFICE_SDK_PATH=C:\Program Files\OpenOffice.org_2.2_SDK
+OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org 2.3\program
+OFFICE_SDK_PATH=C:\Program Files\OpenOffice.org_2.3_SDK
 
 COMPONENT_NAME=QuantLibAddinCalc
 DLL_NAME=$(COMPONENT_NAME)-vc71-mt-0_9_0
@@ -27,7 +27,7 @@ FLAG5=$(INT_DIR)\$(COMPONENT_NAME).flag5
 FLAG6=$(INT_DIR)\$(COMPONENT_NAME).flag6
 
 CC_INCLUDES=-I. -I..\.. \
-    -I"$(QL_DIR)" -I"$(QL_DIR)\functions" \
+    -I"$(QL_DIR)" \
     -I"$(OBJECT_HANDLER_DIR)" \
     -I"$(OFFICE_SDK_PATH)\include"
 
@@ -40,18 +40,17 @@ OBJECTS= \
     "$(INT_DIR)\conversions.obj" \
     "$(INT_DIR)\exercise.obj" \
     "$(INT_DIR)\funcdef.obj" \
+    "$(INT_DIR)\init.obj" \
     "$(INT_DIR)\instruments.obj" \
+    "$(INT_DIR)\logging.obj" \
     "$(INT_DIR)\manual.obj" \
-    "$(INT_DIR)\ohfunctions.obj" \
     "$(INT_DIR)\options.obj" \
     "$(INT_DIR)\payoffs.obj" \
     "$(INT_DIR)\pricingengines.obj" \
     "$(INT_DIR)\processes.obj" \
     "$(INT_DIR)\qladdin.obj" \
-    "$(INT_DIR)\ratehelpers.obj" \
     "$(INT_DIR)\session.obj" \
     "$(INT_DIR)\settings.obj" \
-    "$(INT_DIR)\termstructures.obj" \
     "$(INT_DIR)\utilities.obj" \
     "$(INT_DIR)\volatilities.obj"
 	

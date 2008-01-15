@@ -44,10 +44,10 @@ docs-html: .time-stamp-html
 	cp tabs.css html
 	cp ql.css html
 	mkdir -p html/images
-	cp images/*.ico html/images
-	cp images/*.jpg html/images
-	cp images/*.png html/images
-	cp images/*.php html/images
+	cp -f images/*.ico html/images
+	cp -f images/*.jpg html/images
+	cp -f images/*.png html/images
+	cp -f images/*.php html/images
 	touch .time-stamp-html
 
 docs-html-dist: docs-html
@@ -57,22 +57,16 @@ docs-html-dist: docs-html
 
 docs-online: .time-stamp-online
 .time-stamp-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	$(SED) -e "s/oh_header/oh_headeronline/" \
-           -e "s/HTML_OUTPUT            = html/HTML_OUTPUT            = html-online/" \
-           -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-           -e "s|oh_basepath|${BASEPATH}/|" \
-           -e "s|oh_version|$(VERSION)|" \
-           objecthandler.doxy > .objecthandler.doxy
+	python ../dev_tools/preprocess_doxyfile.py -o objecthandler.doxy .objecthandler.doxy
 	$(DOXYGEN) .objecthandler.doxy
 	rm .objecthandler.doxy
 	cp tabs.css html-online
 	cp ql.css html-online
 	mkdir -p html-online/images
-	cp images/*.ico html-online/images
-	cp images/*.jpg html-online/images
-	cp images/*.png html-online/images
-	cp images/*.php html-online/images
+	cp -f images/*.ico html-online/images
+	cp -f images/*.jpg html-online/images
+	cp -f images/*.png html-online/images
+	cp -f images/*.php html-online/images
 	touch .time-stamp-online
 
 docs-online-dist: docs-online
@@ -85,11 +79,7 @@ docs-clean:
 	rm -f .time-stamp*
 
 .time-stamp: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	$(SED) -e "s|oh_basepath|${BASEPATH}/|" \
-           -e "s|oh_version|$(VERSION)|" \
-           -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-           objecthandler.doxy > .objecthandler.doxy
+	python ../dev_tools/preprocess_doxyfile.py objecthandler.doxy .objecthandler.doxy
 	$(DOXYGEN) .objecthandler.doxy
 	rm .objecthandler.doxy
 	touch .time-stamp

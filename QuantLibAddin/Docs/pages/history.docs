@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,6 +22,24 @@
 */
 
 /*! \page history Version History
+
+<strong>Release 0.9.0 - January 2008</strong>
+
+REQUIRED PACKAGES
+
+- QuantLib version 0.9.0
+- ObjectHandler version 0.9.0
+- gensrc version 0.9.0
+
+FUNCTIONALITY
+
+- 155 new functions / 795 in total
+- New function categories: Abcd, Accounting Engines, AlphaForm, Brownian
+  Generator, Cms Market Calibration, Correlation, Ctsmmcapletcalibration,
+  CurveState, Driftcalculators, Enumerations, Evolution Description, Garbage
+  Collection, Group, Handles, Leg, Logging Functions, Market Model Evolvers,
+  Market Model Volatility, Piecewise Yield Curves, Range, Serialization,
+  TimeSeries, Value Objects 
 
 <strong>Release 0.8.0 - May 2007</strong>
 

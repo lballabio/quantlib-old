@@ -12,11 +12,10 @@ SUBDIRS = \
     Addins/Cpp/Serialization \
     Addins/Cpp \
     Addins/Calc \
-    Addins/C \
+    Clients/Cpp \
     Clients/CppSwapIn \
     Clients/CppSwapOut \
     Clients/Calc \
-    Clients/C \
     Docs
 
 EXTRA_DIST = \

@@ -9,7 +9,7 @@ AC_CONFIG_AUX_DIR([config])
 AM_INIT_AUTOMAKE([foreign])
 
 AC_COPYRIGHT([
-Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
+Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
 
 Copyright (C) 2005 Aurelien Chanudet
 Copyright (C) 2005, 2006 Plamen Neykov

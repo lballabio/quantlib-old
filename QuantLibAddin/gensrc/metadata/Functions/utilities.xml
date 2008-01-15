@@ -17,8 +17,6 @@
       <description>returns the version number of QuantLibXL</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

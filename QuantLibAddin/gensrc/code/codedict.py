@@ -378,7 +378,7 @@ code71 = '''\
         calcToScalar(%(name)sCpp, %(name)s);\n'''
 
 code71b = '''\
-        boost::any %(name)sCpp;
+        ObjectHandler::Variant %(name)sCpp;
         calcToScalar(%(name)sCpp, %(name)s);\n'''
 
 code72 = '''\

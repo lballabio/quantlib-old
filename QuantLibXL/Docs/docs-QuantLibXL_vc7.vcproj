@@ -29,13 +29,25 @@
 			Name="auto.pages"
 			Filter="">
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\abcd.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\accountingengines.docs">
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\all_functions.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\alphaform.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\assetswap.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\bonds.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\browniangenerators.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\calendar.docs">
@@ -53,7 +65,19 @@
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\cmsmarket.docs">
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\cmsmarketcalibration.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\correlation.docs">
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\couponvectors.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\ctsmmcapletcalibration.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\curvestate.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\date.docs">
@@ -62,13 +86,31 @@
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\daycounter.docs">
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\driftcalculators.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\enumerations.docs">
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\enums.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\evolutiondescription.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\exercise.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\forwardrateagreement.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\garbagecollection.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\group.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\handles.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\index.docs">
@@ -80,10 +122,22 @@
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\interpolation.docs">
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\leg.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\logging.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\marketmodelevolvers.docs">
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\marketmodels.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\mathf.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\ohutils.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\optimization.docs">
@@ -95,6 +149,9 @@
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\payoffs.docs">
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\piecewiseyieldcurve.docs">
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\prices.docs">
 			</File>
 			<File
@@ -104,10 +161,19 @@
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\processes.docs">
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\products.docs">
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\quotes.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\randomsequencegenerator.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\range.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\rangeaccrual.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\ratehelpers.docs">
@@ -117,6 +183,9 @@
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\sequencestatistics.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\serialization.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\settings.docs">
@@ -146,7 +215,13 @@
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\termstructures.docs">
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\timeseries.docs">
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\utilities.docs">
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\valueobjects.docs">
 			</File>
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\vanillaswap.docs">
@@ -154,10 +229,16 @@
 			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\volatilities.docs">
 			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\volatility.docs">
+			</File>
 		</Filter>
 		<Filter
 			Name="pages"
 			Filter="">
+			<File
+				RelativePath=".\pages\force_links.docs">
+			</File>
 			<File
 				RelativePath="pages\framework.docs">
 			</File>
@@ -181,7 +262,16 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\doxygen.css">
+		</File>
+		<File
+			RelativePath=".\doxywarnings.txt">
+		</File>
+		<File
 			RelativePath="Makefile.vc">
+		</File>
+		<File
+			RelativePath=".\ql.css">
 		</File>
 		<File
 			RelativePath="qlxl_footer.html">
@@ -208,7 +298,7 @@
 			RelativePath="quantlibxl.root.doxy">
 		</File>
 		<File
-			RelativePath="style.css">
+			RelativePath=".\tabs.css">
 		</File>
 	</Files>
 	<Globals>

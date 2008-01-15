@@ -1,7 +1,7 @@
 
-"""
- Copyright (C) 2007 Eric Ehlers
-
+/*  
+ Copyright (C) 2007, 2008 Eric Ehlers
+ 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
@@ -14,11 +14,11 @@
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
-"""
+*/
 
-from gensrc.Exceptions import exceptions
+namespace QuantLibAddin {
 
-class CppException(exceptions.GensrcException):
-    """Exception encountered when generating the source code for the C++
-    addin."""
+    void initializeAddin();
+
+}
 

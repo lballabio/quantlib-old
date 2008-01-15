@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2007 Ferdinando Ametrano
- Copyright (C) 2006 François du Vignaud
+ Copyright (C) 2006 Francois du Vignaud
  Copyright (C) 2006 Giorgio Facchinetti
  Copyright (C) 2007 Eric Ehlers
 

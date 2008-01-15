@@ -110,7 +110,7 @@ You are now ready to build QuantLib.  You need to compile the following projects
     library
 \li <a href="http://www.objecthandler.org">ObjectHandler 0.9.0</a> - an object
     repository
-\li <b>log4cxx 0.9.7d</b> - a logging framework, used by ObjectHandler
+\li <b>log4cxx 0.9.7e</b> - a logging framework, used by ObjectHandler
 \li <a href="http://www.quantlibaddin.org">QuantLibAddin 0.9.0</a> - Addins for
     QuantLib functionality
 \li <a href="http://www.quantlibxl.org">QuantLibXL 0.9.0</a> - the Excel
@@ -170,7 +170,7 @@ Go to the
 download <tt>QuantLib-0.9.0.zip</tt> and uncompress the package to
 <tt>C:\\build_ql_0_9_0\\QuantLib</tt>.
 
-Download <tt>log4cxx-0.9.7d.exe</tt> and uncompress the package to
+Download <tt>log4cxx-0.9.7e.exe</tt> and uncompress the package to
 <tt>C:\\build_ql_0_9_0\\log4cxx</tt>.
 
 Download <tt>gensrc-0.9.0.exe</tt> and uncompress the package to

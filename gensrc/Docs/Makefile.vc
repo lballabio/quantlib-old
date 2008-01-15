@@ -7,6 +7,7 @@ IMG_DIR=html\images
 BUILDFLAG=$(BUILD_DIR)\buildflag
 DOXYGEN=doxygen.exe
 DOXY_CONFIG=gensrc.doxy
+DOXY_CONFIG_TEMP=.gensrc.doxy
 
 ALL : $(BUILDFLAG)
 
@@ -21,7 +22,9 @@ $(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(DOXY_CONFIG)
     copy /Y tabs.css $(HTML_DIR)
     copy /Y ql.css $(HTML_DIR)
     copy /Y images\* $(IMG_DIR)
-	$(DOXYGEN) $(DOXY_CONFIG)
+    ..\..\ObjectHandler\dev_tools\preprocess_doxyfile.py $(DOXY_CONFIG) $(DOXY_CONFIG_TEMP)
+	$(DOXYGEN) $(DOXY_CONFIG_TEMP)
+    del $(DOXY_CONFIG_TEMP)
 	echo flagged > $@
 
 CLEAN :

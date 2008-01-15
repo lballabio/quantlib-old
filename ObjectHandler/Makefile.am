@@ -15,6 +15,7 @@ SUBDIRS = \
     Examples/ExampleObjects \
     Examples/C++ \
     Examples/xl \
+    Examples \
     Docs
 
 EXTRA_DIST = \

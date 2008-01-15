@@ -38,11 +38,7 @@ docs-dist: docs-html-dist
 
 docs-html: .time-stamp-html
 .time-stamp-html: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	$(SED) -e "s|gs_basepath|${BASEPATH}/|" \
-           -e "s|gs_version|$(VERSION)|" \
-		   -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-	       gensrc.doxy > .gensrc.doxy
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py gensrc.doxy .gensrc.doxy
 	$(DOXYGEN) .gensrc.doxy
 	rm .gensrc.doxy
 	cp tabs.css html
@@ -60,13 +56,7 @@ docs-html-dist: docs-html
 
 docs-online: .time-stamp-online
 .time-stamp-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	$(SED) -e "s/gs_header/gs_headeronline/" \
-           -e "s/HTML_OUTPUT            = html/HTML_OUTPUT            = html-online/" \
-		   -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-           -e "s|gs_basepath|${BASEPATH}/|" \
-           -e "s|gs_version|$(VERSION)|" \
-	       gensrc.doxy > .gensrc.doxy
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py -o gensrc.doxy .gensrc.doxy
 	$(DOXYGEN) .gensrc.doxy
 	rm .gensrc.doxy
 	cp tabs.css html-online

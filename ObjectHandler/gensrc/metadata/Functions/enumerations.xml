@@ -8,7 +8,7 @@
   </addinIncludes>
 
   <copyright>
-    Copyright (C) 2007 Eric Ehlers
+    Copyright (C) 2007, 2008 Eric Ehlers
   </copyright>
 
   <Functions>
@@ -50,7 +50,7 @@
     </Procedure>
 
     <Procedure name='ohListEnumeratedClasses'>
-      <description>list supported enumerated types</description>
+      <description>list supported enumerated classes</description>
       <alias>ObjectHandler::EnumClassRegistry::instance().getAllRegisteredTypes</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -65,7 +65,7 @@
     </Procedure>
 
     <Procedure name='ohEnumeratedClass'>
-      <description>return the members of a given enumerated type</description>
+      <description>return the members of a given enumerated class</description>
       <alias>ObjectHandler::EnumClassRegistry::instance().getTypeElements</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -86,7 +86,7 @@
     </Procedure>
 
     <Procedure name='ohListEnumeratedPairs'>
-      <description>list supported enumerated types</description>
+      <description>list supported enumerated pairs</description>
       <alias>ObjectHandler::EnumPairRegistry::instance().getAllRegisteredTypes</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -101,7 +101,7 @@
     </Procedure>
 
     <Procedure name='ohEnumeratedPair'>
-      <description>return the members of a given enumerated type</description>
+      <description>return the members of a given enumerated pair</description>
       <alias>ObjectHandler::EnumPairRegistry::instance().getTypeElements</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -124,3 +124,4 @@
   </Functions>
 
 </Category>
+

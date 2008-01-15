@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,15 +25,11 @@
     General demo of a QuantLibAddin C++ client.
 */
 
-/*! \example capfloor.cpp
-    Example QuantLibAddin C++ client which calls all cap/floor functions.
+/*! \example swap_in.cpp
+    Example QuantLibAddin C++ program which deserializes a swap.
 */
 
-/*! \example instruments.cpp
-    Example QuantLibAddin C++ client which calls all instruments functions.
-*/
-
-/*! \example options.cpp
-    Example QuantLibAddin C++ client which calls all options functions.
+/*! \example swap_out.cpp
+    Example QuantLibAddin C++ program which serializes a swap.
 */
 

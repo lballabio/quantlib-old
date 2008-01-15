@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -31,7 +31,7 @@
 // version of log4cxx, or that your log4cxx installation (if any) cannot
 // be found at all.
 #include <log4cxx/log4cxxdefines.h>
-#if LOG4CXX_VERSION != 0x030907f4
+#if LOG4CXX_VERSION != 0x030907f5
     #error using an incorrect version of log4cxx, please update.
 #endif
 

@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
  Copyright (C) 2005, 2006 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -35,8 +35,8 @@ usage: %(scriptName)s -[flags]
         x - Excel addin
         o - OpenOffice.org Calc addin
         p - C++ addin
-        c - C addin
-        g - Guile addin
+       [c - C addin]
+       [g - Guile addin]
         v - ValueObjects code
         e - Enumerations
         l - Loops
@@ -71,8 +71,8 @@ for o, a in opts:
         addinIds.append('o')
     elif o == '-p':
         addinIds.append('p')
-    elif o == '-c':
-        addinIds.append('c')
+    #elif o == '-c':
+    #    addinIds.append('c')
     #elif o == '-g':
     #    addinIds.append('g')
     elif o == '-v':
@@ -87,8 +87,8 @@ for o, a in opts:
         addinIds.append('d')
     elif o == '-a':
         if len(opts) != 1: sys.exit('flag -a cannot be combined with other flags')
-        #addinIds = [ 'x', 'o', 'p', 'c', 'g', 'v', 'e', 'l', 'd' ]
-        addinIds = [ 'x', 'o', 'p', 'c', 'v', 'e', 'l', 's', 'd' ]
+        #addinIds = [ 'x', 'o', 'p', 'c', 'g', 'v', 'e', 'l', 's', 'd' ]
+        addinIds = [ 'x', 'o', 'p', 'v', 'e', 'l', 's', 'd' ]
     elif o in ('-h', '--help'):
         usage()
     else:

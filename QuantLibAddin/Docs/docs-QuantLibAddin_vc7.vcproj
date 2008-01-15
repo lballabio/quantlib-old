@@ -29,13 +29,25 @@
 			Name="auto.pages"
 			Filter="">
 			<File
+				RelativePath=".\auto.pages\abcd.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\accountingengines.docs">
+			</File>
+			<File
 				RelativePath="auto.pages\all_functions.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\alphaform.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\assetswap.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\bonds.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\browniangenerators.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\calendar.docs">
@@ -53,7 +65,19 @@
 				RelativePath="auto.pages\cmsmarket.docs">
 			</File>
 			<File
+				RelativePath=".\auto.pages\cmsmarketcalibration.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\correlation.docs">
+			</File>
+			<File
 				RelativePath="auto.pages\couponvectors.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\ctsmmcapletcalibration.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\curvestate.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\date.docs">
@@ -62,13 +86,31 @@
 				RelativePath="auto.pages\daycounter.docs">
 			</File>
 			<File
+				RelativePath=".\auto.pages\driftcalculators.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\enumerations.docs">
+			</File>
+			<File
 				RelativePath="auto.pages\enums.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\evolutiondescription.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\exercise.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\forwardrateagreement.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\garbagecollection.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\group.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\handles.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\index.docs">
@@ -80,10 +122,22 @@
 				RelativePath="auto.pages\interpolation.docs">
 			</File>
 			<File
+				RelativePath=".\auto.pages\leg.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\logging.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\marketmodelevolvers.docs">
+			</File>
+			<File
 				RelativePath="auto.pages\marketmodels.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\mathf.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\ohutils.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\optimization.docs">
@@ -95,6 +149,9 @@
 				RelativePath="auto.pages\payoffs.docs">
 			</File>
 			<File
+				RelativePath=".\auto.pages\piecewiseyieldcurve.docs">
+			</File>
+			<File
 				RelativePath="auto.pages\prices.docs">
 			</File>
 			<File
@@ -104,10 +161,19 @@
 				RelativePath="auto.pages\processes.docs">
 			</File>
 			<File
+				RelativePath=".\auto.pages\products.docs">
+			</File>
+			<File
 				RelativePath="auto.pages\quotes.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\randomsequencegenerator.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\range.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\rangeaccrual.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\ratehelpers.docs">
@@ -117,6 +183,9 @@
 			</File>
 			<File
 				RelativePath="auto.pages\sequencestatistics.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\serialization.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\settings.docs">
@@ -146,13 +215,22 @@
 				RelativePath="auto.pages\termstructures.docs">
 			</File>
 			<File
+				RelativePath=".\auto.pages\timeseries.docs">
+			</File>
+			<File
 				RelativePath="auto.pages\utilities.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\valueobjects.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\vanillaswap.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\volatilities.docs">
+			</File>
+			<File
+				RelativePath=".\auto.pages\volatility.docs">
 			</File>
 		</Filter>
 		<Filter
@@ -180,10 +258,13 @@
 				RelativePath="pages\extend.tutorial.docs">
 			</File>
 			<File
-				RelativePath="pages\tutorials.docs">
+				RelativePath=".\pages\extending.docs">
 			</File>
 			<File
 				RelativePath="pages\faq.docs">
+			</File>
+			<File
+				RelativePath=".\pages\force_links.docs">
 			</File>
 			<File
 				RelativePath="pages\functional.docs">
@@ -204,29 +285,65 @@
 				RelativePath="pages\loops.docs">
 			</File>
 			<File
+				RelativePath=".\pages\manual.docs">
+			</File>
+			<File
 				RelativePath="pages\observer.docs">
 			</File>
 			<File
 				RelativePath="pages\people.docs">
 			</File>
 			<File
+				RelativePath=".\pages\serialization.docs">
+			</File>
+			<File
 				RelativePath="pages\srcgen.docs">
 			</File>
 			<File
-				RelativePath="pages\topics.docs">
+				RelativePath=".\pages\technical.docs">
 			</File>
 			<File
 				RelativePath="pages\troubleshooting.docs">
 			</File>
+			<File
+				RelativePath="pages\tutorials.docs">
+			</File>
 		</Filter>
 		<File
+			RelativePath=".\doxygen.css">
+		</File>
+		<File
+			RelativePath=".\Makefile.vc">
+		</File>
+		<File
 			RelativePath="..\..\QuantLibXL\Docs\Makefile.vc">
+		</File>
+		<File
+			RelativePath=".\ql.css">
+		</File>
+		<File
+			RelativePath=".\qla_footer.html">
+		</File>
+		<File
+			RelativePath=".\qla_header.html">
+		</File>
+		<File
+			RelativePath=".\qla_header.subdir.html">
 		</File>
 		<File
 			RelativePath="qla_headeronline.html">
 		</File>
 		<File
 			RelativePath="qla_headeronline.subdir.html">
+		</File>
+		<File
+			RelativePath=".\qladdin.auto.doxy">
+		</File>
+		<File
+			RelativePath=".\qladdin.qlo.doxy">
+		</File>
+		<File
+			RelativePath=".\qladdin.root.doxy">
 		</File>
 		<File
 			RelativePath="..\..\QuantLibXL\Docs\qlxl_footer.html">
@@ -250,7 +367,7 @@
 			RelativePath="..\..\QuantLibXL\Docs\quantlibxl.root.doxy">
 		</File>
 		<File
-			RelativePath="..\..\QuantLibXL\Docs\style.css">
+			RelativePath=".\tabs.css">
 		</File>
 	</Files>
 	<Globals>

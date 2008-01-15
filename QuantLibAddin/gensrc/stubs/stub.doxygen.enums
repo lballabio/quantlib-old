@@ -15,10 +15,11 @@
     %%QuantLibAddin supports functions for querying enumerated types and
     classes interactively at run time:
 
-        \ref qlListEnumeratedTypes ()\n
-        \ref qlEnumeratedType ()\n
-        \ref qlListEnumeratedClasses ()\n
-        \ref qlEnumeratedClass ()\n
+        \ref ohListEnumeratedTypes ()\n
+        \ref ohEnumeratedType ()\n        
+        \ref ohListEnumeratedClasses ()\n
+        \ref ohEnumeratedClass ()\n
+
 
 Documentation of enumerated classes:
 

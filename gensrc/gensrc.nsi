@@ -3,7 +3,7 @@
 
 !define APP "gensrc"
 !define VER_NUMBER "0.9.0"
-!define DEFAULT_PATH "c:\build_ql_0_9_0"
+!define DEFAULT_PATH "C:\build_ql_0_9_0"
 
 # Compiler Flags
 
@@ -24,7 +24,7 @@ UninstallText "This will uninstall ${APP}. Hit next to continue."
 
 # Installer Instructions
 
-Section "-gensrc"
+Section
     SetOutPath $INSTDIR
 
     File "README.txt"
@@ -37,6 +37,7 @@ Section "-gensrc"
     File "gensrc_vc8.vcproj"
     File "dependencies.vc"
     File "gensrc.py"
+    File "gensrc.nsi"
 
     SetOutPath $INSTDIR\gensrc
     File /r "gensrc\*.py"
@@ -51,12 +52,14 @@ Section "-gensrc"
     File "Docs\gs_header.html"
     File "Docs\gs_headeronline.html"
     File "Docs\Makefile.vc"
-    File "Docs\style.css"
+    File "Docs\doxygen.css"
+    File "Docs\ql.css"
+    File "Docs\tabs.css"
 
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
-    File "Docs\images\*.gif"
+    File "Docs\images\*.php"
 
     SetOutPath "$INSTDIR\Docs\pages"
     File "Docs\pages\*.docs"

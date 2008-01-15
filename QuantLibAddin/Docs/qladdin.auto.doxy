@@ -5,7 +5,7 @@
 ##---------------------------------------------------------------------------
 
 PROJECT_NAME           = QuantLibAddin
-PROJECT_NUMBER         = qla_version
+PROJECT_NUMBER         = 0.9.0
 OUTPUT_DIRECTORY       = 
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
@@ -15,8 +15,8 @@ ABBREVIATE_BRIEF       =
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = YES
 FULL_PATH_NAMES        = YES
-STRIP_FROM_PATH        = qla_basepath
-STRIP_FROM_INC_PATH    = qla_basepath
+STRIP_FROM_PATH        =
+STRIP_FROM_INC_PATH    =
 SHORT_NAMES            = NO
 JAVADOC_AUTOBRIEF      = NO
 MULTILINE_CPP_IS_BRIEF = NO
@@ -119,7 +119,7 @@ GENERATE_HTML          = YES
 HTML_OUTPUT            = html/auto
 HTML_FILE_EXTENSION    = .html
 HTML_HEADER            = qla_header.subdir.html
-HTML_FOOTER            = qla_footer.html
+HTML_FOOTER            = qla_footer.subdir.html
 HTML_STYLESHEET        = doxygen.css
 HTML_ALIGN_MEMBERS     = YES
 GENERATE_HTMLHELP      = NO

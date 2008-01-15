@@ -4,6 +4,7 @@ SUBDIRS = \
 
 EXTRA_DIST = \
     Authors.txt \
+    Contributors.txt \
     dependencies.vc \
     gensrc.nsi \
     gensrc.py \

@@ -3,8 +3,8 @@
 # !defines
 
 !define APP "log4cxx"
-!define VER_NUMBER "0.9.7d"
-!define DEFAULT_PATH "c:\build_ql_0_8_0\${APP}"
+!define VER_NUMBER "0.9.7e"
+!define DEFAULT_PATH "C:\build_ql_0_9_0\${APP}"
 
 # Compiler Flags
 
@@ -32,7 +32,7 @@ Section
     File "NEWS"
     File "README.txt"
 
-    File "*.nsi"
+    File "log4cxx.nsi"
     File /r "*.sln"
     File /r "*.vcproj"
     File /r "*.h"
@@ -47,8 +47,6 @@ Section
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-${VER_NUMBER}" \
                 "UninstallString" "$INSTDIR\log4cxxUninstall.exe"
-
-    WriteRegStr HKEY_CURRENT_USER "Environment" "LOG4CXX_DIR" "$INSTDIR"
 
     CreateDirectory "$SMPROGRAMS\log4cxx-${VER_NUMBER}"
 
@@ -88,7 +86,6 @@ Section "Uninstall"
 
     DeleteRegKey HKEY_LOCAL_MACHINE \
         "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-${VER_NUMBER}"
-    DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\log4cxx-${VER_NUMBER}"
-    DeleteRegValue HKEY_CURRENT_USER  "Environment" "LOG4CXX_DIR"
 
 SectionEnd
+

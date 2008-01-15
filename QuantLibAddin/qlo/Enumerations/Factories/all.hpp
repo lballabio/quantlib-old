@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,5 +16,17 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-void setFixings();
+#ifndef qla_factory_all_hpp
+#define qla_factory_all_hpp
+
+#include <qlo/Enumerations/Factories/calendarfactory.hpp>
+#include <qlo/Enumerations/Factories/conundrumpricerfactory.hpp>
+#include <qlo/Enumerations/Factories/historicalforwardratesanalysisfactory.hpp>
+#include <qlo/Enumerations/Factories/iborcouponpricersfactory.hpp>
+#include <qlo/Enumerations/Factories/interpolationsfactory.hpp>
+#include <qlo/Enumerations/Factories/payoffsfactory.hpp>
+#include <qlo/Enumerations/Factories/pricingenginesfactory.hpp>
+#include <qlo/Enumerations/Factories/termstructuresfactory.hpp>
+
+#endif
 

@@ -797,12 +797,6 @@
 			RelativePath="marketmodels.hpp">
 		</File>
 		<File
-			RelativePath="ohfunctions.cpp">
-		</File>
-		<File
-			RelativePath="ohfunctions.hpp">
-		</File>
-		<File
 			RelativePath=".\ohutils.cpp">
 		</File>
 		<File

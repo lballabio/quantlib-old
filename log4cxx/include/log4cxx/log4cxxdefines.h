@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,7 +19,7 @@
 // This file is #included by client applications to enforce version
 // number checks.  This package is based on log4cxx version 0.9.7, customized
 // for use by ObjectHandler.  We designate log4cxx hexidecimal version 
-// "0x030907f4" for use with ObjectHandler version 0.8.0.
+// "0x030907f5" for use with ObjectHandler version 0.9.0.
 
-#define LOG4CXX_VERSION 0x030907f4
+#define LOG4CXX_VERSION 0x030907f5
 

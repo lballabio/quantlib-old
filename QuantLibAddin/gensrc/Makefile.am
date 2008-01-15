@@ -117,8 +117,8 @@ EXTRA_DIST = .time-stamp \
 # x - Excel addin
 # o - OpenOffice.org Calc addin
 # p - C++ addin
-# g - Guile addin
-# c - C addin
+# [g - Guile addin]
+# [c - C addin]
 
 GENSRC_ARGS = -vsled
 if BUILD_EXCEL
@@ -133,9 +133,9 @@ endif
 #if BUILD_GUILE
 #    GENSRC_ARGS += -g
 #endif
-if BUILD_C
-    GENSRC_ARGS += -c
-endif
+#if BUILD_C
+#    GENSRC_ARGS += -c
+#endif
 
 all-local: .time-stamp
 

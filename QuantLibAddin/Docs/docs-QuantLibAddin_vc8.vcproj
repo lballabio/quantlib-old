@@ -71,11 +71,15 @@
 				>
 			</File>
 			<File
-				RelativePath="pages\tutorials.docs"
+				RelativePath=".\pages\extending.docs"
 				>
 			</File>
 			<File
 				RelativePath="pages\faq.docs"
+				>
+			</File>
+			<File
+				RelativePath=".\pages\force_links.docs"
 				>
 			</File>
 			<File
@@ -103,6 +107,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\pages\manual.docs"
+				>
+			</File>
+			<File
 				RelativePath="pages\observer.docs"
 				>
 			</File>
@@ -111,15 +119,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\pages\serialization.docs"
+				>
+			</File>
+			<File
 				RelativePath="pages\srcgen.docs"
 				>
 			</File>
 			<File
-				RelativePath="pages\topics.docs"
+				RelativePath=".\pages\technical.docs"
 				>
 			</File>
 			<File
 				RelativePath="pages\troubleshooting.docs"
+				>
+			</File>
+			<File
+				RelativePath="pages\tutorials.docs"
 				>
 			</File>
 		</Filter>
@@ -300,7 +316,15 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\doxygen.css"
+			>
+		</File>
+		<File
 			RelativePath="Makefile.vc"
+			>
+		</File>
+		<File
+			RelativePath=".\ql.css"
 			>
 		</File>
 		<File
@@ -340,7 +364,7 @@
 			>
 		</File>
 		<File
-			RelativePath="style.css"
+			RelativePath=".\tabs.css"
 			>
 		</File>
 	</Files>

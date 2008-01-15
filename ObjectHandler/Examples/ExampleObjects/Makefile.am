@@ -11,3 +11,7 @@ libExampleObjects_la_LIBADD = \
     Serialization/libSerialization.la \
     ValueObjects/libValueObjects.la
 
+EXTRA_DIST = \
+    ExampleObjects_vc7.vcproj \
+	ExampleObjects_vc8.vcproj
+

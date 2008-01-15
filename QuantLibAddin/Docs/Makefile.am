@@ -3,10 +3,11 @@ EXTRA_DIST = \
     docs-QuantLibAddin_vc8.vcproj \
     docs-QuantLibAddin_vc7.vcproj \
     Makefile.vc \
-    qladdin.auto.doxy \
-    qladdin.qlo.doxy \
     qladdin.root.doxy \
+    qladdin.qlo.doxy \
+    qladdin.auto.doxy \
     qla_footer.html \
+    qla_footer.subdir.html \
     qla_header.html \
     qla_headeronline.html \
     qla_header.subdir.html \
@@ -31,8 +32,8 @@ DOXYGEN_INPUT := $(shell find ${top_srcdir}/qlo -name *.hpp) \
 	rm $<
 
 .PHONY: docs-all docs-html docs-clean
-.PHONY: docs-auto docs-qlo docs-root
-.PHONY: docs-auto-online docs-qlo-online docs-root-online 
+.PHONY: docs-root docs-qlo docs-auto
+.PHONY: docs-root-online docs-qlo-online docs-auto-online
 .PHONY: docs-dist docs-html-dist 
 
 dist-hook:
@@ -48,24 +49,24 @@ docs-all: docs-html
 docs-dist: docs-html-dist
 
 docs-html: .time-stamp-html
-.time-stamp-html: .time-stamp-auto .time-stamp-qlo .time-stamp-root
+.time-stamp-html: .time-stamp-root .time-stamp-qlo .time-stamp-auto
+	mkdir -p html/images
 	cp tabs.css html
 	cp ql.css html
-	mkdir -p html/images
 	cp -f images/*.ico html/images
 	cp -f images/*.jpg html/images
 	cp -f images/*.png html/images
 	cp -f images/*.php html/images
+	mkdir -p html/qlo/images
 	cp tabs.css html/qlo
 	cp ql.css html/qlo
-	mkdir -p html/qlo/images
 	cp -f images/*.ico html/qlo/images
 	cp -f images/*.jpg html/qlo/images
 	cp -f images/*.png html/qlo/images
 	cp -f images/*.php html/qlo/images
+	mkdir -p html/auto/images
 	cp tabs.css html/auto
 	cp ql.css html/auto
-	mkdir -p html/auto/images
 	cp -f images/*.ico html/auto/images
 	cp -f images/*.jpg html/auto/images
 	cp -f images/*.png html/auto/images
@@ -73,7 +74,7 @@ docs-html: .time-stamp-html
 	touch .time-stamp-html
 
 docs-online: .time-stamp-html-online
-.time-stamp-html-online: .time-stamp-auto-online .time-stamp-qlo-online .time-stamp-root-online
+.time-stamp-html-online: .time-stamp-root-online .time-stamp-qlo-online .time-stamp-auto-online
 	cp tabs.css html-online
 	cp ql.css html-online
 	mkdir -p html-online/images
@@ -107,85 +108,49 @@ docs-online-dist: docs-online
 	tar czfvh QuantLibAddin-docs-online-$(VERSION)-html.tar.gz quantlibaddin
 	rm quantlibaddin
 
-docs-auto: .time-stamp-auto
-.time-stamp-auto: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	mkdir -p html
-	$(SED) -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-               -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-               -e "s|qla_basepath|${BASEPATH}/|" \
-       -e "s|qla_version|$(VERSION)|" \
-       qladdin.auto.doxy > .qladdin.auto.doxy
-	$(DOXYGEN) .qladdin.auto.doxy
-	rm .qladdin.auto.doxy
-	touch .time-stamp-auto
-
-docs-qlo: .time-stamp-qlo
-.time-stamp-qlo: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	mkdir -p html
-	$(SED) -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-               -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-               -e "s|qla_basepath|${BASEPATH}/|" \
-       -e "s|qla_version|$(VERSION)|" \
-       qladdin.qlo.doxy > .qladdin.qlo.doxy
-	$(DOXYGEN) .qladdin.qlo.doxy
-	rm .qladdin.qlo.doxy
-	touch .time-stamp-qlo
-
 docs-root: .time-stamp-root
 .time-stamp-root: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	mkdir -p html
-	$(SED) -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-               -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-               -e "s|qla_basepath|${BASEPATH}/|" \
-       -e "s|qla_version|$(VERSION)|" \
-       qladdin.root.doxy > .qladdin.root.doxy
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py qladdin.root.doxy .qladdin.root.doxy
 	$(DOXYGEN) .qladdin.root.doxy
 	rm .qladdin.root.doxy
 	touch .time-stamp-root
 
-docs-auto-online: .time-stamp-auto-online
-.time-stamp-auto-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	mkdir -p html-online
-	$(SED) -e "s/qla_header/qla_headeronline/" \
-           -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-           -e "s/HTML_OUTPUT            = html/HTML_OUTPUT            = html-online/" \
-           -e "s|qla_basepath|${BASEPATH}/|" \
-           -e "s|qla_version|$(VERSION)|" \
-           qladdin.auto.doxy > .qladdin.auto.doxy
-	$(DOXYGEN) .qladdin.auto.doxy
-	rm .qladdin.auto.doxy
-	touch .time-stamp-auto-online
-
-docs-qlo-online: .time-stamp-qlo-online
-.time-stamp-qlo-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	mkdir -p html-online
-	$(SED) -e "s/qla_header/qla_headeronline/" \
-           -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-           -e "s/HTML_OUTPUT            = html/HTML_OUTPUT            = html-online/" \
-           -e "s|qla_basepath|${BASEPATH}/|" \
-           -e "s|qla_version|$(VERSION)|" \
-           qladdin.qlo.doxy > .qladdin.qlo.doxy
+docs-qlo: .time-stamp-qlo
+.time-stamp-qlo: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py qladdin.qlo.doxy .qladdin.qlo.doxy
 	$(DOXYGEN) .qladdin.qlo.doxy
 	rm .qladdin.qlo.doxy
-	touch .time-stamp-qlo-online
+	touch .time-stamp-qlo
+
+docs-auto: .time-stamp-auto
+.time-stamp-auto: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py qladdin.auto.doxy .qladdin.auto.doxy
+	$(DOXYGEN) .qladdin.auto.doxy
+	rm .qladdin.auto.doxy
+	touch .time-stamp-auto
 
 docs-root-online: .time-stamp-root-online
 .time-stamp-root-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	mkdir -p html-online
-	$(SED) -e "s/qla_header/qla_headeronline/" \
-           -e "s/HAVE_DOT               = NO/HAVE_DOT               = YES/" \
-           -e "s/GENERATE_HTMLHELP      = YES/GENERATE_HTMLHELP      = NO/" \
-           -e "s/HTML_OUTPUT            = html/HTML_OUTPUT            = html-online/" \
-           -e "s|qla_basepath|${BASEPATH}/|" \
-           -e "s|qla_version|$(VERSION)|" \
-           qladdin.root.doxy > .qladdin.root.doxy
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py -o qladdin.root.doxy .qladdin.root.doxy
 	$(DOXYGEN) .qladdin.root.doxy
 	rm .qladdin.root.doxy
 	touch .time-stamp-root-online
 
+docs-qlo-online: .time-stamp-qlo-online
+.time-stamp-qlo-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py -o qladdin.qlo.doxy .qladdin.qlo.doxy
+	$(DOXYGEN) .qladdin.qlo.doxy
+	rm .qladdin.qlo.doxy
+	touch .time-stamp-qlo-online
+
+docs-auto-online: .time-stamp-auto-online
+.time-stamp-auto-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
+	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py -o qladdin.auto.doxy .qladdin.auto.doxy
+	$(DOXYGEN) .qladdin.auto.doxy
+	rm .qladdin.auto.doxy
+	touch .time-stamp-auto-online
+
 docs-clean:
-	rm -Rf html-online html
+	rm -Rf html html-online
 	rm -f .time-stamp*
 

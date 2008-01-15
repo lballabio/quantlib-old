@@ -6,34 +6,27 @@ EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
-		Debug CRDLL = Debug CRDLL
 		Debug CRTDLL = Debug CRTDLL
-		Debug Single Thread = Debug Single Thread
+		Debug SingleThread = Debug SingleThread
 		Release = Release
 		Release CRTDLL = Release CRTDLL
-		Release Single Thread = Release Single Thread
-		Unicode Debug = Unicode Debug
-		Unicode Release = Unicode Release
+		Release SingleThread = Release SingleThread
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug.ActiveCfg = Debug|Win32
 		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug.Build.0 = Debug|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug CRDLL.ActiveCfg = Debug CRTDLL|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug CRDLL.Build.0 = Debug CRTDLL|Win32
 		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
 		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug Single Thread.ActiveCfg = Debug Single Thread|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug Single Thread.Build.0 = Debug Single Thread|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug SingleThread.ActiveCfg = Debug SingleThread|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug SingleThread.Build.0 = Debug SingleThread|Win32
 		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release.ActiveCfg = Release|Win32
 		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release.Build.0 = Release|Win32
 		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
 		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release Single Thread.ActiveCfg = Release Single Thread|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release Single Thread.Build.0 = Release Single Thread|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Unicode Debug.ActiveCfg = Unicode Debug|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Unicode Debug.Build.0 = Unicode Debug|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Unicode Release.ActiveCfg = Unicode Release|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Unicode Release.Build.0 = Unicode Release|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release SingleThread.ActiveCfg = Release SingleThread|Win32
+		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release SingleThread.Build.0 = Release SingleThread|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

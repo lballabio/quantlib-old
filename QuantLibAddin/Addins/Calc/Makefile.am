@@ -64,8 +64,9 @@ noinst_HEADERS = \
     conversions.hpp \
     exercise.hpp \
     instruments.hpp \
+    init.hpp \
+    logging.hpp \
     loop.hpp \
-    ohfunctions.hpp \
     options.hpp \
     payoffs.hpp \
     pricingengines.hpp \
@@ -73,9 +74,7 @@ noinst_HEADERS = \
     qlo_all.hpp \
     qladdin.hpp \
     qldefs.hpp \
-    ratehelpers.hpp \
     settings.hpp \
-    termstructures.hpp \
     utilities.hpp \
     volatilities.hpp
 endif
@@ -85,18 +84,17 @@ libQuantLibAddinCalc_la_SOURCES = \
     conversions.cpp \
     exercise.cpp \
     funcdef.cpp \
+    init.cpp \
     instruments.cpp \
+    logging.cpp \
     manual.cpp \
-    ohfunctions.cpp \
     options.cpp \
     payoffs.cpp \
     pricingengines.cpp \
     processes.cpp \
     qladdin.cpp \
-    ratehelpers.cpp \
     session.cpp \
     settings.cpp \
-    termstructures.cpp \
     utilities.cpp \
     volatilities.cpp
 

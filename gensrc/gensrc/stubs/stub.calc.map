@@ -5,8 +5,11 @@
 #endif
 
 #include <Addins/Calc/%(prefix)saddin.hpp>
+#include <Addins/Calc/init.hpp>
 
 %(addinClassName)s::%(addinClassName)s() throw () : m_refcount( 0 ) {
+
+    QuantLibAddin::initializeAddin();
 
 %(buffer)s}
 

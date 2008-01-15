@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,6 +22,16 @@
 */
 
 /*! \page history Version History
+
+<strong>Release 0.9.0 - January 2008</strong>
+
+- Autogenerate source code for Addins supporting serialization
+- Better support for autogeneration of source code for C++ addins
+- Better support for autogeneration of source code for looping functions
+- Fix deficiency in gensrc which necessitated the duplication of ObjectHandler
+  function metatdata in QuantLibAddin
+- All function parameter names must now begin with an uppercase letter,
+  this is for compatibility with the Excel Function Wizard
 
 <strong>Release 0.8.0 - May 2007</strong>
 

@@ -393,13 +393,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath=".\cms_in.cpp">
-		</File>
-		<File
-			RelativePath=".\set_fixings.cpp">
-		</File>
-		<File
-			RelativePath=".\set_fixings.hpp">
+			RelativePath=".\qlademo.cpp">
 		</File>
 	</Files>
 	<Globals>

@@ -42,6 +42,10 @@
 			Name="pages"
 			>
 			<File
+				RelativePath=".\pages\force_links.docs"
+				>
+			</File>
+			<File
 				RelativePath=".\pages\history.docs"
 				>
 			</File>
@@ -58,6 +62,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\doxygen.css"
+			>
+		</File>
 		<File
 			RelativePath=".\gensrc.doxy"
 			>
@@ -79,7 +87,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\style.css"
+			RelativePath=".\ql.css"
+			>
+		</File>
+		<File
+			RelativePath=".\tabs.css"
 			>
 		</File>
 	</Files>

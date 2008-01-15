@@ -15,7 +15,7 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Release CRTDLL|Win32"
 			OutputDirectory=".\build\vc80\$(ConfigurationName)"
 			IntermediateDirectory=".\build\vc80\$(ConfigurationName)"
 			ConfigurationType="0"
@@ -62,15 +62,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\init.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\instruments.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\manual.cpp"
+				RelativePath=".\logging.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ohfunctions.cpp"
+				RelativePath=".\manual.cpp"
 				>
 			</File>
 			<File
@@ -94,19 +98,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ratehelpers.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\session.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\settings.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\termstructures.cpp"
 				>
 			</File>
 			<File
@@ -135,15 +131,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\init.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\instruments.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\loop.hpp"
+				RelativePath=".\logging.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ohfunctions.hpp"
+				RelativePath=".\loop.hpp"
 				>
 			</File>
 			<File
@@ -163,10 +163,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\qlo_all.hpp"
-				>
-			</File>
-			<File
 				RelativePath=".\qladdin.hpp"
 				>
 			</File>
@@ -175,15 +171,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ratehelpers.hpp"
+				RelativePath=".\qlo_all.hpp"
 				>
 			</File>
 			<File
 				RelativePath=".\settings.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\termstructures.hpp"
 				>
 			</File>
 			<File

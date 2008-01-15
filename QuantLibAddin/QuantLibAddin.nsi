@@ -33,6 +33,7 @@ Section
     File "NEWS.txt"
     File "QuantLibAddin_vc7.sln"
     File "QuantLibAddin_vc8.sln"
+    File "QLA_serialization_vc8.sln"
 
     File "*.txt"
     File "*.TXT"
@@ -57,21 +58,20 @@ Section
     SetOutPath "$INSTDIR\Clients\Calc"
     File /r "Clients\Calc\*.ods"
 
-    SetOutPath "$INSTDIR\Clients\Guile"
-    File /r "Clients\Guile\*.scm"
-
     SetOutPath "$INSTDIR\Docs"
     File "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
     File "Docs\*.doxy"
     File "Docs\*.html"
     File "Docs\Makefile.vc"
-    File "Docs\style.css"
+    File "Docs\doxygen.css"
+    File "Docs\ql.css"
+    File "Docs\tabs.css"
 
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
     File "Docs\images\*.png"
-    File "Docs\images\*.gif"
+    File "Docs\images\*.php"
 
     SetOutPath "$INSTDIR\Docs\pages"
     File "Docs\pages\*.docs"

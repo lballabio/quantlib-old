@@ -41,8 +41,8 @@ Section
 
     File "*.txt"
     File "*.TXT"
-    File "QuantLibXL*.nsi"
-    File /r "*.vcproj"
+    File "QuantLibXL-bin.nsi"
+    File "QuantLibXL-src.nsi"
     File /r "*.vcproj"
     File /r "*.hpp"
     File /r "*.cpp"
@@ -52,13 +52,15 @@ Section
     File "Docs\*.doxy"
     File "Docs\*.html"
     File "Docs\Makefile.vc"
-    File "Docs\style.css"
+    File "Docs\doxygen.css"
+    File "Docs\ql.css"
+    File "Docs\tabs.css"
 
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
     File "Docs\images\*.png"
-    File "Docs\images\*.gif"
+    File "Docs\images\*.php"
 
     SetOutPath "$INSTDIR\Docs\pages"
     File "Docs\pages\*.docs"
@@ -70,9 +72,15 @@ Section
     File "Workbooks\Math\*.xls"
 
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
-    File /x "BlackFormula.xls" \
-         /x "capfloors.xls" \
-            "Workbooks\StandaloneExamples\*.xls"
+    File "Workbooks\StandaloneExamples\README.txt"
+    File "Workbooks\StandaloneExamples\MarketData.xls"
+    File "Workbooks\StandaloneExamples\Option.xls"
+    File "Workbooks\StandaloneExamples\Swap.xls"
+    File "Workbooks\StandaloneExamples\Swaption.xls"
+    File "Workbooks\StandaloneExamples\VanillaSwap.xls"
+    File "Workbooks\StandaloneExamples\serialize_swap.xla"
+    File "Workbooks\StandaloneExamples\serialize_utils.xla"
+    File "Workbooks\StandaloneExamples\YC_SwapDemo.xls"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"

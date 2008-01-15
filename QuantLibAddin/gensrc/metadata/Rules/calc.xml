@@ -83,10 +83,10 @@
     </Rules>
   </RuleGroup>
 
-  <RuleGroup name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='3' delimiter=',&#10;'>
+  <RuleGroup name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
     <Wrap>&#10;%s</Wrap>
     <Rules>
-        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <!--Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule-->
         <Rule tensorRank='scalar' type='QuantLib::Natural'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' type='QuantLib::Size'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(name)sLib</Rule>
@@ -96,6 +96,7 @@
         <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sObj</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='vector' superType='libraryType'>%(indent)s%(name)sLib</Rule>
         <Rule tensorRank='vector'>%(indent)s%(name)sCpp</Rule>
@@ -180,9 +181,10 @@
     </Rules>
   </RuleGroup>
 
-  <RuleGroup name='voCall' checkParameterIgnore='true' indent='3' delimiter=',&#10;'>
+  <RuleGroup name='voCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
     <Wrap>&#10;%s</Wrap>
     <Rules>
+        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='long'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='double'>%(indent)s%(name)s</Rule>
