@@ -24,6 +24,7 @@ include_HEADERS = \
     vo_evolutiondescription.hpp \
     vo_exercise.hpp \
     vo_forwardrateagreement.hpp \
+    vo_group.hpp \
     vo_index.hpp \
     vo_interpolation.hpp \
     vo_leg.hpp \
@@ -39,6 +40,7 @@ include_HEADERS = \
     vo_products.hpp \
     vo_quotes.hpp \
     vo_randomsequencegenerator.hpp \
+    vo_range.hpp \
     vo_rangeaccrual.hpp \
     vo_ratehelpers.hpp \
     vo_schedule.hpp \

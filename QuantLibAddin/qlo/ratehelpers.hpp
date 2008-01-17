@@ -2,10 +2,10 @@
 
 /*
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2007 Marco Bianchetti
- Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -183,3 +183,4 @@ namespace QuantLibAddin {
 }
 
 #endif
+

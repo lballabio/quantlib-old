@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -188,8 +188,8 @@ Download <tt>QuantLibXL-src-0.9.0.exe</tt> and uncompress the package to
 \section sec_build_quantlibxl 8. Build QuantLibXL
 
 Open the VC8 solution <tt>QuantLibXL\\QuantLibAllStatic_vc8.sln</tt>.  Choose
-configuration <tt>Release</tt>, project <tt>QuantLibXL</tt>, and do
-<tt>Build/Build QuantLibXL</tt>.  
+configuration <tt>Release</tt>, project <tt>QuantLibXLStatic</tt>, and do
+<tt>Build/Build QuantLibXLStatic</tt>.  
 
 <img src="images/build_qlxl.jpg">
 

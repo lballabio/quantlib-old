@@ -64,6 +64,9 @@ Section
     File "Docs\ql.css"
     File "Docs\tabs.css"
 
+    SetOutPath "$INSTDIR\dev_tools"
+    File "dev_tools\preprocess_doxyfile.py"
+
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"

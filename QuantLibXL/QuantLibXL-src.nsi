@@ -76,11 +76,13 @@ Section
     File "Workbooks\StandaloneExamples\MarketData.xls"
     File "Workbooks\StandaloneExamples\Option.xls"
     File "Workbooks\StandaloneExamples\Swap.xls"
-    File "Workbooks\StandaloneExamples\Swaption.xls"
+    #File "Workbooks\StandaloneExamples\Swaption.xls"
     File "Workbooks\StandaloneExamples\VanillaSwap.xls"
     File "Workbooks\StandaloneExamples\serialize_swap.xla"
     File "Workbooks\StandaloneExamples\serialize_utils.xla"
     File "Workbooks\StandaloneExamples\YC_SwapDemo.xls"
+    File "Workbooks\StandaloneExamples\InterestRateDerivatives.xls"
+    File "Workbooks\StandaloneExamples\YieldCurveBootstrapping.xls"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"
@@ -123,14 +125,18 @@ SectionEnd
 Section /o Framework
 
     SetOutPath "$INSTDIR\xll"
-    File "xll\QuantLibXLDynamic-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    File "..\ObjectHandler\xll\ObjectHandler-xll-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    #File "xll\QuantLibXLDynamic-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    #File "..\ObjectHandler\xll\ObjectHandler-xll-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
     SetOutPath "$INSTDIR\framework"
     File "framework\QuantLibXL.xla"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r "Workbooks\*.xls"
+
+    SetOutPath "$INSTDIR\Data\XLS"
+    File /r "Data\XLS\*.xls"
 
     # ObjectBuilder crashes if it can't find the icon
     SetOutPath "$INSTDIR\Docs\images"

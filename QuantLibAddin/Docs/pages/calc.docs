@@ -139,7 +139,7 @@ CPP=/usr/local/gcc/[version]/bin/cpp
 
 ... where [version] is the version number of gcc required by Calc on your platform.
 
-\b NB If you intend to debug %QuantLibAddin with the gdb command line debugger, then you should also use the compile flag \c -gdwarf-2 as described in document \ref troubleshooting.
+\b NB If you intend to debug %QuantLibAddin with the gdb command line debugger, then you should also use the compile flag \c -gdwarf-2 as explained in this FAQ item: \ref faq_item_debuglinux
 
 \subsection calc_libs Shared Libraries
 

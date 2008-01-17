@@ -63,12 +63,11 @@ have already compiled QuantLibXL from source code as explained in the document
 
 \subsubsection serialization_win_excel_build 1.1.1 Build
 
-Open <tt>QuantLibXL\\QuantLibAllDynamic_vc8.sln</tt>, select configuration
-<tt>Release CRTDLL</tt> and build project <tt>QuantLibXLDynamic</tt>.  The
-output files are
+Open <tt>QuantLibXL\\QuantLibAllStatic_vc8.sln</tt>, select configuration
+<tt>Release CRTDLL</tt> and build project <tt>QuantLibXLStatic</tt>.  The
+output file is
 
-\li <tt>ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll</tt>
-\li <tt>QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll</tt>
+\li <tt>QuantLibXL\xll\QuantLibXL-vc80-mt-0_9_0.xll</tt>
 
 \subsubsection serialization_win_excel_export 1.1.2 Export
 
@@ -77,8 +76,7 @@ output files are
 <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\serialize_swap.xla</tt>.  The addin
 contains some startup code which should automatically load the following:
 \verbatim
-ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll
-QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll
+QuantLibXL\xll\QuantLibXL-vc80-mt-0_9_0.xll
 QuantLibXL\Workbooks\StandaloneExamples\MarketData.xls
 QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
 \endverbatim
@@ -98,8 +96,7 @@ C:\qlxl_demo_swap.xml
 <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\serialize_swap.xla</tt>.  The addin
 contains some startup code which should automatically load the following:
 \verbatim
-ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_0.xll
-QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_0.xll
+QuantLibXL\xll\QuantLibXL-vc80-mt-0_9_0.xll
 QuantLibXL\Workbooks\StandaloneExamples\MarketData.xls
 QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
 \endverbatim

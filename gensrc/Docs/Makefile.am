@@ -44,9 +44,9 @@ docs-html: .time-stamp-html
 	cp tabs.css html
 	cp ql.css html
 	mkdir -p html/images
-	cp images/*.ico html/images
-	cp images/*.jpg html/images
-	cp images/*.php html/images
+	cp -f images/*.ico html/images
+	cp -f images/*.jpg html/images
+	cp -f images/*.php html/images
 	touch .time-stamp-html
 
 docs-html-dist: docs-html
@@ -62,9 +62,9 @@ docs-online: .time-stamp-online
 	cp tabs.css html-online
 	cp ql.css html-online
 	mkdir -p html-online/images
-	cp images/*.ico html-online/images
-	cp images/*.jpg html-online/images
-	cp images/*.php html-online/images
+	cp -f images/*.ico html-online/images
+	cp -f images/*.jpg html-online/images
+	cp -f images/*.php html-online/images
 	touch .time-stamp-online
 
 docs-online-dist: docs-online

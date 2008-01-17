@@ -131,7 +131,7 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='Convention' exampleValue='ModifiedFollowing'>
+          <Parameter name='Convention' exampleValue='Modified Following'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>business day convention (e.g. Modified Following)</description>
@@ -515,7 +515,7 @@
             <tensorRank>scalar</tensorRank>
             <description>IMM date (or code)</description>
           </Parameter>
-          <Parameter name='Months' default='3'>
+          <Parameter name='Months' exampleValue='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>future contract length in months</description>
@@ -525,7 +525,7 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
-          <Parameter name='Convention' exampleValue='ModifiedFollowing'>
+          <Parameter name='Convention' exampleValue='Modified Following'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>business day convention (e.g. Modified Following)</description>
@@ -597,3 +597,4 @@
 
   </Functions>
 </Category>
+

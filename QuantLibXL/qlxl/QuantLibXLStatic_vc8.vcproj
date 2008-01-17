@@ -748,6 +748,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Functions\handles.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Functions\index.cpp"
 				>
 			</File>
@@ -872,6 +876,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Functions\timeseries.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Functions\utilities.cpp"
 				>
 			</File>
@@ -895,50 +903,42 @@
 				RelativePath="Conversions\all.hpp"
 				>
 			</File>
-			<Filter
-				Name="ToOper"
+			<File
+				RelativePath=".\Conversions\matrixtooper.cpp"
 				>
-				<File
-					RelativePath="Conversions\matrixtooper.cpp"
-					>
-				</File>
-				<File
-					RelativePath="Conversions\matrixtooper.hpp"
-					>
-				</File>
-				<File
-					RelativePath="Conversions\scalartooper.cpp"
-					>
-				</File>
-				<File
-					RelativePath="Conversions\scalartooper.hpp"
-					>
-				</File>
-				<File
-					RelativePath="Conversions\vectortooper.hpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="FromOper"
+			</File>
+			<File
+				RelativePath=".\Conversions\matrixtooper.hpp"
 				>
-				<File
-					RelativePath="Conversions\opertomatrix.cpp"
-					>
-				</File>
-				<File
-					RelativePath="Conversions\opertomatrix.hpp"
-					>
-				</File>
-				<File
-					RelativePath="Conversions\opertovector.cpp"
-					>
-				</File>
-				<File
-					RelativePath="Conversions\opertovector.hpp"
-					>
-				</File>
-			</Filter>
+			</File>
+			<File
+				RelativePath=".\Conversions\opertomatrix.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\opertomatrix.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\opertovector.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\opertovector.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\scalartooper.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\scalartooper.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Conversions\vectortooper.hpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Serialization"

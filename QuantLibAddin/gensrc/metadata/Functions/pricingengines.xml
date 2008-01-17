@@ -218,8 +218,13 @@
           <Parameter name='Accuracy' default='1.0e-6'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation accuracy</description>
+            <description>solver accuracy. If missing default = 1e-6</description>
           </Parameter>
+          <!--<Parameter name='MaxIter' default='100'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>solver max iterations. If missing default = 100</description>
+          </Parameter>-->
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
