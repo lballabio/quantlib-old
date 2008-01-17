@@ -57,7 +57,8 @@ The table below summarizes the automatic coercions supported by QuantLibXL:
 <tr><td>Date</td>
 <td>
 \li An integer representing the offset in days since 1 January 1970.  This is the format passed by Excel.
-\li A period, to be used as the offset from the current evaluation date.  For example, where a function expects a date, and the current evaluation date is 6 July 2005, and the user supplies the string "2Y", then the function receives the date value 6 July 2007.</td></tr>
+\li A period, to be used as the offset from the current evaluation date.  For example, where a function expects a date, and the current evaluation date is 6 July 2005, and the user supplies the string "2Y", then the function receives the date value 6 July 2007.
+\li An IMM code such as Z7, which maps to Wed, 20-Dec-2017, i.e. to the corresponding IMM date in the forward decade starting from the current evaluation date.</td></tr>
 <tr><td>TermStructure</td>
 <td>
 \li ID of a TermStructure object as returned by a function such as qlPiecewiseYieldCurve ()
