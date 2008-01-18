@@ -43,4 +43,6 @@ This version number is in:
     QuantLib-SWIG/Ruby/setup.rb
     QuantLib-SWIG/SWIG/ql.i
 
-interested extensions: *.cpp;*.hpp;*.h;*.inl;*.txt;*.nsi;*.in;*.doxy;*.py;*.i;*.rb;*.bat;*.sh;*.TXT;*.scm;*.ac
+interested extensions: *.cpp;*.hpp;*.h;*.inl;*.txt;*.nsi;*.in;*.doxy;*.py;*.i;*.rb;*.bat;*.sh;*.TXT;*.scm;*.ac; *.sln; *.vcproj
+
+in QuantLibXL.xla it must be updated manually
