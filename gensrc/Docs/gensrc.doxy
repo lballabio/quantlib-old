@@ -4,7 +4,7 @@
 ## Project related configuration options
 ##---------------------------------------------------------------------------
 PROJECT_NAME           = gensrc
-PROJECT_NUMBER         = 0.9.0
+PROJECT_NUMBER         = 0.9.5
 OUTPUT_DIRECTORY       =
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
@@ -110,7 +110,7 @@ HTML_FOOTER            = gs_footer.html
 HTML_STYLESHEET        = doxygen.css
 HTML_ALIGN_MEMBERS     = YES
 GENERATE_HTMLHELP      = YES
-CHM_FILE               = ../gensrc-docs-0.9.0.chm
+CHM_FILE               = ../gensrc-docs-0.9.5.chm
 HHC_LOCATION           = hhc.exe
 GENERATE_CHI           = NO
 BINARY_TOC             = NO

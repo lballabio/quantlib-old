@@ -4,7 +4,7 @@
 
 !define APP "log4cxx"
 !define VER_NUMBER "0.9.7e"
-!define DEFAULT_PATH "C:\build_ql_0_9_0\${APP}"
+!define DEFAULT_PATH "C:\build_ql_0_9_5\${APP}"
 
 # Compiler Flags
 

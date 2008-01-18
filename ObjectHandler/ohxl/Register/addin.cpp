@@ -1,6 +1,6 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
-/* 
+/*
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -114,7 +114,7 @@ DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
     // long name for the XLL. Any other value should result in the
     // return of a #VALUE! error.
     if (1 == xlReturn.val.w) {
-        ObjectHandler::scalarToOper(std::string("ObjectHandler 0.9.0"), xlLongName);
+        ObjectHandler::scalarToOper(std::string("ObjectHandler 0.9.5"), xlLongName);
     } else {
         xlLongName.xltype = xltypeErr;
         xlLongName.val.err = xlerrValue;

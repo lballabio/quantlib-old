@@ -73,7 +73,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc90-mt-0_9_0.exe"
+				OutputFile="bin\ExampleCpp-vc90-mt-0_9_5.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
@@ -165,7 +165,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc90-mt-sgd-0_9_0.exe"
+				OutputFile="bin\ExampleCpp-vc90-mt-sgd-0_9_5.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
@@ -258,7 +258,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc90-mt-s-0_9_0.exe"
+				OutputFile="bin\ExampleCpp-vc90-mt-s-0_9_5.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
@@ -350,7 +350,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc90-mt-gd-0_9_0.exe"
+				OutputFile="bin\ExampleCpp-vc90-mt-gd-0_9_5.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"

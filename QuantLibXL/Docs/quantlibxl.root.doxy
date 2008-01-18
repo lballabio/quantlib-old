@@ -6,12 +6,12 @@
 
 PROJECT_NAME           = QuantLibXL
 PROJECT_NUMBER         = qlxl_version
-OUTPUT_DIRECTORY       = 
+OUTPUT_DIRECTORY       =
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 BRIEF_MEMBER_DESC      = YES
 REPEAT_BRIEF           = YES
-ABBREVIATE_BRIEF       = 
+ABBREVIATE_BRIEF       =
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = YES
 FULL_PATH_NAMES        = YES
@@ -24,7 +24,7 @@ DETAILS_AT_TOP         = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 8
-ALIASES                = 
+ALIASES                =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 DISTRIBUTE_GROUP_DOC   = NO
@@ -55,11 +55,11 @@ GENERATE_TODOLIST      = YES
 GENERATE_TESTLIST      = YES
 GENERATE_BUGLIST       = YES
 GENERATE_DEPRECATEDLIST= YES
-ENABLED_SECTIONS       = 
+ENABLED_SECTIONS       =
 MAX_INITIALIZER_LINES  = 30
 SHOW_USED_FILES        = YES
 SHOW_DIRECTORIES       = YES
-FILE_VERSION_FILTER    = 
+FILE_VERSION_FILTER    =
 
 #---------------------------------------------------------------------------
 # configuration options related to warning and progress messages
@@ -90,15 +90,15 @@ INPUT                  = ./pages \
                          ../../QuantLibAddin/Docs/pages/observer.docs
 FILE_PATTERNS          = *.docs
 RECURSIVE              =
-EXCLUDE                = 
+EXCLUDE                =
 EXCLUDE_SYMLINKS       =
 EXCLUDE_PATTERNS       =
 EXAMPLE_PATH           =
 EXAMPLE_PATTERNS       =
 EXAMPLE_RECURSIVE      =
-IMAGE_PATH             = 
-INPUT_FILTER           = 
-FILTER_PATTERNS        = 
+IMAGE_PATH             =
+INPUT_FILTER           =
+FILTER_PATTERNS        =
 FILTER_SOURCE_FILES    =
 
 #---------------------------------------------------------------------------
@@ -119,7 +119,7 @@ VERBATIM_HEADERS       = NO
 
 ALPHABETICAL_INDEX     = NO
 COLS_IN_ALPHA_INDEX    = 5
-IGNORE_PREFIX          = 
+IGNORE_PREFIX          =
 
 #---------------------------------------------------------------------------
 # configuration options related to the HTML output
@@ -133,7 +133,7 @@ HTML_FOOTER            = qlxl_footer.html
 HTML_STYLESHEET        = doxygen.css
 HTML_ALIGN_MEMBERS     = YES
 GENERATE_HTMLHELP      = YES
-CHM_FILE               = ../QuantLibXL-docs-0.9.0.chm
+CHM_FILE               = ../QuantLibXL-docs-0.9.5.chm
 HHC_LOCATION           = hhc.exe
 GENERATE_CHI           = NO
 BINARY_TOC             = NO
@@ -153,8 +153,8 @@ LATEX_CMD_NAME         = latex
 MAKEINDEX_CMD_NAME     = makeindex
 COMPACT_LATEX          = NO
 PAPER_TYPE             = a4wide
-EXTRA_PACKAGES         = 
-LATEX_HEADER           = 
+EXTRA_PACKAGES         =
+LATEX_HEADER           =
 PDF_HYPERLINKS         = NO
 USE_PDFLATEX           = NO
 LATEX_BATCHMODE        = NO
@@ -168,8 +168,8 @@ GENERATE_RTF           = NO
 RTF_OUTPUT             = rtf
 COMPACT_RTF            = NO
 RTF_HYPERLINKS         = NO
-RTF_STYLESHEET_FILE    = 
-RTF_EXTENSIONS_FILE    = 
+RTF_STYLESHEET_FILE    =
+RTF_EXTENSIONS_FILE    =
 
 #---------------------------------------------------------------------------
 # configuration options related to the man page output
@@ -186,8 +186,8 @@ MAN_LINKS              = NO
 
 GENERATE_XML           = NO
 XML_OUTPUT             = xml
-XML_SCHEMA             = 
-XML_DTD                = 
+XML_SCHEMA             =
+XML_DTD                =
 XML_PROGRAMLISTING     = YES
 
 #---------------------------------------------------------------------------
@@ -203,34 +203,34 @@ GENERATE_AUTOGEN_DEF   = NO
 GENERATE_PERLMOD       = NO
 PERLMOD_LATEX          = NO
 PERLMOD_PRETTY         = YES
-PERLMOD_MAKEVAR_PREFIX = 
+PERLMOD_MAKEVAR_PREFIX =
 
 #---------------------------------------------------------------------------
-# Configuration options related to the preprocessor   
+# Configuration options related to the preprocessor
 #---------------------------------------------------------------------------
 
 ENABLE_PREPROCESSING   = YES
 MACRO_EXPANSION        = NO
 EXPAND_ONLY_PREDEF     = NO
 SEARCH_INCLUDES        = YES
-INCLUDE_PATH           = 
-INCLUDE_FILE_PATTERNS  = 
-PREDEFINED             = 
-EXPAND_AS_DEFINED      = 
+INCLUDE_PATH           =
+INCLUDE_FILE_PATTERNS  =
+PREDEFINED             =
+EXPAND_AS_DEFINED      =
 SKIP_FUNCTION_MACROS   = YES
 
 #---------------------------------------------------------------------------
-# Configuration::additions related to external references   
+# Configuration::additions related to external references
 #---------------------------------------------------------------------------
 
-TAGFILES               = 
-GENERATE_TAGFILE       = 
+TAGFILES               =
+GENERATE_TAGFILE       =
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
 PERL_PATH              = /usr/bin/perl
 
 #---------------------------------------------------------------------------
-# Configuration options related to the dot tool   
+# Configuration options related to the dot tool
 #---------------------------------------------------------------------------
 
 CLASS_DIAGRAMS         = YES
@@ -247,15 +247,15 @@ CALL_GRAPH             = NO
 GRAPHICAL_HIERARCHY    = YES
 DIRECTORY_GRAPH        = NO
 DOT_IMAGE_FORMAT       = png
-DOT_PATH               = 
-DOTFILE_DIRS           = 
+DOT_PATH               =
+DOTFILE_DIRS           =
 DOT_TRANSPARENT        = NO
 DOT_MULTI_TARGETS      = NO
 GENERATE_LEGEND        = YES
 DOT_CLEANUP            = YES
 
 #---------------------------------------------------------------------------
-# Configuration::additions related to the search engine   
+# Configuration::additions related to the search engine
 #---------------------------------------------------------------------------
 
 SEARCHENGINE           = NO

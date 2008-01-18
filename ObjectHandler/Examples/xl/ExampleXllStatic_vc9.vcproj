@@ -76,15 +76,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc90-mt-sgd-0_9_0.xll"
+				OutputFile="xll\ExampleXLLStatic-vc90-mt-sgd-0_9_5.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-sgd-0_9_0.pdb"
+				ProgramDatabaseFile=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-sgd-0_9_5.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-sgd-0_9_0.lib"
+				ImportLibrary=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-sgd-0_9_5.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -173,14 +173,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc90-mt-s-0_9_0.xll"
+				OutputFile="xll\ExampleXLLStatic-vc90-mt-s-0_9_5.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-s-0_9_0.pdb"
+				ProgramDatabaseFile=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-s-0_9_5.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-s-0_9_0.lib"
+				ImportLibrary=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-s-0_9_5.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -269,14 +269,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc90-mt-0_9_0.xll"
+				OutputFile="xll\ExampleXLLStatic-vc90-mt-0_9_5.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-0_9_0.pdb"
+				ProgramDatabaseFile=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-0_9_5.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-0_9_0.lib"
+				ImportLibrary=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-0_9_5.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -365,15 +365,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc90-mt-gd-0_9_0.xll"
+				OutputFile="xll\ExampleXLLStatic-vc90-mt-gd-0_9_5.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-gd-0_9_0.pdb"
+				ProgramDatabaseFile=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-gd-0_9_5.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-gd-0_9_0.lib"
+				ImportLibrary=".\buildXllStatic\vc90\$(ConfigurationName)\ExampleXLLStatic-vc90-mt-gd-0_9_5.lib"
 				TargetMachine="1"
 			/>
 			<Tool

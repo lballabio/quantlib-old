@@ -64,13 +64,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\ExampleXLLDynamic1-vc80-mt-gd-0_9_0.xll"
+				OutputFile="xll\ExampleXLLDynamic1-vc80-mt-gd-0_9_5.xll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildXllDynamic1\vc80\$(ConfigurationName)\ExampleXLLDynamic1-vc80-mt-gd-0_9_0.pdb"
+				ProgramDatabaseFile=".\buildXllDynamic1\vc80\$(ConfigurationName)\ExampleXLLDynamic1-vc80-mt-gd-0_9_5.pdb"
 				SubSystem="2"
-				ImportLibrary=".\buildXllDynamic1\vc80\$(ConfigurationName)\ExampleXLLDynamic1-vc80-mt-gd-0_9_0.lib"
+				ImportLibrary=".\buildXllDynamic1\vc80\$(ConfigurationName)\ExampleXLLDynamic1-vc80-mt-gd-0_9_5.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -145,15 +145,15 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\ExampleXLLDynamic1-vc80-mt-0_9_0.xll"
+				OutputFile="xll\ExampleXLLDynamic1-vc80-mt-0_9_5.xll"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
 				GenerateDebugInformation="false"
-				ProgramDatabaseFile=".\buildXllDynamic1\vc80\$(ConfigurationName)\ExampleXLLDynamic1-vc80-mt-gd-0_9_0.pdb"
+				ProgramDatabaseFile=".\buildXllDynamic1\vc80\$(ConfigurationName)\ExampleXLLDynamic1-vc80-mt-gd-0_9_5.pdb"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary=".\buildXllDynamic1\vc80\$(ConfigurationName)\ExampleXLLDynamic1-vc80-mt-0_9_0.lib"
+				ImportLibrary=".\buildXllDynamic1\vc80\$(ConfigurationName)\ExampleXLLDynamic1-vc80-mt-0_9_5.lib"
 				TargetMachine="1"
 			/>
 			<Tool

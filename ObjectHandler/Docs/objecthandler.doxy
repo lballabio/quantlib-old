@@ -5,13 +5,13 @@
 ##---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = ObjectHandler
-PROJECT_NUMBER         = 0.9.0
+PROJECT_NUMBER         = 0.9.5
 OUTPUT_DIRECTORY       =
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 BRIEF_MEMBER_DESC      = YES
 REPEAT_BRIEF           = YES
-ABBREVIATE_BRIEF       = 
+ABBREVIATE_BRIEF       =
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = NO
 FULL_PATH_NAMES        = YES
@@ -24,7 +24,7 @@ DETAILS_AT_TOP         = YES
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 4
-ALIASES                = 
+ALIASES                =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 BUILTIN_STL_SUPPORT    = NO
@@ -55,11 +55,11 @@ GENERATE_TODOLIST      = YES
 GENERATE_TESTLIST      = YES
 GENERATE_BUGLIST       = YES
 GENERATE_DEPRECATEDLIST= YES
-ENABLED_SECTIONS       = 
+ENABLED_SECTIONS       =
 MAX_INITIALIZER_LINES  = 30
 SHOW_USED_FILES        = NO
 SHOW_DIRECTORIES       = NO
-FILE_VERSION_FILTER    = 
+FILE_VERSION_FILTER    =
 #---------------------------------------------------------------------------
 # configuration options related to warning and progress messages
 #---------------------------------------------------------------------------
@@ -81,17 +81,17 @@ INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.docs \
                          *.hpp
 RECURSIVE              = YES
-EXCLUDE                = 
+EXCLUDE                =
 EXCLUDE_SYMLINKS       = NO
-EXCLUDE_PATTERNS       = 
-EXCLUDE_SYMBOLS        = 
+EXCLUDE_PATTERNS       =
+EXCLUDE_SYMBOLS        =
 EXAMPLE_PATH           = ../Examples
 EXAMPLE_PATTERNS       = *.cpp \
                          *.hpp
 EXAMPLE_RECURSIVE      = NO
-IMAGE_PATH             = 
-INPUT_FILTER           = 
-FILTER_PATTERNS        = 
+IMAGE_PATH             =
+INPUT_FILTER           =
+FILTER_PATTERNS        =
 FILTER_SOURCE_FILES    = NO
 #---------------------------------------------------------------------------
 # configuration options related to source browsing
@@ -109,7 +109,7 @@ VERBATIM_HEADERS       = NO
 #---------------------------------------------------------------------------
 ALPHABETICAL_INDEX     = NO
 COLS_IN_ALPHA_INDEX    = 3
-IGNORE_PREFIX          = 
+IGNORE_PREFIX          =
 #---------------------------------------------------------------------------
 # configuration options related to the HTML output
 #---------------------------------------------------------------------------
@@ -121,7 +121,7 @@ HTML_FOOTER            = oh_footer.html
 HTML_STYLESHEET        = doxygen.css
 HTML_ALIGN_MEMBERS     = YES
 GENERATE_HTMLHELP      = YES
-CHM_FILE               = ../ObjectHandler-docs-0.9.0.chm
+CHM_FILE               = ../ObjectHandler-docs-0.9.5.chm
 HHC_LOCATION           = hhc.exe
 GENERATE_CHI           = NO
 BINARY_TOC             = NO
@@ -181,7 +181,7 @@ PERLMOD_LATEX          = NO
 PERLMOD_PRETTY         = YES
 PERLMOD_MAKEVAR_PREFIX =
 #---------------------------------------------------------------------------
-# Configuration options related to the preprocessor   
+# Configuration options related to the preprocessor
 #---------------------------------------------------------------------------
 ENABLE_PREPROCESSING   = YES
 MACRO_EXPANSION        = YES
@@ -194,7 +194,7 @@ EXPAND_AS_DEFINED      =
 SKIP_FUNCTION_MACROS   = YES
 
 #---------------------------------------------------------------------------
-# Configuration::additions related to external references   
+# Configuration::additions related to external references
 #---------------------------------------------------------------------------
 TAGFILES               =
 GENERATE_TAGFILE       =
@@ -203,10 +203,10 @@ EXTERNAL_GROUPS        = YES
 PERL_PATH              = /usr/bin/perl
 
 #---------------------------------------------------------------------------
-# Configuration options related to the dot tool   
+# Configuration options related to the dot tool
 #---------------------------------------------------------------------------
 CLASS_DIAGRAMS         = YES
-MSCGEN_PATH            = 
+MSCGEN_PATH            =
 HIDE_UNDOC_RELATIONS   = NO
 HAVE_DOT               = NO
 CLASS_GRAPH            = YES
@@ -221,14 +221,14 @@ CALLER_GRAPH           = NO
 GRAPHICAL_HIERARCHY    = YES
 DIRECTORY_GRAPH        = NO
 DOT_IMAGE_FORMAT       = png
-DOT_PATH               = 
-DOTFILE_DIRS           = 
+DOT_PATH               =
+DOTFILE_DIRS           =
 DOT_GRAPH_MAX_NODES    = 50
 DOT_TRANSPARENT        = NO
 DOT_MULTI_TARGETS      = NO
 GENERATE_LEGEND        = YES
 DOT_CLEANUP            = YES
 #---------------------------------------------------------------------------
-# Configuration::additions related to the search engine   
+# Configuration::additions related to the search engine
 #---------------------------------------------------------------------------
 SEARCHENGINE           = NO

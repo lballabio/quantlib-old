@@ -80,15 +80,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-gd-0_9_0.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-gd-0_9_5.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-gd-0_9_0.pdb"
+				ProgramDatabaseFile=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-gd-0_9_5.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-gd-0_9_0.lib"
+				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-gd-0_9_5.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -180,14 +180,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-0_9_0.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-0_9_5.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
-				ProgramDatabaseFile=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-0_9_0.pdb"
+				ProgramDatabaseFile=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-0_9_5.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-0_9_0.lib"
+				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-0_9_5.lib"
 				TargetMachine="1"
 			/>
 			<Tool
