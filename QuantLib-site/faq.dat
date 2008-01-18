@@ -201,7 +201,7 @@
    each build configuration produces a different library.
 
 <c>Using QuantLib
-<q>Programs linking QuantLib fail to run correctly under Mac OS X.
+<q>Programs linking QuantLib fail to run correctly under Mac OS X 10.3.
 <a>We are aware of the problem; apparently, there are issues with
    global and/or static variables when using shared libraries. As a
    workaround, compile QuantLib as a static library. This can be
