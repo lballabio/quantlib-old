@@ -137,6 +137,27 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='ohObjectExists'>
+      <description>list the IDs of objects in repository matching regex</description>
+      <alias>ObjectHandler::RepositoryXL::instance().objectExists</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Object ID name</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
     <Procedure name='ohObjectCount'>
       <description>#/objects in repository</description>
       <alias>ObjectHandler::RepositoryXL::instance().objectCount</alias>

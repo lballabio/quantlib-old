@@ -68,6 +68,11 @@ namespace ObjectHandler {
             Repository class.
         */
         virtual void deleteObject(const std::vector<std::string> &objectIDs);
+        //! Wrapper for the objectExists function in the base class.
+        /*! Convert Excel-format Object IDs into the format recognized by the base
+            Repository class.
+        */
+        virtual bool objectExists(const std::string &objectID) const;
         //@}
 
         //! \name Error Messages

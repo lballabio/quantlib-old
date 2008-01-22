@@ -122,6 +122,10 @@ namespace ObjectHandler {
             Repository::deleteObject(ObjectXL::getStub(*i));
     }
 
+    bool RepositoryXL::objectExists(const std::string &objectID) const {
+        return Repository::objectExists(ObjectXL::getStub(objectID));
+    }
+
     void RepositoryXL::setError(
             const std::string &message,
             const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall) {

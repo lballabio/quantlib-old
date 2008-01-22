@@ -148,7 +148,7 @@ namespace ObjectHandler {
             const std::string &regex = "");
 
         //! Indicate whether an Object with the given ID is found in the Repository.
-        bool objectExists(const std::string &objectID) const;
+        virtual bool objectExists(const std::string &objectID) const;
         //@}
 
         //! Define the type of the structure used to store the Objects.
