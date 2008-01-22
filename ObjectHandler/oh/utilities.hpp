@@ -1,6 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
 
@@ -96,12 +97,14 @@ namespace ObjectHandler {
     */
     //@{
     //! Split a string into substrings using the given delimiter.
-    std::vector<std::string> split(const std::string &line,
-                                   const std::string &delim,
+    std::vector<std::string> split(const std::string& line,
+                                   const std::string& delim,
                                    bool token_compress);
+    //! Concatenate substrings into a single string using the given delimiter.
+    std::string concatenate(const std::vector<std::string>& symbols,
+                            const std::string& delim);
     //@}
 
 }
 
 #endif
-

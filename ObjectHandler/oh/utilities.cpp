@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Ferdinando Ametrano
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
 
@@ -75,14 +75,24 @@ namespace ObjectHandler {
         Logger::instance().logMessage(msg.str());
     }
 
-    // parse a whitespace-delimited list of symbols 
-    // into a vector of strings
-    std::vector<std::string> split(const std::string &line,
-                                   const std::string &delim,
+    std::vector<std::string> split(const std::string& line,
+                                   const std::string& delim,
                                    bool token_compress) {
         std::vector<std::string> ret;
         return boost::algorithm::split(ret, line, is_any_of(delim),
                     token_compress ? token_compress_on : token_compress_off);
+    }
+
+    std::string concatenate(const std::vector<std::string>& symbols,
+                            const std::string& delim) {
+        if (symbols.empty())
+            return std::string();
+
+        std::ostringstream ret;
+        for (size_t i=0; i<symbols.size()-1; ++i)
+            ret << symbols[i] << delim;
+        ret << symbols[symbols.size()-1];
+        return ret.str();
     }
 
 }

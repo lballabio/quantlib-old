@@ -7,7 +7,7 @@
   </addinIncludes>
 
   <copyright>
-    Copyright (C) 2004, 2005, 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2004, 2005, 2006, 2007, 2008 Ferdinando Ametrano
     Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
     Copyright (C) 2005, 2006 Plamen Neykov
     Copyright (C) 2004 StatPro Italia srl
@@ -174,14 +174,14 @@
     </Procedure>
 
     <Procedure name='ohSplit' dependencyTrigger='False'>
-      <description>Splits a string using delimiters</description>
+      <description>Split a string into substrings using the given delimiter</description>
       <alias>ObjectHandler::split</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Text'>
+          <Parameter name='String'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>string to be parsed</description>
@@ -189,7 +189,7 @@
           <Parameter name='Delimiters'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>characters used as delimiters: each single character alone is used as delimiter</description>
+            <description>delimiter characters</description>
           </Parameter>
           <Parameter name='ConcatenateDelim' default='false'>
             <type>bool</type>
@@ -201,6 +201,32 @@
       <ReturnValue>
         <type>string</type>
         <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohConcatenate' dependencyTrigger='False'>
+      <description>Concatenate substrings into a single string using the given delimiter</description>
+      <alias>ObjectHandler::concatenate</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Substrings'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>string to be parsed</description>
+          </Parameter>
+          <Parameter name='Delimiter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>delimiter string</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
 
