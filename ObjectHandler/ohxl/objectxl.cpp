@@ -21,10 +21,22 @@
 #include <ohxl/functioncall.hpp>
 #include <ohxl/callingrange.hpp>
 
+using std::string;
+
 namespace ObjectHandler {
 
-    ObjectXL::ObjectXL(const std::string &id, const boost::shared_ptr<Object> &object)
-        : id_(id), idFull_(id), object_(object) {
+    namespace {
+        const string anonPrefix("obj");
+        const char counterDelimiter = '#';
+    }
+
+    ObjectXL::ObjectXL(const string &id,
+                       const boost::shared_ptr<Object> &object)
+    : id_(id), idFull_(id), object_(object) {
+        OH_REQUIRE(id.rfind(anonPrefix, anonPrefix.size()-1)==string::npos,
+                   id<<" is an invalid ID: cannot start with " << anonPrefix);
+        OH_REQUIRE(id.find(counterDelimiter, 0)==string::npos,
+                   id<<" is an invalid ID: cannot contain "<<counterDelimiter);
     };
 
     ObjectXL::~ObjectXL() {
@@ -34,14 +46,14 @@ namespace ObjectHandler {
     }
 
 #ifdef COMPILING_XLL_DYNAMIC
-    boost::shared_ptr<ObjectXL> ObjectXL::create(const std::string &id, const boost::shared_ptr<Object> &object) {
+    boost::shared_ptr<ObjectXL> ObjectXL::create(const string &id, const boost::shared_ptr<Object> &object) {
         return boost::shared_ptr<ObjectXL>(new ObjectXL(id, object));
     }
 #endif
 
-    std::string ObjectXL::getStub(const std::string &objectID) {
+    string ObjectXL::getStub(const string &objectID) {
         int counterOffset = objectID.length() - CallingRange::keyWidth();
-        if (counterOffset >= 0 && objectID[counterOffset] == '#')
+        if (counterOffset >= 0 && objectID[counterOffset] == counterDelimiter)
             return objectID.substr(0, counterOffset);
         else
             return objectID;
@@ -51,9 +63,9 @@ namespace ObjectHandler {
         callingRange_ = callingRange;
 
         if (id_.empty())
-            id_ = "obj" + callingRange->key();
+            id_ = anonPrefix + callingRange->key();
 
-        idFull_ = id_ + "#" + callingRange_->updateCount();
+        idFull_ = id_ + counterDelimiter + callingRange_->updateCount();
     }
 
     void ObjectXL::dump(std::ostream &out) {
@@ -65,7 +77,7 @@ namespace ObjectHandler {
             << callerAddress() << std::endl << std::endl;
     }
 
-    std::string ObjectXL::callerKey() const {
+    string ObjectXL::callerKey() const {
         if (callingRange_) {
             return callingRange_->key();
         } else {
@@ -73,7 +85,7 @@ namespace ObjectHandler {
         }
     }
 
-    std::string ObjectXL::callerAddress() const {
+    string ObjectXL::callerAddress() const {
         if (callingRange_) {
             return callingRange_->addressString();
         } else {
