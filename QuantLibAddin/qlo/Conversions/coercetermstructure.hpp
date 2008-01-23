@@ -47,8 +47,8 @@ namespace QuantLibAddin {
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToLibrary<ObjectTermStructure, LibraryTermStructure>,
-                handleToLibraryDifferent<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure, LibraryTermStructure>,
-                handleToLibraryDifferent<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, LibraryTermStructure>,
+                handleToLibraryDifferent<YieldTermStructure, QuantLib::YieldTermStructure, LibraryTermStructure>,
+                handleToLibraryDifferent<SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, LibraryTermStructure>,
                 0
             };
             return conversions;
@@ -59,15 +59,15 @@ namespace QuantLibAddin {
     // wrap handleToLibrarySame<> instead of handleToLibraryDifferent<>
 
     template <>
-    class CoerceTermStructure<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure>
+    class CoerceTermStructure<YieldTermStructure, QuantLib::YieldTermStructure>
         : public ObjectHandler::Coerce<
         boost::shared_ptr<ObjectHandler::Object>,
         boost::shared_ptr<QuantLib::YieldTermStructure> > {
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                objectToLibrary<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure>,
-                handleToLibrarySame<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure>,
+                objectToLibrary<YieldTermStructure, QuantLib::YieldTermStructure>,
+                handleToLibrarySame<YieldTermStructure, QuantLib::YieldTermStructure>,
                 0
             };
             return conversions;
@@ -78,15 +78,15 @@ namespace QuantLibAddin {
     // wrap handleToLibrarySame<> instead of handleToLibraryDifferent<>
 
     template <>
-    class CoerceTermStructure<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>
+    class CoerceTermStructure<SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>
         : public ObjectHandler::Coerce<
         boost::shared_ptr<ObjectHandler::Object>,
         boost::shared_ptr<QuantLib::SwaptionVolatilityStructure> > {
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                objectToLibrary<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>,
-                handleToLibrarySame<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>,
+                objectToLibrary<SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>,
+                handleToLibrarySame<SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure>,
                 0
             };
             return conversions;
@@ -114,10 +114,10 @@ namespace QuantLibAddin {
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToObject<ObjectTermStructure>,
-                handleToObject<QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, ObjectTermStructure>,
+                handleToObject<SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure, ObjectTermStructure>,
                 // At present CoerceTermStructureObject is not required for any classes derived from YieldTermStructure.
                 // See file QuantLibAddin/gensrc/metadata/Types/types.xml, supertype "objectTermStructure"
-                //handleToObject<QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure, ObjectTermStructure>,
+                //handleToObject<YieldTermStructure, QuantLib::YieldTermStructure, ObjectTermStructure>,
                 0
             };
             return conversions;

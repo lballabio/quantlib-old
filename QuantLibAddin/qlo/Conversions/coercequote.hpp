@@ -41,7 +41,7 @@ namespace QuantLibAddin {
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToLibrary<ObjectQuote, LibraryQuote>,
-                handleToLibraryDifferent<QuantLibAddin::Quote, QuantLib::Quote, LibraryQuote>,
+                handleToLibraryDifferent<Quote, QuantLib::Quote, LibraryQuote>,
                 0
             };
             return conversions;
@@ -52,15 +52,15 @@ namespace QuantLibAddin {
     // handleToLibrarySame<> instead of handleToLibraryDifferent<>
 
     template <>
-    class CoerceQuote<QuantLibAddin::Quote, QuantLib::Quote>
+    class CoerceQuote<Quote, QuantLib::Quote>
         : public ObjectHandler::Coerce<
         boost::shared_ptr<ObjectHandler::Object>,
         boost::shared_ptr<QuantLib::Quote> > {
 
         Conversion *getConversions() {
             static Conversion conversions[] = {
-                objectToLibrary<QuantLibAddin::Quote, QuantLib::Quote>,
-                handleToLibrarySame<QuantLibAddin::Quote, QuantLib::Quote>,
+                objectToLibrary<Quote, QuantLib::Quote>,
+                handleToLibrarySame<Quote, QuantLib::Quote>,
                 0
             };
             return conversions;
@@ -87,7 +87,7 @@ namespace QuantLibAddin {
         Conversion *getConversions() {
             static Conversion conversions[] = {
                 objectToObject<ObjectQuote>,
-                handleToObject<QuantLibAddin::Quote, QuantLib::Quote, ObjectQuote>,
+                handleToObject<Quote, QuantLib::Quote, ObjectQuote>,
                 0
             };
             return conversions;
