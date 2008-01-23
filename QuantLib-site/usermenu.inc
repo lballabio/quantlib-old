@@ -2,37 +2,37 @@
 <ul class="navbarlist">
 <li class="navlink"><a href="http://quantlib.org">Home</a></li>
 
-<li class="navlink"><a href="/reference/overview.html">Project Overview</a></li>
-
-<li class="navlink"><a href="/extensions.shtml">Other languages</a></li>
-
-<li class="navlink"><a href="/reference/examples.html">Examples</a></li>
-
-<li class="navlink"><a href="/reference/history.html">History</a></li>
+<!--li class="navlink"><a href="/reference/overview.html">Project Overview</a></li-->
 
 <li class="navlink"><a href="/download.shtml">Download</a></li>
 
+<li class="navlink"><a href=
+"http://sourceforge.net/tracker/?func=add&amp;group_id=12740&amp;atid=112740">Submit a bug report</a></li>
+
+<li class="navlink"><a href="/license.shtml">License</a></li>
+
 <li class="navlink"><a href="/mailinglists.shtml">Mailing Lists</a></li>
-
-<li class="navlink"><a href=
-"http://sourceforge.net/export/rss2_project.php?group_id=12740">RSS feeds</a></li>
-
-<li class="navlink"><a href=
-"http://sourceforge.net/news/?group_id=12740">News</a></li>
 
 <li class="navlink"><a href="/faq.shtml">FAQ</a></li>
 
 <li class="navlink"><a href="/docs.shtml">Documentation</a></li>
 
 <li class="navlink"><a href=
-"http://wiki.quantlib.org">QuantLib Wiki</a></li>
+"http://sourceforge.net/news/?group_id=12740">News</a></li>
 
-<li class="navlink"><a href="/license.shtml">License</a></li>
+<li class="navlink"><a href="/reference/history.html">History</a></li>
+
+<li class="navlink"><a href=
+"http://sourceforge.net/export/rss2_project.php?group_id=12740">RSS feeds</a></li>
+
+<li class="navlink"><a href="/extensions.shtml">Other languages</a></li>
+
+<!--li class="navlink"><a href="/reference/examples.html">Examples</a></li-->
 
 <li class="navlink"><a href="/reference/group.html">QuantLib Group</a></li>
 
 <li class="navlink"><a href=
-"http://sourceforge.net/tracker/?func=add&amp;group_id=12740&amp;atid=112740">Submit a bug</a></li>
+"http://wiki.quantlib.org">Unofficial Wiki</a></li>
 
 </ul>
 
