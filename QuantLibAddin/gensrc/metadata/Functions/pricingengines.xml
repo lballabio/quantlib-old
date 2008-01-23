@@ -31,7 +31,7 @@
     <include>ql/termstructures/volatility/swaption/swaptionvolstructure.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
     Copyright (C) 2007 Eric Ehlers
   </copyright>
   <Functions>
@@ -175,7 +175,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackFormulaImpliedStdDev'>
+    <Procedure name='qlBlackFormulaImpliedStdDev3'>
       <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula with displacement</description>
       <alias>QuantLib::blackFormulaImpliedStdDev</alias>
       <SupportedPlatforms>
@@ -210,6 +210,11 @@
             <tensorRank>scalar</tensorRank>
             <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
+          </Parameter>
           <Parameter name='Guess' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
@@ -220,15 +225,10 @@
             <tensorRank>scalar</tensorRank>
             <description>solver accuracy. If missing default = 1e-6</description>
           </Parameter>
-          <!--<Parameter name='MaxIter' default='100'>
-            <type>QuantLib::Size</type>
+          <Parameter name='MaxIter' default='100'>
+            <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>solver max iterations. If missing default = 100</description>
-          </Parameter>-->
-          <Parameter name='Displacement' default='0.0'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>displacement in a displaced diffusion model, default = 0.0</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -448,7 +448,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackFormulaImpliedStdDev2'>
+    <Procedure name='qlBlackFormulaImpliedStdDev4'>
       <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula. It uses a PlainVanillaPayoff object as input</description>
       <alias>QuantLib::blackFormulaImpliedStdDev</alias>
       <SupportedPlatforms>
@@ -478,6 +478,11 @@
             <tensorRank>scalar</tensorRank>
             <description>Deflator (usually the discount factor, or the annuity, etc.), default = 1.0</description>
           </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model, default = 0.0</description>
+          </Parameter>
           <Parameter name='Guess' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
@@ -488,10 +493,10 @@
             <tensorRank>scalar</tensorRank>
             <description>standard deviation accuracy</description>
           </Parameter>
-          <Parameter name='Displacement' default='0.0'>
-            <type>QuantLib::Real</type>
+          <Parameter name='MaxIter' default='100'>
+            <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement in a displaced diffusion model, default = 0.0</description>
+            <description>solver max iterations. If missing default = 100</description>
           </Parameter>
         </Parameters>
       </ParameterList>

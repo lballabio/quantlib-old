@@ -161,6 +161,7 @@ namespace QuantLibAddin {
                         const shared_ptr<QuantLib::IborIndex>& index,
                         QuantLib::Rate switchStrike,
                         QuantLib::Real accuracy,
+                        QuantLib::Natural maxIterations,
                         bool permanent)
     : OptionletStripper(properties, permanent)
     {
@@ -168,7 +169,8 @@ namespace QuantLibAddin {
             QuantLib::OptionletStripper1(s,
                                          index,
                                          switchStrike,
-                                         accuracy));
+                                         accuracy,
+                                         maxIterations));
     }
 
     OptionletStripper2::OptionletStripper2(

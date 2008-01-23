@@ -136,6 +136,7 @@ namespace QuantLibAddin {
                     const boost::shared_ptr<QuantLib::IborIndex>& index,
                     QuantLib::Rate switchStrike,
                     QuantLib::Real accuracy,
+                    QuantLib::Natural maxIterations,
                     bool permanent);
     };
 
