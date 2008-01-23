@@ -19,7 +19,7 @@
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet
   </copyright>
   <Functions>
@@ -128,7 +128,7 @@
     </Member>
 
     <Member name='qlCapFloorImpliedVolatility' type='QuantLib::CapFloor'>
-      <description>Returns the volatility implied in a given price for the given CapFloor object</description>
+      <description>Returns the volatility implied by the given price for the given CapFloor object</description>
       <libraryFunction>impliedVolatility</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -148,13 +148,18 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting YieldTermStructure object ID</description>
           </Parameter>
+          <Parameter name='Guess' default='0.10'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Volatility guess.</description>
+          </Parameter>
           <Parameter name='Accuracy' default='1.0e-6'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>solver accuracy. If missing default = 1e-6</description>
           </Parameter>
           <Parameter name='MaxIter' default='100'>
-            <type>QuantLib::Size</type>
+            <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>solver max iterations. If missing default = 100</description>
           </Parameter>
