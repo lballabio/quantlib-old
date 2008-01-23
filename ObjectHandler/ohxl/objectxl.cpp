@@ -20,20 +20,24 @@
 #include <ohxl/objectxl.hpp>
 #include <ohxl/functioncall.hpp>
 #include <ohxl/callingrange.hpp>
+#include <boost/algorithm/string/case_conv.hpp>
 
+using boost::algorithm::to_upper_copy;
 using std::string;
 
 namespace ObjectHandler {
 
     namespace {
         const string anonPrefix("obj");
+        const string ANONPREFIX("OBJ");
         const char counterDelimiter = '#';
     }
 
     ObjectXL::ObjectXL(const string &id,
                        const boost::shared_ptr<Object> &object)
     : id_(id), idFull_(id), object_(object) {
-        OH_REQUIRE(id.rfind(anonPrefix, anonPrefix.size()-1)==string::npos,
+        string ID = to_upper_copy(id);
+        OH_REQUIRE(ID.rfind(ANONPREFIX, ANONPREFIX.size()-1)==string::npos,
                    id<<" is an invalid ID: cannot start with " << anonPrefix);
         OH_REQUIRE(id.find(counterDelimiter, 0)==string::npos,
                    id<<" is an invalid ID: cannot contain "<<counterDelimiter);
