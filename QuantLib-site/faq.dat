@@ -180,7 +180,7 @@
    you need the ones labeled as "Compilers back-end" and "C++".
 
 <c>Testing QuantLib
-<q>The QuantLib test-suite fails when compiling under Mac OS X.
+<q>The QuantLib test-suite fails when compiling under Mac OS X 10.3.
 <a>We are aware of the problem; apparently, there are issues with
    global and/or static variables when using shared libraries. As a
    workaround, compile QuantLib as a static library. This can be
