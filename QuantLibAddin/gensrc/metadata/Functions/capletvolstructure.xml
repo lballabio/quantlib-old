@@ -281,11 +281,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='ReferenceDate' exampleValue='3400'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>reference date</description>
-          </Parameter>
           <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
@@ -432,22 +427,6 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::DayCounter</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlStrippedOptionletBaseReferenceDate' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
-      <description>Returns the reference date for the given StrippedOptionletBase object</description>
-      <libraryFunction>referenceDate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>

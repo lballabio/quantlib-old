@@ -114,7 +114,6 @@ namespace QuantLibAddin {
       public:
         StrippedOptionlet(
         const boost::shared_ptr<ObjectHandler::ValueObject>&,
-        const QuantLib::Date& referenceDate,
         const QuantLib::Calendar& calendar,
         QuantLib::Natural settlementDays,
         QuantLib::BusinessDayConvention businessDayConvention,

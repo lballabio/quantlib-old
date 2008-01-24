@@ -126,7 +126,6 @@ namespace QuantLibAddin {
 
     StrippedOptionlet::StrippedOptionlet(
                                 const shared_ptr<ValueObject>& properties,
-                                const QuantLib::Date& referenceDate,
                                 const QuantLib::Calendar& calendar,
                                 QuantLib::Natural settlementDays,
                                 BusinessDayConvention businessDayConvention,
@@ -139,8 +138,7 @@ namespace QuantLibAddin {
     : StrippedOptionletBase(properties, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::StrippedOptionlet>(new
-            QuantLib::StrippedOptionlet(referenceDate,
-                                        settlementDays,
+            QuantLib::StrippedOptionlet(settlementDays,
                                         index,
                                         optionletTenors,
                                         strikes,
