@@ -219,22 +219,22 @@ class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
   public:
     %extend {
         BlackConstantVolPtr(
-                const Date& referenceDate, 
-		const Calendar & c,
-		Volatility volatility,
+                const Date& referenceDate,
+        const Calendar & c,
+        Volatility volatility,
                 const DayCounter& dayCounter) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, c,
-		volatility, dayCounter));
+        volatility, dayCounter));
         }
         BlackConstantVolPtr(
                 const Date& referenceDate,
-		const Calendar &c, 
+        const Calendar &c,
                 const Handle<Quote>& volatility,
                 const DayCounter& dayCounter) {
             return new BlackConstantVolPtr(
-                new BlackConstantVol(referenceDate, c, 
-		volatility, dayCounter));
+                new BlackConstantVol(referenceDate, c,
+        volatility, dayCounter));
         }
         BlackConstantVolPtr(
                 Natural settlementDays, const Calendar& calendar,
@@ -283,7 +283,7 @@ class BlackVarianceSurfacePtr
     %extend {
         BlackVarianceSurfacePtr(
                 const Date& referenceDate,
-		const Calendar & cal,
+        const Calendar & cal,
                 const std::vector<Date>& dates,
                 const std::vector<Real>& strikes,
                 const Matrix& blackVols,
@@ -294,8 +294,8 @@ class BlackVarianceSurfacePtr
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation) {
             return new BlackVarianceSurfacePtr(
                 new BlackVarianceSurface(referenceDate,cal,
-					dates,strikes,
-				blackVols,dayCounter,lower,upper));
+                    dates,strikes,
+                blackVols,dayCounter,lower,upper));
         }
         static const BlackVarianceSurface::Extrapolation
             ConstantExtrapolation =
@@ -353,59 +353,51 @@ class LocalConstantVolPtr : public boost::shared_ptr<LocalVolTermStructure> {
 
 // constant caplet constant term structure
 %{
-using QuantLib::ConstantOptionletVol;
+using QuantLib::ConstantOptionletVolatility;
 typedef boost::shared_ptr<OptionletVolatilityStructure>
-    ConstantOptionletVolPtr;
+    ConstantOptionletVolatilityPtr;
 %}
 
-%rename(ConstantOptionletVol) ConstantOptionletVolPtr;
-class ConstantOptionletVolPtr
+%rename(ConstantOptionletVolatility) ConstantOptionletVolatilityPtr;
+class ConstantOptionletVolatilityPtr
     : public boost::shared_ptr<OptionletVolatilityStructure> {
   public:
     %extend {
-        ConstantOptionletVolPtr(
-                const Date& referenceDate, 
-		Volatility volatility,
-		const DayCounter& dayCounter,	
-		const Calendar &cal,
-		BusinessDayConvention bdc = Following
-                ) {
-            return new ConstantOptionletVolPtr(
-                new ConstantOptionletVol(referenceDate, volatility,
-                                             dayCounter, cal, bdc));
+        ConstantOptionletVolatilityPtr(const Date& referenceDate,
+                                       Volatility volatility,
+                                       const DayCounter& dayCounter,
+                                       const Calendar &cal,
+                                       BusinessDayConvention bdc = Following) {
+            return new ConstantOptionletVolatilityPtr(
+                new ConstantOptionletVolatility(referenceDate, volatility,
+                                                dayCounter, cal, bdc));
         }
-        ConstantOptionletVolPtr(
-                const Date& referenceDate,
-                const Handle<Quote>& volatility,
-		const DayCounter& dayCounter,	
-		const Calendar &cal,
-		BusinessDayConvention bdc = Following
-                ) {
-            return new ConstantOptionletVolPtr(
-                new ConstantOptionletVol(referenceDate, volatility,
-		                          dayCounter, cal, bdc));	
+        ConstantOptionletVolatilityPtr(const Date& referenceDate,
+                                       const Handle<Quote>& volatility,
+                                       const DayCounter& dayCounter,
+                                       const Calendar &cal,
+                                       BusinessDayConvention bdc = Following) {
+            return new ConstantOptionletVolatilityPtr(
+                new ConstantOptionletVolatility(referenceDate, volatility,
+                                                dayCounter, cal, bdc));
         }
-        ConstantOptionletVolPtr(
-		Natural settlementDays,
-                Volatility volatility,
-		const DayCounter& dayCounter,	
-		const Calendar &cal,
-		BusinessDayConvention bdc = Following
-                ) {
-            return new ConstantOptionletVolPtr(
-                new ConstantOptionletVol(settlementDays,
-		volatility, dayCounter, cal, bdc));
+        ConstantOptionletVolatilityPtr(Natural settlementDays,
+                                       Volatility volatility,
+                                       const DayCounter& dayCounter,
+                                       const Calendar &cal,
+                                       BusinessDayConvention bdc = Following) {
+            return new ConstantOptionletVolatilityPtr(
+                new ConstantOptionletVolatility(settlementDays, volatility,
+                                                dayCounter, cal, bdc));
         }
-        ConstantOptionletVolPtr(
-		Natural settlementDays,
-                const Handle<Quote>& volatility,
-		const DayCounter& dayCounter,	
-		const Calendar &cal,
-		BusinessDayConvention bdc = Following
-                ) {
-            return new ConstantOptionletVolPtr(
-                new ConstantOptionletVol(settlementDays, 
-		volatility, dayCounter, cal, bdc));
+        ConstantOptionletVolatilityPtr(Natural settlementDays,
+                                       const Handle<Quote>& volatility,
+                                       const DayCounter& dayCounter,
+                                       const Calendar &cal,
+                                       BusinessDayConvention bdc = Following) {
+            return new ConstantOptionletVolatilityPtr(
+                new ConstantOptionletVolatility(settlementDays, volatility,
+                                                dayCounter, cal, bdc));
         }
     }
 };
