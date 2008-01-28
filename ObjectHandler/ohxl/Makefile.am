@@ -4,6 +4,8 @@ EXTRA_DIST = \
     callingrange.hpp \
     configuration.cpp \
     configuration.hpp \
+    convert_oper.cpp \
+    convert_oper.hpp \
     functioncall.cpp \
     functioncall.hpp \
     loop.hpp \
