@@ -182,8 +182,7 @@
             <tensorRank>scalar</tensorRank>
             <description>shift</description>
           </Parameter>
-          <!--<Parameter name='SensitivityAnalysis' default='Centered'>-->
-          <Parameter name='SensitivityAnalysis'>
+          <Parameter name='SensitivityAnalysis' default='"Centered"'>
             <type>QuantLib::SensitivityAnalysis</type>
             <tensorRank>scalar</tensorRank>
             <description>SensitivityAnalysis type</description>
