@@ -12,6 +12,21 @@
 
   <EnumeratedTypeGroups>
 
+    <EnumeratedTypeGroup type='QuantLib::SensitivityAnalysis'>
+      <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>OneSide</string>
+          <value>QuantLib::OneSide</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Centered</string>
+          <value>QuantLib::Centered</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
     <EnumeratedTypeGroup type='QuantLib::DateGeneration::Rule'>
       <includeFile>oh/Enumerations/typefactory.hpp</includeFile>
       <constructor>true</constructor>

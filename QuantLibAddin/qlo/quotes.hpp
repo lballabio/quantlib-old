@@ -27,6 +27,7 @@
 
 #include <ql/option.hpp>
 #include <ql/types.hpp>
+#include <ql/quotes/sensitivityanalysis.hpp>
 
 namespace QuantLib {
     class IborIndex;
@@ -113,6 +114,14 @@ namespace QuantLibAddin {
                     const QuantLib::Handle<QuantLib::Quote>& meanReversion,
                     bool permanent);
     };
+
+
+    std::vector<std::vector<QuantLib::Real> >
+    bucketAnalysis(const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >&,
+                   const std::vector<boost::shared_ptr<QuantLib::Instrument> >&,
+                   const std::vector<QuantLib::Real>& quant,
+                   QuantLib::Real shift,
+                   QuantLib::SensitivityAnalysis type);
 
 }
 

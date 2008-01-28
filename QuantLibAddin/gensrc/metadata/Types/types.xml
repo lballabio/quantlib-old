@@ -66,6 +66,7 @@
         <DataType>QuantLib::Position::Type</DataType>
         <DataType>QuantLib::Replication::Type</DataType>
         <DataType>QuantLib::SalvagingAlgorithm::Type</DataType>
+        <DataType>QuantLib::SensitivityAnalysis</DataType>
         <DataType>QuantLib::Settlement::Type</DataType>
         <DataType>QuantLib::VanillaSwap::Type</DataType>
         <DataType>QuantLib::Weekday</DataType>
@@ -291,6 +292,7 @@
         <DataType>QuantLib::OptionletStripper1</DataType>
         <DataType>QuantLib::OptionletVolatilityStructure</DataType>
         <DataType>QuantLib::Quote</DataType>
+        <DataType>QuantLib::SimpleQuote</DataType>
         <DataType>QuantLib::BlackAtmVolCurve</DataType>
         <DataType>QuantLib::SabrVolSurface</DataType>
         <DataType>QuantLib::SwaptionVolatilityStructure</DataType>

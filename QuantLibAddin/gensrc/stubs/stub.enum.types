@@ -20,6 +20,7 @@
 #include <ql/math/matrixutilities/pseudosqrt.hpp>
 #include <ql/math/optimization/endcriteria.hpp>
 #include <ql/termstructures/volatility/swaption/cmsmarketcalibration.hpp>
+#include <ql/quotes/sensitivityanalysis.hpp>
 #include <qlo/interpolation.hpp>
 #include <qlo/interpolation2D.hpp>
 #include <qlo/ratehelpers.hpp>

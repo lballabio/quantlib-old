@@ -27,29 +27,35 @@
 #include <ql/quotes/forwardswapquote.hpp>
 #include <ql/quotes/futuresconvadjustmentquote.hpp>
 #include <ql/quotes/impliedstddevquote.hpp>
+#include <ql/quotes/sensitivityanalysis.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
+
+using std::vector;
+using std::pair;
+using boost::shared_ptr;
+using QuantLib::Real;
 
 namespace QuantLibAddin {
 
     SimpleQuote::SimpleQuote(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::Real value,
-            QuantLib::Real tickValue,
+            const shared_ptr<ObjectHandler::ValueObject>& properties,
+            Real value,
+            Real tickValue,
             bool permanent) : Quote(properties, permanent) {
         // The base class requires us to store a reference
         // to a QuantLib::Quote in libraryObject_.
         // For performance reasons we also store a reference to
         // QuantLib::SimpleQuote in simpleQuote_, without this we would have to
         // do a pointer cast on every call to QuantLibAddin::SimpleQuote::setValue().
-        libraryObject_ = simpleQuote_ = boost::shared_ptr<QuantLib::SimpleQuote>(
+        libraryObject_ = simpleQuote_ = shared_ptr<QuantLib::SimpleQuote>(
             new QuantLib::SimpleQuote(value));
     }
 
-    QuantLib::Real SimpleQuote::tickValue() const {
+    Real SimpleQuote::tickValue() const {
         return boost::any_cast<double>(propertyValue("TICKVALUE"));
     }
 
-    void SimpleQuote::setTickValue(QuantLib::Real tickValue) {
+    void SimpleQuote::setTickValue(Real tickValue) {
         properties()->setProperty("TICKVALUE", tickValue);
     }
 
@@ -57,9 +63,9 @@ namespace QuantLibAddin {
     // updating the ValueObject.  The "Value" property of the ValueObject is represented
     // as datatype ObjectHandler::Variant (rather than double), this is necessary for
     // platform-independent processing of value Null<Real>.
-    QuantLib::Real SimpleQuote::setValue(QuantLib::Real value) {
+    Real SimpleQuote::setValue(Real value) {
 
-        QuantLib::Real result;
+        Real result;
 
         try {
             result = simpleQuote_->setValue(value);
@@ -72,7 +78,7 @@ namespace QuantLibAddin {
                 properties()->setProperty("VALUE", ObjectHandler::Variant(simpleQuote_->value()));
             else
                 properties()->setProperty("VALUE", 
-                    ObjectHandler::Variant(static_cast<double>(QuantLib::Null<QuantLib::Real>())));
+                    ObjectHandler::Variant(static_cast<double>(QuantLib::Null<Real>())));
             throw;
         }
 
@@ -83,70 +89,91 @@ namespace QuantLibAddin {
 
 
     ForwardValueQuote::ForwardValueQuote(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const boost::shared_ptr<QuantLib::IborIndex>& index,
+        const shared_ptr<ObjectHandler::ValueObject>& properties,
+        const shared_ptr<QuantLib::IborIndex>& index,
         const QuantLib::Date& fixingDate,
         bool permanent) : Quote(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
+        libraryObject_ = shared_ptr<QuantLib::Quote>(new
             QuantLib::ForwardValueQuote(index, fixingDate));
     }
     
     ForwardSwapQuote::ForwardSwapQuote(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
+            const shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<QuantLib::SwapIndex>& swapIndex,
             const QuantLib::Handle<QuantLib::Quote>& spread,
             const QuantLib::Period& fwdStart,
             bool permanent) : Quote(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
+        libraryObject_ = shared_ptr<QuantLib::Quote>(new
             QuantLib::ForwardSwapQuote(swapIndex, spread, fwdStart));
     }
 
     ImpliedStdDevQuote::ImpliedStdDevQuote(
-                            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                            const shared_ptr<ObjectHandler::ValueObject>& properties,
                             QuantLib::Option::Type optionType,
                             const QuantLib::Handle<QuantLib::Quote>& forward,
                             const QuantLib::Handle<QuantLib::Quote>& price,
-                            QuantLib::Real strike,
-                            QuantLib::Real guess,
-                            QuantLib::Real accuracy,
+                            Real strike,
+                            Real guess,
+                            Real accuracy,
                             bool permanent) : Quote(properties, permanent)
     {
-    libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
+    libraryObject_ = shared_ptr<QuantLib::Quote>(new
         QuantLib::ImpliedStdDevQuote(optionType, forward, price, strike,
                                      guess, accuracy));
     }
 
     EurodollarFuturesImpliedStdDevQuote::EurodollarFuturesImpliedStdDevQuote(
-                        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                        const shared_ptr<ObjectHandler::ValueObject>& properties,
                         const QuantLib::Handle<QuantLib::Quote>& forward,
                         const QuantLib::Handle<QuantLib::Quote>& callPrice,
                         const QuantLib::Handle<QuantLib::Quote>& putPrice,
-                        QuantLib::Real strike,
-                        QuantLib::Real guess,
-                        QuantLib::Real accuracy,
+                        Real strike,
+                        Real guess,
+                        Real accuracy,
                         bool permanent) : Quote(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
+        libraryObject_ = shared_ptr<QuantLib::Quote>(new
             QuantLib::EurodollarFuturesImpliedStdDevQuote(forward,
                 callPrice, putPrice, strike, guess, accuracy));
     }
 
     FuturesConvAdjustmentQuote::FuturesConvAdjustmentQuote(
-                               const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                               const boost::shared_ptr<QuantLib::IborIndex>& index,
+                               const shared_ptr<ObjectHandler::ValueObject>& properties,
+                               const shared_ptr<QuantLib::IborIndex>& index,
                                const std::string& immCode, 
                                const QuantLib::Handle<QuantLib::Quote>& futuresQuote,
                                const QuantLib::Handle<QuantLib::Quote>& volatility,
                                const QuantLib::Handle<QuantLib::Quote>& meanReversion,
                                bool permanent) : Quote(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Quote>(new
+        libraryObject_ = shared_ptr<QuantLib::Quote>(new
             QuantLib::FuturesConvAdjustmentQuote(index, immCode,
                                                  futuresQuote,
                                                  volatility,
                                                  meanReversion));
     }
 
+    vector<vector<Real> >
+    bucketAnalysis(const vector<vector<QuantLib::Handle<QuantLib::Quote> > >& q,
+                   const vector<shared_ptr<QuantLib::Instrument> >& instr,
+                   const std::vector<QuantLib::Real>& quant,
+                   Real shift,
+                   QuantLib::SensitivityAnalysis type)
+    {
+        pair<vector<vector<Real> >, vector<vector<Real> > > result;
+        vector<vector<QuantLib::Handle<QuantLib::SimpleQuote> > > sq(q.size());
+        for (QuantLib::Size i=0; i<q.size(); ++i) {
+            sq[i] = vector<QuantLib::Handle<QuantLib::SimpleQuote> >(q[i].size());
+            for (QuantLib::Size j=0; j<q[i].size(); ++j) {
+                boost::shared_ptr<QuantLib::Quote> t(q[i][j].currentLink());
+                boost::shared_ptr<QuantLib::SimpleQuote> tt = 
+                    boost::dynamic_pointer_cast<QuantLib::SimpleQuote>(t);
+                sq[i][j] = QuantLib::Handle<QuantLib::SimpleQuote>(tt);
+            }
+        }
+        result = QuantLib::bucketAnalysis(sq, instr, quant, shift, type);
+        return result.first;
+    }
 }
