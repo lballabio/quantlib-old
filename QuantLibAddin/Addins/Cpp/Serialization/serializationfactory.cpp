@@ -201,9 +201,11 @@ namespace QuantLibAddinCpp {
         }
 
         std::ostringstream os;
-        boost::archive::xml_oarchive oa(os);
-        register_out(oa);
-        oa << boost::serialization::make_nvp("object_list", valueObjects);
+        {
+            boost::archive::xml_oarchive oa(os);
+            register_out(oa);
+            oa << boost::serialization::make_nvp("object_list", valueObjects);
+        }
         return os.str();
     }
 

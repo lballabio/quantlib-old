@@ -185,6 +185,7 @@ INFO - XML =
                 </px>
         </item>
 </object_list>
+</boost_serialization>
 
 INFO - log dump of object with ID = quote1
 
