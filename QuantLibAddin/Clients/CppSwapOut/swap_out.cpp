@@ -229,7 +229,8 @@ int main() {
             std::ostringstream objectId, quoteId;
             objectId << "EUR" << depositData[i].tenor << "D";
             quoteId << objectId.str() << "_Quote";
-            std::string rateHelperId = qlDepositRateHelper(objectId.str(),
+            std::string rateHelperId = qlDepositRateHelper2(
+                objectId.str(),
                 quoteId.str(),
                 depositData[i].period,
                 depositData[i].fixingdays,
@@ -247,12 +248,14 @@ int main() {
             objectId << "EURFUT" << futureData[i].tenor;
             quoteId << objectId.str() << "_Quote";
             convQuoteId << objectId.str()<< "ConvAdj_Quote";
-            std::string futRateHelperId = qlFuturesRateHelper(objectId.str(),
+            std::string futRateHelperId = qlFuturesRateHelper2(
+                objectId.str(),
                 quoteId.str(),
-                futureData[i].tenor,
+                std::string(futureData[i].tenor),
                 3L,
                 std::string("Target"),
                 std::string("Modified Following"),
+                false,
                 std::string("Actual/360"),
                 convQuoteId.str(),
                 false, OH_NULL, false);
@@ -264,7 +267,8 @@ int main() {
             std::ostringstream objectId, quoteId;
             objectId << "EURAB6E" << swapData[i].tenor << "S";
             quoteId << objectId.str() << "_Quote";
-            std::string swapId = qlSwapRateHelper(objectId.str(),
+            std::string swapId = qlSwapRateHelper2(
+                objectId.str(),
                 quoteId.str(),
                 swapData[i].tenor,
                 std::string("Target"),
